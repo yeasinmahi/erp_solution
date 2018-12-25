@@ -1,4 +1,7 @@
-﻿using System;
+﻿using HR_BLL.Employee;
+using HR_BLL.Global;
+using HR_BLL.TourPlan;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
@@ -6,9 +9,6 @@ using System.Web;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using HR_BLL.Employee;
-using HR_BLL.Global;
-using HR_BLL.TourPlan;
 using UI.ClassFiles;
 using Utility;
 
@@ -18,6 +18,7 @@ namespace UI.HR.Overtime
     {
         private readonly TourPlanning _bll = new TourPlanning();
         private int _enroll;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -28,7 +29,7 @@ namespace UI.HR.Overtime
                 Session["obj"] = null;
                 LoadPurpose();
                 LoadUnitDropDown(_enroll);
-                LoadJobStationDropDown(GetUnitId());
+                LoadJobStationDropDown(GetUnitId(), _enroll);
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
             if (hdnSearch.Value == "1")
@@ -39,7 +40,7 @@ namespace UI.HR.Overtime
 
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadJobStationDropDown(GetUnitId());
+            LoadJobStationDropDown(GetUnitId(), _enroll);
             ddlJobStation_OnSelectedIndexChanged(ddlJobStation, null);
         }
 
@@ -72,12 +73,11 @@ namespace UI.HR.Overtime
                 hour,
                 reason,
                 remarks
-
             };
             List<object> objects = new List<object>();
             if (Session["obj"] != null)
             {
-                objects = (List<object>) Session["obj"];
+                objects = (List<object>)Session["obj"];
             }
             foreach (GridViewRow row in OvertimeEntryGridView.Rows)
             {
@@ -90,20 +90,18 @@ namespace UI.HR.Overtime
                 //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
             }
             objects.Add(obj);
-            
+
             Session["obj"] = objects;
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
 
-            LoadGridwithXml(xmlString,OvertimeEntryGridView);
-
-
+            LoadGridwithXml(xmlString, OvertimeEntryGridView);
         }
 
         protected void OvertimeEntryGridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             if (Session["obj"] != null)
             {
-                List<object> objects = (List<object>) Session["obj"];
+                List<object> objects = (List<object>)Session["obj"];
                 objects.RemoveAt(e.RowIndex);
                 if (objects.Count > 0)
                 {
@@ -123,7 +121,6 @@ namespace UI.HR.Overtime
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-            
         }
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
@@ -141,7 +138,7 @@ namespace UI.HR.Overtime
             {
                 dynamic obj = new
                 {
-                    overtimeId=0,
+                    overtimeId = 0,
                     empEnroll = Common.GetPropertyValue(o, "empEnroll"),
                     unitId,
                     jobStationId,
@@ -152,7 +149,6 @@ namespace UI.HR.Overtime
                     hour = Common.GetPropertyValue(o, "hour"),
                     reason = Common.GetPropertyValue(o, "reason"),
                     remarks = Common.GetPropertyValue(o, "remarks")
-
                 };
                 objectsNew.Add(obj);
             }
@@ -161,7 +157,7 @@ namespace UI.HR.Overtime
                 string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
                 string ipaddress = Common.GetIp();
                 message = _bll.OvertimeEntryNew(1, xmlString, _enroll, ipaddress);
-                
+
                 if (message.Contains("Sucessfully"))
                 {
                     Session["obj"] = null;
@@ -181,8 +177,6 @@ namespace UI.HR.Overtime
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                     "ShowNotification('No Data Found to Insert','OverTime','warning')", true);
             }
-            
-            
         }
 
         private void LoadPurpose()
@@ -192,6 +186,7 @@ namespace UI.HR.Overtime
             ddlPurpose.DataTextField = "strPurpouse";
             ddlPurpose.DataBind();
         }
+
         private void LoadPurposeUpdate()
         {
             ddlPurposeUpdate.DataSource = _bll.getOvertimePurpouse();
@@ -199,13 +194,15 @@ namespace UI.HR.Overtime
             ddlPurposeUpdate.DataTextField = "strPurpouse";
             ddlPurposeUpdate.DataBind();
         }
-        public void LoadJobStationDropDown(int unitId)
+
+        public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            ddlJobStation.DataSource = _bll.GetJobStation(unitId);
+            ddlJobStation.DataSource = _bll.GetJobStationByPermission(unitId, _enroll);
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
         }
+
         public void LoadUnitDropDown(int enrol)
         {
             ddlUnit.DataSource = _bll.GetUnitName(enrol);
@@ -213,19 +210,30 @@ namespace UI.HR.Overtime
             ddlUnit.DataTextField = "strUnit";
             ddlUnit.DataBind();
         }
+
         public int GetUnitId()
         {
             return Convert.ToInt32(ddlUnit.SelectedItem.Value);
             //return int.Parse(_bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
         }
+
         [WebMethod]
         public static List<string> GetAutoCompleteData(string strSearchKey)
         {
+            int jobStationId = 0;
+            try
+            {
+                jobStationId = int.Parse(HttpContext.Current.Session["jobStationId"].ToString());
+            }
+            catch (Exception e)
+            {
+            }
             AutoSearch_BLL objAutoSearchBll = new AutoSearch_BLL();
             var result = objAutoSearchBll.AutoSearchEmployeesData(//1399, 12, strSearchKey);
-                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session["jobStationId"].ToString()), strSearchKey);
+                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), jobStationId, strSearchKey);
             return result;
         }
+
         public void LoadEmployeeInfo()
         {
             string strSearchKey = txtEmployeeName.Text;
@@ -236,9 +244,9 @@ namespace UI.HR.Overtime
                 {
                     LoadFieldValue(searchKey[1]);
                 }
-
             }
         }
+
         private void LoadFieldValue(string empCode)
         {
             try
@@ -252,7 +260,7 @@ namespace UI.HR.Overtime
                         txtCode.Text = empCode;
                         txtDesignation.Text = objDt.Rows[0]["strDesignation"].ToString();
                         txtEnroll.Text = objDt.Rows[0]["intEmployeeID"].ToString();
-                        
+
                         LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                     }
                 }
@@ -261,8 +269,8 @@ namespace UI.HR.Overtime
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + ex.Message + "\",'OverTime','error')", true);
             }
-
         }
+
         private void LoadGridwithXml(string xmlString, GridView gridView)
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
@@ -271,33 +279,31 @@ namespace UI.HR.Overtime
             }
         }
 
-
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
             txtOvertimeId.Text = GridViewEmployeeDetails.DataKeys[row.RowIndex]?.Value.ToString();
-            txtEnrollUpdate.Text = ((Label) row.FindControl("lblEmpEnroll")).Text;
-            txtEmployeeNameUpdate.Text =((Label) row.FindControl("lblEmployeeName")).Text;
-            txtDesignationUpdate.Text = ((Label) row.FindControl("lblDesignation")).Text;
-            txtDateUpdate.Text = ((Label) row.FindControl("lblDate")).Text;
-            txtStrtTimeUpdate.Text = ((Label) row.FindControl("lblStartTime")).Text;
-            txtEndTimeUpdate.Text = ((Label) row.FindControl("lblEndTime")).Text;
-            string hour =((Label) row.FindControl("lblHour")).Text;
+            txtEnrollUpdate.Text = ((Label)row.FindControl("lblEmpEnroll")).Text;
+            txtEmployeeNameUpdate.Text = ((Label)row.FindControl("lblEmployeeName")).Text;
+            txtDesignationUpdate.Text = ((Label)row.FindControl("lblDesignation")).Text;
+            txtDateUpdate.Text = ((Label)row.FindControl("lblDate")).Text;
+            txtStrtTimeUpdate.Text = ((Label)row.FindControl("lblStartTime")).Text;
+            txtEndTimeUpdate.Text = ((Label)row.FindControl("lblEndTime")).Text;
+            string hour = ((Label)row.FindControl("lblHour")).Text;
             txtMoveUpdate.Text = DateTimeConverter.ConvertSecondToTimespan(Convert.ToDouble(hour) * 3600).ToString("g");
-            txtRemarksUpdate.Text = ((Label) row.FindControl("lblRemarks")).Text;
+            txtRemarksUpdate.Text = ((Label)row.FindControl("lblRemarks")).Text;
 
             LoadPurposeUpdate();
             //ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
             ddlPurposeUpdate.SelectedIndex = ddlPurposeUpdate.Items.IndexOf(ddlPurposeUpdate.Items.FindByText(((Label)row.FindControl("lblReson")).Text));
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
-
         }
 
         private void LoadOverTimeDetailsGridView(int empId)
         {
             DateTime today = DateTime.Now;
-            DateTime fromDate = new DateTime(today.Year,today.AddMonths(-1).Month,1);
-            DateTime toDate = new DateTime(today.Year,today.Month, fromDate.AddMonths(2).AddDays(-1).Day);
+            DateTime fromDate = new DateTime(today.Year, today.AddMonths(-1).Month, 1);
+            DateTime toDate = new DateTime(today.Year, today.Month, fromDate.AddMonths(2).AddDays(-1).Day);
             GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
         }
@@ -305,11 +311,11 @@ namespace UI.HR.Overtime
         protected void btnUpdateFinal_OnClick(object sender, EventArgs e)
         {
             string overtimeId = txtOvertimeId.Text;
-            
+
             string date = txtDateUpdate.Text;
             string startTime = txtStrtTimeUpdate.Text;
             string endTime = txtEndTimeUpdate.Text;
-            
+
             if (!TimeSpan.TryParse(startTime, out var startTimeSpan))
             {
                 // handle validation error
@@ -318,7 +324,7 @@ namespace UI.HR.Overtime
             {
                 // handle validation error
             }
-            DateTime defaultDate = new DateTime(2018,01,01);
+            DateTime defaultDate = new DateTime(2018, 01, 01);
             TimeSpan diffTime = endTimeSpan - startTimeSpan;
             if (endTimeSpan < startTimeSpan)
             {
@@ -326,7 +332,7 @@ namespace UI.HR.Overtime
             }
             string reason = ddlPurposeUpdate.SelectedItem.Text;
             string remarks = txtRemarksUpdate.Text;
-            
+
             double hour = DateTimeConverter.ConvertTimeSpanToSecond(diffTime);
             dynamic obj = new
             {
@@ -338,7 +344,6 @@ namespace UI.HR.Overtime
                 hour,
                 reason,
                 remarks
-
             };
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
             message = _bll.OvertimeEntryNew(2, xmlString, _enroll, "");

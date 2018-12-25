@@ -1,10 +1,10 @@
-﻿using System;
+﻿using HR_BLL.Roster;
+using HR_BLL.TourPlan;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using HR_BLL.Roster;
-using HR_BLL.TourPlan;
 using UI.ClassFiles;
 using Utility;
 
@@ -15,6 +15,7 @@ namespace UI.HR.Roster
         private readonly TourPlanning _tourPlanning = new TourPlanning();
         private readonly RosterBll _bll = new RosterBll();
         private int _enroll;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -25,9 +26,9 @@ namespace UI.HR.Roster
                 LoadSequenceDropDown();
                 LoadUnitDropDown(_enroll);
                 ddlUnit_OnSelectedIndexChanged(null, null);
-                ddlJobStation_OnSelectedIndexChanged(null,null);
+                ddlJobStation_OnSelectedIndexChanged(null, null);
                 ddlTeam_OnSelectedIndexChanged(null, null);
-                ddlShift_OnSelectedIndexChanged(null,null);
+                ddlShift_OnSelectedIndexChanged(null, null);
             }
         }
 
@@ -36,21 +37,25 @@ namespace UI.HR.Roster
             DataTable dt = _tourPlanning.GetUnitName(enrol);
             Common.BindDropDown(ddlUnit, dt, "intUnitID", "strUnit");
         }
-        public void LoadJobStationDropDown(int unitId)
+
+        public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            DataTable dt = _tourPlanning.GetJobStation(unitId);
+            DataTable dt = _tourPlanning.GetJobStationByPermission(unitId, enroll);
             Common.BindDropDown(ddlJobStation, dt, "intEmployeeJobStationId", "strJobStationName");
         }
+
         public void LoadTeamDropDown(int jobStationId)
         {
             DataTable dt = _bll.GetTeamByJobstation(jobStationId);
             Common.BindDropDown(ddlTeam, dt, "intTeamId", "strTeamName");
         }
+
         public void LoadShiftDropDown(int teamId)
         {
             DataTable dt = _bll.GetShiftByShiftId(teamId);
             Common.BindDropDown(ddlShift, dt, "intShiftId", "strShiftName");
         }
+
         public void LoadShiftValue(int shiftId)
         {
             DataTable dt = _bll.GetShiftByShiftId(shiftId);
@@ -62,6 +67,7 @@ namespace UI.HR.Roster
                 txtDutyTime.Text = dt.Rows[0]["tmDuty"].ToString();
             }
         }
+
         public void LoadSequenceDropDown()
         {
             DataTable dt = _bll.GetSequence();
@@ -97,7 +103,7 @@ namespace UI.HR.Roster
             {
                 objects = (List<object>)Session["obj"];
             }
-            
+
             if (objects.Count > 0)
             {
                 string xmlString = XmlParser.GetXml("RosterEntry", "items", objects, out string message);
@@ -139,7 +145,7 @@ namespace UI.HR.Roster
                     "ShowNotification('Select Jobstation first','Roster','warning')", true);
                 return;
             }
-            if (shiftId<1)
+            if (shiftId < 1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                     "ShowNotification('Select Shift first','Roster','warning')", true);
@@ -177,8 +183,8 @@ namespace UI.HR.Roster
             string xmlString = XmlParser.GetXml("RosterEntry", "items", objects, out string message);
 
             LoadGridwithXml(xmlString, GridView);
-
         }
+
         private void LoadGridwithXml(string xmlString, GridView gridView)
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
@@ -186,23 +192,21 @@ namespace UI.HR.Roster
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'Roster','error')", true);
             }
         }
+
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadJobStationDropDown(Common.GetDdlSelectedValue(ddlUnit));
+            LoadJobStationDropDown(Common.GetDdlSelectedValue(ddlUnit), _enroll);
             ddlJobStation_OnSelectedIndexChanged(null, null);
-           
         }
 
         protected void ddlJobStation_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             LoadTeamDropDown(Common.GetDdlSelectedValue(ddlJobStation));
             ddlTeam_OnSelectedIndexChanged(null, null);
-            
         }
 
         protected void btnDelete_OnClick(object sender, EventArgs e)
         {
-            
         }
 
         protected void ddlTeam_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -213,7 +217,6 @@ namespace UI.HR.Roster
 
         protected void ddlSequenceId_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            
         }
 
         protected void ddlShift_OnSelectedIndexChanged(object sender, EventArgs e)

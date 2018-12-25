@@ -254,12 +254,14 @@
            </tr>
              <tr>
                  
-                    <td colspan="3"> <asp:GridView ID="dgvSubService" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvSubService_RowDeleting">
+                    <td colspan="3"> <asp:GridView ID="dgvSubService" runat="server" AutoGenerateColumns="False" ShowFooter="true" OnRowDeleting="dgvSubService_RowDeleting">
                         <Columns>
+                            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField> 
+                             
                             <asp:BoundField DataField="strServiceName" HeaderText="Service Name" SortExpression="strServiceName" />
                             <asp:BoundField DataField="monService" HeaderText="Amount" SortExpression="monService" />
-                         <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
-                        <asp:TemplateField HeaderText="ID" Visible="False">
+                            <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
+                            <asp:TemplateField HeaderText="ID" Visible="False">
                         <ItemTemplate>
                         <asp:Label ID="lblServiceId" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
                         </ItemTemplate>

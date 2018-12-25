@@ -13,6 +13,16 @@
 
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../Content/JS/datepickr.min.js"></script>
+      <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../../Content/JS/datepickr.min.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script>
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>    
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/Lstyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
     <script type="text/javascript">
         function FTPUpload() {
@@ -114,6 +124,7 @@
                     <asp:HiddenField ID="hdnSingleMillage100AboveKM" runat="server" />
                     <asp:HiddenField ID="hdnSalesQty" runat="server" />
                     <asp:HiddenField ID="hdnconfirm" runat="server" />
+                    
                     <asp:HiddenField ID="hdnDieselTotalTk" runat="server" />
                     <asp:HiddenField ID="hdnItemid" runat="server" />
                     <asp:HiddenField ID="hdnDTFCount" runat="server" />
@@ -122,6 +133,8 @@
                     <asp:HiddenField ID="hdnQty" runat="server" />
                     <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" />
                     <asp:HiddenField ID="hdnActualSales" runat="server" />
+                    <asp:HiddenField ID="hdnDiscount" runat="server" />
+                     <asp:HiddenField ID="hdnNetpayable" runat="server" />
                     <asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
                     <%--<div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> SALES ENTRY FORM</b><hr /></div>--%>
 
@@ -186,7 +199,7 @@
                             <td style="text-align: right;" class="auto-style1">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Mobile No :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtMobileno" runat="server" CssClass="txtBox" ReadOnly="True" onkeypress="return onlyNumbers();" MaxLength="10"></asp:TextBox></td>
+                                <asp:TextBox ID="txtMobileno" runat="server" CssClass="txtBox"  MaxLength="11"></asp:TextBox></td>
                             <td style="text-align: right;">
                                Discount :</td>
                             <td style="text-align: left;">
@@ -253,7 +266,7 @@
                             <td style="text-align: right;">
                                  <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Card No :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtCardNo" runat="server" CssClass="txtBox" onkeypress="return onlyNumbers();" Enabled="false" onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox>
+                                <asp:TextBox ID="txtCardNo" runat="server" CssClass="txtBox"  MaxLength="10"></asp:TextBox>
                                 </td>
                             <td style="text-align: right;">Qty :</td>
                             <td style="text-align: left;">
@@ -269,7 +282,9 @@
                             </td>
                         </tr>
                         <tr>
-                            <td colspan="6" style="font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;">Product Info :<asp:Label ID="lblsalesAmount" ForeColor="#003399" runat="server"></asp:Label><hr />
+                            <td colspan="6" style="font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;">Product Info :<asp:Label ID="lblsalesAmount" ForeColor="#003399" runat="server"></asp:Label>
+                                &nbsp&nbsp<asp:Label ID="lblDiscount" ForeColor="#003399" runat="server"></asp:Label>
+                                &nbsp&nbsp<asp:Label ID="lblNetPayable" ForeColor="#003399" runat="server"></asp:Label><hr />
                             </td>
                         </tr>
                         <tr>
@@ -338,6 +353,22 @@
                                             </FooterTemplate>
                                         </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="Discount" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monDiscount"))) %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="right" Width="40px" />
+                                           
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Total Discount" ItemStyle-HorizontalAlign="right" SortExpression="MRRValue">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblTtDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monTotalDiscount"))) %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="right" Width="40px" />
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblTtdDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# TotalmonTotalDiscount %>' />
+                                            </FooterTemplate>
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Delete">
                                             <ItemTemplate>
                                                 <asp:Button ID="Complete1" Width="90px" Font-Bold="true" BackColor="#5effff" runat="server" Text="Delete" CommandName="complete1" OnClick="Complete1_Click" CommandArgument='<%# Eval("id") %>' />
@@ -361,9 +392,9 @@
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
-        <Triggers>
+     <%--   <Triggers>
             <asp:AsyncPostBackTrigger ControlID="txtPunchCode" EventName="TextChanged" />
-        </Triggers>
+        </Triggers>--%>
         </asp:UpdatePanel>
     </form>
     <script>

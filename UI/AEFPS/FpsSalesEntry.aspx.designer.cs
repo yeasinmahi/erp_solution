@@ -247,6 +247,24 @@ namespace UI.AEFPS {
         protected global::System.Web.UI.WebControls.HiddenField hdnActualSales;
         
         /// <summary>
+        /// hdnDiscount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDiscount;
+        
+        /// <summary>
+        /// hdnNetPayable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnNetPayable;
+        
+        /// <summary>
         /// hdnCNGPerKMOutStation control.
         /// </summary>
         /// <remarks>

@@ -122,6 +122,8 @@
                     <asp:HiddenField ID="hdnQty" runat="server" />
                     <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" />
                     <asp:HiddenField ID="hdnActualSales" runat="server" />
+                    <asp:HiddenField ID="hdnDiscount" runat="server" />
+                     <asp:HiddenField ID="hdnNetPayable" runat="server" />
                     <asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
                     <%--<div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> SALES ENTRY FORM</b><hr /></div>--%>
 

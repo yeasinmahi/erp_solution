@@ -236,13 +236,16 @@
             <asp:Label ID="lblDriver" runat="server" CssClass="lbl" Text="Driver Name:"></asp:Label>
             </td>
             <td class="auto-style1" style="text-align:left;">
-            <asp:Label ID="lblDriverName" runat="server" CssClass="txtBox" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:Label>
+                <asp:TextBox ID="txtDriverName" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
+            
             </td>
+
             <td class="auto-style1" style="text-align:right;">
             <asp:Label ID="lblContact" runat="server" CssClass="lbl" Text="Contact No:"></asp:Label>
             </td>
             <td class="auto-style1" style="text-align:left;">
-            <asp:Label ID="lblContactNo" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:Label>
+             <asp:TextBox ID="txtContactNo" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
+           
             </td>
              </tr>
            </table> 
@@ -312,7 +315,7 @@
                               
                              <asp:TemplateField HeaderText="Description">
                                  <ItemTemplate>
-                                     <asp:TextBox ID="txtServiceDesc" Width="250px"  Text='<%# Bind("monServiceCost","{0:n2}") %>' runat="server"    />
+                                     <asp:TextBox ID="txtServiceDesc" Width="250px"  Text='<%# Bind("strDescription") %>' runat="server"    />
                                  </ItemTemplate>
                              </asp:TemplateField>
                              <asp:TemplateField HeaderText="Update">
