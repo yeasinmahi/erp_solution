@@ -235,9 +235,7 @@ namespace UI.PaymentModule
                     accname = temp1[0].ToString();
                 }
                 catch { accname = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return; }
-
-
-
+                
                 narration = txtNarration.Text;
                 debit = txtAmount.Text;
                 credit = "0";

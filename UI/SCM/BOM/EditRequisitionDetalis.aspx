@@ -193,7 +193,7 @@
                             <asp:TextBox ID="txtChangeQty" runat="server" CssClass="txtBox" Text="0" Width="100px"></asp:TextBox>
                         </td>
                         <td style="text-align:right">
-                            <asp:Button ID="btnAdd" runat="server" Text="Calculate" />
+                            <asp:Button ID="btnCalculate" runat="server" Text="Calculate" OnClick="btnCalculate_Click"   />
                             <asp:Button ID="btnSaves" runat="server" BackColor="#ffccff" Font-Bold="true" ForeColor="Black" Text="Save Edit" />
                         </td>
                     </td>
