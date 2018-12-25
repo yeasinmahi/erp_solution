@@ -156,10 +156,18 @@ namespace UI.SCM.BOM
                         intBomStandard = 1;
                     }
                     else { intBomStandard = 0; }
+
+                    arrayKey = txtBomItem.Text.Split(delimiterChars);
+                    intWh = int.Parse(ddlWH.SelectedValue);
+                    string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                    if (arrayKey.Length > 0)
+                    { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                    int bomid = int.Parse(itemid.ToString());
+
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(4, xmlString, intWh, intBomStandard, DateTime.Now, enroll);
+                        string msg = objBom.BomPostData(4, xmlString, intWh, bomid, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
@@ -201,6 +209,9 @@ namespace UI.SCM.BOM
         {
             enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             intwh = int.Parse(ddlWH.SelectedValue);
+            txtBomItem.Text = "";
+            txtItem.Text = "";
+            txtBomName.Text = "";
             dt = objBom.GetBomData(15, xmlData, intwh, BomId, DateTime.Now, enroll);
             if (dt.Rows.Count > 0)
             {
@@ -251,7 +262,8 @@ namespace UI.SCM.BOM
                 ListDatas.DataSource = dt;
                 ListDatas.DataTextField = "strName";
                 ListDatas.DataValueField = "Id";
-                ListDatas.DataBind();
+                ListDatas.DataBind(); 
+                txtBomName.Text = "";
 
             }
             catch { }
@@ -263,6 +275,8 @@ namespace UI.SCM.BOM
             {
                 try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
                 catch { }
+             
+                txtBomName.Text = "";
                 BomId = int.Parse(ListDatas.SelectedValue.ToString());
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(3, xmlData, intwh, BomId, DateTime.Now, enroll);

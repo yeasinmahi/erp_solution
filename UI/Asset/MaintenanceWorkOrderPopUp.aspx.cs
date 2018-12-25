@@ -52,9 +52,9 @@ namespace UI.Asset
                 DdlHevvyVehicle.Visible = false;
                 lbHevvy.Visible = false;
                 lblDriver.Visible = false;
-                lblDriverName.Visible = false;
+                txtDriverName.Visible = false;
                 lblContact.Visible = false;
-                lblContactNo.Visible = false;
+                txtContactNo.Visible = false;
 
                 RadioPreventive.Visible = false;
                 TxtCost.ReadOnly = true;
@@ -131,8 +131,8 @@ namespace UI.Asset
                 DdlReType.SelectedItem.Text = IssueDate.Rows[0]["YsnServieType"].ToString();
                 TxtPresentMilege.Text = IssueDate.Rows[0]["strVNextMilege"].ToString();
                 HdnAssetid.Value = IssueDate.Rows[0]["strAssetCode"].ToString();
-                lblDriverName.Text = IssueDate.Rows[0]["strDriverName"].ToString();
-                lblContactNo.Text = IssueDate.Rows[0]["strContactNo"].ToString();
+                txtDriverName.Text = IssueDate.Rows[0]["strDriverName"].ToString();
+                txtContactNo.Text = IssueDate.Rows[0]["strContactNo"].ToString();
 
                 vehicleNumber = HdnAssetid.Value.ToString();  
                 dt = new DataTable();
@@ -144,9 +144,9 @@ namespace UI.Asset
                 DdlHevvyVehicle.Visible = true;
                 lbHevvy.Visible = true;
                 lblDriver.Visible = true;
-                lblDriverName.Visible = true;
+                txtDriverName.Visible = true;
                 lblContact.Visible = true;
-                lblContactNo.Visible = true;
+                txtContactNo.Visible = true;
                 
                 } 
 
@@ -339,7 +339,7 @@ namespace UI.Asset
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                     vehicleNumber = HdnAssetid.Value.ToString();
                     int Heavy = int.Parse(DdlHevvyVehicle.SelectedValue.ToString());
-                    objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM,Heavy, Mnumber);
+                    objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM,Heavy,txtDriverName.Text.ToString(),txtContactNo.Text.ToString(), Mnumber);
                      
                     if ( DdlStatus.SelectedItem.ToString() == "Close")
                     { 

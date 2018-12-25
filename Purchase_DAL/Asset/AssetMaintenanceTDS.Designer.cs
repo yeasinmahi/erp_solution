@@ -21083,13 +21083,10 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"UPDATE [dbo].[tblAssetMaintenance]   
-SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate() ,[strPriority] = @priority
- ,[strCostCenter] =@costcenter     ,[strAssignTo] =@assign ,[strNotes] = @notes  ,intCostcenter=@intcostcenter
-,intEmpAssignTo=@technichin,strPresentMilege=@presentM,strNextMilege=@nextM,intHeavy=@Heavy  WHERE intMaintenanceNo=@Mnumber
-     
-
- 
-";
+SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate() ,[strPriority] = @priority,
+  [strCostCenter] =@costcenter     ,[strAssignTo] =@assign ,[strNotes] = @notes  ,intCostcenter=@intcostcenter,
+  intEmpAssignTo=@technichin,strPresentMilege=@presentM,strNextMilege=@nextM,intHeavy=@Heavy,strDrivername=@driverName,
+  strContactNo=@contactNo  WHERE intMaintenanceNo=@Mnumber";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteStart", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "dteStartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21102,6 +21099,8 @@ SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@presentM", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strPresentMilege", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nextM", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strNextMilege", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Heavy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intHeavy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@driverName", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, "strDriverName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@contactNo", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mnumber", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMaintenanceNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -21117,7 +21116,7 @@ SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable UpdateMaintenanceStatusGetData(string status, global::System.Nullable<global::System.DateTime> dteStart, string priority, string costcenter, string assign, string notes, global::System.Nullable<int> intcostcenter, global::System.Nullable<int> technichin, string presentM, string nextM, global::System.Nullable<int> Heavy, int Mnumber) {
+        public virtual AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable UpdateMaintenanceStatusGetData(string status, global::System.Nullable<global::System.DateTime> dteStart, string priority, string costcenter, string assign, string notes, global::System.Nullable<int> intcostcenter, global::System.Nullable<int> technichin, string presentM, string nextM, global::System.Nullable<int> Heavy, string driverName, string contactNo, int Mnumber) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((status == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -21185,7 +21184,19 @@ SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate
             else {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            this.Adapter.SelectCommand.Parameters[11].Value = ((int)(Mnumber));
+            if ((driverName == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(driverName));
+            }
+            if ((contactNo == null)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(contactNo));
+            }
+            this.Adapter.SelectCommand.Parameters[13].Value = ((int)(Mnumber));
             AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable dataTable = new AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

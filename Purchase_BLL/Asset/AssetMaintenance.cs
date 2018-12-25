@@ -68,10 +68,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy, int Mnumber)
+        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo, int Mnumber)
         {
             TblUpdateAssetMaintenanceTableAdapter insertdate = new TblUpdateAssetMaintenanceTableAdapter();
-            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy, Mnumber);
+            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo, Mnumber);
         }
 
 
