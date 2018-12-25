@@ -30,6 +30,7 @@
     <script src="../Content/JS/html2canvas.js"></script>
     <script src="../Content/JS/jsPDF.js"></script>
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    
     <%--    <script src="../Content/JS/jsPDF.min.js"></script>--%>
     <%--<script src="../Content/JS/html2pdf.js"></script>--%>
 
@@ -75,7 +76,7 @@
                 var base64 = canvas.toDataURL();
                 $("[id*=hfImageData]").val(base64);
                 __doPostBack(btnEmail.name, "");
-                document.getElementById("btnEmail").style.visibility = "visible";
+                document.getElementById("btnEmail").style.visibility = "visible";                          
                 document.getElementById("txtPoNumbers").style.visibility = "visible";
                 document.getElementById("btnPoShowByView").style.visibility = "visible";
                 document.getElementById("btnDownload").style.visibility = "visible";
@@ -258,8 +259,9 @@
                         
                         <tr>
                             <td><asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="11px" Width="750px" ShowFooter="true"   
-                             BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical" FooterStyle-HorizontalAlign="Right" > 
-                             <AlternatingRowStyle BackColor="#CCCCCC" /> 
+                             BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical" FooterStyle-HorizontalAlign="Right"> 
+                             <AlternatingRowStyle BackColor="#CCCCCC"/>                              
+
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
                                             <ItemStyle HorizontalAlign="center" Width="60px" />
@@ -415,7 +417,6 @@
                         </tr>
                     </table>
                 </div>
-
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
