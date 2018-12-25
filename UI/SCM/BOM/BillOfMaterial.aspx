@@ -44,7 +44,6 @@
                 var wastage = parseFloat(document.getElementById("txtWastage").value);
                 var code = document.getElementById("txtCode").value;
                 var name =document.getElementById("txtBomName").value;
-              AddConfirm
            
              if ($.trim(wastage) == 0 || $.trim(wastage) == "" || $.trim(wastage) == null || $.trim(wastage) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input wastage%'); }
              else if ($.trim(code) == 0 || $.trim(code) == "" || $.trim(code) == null || $.trim(code) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Code'); }
@@ -143,7 +142,7 @@
             </tr>
             <tr>
            
-           <td style="text-align:right" colspan="4"><asp:CheckBox ID="chkBom" AutoPostBack="true" Text="ExistBom" runat="server" OnCheckedChanged="chkBom_CheckedChanged" /><asp:Button ID="btnAdd" runat="server" Font-Bold="true" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"     />
+           <td style="text-align:right" colspan="4"><asp:Button ID="btnAdd" runat="server" Font-Bold="true" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click"     />
            <asp:Button ID="btnSubmit" runat="server" Text="Submit" Font-Bold="true" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click"    />
                
            </td>  

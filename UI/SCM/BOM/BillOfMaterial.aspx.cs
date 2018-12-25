@@ -151,11 +151,7 @@ namespace UI.SCM.BOM
                     XmlNode dSftTm = doc.SelectSingleNode("voucher");
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
-                    if(chkBom.Checked==true)
-                    {
-                        intBomStandard = 1;
-                    }
-                    else { intBomStandard = 0; }
+                    
 
                     arrayKey = txtBomItem.Text.Split(delimiterChars);
                     intWh = int.Parse(ddlWH.SelectedValue);
@@ -301,19 +297,7 @@ namespace UI.SCM.BOM
             catch { }
         }
 
-        protected void chkBom_CheckedChanged(object sender, EventArgs e)
-        {
-            if(chkBom.Checked==true)
-            {
-                txtBomItem.Visible = true;
-                ListDatas.Visible = true;
-            }
-            else
-            {
-                txtBomItem.Visible = false;
-                ListDatas.Visible = false;
-            }
-        }
+         
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
