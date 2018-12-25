@@ -382,13 +382,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Label lblDriver;
         
         /// <summary>
-        /// lblDriverName control.
+        /// txtDriverName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDriverName;
+        protected global::System.Web.UI.WebControls.TextBox txtDriverName;
         
         /// <summary>
         /// lblContact control.
@@ -400,13 +400,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Label lblContact;
         
         /// <summary>
-        /// lblContactNo control.
+        /// txtContactNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblContactNo;
+        protected global::System.Web.UI.WebControls.TextBox txtContactNo;
         
         /// <summary>
         /// RadioPreventive control.

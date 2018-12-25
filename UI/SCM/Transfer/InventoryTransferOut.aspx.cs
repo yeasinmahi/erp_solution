@@ -128,7 +128,7 @@ namespace UI.SCM.Transfer
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
                 Id = int.Parse(itemid.ToString());
-                intWh = int.Parse(ddlWh.SelectedValue);
+                intWh = int.Parse(ddlWh.SelectedValue.ToString());
                 
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
