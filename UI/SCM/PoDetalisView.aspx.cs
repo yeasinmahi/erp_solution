@@ -6,29 +6,27 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Windows.Forms;
 using UI.ClassFiles;
-using UI.HR.Dispatch;
 using Exception = System.Exception;
 
 namespace UI.SCM
 {
     public partial class PoDetalisView : Page
     {
-        int PoNo, enroll, intunit;
-        DataTable dt = new DataTable(); string filePathForXML;
+        private int PoNo, enroll, intunit;
+        private DataTable dt = new DataTable(); private string filePathForXML;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\PoDetalisView";
-        string stop = "stopping SCM\\PoDetalisView";
-        string perform = "Performance on SCM\\PoDetalisView";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\PoDetalisView";
+        private string stop = "stopping SCM\\PoDetalisView";
+        private string perform = "Performance on SCM\\PoDetalisView";
         private string _filePath;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
@@ -61,10 +59,10 @@ namespace UI.SCM
                     intunit = int.Parse(dt.Rows[0]["intUnitID"].ToString());
                     lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                     lblSuppliyers.Text = dt.Rows[0]["strSupplierName"].ToString();
-                    lblAtten.Text = "Attn: " + dt.Rows[0]["strReprName"].ToString();
-                    lblPhone.Text = "Phone: " + dt.Rows[0]["strOrgContactNo"].ToString();
-                    lblSupEmail.Text = "Email:" + dt.Rows[0]["strOrgMail"].ToString();
-                    lblSuppAddress.Text = "Address:" + dt.Rows[0]["strOrgAddress"].ToString();
+                    lblAtten.Text = "Attn: " + dt.Rows[0]["strReprName"];
+                    lblPhone.Text = "Phone: " + dt.Rows[0]["strOrgContactNo"];
+                    lblSupEmail.Text = "Email:" + dt.Rows[0]["strOrgMail"];
+                    lblSuppAddress.Text = "Address:" + dt.Rows[0]["strOrgAddress"];
                     lblBillTo.Text = dt.Rows[0]["strDescription"].ToString();
                     lblShipTo.Text = dt.Rows[0]["strDeliveryAddress"].ToString();
 
@@ -83,51 +81,48 @@ namespace UI.SCM
                     lblOthersCharge.Text = dt.Rows[0]["monPacking"].ToString();
                     lblGrossDis.Text = dt.Rows[0]["monDiscount"].ToString();
                     lblComission.Text = dt.Rows[0]["monCommission"].ToString();
-                    lblPrepareBy.Text = "Prepared By: " + dt.Rows[0]["strEmployeeName"].ToString() + "," + dt.Rows[0]["strIssuerDesign"].ToString() + "," + dt.Rows[0]["strIssuerDept"].ToString();
-                    lblApprovedBy.Text = "e-Approved By: " + dt.Rows[0]["strApproveBy"].ToString() + "," + dt.Rows[0]["strApprDesign"].ToString() + "," + dt.Rows[0]["strApprDept"].ToString();
+                    lblPrepareBy.Text = "Prepared By: " + dt.Rows[0]["strEmployeeName"] + "," + dt.Rows[0]["strIssuerDesign"] + "," + dt.Rows[0]["strIssuerDept"];
+                    lblApprovedBy.Text = "e-Approved By: " + dt.Rows[0]["strApproveBy"] + "," + dt.Rows[0]["strApprDesign"] + "," + dt.Rows[0]["strApprDept"];
 
-                    //decimal grandtotal = decimal.Parse(dt.Rows[0]["monTotal"].ToString()) 
+                    //decimal grandtotal = decimal.Parse(dt.Rows[0]["monTotal"].ToString())
                     //    + decimal.Parse(dt.Rows[0]["monFreight"].ToString()) + decimal.Parse(dt.Rows[0]["monPacking"].ToString()) +
                     // decimal.Parse(dt.Rows[0]["monCommission"].ToString());
 
                     lblGrandTotal.Text = dt.Rows[0]["monTotal"].ToString();//string.Format("{0:F4}", grandtotal);
                     lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString();
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
-                    imgUnit.ImageUrl = "/Content/images/img/" + intunit.ToString() + ".png".ToString();
-
-
+                    imgUnit.ImageUrl = "/Content/images/img/" + intunit + ".png";
                 }
                 else
                 {
                     lblpoNo.Text = "";
-                    lblUnitName.Text = "".ToString();
-                    lblSuppliyers.Text = "".ToString();
-                    lblAtten.Text = "".ToString();
-                    lblPhone.Text = "".ToString();
-                    lblSupEmail.Text = "".ToString();
-                    lblSuppAddress.Text = "".ToString();
-                    lblBillTo.Text = "".ToString();
-                    lblShipTo.Text = "".ToString();
+                    lblUnitName.Text = "";
+                    lblSuppliyers.Text = "";
+                    lblAtten.Text = "";
+                    lblPhone.Text = "";
+                    lblSupEmail.Text = "";
+                    lblSuppAddress.Text = "";
+                    lblBillTo.Text = "";
+                    lblShipTo.Text = "";
 
-                    lblPartialShip.Text = "".ToString();
-                    lblNoShipment.Text = "".ToString();
+                    lblPartialShip.Text = "";
+                    lblNoShipment.Text = "";
 
-                    lbllastShipmentDate.Text = "".ToString();
-                    lblPaymentTrems.Text = "".ToString();
-                    lblPaymentDaysMrr.Text = "".ToString();
-                    lblNoOfInstallment.Text = "".ToString();
-                    lblIntervelDay.Text = "".ToString();
-                    lblDeliveryMonth.Text = "".ToString();
+                    lbllastShipmentDate.Text = "";
+                    lblPaymentTrems.Text = "";
+                    lblPaymentDaysMrr.Text = "";
+                    lblNoOfInstallment.Text = "";
+                    lblIntervelDay.Text = "";
+                    lblDeliveryMonth.Text = "";
 
-                    lblTransportCharge.Text = "".ToString();
-                    lblOthersCharge.Text = "".ToString();
-                    lblGrossDis.Text = "".ToString();
-                    lblComission.Text = "".ToString();
-                    lblPrepareBy.Text = "".ToString();
-                    lblApprovedBy.Text = "".ToString();
-                    lblGrandTotal.Text = "".ToString();
+                    lblTransportCharge.Text = "";
+                    lblOthersCharge.Text = "";
+                    lblGrossDis.Text = "";
+                    lblComission.Text = "";
+                    lblPrepareBy.Text = "";
+                    lblApprovedBy.Text = "";
+                    lblGrandTotal.Text = "";
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not found');", true);
-
                 }
 
                 dt = DataTableLoad.GetPoViewItemWaiseDetalisDataTable(PoNo, enroll);
@@ -142,14 +137,13 @@ namespace UI.SCM
 
                     AmountFormat formatAmount = new AmountFormat();
                     string totalAmountInWord = formatAmount.GetTakaInWords(total, "", "Only");
-                    lblInWard.Text = "In Word: " + totalAmountInWord.ToString();
+                    lblInWard.Text = "In Word: " + totalAmountInWord;
                 }
                 else
                 {
                     dgvPoDetalis.DataSource = "";
                     dgvPoDetalis.DataBind();
                 }
-
 
                 dt.Clear();
             }
@@ -358,8 +352,6 @@ namespace UI.SCM
             //{
             //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "error", "console.log('" + ex.Message + "')", true);
             //}
-
-
         }
     }
 }

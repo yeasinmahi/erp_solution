@@ -13,12 +13,19 @@
 
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../Content/JS/datepickr.min.js"></script>
+    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <script src="../../Content/JS/datepickr.min.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script>
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+    <script src="../Content/JS/CustomizeScript.js"></script>
+    <link href="../Content/CSS/Lstyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
     <script type="text/javascript">
-        function FTPUpload() {
-            document.getElementById("hdnconfirm").value = "2";
-            __doPostBack();
-        }
+
         function onlyNumbers(evt) {
             var e = event || evt; // for trans-browser compatibility
             var charCode = e.which || e.keyCode;
@@ -27,53 +34,8 @@
                 return false;
             return true;
         }
-        function FTPUpload1() {
-            document.getElementById("hdnconfirm").value = "0";
-            var confirm_value = document.createElement("INPUT");
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "3"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
-            __doPostBack();
-        }
     </script>
 
-    <script> function CloseWindow() {
-            window.close();
-        } </script>
-
-    <script type="text/javascript">
-        function RefreshParent() {
-            if (window.opener != null && !window.opener.closed) {
-                window.opener.location.reload();
-            }
-        }
-        window.onbeforeunload = RefreshParent;
-    </script>
-    <script type="text/javascript">
-        function OpenHdnDiv() {
-            $("#hdnDivision").fadeIn("slow");
-            document.getElementById('hdnDivision').style.visibility = 'visible';
-        }
-        function ClosehdnDivision() {
-
-            $("#hdnDivision").fadeOut("slow");
-        }
-    </script>
-    <script>
-        function printDiv(divName) {
-            var printContents = document.getElementById(divName).innerHTML;
-            var originalContents = document.body.innerHTML;
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-        }
-    </script>
-    <script>
-        function Registration(url) {
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=300,top=20,left=0, close=no');
-            if (window.focus) { newwindow.focus() }
-        }
-    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
     <script>
@@ -123,7 +85,7 @@
                     <asp:HiddenField ID="hdnDieselPerKMOutStation" runat="server" />
                     <asp:HiddenField ID="hdnActualSales" runat="server" />
                     <asp:HiddenField ID="hdnDiscount" runat="server" />
-                     <asp:HiddenField ID="hdnNetPayable" runat="server" />
+                    <asp:HiddenField ID="hdnNetPayable" runat="server" />
                     <asp:HiddenField ID="hdnCNGPerKMOutStation" runat="server" />
                     <%--<div style="background-color:cadetblue;font-size:18px"  class="tabs_container"><b> SALES ENTRY FORM</b><hr /></div>--%>
 
@@ -134,7 +96,6 @@
 
                             <td style="text-align: left; font-weight: bold; background-color: cadetblue; font-size: 18px; color: #000000;" colspan="2">
                                 <asp:Label ID="Label13" runat="server"><b>Re-Print & Clear Printer</b><hr /></asp:Label></td>
-
                         </tr>
                         <tr>
                             <td style="text-align: right;">
@@ -276,7 +237,6 @@
                         </tr>
                         <tr>
                             <td colspan="6" style="text-align: right;">&nbsp;</td>
-
                         </tr>
                         <tr>
                             <td colspan="6">
@@ -358,12 +318,10 @@
                                                 <asp:Button ID="Complete1" Width="90px" Font-Bold="true" BackColor="#5effff" runat="server" Text="Delete" CommandName="complete1" OnClick="Complete1_Click" CommandArgument='<%# Eval("id") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-
                                     </Columns>
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                 </asp:GridView>
-
                             </td>
                         </tr>
                         <tr>
@@ -376,9 +334,9 @@
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
-        <Triggers>
-            <asp:AsyncPostBackTrigger ControlID="txtPunchCode" EventName="TextChanged" />
-        </Triggers>
+            <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="txtPunchCode" EventName="TextChanged" />
+            </Triggers>
         </asp:UpdatePanel>
     </form>
     <script>
@@ -391,7 +349,6 @@
             }
             return true;
         }
-
     </script>
     <style>
         .btnColore {

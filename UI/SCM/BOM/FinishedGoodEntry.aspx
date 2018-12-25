@@ -74,14 +74,14 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autoComplete ="off"></asp:TextBox>
+                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autoComplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                             </td>
 
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" autoComplete ="off"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" autoComplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                             </td>
                         </tr>
@@ -193,12 +193,12 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="SR Detail"   ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
+                                        <%--                                        <asp:TemplateField HeaderText="SR Detail" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnSRDetail" runat="server" Width="70px" Text="SR Detail"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                         <asp:TemplateField HeaderText="Inactive Order" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
                                             <ItemTemplate>

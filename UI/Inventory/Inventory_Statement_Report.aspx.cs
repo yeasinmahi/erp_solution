@@ -83,6 +83,11 @@ namespace UI.Inventory
             {
                 id = txtItemID.Text;
             }
+            else if (ddlsearch == 11)
+            {
+                id = "";
+                ddlsearch = 4;
+            }
             else
             {
                 id = ddlSubCategory.SelectedItem.Value;
