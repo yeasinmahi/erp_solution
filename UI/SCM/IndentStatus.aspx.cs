@@ -31,7 +31,8 @@ namespace UI.SCM
                
                 CalendarExtenderFrom.SelectedDate = DateTime.Now.AddDays(-30);
                 CalendarExtenderTo.SelectedDate = DateTime.Now;
-                  
+                 
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;

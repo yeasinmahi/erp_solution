@@ -27,6 +27,10 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
+                
+                CalendarExtenderFrom.SelectedDate = DateTime.Now.AddDays(-30);
+                CalendarExtenderTo.SelectedDate = DateTime.Now;
+                 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = obj.DataView(19, "", intWh, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
