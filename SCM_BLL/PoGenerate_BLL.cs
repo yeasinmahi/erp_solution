@@ -183,7 +183,8 @@ namespace SCM_BLL
 
             // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
-            if (prefix.Trim().Length >= 3)
+            prefix = prefix.Trim().ToLower();
+            if (prefix.Length >= 3)
             {
                 if (prefix == "" || prefix == "*")
                 {
