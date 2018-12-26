@@ -276,6 +276,8 @@
     <Content Include="Asset\Report\JobCardInfo.aspx" />
     <Content Include="Asset\Report\MaintenaceUnitwaiseSummary.aspx" />
     <Content Include="Asset\Report\MonthlyMaintenanceCost.aspx" />
+    <Content Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx" />
+    <Content Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
     <Content Include="Asset\ServiceConfigurePopUp.aspx" />
@@ -2594,6 +2596,20 @@
     </Compile>
     <Compile Include="Asset\Report\MonthlyMaintenanceCost.aspx.designer.cs">
       <DependentUpon>MonthlyMaintenanceCost.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx.cs">
+      <DependentUpon>Vehicle_Maintenance_Bill_Unit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx.designer.cs">
+      <DependentUpon>Vehicle_Maintenance_Bill_Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx.cs">
+      <DependentUpon>Vehicle_Renewal_Bill_Unit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx.designer.cs">
+      <DependentUpon>Vehicle_Renewal_Bill_Unit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\SAD_Vehicle_Asset_Config.aspx.cs">
       <DependentUpon>SAD_Vehicle_Asset_Config.aspx</DependentUpon>
