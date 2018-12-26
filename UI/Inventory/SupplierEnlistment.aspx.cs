@@ -128,7 +128,11 @@ namespace UI.Inventory
                 //if ((int.Parse(Session[SessionParams.USER_ID].ToString()) == 1039) || (int.Parse(Session[SessionParams.USER_ID].ToString()) == 1392))
                 //{ btnEdit.Enabled = true; btnEdit0.Visible = true; btnTempory.Visible = true; }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "alert('" + ex.Message + "');", true);
+            }
         }
 
         #region ===== Md. Al-Amin (Start Code) ==============================================================
@@ -149,7 +153,10 @@ namespace UI.Inventory
                         //dteSubmitDate = DateTime.Parse(txtStartDate.Text);
                         //////strSubmitDate = txtStartDate.Text;
                     }
-                    catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Submit Date Properly Input.');", true); return; }
+                    catch
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Submit Date Properly Input.');", true); return;
+                    }
 
                     int intCount = 0;
                     if (txtDocUpload.HasFiles)
@@ -269,7 +276,11 @@ namespace UI.Inventory
                 }
                 else { LoadGridwithXmlDocUpload(); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "alert('" + ex.Message + "');", true);
+            }
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
@@ -302,7 +313,11 @@ namespace UI.Inventory
                 requestFTPUploader = null;
                 File.Delete(Server.MapPath("~/Inventory/Data/") + fileName);
             }
-            catch (Exception ex) { throw ex; }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "alert('" + ex.Message + "');", true);
+            }
         }
 
         #endregion ===== Md. Al-Amin (Start Code) ==============================================================
@@ -419,8 +434,10 @@ namespace UI.Inventory
                             xmlStringDocUpload = "<DocUpload>" + xmlStringDocUpload + "</DocUpload>";
                             xml = xmlStringDocUpload;
                         }
-                        catch
+                        catch (Exception ex)
                         {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                "alert('" + ex.Message + "');", true);
                         }
 
                         if (dgvDocUp.Rows.Count > 0)
@@ -502,10 +519,10 @@ namespace UI.Inventory
                         }
                     }
                 }
-                catch (Exception exception)
+                catch (Exception ex)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                        "alert('" + exception.Message + "');", true);
+                        "alert('" + ex.Message + "');", true);
                 }
             }
         }
@@ -516,7 +533,11 @@ namespace UI.Inventory
             {
                 txtShortName.Text = txtSuppliername.Text;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "alert('" + ex.Message + "');", true);
+            }
         }
 
         protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
@@ -553,7 +574,11 @@ namespace UI.Inventory
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Routing No ??');", true); return;
                 }
             }
-            catch { RadioButton1.Checked = false; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please click the check box');", true); }
+            catch
+            {
+                RadioButton1.Checked = false;
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please click the check box');", true);
+            }
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -636,7 +661,11 @@ namespace UI.Inventory
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "alert('" + ex.Message + "');", true);
+            }
         }
 
         protected void ddlSupplierType_SelectedIndexChanged(object sender, EventArgs e)
@@ -789,7 +818,11 @@ namespace UI.Inventory
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sucessfuly Submitted');", true);
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "alert('" + ex.Message + "');", true);
+                }
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
             }
