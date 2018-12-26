@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label3" runat="server" Text="Ware House"></asp:Label>
-                                    <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label4" runat="server" Text="Search By"></asp:Label>
