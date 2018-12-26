@@ -15,15 +15,15 @@ namespace SCM_BLL
         private static PoGenerateTDS.DataTableSearchPOUserDataTable[] tablePoUser = null;
         private static PoGenerateTDS.TblSupplierMasterDataTable[] tblMasterSupplier = null;
         private static PoGenerateTDS.TblSupplierDataTable[] tblSupplier = null;
-        int e;
-        public DataTable GetPoData(int type, string xml, int intWh,int indentId, DateTime dteDate, int enroll)
+        private int e;
+
+        public DataTable GetPoData(int type, string xml, int intWh, int indentId, DateTime dteDate, int enroll)
         {
-           
             try
             {
                 string msg = "";
                 SprPoGenerateTableAdapter adp = new SprPoGenerateTableAdapter();
-                return adp.GetPoGenerateData(type, xml, intWh,indentId, dteDate, enroll, ref msg);
+                return adp.GetPoGenerateData(type, xml, intWh, indentId, dteDate, enroll, ref msg);
             }
             catch { return new DataTable(); }
         }
@@ -32,15 +32,13 @@ namespace SCM_BLL
         {
             string strMsg = "";
             try
-            { 
-                 SprPoGenerateTableAdapter adp = new SprPoGenerateTableAdapter();
+            {
+                SprPoGenerateTableAdapter adp = new SprPoGenerateTableAdapter();
                 adp.GetPoGenerateData(type, xml, intWh, indentId, dteDate, enroll, ref strMsg);
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
-
-      
 
         public DataTable GetUnit()
         {
@@ -59,25 +57,22 @@ namespace SCM_BLL
                 TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
                 return adp.GetUnitIdbyWHData(intWh);
             }
-            catch {return new DataTable();}
-            
+            catch { return new DataTable(); }
         }
 
-        public  string[] AutoSearchPoUser( string prefix)
+        public string[] AutoSearchPoUser(string prefix)
         {
-            
-             
             tablePoUser = new PoGenerateTDS.DataTableSearchPOUserDataTable[Convert.ToInt32(1)];
             DataTableSearchPOUserTableAdapter adpCOA = new DataTableSearchPOUserTableAdapter();
             tablePoUser[e] = adpCOA.GetPoUserData();
-  
+
             // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tablePoUser[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tablePoUser[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strEmployeeName
                                select tmp;
                     if (rows.Count() > 0)
@@ -90,14 +85,13 @@ namespace SCM_BLL
                     try
                     {
                         var rows = from tmp in tablePoUser[e]
-                                   where tmp.strEmployeeName.ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix)  
+                                   where tmp.strEmployeeName.ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix)
                                    orderby tmp.strEmployeeName
                                    select tmp;
-                         
+
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
                         //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
                     }
@@ -112,8 +106,7 @@ namespace SCM_BLL
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    
-                    retStr[i] = tbl.Rows[i]["strEmployeeName"] + " " + "[" + tbl.Rows[i]["intEmployeeID"] +"]"; 
+                    retStr[i] = tbl.Rows[i]["strEmployeeName"] + " " + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
                 }
 
                 return retStr;
@@ -122,11 +115,10 @@ namespace SCM_BLL
             {
                 return null;
             }
-
         }
 
         public string[] AutoSearchServiceItem(string intunit, string prefix)
-        { 
+        {
             tableService = new PoGenerateTDS.TblIServiceListDataTable[Convert.ToInt32(intunit)];
             TblIServiceListTableAdapter adpCOA = new TblIServiceListTableAdapter();
             tableService[e] = adpCOA.GetServiceItemData(Convert.ToInt32(intunit));
@@ -137,7 +129,7 @@ namespace SCM_BLL
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableService[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableService[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strItemName
                                select tmp;
                     if (rows.Count() > 0)
@@ -157,7 +149,6 @@ namespace SCM_BLL
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
                         //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
                     }
@@ -182,11 +173,10 @@ namespace SCM_BLL
             {
                 return null;
             }
-
         }
 
-        public string[] AutoSearchMasterSupplier(string prefix,string strType)
-        { 
+        public string[] AutoSearchMasterSupplier(string prefix, string strType)
+        {
             tblMasterSupplier = new PoGenerateTDS.TblSupplierMasterDataTable[Convert.ToInt32(1)];
             TblSupplierMasterTableAdapter adpCOA = new TblSupplierMasterTableAdapter();
             tblMasterSupplier[e] = adpCOA.GetMasterSupplierData(strType);
@@ -197,10 +187,10 @@ namespace SCM_BLL
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblMasterSupplier[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblMasterSupplier[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strSuppMasterName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -217,7 +207,6 @@ namespace SCM_BLL
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
                         //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
                     }
@@ -232,7 +221,6 @@ namespace SCM_BLL
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-
                     retStr[i] = tbl.Rows[i]["strSuppMasterName"] + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
                 }
 
@@ -242,7 +230,6 @@ namespace SCM_BLL
             {
                 return null;
             }
-
         }
 
         public string[] AutoSearchSupplier(string prefix, string strType, string unit)
@@ -257,7 +244,7 @@ namespace SCM_BLL
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblSupplier[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblSupplier[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strSupplierName
                                select tmp;
                     if (rows.Count() > 0)
@@ -277,7 +264,6 @@ namespace SCM_BLL
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
                         //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
                     }
@@ -292,7 +278,6 @@ namespace SCM_BLL
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-
                     retStr[i] = tbl.Rows[i]["strSupplierName"] + " " + "[" + tbl.Rows[i]["intSupplierID"] + "]";
                 }
 
@@ -312,7 +297,7 @@ namespace SCM_BLL
         //        return adpView.GetPoRegisterData(fDate, tDate, dept, intWH, type, intID, intNewType);
         //    }
         //    catch { return new DataTable(); }
-           
+
         //}
 
         public DataTable PoRegisterDataList(DateTime fDate, DateTime tDate, string dept, int intWH, int type, int? intID, int? intNewType)
@@ -323,7 +308,6 @@ namespace SCM_BLL
                 return adpView.GetPoRegDataList(fDate, tDate, dept, intWH, type, intID, intNewType);
             }
             catch { return new DataTable(); }
-
         }
 
         public DataTable PoInfo(int intpoid)
@@ -332,9 +316,8 @@ namespace SCM_BLL
             return adp.GetData(intpoid);
         }
 
-        public string UpdatePO(decimal numQty, decimal monRate, decimal monVAT, decimal monAIT,int intItemID,int intPOID)
+        public string UpdatePO(decimal numQty, decimal monRate, decimal monVAT, decimal monAIT, int intItemID, int intPOID)
         {
-           
             string msg = "";
             try
             {
@@ -348,20 +331,16 @@ namespace SCM_BLL
 
         public DataTable GetWHName(int whid)
         {
-           
             try
             {
                 tblWearHouseTableAdapter adp = new tblWearHouseTableAdapter();
                 return adp.GetWHData(whid);
-                
             }
             catch { return new DataTable(); }
-           
         }
 
         public string DeletePo(int intItemID, int intPOID)
         {
-            
             string msg = "";
             try
             {
@@ -372,18 +351,17 @@ namespace SCM_BLL
             catch { }
             return msg;
         }
-        
-        public string UpdatePOMain(int intShipmentNo,string strDesPort,bool ysnPartialShip, string strPay,int intDay,int intInstall, int intInsInter, int intWarrenty, string strOtherTerms,DateTime dteShipDate, int intPOID,int intType,decimal monFreight, decimal monPacking , decimal monDiscount, int intSupplierID,DateTime dtePODate, int intCurrencyID,int enroll)
-        {
 
+        public string UpdatePOMain(int intShipmentNo, string strDesPort, bool ysnPartialShip, string strPay, int intDay, int intInstall, int intInsInter, int intWarrenty, string strOtherTerms, DateTime dteShipDate, int intPOID, int intType, decimal monFreight, decimal monPacking, decimal monDiscount, int intSupplierID, DateTime dtePODate, int intCurrencyID, int enroll)
+        {
             string msg = "";
             try
             {
                 sprUpdatePOTableAdapter adp = new sprUpdatePOTableAdapter();
-                adp.UpdatePOMainData(intShipmentNo,strDesPort,ysnPartialShip,strPay,intDay,intInstall,intInsInter,intWarrenty,strOtherTerms,dteShipDate ,intPOID, intType, monFreight, monPacking , monDiscount,intSupplierID,dtePODate,intCurrencyID,enroll);
+                adp.UpdatePOMainData(intShipmentNo, strDesPort, ysnPartialShip, strPay, intDay, intInstall, intInsInter, intWarrenty, strOtherTerms, dteShipDate, intPOID, intType, monFreight, monPacking, monDiscount, intSupplierID, dtePODate, intCurrencyID, enroll);
                 return msg = "Updated Successfully";
             }
-            catch (Exception ex) { msg= ex.ToString(); }
+            catch (Exception ex) { msg = ex.ToString(); }
             return msg;
         }
 
@@ -402,6 +380,7 @@ namespace SCM_BLL
             { return adp.GetMRRNoByPO(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetSupplierInfoByPO(int intPOID)
         {
             TblSupplierInfoTableAdapter adp = new TblSupplierInfoTableAdapter();
@@ -409,6 +388,7 @@ namespace SCM_BLL
             { return adp.GetSupplierInfoByPO(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetShipmentAndOtherInfoByPO(int intPOID)
         {
             TblShipmentTableAdapter adp = new TblShipmentTableAdapter();
@@ -416,6 +396,7 @@ namespace SCM_BLL
             { return adp.GetShipmentAndOtherInfoByPO(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetCurrency()
         {
             TblCurrencyConversionTableAdapter adp = new TblCurrencyConversionTableAdapter();
@@ -430,8 +411,8 @@ namespace SCM_BLL
             sprPOTableAdapter adp = new sprPOTableAdapter();
             try
             {
-                 return adp.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
-                 strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy);
+                return adp.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
+                strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy);
             }
             catch (Exception ex)
             {
@@ -440,13 +421,14 @@ namespace SCM_BLL
             }
         }
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,decimal monAIT)
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby, decimal monAIT)
         {
             string msg = "";
             sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
-            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT,ref msg);
+            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, ref msg);
             return msg;
         }
+
         public DataTable GetApprovalAuthorityList(int enroll, string POType)
         {
             TblApprovalAuthorityTableAdapter adp = new TblApprovalAuthorityTableAdapter();
@@ -460,20 +442,19 @@ namespace SCM_BLL
             }
         }
 
-        public string Delete_PO_Data(int intItemID,int POID,int Enroll)
+        public string Delete_PO_Data(int intItemID, int POID, int Enroll)
         {
             string msg = "";
             SprDeletePOTableAdapter adp = new SprDeletePOTableAdapter();
             try
             {
-                adp.DeletePO(intItemID,POID,Enroll,ref msg);
+                adp.DeletePO(intItemID, POID, Enroll, ref msg);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return ex.ToString();
             }
             return msg;
         }
-
     }
 }

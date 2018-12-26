@@ -14,36 +14,34 @@ namespace UI.SCM
 {
     public partial class SupplierManeger : BasePage
     {
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh;string strType;
-        DataTable dt = new DataTable(); string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private int enroll, intWh; private string strType;
+        private DataTable dt = new DataTable(); private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objPo.GetUnit();
-                ddlUnit.DataSource = dt;  
+                ddlUnit.DataSource = dt;
                 ddlUnit.DataTextField = "strUnit";
                 ddlUnit.DataValueField = "intUnitID";
                 ddlUnit.DataBind();
                 // dgvStatement.DataBind();
-                string strDept = ddlDept.SelectedItem.ToString(); 
-                Session["strType"] = getDept(strDept); 
-
+                string strDept = ddlDept.SelectedItem.ToString();
+                Session["strType"] = GetDept(strDept);
             }
             else { }
-
         }
 
-        private string getDept(string strDept )
+        private string GetDept(string strDept)
         {
             try
             {
-                
                 if (strDept == "Local") { strType = "Local Purchase"; }
-                else if(strDept == "Fabrication") { strType = "Local Fabrication"; }
-                else if(strDept == "Import") { strType = "Foreign Purchase"; }
+                else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
+                else if (strDept == "Import") { strType = "Foreign Purchase"; }
                 return strType;
             }
             catch { return strType; }
@@ -52,7 +50,7 @@ namespace UI.SCM
         protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strDept = ddlDept.SelectedItem.ToString();
-            Session["strType"] = getDept(strDept);
+            Session["strType"] = GetDept(strDept);
         }
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
@@ -60,11 +58,11 @@ namespace UI.SCM
             try
             {
                 arrayKey = txtSupplier.Text.Split(delimiterChars);
-                string item = ""; int supplierid =0;
+                string item = ""; int supplierid = 0;
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
                 dt = objPo.GetPoData(38, "", intWh, supplierid, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     lblSupplierName.Text = dt.Rows[0]["strSuppMasterName"].ToString();
                     lblPostralAdd.Text = dt.Rows[0]["strOrgAddress"].ToString();
@@ -75,7 +73,6 @@ namespace UI.SCM
                     lblContactNo.Text = dt.Rows[0]["strReprContactNo"].ToString();
                     lblPayTo.Text = dt.Rows[0]["strPayToName"].ToString();
                     lblStatus.Text = dt.Rows[0]["ysnActive"].ToString();
-                     
                 }
             }
             catch { }
@@ -90,15 +87,14 @@ namespace UI.SCM
                 string item = ""; int supplierid = 0;
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
-                enroll=  int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 string strDept = ddlDept.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry strType=" + '"' + getDept(strDept).ToString() + '"'  + "/></voucher>".ToString();
+                string xmlData = "<voucher><voucherentry strType=" + '"' + GetDept(strDept).ToString() + '"' + "/></voucher>".ToString();
                 string msg = objPo.PoApprove(39, xmlData, unit, supplierid, DateTime.Now, enroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             }
             catch { }
         }
-
 
         #region=======================Auto Search=========================
 
@@ -108,7 +104,6 @@ namespace UI.SCM
         {
             return DataTableLoad.objPos.AutoSearchMasterSupplier(prefixText, HttpContext.Current.Session["strType"].ToString());
         }
-
 
         #endregion====================Close===============================
     }
