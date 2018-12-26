@@ -94,12 +94,14 @@ namespace UI.Inventory
             }
 
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Corporate/Inventory_Report_New" + "&wh=" + ddlWH.SelectedItem.Value + "&SearchBy=" + ddlsearch + "&FromDate=" + txtFromDate.Text + "&ToDate=" + txtToDate.Text + "&strID=" + id + "&rc:LinkTarget=_self";
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Open_Reports/Inventory_Report_New" + "&wh=" + ddlWH.SelectedItem.Value + "&SearchBy=" + ddlsearch + "&FromDate=" + txtFromDate.Text + "&ToDate=" + txtToDate.Text + "&strID=" + id + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
 
         }
 
-
-
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {          
+            ddlSearchBy.SelectedIndex = ddlSearchBy.Items.IndexOf(ddlSearchBy.Items.FindByValue("11"));
+        }
     }
 }

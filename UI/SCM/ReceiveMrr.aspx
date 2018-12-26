@@ -23,7 +23,7 @@
 
         $("[id*=txtReceiveQty]").live("keyup", function () {
             if (!jQuery.trim($(this).val()) == '') {
-                debugger;
+               
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
                     var poqty = parseFloat($("[id*=lblPoQty]", row).html());
@@ -32,7 +32,9 @@
                     var receQty = parseFloat($(this).val());
                     var rtotal = parseFloat(monValue / poqty * receQty);
                     var remain = parseFloat(poqty - preReceQty)
-                    if (remain >= receQty) {
+                    var remainQty = remain + remain * 0.1;
+
+                    if (remainQty >= receQty) {
                         $("[id*=lblMrrValue]", row).html(rtotal.toFixed(4));
                        
                     }
@@ -278,7 +280,7 @@
                         <ItemStyle HorizontalAlign="Left"  /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="Present Location" ItemStyle-HorizontalAlign="right" SortExpression="strLocationName" > 
-                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" Width="250px"   Font-Size="Smaller"  DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
+                        <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" Width="250px"   Font-Size="Small"  DataSourceID="ObjectDataSourceLocation" DataTextField="strName" DataValueField="Id"></asp:DropDownList>
                             <asp:ObjectDataSource ID="ObjectDataSourceLocation" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetMrrReceiveData" TypeName="SCM_DAL.MrrReceiveTDSTableAdapters.SprMrrReceiveTableAdapter">
                                 <SelectParameters>
                                     <asp:Parameter DefaultValue="10" Name="intType" Type="Int32" />
