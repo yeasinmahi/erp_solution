@@ -218,12 +218,12 @@
                         <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="ItemName" ItemStyle-HorizontalAlign="right" SortExpression="strItem" > 
-                        <ItemTemplate><asp:Label ID="lblItemName" Width="300px" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="left" Width="450px" /> </asp:TemplateField>  
+                        <ItemTemplate><asp:Label ID="lblItemName" Width="250px" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="left" Width="250px" /> </asp:TemplateField>  
 
                          <asp:TemplateField HeaderText="Description" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strDes" > 
-                        <ItemTemplate><asp:Label ID="lblDescription" runat="server"  Text='<%# Bind("strDes") %>'  ></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Right" Width="300px" /></asp:TemplateField> 
+                        <ItemTemplate><asp:Label ID="lblDescription" Width="250px" runat="server"  Text='<%# Bind("strDes") %>'  ></asp:Label></ItemTemplate> 
+                        <ItemStyle HorizontalAlign="Right" Width="250px" /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom" > 
                         <ItemTemplate><asp:Label ID="lblUom" runat="server"  Text='<%# Bind("strUom") %>'  ></asp:Label></ItemTemplate> 

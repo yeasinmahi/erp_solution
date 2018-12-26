@@ -202,7 +202,7 @@ namespace UI.SCM
                     #endregion===================Close============================================ 
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    PoView(intPOID);
+                    //PoView(intPOID);
                 }
             }
             catch (Exception ex)
@@ -435,9 +435,8 @@ namespace UI.SCM
         }
 
         private void PoView(int intPo)
-        {  
-
-                try
+        {
+            try
                 {
                        intWh = int.Parse(ddlWH.SelectedValue);
 
@@ -497,11 +496,15 @@ namespace UI.SCM
                         }
 
                         dt = obj.DataView(9, xmlString, intWh, intPo, DateTime.Now, enroll);
-                        dgvMrr.DataSource = dt;
-                        dgvMrr.DataBind();
-                         
-
-
+                if (dt.Rows.Count > 0)
+                {
+                    dgvMrr.DataSource = dt;
+                    dgvMrr.DataBind();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO approval not found');", true); 
+                } 
                     
                 }
                 catch {} 
