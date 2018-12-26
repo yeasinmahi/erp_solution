@@ -10,7 +10,7 @@
 namespace UI.Asset.Report {
     
     
-    public partial class MonthlyMaintenanceCost {
+    public partial class VehicleMaintenanceSummaryByUnit {
         
         /// <summary>
         /// PlaceHolder0 control.
