@@ -2171,13 +2171,10 @@ namespace UI.Asset
                 try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1990-01-01".ToString()); }
 
                 string reffid= hdnReceive.Value;
+                 
 
-
-
-
-
-                CreateParkingXML(reffid,unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
-                , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
+                CreateParkingXML(reffid,unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation,
+                userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
                 manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString());
 
 
@@ -2196,11 +2193,7 @@ namespace UI.Asset
 
                 string message = parking.InsertParkingData(4, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-
-
-
-
-
+                 
             }
             catch (Exception ex)
             {
