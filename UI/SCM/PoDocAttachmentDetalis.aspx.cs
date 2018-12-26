@@ -16,19 +16,20 @@ namespace UI.SCM
 {
     public partial class PoDocAttachmentDetalis : BasePage
     {
-        DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll; string dfile, xmlData;
+        private DataTable dt = new DataTable();
+        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private int enroll; private string dfile, xmlData;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\PoDocAttachmentDetalis";
-        string stop = "stopping SCM\\PoDocAttachmentDetalis";
-        string perform = "Performance on SCM\\PoDocAttachmentDetalis";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\PoDocAttachmentDetalis";
+        private string stop = "stopping SCM\\PoDocAttachmentDetalis";
+        private string perform = "Performance on SCM\\PoDocAttachmentDetalis";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            {   
+            if (!IsPostBack)
+            {
                 string unit = Request.QueryString["unit"].ToString();
                 string PoId = Request.QueryString["PoId"].ToString();
                 string BillAmount = Request.QueryString["BillAmount"].ToString();
@@ -41,7 +42,6 @@ namespace UI.SCM
                 lblBillId.Text = BillId.ToString();
                 lblBillReg.Text = BillCode;
 
-
                 dt = objPo.GetPoData(27, "", 0, 0, DateTime.Now, enroll);
                 ddlFileGroup.DataSource = dt;
                 ddlFileGroup.DataTextField = "strName";
@@ -49,15 +49,12 @@ namespace UI.SCM
                 ddlFileGroup.DataBind();
 
                 dt = objPo.GetPoData(28, "", 0, BillId, DateTime.Now, enroll);
-                dgvDocument.DataSource = dt; 
+                dgvDocument.DataSource = dt;
                 dgvDocument.DataBind();
-                 
             }
             else
             {
-
             }
-
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -72,31 +69,34 @@ namespace UI.SCM
                 string BillId = Request.QueryString["BillId"].ToString();
                 string entryType = ddlFileGroup.SelectedValue.ToString();
                 string remarks = txtNote.Text.ToString();
-                string billCode= Request.QueryString["BillCode"].ToString();
-                var FileExtension = Path.GetExtension(DocUpload.PostedFile.FileName).Substring(1);
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"'+ " billCode=" + '"' + billCode + '"'+ " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
-                string msg = objPo.PoApprove(29, xmlData, 0, int.Parse(BillId), DateTime.Now, enroll);
-                int fileId = int.Parse(msg);
-                if(fileId>0)
+                string billCode = Request.QueryString["BillCode"].ToString();
+                HttpFileCollection uploadedFiles = Request.Files;
+                for (int i = 0; i < uploadedFiles.Count; i++)
                 {
-                    dfile = fileId.ToString()+"."+ FileExtension;
-                    
+                    HttpPostedFile userPostedFile = uploadedFiles[i];
 
-                    DocUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
-                    FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
-                    File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
-                    xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"' + " billCode=" + '"' + billCode + '"' + "/></voucher>".ToString();
+                    var FileExtension = Path.GetExtension(userPostedFile.FileName).Substring(1);
+                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"' + " billCode=" + '"' + billCode + '"' + " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
+                    string msg = objPo.PoApprove(29, xmlData, 0, int.Parse(BillId), DateTime.Now, enroll);
+                    int fileId = int.Parse(msg);
+                    if (fileId > 0)
+                    {
+                        dfile = fileId.ToString() + "." + FileExtension;
 
-                    string msgs = objPo.PoApprove(30, xmlData, 0,  fileId, DateTime.Now, enroll);
+                        userPostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                        FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
+                        File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                        xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"' + " billCode=" + '"' + billCode + '"' + "/></voucher>".ToString();
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
-                    dt = objPo.GetPoData(28, "", 0, int.Parse(BillId), DateTime.Now, enroll);
-                    dgvDocument.DataSource = dt;
-                    dgvDocument.DataBind();
+                        string msgs = objPo.PoApprove(30, xmlData, 0, fileId, DateTime.Now, enroll);
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
+                        dt = objPo.GetPoData(28, "", 0, int.Parse(BillId), DateTime.Now, enroll);
+                        dgvDocument.DataSource = dt;
+                        dgvDocument.DataBind();
+                    }
                 }
-               
-
             }
             catch (Exception ex)
             {
@@ -110,7 +110,6 @@ namespace UI.SCM
             // ends
 
             tracker.Stop();
-            
         }
 
         protected void btnDocView_Click(object sender, EventArgs e)
@@ -125,9 +124,8 @@ namespace UI.SCM
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
                 string[] searchKey = temp.Split(delimiterChars);
-                string filePatht = searchKey[0]; 
+                string filePatht = searchKey[0];
                 string image = "ftp://erp:erp123@ftp.akij.net/" + filePatht;
-            
 
                 DataTable dt = new DataTable();
                 dt.Columns.AddRange(new DataColumn[3] { new DataColumn("ImageName"),
@@ -135,19 +133,14 @@ namespace UI.SCM
                 new DataColumn("ZoomImageUrl")
                 });
                 dt.Rows.Add(image, image);
-             
+
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
-              
-
-
-
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "btnDocView_Click", ex);
                 Flogger.WriteError(efd);
-                
             }
 
             fd = log.GetFlogDetail(stop, location, "btnDocView_Click", null);
@@ -165,10 +158,9 @@ namespace UI.SCM
             string[] searchKey = temp.Split(delimiterChars);
             string filePath = searchKey[0];
             string fileName = filePath;
-            
-        
-        //FTP Server URL.
-        string ftp = "ftp://ftp.akij.net";
+
+            //FTP Server URL.
+            string ftp = "ftp://ftp.akij.net";
 
             //FTP Folder name. Leave blank if you want to Download file from root folder.
             string ftpFolder = "ERP_FTP/";
@@ -176,7 +168,7 @@ namespace UI.SCM
             try
             {
                 //Create FTP Request.
-                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp+fileName);
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + fileName);
                 request.Method = WebRequestMethods.Ftp.DownloadFile;
 
                 //Enter FTP Server credentials.
@@ -227,7 +219,6 @@ namespace UI.SCM
             fileStream.Close();
 
             requestFTPUploader = null;
-
         }
     }
 }

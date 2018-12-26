@@ -155,14 +155,14 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblFrom" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtdteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtdteFrom" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteFrom" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteFrom"></cc1:CalendarExtender>
                             </td>
 
                             <td style="text-align: right;">
                                 <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtdteTo" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender>
                             </td>
                         </tr>

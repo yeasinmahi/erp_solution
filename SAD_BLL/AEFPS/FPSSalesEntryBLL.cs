@@ -428,7 +428,7 @@ namespace SAD_BLL.AEFPS
                     var rows = from tmp in tableempItemDITF[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -442,7 +442,7 @@ namespace SAD_BLL.AEFPS
                                    orderby tmp.strName
                                    select tmp;
 
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
                         }
