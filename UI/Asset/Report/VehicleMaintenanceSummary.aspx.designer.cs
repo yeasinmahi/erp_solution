@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.Asset {
+namespace UI.Asset.Report {
     
     
-    public partial class Vehicle_Maintenance_Bill_Unit {
+    public partial class VehicleMaintenanceSummary {
         
         /// <summary>
         /// PlaceHolder0 control.

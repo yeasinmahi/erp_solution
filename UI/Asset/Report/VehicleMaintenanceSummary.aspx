@@ -1,11 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Vehicle Maintenance Bill Unit.aspx.cs" Inherits="UI.Asset.Vehicle_Maintenance_Bill_Unit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VehicleMaintenanceSummary.aspx.cs" Inherits="UI.Asset.Report.VehicleMaintenanceSummary" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+ <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.: Vehicle Maintenance Bill Unit :.</title>
+    <title>.: Vehicle Maintenance Report :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
@@ -44,3 +44,4 @@
     </form>
 </body>
 </html>
+

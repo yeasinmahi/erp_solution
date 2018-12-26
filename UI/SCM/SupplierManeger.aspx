@@ -62,15 +62,15 @@
           <table style="width:700px"> 
               <tr>   
                 <td></td>
-                <td style="text-align:center; font-size:medium; font-weight:bold; font:u" ><asp:Label ID="lblUnitName" runat="server" Text="Manage Supplier" Font-Underline="true"></asp:Label></td>
+                <td style="text-align:center; font-size:medium; font-weight:bold;" ><asp:Label ID="lblUnitName" runat="server" Text="Manage Supplier" Font-Underline="true"></asp:Label></td>
                 </tr> 
            </table>
          <table style="width:700px"> 
                 <tr>
                     <td>Department</td>
-                    <td class="3"><asp:DropDownList ID="ddlDept" Width="300px" runat="server" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged">
+                    <td class="3"><asp:DropDownList ID="ddlDept" Width="300px" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlDept_SelectedIndexChanged">
                         <asp:ListItem Text="Local"></asp:ListItem>
-                         <asp:ListItem Text="Febrication"></asp:ListItem>
+                         <asp:ListItem Text="Fabrication"></asp:ListItem>
                          <asp:ListItem Text="Import"></asp:ListItem>
                          </asp:DropDownList></td>
                 </tr>
