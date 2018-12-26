@@ -88,6 +88,10 @@ namespace UI.Inventory
                 id = "";
                 ddlsearch = 4;
             }
+            else if(ddlsearch==2)
+            {
+                id = ddlSubCategory.SelectedItem.Text;
+            }
             else
             {
                 id = ddlSubCategory.SelectedItem.Value;
