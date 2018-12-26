@@ -99,7 +99,9 @@ namespace UI.Inventory
 
         }
 
-
-
+        protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
+        {          
+            ddlSearchBy.SelectedIndex = ddlSearchBy.Items.IndexOf(ddlSearchBy.Items.FindByValue("11"));
+        }
     }
 }
