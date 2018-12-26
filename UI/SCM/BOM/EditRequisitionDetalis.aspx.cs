@@ -16,7 +16,18 @@ namespace UI.SCM.BOM
         Bom_BLL objBom = new Bom_BLL();
         DataTable dt = new DataTable();
         int intwh, enroll, BomId, intBomStandard; string xmlData;
-        int CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        int CheckItem = 1, intWh; string[] arrayKey;
+
+        protected void btnCalculate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch { }
+        }
+
+        char[] delimiterChars = { '[', ']' };
         string filePathForXML; string xmlString = "";
         
         protected void Page_Load(object sender, EventArgs e)

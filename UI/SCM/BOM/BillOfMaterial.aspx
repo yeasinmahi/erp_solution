@@ -199,10 +199,10 @@
           
        <div style="Text-align:right;Width:40%;float:right">
               
-               <table style="width:300px">
+               <table style="width:400px">
                    <tr>
                       
-              <td style="Text-align:right;"><asp:TextBox ID="txtBomItem" runat="server" AutoCompleteType="Search" Placeholder="Bom Item Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtBomItem_TextChanged"   ></asp:TextBox>
+              <td style="Text-align:right;"><asp:TextBox ID="txtBomItem" runat="server" AutoCompleteType="Search" Placeholder="Bom Item Search" CssClass="txtBox" AutoPostBack="true" Width="400px" OnTextChanged="txtBomItem_TextChanged"   ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtBomItem"
             ServiceMethod="GetItemBomSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -210,7 +210,7 @@
             </cc1:AutoCompleteExtender></td>
                    </tr>
                    <tr>
-                       <td style="text-align:right"><asp:listbox ID="ListDatas" Width="300px" Height="300px" AutoPostBack="true"   runat="server" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"> 
+                       <td style="text-align:right"><asp:listbox ID="ListDatas" Width="400px" Height="300px" AutoPostBack="true"   runat="server" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"> 
              </asp:listbox> </td>
                    </tr>
                </table>

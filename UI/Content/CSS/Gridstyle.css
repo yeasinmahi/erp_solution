@@ -200,8 +200,13 @@ label.choose:before {
     font: bold;
     width: auto;
     padding-right: 0px;
+   
 }
 
+.GridViewHeaderBorder {
+    border-color: red;
+    border-style:double;
+}
 
     .GridWithPrint td {
         padding: 2px;
