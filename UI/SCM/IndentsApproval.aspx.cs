@@ -37,9 +37,10 @@ namespace UI.SCM
             if (!IsPostBack)
             {
                 try { File.Delete(filePathForXML);}
-                catch { }
-                CalendarExtenderFrom.SelectedDate = DateTime.Now;
+                catch { } 
+                CalendarExtenderFrom.SelectedDate = DateTime.Now.AddDays(-30);
                 CalendarExtenderTO.SelectedDate = DateTime.Now;
+
                 DefaltDataBind();
             }
             else
@@ -249,16 +250,26 @@ namespace UI.SCM
                 string msgs = objIndent.IndentEntry(9, xmlString, intWh, int.Parse(lblIndentNo.Text.ToString()), DateTime.Now, enroll);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
 
                 dgvDetalis.DataSource = ""; dgvDetalis.DataBind();
+
                 string dteFrom = txtDteFrom.Text.ToString();
                 string dteTo = txtdteTo.Text.ToString();
+                int Type = int.Parse(ddlApproval.SelectedValue.ToString());
+                int wh = int.Parse(ddlWH.SelectedValue);
                 string xml = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                dt = objIndent.DataView(7, xml, intWh, 0, DateTime.Now, enroll);
-                //dgvIndent.DataSource = dt;
-                //dgvIndent.DataBind();
-                dgvIndent.Visible = true;
+
+                dt = objIndent.DataView(7, xml, wh, Type, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvIndent.DataSource = dt;
+                    dgvIndent.DataBind();
+                    dgvIndent.Visible = true;
+                }
+
+               
             }
 
 
@@ -308,7 +319,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Po Number Invalid or Approve or Reject');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Indent Number Invalid or Approve or Reject');", true);
                 }
                
                 dt.Clear();

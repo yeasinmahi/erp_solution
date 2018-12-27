@@ -23,10 +23,16 @@ namespace UI.SCM
         string start = "starting SCM\\IndentStatus";
         string stop = "stopping SCM\\IndentStatus";
         string perform = "Performance on SCM\\IndentStatus";
+        DateTime dteFrom, dteTo;
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
+               
+                CalendarExtenderFrom.SelectedDate = DateTime.Now.AddDays(-30);
+                CalendarExtenderTo.SelectedDate = DateTime.Now;
+                 
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
@@ -55,8 +61,9 @@ namespace UI.SCM
                 dgvStatement.Visible = false;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text);
+                try {   dteFrom = DateTime.Parse(txtDteFrom.Text); } catch { dteFrom = DateTime.Now; }
+                try { dteTo = DateTime.Parse(txtdteTo.Text); } catch { dteTo = DateTime.Now; }
+                
                 string dept = ddlDept.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }

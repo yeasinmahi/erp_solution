@@ -3,175 +3,192 @@
     font-family: Verdana,Arial, Helvetica, sans-serif;
     height: 82px;
     background-color: #f0f0f0;
-    margin:10px;
+    margin: 10px;
 }
+
 body {
     font-size: 70%;
     width: 1132px;
 }
+
 p {
     padding: 7px 0 7px 0;
     font-weight: 500;
     font-size: 10pt;
 }
+
 a {
     color: #656565;
-    text-decoration:none;
-}
-a:hover{
-    color: #abda0f;
     text-decoration: none;
 }
+
+    a:hover {
+        color: #abda0f;
+        text-decoration: none;
+    }
+
 h1 {
     color: #888888;
-    font-size:14pt;
+    font-size: 14pt;
     background: url('../img/h1.png') no-repeat left 50%;
-    padding-left:33px;
-    margin:7px 5px 8px 8px;
-        text-align: center;
+    padding-left: 33px;
+    margin: 7px 5px 8px 8px;
+    text-align: center;
     width: 655px;
 }
+
 h4 {
-    padding:1px;
+    padding: 1px;
     color: #ACACAC;
-    font-size:9pt;
-    font-weight:100;
-    text-transform:uppercase;
+    font-size: 9pt;
+    font-weight: 100;
+    text-transform: uppercase;
 }
-form.register{
-    width:759px;
+
+form.register {
+    width: 759px;
     margin: 20px auto 0px auto;
-    height:758px;
-    background-color:#fff;
-    padding:5px;
-    -moz-border-radius:20px;
-    -webkit-border-radius:20px;
+    height: 758px;
+    background-color: #fff;
+    padding: 5px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
 }
-form p{
+
+form p {
     font-size: 8pt;
-    clear:both;
+    clear: both;
     margin: 0;
-    color:gray;
-    padding:4px;
+    color: gray;
+    padding: 4px;
 }
-form.register fieldset.row1
-{
-    width:770px;
-    padding:5px;
-    float:left;
-    border-top:1px solid #F5F5F5;
-    margin-bottom:15px;
-        height: 9px;
-    }
-form.register fieldset.row1 label{
-    width:140px;
+
+form.register fieldset.row1 {
+    width: 770px;
+    padding: 5px;
     float: left;
-    text-align: right;
-    margin-right: 6px;
-    margin-top:2px;
+    border-top: 1px solid #F5F5F5;
+    margin-bottom: 15px;
+    height: 9px;
 }
-form.register fieldset.row2
-{
-    border-top:1px solid #F1F1F1;
-    border-right:1px solid #F1F1F1;
+
+    form.register fieldset.row1 label {
+        width: 140px;
+        float: left;
+        text-align: right;
+        margin-right: 6px;
+        margin-top: 2px;
+    }
+
+form.register fieldset.row2 {
+    border-top: 1px solid #F1F1F1;
+    border-right: 1px solid #F1F1F1;
     /*height:320px;*/
-    padding:5px;
-    float:left;
+    padding: 5px;
+    float: left;
 }
-form.register fieldset.row3
-{
-    border-top:1px solid #F1F1F1;
-    padding:5px;
-    float:left;
-    margin-bottom:15px;
-    width:400px;
+
+form.register fieldset.row3 {
+    border-top: 1px solid #F1F1F1;
+    padding: 5px;
+    float: left;
+    margin-bottom: 15px;
+    width: 400px;
 }
-form.register fieldset.row4
-{
-    border-top:1px solid #F1F1F1;
-    border-right:1px solid #F1F1F1;
-    padding:5px;
-    float:left;
-    clear:both;
-    width:500px;
+
+form.register fieldset.row4 {
+    border-top: 1px solid #F1F1F1;
+    border-right: 1px solid #F1F1F1;
+    padding: 5px;
+    float: left;
+    clear: both;
+    width: 500px;
 }
-form.register .infobox{
-    float:right;
-    margin-top:20px;
+
+form.register .infobox {
+    float: right;
+    margin-top: 20px;
     border: 1px solid #F1F1F1;
-    padding:5px;
-    width:380px;
-    height:98px;
-    font-size:9px;
+    padding: 5px;
+    width: 380px;
+    height: 98px;
+    font-size: 9px;
     background: #FDFEFA url(../img/bg_infobox.gif) repeat-x top left;
 }
-form.register legend
-{
+
+form.register legend {
     color: #abda0f;
-    padding:2px;
+    padding: 2px;
     margin-left: 14px;
-    font-weight:bold;
+    font-weight: bold;
     font-size: 14px;
-    font-weight:100;
+    font-weight: 100;
 }
-form.register label{
-    color:#444;
-    width:104px;
+
+form.register label {
+    color: #444;
+    width: 104px;
     float: left;
     text-align: right;
     margin-right: 6px;
-    margin-top:2px;
-        height: 13px;
+    margin-top: 2px;
+    height: 13px;
+}
+
+    form.register label.optional {
+        float: right;
+        text-align: right;
+        margin-right: 6px;
+        margin-top: 2px;
+        color: #A3A3A3;
     }
-form.register label.optional{
-    float: right;
-    text-align: right;
-    margin-right: 6px;
-    margin-top:2px;
-    color: #A3A3A3;
-}
-form.register label.obinfo{
-    float:right;
-    padding:3px;
-    font-style:italic;
-}
-form.register input{
+
+    form.register label.obinfo {
+        float: right;
+        padding: 3px;
+        font-style: italic;
+    }
+
+form.register input {
     color: #505050;
     float: left;
     margin-right: 5px;
 }
-form.register input.long{
-    width: 247px;
-    color: #505050;
+
+    form.register input.long {
+        width: 247px;
+        color: #505050;
+    }
+
+    form.register input.short {
+        width: 103px;
+        color: #505050;
+    }
+
+    form.register input[type=radio] {
+        float: left;
+        width: 15px;
+    }
+
+form.register label.gender {
+    margin-top: -1px;
+    margin-bottom: 2px;
+    width: 34px;
+    float: left;
+    text-align: left;
+    line-height: 19px;
 }
-form.register input.short{
-    width: 103px;
-    color: #505050;
-}
-form.register input[type=radio]
-{
-    float:left;
-    width:15px;
-}
-form.register label.gender{
-    margin-top:-1px;
-    margin-bottom:2px;
-    width:34px;
-    float:left;
-    text-align:left;
-    line-height:19px;
-}
-form.register input[type=text]
-{
+
+form.register input[type=text] {
     border: 1px solid #E1E1E1;
     height: 18px;
 }
-form.register input[type=password]
-{
+
+form.register input[type=password] {
     border: 1px solid #E1E1E1;
 }
-.button
-{
+
+.button {
     background: #abda0f url(../img/overlay.png) repeat-x;
     padding: 8px 10px 8px;
     color: #999999;
@@ -182,130 +199,134 @@ form.register input[type=password]
     -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
     cursor: pointer;
-    float:left;
-    font-size:18px;
-    margin:10px;
-}
-form.register input[type=text].year
-{
-    border: 1px solid #E1E1E1;
-    width:60px;
-}
-form.register input[type=checkbox] {
-    width:14px;
-    margin-top:4px;
-}
-form.register select
-{
-    border: 1px solid #E1E1E1;
-    float:left;
-    margin-bottom:3px;
-    color: #505050;
-    margin-right:5px;
-}
-form.register select.date
-{
-    width: 40px;
-}
-input:focus, select:focus{
-    background-color: #efffe0;
-}
-p.info{
-    font-size:7pt;
-    color: gray;
-}
-p.agreement{
-    margin-left:15px;
-}
-p.agreement label{
-    width:390px;
-    text-align:left;
-    margin-top:3px;
+    float: left;
+    font-size: 18px;
+    margin: 10px;
 }
 
-    .auto-style1 {
-        color: #3399FF;
-        text-decoration: underline;
-        font-weight: bold;
-        font-size: x-small;
+form.register input[type=text].year {
+    border: 1px solid #E1E1E1;
+    width: 60px;
+}
+
+form.register input[type=checkbox] {
+    width: 14px;
+    margin-top: 4px;
+}
+
+form.register select {
+    border: 1px solid #E1E1E1;
+    float: left;
+    margin-bottom: 3px;
+    color: #505050;
+    margin-right: 5px;
+}
+
+    form.register select.date {
+        width: 40px;
     }
 
-    .auto-style2 {
-        color: #3399FF;
-        text-decoration: underline;
-        font-weight: normal;
-        font-size:medium 14px;
+input:focus, select:focus {
+    background-color: #efffe0;
+}
+
+p.info {
+    font-size: 7pt;
+    color: gray;
+}
+
+p.agreement {
+    margin-left: 15px;
+}
+
+    p.agreement label {
+        width: 390px;
+        text-align: left;
+        margin-top: 3px;
+    }
+
+.auto-style1 {
+    color: #3399FF;
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: x-small;
+}
+
+.auto-style2 {
+    color: #3399FF;
+    text-decoration: underline;
+    font-weight: normal;
+    font-size: 14px;
     width: 554px;
     height: 17px;
 }
 
-    .long {
-    margin-left: 0px;
+.long {
+    margin-left: 0;
 }
 
 
-    .auto-style3 {
-        color: #333333;
+.auto-style3 {
+    color: #333333;
     width: 1828px;
 }
 
 
-    .auto-style4 {
-        height: 33px;
-        text-align: center;
-        width: auto;
-        font:normal 12px verdana;
+.auto-style4 {
+    height: 33px;
+    text-align: center;
+    width: auto;
+    font: normal 12px verdana;
+}
 
 
-    }
+.auto-style5 {
+    width: 52px;
+}
+
+.auto-style6 {
+    width: 54px;
+    height: 17px;
+    text-align: center;
+}
+
+.auto-style7 {
+    width: 55px;
+}
 
 
-    .auto-style5 {
-        width: 52px;
-    }
-    .auto-style6 {
-        width: 54px;
-        height: 17px;
-        text-align: center;
-
-    }
-    .auto-style7 {
-        width: 55px;
-    }
-    
-
-    .auto-style10 {
-        height: 17px;
-    }
+.auto-style10 {
+    height: 17px;
+}
 
 
-    .auto-style11 {
-        height: 33px;
-        text-align: right;
-        width: 89px;
-        font: normal 12px verdana;
-    }
+.auto-style11 {
+    height: 33px;
+    text-align: right;
+    width: 89px;
+    font: normal 12px verdana;
+}
 
-    .auto-style13 {
-            width: 54px;
-            height: 18px;
-            text-align: center;
-        }
-        .auto-style14 {
-            height: 33px;
-            text-align: right;
-            width: 72px;
-            font: normal 12px verdana;
-        }
+.auto-style13 {
+    width: 54px;
+    height: 18px;
+    text-align: center;
+}
 
-         .auto-style6 {
-        width: 54px;
-        height: 17px;
-        text-align: center;
+.auto-style14 {
+    height: 33px;
+    text-align: right;
+    width: 72px;
+    font: normal 12px verdana;
+}
 
-    }
+.auto-style6 {
+    width: 54px;
+    height: 17px;
+    text-align: center;
+}
 
-       /*.auto-style2 {
+/*.auto-style2 {
         color: #3399FF;
         text-decoration: underline;
         font-weight: normal;
@@ -316,85 +337,92 @@ p.agreement label{
 
 
 
-        .auto-style15 {
-            width: 154px;
-        }
+.auto-style15 {
+    width: 154px;
+}
 
-    .auto-style16 {
+.auto-style16 {
     color: #333333;
     width: 651px;
     font-weight: normal;
-    font-size:x-large;
-    text-align: center;
-}
-    .auto-style17 {
-    color: #333333;
-    width: 651px;
-    font-weight: normal;
-    font-size:x-large;
+    font-size: x-large;
     text-align: center;
 }
 
-   .auto-style18 {
+.auto-style17 {
+    color: #333333;
+    width: 651px;
+    font-weight: normal;
+    font-size: x-large;
+    text-align: center;
+}
+
+.auto-style18 {
     color: #3399FF;
     width: 651px;
     font-weight: normal;
-    font-size:x-large;
+    font-size: x-large;
     text-align: center;
 }
 
 
 
-        .auto-style19 {
-            height: 33px;
-            text-align: center;
-            width: 112px;
-            font: normal 12px verdana;
-        }
-        .auto-style20 {
-            height: 33px;
-            text-align: right;
-            width: 112px;
-            font: normal 12px verdana;
-        }
-        .auto-style21 {
-            width: 112px;
-        }
+.auto-style19 {
+    height: 33px;
+    text-align: center;
+    width: 112px;
+    font: normal 12px verdana;
+}
+
+.auto-style20 {
+    height: 33px;
+    text-align: right;
+    width: 112px;
+    font: normal 12px verdana;
+}
+
+.auto-style21 {
+    width: 112px;
+}
 
 
-        .auto-style19 {
-            color: #800000;
-        }
-        .auto-style21 {
-            color: #339933;
-            width: 1081px;
-        }
-        .auto-style22 {
-            color: #339966;
-            width: 1085px;
-        }
+.auto-style19 {
+    color: #800000;
+}
 
-            .auto-style29 {
-        color: #3399FF;
-        text-decoration: underline;
-        font-size:small;
+.auto-style21 {
+    color: #339933;
+    width: 1081px;
+}
+
+.auto-style22 {
+    color: #339966;
+    width: 1085px;
+}
+
+.auto-style29 {
+    color: #3399FF;
+    text-decoration: underline;
+    font-size: small;
     width: 302px;
     height: 17px;
 }
 
-        .auto-style25 {
-            height: 17px;
-            text-align: center;
-        }
-        .auto-style30 {
-            color: #3399FF;
-            text-decoration: underline;
-            font-weight: normal;
-            font-size: medium;
-            width: 583px;
-            height: 17px;
-        }
-        .auto-style31 {
-            font-size: xx-small;
-            color: #0033CC;
-        }
+.auto-style25 {
+    height: 17px;
+    text-align: center;
+}
+
+.auto-style30 {
+    color: #3399FF;
+    text-decoration: underline;
+    font-weight: normal;
+    font-size: medium;
+    width: 583px;
+    height: 17px;
+}
+
+.auto-style31 {
+    font-size: xx-small;
+    color: #0033CC;
+}

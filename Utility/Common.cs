@@ -8,13 +8,13 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace Utility
 {
     public class Common
     {
-
         public static PropertyInfo[] GetProperties(object obj)
         {
             return obj.GetType().GetProperties();
@@ -29,6 +29,7 @@ namespace Utility
         {
             return !File.Exists(path) ? File.CreateText(path) : null;
         }
+
         public enum ModulaFileName
         {
             Item,
@@ -47,6 +48,7 @@ namespace Utility
             var s = Regex.Replace(value, "([A-Z])", " $1").Trim();
             return ConvertToTitleCase(s);
         }
+
         public static string ConvertToTitleCase(string value)
         {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
@@ -87,14 +89,15 @@ namespace Utility
                 }
             }
             return new List<string>();
-
         }
+
         public static int GetIdFromString(string text)
         {
             string[] arr = text.Split(new[] { '[', ']' }, StringSplitOptions.None);
             string id = arr[1];
             return Convert.ToInt32(id);
         }
+
         public static string GetMacAddress()
         {
             string macAddresses = "";
@@ -108,6 +111,7 @@ namespace Utility
             }
             return macAddresses;
         }
+
         public static string GetIpAddress()
         {
             string ipAddress = null;
@@ -139,6 +143,7 @@ namespace Utility
             }
             return 0;
         }
+
         public static string GetDdlSelectedText(DropDownList ddl)
         {
             if (ddl?.SelectedItem != null)
@@ -147,7 +152,8 @@ namespace Utility
             }
             return String.Empty;
         }
-        public static bool BindDropDown(DropDownList ddl,DataTable dt,string value, string text)
+
+        public static bool LoadDropDown(DropDownList ddl, DataTable dt, string value, string text)
         {
             if (dt.Rows.Count <= 0) return false;
             try
@@ -162,7 +168,39 @@ namespace Utility
             {
                 return false;
             }
+        }
 
+        public static void UnLoadDropDown(DropDownList ddl)
+        {
+            ddl.DataSource = null;
+            ddl.DataBind();
+        }
+
+        public static void Clear(ControlCollection controls)
+        {
+            foreach (Control ctrl in controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ((TextBox)ctrl).Text = string.Empty;
+                }
+                else if (ctrl is DropDownList)
+                {
+                    ((DropDownList)ctrl).SelectedIndex = 0;
+                }
+                else if (ctrl is CheckBoxList)
+                {
+                    ((CheckBoxList)ctrl).SelectedIndex = 0;
+                }
+                else if (ctrl is ListBox)
+                {
+                    ((ListBox)ctrl).SelectedIndex = 0;
+                }
+                else if (ctrl is RadioButtonList)
+                {
+                    ((RadioButtonList)ctrl).SelectedIndex = 0;
+                }
+            }
         }
     }
 }
