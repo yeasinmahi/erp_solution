@@ -87,11 +87,12 @@
                                         <asp:ListItem Text="Item Name" Value="4"></asp:ListItem>
                                         <asp:ListItem Text="Purchase Type (Local/Foreign)" Value="5"></asp:ListItem>
                                         <asp:ListItem Text="Major Category" Value="6"></asp:ListItem>
+                                        <asp:ListItem Text="Minor Category" Value="12"></asp:ListItem>
                                         <asp:ListItem Text="Cluster" Value="7"></asp:ListItem>
                                         <asp:ListItem Text="Commodity" Value="8"></asp:ListItem>
                                         <asp:ListItem Text="Store Location" Value="9"></asp:ListItem>
                                         <asp:ListItem Text="Plant" Value="10"></asp:ListItem>
-                                        <asp:ListItem Text="Minor Category" Value="12"></asp:ListItem>
+                                        
                                     </asp:DropDownList>
                                 </div>
                             </div>
