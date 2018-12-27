@@ -145,16 +145,25 @@ namespace UI.SCM.BOM
 
                     arrayKey = txtBomItem.Text.Split(delimiterChars);
                     intWh = int.Parse(ddlWH.SelectedValue);
-                    string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                    string item = "";
+                    string itemid = "";
+                    string uom = "";
+                    bool proceed = false;
+                    itemid = arrayKey[arrayKey.Length - 2].ToString();
                     int bomid = int.Parse(itemid.ToString());
 
-                    try { File.Delete(filePathForXML); } catch { }
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch
+                    {
+                    }
                     if (xmlString.Length > 5)
                     {
                         string msg = objBom.BomPostData(4, xmlString, intWh, bomid, DateTime.Now, enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + msg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
                         txtCode.Text = "";
@@ -165,7 +174,12 @@ namespace UI.SCM.BOM
                     }
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "alert('" + ex.Message + "');", true);
+                try { File.Delete(filePathForXML); } catch { }
+            }
         }
 
         private void LoadGridwithXml()
@@ -232,9 +246,17 @@ namespace UI.SCM.BOM
             {
                 arrayKey = txtBomItem.Text.Split(delimiterChars);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
-                if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
+                itemid = arrayKey[arrayKey.Length - 2].ToString();
+                //if (arrayKey.Length > 0)
+                //{
+                //    item = arrayKey[0].ToString();
+                //    uom = arrayKey[2].ToString();
+                //    itemid = arrayKey[5].ToString();
+                //}
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(2, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
                 ListDatas.DataSource = dt;
@@ -243,7 +265,10 @@ namespace UI.SCM.BOM
                 ListDatas.DataBind();
                 txtBomName.Text = "";
             }
-            catch { }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.Message + "');", true);
+            }
         }
 
         protected void ListDatas_SelectedIndexChanged(object sender, EventArgs e)
