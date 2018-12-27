@@ -63,12 +63,14 @@
                                     <asp:Label ID="Label1" runat="server" Text="From Date"></asp:Label>
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
-
+                                    <%--<asp:TextBox ID="TextBox1" runat="server" CssClass="form-control col-md-2 col-sm-4 col-xs-4" Width="50" autocomplete="off"></asp:TextBox>--%>
                                 </div>
+                                
                                 <div class="col-md-3">
                                     <asp:Label ID="Label2" runat="server" Text="To Date"></asp:Label>
                                     <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
+                                    <%--<asp:TextBox ID="TextBox2" runat="server" CssClass="form-control col-md-2 col-sm-4 col-xs-4" Width="50" autocomplete="off"></asp:TextBox>--%>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label3" runat="server" Text="Ware House"></asp:Label>
@@ -89,6 +91,7 @@
                                         <asp:ListItem Text="Commodity" Value="8"></asp:ListItem>
                                         <asp:ListItem Text="Store Location" Value="9"></asp:ListItem>
                                         <asp:ListItem Text="Plant" Value="10"></asp:ListItem>
+                                        <asp:ListItem Text="Minor Category" Value="12"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>
