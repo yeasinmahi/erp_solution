@@ -166,22 +166,22 @@ namespace UI.SCM.BOM {
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
-        /// Label2 control.
+        /// lblPurpose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label lblPurpose;
         
         /// <summary>
-        /// ddlBom control.
+        /// txtBatchNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlBom;
+        protected global::System.Web.UI.WebControls.TextBox txtBatchNo;
         
         /// <summary>
         /// Label4 control.
@@ -202,22 +202,22 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.TextBox txtQty;
         
         /// <summary>
-        /// lblPurpose control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPurpose;
+        protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtBatchNo control.
+        /// ddlBom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBatchNo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlBom;
         
         /// <summary>
         /// Label3 control.
@@ -265,6 +265,15 @@ namespace UI.SCM.BOM {
         protected global::AjaxControlToolkit.CalendarExtender dteTo;
         
         /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+        
+        /// <summary>
         /// ddlFromTime control.
         /// </summary>
         /// <remarks>
@@ -299,24 +308,6 @@ namespace UI.SCM.BOM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtInvoice;
-        
-        /// <summary>
-        /// Label6 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
-        
-        /// <summary>
-        /// ddlStation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStation;
         
         /// <summary>
         /// btnAdd control.
