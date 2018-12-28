@@ -1,9 +1,7 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -16,11 +14,12 @@ namespace UI.SCM.BOM
 {
     public partial class ProductionOrder : BasePage
     {
-        Bom_BLL objBom = new Bom_BLL();
-        DataTable dt = new DataTable();
-        int intwh, enroll, BomId; string xmlData;
-        int CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string filePathForXML; string xmlString = "";
+        private Bom_BLL objBom = new Bom_BLL();
+        private DataTable dt = new DataTable();
+        private int intwh, enroll, BomId; private string xmlData;
+        private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML; private string xmlString = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Pro__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -29,7 +28,7 @@ namespace UI.SCM.BOM
             {
                 try { File.Delete(filePathForXML); dgvBom.DataSource = ""; dgvBom.DataBind(); }
                 catch { }
-                
+
                 DefaultDataBind();
             }
             else { }
@@ -43,14 +42,11 @@ namespace UI.SCM.BOM
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
-
                     ddlWH.DataSource = dt;
                     ddlWH.DataTextField = "strName";
                     ddlWH.DataValueField = "Id";
                     ddlWH.DataBind();
                 }
-
-              
 
                 intwh = int.Parse(ddlWH.SelectedValue);
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -63,15 +59,17 @@ namespace UI.SCM.BOM
             }
             catch { }
         }
-        #region========================Auto Search============================ 
+
+        #region========================Auto Search============================
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetItemSerach(string prefixText, int count)
         {
-            Bom_BLL objBoms = new Bom_BLL(); 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText,1);
+            Bom_BLL objBoms = new Bom_BLL();
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText, 1);
+        }
 
-        } 
         #endregion====================Close======================================
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -86,10 +84,7 @@ namespace UI.SCM.BOM
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 { File.Delete(filePathForXML); dgvBom.DataSource = ""; dgvBom.DataBind(); }
                 else { LoadGridwithXml(); }
-
-
             }
-
             catch { }
         }
 
@@ -97,38 +92,36 @@ namespace UI.SCM.BOM
         {
             try
             {
- 
-                if (hdnPreConfirm.Value=="1")
+                if (hdnPreConfirm.Value == "1")
                 {
                     arrayKey = txtItem.Text.Split(delimiterChars);
                     intWh = int.Parse(ddlWH.SelectedValue);
-                    string item = ""; string itemid = ""; string uom = "";  
+                    string item = ""; string itemid = ""; string uom = "";
                     if (arrayKey.Length > 0)
                     { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
                     string fromtime = ddlFromTime.SelectedItem.ToString();
-                   
-                    string toTime = ddlFromToTime.SelectedItem.ToString();
-                   
 
-                    DateTime dteFrom =DateTime.Parse(txtdteDate.Text);
-                    string a = dteFrom.ToString("yyyy-MM-dd")+" "+ fromtime;
+                    string toTime = ddlFromToTime.SelectedItem.ToString();
+
+                    DateTime dteFrom = DateTime.Parse(txtdteDate.Text);
+                    string a = dteFrom.ToString("yyyy-MM-dd") + " " + fromtime;
                     DateTime startTime = DateTime.Parse(a.ToString());
 
                     DateTime dteTo = DateTime.Parse(txtdteDate.Text);
-                    string b = dteFrom.ToString("yyyy-MM-dd")+" " + toTime;
+                    string b = dteFrom.ToString("yyyy-MM-dd") + " " + toTime;
                     DateTime endTime = DateTime.Parse(b.ToString());
-                    var hours = ( endTime- startTime).TotalHours;
-                    if(hours <=0)
+                    var hours = (endTime - startTime).TotalHours;
+                    if (hours <= 0)
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('End time cannot be equal to or less than start time.');", true);
-
                     }
-                    else if(hours > 24)
+                    else if (hours > 24)
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Production time cannot be greater than 24 hours.');", true);
                     }
                     else
-                    {   checkXmlItemData(itemid);
+                    {
+                        checkXmlItemData(itemid);
                         if (CheckItem == 1)
                         {
                             string bomid = ddlBom.SelectedValue.ToString();
@@ -143,18 +136,15 @@ namespace UI.SCM.BOM
                         }
                         else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
                     }
-                    
                 }
-              
-
             }
             catch { }
         }
+
         private void checkXmlItemData(string itemid)
         {
             try
             {
-
                 DataSet ds = new DataSet();
                 ds.ReadXml(filePathForXML);
                 int i = 0;
@@ -169,13 +159,11 @@ namespace UI.SCM.BOM
                     {
                         CheckItem = 1;
                     }
-
-
                 }
             }
             catch { }
-
         }
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -187,9 +175,14 @@ namespace UI.SCM.BOM
                 {
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
                     Session["unit"] = hdnUnit.Value.ToString();
-
-
                 }
+                txtItem.Text = string.Empty;
+                txtBatchNo.Text = string.Empty;
+                txtInvoice.Text = string.Empty;
+                txtQty.Text = @"0";
+                txtdteDate.Text = string.Empty;
+                Utility.Common.UnLoadDropDown(ddlBom);
+                Utility.Common.UnLoadDropDown(ddlLine);
             }
             catch { }
         }
@@ -210,25 +203,21 @@ namespace UI.SCM.BOM
                 ddlBom.DataValueField = "Id";
                 ddlBom.DataBind();
 
-                dt = objBom.GetBomData(14, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
-                ddlStation.DataSource = dt;
-                ddlStation.DataTextField = "strName";
-                ddlStation.DataValueField = "Id";
-                ddlStation.DataBind();
-
+                //dt = objBom.GetBomData(14, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                //ddlStation.DataSource = dt;
+                //ddlStation.DataTextField = "strName";
+                //ddlStation.DataValueField = "Id";
+                //ddlStation.DataBind();
             }
             catch { }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            
             try
             {
-               
                 if (hdnConfirm.Value.ToString() == "1")
-                { 
-
+                {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(ddlWH.SelectedValue);
@@ -246,17 +235,13 @@ namespace UI.SCM.BOM
                         dgvBom.DataBind();
                         txtBatchNo.Text = ""; txtQty.Text = "0"; txtItem.Text = ""; txtInvoice.Text = "";
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                       
-
                     }
-
                 }
-
             }
             catch { try { File.Delete(filePathForXML); } catch { } }
         }
 
-        private void CreateXml(string item, string itemid, string fromtime, string toTime, string bomid,string bomName, string quantity, string lineprocess, string invoice,string batch)
+        private void CreateXml(string item, string itemid, string fromtime, string toTime, string bomid, string bomName, string quantity, string lineprocess, string invoice, string batch)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXML))
@@ -293,14 +278,13 @@ namespace UI.SCM.BOM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 { dgvBom.DataSource = ds; }
-
                 else { dgvBom.DataSource = ""; }
                 dgvBom.DataBind();
             }
             catch { }
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string fromtime, string toTime, string bomid,string bomName, string quantity, string lineprocess, string invoice,string batch)
+        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string fromtime, string toTime, string bomid, string bomName, string quantity, string lineprocess, string invoice, string batch)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -316,7 +300,7 @@ namespace UI.SCM.BOM
             Bomid.Value = bomid;
             XmlAttribute BomName = doc.CreateAttribute("bomName");
             BomName.Value = bomName;
-            
+
             XmlAttribute Quantity = doc.CreateAttribute("quantity");
             Quantity.Value = quantity;
             XmlAttribute Lineprocess = doc.CreateAttribute("lineprocess");
@@ -326,8 +310,6 @@ namespace UI.SCM.BOM
 
             XmlAttribute Batch = doc.CreateAttribute("batch");
             Batch.Value = batch;
-
-
 
             node.Attributes.Append(Item);
             node.Attributes.Append(Itemid);
@@ -341,10 +323,8 @@ namespace UI.SCM.BOM
             node.Attributes.Append(Invoice);
             node.Attributes.Append(Batch);
 
-       
             node.Attributes.Append(BomName);
 
-            
             return node;
         }
     }
