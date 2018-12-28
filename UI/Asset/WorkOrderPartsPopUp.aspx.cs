@@ -49,15 +49,7 @@ namespace UI.Asset
                     //txtService.Visible = false;
                     //lblSubService.Visible = false;
                     //dgvSubService.Visible = false;
-
-
-                    //btnSubService.Visible = true;
-                    //txtServiceCost.Visible = true;
-                    //lblSubServiceCost.Visible = true;
-                    //txtService.Visible = true;
-                    //lblSubService.Visible = true;
-                    //dgvSubService.Visible = true;
-
+                     
 
                     hdnField.Value = "0";
                     TxtTechnichinSearch.Attributes.Add("onkeyUp", "SearchTextVendor();");
@@ -215,7 +207,17 @@ namespace UI.Asset
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-        }       
+        }
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetSubServiceList(string prefixText, int count)
+        {
+            int jobstationId = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()); 
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+            return objAutoSearch_BLL.GetSubServiceList(jobstationId, prefixText.ToLower().ToString());
+        }
+
 
         [WebMethod]
         [ScriptMethod]
@@ -699,6 +701,7 @@ namespace UI.Asset
                     {
                         objWorkorderParts.SubServiceCost(Reffno, service, cost);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+                        txtService.Text = "";
 
                         wt = objWorkorderParts.SubServiceView(Reffno);
                         dgvSubService.DataSource = wt;

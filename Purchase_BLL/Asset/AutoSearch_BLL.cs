@@ -26,6 +26,9 @@ namespace Purchase_BLL.Asset
 
         private static SearchTDS.TblVehicleDataTable[] tableInternalVehiclepList = null;
         private static SearchTDS.AllJobstationDataTable[] tblAllJobstation = null;
+
+        private static SearchTDS.TblSubServiceListDataTable[] tblSubServiceList = null;
+
         private static Hashtable ht = new Hashtable();
         int e;
         public List<string> AutoSearchEmployee(string strSearchKeyemp,int intjobid)
@@ -922,7 +925,7 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strJobStationName"] + ",Unit Name[" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]"+ "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
+                    retStr[i] = tbl.Rows[i]["strJobStationName"] + " [" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]"+ "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
                     
                 }
 
@@ -935,6 +938,71 @@ namespace Purchase_BLL.Asset
                 return null;
             }
         }
+
+        public string[] GetSubServiceList(int jobstation, string prefix)
+        {
+            if (tblAllJobstation == null)
+            {
+                tblSubServiceList = new SearchTDS.TblSubServiceListDataTable[Convert.ToInt32(jobstation)];
+                TblSubServiceListTableAdapter adpCOA = new TblSubServiceListTableAdapter();
+                tblSubServiceList[e] = adpCOA.GetSubServiceListData(jobstation);
+            }
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tblSubServiceList[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tblSubServiceList[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strName.ToLower().Contains(prefix)
+                                   orderby tmp.strName
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strName"].ToString();
+
+                }
+
+                return retStr;
+
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+
 
     }
 }
