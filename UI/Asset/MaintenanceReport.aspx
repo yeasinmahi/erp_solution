@@ -141,7 +141,7 @@
           </table>
          <table>
             <tr> 
-            <td><asp:GridView ID="dgview" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+            <td><asp:GridView ID="dgview" runat="server" AutoGenerateColumns="False" ShowFooter="true" AllowPaging="false" PageSize="8"
                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" Font-Size="Smaller" PagerStyle-CssClass="pgr"
                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
                     ForeColor="Black" GridLines="Vertical"  >
@@ -158,15 +158,15 @@
             <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
             <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
             <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" />
-                <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" />
-            <asp:BoundField DataField="strServiceName" HeaderText="ServiceName" SortExpression="strServiceName" /> 
+                <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" /> 
             <asp:BoundField DataField="strProblem" HeaderText="Problem" SortExpression="strProblem" /> 
              <asp:BoundField DataField="strRepairType" HeaderText="RepairType" SortExpression="strRepairType" />  
             <asp:BoundField DataField="strPriority" HeaderText="Priority" SortExpression="strPriority" />
             <asp:BoundField DataField="dteStart" HeaderText="StartDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteStart" />
             <asp:BoundField DataField="dteEnd" HeaderText="EndDate" dataformatstring="{0: d MMMM, yyyy}" SortExpression="dteEnd" />
-            <asp:BoundField DataField="monMaterial" HeaderText="Material Cost" SortExpression="monMaterial" />
-            <asp:BoundField DataField="monService" HeaderText="Service Cost" SortExpression="monService" />
+            <asp:BoundField DataField="monMaterial" HeaderText="Material" SortExpression="monMaterial" />
+            <asp:BoundField DataField="monService" HeaderText="Service" SortExpression="monService" />
+            <asp:BoundField DataField="monTotal" HeaderText="Total" SortExpression="monTotal" />
              <asp:TemplateField HeaderText="Detalis">
               <ItemTemplate>
                 <asp:Button ID="BtnMDetalis" CommandName="Detalis" CommandArgument='<%# Eval("intMaintenanceNo") %>' runat="server" Text="Detalis" OnClick="BtnMDetalis_Click" />

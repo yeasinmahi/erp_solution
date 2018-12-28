@@ -71,6 +71,16 @@ namespace UI.Asset
                     dgview.DataBind();
                     dgvMaterial.Visible = false;
                     dgvServiceCost.Visible = false;
+
+                    decimal MaterialT = dt.AsEnumerable().Sum(row => row.Field<decimal>("monMaterial"));
+                    decimal ServiceT = dt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                    decimal total = dt.AsEnumerable().Sum(row => row.Field<decimal>("monTotal"));
+                  
+                    dgview.FooterRow.Cells[9].Text = "Ground Total";
+                    dgview.FooterRow.Cells[9].HorizontalAlign = HorizontalAlign.Right;
+                    dgview.FooterRow.Cells[10].Text = MaterialT.ToString("N2");
+                    dgview.FooterRow.Cells[11].Text = ServiceT.ToString("N2");
+                    dgview.FooterRow.Cells[12].Text = total.ToString("N2");
                 }
                 else if (type == 2)//Material
                 {

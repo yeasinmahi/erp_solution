@@ -34,7 +34,7 @@ namespace UI.Asset
                 try
                 {
 
-                    int Mnumber = int.Parse(Session["intMaintenanceNo"].ToString());
+                int Mnumber = int.Parse(Session["intMaintenanceNo"].ToString());
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());

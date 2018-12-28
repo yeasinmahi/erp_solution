@@ -55,6 +55,10 @@ namespace UI.Asset
                 txtDriverName.Visible = false;
                 lblContact.Visible = false;
                 txtContactNo.Visible = false;
+                txtUser.Visible = false;
+                lblUser.Visible = false;
+              
+                lblunit.Visible = false;
 
                 RadioPreventive.Visible = false;
                 TxtCost.ReadOnly = true;
@@ -133,22 +137,27 @@ namespace UI.Asset
                 HdnAssetid.Value = IssueDate.Rows[0]["strAssetCode"].ToString();
                 txtDriverName.Text = IssueDate.Rows[0]["strDriverName"].ToString();
                 txtContactNo.Text = IssueDate.Rows[0]["strContactNo"].ToString();
+                txtUser.Text = IssueDate.Rows[0]["strUserName"].ToString(); 
+                lblunit.Text = IssueDate.Rows[0]["strUnitName"].ToString();
 
-                vehicleNumber = HdnAssetid.Value.ToString();  
+                    vehicleNumber = HdnAssetid.Value.ToString();  
                 dt = new DataTable();
                 dt = objMaintenance.MilegeViewTextbox(vehicleNumber);
-                if (dt.Rows.Count > 0)
-                {
-                TxtPresentMilege.Visible = true;
-                TxtNextMilege.Visible = true;
-                DdlHevvyVehicle.Visible = true;
-                lbHevvy.Visible = true;
-                lblDriver.Visible = true;
-                txtDriverName.Visible = true;
-                lblContact.Visible = true;
-                txtContactNo.Visible = true;
-                
-                } 
+                    if (dt.Rows.Count > 0)
+                    {
+                        TxtPresentMilege.Visible = true;
+                        TxtNextMilege.Visible = true;
+                        DdlHevvyVehicle.Visible = true;
+                        lbHevvy.Visible = true;
+                        lblDriver.Visible = true;
+                        txtDriverName.Visible = true;
+                        lblContact.Visible = true;
+                        txtContactNo.Visible = true;
+                        txtUser.Visible = true;
+                        lblUser.Visible = true;
+                         
+                        lblunit.Visible = true;
+                    } 
 
                 taskshow = objMaintenance.dtashgridview(1, Mnumber);
                 dgvTask.DataSource = taskshow;
@@ -314,44 +323,51 @@ namespace UI.Asset
             {
                 if (!String.IsNullOrEmpty(TxtAssign.Text))
                 {
-                    string strSearchKey = TxtAssign.Text;
-                    string[] searchKey = Regex.Split(strSearchKey, ";");
-                    HdfTechnicinCode.Value = searchKey[1];
-                    int technichin = int.Parse(HdfTechnicinCode.Value.ToString());
+                    if (hdnConfirm.Value == "1")
+                    {
+                        string strSearchKey = TxtAssign.Text;
+                        string[] searchKey = Regex.Split(strSearchKey, ";");
+                        HdfTechnicinCode.Value = searchKey[1];
+                        int technichin = int.Parse(HdfTechnicinCode.Value.ToString());
 
+                        int Mnumber = int.Parse(TxtOrder.Text.ToString());
+                        string status = DdlStatus.SelectedItem.ToString();
+                        //string ReparingType = DdlReType.SelectedItem.ToString();
+                        // DateTime dteIssue = DateTime.Parse(TxtdteIssue.Text);
+                        DateTime dteStart = DateTime.Parse(TxtdteStarted.Text);
+                        //DateTime dteEnd = DateTime.Parse(TxtdteEnd.Text);
+                        String priority = DdlPriority.SelectedItem.ToString();
+                        string costcenter = DdlCostCenter.SelectedItem.ToString();
+                        int intcostcenter = int.Parse(DdlCostCenter.SelectedValue.ToString());
+                        string assign = TxtAssign.Text.ToString();
+                        string notes = TxtNotes.Text.ToString();
+                        string presentM = TxtPresentMilege.Text.ToString();
+                        string nextM = TxtNextMilege.Text.ToString();
+                        int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                        int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                        int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                        vehicleNumber = HdnAssetid.Value.ToString();
+                        int Heavy = int.Parse(DdlHevvyVehicle.SelectedValue.ToString());
+                        objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM, Heavy, txtDriverName.Text.ToString(), txtContactNo.Text.ToString(), txtUser.Text.ToString(), Mnumber);
 
+                        if (DdlStatus.SelectedItem.ToString() == "Close")
+                        {
+                            objMaintenance.MaintenanceComplete(6, Mnumber, intenroll, intjobid, intdept);
+                            objMaintenance.UpdateMilege(presentM, nextM, vehicleNumber);
 
-                    int Mnumber = int.Parse(TxtOrder.Text.ToString());
-                    string status = DdlStatus.SelectedItem.ToString();
-                    //string ReparingType = DdlReType.SelectedItem.ToString();
-                    // DateTime dteIssue = DateTime.Parse(TxtdteIssue.Text);
-                    DateTime dteStart = DateTime.Parse(TxtdteStarted.Text);
-                    //DateTime dteEnd = DateTime.Parse(TxtdteEnd.Text);
-                    String priority = DdlPriority.SelectedItem.ToString();
-                    string costcenter = DdlCostCenter.SelectedItem.ToString();
-                    int intcostcenter = int.Parse(DdlCostCenter.SelectedValue.ToString());
-                    string assign = TxtAssign.Text.ToString();
-                    string notes = TxtNotes.Text.ToString();
-                    string presentM = TxtPresentMilege.Text.ToString();
-                    string nextM = TxtNextMilege.Text.ToString();
-                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                    vehicleNumber = HdnAssetid.Value.ToString();
-                    int Heavy = int.Parse(DdlHevvyVehicle.SelectedValue.ToString());
-                    objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM,Heavy,txtDriverName.Text.ToString(),txtContactNo.Text.ToString(), Mnumber);
-                     
-                    if ( DdlStatus.SelectedItem.ToString() == "Close")
-                    { 
-                        objMaintenance.MaintenanceComplete(6, Mnumber, intenroll, intjobid, intdept);
-                        objMaintenance.UpdateMilege(presentM, nextM, vehicleNumber);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
-
+                            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save and Close');", true);
+                            Response.Redirect("Maintenance.aspx", true);
+                        }
+                        else
+                        {
+                            Response.Redirect("Maintenance.aspx", true);
+                        }
                     }
+
+                   
                   
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
-                   //     
-                    //Response.Redirect("Maintenance.aspx", true);
+                   // ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                   
                   }
                 else
                 {
