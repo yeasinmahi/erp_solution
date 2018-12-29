@@ -242,8 +242,16 @@
           <div class="tabs_container" >Sub Service Cost</div>  
           <table border="1px" width="900"   class="tblrowodd" >
             <tr>                
-            <td   style="text-align:right;"><asp:Label ID="lblSubService" runat="server" CssClass="lbl" Text="Service Name:"></asp:Label> </td>
-            <td  style="text-align:left;"> <asp:TextBox ID="txtService" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>  
+            <td     style="text-align:right;"><asp:Label ID="lblSubService" runat="server" CssClass="lbl" Text="Service Name:"></asp:Label> </td>
+            <td style="text-align:left;"><asp:TextBox ID="txtService" runat="server" AutoCompleteType="Search" Width="450px" CssClass="txtBox" AutoPostBack="true"  ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtService"
+            ServiceMethod="GetSubServiceList" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender>
+            <asp:HiddenField ID="hdnSubService" runat="server" /></td>
+
+          
             <td  style="text-align:right;"> <asp:Label ID="lblSubServiceCost" runat="server" CssClass="lbl" Text="Service Cost:"></asp:Label></td>
             <td  style="text-align:left;"> <asp:TextBox ID="txtServiceCost" runat="server" Text="0.00" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
             </tr>        
