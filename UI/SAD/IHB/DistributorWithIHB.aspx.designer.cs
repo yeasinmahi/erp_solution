@@ -247,6 +247,24 @@ namespace UI.SAD.IHB {
         protected global::System.Web.UI.WebControls.Button report;
         
         /// <summary>
+        /// btnInactive control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnInactive;
+        
+        /// <summary>
+        /// btnupdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnupdate;
+        
+        /// <summary>
         /// grdvCustomerWithIhb control.
         /// </summary>
         /// <remarks>
