@@ -68,10 +68,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo, int Mnumber)
+        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo,string strUser, int Mnumber)
         {
             TblUpdateAssetMaintenanceTableAdapter insertdate = new TblUpdateAssetMaintenanceTableAdapter();
-            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo, Mnumber);
+            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo,strUser, Mnumber);
         }
 
 
@@ -955,13 +955,13 @@ namespace Purchase_BLL.Asset
             }
             catch(Exception ex) { return msg = ex.Message.ToString(); }
         }
-        public string UpdateFixedAssetRegisterUnit(int unit,string assetCode)
+        public string UpdateFixedAssetRegisterUnit(int unit,int jobstation,string assetCode)
         {
             string msg = "";
             try
             {
                 TblFixedAssetRegisterTableAdapter adp = new TblFixedAssetRegisterTableAdapter();
-                adp.UpdateFixedAssetRegUnit(unit, assetCode);
+                adp.UpdateFixedAssetRegUnit(unit, jobstation,assetCode);
                 return msg = "Unit Updated Successfully";
             }
             catch (Exception ex) { return msg = ex.Message.ToString(); }

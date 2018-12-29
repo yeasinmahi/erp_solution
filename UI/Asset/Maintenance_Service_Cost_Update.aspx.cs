@@ -77,10 +77,20 @@ namespace UI.Asset
             GridViewRow row = gvServiceCostUpdate.Rows[Index];
             int intID = int.Parse((row.FindControl("lblID") as Label).Text);
             decimal amount = Convert.ToDecimal((row.FindControl("txtAmount") as TextBox).Text);
-            string msg=  objasset.UpdateMoney(amount,intID);
+            int jobcard = int.Parse(txtJobCard.Text.ToString());
+            if (jobcard > 0)
+            {
+                string msg = objasset.UpdateMoney(amount, intID);
+                objasset.MaintenanceComplete(65, jobcard, 0, 0, 0);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Set Job Card Number');", true);
+            }  
             bindGrid();           
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true); 
+          
 
         }
 
@@ -114,7 +124,7 @@ namespace UI.Asset
                 {
                     AssetCode = Convert.ToString(arrayKey[3].ToString());
                 }
-                msg = objasset.UpdateFixedAssetRegisterUnit(unit, AssetCode);
+                msg = objasset.UpdateFixedAssetRegisterUnit(unit, jobStation, AssetCode);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             }
             
@@ -126,8 +136,8 @@ namespace UI.Asset
         {
 
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            Int32 type = Int32.Parse(8.ToString());
-            return objAutoSearch_BLL.GetAssetVehicle(type, prefixText);
+           // int type = int.Parse(8.ToString());
+            return objAutoSearch_BLL.GetAssetVehicle(8, prefixText);
 
         }
 
@@ -146,6 +156,9 @@ namespace UI.Asset
         protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
         {
             string type = ddlType.SelectedItem.Text;
+            gvServiceCostUpdate.DataSource = "";
+            gvServiceCostUpdate.DataBind();
+
             if (type == "Job")
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanelJoB();", true);

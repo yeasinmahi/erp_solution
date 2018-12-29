@@ -12,7 +12,7 @@
 
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/CSS/jquery-ui.min.css" rel="stylesheet" />
-
+       <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
 
 </head>
 <body>
@@ -118,7 +118,7 @@
 
                                     <asp:TemplateField HeaderText="Amount">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control input-xs" Text='<%# Bind("monServiceCost","{0:n2}") %>'></asp:TextBox>
+                                            <asp:TextBox ID="txtAmount" runat="server" CssClass="form-control input-xs" Text='<%# Bind("monService","{0:n2}") %>'></asp:TextBox>
                                         </ItemTemplate>
                                         <HeaderStyle HorizontalAlign="Center" Width="100px" />
                                         <ItemStyle HorizontalAlign="Center" Width="100px" />
