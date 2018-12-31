@@ -275,7 +275,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="col-md-12">
-                                    <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary form-control pull-right" Text="Update" OnClientClick="return ValidateUpdate();" OnClick="btnUpdate_OnClick" />
+                                    <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary form-control pull-right" Text="Update" OnClick="btnUpdate_OnClick" />
                                 </div>
                             </div>
                         </div>

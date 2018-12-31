@@ -36,16 +36,19 @@ namespace SCM_BLL
             catch { return new DataTable(); }
         }
 
-        //public DataTable UpdateRequsitionByProductId(decimal numQuantity, int productId, int itemId)
-        //{
-        //    try
-        //    {
-        //        string msg = "";
-        //        qryRequisitionSummaryTableAdapter adp = new qryRequisitionSummaryTableAdapter();
-        //        return adp.UpdateRequsitionByProductId(numQuantity, productId, itemId);
-        //    }
-        //    catch { return new DataTable(); }
-        //}
+        public bool UpdateRequsitionByProductId(decimal numQuantity, int productId, int itemId)
+        {
+            try
+            {
+                string msg = "";
+                qryRequisitionSummaryTableAdapter adp = new qryRequisitionSummaryTableAdapter();
+                return adp.UpdateRequsitionByProductId(numQuantity, productId, itemId) > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public string[] AutoSearchBomId(string unit, string prefix, int itemType)
         {

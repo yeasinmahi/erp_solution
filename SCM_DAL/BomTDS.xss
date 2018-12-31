@@ -12,7 +12,7 @@
     <Shape ID="DesignTable:SprBillOfMaterialRouting" ZOrder="5" X="763" Y="20" Height="75" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="83" SplitterPosition="24" />
     <Shape ID="DesignTable:TblProcessWorkstation" ZOrder="4" X="12" Y="105" Height="134" Width="278" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:qryItemList1" ZOrder="3" X="625" Y="163" Height="134" Width="217" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:qryRequisitionSummary" ZOrder="1" X="15" Y="254" Height="116" Width="442" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:qryRequisitionSummary" ZOrder="1" X="15" Y="254" Height="115" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
