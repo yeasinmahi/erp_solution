@@ -894,7 +894,7 @@ namespace UI.SCM
                         //  string strSpecification = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblSpecification")).Text.ToString();
                         //  string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
 
-                        if (decimal.Parse(monRate) > 0)
+                        if (decimal.Parse(monRate) > 0 && int.Parse(itemId)>0 && supplierId>0)
                         {
 
                             CreateXmlPO(indentId, itemId, strItem, strUom, strDesc, numPoQty, monRate, monVat, monAIT, monTotal,
@@ -914,13 +914,18 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<issue>" + xmlString + "</issue>";
 
+                    try { File.Delete(filePathForXMLPrepare); } catch { }
+                    try { File.Delete(filePathForXMLPo); } catch { }
+                    
+
                     string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     txtGrossDiscount.Text = "0";txtOthers.Text = "0"; txtTransport.Text = "0";txtAit.Text = "0";
-                    try { File.Delete(filePathForXMLPrepare); } catch { }
+                    
+
                     if (searchKey[1].ToString().Length > 2)
                     {
                         dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind();
