@@ -71,6 +71,16 @@ namespace UI.Asset
                     dgview.DataBind();
                     dgvMaterial.Visible = false;
                     dgvServiceCost.Visible = false;
+
+                    decimal MaterialT = dt.AsEnumerable().Sum(row => row.Field<decimal>("monMaterial"));
+                    decimal ServiceT = dt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                    decimal total = dt.AsEnumerable().Sum(row => row.Field<decimal>("monTotal"));
+                  
+                    dgview.FooterRow.Cells[9].Text = "Ground Total";
+                    dgview.FooterRow.Cells[9].HorizontalAlign = HorizontalAlign.Right;
+                    dgview.FooterRow.Cells[10].Text = MaterialT.ToString("N2");
+                    dgview.FooterRow.Cells[11].Text = ServiceT.ToString("N2");
+                    dgview.FooterRow.Cells[12].Text = total.ToString("N2");
                 }
                 else if (type == 2)//Material
                 {
@@ -156,5 +166,51 @@ namespace UI.Asset
 				Exception = ex
 			};
 		}
-	}
+
+        protected void lblJobCardTwo_Click(object sender, EventArgs e)
+        {
+            string jobcard="";
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                jobcard = (row.FindControl("lblJobCardTwo") as LinkButton).Text;
+
+            }
+            catch (Exception ex) { ex.Message.ToString(); }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "window.open('https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Asset_Module/Estimation_Report_Job_Card_Report" + "&intJobCard=" + jobcard + "&rc:LinkTarget=_self','details','left=220,top=160,width=950,height=480,addressbar=no,status=no,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizable=yes');", true); 
+        }
+
+        protected void lblJobCardOne_Click(object sender, EventArgs e)
+        {
+            string jobcard = "";
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                jobcard = (row.FindControl("lblJobCardOne") as LinkButton).Text;
+
+            }
+            catch (Exception ex) { ex.Message.ToString(); }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "window.open('https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Asset_Module/Estimation_Report_Job_Card_Report" + "&intJobCard=" + jobcard + "&rc:LinkTarget=_self','details','left=220,top=160,width=950,height=480,addressbar=no,status=no,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizable=yes');", true);
+
+        }
+
+        protected void lblJobCardThree_Click(object sender, EventArgs e)
+        {
+            string jobcard = "";
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                jobcard = (row.FindControl("lblJobCardThree") as LinkButton).Text;
+                
+            }
+            catch (Exception ex) { ex.Message.ToString(); }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "window.open('https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Asset_Module/Estimation_Report_Job_Card_Report" + "&intJobCard=" + jobcard + "&rc:LinkTarget=_self','details','left=220,top=160,width=950,height=480,addressbar=no,status=no,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizable=yes');", true);
+
+        }
+
+       
+    }
 }
