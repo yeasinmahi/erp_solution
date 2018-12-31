@@ -19,6 +19,14 @@
      <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" /> 
 
     <script>
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url);
+                return false;
+            }
+            return true;
+        }
          function ReportDetalis(url) {
              newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=500,width=700,top=150,left=350');
              if (window.focus) { newwindow.focus() }
@@ -155,7 +163,12 @@
             <%# Container.DataItemIndex + 1 %>
             </ItemTemplate>
             </asp:TemplateField>
-            <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
+                <asp:TemplateField HeaderText="Job Card"  Visible="true" SortExpression="intMaintenanceNo" > 
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" ID="lblJobCardOne" Text='<%# Bind("intMaintenanceNo") %>' OnClick="lblJobCardOne_Click"></asp:LinkButton>
+                        </ItemTemplate>                         
+            </asp:TemplateField>
+            <%--<asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />--%>
             <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
             <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" />
                 <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" /> 
@@ -181,7 +194,7 @@
             </tr>
 
             <tr> 
-            <td><asp:GridView ID="dgvMaterial" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+            <td><asp:GridView ID="dgvMaterial" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" 
                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" Font-Size="Smaller"  PagerStyle-CssClass="pgr"
                     HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
                     ForeColor="Black" GridLines="Vertical"  >
@@ -195,7 +208,12 @@
             <%# Container.DataItemIndex + 1 %>
             </ItemTemplate>
             </asp:TemplateField>
-             <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
+            <asp:TemplateField HeaderText="Job Card" Visible="true" SortExpression="intMaintenanceNo" > 
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" ID="lblJobCardTwo" Text='<%# Bind("intMaintenanceNo") %>' OnClick="lblJobCardTwo_Click"></asp:LinkButton>
+                        </ItemTemplate>                         
+            </asp:TemplateField>
+             <%--<asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />--%>
             <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
             <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" />
              <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" />
@@ -232,7 +250,13 @@
             <%# Container.DataItemIndex + 1 %>
             </ItemTemplate>
             </asp:TemplateField>
-           <asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />
+                
+                <asp:TemplateField HeaderText="Job Card"  Visible="true" SortExpression="intMaintenanceNo" > 
+                        <ItemTemplate>
+                            <asp:LinkButton runat="server" ID="lblJobCardThree" Text='<%# Bind("intMaintenanceNo") %>' OnClick="lblJobCardThree_Click"></asp:LinkButton>
+                        </ItemTemplate>                         
+            </asp:TemplateField>
+           <%--<asp:BoundField DataField="intMaintenanceNo" HeaderText="Job Card" SortExpression="intMaintenanceNo" />--%>
             <asp:BoundField DataField="strAssetCode" HeaderText="Asset Code" SortExpression="strAssetCode" />
             <asp:BoundField DataField="strNameOfAsset" HeaderText="NameOfAsset" SortExpression="strNameOfAsset" /> 
             <asp:BoundField DataField="strBilUnit" HeaderText="Bill Unit" SortExpression="strBilUnit" />
