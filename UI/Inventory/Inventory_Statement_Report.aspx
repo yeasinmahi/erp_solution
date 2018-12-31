@@ -63,7 +63,7 @@
                                     <asp:Label ID="Label1" runat="server" Text="From Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-8 col-sm-8 col-xs-8" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
-                                    <asp:TextBox ID="txtFormTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm"></asp:TextBox>
+                                    <asp:TextBox ID="txtFormTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm" Text="00:00"></asp:TextBox>
 
 
                                 </div>
@@ -72,7 +72,7 @@
                                     <asp:Label ID="Label2" runat="server" Text="To Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-8 col-sm-8 col-xs-8" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
-                                    <asp:TextBox ID="txtToTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm"></asp:TextBox>
+                                    <asp:TextBox ID="txtToTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm" Text="23:59"></asp:TextBox>
 
 
                                 </div>
