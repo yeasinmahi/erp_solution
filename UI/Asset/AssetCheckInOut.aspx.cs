@@ -20,12 +20,13 @@ namespace UI.Asset
 
         AssetInOut objCheck = new AssetInOut();        
         DataTable dt = new DataTable();
-        int intResEnroll, intWHiD, intType,intActionBy;string assetCode, strNaration,stringXml;
+        int intResEnroll, intWHiD, intType,intActionBy;string assetCode,  number,strNaration,stringXml;
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
         SeriLog log = new SeriLog();
         string location = "Asset";
         string start = "starting Asset\\AssetCheckInOut";
         string stop = "stopping Asset\\AssetCheckInOut";
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,6 +39,7 @@ namespace UI.Asset
                 //   checkreport = objCheck.DgvReprotAllCheckinout();
                 //  dgvservice.DataSource = checkreport;
                 //  dgvservice.DataBind();
+                HttpContext.Current.Session["type"] = "1".ToString();
                 pnlUpperControl.DataBind();
             }
         }
@@ -51,13 +53,45 @@ namespace UI.Asset
                 return objAutoSearch_BLL.GetEmployeeLists(Active, prefixText);
                  
         }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetAssetAutoSearch(string prefixText, int count)
+        { 
+ 
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+            int Active = int.Parse(1.ToString());
+            int type = Convert.ToInt32(HttpContext.Current.Session["type"].ToString());
+            if(type==1)
+            {
+                string[] a = new string[] { prefixText };
+                return a;
+            }
+            else
+            {
+                return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
+            }
+           
 
+        }
 
         protected void TxtAsset_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string number = TxtAsset.Text.ToString();
+                
+                int type = Convert.ToInt32(HttpContext.Current.Session["type"].ToString());
+                if (type == 2)
+                {
+                    arrayKey = TxtAsset.Text.Split(delimiterChars);
+                    string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                    if (arrayKey.Length > 0)
+                    { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number =(arrayKey[3].ToString()); assetType = arrayKey[5].ToString();}
+                     
+                }
+                else
+                {
+                      number = TxtAsset.Text.ToString();
+                }
                 dt = objCheck.ShowassetData(number);
                 if (dt.Rows.Count > 0)
                 {
@@ -112,6 +146,19 @@ namespace UI.Asset
             }
             catch { }
           
+        }
+
+        protected void radSearch_CheckedChanged(object sender, EventArgs e)
+        {
+             
+            HttpContext.Current.Session["type"] = "2".ToString();
+            TxtAsset.Text = "";
+        }
+
+        protected void radBarcode_CheckedChanged(object sender, EventArgs e)
+        {
+            HttpContext.Current.Session["type"] = "1".ToString();
+            TxtAsset.Text = "";
         }
 
         protected void DdlServiceType_SelectedIndexChanged(object sender, EventArgs e)

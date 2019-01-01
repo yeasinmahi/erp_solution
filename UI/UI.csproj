@@ -1326,6 +1326,7 @@
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
+    <Content Include="SAD\Sales\Report\Target_vs_ADS.aspx" />
     <Content Include="SAD\Sales\Report\Territory_VS_Month.aspx" />
     <Content Include="SAD\Sales\Report\Transit_Based_Inventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportPointBase.aspx" />
@@ -6844,6 +6845,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx.designer.cs">
       <DependentUpon>ShippingPointBaseCollectionAndDelv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Target_vs_ADS.aspx.cs">
+      <DependentUpon>Target_vs_ADS.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Target_vs_ADS.aspx.designer.cs">
+      <DependentUpon>Target_vs_ADS.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Territory_VS_Month.aspx.cs">
       <DependentUpon>Territory_VS_Month.aspx</DependentUpon>

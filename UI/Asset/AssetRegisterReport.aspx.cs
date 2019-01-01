@@ -31,7 +31,7 @@ namespace UI.Asset
 
         protected void Tab2_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'http://report.akij.net/reports/report/Asset_Module/Register_Report/Vehicle_Asset_Registration_2?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('IframeVehicle', 'http://report.akij.net/reports/report/Asset_Module/Register_Report/Vehicle_Asset_Registration_2?rs:Embed=true');", true);
 
             Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Clicked";
@@ -42,7 +42,7 @@ namespace UI.Asset
 
         protected void Tab3_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Asset_Module/Land_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('IframeLand', 'https://report.akij.net/reports/report/Asset_Module/Land_Report?rs:Embed=true');", true);
 
 
             Tab1.CssClass = "Initial";
