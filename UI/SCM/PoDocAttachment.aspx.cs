@@ -18,83 +18,82 @@ namespace UI.SCM
 {
     public partial class PoDocAttachment : BasePage
     {
-        DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL(); Payment_All_Voucher_BLL obj = new Payment_All_Voucher_BLL();
-        int enroll, intWh; string[] arrayKey;string strType; char[] delimiterChars = { '[', ']' };
+        private DataTable _dt = new DataTable();
+        private PoGenerate_BLL _objPo = new PoGenerate_BLL(); private Payment_All_Voucher_BLL _obj = new Payment_All_Voucher_BLL();
+        private int _enroll, _intWh; private string[] _arrayKey; private string _strType; private char[] _delimiterChars = { '[', ']' };
 
+        private SeriLog _log = new SeriLog();
+        private string _location = "SCM";
+        private string _start = "starting SCM\\PoDocAttachment";
+        private string _stop = "stopping SCM\\PoDocAttachment";
+        private string _perform = "Performance on SCM\\PoDocAttachment";
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\PoDocAttachment";
-        string stop = "stopping SCM\\PoDocAttachment";
-        string perform = "Performance on SCM\\PoDocAttachment";
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 DefaltPageLoad(); Page.Header.DataBind();
             }
             else { }
-          
         }
+
         private void DefaltPageLoad()
         {
-            var fd = log.GetFlogDetail(start, location, "DefaltPageLoad", null);
+            var fd = _log.GetFlogDetail(_start, _location, "DefaltPageLoad", null);
             Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "DefaltPageLoad", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker(_perform + " " + "DefaltPageLoad", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                 
-                dt = objPo.GetUnit();
-                ddlUnit.DataSource = dt;
+                _enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+
+                _dt = _objPo.GetUnit();
+                ddlUnit.DataSource = _dt;
                 ddlUnit.DataTextField = "strUnit";
                 ddlUnit.DataValueField = "intUnitId";
                 ddlUnit.DataBind();
-                dt.Clear();
-                dt = objPo.GetPoData(21, "", 0, 0, DateTime.Now, enroll);
-                ddlDept.DataSource = dt;
+                _dt.Clear();
+                _dt = _objPo.GetPoData(21, "", 0, 0, DateTime.Now, _enroll);
+                ddlDept.DataSource = _dt;
                 ddlDept.DataTextField = "strName";
                 ddlDept.DataValueField = "Id";
                 ddlDept.DataBind();
-                dt.Clear();
-                
+                _dt.Clear();
+
                 string dept = ddlDept.SelectedItem.ToString();
                 if (dept == "Local") { dept = "Local Purchase"; }
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
                 else { dept = "Fabrication"; }
-                string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"'  + "/></voucher>".ToString();
-                dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
-               
+                string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
+                _dt = _objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, _enroll);
 
                 string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = dept;
                 string unitId = ddlUnit.SelectedValue.ToString();
                 Session["unitId"] = unitId;
 
-                dt.Clear();
+                _dt.Clear();
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "DefaltPageLoad", ex);
+                var efd = _log.GetFlogDetail(_stop, _location, "DefaltPageLoad", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "DefaltPageLoad", null);
-            Flogger.WriteDiagnostic(fd);          
+            fd = _log.GetFlogDetail(_stop, _location, "DefaltPageLoad", null);
+            Flogger.WriteDiagnostic(fd);
             tracker.Stop();
-
         }
 
-        #region=======================Auto Search========================= 
+        #region=======================Auto Search=========================
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetPoUserSearch(string prefixText)
         {
             return DataTableLoad.objPos.AutoSearchPoUser(prefixText);
         }
+
         #endregion====================Close===============================
 
         #region=======================Auto Search=========================
@@ -103,124 +102,118 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetMasterSupplierSearch(string prefixText)
         {
-            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(),HttpContext.Current.Session["unitId"].ToString());
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(), HttpContext.Current.Session["unitId"].ToString());
         }
-
 
         #endregion====================Close===============================
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
-			var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
-			Flogger.WriteDiagnostic(fd);
+            var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
+            Flogger.WriteDiagnostic(fd);
 
-			// starting performance tracker
-			var tracker = new PerfTracker("Performance on SCM\\PoDocAttachment Show", "", fd.UserName, fd.Location,
-				fd.Product, fd.Layer);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\PoDocAttachment Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
 
-			try {
-                
-                arrayKey = txtPoUser.Text.Split(delimiterChars);
+            try
+            {
+                _arrayKey = txtPoUser.Text.Split(_delimiterChars);
                 string item = ""; string itemid = "";
-                if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
+                if (_arrayKey.Length > 0)
+                {
+                    item = _arrayKey[0].ToString(); _enroll = int.Parse(_arrayKey[1].ToString());
+                }
 
-                int unitID = int.Parse(ddlUnit.SelectedValue);
+                int unitId = int.Parse(ddlUnit.SelectedValue);
                 string dept = ddlDept.SelectedItem.ToString();
-              
-                arrayKey = txtSupplier.Text.Split(delimiterChars);
+
+                _arrayKey = txtSupplier.Text.Split(_delimiterChars);
                 string strSupp = ""; int supplierid = 0;
 
                 try
                 {
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                    if (_arrayKey.Length > 0)
+                    {
+                        item = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString());
+                    }
                     strSupp = supplierid.ToString();
                 }
                 catch { }
 
-
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                dt = objPo.GetPoData(34, xmlData, unitID, 0, dteFrom, enroll);
-                dgvPO.DataSource = dt;
+                _dt = _objPo.GetPoData(34, xmlData, unitId, 0, dteFrom, _enroll);
+                dgvPO.DataSource = _dt;
                 dgvPO.DataBind();
 
-                
-                lblAddress.Text = "Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
-                lblDate.Text = "For The Month of " + txtdteFrom.Text + " To " + txtdteTo.Text;
+                lblAddress.Text = @"Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
+                lblDate.Text = @"For The Month of " + txtdteFrom.Text + @" To " + txtdteTo.Text;
                 lblunit.Text = "";
                 DataTable dts = new DataTable();
-                dts = obj.GetUnitAddress(unitID);
+                dts = _obj.GetUnitAddress(unitId);
                 if (dts.Rows.Count > 0)
                 {
-                    Label lbluni = FindControl("lblunit") as Label;
-                    lbluni.Text= dts.Rows[0]["strDescription"].ToString();
-                    
+                    if (FindControl("lblunit") is Label lbluni) lbluni.Text = dts.Rows[0]["strDescription"].ToString();
                 }
-
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnPoUserShow_Click", ex);
+                var efd = _log.GetFlogDetail(_stop, _location, "btnPoUserShow_Click", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "btnPoUserShow_Click", null);
+            fd = _log.GetFlogDetail(_stop, _location, "btnPoUserShow_Click", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
 
         protected void btnPoSuppShow_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "btnPoSuppShow_Click", null);
+            var fd = _log.GetFlogDetail(_start, _location, "btnPoSuppShow_Click", null);
             Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "btnPoSuppShow_Click", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker(_perform + " " + "btnPoSuppShow_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                int unitID = int.Parse(ddlUnit.SelectedValue);
+                int unitId = int.Parse(ddlUnit.SelectedValue);
                 string dept = ddlDept.SelectedItem.ToString();
 
-                arrayKey = txtSupplier.Text.Split(delimiterChars);
+                _arrayKey = txtSupplier.Text.Split(_delimiterChars);
                 string strSupp = ""; int supplierid = 0;
-                if (arrayKey.Length > 0)
-                { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
+                if (_arrayKey.Length > 0)
+                { strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString()); }
                 strSupp = supplierid.ToString();
-                enroll = supplierid;
+                _enroll = supplierid;
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                dt = objPo.GetPoData(26, xmlData, unitID, 0, dteFrom, enroll);
-                dgvPO.DataSource = dt;
+                _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, _enroll);
+                dgvPO.DataSource = _dt;
                 dgvPO.DataBind();
-
 
                 lblAddress.Text = "Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
                 lblDate.Text = "For The Month of " + txtdteFrom.Text + " To " + txtdteTo.Text;
                 lblunit.Text = "";
                 DataTable dts = new DataTable();
-                dts = obj.GetUnitAddress(unitID);
+                dts = _obj.GetUnitAddress(unitId);
                 if (dts.Rows.Count > 0)
                 {
                     Label lbluni = FindControl("lblunit") as Label;
                     lbluni.Text = dts.Rows[0]["strDescription"].ToString();
-
                 }
-
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnPoSuppShow_Click", ex);
+                var efd = _log.GetFlogDetail(_stop, _location, "btnPoSuppShow_Click", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "btnPoSuppShow_Click", null);
+            fd = _log.GetFlogDetail(_stop, _location, "btnPoSuppShow_Click", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
@@ -228,9 +221,9 @@ namespace UI.SCM
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "ddlUnit_SelectedIndexChanged", null);
+            var fd = _log.GetFlogDetail(_start, _location, "ddlUnit_SelectedIndexChanged", null);
             Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "ddlUnit_SelectedIndexChanged", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker(_perform + " " + "ddlUnit_SelectedIndexChanged", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
@@ -239,22 +232,21 @@ namespace UI.SCM
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                dt = objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, enroll);
-                
+                _dt = _objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, _enroll);
 
                 string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = dept;
                 string unitId = ddlUnit.SelectedValue.ToString();
                 Session["unitId"] = unitId;
-                dt.Clear();
+                _dt.Clear();
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "ddlUnit_SelectedIndexChanged", ex);
+                var efd = _log.GetFlogDetail(_stop, _location, "ddlUnit_SelectedIndexChanged", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "ddlUnit_SelectedIndexChanged", null);
+            fd = _log.GetFlogDetail(_stop, _location, "ddlUnit_SelectedIndexChanged", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
@@ -263,29 +255,28 @@ namespace UI.SCM
         protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
         {
             string strDept = ddlDept.SelectedItem.ToString();
-            Session["strType"] = getDept(strDept);
+            Session["strType"] = GetDept(strDept);
             string unitId = ddlUnit.SelectedValue.ToString();
             Session["unitId"] = unitId;
         }
 
-        private string getDept(string strDept)
+        private string GetDept(string strDept)
         {
             try
             {
-
-                if (strDept == "Local") { strType = "Local Purchase"; }
-                else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
-                else if (strDept == "Import") { strType = "Foreign Purchase"; }
-                return strType;
+                if (strDept == "Local") { _strType = "Local Purchase"; }
+                else if (strDept == "Fabrication") { _strType = "Local Fabrication"; }
+                else if (strDept == "Import") { _strType = "Foreign Purchase"; }
+                return _strType;
             }
-            catch { return strType; }
+            catch { return _strType; }
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
+            var fd = _log.GetFlogDetail(_start, _location, "btnDetalis_Click", null);
             Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker(_perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
@@ -296,30 +287,28 @@ namespace UI.SCM
                 Label lblBillId = row.FindControl("lblBillId") as Label;
                 Label lblBillCode = row.FindControl("lblBillCode") as Label;
 
-                string PoId = lblPoId.Text.ToString();
-                string BillAmount = lblmonBillAmount.Text.ToString();
-                string BillId = lblBillId.Text.ToString();
-                string BillCode = lblBillCode.Text.ToString();
-                
+                string poId = lblPoId.Text.ToString();
+                string billAmount = lblmonBillAmount.Text.ToString();
+                string billId = lblBillId.Text.ToString();
+                string billCode = lblBillCode.Text.ToString();
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + unit + "','" + PoId.ToString() + "','" + BillAmount + "','" + BillId + "','" + BillCode + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + unit + "','" + poId.ToString() + "','" + billAmount + "','" + billId + "','" + billCode + "');", true);
             }
             catch { }
-
         }
 
-		private FlogDetail GetFlogDetail(string message, Exception ex)
-		{
-			return new FlogDetail
-			{
-				Product = "ERP",
-				Location = "SCM",
-				Layer = "PoDocAttachment\\Show",
-				UserName = Environment.UserName,
-				Hostname = Environment.MachineName,
-				Message = message,
-				Exception = ex
-			};
-		}
-	}
+        private FlogDetail GetFlogDetail(string message, Exception ex)
+        {
+            return new FlogDetail
+            {
+                Product = "ERP",
+                Location = "SCM",
+                Layer = "PoDocAttachment\\Show",
+                UserName = Environment.UserName,
+                Hostname = Environment.MachineName,
+                Message = message,
+                Exception = ex
+            };
+        }
+    }
 }

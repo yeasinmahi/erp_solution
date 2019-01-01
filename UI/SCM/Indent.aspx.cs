@@ -121,7 +121,7 @@ namespace UI.SCM
                         string itemName = dt.Rows[i]["strName"].ToString();
                         indentQty = dt.Rows[i]["numApproveQty"].ToString();
                         string reqCode = dt.Rows[i]["reqCode"].ToString();
-                        checkXmlItemReqData(itemId, reqCode);
+                        CheckXmlItemReqData(itemId, reqCode);
                         if (CheckItem == 1)
                         {
                             string uom = dt.Rows[i]["strUom"].ToString();
@@ -209,7 +209,7 @@ namespace UI.SCM
                 string indentType = ddlType.SelectedItem.ToString();
                 string purpose = txtPurpose.Text.ToString();
                 string qcby = ddlQcPersonal.SelectedValue.ToString();
-                checkXmlItemReqData(itemid, reqCode);
+                CheckXmlItemReqData(itemid, reqCode);
                 if (CheckItem == 1)
                 {
                     if (indentType.ToLower().Equals("select"))
@@ -249,7 +249,7 @@ namespace UI.SCM
             // string xmlunit = "<voucher><voucherentry itemId=" + '"' + ItemId + '"' + " SalesPrice=" + '"' + SalesPrice + '"' + " IssueQty=" + '"' + IssueQty + '"' + " rackId=" + '"' + RackId + '"' + " MrrId=" + '"' + MrrId + '"' + "/></voucher>".ToString();
         }
 
-        private void checkXmlItemData(string itemid)
+        private void CheckXmlItemData(string itemid)
         {
             try
             {
@@ -272,7 +272,7 @@ namespace UI.SCM
             catch { }
         }
 
-        private void checkXmlItemReqData(string itemid, string reqCode)
+        private void CheckXmlItemReqData(string itemid, string reqCode)
         {
             try
             {

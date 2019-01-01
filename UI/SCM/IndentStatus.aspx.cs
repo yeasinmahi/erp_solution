@@ -12,26 +12,25 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IndentStatus :BasePage
+    public partial class IndentStatus : BasePage
     {
-        Indents_BLL objIndent = new Indents_BLL();
-        DataTable dt = new DataTable();
-        int enroll,intwh, indentId;
+        private Indents_BLL objIndent = new Indents_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intwh, indentId;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IndentStatus";
-        string stop = "stopping SCM\\IndentStatus";
-        string perform = "Performance on SCM\\IndentStatus";
-        DateTime dteFrom, dteTo;
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IndentStatus";
+        private string stop = "stopping SCM\\IndentStatus";
+        private string perform = "Performance on SCM\\IndentStatus";
+        private DateTime dteFrom, dteTo;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-               
-                CalendarExtenderFrom.SelectedDate = DateTime.Now.AddDays(-30);
+                CalendarExtenderFrom.SelectedDate = DateTime.Now.AddMonths(-1);
                 CalendarExtenderTo.SelectedDate = DateTime.Now;
-                 
 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
@@ -52,7 +51,7 @@ namespace UI.SCM
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
-            Flogger.WriteDiagnostic(fd); 
+            Flogger.WriteDiagnostic(fd);
             var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
@@ -61,9 +60,9 @@ namespace UI.SCM
                 dgvStatement.Visible = false;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
-                try {   dteFrom = DateTime.Parse(txtDteFrom.Text); } catch { dteFrom = DateTime.Now; }
+                try { dteFrom = DateTime.Parse(txtDteFrom.Text); } catch { dteFrom = DateTime.Now; }
                 try { dteTo = DateTime.Parse(txtdteTo.Text); } catch { dteTo = DateTime.Now; }
-                
+
                 string dept = ddlDept.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
@@ -87,10 +86,9 @@ namespace UI.SCM
         {
             try
             {
-                
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-         
+
                 Label lblDueDate = row.FindControl("lblDueDate") as Label;
                 Label lblIndentDate = row.FindControl("lblIndentDate") as Label;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
@@ -99,36 +97,31 @@ namespace UI.SCM
                 string indentID = lblIndent.Text;
                 string dept = ddlDept.SelectedItem.ToString();
                 string whname = ddlWH.SelectedItem.ToString();
-                
+
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteIndent + "','" + dteDue.ToString() + "','" + indentID + "','" + dept + "','" + whname + "');", true);
-                 
             }
             catch { }
         }
 
         protected void btnStementDetalis_Click(object sender, EventArgs e)
         {
-             
-                try
-                { 
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+            try
+            {
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
 
-                    Label lblDueDate = row.FindControl("lblDueDate") as Label;
-                    Label lblIndentDate = row.FindControl("lblIndentDate") as Label;
-                    Label lblIndent = row.FindControl("lblIndent") as Label;
-                    string dteIndent = lblIndentDate.Text;
-                    string dteDue = lblDueDate.Text;
-                    string indentID = lblIndent.Text;
-                    string dept = ddlDept.SelectedItem.ToString();
-                    string whname = ddlWH.SelectedItem.ToString();
+                Label lblDueDate = row.FindControl("lblDueDate") as Label;
+                Label lblIndentDate = row.FindControl("lblIndentDate") as Label;
+                Label lblIndent = row.FindControl("lblIndent") as Label;
+                string dteIndent = lblIndentDate.Text;
+                string dteDue = lblDueDate.Text;
+                string indentID = lblIndent.Text;
+                string dept = ddlDept.SelectedItem.ToString();
+                string whname = ddlWH.SelectedItem.ToString();
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteIndent + "','" + dteDue.ToString() + "','" + indentID + "','" + dept + "','" + whname + "');", true);
-
-
-                }
-                catch { }
-            
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteIndent + "','" + dteDue.ToString() + "','" + indentID + "','" + dept + "','" + whname + "');", true);
+            }
+            catch { }
         }
 
         protected void btnStatement_Click(object sender, EventArgs e)
@@ -149,28 +142,24 @@ namespace UI.SCM
                 dgvStatement.DataBind();
             }
             catch { }
-           
         }
-
 
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             try
             {
-                if(dgvIndent.Rows.Count>0)
+                if (dgvIndent.Rows.Count > 0)
                 {
                     dgvIndent.AllowPaging = false;
                     SAD_BLL.Customer.Report.ExportClass.Export("Indent.xls", dgvIndent);
                 }
-                else if(dgvStatement.Rows.Count > 0)
+                else if (dgvStatement.Rows.Count > 0)
                 {
                     dgvStatement.AllowPaging = false;
                     SAD_BLL.Customer.Report.ExportClass.Export("Indent.xls", dgvStatement);
                 }
-               
             }
-            catch { } 
-
+            catch { }
         }
     }
 }
