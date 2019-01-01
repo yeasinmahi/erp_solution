@@ -23,6 +23,10 @@ namespace UI.Inventory
                     ddlWH.DataTextField = "strWareHoseName";
                     ddlWH.DataValueField = "intWHID";
                     ddlWH.DataBind();
+                    DateTime now = DateTime.Now;
+                    var dte = new DateTime(now.Year, now.Month, 1);
+                    txtFromDate.Text = dte.ToString("yyyy-MM-dd");
+                    txtToDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 catch { }
             }
