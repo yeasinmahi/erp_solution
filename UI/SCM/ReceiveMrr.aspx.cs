@@ -22,7 +22,7 @@ namespace UI.SCM
         private DataTable dt = new DataTable();
         private string xmlString = "", filePathForXML, strMssingCost, challanNo, strVatChallan, poIssueBy, expireDate, manufactureDate;
         private int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
-        private decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate, monTransport;
+        private decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate, monTransport,monOtherTotal;
         private DateTime dteChallan;
 
         private SeriLog log = new SeriLog();
@@ -117,12 +117,12 @@ namespace UI.SCM
                     try { challanNo = txtChallan.Text.ToString(); } catch { }
                     try { strVatChallan = txtVatChallan.Text.ToString(); } catch { }
                     try { monProductCost = decimal.Parse(lblProductCost.Text.ToString()); } catch { }
-                    try { monTransport = decimal.Parse(lblTransportCost.Text.ToString()); } catch { }
-                    try { monOther = decimal.Parse(lblOtherCost.Text.ToString()); } catch { }
+                    try { monTransport = decimal.Parse(lblTransportCost.Text.ToString()); } catch { monTransport = 0; }
+                    try { monOther = decimal.Parse(lblOtherCost.Text.ToString()); } catch { monOther = 0; }
                     try { monDiscount = decimal.Parse(lblDiscount.Text.ToString()); } catch { }
                     try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { }
                     poIssueBy = lblPoIssueBy.Text.ToString();
-                    monOther += monTransport;
+                    monOtherTotal = monOther+monTransport;
                     for (int index = 0; index < dgvMrr.Rows.Count; index++)
                     {
                         intPOID = int.Parse(((Label)dgvMrr.Rows[index].FindControl("lblPoId")).Text.ToString());
@@ -162,7 +162,7 @@ namespace UI.SCM
                             //    }
                             //}
 
-                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOther.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate, manufactureDate);
+                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate, manufactureDate);
                         }
                     }
 
@@ -176,6 +176,9 @@ namespace UI.SCM
 
                     string[] searchKey = Regex.Split(msg, ":");
                     lblMrrNo.Text = searchKey[1].ToString();
+
+                    dgvMrr.DataSource = "";
+                    dgvMrr.DataBind();
 
                     #region====================Mrr Document Attachment===========================
                     try
@@ -403,20 +406,23 @@ namespace UI.SCM
                     ddlPo.DataValueField = "Id";
                     ddlPo.DataBind();
                     ddlPo.SelectedValue = intPo.ToString();
+
+                    PoView(intPo);
                 }
                 else
                 {
                     ddlPo.DataSource = ""; ddlPo.DataBind(); ddlInvoice.DataSource = ""; ddlInvoice.DataBind();
                     intPo = 0;
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not Found');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO is not approve');", true);
                 }
             }
             else
             {
                 intPo = int.Parse(ddlPo.SelectedValue);
+                PoView(intPo);
             }
 
-            PoView(intPo);
+          
         }
 
         private void PoView(int intPo)
