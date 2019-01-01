@@ -34,7 +34,7 @@
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {
-             dataLayer.push(arguments);
+            dataLayer.push(arguments);
         }
         gtag('js', new Date());
         gtag('config', 'UA-125570863-1');
@@ -43,9 +43,24 @@
         th {
             background-color: #bfbfbf !important;
         }
+
+        @media screen {
+            #divFooter {
+                display: none;
+            }
+        }
+
         @media print {
             body {
                 -webkit-print-color-adjust: exact;
+            }
+
+            #divFooter {
+                font-size: 12px !important;
+                color: #f00 !important;
+                text-align: center !important;
+                position: fixed;
+                bottom: 0;
             }
         }
     </style>
@@ -58,7 +73,7 @@
         <%--=========================================Start My Code From Here===============================================--%>
         <div id="dvTable" style="width: auto; background-color: white; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
             <asp:HiddenField ID="hfImageData" runat="server" />
-            
+
             <table style="width: 700px">
 
                 <tr>
@@ -159,8 +174,8 @@
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
                             </Columns>
-                            <FooterStyle BackColor="#bfbfbf" Font-Bold="True" HorizontalAlign="Right"  />
-                            <HeaderStyle BackColor="#bfbfbf" Font-Bold="True" ForeColor="White" BorderColor="black" BorderWidth="1px" BorderStyle="Double"/>
+                            <FooterStyle BackColor="#bfbfbf" Font-Bold="True" HorizontalAlign="Right" />
+                            <HeaderStyle BackColor="#bfbfbf" Font-Bold="True" ForeColor="White" BorderColor="black" BorderWidth="1px" BorderStyle="Double" />
                         </asp:GridView>
                     </td>
                 </tr>
@@ -190,9 +205,8 @@
                 </tr>
             </table>
         </div>
-
+        <div id="divFooter">NB: This is e-Approved Indent and this does not require any signature</div>
         <%--=========================================End My Code From Here=================================================--%>
     </form>
-   
 </body>
 </html>

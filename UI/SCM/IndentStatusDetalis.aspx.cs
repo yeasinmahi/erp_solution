@@ -52,8 +52,8 @@ namespace UI.SCM
                     if (dt.Rows.Count > 0)
                     {
                         lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();
-                        lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" + dt.Rows[0]["indentDate"] + "]";
-                        lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" + dt.Rows[0]["ApproveDate"] + "]";
+                        lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" + DateTime.Parse(dt.Rows[0]["indentDate"].ToString()).ToString("D") + "]";
+                        lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" + DateTime.Parse(dt.Rows[0]["ApproveDate"].ToString()).ToString("D") + "]";
 
                         string unit = dt.Rows[0]["intUnit"].ToString();
                         int job = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
