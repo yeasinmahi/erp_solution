@@ -273,34 +273,40 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                XmlDocument doc = new XmlDocument();
+                intWh = int.Parse(ddlWh.SelectedValue);
+
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<voucher>" + xmlString + "</voucher>";
+
+                try
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWh.SelectedValue);
+                    File.Delete(filePathForXML);
+                }
+                catch
+                {
+                }
+                if (xmlString.Length > 5)
+                {
+                    //string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    //dgvStore.DataSource = "";
+                    //dgvStore.DataBind();
 
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<voucher>" + xmlString + "</voucher>";
-
-                    try { File.Delete(filePathForXML); } catch { }
-                    if (xmlString.Length > 5)
-                    {
-                        //string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
-                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                        //dgvStore.DataSource = "";
-                        //dgvStore.DataBind();
-
-                        //txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
-                        //ddlLcation.DataSource = dt;
-                        //ddlLcation.DataBind();
-                        //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-                        //hdnStockQty.Value = "0";
-                    }
+                    //txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
+                    //ddlLcation.DataSource = dt;
+                    //ddlLcation.DataBind();
+                    //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                    //hdnStockQty.Value = "0";
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch
+            {
+                try { File.Delete(filePathForXML); } catch { }
+            }
         }
 
         #region========================Auto Search============================
