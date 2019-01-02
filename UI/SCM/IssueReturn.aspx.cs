@@ -13,7 +13,7 @@ using Flogging.Core;
 
 namespace UI.SCM
 {
-    public partial class IssueReturn : System.Web.UI.Page
+    public partial class IssueReturn : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private Location_BLL objOperation = new Location_BLL();

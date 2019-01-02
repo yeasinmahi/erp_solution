@@ -13,7 +13,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM.BOM
 {
-    public partial class FinishedGoodEntryFgSavePopUP : System.Web.UI.Page
+    public partial class FinishedGoodEntryFgSavePopUP : BasePage
     {
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
@@ -127,7 +127,7 @@ namespace UI.SCM.BOM
         private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");

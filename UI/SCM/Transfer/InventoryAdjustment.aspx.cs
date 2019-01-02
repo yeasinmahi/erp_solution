@@ -136,7 +136,7 @@ namespace UI.SCM.Transfer
         private void CreateXml(string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");

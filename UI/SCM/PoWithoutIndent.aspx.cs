@@ -173,7 +173,7 @@ namespace UI.SCM
         private void CreateXmlPO(string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment, string othersTrems, string warrentyperiod, string strPoFor)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLPo))
+            if (File.Exists(filePathForXMLPo))
             {
                 doc.Load(filePathForXMLPo);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
@@ -417,7 +417,7 @@ namespace UI.SCM
         private void CreateXml(string itemId, string strItem, string strUom, string strDesc, string poQty, string numPoRate)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("issue");

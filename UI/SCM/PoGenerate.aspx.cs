@@ -288,7 +288,7 @@ namespace UI.SCM
         private void CreateXml(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
@@ -643,7 +643,7 @@ namespace UI.SCM
         private void CreateXmlPrepare(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLPrepare))
+            if (File.Exists(filePathForXMLPrepare))
             {
                 doc.Load(filePathForXMLPrepare);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
@@ -901,7 +901,7 @@ namespace UI.SCM
         private void CreateXmlPO(string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment, string othersTrems, string warrentyperiod, string numIndentQty, string strPoFor)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLPo))
+            if (File.Exists(filePathForXMLPo))
             {
                 doc.Load(filePathForXMLPo);
                 XmlNode rootNode = doc.SelectSingleNode("issue");

@@ -101,7 +101,7 @@ namespace UI.SCM
         private void CreateXml(string itemId, string itemName, string qty, string rate, string locationid, string location, string remarks)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");

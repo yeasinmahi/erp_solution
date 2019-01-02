@@ -147,7 +147,7 @@ namespace UI.SCM
         private void CreateVoucherXmlDocUpload(string doctypeid, string strDocName, string strFileName)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLDocUpload))
+            if (File.Exists(filePathForXMLDocUpload))
             {
                 doc.Load(filePathForXMLDocUpload);
                 XmlNode rootNode = doc.SelectSingleNode("DocUpload");

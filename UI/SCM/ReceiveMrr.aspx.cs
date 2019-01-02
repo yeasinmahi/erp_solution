@@ -14,7 +14,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class ReceiveMrr : System.Web.UI.Page
+    public partial class ReceiveMrr : BasePage
     {
         private MrrReceive_BLL obj = new MrrReceive_BLL();
         private DataTable dt = new DataTable();
@@ -221,7 +221,7 @@ namespace UI.SCM
         private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("mrr");

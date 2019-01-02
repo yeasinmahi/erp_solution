@@ -81,12 +81,12 @@ namespace UI.SCM
 
         protected void BtnAddParent_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "OpenHdnDiv();", true);
         }
 
         protected void BtnCancel_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ClosehdnDivision();", true);
         }
 
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -152,7 +152,7 @@ namespace UI.SCM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ClosehdnDivision();", true);
             }
             catch { }
         }

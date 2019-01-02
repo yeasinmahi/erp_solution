@@ -206,7 +206,7 @@ namespace UI.SCM
         private void CreateXml(string strAssetID, string dteAuditDate, string intAuditBy, string strRemarks)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("ItemList");

@@ -145,7 +145,7 @@ namespace UI.SCM
         private void CreateVoucherXml(string locationId, string locationName)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");

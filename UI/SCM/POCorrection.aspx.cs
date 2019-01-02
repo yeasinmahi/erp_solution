@@ -380,7 +380,7 @@ namespace UI.SCM
         private void CreateVoucherXml(string intemid, string itemname, string specification, string uom, string qty, string rate, string vat, string ait, string total, string ysnExisting)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("FDetails");

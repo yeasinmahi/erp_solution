@@ -103,7 +103,7 @@ namespace UI.SCM.BOM
         private void CreateXml(string asset, string intAssetId, string hours)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");

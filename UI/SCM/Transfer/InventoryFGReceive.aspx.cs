@@ -8,7 +8,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM.Transfer
 {
-    public partial class InventoryFGReceive : System.Web.UI.Page
+    public partial class InventoryFGReceive : BasePage
     {
         private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
         private DataTable dt = new DataTable(); private string xmlString, filePathForXML; private int Id;

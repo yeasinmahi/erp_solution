@@ -252,7 +252,7 @@ namespace UI.SCM
         private void CreateXml(string intItemID, string strItemName, string intWHID, string dteInsertDate, string dteAuditedDate, string monClosingQuantity, string monAuditedQuantity, string intAuditedBy, string strRemarks)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("ItemList");

@@ -12,7 +12,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IndentsApproval : System.Web.UI.Page
+    public partial class IndentsApproval : BasePage
     {
         private Indents_BLL objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
@@ -95,7 +95,7 @@ namespace UI.SCM
 
                 int indentId = int.Parse(lblIndents.Text);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "OpenHdnDiv();", true);
                 dgvIndent.Visible = false;
 
                 dt = objIndent.DataView(8, "", intWh, indentId, DateTime.Now, enroll);
@@ -119,7 +119,7 @@ namespace UI.SCM
             try
             {
                 dgvIndent.Visible = true;
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "CloseHdnDiv();", true);
             }
             catch { }
         }
@@ -153,7 +153,7 @@ namespace UI.SCM
                 string msgs = objIndent.IndentEntry(10, xmlString, intWh, 0, DateTime.Now, enroll);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "CloseHdnDiv();", true);
 
                 dgvDetalis.DataSource = ""; dgvDetalis.DataBind();
                 dt = objIndent.DataView(7, "", intWh, 0, DateTime.Now, enroll);
@@ -168,7 +168,7 @@ namespace UI.SCM
         private void CreateVoucherXml(string itemid, string indentId)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
@@ -235,7 +235,7 @@ namespace UI.SCM
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "CloseHdnDiv();", true);
 
                 dgvDetalis.DataSource = ""; dgvDetalis.DataBind();
 

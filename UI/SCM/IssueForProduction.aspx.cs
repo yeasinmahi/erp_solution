@@ -10,7 +10,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IssueForProduction : System.Web.UI.Page
+    public partial class IssueForProduction : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private Location_BLL objOperation = new Location_BLL();

@@ -10,7 +10,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class MrrStatement : System.Web.UI.Page
+    public partial class MrrStatement : BasePage
     {
         private MrrReceive_BLL obj = new MrrReceive_BLL();
         private DataTable dt = new DataTable();

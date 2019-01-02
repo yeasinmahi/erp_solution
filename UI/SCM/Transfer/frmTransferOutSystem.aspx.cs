@@ -13,7 +13,7 @@ using System.IO;
 
 namespace UI.SCM.Transfer
 {
-    public partial class frmTransferOutSystem : System.Web.UI.Page
+    public partial class frmTransferOutSystem : BasePage
     {
         private int intShipid, intLocationid, intOutWHid, intWHID, intVid, intUomid, vid, enroll, itemid, intReff = 0, inttTransferTypeid;
         private decimal Qty, Values, Stock; private string xmlpath = "", xmlString, ItemName, UOM, msg, Remarks;
@@ -215,7 +215,7 @@ namespace UI.SCM.Transfer
         private void CreateXml(string Itemid, string itemname, string uom, string Qty, string Type)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(xmlpath))
+            if (File.Exists(xmlpath))
             {
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("Voucher");
@@ -323,7 +323,6 @@ namespace UI.SCM.Transfer
         }
 
         #endregion ******* search **********
-
     }
 }
 

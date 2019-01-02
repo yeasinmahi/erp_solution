@@ -13,7 +13,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class MrrDocAttachmentPopUp : System.Web.UI.Page
+    public partial class MrrDocAttachmentPopUp : BasePage
     {
         private MrrReceive_BLL obj = new MrrReceive_BLL();
         private DataTable dt = new DataTable();

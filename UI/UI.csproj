@@ -497,7 +497,7 @@
     <Content Include="SAD\AppsOrder\AppsRemoteOrderApporve.aspx" />
     <Content Include="SAD\AutoChallan\AutoChallan.aspx" />
     <Content Include="SAD\AutoChallan\PendingView.aspx" />
-    <Content Include="SAD\ClassFiles\AutoCompleteSearch.asmx" />
+    <Content Include="ClassFiles\AutoCompleteSearch.asmx" />
     <Content Include="Content\CSS\Application.css" />
     <Content Include="Content\CSS\EmpRegStyleSheet.css" />
     <Content Include="Content\CSS\GridHEADER.css" />
@@ -3625,11 +3625,11 @@
     <Compile Include="SAD\AutoChallan\PendingView.aspx.designer.cs">
       <DependentUpon>PendingView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\ClassFiles\AutoCompleteSearch.asmx.cs">
+    <Compile Include="ClassFiles\AutoCompleteSearch.asmx.cs">
       <DependentUpon>AutoCompleteSearch.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="SAD\ClassFiles\BundleConfig.cs" />
+    <Compile Include="ClassFiles\BundleConfig.cs" />
     <Compile Include="Banner.aspx.designer.cs">
       <DependentUpon>Banner.aspx</DependentUpon>
     </Compile>
@@ -7892,13 +7892,13 @@
     <Compile Include="SessionExpired.aspx.designer.cs">
       <DependentUpon>SessionExpired.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\ClassFiles\BasePage.cs">
+    <Compile Include="ClassFiles\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SAD\ClassFiles\CommonClass.cs" />
-    <Compile Include="SAD\ClassFiles\Print.cs" />
-    <Compile Include="SAD\ClassFiles\SessionParams.cs" />
-    <Compile Include="SAD\ClassFiles\VoucherItem.cs" />
+    <Compile Include="ClassFiles\CommonClass.cs" />
+    <Compile Include="ClassFiles\Print.cs" />
+    <Compile Include="ClassFiles\SessionParams.cs" />
+    <Compile Include="ClassFiles\VoucherItem.cs" />
     <Compile Include="Banner.aspx.cs">
       <DependentUpon>Banner.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

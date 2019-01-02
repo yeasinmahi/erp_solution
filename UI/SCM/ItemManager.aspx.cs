@@ -9,7 +9,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class ItemManager : System.Web.UI.Page
+    public partial class ItemManager : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private DataTable dt = new DataTable();

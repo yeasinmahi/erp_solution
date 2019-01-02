@@ -6,7 +6,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class ItemManagerPurchasePopUp : System.Web.UI.Page
+    public partial class ItemManagerPurchasePopUp : BasePage
     {
         #region===== Variable & Object Declaration =====================================================
         private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
