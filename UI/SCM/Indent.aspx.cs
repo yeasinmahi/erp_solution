@@ -3,10 +3,8 @@ using GLOBAL_BLL;
 using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Services;
@@ -14,7 +12,6 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Linq;
 using UI.ClassFiles;
 
 namespace UI.SCM

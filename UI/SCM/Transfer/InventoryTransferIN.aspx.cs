@@ -1,9 +1,7 @@
 ﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -15,23 +13,21 @@ namespace UI.SCM.Transfer
 {
     public partial class InventoryTransferIN : BasePage
     {
-        InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
-        AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-        DataTable dt = new DataTable();string xmlString;int Id;
-        int enroll, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-
-        
+        private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
+        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+        private DataTable dt = new DataTable(); private string xmlString; private int Id;
+        private int enroll, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
                 dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
-                ddlWh.DataSource = dt ;
+                ddlWh.DataSource = dt;
                 ddlWh.DataTextField = "strName";
-                ddlWh.DataValueField = "Id"; 
+                ddlWh.DataValueField = "Id";
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
                 dt = objTransfer.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, enroll);
@@ -40,35 +36,32 @@ namespace UI.SCM.Transfer
                 ddlTransferItem.DataValueField = "Id";
                 ddlTransferItem.DataBind();
                 ddlTransferItem.Items.Insert(0, new ListItem("Select", "0"));
-
-
-
             }
         }
 
-        #region========================Auto Search============================ 
+        #region========================Auto Search============================
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
             AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-           // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-
+            // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
-        #endregion====================Close====================================== 
+        #endregion====================Close======================================
+
         protected void ddlTransferItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
                 Id = int.Parse(ddlTransferItem.SelectedValue);
                 Session["WareID"] = intWh;
                 dt = objTransfer.GetTtransferDatas(3, xmlString, intWh, Id, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     string trasferId = dt.Rows[0]["intTransferID"].ToString();
                     string strItem = dt.Rows[0]["strItem"].ToString();
@@ -77,17 +70,16 @@ namespace UI.SCM.Transfer
                     string strWareHoseName = dt.Rows[0]["strWareHoseName"].ToString();
                     string monQty = dt.Rows[0]["monQty"].ToString();
                     hdnInQty.Value = monQty.ToString();
-                    string monValue = dt.Rows[0]["monValue"].ToString(); 
-                    string strUoM= dt.Rows[0]["strUoM"].ToString();
-                    DateTime dteTransactionDate=DateTime.Parse(dt.Rows[0]["dteTransactionDate"].ToString());
-                    int intUnitOUT = int.Parse( dt.Rows[0]["intUnitID"].ToString()); 
-                    int  InUnitID = int.Parse(dt.Rows[0]["InUnitId"].ToString());
+                    string monValue = dt.Rows[0]["monValue"].ToString();
+                    string strUoM = dt.Rows[0]["strUoM"].ToString();
+                    DateTime dteTransactionDate = DateTime.Parse(dt.Rows[0]["dteTransactionDate"].ToString());
+                    int intUnitOUT = int.Parse(dt.Rows[0]["intUnitID"].ToString());
+                    int InUnitID = int.Parse(dt.Rows[0]["InUnitId"].ToString());
 
-                    string detalis = "From: " + strWareHoseName + " Qty: " + monQty + strUoM+ " Date: " + dteTransactionDate.ToString("dd-MM-yyyy");
+                    string detalis = "From: " + strWareHoseName + " Qty: " + monQty + strUoM + " Date: " + dteTransactionDate.ToString("dd-MM-yyyy");
                     lblFrom.Text = detalis;
-                   
 
-                    if(intUnitOUT == InUnitID)
+                    if (intUnitOUT == InUnitID)
                     {
                         dt = objTransfer.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, enroll);
                         ddlLcation.DataSource = dt;
@@ -95,11 +87,10 @@ namespace UI.SCM.Transfer
                         ddlLcation.DataValueField = "Id";
                         ddlLcation.DataBind();
                         ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-                        txtItem.Text = strItem + "["+ intItemId + "]"+ "[Stock:" + monQty + strUoM+"]";//[]; RAM[512621][Stock: 0.0000 PCS]
+                        txtItem.Text = strItem + "[" + intItemId + "]" + "[Stock:" + monQty + strUoM + "]";//[]; RAM[512621][Stock: 0.0000 PCS]
                         dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                         if (dt.Rows.Count > 0)
                         {
-
                             string strItems = dt.Rows[0]["strItem"].ToString();
                             string intItem = dt.Rows[0]["intItem"].ToString();
                             string strUom = dt.Rows[0]["strUom"].ToString();
@@ -114,12 +105,10 @@ namespace UI.SCM.Transfer
                         else { lblDetalis.Text = ""; }
                     }
                     else { txtItem.Text = ""; }
-                 
-                } else { lblFrom.Text = ""; }
+                }
+                else { lblFrom.Text = ""; }
             }
             catch { }
-          
-
         }
 
         protected void txtItem_TextChanged(object sender, EventArgs e)
@@ -139,7 +128,6 @@ namespace UI.SCM.Transfer
                 //dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 //if (dt.Rows.Count > 0)
                 //{
-
                 //    string strItem = dt.Rows[0]["strItem"].ToString();
                 //    string intItem = dt.Rows[0]["intItem"].ToString();
                 //    string strUom = dt.Rows[0]["strUom"].ToString();
@@ -158,33 +146,29 @@ namespace UI.SCM.Transfer
                 ddlLcation.DataValueField = "Id";
                 ddlLcation.DataBind();
                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-
             }
             catch { }
-          
-
         }
 
         protected void btnSaveIn_Click(object sender, EventArgs e)
         {
             try
             {
-                if(hdnPreConfirm.Value=="1")
+                if (hdnPreConfirm.Value == "1")
                 {
                     arrayKey = txtItem.Text.Split(delimiterChars);
                     string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                     if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid =arrayKey[1].ToString(); }
+                    { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     intWh = int.Parse(ddlWh.SelectedValue);
                     Id = int.Parse(ddlTransferItem.SelectedValue);
                     int location = int.Parse(ddlLcation.SelectedValue);
                     double monTransQty = double.Parse(txtQty.Text.ToString());
-                    string strRemarks = txtRemarsk.Text.ToString(); 
-                    xmlString = "<voucher><voucherentry monTransQty=" + '"' + monTransQty + '"' + " strRemarks=" + '"' + strRemarks + '"' + " location=" + '"' + location + '"'+ " itemid=" + '"' + itemid + '"' + "/></voucher>".ToString();
-                    if (int.Parse(itemid) > 1 && double.Parse(hdnInQty.Value.ToString())<= monTransQty)
+                    string strRemarks = txtRemarsk.Text.ToString();
+                    xmlString = "<voucher><voucherentry monTransQty=" + '"' + monTransQty + '"' + " strRemarks=" + '"' + strRemarks + '"' + " location=" + '"' + location + '"' + " itemid=" + '"' + itemid + '"' + "/></voucher>".ToString();
+                    if (int.Parse(itemid) > 1 && double.Parse(hdnInQty.Value.ToString()) <= monTransQty)
                     {
-
                         string msg = objTransfer.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, enroll);
                         if (msg.Length > 23)
                         {
@@ -202,16 +186,11 @@ namespace UI.SCM.Transfer
                             lblFrom.Text = "";
                         }
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                       
-                       
                     }
-                  
                 }
-               
             }
             catch { }
         }
-
 
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -223,12 +202,11 @@ namespace UI.SCM.Transfer
                 dt = objTransfer.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, enroll);
                 ddlTransferItem.DataSource = dt;
                 ddlTransferItem.DataTextField = "strName";
-                ddlTransferItem.DataValueField = "Id"; 
+                ddlTransferItem.DataValueField = "Id";
                 ddlTransferItem.DataBind();
                 ddlTransferItem.Items.Insert(0, new ListItem("Select", "0"));
             }
             catch { }
-           
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="IndentStatusDetalis.aspx.cs" Inherits="UI.SCM.IndentStatusDetalis" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>
 <head runat="server">

@@ -2,9 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,16 +12,17 @@ namespace UI.SCM
 {
     public partial class IssueForProduction : System.Web.UI.Page
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        Location_BLL objOperation = new Location_BLL();
-        DataTable dt = new DataTable();
-        int enroll, intwh;
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private Location_BLL objOperation = new Location_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intwh;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IssueForProduction";
-        string stop = "stopping SCM\\IssueForProduction";
-        string perform = "Performance on SCM\\IssueForProduction";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IssueForProduction";
+        private string stop = "stopping SCM\\IssueForProduction";
+        private string perform = "Performance on SCM\\IssueForProduction";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,7 +40,6 @@ namespace UI.SCM
                     ddlWH.DataValueField = "Id";
                     ddlWH.DataTextField = "strName";
                     ddlWH.DataBind();
-
                 }
                 catch (Exception ex)
                 {
@@ -57,6 +55,7 @@ namespace UI.SCM
             else
             { }
         }
+
         public string GetJSFunctionString(object ReqId, object ReqCode, object dteReqDate, object strDepartmentName, object strReqBy, object strApproveBy, object intDeptID, object intSectionID, object SectionName)
         {
             //  Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"))
@@ -74,6 +73,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
@@ -83,7 +83,6 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
@@ -92,7 +91,6 @@ namespace UI.SCM
                 dt = objIssue.GetViewData(17, xmlData, intwh, 0, DateTime.Now, enroll);
                 dgvReq.DataSource = dt;
                 dgvReq.DataBind();
-
             }
             catch (Exception ex)
             {
@@ -102,7 +100,7 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
             Flogger.WriteDiagnostic(fd);
-             
+
             tracker.Stop();
         }
 
@@ -118,9 +116,8 @@ namespace UI.SCM
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 //Label lblReqId = row.FindControl("lblReqId") as Label;
-               // int ReqId = int.Parse(lblReqId.Text);
+                // int ReqId = int.Parse(lblReqId.Text);
                 intwh = int.Parse(ddlWH.SelectedValue);
-
 
                 char[] delimiterChars = { ',' };
                 string temp = ((Button)sender).CommandArgument.ToString();
@@ -137,7 +134,6 @@ namespace UI.SCM
                 string SectionName = datas[8].ToString();
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
-
             }
             catch (Exception ex)
             {
@@ -150,6 +146,5 @@ namespace UI.SCM
 
             tracker.Stop();
         }
-
     }
 }

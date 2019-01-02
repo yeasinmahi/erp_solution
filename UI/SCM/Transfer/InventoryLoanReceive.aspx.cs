@@ -1,9 +1,7 @@
 ﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -15,11 +13,10 @@ namespace UI.SCM.Transfer
 {
     public partial class InventoryLoanReceive : BasePage
     {
-        InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
-        AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-        DataTable dt = new DataTable(); string xmlString; int Id;
-        int enroll, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-
+        private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
+        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+        private DataTable dt = new DataTable(); private string xmlString; private int Id;
+        private int enroll, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,18 +42,19 @@ namespace UI.SCM.Transfer
             }
         }
 
-        #region========================Auto Search============================ 
+        #region========================Auto Search============================
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
             AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-           // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-
+            // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
-        #endregion====================Close====================================== 
+        #endregion====================Close======================================
+
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -103,10 +101,6 @@ namespace UI.SCM.Transfer
 
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     }
-
-
-
-
                 }
             }
             catch { }
@@ -126,7 +120,6 @@ namespace UI.SCM.Transfer
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
-
                     string strItems = dt.Rows[0]["strItem"].ToString();
                     string intItem = dt.Rows[0]["intItem"].ToString();
                     string strUom = dt.Rows[0]["strUom"].ToString();
@@ -139,9 +132,8 @@ namespace UI.SCM.Transfer
                     hdnValue.Value = dt.Rows[0]["monValue"].ToString();
                     string detaliss = "  Stock: " + monStock;
                     lblUom.Text = strUom;
-                    lblDetalis.Text = detaliss; 
+                    lblDetalis.Text = detaliss;
                     //  lblValue.Text = "Value: " + monValues.ToString();
-                   
                 }
                 else { }
                 dt = objTransfer.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, enroll);

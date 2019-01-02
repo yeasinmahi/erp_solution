@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using SCM_BLL;
 using GLOBAL_BLL;
@@ -14,16 +9,17 @@ namespace UI.SCM
 {
     public partial class InventoryStatement : BasePage
     {
-        MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
+        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
 
-        int intSearchBy, intPart, intWHID, intInsertBy, intGroupID, intCategoryID, intCatNew, intReportType, intItemID;
-        string strItem, strID;
-        DateTime dteFDate, dteTDate;
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\InventoryStatement";
-        string stop = "stopping SCM\\InventoryStatement";
-        string perform = "Performance on SCM\\InventoryStatement";
+        private int intSearchBy, intPart, intWHID, intInsertBy, intGroupID, intCategoryID, intCatNew, intReportType, intItemID;
+        private string strItem, strID;
+        private DateTime dteFDate, dteTDate;
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\InventoryStatement";
+        private string stop = "stopping SCM\\InventoryStatement";
+        private string perform = "Performance on SCM\\InventoryStatement";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -87,6 +83,7 @@ namespace UI.SCM
                 tracker.Stop();
             }
         }
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -122,12 +119,14 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void ddlSearchBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadFistDropDown();
             LoadSecondDropDown();
             LoadThirdDropDown();
         }
+
         private void LoadFistDropDown()
         {
             try
@@ -224,7 +223,6 @@ namespace UI.SCM
 
                     LoadSecondDropDown();
                     LoadThirdDropDown();
-
                 }
                 else if (intSearchBy == 5) //Minor Category
                 {
@@ -355,11 +353,13 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void ddlGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadSecondDropDown();
             LoadThirdDropDown();
         }
+
         private void LoadSecondDropDown()
         {
             try
@@ -375,10 +375,12 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadThirdDropDown();
         }
+
         private void LoadThirdDropDown()
         {
             try
@@ -395,11 +397,12 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
             Flogger.WriteDiagnostic(fd);
-           
+
             var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
@@ -414,7 +417,7 @@ namespace UI.SCM
                     intReportType = 4;
                     strID = txtItem.Text;
                 }
-                else if (intSearchBy==1 && intItemID != 0) //Search By Item ID
+                else if (intSearchBy == 1 && intItemID != 0) //Search By Item ID
                 {
                     intReportType = 3;
                 }

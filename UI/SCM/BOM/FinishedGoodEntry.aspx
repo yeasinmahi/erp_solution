@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FinishedGoodEntry.aspx.cs" Inherits="UI.SCM.BOM.FinishedGoodEntry" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="MKB" %>
 
 <!DOCTYPE html>
 <html>

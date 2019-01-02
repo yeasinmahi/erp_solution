@@ -1,10 +1,8 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,11 +13,12 @@ namespace UI.SCM
 {
     public partial class FixedAssetAudit : BasePage
     {
-        Billing_BLL objBillApp = new Billing_BLL();
-        InventoryTransfer_BLL objInventorybll = new InventoryTransfer_BLL();
-        int enroll;
-        string filePathForXML, msg, strJobStation;
-        DataTable dt = new DataTable();
+        private Billing_BLL objBillApp = new Billing_BLL();
+        private InventoryTransfer_BLL objInventorybll = new InventoryTransfer_BLL();
+        private int enroll;
+        private string filePathForXML, msg, strJobStation;
+        private DataTable dt = new DataTable();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/ITEM_LIST_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -27,24 +26,21 @@ namespace UI.SCM
             {
                 pnlUpperControl.DataBind();
             }
-           
         }
-
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
             strJobStation = ddlJobstation.SelectedItem.Text;
             DateTime Fdate = DateTime.ParseExact("2017-07-01", "yyyy-MM-dd", CultureInfo.InvariantCulture);
             DateTime Tdate = DateTime.Now;
-            
-            if(strJobStation != "" && strJobStation != "ALL")
+
+            if (strJobStation != "" && strJobStation != "ALL")
             {
-               
                 dt = objInventorybll.FixedAssetData("", 2, strJobStation, 0);
-            } 
-            else if(strJobStation =="ALL")
+            }
+            else if (strJobStation == "ALL")
             {
-                if(txtEnroll.Text == "")
+                if (txtEnroll.Text == "")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Insert Enroll');", true);
                 }
@@ -55,8 +51,7 @@ namespace UI.SCM
                 }
             }
 
-           
-            if(dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
                 GvAuditList.DataSource = dt;
                 GvAuditList.DataBind();
@@ -67,8 +62,6 @@ namespace UI.SCM
                 GvAuditList.DataSource = "";
                 GvAuditList.DataBind();
             }
-            
-
         }
 
         protected void btnInsert_Click(object sender, EventArgs e)
@@ -93,11 +86,9 @@ namespace UI.SCM
                         TextBox sremarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         sremarks.Text = "";
                         check.Checked = false;
-
                     }
                     else if (check.Checked == false)
                     {
-
                         TextBox remarks = GvAuditList.Rows[index].FindControl("txtRemarks") as TextBox;
                         string strRemarks = remarks.Text;
                         if (strRemarks != "")
@@ -110,10 +101,7 @@ namespace UI.SCM
                             sremarks.Text = "";
                             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Plz click the checkbox to submit the data.');", true);
                         }
-
-
                     }
-
                 }
 
                 if (hdnConfirm.Value == "1")
@@ -123,10 +111,9 @@ namespace UI.SCM
                     XmlNode node = doc.SelectSingleNode("ItemList");
                     string xmlString = node.InnerXml;
                     xmlString = "<ItemList>" + xmlString + "</ItemList>";
-                    enroll =Convert.ToInt32( txtEnroll.Text);
-                    objInventorybll.FixedAssetData(xmlString,1,strJobstationID,enroll);
+                    enroll = Convert.ToInt32(txtEnroll.Text);
+                    objInventorybll.FixedAssetData(xmlString, 1, strJobstationID, enroll);
                     try { File.Delete(filePathForXML); }
-
                     catch (Exception ex)
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
@@ -137,14 +124,13 @@ namespace UI.SCM
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Inserted.');", true);
                 }
-
-              
             }
             txtEnroll.Text = "";
             txtAuditDate.Text = "";
         }
 
         #region=====dropdown======
+
         protected void ddlJobstation_DataBound(object sender, EventArgs e)
         {
             ddlJobstation.Items.Insert(0, new ListItem("ALL", "0"));
@@ -163,12 +149,13 @@ namespace UI.SCM
                 txtEnroll.Visible = true;
             }
         }
+
         #endregion=====end dropdown ====
 
         #region========checkbox check changed=============
+
         protected void chkRow_CheckedChanged(object sender, EventArgs e)
         {
-
             //CheckBox CheckBox1 = (CheckBox)sender;
             //GridViewRow row = (GridViewRow)CheckBox1.NamingContainer;
             //Label clsqty = (Label)row.FindControl("lblclsQty");
@@ -187,15 +174,12 @@ namespace UI.SCM
 
         protected void chkHeader_CheckedChanged(object sender, EventArgs e)
         {
-
             //if (GvAuditList.Rows.Count > 0)
             //{
             //    for (int index = 0; index < GvAuditList.Rows.Count; index++)
             //    {
-
             //        if (((CheckBox)GvAuditList.Rows[index].FindControl("chkRow")).Checked == true)
             //        {
-
             //            Label clsqty = GvAuditList.Rows[index].FindControl("lblclsQty") as Label;
             //            string monClosingQuantity = clsqty.Text;
             //            TextBox auditqty = GvAuditList.Rows[index].FindControl("txtAuditedQty") as TextBox;
@@ -218,6 +202,7 @@ namespace UI.SCM
         #endregion========checkbox check changed end=============
 
         #region==== create xml==========
+
         private void CreateXml(string strAssetID, string dteAuditDate, string intAuditBy, string strRemarks)
         {
             XmlDocument doc = new XmlDocument();
@@ -242,7 +227,6 @@ namespace UI.SCM
 
         private XmlNode CreateItemNode(XmlDocument doc, string strAssetID, string dteAuditDate, string intAuditBy, string strRemarks)
         {
-
             XmlNode node = doc.CreateElement("Item");
             XmlAttribute AssetID = doc.CreateAttribute("strAssetID");
             AssetID.Value = strAssetID;
@@ -263,6 +247,7 @@ namespace UI.SCM
 
             return node;
         }
+
         #endregion ======= end xml ========
     }
 }

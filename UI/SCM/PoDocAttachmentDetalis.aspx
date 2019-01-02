@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PoDocAttachmentDetalis.aspx.cs" Inherits="UI.SCM.PoDocAttachmentDetalis" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
 <!DOCTYPE html>
 <html>
 <head runat="server">
@@ -32,17 +30,14 @@
         });
     </script>
 
-    <script type="text/javascript"> 
+    <script type="text/javascript">
         function funConfirmAll() {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
             if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
             else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
         }
-
     </script>
-
-
 </head>
 
 <body>
@@ -57,7 +52,8 @@
             <asp:HiddenField ID="hdnIndentNo" runat="server" />
             <asp:HiddenField ID="hdnIndentDate" runat="server" />
 
-            <div class="tabs_container" style="text-align: left">PO Attachemnt  From<hr />
+            <div class="tabs_container" style="text-align: left">
+                PO Attachemnt  From<hr />
             </div>
             <table style="width: 700px">
                 <tr>
@@ -83,7 +79,6 @@
                         <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Bill Reg No:"></asp:Label></td>
                     <td style="text-align: left;">
                         <asp:Label ID="lblBillReg" CssClass="lbl" Font-Bold="true" runat="server"></asp:Label></td>
-
                 </tr>
             </table>
             <table style="width: 600px">
@@ -104,9 +99,7 @@
                     <td style="text-align: left" colspan="3">
                         <asp:FileUpload ID="DocUpload" Width="300px" runat="server" AllowMultiple="true" />
                         <asp:Button ID="btnSubmit" runat="server" OnClick="btnSubmit_Click" Text="Submit" /></td>
-
                 </tr>
-
             </table>
             <table>
                 <tr>
@@ -132,19 +125,22 @@
 
                                 <asp:TemplateField HeaderText="File Group" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strFileName">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblFileName" runat="server" Width="130px" Text='<%# Bind("strFileName") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblFileName" runat="server" Width="130px" Text='<%# Bind("strFileName") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Document Note" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblNote" runat="server" Width="150px" Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblNote" runat="server" Width="150px" Text='<%# Bind("strRemarks") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="File Path" ItemStyle-HorizontalAlign="right" SortExpression="strFtpPath">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblFilePath" runat="server" Width="70px" Text='<%# Bind("strFtpPath") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblFilePath" runat="server" Width="70px" Text='<%# Bind("strFtpPath") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
@@ -162,8 +158,6 @@
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
-
-
                             </Columns>
                         </asp:GridView>
                     </td>
@@ -184,10 +178,7 @@
             <table>
                 <asp:Image ID="imageView" runat="server" Height="600px" Width="1000px" ImageAlign="Baseline" EnableTheming="true" />
             </table>
-
         </div>
-
-
 
         <%--=========================================End My Code From Here=================================================--%>
 

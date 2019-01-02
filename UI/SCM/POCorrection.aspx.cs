@@ -1,9 +1,7 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,14 +12,14 @@ namespace UI.SCM
 {
     public partial class POCorrection : BasePage
     {
-        PoGenerate_BLL obj = new PoGenerate_BLL();
-        DataTable dt;
-        int intPart, intPOID, intUnitID, intCurrencyID, intShipment, ysnPartialShip, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, intUpdateBy, intMRRID, intSuppid, enroll, updateby;
-        DateTime dtePODate, dteLastShipmentDate;
-        decimal monFreight, monPacking, monDiscount, monRate, monVAT, monAmount, monAIT, numPOQty;
-        
-        string filePathForXML, xmlString = "", xml, strPo,intemid,itemname,specification,uom,qty, rate,vat,ait,total, ysnExisting, message, potype,ysnApprove, intSingleApproveBy,strDeliveryAddress,strPayTerm,strOtherTerms;
-        int intItemID; string strSpecification,PoType;
+        private PoGenerate_BLL obj = new PoGenerate_BLL();
+        private DataTable dt;
+        private int intPart, intPOID, intUnitID, intCurrencyID, intShipment, ysnPartialShip, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, intUpdateBy, intMRRID, intSuppid, enroll, updateby;
+        private DateTime dtePODate, dteLastShipmentDate;
+        private decimal monFreight, monPacking, monDiscount, monRate, monVAT, monAmount, monAIT, numPOQty;
+
+        private string filePathForXML, xmlString = "", xml, strPo, intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting, message, potype, ysnApprove, intSingleApproveBy, strDeliveryAddress, strPayTerm, strOtherTerms;
+        private int intItemID; private string strSpecification, PoType;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,10 +39,9 @@ namespace UI.SCM
                 ddlCurrency.DataBind();
                 btnUpdatePO.Visible = false;
                 btnDeletePO.Visible = false;
-             
-
             }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
 
         {
@@ -138,8 +135,6 @@ namespace UI.SCM
                 dt = obj.GetApprovalAuthorityList(enroll, PoType);
                 if (dt.Rows.Count > 0)
                 {
-
-
                     string POType = dt.Rows[0]["strPOType"].ToString();
                     int ApprovedBy = Convert.ToInt32(dt.Rows[0]["intEnrollment"].ToString());
                     if (enroll == ApprovedBy && PoType == POType)
@@ -152,7 +147,7 @@ namespace UI.SCM
                     btnDeletePO.Visible = false;
                 }
                 btnUpdatePO.Visible = true;
-                
+
                 dt = new DataTable();
                 dt = obj.GetItemInfoByPO(intPOID);
                 File.Delete(filePathForXML);
@@ -174,11 +169,9 @@ namespace UI.SCM
                         ysnExisting = dt.Rows[index]["ysnExisting"].ToString();
 
                         CreateVoucherXml(intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting);
-
                     }
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                 }
-                
             }
             else
             {
@@ -186,53 +179,46 @@ namespace UI.SCM
                 btnDeletePO.Visible = false;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO already approved');", true);
             }
-           
         }
+
         protected void btnUpdatePO_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
             {
                 try
                 {
-                   
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     intPOID = Convert.ToInt32(txtPONo.Text);
                     dt = obj.GetPoData(45, "", 0, intPOID, DateTime.Now, enroll);
                     ysnApprove = dt.Rows[0]["ysnApprove"].ToString();
                     intSingleApproveBy = dt.Rows[0]["ysnApprove"].ToString();
                     strPo = dt.Rows[0]["strPoFor"].ToString();
-                   
-                        //PO Correction cannot be possible after approve
-                        if (string.IsNullOrEmpty(ysnApprove) || string.IsNullOrEmpty(intSingleApproveBy))
-                        {
-                            update();
-                        }
-                        else if (!string.IsNullOrEmpty(ysnApprove) || !string.IsNullOrEmpty(intSingleApproveBy))
-                        {
+
+                    //PO Correction cannot be possible after approve
+                    if (string.IsNullOrEmpty(ysnApprove) || string.IsNullOrEmpty(intSingleApproveBy))
+                    {
+                        update();
+                    }
+                    else if (!string.IsNullOrEmpty(ysnApprove) || !string.IsNullOrEmpty(intSingleApproveBy))
+                    {
                         // only this two enroll can update PO even though PO already approved.
-                            dt = obj.GetApprovalAuthorityList(enroll, strPo);
-                            if(dt.Rows.Count>0)
+                        dt = obj.GetApprovalAuthorityList(enroll, strPo);
+                        if (dt.Rows.Count > 0)
+                        {
+                            string POType = dt.Rows[0]["strPOType"].ToString();
+                            int ApprovedBy = Convert.ToInt32(dt.Rows[0]["intEnrollment"].ToString());
+                            if (enroll == ApprovedBy && strPo == POType)
                             {
-                                string POType = dt.Rows[0]["strPOType"].ToString();
-                                int ApprovedBy = Convert.ToInt32(dt.Rows[0]["intEnrollment"].ToString());
-                                if (enroll == ApprovedBy && strPo == POType)
-                                {
-
-                                    update();
-                                }
-                                else
-                                {
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO cannot update.PO already approved');", true);
-                                }
-
+                                update();
                             }
-
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO cannot update.PO already approved');", true);
+                            }
                         }
-                        
-                   
+                    }
                 }
                 catch { }
-            
             }
         }
 
@@ -249,7 +235,7 @@ namespace UI.SCM
 
             if (string.IsNullOrEmpty(txtMrrNo.Text))
             {
-                //'PO correction is not possible after issuing MRR' 
+                //'PO correction is not possible after issuing MRR'
 
                 try
                 {
@@ -364,10 +350,10 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     hdnconfirm.Value = "0";
                 }
-
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO correction is not possible after issuing MRR.');", true); }
         }
+
         protected void btnDeletePO_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
@@ -390,6 +376,7 @@ namespace UI.SCM
         }
 
         #region ===== XML Start Code =======================================================
+
         private void CreateVoucherXml(string intemid, string itemname, string specification, string uom, string qty, string rate, string vat, string ait, string total, string ysnExisting)
         {
             XmlDocument doc = new XmlDocument();
@@ -413,6 +400,7 @@ namespace UI.SCM
             LoadGridwithXml();
             //Clear();
         }
+
         private void LoadGridwithXml()
         {
             XmlDocument doc = new XmlDocument();
@@ -427,6 +415,7 @@ namespace UI.SCM
             else { dgvItemInfoByPO.DataSource = ""; }
             dgvItemInfoByPO.DataBind();
         }
+
         private XmlNode CreateItemNode(XmlDocument doc, string intemid, string itemname, string specification, string uom, string qty, string rate, string vat, string ait, string total, string ysnExisting)
         {
             XmlNode node = doc.CreateElement("FDetails");
@@ -454,10 +443,12 @@ namespace UI.SCM
             node.Attributes.Append(YsnExisting);
             return node;
         }
+
         protected decimal totalqty = 0;
         protected decimal totalval = 0;
         protected decimal totalait = 0;
         protected decimal totalvat = 0;
+
         protected void dgvItemInfoByPO_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -469,7 +460,7 @@ namespace UI.SCM
             }
         }
 
-        #endregion =========================================================================
+        #endregion ===== XML Start Code =======================================================
 
         protected void dgvItemInfoByPO_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -480,7 +471,7 @@ namespace UI.SCM
 
                 //Reference the GridView Row.
                 GridViewRow row = dgvItemInfoByPO.Rows[rowIndex];
-                if(hdnconfirm.Value =="1")
+                if (hdnconfirm.Value == "1")
                 {
                     try
                     {
@@ -519,12 +510,10 @@ namespace UI.SCM
                     }
                     catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
                 }
-                   
-                
             }
-            else if(e.CommandName=="Delete")
+            else if (e.CommandName == "Delete")
             {
-                if(hdnconfirm.Value=="1")
+                if (hdnconfirm.Value == "1")
                 {
                     updateby = int.Parse(hdnEnroll.Value);
                     int rowIndex = Convert.ToInt32(e.CommandArgument);
@@ -563,14 +552,7 @@ namespace UI.SCM
                         }
                     }
                 }
-               
-                    
-               
             }
         }
-
-
-
-
     }
 }

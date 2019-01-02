@@ -2,10 +2,8 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -17,18 +15,18 @@ namespace UI.SCM
 {
     public partial class MrrDocAttachmentPopUp : System.Web.UI.Page
     {
-        MrrReceive_BLL obj = new MrrReceive_BLL();
-        DataTable dt = new DataTable();
-        int enroll, intWh, MrrId; string dfile, xmlData;
+        private MrrReceive_BLL obj = new MrrReceive_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intWh, MrrId; private string dfile, xmlData;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\MrrDocAttachmentPopUp";
-        string stop = "stopping SCM\\MrrDocAttachmentPopUp";
-        string perform = "Performance on SCM\\MrrDocAttachmentPopUp";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\MrrDocAttachmentPopUp";
+        private string stop = "stopping SCM\\MrrDocAttachmentPopUp";
+        private string perform = "Performance on SCM\\MrrDocAttachmentPopUp";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
             if (!IsPostBack)
             {
                 var fd = log.GetFlogDetail(start, location, "PageLoad", null);
@@ -53,7 +51,7 @@ namespace UI.SCM
                         lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                         string unit = dt.Rows[0]["intUnitID"].ToString();
                         imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
-                    } 
+                    }
 
                     getDocView();
                 }
@@ -68,7 +66,7 @@ namespace UI.SCM
                 // ends
                 tracker.Stop();
             }
-            else { } 
+            else { }
         }
 
         protected void btnDownload_Click(object sender, EventArgs e)
@@ -79,7 +77,6 @@ namespace UI.SCM
             string[] searchKey = temp.Split(delimiterChars);
             string filePath = searchKey[0];
             string fileName = filePath;
-
 
             //FTP Server URL.
             string ftp = "ftp://ftp.akij.net";
@@ -128,10 +125,9 @@ namespace UI.SCM
                 string temp1 = ((Button)sender).CommandArgument.ToString();
                 string temp = temp1.Replace("'", " ");
                 string[] searchKey = temp.Split(delimiterChars);
-                string filePath = searchKey[0];                 
+                string filePath = searchKey[0];
                 string image = "ftp://erp:erp123@ftp.akij.net/" + filePath;
                 imageView.ImageUrl = image;
-                
             }
             catch (Exception ex)
             {
@@ -140,7 +136,7 @@ namespace UI.SCM
             }
 
             fd = log.GetFlogDetail(stop, location, "btnView_Click", null);
-            Flogger.WriteDiagnostic(fd);           
+            Flogger.WriteDiagnostic(fd);
             tracker.Stop();
         }
 
@@ -165,17 +161,14 @@ namespace UI.SCM
                     string[] searchKey = Regex.Split(msg, ":");
                     string fileId = searchKey[1].ToString();
 
-                    dfile = fileId.ToString() + "."+ FileExtension;
+                    dfile = fileId.ToString() + "." + FileExtension;
                     docUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
                     FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
                     File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
-                  
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + searchKey[0].ToString() + "');", true);
                     getDocView();
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -187,9 +180,6 @@ namespace UI.SCM
             fd = log.GetFlogDetail(stop, location, "btnMrr_Click", null);
             Flogger.WriteDiagnostic(fd);
             tracker.Stop();
-           
-
-
         }
 
         private void getDocView()
@@ -205,13 +195,11 @@ namespace UI.SCM
                 dt = obj.DataView(16, "", intWh, MrrId, DateTime.Now, enroll);
                 dgvDocument.DataSource = dt;
                 dgvDocument.DataBind();
-
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "getDocView", ex);
                 Flogger.WriteError(efd);
-                
             }
 
             fd = log.GetFlogDetail(stop, location, "getDocView", null);
@@ -244,7 +232,6 @@ namespace UI.SCM
             fileStream.Close();
 
             requestFTPUploader = null;
-
         }
     }
 }

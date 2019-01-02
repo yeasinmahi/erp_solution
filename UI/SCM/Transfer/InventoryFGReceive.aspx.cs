@@ -1,8 +1,6 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,13 +10,14 @@ namespace UI.SCM.Transfer
 {
     public partial class InventoryFGReceive : System.Web.UI.Page
     {
-        InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL(); 
-        DataTable dt = new DataTable(); string xmlString, filePathForXML; int Id;
-        int enroll, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        int CheckItem = 1; decimal values;
+        private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
+        private DataTable dt = new DataTable(); private string xmlString, filePathForXML; private int Id;
+        private int enroll, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private int CheckItem = 1; private decimal values;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
@@ -49,9 +48,10 @@ namespace UI.SCM.Transfer
         protected void btnReceive_Click(object sender, EventArgs e)
         {
             try
-            { if(hdnPreConfirm.Value=="1")
+            {
+                if (hdnPreConfirm.Value == "1")
                 {
-                    int intProdID =int.Parse(ddlProductId.SelectedValue.ToString());
+                    int intProdID = int.Parse(ddlProductId.SelectedValue.ToString());
                     string intItemID = ddlProduct.SelectedValue.ToString();
                     string intAutoID = hdnAutoId.Value.ToString();
                     intWh = int.Parse(ddlWh.SelectedValue);
@@ -60,7 +60,7 @@ namespace UI.SCM.Transfer
                     if (decimal.Parse(quantity) > 0)
                     {
                         xmlString = "<voucher><voucherentry locationId=" + '"' + locationId + '"' + " quantity=" + '"' + quantity + '"' + " intItemID=" + '"' + intItemID + '"' + " intAutoID=" + '"' + intAutoID + '"' + "/></voucher>".ToString();
-                        string   msg = objTransfer.PostTransfer(12, xmlString, intWh, intProdID, DateTime.Now, enroll);
+                        string msg = objTransfer.PostTransfer(12, xmlString, intWh, intProdID, DateTime.Now, enroll);
 
                         lblDetalis.Text = "";
                         lblDate.Text = "";
@@ -76,20 +76,15 @@ namespace UI.SCM.Transfer
                         ddlProduct.Items.Insert(0, new ListItem("Select", "0"));
 
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-
                     }
                 }
                 else { }
-               
-
-               
             }
             catch { }
         }
 
         protected void btnActive_Click(object sender, EventArgs e)
         {
-
         }
 
         protected void ddlProductId_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,7 +117,7 @@ namespace UI.SCM.Transfer
                 Id = int.Parse(ddlProductId.SelectedValue);
 
                 dt = objTransfer.GetTtransferDatas(11, xmlString, intWh, Id, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     string strItems = dt.Rows[0]["strName"].ToString();
                     string intItemID = dt.Rows[0]["intItemID"].ToString();
@@ -134,18 +129,14 @@ namespace UI.SCM.Transfer
                     hdnAutoId.Value = dt.Rows[0]["intAutoID"].ToString();
                     lblUom.Text = strUoM;
                     txtReceQty.Text = numSendStoreQty;
-                    lblDate.Text = "Entry: "+EntryTime;
-                     
+                    lblDate.Text = "Entry: " + EntryTime;
                 }
-               
-
             }
             catch { }
         }
 
         protected void btnInActive_Click(object sender, EventArgs e)
         {
-
         }
 
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,7 +157,6 @@ namespace UI.SCM.Transfer
                 ddlLcation.DataValueField = "Id";
                 ddlLcation.DataBind();
                 ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-              
 
                 ddlProduct.DataSource = "";
                 ddlProduct.DataBind();
@@ -174,7 +164,5 @@ namespace UI.SCM.Transfer
             }
             catch { }
         }
-
-        
     }
 }

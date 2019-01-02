@@ -2,35 +2,31 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.Script.Services;
-using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class ItemManager : System.Web.UI.Page
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        DataTable dt = new DataTable();
-        int enroll,wh;
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IndentStatus";
-        string stop = "stopping SCM\\IndentStatus";
-        string perform = "Performance on SCM\\IndentStatus";
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, wh;
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IndentStatus";
+        private string stop = "stopping SCM\\IndentStatus";
+        private string perform = "Performance on SCM\\IndentStatus";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt= objIssue.GetViewData(1, "", wh, 0, DateTime.Now, enroll);
-               // dt = objIssue.GetWH();
+                dt = objIssue.GetViewData(1, "", wh, 0, DateTime.Now, enroll);
+                // dt = objIssue.GetWH();
                 ddlWh.DataSource = dt;
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
@@ -41,19 +37,14 @@ namespace UI.SCM
                 ddlLocation.DataValueField = "Id";
                 ddlLocation.DataTextField = "strName";
                 ddlLocation.DataBind();
-                 
             }
             else { }
-
         }
-
-         
 
         protected void ListDatas_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-              
             }
             catch { }
         }
@@ -82,8 +73,8 @@ namespace UI.SCM
             try
             {
                 string masteritem = ListDatas.SelectedValue.ToString();
-                wh = int.Parse(ddlWh.SelectedValue);           
-                string xmlData = "<voucher><voucherentry masteritem=" + '"' + masteritem + '"' +   "/></voucher>".ToString();
+                wh = int.Parse(ddlWh.SelectedValue);
+                string xmlData = "<voucher><voucherentry masteritem=" + '"' + masteritem + '"' + "/></voucher>".ToString();
                 int location = int.Parse(ddlLocation.SelectedValue);
                 if (location > 0)
                 {
@@ -91,9 +82,7 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Sselect your location');", true); }
-               
             }
-
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "btnAdd_Click", ex);
@@ -110,18 +99,17 @@ namespace UI.SCM
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
             Flogger.WriteDiagnostic(fd);
-     
+
             var tracker = new PerfTracker(perform + " " + "btnShow_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
                 string strSearchKey = txtItem.Text.ToString();
-                dt = objIssue.GetMasterItem(  strSearchKey);
+                dt = objIssue.GetMasterItem(strSearchKey);
                 ListDatas.DataSource = dt;
                 ListDatas.DataValueField = "intItemMasterID";
                 ListDatas.DataTextField = "strItemMasterName";
                 ListDatas.DataBind();
-                
             }
             catch (Exception ex)
             {

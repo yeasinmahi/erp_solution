@@ -1,15 +1,11 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
@@ -21,26 +17,27 @@ namespace UI.SCM
     public partial class BillRegistration : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
-        Billing_BLL objBillReg = new Billing_BLL();
+        private Billing_BLL objBillReg = new Billing_BLL();
 
-        DataTable dt;
-        
-        string filePathForXML, xmlString, xml, challan, mrrid, amount;
-        int intUnitid, intPOID, intSuppid, intCOAID, intEnroll;
-        string strPType, strReffNo;
+        private DataTable dt;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\BillRegistration";
-        string stop = "stopping SCM\\BillRegistration";
+        private string filePathForXML, xmlString, xml, challan, mrrid, amount;
+        private int intUnitid, intPOID, intSuppid, intCOAID, intEnroll;
+        private string strPType, strReffNo;
+
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\BillRegistration";
+        private string stop = "stopping SCM\\BillRegistration";
 
         #endregion ====================================================================================
 
         #region===== Page Load Event ==================================================================
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
-            Flogger.WriteDiagnostic(fd); 
+            Flogger.WriteDiagnostic(fd);
             // starting performance tracker
             var tracker = new PerfTracker("Performance on Asset\\BillRegistration Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
@@ -71,6 +68,7 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+
         private void GetDDLList()
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -107,7 +105,6 @@ namespace UI.SCM
         #endregion=====================================================================================
 
         #region===== Web Method For Employee Search ===================================================
-        
 
         [WebMethod]
         [ScriptMethod]
@@ -143,14 +140,17 @@ namespace UI.SCM
             Billing_BLL objAutoSearch_BLL = new Billing_BLL();
             return objAutoSearch_BLL.AutoSearchOtherParty(prefixText);
         }
+
         #endregion=====================================================================================
 
-        #region ===== Selection Change Event ===========================================================  
+        #region ===== Selection Change Event ===========================================================
+
         protected void ddlRefference_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrueFasle();
             HttpContext.Current.Session["Unitid"] = ddlBillingUnit.SelectedValue.ToString();
         }
+
         protected void ddlBillingUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -216,7 +216,6 @@ namespace UI.SCM
                     txtOtherPartyName.Visible = false;
                     txtCommonText.Visible = true;
                 }
-
             }
             catch { }
         }
@@ -229,6 +228,7 @@ namespace UI.SCM
                 txtBillNo.Text = "";
             }
         }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -282,6 +282,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void TrueFasle()
         {
             string strRefName = ddlRefference.SelectedItem.ToString();
@@ -333,7 +334,8 @@ namespace UI.SCM
 
         #endregion =====================================================================================
 
-        #region ===== btnGo Button Action ==============================================================  
+        #region ===== btnGo Button Action ==============================================================
+
         protected void btnGo_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -439,7 +441,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
 
         #endregion =====================================================================================
@@ -489,12 +490,10 @@ namespace UI.SCM
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
         }
 
-
-
         #region ===== Item Add & Load Grid Action ===========================================================
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             //itemid = ddlItem.SelectedValue.ToString();
@@ -513,6 +512,7 @@ namespace UI.SCM
             //txtValue.Text = "";
             //txtRemarks.Text = "";
         }
+
         private void CreateAddXml(string challan, string mrrid, string amount)
         {
             XmlDocument doc = new XmlDocument();
@@ -535,6 +535,7 @@ namespace UI.SCM
             doc.Save(filePathForXML);
             LoadGridwithXml();
         }
+
         private void LoadGridwithXml()
         {
             try
@@ -550,6 +551,7 @@ namespace UI.SCM
             }
             catch { dgvChallan.DataSource = ""; dgvChallan.DataBind(); }
         }
+
         private XmlNode CreateItemNode(XmlDocument doc, string challan, string mrrid, string amount)
         {
             XmlNode node = doc.CreateElement("SOItem");
@@ -563,6 +565,7 @@ namespace UI.SCM
             node.Attributes.Append(Amount);
             return node;
         }
+
         protected void dgvAdd_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -592,6 +595,7 @@ namespace UI.SCM
 
         protected decimal totalqty = 0;
         protected decimal totalvalue = 0;
+
         protected void dgvSOItem_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
@@ -606,26 +610,5 @@ namespace UI.SCM
         }
 
         #endregion ==========================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

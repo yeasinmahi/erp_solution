@@ -2,10 +2,8 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -22,7 +20,7 @@ namespace UI.SCM
         private DataTable dt = new DataTable();
         private string xmlString = "", filePathForXML, strMssingCost, challanNo, strVatChallan, poIssueBy, expireDate, manufactureDate;
         private int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
-        private decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate, monTransport,monOtherTotal;
+        private decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate, monTransport, monOtherTotal;
         private DateTime dteChallan;
 
         private SeriLog log = new SeriLog();
@@ -122,7 +120,7 @@ namespace UI.SCM
                     try { monDiscount = decimal.Parse(lblDiscount.Text.ToString()); } catch { }
                     try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { }
                     poIssueBy = lblPoIssueBy.Text.ToString();
-                    monOtherTotal = monOther+monTransport;
+                    monOtherTotal = monOther + monTransport;
                     for (int index = 0; index < dgvMrr.Rows.Count; index++)
                     {
                         intPOID = int.Parse(((Label)dgvMrr.Rows[index].FindControl("lblPoId")).Text.ToString());
@@ -421,8 +419,6 @@ namespace UI.SCM
                 intPo = int.Parse(ddlPo.SelectedValue);
                 PoView(intPo);
             }
-
-          
         }
 
         private void PoView(int intPo)

@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
@@ -17,18 +16,19 @@ namespace UI.SCM
 {
     public partial class ServiceReceive : BasePage
     {
-        MrrReceive_BLL obj = new MrrReceive_BLL();
-        DataTable dt = new DataTable();
-        string xmlString = "", filePathForXML, strMssingCost, challanNo, strVatChallan, poIssueBy, expireDate, manufactureDate;
-        int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
-        decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate;
-        DateTime dteChallan;
+        private MrrReceive_BLL obj = new MrrReceive_BLL();
+        private DataTable dt = new DataTable();
+        private string xmlString = "", filePathForXML, strMssingCost, challanNo, strVatChallan, poIssueBy, expireDate, manufactureDate;
+        private int intWh, enroll, intPo, intShipment, intPOID, intSupplierID, intUnitID;
+        private decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate;
+        private DateTime dteChallan;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\ServiceReceive";
-        string stop = "stopping SCM\\ServiceReceive";
-        string perform = "Performance on SCM\\ServiceReceive";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\ServiceReceive";
+        private string stop = "stopping SCM\\ServiceReceive";
+        private string perform = "Performance on SCM\\ServiceReceive";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Mrs__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -42,12 +42,11 @@ namespace UI.SCM
             {
             }
         }
+
         protected void ddlPoType_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-
-                 
             }
             catch { }
         }
@@ -56,31 +55,26 @@ namespace UI.SCM
         {
             try
             {
-
                 string poType = ddlPoType.SelectedItem.ToString();
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
-                 
-
             }
             catch { }
         }
-       
+
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-           
+
             var tracker = new PerfTracker(perform + " " + "btnSaveMrr_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-          
-
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
                 {
                     intWh = int.Parse(hdnWHId.Value.ToString());
-                   
+
                     enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     try { intPOID = int.Parse(hdnPO.Value); } catch { }
                     try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
@@ -104,12 +98,12 @@ namespace UI.SCM
                         try { monRate = decimal.Parse(((Label)dgvMrr.Rows[index].FindControl("lblRate")).Text.ToString()); } catch { monRate = 0; }
                         string numRcvValue = (decimal.Parse(numPOQty.ToString()) * monRate).ToString();//((Label)dgvMrr.Rows[index].FindControl("lblMrrValue")).Text.ToString();
                         string numRcvVatValue = ((Label)dgvMrr.Rows[index].FindControl("lblVat")).Text.ToString();
-                      
+
                         string remarks = ((TextBox)dgvMrr.Rows[index].FindControl("txtRemarks")).Text.ToString();
                         string ysnQc = ((Label)dgvMrr.Rows[index].FindControl("lblYsnQc")).Text.ToString();
                         string numQcQty = ((Label)dgvMrr.Rows[index].FindControl("lblQcPassedQty")).Text.ToString();
-                     
-                        if (decimal.Parse(numRcvQty) > 0 && monRate > 0 && intWh>0)
+
+                        if (decimal.Parse(numRcvQty) > 0 && monRate > 0 && intWh > 0)
                         {
                             //if (ysnQc.ToString() == "0")
                             //{
@@ -132,8 +126,6 @@ namespace UI.SCM
 
                             CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOther.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, remarks, monRate.ToString(), poIssueBy);
                         }
-
-
                     }
 
                     XmlDocument doc = new XmlDocument();
@@ -159,9 +151,8 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "btnSaveMrr_Click", null);
             Flogger.WriteDiagnostic(fd);
-           
+
             tracker.Stop();
-          
         }
 
         private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string remarks, string monRate, string poIssueBy)
@@ -171,7 +162,7 @@ namespace UI.SCM
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue,  remarks, monRate, poIssueBy);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, remarks, monRate, poIssueBy);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -179,12 +170,11 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue,  remarks, monRate, poIssueBy);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, remarks, monRate, poIssueBy);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-
         }
 
         private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string remarks, string monRate, string poIssueBy)
@@ -228,7 +218,7 @@ namespace UI.SCM
             NumRcvValue.Value = numRcvValue;
             XmlAttribute NumRcvVatValue = doc.CreateAttribute("numRcvVatValue");
             NumRcvVatValue.Value = numRcvVatValue;
-            
+
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
 
@@ -236,11 +226,6 @@ namespace UI.SCM
             MonRate.Value = monRate;
             XmlAttribute PoIssueBy = doc.CreateAttribute("poIssueBy");
             PoIssueBy.Value = poIssueBy;
-
-            
- 
-
-
 
             node.Attributes.Append(IntPOID);
             node.Attributes.Append(IntSupplierID);
@@ -262,21 +247,17 @@ namespace UI.SCM
             node.Attributes.Append(NumRcvValue);
 
             node.Attributes.Append(NumRcvVatValue);
-            
+
             node.Attributes.Append(Remarks);
 
             node.Attributes.Append(MonRate);
-            node.Attributes.Append(PoIssueBy);             
-
+            node.Attributes.Append(PoIssueBy);
 
             return node;
         }
 
-       
-
         protected void btnShow_Click(object sender, EventArgs e)
         {
-
             PoView();
         }
 
@@ -293,7 +274,9 @@ namespace UI.SCM
                 intPo = int.Parse(txtPoNo.Text.ToString());
                 hdnPO.Value = intPo.ToString();
                 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                try { intShipment = int.Parse(ddlInvoice.SelectedValue);
+                try
+                {
+                    intShipment = int.Parse(ddlInvoice.SelectedValue);
                     hdnShipment.Value = intShipment.ToString();
                 }
                 catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
@@ -317,10 +300,9 @@ namespace UI.SCM
                         lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
                         monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
-                        ddlWH.SelectedValue= dt.Rows[0]["intWHID"].ToString();
-                        ddlWH.SelectedItem.Text= dt.Rows[0]["strWareHoseName"].ToString();
-                        ddlPoType.SelectedItem.Text= dt.Rows[0]["strPoFor"].ToString();
-
+                        ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
+                        ddlWH.SelectedItem.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                        ddlPoType.SelectedItem.Text = dt.Rows[0]["strPoFor"].ToString();
 
                         dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);
                         lblPoTotal.Text = "";
@@ -329,7 +311,6 @@ namespace UI.SCM
                         lblOtherCost.Text = Convert.ToString(decimal.Parse(dt.Rows[0]["monPacking"].ToString()) * monConverRate);
                         lblDiscount.Text = "0";
                     }
-
                 }
                 else
                 {
@@ -352,7 +333,6 @@ namespace UI.SCM
                         hdnConversion.Value = dt.Rows[0]["monBDTConversion"].ToString();
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
 
-                       
                         ddlPoType.SelectedItem.Text = dt.Rows[0]["strPoFor"].ToString();
 
                         hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
@@ -365,24 +345,19 @@ namespace UI.SCM
                         ddlWH.SelectedValue = dt.Rows[0]["intWHID"].ToString();
                         ddlWH.SelectedItem.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     }
-
                     else
                     {
-
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please approve PO');", true);
                     }
                 }
                 intWh = int.Parse(hdnWHId.Value.ToString());
                 dt = obj.DataView(17, xmlString, intWh, intPo, DateTime.Now, enroll);
-                if(dt.Rows.Count>0 && lblSuppliyer.Text.Length>2)
+                if (dt.Rows.Count > 0 && lblSuppliyer.Text.Length > 2)
                 {
                     dgvMrr.DataSource = dt;
                     dgvMrr.DataBind();
-
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not a service PO');", true); }
-
-
             }
             catch (Exception ex)
             {
@@ -392,7 +367,7 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-           
+
             tracker.Stop();
         }
 
@@ -416,11 +391,11 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void DataClear()
         {
             try
             {
-
                 dgvMrr.DataSource = "";
                 dgvMrr.DataBind();
                 lblSuppliuerID.Text = "";
@@ -432,10 +407,8 @@ namespace UI.SCM
                 lblDiscount.Text = "";
                 lblCurrency.Text = "";
                 lblConversion.Text = "";
-
             }
             catch { }
         }
-
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -17,14 +15,12 @@ namespace UI.SCM.BOM
 {
     public partial class FinishedGoodRoutingDetalis : BasePage
     {
-        AssetMaintenance objWorkorderParts = new AssetMaintenance();
-        Bom_BLL objBom = new Bom_BLL();
-        DataTable dt = new DataTable();
-        int intwh, enroll, BomId; string xmlData;
-        int CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string filePathForXML; string xmlString = "", xmlstring2 = "";
-
-       
+        private AssetMaintenance objWorkorderParts = new AssetMaintenance();
+        private Bom_BLL objBom = new Bom_BLL();
+        private DataTable dt = new DataTable();
+        private int intwh, enroll, BomId; private string xmlData;
+        private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML; private string xmlString = "", xmlstring2 = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,8 +31,8 @@ namespace UI.SCM.BOM
                 catch { }
                 string itemName = Request.QueryString["itemname"].ToString();
                 string stationName = Request.QueryString["stationName"].ToString();
-                int workstationId =int.Parse(Request.QueryString["stationId"].ToString());
-                intwh =int.Parse( Request.QueryString["intwh"].ToString());
+                int workstationId = int.Parse(Request.QueryString["stationId"].ToString());
+                intwh = int.Parse(Request.QueryString["intwh"].ToString());
                 lblstationName.Text = stationName;
                 lblItems.Text = itemName;
 
@@ -48,6 +44,7 @@ namespace UI.SCM.BOM
                 dgvMachineRpt.DataBind();
             }
         }
+
         protected void bnManpower_Click(object sender, EventArgs e)
         {
             try
@@ -71,16 +68,16 @@ namespace UI.SCM.BOM
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input quantity and hour');", true); }
-
                 }
             }
             catch { }
         }
+
         protected void btnMAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                if(hdnPreConfirm.Value=="1")
+                if (hdnPreConfirm.Value == "1")
                 {
                     arrayKey = txtAsset.Text.Split(delimiterChars);
                     intwh = int.Parse(Request.QueryString["intwh"].ToString());
@@ -99,8 +96,6 @@ namespace UI.SCM.BOM
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input Asset and hour');", true); }
                 }
                 else { }
-              
-              
             }
             catch { }
         }
@@ -140,12 +135,9 @@ namespace UI.SCM.BOM
             XmlAttribute Hours = doc.CreateAttribute("hours");
             Hours.Value = hours;
 
-            
-
             node.Attributes.Append(Asset);
             node.Attributes.Append(IntAssetId);
             node.Attributes.Append(Hours);
-        
 
             return node;
         }
@@ -164,17 +156,17 @@ namespace UI.SCM.BOM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 { dgvMachine.DataSource = ds; }
-
                 else { dgvMachine.DataSource = ""; }
                 dgvMachine.DataBind();
             }
             catch { }
         }
+
         protected void btnSubmitM_Click(object sender, EventArgs e)
         {
             try
             {
-                if(hdnConfirm.Value=="1")
+                if (hdnConfirm.Value == "1")
                 {
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
@@ -201,14 +193,10 @@ namespace UI.SCM.BOM
                     txtAsset.Text = "";
                     txtMacHour.Text = "0";
                 }
-               
-
             }
             catch { }
         }
 
-         
-        
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -221,10 +209,7 @@ namespace UI.SCM.BOM
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 { File.Delete(filePathForXML); dgvMachine.DataSource = ""; dgvMachine.DataBind(); }
                 else { LoadGridwithXml(); }
-
-
             }
-
             catch { }
         }
 
@@ -235,6 +220,5 @@ namespace UI.SCM.BOM
             AutoSearch_BLL objBoms = new AutoSearch_BLL();
             return objBoms.GetAssetItemByUnit(HttpContext.Current.Session["unit"].ToString(), prefixText);
         }
-
     }
 }
