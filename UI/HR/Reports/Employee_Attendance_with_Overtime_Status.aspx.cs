@@ -1,6 +1,8 @@
-﻿using HR_BLL.Global;
+﻿using HR_BLL.Employee;
+using HR_BLL.Global;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -24,11 +26,21 @@ namespace UI.HR.Reports
             {
                 if (!String.IsNullOrEmpty(txtEmp.Text))
                 {
+                    //string strSearchKey = txtEmp.Text;
+                    //char[] deli = { '[', ']' };
+                    //string[] searchKey = strSearchKey.Split(deli);
+                    //hdnEnroll.Value = searchKey[3];
                     string strSearchKey = txtEmp.Text;
-                    char[] deli = { '[', ']' };
-                    string[] searchKey = strSearchKey.Split(deli);
-                    hdnEnroll.Value = searchKey[3];
-                   
+                    string[] searchKey = Regex.Split(strSearchKey, ",");
+                    hdfEmpCode.Value = searchKey[1];
+                    EmployeeRegistration objGetProfile = new EmployeeRegistration();
+                    DataTable objDT = new DataTable();
+                    objDT = objGetProfile.GetEmployeeProfileByEmpCode(hdfEmpCode.Value);
+                    if (objDT.Rows.Count > 0)
+                    {
+                        hdnEnroll.Value = objDT.Rows[0]["intEmployeeID"].ToString();
+                    }
+
                 }
             }
         }
@@ -39,16 +51,24 @@ namespace UI.HR.Reports
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }
 
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static string[] SearchEmployee(string prefixText, int count)
+        //{
+
+        //    //AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+        //    //int Active = int.Parse(1.ToString());
+        //    //return objAutoSearch_BLL.GetEmployeeByJobstationOperator(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), prefixText.ToLower());
+
+        //}
+
         [WebMethod]
-        [ScriptMethod]
-        public static string[] SearchEmployee(string prefixText, int count)
+        public static List<string> GetAutoCompleteData(string strSearchKey)
         {
-
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            int Active = int.Parse(1.ToString());
-
-            return objAutoSearch_BLL.GetEmployeeByJobstationOperator(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), prefixText.ToLower());
-
+            List<string> result = new List<string>();
+            result = objAutoSearch_BLL.AutoSearchEmployeesData(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString()), strSearchKey);
+            return result;
         }
     }
 }

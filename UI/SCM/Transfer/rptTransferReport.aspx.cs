@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Web.Script.Services;
@@ -10,20 +7,19 @@ using SCM_BLL;
 using System.Data;
 using SAD_BLL.AutoChallan;
 using UI.ClassFiles;
-using System.Xml;
-using System.IO;
 
 namespace UI.SCM.Transfer
 {
     public partial class rptTransferReport : System.Web.UI.Page
-    {      
-        int intShipid,intLocationid,intOutWHid,intWHID,intVid,intUomid, vid, enroll, itemid, intReff = 0,inttTransferTypeid;
-        decimal Qty,Values,Stock;string xmlpath = "", xmlString,ItemName,UOM,msg,Remarks;
-        DataTable dt;
-        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
-        TransferBLLNew TBLL = new TransferBLLNew();
-        ExcelDataBLL objExcel = new ExcelDataBLL();
-        bool ysnSumByProduct;
+    {
+        private int intShipid, intLocationid, intOutWHid, intWHID, intVid, intUomid, vid, enroll, itemid, intReff = 0, inttTransferTypeid;
+        private decimal Qty, Values, Stock; private string xmlpath = "", xmlString, ItemName, UOM, msg, Remarks;
+        private DataTable dt;
+        private string[] arrayKeyItem; private char[] delimiterChars = { '[', ']' };
+        private TransferBLLNew TBLL = new TransferBLLNew();
+        private ExcelDataBLL objExcel = new ExcelDataBLL();
+        private bool ysnSumByProduct;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SCM/Data/TOrder_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -39,10 +35,8 @@ namespace UI.SCM.Transfer
                 ddlshippoint.DataBind();
                 dt.Clear();
                 getShippointTo();
-              
-               
             }
-            else {  }
+            else { }
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -55,7 +49,7 @@ namespace UI.SCM.Transfer
                 { itemid = Int32.Parse(arrayKeyItem[1].ToString()); }
             }
             else { itemid = 0; }
-            if(ddlFromWH.SelectedItem.ToString()=="")
+            if (ddlFromWH.SelectedItem.ToString() == "")
             {
                 intWHID = 0;
             }
@@ -64,8 +58,8 @@ namespace UI.SCM.Transfer
             {
                 intOutWHid = 0;
             }
-            else {intOutWHid= int.Parse(ddlToWH.SelectedValue); }
-            if(CheckBox1.Checked==true)
+            else { intOutWHid = int.Parse(ddlToWH.SelectedValue); }
+            if (CheckBox1.Checked == true)
             {
                 dt = TBLL.getRpt(intWHID, intOutWHid, txtFrom.Text, txtTo.Text, ysnSumByProduct = true);
                 dgvRptProductTotal.DataSource = dt;
@@ -73,27 +67,24 @@ namespace UI.SCM.Transfer
                 dgvRptProductTotal.Visible = true;
                 dgvDetails.Visible = false;
             }
-            else { dt = TBLL.getRpt(intWHID, intOutWHid, txtFrom.Text, txtTo.Text, ysnSumByProduct = false);
+            else
+            {
+                dt = TBLL.getRpt(intWHID, intOutWHid, txtFrom.Text, txtTo.Text, ysnSumByProduct = false);
                 dgvDetails.DataSource = dt;
                 dgvDetails.DataBind();
                 dgvDetails.Visible = true;
                 dgvRptProductTotal.Visible = false;
-               
             }
-           
         }
-
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-           
-           
         }
-       
+
         protected void ddlShipPointTo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
         }
+
         private void getShippointTo()
         {
             dt = TBLL.getRWH(int.Parse(ddlshippoint.SelectedValue));
@@ -109,17 +100,19 @@ namespace UI.SCM.Transfer
         }
 
         #region ******* search **********
+
         [WebMethod]
         [ScriptMethod]
         public static string[] ItemnameSearch(string prefixText)
         {
             int typeid;
             DataTable dt;
-            dt=  DataClass.GetItemType(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()));
+            dt = DataClass.GetItemType(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()));
             typeid = int.Parse(dt.Rows[0]["intID"].ToString());
             TransferBLLNew objAutoSearch_BLL = new TransferBLLNew();
-            return objAutoSearch_BLL.GetItemlistInv( int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefixText);
+            return objAutoSearch_BLL.GetItemlistInv(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefixText);
         }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] VehicleSearch(string prefixText)
@@ -127,22 +120,21 @@ namespace UI.SCM.Transfer
             ExcelDataBLL objAutoSearch_BLL = new ExcelDataBLL();
             return objAutoSearch_BLL.GetVehicle(prefixText);
         }
-       
 
-        #endregion *********** Search ***************** 
+        #endregion ******* search **********
+
     }
-   
-
 }
+
 public class DataClassNewrptTransferReport
 {
     public static TransferBLLNew TBLL = new TransferBLLNew();
     public static DataTable dt;
- 
+
     internal static DataTable GetItemType(int unitid)
-    {     
-            dt = TBLL.Itemtype(unitid);
-            return dt;      
+    {
+        dt = TBLL.Itemtype(unitid);
+        return dt;
     }
 
     internal static DataTable getShipPointList(int unitid)

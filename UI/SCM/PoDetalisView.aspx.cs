@@ -15,7 +15,7 @@ using Exception = System.Exception;
 
 namespace UI.SCM
 {
-    public partial class PoDetalisView : Page
+    public partial class PoDetalisView : BasePage
     {
         private int PoNo, enroll, intunit;
         private DataTable dt = new DataTable(); private string filePathForXML;
@@ -29,7 +29,7 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            ScriptManager scriptManager = ScriptManager.GetCurrent(Page);
             scriptManager?.RegisterPostBackControl(btnDownload);
             _filePath = Server.MapPath("~/SCM/Data/PO.Bmp");
             if (!IsPostBack)

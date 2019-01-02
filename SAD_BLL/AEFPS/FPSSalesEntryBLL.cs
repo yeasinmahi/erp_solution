@@ -270,7 +270,15 @@ namespace SAD_BLL.AEFPS
             }
             catch { return new DataTable(); }
         }
-
+        public DataTable getReportditf(int intEntryid)
+        {
+            try
+            {
+                tblSalesDetailsTemditReportTableAdapter getTemEntryrpt = new tblSalesDetailsTemditReportTableAdapter();
+                return getTemEntryrpt.GetSalesDetailsTemp(intEntryid);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable getWH(int intInsertby)
         {
             try

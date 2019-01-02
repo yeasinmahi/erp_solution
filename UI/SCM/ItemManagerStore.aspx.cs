@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using SCM_BLL;
 using GLOBAL_BLL;
@@ -13,26 +9,28 @@ namespace UI.SCM
 {
     public partial class ItemManagerNew : BasePage
     {
-        MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
+        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
 
-        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID,
+        private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID,
             intAutoID, intInsertBy, intCOAID, intUnitID, intMasterID;
-        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+
+        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
-        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
-        bool ysnVATApplicable;
 
+        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        private bool ysnVATApplicable;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\ItemManagerNew";
-        string stop = "stopping SCM\\ItemManagerNew";
-        string perform = "Performance on SCM\\ItemManagerNew";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\ItemManagerNew";
+        private string stop = "stopping SCM\\ItemManagerNew";
+        private string perform = "Performance on SCM\\ItemManagerNew";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             intInsertBy = int.Parse(hdnEnroll.Value);
-            
+
             if (!IsPostBack)
             {
                 try //WH List
@@ -63,6 +61,7 @@ namespace UI.SCM
                 LoadUnitID();
             }
         }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             string strSearch;
@@ -84,11 +83,10 @@ namespace UI.SCM
                 ListBox1.DataSource = "";
                 ListBox1.DataBind();
             }
-            
-
         }
 
         #region ====== Loading DropDownList =======================================================================================================================
+
         private void LoadUOM()
         {
             try //UOM List
@@ -108,6 +106,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void LoadLocation()
         {
             try //Location List
@@ -127,6 +126,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void LoadGroup()
         {
             try //Group List
@@ -145,6 +145,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void LoadCategory()
         {
             try //Category List
@@ -171,6 +172,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void LoadSubCategory()
         {
             try //Sub Category
@@ -192,6 +194,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void LoadMinorCategory()
         {
             try //Minor Category List
@@ -213,6 +216,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void LoadPlant()
         {
             try //Plant List
@@ -234,9 +238,11 @@ namespace UI.SCM
             }
             catch { }
         }
-        #endregion ====== Loading DropDownList ===========================================================================================================
+
+        #endregion ====== Loading DropDownList =======================================================================================================================
 
         #region ========= Selection Change =======================================================================================================================
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -269,6 +275,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -278,6 +285,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -322,9 +330,11 @@ namespace UI.SCM
             }
             catch { }
         }
-        #endregion ====== Selection Change =======================================================================================================================
+
+        #endregion ========= Selection Change =======================================================================================================================
 
         #region ========= Final Submit ====================================================================================================================
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -376,7 +386,7 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Product Base Name must be filled.');", true);
                     return;
                 }
-                else if(intUOM == 0 && hdnMaterialId.Value =="0")
+                else if (intUOM == 0 && hdnMaterialId.Value == "0")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Select Unit of Measurement.');", true);
                     return;
@@ -470,11 +480,11 @@ namespace UI.SCM
             }
             catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Error!!!!!');", true); }
         }
-        #endregion ====== Final Submit ======================================================================================================================
+
+        #endregion ========= Final Submit ====================================================================================================================
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            
             Reset();
         }
 

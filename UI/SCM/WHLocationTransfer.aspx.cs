@@ -1,9 +1,7 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,11 +12,12 @@ namespace UI.SCM
 {
     public partial class WHLocationTransfer : BasePage
     {
-        Location_BLL objOperation = new Location_BLL();
+        private Location_BLL objOperation = new Location_BLL();
 
-        DataTable dt = new DataTable(); 
-        string pID, pIDName, accountName; int enroll, intWH;
-        string filePathForXML; string xmlString = "";
+        private DataTable dt = new DataTable();
+        private string pID, pIDName, accountName; private int enroll, intWH;
+        private string filePathForXML; private string xmlString = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Trn__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -45,14 +44,13 @@ namespace UI.SCM
 
                 dt = objOperation.WhDataView(5, "", intWH, 0, enroll);
                 dgvWHLocation.DataSource = dt;
-                dgvWHLocation.DataBind();              
+                dgvWHLocation.DataBind();
                 pnlUpperControl.DataBind();
             }
         }
 
-
         #region===================Action==========================================
-        
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -70,17 +68,14 @@ namespace UI.SCM
                 LinkButton2.Text = string.Empty;
                 LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
-        
-       
+
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
-            {   
+            {
                 accountName = ">" + ListBox1.SelectedItem.ToString();
                 pID = ListBox1.SelectedValue.ToString();
                 pIDName = ListBox1.SelectedItem.ToString();
@@ -103,37 +98,29 @@ namespace UI.SCM
                 else if (LinkButton8.Text.Length == 0) { LinkButton8.Text = accountName.ToString(); hdn7.Value = pID; }
                 else if (LinkButton9.Text.Length == 0) { LinkButton9.Text = accountName.ToString(); hdn8.Value = pID; }
                 else if (LinkButton10.Text.Length == 0) { LinkButton10.Text = accountName.ToString(); hdn9.Value = pID; }
-               
-                
-
             }
             catch { }
         }
-
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
-                if(LinkButton3.Text!="")
+                if (LinkButton3.Text != "")
                 {
                     if (dgvWHLocation.Rows.Count > 0 && int.Parse(hdnConfirm.Value) == 1)
                     {
                         enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-
                         for (int index = 0; index < dgvWHLocation.Rows.Count; index++)
                         {
                             if (((CheckBox)dgvWHLocation.Rows[index].FindControl("chkRow")).Checked == true)
                             {
-
                                 string locationId = ((Label)dgvWHLocation.Rows[index].FindControl("lblLocId")).Text.ToString();
                                 string locationName = ((Label)dgvWHLocation.Rows[index].FindControl("lblLocName")).Text.ToString();
 
                                 CreateVoucherXml(locationId, locationName);
                             }
-
-
                         }
                     }
                     intWH = int.Parse(ddlWH.SelectedValue);
@@ -151,21 +138,18 @@ namespace UI.SCM
                     dgvWHLocation.DataBind();
                 }
                 else { try { File.Delete(filePathForXML); } catch { } }
-               
             }
-
-
             catch { try { File.Delete(filePathForXML); } catch { } }
         }
 
         private void CreateVoucherXml(string locationId, string locationName)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateLocation(doc, locationId, locationName );
+                XmlNode addItem = CreateLocation(doc, locationId, locationName);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -187,11 +171,9 @@ namespace UI.SCM
             LocationId.Value = locationId;
             XmlAttribute LocationName = doc.CreateAttribute("locationName");
             LocationName.Value = locationName;
-             
 
             node.Attributes.Append(LocationId);
             node.Attributes.Append(LocationName);
-             
 
             return node;
         }
@@ -199,11 +181,11 @@ namespace UI.SCM
         #endregion==========Close=============================================
 
         #region==================Link Button Chaild View======================
+
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             try
             {
-               
                 intWH = int.Parse(ddlWH.SelectedValue);
                 dt = objOperation.WhDataView(2, "", intWH, 0, enroll);
                 ListBox1.DataSource = dt;
@@ -213,11 +195,10 @@ namespace UI.SCM
                 LinkButton2.Text = string.Empty;
                 LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
+
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
             try
@@ -232,11 +213,10 @@ namespace UI.SCM
                 ListBox1.DataBind();
                 LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                 
             }
             catch { }
-
         }
+
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
             try
@@ -251,11 +231,10 @@ namespace UI.SCM
                 ListBox1.DataBind();
                 LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-               
             }
             catch { }
-
         }
+
         protected void LinkButton4_Click(object sender, EventArgs e)
         {
             try
@@ -271,11 +250,10 @@ namespace UI.SCM
 
                 LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
+
         protected void LinkButton5_Click(object sender, EventArgs e)
         {
             try
@@ -289,14 +267,12 @@ namespace UI.SCM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
 
-
                 LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
+
         protected void LinkButton6_Click(object sender, EventArgs e)
         {
             try
@@ -312,11 +288,10 @@ namespace UI.SCM
 
                 LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
+
         protected void LinkButton7_Click(object sender, EventArgs e)
         {
             try
@@ -332,13 +307,9 @@ namespace UI.SCM
 
                 LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
-
-      
 
         protected void LinkButton8_Click(object sender, EventArgs e)
         {
@@ -353,10 +324,8 @@ namespace UI.SCM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-                
             }
             catch { }
-
         }
 
         protected void LinkButton9_Click(object sender, EventArgs e)
@@ -372,11 +341,10 @@ namespace UI.SCM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
                 LinkButton10.Text = string.Empty;
-                 
             }
             catch { }
-
         }
+
         protected void LinkButton10_Click(object sender, EventArgs e)
         {
             try
@@ -389,10 +357,8 @@ namespace UI.SCM
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
-                 
             }
             catch { }
-
         }
 
         #endregion=================Close================================================

@@ -2,10 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
@@ -14,19 +11,21 @@ namespace UI.SCM
 {
     public partial class ItemMangerPurchase : BasePage
     {
-        MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
-        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
-        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
+        private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
+
+        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
-        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
-        bool ysnVATApplicable;
 
+        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        private bool ysnVATApplicable;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\ItemMangerPurchase";
-        string stop = "stopping SCM\\ItemMangerPurchase";
-        string perform = "Performance on SCM\\ItemMangerPurchase";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\ItemMangerPurchase";
+        private string stop = "stopping SCM\\ItemMangerPurchase";
+        private string perform = "Performance on SCM\\ItemMangerPurchase";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -51,6 +50,7 @@ namespace UI.SCM
                 catch { }
             }
         }
+
         private void LoadGrid()
         {
             var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
@@ -74,6 +74,7 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Y")
@@ -114,6 +115,7 @@ namespace UI.SCM
                 }
             }
         }
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -123,6 +125,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             try
@@ -132,6 +135,5 @@ namespace UI.SCM
             }
             catch { }
         }
-
     }
 }
