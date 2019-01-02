@@ -92,6 +92,10 @@ namespace UI.SCM
                     lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString();
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
                     imgUnit.ImageUrl = "/Content/images/img/" + intunit + ".png";
+                    decimal groundTotal=decimal.Parse(dt.Rows[0]["monTotal"].ToString());
+                    AmountFormat formatAmount = new AmountFormat();
+                    string totalAmountInWord = formatAmount.GetTakaInWords(groundTotal, "", "Only");
+                    lblInWard.Text = "In Word GT: " + totalAmountInWord;
                 }
                 else
                 {
@@ -135,9 +139,7 @@ namespace UI.SCM
                     dgvPoDetalis.FooterRow.Cells[8].HorizontalAlign = HorizontalAlign.Right;
                     dgvPoDetalis.FooterRow.Cells[9].Text = total.ToString("N2");
 
-                    AmountFormat formatAmount = new AmountFormat();
-                    string totalAmountInWord = formatAmount.GetTakaInWords(total, "", "Only");
-                    lblInWard.Text = "In Word: " + totalAmountInWord;
+                  
                 }
                 else
                 {

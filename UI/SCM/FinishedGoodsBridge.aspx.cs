@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using SCM_BLL;
+using System.Xml;
+using System.IO;
 using GLOBAL_BLL;
 using Flogging.Core;
 
@@ -12,26 +16,24 @@ namespace UI.SCM
 {
     public partial class FinishedGoodsBridge : BasePage
     {
-        private string xmlpath;
-        private DataTable dt = new DataTable();
-        private InventoryTransfer_BLL objinventoryTransfer = new InventoryTransfer_BLL();
+        string xmlpath;
+        DataTable dt = new DataTable();
+        InventoryTransfer_BLL objinventoryTransfer = new InventoryTransfer_BLL();
 
-        private SeriLog log = new SeriLog();
-        private string location = "SCM";
-        private string start = "starting SCM\\FinishedGoodsBridge";
-        private string stop = "stopping SCM\\FinishedGoodsBridge";
-        private string perform = "Performance on SCM\\FinishedGoodsBridge Show";
-
+        SeriLog log = new SeriLog();
+        string location = "SCM";
+        string start = "starting SCM\\FinishedGoodsBridge";
+        string stop = "stopping SCM\\FinishedGoodsBridge";
+        string perform = "Performance on SCM\\FinishedGoodsBridge Show";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
+            if(!IsPostBack)
+            {                
                 pnlUpperControl.DataBind();
                 DefaultPageLoad();
                 Panel1.Visible = false;
             }
         }
-
         private void DefaultPageLoad()
         {
             var fd = log.GetFlogDetail(start, location, "DefaultPageLoad", null);
@@ -39,15 +41,14 @@ namespace UI.SCM
             // starting performance tracker
             var tracker = new PerfTracker(perform, "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
-            try
-            {
+            try {
                 int intEnroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
                 dt = objinventoryTransfer.GetUnitListByEnrollData(intEnroll);
                 ddlUnit.DataSource = dt;
                 ddlUnit.DataTextField = "strUnit";
                 ddlUnit.DataValueField = "intUnitId";
                 ddlUnit.DataBind();
-            }
+            } 
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "DefauldtPageLoad", ex);
@@ -58,6 +59,8 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+
+
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,7 +75,7 @@ namespace UI.SCM
                 int unitid = Convert.ToInt32(ddlUnit.SelectedItem.Value);
                 dt = objinventoryTransfer.GetFGList(unitid);
                 ddlFG.DataSource = dt;
-                ddlFG.DataTextField = "strProduct";
+                ddlFG.DataTextField = "strProductName";
                 ddlFG.DataValueField = "intID";
                 ddlFG.DataBind();
 
@@ -107,15 +110,18 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+           
+
         }
 
         protected void btnAddFg_Click(object sender, EventArgs e)
         {
+           
             DataTable dt = new DataTable();
-            string strName = ddlFG.SelectedItem.Text;
+            string strName= ddlFG.SelectedItem.Text.ToString();
             string strDescription = "";
             string strPartNo = "";
-            string strBrand = "";
+            string strBrand="";
             int intClusterID = 2;
             int intComGroupID = 37;
             int intCategoryID = 45;
@@ -127,8 +133,10 @@ namespace UI.SCM
             int numConversion = Convert.ToInt32(txtCount.Text);
             int intSadStandardUOM = Convert.ToInt32(ddlSadUOM.SelectedItem.Value);
             int intInvUoM = Convert.ToInt32(ddlInvUOM.SelectedItem.Value);
+
             objinventoryTransfer.InsertItemList(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, intEnroll, dteLastActionTime, strUoM);
-            objinventoryTransfer.GetItemMasterList(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, strUoM, intEnroll, intUnit, SADItemID, numConversion, intSadStandardUOM, intInvUoM);
+            objinventoryTransfer.GetItemMasterList(strName,strDescription,strPartNo,strBrand,intClusterID,intComGroupID,intCategoryID,strUoM,intEnroll,intUnit,SADItemID,numConversion,intSadStandardUOM,intInvUoM);
+
             Panel1.Visible = false;
             try
             {
@@ -142,6 +150,7 @@ namespace UI.SCM
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Updated.');", true);
         }
 
+       
         protected void ddlFG_SelectedIndexChanged(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "ddlFG_SelectedIndexChanged", null);
@@ -248,6 +257,21 @@ namespace UI.SCM
         //    //// ends
         //    //tracker.Stop();
 
+
+
+
         //}
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }
