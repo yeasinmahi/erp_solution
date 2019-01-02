@@ -12,27 +12,51 @@ namespace SCM_BLL
     public class Bom_BLL
     {
         private static BomTDS.qryItemListDataTable[] tableBomItem = null;
-        int e;
+        private int e;
+
         public DataTable GetBomData(int Type, string xmlData, int intwh, int bomId, DateTime dteDate, int enroll)
         {
             try
             {
                 string msg = "";
                 SprBuildOfMaterialTableAdapter adp = new SprBuildOfMaterialTableAdapter();
-                return adp.GetBomData(Type, xmlData, intwh, bomId, dteDate, enroll,ref msg);
+                return adp.GetBomData(Type, xmlData, intwh, bomId, dteDate, enroll, ref msg);
             }
             catch { return new DataTable(); }
         }
 
-        public string[] AutoSearchBomId(string unit, string prefix,int itemType)
+        public DataTable UpdateRequsitionByReqId(decimal numQuantity, int reqId, int itemId)
         {
+            try
+            {
+                string msg = "";
+                qryRequisitionSummaryTableAdapter adp = new qryRequisitionSummaryTableAdapter();
+                return adp.UpdateRequsitionByReqId(numQuantity, reqId, itemId);
+            }
+            catch { return new DataTable(); }
+        }
 
-            if(itemType==1)
+        public bool UpdateRequsitionByProductId(decimal numQuantity, int productId, int itemId)
+        {
+            try
+            {
+                string msg = "";
+                qryRequisitionSummaryTableAdapter adp = new qryRequisitionSummaryTableAdapter();
+                return adp.UpdateRequsitionByProductId(numQuantity, productId, itemId) > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public string[] AutoSearchBomId(string unit, string prefix, int itemType)
+        {
+            if (itemType == 1)
             {
                 tableBomItem = new BomTDS.qryItemListDataTable[Convert.ToInt32(unit)];
                 qryItemListTableAdapter adpCOA = new qryItemListTableAdapter();
                 tableBomItem[e] = adpCOA.GetItemSearchData(Convert.ToInt32(unit));
-
             }
             else
             {
@@ -40,8 +64,6 @@ namespace SCM_BLL
                 qryItemListTableAdapter adpCOA = new qryItemListTableAdapter();
                 tableBomItem[e] = adpCOA.GetBomItemBy(Convert.ToInt32(unit));
             }
-            
-
 
             // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -49,7 +71,7 @@ namespace SCM_BLL
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableBomItem[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableBomItem[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.intItemID
                                select tmp;
                     if (rows.Count() > 0)
@@ -63,16 +85,13 @@ namespace SCM_BLL
                     {
                         var rows = from tmp in tableBomItem[e]
                                    where tmp.strItem.ToLower().Contains(prefix) || tmp.intItemID.ToString().ToLower().Contains(prefix)
-                                   orderby tmp.strItem 
+                                   orderby tmp.strItem
                                    select tmp;
-
 
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
-
                     }
                     catch
                     {
@@ -85,7 +104,7 @@ namespace SCM_BLL
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strItem"] + "[ UOM:" + tbl.Rows[i]["strUoM"] + "]"+ "[" + tbl.Rows[i]["intItemID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strItem"] + "[ UOM:" + tbl.Rows[i]["strUoM"] + "]" + "[" + tbl.Rows[i]["intItemID"] + "]";
                 }
 
                 return retStr;
@@ -94,7 +113,6 @@ namespace SCM_BLL
             {
                 return null;
             }
-
         }
 
         public DataTable getWorkstationParent()
@@ -104,21 +122,19 @@ namespace SCM_BLL
                 TblProcessWorkstationTableAdapter adp = new TblProcessWorkstationTableAdapter();
                 return adp.GetWorkstationData();
             }
-            catch {return new DataTable(); }
+            catch { return new DataTable(); }
         }
 
         public string BomPostData(int type, string xmlString, int intWh, int bomid, DateTime dteDate, int enroll)
-        { 
+        {
             string strMsg = "";
             try
             {
                 SprBuildOfMaterialTableAdapter adp = new SprBuildOfMaterialTableAdapter();
                 adp.GetBomData(type, xmlString, intWh, bomid, dteDate, enroll, ref strMsg);
-
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
-
         }
 
         public DataTable getChildData(int intwh, int parent)
@@ -139,7 +155,6 @@ namespace SCM_BLL
                 SprBillOfMaterialRoutingTableAdapter adp = new SprBillOfMaterialRoutingTableAdapter();
                 adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
             }
-           
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
@@ -150,11 +165,9 @@ namespace SCM_BLL
             {
                 string strMsg = "";
                 SprBillOfMaterialRoutingTableAdapter adp = new SprBillOfMaterialRoutingTableAdapter();
-               return adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
+                return adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
             }
             catch { return new DataTable(); }
         }
-
-       
     }
 }

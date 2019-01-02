@@ -1,8 +1,6 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -15,21 +13,22 @@ using Flogging.Core;
 
 namespace UI.SCM
 {
-    public partial class IssueReturn : System.Web.UI.Page
+    public partial class IssueReturn : BasePage
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        Location_BLL objOperation = new Location_BLL();
-        DataTable dt = new DataTable();
-        int enroll, intwh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private Location_BLL objOperation = new Location_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intwh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IssueReturn";
-        string stop = "stopping SCM\\IssueReturn";
-        string perform = "Performance on SCM\\IssueReturn";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IssueReturn";
+        private string stop = "stopping SCM\\IssueReturn";
+        private string perform = "Performance on SCM\\IssueReturn";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
@@ -48,9 +47,7 @@ namespace UI.SCM
         {
             try
             {
-
                 getIssueItem();
-
             }
             catch { }
         }
@@ -80,22 +77,19 @@ namespace UI.SCM
         {
             AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-           // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
-
         #endregion====================Close===============================
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                
                 Session["WareID"] = ddlWH.SelectedValue.ToString();
             }
             catch { }
         }
-
-        
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {
@@ -117,21 +111,20 @@ namespace UI.SCM
                     TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
                     TextBox txtRemarks = row.FindControl("txtRemarks") as TextBox;
                     Label lblIssueId = row.FindControl("lblIssueId") as Label;
-                     
+
                     string IssueID = lblIssueId.Text.ToString();
 
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     double returnQty = double.Parse(txtReturnQty.Text.ToString());
                     string remarks = txtRemarks.Text.ToString();
                     string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty.ToString() + '"' + " remarks=" + '"' + remarks + '"' + " IssueID=" + '"' + IssueID + '"' + "/></voucher>".ToString();
-                    if (returnQty>0)
+                    if (returnQty > 0)
                     {
-                        string msg = objIssue.StoreIssue(7, xmlData, intwh,int.Parse(itemid), DateTime.Now, enroll);
+                        string msg = objIssue.StoreIssue(7, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         getIssueItem();
-                    } 
+                    }
                 }
-
             }
             catch (Exception ex)
             {
@@ -140,7 +133,7 @@ namespace UI.SCM
             }
 
             fd = log.GetFlogDetail(stop, location, "btnReturn_Click", null);
-            Flogger.WriteDiagnostic(fd);        
+            Flogger.WriteDiagnostic(fd);
             tracker.Stop();
         }
     }

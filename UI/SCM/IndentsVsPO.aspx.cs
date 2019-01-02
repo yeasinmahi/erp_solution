@@ -2,31 +2,27 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class IndentsVsPO : System.Web.UI.Page
     {
-        Indents_BLL objIndent = new Indents_BLL();
+        private Indents_BLL objIndent = new Indents_BLL();
 
-        DataTable dt = new DataTable();
-        int enroll, intwh;
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IndentsVsPO";
-        string stop = "stopping SCM\\IndentsVsPO";
-        string perform = "Performance on SCM\\IndentsVsPO";
+        private DataTable dt = new DataTable();
+        private int enroll, intwh;
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IndentsVsPO";
+        private string stop = "stopping SCM\\IndentsVsPO";
+        private string perform = "Performance on SCM\\IndentsVsPO";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
@@ -34,7 +30,6 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataBind();
-
             }
             else { }
         }
@@ -58,9 +53,7 @@ namespace UI.SCM
                 dt = objIndent.DataView(15, xmlData, intwh, 0, DateTime.Now, enroll);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
-
             }
-           
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "btnStatement_Click", ex);

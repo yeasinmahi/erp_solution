@@ -380,6 +380,7 @@ namespace UI.Asset
         {
             var fd = log.GetFlogDetail(start, location, "BtnSave_Click", null);
             Flogger.WriteDiagnostic(fd);
+
             // starting performance tracker
             var tracker = new PerfTracker(perform + " " + "BtnSave_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);

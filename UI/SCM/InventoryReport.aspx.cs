@@ -2,28 +2,25 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class InventoryReport : BasePage
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        DataTable dt = new DataTable();int enroll, intwh, intSearchBy, intItem; string  strItem, strTypeId;
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\InventoryReport";
-        string stop = "stopping SCM\\InventoryReport";
-        string perform = "Performance on SCM\\InventoryReport";
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private DataTable dt = new DataTable(); private int enroll, intwh, intSearchBy, intItem; private string strItem, strTypeId;
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\InventoryReport";
+        private string stop = "stopping SCM\\InventoryReport";
+        private string perform = "Performance on SCM\\InventoryReport";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 DefaultDataBind();
             }
@@ -75,14 +72,12 @@ namespace UI.SCM
                 //ddlList1.DataTextField = "strName";
                 //ddlList1.DataBind();
                 //lblName.Text = strType;
-
             }
             catch { }
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -111,7 +106,7 @@ namespace UI.SCM
                 //    intSearchBy = 2;
                 //}
                 //else if (strType == "Item")
-                //{ 
+                //{
                 //    if (intItem>0)
                 //    {
                 //        intSearchBy = 3;
@@ -123,7 +118,7 @@ namespace UI.SCM
                 //        intType = int.Parse(ddlCategory.SelectedValue);
 
                 //    }
-                   
+
                 //}
                 //else if (strType == "Minor Category")
                 //{
@@ -159,7 +154,7 @@ namespace UI.SCM
                 }
                 else if (strType == "Item")
                 {
-                    if ( Convert.ToInt32(txtItemId.Text.ToString()) > 0)
+                    if (Convert.ToInt32(txtItemId.Text.ToString()) > 0)
                     {
                         intSearchBy = 3;
                         strTypeId = intItem.ToString();
@@ -168,7 +163,7 @@ namespace UI.SCM
                     {
                         intSearchBy = 4;
                         strTypeId = txtItemId.Text.ToString();
-                    } 
+                    }
                 }
 
                 #region===================Start========================
@@ -209,13 +204,12 @@ namespace UI.SCM
                 string strType = ddlSearchBy.SelectedItem.ToString();
 
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " strType=" + '"' + strType + '"' + "/></voucher>".ToString();
-                dt = objIssue.GetViewData(14, xmlData, intwh, 0, DateTime.Now, enroll); 
+                dt = objIssue.GetViewData(14, xmlData, intwh, 0, DateTime.Now, enroll);
                 ddlCategory.DataSource = dt;
                 ddlCategory.DataValueField = "Id";
                 ddlCategory.DataTextField = "strName";
                 ddlCategory.DataBind();
                 lblCategory.Text = strType;
-
             }
             catch (Exception ex)
             {

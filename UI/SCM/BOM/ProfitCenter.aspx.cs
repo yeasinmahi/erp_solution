@@ -1,31 +1,28 @@
 ﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using UI.ClassFiles;
 
 namespace UI.SCM.BOM
 {
     public partial class ProfitCenter : System.Web.UI.Page
     {
-        AssetMaintenance objWorkorderParts = new AssetMaintenance();
-        Bom_BLL objBom = new Bom_BLL();
-        DataTable dt = new DataTable();
-        int intwh, enroll, BomId; string xmlData;
-        int CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string filePathForXML; string xmlString = "", xmlstring2 = "";
+        private AssetMaintenance objWorkorderParts = new AssetMaintenance();
+        private Bom_BLL objBom = new Bom_BLL();
+        private DataTable dt = new DataTable();
+        private int intwh, enroll, BomId; private string xmlData;
+        private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML; private string xmlString = "", xmlstring2 = "";
 
-        int check;
-        string pID, pIDName, accountName, LocationData, Location;
+        private int check;
+        private string pID, pIDName, accountName, LocationData, Location;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/BomR__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -51,7 +48,6 @@ namespace UI.SCM.BOM
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
                     Session["unit"] = hdnUnit.Value.ToString();
                 }
-              
 
                 dt = objBom.getWorkstationParent();
                 ListBox1.DataSource = dt;
@@ -67,9 +63,8 @@ namespace UI.SCM.BOM
                     hdnOpName.Value = pIDName;
                 }
                 catch { }
-                 
-                pnlUpperControl.DataBind();
 
+                pnlUpperControl.DataBind();
             }
         }
 
@@ -79,14 +74,13 @@ namespace UI.SCM.BOM
         {
             Bom_BLL objBoms = new Bom_BLL();
 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText,1);
-
+            return objBoms.AutoSearchBomId(HttpContext.Current.Session["unit"].ToString(), prefixText, 1);
         }
+
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-
                 intwh = int.Parse(ddlWh.SelectedValue);
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
@@ -113,25 +107,23 @@ namespace UI.SCM.BOM
             }
             catch { }
         }
+
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            try { 
-            //{
-            //    LoadGridwithXml();
-            //    DataSet dsGrid = (DataSet)dgvRoute.DataSource;
-            //    dsGrid.Tables[0].Rows[dgvRoute.Rows[e.RowIndex].DataItemIndex].Delete();
-            //    dsGrid.WriteXml(filePathForXML);
-            //    DataSet dsGridAfterDelete = (DataSet)dgvRoute.DataSource;
-            //    if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-            //    { File.Delete(filePathForXML); dgvRoute.DataSource = ""; dgvRoute.DataBind(); }
-            //    else { LoadGridwithXml(); }
-
-
+            try
+            {
+                //{
+                //    LoadGridwithXml();
+                //    DataSet dsGrid = (DataSet)dgvRoute.DataSource;
+                //    dsGrid.Tables[0].Rows[dgvRoute.Rows[e.RowIndex].DataItemIndex].Delete();
+                //    dsGrid.WriteXml(filePathForXML);
+                //    DataSet dsGridAfterDelete = (DataSet)dgvRoute.DataSource;
+                //    if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                //    { File.Delete(filePathForXML); dgvRoute.DataSource = ""; dgvRoute.DataBind(); }
+                //    else { LoadGridwithXml(); }
             }
-
             catch { }
         }
-
 
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -160,13 +152,12 @@ namespace UI.SCM.BOM
                 else if (LinkButton8.Text.Length == 0) { LinkButton8.Text = accountName.ToString(); hdn7.Value = pID; }
                 else if (LinkButton9.Text.Length == 0) { LinkButton9.Text = accountName.ToString(); hdn8.Value = pID; }
                 else if (LinkButton10.Text.Length == 0) { LinkButton10.Text = accountName.ToString(); hdn9.Value = pID; }
-
-
             }
             catch { }
         }
 
         #region==================Link Button Chaild View======================
+
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
             try
@@ -179,15 +170,14 @@ namespace UI.SCM.BOM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
 
-
                 LinkButton2.Text = string.Empty;
                 LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-               // checkParent();
+                // checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton2_Click(object sender, EventArgs e)
         {
             try
@@ -204,16 +194,15 @@ namespace UI.SCM.BOM
 
                 LinkButton3.Text = string.Empty; LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-               // checkParent();
+                // checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton3_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn2.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton3.Text.ToString();
@@ -225,16 +214,15 @@ namespace UI.SCM.BOM
                 ListBox1.DataBind();
                 LinkButton4.Text = string.Empty; LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-              //  checkParent();
+                //  checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton4_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn3.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton4.Text.ToString();
@@ -247,16 +235,15 @@ namespace UI.SCM.BOM
 
                 LinkButton5.Text = string.Empty; LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-              //  checkParent();
+                //  checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton5_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn4.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton5.Text.ToString();
@@ -269,16 +256,15 @@ namespace UI.SCM.BOM
 
                 LinkButton6.Text = string.Empty; LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-               // checkParent();
+                // checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton6_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn5.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton6.Text.ToString();
@@ -291,16 +277,15 @@ namespace UI.SCM.BOM
 
                 LinkButton7.Text = string.Empty; LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-              //  checkParent();
+                //  checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton7_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn6.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton7.Text.ToString();
@@ -313,16 +298,15 @@ namespace UI.SCM.BOM
 
                 LinkButton8.Text = string.Empty;
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-              //  checkParent();
+                //  checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton8_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn7.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton8.Text.ToString();
@@ -333,17 +317,15 @@ namespace UI.SCM.BOM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
                 LinkButton9.Text = string.Empty; LinkButton10.Text = string.Empty;
-               // checkParent();
+                // checkParent();
             }
             catch { }
-
         }
 
         protected void LinkButton9_Click(object sender, EventArgs e)
         {
             try
             {
-
                 pID = hdn8.Value;
                 hdnOpID.Value = pID;
                 hdnOpName.Value = LinkButton9.Text.ToString();
@@ -354,11 +336,11 @@ namespace UI.SCM.BOM
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
                 LinkButton10.Text = string.Empty;
-              //  checkParent();
+                //  checkParent();
             }
             catch { }
-
         }
+
         protected void LinkButton10_Click(object sender, EventArgs e)
         {
             try
@@ -372,10 +354,9 @@ namespace UI.SCM.BOM
                 ListBox1.DataTextField = "strName";
                 ListBox1.DataValueField = "Id";
                 ListBox1.DataBind();
-               // checkParent();
+                // checkParent();
             }
             catch { }
-
         }
 
         #endregion=================Close================================================

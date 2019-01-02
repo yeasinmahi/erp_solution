@@ -16,26 +16,25 @@ namespace UI.SCM
     public partial class BillRegistrationOldOne : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
-        Billing_BLL objBillReg = new Billing_BLL();
-        DataTable dt;
+        private Billing_BLL objBillReg = new Billing_BLL();
+        private DataTable dt;
 
-        string filePathForXML, xmlString, xml, challan, mrrid, amount;
-        int intUnitid, intPOID, intSuppid, intCOAID, intEnroll;
-        string strPType, strReffNo;
+        private string filePathForXML, xmlString, xml, challan, mrrid, amount;
+        private int intUnitid, intPOID, intSuppid, intCOAID, intEnroll;
+        private string strPType, strReffNo;
 
         #endregion ====================================================================================
 
         #region===== Page Load Event ==================================================================
+
         protected void Page_Load(object sender, EventArgs e)
         {
             try
             {
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-               
 
                 if (!IsPostBack)
                 {
-                  
                     GetDDLList();
                     TrueFasle();
 
@@ -46,6 +45,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         private void GetDDLList()
         {
             try
@@ -57,7 +57,6 @@ namespace UI.SCM
                 ddlBillingUnit.DataBind();
 
                 dt = objBillReg.GetAllUnit();
-               
             }
             catch { }
         }
@@ -65,7 +64,6 @@ namespace UI.SCM
         #endregion=====================================================================================
 
         #region===== Web Method For Employee Search ===================================================
-
 
         [WebMethod]
         [ScriptMethod]
@@ -101,14 +99,17 @@ namespace UI.SCM
             Billing_BLL objAutoSearch_BLL = new Billing_BLL();
             return objAutoSearch_BLL.AutoSearchOtherParty(prefixText);
         }
+
         #endregion=====================================================================================
 
-        #region ===== Selection Change Event ===========================================================  
+        #region ===== Selection Change Event ===========================================================
+
         protected void ddlRefference_SelectedIndexChanged(object sender, EventArgs e)
         {
             TrueFasle();
             HttpContext.Current.Session["Unitid"] = ddlBillingUnit.SelectedValue.ToString();
         }
+
         protected void ddlBillingUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -121,8 +122,6 @@ namespace UI.SCM
 
         protected void ddlPartyType_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-
             try
             {
                 intUnitid = int.Parse(ddlBillingUnit.SelectedValue.ToString());
@@ -148,7 +147,6 @@ namespace UI.SCM
                     txtOtherPartyName.Visible = false;
                     txtCommonText.Visible = false;
                     txtPOAmount.Enabled = false;
-                   
                 }
                 else if (strPType == "Others")
                 {
@@ -164,7 +162,6 @@ namespace UI.SCM
                     txtOtherPartyName.Visible = false;
                     txtCommonText.Visible = true;
                 }
-
             }
             catch { }
         }
@@ -173,13 +170,12 @@ namespace UI.SCM
         {
             try
             {
-               // intEnroll = int.Parse(txtSearch.Text);
+                // intEnroll = int.Parse(txtSearch.Text);
 
                 dt = objBillReg.GetEmpName(intEnroll);
                 if (dt.Rows.Count > 0)
                 {
                     txtEmplyeeName.Text = dt.Rows[0]["EmpName"].ToString();
-                  
                 }
                 else
                 {
@@ -189,7 +185,6 @@ namespace UI.SCM
             catch { }
         }
 
-       
         private void TrueFasle()
         {
             string strRefName = ddlRefference.SelectedItem.ToString();
@@ -218,7 +213,6 @@ namespace UI.SCM
                 lblAdvance.Enabled = false;
             }
 
-          
             txtPreAdvance.Enabled = false;
             txtPOAmount.Text = "";
             txtAdvance.Text = "";
@@ -227,7 +221,8 @@ namespace UI.SCM
 
         #endregion =====================================================================================
 
-        #region ===== btnGo Button Action ==============================================================  
+        #region ===== btnGo Button Action ==============================================================
+
         protected void btnGo_Click(object sender, EventArgs e)
         {
             try
@@ -290,7 +285,7 @@ namespace UI.SCM
                 //        //txtLBalance.Text = dt.Rows[0]["monLedgerBalance"].ToString();
                 //    }
                 //}
-                //else { //txtLBalance.Text = "0"; 
+                //else { //txtLBalance.Text = "0";
                 //}
 
                 dt = objBillReg.GetChallanByPOID(intPOID);
@@ -298,28 +293,23 @@ namespace UI.SCM
                 dgvChallan.DataSource = dt;
                 dgvChallan.DataBind();
 
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     totalAmount = dt.AsEnumerable().Sum(row => row.Field<decimal>("monAmo"));
-                    if(totalAmount.ToString()==null)
+                    if (totalAmount.ToString() == null)
                     {
                         totalAmount = 0;
                     }
                     dgvChallan.FooterRow.Cells[2].Text = "Total Amount";
                     dgvChallan.FooterRow.Cells[3].Text = totalAmount.ToString("N2");
                 }
-                
-
-
             }
             catch { }
-
         }
 
         #endregion =====================================================================================
 
-        decimal totalAmount = 0;
-       
+        private decimal totalAmount = 0;
 
         protected void dgvLoan_RowCommand(object sender, GridViewCommandEventArgs e)
         {
@@ -366,22 +356,19 @@ namespace UI.SCM
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
         }
-
-
 
         #region ===== Item Add & Load Grid Action ===========================================================
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-          
             CreateAddXml(challan, mrrid, amount);
-
         }
+
         private void CreateAddXml(string challan, string mrrid, string amount)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("SOItem");
@@ -400,6 +387,7 @@ namespace UI.SCM
             doc.Save(filePathForXML);
             LoadGridwithXml();
         }
+
         private void LoadGridwithXml()
         {
             try
@@ -410,15 +398,19 @@ namespace UI.SCM
                 xmlString = "<SOItem>" + xmlString + "</SOItem>";
                 StringReader sr = new StringReader(xmlString);
                 DataSet ds = new DataSet(); ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0) {
+                if (ds.Tables[0].Rows.Count > 0)
+                {
                     dgvChallan.DataSource = ds;
-                } else {
+                }
+                else
+                {
                     dgvChallan.DataSource = "";
                 }
                 dgvChallan.DataBind();
             }
             catch { dgvChallan.DataSource = ""; dgvChallan.DataBind(); }
         }
+
         private XmlNode CreateItemNode(XmlDocument doc, string challan, string mrrid, string amount)
         {
             XmlNode node = doc.CreateElement("SOItem");
@@ -432,6 +424,7 @@ namespace UI.SCM
             node.Attributes.Append(Amount);
             return node;
         }
+
         protected void dgvAdd_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -461,6 +454,7 @@ namespace UI.SCM
 
         protected decimal totalqty = 0;
         protected decimal totalvalue = 0;
+
         protected void dgvSOItem_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
@@ -475,16 +469,5 @@ namespace UI.SCM
         }
 
         #endregion ==========================================================================================
-
-
-
-
-
-
-
-
-
-
-
     }
 }

@@ -60,17 +60,21 @@
                         <div class="panel-body">
                             <div class="row form-group">
                                 <div class="col-md-3">
-                                    <asp:Label ID="Label1" runat="server" Text="From Date"></asp:Label>
-                                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off"></asp:TextBox>
+                                    <asp:Label ID="Label1" runat="server" Text="From Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-8 col-sm-8 col-xs-8" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
-                                    <%--<asp:TextBox ID="TextBox1" runat="server" CssClass="form-control col-md-2 col-sm-4 col-xs-4" Width="50" autocomplete="off"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtFormTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm" Text="00:00"></asp:TextBox>
+
+
                                 </div>
-                                
+
                                 <div class="col-md-3">
-                                    <asp:Label ID="Label2" runat="server" Text="To Date"></asp:Label>
-                                    <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off"></asp:TextBox>
+                                    <asp:Label ID="Label2" runat="server" Text="To Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-8 col-sm-8 col-xs-8" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
-                                    <%--<asp:TextBox ID="TextBox2" runat="server" CssClass="form-control col-md-2 col-sm-4 col-xs-4" Width="50" autocomplete="off"></asp:TextBox>--%>
+                                    <asp:TextBox ID="txtToTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm" Text="23:59"></asp:TextBox>
+
+
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label3" runat="server" Text="Ware House"></asp:Label>
@@ -92,7 +96,7 @@
                                         <asp:ListItem Text="Commodity" Value="8"></asp:ListItem>
                                         <asp:ListItem Text="Store Location" Value="9"></asp:ListItem>
                                         <asp:ListItem Text="Plant" Value="10"></asp:ListItem>
-                                        
+
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -101,7 +105,6 @@
 
                                     <asp:Label ID="Label5" runat="server" Text="Type"></asp:Label>
                                     <asp:DropDownList ID="ddlSubCategory" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 "></asp:DropDownList>
-
 
                                 </div>
                                 <div class="col-md-3 hidden" id="itemname">
@@ -129,6 +132,15 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <script>
+            $(document).ready(function () {
+                Init();
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
+                
+            });
+            function Init() {
+                $("#txtFormTime").timepicker();
+                $("#txtToTime").timepicker();
+            }
             function Validation() {
                 var txtFromDate = document.getElementById("txtFromDate").value;
                 var txtToDate = document.getElementById("txtToDate").value;
@@ -138,7 +150,7 @@
                     return false;
                 } else if (txtToDate == "") {
                     ShowNotification("To date can not be blank", "Inventory Statement Report", "warning");
-                     return false;
+                    return false;
                 }
                 return true;
 
@@ -177,6 +189,7 @@
 
                 return true;
             }
+
 
         </script>
     </form>
