@@ -130,13 +130,22 @@ namespace UI.HR.Reports {
         protected global::System.Web.UI.WebControls.TextBox txtEmp;
         
         /// <summary>
-        /// AutoCompleteExtender1 control.
+        /// hdfEmpCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
+        protected global::System.Web.UI.WebControls.HiddenField hdfEmpCode;
+        
+        /// <summary>
+        /// hdfSearchBoxTextChange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdfSearchBoxTextChange;
         
         /// <summary>
         /// txtFromDate control.
