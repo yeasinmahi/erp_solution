@@ -307,6 +307,7 @@
                             <td style="text-align: left; border: 1px solid gray">No of Installment</td>
                             <td style="text-align: left; border: 1px solid gray">
                                 <asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
+                             
                         </tr>
                         <tr>
                             <td style="text-align: left; border: 1px solid gray">Installment Interval (Days)</td>
