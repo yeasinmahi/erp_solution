@@ -139,8 +139,8 @@ namespace UI.SAD.Customer.Report
                     tempD.Append(@"<tr style=""background-color:#D0D0D0"">
                             <td style=""width:110px""> <b>Sales Order </b>  </td>
                             <td style=""width:240px""> " + CommonClass.GetShortDateAtLocalDateFormat(dteDate) + @"  </td>
-                            <td style=""width:110px""> <b>Delivery Order (D.O)</b>  </td>
-                            <td style=""width:110px"" align=""center""> <b style=""color:#990000; font-size:12px;"">" + txtDO.Text.Trim() + @"</b>  </td>
+                            <td style=""width:110px""> <b>Delivery Order </b>  </td>
+                            <td style=""width:110px"" align=""center""> <b style=""color:#990000;"">" + txtDO.Text.Trim() + @"</b>  </td>
                            </tr>");
                     tempD.Append(@"<tr style=""background-color:#F0F0F0"">
                             <td> <b>Customer</b>  </td><td> " + strCustomer + @"  </td><td> <b>Party Code</b>  </td><td> " + customercode + @"  </td></tr>");
@@ -197,11 +197,11 @@ namespace UI.SAD.Customer.Report
                         {
                             sb.Append("<tr style=\" \"><td>" + (i + 1) + "</td>");
 
-                            sb.Append("<td>" + tbl[i].strProductName + "</td>");
-                            sb.Append("<td>" + tbl[i].strUOM + "</td>");
-                            sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(tbl[i].numQuantity) + "</td>");
-                            sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(tbl[i].monPrice) + "</td>");
-                            sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(tbl[i].numQuantity* tbl[i].monPrice) + "</td>");
+                            sb.Append("<td style=\"text-align:center\">" + tbl[i].strProductName + "</td>");
+                            sb.Append("<td style=\"text-align:center\">" + tbl[i].strUOM + "</td>");
+                            sb.Append("<td style=\"text-align:center\">" + CommonClass.GetFormettingNumber(tbl[i].numQuantity) + "</td>");
+                            sb.Append("<td style=\"text-align:center\">" + CommonClass.GetFormettingNumber(tbl[i].monPrice) + "</td>");
+                            sb.Append("<td style=\"text-align:center\">" + CommonClass.GetFormettingNumber(tbl[i].numQuantity* tbl[i].monPrice) + "</td>");
                             sb.Append("</tr>");
 
                             if ((tbl[i].IsnumPromotionNull() ? 0 : tbl[i].numPromotion) > 0)
@@ -222,9 +222,9 @@ namespace UI.SAD.Customer.Report
 
 
                         sb.Append("<tr style=\"background-color:#E0E0E0\">" +
-                            "<th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th>" +
-                            "<th style =\"text-align:right;\">" +" "+ "</th>"+
-                            "<th style=\"text-align:right;\">" + wgt + "</th></tr>");
+                            "<th colspan=\"3\">TOTAL</th><th style=\"text-align:center;\">" + count + "</th>" +
+                            "<th style =\"text-align:center;\">" +" "+ "</th>"+
+                            "<th style=\"text-align:center;\">" + wgt + "</th></tr>");
 
                         sb.Append("</table>");
                    
