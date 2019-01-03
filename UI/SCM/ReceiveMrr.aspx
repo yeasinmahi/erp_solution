@@ -18,7 +18,9 @@
         $("[id*=txtReceiveQty]").live("change", function () {
             if (isNaN(parseFloat($(this).val()))) {
                 $(this).val('0');
-            } else { parseFloat($(this).val($(this).val()).toString()).toFixed(2); }
+            } else {
+                 parseFloat($(this).val($(this).val()).toString()).toFixed(2);
+            }
         });
 
         $("[id*=txtReceiveQty]").live("keyup", function () {
@@ -31,7 +33,7 @@
                     var preReceQty = parseFloat($("[id*=lblPreviousReceive]", row).html());
                     var receQty = parseFloat($(this).val());
                     var rtotal = parseFloat(monValue / poqty * receQty);
-                    var remain = parseFloat(poqty - preReceQty)
+                    var remain = parseFloat(poqty - preReceQty);
                     var remainQty = remain + remain * 0.1;
 
                     if (remainQty >= receQty) {
@@ -59,13 +61,26 @@
             var vatChallan = document.getElementById("txtVatChallan").value;
             var vatAmount = document.getElementById("txtVatAmount").value;
 
-            if ($.trim(Po) == 0 || $.trim(Po) == "" || $.trim(Po) == null || $.trim(Po) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Po'); }
-            else if ($.trim(challan) == 0 || $.trim(challan) == "" || $.trim(challan) == null || $.trim(challan) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set Challan No'); }
-            else if ($.trim(challanDate) == 0 || $.trim(challanDate) == "" || $.trim(challanDate) == null || $.trim(challanDate) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Challan Date'); }
+            if ($.trim(Po) == 0 || $.trim(Po) == "" || $.trim(Po) == null || $.trim(Po) == undefined) {
+                 document.getElementById("hdnConfirm").value = "0"; alert('Please select Po');
+            }
+            else if ($.trim(challanDate) == 0 ||
+                $.trim(challanDate) == "" ||
+                $.trim(challanDate) == null ||
+                $.trim(challanDate) == undefined) {
+                 document.getElementById("hdnConfirm").value = "0"; alert('Please select Challan Date');
+            }
            // else if ($.trim(vatChallan) == 0 || $.trim(vatChallan) == "" || $.trim(vatChallan) == null || $.trim(vatChallan) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set vatChallan number'); }
-            else if ($.trim(vatAmount) == "" || $.trim(vatAmount) == null || $.trim(vatAmount) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set Vat Amount'); }
+            else if ($.trim(vatAmount) == "" || $.trim(vatAmount) == null || $.trim(vatAmount) == undefined) {
+                 document.getElementById("hdnConfirm").value = "0"; alert('Please set Vat Amount');
+            }
              
-            else if ($.trim(challanDate).length < 3 || $.trim(challanDate) == "" || $.trim(challanDate) == null || $.trim(challanDate) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please set  Challan  Date'); }
+            else if ($.trim(challanDate).length < 3 ||
+                $.trim(challanDate) == "" ||
+                $.trim(challanDate) == null ||
+                $.trim(challanDate) == undefined) {
+                 document.getElementById("hdnConfirm").value = "0"; alert('Please set  Challan  Date');
+            }
             else {
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
@@ -84,8 +99,15 @@
             var poType = pt.options[e.selectedIndex].value;
             
 
-            if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select WH'); }
-            else if ($.trim(poType) == 0 || $.trim(poType) == "" || $.trim(poType) == null || $.trim(poType) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type'); }
+            if ($.trim(wh) == 0 || $.trim(wh) == "" || $.trim(wh) == null || $.trim(wh) == undefined) {
+                 document.getElementById("hdnConfirm").value = "0"; alert('Please select WH');
+            }
+            else if ($.trim(poType) == 0 ||
+                $.trim(poType) == "" ||
+                $.trim(poType) == null ||
+                $.trim(poType) == undefined) {
+                 document.getElementById("hdnConfirm").value = "0"; alert('Please select PO Type');
+            }
                  
             else {
                 document.getElementById("hdnConfirm").value = "1";  
