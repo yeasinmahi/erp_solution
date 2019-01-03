@@ -1,10 +1,8 @@
 ﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -12,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+
 //using MySql.Data.MySqlClient;
 
 namespace UI.SCM.Transfer
@@ -20,15 +19,15 @@ namespace UI.SCM.Transfer
     {
         //string connectString = @"server=10.17.110.5, databasse=test-ag, Uid=root;Pwd=vicidialnow";
 
+        private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
+        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+        private Location_BLL objOperation = new Location_BLL();
+        private StoreIssue_BLL objWH = new StoreIssue_BLL();
+        private DataTable dt = new DataTable(); private string xmlString, filePathForXML; private int Id;
+        private int enroll, intvehicleId, intWh; private string[] arrayKey, arrayKeyV; private char[] delimiterChars = { '[', ']' };
+        private int CheckItem = 1; private decimal values;
+        private string connectString;
 
-        InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
-        AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-        Location_BLL objOperation = new Location_BLL();
-        StoreIssue_BLL objWH = new StoreIssue_BLL();
-        DataTable dt = new DataTable(); string xmlString, filePathForXML; int Id;
-        int enroll, intvehicleId, intWh; string[] arrayKey, arrayKeyV; char[] delimiterChars = { '[', ']' };
-        int CheckItem = 1; decimal values;
-        string connectString;
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/adj__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -45,7 +44,7 @@ namespace UI.SCM.Transfer
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
-                Session["WareID"] = ddlWh.SelectedValue.ToString(); 
+                Session["WareID"] = ddlWh.SelectedValue.ToString();
 
                 //try
                 //{
@@ -55,7 +54,7 @@ namespace UI.SCM.Transfer
                 //        MySqlCommand sqlcmd = new MySqlCommand("akij", sqlcon);
                 //        sqlcmd.CommandType = CommandType.TableDirect;
                 //        sqlcmd.Parameters.AddWithValue("name", "0");
-                //        sqlcmd.Parameters.AddWithValue("mobile", "0"); 
+                //        sqlcmd.Parameters.AddWithValue("mobile", "0");
                 //        sqlcmd.ExecuteNonQuery();
                 //    }
                 //}
@@ -68,14 +67,15 @@ namespace UI.SCM.Transfer
             try
             {
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
-                txtItem.Text = ""; txtRemarks.Text = "";  
+                txtItem.Text = ""; txtRemarks.Text = "";
                 ddlLcation.DataSource = "";
                 ddlLcation.DataBind();
-               
+
                 hdnStockQty.Value = "0";
             }
             catch { }
         }
+
         protected void txtItem_TextChanged(object sender, EventArgs e)
         {
             try
@@ -100,25 +100,22 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                 
-                    arrayKey = txtItem.Text.Split(delimiterChars);
-                    string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
-                     
-                     
-                    string locationId = ddlLcation.SelectedValue.ToString();
-                    string locationName = ddlLcation.SelectedValue.ToString();
-                    string transType = ddlType.SelectedItem.ToString();
-                    string transTypeId = ddlType.SelectedValue.ToString();
-                    uom = hdnUom.Value.ToString();
-                    string qty = txtQty.Text.ToString();
-                    string rate = txtRate.Text.ToString();
-                    string remarks = txtRemarks.Text.ToString();
-                    decimal monValue = decimal.Parse(qty) * decimal.Parse(rate); 
-                    string enroll = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
 
-                  
+                string locationId = ddlLcation.SelectedValue.ToString();
+                string locationName = ddlLcation.SelectedValue.ToString();
+                string transType = ddlType.SelectedItem.ToString();
+                string transTypeId = ddlType.SelectedValue.ToString();
+                uom = hdnUom.Value.ToString();
+                string qty = txtQty.Text.ToString();
+                string rate = txtRate.Text.ToString();
+                string remarks = txtRemarks.Text.ToString();
+                decimal monValue = decimal.Parse(qty) * decimal.Parse(rate);
+                string enroll = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
+
                 if (decimal.Parse(qty) > 0 || decimal.Parse(rate) > 0)
                 {
                     checkXmlItemData(itemid);
@@ -128,14 +125,10 @@ namespace UI.SCM.Transfer
                         txtItem.Text = ""; txtQty.Text = "0"; txtRate.Text = "0";
                         ddlLcation.DataSource = "";
                         ddlLcation.DataBind();
-
                     }
                     else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input Valid Quantity and Rate');", true); }
-                   
-               
-
             }
             catch { }
         }
@@ -143,7 +136,7 @@ namespace UI.SCM.Transfer
         private void CreateXml(string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
@@ -162,6 +155,7 @@ namespace UI.SCM.Transfer
             doc.Save(filePathForXML);
             LoadGridwithXml();
         }
+
         private void LoadGridwithXml()
         {
             try
@@ -178,10 +172,10 @@ namespace UI.SCM.Transfer
                 { dgvStore.DataSource = ds; }
                 else { dgvStore.DataSource = ""; }
                 dgvStore.DataBind();
-
             }
             catch { }
         }
+
         private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
@@ -206,16 +200,13 @@ namespace UI.SCM.Transfer
             XmlAttribute TransType = doc.CreateAttribute("transType");
             TransType.Value = transType;
             XmlAttribute TransTypeId = doc.CreateAttribute("transTypeId");
-            TransTypeId.Value = transTypeId; 
+            TransTypeId.Value = transTypeId;
 
             XmlAttribute Uom = doc.CreateAttribute("uom");
             Uom.Value = uom;
-           
 
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
-          
-
 
             node.Attributes.Append(Item);
             node.Attributes.Append(Itemid);
@@ -227,9 +218,8 @@ namespace UI.SCM.Transfer
             node.Attributes.Append(TransType);
             node.Attributes.Append(TransTypeId);
             node.Attributes.Append(Uom);
-            node.Attributes.Append(MonValue); 
+            node.Attributes.Append(MonValue);
             node.Attributes.Append(Remarks);
-   
 
             return node;
         }
@@ -261,7 +251,6 @@ namespace UI.SCM.Transfer
                 }
             }
             catch { }
-
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -277,61 +266,60 @@ namespace UI.SCM.Transfer
                 { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
                 else { LoadGridwithXml(); }
             }
-
             catch { }
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-
-
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
-                { 
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWh.SelectedValue); 
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                XmlDocument doc = new XmlDocument();
+                intWh = int.Parse(ddlWh.SelectedValue);
 
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<voucher>" + xmlString + "</voucher>";
 
-                    try { File.Delete(filePathForXML); } catch { }
-                    if (xmlString.Length > 5)
-                    {
-                        //string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
-                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                        //dgvStore.DataSource = "";
-                        //dgvStore.DataBind();
-
-                        //txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
-                        //ddlLcation.DataSource = dt;
-                        //ddlLcation.DataBind();
-                        //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-                        //hdnStockQty.Value = "0"; 
-                    }
-
+                try
+                {
+                    File.Delete(filePathForXML);
                 }
+                catch
+                {
+                }
+                if (xmlString.Length > 5)
+                {
+                    //string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    //dgvStore.DataSource = "";
+                    //dgvStore.DataBind();
 
+                    //txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
+                    //ddlLcation.DataSource = dt;
+                    //ddlLcation.DataBind();
+                    //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                    //hdnStockQty.Value = "0";
+                }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch
+            {
+                try { File.Delete(filePathForXML); } catch { }
+            }
         }
 
-        #region========================Auto Search============================ 
+        #region========================Auto Search============================
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
             AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-           // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-
+            // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
- 
 
-        #endregion====================Close====================================== 
-
+        #endregion====================Close======================================
     }
 }

@@ -124,7 +124,7 @@ namespace UI.AEFPS
                     ItemName = txtItemname.Text;
                     intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
                     objAEFPS.getinsertDIT(qrcode, intitemid, ItemName, qty, price, qty * price, intInsertby, decimal.Parse(ddlDiscountList.SelectedValue.ToString()), decimal.Parse(ddlDiscountList.SelectedValue.ToString())*(qty*price));
-                    dtDetails = objAEFPS.getReport(intInsertby);
+                    dtDetails = objAEFPS.getReportditf(intInsertby);
                     if (dtDetails.Rows.Count > 0)
                     {
                         dgvRptTemp.DataSource = dtDetails;
@@ -465,7 +465,8 @@ namespace UI.AEFPS
 
 
             objAEFPS.InsertUpdateAndReportDITF(id);
-            dt = objAEFPS.getReport(intEntryid);
+            dt = objAEFPS.getReportditf(intEntryid);
+           // dt = objAEFPS.getReport(intEntryid);
             if (dt.Rows.Count > 0)
             {
                 dgvRptTemp.DataSource = dt;

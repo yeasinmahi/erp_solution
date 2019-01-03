@@ -1,28 +1,16 @@
-﻿using SCM_BLL;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
-using System.IO;
-using System.Xml;
 using Purchase_BLL.SupplyChain;
-using HR_BLL.Global;
-
 
 namespace UI.SCM
 {
     public partial class SupplierBlackListEntry : BasePage
     {
-        CSM obj = new CSM(); DataTable dt;
-        int intSuppMasterID; string strBlockRemarks;
+        private CSM obj = new CSM(); private DataTable dt;
+        private int intSuppMasterID; private string strBlockRemarks;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,7 +21,6 @@ namespace UI.SCM
 
                 if (!IsPostBack)
                 {
-
                 }
             }
             catch { }
@@ -71,13 +58,14 @@ namespace UI.SCM
                     }
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
-            }            
+            }
         }
-        
+
         protected void btnShow_Click(object sender, EventArgs e)
-        {   
+        {
             LoadGrid();
         }
+
         private void LoadGrid()
         {
             System.Threading.Thread.Sleep(1500);
@@ -99,6 +87,7 @@ namespace UI.SCM
                 dgvSuppliser.DataBind();
             }
         }
+
         protected void dgvSuppliser_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -107,23 +96,7 @@ namespace UI.SCM
                 "this.originalcolor=this.style.backgroundColor;" + " this.style.backgroundColor='#FEEC9C';");
 
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=this.originalcolor;");
-
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

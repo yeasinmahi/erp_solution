@@ -2,28 +2,26 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class IssueStatement : BasePage
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
-         
-        DataTable dt = new DataTable();
-        int enroll, intwh, intIssue; string[] arrayKey; char[] delimiterChars = { '[', ']' };string  strIssue;
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IssueStatement";
-        string stop = "stopping SCM\\IssueStatement";
-        string perform = "Performance on SCM\\IssueStatement";
+        private DataTable dt = new DataTable();
+        private int enroll, intwh, intIssue; private string[] arrayKey; private char[] delimiterChars = { '[', ']' }; private string strIssue;
+
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IssueStatement";
+        private string stop = "stopping SCM\\IssueStatement";
+        private string perform = "Performance on SCM\\IssueStatement";
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -36,7 +34,7 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
@@ -62,10 +60,10 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 try { intIssue = int.Parse(txtIssueNo.Text.ToString()); } catch { intIssue = 0; }
-                if(txtIssueNo.Text.Length >2) { strIssue = txtIssueNo.Text.ToString(); } else { strIssue = "0".ToString();}
+                if (txtIssueNo.Text.Length > 2) { strIssue = txtIssueNo.Text.ToString(); } else { strIssue = "0".ToString(); }
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " strIssue=" + '"' + strIssue + '"' + " intIssue=" + '"' + intIssue + '"' + "/></voucher>".ToString();
                 dt = objIssue.GetViewData(8, xmlData, intwh, 0, DateTime.Now, enroll);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     dgvStatement.DataSource = dt;
                     dgvStatement.DataBind();
@@ -76,8 +74,6 @@ namespace UI.SCM
                     dgvStatement.DataBind();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
                 }
-                
-
             }
             catch (Exception ex)
             {
@@ -89,7 +85,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
     }
 }

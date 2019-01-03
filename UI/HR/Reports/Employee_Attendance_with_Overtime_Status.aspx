@@ -51,12 +51,12 @@
                            </tr>
                            <tr>
                                <td>
-                                   <asp:TextBox ID="txtEmp" CssClass="txtBox1" Width="300" runat="server" placeholder="Search Employee Here"></asp:TextBox>
-                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtEmp"
+                                   <asp:TextBox ID="txtEmp" CssClass="txtBox1" Width="300" runat="server" placeholder="Search Employee Here" onchange="javascript: Changed();"></asp:TextBox>
+                                        <%--<cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtEmp"
                                         ServiceMethod="SearchEmployee" MinimumPrefixLength="1" CompletionSetCount="1"
                                         CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                                        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender> 
-
+                                        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender>--%> 
+                                       <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
                                </td><td></td>
                                <td>
                                    <asp:TextBox ID="txtFromDate" runat="server" ></asp:TextBox>
@@ -104,6 +104,32 @@
             if (emp == null || emp == "") {
                 alert("Please Enter Employee");
             }
+        }
+
+        $(document).ready(function () {
+            SearchText();
+        });
+        function Changed() {
+            document.getElementById('hdfSearchBoxTextChange').value = 'true';
+        }
+        function SearchText() {
+            $("#txtEmp").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;",
+                        url: "Employee_Attendance_with_Overtime_Status.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtEmp').value + "'}",
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            //alert("Error");
+                        }
+                    });
+                }
+            });
         }
     </script>
     </body>

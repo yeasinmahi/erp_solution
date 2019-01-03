@@ -1,25 +1,22 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class SupplierStatementReport : System.Web.UI.Page
     {
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh; string strType;
-        DataTable dt = new DataTable(); string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private int enroll, intWh; private string strType;
+        private DataTable dt = new DataTable(); private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objPo.GetUnit();
@@ -27,7 +24,7 @@ namespace UI.SCM
                 ddlUnit.DataTextField = "strName";
                 ddlUnit.DataValueField = "Id";
                 ddlUnit.DataBind();
-                string strDept = ddlDept.SelectedItem.ToString(); 
+                string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = getDept(strDept);
                 string unit = ddlUnit.SelectedValue.ToString();
                 Session["strUnt"] = unit;
@@ -43,8 +40,6 @@ namespace UI.SCM
             return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(), HttpContext.Current.Session["strUnt"].ToString());
         }
 
-
-
         #endregion====================Close===============================
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
@@ -56,7 +51,7 @@ namespace UI.SCM
                 dgvBill.DataSource = "";
                 dgvBill.DataBind();
             }
-            catch { } 
+            catch { }
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -82,7 +77,6 @@ namespace UI.SCM
                     dgvBill.DataSource = dt;
                     dgvBill.DataBind();
                 }
-
             }
             catch { }
         }
@@ -101,7 +95,6 @@ namespace UI.SCM
         {
             try
             {
-
                 if (strDept == "Local") { strType = "Local Purchase"; }
                 else if (strDept == "Fabrication") { strType = "Local Fabrication"; }
                 else if (strDept == "Import") { strType = "Foreign Purchase"; }

@@ -75,7 +75,7 @@ namespace UI.SCM
                 int unitid = Convert.ToInt32(ddlUnit.SelectedItem.Value);
                 dt = objinventoryTransfer.GetFGList(unitid);
                 ddlFG.DataSource = dt;
-                ddlFG.DataTextField = "strProduct";
+                ddlFG.DataTextField = "strProductName";
                 ddlFG.DataValueField = "intID";
                 ddlFG.DataBind();
 
@@ -118,7 +118,7 @@ namespace UI.SCM
         {
            
             DataTable dt = new DataTable();
-            string strName= ddlFG.SelectedItem.Text;
+            string strName= ddlFG.SelectedItem.Text.ToString();
             string strDescription = "";
             string strPartNo = "";
             string strBrand="";
@@ -133,8 +133,10 @@ namespace UI.SCM
             int numConversion = Convert.ToInt32(txtCount.Text);
             int intSadStandardUOM = Convert.ToInt32(ddlSadUOM.SelectedItem.Value);
             int intInvUoM = Convert.ToInt32(ddlInvUOM.SelectedItem.Value);
+
             objinventoryTransfer.InsertItemList(strName, strDescription, strPartNo, strBrand, intClusterID, intComGroupID, intCategoryID, intEnroll, dteLastActionTime, strUoM);
             objinventoryTransfer.GetItemMasterList(strName,strDescription,strPartNo,strBrand,intClusterID,intComGroupID,intCategoryID,strUoM,intEnroll,intUnit,SADItemID,numConversion,intSadStandardUOM,intInvUoM);
+
             Panel1.Visible = false;
             try
             {

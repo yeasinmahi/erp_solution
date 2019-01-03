@@ -322,11 +322,12 @@ namespace UI.Asset
                 }
             }
         }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetWearHouseRequesision(string prefixText, int count)
         {
-          
+            
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
             int Active = int.Parse(1.ToString());
             return objAutoSearch_BLL.GetAssetItem(Active,prefixText);

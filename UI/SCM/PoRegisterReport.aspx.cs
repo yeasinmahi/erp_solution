@@ -2,9 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,21 +10,21 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class PoRegisterReport :BasePage
+    public partial class PoRegisterReport : BasePage
     {
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        DataTable dt = new DataTable();
-        int intWH, type, enroll;
-        int intID=0;
-        int intNewType;
-        DateTime fDate, tDate;
-        string PoNo, MRRNo, BillNo;
-        string dept;
+        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private DataTable dt = new DataTable();
+        private int intWH, type, enroll;
+        private int intID = 0;
+        private int intNewType;
+        private DateTime fDate, tDate;
+        private string PoNo, MRRNo, BillNo;
+        private string dept;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\PoRegisterReport";
-        string stop = "stopping SCM\\PoRegisterReport";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\PoRegisterReport";
+        private string stop = "stopping SCM\\PoRegisterReport";
 
         //int indent = 0, po = 0, mrr = 0;
 
@@ -74,7 +72,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
 
         protected void lblMrrNo_Click(object sender, EventArgs e)
@@ -86,7 +83,6 @@ namespace UI.SCM
             int Id = int.Parse(lblMrrNo.Text.ToString());
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewdetailsMrr('" + Id + "');", true);
-
         }
 
         protected void lblPoNos_Click(object sender, EventArgs e)
@@ -102,13 +98,9 @@ namespace UI.SCM
                 {
                     Session["pono"] = Id.ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
-
                 }
             }
             catch { }
-            
-
-
         }
 
         protected void lblBillNo_Click(object sender, EventArgs e)
@@ -117,11 +109,9 @@ namespace UI.SCM
             GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             LinkButton lblBillNo = row.FindControl("lblBillNo") as LinkButton;
 
-            int Id =int.Parse(lblBillNo.Text.ToString());
-
+            int Id = int.Parse(lblBillNo.Text.ToString());
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + Id + "');", true);
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -131,7 +121,7 @@ namespace UI.SCM
             // starting performance tracker
             var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
-           
+
             try
             {
                 if (!IsPostBack)
@@ -155,9 +145,8 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
-
         }
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -167,6 +156,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -182,7 +172,7 @@ namespace UI.SCM
                 type = int.Parse(ddlType.SelectedValue);
                 dept = ddlDept.SelectedItem.ToString();
 
-                if(type==4 || type==5)
+                if (type == 4 || type == 5)
                 {
                     dt = objPo.PoRegisterDataList(fDate, tDate, dept, intWH, 1, null, intNewType);
                 }
@@ -190,10 +180,9 @@ namespace UI.SCM
                 {
                     dt = objPo.PoRegisterDataList(fDate, tDate, dept, intWH, type, null, null);
                 }
-              
+
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
-
             }
             catch (Exception ex)
             {
@@ -206,17 +195,18 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+
         protected void lblIndentNo_Click(object sender, EventArgs e)
         {
             enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer; 
+            GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
             LinkButton lblIndent = row.FindControl("lblIndentNo") as LinkButton;
-            
-            int Id = int.Parse(lblIndent.Text.ToString()); 
+
+            int Id = int.Parse(lblIndent.Text.ToString());
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Id + "');", true);
-
         }
+
         protected void dgvStatement_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             try
@@ -245,14 +235,5 @@ namespace UI.SCM
             }
             catch { }
         }
-
-
-
-
-
-
-
-
-
     }
 }

@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprIndentTableAdapter" GeneratorDataComponentClassName="SprIndentTableAdapter" Name="SprIndent" UserDataComponentName="SprIndentTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprIndent" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetIndentData" GetMethodModifier="Public" GetMethodName="GetIndentData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetIndentData" UserSourceName="GetIndentData">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprIndent" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetIndentData" GetMethodModifier="Public" GetMethodName="GetIndentData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetIndentData" UserSourceName="GetIndentData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprIndent</CommandText>
@@ -277,7 +277,7 @@ SELECT numCurrentStock, intAutoID FROM tblFactoryReceiveMRRItemDetail WHERE (int
         <xs:element name="SprIndent" msprop:Generator_TableClassName="SprIndentDataTable" msprop:Generator_TableVarName="tableSprIndent" msprop:Generator_RowChangedName="SprIndentRowChanged" msprop:Generator_TablePropName="SprIndent" msprop:Generator_RowDeletingName="SprIndentRowDeleting" msprop:Generator_RowChangingName="SprIndentRowChanging" msprop:Generator_RowEvHandlerName="SprIndentRowChangeEventHandler" msprop:Generator_RowDeletedName="SprIndentRowDeleted" msprop:Generator_RowClassName="SprIndentRow" msprop:Generator_UserTableName="SprIndent" msprop:Generator_RowEvArgName="SprIndentRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
               <xs:element name="strName" msprop:Generator_ColumnVarNameInTable="columnstrName" msprop:Generator_ColumnPropNameInRow="strName" msprop:Generator_ColumnPropNameInTable="strNameColumn" msprop:Generator_UserColumnName="strName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -349,6 +349,10 @@ SELECT numCurrentStock, intAutoID FROM tblFactoryReceiveMRRItemDetail WHERE (int
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:SprIndent" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="TblItemMasterList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblItemMasterList" />
       <xs:field xpath="mstns:intItemMasterID" />
     </xs:unique>
