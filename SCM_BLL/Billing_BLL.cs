@@ -11,20 +11,39 @@ namespace SCM_BLL
 {
     public class Billing_BLL
     {
-        int e;
+        private int e;
         private static SprGetCOAChildByUnitDataTable[] tblCOALedger = null;
         private static TblEmployeeDataTable[] tblEmpList = null;
         private static TblSupplierDataTable[] tblSupplierList = null;
         private static TblConfigOtherPartyListDataTable[] tblOtherPartyList = null;
-        
 
         public DataTable GetAllUnit()
         {
             TblUnitTableAdapter adp = new TblUnitTableAdapter();
             try
-            { return adp.GetAllUnit(); }
-            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+            {
+                return adp.GetAllUnit();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString(); return new DataTable();
+            }
         }
+
+        public DataTable GetAllUnit(int enroll)
+        {
+            sprGetAllUnitListTableAdapter adp = new sprGetAllUnitListTableAdapter();
+            try
+            {
+                return adp.GetUnitByUserPermission(enroll);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return new DataTable();
+            }
+        }
+
         public DataTable GetPOInfo(int intPOID)
         {
             GetPOIntoTableAdapter adp = new GetPOIntoTableAdapter();
@@ -32,6 +51,7 @@ namespace SCM_BLL
             { return adp.GetPOInfo(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetAdvAmount(string intPOID)
         {
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
@@ -39,6 +59,7 @@ namespace SCM_BLL
             { return adp.GetAdvAmount(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetAdvAmount(int intCOAID)
         {
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
@@ -46,6 +67,7 @@ namespace SCM_BLL
             { return adp.GetLadgerBalance(intCOAID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetNetAmountByPO(string strPONo)
         {
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
@@ -53,6 +75,7 @@ namespace SCM_BLL
             { return adp.GetNetAmountByPO(strPONo); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetLadgerBalance(int intCOAID)
         {
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
@@ -60,6 +83,7 @@ namespace SCM_BLL
             { return adp.GetLadgerBalance(intCOAID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetCOAID(int intSupplierid)
         {
             TblSupplierTableAdapter adp = new TblSupplierTableAdapter();
@@ -67,6 +91,7 @@ namespace SCM_BLL
             { return adp.GetCOAID(intSupplierid); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetChallanByPOID(int intPOID)
         {
             TblSupplierTableAdapter adp = new TblSupplierTableAdapter();
@@ -74,6 +99,7 @@ namespace SCM_BLL
             { return adp.GetChallanByPOID(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetEmpName(int intEnroll)
         {
             TblEmployeeTableAdapter adp = new TblEmployeeTableAdapter();
@@ -81,6 +107,7 @@ namespace SCM_BLL
             { return adp.GetEmpName(intEnroll); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPaymentApprovalSummaryAllUnitForWeb(int intUnitID, DateTime dteFDate, DateTime dteTDate, int intAction, int intEntryType, int intLevel)
         {
             SprPaymentApprovalSummaryAllUnitForWebTableAdapter adp = new SprPaymentApprovalSummaryAllUnitForWebTableAdapter();
@@ -88,6 +115,7 @@ namespace SCM_BLL
             { return adp.GetPaymentApprovalSummaryAllUnitForWeb(intUnitID, dteFDate, dteTDate, intAction, intEntryType, intLevel); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetBillInfoByBillReg(string strBillReg)
         {
             SprPaymentApprovalSummaryAllUnitForWebTableAdapter adp = new SprPaymentApprovalSummaryAllUnitForWebTableAdapter();
@@ -95,6 +123,7 @@ namespace SCM_BLL
             { return adp.GetBillInfoByBillReg(strBillReg); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetUnitInfoByBillID(int intBillID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -102,6 +131,7 @@ namespace SCM_BLL
             { return adp.GetUnitInfoByBillID(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetDocumentList(int intBillID, int intEntryType)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -109,6 +139,7 @@ namespace SCM_BLL
             { return adp.GetDocumentList(intBillID, intEntryType); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetChallanList(int intBillID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -116,6 +147,7 @@ namespace SCM_BLL
             { return adp.GetChallanList(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPOIDByBillID(int intBillID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -123,6 +155,7 @@ namespace SCM_BLL
             { return adp.GetPOIDByBillID(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPODate(int intPOID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -130,6 +163,7 @@ namespace SCM_BLL
             { return adp.GetPODate(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetItemDetailsByPO(int intID, bool ysnPO, int intEntryID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -137,6 +171,7 @@ namespace SCM_BLL
             { return adp.GetItemDetailsByPO(intID, ysnPO, intEntryID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetIndentList(int intPOID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -144,6 +179,7 @@ namespace SCM_BLL
             { return adp.GetIndentList(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetMRRInfo(int intMRRID)
         {
             GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
@@ -151,6 +187,7 @@ namespace SCM_BLL
             { return adp.GetMRRInfo(intMRRID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetMRRItemInfo(int intMRRID)
         {
             GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
@@ -158,6 +195,7 @@ namespace SCM_BLL
             { return adp.GetMRRItemInfo(intMRRID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetDocLByMRRID(int intMRRID)
         {
             GetDocListByMRRTableAdapter adp = new GetDocListByMRRTableAdapter();
@@ -165,6 +203,7 @@ namespace SCM_BLL
             { return adp.GetDocLByMRRID(intMRRID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetVoucherByBillID(int intBillID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -172,6 +211,7 @@ namespace SCM_BLL
             { return adp.GetVoucherByBillID(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPriceListByItemID(int intItemID)
         {
             GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
@@ -179,6 +219,7 @@ namespace SCM_BLL
             { return adp.GetPriceListByItemID(intItemID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPriceChart(int intItemID)
         {
             GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
@@ -186,6 +227,7 @@ namespace SCM_BLL
             { return adp.GetPriceChart(intItemID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetChartOfPrice(int intItemID)
         {
             TblSupplier_PriceChartTableAdapter adp = new TblSupplier_PriceChartTableAdapter();
@@ -193,6 +235,7 @@ namespace SCM_BLL
             { return adp.GetChartOfPrice(intItemID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetBillInfoForApprove(int intBillID)
         {
             GetApproveActionDataTableAdapter adp = new GetApproveActionDataTableAdapter();
@@ -200,6 +243,7 @@ namespace SCM_BLL
             { return adp.GetBillInfoForApprove(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetAdvanceInfoForApprove(int intBillID)
         {
             GetApproveActionDataTableAdapter adp = new GetApproveActionDataTableAdapter();
@@ -207,6 +251,7 @@ namespace SCM_BLL
             { return adp.GetAdvanceInfoForApprove(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetAdvance(string strPOID)
         {
             GetApproveActionDataTableAdapter adp = new GetApproveActionDataTableAdapter();
@@ -214,6 +259,7 @@ namespace SCM_BLL
             { return adp.GetAdvance(strPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetApproveTypeL1()
         {
             GetApproveTL1TableAdapter adp = new GetApproveTL1TableAdapter();
@@ -221,6 +267,7 @@ namespace SCM_BLL
             { return adp.GetApproveTypeL1(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetApproveTypeL2()
         {
             GetApproveTL2TableAdapter adp = new GetApproveTL2TableAdapter();
@@ -228,6 +275,7 @@ namespace SCM_BLL
             { return adp.GetApproveTypeL2(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPreviousAuditAction(int intBillID)
         {
             GetPreAdvTableAdapter adp = new GetPreAdvTableAdapter();
@@ -235,6 +283,7 @@ namespace SCM_BLL
             { return adp.GetPreviousAdvance(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetAuditApproveAmountLabel1(int intBillID)
         {
             GetPreAdvTableAdapter adp = new GetPreAdvTableAdapter();
@@ -242,6 +291,7 @@ namespace SCM_BLL
             { return adp.GetAuditApproveAmountLabel1(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetUserInfoForAudit(int intEnroll)
         {
             GetUserInfoForAuditApprovalTableAdapter adp = new GetUserInfoForAuditApprovalTableAdapter();
@@ -249,6 +299,7 @@ namespace SCM_BLL
             { return adp.GetUserInfoForAudit(intEnroll); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetLevel1Amount(int intBillID)
         {
             GetLevel1AmountAuditTableAdapter adp = new GetLevel1AmountAuditTableAdapter();
@@ -256,6 +307,7 @@ namespace SCM_BLL
             { return adp.GetLevel1Amount(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable InsertSingleApproveAudit(int intUser, int intBill, int intLevel, int intAction, string strRemarks, decimal monNewAmount)
         {
             SprAuditSingleBillApprovalTableAdapter adp = new SprAuditSingleBillApprovalTableAdapter();
@@ -263,6 +315,7 @@ namespace SCM_BLL
             { return adp.InsertSingleApproveAudit(intUser, intBill, intLevel, intAction, strRemarks, monNewAmount); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetNetPayForLevel1(int intBillID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -270,6 +323,7 @@ namespace SCM_BLL
             { return adp.GetNetPayForLevel1(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetNetPayForLevel2(int intBillID)
         {
             SprGetDetailInfoForAuditPOPartTableAdapter adp = new SprGetDetailInfoForAuditPOPartTableAdapter();
@@ -277,6 +331,7 @@ namespace SCM_BLL
             { return adp.GetNetPayForLevel2(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public string InsertAllBillApproval(int intLevelID, int intInsertBy, string xml)
         {
             try
@@ -288,6 +343,7 @@ namespace SCM_BLL
             }
             catch (Exception ex) { return ex.ToString(); }
         }
+
         public DataTable GetApproveType()
         {
             ApproveTypeTableAdapter adp = new ApproveTypeTableAdapter();
@@ -295,6 +351,7 @@ namespace SCM_BLL
             { return adp.GetApproveType(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetUserInfoForPaymentModule(int intUserID)
         {
             UserInfoForPaymentModuleTableAdapter adp = new UserInfoForPaymentModuleTableAdapter();
@@ -302,6 +359,7 @@ namespace SCM_BLL
             { return adp.GetUserInfoForPaymentModule(intUserID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetUnitListByUserID(int intUserID)
         {
             SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
@@ -309,6 +367,7 @@ namespace SCM_BLL
             { return adp.GetUnitListByUserID(intUserID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetCheckUserRoleForVoucher(string strUserEmail)
         {
             SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
@@ -316,6 +375,7 @@ namespace SCM_BLL
             { return adp.GetCheckUserRoleForVoucher(strUserEmail); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPayTypeForPay1()
         {
             PayTypeTableAdapter adp = new PayTypeTableAdapter();
@@ -323,6 +383,7 @@ namespace SCM_BLL
             { return adp.GetPayTypeForPay1(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPayTypeDutyVoucher1()
         {
             PayTypeTableAdapter adp = new PayTypeTableAdapter();
@@ -330,6 +391,7 @@ namespace SCM_BLL
             { return adp.GetPayTypeDutyVoucher1(); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetBankInfoByUnitID(int intUnitID)
         {
             TblBankInfoTableAdapter adp = new TblBankInfoTableAdapter();
@@ -337,6 +399,7 @@ namespace SCM_BLL
             { return adp.GetBankInfoByUnitID(intUnitID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetAccountByBankID(int intUnitID, int intBankID)
         {
             TblBankAccountInfoTableAdapter adp = new TblBankAccountInfoTableAdapter();
@@ -344,6 +407,7 @@ namespace SCM_BLL
             { return adp.GetAccountByBankID(intUnitID, intBankID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetVoucherListByBillID(int intBillID)
         {
             VoucherListByBillIDTableAdapter adp = new VoucherListByBillIDTableAdapter();
@@ -351,6 +415,7 @@ namespace SCM_BLL
             { return adp.GetVoucherListByBillID(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetIndentViewDetails(int intIndentID)
         {
             IndentViewDetailsTableAdapter adp = new IndentViewDetailsTableAdapter();
@@ -358,6 +423,7 @@ namespace SCM_BLL
             { return adp.GetIndentViewDetails(intIndentID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetUnpaidBillList(int intUnit, int intDept)
         {
             SprAccountsApprovedPaymentForChequeTableAdapter adp = new SprAccountsApprovedPaymentForChequeTableAdapter();
@@ -365,6 +431,7 @@ namespace SCM_BLL
             { return adp.GetUnpaidBillList(intUnit, intDept); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetCostCenter(int intUnitID)
         {
             TblCostCenterTableAdapter adp = new TblCostCenterTableAdapter();
@@ -372,6 +439,7 @@ namespace SCM_BLL
             { return adp.GetCostCenter(intUnitID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPayToList(int intBillID)
         {
             SprGetPartyAccountInfoTableAdapter adp = new SprGetPartyAccountInfoTableAdapter();
@@ -379,6 +447,7 @@ namespace SCM_BLL
             { return adp.GetPayToList(intBillID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPartyLedgerListByPartyType1(int intUnit, bool ysnCreditor)
         {
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
@@ -386,6 +455,7 @@ namespace SCM_BLL
             { return adp.GetPartyLedgerList(intUnit, null, null, ysnCreditor, null, null); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetPartyLedgerListByPartyTypeOthers(int intUnit, bool ysnPurchase)
         {
             SprGetCOAChildByUnitTableAdapter adp = new SprGetCOAChildByUnitTableAdapter();
@@ -393,6 +463,7 @@ namespace SCM_BLL
             { return adp.GetPartyLedgerList(intUnit, null, ysnPurchase, null, null, null); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetBillInfoForBPVoucher(int intBillID)
         {
             SprAccountsGetBillSummaryTableAdapter adp = new SprAccountsGetBillSummaryTableAdapter();
@@ -401,10 +472,10 @@ namespace SCM_BLL
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
-        public DataTable GetPartyWiseBillList(DateTime fDate, DateTime tDate,string strParty,int poId)
+        public DataTable GetPartyWiseBillList(DateTime fDate, DateTime tDate, string strParty, int poId)
         {
             sprBillPartywiseBillallUnitTableAdapter adp = new sprBillPartywiseBillallUnitTableAdapter();
-            return adp.GetPartyWiseBill(fDate,tDate,strParty, poId);
+            return adp.GetPartyWiseBill(fDate, tDate, strParty, poId);
         }
 
         //for bill register unit
@@ -413,10 +484,11 @@ namespace SCM_BLL
             TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
             return adp.UnitList();
         }
-        public DataTable GetSupplierData(int intType,int intUnitId, string strSupType,string PersonName, string ContactNo,int SupplierId)
+
+        public DataTable GetSupplierData(int intType, int intUnitId, string strSupType, string PersonName, string ContactNo, int SupplierId)
         {
             sprSupplierReportTableAdapter adp = new sprSupplierReportTableAdapter();
-            return adp.GetSupplierDataList(intType,intUnitId, strSupType,PersonName,ContactNo,SupplierId);
+            return adp.GetSupplierDataList(intType, intUnitId, strSupType, PersonName, ContactNo, SupplierId);
         }
 
         //WH list for previous price of item
@@ -426,14 +498,14 @@ namespace SCM_BLL
             return adp.GetWHData();
         }
 
-       public DataTable GetPurchaseList(int itemid)
+        public DataTable GetPurchaseList(int itemid)
         {
             PurchaseTableAdapter adp = new PurchaseTableAdapter();
             return adp.GetPurchaseData(itemid);
         }
-        
 
-        #region===== Search COA Ledger List =============================================== 
+        #region===== Search COA Ledger List ===============================================
+
         public string[] AutoSearchCOALedger(string strUnit, string prefix)
         {
             if (prefix.Trim().Length >= 3)
@@ -442,12 +514,12 @@ namespace SCM_BLL
                 tblCOALedger = new SprGetCOAChildByUnitDataTable[intUnit];
                 SprGetCOAChildByUnitTableAdapter adpCOAList = new SprGetCOAChildByUnitTableAdapter();
                 tblCOALedger[e] = adpCOAList.GetPartyLedgerList(intUnit, null, null, null, null, true);
-             
+
                 DataTable tbl = new DataTable();
 
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblCOALedger[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblCOALedger[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strAccName
                                select tmp;
                     if (rows.Count() > 0)
@@ -460,7 +532,7 @@ namespace SCM_BLL
                     try
                     {
                         var rows = from tmp in tblCOALedger[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strAccName.ToLower().Contains(prefix) || tmp.intAccID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
+                                   where tmp.strAccName.ToLower().Contains(prefix) || tmp.intAccID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail
                                    orderby tmp.strAccName
                                    select tmp;
                         if (rows.Count() > 0)
@@ -485,9 +557,11 @@ namespace SCM_BLL
             }
             else { return null; }
         }
+
         #endregion=========================================================================
 
-        #region===== Search Employee List =================================================  
+        #region===== Search Employee List =================================================
+
         public string[] AutoSearchEmployee(string strUnit, string prefix)
         {
             if (prefix.Trim().Length >= 3)
@@ -501,7 +575,7 @@ namespace SCM_BLL
 
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblEmpList[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblEmpList[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strEmployeeName
                                select tmp;
                     if (rows.Count() > 0)
@@ -514,7 +588,7 @@ namespace SCM_BLL
                     try
                     {
                         var rows = from tmp in tblEmpList[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strEmployeeName.ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
+                                   where tmp.strEmployeeName.ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail
                                    orderby tmp.strEmployeeName
                                    select tmp;
                         if (rows.Count() > 0)
@@ -538,9 +612,11 @@ namespace SCM_BLL
             }
             else { return null; }
         }
+
         #endregion=========================================================================
 
-        #region===== Search Supplier List =================================================  
+        #region===== Search Supplier List =================================================
+
         public string[] AutoSearchSupplier(string strUnit, string prefix)
         {
             if (prefix.Trim().Length >= 3)
@@ -554,7 +630,7 @@ namespace SCM_BLL
 
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblSupplierList[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblSupplierList[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strSupplierName
                                select tmp;
                     if (rows.Count() > 0)
@@ -567,7 +643,7 @@ namespace SCM_BLL
                     try
                     {
                         var rows = from tmp in tblSupplierList[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strSupplierName.ToLower().Contains(prefix) || tmp.intSupplierID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
+                                   where tmp.strSupplierName.ToLower().Contains(prefix) || tmp.intSupplierID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail
                                    orderby tmp.strSupplierName
                                    select tmp;
                         if (rows.Count() > 0)
@@ -591,9 +667,11 @@ namespace SCM_BLL
             }
             else { return null; }
         }
+
         #endregion=========================================================================
 
-        #region===== Search Supplier List =================================================  
+        #region===== Search Supplier List =================================================
+
         public string[] AutoSearchOtherParty(string prefix)
         {
             if (prefix.Trim().Length >= 3)
@@ -607,7 +685,7 @@ namespace SCM_BLL
 
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblOtherPartyList[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tblOtherPartyList[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.strOtherParty
                                select tmp;
                     if (rows.Count() > 0)
@@ -620,7 +698,7 @@ namespace SCM_BLL
                     try
                     {
                         var rows = from tmp in tblOtherPartyList[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strOtherParty.ToLower().Contains(prefix) || tmp.intID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
+                                   where tmp.strOtherParty.ToLower().Contains(prefix) || tmp.intID.ToString().ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail
                                    orderby tmp.strOtherParty
                                    select tmp;
                         if (rows.Count() > 0)
@@ -644,8 +722,7 @@ namespace SCM_BLL
             }
             else { return null; }
         }
-        #endregion=========================================================================
-        
 
+        #endregion=========================================================================
     }
 }

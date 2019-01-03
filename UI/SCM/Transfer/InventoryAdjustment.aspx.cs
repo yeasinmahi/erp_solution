@@ -23,8 +23,12 @@ namespace UI.SCM.Transfer
         private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
         private Location_BLL objOperation = new Location_BLL();
         private StoreIssue_BLL objWH = new StoreIssue_BLL();
-        private DataTable dt = new DataTable(); private string xmlString, filePathForXML; private int Id;
-        private int enroll, intvehicleId, intWh; private string[] arrayKey, arrayKeyV; private char[] delimiterChars = { '[', ']' };
+        private DataTable dt = new DataTable();
+        private string xmlString, filePathForXML;
+        private int Id;
+        private int enroll, intvehicleId, intWh;
+        private string[] arrayKey, arrayKeyV;
+        private char[] delimiterChars = { '[', ']' };
         private int CheckItem = 1; private decimal values;
         private string connectString;
 
@@ -103,7 +107,11 @@ namespace UI.SCM.Transfer
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
+                {
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[3].ToString();
+                    itemid = arrayKey[1].ToString();
+                }
 
                 string locationId = ddlLcation.SelectedValue.ToString();
                 string locationName = ddlLcation.SelectedValue.ToString();
@@ -281,7 +289,6 @@ namespace UI.SCM.Transfer
                 XmlNode dSftTm = doc.SelectSingleNode("voucher");
                 xmlString = dSftTm.InnerXml;
                 xmlString = "<voucher>" + xmlString + "</voucher>";
-
                 try
                 {
                     File.Delete(filePathForXML);
@@ -291,12 +298,20 @@ namespace UI.SCM.Transfer
                 }
                 if (xmlString.Length > 5)
                 {
-                    //string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, enroll);
+                    //foreach (GridViewRow row in dgvStore.Rows)
+                    //{
+                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
+                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
+                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
+                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
+                    //}
+                    //dt = objTransfer.InventoryAdjustment(0, intWh, enroll, intItemId, quantity, rate, intLocation, remarks);
                     //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
                     //dgvStore.DataSource = "";
                     //dgvStore.DataBind();
 
-                    //txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
+                    ////txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
                     //ddlLcation.DataSource = dt;
                     //ddlLcation.DataBind();
                     //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
