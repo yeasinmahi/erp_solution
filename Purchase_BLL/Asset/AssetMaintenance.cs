@@ -243,10 +243,10 @@ namespace Purchase_BLL.Asset
             return pmsdocview.TaskGridViewGetData(intItem, Mnumber, intenroll, intjobid, intdept);
         }
 
-        public void WOSpareParts(int Reffno, int parts, Decimal pqty, int intenroll, int intjobid, int intdept, int intwh, string remarks)
+        public void WOSpareParts(int Reffno, int parts, Decimal pqty, int intenroll, int intjobid, int intdept, int intwh, string remarks,decimal monAmount)
         {
             TblWOMaintenancePartsTableAdapter WOParts = new TblWOMaintenancePartsTableAdapter();
-            WOParts.InsertPartsGetData(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks);
+            WOParts.InsertPartsGetData(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks, monAmount);
         }
 
         public void WOLaborCost(int Reffno, int technichin, string description, decimal hour, int intenroll, int intjobid, int intdept, int ysnTecnichin)
