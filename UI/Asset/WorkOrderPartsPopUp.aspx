@@ -199,8 +199,8 @@
             <%--<td class="auto-style1"><asp:CheckBox ID="CheckBox3" Text="Warranty" runat="server" /></td>--%>
             </tr>
             <tr>
-            <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Price:"></asp:Label> </td>
-            <td style="text-align:left;"> <asp:TextBox ID="txtPrice" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox> 
+            <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Value:"></asp:Label> </td>
+            <td style="text-align:left;"> <asp:TextBox ID="txtPrice" Text="0.00" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox> 
 
             <td colspan="4" style="text-align:right;"><asp:Button ID="BtnParts" runat="server" autopostback="true" Text="Add" OnClick="BtnParts_Click"  /> </td>    
             </tr>
@@ -225,6 +225,7 @@
                         <Columns>
                             <asp:BoundField DataField="strSpareParts" HeaderText="Spare Parts" SortExpression="strSpareParts" />
                             <asp:BoundField DataField="intqty" HeaderText="Qty" SortExpression="intqty" />
+                              <asp:BoundField DataField="monCost" HeaderText="Value" SortExpression="monCost" />
                             <asp:BoundField HeaderText="ReqCode" DataField="strReqCode" SortExpression="strReqCode" />
                             <asp:BoundField DataField="strStatus" HeaderText="Status" SortExpression="strStatus" />
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />

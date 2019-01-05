@@ -20501,7 +20501,8 @@ and intUnitID=@Uid and ERP_Inventory.dbo.qryItemList.strItem LIKE  '%' + @strSea
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Insert into [ERP_Asset].[dbo].[tblMaintenanceParts] (intReffServiceTask,intSparePartsID,[intqty],[YsnActive],[intInsertBy],intJobStationID,intDept,YsnRequesition,intWhouse,strRemarks,dteDate) values(@intReffNo, @parts ,@pqty,1,@intenroll, @intjobid, @intdept,0,@intwh,@remarks,getdate())
+            this._commandCollection[0].CommandText = @"Insert into [ERP_Asset].[dbo].[tblMaintenanceParts] (intReffServiceTask,intSparePartsID,[intqty],[YsnActive],[intInsertBy],intJobStationID,intDept,YsnRequesition,intWhouse,strRemarks,moncost,dteDate) 
+values(@intReffNo, @parts ,@pqty,1,@intenroll, @intjobid, @intdept,0,@intwh,@remarks,@cost,getdate())
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intReffNo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intReffServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20512,6 +20513,7 @@ and intUnitID=@Uid and ERP_Inventory.dbo.qryItemList.strItem LIKE  '%' + @strSea
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intwh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWhouse", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "strRemarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cost", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = @"INSERT INTO [ERP_Asset].[dbo].[tblMaintenanceDocUpload]
@@ -20580,7 +20582,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblWOMaintenancePartsDataTable InsertPartsGetData(global::System.Nullable<int> intReffNo, global::System.Nullable<int> parts, global::System.Nullable<decimal> pqty, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, global::System.Nullable<int> intwh, string remarks) {
+        public virtual AssetMaintenanceTDS.TblWOMaintenancePartsDataTable InsertPartsGetData(global::System.Nullable<int> intReffNo, global::System.Nullable<int> parts, global::System.Nullable<decimal> pqty, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, global::System.Nullable<int> intwh, string remarks, global::System.Nullable<decimal> cost) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intReffNo.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intReffNo.Value));
@@ -20629,6 +20631,12 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(remarks));
+            }
+            if ((cost.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(cost.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             AssetMaintenanceTDS.TblWOMaintenancePartsDataTable dataTable = new AssetMaintenanceTDS.TblWOMaintenancePartsDataTable();
             this.Adapter.Fill(dataTable);
