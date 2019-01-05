@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 #pragma warning disable 1591
 
 namespace SCM_DAL {
@@ -2830,7 +2832,14 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             IndentTDS.SprIndentDataTable dataTable = new IndentTDS.SprIndentDataTable();
-            this.Adapter.Fill(dataTable);
+            try
+            {
+                this.Adapter.Fill(dataTable);
+            }
+            catch (Exception e)
+            {
+            }
+            
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
                         || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
@@ -3042,7 +3051,12 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             IndentTDS.SprStoreIssueDataTable dataTable = new IndentTDS.SprStoreIssueDataTable();
-            this.Adapter.Fill(dataTable);
+            try
+            {
+                this.Adapter.Fill(dataTable);
+            }
+            catch { }
+            
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
                         || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
