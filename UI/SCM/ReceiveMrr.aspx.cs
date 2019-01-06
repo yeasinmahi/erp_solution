@@ -163,6 +163,8 @@ namespace UI.SCM
                             CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate, manufactureDate);
                         }
                     }
+                    txtChallan.Text = "";
+                    txtVatAmount.Text = "0";
 
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXML);
@@ -170,13 +172,16 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<mrr>" + xmlString + "</mrr>";
                     try { File.Delete(filePathForXML); } catch { }
+                    dgvMrr.DataSource = "";
+                    dgvMrr.DataBind();
+
                     string msg = obj.MrrReceive(11, xmlString, intWh, intPOID, DateTime.Now, enroll);
+                   
 
                     string[] searchKey = Regex.Split(msg, ":");
                     lblMrrNo.Text = searchKey[1].ToString();
 
-                    dgvMrr.DataSource = "";
-                    dgvMrr.DataBind();
+                  
 
                     #region====================Mrr Document Attachment===========================
                     try
@@ -366,6 +371,7 @@ namespace UI.SCM
             dgvMrr.DataSource = dt;
             dgvMrr.DataBind();
 
+            
             intWh = int.Parse(ddlWH.SelectedValue);
             if (txtPO.Text.Length > 3)
             {

@@ -174,7 +174,7 @@
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
                 
             <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="qty" >
-            <ItemTemplate><asp:Label ID="lblValue" runat="server"   Text='<%# Bind("qty","{0:n2}") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblValue" runat="server"   Text='<%# Bind("qty") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
               
             <asp:TemplateField HeaderText="Wastage" ItemStyle-HorizontalAlign="right" SortExpression="wastage" >
