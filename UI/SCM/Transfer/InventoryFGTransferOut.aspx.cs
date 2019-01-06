@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.Transfer
 {
@@ -29,35 +30,35 @@ namespace UI.SCM.Transfer
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
+                try
+                {
+                    File.Delete(filePathForXML); dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
                 catch { }
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                int UnitId = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+                //int UnitId = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
 
-                dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
-                ddlWh.DataSource = dt;
-                ddlWh.DataTextField = "strName";
-                ddlWh.DataValueField = "Id";
-                ddlWh.DataBind();
-                ddlWh.Items.Insert(0, new ListItem("Select", "0"));
-
+                //dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
+                //ddlWh.DataSource = dt;
+                //ddlWh.DataTextField = "strName";
+                //ddlWh.DataValueField = "Id";
+                //ddlWh.DataBind();
+                //ddlWh.Items.Insert(0, new ListItem("Select", "0"));
+                LoadWh();
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
 
-                dt = objWH.GetWHByUnit(UnitId);
-                ddlToWh.DataSource = dt;
-                ddlToWh.DataTextField = "strName";
-                ddlToWh.DataValueField = "Id";
-                ddlToWh.DataBind();
-                ddlToWh.Items.Insert(0, new ListItem("Select", "0"));
-                dt.Clear();
+                LoadToWh();
 
-                dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
-                ddlTransType.DataSource = dt;
-                ddlTransType.DataTextField = "strName";
-                ddlTransType.DataValueField = "Id";
-                ddlTransType.DataBind();
-                ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
-                ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                //dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
+                //ddlTransType.DataSource = dt;
+                //ddlTransType.DataTextField = "strName";
+                //ddlTransType.DataValueField = "Id";
+                //ddlTransType.DataBind();
+                //ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
+                //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+
+                LoadTransferType();
 
                 intWh = int.Parse(ddlWh.SelectedValue);
                 dt = objBom.getBomRouting(4, xmlString, "", intWh, 0, DateTime.Now, enroll);
@@ -69,17 +70,51 @@ namespace UI.SCM.Transfer
             }
         }
 
+        public void LoadWh()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            dt = objTransfer.GetTtransferDatas(1, xmlString, whId, Id, DateTime.Now, enroll);
+            Common.LoadDropDownWithSelect(ddlWh, dt, "Id", "strName");
+            dt.Clear();
+        }
+
+        public void LoadToWh()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            dt = objWH.GetDataByWhId(whId);
+            Common.LoadDropDownWithSelect(ddlToWh, dt, "Id", "strName");
+            dt.Clear();
+        }
+
+        public void LoadTransferType()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            dt = objTransfer.GetTtransferDatas(7, xmlString, whId, Id, DateTime.Now, enroll);
+            Common.LoadDropDownWithSelect(ddlTransType, dt, "Id", "strName");
+            ddlTransType.SelectedIndex = ddlTransType.Items.IndexOf(ddlTransType.Items.FindByText("Good Product"));
+            dt.Clear();
+        }
+
+        public void LoadLocation(DataTable dt)
+        {
+            Common.LoadDropDownWithSelect(ddlLcation, dt, "intLocation", "strLocation");
+        }
+
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
-                txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
-                ddlLcation.DataSource = "";
-                ddlLcation.DataBind();
-                ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                txtItem.Text = "";
+                txTransferQty.Text = "";
+                txtRemarks.Text = "";
+                txtVehicle.Text = "";
+                lblDetalis.Text = "";
+                lblValue.Text = "";
+                Common.UnLoadDropDown(ddlLcation);
                 hdnStockQty.Value = "0";
-
+                LoadToWh();
+                LoadTransferType();
                 intWh = int.Parse(ddlWh.SelectedValue);
                 dt = objBom.getBomRouting(4, xmlString, "", intWh, 0, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
@@ -118,11 +153,7 @@ namespace UI.SCM.Transfer
                     string detaliss = "  Stock: " + monStock + " " + strUom + " Id: " + intItem;
                     lblDetalis.Text = detaliss;
                     lblValue.Text = "Value: " + monValues.ToString();
-                    ddlLcation.DataSource = dt;
-                    ddlLcation.DataTextField = "strLocation";
-                    ddlLcation.DataValueField = "intLocation";
-                    ddlLcation.DataBind();
-                    // ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                    LoadLocation(dt);
                     dt.Clear();
                 }
                 else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
@@ -169,10 +200,10 @@ namespace UI.SCM.Transfer
                         if (decimal.Parse(qty) > 0 && CheckItem == 1)
                         {
                             CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue, remarks, vehicle);
-                            txtItem.Text = ""; txTransferQty.Text = ""; lblValue.Text = "";
-                            ddlLcation.DataSource = "";
-                            ddlLcation.DataBind();
-                            ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                            txtItem.Text = "";
+                            txTransferQty.Text = "";
+                            lblValue.Text = "";
+                            Common.UnLoadDropDown(ddlLcation);
                         }
                         else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
 

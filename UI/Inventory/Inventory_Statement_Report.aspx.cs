@@ -8,8 +8,9 @@ namespace UI.Inventory
 {
     public partial class Inventory_Statement_Report : BasePage
     {
-        DataTable dt = new DataTable();
-        InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+        private DataTable dt = new DataTable();
+        private InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -18,10 +19,10 @@ namespace UI.Inventory
                 try
                 {
                     int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
-                    dt = objbll.GetWH(enroll);
+                    dt = new MrrReceive_BLL().DataView(19, "", 0, 0, DateTime.Now, enroll);
                     ddlWH.DataSource = dt;
-                    ddlWH.DataTextField = "strWareHoseName";
-                    ddlWH.DataValueField = "intWHID";
+                    ddlWH.DataTextField = "strName";
+                    ddlWH.DataValueField = "Id";
                     ddlWH.DataBind();
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
@@ -31,7 +32,7 @@ namespace UI.Inventory
                 catch { }
             }
 
-
+            
         }
 
         protected void ddlSearchBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,7 +115,6 @@ namespace UI.Inventory
                 url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Open_Reports/Inventory_Report_New" + "&wh=" + ddlWH.SelectedItem.Value + "&SearchBy=" + ddlsearch + "&FromDate=" + txtFromDate.Text + " " + fromTime + "&ToDate=" + txtToDate.Text + " " + toTime + "&strID=" + id + "&rc:LinkTarget=_self";
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
-
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)

@@ -95,7 +95,14 @@ namespace UI.SCM
                 string dept = ddlDept.SelectedItem.ToString();
 
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                try { Mrrid = int.Parse(txtMrrNo.Text); } catch { Mrrid = 0; }
+                try
+                {
+                    Mrrid = int.Parse(txtMrrNo.Text);
+                }
+                catch
+                {
+                    Mrrid = 0;
+                }
                 dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();

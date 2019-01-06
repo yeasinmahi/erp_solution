@@ -170,10 +170,35 @@ namespace Utility
             }
         }
 
+        public static bool LoadDropDownWithSelect(DropDownList ddl, DataTable dt, string value, string text)
+        {
+            if (dt.Rows.Count <= 0) return false;
+            try
+            {
+                ddl.DataSource = dt;
+                ddl.DataValueField = value;
+                ddl.DataTextField = text;
+                ddl.DataBind();
+                ddl.Items.Insert(0, new ListItem("Select", "0"));
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+
         public static void UnLoadDropDown(DropDownList ddl)
         {
             ddl.DataSource = null;
             ddl.DataBind();
+        }
+
+        public static void UnLoadDropDownWithSelect(DropDownList ddl)
+        {
+            ddl.DataSource = null;
+            ddl.DataBind();
+            ddl.Items.Insert(0, new ListItem("Select", "0"));
         }
 
         public static void Clear(ControlCollection controls)

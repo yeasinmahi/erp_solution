@@ -80,9 +80,9 @@
                             </td>
                             <td style='text-align: left;'>Type</td>
                             <td style='text-align: left;'>
-                                <asp:DropDownList ID="ddlType" runat="server" CssClass="ddList" AutoPostBack="True" OnSelectedIndexChanged="ddlType_SelectedIndexChanged">
-                                    <asp:ListItem Text="Increase Inventory"></asp:ListItem>
-                                    <asp:ListItem Text="Decrease"></asp:ListItem>
+                                <asp:DropDownList ID="ddlType" runat="server" CssClass="ddList">
+                                    <asp:ListItem Text="Increase Inventory" Value="1"></asp:ListItem>
+                                    <asp:ListItem Text="Decrease Inventory" Value="2"></asp:ListItem>
                                 </asp:DropDownList></td>
                         </tr>
                         <tr>
@@ -117,12 +117,18 @@
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
-                                            <ItemStyle HorizontalAlign="center" Width="60px" />
+                                            <ItemStyle HorizontalAlign="center" Width="10px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="item">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItem" runat="server" Text='<%# Bind("item") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Item Id" ItemStyle-HorizontalAlign="right" SortExpression="item">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("itemid") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
@@ -161,6 +167,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Location Id" ItemStyle-HorizontalAlign="right" SortExpression="locationName" Visible="False">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLocationId" Width="120px" runat="server" Text='<%# Bind("locationId") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="TransType" ItemStyle-HorizontalAlign="right" SortExpression="transType">
                                             <ItemTemplate>
@@ -168,7 +180,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="transType">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblRemarks" runat="server" Width="" Text='<%# Bind("remarks") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
                                         <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
                                     </Columns>
                                     <FooterStyle Font-Size="11px" />

@@ -134,7 +134,11 @@
             
             <asp:TemplateField HeaderText="IssueQty"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
             <ItemTemplate><asp:Label ID="lblIssQty" runat="server"  Text='<%# Bind("numQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
+               
+            <asp:TemplateField HeaderText="Value"   ItemStyle-HorizontalAlign="right" SortExpression="monValue" >
+            <ItemTemplate><asp:Label ID="lblValue" runat="server"  Text='<%# Bind("monValue","{0:n2}") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strUseFor" >
             <ItemTemplate><asp:Label ID="lblDept" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strUseFor") %>'></asp:Label></ItemTemplate>

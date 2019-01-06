@@ -14,7 +14,10 @@ namespace UI.SCM
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
 
         private DataTable dt = new DataTable();
-        private int enroll, intwh, intIssue; private string[] arrayKey; private char[] delimiterChars = { '[', ']' }; private string strIssue;
+        private int enroll, intwh, intIssue;
+        private string[] arrayKey;
+        private char[] delimiterChars = { '[', ']' };
+        private string strIssue;
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -59,8 +62,22 @@ namespace UI.SCM
                 intwh = int.Parse(ddlWH.SelectedValue);
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-                try { intIssue = int.Parse(txtIssueNo.Text.ToString()); } catch { intIssue = 0; }
-                if (txtIssueNo.Text.Length > 2) { strIssue = txtIssueNo.Text.ToString(); } else { strIssue = "0".ToString(); }
+                try
+                {
+                    intIssue = int.Parse(txtIssueNo.Text.ToString());
+                }
+                catch
+                {
+                    intIssue = 0;
+                }
+                if (txtIssueNo.Text.Length > 2)
+                {
+                    strIssue = txtIssueNo.Text.ToString();
+                }
+                else
+                {
+                    strIssue = "0".ToString();
+                }
                 string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " strIssue=" + '"' + strIssue + '"' + " intIssue=" + '"' + intIssue + '"' + "/></voucher>".ToString();
                 dt = objIssue.GetViewData(8, xmlData, intwh, 0, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
