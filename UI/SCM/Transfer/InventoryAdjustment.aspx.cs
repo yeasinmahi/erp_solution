@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 //using MySql.Data.MySqlClient;
 
@@ -38,7 +39,12 @@ namespace UI.SCM.Transfer
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
+                try
+                {
+                    File.Delete(filePathForXML);
+                    dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
                 catch { }
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
@@ -105,7 +111,10 @@ namespace UI.SCM.Transfer
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
                     item = arrayKey[0].ToString();
@@ -118,18 +127,21 @@ namespace UI.SCM.Transfer
                 string transType = ddlType.SelectedItem.ToString();
                 string transTypeId = ddlType.SelectedValue.ToString();
                 uom = hdnUom.Value.ToString();
-                string qty = txtQty.Text.ToString();
-                string rate = txtRate.Text.ToString();
+                decimal qty = Convert.ToDecimal(txtQty.Text.ToString());
+                decimal rate = Convert.ToDecimal(txtRate.Text.ToString());
                 string remarks = txtRemarks.Text.ToString();
-                decimal monValue = decimal.Parse(qty) * decimal.Parse(rate);
-                string enroll = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
-
-                if (decimal.Parse(qty) > 0 || decimal.Parse(rate) > 0)
+                decimal monValue = qty * rate;
+                if (Common.GetDdlSelectedValue(ddlType).Equals(2))
+                {
+                    qty *= -1;
+                    monValue *= -1;
+                }
+                if (qty > 0 || rate > 0)
                 {
                     checkXmlItemData(itemid);
                     if (CheckItem == 1)
                     {
-                        CreateXml(item, itemid, qty, rate, monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+                        CreateXml(item, itemid, qty.ToString(), rate.ToString(), monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
                         txtItem.Text = ""; txtQty.Text = "0"; txtRate.Text = "0";
                         ddlLcation.DataSource = "";
                         ddlLcation.DataBind();
@@ -177,8 +189,13 @@ namespace UI.SCM.Transfer
                 DataSet ds = new DataSet();
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
-                { dgvStore.DataSource = ds; }
-                else { dgvStore.DataSource = ""; }
+                {
+                    dgvStore.DataSource = ds;
+                }
+                else
+                {
+                    dgvStore.DataSource = "";
+                }
                 dgvStore.DataBind();
             }
             catch { }
@@ -232,12 +249,6 @@ namespace UI.SCM.Transfer
             return node;
         }
 
-        protected void ddlType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dgvStore.DataSource = "";
-            dgvStore.DataBind();
-        }
-
         private void checkXmlItemData(string itemid)
         {
             try
@@ -271,8 +282,15 @@ namespace UI.SCM.Transfer
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvStore.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
-                else { LoadGridwithXml(); }
+                {
+                    File.Delete(filePathForXML);
+                    dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
+                else
+                {
+                    LoadGridwithXml();
+                }
             }
             catch { }
         }
@@ -296,27 +314,26 @@ namespace UI.SCM.Transfer
                 catch
                 {
                 }
-                if (xmlString.Length > 5)
+                intWh = Common.GetDdlSelectedValue(ddlWh);
+                foreach (GridViewRow row in dgvStore.Rows)
                 {
-                    //foreach (GridViewRow row in dgvStore.Rows)
-                    //{
-                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
-                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
-                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
-                    //    string itemName = ((Label) row.FindControl("lbl")).Text;
-                    //}
-                    //dt = objTransfer.InventoryAdjustment(0, intWh, enroll, intItemId, quantity, rate, intLocation, remarks);
-                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    int intItemId = Convert.ToInt32(((Label)row.FindControl("lblItemId")).Text);
+                    decimal quantity = Convert.ToDecimal(((Label)row.FindControl("lblQty")).Text);
+                    decimal rate = Convert.ToDecimal(((Label)row.FindControl("lblRate")).Text);
+                    int intLocation = Convert.ToInt32(((Label)row.FindControl("lblLocationId")).Text);
+                    string remarks = ((Label)row.FindControl("lblRemarks")).Text;
 
-                    //dgvStore.DataSource = "";
-                    //dgvStore.DataBind();
-
-                    ////txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
-                    //ddlLcation.DataSource = dt;
-                    //ddlLcation.DataBind();
-                    //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-                    //hdnStockQty.Value = "0";
+                    dt = objTransfer.InventoryAdjustment(0, intWh, enroll, intItemId, quantity, rate, intLocation, remarks);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0][0] + "');", true);
+                    GridViewUtil.UnLoadGridView(dgvStore);
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch { }
                 }
+                txtItem.Text = String.Empty;
+                txtRemarks.Text = String.Empty;
             }
             catch
             {
