@@ -127,7 +127,7 @@ namespace UI.SCM
                 string Reqid = datas[0].ToString();
                 string ReqCode = datas[1].ToString();
                 string dteReqDate = datas[2].ToString();
-                string strDepartmentName = datas[3].ToString();
+                string strDepartmentName = datas[3].Trim();
                 string strReqBy = datas[4].ToString();
                 string strApproveBy = datas[5].ToString();
 
