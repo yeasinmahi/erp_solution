@@ -83,7 +83,7 @@
 
                     <td>
                         <asp:Image ID="imgUnit" runat="server" /></td>
-                    <td style="text-align: center; font-size: medium; font-weight: bold; font: u">
+                    <td style="text-align: center; font-size: medium; font-weight: bold;">
                         <asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
                 </tr>
                 <tr>

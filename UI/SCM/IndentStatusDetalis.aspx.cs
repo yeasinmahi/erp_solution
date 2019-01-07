@@ -47,9 +47,21 @@ namespace UI.SCM
                     dt = objIndent.DataView(14, "", 0, int.Parse(indentID), DateTime.Now, enroll);
                     if (dt.Rows.Count > 0)
                     {
+                        if (DateTime.TryParse(dt.Rows[0]["indentDate"].ToString(), out var indentDate) &&
+                            DateTime.TryParse(dt.Rows[0]["ApproveDate"].ToString(), out var approveDate))
+                        {
+                            lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" +
+                                               indentDate.ToString("D") + "]";
+                            lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" +
+                                                approveDate.ToString("D") + "]";
+                        }
+                        else
+                        {
+                            lblIndentBY.Text = dt.Rows[0]["indentBy"].ToString();
+                            lblApproveBy.Text = dt.Rows[0]["ApproveBY"].ToString();
+                        }
+
                         lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();
-                        lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" + DateTime.Parse(dt.Rows[0]["indentDate"].ToString()).ToString("D") + "]";
-                        lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" + DateTime.Parse(dt.Rows[0]["ApproveDate"].ToString()).ToString("D") + "]";
 
                         string unit = dt.Rows[0]["intUnit"].ToString();
                         int job = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
