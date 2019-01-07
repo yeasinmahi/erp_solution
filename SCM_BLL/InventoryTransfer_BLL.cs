@@ -343,16 +343,19 @@ namespace SCM_BLL
             sprDistributionReceiveTableAdapter adp  = new sprDistributionReceiveTableAdapter();
             return adp.GetDistributionData(whid, FromDate, ToDate,type, intTransferID);
         }
-        public string DistributionData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
+        public DataTable DistributionData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
         {
-            string msg = "";
+            
             sprInventoryTransferTableAdapter adp = new sprInventoryTransferTableAdapter();
-            try {
-                adp.InsertTransferData(unit, intwh, outWH, location, user, item, qty, value, vehicle, remarks, intReff, intTransferType, ysnSalesEntry);
-                msg = "Data Updated Successfully";
+            try
+            {
+                return adp.InsertTransferData(unit, intwh, outWH, location, user, item, qty, value, vehicle, remarks, intReff, intTransferType, ysnSalesEntry);              
             }
-            catch { msg = "Data Not Updated"; }
-            return msg;
+            catch
+            {
+                return new DataTable();
+            }
+           
         }
         
     }

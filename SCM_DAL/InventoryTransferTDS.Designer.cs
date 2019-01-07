@@ -9869,6 +9869,12 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnQty;
             
+            private global::System.Data.DataColumn columnmonValue;
+            
+            private global::System.Data.DataColumn columnintUnitID;
+            
+            private global::System.Data.DataColumn columnintOutWHID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprDistributionReceiveDataTable() {
@@ -9960,6 +9966,30 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monValueColumn {
+                get {
+                    return this.columnmonValue;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIDColumn {
+                get {
+                    return this.columnintUnitID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intOutWHIDColumn {
+                get {
+                    return this.columnintOutWHID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -9995,7 +10025,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprDistributionReceiveRow AddsprDistributionReceiveRow(int intItemID, string strItem, string struom, decimal Column1, System.DateTime dteTransactionDate, decimal Qty) {
+            public sprDistributionReceiveRow AddsprDistributionReceiveRow(int intItemID, string strItem, string struom, decimal Column1, System.DateTime dteTransactionDate, decimal Qty, decimal monValue, int intUnitID, int intOutWHID) {
                 sprDistributionReceiveRow rowsprDistributionReceiveRow = ((sprDistributionReceiveRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -10004,7 +10034,10 @@ namespace SCM_DAL {
                         struom,
                         Column1,
                         dteTransactionDate,
-                        Qty};
+                        Qty,
+                        monValue,
+                        intUnitID,
+                        intOutWHID};
                 rowsprDistributionReceiveRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsprDistributionReceiveRow);
                 return rowsprDistributionReceiveRow;
@@ -10041,6 +10074,9 @@ namespace SCM_DAL {
                 this.columnColumn1 = base.Columns["Column1"];
                 this.columndteTransactionDate = base.Columns["dteTransactionDate"];
                 this.columnQty = base.Columns["Qty"];
+                this.columnmonValue = base.Columns["monValue"];
+                this.columnintUnitID = base.Columns["intUnitID"];
+                this.columnintOutWHID = base.Columns["intOutWHID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10060,6 +10096,12 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columndteTransactionDate);
                 this.columnQty = new global::System.Data.DataColumn("Qty", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnQty);
+                this.columnmonValue = new global::System.Data.DataColumn("monValue", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonValue);
+                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitID);
+                this.columnintOutWHID = new global::System.Data.DataColumn("intOutWHID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintOutWHID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintTransferID}, true));
                 this.columnintTransferID.AutoIncrement = true;
@@ -13901,6 +13943,54 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monValue {
+                get {
+                    try {
+                        return ((decimal)(this[this.tablesprDistributionReceive.monValueColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monValue\' in table \'sprDistributionReceive\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprDistributionReceive.monValueColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intUnitID {
+                get {
+                    try {
+                        return ((int)(this[this.tablesprDistributionReceive.intUnitIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitID\' in table \'sprDistributionReceive\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprDistributionReceive.intUnitIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intOutWHID {
+                get {
+                    try {
+                        return ((int)(this[this.tablesprDistributionReceive.intOutWHIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intOutWHID\' in table \'sprDistributionReceive\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprDistributionReceive.intOutWHIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintItemIDNull() {
                 return this.IsNull(this.tablesprDistributionReceive.intItemIDColumn);
             }
@@ -13969,6 +14059,42 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetQtyNull() {
                 this[this.tablesprDistributionReceive.QtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonValueNull() {
+                return this.IsNull(this.tablesprDistributionReceive.monValueColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonValueNull() {
+                this[this.tablesprDistributionReceive.monValueColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintUnitIDNull() {
+                return this.IsNull(this.tablesprDistributionReceive.intUnitIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintUnitIDNull() {
+                this[this.tablesprDistributionReceive.intUnitIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintOutWHIDNull() {
+                return this.IsNull(this.tablesprDistributionReceive.intOutWHIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintOutWHIDNull() {
+                this[this.tablesprDistributionReceive.intOutWHIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -21283,6 +21409,9 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             tableMapping.ColumnMappings.Add("Column1", "Column1");
             tableMapping.ColumnMappings.Add("dteTransactionDate", "dteTransactionDate");
             tableMapping.ColumnMappings.Add("Qty", "Qty");
+            tableMapping.ColumnMappings.Add("monValue", "monValue");
+            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
+            tableMapping.ColumnMappings.Add("intOutWHID", "intOutWHID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

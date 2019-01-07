@@ -39,7 +39,12 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
+            GridBind();
+        }
+
+        private void GridBind()
+        {
+            int whid = 527;//Convert.ToInt32(ddlWH.SelectedItem.Value);
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
             dt = objbll.FGReceive_Data(whid, FromDate, ToDate);
@@ -58,9 +63,11 @@ namespace UI.SCM
             int autoid = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
             int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
             DateTime InvDate = Convert.ToDateTime(((Label)row.FindControl("lblLastActionTime")).Text);
-            int StoreQty = Convert.ToInt32(((TextBox)row.FindControl("txtSendStoreQty")).Text);
+            decimal StoreQty = Convert.ToDecimal(((TextBox)row.FindControl("txtSendStoreQty")).Text);
             int productid = Convert.ToInt32(((Label)row.FindControl("lblintproductionid")).Text);
-            int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
+            int whid = 527;//Convert.ToInt32(ddlWH.SelectedItem.Value);
+
+
 
 
         }
