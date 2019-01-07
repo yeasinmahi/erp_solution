@@ -206,7 +206,7 @@ namespace UI.SCM
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intWh = int.Parse(ddlWH.SelectedValue);
+                intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
                 hdnWHName.Value = ddlWH.SelectedItem.ToString();
                 DateTime dteFrom = DateTime.Parse(txtDtefroms.Text.ToString());
@@ -220,6 +220,7 @@ namespace UI.SCM
                     hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
                     hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
                 }
+                
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
                 dt.Clear();
@@ -242,13 +243,15 @@ namespace UI.SCM
                 {
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
                     hdnUnitId.Value = dt.Rows[0]["intUnitID"].ToString();
+                    
+                    Session["unitId"] = hdnUnitId.Value.ToString(); 
+
                     lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     lblIndentDate.Text = DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
                     lblindentApproveDate.Text = DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
                     lblInDueDate.Text = DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
-                string unitId = hdnUnitId.Value.ToString();
-                Session["unitId"] = unitId;
+               
 
                 Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Clicked";
@@ -282,7 +285,7 @@ namespace UI.SCM
                 ddlItem.DataBind();
                 LoadGridwithXml();
             }
-            catch { }
+            catch { Session["unitId"] = "0".ToString(); }
         }
 
         private void CreateXml(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
@@ -411,9 +414,20 @@ namespace UI.SCM
             dgvIndentPrepare.DataSource = dt;
             dgvIndentPrepare.DataBind();
 
-            hdnUnitId.Value = "0";
-            hdnWHId.Value = "0";
-            hdnWHName.Value = "0";
+            dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
+            if (dt.Rows.Count > 0)
+            {
+                hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
+                Session["untid"] = hdnUnitId.Value.ToString();
+            }
+            else
+            {
+
+                hdnUnitId.Value = "0"; 
+            }
+            hdnWHId.Value = ddlWH.SelectedValue.ToString();
+            hdnWHName.Value = ddlWH.SelectedItem.ToString();
+
             hdnUnitName.Value = "0";
         }
 
@@ -447,12 +461,18 @@ namespace UI.SCM
                 int IndentNo = int.Parse(txtIndentNoDet.Text);
                 string dept = ddlDepts.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + "2018-01-01" + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                dt = objPo.GetPoData(11, xmlData, intWh, IndentNo, DateTime.Now, enroll);
-                ddlItem.DataSource = dt;
-                ddlItem.DataTextField = "strName";
-                ddlItem.DataValueField = "Id";
-                ddlItem.DataBind();
-                dt.Clear();
+                
+                dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value.ToString()), IndentNo, DateTime.Now, enroll);
+                if(dt.Rows.Count>0)
+                {
+                    ddlItem.DataSource = dt;
+                    ddlItem.DataTextField = "strName";
+                    ddlItem.DataValueField = "Id";
+                    ddlItem.DataBind();
+                    dt.Clear();
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value.ToString()+"'');", true); }
+               
             }
             catch (Exception ex)
             {
