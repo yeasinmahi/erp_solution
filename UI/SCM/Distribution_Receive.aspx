@@ -62,12 +62,12 @@
 
                     </div>
                     <div class="panel panel-info">
-                        <div class="panel-heading"> <asp:Label runat="server" Text="FG Receive Report" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                        <div class="panel-heading"> <asp:Label runat="server" Text="Distribution Receive Report" Font-Bold="true" Font-Size="16px"></asp:Label></div>
                         <div class="panel-body">
                             <asp:GridView ID="Distribution_Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="2">
 
                                 <Columns>
-                                    <asp:TemplateField HeaderText="intTransfer ID" SortExpression="intTransferID">
+                                    <asp:TemplateField HeaderText="Transfer ID" SortExpression="intTransferID">
                                         <ItemTemplate>
                                             <asp:Label ID="lblintTransferID" runat="server" CssClass="lbl" Text='<%# Bind("intTransferID") %>'></asp:Label>
                                         </ItemTemplate>
@@ -94,6 +94,18 @@
                                     <asp:TemplateField HeaderText="UoM" SortExpression="struom">
                                          <ItemTemplate>
                                             <asp:Label ID="lblstrUoM" runat="server" CssClass="lbl" Text='<%# Bind("struom") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center"/>   
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="Unit ID" SortExpression="intUnitID" Visible="false">
+                                         <ItemTemplate>
+                                            <asp:Label ID="lblintUnitID" runat="server" CssClass="lbl" Text='<%# Bind("intUnitID") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center"/>   
+                                    </asp:TemplateField>
+                                     <asp:TemplateField HeaderText="intOutWHID" SortExpression="intOutWHID" Visible="false">
+                                         <ItemTemplate>
+                                            <asp:Label ID="lblintOutWHID" runat="server" CssClass="lbl" Text='<%# Bind("intOutWHID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center"/>   
                                     </asp:TemplateField>
