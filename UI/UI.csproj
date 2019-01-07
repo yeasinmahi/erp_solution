@@ -231,6 +231,7 @@
     <Content Include="AEFPS\StockReportWithBuyPrice.aspx" />
     <Content Include="AEFPS\StockReportForAudit.aspx" />
     <Content Include="AEFPS\StockReportWithSalesPrice.aspx" />
+    <Content Include="AEFPS\Total_Salary_Adjustment_Report.aspx" />
     <Content Include="AEFPS\TransferIn.aspx" />
     <Content Include="AEFPS\TransferInN.aspx" />
     <Content Include="AEFPS\TransferOut.aspx" />
@@ -2286,6 +2287,13 @@
     </Compile>
     <Compile Include="AEFPS\StockReportWithSalesPrice.aspx.designer.cs">
       <DependentUpon>StockReportWithSalesPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\Total_Salary_Adjustment_Report.aspx.cs">
+      <DependentUpon>Total_Salary_Adjustment_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\Total_Salary_Adjustment_Report.aspx.designer.cs">
+      <DependentUpon>Total_Salary_Adjustment_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\TransferIn.aspx.cs">
       <DependentUpon>TransferIn.aspx</DependentUpon>
