@@ -875,6 +875,8 @@ namespace UI.SCM
 
                     try { File.Delete(filePathForXMLPrepare); } catch { }
                     try { File.Delete(filePathForXMLPo); } catch { }
+                    dgvIndentPrepare.DataSource = "";
+                    dgvIndentPrepare.DataBind();
 
                     string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
                     string[] searchKey = Regex.Split(msg, ":");
