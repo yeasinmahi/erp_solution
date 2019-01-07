@@ -142,7 +142,7 @@
             </tr> 
            
             <tr> 
-            <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text=" Type"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="Label5" runat="server" CssClass="lbl" Text=" Department"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     > 
             </asp:DropDownList></td>
 
