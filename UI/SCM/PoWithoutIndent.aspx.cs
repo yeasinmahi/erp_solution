@@ -335,8 +335,8 @@ namespace UI.SCM
         {
             try
             {
-                intWh = int.Parse(ddlWHPrepare.SelectedValue);
-
+                intWh = int.Parse(ddlWHPrepare.SelectedValue.ToString());
+                
                 dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
                 ddlCurrency.DataSource = dt;
                 ddlCurrency.DataTextField = "strName";
@@ -347,13 +347,15 @@ namespace UI.SCM
                 dt = objPo.GetUnitID(intWh);
                 if (dt.Rows.Count > 0)
                 {
+                     
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
+                    Session["untid"] = hdnUnit.Value.ToString();
                 }
-                Session["untid"] = hdnUnit.Value.ToString();
+              
 
                 // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
             }
-            catch { }
+            catch { Session["untid"] = "0"; }
         }
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
@@ -537,12 +539,13 @@ namespace UI.SCM
                 ddlWHPrepare.DataTextField = "strName";
                 ddlWHPrepare.DataValueField = "Id";
                 ddlWHPrepare.DataBind();
-                dt = objPo.GetUnitID(int.Parse(ddlWHPrepare.SelectedValue));
+                dt = objPo.GetUnitID(int.Parse(ddlWHPrepare.SelectedValue.ToString()));
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
+                    Session["untid"] = hdnUnit.Value.ToString();
                 }
-                Session["untid"] = hdnUnit.Value.ToString();
+              
 
                 dt.Clear();
                 intWh = int.Parse(ddlWHPrepare.SelectedValue);
@@ -572,7 +575,7 @@ namespace UI.SCM
                 ddlCostCenter.DataValueField = "Id";
                 ddlCostCenter.DataBind();
             }
-            catch { }
+            catch { Session["untid"] ="0".ToString(); }
         }
     }
 }

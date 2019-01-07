@@ -331,5 +331,32 @@ namespace SCM_BLL
             sprInsertMrrItemDetailWithoutPOTableAdapter adp = new sprInsertMrrItemDetailWithoutPOTableAdapter();
             return adp.InventoryAdjustment(unit, wh, user, intItem, rcvQty, monRate, location, remarks);
         }
+
+        public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate )
+        {
+            sprInventoryProductionReceiveReportTableAdapter adp = new sprInventoryProductionReceiveReportTableAdapter();
+            return adp.GetFGReceiveData(whid, FromDate,ToDate);
+        }
+        
+        public DataTable DistributionData(int whid, DateTime FromDate, DateTime ToDate,int type,int intTransferID)
+        {
+            sprDistributionReceiveTableAdapter adp  = new sprDistributionReceiveTableAdapter();
+            return adp.GetDistributionData(whid, FromDate, ToDate,type, intTransferID);
+        }
+        public DataTable DistributionData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
+        {
+            
+            sprInventoryTransferTableAdapter adp = new sprInventoryTransferTableAdapter();
+            try
+            {
+                return adp.InsertTransferData(unit, intwh, outWH, location, user, item, qty, value, vehicle, remarks, intReff, intTransferType, ysnSalesEntry);              
+            }
+            catch
+            {
+                return new DataTable();
+            }
+           
+        }
+        
     }
 }
