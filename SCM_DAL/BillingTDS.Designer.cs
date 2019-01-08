@@ -24471,7 +24471,8 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT strApproveType, intID FROM ERP_Payment.dbo.tblAppoveType order by intID\r\n";
+            this._commandCollection[0].CommandText = "SELECT strApproveType, intID FROM ERP_Payment.dbo.tblAppoveType where ysnActive =" +
+                " 1  order by intID\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

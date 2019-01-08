@@ -9,8 +9,8 @@ namespace HR_BLL.Penalty
 {
    public class Penalty
     {
-       #region Method
-       public string InsertPunishmentData(int? intUserID, string empCode, decimal monPenaltyAmount, string strDescription, DateTime dteEffectedDate, int? intLoginUserID)
+        #region All Operational Method
+        public string InsertPunishmentData(int? intUserID, string empCode, decimal monPenaltyAmount, string strDescription, DateTime dteEffectedDate, int? intLoginUserID)
        {
            //Summary    :   THIS FUNCTION WILL BE USED TO INSERT PUNISHMENT DETAILS BY EMPLOYEE ID 
            //Created    :   MD. YEASIR ARAFAT / JUNE-01-2012
@@ -28,7 +28,7 @@ namespace HR_BLL.Penalty
                throw ex;
            }
        }
-       public string UpdatePunishmentData(int? intUserID, string empCode, decimal monPenaltyAmount, string strDescription, DateTime dteEffectedDate, int? intLoginUserID)
+        public string UpdatePunishmentData(int? intUserID, string empCode, decimal monPenaltyAmount, string strDescription, DateTime dteEffectedDate, int? intLoginUserID)
        {
            //Summary    :   THIS FUNCTION WILL BE USED TO UPDATE PUNISHMENT DETAILS BY EMPLOYEE ID 
            //Created    :   MD. YEASIR ARAFAT / JUNE-01-2012
@@ -44,7 +44,7 @@ namespace HR_BLL.Penalty
            catch (Exception ex)
            { return ex.Message.ToString(); }
        }
-       public string DeletePunishmentData(int? intUserID, string empCode,DateTime dteEffectedDate, int? intLoginUserID)
+        public string DeletePunishmentData(int? intUserID, string empCode,DateTime dteEffectedDate, int? intLoginUserID)
        {
            //Summary    :   THIS FUNCTION WILL BE USED TO DELETE PUNISHMENT DETAILS BY EMPLOYEE ID 
            //Created    :   MD. YEASIR ARAFAT / JUNE-01-2012
@@ -60,7 +60,7 @@ namespace HR_BLL.Penalty
            catch (Exception ex)
            { return ex.Message.ToString(); }
        }
-       public DataTable GetAllPunishmentData(int? intUserID, string empCode)
+        public DataTable GetAllPunishmentData(int? intUserID, string empCode)
        {
            //Summary    :   THIS FUNCTION WILL BE USED TO GET ALL PUNISHMENT DETAILS BY EMPLOYEE ID 
            //Created    :   MD. YEASIR ARAFAT / JUNE-01-2012
@@ -79,8 +79,7 @@ namespace HR_BLL.Penalty
                return odt;
            }
        }
-       #endregion
-
+        #endregion
 
         #region ----------- Disciplinary Punishment --------------
        public string InsertDisciplinaryPunishment(string empcode, int ptype, string dptype, DateTime effectivedate, decimal amount, string reason, int actionBy)
@@ -117,6 +116,44 @@ namespace HR_BLL.Penalty
 
         #endregion
 
+        #region All Familyday Method
+        public DataTable GetPickDropList()
+        {
+            try
+            {
+                tblDropDownListTableAdapter tbl = new tblDropDownListTableAdapter();
+                return tbl.GetPickDropData();
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetGamesGroupList()
+        {
+            try
+            {
+                tblDropDownListTableAdapter tbl = new tblDropDownListTableAdapter();
+                return tbl.GetGamesGroupData();
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetGamesList(int groups)
+        {
+            try
+            {
+                tblDropDownListTableAdapter tbl = new tblDropDownListTableAdapter();
+                return tbl.GetGamesDataBygroup(groups);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable Familydayinformation(int type, string empcode, int pnd, string ptype, int actionBy, string xmlstring)
+        {
+            try
+            {
+                SprFamilyDayInformationTableAdapter ta = new SprFamilyDayInformationTableAdapter();
+                return ta.SetFamilyInformationData(type, empcode, pnd, ptype, actionBy, xmlstring);
+            }
+            catch { return new DataTable(); }
+        }
+        #endregion
 
     }
 }

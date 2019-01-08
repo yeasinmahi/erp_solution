@@ -15742,12 +15742,17 @@ SELECT strWareHoseName, intWHID, intUnitID FROM tblWearHouse WHERE (intWHID = @i
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT strWareHoseName, intWHID,intUnitID FROM ERP_Inventory.dbo.tblWearHouse whe" +
                 "re ysnIndent=1 and ysnActive=1 and intParentID=0 ORDER BY strWareHoseName asc\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT intUnitID, intWHID FROM tblWearHouse WHERE (intWHID = @wh)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@wh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15756,6 +15761,18 @@ SELECT strWareHoseName, intWHID, intUnitID FROM tblWearHouse WHERE (intWHID = @i
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual InventoryTransferTDS.TblWearHouseDataTable GetWHList() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            InventoryTransferTDS.TblWearHouseDataTable dataTable = new InventoryTransferTDS.TblWearHouseDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual InventoryTransferTDS.TblWearHouseDataTable GetUnitByWhId(int wh) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(wh));
             InventoryTransferTDS.TblWearHouseDataTable dataTable = new InventoryTransferTDS.TblWearHouseDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

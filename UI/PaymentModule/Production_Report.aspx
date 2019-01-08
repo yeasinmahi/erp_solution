@@ -82,8 +82,8 @@
                                 </div>
                                
                             </div>
-                            <div class="row form-group">                                
-                                <div class="col-md-12 btn-toolbar" id="showbuttonDiv">
+                            <div class="form-group col-md-3">                                
+                                <div class="btn-toolbar" id="showbuttonDiv">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-right" OnClientClick="return Validation()" Text="Show" OnClick="btnShow_Click"/>
                                 </div>
                             </div>
