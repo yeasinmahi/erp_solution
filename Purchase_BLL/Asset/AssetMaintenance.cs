@@ -462,6 +462,12 @@ namespace Purchase_BLL.Asset
             userrequestinsert.UserRequestSupport(assetId, intAssetAutoId, priority, problem, intenroll, intLocationId, dept, location, urgent, intType);
         }
 
+        public void dgvPartsCostUpdate(int id, decimal cost)
+        {
+            TblWOMaintenancePartsTableAdapter wopartsdelete = new TblWOMaintenancePartsTableAdapter();
+            wopartsdelete.UpdateMaintenacePartsCost(cost, id);
+        }
+
         public DataTable GriedViewUserRequestData(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)
         {
             SprMaintenanceLoadViewTableAdapter userviewdata = new SprMaintenanceLoadViewTableAdapter();

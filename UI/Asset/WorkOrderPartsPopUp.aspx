@@ -225,15 +225,29 @@
                         <Columns>
                             <asp:BoundField DataField="strSpareParts" HeaderText="Spare Parts" SortExpression="strSpareParts" />
                             <asp:BoundField DataField="intqty" HeaderText="Qty" SortExpression="intqty" />
-                              <asp:BoundField DataField="monCost" HeaderText="Value" SortExpression="monCost" />
+                              <asp:TemplateField HeaderText="Value" >
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtdCost" Width="70px" runat="server" Text='<%# Bind("monCost") %>'></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField> 
+                              
                             <asp:BoundField HeaderText="ReqCode" DataField="strReqCode" SortExpression="strReqCode" />
                             <asp:BoundField DataField="strStatus" HeaderText="Status" SortExpression="strStatus" />
+                            <asp:TemplateField HeaderText="Update">
+                            <ItemTemplate>
+                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Left" Width="30px" />
+                            </asp:TemplateField>
+
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
                             <asp:TemplateField HeaderText="ID" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="Label21" runat="server" Text='<%# Bind("intID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                             
+                            
                         </Columns>
                         </asp:GridView>
                               <%--</div>--%>

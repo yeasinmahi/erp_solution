@@ -523,6 +523,23 @@ namespace UI.Asset
 
         }
 
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblId = row.FindControl("Label21") as Label;
+                TextBox txtCost = row.FindControl("txtdCost") as TextBox;
+                decimal cost = decimal.Parse(txtCost.Text.ToString());
+                int id = int.Parse(lblId.Text.ToString());
+
+                objWorkorderParts.dgvPartsCostUpdate(id, cost );
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Update');", true);
+            }
+            catch {  }
+        }
+
         protected void dgvwoParts_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "dgvwoParts_RowDeleting", null);
