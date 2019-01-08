@@ -41,7 +41,7 @@ namespace UI.SCM
                         lblChallanDate.Text = dtechallan.ToString("dd-MM-yyyy");
                         lblWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                         lblSupplier.Text = dt.Rows[0]["strSupplierName"].ToString();
-                        DateTime dteMrr = DateTime.Parse(dt.Rows[0]["dteChallanDate"].ToString());
+                        DateTime dteMrr = DateTime.Parse(dt.Rows[0]["dteDate"].ToString());
                         lblMrrDate.Text = dteMrr.ToString("dd-MM-yyyy");
                         lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                         string unit = dt.Rows[0]["intUnitID"].ToString();
