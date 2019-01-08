@@ -481,6 +481,7 @@
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
     <Content Include="PaymentModule\PreviousPriceView.aspx" />
+    <Content Include="PaymentModule\Production_Report.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
@@ -3516,6 +3517,13 @@
     </Compile>
     <Compile Include="PaymentModule\PreviousPriceView.aspx.designer.cs">
       <DependentUpon>PreviousPriceView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Production_Report.aspx.cs">
+      <DependentUpon>Production_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Production_Report.aspx.designer.cs">
+      <DependentUpon>Production_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.cs">
       <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
