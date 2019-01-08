@@ -166,6 +166,11 @@
 
             <asp:TemplateField HeaderText="MRR Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteLastActionTime">
             <ItemTemplate><asp:Label ID="lblMrrDate" runat="server"  Text='<%# Bind("dteLastActionTime") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" />
+            </asp:TemplateField>
+
+            <asp:TemplateField HeaderText="Due Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
+            <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Detalis">
@@ -210,13 +215,14 @@
             <ItemTemplate><asp:Label ID="lblDept" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Due Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
-            <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
-
+            
             <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate">
             <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            
+                <asp:TemplateField HeaderText="Due Date"  ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
+                    <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
+                    <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strPurpose">
             <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strPurpose") %>'></asp:Label></ItemTemplate>
