@@ -357,6 +357,12 @@ namespace SCM_BLL
             }
            
         }
+
+        public DataTable GetUnitByWH(int whid)
+        {
+            TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+            return adp.GetUnitByWhId(whid);
+        }
         
     }
 }
