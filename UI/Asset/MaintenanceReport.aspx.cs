@@ -8,6 +8,7 @@ using Purchase_BLL.Asset;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Flogging.Core;
+using System.Globalization;
 
 namespace UI.Asset
 {
@@ -56,17 +57,18 @@ namespace UI.Asset
 
 			try
             {
-                DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-                DateTime todate = DateTime.Parse(TxtdteTo.Text);
+               
+
+                string fromdate =txtDteFrom.Text.ToString();
+                string todate = TxtdteTo.Text.ToString();
                 int intJobId = int.Parse(ddlJobStation.SelectedValue);
                 int type = int.Parse(ddlType.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
-                DateTime dteTo = DateTime.Parse(TxtdteTo.Text.ToString());
-
-                if(type==1) //Top Sheet
+              
+                string xml = "<voucher><voucherentry dteFrom=" + '"' + fromdate + '"' + " dteTo=" + '"' + todate + '"' + "/></voucher>".ToString();
+                if (type==1) //Top Sheet
                 {
                     dgview.Visible = true;
-                    dt = objReport.GetData(1, "", 0, intJobId, dteFrom, dteTo, type, intEnroll);
+                    dt = objReport.GetData(1, xml, 0, intJobId, DateTime.Now, DateTime.Now, type, intEnroll);
                     dgview.DataSource = dt;
                     dgview.DataBind();
                     dgvMaterial.Visible = false;
@@ -85,7 +87,7 @@ namespace UI.Asset
                 else if (type == 2)//Material
                 {
                     dgvMaterial.Visible = true;
-                    dt = objReport.GetData(2, "", 0, intJobId, dteFrom, dteTo, type, intEnroll);
+                    dt = objReport.GetData(2, "", 0, intJobId, DateTime.Parse(fromdate.ToString()), DateTime.Parse(todate), type, intEnroll);
                     dgvMaterial.DataSource = dt;
                     dgvMaterial.DataBind();
                     dgview.Visible = false;
@@ -94,7 +96,7 @@ namespace UI.Asset
                 else //service Cost
                 {
                     dgvServiceCost.Visible = true;
-                    dt = objReport.GetData(3, "", 0, intJobId, dteFrom, dteTo, type, intEnroll);
+                    dt = objReport.GetData(3, "", 0, intJobId, DateTime.Parse(fromdate.ToString()), DateTime.Parse(todate), type, intEnroll);
                     dgvServiceCost.DataSource = dt;
                     dgvServiceCost.DataBind();
                     dgvMaterial.Visible = false;
