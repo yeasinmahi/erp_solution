@@ -139,6 +139,87 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.HiddenField HiddenUnit;
         
         /// <summary>
+        /// lblvheiclename control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblvheiclename;
+        
+        /// <summary>
+        /// lblvheiclenameval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblvheiclenameval;
+        
+        /// <summary>
+        /// lblMaxocten control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMaxocten;
+        
+        /// <summary>
+        /// lblMaxoctenval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMaxoctenval;
+        
+        /// <summary>
+        /// lblOctenRatePerLtr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOctenRatePerLtr;
+        
+        /// <summary>
+        /// lblOctenCostthis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOctenCostthis;
+        
+        /// <summary>
+        /// lblLubricantcostalready control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLubricantcostalready;
+        
+        /// <summary>
+        /// lblPhotocopy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPhotocopy;
+        
+        /// <summary>
+        /// lblPhotocopyval control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPhotocopyval;
+        
+        /// <summary>
         /// lblFromDate control.
         /// </summary>
         /// <remarks>

@@ -1,5 +1,6 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -19,6 +20,7 @@ namespace UI.SAD.Order
         string filePathForXML;
         string xmlString = "";
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+        SalesView bllview = new SalesView();
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
         SeriLog log = new SeriLog();
@@ -36,9 +38,13 @@ namespace UI.SAD.Order
             {
                 hdnApplicantEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                 Int32 enroll = Convert.ToInt32(hdnApplicantEnrol.Value);
+                int unitid=int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
                 DataTable dt = new DataTable();
+                DataTable dtallow = new DataTable();
                 dt = bll.getEndMilageApplicant(enroll);
-
+                dtallow = bllview.GetDataTADAFuelAllowance(enroll);
+                decimal maxoct= decimal.Parse(dtallow.Rows[0][6].ToString());
+                int octcallw = Convert.ToInt32(maxoct);
                 if (dt.Rows.Count > 0) { txtStartMilage.Text = dt.Rows[0][0].ToString(); }
                 else { txtStartMilage.Text = "0"; }
 
@@ -47,6 +53,30 @@ namespace UI.SAD.Order
 
                 if (dt.Rows.Count > 0) { txtToaddr.Text = dt.Rows[0][2].ToString(); }
                 else { txtToaddr.Text = ""; }
+
+                if(octcallw > 1 && unitid==4)
+                {
+                    lblvheiclenameval.Text = dtallow.Rows[0][18].ToString();
+                    lblMaxoctenval.Text = dtallow.Rows[0][6].ToString();
+                    lblOctenRatePerLtr.Text = dtallow.Rows[0][20].ToString();
+                    //lblPhotocopyval.Text = dtallow.Rows[0][16].ToString();
+                    txtRickshaw.Enabled = false;
+                    txtCNG.Enabled = false;
+                    txtAirPlane.Enabled = false;
+                    txtMntVh.Enabled = false;
+                    txtDriverDA.Enabled = false;
+                    txtDriverHotel.Enabled = false;
+                    txtOtherCost.Enabled = false;
+                }
+                else
+                {
+                    lblvheiclenameval.Text = "";
+                    lblMaxoctenval.Text = "";
+                }
+               
+            
+
+
                 //if(dt.Rows.Count>)
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
@@ -402,7 +432,7 @@ namespace UI.SAD.Order
                      lubricantqnt = "0", lubricantcost = "0", mntCost = "0", ferrytoll = "0", driverhotel = "0", photocoly = "0", courier = "0",
                      CNGCredit1AmountcngFuelStationbill = "0", CNGCredit2AmountcngFuelStationbill = "0", oilCredit1Stationbill = "0";
 
-
+                      
                     string FuelpaymentTypeid;
                     string Cngcredit1FuelSupplierstationid; string Cngcredit1FuelSupplierstationName;
                     string Cngcredit2FuelSupplierstationid; string Cngcredit2FuelSupplierstationName;
@@ -536,394 +566,416 @@ namespace UI.SAD.Order
                     DateTime dt3 = Convert.ToDateTime(endOfMonth);
                     DateTime dt4 = Convert.ToDateTime(cureentdate);
                     int diffbEOMTODATE = (dt3 - dt4).Days;
-                    
+                    DataTable dtt = new DataTable();
+                   
 
-                    if (diffbEOMTODATE > 0)
+
+                        if (diffbEOMTODATE > 0)
                     {
 
 
 
-                        if (BillDate == string.Empty || BillDate == "")
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
-                        }
-
-                        else if (MovDuration == string.Empty || MovDuration == "")
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Consumed time can not blank !')", true);
-                        }
-
-                        else if (fromAddress == string.Empty || fromAddress == "")
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('From address can not blank !')", true);
-                        }
-
-                        else if (movementAddress == string.Empty || movementAddress == "")
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Movement address can not blank !')", true);
-                        }
-
-
-
-
-                        else
-                        {
-
-                            string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
-
-                            string strstarttime = Convert.ToString(txtStarTime.Text);
-                            string strendtime = Convert.ToString(txtEndTime.Text);
-                            string strMovDuration = Convert.ToString(txtMovDuration.Text);
-                            string strfromAddress = Convert.ToString(txtFromAddr.Text);
-                            string strmovementAddress = Convert.ToString(txtMovementArea.Text);
-                            string strtoAddress = Convert.ToString(txtToaddr.Text);
-                            if (strtoAddress.Length <= 0) { strtoAddress = "NA"; }
-                            string strnightstay = Convert.ToString(txtNightStay.Text);
-                            if (strnightstay.Length <= 0) { strnightstay = "NA"; }
-
-                            string strstartmilage = txtStartMilage.Text;
-                            if (strstartmilage.Length <= 0) { strstartmilage = "0"; }
-                            string strendmilage = txtEndMilage.Text;
-                            if (strendmilage.Length <= 0) { strendmilage = "0"; }
-                            string strconsumed = txtConsumed.Text;
-                            if (strconsumed.Length <= 0) { strconsumed = "0"; }
-                            string strremarks = txtSupporting.Text;
-                            if (strremarks.Length <= 0) { strremarks = "NA"; }
-
-                            if (rdbFuelStationList.SelectedItem.Text == "Credit") { FuelpaymentTypeid = "1"; }
-                            else if (rdbFuelStationList.SelectedItem.Text == "Cash") { FuelpaymentTypeid = "0"; }
-                            else { FuelpaymentTypeid = "2"; }
-
-
-
-                            string strCngcredit1FuelSupplierstationid = (drdlSupplierName.SelectedValue.ToString());
-                            if (strCngcredit1FuelSupplierstationid.Length <= 0) { strCngcredit1FuelSupplierstationid = "0"; }
-                            string strCNGCredit1AmountcngFuelStationbill = txtSupplierCNGCredit1.Text;
-                            if (strCNGCredit1AmountcngFuelStationbill.Length <= 0) { strCNGCredit1AmountcngFuelStationbill = "0"; }
-                            string strCngcredit1FuelSupplierstationName = (drdlSupplierName.SelectedItem.Text);
-                            if (strCngcredit1FuelSupplierstationName.Length <= 0) { strCngcredit1FuelSupplierstationName = "NA"; }
-
-
-                            string strCngcredit2FuelSupplierstationid = (drdlCNGStationNameCredit2.SelectedValue.ToString());
-                            if (strCngcredit1FuelSupplierstationid.Length <= 0) { strCngcredit1FuelSupplierstationid = "0"; }
-                            string strCNGCredit2AmountcngFuelStationbill = txtSupplierCNGCredit2.Text;
-                            if (strCNGCredit2AmountcngFuelStationbill.Length <= 0) { strCNGCredit2AmountcngFuelStationbill = "0"; }
-                            string strCngcredit2FuelSupplierstationName = (drdlCNGStationNameCredit2.SelectedItem.Text);
-                            if (strCngcredit2FuelSupplierstationName.Length <= 0) { strCngcredit2FuelSupplierstationName = "NA"; }
-
-                            string strOilCredit1Supplierstationid = (drdlOilCreditStationName1.SelectedValue.ToString());
-                            if (strOilCredit1Supplierstationid.Length <= 0) { strOilCredit1Supplierstationid = "0"; }
-                            string stroilCredit1Stationbill = txtOilCredit.Text;
-                            if (stroilCredit1Stationbill.Length <= 0) { stroilCredit1Stationbill = "0"; }
-                            string stroilCredit1StationName = (drdlOilCreditStationName1.SelectedItem.Text);
-                            if (stroilCredit1StationName.Length <= 0) { stroilCredit1StationName = "NA"; }
-
-
-
-                            string strpersonalMilageqnt = txtPersMilage.Text;
-                            if (strpersonalMilageqnt.Length <= 0) { strpersonalMilageqnt = "0"; }
-                            string strpersonalMilagerate = "5.5";
-                            if (strpersonalMilagerate.Length <= 0) { strpersonalMilagerate = "5.5"; }
-                            string strpersonalMilagetotCost = txtPmilagTotalRate.Text;
-                            if (strpersonalMilagetotCost.Length <= 0) { strpersonalMilagetotCost = "0"; }
-
-
-
-                            string strpetrolqnt = txtPetrolQnt.Text;
-                            if (strpetrolqnt.Length <= 0) { strpetrolqnt = "0"; }
-                            string strpetrolcost = txtPetrolCost.Text;
-                            if (strpetrolcost.Length <= 0) { strpetrolcost = "0"; }
-                            string stroctenqnt = txtOcten.Text;
-                            if (stroctenqnt.Length <= 0) { stroctenqnt = "0"; }
-                            string stroctencost = txtOctenCost.Text;
-                            if (stroctencost.Length <= 0) { stroctencost = "0"; }
-                            string strcngqnt = txtCNGQnt.Text;
-                            if (strcngqnt.Length <= 0) { strcngqnt = "0"; }
-                            string strcngcost = txtCNGCost.Text;
-                            if (strcngcost.Length <= 0) { strcngcost = "0"; }
-
-                            string strlubricantqnt = txtMobilQnt.Text;
-                            if (strlubricantqnt.Length <= 0) { strlubricantqnt = "0"; }
-                            string strlubricantcost = txtMobilCost.Text;
-                            if (strlubricantcost.Length <= 0) { strlubricantcost = "0"; }
-                            string strbusfair = txtBusFair.Text;
-                            if (strbusfair.Length <= 0) { strbusfair = "0"; }
-
-                            string strRickfai = txtRickshaw.Text;
-                            if (strRickfai.Length <= 0) { strRickfai = "0"; }
-
-                            string strcngfair = txtCNG.Text;
-                            if (strcngfair.Length <= 0) { strcngfair = "0"; }
-
-                            string strtrainfair = txtTrain.Text;
-                            if (strtrainfair.Length <= 0) { strtrainfair = "0"; }
-
-                            string strAirplance = txtAirPlane.Text;
-                            if (strAirplance.Length <= 0) { strAirplance = "0"; }
-
-                            string strothervhfair = txtOtherVh.Text;
-                            if (strothervhfair.Length <= 0) { strothervhfair = "0"; }
-
-                            string strmntCost = txtMntVh.Text;
-                            if (strmntCost.Length <= 0) { strmntCost = "0"; }
-
-                            string strferrytoll = txtFerryToll.Text;
-                            if (strferrytoll.Length <= 0) { strferrytoll = "0"; }
-
-                            string strownda = txtOwnDA.Text;
-                            if (strownda.Length <= 0) { strownda = "0"; }
-
-                            string strdriverda = txtDriverDA.Text;
-                            if (strdriverda.Length <= 0) { strdriverda = "0"; }
-
-                            string strownhotelfair = txtOwnHotel.Text;
-                            if (strownhotelfair.Length <= 0) { strownhotelfair = "0"; }
-
-                            string strdriverhotel = txtDriverHotel.Text;
-                            if (strdriverhotel.Length <= 0) { strdriverhotel = "0"; }
-
-                            string strphotocoly = txtCourier.Text;
-                            if (strphotocoly.Length <= 0) { strphotocoly = "0"; }
-
-                            string strcourier = txtCourier.Text;
-                            if (strcourier.Length <= 0) { strcourier = "0"; }
-
-                            string strOtherCost = txtOtherCost.Text;
-                            if (strOtherCost.Length <= 0) { strOtherCost = "0"; }
-
-                            string strtotalcost = txtTotal.Text;
-                            if (strtotalcost.Length <= 0) { strtotalcost = "0"; }
-
-
-                            if (GridviewBikeCarUserInputInfo.Rows.Count <= 0)
+                            if (BillDate == string.Empty || BillDate == "")
                             {
-                                Serial = "1";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
                             }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 1)
+                            else if (MovDuration == string.Empty || MovDuration == "")
                             {
-                                Serial = "2";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Consumed time can not blank !')", true);
                             }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 2)
+                            else if (fromAddress == string.Empty || fromAddress == "")
                             {
-                                Serial = "3";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('From address can not blank !')", true);
                             }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 3)
+                            else if (movementAddress == string.Empty || movementAddress == "")
                             {
-                                Serial = "4";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Movement address can not blank !')", true);
                             }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 4)
-                            {
-                                Serial = "5";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 5)
-                            {
-                                Serial = "6";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 6)
-                            {
-                                Serial = "7";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
 
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 7)
-                            {
-                                Serial = "8";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 8)
-                            {
-                                Serial = "9";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 9)
-                            {
-                                Serial = "10";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 10)
-                            {
-                                Serial = "11";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 11)
-                            {
-                                Serial = "12";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 12)
-                            {
-                                Serial = "13";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 13)
-                            {
-                                Serial = "14";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 14)
-                            {
-                                Serial = "15";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
-
-                            else if (GridviewBikeCarUserInputInfo.Rows.Count == 15)
-                            {
-                                Serial = "16";
-                                CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
-                              , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
-                              , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
-                              , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
-                              , FuelpaymentTypeid
-                              , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
-                              , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
-                              , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
-                               , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
-                            }
                             else
                             {
-                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You are not allow to add more than Fifteen rows !')", true);
 
+                                string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
+
+                                string strstarttime = Convert.ToString(txtStarTime.Text);
+                                string strendtime = Convert.ToString(txtEndTime.Text);
+                                string strMovDuration = Convert.ToString(txtMovDuration.Text);
+                                string strfromAddress = Convert.ToString(txtFromAddr.Text);
+                                string strmovementAddress = Convert.ToString(txtMovementArea.Text);
+                                string strtoAddress = Convert.ToString(txtToaddr.Text);
+                                if (strtoAddress.Length <= 0) { strtoAddress = "NA"; }
+                                string strnightstay = Convert.ToString(txtNightStay.Text);
+                                if (strnightstay.Length <= 0) { strnightstay = "NA"; }
+
+                                string strstartmilage = txtStartMilage.Text;
+                                if (strstartmilage.Length <= 0) { strstartmilage = "0"; }
+                                string strendmilage = txtEndMilage.Text;
+                                if (strendmilage.Length <= 0) { strendmilage = "0"; }
+                                string strconsumed = txtConsumed.Text;
+                                if (strconsumed.Length <= 0) { strconsumed = "0"; }
+                                string strremarks = txtSupporting.Text;
+                                if (strremarks.Length <= 0) { strremarks = "NA"; }
+
+                                if (rdbFuelStationList.SelectedItem.Text == "Credit") { FuelpaymentTypeid = "1"; }
+                                else if (rdbFuelStationList.SelectedItem.Text == "Cash") { FuelpaymentTypeid = "0"; }
+                                else { FuelpaymentTypeid = "2"; }
+
+
+
+                                string strCngcredit1FuelSupplierstationid = (drdlSupplierName.SelectedValue.ToString());
+                                if (strCngcredit1FuelSupplierstationid.Length <= 0) { strCngcredit1FuelSupplierstationid = "0"; }
+                                string strCNGCredit1AmountcngFuelStationbill = txtSupplierCNGCredit1.Text;
+                                if (strCNGCredit1AmountcngFuelStationbill.Length <= 0) { strCNGCredit1AmountcngFuelStationbill = "0"; }
+                                string strCngcredit1FuelSupplierstationName = (drdlSupplierName.SelectedItem.Text);
+                                if (strCngcredit1FuelSupplierstationName.Length <= 0) { strCngcredit1FuelSupplierstationName = "NA"; }
+
+
+                                string strCngcredit2FuelSupplierstationid = (drdlCNGStationNameCredit2.SelectedValue.ToString());
+                                if (strCngcredit1FuelSupplierstationid.Length <= 0) { strCngcredit1FuelSupplierstationid = "0"; }
+                                string strCNGCredit2AmountcngFuelStationbill = txtSupplierCNGCredit2.Text;
+                                if (strCNGCredit2AmountcngFuelStationbill.Length <= 0) { strCNGCredit2AmountcngFuelStationbill = "0"; }
+                                string strCngcredit2FuelSupplierstationName = (drdlCNGStationNameCredit2.SelectedItem.Text);
+                                if (strCngcredit2FuelSupplierstationName.Length <= 0) { strCngcredit2FuelSupplierstationName = "NA"; }
+
+                                string strOilCredit1Supplierstationid = (drdlOilCreditStationName1.SelectedValue.ToString());
+                                if (strOilCredit1Supplierstationid.Length <= 0) { strOilCredit1Supplierstationid = "0"; }
+                                string stroilCredit1Stationbill = txtOilCredit.Text;
+                                if (stroilCredit1Stationbill.Length <= 0) { stroilCredit1Stationbill = "0"; }
+                                string stroilCredit1StationName = (drdlOilCreditStationName1.SelectedItem.Text);
+                                if (stroilCredit1StationName.Length <= 0) { stroilCredit1StationName = "NA"; }
+
+
+
+                                string strpersonalMilageqnt = txtPersMilage.Text;
+                                if (strpersonalMilageqnt.Length <= 0) { strpersonalMilageqnt = "0"; }
+                                string strpersonalMilagerate = "5.5";
+                                if (strpersonalMilagerate.Length <= 0) { strpersonalMilagerate = "5.5"; }
+                                string strpersonalMilagetotCost = txtPmilagTotalRate.Text;
+                                if (strpersonalMilagetotCost.Length <= 0) { strpersonalMilagetotCost = "0"; }
+
+
+
+                                string strpetrolqnt = txtPetrolQnt.Text;
+                                if (strpetrolqnt.Length <= 0) { strpetrolqnt = "0"; }
+                                string strpetrolcost = txtPetrolCost.Text;
+                                if (strpetrolcost.Length <= 0) { strpetrolcost = "0"; }
+                                string stroctenqnt = txtOcten.Text;
+                                if (stroctenqnt.Length <= 0) { stroctenqnt = "0"; }
+                                string stroctencost = txtOctenCost.Text;
+                                if (stroctencost.Length <= 0) { stroctencost = "0"; }
+                                string strcngqnt = txtCNGQnt.Text;
+                                if (strcngqnt.Length <= 0) { strcngqnt = "0"; }
+                                string strcngcost = txtCNGCost.Text;
+                                if (strcngcost.Length <= 0) { strcngcost = "0"; }
+
+                                string strlubricantqnt = txtMobilQnt.Text;
+                                if (strlubricantqnt.Length <= 0) { strlubricantqnt = "0"; }
+                                string strlubricantcost = txtMobilCost.Text;
+                                if (strlubricantcost.Length <= 0) { strlubricantcost = "0"; }
+                                string strbusfair = txtBusFair.Text;
+                                if (strbusfair.Length <= 0) { strbusfair = "0"; }
+
+                                string strRickfai = txtRickshaw.Text;
+                                if (strRickfai.Length <= 0) { strRickfai = "0"; }
+
+                                string strcngfair = txtCNG.Text;
+                                if (strcngfair.Length <= 0) { strcngfair = "0"; }
+
+                                string strtrainfair = txtTrain.Text;
+                                if (strtrainfair.Length <= 0) { strtrainfair = "0"; }
+
+                                string strAirplance = txtAirPlane.Text;
+                                if (strAirplance.Length <= 0) { strAirplance = "0"; }
+
+                                string strothervhfair = txtOtherVh.Text;
+                                if (strothervhfair.Length <= 0) { strothervhfair = "0"; }
+
+                                string strmntCost = txtMntVh.Text;
+                                if (strmntCost.Length <= 0) { strmntCost = "0"; }
+
+                                string strferrytoll = txtFerryToll.Text;
+                                if (strferrytoll.Length <= 0) { strferrytoll = "0"; }
+
+                                string strownda = txtOwnDA.Text;
+                                if (strownda.Length <= 0) { strownda = "0"; }
+
+                                string strdriverda = txtDriverDA.Text;
+                                if (strdriverda.Length <= 0) { strdriverda = "0"; }
+
+                                string strownhotelfair = txtOwnHotel.Text;
+                                if (strownhotelfair.Length <= 0) { strownhotelfair = "0"; }
+
+                                string strdriverhotel = txtDriverHotel.Text;
+                                if (strdriverhotel.Length <= 0) { strdriverhotel = "0"; }
+
+                                string strphotocoly = txtCourier.Text;
+                                if (strphotocoly.Length <= 0) { strphotocoly = "0"; }
+
+                                string strcourier = txtCourier.Text;
+                                if (strcourier.Length <= 0) { strcourier = "0"; }
+
+                                string strOtherCost = txtOtherCost.Text;
+                                if (strOtherCost.Length <= 0) { strOtherCost = "0"; }
+
+                                string strtotalcost = txtTotal.Text;
+                                if (strtotalcost.Length <= 0) { strtotalcost = "0"; }
+                                int prevLubricantcost, prsntLubricanttcost, gttoLubricantcost, prevphcopy, prstphcopy, gtotalphcopy;
+                                dtt = bllview.GetDataTADAFuelCostalready(Convert.ToDateTime(BillDate), int.Parse(hdnApplicantEnrol.Value));
+                                lblLubricantcostalready.Text = dtt.Rows[0][1].ToString();
+                                lblPhotocopyval.Text = dtt.Rows[0][2].ToString();
+                                prsntLubricanttcost = int.Parse(strlubricantcost);
+                                prevLubricantcost = int.Parse(lblLubricantcostalready.Text);
+                                gttoLubricantcost = prsntLubricanttcost + prevLubricantcost;
+                                prstphcopy = int.Parse(strphotocoly);
+                                prevphcopy= int.Parse(lblPhotocopyval.Text);
+                                gtotalphcopy = prstphcopy + prevphcopy;
+
+
+                                if (gttoLubricantcost > 501)
+                                { ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Limit Exceed for Lubricant bill !')", true); }
+                                if ( gtotalphcopy > 101)
+                                { ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Limit Exceed for Photocopy bill !')", true); }
+
+                                else
+                                {
+
+
+                                    if (GridviewBikeCarUserInputInfo.Rows.Count <= 0)
+                                    {
+                                        Serial = "1";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 1)
+                                    {
+                                        Serial = "2";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 2)
+                                    {
+                                        Serial = "3";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 3)
+                                    {
+                                        Serial = "4";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 4)
+                                    {
+                                        Serial = "5";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 5)
+                                    {
+                                        Serial = "6";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 6)
+                                    {
+                                        Serial = "7";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 7)
+                                    {
+                                        Serial = "8";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 8)
+                                    {
+                                        Serial = "9";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 9)
+                                    {
+                                        Serial = "10";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 10)
+                                    {
+                                        Serial = "11";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 11)
+                                    {
+                                        Serial = "12";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 12)
+                                    {
+                                        Serial = "13";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 13)
+                                    {
+                                        Serial = "14";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 14)
+                                    {
+                                        Serial = "15";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+
+                                    else if (GridviewBikeCarUserInputInfo.Rows.Count == 15)
+                                    {
+                                        Serial = "16";
+                                        CreateVoucherXml(strBillDate, strstarttime, strendtime, strMovDuration, strfromAddress, strmovementAddress, strtoAddress, strnightstay, strstartmilage
+                                      , strendmilage, strconsumed, strremarks, strpetrolqnt, strpetrolcost, stroctenqnt, stroctencost, strcngqnt, strcngcost, strlubricantqnt, strlubricantcost
+                                      , strbusfair, strRickfai, strcngfair, strtrainfair, strAirplance, strothervhfair, strmntCost, strferrytoll, strownda
+                                      , strdriverda, strownhotelfair, strdriverhotel, strphotocoly, strcourier, strOtherCost, strtotalcost
+                                      , FuelpaymentTypeid
+                                      , strCngcredit1FuelSupplierstationid, strCNGCredit1AmountcngFuelStationbill, strCngcredit1FuelSupplierstationName
+                                      , strCngcredit2FuelSupplierstationid, strCNGCredit2AmountcngFuelStationbill, strCngcredit2FuelSupplierstationName
+                                      , strOilCredit1Supplierstationid, stroilCredit1Stationbill, stroilCredit1StationName
+                                       , strpersonalMilageqnt, strpersonalMilagerate, strpersonalMilagetotCost, Serial);
+                                    }
+                                    else
+                                    {
+                                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You are not allow to add more than Fifteen rows !')", true);
+
+                                    }
+
+
+
+                                }
                             }
-
-
-
-                        }
                     }
 
                     else
