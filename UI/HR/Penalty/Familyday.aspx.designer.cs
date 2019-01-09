@@ -85,22 +85,22 @@ namespace UI.HR.Penalty {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnsearch control.
+        /// hdnconfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnsearch;
+        protected global::System.Web.UI.WebControls.HiddenField hdnconfirm;
         
         /// <summary>
-        /// hdnenroll control.
+        /// hdncode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnenroll;
+        protected global::System.Web.UI.WebControls.HiddenField hdncode;
         
         /// <summary>
         /// lblsrch control.
@@ -175,13 +175,13 @@ namespace UI.HR.Penalty {
         protected global::System.Web.UI.WebControls.TextBox txtUnit;
         
         /// <summary>
-        /// lnlpnt control.
+        /// lblpnt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lnlpnt;
+        protected global::System.Web.UI.WebControls.Label lblpnt;
         
         /// <summary>
         /// txtJobstation control.
@@ -191,6 +191,24 @@ namespace UI.HR.Penalty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtJobstation;
+        
+        /// <summary>
+        /// lbljtp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbljtp;
+        
+        /// <summary>
+        /// txtJobtype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtJobtype;
         
         /// <summary>
         /// lbldoj control.
@@ -209,15 +227,6 @@ namespace UI.HR.Penalty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPnD;
-        
-        /// <summary>
-        /// odspnd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odspnd;
         
         /// <summary>
         /// lblptp control.
@@ -256,24 +265,6 @@ namespace UI.HR.Penalty {
         protected global::System.Web.UI.WebControls.TextBox txtSpouse;
         
         /// <summary>
-        /// lblcld control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblcld;
-        
-        /// <summary>
-        /// txtChild control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtChild;
-        
-        /// <summary>
         /// lbldob control.
         /// </summary>
         /// <remarks>
@@ -283,13 +274,13 @@ namespace UI.HR.Penalty {
         protected global::System.Web.UI.WebControls.Label lbldob;
         
         /// <summary>
-        /// txtDOB control.
+        /// txtSDOB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDOB;
+        protected global::System.Web.UI.WebControls.TextBox txtSDOB;
         
         /// <summary>
         /// CEB control.
@@ -310,13 +301,94 @@ namespace UI.HR.Penalty {
         protected global::System.Web.UI.WebControls.Label lblgender;
         
         /// <summary>
-        /// ddlGender control.
+        /// ddlSGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSGender;
+        
+        /// <summary>
+        /// lblchld control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblchld;
+        
+        /// <summary>
+        /// ddlChild control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlChild;
+        
+        /// <summary>
+        /// lblcld control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcld;
+        
+        /// <summary>
+        /// txtChild control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtChild;
+        
+        /// <summary>
+        /// lblcdob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcdob;
+        
+        /// <summary>
+        /// txtCDOB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCDOB;
+        
+        /// <summary>
+        /// cc1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender cc1;
+        
+        /// <summary>
+        /// lblcgndr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblcgndr;
+        
+        /// <summary>
+        /// ddlCGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCGender;
         
         /// <summary>
         /// btnAdd control.
@@ -335,15 +407,6 @@ namespace UI.HR.Penalty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvfml;
-        
-        /// <summary>
-        /// hdnconfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnconfirm;
         
         /// <summary>
         /// btnSubmit control.
