@@ -911,10 +911,13 @@ namespace UI.SCM
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
 
+                    txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
+                    txtSupplier.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
+                       
+
                         dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind();
                         dgvIndentDet.DataSource = "";
                         dgvIndentDet.DataBind();

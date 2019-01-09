@@ -168,7 +168,10 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<issue>" + xmlString + "</issue>";
                     try { File.Delete(filePathForXMLPo); } catch { }
-                    string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
+                    dgvIndentPrepare.DataSource = "";
+                    dgvIndentPrepare.DataBind();
+
+                    string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPO.Text = "Po Number: " + searchKey[1].ToString();
                     if (msg.Length > 4)
@@ -176,8 +179,7 @@ namespace UI.SCM
                         try { File.Delete(filePathForXML); } catch { }
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     }
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
+                   
                 }
             }
             catch { }

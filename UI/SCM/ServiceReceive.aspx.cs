@@ -134,6 +134,8 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<mrr>" + xmlString + "</mrr>";
                     try { File.Delete(filePathForXML); } catch { }
+                    dgvMrr.DataSource = "";
+                    dgvMrr.DataBind();
                     string msg = obj.MrrReceive(22, xmlString, intWh, intPOID, DateTime.Now, enroll);
 
                     string[] searchKey = Regex.Split(msg, ":");
