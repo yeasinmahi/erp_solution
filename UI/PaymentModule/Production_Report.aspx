@@ -54,7 +54,7 @@
                     <asp:HiddenField ID="hdnEnroll" runat="server" />
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Inventory Statement Report" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="Production Report" Font-Bold="true" Font-Size="16px"></asp:Label>
 
                         </div>
                         <div class="panel-body">
@@ -64,8 +64,6 @@
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-8 col-sm-8 col-xs-8" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                                     <asp:TextBox ID="txtFormTime" runat="server" CssClass="form-control col-md-4 col-sm-4 col-xs-4" autocomplete="off" placeholder="HH:mm" Text="00:00"></asp:TextBox>
-
-
                                 </div>
 
                                 <div class="col-md-3">
@@ -80,13 +78,13 @@
                                     <asp:Label ID="Label3" runat="server" Text="Ware House"></asp:Label>
                                     <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" ></asp:DropDownList>
                                 </div>
-                               
+                               <div class="col-md-3">                                
+                                <%--<div class="btn-toolbar col-md-12 col-sm-12 col-xs-12" id="showbuttonDiv">--%>
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return Validation()" Text="Show" OnClick="btnShow_Click"/>
+                                 <%-- </div>--%>
                             </div>
-                            <div class="form-group col-md-3">                                
-                                <div class="btn-toolbar" id="showbuttonDiv">
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-right" OnClientClick="return Validation()" Text="Show" OnClick="btnShow_Click"/>
-                                </div>
                             </div>
+                            
                         </div>
 
                     </div>
