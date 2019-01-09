@@ -21,18 +21,7 @@
             return true;
         }
     </script>
-    <style type="text/css">
-        .auto-style1 {
-            position: relative;
-            min-height: 1px;
-            top: 1px;
-            left: 0px;
-            float: left;
-            width: 25%;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-    </style>
+ 
 </head>
 <body>
     <form id="frmattendancedetails" runat="server">
@@ -78,7 +67,7 @@
                                     <asp:Label ID="Label3" runat="server" Text="Ware House"></asp:Label>
                                     <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" ></asp:DropDownList>
                                 </div>
-                               <div class="col-md-3">                                
+                               <div class="col-md-3" style="padding-top:20px;">                                
                                 <%--<div class="btn-toolbar col-md-12 col-sm-12 col-xs-12" id="showbuttonDiv">--%>
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return Validation()" Text="Show" OnClick="btnShow_Click"/>
                                  <%-- </div>--%>
