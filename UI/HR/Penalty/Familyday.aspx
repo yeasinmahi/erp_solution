@@ -101,7 +101,7 @@
     <tr class="tblheader">
     <td style="text-align:right;"><asp:Label ID="lblcgndr" CssClass="lbl" runat="server" Text="Gender : "></asp:Label></td>
     <td><asp:DropDownList ID="ddlCGender" runat="server" AutoPostBack="false" CssClass="dropdownList">
-    <asp:ListItem Selected="True" Value="M">Male</asp:ListItem><asp:ListItem Value="F">Female</asp:ListItem></asp:DropDownList></td>
+    <asp:ListItem Selected="True" Value="S">Son</asp:ListItem><asp:ListItem Value="D">Daughter</asp:ListItem></asp:DropDownList></td>
     <td colspan="2" style="text-align:right;"><asp:Button id="btnAdd" runat="server" Text="Add-To-List" onclick="btnAdd_Click"/>
     </td></tr>
     <tr class=""><td colspan="4" style="text-align:right;"><asp:GridView ID="dgvfml" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" 
