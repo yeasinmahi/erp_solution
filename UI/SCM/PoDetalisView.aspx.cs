@@ -15,7 +15,7 @@ using Exception = System.Exception;
 
 namespace UI.SCM
 {
-    public partial class PoDetalisView : Page
+    public partial class PoDetalisView : BasePage
     {
         private int PoNo, enroll, intunit;
         private DataTable dt = new DataTable(); private string filePathForXML;
@@ -29,7 +29,7 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ScriptManager scriptManager = ScriptManager.GetCurrent(this.Page);
+            ScriptManager scriptManager = ScriptManager.GetCurrent(Page);
             scriptManager?.RegisterPostBackControl(btnDownload);
             _filePath = Server.MapPath("~/SCM/Data/PO.Bmp");
             if (!IsPostBack)
@@ -92,6 +92,10 @@ namespace UI.SCM
                     lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString();
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
                     imgUnit.ImageUrl = "/Content/images/img/" + intunit + ".png";
+                    decimal groundTotal=decimal.Parse(dt.Rows[0]["monTotal"].ToString());
+                    AmountFormat formatAmount = new AmountFormat();
+                    string totalAmountInWord = formatAmount.GetTakaInWords(groundTotal, "", "Only");
+                    lblInWard.Text = "In Word GT: " + totalAmountInWord;
                 }
                 else
                 {
@@ -135,9 +139,7 @@ namespace UI.SCM
                     dgvPoDetalis.FooterRow.Cells[8].HorizontalAlign = HorizontalAlign.Right;
                     dgvPoDetalis.FooterRow.Cells[9].Text = total.ToString("N2");
 
-                    AmountFormat formatAmount = new AmountFormat();
-                    string totalAmountInWord = formatAmount.GetTakaInWords(total, "", "Only");
-                    lblInWard.Text = "In Word: " + totalAmountInWord;
+                  
                 }
                 else
                 {

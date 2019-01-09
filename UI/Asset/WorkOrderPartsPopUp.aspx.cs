@@ -31,6 +31,7 @@ namespace UI.Asset
         string start = "starting ASSET\\WorkOrderPartsPopUp";
         string stop = "stopping ASSET\\WorkOrderPartsPopUp";
         string perform = "Performance on ASSET\\WorkOrderPartsPopUp";
+        decimal price;
         protected void Page_Load(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "PageLoad", null);
@@ -380,6 +381,7 @@ namespace UI.Asset
         {
             var fd = log.GetFlogDetail(start, location, "BtnSave_Click", null);
             Flogger.WriteDiagnostic(fd);
+
             // starting performance tracker
             var tracker = new PerfTracker(perform + " " + "BtnSave_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
@@ -483,25 +485,27 @@ namespace UI.Asset
                     wt = new DataTable();
                     intjobid = Int32.Parse(hdfEmpCode.Value.ToString());
 
-                    intItem = 55;
-                    wt = objWorkorderParts.CheckPartsItemNumber(intItem, Mnumber, intenroll, intjobid, intdept);
-                    if (wt.Rows.Count > 0)
+                    if (pqty > 0)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Item allready inserted please store requesition or delete then try again and set actual quantity');", true);
+                        intItem = 55;
+                        wt = objWorkorderParts.CheckPartsItemNumber(intItem, Mnumber, intenroll, intjobid, intdept);
+                        if (wt.Rows.Count > 0)
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Item allready inserted please store requesition or delete then try again and set actual quantity');", true);
+                        }
+                        else
+                        {
+                            intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                            try { price = decimal.Parse(txtPrice.Text.ToString()); } catch { price = 0; }
+                            decimal monAmount = pqty * price;
+                            objWorkorderParts.WOSpareParts(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks, monAmount);
+
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
+
+                        }
+                        showdata();
                     }
-                    else
-                    {
-                        intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                        objWorkorderParts.WOSpareParts(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks);
-
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
-
-                    }
-
-
-
-                    showdata();
-
+                     
 
                 }
             }
@@ -517,6 +521,23 @@ namespace UI.Asset
             tracker.Stop();
 
 
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                 
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblId = row.FindControl("Label21") as Label;
+                TextBox txtCost = row.FindControl("txtdCost") as TextBox;
+                decimal cost = decimal.Parse(txtCost.Text.ToString());
+                int id = int.Parse(lblId.Text.ToString());
+
+                objWorkorderParts.dgvPartsCostUpdate(id, cost );
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Update');", true);
+            }
+            catch {  }
         }
 
         protected void dgvwoParts_RowDeleting(object sender, GridViewDeleteEventArgs e)

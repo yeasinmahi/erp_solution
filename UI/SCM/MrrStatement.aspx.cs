@@ -2,9 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,7 +10,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class MrrStatement : System.Web.UI.Page
+    public partial class MrrStatement : BasePage
     {
         private MrrReceive_BLL obj = new MrrReceive_BLL();
         private DataTable dt = new DataTable();
@@ -97,7 +95,14 @@ namespace UI.SCM
                 string dept = ddlDept.SelectedItem.ToString();
 
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                try { Mrrid = int.Parse(txtMrrNo.Text); } catch { Mrrid = 0; }
+                try
+                {
+                    Mrrid = int.Parse(txtMrrNo.Text);
+                }
+                catch
+                {
+                    Mrrid = 0;
+                }
                 dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();

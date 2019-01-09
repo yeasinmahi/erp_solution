@@ -2,10 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
@@ -14,18 +11,21 @@ namespace UI.SCM
 {
     public partial class ItemManagerAccounts : BasePage
     {
-        MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
-        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
-        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
-            strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
-        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
-        bool ysnVATApplicable;
+        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
+        private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\ItemManagerAccounts";
-        string stop = "stopping SCM\\ItemManagerAccounts";
-        string perform = "Performance on SCM\\ItemManagerAccounts";
+        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+            strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
+
+        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        private bool ysnVATApplicable;
+
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\ItemManagerAccounts";
+        private string stop = "stopping SCM\\ItemManagerAccounts";
+        private string perform = "Performance on SCM\\ItemManagerAccounts";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -49,7 +49,6 @@ namespace UI.SCM
                 }
                 catch { }
             }
-
         }
 
         private void LoadGrid()
@@ -58,6 +57,7 @@ namespace UI.SCM
             dt = bll.GetItemListForAccounts(intWHID);
             dgvItem.DataSource = dt; dgvItem.DataBind();
         }
+
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Y")
@@ -69,7 +69,7 @@ namespace UI.SCM
 
                 //Reference the GridView Row.
                 GridViewRow row = dgvItem.Rows[rowIndex];
-                
+
                 hdnItemID.Value = (row.FindControl("lblAutoID") as Label).Text;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewDispatchPopup('" + hdnItemID.Value + "');", true);
             }
@@ -98,6 +98,7 @@ namespace UI.SCM
                 }
             }
         }
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -107,6 +108,7 @@ namespace UI.SCM
             }
             catch { }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);

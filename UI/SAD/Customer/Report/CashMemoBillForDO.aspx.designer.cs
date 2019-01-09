@@ -85,6 +85,15 @@ namespace UI.SAD.Customer.Report {
         protected global::System.Web.UI.WebControls.Panel pnlMarque;
         
         /// <summary>
+        /// lblUnit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblUnit;
+        
+        /// <summary>
         /// ddlUnit control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace UI.SAD.Customer.Report {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsUnit;
         
         /// <summary>
+        /// lblDONumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDONumber;
+        
+        /// <summary>
         /// txtDO control.
         /// </summary>
         /// <remarks>
@@ -119,6 +137,15 @@ namespace UI.SAD.Customer.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGo;
+        
+        /// <summary>
+        /// BtnPrint control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnPrint;
         
         /// <summary>
         /// AlwaysVisibleControlExtender1 control.

@@ -2,12 +2,8 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
@@ -15,19 +11,22 @@ namespace UI.SCM
     public partial class ItemManagerAccountsPopUp : BasePage
     {
         #region===== Variable & Object Declaration =====================================================
-        MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
-        int intUnitID, intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
-        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
-            strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
-        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
-        bool ysnVATApplicable, ysnAdvance, ysnPurchase, ysnCreditors, ysnAll, ysnBillReg;
+        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
+        private int intUnitID, intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\ItemManagerAccountsPopUp";
-        string stop = "stopping SCM\\ItemManagerAccountsPopUp";
-        string perform = "Performance on SCM\\ItemManagerAccountsPopUp";
+        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+            strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
+
+        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        private bool ysnVATApplicable, ysnAdvance, ysnPurchase, ysnCreditors, ysnAll, ysnBillReg;
+
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\ItemManagerAccountsPopUp";
+        private string stop = "stopping SCM\\ItemManagerAccountsPopUp";
+        private string perform = "Performance on SCM\\ItemManagerAccountsPopUp";
         #endregion =====================================================================================
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -92,7 +91,6 @@ namespace UI.SCM
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
                         numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
 
-
                 intUnitID = int.Parse(dt.Rows[0]["intUnitID"].ToString());
 
                 ysnPurchase = true;
@@ -115,7 +113,9 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+
         #region ===== Submit Action =========================================================
+
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnApprove_Click", null);
@@ -182,7 +182,6 @@ namespace UI.SCM
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                     }
                 }
-
             }
             catch (Exception ex)
             {
@@ -195,7 +194,7 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
-         
+
         #endregion ==========================================================================
     }
 }

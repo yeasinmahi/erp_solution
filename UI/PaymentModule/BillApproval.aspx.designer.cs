@@ -157,6 +157,15 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.DropDownList ddlAction;
         
         /// <summary>
+        /// odsActionType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsActionType;
+        
+        /// <summary>
         /// lblDate control.
         /// </summary>
         /// <remarks>

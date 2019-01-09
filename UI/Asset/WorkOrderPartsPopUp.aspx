@@ -182,29 +182,30 @@
                              </SelectParameters>
                          </asp:ObjectDataSource>
              </tr> 
-              <tr>
-        <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Parts:"></asp:Label> </td>
-         <td><asp:TextBox ID="txtPartsSearch" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  ></asp:TextBox>
-             <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtPartsSearch"
-                                     ServiceMethod="GetWearHouseRequesision" MinimumPrefixLength="1" CompletionSetCount="1"
-                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                                </cc1:AutoCompleteExtender>
-                 <asp:HiddenField ID="hdfEmpCode" runat="server" /></td>
-                        
-               
+            <tr>
+            <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Parts:"></asp:Label> </td>
+            <td><asp:TextBox ID="txtPartsSearch" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtPartsSearch"
+            ServiceMethod="GetWearHouseRequesision" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender>
+            <asp:HiddenField ID="hdfEmpCode" runat="server" /></td> 
                                       
-        <td style="text-align:right;"><asp:Label ID="LblPqty" runat="server" CssClass="lbl" Text="Quantity:"></asp:Label> </td>
-       <td style="text-align:left;"> <asp:TextBox ID="TxtPqty" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>  
-     <td style="text-align:right;"> <asp:Label ID="LblRemarks" runat="server" CssClass="lbl" Text="Remarks:"></asp:Label></td>
-     <td style="text-align:left;"> <asp:TextBox ID="TxtRemarks" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
-          <%--<td class="auto-style1"><asp:CheckBox ID="CheckBox3" Text="Warranty" runat="server" /></td>--%>
-         </tr>
-         <tr>
- <td colspan="6" style="text-align:right;"><asp:Button ID="BtnParts" runat="server" autopostback="true" Text="Add" OnClick="BtnParts_Click"  /> </td>    
-           </tr>
+            <td style="text-align:right;"><asp:Label ID="LblPqty" runat="server" CssClass="lbl" Text="Quantity:"></asp:Label> </td>
+            <td style="text-align:left;"> <asp:TextBox ID="TxtPqty" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>  
+            <td style="text-align:right;"> <asp:Label ID="LblRemarks" runat="server" CssClass="lbl" Text="Remarks:"></asp:Label></td>
+            <td style="text-align:left;"> <asp:TextBox ID="TxtRemarks" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
+            <%--<td class="auto-style1"><asp:CheckBox ID="CheckBox3" Text="Warranty" runat="server" /></td>--%>
+            </tr>
+            <tr>
+            <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Value:"></asp:Label> </td>
+            <td style="text-align:left;"> <asp:TextBox ID="txtPrice" Text="0.00" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox> 
 
-                <tr>
+            <td colspan="4" style="text-align:right;"><asp:Button ID="BtnParts" runat="server" autopostback="true" Text="Add" OnClick="BtnParts_Click"  /> </td>    
+            </tr>
+
+             <tr>
                
 
                     <td colspan="3"> <asp:GridView ID="dgvParts" runat="server" AutoGenerateColumns="False">
@@ -224,14 +225,29 @@
                         <Columns>
                             <asp:BoundField DataField="strSpareParts" HeaderText="Spare Parts" SortExpression="strSpareParts" />
                             <asp:BoundField DataField="intqty" HeaderText="Qty" SortExpression="intqty" />
+                              <asp:TemplateField HeaderText="Value" >
+                                <ItemTemplate>
+                                    <asp:TextBox ID="txtdCost" Width="70px" runat="server" Text='<%# Bind("monCost") %>'></asp:TextBox>
+                                </ItemTemplate>
+                            </asp:TemplateField> 
+                              
                             <asp:BoundField HeaderText="ReqCode" DataField="strReqCode" SortExpression="strReqCode" />
                             <asp:BoundField DataField="strStatus" HeaderText="Status" SortExpression="strStatus" />
+                            <asp:TemplateField HeaderText="Update">
+                            <ItemTemplate>
+                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" />
+                            </ItemTemplate>
+                            <ItemStyle HorizontalAlign="Left" Width="30px" />
+                            </asp:TemplateField>
+
                             <asp:CommandField HeaderText="Delete" ShowDeleteButton="True" />
                             <asp:TemplateField HeaderText="ID" Visible="False">
                                 <ItemTemplate>
                                     <asp:Label ID="Label21" runat="server" Text='<%# Bind("intID") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
+                             
+                            
                         </Columns>
                         </asp:GridView>
                               <%--</div>--%>

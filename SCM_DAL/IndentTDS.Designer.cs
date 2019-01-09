@@ -8,6 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+
 #pragma warning disable 1591
 
 namespace SCM_DAL {
@@ -556,6 +558,13 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprIndentRow FindById(int Id) {
+                return ((SprIndentRow)(this.Rows.Find(new object[] {
+                            Id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 SprIndentDataTable cln = ((SprIndentDataTable)(base.Clone()));
                 cln.InitVars();
@@ -582,6 +591,10 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnId);
                 this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrName);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
                 this.columnstrName.MaxLength = 250;
             }
             
@@ -2086,12 +2099,7 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int Id {
                 get {
-                    try {
-                        return ((int)(this[this.tableSprIndent.IdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Id\' in table \'SprIndent\' is DBNull.", e);
-                    }
+                    return ((int)(this[this.tableSprIndent.IdColumn]));
                 }
                 set {
                     this[this.tableSprIndent.IdColumn] = value;
@@ -2112,18 +2120,6 @@ namespace SCM_DAL {
                 set {
                     this[this.tableSprIndent.strNameColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsIdNull() {
-                return this.IsNull(this.tableSprIndent.IdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetIdNull() {
-                this[this.tableSprIndent.IdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2836,7 +2832,14 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             IndentTDS.SprIndentDataTable dataTable = new IndentTDS.SprIndentDataTable();
-            this.Adapter.Fill(dataTable);
+            try
+            {
+                this.Adapter.Fill(dataTable);
+            }
+            catch (Exception e)
+            {
+            }
+            
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
                         || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
@@ -3048,7 +3051,12 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             IndentTDS.SprStoreIssueDataTable dataTable = new IndentTDS.SprStoreIssueDataTable();
-            this.Adapter.Fill(dataTable);
+            try
+            {
+                this.Adapter.Fill(dataTable);
+            }
+            catch { }
+            
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
                         || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
@@ -3426,7 +3434,7 @@ SELECT intWHID AS Id, strWareHoseName AS strName FROM tblWearHouse WHERE (intWHI
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "select intWHID as Id,strWareHoseName as strName from ERP_Inventory.dbo.tblWearHou" +
@@ -3434,17 +3442,24 @@ SELECT intWHID AS Id, strWareHoseName AS strName FROM tblWearHouse WHERE (intWHI
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "select intStoreLocationID as Id ,strLocationName as strName from ERP_Inventory.db" +
-                "o.tblWearHouseStoreLocation where intwhid=@intwh and ysnActive=1 order by intSto" +
-                "reLocationID asc";
+            this._commandCollection[1].CommandText = "select intWHID as Id,strWareHoseName as strName from ERP_Inventory.dbo.tblWearHou" +
+                "se \r\nwhere intUnitID = (select top 1 intUnitID from ERP_Inventory.dbo.tblWearHou" +
+                "se where intWHID = @intWhId)\r\nand ysnActive=1";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intwh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWhId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "select intWHID as Id,strWareHoseName as strName from ERP_Inventory.dbo.tblWearHou" +
-                "se where intunitid=@unit and  ysnActive=1";
+            this._commandCollection[2].CommandText = "select intStoreLocationID as Id ,strLocationName as strName from ERP_Inventory.db" +
+                "o.tblWearHouseStoreLocation where intwhid=@intwh and ysnActive=1 order by intSto" +
+                "reLocationID asc";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intwh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "select intWHID as Id,strWareHoseName as strName from ERP_Inventory.dbo.tblWearHou" +
+                "se where intunitid=@unit and  ysnActive=1";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3462,8 +3477,20 @@ SELECT intWHID AS Id, strWareHoseName AS strName FROM tblWearHouse WHERE (intWHI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual IndentTDS.TblWearHouseDataTable GetDataByWhLocation(global::System.Nullable<int> intwh) {
+        public virtual IndentTDS.TblWearHouseDataTable GetDataByWhId(int intWhId) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWhId));
+            IndentTDS.TblWearHouseDataTable dataTable = new IndentTDS.TblWearHouseDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual IndentTDS.TblWearHouseDataTable GetDataByWhLocation(global::System.Nullable<int> intwh) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((intwh.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intwh.Value));
             }
@@ -3480,7 +3507,7 @@ SELECT intWHID AS Id, strWareHoseName AS strName FROM tblWearHouse WHERE (intWHI
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual IndentTDS.TblWearHouseDataTable GetWHDataByUnit(global::System.Nullable<int> unit) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((unit.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unit.Value));
             }

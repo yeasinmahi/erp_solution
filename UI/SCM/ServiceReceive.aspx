@@ -38,10 +38,10 @@
                     var preReceQty = parseFloat($("[id*=lblPreviousReceive]", row).html());
                     var receQty = parseFloat($(this).val());
                     var rtotal = parseFloat(monValue / poqty * receQty);
-                    var remain = parseFloat(poqty - preReceQty)
-                    if (remain >= receQty) {
+                    var remain = parseFloat(poqty - preReceQty);
+                    var remainQty = remain + poqty * 0.1;
+                    if (remainQty >= receQty) {
                         $("[id*=lblMrrValue]", row).html(rtotal.toFixed(4));
-                       
                     }
                     else {
                         $("[id*=txtReceiveQty]", row).val('0');

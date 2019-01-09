@@ -1,14 +1,10 @@
 ﻿using SCM_DAL.IndentTDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SCM_BLL
 {
-   public class Indents_BLL
+    public class Indents_BLL
     {
         public DataTable DataView(int type, string xmlunit, int wh, int ReqId, DateTime dteDate, int enroll)
         {
@@ -16,11 +12,12 @@ namespace SCM_BLL
             {
                 string strmsg = "";
                 SprIndentTableAdapter adb = new SprIndentTableAdapter();
-                return adb.GetIndentData(type, xmlunit, wh, ReqId, dteDate, enroll,ref strmsg);
-
-
+                return adb.GetIndentData(type, xmlunit, wh, ReqId, dteDate, enroll, ref strmsg);
             }
-            catch {return new DataTable(); }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
         }
 
         public DataTable ProjectParent(int intunit)
@@ -33,10 +30,8 @@ namespace SCM_BLL
             string strMsg = "";
             try
             {
-
                 SprIndentTableAdapter adp = new SprIndentTableAdapter();
                 adp.GetIndentData(Type, xml, intWh, @intReqId, dteDate, enroll, ref strMsg);
-
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;

@@ -11,6 +11,20 @@
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />   
     
     <script type="text/javascript">
+        function Print() {
+            document.getElementById("btnGo").hidden = true;
+            document.getElementById("lblUnit").style.display = "none";
+             document.getElementById("ddlUnit").hidden = true;
+            document.getElementById("lblDONumber").style.display = "none";
+            document.getElementById("txtDO").hidden = true;
+            
+            document.getElementById("BtnPrint").hidden = true;
+        
+                    window.print();
+            self.close();
+            
+          
+        }
         function ShowPopUpE(url) {
             var rand_no = Math.floor(11 * Math.random());
             url = url + '&rnd=' + rand_no;
@@ -37,9 +51,10 @@
             document.getElementById(didS).style.display = "";
             document.getElementById(didH).style.display = "none";
         }
+
     </script>
 
-      <%--<script type="text/javascript">
+    <%--  <script type="text/javascript">
         function Print() {
             Show();
             window.print();
@@ -54,7 +69,7 @@
         }
            </script>--%>
 
-    <script  type="text/javascript">
+ <%--   <script  type="text/javascript">
     function CallPrint(strid) {
         var prtContent = document.getElementById(strid);
         var WinPrint = window.open('', '', 'letf=0,top=0,width=800,height=100,toolbar=0,scrollbars=0,status=0,dir=ltr');
@@ -65,7 +80,17 @@
         WinPrint.close();
         prtContent.innerHTML = strOldOne;
     }
-</script>
+</script>--%>
+
+<%--    <script type="text/javascript">
+        function Print() {
+            //document.getElementById("btnGo").hidden = true;
+            //document.getElementById("btnprint").style.display = "none";
+            window.print();
+            self.close();
+        }
+
+    </script>--%>
 
     <style type="text/css">
         .hide
@@ -95,7 +120,7 @@
                     <table style="width: 400px;" align="center">
                         <tr>
                             <td>
-                                Unit
+                                <asp:Label ID="lblUnit" runat="server" Text="Unit"></asp:Label>
                             </td>
                             <td>
                                 <asp:DropDownList ID="ddlUnit" runat="server" DataSourceID="odsUnit" DataTextField="strUnit"
@@ -108,7 +133,7 @@
                                 </asp:ObjectDataSource>
                             </td>
                             <td>
-                                DO Number
+                               <asp:Label ID="lblDONumber" runat="server" Text="D.O Number"></asp:Label>
                             </td>
                             <td>
                                 <asp:TextBox ID="txtDO" Text="" runat="server"></asp:TextBox>
@@ -118,11 +143,11 @@
                             </td>
                            <%-- <td>
                                 <asp:button id="BtnPrint" runat="server" onclientclick="javascript:CallPrint('bill');" text="Print" xmlns:asp="#unknown" />
-                            </td--%>>
+                            </td--%>
                             
-           <%-- <td align="right" style="width:50%">
-                <a href="#" onclick="Print()"><b>Print</b></a>
-            </td>--%>
+            <td align="right" style="width:50%">
+                <a href="#" onclick="Print()"><b> <asp:button id="BtnPrint" runat="server"  text="Print"/></b></a>
+            </td>
 
                         </tr>
                     </table>
