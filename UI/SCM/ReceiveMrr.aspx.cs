@@ -171,6 +171,7 @@ namespace UI.SCM
                     XmlNode dSftTm = doc.SelectSingleNode("mrr");
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<mrr>" + xmlString + "</mrr>";
+
                     try { File.Delete(filePathForXML); } catch { }
                     dgvMrr.DataSource = "";
                     dgvMrr.DataBind();
