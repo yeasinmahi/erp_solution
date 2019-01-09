@@ -57,6 +57,13 @@
 
       function Confirm() {
           document.getElementById("hdnconfirm").value = "0";
+
+       //    var dt = new Date(); //Grab the current Date
+       // var f=  dt.setDate(1);       //Set it to the first of the month
+       //var l=  dt.setHours(-1);     //Subtract an hour to yield the previous date (Last date of previous month)
+
+
+
           var today = new Date();
           var dd = today.getDate();
           var mm = today.getMonth() + 1; //January is 0!
@@ -74,6 +81,12 @@
 
           var txtDteFrom = document.forms["frmpdv"]["txtFromDate"].value;
           var txtDteTo = document.getElementById("DATE").value;
+
+
+       
+    
+
+
          
            if (txtDteFrom == null || txtDteFrom == "") {
               alert("From date must be filled by valid formate (yyyy-MM-dd).");
@@ -200,6 +213,27 @@
         }
     </script>
 
+     <script>
+         function alotmentqnt() {
+         
+             var alotmentqnt = parseFloat(document.getElementById('lblMaxoctenval').textContent);
+             if (alotmentqnt > 10) {
+                 var octenrate = parseFloat(document.getElementById('lblOctenRatePerLtr').textContent);
+                 //alert(alotmentqnt);
+                 var consumedmilage = document.getElementById('txtConsumed').value;
+                 var costoctenqnt = parseFloat(consumedmilage) / (parseFloat(alotmentqnt));
+                 var totOctencost = parseFloat(costoctenqnt) * parseFloat(octenrate);
+                 if (!isNaN(costoctenqnt)) {
+                     document.getElementById('txtOcten').value = costoctenqnt;
+                 }
+                 if (!isNaN(totOctencost)) {
+                     document.getElementById('txtOctenCost').value = Math.round(totOctencost);
+                 }
+             }
+         }
+     
+
+    </script>
 
 </head>
 <body>
@@ -227,7 +261,19 @@
         <hr /></div>
         <table border="0"; style="width:Auto"; >    
 
+            <tr  class="tblroweven">
+                <td style="text-align:center"><asp:Label ID="lblvheiclename" CssClass="lbl" runat="server" Text="Vheicle Name : " ></asp:Label><span style="color:red"></span></td>
+                <td style="text-align:center"><asp:Label ID="lblvheiclenameval" CssClass="lbl" runat="server"></asp:Label><span style="color:red"></span></td>
+                <td style="text-align:center"><asp:Label ID="lblMaxocten" CssClass="lbl" runat="server" Text="Oct Per Killo(Max) : " ></asp:Label><span style="color:red"></span></td>
+                <td style="text-align:center"><asp:Label ID="lblMaxoctenval" CssClass="lbl" runat="server"></asp:Label><span style="color:red"></span>
+                    <asp:Label ID="lblOctenRatePerLtr" CssClass="lbl" runat="server"></asp:Label><span style="color:red"></span>
+                </td>
+              <td style="text-align:center"><asp:Label ID="lblOctenCostthis" CssClass="lbl" runat="server" Text="Lubricant Cost(TM)"></asp:Label><span style="color:red"></span></td>
+                 <td style="text-align:center"><asp:Label ID="lblLubricantcostalready" CssClass="lbl" runat="server"></asp:Label><span style="color:red"></span></td>
+                 <td style="text-align:center"><asp:Label ID="lblPhotocopy" CssClass="lbl" runat="server" Text="Photocopy Cost(TM)"></asp:Label><span style="color:red"></span></td>
+                 <td style="text-align:center"><asp:Label ID="lblPhotocopyval" CssClass="lbl" runat="server"></asp:Label><span style="color:red"></span></td>
 
+            </tr>
         <tr class="tblroweven">
                         <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="Date:  "></asp:Label><span style="color:red">*</span></td>
                         <td><asp:TextBox ID="txtFromDate" placeholder="Click for date selection" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true"></asp:TextBox>
@@ -261,7 +307,7 @@
                         <td> <asp:TextBox ID="txtStartMilage" onkeyup="CalculateMilage();"  AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>      
                          
                          <td style="text-align:right"><asp:Label ID="lblConsumed" CssClass="lbl" runat="server" Text="Consm.(Milage):  " ></asp:Label><span style="color:red">*</span></td>
-                        <td> <asp:TextBox ID="txtConsumed" onkeyup="CalculateMilage();" AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>      
+                        <td> <asp:TextBox ID="txtConsumed" onkeyup="CalculateMilage();alotmentqnt();" AutoPostBack="false" runat="server" Width="200px" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>      
 
                         <td style="text-align:right"><asp:Label ID="lblEndMilage" CssClass="lbl" runat="server" Text="End Milage:  " ></asp:Label></td>
                         <td> <asp:TextBox ID="txtEndMilage" onkeyup="CalculateMilage();"  AutoPostBack="false" runat="server" Width="200px" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td>      
@@ -349,7 +395,7 @@
                         <td> <asp:TextBox ID="txtPetrolCost" placeholder="Only Numeric Digit"  onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px"  CssClass="txtBox"></asp:TextBox></td>      
 
                         <td style="text-align:right"><asp:Label ID="lblOctenQnt" CssClass="lbl" runat="server" Text="OctenQnt:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtOcten" placeholder="Only Numeric Digit"  runat="server" Width="200px"  CssClass="txtBox"  onkeypress="javascript:return isNumber (event)" ></asp:TextBox></td>      
+                        <td> <asp:TextBox ID="txtOcten" placeholder="Only Numeric Digit"   runat="server" Width="200px"  CssClass="txtBox"  onkeypress="javascript:return isNumber (event)"></asp:TextBox></td>      
 
                         <td style="text-align:right"><asp:Label ID="lblOctenCost" CssClass="lbl" runat="server" Text="OctenCost:  " ></asp:Label></td>
                         <td> <asp:TextBox ID="txtOctenCost" placeholder="Only Numeric Digit" onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px"  CssClass="txtBox"></asp:TextBox></td>      
