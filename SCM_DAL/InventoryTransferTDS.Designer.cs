@@ -80,11 +80,15 @@ namespace SCM_DAL {
         
         private sprInsertMrrItemDetailWithoutPODataTable tablesprInsertMrrItemDetailWithoutPO;
         
-        private sprInventoryProductionReceiveReportDataTable tablesprInventoryProductionReceiveReport;
+        private sprFGReceiveDataTable tablesprFGReceive;
         
         private sprDistributionReceiveDataTable tablesprDistributionReceive;
         
         private sprInventoryTransferDataTable tablesprInventoryTransfer;
+        
+        private sprInventoryTransferSalesDetailDataTable tablesprInventoryTransferSalesDetail;
+        
+        private sprChallanWiseRouteCostDataTable tablesprChallanWiseRouteCost;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -198,14 +202,20 @@ namespace SCM_DAL {
                 if ((ds.Tables["sprInsertMrrItemDetailWithoutPO"] != null)) {
                     base.Tables.Add(new sprInsertMrrItemDetailWithoutPODataTable(ds.Tables["sprInsertMrrItemDetailWithoutPO"]));
                 }
-                if ((ds.Tables["sprInventoryProductionReceiveReport"] != null)) {
-                    base.Tables.Add(new sprInventoryProductionReceiveReportDataTable(ds.Tables["sprInventoryProductionReceiveReport"]));
+                if ((ds.Tables["sprFGReceive"] != null)) {
+                    base.Tables.Add(new sprFGReceiveDataTable(ds.Tables["sprFGReceive"]));
                 }
                 if ((ds.Tables["sprDistributionReceive"] != null)) {
                     base.Tables.Add(new sprDistributionReceiveDataTable(ds.Tables["sprDistributionReceive"]));
                 }
                 if ((ds.Tables["sprInventoryTransfer"] != null)) {
                     base.Tables.Add(new sprInventoryTransferDataTable(ds.Tables["sprInventoryTransfer"]));
+                }
+                if ((ds.Tables["sprInventoryTransferSalesDetail"] != null)) {
+                    base.Tables.Add(new sprInventoryTransferSalesDetailDataTable(ds.Tables["sprInventoryTransferSalesDetail"]));
+                }
+                if ((ds.Tables["sprChallanWiseRouteCost"] != null)) {
+                    base.Tables.Add(new sprChallanWiseRouteCostDataTable(ds.Tables["sprChallanWiseRouteCost"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -509,9 +519,9 @@ namespace SCM_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public sprInventoryProductionReceiveReportDataTable sprInventoryProductionReceiveReport {
+        public sprFGReceiveDataTable sprFGReceive {
             get {
-                return this.tablesprInventoryProductionReceiveReport;
+                return this.tablesprFGReceive;
             }
         }
         
@@ -532,6 +542,26 @@ namespace SCM_DAL {
         public sprInventoryTransferDataTable sprInventoryTransfer {
             get {
                 return this.tablesprInventoryTransfer;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public sprInventoryTransferSalesDetailDataTable sprInventoryTransferSalesDetail {
+            get {
+                return this.tablesprInventoryTransferSalesDetail;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public sprChallanWiseRouteCostDataTable sprChallanWiseRouteCost {
+            get {
+                return this.tablesprChallanWiseRouteCost;
             }
         }
         
@@ -686,14 +716,20 @@ namespace SCM_DAL {
                 if ((ds.Tables["sprInsertMrrItemDetailWithoutPO"] != null)) {
                     base.Tables.Add(new sprInsertMrrItemDetailWithoutPODataTable(ds.Tables["sprInsertMrrItemDetailWithoutPO"]));
                 }
-                if ((ds.Tables["sprInventoryProductionReceiveReport"] != null)) {
-                    base.Tables.Add(new sprInventoryProductionReceiveReportDataTable(ds.Tables["sprInventoryProductionReceiveReport"]));
+                if ((ds.Tables["sprFGReceive"] != null)) {
+                    base.Tables.Add(new sprFGReceiveDataTable(ds.Tables["sprFGReceive"]));
                 }
                 if ((ds.Tables["sprDistributionReceive"] != null)) {
                     base.Tables.Add(new sprDistributionReceiveDataTable(ds.Tables["sprDistributionReceive"]));
                 }
                 if ((ds.Tables["sprInventoryTransfer"] != null)) {
                     base.Tables.Add(new sprInventoryTransferDataTable(ds.Tables["sprInventoryTransfer"]));
+                }
+                if ((ds.Tables["sprInventoryTransferSalesDetail"] != null)) {
+                    base.Tables.Add(new sprInventoryTransferSalesDetailDataTable(ds.Tables["sprInventoryTransferSalesDetail"]));
+                }
+                if ((ds.Tables["sprChallanWiseRouteCost"] != null)) {
+                    base.Tables.Add(new sprChallanWiseRouteCostDataTable(ds.Tables["sprChallanWiseRouteCost"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -896,10 +932,10 @@ namespace SCM_DAL {
                     this.tablesprInsertMrrItemDetailWithoutPO.InitVars();
                 }
             }
-            this.tablesprInventoryProductionReceiveReport = ((sprInventoryProductionReceiveReportDataTable)(base.Tables["sprInventoryProductionReceiveReport"]));
+            this.tablesprFGReceive = ((sprFGReceiveDataTable)(base.Tables["sprFGReceive"]));
             if ((initTable == true)) {
-                if ((this.tablesprInventoryProductionReceiveReport != null)) {
-                    this.tablesprInventoryProductionReceiveReport.InitVars();
+                if ((this.tablesprFGReceive != null)) {
+                    this.tablesprFGReceive.InitVars();
                 }
             }
             this.tablesprDistributionReceive = ((sprDistributionReceiveDataTable)(base.Tables["sprDistributionReceive"]));
@@ -912,6 +948,18 @@ namespace SCM_DAL {
             if ((initTable == true)) {
                 if ((this.tablesprInventoryTransfer != null)) {
                     this.tablesprInventoryTransfer.InitVars();
+                }
+            }
+            this.tablesprInventoryTransferSalesDetail = ((sprInventoryTransferSalesDetailDataTable)(base.Tables["sprInventoryTransferSalesDetail"]));
+            if ((initTable == true)) {
+                if ((this.tablesprInventoryTransferSalesDetail != null)) {
+                    this.tablesprInventoryTransferSalesDetail.InitVars();
+                }
+            }
+            this.tablesprChallanWiseRouteCost = ((sprChallanWiseRouteCostDataTable)(base.Tables["sprChallanWiseRouteCost"]));
+            if ((initTable == true)) {
+                if ((this.tablesprChallanWiseRouteCost != null)) {
+                    this.tablesprChallanWiseRouteCost.InitVars();
                 }
             }
         }
@@ -980,12 +1028,16 @@ namespace SCM_DAL {
             base.Tables.Add(this.tableTblWH);
             this.tablesprInsertMrrItemDetailWithoutPO = new sprInsertMrrItemDetailWithoutPODataTable();
             base.Tables.Add(this.tablesprInsertMrrItemDetailWithoutPO);
-            this.tablesprInventoryProductionReceiveReport = new sprInventoryProductionReceiveReportDataTable();
-            base.Tables.Add(this.tablesprInventoryProductionReceiveReport);
+            this.tablesprFGReceive = new sprFGReceiveDataTable();
+            base.Tables.Add(this.tablesprFGReceive);
             this.tablesprDistributionReceive = new sprDistributionReceiveDataTable();
             base.Tables.Add(this.tablesprDistributionReceive);
             this.tablesprInventoryTransfer = new sprInventoryTransferDataTable();
             base.Tables.Add(this.tablesprInventoryTransfer);
+            this.tablesprInventoryTransferSalesDetail = new sprInventoryTransferSalesDetailDataTable();
+            base.Tables.Add(this.tablesprInventoryTransferSalesDetail);
+            this.tablesprChallanWiseRouteCost = new sprChallanWiseRouteCostDataTable();
+            base.Tables.Add(this.tablesprChallanWiseRouteCost);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1158,7 +1210,7 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializesprInventoryProductionReceiveReport() {
+        private bool ShouldSerializesprFGReceive() {
             return false;
         }
         
@@ -1171,6 +1223,18 @@ namespace SCM_DAL {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializesprInventoryTransfer() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializesprInventoryTransferSalesDetail() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializesprChallanWiseRouteCost() {
             return false;
         }
         
@@ -1314,13 +1378,19 @@ namespace SCM_DAL {
         public delegate void sprInsertMrrItemDetailWithoutPORowChangeEventHandler(object sender, sprInsertMrrItemDetailWithoutPORowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void sprInventoryProductionReceiveReportRowChangeEventHandler(object sender, sprInventoryProductionReceiveReportRowChangeEvent e);
+        public delegate void sprFGReceiveRowChangeEventHandler(object sender, sprFGReceiveRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void sprDistributionReceiveRowChangeEventHandler(object sender, sprDistributionReceiveRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void sprInventoryTransferRowChangeEventHandler(object sender, sprInventoryTransferRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void sprInventoryTransferSalesDetailRowChangeEventHandler(object sender, sprInventoryTransferSalesDetailRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void sprChallanWiseRouteCostRowChangeEventHandler(object sender, sprChallanWiseRouteCostRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -9511,7 +9581,7 @@ namespace SCM_DAL {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class sprInventoryProductionReceiveReportDataTable : global::System.Data.TypedTableBase<sprInventoryProductionReceiveReportRow> {
+        public partial class sprFGReceiveDataTable : global::System.Data.TypedTableBase<sprFGReceiveRow> {
             
             private global::System.Data.DataColumn columnintautoid;
             
@@ -9529,8 +9599,8 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprInventoryProductionReceiveReportDataTable() {
-                this.TableName = "sprInventoryProductionReceiveReport";
+            public sprFGReceiveDataTable() {
+                this.TableName = "sprFGReceive";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -9538,7 +9608,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal sprInventoryProductionReceiveReportDataTable(global::System.Data.DataTable table) {
+            internal sprFGReceiveDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -9555,7 +9625,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected sprInventoryProductionReceiveReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sprFGReceiveDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -9627,34 +9697,34 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprInventoryProductionReceiveReportRow this[int index] {
+            public sprFGReceiveRow this[int index] {
                 get {
-                    return ((sprInventoryProductionReceiveReportRow)(this.Rows[index]));
+                    return ((sprFGReceiveRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprInventoryProductionReceiveReportRowChangeEventHandler sprInventoryProductionReceiveReportRowChanging;
+            public event sprFGReceiveRowChangeEventHandler sprFGReceiveRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprInventoryProductionReceiveReportRowChangeEventHandler sprInventoryProductionReceiveReportRowChanged;
+            public event sprFGReceiveRowChangeEventHandler sprFGReceiveRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprInventoryProductionReceiveReportRowChangeEventHandler sprInventoryProductionReceiveReportRowDeleting;
+            public event sprFGReceiveRowChangeEventHandler sprFGReceiveRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event sprInventoryProductionReceiveReportRowChangeEventHandler sprInventoryProductionReceiveReportRowDeleted;
+            public event sprFGReceiveRowChangeEventHandler sprFGReceiveRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddsprInventoryProductionReceiveReportRow(sprInventoryProductionReceiveReportRow row) {
+            public void AddsprFGReceiveRow(sprFGReceiveRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprInventoryProductionReceiveReportRow AddsprInventoryProductionReceiveReportRow(int intproductionid, string strItem, int intItemID, string strUoM, decimal numSendStoreQty, string Column1) {
-                sprInventoryProductionReceiveReportRow rowsprInventoryProductionReceiveReportRow = ((sprInventoryProductionReceiveReportRow)(this.NewRow()));
+            public sprFGReceiveRow AddsprFGReceiveRow(int intproductionid, string strItem, int intItemID, string strUoM, decimal numSendStoreQty, string Column1) {
+                sprFGReceiveRow rowsprFGReceiveRow = ((sprFGReceiveRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         intproductionid,
@@ -9663,15 +9733,15 @@ namespace SCM_DAL {
                         strUoM,
                         numSendStoreQty,
                         Column1};
-                rowsprInventoryProductionReceiveReportRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowsprInventoryProductionReceiveReportRow);
-                return rowsprInventoryProductionReceiveReportRow;
+                rowsprFGReceiveRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprFGReceiveRow);
+                return rowsprFGReceiveRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                sprInventoryProductionReceiveReportDataTable cln = ((sprInventoryProductionReceiveReportDataTable)(base.Clone()));
+                sprFGReceiveDataTable cln = ((sprFGReceiveDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -9679,7 +9749,7 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new sprInventoryProductionReceiveReportDataTable();
+                return new sprFGReceiveDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9726,28 +9796,28 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprInventoryProductionReceiveReportRow NewsprInventoryProductionReceiveReportRow() {
-                return ((sprInventoryProductionReceiveReportRow)(this.NewRow()));
+            public sprFGReceiveRow NewsprFGReceiveRow() {
+                return ((sprFGReceiveRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new sprInventoryProductionReceiveReportRow(builder);
+                return new sprFGReceiveRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(sprInventoryProductionReceiveReportRow);
+                return typeof(sprFGReceiveRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.sprInventoryProductionReceiveReportRowChanged != null)) {
-                    this.sprInventoryProductionReceiveReportRowChanged(this, new sprInventoryProductionReceiveReportRowChangeEvent(((sprInventoryProductionReceiveReportRow)(e.Row)), e.Action));
+                if ((this.sprFGReceiveRowChanged != null)) {
+                    this.sprFGReceiveRowChanged(this, new sprFGReceiveRowChangeEvent(((sprFGReceiveRow)(e.Row)), e.Action));
                 }
             }
             
@@ -9755,8 +9825,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.sprInventoryProductionReceiveReportRowChanging != null)) {
-                    this.sprInventoryProductionReceiveReportRowChanging(this, new sprInventoryProductionReceiveReportRowChangeEvent(((sprInventoryProductionReceiveReportRow)(e.Row)), e.Action));
+                if ((this.sprFGReceiveRowChanging != null)) {
+                    this.sprFGReceiveRowChanging(this, new sprFGReceiveRowChangeEvent(((sprFGReceiveRow)(e.Row)), e.Action));
                 }
             }
             
@@ -9764,8 +9834,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.sprInventoryProductionReceiveReportRowDeleted != null)) {
-                    this.sprInventoryProductionReceiveReportRowDeleted(this, new sprInventoryProductionReceiveReportRowChangeEvent(((sprInventoryProductionReceiveReportRow)(e.Row)), e.Action));
+                if ((this.sprFGReceiveRowDeleted != null)) {
+                    this.sprFGReceiveRowDeleted(this, new sprFGReceiveRowChangeEvent(((sprFGReceiveRow)(e.Row)), e.Action));
                 }
             }
             
@@ -9773,14 +9843,14 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.sprInventoryProductionReceiveReportRowDeleting != null)) {
-                    this.sprInventoryProductionReceiveReportRowDeleting(this, new sprInventoryProductionReceiveReportRowChangeEvent(((sprInventoryProductionReceiveReportRow)(e.Row)), e.Action));
+                if ((this.sprFGReceiveRowDeleting != null)) {
+                    this.sprFGReceiveRowDeleting(this, new sprFGReceiveRowChangeEvent(((sprFGReceiveRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemovesprInventoryProductionReceiveReportRow(sprInventoryProductionReceiveReportRow row) {
+            public void RemovesprFGReceiveRow(sprFGReceiveRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -9807,7 +9877,7 @@ namespace SCM_DAL {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "sprInventoryProductionReceiveReportDataTable";
+                attribute2.FixedValue = "sprFGReceiveDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -10450,6 +10520,488 @@ namespace SCM_DAL {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "sprInventoryTransferDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class sprInventoryTransferSalesDetailDataTable : global::System.Data.TypedTableBase<sprInventoryTransferSalesDetailRow> {
+            
+            private global::System.Data.DataColumn columnstrChallan;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprInventoryTransferSalesDetailDataTable() {
+                this.TableName = "sprInventoryTransferSalesDetail";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal sprInventoryTransferSalesDetailDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected sprInventoryTransferSalesDetailDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strChallanColumn {
+                get {
+                    return this.columnstrChallan;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprInventoryTransferSalesDetailRow this[int index] {
+                get {
+                    return ((sprInventoryTransferSalesDetailRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprInventoryTransferSalesDetailRowChangeEventHandler sprInventoryTransferSalesDetailRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprInventoryTransferSalesDetailRowChangeEventHandler sprInventoryTransferSalesDetailRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprInventoryTransferSalesDetailRowChangeEventHandler sprInventoryTransferSalesDetailRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprInventoryTransferSalesDetailRowChangeEventHandler sprInventoryTransferSalesDetailRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddsprInventoryTransferSalesDetailRow(sprInventoryTransferSalesDetailRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprInventoryTransferSalesDetailRow AddsprInventoryTransferSalesDetailRow(string strChallan) {
+                sprInventoryTransferSalesDetailRow rowsprInventoryTransferSalesDetailRow = ((sprInventoryTransferSalesDetailRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        strChallan};
+                rowsprInventoryTransferSalesDetailRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprInventoryTransferSalesDetailRow);
+                return rowsprInventoryTransferSalesDetailRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                sprInventoryTransferSalesDetailDataTable cln = ((sprInventoryTransferSalesDetailDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new sprInventoryTransferSalesDetailDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnstrChallan = base.Columns["strChallan"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnstrChallan = new global::System.Data.DataColumn("strChallan", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrChallan);
+                this.columnstrChallan.ReadOnly = true;
+                this.columnstrChallan.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprInventoryTransferSalesDetailRow NewsprInventoryTransferSalesDetailRow() {
+                return ((sprInventoryTransferSalesDetailRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new sprInventoryTransferSalesDetailRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(sprInventoryTransferSalesDetailRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.sprInventoryTransferSalesDetailRowChanged != null)) {
+                    this.sprInventoryTransferSalesDetailRowChanged(this, new sprInventoryTransferSalesDetailRowChangeEvent(((sprInventoryTransferSalesDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.sprInventoryTransferSalesDetailRowChanging != null)) {
+                    this.sprInventoryTransferSalesDetailRowChanging(this, new sprInventoryTransferSalesDetailRowChangeEvent(((sprInventoryTransferSalesDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.sprInventoryTransferSalesDetailRowDeleted != null)) {
+                    this.sprInventoryTransferSalesDetailRowDeleted(this, new sprInventoryTransferSalesDetailRowChangeEvent(((sprInventoryTransferSalesDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.sprInventoryTransferSalesDetailRowDeleting != null)) {
+                    this.sprInventoryTransferSalesDetailRowDeleting(this, new sprInventoryTransferSalesDetailRowChangeEvent(((sprInventoryTransferSalesDetailRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovesprInventoryTransferSalesDetailRow(sprInventoryTransferSalesDetailRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                InventoryTransferTDS ds = new InventoryTransferTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "sprInventoryTransferSalesDetailDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class sprChallanWiseRouteCostDataTable : global::System.Data.TypedTableBase<sprChallanWiseRouteCostRow> {
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprChallanWiseRouteCostDataTable() {
+                this.TableName = "sprChallanWiseRouteCost";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal sprChallanWiseRouteCostDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected sprChallanWiseRouteCostDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprChallanWiseRouteCostRow this[int index] {
+                get {
+                    return ((sprChallanWiseRouteCostRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprChallanWiseRouteCostRowChangeEventHandler sprChallanWiseRouteCostRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprChallanWiseRouteCostRowChangeEventHandler sprChallanWiseRouteCostRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprChallanWiseRouteCostRowChangeEventHandler sprChallanWiseRouteCostRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event sprChallanWiseRouteCostRowChangeEventHandler sprChallanWiseRouteCostRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddsprChallanWiseRouteCostRow(sprChallanWiseRouteCostRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprChallanWiseRouteCostRow AddsprChallanWiseRouteCostRow() {
+                sprChallanWiseRouteCostRow rowsprChallanWiseRouteCostRow = ((sprChallanWiseRouteCostRow)(this.NewRow()));
+                object[] columnValuesArray = new object[0];
+                rowsprChallanWiseRouteCostRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprChallanWiseRouteCostRow);
+                return rowsprChallanWiseRouteCostRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                sprChallanWiseRouteCostDataTable cln = ((sprChallanWiseRouteCostDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new sprChallanWiseRouteCostDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprChallanWiseRouteCostRow NewsprChallanWiseRouteCostRow() {
+                return ((sprChallanWiseRouteCostRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new sprChallanWiseRouteCostRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(sprChallanWiseRouteCostRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.sprChallanWiseRouteCostRowChanged != null)) {
+                    this.sprChallanWiseRouteCostRowChanged(this, new sprChallanWiseRouteCostRowChangeEvent(((sprChallanWiseRouteCostRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.sprChallanWiseRouteCostRowChanging != null)) {
+                    this.sprChallanWiseRouteCostRowChanging(this, new sprChallanWiseRouteCostRowChangeEvent(((sprChallanWiseRouteCostRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.sprChallanWiseRouteCostRowDeleted != null)) {
+                    this.sprChallanWiseRouteCostRowDeleted(this, new sprChallanWiseRouteCostRowChangeEvent(((sprChallanWiseRouteCostRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.sprChallanWiseRouteCostRowDeleting != null)) {
+                    this.sprChallanWiseRouteCostRowDeleting(this, new sprChallanWiseRouteCostRowChangeEvent(((sprChallanWiseRouteCostRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovesprChallanWiseRouteCostRow(sprChallanWiseRouteCostRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                InventoryTransferTDS ds = new InventoryTransferTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "sprChallanWiseRouteCostDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -13640,25 +14192,25 @@ namespace SCM_DAL {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class sprInventoryProductionReceiveReportRow : global::System.Data.DataRow {
+        public partial class sprFGReceiveRow : global::System.Data.DataRow {
             
-            private sprInventoryProductionReceiveReportDataTable tablesprInventoryProductionReceiveReport;
+            private sprFGReceiveDataTable tablesprFGReceive;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal sprInventoryProductionReceiveReportRow(global::System.Data.DataRowBuilder rb) : 
+            internal sprFGReceiveRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablesprInventoryProductionReceiveReport = ((sprInventoryProductionReceiveReportDataTable)(this.Table));
+                this.tablesprFGReceive = ((sprFGReceiveDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int intautoid {
                 get {
-                    return ((int)(this[this.tablesprInventoryProductionReceiveReport.intautoidColumn]));
+                    return ((int)(this[this.tablesprFGReceive.intautoidColumn]));
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.intautoidColumn] = value;
+                    this[this.tablesprFGReceive.intautoidColumn] = value;
                 }
             }
             
@@ -13667,15 +14219,14 @@ namespace SCM_DAL {
             public int intproductionid {
                 get {
                     try {
-                        return ((int)(this[this.tablesprInventoryProductionReceiveReport.intproductionidColumn]));
+                        return ((int)(this[this.tablesprFGReceive.intproductionidColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intproductionid\' in table \'sprInventoryProductionReceiveRep" +
-                                "ort\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'intproductionid\' in table \'sprFGReceive\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.intproductionidColumn] = value;
+                    this[this.tablesprFGReceive.intproductionidColumn] = value;
                 }
             }
             
@@ -13684,15 +14235,14 @@ namespace SCM_DAL {
             public string strItem {
                 get {
                     try {
-                        return ((string)(this[this.tablesprInventoryProductionReceiveReport.strItemColumn]));
+                        return ((string)(this[this.tablesprFGReceive.strItemColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strItem\' in table \'sprInventoryProductionReceiveReport\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strItem\' in table \'sprFGReceive\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.strItemColumn] = value;
+                    this[this.tablesprFGReceive.strItemColumn] = value;
                 }
             }
             
@@ -13700,10 +14250,10 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public int intItemID {
                 get {
-                    return ((int)(this[this.tablesprInventoryProductionReceiveReport.intItemIDColumn]));
+                    return ((int)(this[this.tablesprFGReceive.intItemIDColumn]));
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.intItemIDColumn] = value;
+                    this[this.tablesprFGReceive.intItemIDColumn] = value;
                 }
             }
             
@@ -13712,15 +14262,14 @@ namespace SCM_DAL {
             public string strUoM {
                 get {
                     try {
-                        return ((string)(this[this.tablesprInventoryProductionReceiveReport.strUoMColumn]));
+                        return ((string)(this[this.tablesprFGReceive.strUoMColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'sprInventoryProductionReceiveReport\' is D" +
-                                "BNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'sprFGReceive\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.strUoMColumn] = value;
+                    this[this.tablesprFGReceive.strUoMColumn] = value;
                 }
             }
             
@@ -13729,15 +14278,14 @@ namespace SCM_DAL {
             public decimal numSendStoreQty {
                 get {
                     try {
-                        return ((decimal)(this[this.tablesprInventoryProductionReceiveReport.numSendStoreQtyColumn]));
+                        return ((decimal)(this[this.tablesprFGReceive.numSendStoreQtyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numSendStoreQty\' in table \'sprInventoryProductionReceiveRep" +
-                                "ort\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'numSendStoreQty\' in table \'sprFGReceive\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.numSendStoreQtyColumn] = value;
+                    this[this.tablesprFGReceive.numSendStoreQtyColumn] = value;
                 }
             }
             
@@ -13746,76 +14294,75 @@ namespace SCM_DAL {
             public string Column1 {
                 get {
                     try {
-                        return ((string)(this[this.tablesprInventoryProductionReceiveReport.Column1Column]));
+                        return ((string)(this[this.tablesprFGReceive.Column1Column]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'sprInventoryProductionReceiveReport\' is " +
-                                "DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'sprFGReceive\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablesprInventoryProductionReceiveReport.Column1Column] = value;
+                    this[this.tablesprFGReceive.Column1Column] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintproductionidNull() {
-                return this.IsNull(this.tablesprInventoryProductionReceiveReport.intproductionidColumn);
+                return this.IsNull(this.tablesprFGReceive.intproductionidColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintproductionidNull() {
-                this[this.tablesprInventoryProductionReceiveReport.intproductionidColumn] = global::System.Convert.DBNull;
+                this[this.tablesprFGReceive.intproductionidColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrItemNull() {
-                return this.IsNull(this.tablesprInventoryProductionReceiveReport.strItemColumn);
+                return this.IsNull(this.tablesprFGReceive.strItemColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrItemNull() {
-                this[this.tablesprInventoryProductionReceiveReport.strItemColumn] = global::System.Convert.DBNull;
+                this[this.tablesprFGReceive.strItemColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrUoMNull() {
-                return this.IsNull(this.tablesprInventoryProductionReceiveReport.strUoMColumn);
+                return this.IsNull(this.tablesprFGReceive.strUoMColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrUoMNull() {
-                this[this.tablesprInventoryProductionReceiveReport.strUoMColumn] = global::System.Convert.DBNull;
+                this[this.tablesprFGReceive.strUoMColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnumSendStoreQtyNull() {
-                return this.IsNull(this.tablesprInventoryProductionReceiveReport.numSendStoreQtyColumn);
+                return this.IsNull(this.tablesprFGReceive.numSendStoreQtyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetnumSendStoreQtyNull() {
-                this[this.tablesprInventoryProductionReceiveReport.numSendStoreQtyColumn] = global::System.Convert.DBNull;
+                this[this.tablesprFGReceive.numSendStoreQtyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsColumn1Null() {
-                return this.IsNull(this.tablesprInventoryProductionReceiveReport.Column1Column);
+                return this.IsNull(this.tablesprFGReceive.Column1Column);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetColumn1Null() {
-                this[this.tablesprInventoryProductionReceiveReport.Column1Column] = global::System.Convert.DBNull;
+                this[this.tablesprFGReceive.Column1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -14138,6 +14685,65 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrOutputNull() {
                 this[this.tablesprInventoryTransfer.strOutputColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class sprInventoryTransferSalesDetailRow : global::System.Data.DataRow {
+            
+            private sprInventoryTransferSalesDetailDataTable tablesprInventoryTransferSalesDetail;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal sprInventoryTransferSalesDetailRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablesprInventoryTransferSalesDetail = ((sprInventoryTransferSalesDetailDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strChallan {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprInventoryTransferSalesDetail.strChallanColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strChallan\' in table \'sprInventoryTransferSalesDetail\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprInventoryTransferSalesDetail.strChallanColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrChallanNull() {
+                return this.IsNull(this.tablesprInventoryTransferSalesDetail.strChallanColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrChallanNull() {
+                this[this.tablesprInventoryTransferSalesDetail.strChallanColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class sprChallanWiseRouteCostRow : global::System.Data.DataRow {
+            
+            private sprChallanWiseRouteCostDataTable tablesprChallanWiseRouteCost;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal sprChallanWiseRouteCostRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablesprChallanWiseRouteCost = ((sprChallanWiseRouteCostDataTable)(this.Table));
             }
         }
         
@@ -15097,22 +15703,22 @@ namespace SCM_DAL {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class sprInventoryProductionReceiveReportRowChangeEvent : global::System.EventArgs {
+        public class sprFGReceiveRowChangeEvent : global::System.EventArgs {
             
-            private sprInventoryProductionReceiveReportRow eventRow;
+            private sprFGReceiveRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprInventoryProductionReceiveReportRowChangeEvent(sprInventoryProductionReceiveReportRow row, global::System.Data.DataRowAction action) {
+            public sprFGReceiveRowChangeEvent(sprFGReceiveRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprInventoryProductionReceiveReportRow Row {
+            public sprFGReceiveRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -15181,6 +15787,74 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprInventoryTransferRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class sprInventoryTransferSalesDetailRowChangeEvent : global::System.EventArgs {
+            
+            private sprInventoryTransferSalesDetailRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprInventoryTransferSalesDetailRowChangeEvent(sprInventoryTransferSalesDetailRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprInventoryTransferSalesDetailRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class sprChallanWiseRouteCostRowChangeEvent : global::System.EventArgs {
+            
+            private sprChallanWiseRouteCostRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprChallanWiseRouteCostRowChangeEvent(sprChallanWiseRouteCostRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public sprChallanWiseRouteCostRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -21125,7 +21799,7 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class sprInventoryProductionReceiveReportTableAdapter : global::System.ComponentModel.Component {
+    public partial class sprFGReceiveTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -21139,7 +21813,7 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public sprInventoryProductionReceiveReportTableAdapter() {
+        public sprFGReceiveTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -21236,7 +21910,7 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "sprInventoryProductionReceiveReport";
+            tableMapping.DataSetTable = "sprFGReceive";
             tableMapping.ColumnMappings.Add("intautoid", "intautoid");
             tableMapping.ColumnMappings.Add("intproductionid", "intproductionid");
             tableMapping.ColumnMappings.Add("strItem", "strItem");
@@ -21260,39 +21934,81 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprInventoryProductionReceiveReport";
+            this._commandCollection[0].CommandText = "dbo.sprFGReceive";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWH", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FromDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@autoID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@transactionDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@transactionQTY", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.sprInventoryProductionReceiveReportDataTable GetFGReceiveData(global::System.Nullable<int> intUnitID, global::System.Nullable<global::System.DateTime> dteFromDate, global::System.Nullable<global::System.DateTime> dteToDate) {
+        public virtual InventoryTransferTDS.sprFGReceiveDataTable GetFGReceiveData(global::System.Nullable<int> intWH, global::System.Nullable<global::System.DateTime> FromDate, global::System.Nullable<global::System.DateTime> ToDate, global::System.Nullable<int> intType, global::System.Nullable<int> autoID, global::System.Nullable<int> itemID, global::System.Nullable<global::System.DateTime> transactionDate, global::System.Nullable<decimal> transactionQTY, global::System.Nullable<int> productID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intUnitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUnitID.Value));
+            if ((intWH.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intWH.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((dteFromDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(dteFromDate.Value));
+            if ((FromDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(FromDate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((dteToDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(dteToDate.Value));
+            if ((ToDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(ToDate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            InventoryTransferTDS.sprInventoryProductionReceiveReportDataTable dataTable = new InventoryTransferTDS.sprInventoryProductionReceiveReportDataTable();
+            if ((intType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intType.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((autoID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(autoID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((itemID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(itemID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((transactionDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(transactionDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((transactionQTY.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(transactionQTY.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((productID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(productID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            InventoryTransferTDS.sprFGReceiveDataTable dataTable = new InventoryTransferTDS.sprFGReceiveDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -21738,6 +22454,416 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
                 this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             InventoryTransferTDS.sprInventoryTransferDataTable dataTable = new InventoryTransferTDS.sprInventoryTransferDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class sprInventoryTransferSalesDetailTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public sprInventoryTransferSalesDetailTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "sprInventoryTransferSalesDetail";
+            tableMapping.ColumnMappings.Add("strChallan", "strChallan");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_InventoryConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprInventoryTransferSalesDetail";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inWH", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@outWH", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@location", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@user", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSalesEntryID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@item", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@qty", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 8, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 1500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemTransferType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strItemTransferType", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual InventoryTransferTDS.sprInventoryTransferSalesDetailDataTable InsertInventoryTransferSalesData(global::System.Nullable<int> unit, global::System.Nullable<int> inWH, global::System.Nullable<int> outWH, global::System.Nullable<int> location, global::System.Nullable<int> user, global::System.Nullable<int> intSalesEntryID, global::System.Nullable<int> item, global::System.Nullable<decimal> qty, string remarks, global::System.Nullable<int> intItemTransferType, string strItemTransferType) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((unit.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(unit.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((inWH.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(inWH.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((outWH.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(outWH.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((location.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(location.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((user.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(user.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((intSalesEntryID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intSalesEntryID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((item.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(item.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((qty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(qty.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((remarks == null)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(remarks));
+            }
+            if ((intItemTransferType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intItemTransferType.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((strItemTransferType == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strItemTransferType));
+            }
+            InventoryTransferTDS.sprInventoryTransferSalesDetailDataTable dataTable = new InventoryTransferTDS.sprInventoryTransferSalesDetailDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class sprChallanWiseRouteCostTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public sprChallanWiseRouteCostTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_LogisticConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprChallanWiseRouteCost";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strChallanNo", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSalesOffId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPointId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual InventoryTransferTDS.sprChallanWiseRouteCostDataTable TripEntry(string strChallanNo, global::System.Nullable<int> intUnitID, global::System.Nullable<int> intSalesOffId, global::System.Nullable<int> intShipPointId) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((strChallanNo == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strChallanNo));
+            }
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUnitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((intSalesOffId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intSalesOffId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((intShipPointId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intShipPointId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            InventoryTransferTDS.sprChallanWiseRouteCostDataTable dataTable = new InventoryTransferTDS.sprChallanWiseRouteCostDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
