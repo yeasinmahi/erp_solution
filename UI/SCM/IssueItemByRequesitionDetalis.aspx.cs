@@ -190,6 +190,35 @@ namespace UI.SCM
             doc.Save(filePathForXML);
         }
 
+        protected void ddlStoreLocation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                GridViewRow row = (GridViewRow)((DropDownList)sender).NamingContainer;
+                DropDownList ddlLocation = row.FindControl("ddlStoreLocation") as DropDownList;
+                int locationId = int.Parse(ddlLocation.SelectedValue.ToString());
+
+                Label lblItemId = row.FindControl("lblItemId") as Label;
+                Label lblstock = row.FindControl("lblStock") as Label;
+                Label lblvalue = row.FindControl("lblValue") as Label;
+
+                int itemid = int.Parse(lblItemId.Text.ToString());
+
+                intwh = int.Parse(Request.QueryString["intwh"].ToString());
+
+                dt = objIssue.GetViewData(18, "", intwh, locationId, DateTime.Now, itemid);
+                if(dt.Rows.Count>0)
+                {
+                   lblstock.Text =dt.Rows[0]["monStock"].ToString();
+                   lblvalue.Text = dt.Rows[0]["monValue"].ToString();
+
+                }
+
+
+            }
+            catch { }
+        }
+
         private XmlNode CreateItemNode(XmlDocument doc, string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy)
         {
             XmlNode node = doc.CreateElement("issueEntry");
@@ -242,14 +271,21 @@ namespace UI.SCM
 
                 Label lblItem = (Label)e.Row.FindControl("lblItemId");
                 int Item = int.Parse(lblItem.Text);
-
+                
                 intwh = int.Parse(Request.QueryString["intwh"].ToString());
-                dt = objOperation.WhDataView(8, "", intwh, Item, 1);
-                DropDownList ddlLocation = (e.Row.FindControl("ddlStoreLocation") as DropDownList);
-                ddlLocation.DataSource = dt;
-                ddlLocation.DataValueField = "intLocation";
-                ddlLocation.DataTextField = "strLocationName";
-                ddlLocation.DataBind();
+                //dt = objOperation.WhDataView(8, "", intwh, Item, 1);
+
+                dt = objIssue.GetViewData(19, "", intwh, 0, DateTime.Now, Item);
+                if (dt.Rows.Count > 0)
+                { 
+                    DropDownList ddlLocation = (e.Row.FindControl("ddlStoreLocation") as DropDownList);
+                    ddlLocation.DataSource = dt;
+                    ddlLocation.DataValueField = "Id";
+                    ddlLocation.DataTextField = "strName";
+                    ddlLocation.DataBind();
+                }
+
+              
             }
         }
     }
