@@ -13,6 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -64,6 +65,9 @@ namespace UI.SCM
                 ddlQcPersonal.DataTextField = "strName";
                 ddlQcPersonal.DataValueField = "Id";
                 ddlQcPersonal.DataBind();
+
+                dt = objIndent.DataView(17, xmlunit, int.Parse(ddlWH.SelectedValue), 0, DateTime.Now, enroll);
+                Common.LoadDropDownWithSelect(ddlDepartment, dt, "intdepartmentID", "strDepatrment");
 
                 dt = objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, enroll);
                 ddlReqId.DataSource = dt;
@@ -126,7 +130,8 @@ namespace UI.SCM
                             string sftyStock = dt.Rows[i]["numSafetyStock"].ToString();
                             string rate = dt.Rows[i]["rate"].ToString();
                             indentQty = dt.Rows[i]["numApproveQty"].ToString();
-                            CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby);
+                            int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
+                            CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby, intDepartment);
                         }
                     }
                 }
@@ -225,9 +230,10 @@ namespace UI.SCM
                         string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
                         string rate = dt.Rows[0]["rate"].ToString();
                         string indentQty = txtQty.Text.ToString();
+                        int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
 
                         CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType,
-                            purpose, qcby);
+                            purpose, qcby, intDepartment);
                     }
                     else
                     {
@@ -306,14 +312,14 @@ namespace UI.SCM
 
         #region ===========================XML Data Bind=======================
 
-        private void CreateXml(string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby)
+        private void CreateXml(string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby, int intDepartment)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby);
+                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby, intDepartment);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -321,7 +327,7 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby);
+                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby, intDepartment);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -329,7 +335,7 @@ namespace UI.SCM
             LoadGridwithXml();
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby)
+        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby, int intDepartment)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -357,6 +363,8 @@ namespace UI.SCM
             Purpose.Value = purpose;
             XmlAttribute Qcby = doc.CreateAttribute("qcby");
             Qcby.Value = qcby;
+            XmlAttribute department = doc.CreateAttribute("intDepartment");
+            department.Value = intDepartment.ToString();
 
             node.Attributes.Append(ItemId);
             node.Attributes.Append(ItemName);
@@ -371,6 +379,7 @@ namespace UI.SCM
             node.Attributes.Append(IndentType);
             node.Attributes.Append(Purpose);
             node.Attributes.Append(Qcby);
+            node.Attributes.Append(department);
             return node;
         }
 

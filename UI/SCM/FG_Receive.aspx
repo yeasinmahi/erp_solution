@@ -52,7 +52,7 @@
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
 
                                 </div>
-                                <div class="col-md-3 btn-toolbar" id="showbuttonDiv">
+                                <div class="col-md-3" id="showbuttonDiv" style="padding-top:20px;">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClick="btnShow_Click"  />
                                 </div>
                                
