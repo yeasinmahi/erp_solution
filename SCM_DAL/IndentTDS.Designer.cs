@@ -8,8 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-
 #pragma warning disable 1591
 
 namespace SCM_DAL {
@@ -2832,14 +2830,7 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             IndentTDS.SprIndentDataTable dataTable = new IndentTDS.SprIndentDataTable();
-            try
-            {
-                this.Adapter.Fill(dataTable);
-            }
-            catch (Exception e)
-            {
-            }
-            
+            this.Adapter.Fill(dataTable);
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
                         || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
@@ -3051,12 +3042,7 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             IndentTDS.SprStoreIssueDataTable dataTable = new IndentTDS.SprStoreIssueDataTable();
-            try
-            {
-                this.Adapter.Fill(dataTable);
-            }
-            catch { }
-            
+            this.Adapter.Fill(dataTable);
             if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
                         || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
@@ -3198,13 +3184,6 @@ namespace SCM_DAL.IndentTDSTableAdapters {
                 " @Original_intItemMasterID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intItemMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemMasterID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_Inventory].[dbo].[tblItemMasterList] DEFAULT VALUES;\r\nSELECT int" +
-                "ItemMasterID, strItemMasterName + \' [\' + strUoM + \']\' AS strItemMasterName FROM " +
-                "tblItemMasterList WHERE (intItemMasterID = SCOPE_IDENTITY()) ORDER BY strItemMas" +
-                "terName";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3220,9 +3199,9 @@ namespace SCM_DAL.IndentTDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT intItemMasterID, strItemMasterName +' ['+strUom +']' as strItemMasterName  FROM ERP_Inventory.dbo.tblItemMasterList WHERE   ysnActive=1 and  strItemMasterName !=''  and  strItemMasterName  LIKE  '%' + @strSearchKey + '%'   and  strItemMasterName is not null ORDER BY strItemMasterName";
+            this._commandCollection[0].CommandText = @"SELECT intItemMasterID, '['+cast(intItemMasterID as varchar(500))+']  '+strItemMasterName +'  ['+strUom +']' as strItemMasterName   FROM ERP_Inventory.dbo.tblItemMasterList WHERE   ysnActive=1 and  strItemMasterName !=''  and  strItemMasterName  LIKE  '%' + @strSearchKey + '%'   and  strItemMasterName is not null ORDER BY strItemMasterName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSearchKey", global::System.Data.SqlDbType.VarChar, 953, global::System.Data.ParameterDirection.Input, 0, 0, "strItemMasterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSearchKey", global::System.Data.SqlDbType.VarChar, 753, global::System.Data.ParameterDirection.Input, 0, 0, "strItemMasterName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
