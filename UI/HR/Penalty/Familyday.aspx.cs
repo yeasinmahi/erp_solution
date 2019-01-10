@@ -43,7 +43,7 @@ namespace UI.HR.Penalty
                 dt = pnlty.GetPickDropList();
                 ddlPnD.DataSource = dt; ddlPnD.DataTextField = "Names";
                 ddlPnD.DataValueField = "ID"; ddlPnD.DataBind();
-                ddlPnD.Items.Insert(0, new ListItem("বাছাই করুন", "0"));
+                ddlPnD.Items.Insert(0, new ListItem("Select Point", "0"));
                 ddlPtype.SelectedValue = "0"; txtSpouse.Text = ""; ddlSGender.SelectedValue = "M"; txtSDOB.Text = "";
                 txtSpouse.Enabled = false; ddlSGender.Enabled = false; txtSDOB.Enabled = false;
                 ddlChild.SelectedValue="0"; txtChild.Text = ""; ddlCGender.SelectedValue = "M"; txtCDOB.Text = "";
