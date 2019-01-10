@@ -195,7 +195,7 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtDtefroms.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtDteTo.Text.ToString());
                 string dept = ddlDepts.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
+                string xmlData = "<voucher><voucherentry dteTo=" + '"' + txtDteTo.Text.ToString() + '"' + " dept=" + '"' + dept + '"' + " dteFrom=" + '"' + txtDtefroms.Text.ToString() + '"'+ "/></voucher>".ToString();
                 dt = objPo.GetPoData(2, xmlData, intWh, 0, dteFrom, enroll);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
