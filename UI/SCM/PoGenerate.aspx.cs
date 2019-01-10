@@ -185,14 +185,17 @@ namespace UI.SCM
         {
             try
             {
+                dgvIndent.DataSource = "";
+                dgvIndent.DataBind();
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intWh = int.Parse(ddlWH.SelectedValue);
+                intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
                 hdnWHName.Value = ddlWH.SelectedItem.ToString();
                 DateTime dteFrom = DateTime.Parse(txtDtefroms.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtDteTo.Text.ToString());
                 string dept = ddlDepts.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
+                string xmlData = "<voucher><voucherentry dteTo=" + '"' + txtDteTo.Text.ToString() + '"' + " dept=" + '"' + dept + '"' + " dteFrom=" + '"' + txtDtefroms.Text.ToString() + '"'+ "/></voucher>".ToString();
                 dt = objPo.GetPoData(2, xmlData, intWh, 0, dteFrom, enroll);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
@@ -205,6 +208,9 @@ namespace UI.SCM
         {
             try
             {
+                dgvIndent.DataSource = "";
+                dgvIndent.DataBind();
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
@@ -219,11 +225,13 @@ namespace UI.SCM
                 {
                     hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
                     hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
+
+                    dgvIndent.DataSource = dt;
+                    dgvIndent.DataBind();
+                    dt.Clear();
                 }
                 
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
-                dt.Clear();
+               
             }
             catch { }
         }
@@ -237,6 +245,7 @@ namespace UI.SCM
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
                 int indent = int.Parse(lblIndent.Text.ToString());
+                intWh = int.Parse(hdnWHId.Value.ToString());
                 lblIndentType.Text = ddlDepts.SelectedItem.ToString();
                 dt = objPo.GetPoData(3, "", intWh, indent, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
@@ -821,7 +830,7 @@ namespace UI.SCM
                 }
                 catch { supplierId = 0; }
 
-                try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { }
+                try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { whid = 0; }
                 try { unitid = int.Parse(hdnUnitId.Value); } catch { }
 
                 try { currencyId = int.Parse(ddlCurrency.SelectedValue); } catch { currencyId = 0; }
@@ -895,18 +904,20 @@ namespace UI.SCM
 
                     try { File.Delete(filePathForXMLPrepare); } catch { }
                     try { File.Delete(filePathForXMLPo); } catch { }
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
+                    
 
-                    string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
+                    string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
 
+                    txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
+                    txtSupplier.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
+                       
+
                         dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind();
                         dgvIndentDet.DataSource = "";
                         dgvIndentDet.DataBind();

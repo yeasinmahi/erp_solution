@@ -122,6 +122,10 @@ namespace SAD_DAL.Sales {
         
         private SprBillCopySubmissiontoCustomerDataTable tableSprBillCopySubmissiontoCustomer;
         
+        private SprTADAFuelAllowanceDataTable tableSprTADAFuelAllowance;
+        
+        private SprTADATADAFuelCostConsumeChekingDataTable tableSprTADATADAFuelCostConsumeCheking;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -296,6 +300,12 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["SprBillCopySubmissiontoCustomer"] != null)) {
                     base.Tables.Add(new SprBillCopySubmissiontoCustomerDataTable(ds.Tables["SprBillCopySubmissiontoCustomer"]));
+                }
+                if ((ds.Tables["SprTADAFuelAllowance"] != null)) {
+                    base.Tables.Add(new SprTADAFuelAllowanceDataTable(ds.Tables["SprTADAFuelAllowance"]));
+                }
+                if ((ds.Tables["SprTADATADAFuelCostConsumeCheking"] != null)) {
+                    base.Tables.Add(new SprTADATADAFuelCostConsumeChekingDataTable(ds.Tables["SprTADATADAFuelCostConsumeCheking"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -807,6 +817,26 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprTADAFuelAllowanceDataTable SprTADAFuelAllowance {
+            get {
+                return this.tableSprTADAFuelAllowance;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprTADATADAFuelCostConsumeChekingDataTable SprTADATADAFuelCostConsumeCheking {
+            get {
+                return this.tableSprTADATADAFuelCostConsumeCheking;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -1018,6 +1048,12 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["SprBillCopySubmissiontoCustomer"] != null)) {
                     base.Tables.Add(new SprBillCopySubmissiontoCustomerDataTable(ds.Tables["SprBillCopySubmissiontoCustomer"]));
+                }
+                if ((ds.Tables["SprTADAFuelAllowance"] != null)) {
+                    base.Tables.Add(new SprTADAFuelAllowanceDataTable(ds.Tables["SprTADAFuelAllowance"]));
+                }
+                if ((ds.Tables["SprTADATADAFuelCostConsumeCheking"] != null)) {
+                    base.Tables.Add(new SprTADATADAFuelCostConsumeChekingDataTable(ds.Tables["SprTADATADAFuelCostConsumeCheking"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -1346,6 +1382,18 @@ namespace SAD_DAL.Sales {
                     this.tableSprBillCopySubmissiontoCustomer.InitVars();
                 }
             }
+            this.tableSprTADAFuelAllowance = ((SprTADAFuelAllowanceDataTable)(base.Tables["SprTADAFuelAllowance"]));
+            if ((initTable == true)) {
+                if ((this.tableSprTADAFuelAllowance != null)) {
+                    this.tableSprTADAFuelAllowance.InitVars();
+                }
+            }
+            this.tableSprTADATADAFuelCostConsumeCheking = ((SprTADATADAFuelCostConsumeChekingDataTable)(base.Tables["SprTADATADAFuelCostConsumeCheking"]));
+            if ((initTable == true)) {
+                if ((this.tableSprTADATADAFuelCostConsumeCheking != null)) {
+                    this.tableSprTADATADAFuelCostConsumeCheking.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1454,6 +1502,10 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprApproveByImmediateSuperVisor);
             this.tableSprBillCopySubmissiontoCustomer = new SprBillCopySubmissiontoCustomerDataTable();
             base.Tables.Add(this.tableSprBillCopySubmissiontoCustomer);
+            this.tableSprTADAFuelAllowance = new SprTADAFuelAllowanceDataTable();
+            base.Tables.Add(this.tableSprTADAFuelAllowance);
+            this.tableSprTADATADAFuelCostConsumeCheking = new SprTADATADAFuelCostConsumeChekingDataTable();
+            base.Tables.Add(this.tableSprTADATADAFuelCostConsumeCheking);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1752,6 +1804,18 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprTADAFuelAllowance() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprTADATADAFuelCostConsumeCheking() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1951,6 +2015,12 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprBillCopySubmissiontoCustomerRowChangeEventHandler(object sender, SprBillCopySubmissiontoCustomerRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprTADAFuelAllowanceRowChangeEventHandler(object sender, SprTADAFuelAllowanceRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprTADATADAFuelCostConsumeChekingRowChangeEventHandler(object sender, SprTADATADAFuelCostConsumeChekingRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -23000,6 +23070,819 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprTADAFuelAllowanceDataTable : global::System.Data.TypedTableBase<SprTADAFuelAllowanceRow> {
+            
+            private global::System.Data.DataColumn columnintEmployeeID;
+            
+            private global::System.Data.DataColumn columnstrEmployeeName;
+            
+            private global::System.Data.DataColumn columnstrdesg;
+            
+            private global::System.Data.DataColumn columnintdesgid;
+            
+            private global::System.Data.DataColumn columnstrjobstation;
+            
+            private global::System.Data.DataColumn columnintjobstationid;
+            
+            private global::System.Data.DataColumn columndecOctenQntPerLtr;
+            
+            private global::System.Data.DataColumn columndecPetrolQntPerLtr;
+            
+            private global::System.Data.DataColumn columndecMaxLubricantQnt;
+            
+            private global::System.Data.DataColumn columndecMaxLubricantCost;
+            
+            private global::System.Data.DataColumn columnysnTaxiCabAllow;
+            
+            private global::System.Data.DataColumn columnysnRickshawAllow;
+            
+            private global::System.Data.DataColumn columnysnAirplaneAllow;
+            
+            private global::System.Data.DataColumn columnysnMaintenanceCostAllow;
+            
+            private global::System.Data.DataColumn columnysnDriverDAAllow;
+            
+            private global::System.Data.DataColumn columnysnDriverHotelAllow;
+            
+            private global::System.Data.DataColumn columnysnOtherCostAllow;
+            
+            private global::System.Data.DataColumn columndecCourierCostMax;
+            
+            private global::System.Data.DataColumn columnstrvhclename;
+            
+            private global::System.Data.DataColumn columnstrassetcode;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADAFuelAllowanceDataTable() {
+                this.TableName = "SprTADAFuelAllowance";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprTADAFuelAllowanceDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprTADAFuelAllowanceDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intEmployeeIDColumn {
+                get {
+                    return this.columnintEmployeeID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strEmployeeNameColumn {
+                get {
+                    return this.columnstrEmployeeName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strdesgColumn {
+                get {
+                    return this.columnstrdesg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intdesgidColumn {
+                get {
+                    return this.columnintdesgid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strjobstationColumn {
+                get {
+                    return this.columnstrjobstation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intjobstationidColumn {
+                get {
+                    return this.columnintjobstationid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decOctenQntPerLtrColumn {
+                get {
+                    return this.columndecOctenQntPerLtr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decPetrolQntPerLtrColumn {
+                get {
+                    return this.columndecPetrolQntPerLtr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decMaxLubricantQntColumn {
+                get {
+                    return this.columndecMaxLubricantQnt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decMaxLubricantCostColumn {
+                get {
+                    return this.columndecMaxLubricantCost;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnTaxiCabAllowColumn {
+                get {
+                    return this.columnysnTaxiCabAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnRickshawAllowColumn {
+                get {
+                    return this.columnysnRickshawAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnAirplaneAllowColumn {
+                get {
+                    return this.columnysnAirplaneAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnMaintenanceCostAllowColumn {
+                get {
+                    return this.columnysnMaintenanceCostAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnDriverDAAllowColumn {
+                get {
+                    return this.columnysnDriverDAAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnDriverHotelAllowColumn {
+                get {
+                    return this.columnysnDriverHotelAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnOtherCostAllowColumn {
+                get {
+                    return this.columnysnOtherCostAllow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decCourierCostMaxColumn {
+                get {
+                    return this.columndecCourierCostMax;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strvhclenameColumn {
+                get {
+                    return this.columnstrvhclename;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strassetcodeColumn {
+                get {
+                    return this.columnstrassetcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADAFuelAllowanceRow this[int index] {
+                get {
+                    return ((SprTADAFuelAllowanceRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADAFuelAllowanceRowChangeEventHandler SprTADAFuelAllowanceRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADAFuelAllowanceRowChangeEventHandler SprTADAFuelAllowanceRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADAFuelAllowanceRowChangeEventHandler SprTADAFuelAllowanceRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADAFuelAllowanceRowChangeEventHandler SprTADAFuelAllowanceRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprTADAFuelAllowanceRow(SprTADAFuelAllowanceRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADAFuelAllowanceRow AddSprTADAFuelAllowanceRow(
+                        int intEmployeeID, 
+                        string strEmployeeName, 
+                        string strdesg, 
+                        int intdesgid, 
+                        string strjobstation, 
+                        int intjobstationid, 
+                        decimal decOctenQntPerLtr, 
+                        decimal decPetrolQntPerLtr, 
+                        decimal decMaxLubricantQnt, 
+                        decimal decMaxLubricantCost, 
+                        bool ysnTaxiCabAllow, 
+                        bool ysnRickshawAllow, 
+                        bool ysnAirplaneAllow, 
+                        bool ysnMaintenanceCostAllow, 
+                        bool ysnDriverDAAllow, 
+                        bool ysnDriverHotelAllow, 
+                        bool ysnOtherCostAllow, 
+                        decimal decCourierCostMax, 
+                        string strvhclename, 
+                        string strassetcode) {
+                SprTADAFuelAllowanceRow rowSprTADAFuelAllowanceRow = ((SprTADAFuelAllowanceRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intEmployeeID,
+                        strEmployeeName,
+                        strdesg,
+                        intdesgid,
+                        strjobstation,
+                        intjobstationid,
+                        decOctenQntPerLtr,
+                        decPetrolQntPerLtr,
+                        decMaxLubricantQnt,
+                        decMaxLubricantCost,
+                        ysnTaxiCabAllow,
+                        ysnRickshawAllow,
+                        ysnAirplaneAllow,
+                        ysnMaintenanceCostAllow,
+                        ysnDriverDAAllow,
+                        ysnDriverHotelAllow,
+                        ysnOtherCostAllow,
+                        decCourierCostMax,
+                        strvhclename,
+                        strassetcode};
+                rowSprTADAFuelAllowanceRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprTADAFuelAllowanceRow);
+                return rowSprTADAFuelAllowanceRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprTADAFuelAllowanceDataTable cln = ((SprTADAFuelAllowanceDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprTADAFuelAllowanceDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintEmployeeID = base.Columns["intEmployeeID"];
+                this.columnstrEmployeeName = base.Columns["strEmployeeName"];
+                this.columnstrdesg = base.Columns["strdesg"];
+                this.columnintdesgid = base.Columns["intdesgid"];
+                this.columnstrjobstation = base.Columns["strjobstation"];
+                this.columnintjobstationid = base.Columns["intjobstationid"];
+                this.columndecOctenQntPerLtr = base.Columns["decOctenQntPerLtr"];
+                this.columndecPetrolQntPerLtr = base.Columns["decPetrolQntPerLtr"];
+                this.columndecMaxLubricantQnt = base.Columns["decMaxLubricantQnt"];
+                this.columndecMaxLubricantCost = base.Columns["decMaxLubricantCost"];
+                this.columnysnTaxiCabAllow = base.Columns["ysnTaxiCabAllow"];
+                this.columnysnRickshawAllow = base.Columns["ysnRickshawAllow"];
+                this.columnysnAirplaneAllow = base.Columns["ysnAirplaneAllow"];
+                this.columnysnMaintenanceCostAllow = base.Columns["ysnMaintenanceCostAllow"];
+                this.columnysnDriverDAAllow = base.Columns["ysnDriverDAAllow"];
+                this.columnysnDriverHotelAllow = base.Columns["ysnDriverHotelAllow"];
+                this.columnysnOtherCostAllow = base.Columns["ysnOtherCostAllow"];
+                this.columndecCourierCostMax = base.Columns["decCourierCostMax"];
+                this.columnstrvhclename = base.Columns["strvhclename"];
+                this.columnstrassetcode = base.Columns["strassetcode"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintEmployeeID = new global::System.Data.DataColumn("intEmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintEmployeeID);
+                this.columnstrEmployeeName = new global::System.Data.DataColumn("strEmployeeName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrEmployeeName);
+                this.columnstrdesg = new global::System.Data.DataColumn("strdesg", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrdesg);
+                this.columnintdesgid = new global::System.Data.DataColumn("intdesgid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintdesgid);
+                this.columnstrjobstation = new global::System.Data.DataColumn("strjobstation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrjobstation);
+                this.columnintjobstationid = new global::System.Data.DataColumn("intjobstationid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintjobstationid);
+                this.columndecOctenQntPerLtr = new global::System.Data.DataColumn("decOctenQntPerLtr", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecOctenQntPerLtr);
+                this.columndecPetrolQntPerLtr = new global::System.Data.DataColumn("decPetrolQntPerLtr", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecPetrolQntPerLtr);
+                this.columndecMaxLubricantQnt = new global::System.Data.DataColumn("decMaxLubricantQnt", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecMaxLubricantQnt);
+                this.columndecMaxLubricantCost = new global::System.Data.DataColumn("decMaxLubricantCost", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecMaxLubricantCost);
+                this.columnysnTaxiCabAllow = new global::System.Data.DataColumn("ysnTaxiCabAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnTaxiCabAllow);
+                this.columnysnRickshawAllow = new global::System.Data.DataColumn("ysnRickshawAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnRickshawAllow);
+                this.columnysnAirplaneAllow = new global::System.Data.DataColumn("ysnAirplaneAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnAirplaneAllow);
+                this.columnysnMaintenanceCostAllow = new global::System.Data.DataColumn("ysnMaintenanceCostAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnMaintenanceCostAllow);
+                this.columnysnDriverDAAllow = new global::System.Data.DataColumn("ysnDriverDAAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnDriverDAAllow);
+                this.columnysnDriverHotelAllow = new global::System.Data.DataColumn("ysnDriverHotelAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnDriverHotelAllow);
+                this.columnysnOtherCostAllow = new global::System.Data.DataColumn("ysnOtherCostAllow", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnOtherCostAllow);
+                this.columndecCourierCostMax = new global::System.Data.DataColumn("decCourierCostMax", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecCourierCostMax);
+                this.columnstrvhclename = new global::System.Data.DataColumn("strvhclename", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrvhclename);
+                this.columnstrassetcode = new global::System.Data.DataColumn("strassetcode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrassetcode);
+                this.columnstrEmployeeName.MaxLength = 500;
+                this.columnstrdesg.MaxLength = 500;
+                this.columnstrjobstation.MaxLength = 500;
+                this.columnstrvhclename.MaxLength = 500;
+                this.columnstrassetcode.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADAFuelAllowanceRow NewSprTADAFuelAllowanceRow() {
+                return ((SprTADAFuelAllowanceRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprTADAFuelAllowanceRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprTADAFuelAllowanceRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprTADAFuelAllowanceRowChanged != null)) {
+                    this.SprTADAFuelAllowanceRowChanged(this, new SprTADAFuelAllowanceRowChangeEvent(((SprTADAFuelAllowanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprTADAFuelAllowanceRowChanging != null)) {
+                    this.SprTADAFuelAllowanceRowChanging(this, new SprTADAFuelAllowanceRowChangeEvent(((SprTADAFuelAllowanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprTADAFuelAllowanceRowDeleted != null)) {
+                    this.SprTADAFuelAllowanceRowDeleted(this, new SprTADAFuelAllowanceRowChangeEvent(((SprTADAFuelAllowanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprTADAFuelAllowanceRowDeleting != null)) {
+                    this.SprTADAFuelAllowanceRowDeleting(this, new SprTADAFuelAllowanceRowChangeEvent(((SprTADAFuelAllowanceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprTADAFuelAllowanceRow(SprTADAFuelAllowanceRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesViewTDS ds = new SalesViewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprTADAFuelAllowanceDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprTADATADAFuelCostConsumeChekingDataTable : global::System.Data.TypedTableBase<SprTADATADAFuelCostConsumeChekingRow> {
+            
+            private global::System.Data.DataColumn columndecQnLubricant;
+            
+            private global::System.Data.DataColumn columndecCostlubricant;
+            
+            private global::System.Data.DataColumn columndecCourierCost;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADATADAFuelCostConsumeChekingDataTable() {
+                this.TableName = "SprTADATADAFuelCostConsumeCheking";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprTADATADAFuelCostConsumeChekingDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprTADATADAFuelCostConsumeChekingDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decQnLubricantColumn {
+                get {
+                    return this.columndecQnLubricant;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decCostlubricantColumn {
+                get {
+                    return this.columndecCostlubricant;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decCourierCostColumn {
+                get {
+                    return this.columndecCourierCost;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADATADAFuelCostConsumeChekingRow this[int index] {
+                get {
+                    return ((SprTADATADAFuelCostConsumeChekingRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADATADAFuelCostConsumeChekingRowChangeEventHandler SprTADATADAFuelCostConsumeChekingRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADATADAFuelCostConsumeChekingRowChangeEventHandler SprTADATADAFuelCostConsumeChekingRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADATADAFuelCostConsumeChekingRowChangeEventHandler SprTADATADAFuelCostConsumeChekingRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprTADATADAFuelCostConsumeChekingRowChangeEventHandler SprTADATADAFuelCostConsumeChekingRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprTADATADAFuelCostConsumeChekingRow(SprTADATADAFuelCostConsumeChekingRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADATADAFuelCostConsumeChekingRow AddSprTADATADAFuelCostConsumeChekingRow(decimal decQnLubricant, int decCostlubricant, int decCourierCost) {
+                SprTADATADAFuelCostConsumeChekingRow rowSprTADATADAFuelCostConsumeChekingRow = ((SprTADATADAFuelCostConsumeChekingRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        decQnLubricant,
+                        decCostlubricant,
+                        decCourierCost};
+                rowSprTADATADAFuelCostConsumeChekingRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprTADATADAFuelCostConsumeChekingRow);
+                return rowSprTADATADAFuelCostConsumeChekingRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprTADATADAFuelCostConsumeChekingDataTable cln = ((SprTADATADAFuelCostConsumeChekingDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprTADATADAFuelCostConsumeChekingDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columndecQnLubricant = base.Columns["decQnLubricant"];
+                this.columndecCostlubricant = base.Columns["decCostlubricant"];
+                this.columndecCourierCost = base.Columns["decCourierCost"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columndecQnLubricant = new global::System.Data.DataColumn("decQnLubricant", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecQnLubricant);
+                this.columndecCostlubricant = new global::System.Data.DataColumn("decCostlubricant", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecCostlubricant);
+                this.columndecCourierCost = new global::System.Data.DataColumn("decCourierCost", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecCourierCost);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADATADAFuelCostConsumeChekingRow NewSprTADATADAFuelCostConsumeChekingRow() {
+                return ((SprTADATADAFuelCostConsumeChekingRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprTADATADAFuelCostConsumeChekingRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprTADATADAFuelCostConsumeChekingRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprTADATADAFuelCostConsumeChekingRowChanged != null)) {
+                    this.SprTADATADAFuelCostConsumeChekingRowChanged(this, new SprTADATADAFuelCostConsumeChekingRowChangeEvent(((SprTADATADAFuelCostConsumeChekingRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprTADATADAFuelCostConsumeChekingRowChanging != null)) {
+                    this.SprTADATADAFuelCostConsumeChekingRowChanging(this, new SprTADATADAFuelCostConsumeChekingRowChangeEvent(((SprTADATADAFuelCostConsumeChekingRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprTADATADAFuelCostConsumeChekingRowDeleted != null)) {
+                    this.SprTADATADAFuelCostConsumeChekingRowDeleted(this, new SprTADATADAFuelCostConsumeChekingRowChangeEvent(((SprTADATADAFuelCostConsumeChekingRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprTADATADAFuelCostConsumeChekingRowDeleting != null)) {
+                    this.SprTADATADAFuelCostConsumeChekingRowDeleting(this, new SprTADATADAFuelCostConsumeChekingRowChangeEvent(((SprTADATADAFuelCostConsumeChekingRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprTADATADAFuelCostConsumeChekingRow(SprTADATADAFuelCostConsumeChekingRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesViewTDS ds = new SalesViewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprTADATADAFuelCostConsumeChekingDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class SprSalesInfoRow : global::System.Data.DataRow {
@@ -41183,6 +42066,697 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprTADAFuelAllowanceRow : global::System.Data.DataRow {
+            
+            private SprTADAFuelAllowanceDataTable tableSprTADAFuelAllowance;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprTADAFuelAllowanceRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprTADAFuelAllowance = ((SprTADAFuelAllowanceDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intEmployeeID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprTADAFuelAllowance.intEmployeeIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intEmployeeID\' in table \'SprTADAFuelAllowance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.intEmployeeIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strEmployeeName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprTADAFuelAllowance.strEmployeeNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strEmployeeName\' in table \'SprTADAFuelAllowance\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.strEmployeeNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strdesg {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprTADAFuelAllowance.strdesgColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strdesg\' in table \'SprTADAFuelAllowance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.strdesgColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intdesgid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprTADAFuelAllowance.intdesgidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intdesgid\' in table \'SprTADAFuelAllowance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.intdesgidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strjobstation {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprTADAFuelAllowance.strjobstationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strjobstation\' in table \'SprTADAFuelAllowance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.strjobstationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intjobstationid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprTADAFuelAllowance.intjobstationidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intjobstationid\' in table \'SprTADAFuelAllowance\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.intjobstationidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decOctenQntPerLtr {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTADAFuelAllowance.decOctenQntPerLtrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decOctenQntPerLtr\' in table \'SprTADAFuelAllowance\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.decOctenQntPerLtrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decPetrolQntPerLtr {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTADAFuelAllowance.decPetrolQntPerLtrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decPetrolQntPerLtr\' in table \'SprTADAFuelAllowance\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.decPetrolQntPerLtrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decMaxLubricantQnt {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTADAFuelAllowance.decMaxLubricantQntColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decMaxLubricantQnt\' in table \'SprTADAFuelAllowance\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.decMaxLubricantQntColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decMaxLubricantCost {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTADAFuelAllowance.decMaxLubricantCostColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decMaxLubricantCost\' in table \'SprTADAFuelAllowance\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.decMaxLubricantCostColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnTaxiCabAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnTaxiCabAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnTaxiCabAllow\' in table \'SprTADAFuelAllowance\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnTaxiCabAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnRickshawAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnRickshawAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnRickshawAllow\' in table \'SprTADAFuelAllowance\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnRickshawAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnAirplaneAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnAirplaneAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnAirplaneAllow\' in table \'SprTADAFuelAllowance\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnAirplaneAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnMaintenanceCostAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnMaintenanceCostAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnMaintenanceCostAllow\' in table \'SprTADAFuelAllowance\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnMaintenanceCostAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnDriverDAAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnDriverDAAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnDriverDAAllow\' in table \'SprTADAFuelAllowance\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnDriverDAAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnDriverHotelAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnDriverHotelAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnDriverHotelAllow\' in table \'SprTADAFuelAllowance\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnDriverHotelAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnOtherCostAllow {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprTADAFuelAllowance.ysnOtherCostAllowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnOtherCostAllow\' in table \'SprTADAFuelAllowance\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.ysnOtherCostAllowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decCourierCostMax {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTADAFuelAllowance.decCourierCostMaxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decCourierCostMax\' in table \'SprTADAFuelAllowance\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.decCourierCostMaxColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strvhclename {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprTADAFuelAllowance.strvhclenameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strvhclename\' in table \'SprTADAFuelAllowance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.strvhclenameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strassetcode {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprTADAFuelAllowance.strassetcodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strassetcode\' in table \'SprTADAFuelAllowance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADAFuelAllowance.strassetcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintEmployeeIDNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.intEmployeeIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintEmployeeIDNull() {
+                this[this.tableSprTADAFuelAllowance.intEmployeeIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrEmployeeNameNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.strEmployeeNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrEmployeeNameNull() {
+                this[this.tableSprTADAFuelAllowance.strEmployeeNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrdesgNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.strdesgColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrdesgNull() {
+                this[this.tableSprTADAFuelAllowance.strdesgColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintdesgidNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.intdesgidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintdesgidNull() {
+                this[this.tableSprTADAFuelAllowance.intdesgidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrjobstationNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.strjobstationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrjobstationNull() {
+                this[this.tableSprTADAFuelAllowance.strjobstationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintjobstationidNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.intjobstationidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintjobstationidNull() {
+                this[this.tableSprTADAFuelAllowance.intjobstationidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecOctenQntPerLtrNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.decOctenQntPerLtrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecOctenQntPerLtrNull() {
+                this[this.tableSprTADAFuelAllowance.decOctenQntPerLtrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecPetrolQntPerLtrNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.decPetrolQntPerLtrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecPetrolQntPerLtrNull() {
+                this[this.tableSprTADAFuelAllowance.decPetrolQntPerLtrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecMaxLubricantQntNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.decMaxLubricantQntColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecMaxLubricantQntNull() {
+                this[this.tableSprTADAFuelAllowance.decMaxLubricantQntColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecMaxLubricantCostNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.decMaxLubricantCostColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecMaxLubricantCostNull() {
+                this[this.tableSprTADAFuelAllowance.decMaxLubricantCostColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnTaxiCabAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnTaxiCabAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnTaxiCabAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnTaxiCabAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnRickshawAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnRickshawAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnRickshawAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnRickshawAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnAirplaneAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnAirplaneAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnAirplaneAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnAirplaneAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnMaintenanceCostAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnMaintenanceCostAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnMaintenanceCostAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnMaintenanceCostAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnDriverDAAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnDriverDAAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnDriverDAAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnDriverDAAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnDriverHotelAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnDriverHotelAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnDriverHotelAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnDriverHotelAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnOtherCostAllowNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.ysnOtherCostAllowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnOtherCostAllowNull() {
+                this[this.tableSprTADAFuelAllowance.ysnOtherCostAllowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecCourierCostMaxNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.decCourierCostMaxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecCourierCostMaxNull() {
+                this[this.tableSprTADAFuelAllowance.decCourierCostMaxColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrvhclenameNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.strvhclenameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrvhclenameNull() {
+                this[this.tableSprTADAFuelAllowance.strvhclenameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrassetcodeNull() {
+                return this.IsNull(this.tableSprTADAFuelAllowance.strassetcodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrassetcodeNull() {
+                this[this.tableSprTADAFuelAllowance.strassetcodeColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprTADATADAFuelCostConsumeChekingRow : global::System.Data.DataRow {
+            
+            private SprTADATADAFuelCostConsumeChekingDataTable tableSprTADATADAFuelCostConsumeCheking;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprTADATADAFuelCostConsumeChekingRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprTADATADAFuelCostConsumeCheking = ((SprTADATADAFuelCostConsumeChekingDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decQnLubricant {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprTADATADAFuelCostConsumeCheking.decQnLubricantColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decQnLubricant\' in table \'SprTADATADAFuelCostConsumeCheking" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADATADAFuelCostConsumeCheking.decQnLubricantColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int decCostlubricant {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprTADATADAFuelCostConsumeCheking.decCostlubricantColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decCostlubricant\' in table \'SprTADATADAFuelCostConsumeCheki" +
+                                "ng\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADATADAFuelCostConsumeCheking.decCostlubricantColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int decCourierCost {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprTADATADAFuelCostConsumeCheking.decCourierCostColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decCourierCost\' in table \'SprTADATADAFuelCostConsumeCheking" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprTADATADAFuelCostConsumeCheking.decCourierCostColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecQnLubricantNull() {
+                return this.IsNull(this.tableSprTADATADAFuelCostConsumeCheking.decQnLubricantColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecQnLubricantNull() {
+                this[this.tableSprTADATADAFuelCostConsumeCheking.decQnLubricantColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecCostlubricantNull() {
+                return this.IsNull(this.tableSprTADATADAFuelCostConsumeCheking.decCostlubricantColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecCostlubricantNull() {
+                this[this.tableSprTADATADAFuelCostConsumeCheking.decCostlubricantColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecCourierCostNull() {
+                return this.IsNull(this.tableSprTADATADAFuelCostConsumeCheking.decCourierCostColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecCourierCostNull() {
+                this[this.tableSprTADATADAFuelCostConsumeCheking.decCourierCostColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -42834,6 +44408,74 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprBillCopySubmissiontoCustomerRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprTADAFuelAllowanceRowChangeEvent : global::System.EventArgs {
+            
+            private SprTADAFuelAllowanceRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADAFuelAllowanceRowChangeEvent(SprTADAFuelAllowanceRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADAFuelAllowanceRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprTADATADAFuelCostConsumeChekingRowChangeEvent : global::System.EventArgs {
+            
+            private SprTADATADAFuelCostConsumeChekingRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADATADAFuelCostConsumeChekingRowChangeEvent(SprTADATADAFuelCostConsumeChekingRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprTADATADAFuelCostConsumeChekingRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -53009,6 +54651,358 @@ left join erp_hr.dbo.tblUnitAddress adr on adr.intUnitID=u.intUnitID
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             SalesViewTDS.SprBillCopySubmissiontoCustomerDataTable dataTable = new SalesViewTDS.SprBillCopySubmissiontoCustomerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprTADAFuelAllowanceTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprTADAFuelAllowanceTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprTADAFuelAllowance";
+            tableMapping.ColumnMappings.Add("intEmployeeID", "intEmployeeID");
+            tableMapping.ColumnMappings.Add("strEmployeeName", "strEmployeeName");
+            tableMapping.ColumnMappings.Add("strdesg", "strdesg");
+            tableMapping.ColumnMappings.Add("intdesgid", "intdesgid");
+            tableMapping.ColumnMappings.Add("strjobstation", "strjobstation");
+            tableMapping.ColumnMappings.Add("intjobstationid", "intjobstationid");
+            tableMapping.ColumnMappings.Add("decOctenQntPerLtr", "decOctenQntPerLtr");
+            tableMapping.ColumnMappings.Add("decPetrolQntPerLtr", "decPetrolQntPerLtr");
+            tableMapping.ColumnMappings.Add("decMaxLubricantQnt", "decMaxLubricantQnt");
+            tableMapping.ColumnMappings.Add("decMaxLubricantCost", "decMaxLubricantCost");
+            tableMapping.ColumnMappings.Add("ysnTaxiCabAllow", "ysnTaxiCabAllow");
+            tableMapping.ColumnMappings.Add("ysnRickshawAllow", "ysnRickshawAllow");
+            tableMapping.ColumnMappings.Add("ysnAirplaneAllow", "ysnAirplaneAllow");
+            tableMapping.ColumnMappings.Add("ysnMaintenanceCostAllow", "ysnMaintenanceCostAllow");
+            tableMapping.ColumnMappings.Add("ysnDriverDAAllow", "ysnDriverDAAllow");
+            tableMapping.ColumnMappings.Add("ysnDriverHotelAllow", "ysnDriverHotelAllow");
+            tableMapping.ColumnMappings.Add("ysnOtherCostAllow", "ysnOtherCostAllow");
+            tableMapping.ColumnMappings.Add("decCourierCostMax", "decCourierCostMax");
+            tableMapping.ColumnMappings.Add("strvhclename", "strvhclename");
+            tableMapping.ColumnMappings.Add("strassetcode", "strassetcode");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.BrandTradeMktConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprTADAFuelAllowance";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenrol", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesViewTDS.SprTADAFuelAllowanceDataTable GetDataTADAFuelAllowance(global::System.Nullable<int> intenrol) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intenrol.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intenrol.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            SalesViewTDS.SprTADAFuelAllowanceDataTable dataTable = new SalesViewTDS.SprTADAFuelAllowanceDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprTADATADAFuelCostConsumeChekingTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprTADATADAFuelCostConsumeChekingTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprTADATADAFuelCostConsumeCheking";
+            tableMapping.ColumnMappings.Add("decQnLubricant", "decQnLubricant");
+            tableMapping.ColumnMappings.Add("decCostlubricant", "decCostlubricant");
+            tableMapping.ColumnMappings.Add("decCourierCost", "decCourierCost");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.BrandTradeMktConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprTADATADAFuelCostConsumeCheking";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@billdate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenrol", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesViewTDS.SprTADATADAFuelCostConsumeChekingDataTable GetDataTADATADAFuelCostConsumeCheking(global::System.Nullable<global::System.DateTime> billdate, global::System.Nullable<int> intenrol) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((billdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(billdate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((intenrol.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intenrol.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            SalesViewTDS.SprTADATADAFuelCostConsumeChekingDataTable dataTable = new SalesViewTDS.SprTADATADAFuelCostConsumeChekingDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

@@ -5313,6 +5313,9 @@ SELECT Sl AS ID, PicknDrop AS Names FROM tblPickDrop WHERE (Sl = @Sl) ORDER BY N
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@code", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@pnd", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ptype", global::System.Data.SqlDbType.VarChar, 75, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sname", global::System.Data.SqlDbType.VarChar, 750, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sgndr", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@sdob", global::System.Data.SqlDbType.VarChar, 25, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionby", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlString", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -5321,7 +5324,7 @@ SELECT Sl AS ID, PicknDrop AS Names FROM tblPickDrop WHERE (Sl = @Sl) ORDER BY N
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PenaltyTDS.SprFamilyDayInformationDataTable SetFamilyInformationData(global::System.Nullable<int> type, string code, global::System.Nullable<int> pnd, string ptype, global::System.Nullable<int> actionby, object xmlString) {
+        public virtual PenaltyTDS.SprFamilyDayInformationDataTable SetFamilyInformationData(global::System.Nullable<int> type, string code, global::System.Nullable<int> pnd, string ptype, string sname, string sgndr, string sdob, global::System.Nullable<int> actionby, object xmlString) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((type.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(type.Value));
@@ -5347,17 +5350,35 @@ SELECT Sl AS ID, PicknDrop AS Names FROM tblPickDrop WHERE (Sl = @Sl) ORDER BY N
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = ((string)(ptype));
             }
-            if ((actionby.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(actionby.Value));
-            }
-            else {
+            if ((sname == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((xmlString == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(sname));
+            }
+            if ((sgndr == null)) {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((object)(xmlString));
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(sgndr));
+            }
+            if ((sdob == null)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(sdob));
+            }
+            if ((actionby.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(actionby.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((xmlString == null)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((object)(xmlString));
             }
             PenaltyTDS.SprFamilyDayInformationDataTable dataTable = new PenaltyTDS.SprFamilyDayInformationDataTable();
             this.Adapter.Fill(dataTable);

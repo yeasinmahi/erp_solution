@@ -24,6 +24,9 @@ namespace UI.SCM
         private int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; private string payDate, paymentTrems, destDelivery, paymentSchedule;
 
         private DateTime dtePo, dtelastShipment; private decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
+
+        
+
         private decimal poQty, numPoRate;
 
         private SeriLog log = new SeriLog();
@@ -63,6 +66,16 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+
+        protected void ddlDepts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try { File.Delete(filePathForXML); } catch { }
+            dgvIndentPrepare.DataSource = "";
+            dgvIndentPrepare.DataBind();
+            txtSupplier.Text = "";
+            txtItem.Text = "";
         }
 
         #region=======================Auto Search=========================
@@ -155,7 +168,10 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<issue>" + xmlString + "</issue>";
                     try { File.Delete(filePathForXMLPo); } catch { }
-                    string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
+                    dgvIndentPrepare.DataSource = "";
+                    dgvIndentPrepare.DataBind();
+
+                    string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPO.Text = "Po Number: " + searchKey[1].ToString();
                     if (msg.Length > 4)
@@ -163,8 +179,7 @@ namespace UI.SCM
                         try { File.Delete(filePathForXML); } catch { }
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     }
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
+                   
                 }
             }
             catch { }
@@ -351,7 +366,13 @@ namespace UI.SCM
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
                     Session["untid"] = hdnUnit.Value.ToString();
                 }
-              
+                else { Session["untid"] = "0"; }
+
+                try { File.Delete(filePathForXML); } catch { }
+                dgvIndentPrepare.DataSource = "";
+                dgvIndentPrepare.DataBind();
+                txtSupplier.Text = "";
+                txtItem.Text = "";
 
                 // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
             }

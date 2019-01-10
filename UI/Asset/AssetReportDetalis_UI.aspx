@@ -92,7 +92,8 @@
                           <asp:BoundField DataField="strItemName" HeaderText="SpareParts" SortExpression="strItemName" />
                           <asp:BoundField DataField="intqty" HeaderText="Qty" SortExpression="intqty" />
                           <asp:BoundField DataField="intReqID" HeaderText="ReqesitionID" SortExpression="intReqID"/>
-                          <asp:BoundField DataField="monValue" HeaderText="Value" SortExpression="monValue"/> 
+                          <asp:BoundField DataField="monValue" HeaderText="Inv.Value" SortExpression="monValue"/> 
+                           <asp:BoundField DataField="moncost" HeaderText="M.Value" SortExpression="moncost"/> 
                       </Columns>
                       
                       </asp:GridView> 

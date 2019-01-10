@@ -144,12 +144,12 @@ namespace HR_BLL.Penalty
             }
             catch { return new DataTable(); }
         }
-        public DataTable Familydayinformation(int type, string empcode, int pnd, string ptype, int actionBy, string xmlstring)
+        public DataTable Familydayinformation(int type, string empcode, int pnd, string ptype, string sname, string sgndr, string sdob, int actionBy, string xmlstring)
         {
             try
             {
                 SprFamilyDayInformationTableAdapter ta = new SprFamilyDayInformationTableAdapter();
-                return ta.SetFamilyInformationData(type, empcode, pnd, ptype, actionBy, xmlstring);
+                return ta.SetFamilyInformationData(type, empcode, pnd, ptype, sname, sgndr, sdob, actionBy, xmlstring);
             }
             catch { return new DataTable(); }
         }

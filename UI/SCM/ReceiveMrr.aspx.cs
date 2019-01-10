@@ -175,6 +175,7 @@ namespace UI.SCM
                     XmlNode dSftTm = doc.SelectSingleNode("mrr");
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<mrr>" + xmlString + "</mrr>";
+
                     try { File.Delete(filePathForXML); } catch { }
                     dgvMrr.DataSource = "";
                     dgvMrr.DataBind();
@@ -370,6 +371,8 @@ namespace UI.SCM
         {
             dgvMrr.DataSource = dt;
             dgvMrr.DataBind();
+            lblSuppliuerID.Text = "";
+            lblSuppliyer.Text = "";
 
             intWh = int.Parse(ddlWH.SelectedValue);
             if (txtPO.Text.Length > 3)
@@ -436,23 +439,11 @@ namespace UI.SCM
 
         private void PoView(int intPo)
         {
-            if (intPo == 0)
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select PO properly.');", true);
-                return;
-            }
             try
             {
-                try
-                {
-                    intShipment = int.Parse(ddlInvoice.SelectedValue);
-                    hdnShipment.Value = intShipment.ToString();
-                }
-                catch (Exception ex)
-                {
-                    intShipment = 0;
-                    hdnShipment.Value = "0".ToString();
-                }
+                intWh = int.Parse(ddlWH.SelectedValue);
+
+                try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
                 xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
                 if (ddlInvoice.Enabled == true)
                 {

@@ -26,15 +26,6 @@ namespace UI.SAD.Order
         SalesView bll = new SalesView();
         DataTable dt = new DataTable();
         string xmlpath, email, strSearchKey, code, strCustname;
-
-
-
-
-
-
-
-
-
         #endregion
 
        
@@ -244,14 +235,14 @@ namespace UI.SAD.Order
         //intSOID,strName,intCustomerID,intTarget,dteFormdate,dteTodate,dteActiondate,intParent
 
         #region ================ Generate XML and Others ==========        
-        private void Createxml(string CustID, string DONumber, string Challan, string PrimaryChallanQnt, string RtnQnt, string salesoffice)
+        private void Createxml(string CustID, string DONumber, string Challan, string PrimaryChallanQnt, string decNetqntentry, string salesoffice)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))
             {
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("Customerreturnqnt");
-                XmlNode addItem = CreateNode(doc, CustID, DONumber, Challan, PrimaryChallanQnt, RtnQnt, salesoffice);
+                XmlNode addItem = CreateNode(doc, CustID, DONumber, Challan, PrimaryChallanQnt, decNetqntentry, salesoffice);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -259,26 +250,27 @@ namespace UI.SAD.Order
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("Customerreturnqnt");
-                XmlNode addItem = CreateNode(doc,CustID, DONumber, Challan, PrimaryChallanQnt, RtnQnt, salesoffice);
+                XmlNode addItem = CreateNode(doc,CustID, DONumber, Challan, PrimaryChallanQnt, decNetqntentry, salesoffice);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(xmlpath);
         }
-        private XmlNode CreateNode(XmlDocument doc, string CustID, string DONumber, string Challan, string PrimaryChallanQnt, string RtnQnt, string salesoffice)
+        private XmlNode CreateNode(XmlDocument doc, string CustID, string DONumber, string Challan, string PrimaryChallanQnt, string decNetqntentry, string salesoffice)
         {
             XmlNode node = doc.CreateElement("req");
             XmlAttribute CCustID = doc.CreateAttribute("CustID"); CCustID.Value = CustID;
             XmlAttribute DDONumber = doc.CreateAttribute("DONumber"); DDONumber.Value = DONumber;
             XmlAttribute CChallan = doc.CreateAttribute("Challan"); CChallan.Value = Challan;
             XmlAttribute PPrimaryChallanQnt = doc.CreateAttribute("PrimaryChallanQnt"); PPrimaryChallanQnt.Value = PrimaryChallanQnt;
-            XmlAttribute RRtnQnt = doc.CreateAttribute("RtnQnt"); RRtnQnt.Value = RtnQnt;
+            XmlAttribute netqntentry = doc.CreateAttribute("decNetqntentry");
+            netqntentry.Value = decNetqntentry;
             XmlAttribute Salesofficeid = doc.CreateAttribute("salesoffice"); Salesofficeid.Value = salesoffice;
             node.Attributes.Append(CCustID);
             node.Attributes.Append(DDONumber);
             node.Attributes.Append(CChallan);
             node.Attributes.Append(PPrimaryChallanQnt);
-            node.Attributes.Append(RRtnQnt);
+            node.Attributes.Append(netqntentry);
             node.Attributes.Append(Salesofficeid);
             return node;
         }

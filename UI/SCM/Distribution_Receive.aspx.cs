@@ -38,7 +38,7 @@ namespace UI.SCM
 
         private void GridBind()
         {
-            int whid = 603;//Convert.ToInt32(ddlWH.SelectedItem.Value);
+            int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
             dt = objbll.DistributionData(whid, FromDate, ToDate, 1, 0);
@@ -85,7 +85,7 @@ namespace UI.SCM
             
             if(dt.Rows.Count>0)
             {
-                dt = objbll.DistributionData(intUnitID, intInWHID, intOutWH, location, enroll, itemid, Qty, monValue, 0, strRemarks, intTransferID, 1, true);
+                dt = objbll.InsertReceiveData(intUnitID, intInWHID, intOutWH, location, enroll, itemid, Qty, monValue, 0, strRemarks, intTransferID, 1, true);
                 string msg = dt.Rows[0]["strOutput"].ToString();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Alert", "alert('" + msg + "')", true);
             }

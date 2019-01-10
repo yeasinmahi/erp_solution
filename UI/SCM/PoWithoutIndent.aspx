@@ -365,7 +365,7 @@
                       </tr>
                       <tr>
                          <td colspan="3" style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>  
-                          <td style="text-align:left;"><asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"> </asp:DropDownList></td>  
+                          <td style="text-align:left;"><asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlDepts_SelectedIndexChanged"> </asp:DropDownList></td>  
                         <td><asp:Label ID="lblPO" runat="server" ForeColor="Blue" ></asp:Label></td>
                         
                       </tr>
