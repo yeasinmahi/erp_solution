@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<voucher>
+  <voucherEntry itemId="30072" itemName="Ball Pen Red" uom="PCS" stock="48.00" sftyStock="0.00" rate="4.00" indentQty="1" reqCode="0" reqId="0" indentType="Local" purpose="test" qcby="290490" />
+</voucher>
