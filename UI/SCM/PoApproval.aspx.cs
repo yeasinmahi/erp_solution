@@ -2,60 +2,55 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class PoApproval : BasePage
     {
-        DataTable dt = new DataTable();
-        int enroll; string[] arrayKey; char[] delimiterChars = { '[', ']' };
+        private DataTable dt = new DataTable();
+        private int enroll; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\PoApproval";
-        string stop = "stopping SCM\\PoApproval";
-        string perform = "Performance on SCM\\PoApproval";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\PoApproval";
+        private string stop = "stopping SCM\\PoApproval";
+        private string perform = "Performance on SCM\\PoApproval";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
-            { 
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); 
-                dt = DataTableLoad.GetWHDataTable( enroll); 
+            if (!IsPostBack)
+            {
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                dt = DataTableLoad.GetWHDataTable(enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataValueField = "Id";
-                ddlWH.DataBind(); 
+                ddlWH.DataBind();
                 dt.Clear();
-                
-                //dt = DataTableLoad.GetPoDataTable(enroll,14); 
+
+                //dt = DataTableLoad.GetPoDataTable(enroll,14);
                 //ddlPoUser.DataSource = dt;
                 //ddlPoUser.DataTextField = "strName";
                 //ddlPoUser.DataValueField = "Id";
                 //ddlPoUser.DataBind();
                 //dt.Clear();
 
-                dt = DataTableLoad.GetPoDataTable(enroll,24);
+                dt = DataTableLoad.GetPoDataTable(enroll, 24);
                 ddlDepts.DataSource = dt;
                 ddlDepts.DataTextField = "strName";
                 ddlDepts.DataValueField = "Id";
                 ddlDepts.DataBind();
                 dt.Clear();
-
             }
             else
             {
-
             }
         }
 
@@ -67,7 +62,6 @@ namespace UI.SCM
         {
             return DataTableLoad.objPos.AutoSearchPoUser(prefixText);
         }
-
 
         #endregion====================Close===============================
 
@@ -96,7 +90,8 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-        } 
+        }
+
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnPoUserShow_Click", null);
@@ -109,17 +104,15 @@ namespace UI.SCM
                 string item = ""; string itemid = "";
                 if (arrayKey.Length > 0)
                 {
-
                     try
                     {
                         item = arrayKey[0].ToString();
                         enroll = int.Parse(arrayKey[1].ToString());
                     }
                     catch { }
-
                 }
 
-              //  enroll = int.Parse(ddlPoUser.SelectedValue);
+                //  enroll = int.Parse(ddlPoUser.SelectedValue);
                 int intwh = int.Parse(ddlWH.SelectedValue);
                 int dept = int.Parse(ddlDepts.SelectedValue);
                 string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
@@ -138,7 +131,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
@@ -151,8 +143,8 @@ namespace UI.SCM
             {
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblPO = row.FindControl("lblPoNo") as Label;
-                 
-                int pono =int.Parse(lblPO.Text.ToString());
+
+                int pono = int.Parse(lblPO.Text.ToString());
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = DataTableLoad.GetPoViewDetalisDataTable(pono, enroll);
                 if (dt.Rows.Count > 0)
@@ -179,9 +171,9 @@ namespace UI.SCM
                     lblOthersCharge.Text = dt.Rows[0]["monPacking"].ToString();
                     lblGrossDis.Text = dt.Rows[0]["monDiscount"].ToString();
                     lblComission.Text = "0".ToString();
-                   // lblGrandTotal.Text = dt.Rows[0]["monTotal"].ToString();
+                    // lblGrandTotal.Text = dt.Rows[0]["monTotal"].ToString();
 
-                   //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
                 }
 
                 dt = DataTableLoad.GetPoViewItemWaiseDetalisDataTable(pono, enroll);
@@ -191,10 +183,9 @@ namespace UI.SCM
                 try
                 {
                     Session["pono"] = pono;
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true); 
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
                 }
                 catch { }
-
             }
             catch (Exception ex)
             {
@@ -216,7 +207,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-               if(hdnConfirm.Value=="1")
+                if (hdnConfirm.Value == "1")
                 {
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     Label lblPO = row.FindControl("lblPoNo") as Label;
@@ -227,7 +218,6 @@ namespace UI.SCM
 
                     if (txtPoNo.Text.Length > 1)
                     {
-
                         dt = DataTableLoad.GetPoViewDataTable(int.Parse(txtPoNo.Text), enroll, int.Parse(ddlDepts.SelectedValue));
                         dgvPoApp.DataSource = dt;
                         dgvPoApp.DataBind();
@@ -246,8 +236,7 @@ namespace UI.SCM
                         dgvPoApp.DataBind();
                         dt.Clear();
                     }
-                } 
-                
+                }
             }
             catch (Exception ex)
             {
@@ -267,7 +256,6 @@ namespace UI.SCM
             {
                 dgvPoApp.DataSource = "";
                 dgvPoApp.DataBind();
-                
             }
             catch { }
         }
@@ -277,26 +265,28 @@ namespace UI.SCM
 public class DataTableLoad
 {
     public static Table wh = null;
-    public static  PoGenerate_BLL objPos = new PoGenerate_BLL();
+    public static PoGenerate_BLL objPos = new PoGenerate_BLL();
     public static DataTable ds = new DataTable();
+
     public static DataTable GetWHDataTable(int enroll)
     {
-            ds = objPos.GetPoData(12, "", 0, 0, DateTime.Now, enroll);
-            return ds;
+        ds = objPos.GetPoData(12, "", 0, 0, DateTime.Now, enroll);
+        return ds;
     }
-    public static DataTable GetPoDataTable(int enroll,int intPart)
+
+    public static DataTable GetPoDataTable(int enroll, int intPart)
     {
         ds = objPos.GetPoData(intPart, "", 0, 0, DateTime.Now, enroll);
         return ds;
     }
 
-    internal static DataTable GetPoViewUserDataTable(int intwh, int enroll,int dept,string xmlData)
+    internal static DataTable GetPoViewUserDataTable(int intwh, int enroll, int dept, string xmlData)
     {
         ds = objPos.GetPoData(15, xmlData, intwh, dept, DateTime.Now, enroll);
         return ds;
     }
 
-    internal static DataTable GetPoViewDataTable(int PoId, int enroll,int dept)
+    internal static DataTable GetPoViewDataTable(int PoId, int enroll, int dept)
     {
         ds = objPos.GetPoData(16, "", dept, PoId, DateTime.Now, enroll);
         return ds;
@@ -314,7 +304,7 @@ public class DataTableLoad
         return ds;
     }
 
-    internal static string POApproval(int intPart,string stringXml,int pono, int enroll)
+    internal static string POApproval(int intPart, string stringXml, int pono, int enroll)
     {
         string msg = objPos.PoApprove(intPart, stringXml, 0, pono, DateTime.Now, enroll);
         return msg;

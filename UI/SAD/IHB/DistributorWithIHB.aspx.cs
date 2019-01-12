@@ -20,6 +20,9 @@ namespace UI.SAD.IHB
         string location = "SAD";
         string start = "starting SAD\\IHB\\DistributorWithIHB";
         string stop = "stopping SAD\\IHB\\DistributorWithIHB";
+        DataTable dt = new DataTable();
+        int intCustIDEntp, intCustIDIHB, unitId, insertBy;
+        //bll = new SAD_BLL.Customer.Report.StatementC();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -48,13 +51,13 @@ namespace UI.SAD.IHB
             DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
             DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
 
-            int intCustIDEntp = Convert.ToInt32(ddlDistributor.SelectedItem.Value);
+             intCustIDEntp = Convert.ToInt32(ddlDistributor.SelectedItem.Value);
             string CustIDEntpName = ddlDistributor.SelectedItem.Text;
-            int intCustIDIHB = Convert.ToInt32(ddlIhb.SelectedItem.Value);
+             intCustIDIHB = Convert.ToInt32(ddlIhb.SelectedItem.Value);
             string CustIDIHBName = ddlIhb.SelectedItem.Text;
 
-            int unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
-            int insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+             unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
+             insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
             string message;
             DataTable dataTable = _bll.GetCustomerInfo(intCustIDIHB);
             if (dataTable.Rows.Count > 0)
@@ -76,7 +79,7 @@ namespace UI.SAD.IHB
                     doc.Load(_filePathForXml);
                     message = _bll.InsertEnterpriseCustomerNihbCustmBridge(doc.OuterXml, fromDateTime, toDateTime, insertBy, unitId, insertBy);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                    LoadDataToGridView(CustIDEntpName, intCustIDEntp, CustIDIHBName,intCustIDIHB, intSintSalesOfficeIHBACRDCustalesOffId, strIHBModifyPhone);
+                    //LoadDataToGridView(CustIDEntpName, intCustIDEntp, CustIDIHBName,intCustIDIHB, intSintSalesOfficeIHBACRDCustalesOffId, strIHBModifyPhone);
                 }
                 else
                 {
@@ -179,6 +182,8 @@ namespace UI.SAD.IHB
             ddlDistributor.DataTextField = "strName";
             ddlDistributor.DataBind();
         }
+
+    
         public void LoadAcrd(int territoryId)
         {
             ddlIhb.DataSource = _bll.GetAcrd(territoryId);
@@ -191,5 +196,32 @@ namespace UI.SAD.IHB
         {
             Response.Redirect("DistributorWithIhbReport.aspx");
         }
+
+        protected void btnInactive_Click(object sender, EventArgs e)
+        {
+             intCustIDEntp = Convert.ToInt32(ddlDistributor.SelectedItem.Value);
+             intCustIDIHB = Convert.ToInt32(ddlIhb.SelectedItem.Value);
+             unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
+             insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+
+            dt = _bll.updatedeletbrg(unitId, intCustIDEntp,1, insertBy, intCustIDIHB);
+            string message = dt.Rows[0]["Messages"].ToString();
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+        }
+
+        protected void btnupdate_Click(object sender, EventArgs e)
+        {
+
+            intCustIDEntp = Convert.ToInt32(ddlDistributor.SelectedItem.Value);
+            intCustIDIHB = Convert.ToInt32(ddlIhb.SelectedItem.Value);
+            unitId = Convert.ToInt32(Session[SessionParams.UNIT_ID].ToString());
+            insertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+
+            dt = _bll.updatedeletbrg(unitId, intCustIDEntp, 2, insertBy, intCustIDIHB);
+            string message = dt.Rows[0]["Messages"].ToString();
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+
+        }
+
     }
 }

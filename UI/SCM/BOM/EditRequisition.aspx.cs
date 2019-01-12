@@ -1,8 +1,6 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,26 +10,23 @@ namespace UI.SCM.BOM
 {
     public partial class EditRequisition : BasePage
     {
-        Bom_BLL objBom = new Bom_BLL();
-        DataTable dt = new DataTable();
-        int intwh, enroll, BomId, intBomStandard; string xmlData;
-        int CheckItem = 1, intWh; string[] arrayKey;DateTime dteDate;
-        string dteFrom, dteTo;
-        
+        private Bom_BLL objBom = new Bom_BLL();
+        private DataTable dt = new DataTable();
+        private int intwh, enroll, BomId, intBomStandard; private string xmlData;
+        private int CheckItem = 1, intWh; private string[] arrayKey; private DateTime dteDate;
+        private string dteFrom, dteTo;
 
-        char[] delimiterChars = { '[', ']' };
+        private char[] delimiterChars = { '[', ']' };
 
-        
-
-        string filePathForXML; string xmlString = "";
+        private string filePathForXML; private string xmlString = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
-               // dteTo.SelectedDate = DateTime.Now;
+                // dteTo.SelectedDate = DateTime.Now;
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
@@ -47,37 +42,33 @@ namespace UI.SCM.BOM
         protected void btnShow_Click(object sender, EventArgs e)
         {
             try
-            { 
+            {
                 string interval = ddlInterval.SelectedItem.ToString();
                 string vtypes = ddlvTypes.SelectedItem.ToString();
                 intwh = int.Parse(ddlWH.SelectedValue);
                 dteDate = DateTime.Parse(txtdteDate.Text.ToString());
 
-                 
-                if (interval== "12:00-12:00")
+                if (interval == "12:00-12:00")
                 {
-                     
-                    string dteFrom =dteDate.ToString("yyyy-MM-dd")+" "+"00:00:00.000" ;
-                    string dteTo =dteDate.ToString("yyyy-MM-dd")+ " "+"23:59:59.999" ;
+                    string dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "00:00:00.000";
+                    string dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "23:59:59.999";
                     xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 }
-                else if (interval=="6:00-6:00"){
-                      
+                else if (interval == "6:00-6:00")
+                {
                     string dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "06:00:00.000";
                     string dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "05:59:59.999";
                     xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 }
-                if(vtypes=="SR")
+                if (vtypes == "SR")
                 {
-                    
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     dt = objBom.GetBomData(11, xmlData, intwh, BomId, DateTime.Now, enroll);
-                    
+
                     dgvReq.DataSource = dt;
                     dgvReq.DataBind();
                     dgvReq.Visible = true;
                     dgvItem.Visible = false;
-
                 }
                 else
                 {
@@ -88,12 +79,9 @@ namespace UI.SCM.BOM
                     dgvReq.Visible = false;
                     dgvItem.Visible = true;
                 }
-                 
             }
             catch { }
         }
-
-        
 
         protected void btnDetalisReq_Click(object sender, EventArgs e)
         {
@@ -104,17 +92,14 @@ namespace UI.SCM.BOM
                 intwh = int.Parse(ddlWH.SelectedValue);
                 dteDate = DateTime.Parse(txtdteDate.Text.ToString());
 
-
                 if (interval == "12:00-12:00")
                 {
-
                     dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "00:00:00.000";
                     dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "23:59:59.999";
                     xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 }
                 else if (interval == "6:00-6:00")
                 {
-
                     dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "06:00:00.000";
                     dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "05:59:59.999";
                     xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
@@ -127,10 +112,8 @@ namespace UI.SCM.BOM
                 string itemId = lblReqId.Text.ToString();
                 string whid = ddlWH.SelectedValue.ToString();
                 string Vtype = ddlvTypes.SelectedItem.ToString();
-                 
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + srrId + "','" + itemId.ToString() + "','" + whid + "','" + Vtype + "','" + dteFrom + "','" + dteTo + "');", true);
-
             }
             catch { }
         }
@@ -144,37 +127,28 @@ namespace UI.SCM.BOM
                 intwh = int.Parse(ddlWH.SelectedValue);
                 dteDate = DateTime.Parse(txtdteDate.Text.ToString());
 
-
                 if (interval == "12:00-12:00")
                 {
-
-                      dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "00:00:00.000";
-                      dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "23:59:59.999";
+                    dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "00:00:00.000";
+                    dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "23:59:59.999";
                     xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 }
                 else if (interval == "6:00-6:00")
                 {
-
-                      dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "06:00:00.000";
-                      dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "05:59:59.999";
+                    dteFrom = dteDate.ToString("yyyy-MM-dd") + " " + "06:00:00.000";
+                    dteTo = dteDate.ToString("yyyy-MM-dd") + " " + "05:59:59.999";
                     xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>".ToString();
                 }
 
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblItemId = row.FindControl("lblItemId") as Label;
-              
+
                 string srrId = lblItemId.Text.ToString();
                 string itemId = lblItemId.Text.ToString();
                 string whid = ddlWH.SelectedValue.ToString();
                 string Vtype = ddlvTypes.SelectedItem.ToString();
 
-
-                
-
-
-
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + srrId + "','" + itemId.ToString() + "','" + whid + "','" + Vtype + "','" + dteFrom + "','" + dteTo + "');", true);
-
             }
             catch { }
         }

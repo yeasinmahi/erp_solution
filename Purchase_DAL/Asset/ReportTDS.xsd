@@ -4,12 +4,12 @@
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AssetConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AssetConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Purchase_DAL.Properties.Settings.GlobalReference.Default.ERP_AssetConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AssetConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AssetConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Purchase_DAL.Properties.Settings.GlobalReference.Default.ERP_AssetConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprAssetReportTableAdapter" GeneratorDataComponentClassName="SprAssetReportTableAdapter" Name="SprAssetReport" UserDataComponentName="SprAssetReportTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_AssetConnectionString (Settings)" DbObjectName="ERP_Asset.dbo.sprAssetReport" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportData" GetMethodModifier="Public" GetMethodName="GetReportData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetReportData" UserSourceName="GetReportData">
+              <DbSource ConnectionRef="ERP_AssetConnectionString (Settings)" DbObjectName="ERP_Asset.dbo.sprAssetReport" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetReportData" GetMethodModifier="Public" GetMethodName="GetReportData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetReportData" UserSourceName="GetReportData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprAssetReport</CommandText>
@@ -42,11 +42,7 @@
               <Mapping SourceColumn="strStatus" DataSetColumn="strStatus" />
               <Mapping SourceColumn="monMaterial" DataSetColumn="monMaterial" />
               <Mapping SourceColumn="monService" DataSetColumn="monService" />
-              <Mapping SourceColumn="VehicleCondition" DataSetColumn="VehicleCondition" />
-              <Mapping SourceColumn="strjobStatus" DataSetColumn="strjobStatus" />
-              <Mapping SourceColumn="requestDate" DataSetColumn="requestDate" />
-              <Mapping SourceColumn="endDate" DataSetColumn="endDate" />
-              <Mapping SourceColumn="strSpareParts" DataSetColumn="strSpareParts" />
+              <Mapping SourceColumn="monTotal" DataSetColumn="monTotal" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -58,7 +54,7 @@
   <xs:element name="ReportTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportTDS" msprop:Generator_UserDSName="ReportTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SprAssetReport" msprop:Generator_TableClassName="SprAssetReportDataTable" msprop:Generator_TableVarName="tableSprAssetReport" msprop:Generator_RowChangedName="SprAssetReportRowChanged" msprop:Generator_TablePropName="SprAssetReport" msprop:Generator_RowDeletingName="SprAssetReportRowDeleting" msprop:Generator_RowChangingName="SprAssetReportRowChanging" msprop:Generator_RowEvHandlerName="SprAssetReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAssetReportRowDeleted" msprop:Generator_RowClassName="SprAssetReportRow" msprop:Generator_UserTableName="SprAssetReport" msprop:Generator_RowEvArgName="SprAssetReportRowChangeEvent">
+        <xs:element name="SprAssetReport" msprop:Generator_TableClassName="SprAssetReportDataTable" msprop:Generator_TableVarName="tableSprAssetReport" msprop:Generator_TablePropName="SprAssetReport" msprop:Generator_RowDeletingName="SprAssetReportRowDeleting" msprop:Generator_RowChangingName="SprAssetReportRowChanging" msprop:Generator_RowEvHandlerName="SprAssetReportRowChangeEventHandler" msprop:Generator_RowDeletedName="SprAssetReportRowDeleted" msprop:Generator_UserTableName="SprAssetReport" msprop:Generator_RowChangedName="SprAssetReportRowChanged" msprop:Generator_RowEvArgName="SprAssetReportRowChangeEvent" msprop:Generator_RowClassName="SprAssetReportRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intMaintenanceNo" msprop:Generator_ColumnVarNameInTable="columnintMaintenanceNo" msprop:Generator_ColumnPropNameInRow="intMaintenanceNo" msprop:Generator_ColumnPropNameInTable="intMaintenanceNoColumn" msprop:Generator_UserColumnName="intMaintenanceNo" type="xs:int" minOccurs="0" />
@@ -109,7 +105,7 @@
               <xs:element name="strProblem" msprop:Generator_ColumnVarNameInTable="columnstrProblem" msprop:Generator_ColumnPropNameInRow="strProblem" msprop:Generator_ColumnPropNameInTable="strProblemColumn" msprop:Generator_UserColumnName="strProblem" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
+                    <xs:maxLength value="2147483647" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -122,29 +118,7 @@
               </xs:element>
               <xs:element name="monMaterial" msprop:Generator_ColumnVarNameInTable="columnmonMaterial" msprop:Generator_ColumnPropNameInRow="monMaterial" msprop:Generator_ColumnPropNameInTable="monMaterialColumn" msprop:Generator_UserColumnName="monMaterial" type="xs:decimal" minOccurs="0" />
               <xs:element name="monService" msprop:Generator_ColumnVarNameInTable="columnmonService" msprop:Generator_ColumnPropNameInRow="monService" msprop:Generator_ColumnPropNameInTable="monServiceColumn" msprop:Generator_UserColumnName="monService" type="xs:decimal" minOccurs="0" />
-              <xs:element name="VehicleCondition" msprop:Generator_ColumnVarNameInTable="columnVehicleCondition" msprop:Generator_ColumnPropNameInRow="VehicleCondition" msprop:Generator_ColumnPropNameInTable="VehicleConditionColumn" msprop:Generator_UserColumnName="VehicleCondition" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="strjobStatus" msprop:Generator_ColumnVarNameInTable="columnstrjobStatus" msprop:Generator_ColumnPropNameInRow="strjobStatus" msprop:Generator_ColumnPropNameInTable="strjobStatusColumn" msprop:Generator_UserColumnName="strjobStatus" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="requestDate" msprop:Generator_ColumnVarNameInTable="columnrequestDate" msprop:Generator_ColumnPropNameInRow="requestDate" msprop:Generator_ColumnPropNameInTable="requestDateColumn" msprop:Generator_UserColumnName="requestDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="endDate" msprop:Generator_ColumnVarNameInTable="columnendDate" msprop:Generator_ColumnPropNameInRow="endDate" msprop:Generator_ColumnPropNameInTable="endDateColumn" msprop:Generator_UserColumnName="endDate" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="strSpareParts" msprop:Generator_ColumnVarNameInTable="columnstrSpareParts" msprop:Generator_ColumnPropNameInRow="strSpareParts" msprop:Generator_ColumnPropNameInTable="strSparePartsColumn" msprop:Generator_UserColumnName="strSpareParts" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="500" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
+              <xs:element name="monTotal" msprop:Generator_ColumnVarNameInTable="columnmonTotal" msprop:Generator_ColumnPropNameInRow="monTotal" msprop:Generator_ColumnPropNameInTable="monTotalColumn" msprop:Generator_UserColumnName="monTotal" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

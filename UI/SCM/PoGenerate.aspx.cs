@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Services;
@@ -19,19 +18,18 @@ namespace UI.SCM
 {
     public partial class PoGenerate : BasePage
     {
-        DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll,intWh;
-        string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; string xmlString = "";
-        int indentNo,whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; string payDate, paymentTrems, destDelivery, paymentSchedule; DateTime dtePo, dtelastShipment; decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
-        string[] arrayKey; string strType; char[] delimiterChars = { '[', ']' };
+        private DataTable dt = new DataTable();
+        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private int enroll, intWh;
+        private string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; private string xmlString = "";
+        private int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; private string payDate, paymentTrems, destDelivery, paymentSchedule; private DateTime dtePo, dtelastShipment; private decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
+        private string[] arrayKey; private string strType; private char[] delimiterChars = { '[', ']' };
 
-
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\PoGenerate";
-        string stop = "stopping SCM\\PoGenerate";
-        string perform = "Performance on SCM\\PoGenerate";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\PoGenerate";
+        private string stop = "stopping SCM\\PoGenerate";
+        private string perform = "Performance on SCM\\PoGenerate";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,7 +49,6 @@ namespace UI.SCM
             }
             else
             {
-
             }
         }
 
@@ -60,21 +57,17 @@ namespace UI.SCM
             try
             {
                 MrrReceive_BLL obj = new MrrReceive_BLL();
-                int  intPo = int.Parse(txtPoNumber.Text);
+                int intPo = int.Parse(txtPoNumber.Text);
                 dt = obj.GetPO(intPo);
                 if (dt.Rows.Count > 0)
                 {
                     Session["pono"] = txtPoNumber.Text.ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
-
                 }
                 else
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO  not Found');", true);
-
                 }
-
-
             }
             catch { }
         }
@@ -83,7 +76,6 @@ namespace UI.SCM
         //{
         //    try
         //    {
-                
         //        int suppid = int.Parse(ddlSuppliyer.SelectedValue);
 
         //        dt = objPo.GetPoData(22, "", 0, suppid, DateTime.Now, enroll);
@@ -102,16 +94,14 @@ namespace UI.SCM
                 string strSupp = ""; int supplierid = 0;
                 if (arrayKey.Length > 0)
                 { strSupp = arrayKey[0].ToString(); supplierid = int.Parse(arrayKey[1].ToString()); }
-             
+
                 dt = objPo.GetPoData(22, "", 0, supplierid, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
                     lblSuppAddress.Text = dt.Rows[0]["strName"].ToString();
                 }
-
             }
             catch { }
-
         }
 
         #region=======================Auto Search=========================
@@ -123,10 +113,7 @@ namespace UI.SCM
             return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["unitId"].ToString());
         }
 
-
         #endregion====================Close===============================
-
-      
 
         private void DefaltPageLoad()
         {
@@ -138,8 +125,8 @@ namespace UI.SCM
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 txtDtefroms.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                txtdtePo.Text= DateTime.Now.ToString("yyyy-MM-dd");
-                txtDteTo.Text= DateTime.Now.ToString("yyyy-MM-dd");
+                txtdtePo.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                txtDteTo.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 dt = objPo.GetPoData(1, "", 0, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
@@ -163,7 +150,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
 
         protected void lblPreviousPrice_Click(object sender, EventArgs e)
@@ -179,6 +165,7 @@ namespace UI.SCM
         }
 
         #region=============Indent Sumery Tab-1 ==============================
+
         protected void Tab1_Click(object sender, EventArgs e)
         {
             try
@@ -191,26 +178,28 @@ namespace UI.SCM
 
                 MainView.ActiveViewIndex = 0;
             }
-            catch { } 
+            catch { }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             try
             {
+                dgvIndent.DataSource = "";
+                dgvIndent.DataBind();
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intWh = int.Parse(ddlWH.SelectedValue);
+                intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
-                hdnWHName.Value = ddlWH.SelectedItem.ToString(); 
+                hdnWHName.Value = ddlWH.SelectedItem.ToString();
                 DateTime dteFrom = DateTime.Parse(txtDtefroms.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtDteTo.Text.ToString());
-                string dept = ddlDepts.SelectedItem.ToString(); 
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"'+ " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
+                string dept = ddlDepts.SelectedItem.ToString();
+                string xmlData = "<voucher><voucherentry dteTo=" + '"' + txtDteTo.Text.ToString() + '"' + " dept=" + '"' + dept + '"' + " dteFrom=" + '"' + txtDtefroms.Text.ToString() + '"'+ "/></voucher>".ToString();
                 dt = objPo.GetPoData(2, xmlData, intWh, 0, dteFrom, enroll);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
                 dt.Clear();
-
-
             }
             catch { }
         }
@@ -219,8 +208,11 @@ namespace UI.SCM
         {
             try
             {
+                dgvIndent.DataSource = "";
+                dgvIndent.DataBind();
+
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                intWh = int.Parse(ddlWH.SelectedValue);
+                intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
                 hdnWHName.Value = ddlWH.SelectedItem.ToString();
                 DateTime dteFrom = DateTime.Parse(txtDtefroms.Text.ToString());
@@ -233,10 +225,13 @@ namespace UI.SCM
                 {
                     hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
                     hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
+
+                    dgvIndent.DataSource = dt;
+                    dgvIndent.DataBind();
+                    dt.Clear();
                 }
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
-                dt.Clear();
+                
+               
             }
             catch { }
         }
@@ -245,24 +240,27 @@ namespace UI.SCM
         {
             try
             {
-                try { File.Delete(filePathForXML); File.Delete(filePathForXMLPo); dgvIndentPrepare.DataSource = "";dgvIndentPrepare.DataBind();}  catch { File.Delete(filePathForXML); File.Delete(filePathForXMLPo); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); }
+                try { File.Delete(filePathForXML); File.Delete(filePathForXMLPo); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); } catch { File.Delete(filePathForXML); File.Delete(filePathForXMLPo); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); }
 
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
-                int indent= int.Parse(lblIndent.Text.ToString());
+                int indent = int.Parse(lblIndent.Text.ToString());
+                intWh = int.Parse(hdnWHId.Value.ToString());
                 lblIndentType.Text = ddlDepts.SelectedItem.ToString();
                 dt = objPo.GetPoData(3, "", intWh, indent, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
-                    hdnUnitId.Value= dt.Rows[0]["intUnitID"].ToString(); 
-                    lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString(); 
-                    lblIndentDate.Text =DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
+                    hdnUnitId.Value = dt.Rows[0]["intUnitID"].ToString();
+                    
+                    Session["unitId"] = hdnUnitId.Value.ToString(); 
+
+                    lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                    lblIndentDate.Text = DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
                     lblindentApproveDate.Text = DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
-                    lblInDueDate.Text =DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
+                    lblInDueDate.Text = DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
-                string unitId = hdnUnitId.Value.ToString();
-                Session["unitId"] = unitId;
+               
 
                 Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Clicked";
@@ -270,10 +268,10 @@ namespace UI.SCM
                 Tab4.CssClass = "Initial";
                 MainView.ActiveViewIndex = 1;
                 string dept = ddlDepts.SelectedItem.ToString();
-                
-                dt = objPo.GetPoData(4, "", intWh, indent, DateTime.Now, enroll);// Indent Detalis 
-                 
-                for (int i=0; i<dt.Rows.Count; i++)
+
+                dt = objPo.GetPoData(4, "", intWh, indent, DateTime.Now, enroll);// Indent Detalis
+
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
                     string indentId = dt.Rows[i]["indentId"].ToString();
                     string itemId = dt.Rows[i]["ItemId"].ToString();
@@ -290,21 +288,19 @@ namespace UI.SCM
                     string strSpecification = dt.Rows[i]["strSpecification"].ToString();
                     string monPreviousRate = dt.Rows[i]["monPreviousRate"].ToString();
                     CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-
                 }
                 txtIndentNoDet.Text = "";
                 ddlItem.DataSource = "";
                 ddlItem.DataBind();
                 LoadGridwithXml();
             }
-            catch { }
-
+            catch { Session["unitId"] = "0".ToString(); }
         }
 
         private void CreateXml(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
@@ -321,7 +317,6 @@ namespace UI.SCM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-           
         }
 
         private XmlNode CreateItemNode(XmlDocument doc, string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
@@ -395,12 +390,12 @@ namespace UI.SCM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 { dgvIndentDet.DataSource = ds; }
-
                 else { dgvIndentDet.DataSource = ""; }
                 dgvIndentDet.DataBind();
             }
             catch { }
         }
+
         protected void dgvIndentDet_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -413,12 +408,10 @@ namespace UI.SCM
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 { File.Delete(filePathForXML); dgvIndentDet.DataSource = ""; dgvIndentDet.DataBind(); }
                 else { LoadGridwithXml(); }
-
-
             }
-
             catch { }
         }
+
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlWHPrepare.DataSource = "";
@@ -429,17 +422,28 @@ namespace UI.SCM
             dgvIndentDet.DataBind();
             dgvIndentPrepare.DataSource = dt;
             dgvIndentPrepare.DataBind();
-              
-            hdnUnitId.Value = "0";
-            hdnWHId.Value = "0";
-            hdnWHName.Value = "0";
-            hdnUnitName.Value = "0";
 
+            dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
+            if (dt.Rows.Count > 0)
+            {
+                hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
+                Session["untid"] = hdnUnitId.Value.ToString();
+            }
+            else
+            {
+
+                hdnUnitId.Value = "0"; 
+            }
+            hdnWHId.Value = ddlWH.SelectedValue.ToString();
+            hdnWHName.Value = ddlWH.SelectedItem.ToString();
+
+            hdnUnitName.Value = "0";
         }
 
-        #endregion===========Close===================================== 
+        #endregion===========Close=====================================
 
         #region==============Indent Detalis TAB-2 =============================
+
         protected void Tab2_Click(object sender, EventArgs e)
         {
             try
@@ -453,8 +457,8 @@ namespace UI.SCM
                 MainView.ActiveViewIndex = 1;
             }
             catch { }
-            
         }
+
         protected void btnIndentDetShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnIndentDetShow_Click", null);
@@ -466,13 +470,18 @@ namespace UI.SCM
                 int IndentNo = int.Parse(txtIndentNoDet.Text);
                 string dept = ddlDepts.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + "2018-01-01" + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                dt = objPo.GetPoData(11, xmlData, intWh, IndentNo, DateTime.Now, enroll);
-                ddlItem.DataSource = dt;
-                ddlItem.DataTextField = "strName";
-                ddlItem.DataValueField = "Id";
-                ddlItem.DataBind();
-                dt.Clear();
-
+                
+                dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value.ToString()), IndentNo, DateTime.Now, enroll);
+                if(dt.Rows.Count>0)
+                {
+                    ddlItem.DataSource = dt;
+                    ddlItem.DataTextField = "strName";
+                    ddlItem.DataValueField = "Id";
+                    ddlItem.DataBind();
+                    dt.Clear();
+                }
+                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value.ToString()+"'');", true); }
+               
             }
             catch (Exception ex)
             {
@@ -485,21 +494,21 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
             try
             {
-                
                 string itemid = ddlItem.SelectedValue.ToString();
                 intWh = int.Parse(hdnWHId.Value.ToString());
-                try {   indentNo = int.Parse(txtIndentNoDet.Text.ToString()); } catch { }
+                try { indentNo = int.Parse(txtIndentNoDet.Text.ToString()); } catch { }
                 string stringXml = "<voucher><voucherentry itemid=" + '"' + itemid + '"' + "/></voucher>".ToString();
-                int CheckDuplicate=checkXmlItemData(itemid);
+                int CheckDuplicate = checkXmlItemData(itemid);
 
-                if(CheckDuplicate == 1)
+                if (CheckDuplicate == 1)
                 {
                     try { File.Delete(filePathForXML); } catch { };
-                    dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, enroll);// Indent Detalis 
+                    dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, enroll);// Indent Detalis
 
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
@@ -518,7 +527,6 @@ namespace UI.SCM
                         string strSpecification = dt.Rows[i]["strSpecification"].ToString();
                         string monPreviousRate = dt.Rows[i]["monPreviousRate"].ToString();
                         CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-
                     }
 
                     //============================
@@ -527,7 +535,6 @@ namespace UI.SCM
                         enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                         for (int index = 0; index < dgvIndentDet.Rows.Count; index++)
                         {
-
                             string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text.ToString();
                             string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
                             string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
@@ -540,12 +547,10 @@ namespace UI.SCM
                             string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
                             string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
                             string numNewPo = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text.ToString();
-                            string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text.ToString(); //lblSpecification as TextBox -- 
+                            string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text.ToString(); //lblSpecification as TextBox --
                             string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
 
-                            
                             CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                            
                         }
                     }
                     LoadGridwithXml();
@@ -554,30 +559,29 @@ namespace UI.SCM
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
             }
             catch { }
-
         }
+
         private int checkXmlItemData(string itemid)
         {
-               DataSet ds = new DataSet();
-                ds.ReadXml(filePathForXML);
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+            DataSet ds = new DataSet();
+            ds.ReadXml(filePathForXML);
+            int i = 0;
+            for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+            {
+                if (itemid == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
                 {
-                    if (itemid == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
-                    {
                     CheckItem = 0;
-                       
-                        break;
-                    }
-                    else
-                    {
-                    CheckItem = 1;
-                    }
-                     
-                }
-            return CheckItem;
 
+                    break;
+                }
+                else
+                {
+                    CheckItem = 1;
+                }
+            }
+            return CheckItem;
         }
+
         protected void btnPrepare_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnPrepare_Click", null);
@@ -587,32 +591,31 @@ namespace UI.SCM
             try
             {
                 try { File.Delete(filePathForXMLPrepare); } catch { }
-                
-                if (dgvIndentDet.Rows.Count > 0  )
+
+                if (dgvIndentDet.Rows.Count > 0)
                 {
-                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString()); 
+                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     for (int index = 0; index < dgvIndentDet.Rows.Count; index++)
                     {
-                        
-                            string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text.ToString();
-                            string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
-                            string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
-                            string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text.ToString();
-                            string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
-                            string strDesc = ((Label)dgvIndentDet.Rows[index].FindControl("lblPurpose")).Text.ToString();// lblPurpose
-                            string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
-                            string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
-                            string numIndentQty = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentQty")).Text.ToString();
-                            string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
-                            string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
-                            string numNewPo = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text.ToString();
-                            string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text.ToString(); //lblSpecification as TextBox -- 
-                            string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
+                        string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text.ToString();
+                        string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
+                        string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
+                        string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text.ToString();
+                        string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
+                        string strDesc = ((Label)dgvIndentDet.Rows[index].FindControl("lblPurpose")).Text.ToString();// lblPurpose
+                        string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
+                        string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
+                        string numIndentQty = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentQty")).Text.ToString();
+                        string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
+                        string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
+                        string numNewPo = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text.ToString();
+                        string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text.ToString(); //lblSpecification as TextBox --
+                        string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
 
-                         if(decimal.Parse(numNewPo)>0)
-                           {
+                        if (decimal.Parse(numNewPo) > 0)
+                        {
                             CreateXmlPrepare(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                           } 
+                        }
                     }
                     ddlWHPrepare.DataSource = "";
                     ddlWHPrepare.DataBind();
@@ -623,13 +626,11 @@ namespace UI.SCM
                     intWh = int.Parse(ddlWHPrepare.SelectedValue);
                     dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
                     try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
-                        
+
                     ddlCurrency.DataSource = dt;
                     ddlCurrency.DataTextField = "strName";
                     ddlCurrency.DataValueField = "Id";
                     ddlCurrency.DataBind();
-
-                    
 
                     dt = objPo.GetPoData(7, "", intWh, int.Parse(hdnUnitId.Value), DateTime.Now, enroll);// Pay Date
                     ddlDtePay.DataSource = dt;
@@ -641,13 +642,12 @@ namespace UI.SCM
                     ddlCostCenter.DataSource = dt;
                     ddlCostCenter.DataTextField = "strName";
                     ddlCostCenter.DataValueField = "Id";
-                    ddlCostCenter.DataBind(); 
+                    ddlCostCenter.DataBind();
 
                     Tab1.CssClass = "Initial";
-                    Tab2.CssClass = "Initial"; 
-                    Tab3.CssClass = "Clicked"; 
+                    Tab2.CssClass = "Initial";
+                    Tab3.CssClass = "Clicked";
                     MainView.ActiveViewIndex = 2;
-
                 }
 
                 XmlDocument doc = new XmlDocument();
@@ -657,8 +657,6 @@ namespace UI.SCM
                 xmlString = "<voucher>" + xmlString + "</voucher>";
                 try { File.Delete(filePathForXML); } catch { }
             }
-
-
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "btnPrepare_Click", ex);
@@ -667,14 +665,14 @@ namespace UI.SCM
 
             fd = log.GetFlogDetail(stop, location, "btnPrepare_Click", null);
             Flogger.WriteDiagnostic(fd);
-             
+
             tracker.Stop();
         }
 
         private void CreateXmlPrepare(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLPrepare))
+            if (File.Exists(filePathForXMLPrepare))
             {
                 doc.Load(filePathForXMLPrepare);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
@@ -765,7 +763,6 @@ namespace UI.SCM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 { dgvIndentPrepare.DataSource = ds; }
-
                 else { dgvIndentPrepare.DataSource = ""; }
                 dgvIndentPrepare.DataBind();
             }
@@ -783,9 +780,8 @@ namespace UI.SCM
                 DataSet dsGridAfterDelete = (DataSet)dgvIndentPrepare.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 { File.Delete(filePathForXMLPrepare); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); }
-                else { LoadGridwithXmlPrepare(); } 
+                else { LoadGridwithXmlPrepare(); }
             }
-
             catch { }
         }
 
@@ -793,22 +789,18 @@ namespace UI.SCM
         {
             if (dgvIndentPrepare.Rows.Count > 0)
             {
-                decimal grandTotalAit=0, grandTotalVat=0, grandTotalQty=0, grandTotalValue=0, TotalValue=0;
+                decimal grandTotalAit = 0, grandTotalVat = 0, grandTotalQty = 0, grandTotalValue = 0, TotalValue = 0;
                 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 for (int index = 0; index < dgvIndentPrepare.Rows.Count; index++)
-                { 
-
+                {
                 }
-
- 
             }
         }
-
-       
 
         #endregion============Close======================================
 
         #region==============PO Generate TAB-3 =============================
+
         protected void Tab3_Click(object sender, EventArgs e)
         {
             try
@@ -824,13 +816,10 @@ namespace UI.SCM
             catch { }
         }
 
-         
         protected void btnGeneratePO_Click(object sender, EventArgs e)
         {
             try
             {
-                
-
                 try { File.Delete(filePathForXMLPo); } catch { }
                 try
                 {
@@ -841,12 +830,12 @@ namespace UI.SCM
                 }
                 catch { supplierId = 0; }
 
-                try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { }
+                try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { whid = 0; }
                 try { unitid = int.Parse(hdnUnitId.Value); } catch { }
-               
+
                 try { currencyId = int.Parse(ddlCurrency.SelectedValue); } catch { currencyId = 0; }
                 try { costId = int.Parse(ddlCostCenter.SelectedValue); } catch { }
-                try { payDate = ddlDtePay.SelectedValue.ToString(); } catch { payDate ="0"; }
+                try { payDate = ddlDtePay.SelectedValue.ToString(); } catch { payDate = "0"; }
                 try { dtePo = DateTime.Parse(txtdtePo.Text); } catch { dtePo = DateTime.Now; }
                 try { others = decimal.Parse(txtOthers.Text); } catch { }
                 try { tansport = decimal.Parse(txtTransport.Text); } catch { }
@@ -863,8 +852,8 @@ namespace UI.SCM
                 try { destDelivery = txtDestinationDelivery.Text.ToString(); } catch { destDelivery = ""; }
                 try { paymentSchedule = txtPaymentSchedule.Text.ToString(); } catch { paymentSchedule = "0"; }
                 try { dtelastShipment = DateTime.Parse(txtLastShipmentDate.Text); } catch { }
-                  othersTrems = txtOthersTerms.Text.ToString();
-                  warrentyperiod = txtWarrenty.Text.ToString();
+                othersTrems = txtOthersTerms.Text.ToString();
+                warrentyperiod = txtWarrenty.Text.ToString();
                 string strPoFor = ddlDepts.SelectedItem.ToString();
 
                 if (dgvIndentPrepare.Rows.Count > 0 && hdnPreConfirm.Value.ToString() == "1")
@@ -875,9 +864,9 @@ namespace UI.SCM
                         string indentId = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentId")).Text.ToString();
                         string itemId = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblItemId")).Text.ToString();
                         string strItem = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblItemName")).Text.ToString();
-                        string strUom = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblUom")).Text.ToString(); 
-                        string strDesc = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblDescription")).Text.ToString(); 
-                        string numIndentQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentQty")).Text.ToString(); 
+                        string strUom = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblUom")).Text.ToString();
+                        string strDesc = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblDescription")).Text.ToString();
+                        string numIndentQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentQty")).Text.ToString();
                         string numPoQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblQty")).Text.ToString();
                         string monRate = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtRate")).Text.ToString();
                         string monVat = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtVAT")).Text.ToString();
@@ -894,9 +883,8 @@ namespace UI.SCM
                         //  string strSpecification = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblSpecification")).Text.ToString();
                         //  string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
 
-                        if (decimal.Parse(monRate) > 0)
+                        if (decimal.Parse(monRate) > 0 && int.Parse(itemId) > 0 && supplierId > 0)
                         {
-
                             CreateXmlPO(indentId, itemId, strItem, strUom, strDesc, numPoQty, monRate, monVat, monAIT, monTotal,
                             whid.ToString(), unitid.ToString(), supplierId.ToString(), currencyId.ToString(), costId.ToString(), payDate.ToString(), dtePo.ToString(), others.ToString(), tansport.ToString(), grosDiscount.ToString(), commision.ToString(), partialShipment.ToString(), noOfShifment.ToString(),
                             afterMrrDay.ToString(), paymentTrems.ToString(), noOfInstallment.ToString(), intervalInstallment.ToString(), noPayment.ToString(), destDelivery.ToString(), paymentSchedule.ToString(), dtelastShipment.ToString(), othersTrems, warrentyperiod, numIndentQty, strPoFor);
@@ -914,15 +902,22 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<issue>" + xmlString + "</issue>";
 
-                    string msg = objPo.PoApprove(9, xmlString, intWh, 0, DateTime.Now, enroll);
+                    try { File.Delete(filePathForXMLPrepare); } catch { }
+                    try { File.Delete(filePathForXMLPo); } catch { }
+                    
+
+                    string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    txtGrossDiscount.Text = "0";txtOthers.Text = "0"; txtTransport.Text = "0";txtAit.Text = "0";
-                    try { File.Delete(filePathForXMLPrepare); } catch { }
+
+                    txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
+                    txtSupplier.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
+                       
+
                         dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind();
                         dgvIndentDet.DataSource = "";
                         dgvIndentDet.DataBind();
@@ -931,19 +926,15 @@ namespace UI.SCM
                         Tab3.CssClass = "Initial";
                         MainView.ActiveViewIndex = 0;
                     }
-
-
                 }
-                
-
             }
             catch { }
-
         }
-        private void CreateXmlPO(string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment,string othersTrems,string  warrentyperiod,string numIndentQty,string strPoFor)
+
+        private void CreateXmlPO(string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment, string othersTrems, string warrentyperiod, string numIndentQty, string strPoFor)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLPo))
+            if (File.Exists(filePathForXMLPo))
             {
                 doc.Load(filePathForXMLPo);
                 XmlNode rootNode = doc.SelectSingleNode("issue");
@@ -964,10 +955,9 @@ namespace UI.SCM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXMLPo);
-
         }
 
-        private XmlNode CreateItemNodePo(XmlDocument doc, string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment,string othersTrems,string warrentyperiod,string numIndentQty,string strPoFor)
+        private XmlNode CreateItemNodePo(XmlDocument doc, string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment, string othersTrems, string warrentyperiod, string numIndentQty, string strPoFor)
         {
             XmlNode node = doc.CreateElement("issueEntry");
 
@@ -1047,8 +1037,6 @@ namespace UI.SCM
             XmlAttribute StrPoFor = doc.CreateAttribute("strPoFor");
             StrPoFor.Value = strPoFor;
 
-            
-
             node.Attributes.Append(IndentId);
             node.Attributes.Append(ItemId);
             node.Attributes.Append(StrItem);
@@ -1065,7 +1053,7 @@ namespace UI.SCM
             node.Attributes.Append(Unitid);
             node.Attributes.Append(SupplierId);
             node.Attributes.Append(CurrencyId);
-            node.Attributes.Append(CostId); 
+            node.Attributes.Append(CostId);
 
             node.Attributes.Append(PayDate);
             node.Attributes.Append(DtePo);
@@ -1090,13 +1078,14 @@ namespace UI.SCM
             node.Attributes.Append(OthersTrems);
             node.Attributes.Append(Warrentyperiod);
             node.Attributes.Append(NumIndentQty);
-            node.Attributes.Append(StrPoFor); 
+            node.Attributes.Append(StrPoFor);
             return node;
         }
 
         #endregion============Close======================================
 
         #region================POView=====================================
+
         protected void Tab4_Click(object sender, EventArgs e)
         {
             try
@@ -1104,15 +1093,12 @@ namespace UI.SCM
                 Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
-                Tab4.CssClass = "Clicked";  
-                Tab5.CssClass = "Initial";  
+                Tab4.CssClass = "Clicked";
+                Tab5.CssClass = "Initial";
 
                 MainView.ActiveViewIndex = 3;
-                
-
             }
             catch { }
-           
         }
 
         #endregion================Close===================================

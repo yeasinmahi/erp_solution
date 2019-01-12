@@ -75,6 +75,8 @@
                             <td>
                                 <asp:DropDownList ID="ddlTerritory" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlTerritory_OnSelectedIndexChanged"></asp:DropDownList>
                             </td>
+
+                           
                         </tr>
                         <tr class="tblroweven">
                             <td style="text-align: right;">
@@ -90,10 +92,17 @@
                         </tr>
                         <tr class="tblroweven">
                             <td>
-                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Show" OnClick="add_OnClick" />
+                                <asp:Button ID="add" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Add" OnClick="add_OnClick" />
                             </td>
                             <td>
                                 <asp:Button ID="report" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Report" OnClick="report_OnClick" />
+                            </td>
+                            
+                             <td>
+                                <asp:Button ID="btnInactive" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Delete Bridge" OnClick="btnInactive_Click" />
+                            </td>
+                             <td>
+                                <asp:Button ID="btnupdate" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="Update Bridge" OnClick="btnupdate_Click" />
                             </td>
                         </tr>
                     </table>

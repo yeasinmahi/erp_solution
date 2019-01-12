@@ -13032,7 +13032,7 @@ namespace Purchase_DAL.Asset {
             
             private global::System.Data.DataColumn columnstrServiceName;
             
-            private global::System.Data.DataColumn columnmonServiceCost;
+            private global::System.Data.DataColumn columnmonService;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -13085,9 +13085,9 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monServiceCostColumn {
+            public global::System.Data.DataColumn monServiceColumn {
                 get {
-                    return this.columnmonServiceCost;
+                    return this.columnmonService;
                 }
             }
             
@@ -13128,22 +13128,15 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblMaintenanceTaskRow AddtblMaintenanceTaskRow(string strServiceName, decimal monServiceCost) {
+            public tblMaintenanceTaskRow AddtblMaintenanceTaskRow(string strServiceName, decimal monService) {
                 tblMaintenanceTaskRow rowtblMaintenanceTaskRow = ((tblMaintenanceTaskRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         strServiceName,
-                        monServiceCost};
+                        monService};
                 rowtblMaintenanceTaskRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblMaintenanceTaskRow);
                 return rowtblMaintenanceTaskRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblMaintenanceTaskRow FindByintID(int intID) {
-                return ((tblMaintenanceTaskRow)(this.Rows.Find(new object[] {
-                            intID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13165,7 +13158,7 @@ namespace Purchase_DAL.Asset {
             internal void InitVars() {
                 this.columnintID = base.Columns["intID"];
                 this.columnstrServiceName = base.Columns["strServiceName"];
-                this.columnmonServiceCost = base.Columns["monServiceCost"];
+                this.columnmonService = base.Columns["monService"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13175,16 +13168,13 @@ namespace Purchase_DAL.Asset {
                 base.Columns.Add(this.columnintID);
                 this.columnstrServiceName = new global::System.Data.DataColumn("strServiceName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrServiceName);
-                this.columnmonServiceCost = new global::System.Data.DataColumn("monServiceCost", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonServiceCost);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintID}, true));
+                this.columnmonService = new global::System.Data.DataColumn("monService", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonService);
                 this.columnintID.AutoIncrement = true;
                 this.columnintID.AutoIncrementSeed = -1;
                 this.columnintID.AutoIncrementStep = -1;
                 this.columnintID.AllowDBNull = false;
                 this.columnintID.ReadOnly = true;
-                this.columnintID.Unique = true;
                 this.columnstrServiceName.MaxLength = 200;
             }
             
@@ -18108,17 +18098,17 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monServiceCost {
+            public decimal monService {
                 get {
                     try {
-                        return ((decimal)(this[this.tabletblMaintenanceTask.monServiceCostColumn]));
+                        return ((decimal)(this[this.tabletblMaintenanceTask.monServiceColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monServiceCost\' in table \'tblMaintenanceTask\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'monService\' in table \'tblMaintenanceTask\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblMaintenanceTask.monServiceCostColumn] = value;
+                    this[this.tabletblMaintenanceTask.monServiceColumn] = value;
                 }
             }
             
@@ -18136,14 +18126,14 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonServiceCostNull() {
-                return this.IsNull(this.tabletblMaintenanceTask.monServiceCostColumn);
+            public bool IsmonServiceNull() {
+                return this.IsNull(this.tabletblMaintenanceTask.monServiceColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonServiceCostNull() {
-                this[this.tabletblMaintenanceTask.monServiceCostColumn] = global::System.Convert.DBNull;
+            public void SetmonServiceNull() {
+                this[this.tabletblMaintenanceTask.monServiceColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -20508,10 +20498,11 @@ and intUnitID=@Uid and ERP_Inventory.dbo.qryItemList.strItem LIKE  '%' + @strSea
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[8];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Insert into [ERP_Asset].[dbo].[tblMaintenanceParts] (intReffServiceTask,intSparePartsID,[intqty],[YsnActive],[intInsertBy],intJobStationID,intDept,YsnRequesition,intWhouse,strRemarks,dteDate) values(@intReffNo, @parts ,@pqty,1,@intenroll, @intjobid, @intdept,0,@intwh,@remarks,getdate())
+            this._commandCollection[0].CommandText = @"Insert into [ERP_Asset].[dbo].[tblMaintenanceParts] (intReffServiceTask,intSparePartsID,[intqty],[YsnActive],[intInsertBy],intJobStationID,intDept,YsnRequesition,intWhouse,strRemarks,moncost,dteDate) 
+values(@intReffNo, @parts ,@pqty,1,@intenroll, @intjobid, @intdept,0,@intwh,@remarks,@cost,getdate())
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intReffNo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intReffServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20522,75 +20513,83 @@ and intUnitID=@Uid and ERP_Inventory.dbo.qryItemList.strItem LIKE  '%' + @strSea
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intwh", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWhouse", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@remarks", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.Input, 0, 0, "strRemarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cost", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"INSERT INTO [ERP_Asset].[dbo].[tblMaintenanceDocUpload]
+            this._commandCollection[1].CommandText = "update  [ERP_Asset].[dbo].[tblMaintenanceParts]  set monCost=@cost  where intID=@" +
+                "intIdParts ";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cost", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdParts", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = @"INSERT INTO [ERP_Asset].[dbo].[tblMaintenanceDocUpload]
 ( [intRefServiceTask],[strpath],[strDescription],[dteDate],[YsnActive],[intInsertby],[intJobStationID],intDept)
  VALUES(@Mnumber,@path,@docdesc,GETDATE(),1,@intenroll, @intjobid,@intdept)     
            ";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mnumber", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRefServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@path", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "strpath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@docdesc", global::System.Data.SqlDbType.VarChar, 400, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertby", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @" insert into [ERP_Asset].[dbo].[tblMaintenanceLaborCost] ([intRefServiceTask],[intTecnishinID],[strDescription],[strHour],intInsertBy,intJobStationID,intDept,YsnActive,dteDate,YsnTechnichin)
-  values(@Reffno,@technichin, @description, @hour,@intenroll, @intjobid,@intdept,1,getdate(),@ysnTecnichin)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reffno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRefServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@technichin", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intTecnishinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hour", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "strHour", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mnumber", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRefServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@path", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "strpath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@docdesc", global::System.Data.SqlDbType.VarChar, 400, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertby", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnTecnichin", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "YsnTechnichin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "update  ERP_Asset.dbo.tblMaintenanceLaborCost  set YsnActive=0 where intId=@intId" +
-                "Labor and intJobStationID=@intjobid and intDept=@intdept";
+            this._commandCollection[3].CommandText = @" insert into [ERP_Asset].[dbo].[tblMaintenanceLaborCost] ([intRefServiceTask],[intTecnishinID],[strDescription],[strHour],intInsertBy,intJobStationID,intDept,YsnActive,dteDate,YsnTechnichin)
+  values(@Reffno,@technichin, @description, @hour,@intenroll, @intjobid,@intdept,1,getdate(),@ysnTecnichin)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdLabor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reffno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRefServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@technichin", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intTecnishinID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hour", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "strHour", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnTecnichin", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 0, 0, "YsnTechnichin", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "update  [ERP_Asset].[dbo].[tblMaintenanceParts]  set YsnActive=0 where intID=@int" +
-                "IdParts and intJobStationID=@intjobid and intDept=@intdept";
+            this._commandCollection[4].CommandText = "update  ERP_Asset.dbo.tblMaintenanceLaborCost  set YsnActive=0 where intId=@intId" +
+                "Labor and intJobStationID=@intjobid and intDept=@intdept";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdParts", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdLabor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "update  [ERP_Asset].dbo.tblMaintenanceToolsEquipmentCost  set YsnActive=0 where i" +
-                "ntID=@intIdParts and intJobStationID=@intjobid and intDept=@intdept";
+            this._commandCollection[5].CommandText = "update  [ERP_Asset].[dbo].[tblMaintenanceParts]  set YsnActive=0 where intID=@int" +
+                "IdParts and intJobStationID=@intjobid and intDept=@intdept";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdParts", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdParts", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"insert into  [dbo].[tblMaintenanceToolsEquipmentCost] ([intRefServiceTask],[strToolsAssetID],[strDescription],dechour,[dteDate],[YsnActive],[intInsertBy],[intJobStationID],[intDept])
-values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid, @intdept)";
+            this._commandCollection[6].CommandText = "update  [ERP_Asset].dbo.tblMaintenanceToolsEquipmentCost  set YsnActive=0 where i" +
+                "ntID=@intIdParts and intJobStationID=@intjobid and intDept=@intdept";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reffno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRefServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToolsID", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strToolsAssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hour", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "decHour", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intIdParts", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[7].Connection = this.Connection;
+            this._commandCollection[7].CommandText = @"insert into  [dbo].[tblMaintenanceToolsEquipmentCost] ([intRefServiceTask],[strToolsAssetID],[strDescription],dechour,[dteDate],[YsnActive],[intInsertBy],[intJobStationID],[intDept])
+values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid, @intdept)";
+            this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reffno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intRefServiceTask", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ToolsID", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strToolsAssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hour", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, "decHour", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intenroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intInsertBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDept", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblWOMaintenancePartsDataTable InsertPartsGetData(global::System.Nullable<int> intReffNo, global::System.Nullable<int> parts, global::System.Nullable<decimal> pqty, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, global::System.Nullable<int> intwh, string remarks) {
+        public virtual AssetMaintenanceTDS.TblWOMaintenancePartsDataTable InsertPartsGetData(global::System.Nullable<int> intReffNo, global::System.Nullable<int> parts, global::System.Nullable<decimal> pqty, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, global::System.Nullable<int> intwh, string remarks, global::System.Nullable<decimal> cost) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intReffNo.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intReffNo.Value));
@@ -20640,6 +20639,12 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = ((string)(remarks));
             }
+            if ((cost.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(cost.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             AssetMaintenanceTDS.TblWOMaintenancePartsDataTable dataTable = new AssetMaintenanceTDS.TblWOMaintenancePartsDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -20648,9 +20653,39 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateMaintenacePartsCost(global::System.Nullable<decimal> cost, int intIdParts) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((cost.HasValue == true)) {
+                command.Parameters[0].Value = ((decimal)(cost.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[1].Value = ((int)(intIdParts));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int WODocUploadInsert(global::System.Nullable<int> Mnumber, string path, string docdesc, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((Mnumber.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(Mnumber.Value));
             }
@@ -20709,7 +20744,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int WOInsertLaborCostGetData(global::System.Nullable<int> Reffno, global::System.Nullable<int> technichin, string description, global::System.Nullable<decimal> hour, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept, global::System.Nullable<bool> ysnTecnichin) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((Reffno.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(Reffno.Value));
             }
@@ -20780,7 +20815,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int WOLaborCostDeleteQuery(int intIdLabor, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             command.Parameters[0].Value = ((int)(intIdLabor));
             if ((intjobid.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(intjobid.Value));
@@ -20816,7 +20851,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int WoPartsDeleteQuery(int intIdParts, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             command.Parameters[0].Value = ((int)(intIdParts));
             if ((intjobid.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(intjobid.Value));
@@ -20852,7 +20887,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
         public virtual int WOToolsEquipmentDeleteQ(int intIdParts, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             command.Parameters[0].Value = ((int)(intIdParts));
             if ((intjobid.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(intjobid.Value));
@@ -20888,7 +20923,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int WOToolsEquipmentInsert(global::System.Nullable<int> Reffno, string ToolsID, string description, global::System.Nullable<decimal> hour, global::System.Nullable<int> intenroll, global::System.Nullable<int> intjobid, global::System.Nullable<int> intdept) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             if ((Reffno.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(Reffno.Value));
             }
@@ -21085,8 +21120,7 @@ values (@Reffno, @ToolsID, @description,@hour,getdate(),1, @intenroll, @intjobid
             this._commandCollection[0].CommandText = @"UPDATE [dbo].[tblAssetMaintenance]   
 SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate() ,[strPriority] = @priority,
   [strCostCenter] =@costcenter     ,[strAssignTo] =@assign ,[strNotes] = @notes  ,intCostcenter=@intcostcenter,
-  intEmpAssignTo=@technichin,strPresentMilege=@presentM,strNextMilege=@nextM,intHeavy=@Heavy,strDrivername=@driverName,
-  strContactNo=@contactNo  WHERE intMaintenanceNo=@Mnumber";
+  intEmpAssignTo=@technichin,strPresentMilege=@presentM,strNextMilege=@nextM,intHeavy=@Heavy,strDrivername=@driverName,  strContactNo=@contactNo ,strUserName=@strUser  WHERE intMaintenanceNo=@Mnumber";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@status", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteStart", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "dteStartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21101,6 +21135,7 @@ SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Heavy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intHeavy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@driverName", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, "strDriverName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@contactNo", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strUser", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, "strUserName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Mnumber", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMaintenanceNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -21116,7 +21151,7 @@ SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable UpdateMaintenanceStatusGetData(string status, global::System.Nullable<global::System.DateTime> dteStart, string priority, string costcenter, string assign, string notes, global::System.Nullable<int> intcostcenter, global::System.Nullable<int> technichin, string presentM, string nextM, global::System.Nullable<int> Heavy, string driverName, string contactNo, int Mnumber) {
+        public virtual AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable UpdateMaintenanceStatusGetData(string status, global::System.Nullable<global::System.DateTime> dteStart, string priority, string costcenter, string assign, string notes, global::System.Nullable<int> intcostcenter, global::System.Nullable<int> technichin, string presentM, string nextM, global::System.Nullable<int> Heavy, string driverName, string contactNo, string strUser, int Mnumber) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((status == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
@@ -21196,7 +21231,13 @@ SET    [strStatus] =@status ,[dteStartDate] =@dteStart ,[dteInsertDate] =getdate
             else {
                 this.Adapter.SelectCommand.Parameters[12].Value = ((string)(contactNo));
             }
-            this.Adapter.SelectCommand.Parameters[13].Value = ((int)(Mnumber));
+            if ((strUser == null)) {
+                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((string)(strUser));
+            }
+            this.Adapter.SelectCommand.Parameters[14].Value = ((int)(Mnumber));
             AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable dataTable = new AssetMaintenanceTDS.TblUpdateAssetMaintenanceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -21557,11 +21598,11 @@ FROM            ERP_Asset.dbo.tblFixedAssetRegister INNER JOIN
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intdept", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intDeptID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "update erp_asset.dbo.tblMaintenanceTask  set monServiceCost=@amount where intID=@" +
-                "id";
+            this._commandCollection[1].CommandText = "update erp_asset.dbo.tblMaintenanceSubServiceTask  set monService=@amount where i" +
+                "ntID=@id \r\n ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amount", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@amount", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 0, 0, "monService", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -28611,38 +28652,8 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
             tableMapping.DataSetTable = "tblMaintenanceTask";
             tableMapping.ColumnMappings.Add("intID", "intID");
             tableMapping.ColumnMappings.Add("strServiceName", "strServiceName");
-            tableMapping.ColumnMappings.Add("monServiceCost", "monServiceCost");
+            tableMapping.ColumnMappings.Add("monService", "monService");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[tblMaintenanceTask] WHERE (([intID] = @Original_intID) AND ((@IsNull_strServiceName = 1 AND [strServiceName] IS NULL) OR ([strServiceName] = @Original_strServiceName)) AND ((@IsNull_monServiceCost = 1 AND [monServiceCost] IS NULL) OR ([monServiceCost] = @Original_monServiceCost)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strServiceName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strServiceName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_monServiceCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_monServiceCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[tblMaintenanceTask] ([strServiceName], [monServiceCost]) VALUE" +
-                "S (@strServiceName, @monServiceCost);\r\nSELECT intID, strServiceName, monServiceC" +
-                "ost FROM tblMaintenanceTask WHERE (intID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strServiceName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monServiceCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[tblMaintenanceTask] SET [strServiceName] = @strServiceName, [monServiceCost] = @monServiceCost WHERE (([intID] = @Original_intID) AND ((@IsNull_strServiceName = 1 AND [strServiceName] IS NULL) OR ([strServiceName] = @Original_strServiceName)) AND ((@IsNull_monServiceCost = 1 AND [monServiceCost] IS NULL) OR ([monServiceCost] = @Original_monServiceCost)));
-SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intID = @intID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strServiceName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monServiceCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strServiceName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strServiceName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strServiceName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_monServiceCost", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_monServiceCost", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monServiceCost", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -28658,8 +28669,9 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select intID,strServiceName,monServiceCost from dbo.tblMaintenanceTask where intR" +
-                "effMaintenance=@jobCard";
+            this._commandCollection[0].CommandText = @" select sub.intID,sub.strServiceName,sub.monService from erp_asset.dbo.tblMaintenanceTask ta inner join
+erp_asset.dbo.tblMaintenanceSubServiceTask sub on ta.intID=sub.intReffServiceTask
+where ta.intReffMaintenance=@jobCard and sub.ysnactive=1 and ta.yesnactive=1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobCard", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intReffMaintenance", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
@@ -28679,35 +28691,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
             AssetMaintenanceTDS.tblMaintenanceTaskDataTable dataTable = new AssetMaintenanceTDS.tblMaintenanceTaskDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AssetMaintenanceTDS.tblMaintenanceTaskDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AssetMaintenanceTDS dataSet) {
-            return this.Adapter.Update(dataSet, "tblMaintenanceTask");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -29010,18 +28993,19 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "update ERP_Asset.dbo.tblFixedAssetRegister set intbillingUnit=@unit where strAsse" +
-                "tCode=@assetCode";
+            this._commandCollection[0].CommandText = "update ERP_Asset.dbo.tblFixedAssetRegister set intbillingUnit=@unit ,intbillingJo" +
+                "bstation=@jobId\r\nwhere strAssetId=@assetCode";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBillingUnit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetCode", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@jobId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intBillingJobstation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assetCode", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAssetID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblFixedAssetRegisterDataTable UpdateFixedAssetRegUnit(global::System.Nullable<int> unit, object assetCode) {
+        public virtual AssetMaintenanceTDS.TblFixedAssetRegisterDataTable UpdateFixedAssetRegUnit(global::System.Nullable<int> unit, global::System.Nullable<int> jobId, string assetCode) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((unit.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unit.Value));
@@ -29029,11 +29013,17 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((assetCode == null)) {
-                throw new global::System.ArgumentNullException("assetCode");
+            if ((jobId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(jobId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(assetCode));
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((assetCode == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(assetCode));
             }
             AssetMaintenanceTDS.TblFixedAssetRegisterDataTable dataTable = new AssetMaintenanceTDS.TblFixedAssetRegisterDataTable();
             this.Adapter.Fill(dataTable);
@@ -29314,8 +29304,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
         
         private TblEmployeeJobStationTableAdapter _tblEmployeeJobStationTableAdapter;
         
-        private tblMaintenanceTaskTableAdapter _tblMaintenanceTaskTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -29375,20 +29363,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblMaintenanceTaskTableAdapter tblMaintenanceTaskTableAdapter {
-            get {
-                return this._tblMaintenanceTaskTableAdapter;
-            }
-            set {
-                this._tblMaintenanceTaskTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -29418,10 +29392,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                             && (this._tblEmployeeJobStationTableAdapter.Connection != null))) {
                     return this._tblEmployeeJobStationTableAdapter.Connection;
                 }
-                if (((this._tblMaintenanceTaskTableAdapter != null) 
-                            && (this._tblMaintenanceTaskTableAdapter.Connection != null))) {
-                    return this._tblMaintenanceTaskTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -29442,9 +29412,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                     count = (count + 1);
                 }
                 if ((this._tblEmployeeJobStationTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._tblMaintenanceTaskTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -29485,15 +29452,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tblMaintenanceTaskTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblMaintenanceTask.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblMaintenanceTaskTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -29528,14 +29486,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tblMaintenanceTaskTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblMaintenanceTask.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblMaintenanceTaskTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -29546,14 +29496,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(AssetMaintenanceTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tblMaintenanceTaskTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblMaintenanceTask.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblMaintenanceTaskTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tblEmployeeJobStationTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TblEmployeeJobStation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -29632,11 +29574,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._tblMaintenanceTaskTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblMaintenanceTaskTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -29694,15 +29631,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                     if (this._tblEmployeeJobStationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblEmployeeJobStationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblEmployeeJobStationTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tblMaintenanceTaskTableAdapter != null)) {
-                    revertConnections.Add(this._tblMaintenanceTaskTableAdapter, this._tblMaintenanceTaskTableAdapter.Connection);
-                    this._tblMaintenanceTaskTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblMaintenanceTaskTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblMaintenanceTaskTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblMaintenanceTaskTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblMaintenanceTaskTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -29774,10 +29702,6 @@ SELECT intID, strServiceName, monServiceCost FROM tblMaintenanceTask WHERE (intI
                 if ((this._tblEmployeeJobStationTableAdapter != null)) {
                     this._tblEmployeeJobStationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblEmployeeJobStationTableAdapter]));
                     this._tblEmployeeJobStationTableAdapter.Transaction = null;
-                }
-                if ((this._tblMaintenanceTaskTableAdapter != null)) {
-                    this._tblMaintenanceTaskTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblMaintenanceTaskTableAdapter]));
-                    this._tblMaintenanceTaskTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

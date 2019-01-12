@@ -11,13 +11,11 @@ namespace SCM_BLL
 {
     public class StoreIssue_BLL
     {
-       
-        public DataTable GetViewData(int part, string xml,int Wh, int reqId, DateTime dteDate, int enroll)
+        public DataTable GetViewData(int part, string xml, int Wh, int reqId, DateTime dteDate, int enroll)
         {
             string strMsg = "";
             SprStoreIssueTableAdapter adp = new SprStoreIssueTableAdapter();
             return adp.GetStoreIssueData(part, xml, Wh, reqId, dteDate, enroll, ref strMsg);
-
         }
 
         public string StoreIssue(int part, string xml, int Wh, int reqId, DateTime dteDate, int enroll)
@@ -32,30 +30,32 @@ namespace SCM_BLL
             return strMsg;
         }
 
-     
-        public DataTable GetMasterItem( string strSearchKey)
+        public DataTable GetMasterItem(string strSearchKey)
         {
             TblItemMasterListTableAdapter adpCOA = new TblItemMasterListTableAdapter();
             return adpCOA.GetMasterItemData(strSearchKey);
         }
+
         public DataTable GetWH()
         {
-           try
+            try
             {
                 TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
                 return adpCOA.GetWHData();
             }
             catch { return new DataTable(); }
         }
-        public DataTable GetWHByUnit(int intUnit)
+
+        public DataTable GetDataByWhId(int intWhId)
         {
             try
             {
                 TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
-                return adpCOA.GetWHDataByUnit(intUnit);
+                return adpCOA.GetDataByWhId(intWhId);
             }
             catch { return new DataTable(); }
         }
+
         public DataTable GetWhByLocation(int Wh)
         {
             try
@@ -64,7 +64,6 @@ namespace SCM_BLL
                 return adpCOA.GetDataByWhLocation(Wh);
             }
             catch { return new DataTable(); }
-          
         }
 
         public DataTable getMRRList(int mrrid)

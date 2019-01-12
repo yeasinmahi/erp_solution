@@ -141,11 +141,19 @@
     <div class="tabs_container" align="Center" >Asset Status </div>
    
        <table style="width:700px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #996633;"class="tblrowodd" >
-              <tr  class="tblrowodd">
-                  
+         <tr  class="tblrowodd"> 
+            <td colspan="2" style="text-align: center"><asp:RadioButton ID="radBarcode" AutoPostBack="true"  Checked="true" GroupName="radio" Text="Barcode" runat="server"  OnCheckedChanged="radBarcode_CheckedChanged" /><asp:RadioButton ID="radSearch" AutoPostBack="true"  GroupName="radio" Text="Search" runat="server" OnCheckedChanged="radSearch_CheckedChanged" /></td>
+        </tr>
+           
+        <tr  class="tblrowodd">
        <td style="text-align:right;" > <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Asset Number:"></asp:Label></td>
-          <td style="text-align:left;"> <asp:TextBox ID="TxtAsset" runat="server" CssClass="txtBox" Font-Bold="True" AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged"  ></asp:TextBox>
-              </td>
+          
+        <td style="text-align:left;"> <asp:TextBox ID="TxtAsset" CssClass="txtBox" runat="server"  AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged" ></asp:TextBox>
+        <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="TxtAsset"
+        ServiceMethod="GetAssetAutoSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+        </cc1:AutoCompleteExtender></td>   
                       
            <td style="text-align:right;"> <asp:Label ID="LblUnit" runat="server" CssClass="lbl" font-size="small" Text="Unit:"></asp:Label></td>
           <td style="text-align:left;"> <asp:TextBox ID="TxtUnit" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox>
@@ -183,7 +191,7 @@
           <div id="hdnInUse"  class="hdnInUse" style="width:auto;  height:100px;">
               <table style="width:auto;  float:left; " >  
 
-              <tr><td colspan="4" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="CloseHdnInUseDiv()" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 10px verdana;">X</a></td></tr>
+              <tr><td colspan="2" style="text-align:right; font:bold 14px verdana;"><a class="button" onclick="CloseHdnInUseDiv()" title="Close" style="cursor:pointer;text-align:right; color:red; font:bold 10px verdana;">X</a></td></tr>
       
                 <tr>                  
                <td style="text-align:right;">  <asp:Label ID="Label9" runat="server" CssClass="lbl" font-size="small" Text="Responsible Person:"></asp:Label></td>

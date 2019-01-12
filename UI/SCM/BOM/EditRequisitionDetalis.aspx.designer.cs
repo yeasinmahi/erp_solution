@@ -31,15 +31,6 @@ namespace UI.SCM.BOM {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference2;
         
         /// <summary>
-        /// BundleReference3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
-        
-        /// <summary>
         /// frmselfresign control.
         /// </summary>
         /// <remarks>
@@ -184,66 +175,93 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.GridView dgvItems;
         
         /// <summary>
-        /// lblitm control.
+        /// hdnType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblitm;
+        protected global::System.Web.UI.WebControls.HiddenField hdnType;
         
         /// <summary>
-        /// txtItem control.
+        /// Label22 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtItem;
+        protected global::System.Web.UI.WebControls.Label Label22;
         
         /// <summary>
-        /// AutoCompleteExtender2 control.
+        /// txtItemId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
+        protected global::System.Web.UI.WebControls.TextBox txtItemId;
         
         /// <summary>
-        /// lblUom control.
+        /// Label14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUom;
+        protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// txtChangeQty control.
+        /// txtItemName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtChangeQty;
+        protected global::System.Web.UI.WebControls.TextBox txtItemName;
         
         /// <summary>
-        /// btnCalculate control.
+        /// Label12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCalculate;
+        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// btnSaves control.
+        /// txtProductionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSaves;
+        protected global::System.Web.UI.WebControls.TextBox txtProductionId;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// txtQuantity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtQuantity;
+        
+        /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
     }
 }

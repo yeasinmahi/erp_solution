@@ -8,6 +8,7 @@ using Purchase_BLL.Asset;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Flogging.Core;
+using System.Globalization;
 
 namespace UI.Asset
 {
@@ -56,26 +57,37 @@ namespace UI.Asset
 
 			try
             {
-                DateTime fromdate = DateTime.Parse(txtDteFrom.Text);
-                DateTime todate = DateTime.Parse(TxtdteTo.Text);
+               
+
+                string fromdate =txtDteFrom.Text.ToString();
+                string todate = TxtdteTo.Text.ToString();
                 int intJobId = int.Parse(ddlJobStation.SelectedValue);
                 int type = int.Parse(ddlType.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
-                DateTime dteTo = DateTime.Parse(TxtdteTo.Text.ToString());
-
-                if(type==1) //Top Sheet
+              
+                string xml = "<voucher><voucherentry dteFrom=" + '"' + fromdate + '"' + " dteTo=" + '"' + todate + '"' + "/></voucher>".ToString();
+                if (type==1) //Top Sheet
                 {
                     dgview.Visible = true;
-                    dt = objReport.GetData(1, "", 0, intJobId, dteFrom, dteTo, type, intEnroll);
+                    dt = objReport.GetData(1, xml, 0, intJobId, DateTime.Now, DateTime.Now, type, intEnroll);
                     dgview.DataSource = dt;
                     dgview.DataBind();
                     dgvMaterial.Visible = false;
                     dgvServiceCost.Visible = false;
+
+                    decimal MaterialT = dt.AsEnumerable().Sum(row => row.Field<decimal>("monMaterial"));
+                    decimal ServiceT = dt.AsEnumerable().Sum(row => row.Field<decimal>("monService"));
+                    decimal total = dt.AsEnumerable().Sum(row => row.Field<decimal>("monTotal"));
+                  
+                    dgview.FooterRow.Cells[9].Text = "Ground Total";
+                    dgview.FooterRow.Cells[9].HorizontalAlign = HorizontalAlign.Right;
+                    dgview.FooterRow.Cells[10].Text = MaterialT.ToString("N2");
+                    dgview.FooterRow.Cells[11].Text = ServiceT.ToString("N2");
+                    dgview.FooterRow.Cells[12].Text = total.ToString("N2");
                 }
                 else if (type == 2)//Material
                 {
                     dgvMaterial.Visible = true;
-                    dt = objReport.GetData(2, "", 0, intJobId, dteFrom, dteTo, type, intEnroll);
+                    dt = objReport.GetData(2, "", 0, intJobId, DateTime.Parse(fromdate.ToString()), DateTime.Parse(todate), type, intEnroll);
                     dgvMaterial.DataSource = dt;
                     dgvMaterial.DataBind();
                     dgview.Visible = false;
@@ -84,7 +96,7 @@ namespace UI.Asset
                 else //service Cost
                 {
                     dgvServiceCost.Visible = true;
-                    dt = objReport.GetData(3, "", 0, intJobId, dteFrom, dteTo, type, intEnroll);
+                    dt = objReport.GetData(3, "", 0, intJobId, DateTime.Parse(fromdate.ToString()), DateTime.Parse(todate), type, intEnroll);
                     dgvServiceCost.DataSource = dt;
                     dgvServiceCost.DataBind();
                     dgvMaterial.Visible = false;
@@ -156,5 +168,51 @@ namespace UI.Asset
 				Exception = ex
 			};
 		}
-	}
+
+        protected void lblJobCardTwo_Click(object sender, EventArgs e)
+        {
+            string jobcard="";
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                jobcard = (row.FindControl("lblJobCardTwo") as LinkButton).Text;
+
+            }
+            catch (Exception ex) { ex.Message.ToString(); }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "window.open('https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Asset_Module/Estimation_Report_Job_Card_Report" + "&intJobCard=" + jobcard + "&rc:LinkTarget=_self','details','left=220,top=160,width=950,height=480,addressbar=no,status=no,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizable=yes');", true); 
+        }
+
+        protected void lblJobCardOne_Click(object sender, EventArgs e)
+        {
+            string jobcard = "";
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                jobcard = (row.FindControl("lblJobCardOne") as LinkButton).Text;
+
+            }
+            catch (Exception ex) { ex.Message.ToString(); }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "window.open('https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Asset_Module/Estimation_Report_Job_Card_Report" + "&intJobCard=" + jobcard + "&rc:LinkTarget=_self','details','left=220,top=160,width=950,height=480,addressbar=no,status=no,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizable=yes');", true);
+
+        }
+
+        protected void lblJobCardThree_Click(object sender, EventArgs e)
+        {
+            string jobcard = "";
+            try
+            {
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                jobcard = (row.FindControl("lblJobCardThree") as LinkButton).Text;
+                
+            }
+            catch (Exception ex) { ex.Message.ToString(); }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "window.open('https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Asset_Module/Estimation_Report_Job_Card_Report" + "&intJobCard=" + jobcard + "&rc:LinkTarget=_self','details','left=220,top=160,width=950,height=480,addressbar=no,status=no,menubar=no,toolbar=no,location=no,directories=no,status=no,scrollbars=no,resizable=yes');", true);
+
+        }
+
+       
+    }
 }

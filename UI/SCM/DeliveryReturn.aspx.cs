@@ -2,9 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,25 +12,26 @@ namespace UI.SCM
 {
     public partial class DeliveryReturn : BasePage
     {
-        DataTable dt = new DataTable();
-        PoGenerate_BLL objPo = new PoGenerate_BLL();
-        int enroll, intWh;
+        private DataTable dt = new DataTable();
+        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private int enroll, intWh;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\DeliveryReturn";
-        string stop = "stopping SCM\\DeliveryReturn";
-        string perform = "Performance on SCM\\DeliveryReturn";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\DeliveryReturn";
+        private string stop = "stopping SCM\\DeliveryReturn";
+        private string perform = "Performance on SCM\\DeliveryReturn";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); 
-                
+                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+
                 dt = objPo.GetPoData(36, "", intWh, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
-                ddlWH.DataValueField = "Id"; 
+                ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
             }
             else
@@ -44,7 +43,7 @@ namespace UI.SCM
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // starting performance tracker
-            var tracker = new PerfTracker(perform + " "+ "btnDetalis_Click", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker(perform + " " + "btnDetalis_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
@@ -60,8 +59,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
-
         }
 
         private void getDataBind()
@@ -90,7 +87,6 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
-
         }
 
         protected void btnReturn_Click(object sender, EventArgs e)
@@ -104,15 +100,13 @@ namespace UI.SCM
             {
                 if (hdnConfirm.Value == "1")
                 {
-
-                    int poid =int.Parse(txtPoNo.Text.ToString());
+                    int poid = int.Parse(txtPoNo.Text.ToString());
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
                     TextBox txtReson = row.FindControl("txtReson") as TextBox;
                     Label lblitemId = row.FindControl("lblitemId") as Label;
                     Label lblPoQty = row.FindControl("lblPoQty") as Label;
-                     
-                   
+
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     double returnQty = double.Parse(txtReturnQty.Text.ToString());
                     string remarks = txtReson.Text.ToString();
@@ -122,9 +116,8 @@ namespace UI.SCM
                         string msg = objPo.PoApprove(32, xmlData, intWh, poid, DateTime.Now, enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         getDataBind();
-                    } 
+                    }
                 }
-
             }
             catch (Exception ex)
             {

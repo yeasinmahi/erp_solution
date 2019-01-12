@@ -20,9 +20,10 @@
 
     <script>   function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
         function RefreshParent() {
-            if (window.opener != null && !window.opener.closed) {
-                window.opener.location.reload();
-            }
+            window.opener.location.reload();
+            //if (window.opener != null && !window.opener.closed) {
+            //    window.opener.location.reload();
+            //}
         }
 
     </script> 
@@ -165,7 +166,7 @@
          <table  border="1px" width="900" class="tblrowodd">
             <tr> 
             <td style="text-align:right;"> <asp:Label ID="Lbblorder" runat="server" CssClass="lbl" Text="Work Order#:"></asp:Label></td> 
-            <td style="text-align:left;"> <asp:TextBox ID="TxtOrder" runat="server" CssClass="txtBox" Font-Bold="False"></asp:TextBox> 
+            <td style="text-align:left;"> <asp:TextBox ID="TxtOrder" runat="server" Enabled="false" CssClass="txtBox" Font-Bold="False"></asp:TextBox> 
             <td style="text-align:right;"><asp:Label ID="LblStatus" runat="server" CssClass="lbl" Text="Status:"></asp:Label> </td>
             <td style="text-align:left;"><asp:DropDownList ID="DdlStatus" runat="server" CssClass="ddList" Font-Bold="False">
             <asp:ListItem>Open</asp:ListItem>
@@ -216,13 +217,13 @@
             <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Present Mileage:"></asp:Label>
             </td>
             <td class="auto-style1" style="text-align:left;">
-            <asp:TextBox ID="TxtPresentMilege" runat="server" CssClass="txtBox" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:TextBox>
+            <asp:TextBox ID="TxtPresentMilege" runat="server" TextMode="Number" CssClass="txtBox" ForeColor="Green" Width="110px" Font-Bold="False"  ></asp:TextBox>
             </td>
             <td class="auto-style1" style="text-align:right;">
             <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Next Mileage:"></asp:Label>
             </td>
             <td class="auto-style1" style="text-align:left;">
-            <asp:TextBox ID="TxtNextMilege" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
+            <asp:TextBox ID="TxtNextMilege" runat="server" CssClass="txtBox"  TextMode="Number" Width="110px" Font-Bold="False"  ></asp:TextBox>
                      
             </td><td><asp:Label ID="lbHevvy" runat="server" CssClass="lbl" Text="Maintenance Type:"></asp:Label></td>
             <td> <asp:DropDownList ID="DdlHevvyVehicle"    runat="server" ForeColor="Green" CssClass="ddList" Font-Bold="False"  Width="110px">
@@ -238,15 +239,25 @@
             <td class="auto-style1" style="text-align:left;">
                 <asp:TextBox ID="txtDriverName" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
             
-            </td>
-
+            </td> 
             <td class="auto-style1" style="text-align:right;">
             <asp:Label ID="lblContact" runat="server" CssClass="lbl" Text="Contact No:"></asp:Label>
             </td>
             <td class="auto-style1" style="text-align:left;">
-             <asp:TextBox ID="txtContactNo" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>
-           
+             <asp:TextBox ID="txtContactNo" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>           
             </td>
+             <td class="auto-style1" style="text-align:right;">
+            <asp:Label ID="lblUser" runat="server" CssClass="lbl" Text="User Name:"></asp:Label>
+            </td>
+            <td class="auto-style1" style="text-align:left;">
+             <asp:TextBox ID="txtUser" runat="server" CssClass="txtBox" Width="110px" Font-Bold="False"  ></asp:TextBox>           
+            </td>
+             </tr>
+             <tr>
+            <td colspan="3" class="auto-style1" style="text-align:right;">
+            <asp:Label ID="lblunit" runat="server" ForeColor="Red" CssClass="lbl" Text="Bill Unit:"></asp:Label>
+            </td>
+           
              </tr>
            </table> 
           <div class="tabs_container" >Maitenance Task Services </div>
@@ -290,7 +301,7 @@
        </table> 
           <table border="1px" width="900" class="tblrowodd" >
              <tr> <td style="text-align:right;"><asp:Button ID="btnclose" BackColor="YellowGreen" runat="server" Text="Back" OnClick="btnclose_Click"/>
-                 <asp:Button ID="BtnSave" BackColor="YellowGreen" runat="server" Text="Save" OnClick="BtnSave_Click"   /> 
+                 <asp:Button ID="BtnSave" BackColor="YellowGreen" runat="server" Text="Save" OnClientClick="funConfirmAll();" OnClick="BtnSave_Click"   /> 
                  
                   </td>    
 

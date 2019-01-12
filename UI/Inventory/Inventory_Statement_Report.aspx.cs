@@ -1,22 +1,16 @@
-﻿using Purchase_BLL.Asset;
-using SCM_BLL;
+﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
-using System.Web.Script.Services;
-using System.Web.Services;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.Inventory
 {
     public partial class Inventory_Statement_Report : BasePage
     {
-        DataTable dt = new DataTable();
-        InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+        private DataTable dt = new DataTable();
+        private InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,11 +19,15 @@ namespace UI.Inventory
                 try
                 {
                     int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
-                    dt = objbll.GetWH(enroll);
+                    dt = new MrrReceive_BLL().DataView(19, "", 0, 0, DateTime.Now, enroll);
                     ddlWH.DataSource = dt;
-                    ddlWH.DataTextField = "strWareHoseName";
-                    ddlWH.DataValueField = "intWHID";
+                    ddlWH.DataTextField = "strName";
+                    ddlWH.DataValueField = "Id";
                     ddlWH.DataBind();
+                    DateTime now = DateTime.Now;
+                    var dte = new DateTime(now.Year, now.Month, 1);
+                    txtFromDate.Text = dte.ToString("yyyy-MM-dd");
+                    txtToDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 catch { }
             }
@@ -42,34 +40,41 @@ namespace UI.Inventory
             int itemId;
             int Type = Convert.ToInt32(ddlSearchBy.SelectedItem.Value);
             int WH = Convert.ToInt32(ddlWH.SelectedItem.Value);
-            try { itemId = Convert.ToInt32(txtItemID.Text); }
-            catch {  itemId = 0; }
+            try
+            {
+                itemId = Convert.ToInt32(txtItemID.Text);
+            }
+            catch
+            {
+                itemId = 0;
+            }
 
+            if (!(Type == 3 || Type == 4))
+            {
+                dt = objbll.InventorySearch(Type, WH, itemId);
+                ddlSubCategory.DataSource = dt;
+                ddlSubCategory.DataTextField = "strSearch";
+                ddlSubCategory.DataValueField = "intId";
+                ddlSubCategory.DataBind();
+            }
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-         
-
-            dt = objbll.InventorySearch(Type, WH, itemId);
-            ddlSubCategory.DataSource = dt;
-            ddlSubCategory.DataTextField = "strSearch";
-            ddlSubCategory.DataValueField = "intId";
-            ddlSubCategory.DataBind();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
 
-            string id="";
+            string id = "";
             int WH = Convert.ToInt32(ddlWH.SelectedItem.Value);
             int ddlsearch = Convert.ToInt32(ddlSearchBy.SelectedItem.Value);
-            if(ddlsearch==4)
+            if (ddlsearch == 4)
             {
                 id = txtItemName.Text;
                 txtItemID.Text = "";
                 try
                 {
-                    if(!string.IsNullOrEmpty(ddlSubCategory.SelectedItem.Text))
+                    if (!string.IsNullOrEmpty(ddlSubCategory.SelectedItem.Text))
                     {
-                        ddlSubCategory.DataSource=null;
+                        ddlSubCategory.DataSource = null;
                         ddlSubCategory.DataBind();
                     }
                 }
@@ -79,7 +84,7 @@ namespace UI.Inventory
                     ddlSubCategory.DataBind();
                 }
             }
-            else if(ddlsearch==3)
+            else if (ddlsearch == 3)
             {
                 id = txtItemID.Text;
             }
@@ -88,7 +93,7 @@ namespace UI.Inventory
                 id = "";
                 ddlsearch = 4;
             }
-            else if(ddlsearch==2)
+            else if (ddlsearch == 2)
             {
                 id = ddlSubCategory.SelectedItem.Text;
             }
@@ -96,15 +101,24 @@ namespace UI.Inventory
             {
                 id = ddlSubCategory.SelectedItem.Value;
             }
+            string fromTime = txtFormTime.Text;
+            string toTime = txtToTime.Text;
 
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Open_Reports/Inventory_Report_New" + "&wh=" + ddlWH.SelectedItem.Value + "&SearchBy=" + ddlsearch + "&FromDate=" + txtFromDate.Text + "&ToDate=" + txtToDate.Text + "&strID=" + id + "&rc:LinkTarget=_self";
+            string url;
+            if (string.IsNullOrWhiteSpace(fromTime) || string.IsNullOrWhiteSpace(toTime))
+            {
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Open_Reports/Inventory_Report_New" + "&wh=" + ddlWH.SelectedItem.Value + "&SearchBy=" + ddlsearch + "&FromDate=" + txtFromDate.Text + "&ToDate=" + txtToDate.Text + "&strID=" + id + "&rc:LinkTarget=_self";
+            }
+            else
+            {
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Open_Reports/Inventory_Report_New" + "&wh=" + ddlWH.SelectedItem.Value + "&SearchBy=" + ddlsearch + "&FromDate=" + txtFromDate.Text + " " + fromTime + "&ToDate=" + txtToDate.Text + " " + toTime + "&strID=" + id + "&rc:LinkTarget=_self";
+            }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
-
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
-        {          
+        {
             ddlSearchBy.SelectedIndex = ddlSearchBy.Items.IndexOf(ddlSearchBy.Items.FindByValue("11"));
         }
     }

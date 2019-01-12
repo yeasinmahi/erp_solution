@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductionOrder.aspx.cs" Inherits="UI.SCM.BOM.ProductionOrder" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-<%@ Register Assembly="TimePicker" Namespace="MKB.TimePicker" TagPrefix="MKB" %>
 
 <!DOCTYPE html>
 <html>
@@ -120,63 +119,62 @@
                                 <asp:TextBox ID="txtdteDate" Style="width: 150px" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender>
 
-                                
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="  Time :"></asp:Label></td>
-                                <td style="text-align: left" >
+                                <td style="text-align: left">
                                     <%--<asp:TextBox ID="TextBox1" Style="width: 150px" runat="server" CssClass="txtBox"></asp:TextBox>--%>
                                     <asp:DropDownList ID="ddlFromTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
-                                    <asp:ListItem>12:00 AM</asp:ListItem>
-                                    <asp:ListItem>1:00 AM</asp:ListItem>
-                                    <asp:ListItem>2:00 AM</asp:ListItem>
-                                    <asp:ListItem>3:00 AM</asp:ListItem>
-                                    <asp:ListItem>4:00 AM</asp:ListItem>
-                                    <asp:ListItem>5:00 AM</asp:ListItem>
-                                    <asp:ListItem>6:00 AM</asp:ListItem>
-                                    <asp:ListItem>7:00 AM</asp:ListItem>
-                                    <asp:ListItem>8:00 AM</asp:ListItem>
-                                    <asp:ListItem>9:00 AM</asp:ListItem>
-                                    <asp:ListItem>10:00 AM</asp:ListItem>
-                                    <asp:ListItem>11:00 AM</asp:ListItem>
-                                    <asp:ListItem>12:00 PM</asp:ListItem>
-                                    <asp:ListItem>1:00 PM</asp:ListItem>
-                                    <asp:ListItem>2:00 PM</asp:ListItem>
-                                    <asp:ListItem>3:00 PM</asp:ListItem>
-                                    <asp:ListItem>4:00 PM</asp:ListItem>
-                                    <asp:ListItem>5:00 PM</asp:ListItem>
-                                    <asp:ListItem>6:00 PM</asp:ListItem>
-                                    <asp:ListItem>7:00 PM</asp:ListItem>
-                                    <asp:ListItem>8:00 PM</asp:ListItem>
-                                    <asp:ListItem>9:00 PM</asp:ListItem>
-                                    <asp:ListItem>10:00 PM</asp:ListItem>
-                                    <asp:ListItem>11:59 PM</asp:ListItem>
-                                </asp:DropDownList>
-                                <asp:DropDownList ID="ddlFromToTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
-                                    <asp:ListItem>12:00 AM</asp:ListItem>
-                                    <asp:ListItem>1:00 AM</asp:ListItem>
-                                    <asp:ListItem>2:00 AM</asp:ListItem>
-                                    <asp:ListItem>3:00 AM</asp:ListItem>
-                                    <asp:ListItem>4:00 AM</asp:ListItem>
-                                    <asp:ListItem>5:00 AM</asp:ListItem>
-                                    <asp:ListItem>6:00 AM</asp:ListItem>
-                                    <asp:ListItem>7:00 AM</asp:ListItem>
-                                    <asp:ListItem>8:00 AM</asp:ListItem>
-                                    <asp:ListItem>9:00 AM</asp:ListItem>
-                                    <asp:ListItem>10:00 AM</asp:ListItem>
-                                    <asp:ListItem>11:00 AM</asp:ListItem>
-                                    <asp:ListItem>12:00 PM</asp:ListItem>
-                                    <asp:ListItem>1:00 PM</asp:ListItem>
-                                    <asp:ListItem>2:00 PM</asp:ListItem>
-                                    <asp:ListItem>3:00 PM</asp:ListItem>
-                                    <asp:ListItem>4:00 PM</asp:ListItem>
-                                    <asp:ListItem>5:00 PM</asp:ListItem>
-                                    <asp:ListItem>6:00 PM</asp:ListItem>
-                                    <asp:ListItem>7:00 PM</asp:ListItem>
-                                    <asp:ListItem>8:00 PM</asp:ListItem>
-                                    <asp:ListItem>9:00 PM</asp:ListItem>
-                                    <asp:ListItem>10:00 PM</asp:ListItem>
-                                    <asp:ListItem>11:59 PM</asp:ListItem>
-                                </asp:DropDownList>
+                                        <asp:ListItem>12:00 AM</asp:ListItem>
+                                        <asp:ListItem>1:00 AM</asp:ListItem>
+                                        <asp:ListItem>2:00 AM</asp:ListItem>
+                                        <asp:ListItem>3:00 AM</asp:ListItem>
+                                        <asp:ListItem>4:00 AM</asp:ListItem>
+                                        <asp:ListItem>5:00 AM</asp:ListItem>
+                                        <asp:ListItem>6:00 AM</asp:ListItem>
+                                        <asp:ListItem>7:00 AM</asp:ListItem>
+                                        <asp:ListItem>8:00 AM</asp:ListItem>
+                                        <asp:ListItem>9:00 AM</asp:ListItem>
+                                        <asp:ListItem>10:00 AM</asp:ListItem>
+                                        <asp:ListItem>11:00 AM</asp:ListItem>
+                                        <asp:ListItem>12:00 PM</asp:ListItem>
+                                        <asp:ListItem>1:00 PM</asp:ListItem>
+                                        <asp:ListItem>2:00 PM</asp:ListItem>
+                                        <asp:ListItem>3:00 PM</asp:ListItem>
+                                        <asp:ListItem>4:00 PM</asp:ListItem>
+                                        <asp:ListItem>5:00 PM</asp:ListItem>
+                                        <asp:ListItem>6:00 PM</asp:ListItem>
+                                        <asp:ListItem>7:00 PM</asp:ListItem>
+                                        <asp:ListItem>8:00 PM</asp:ListItem>
+                                        <asp:ListItem>9:00 PM</asp:ListItem>
+                                        <asp:ListItem>10:00 PM</asp:ListItem>
+                                        <asp:ListItem>11:59 PM</asp:ListItem>
+                                    </asp:DropDownList>
+                                    <asp:DropDownList ID="ddlFromToTime" CssClass="ddList" Font-Bold="False" Width="100px" AutoPostBack="true" runat="server">
+                                        <asp:ListItem>12:00 AM</asp:ListItem>
+                                        <asp:ListItem>1:00 AM</asp:ListItem>
+                                        <asp:ListItem>2:00 AM</asp:ListItem>
+                                        <asp:ListItem>3:00 AM</asp:ListItem>
+                                        <asp:ListItem>4:00 AM</asp:ListItem>
+                                        <asp:ListItem>5:00 AM</asp:ListItem>
+                                        <asp:ListItem>6:00 AM</asp:ListItem>
+                                        <asp:ListItem>7:00 AM</asp:ListItem>
+                                        <asp:ListItem>8:00 AM</asp:ListItem>
+                                        <asp:ListItem>9:00 AM</asp:ListItem>
+                                        <asp:ListItem>10:00 AM</asp:ListItem>
+                                        <asp:ListItem>11:00 AM</asp:ListItem>
+                                        <asp:ListItem>12:00 PM</asp:ListItem>
+                                        <asp:ListItem>1:00 PM</asp:ListItem>
+                                        <asp:ListItem>2:00 PM</asp:ListItem>
+                                        <asp:ListItem>3:00 PM</asp:ListItem>
+                                        <asp:ListItem>4:00 PM</asp:ListItem>
+                                        <asp:ListItem>5:00 PM</asp:ListItem>
+                                        <asp:ListItem>6:00 PM</asp:ListItem>
+                                        <asp:ListItem>7:00 PM</asp:ListItem>
+                                        <asp:ListItem>8:00 PM</asp:ListItem>
+                                        <asp:ListItem>9:00 PM</asp:ListItem>
+                                        <asp:ListItem>10:00 PM</asp:ListItem>
+                                        <asp:ListItem>11:59 PM</asp:ListItem>
+                                    </asp:DropDownList>
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Invoice :"></asp:Label></td>

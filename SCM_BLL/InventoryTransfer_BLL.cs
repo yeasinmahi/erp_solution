@@ -1,5 +1,4 @@
-﻿
-using SCM_DAL;
+﻿using SCM_DAL;
 using SCM_DAL.InventoryTransferTDSTableAdapters;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,8 @@ namespace SCM_BLL
     public class InventoryTransfer_BLL
     {
         private static InventoryTransferTDS.VehicleSearchDataTable[] tableVehicle = null;
-        int e;
+        private int e;
+
         public DataTable GetTtransferDatas(int Type, string xmlString, int intWh, int id, DateTime dteDate, int enroll)
         {
             try
@@ -24,7 +24,6 @@ namespace SCM_BLL
                 return adp.GetTransferData(Type, xmlString, intWh, id, dteDate, enroll, ref msg);
             }
             catch { return new DataTable(); }
-
         }
 
         public string PostTransfer(int Type, string xmlString, int intWh, int id, DateTime dteDate, int enroll)
@@ -32,32 +31,30 @@ namespace SCM_BLL
             string strMsg = "";
             try
             {
-
                 SprInventoryTransferWebTableAdapter adp = new SprInventoryTransferWebTableAdapter();
                 adp.GetTransferData(Type, xmlString, intWh, id, dteDate, enroll, ref strMsg);
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+
         public string PostTransferDamage(int Type, string xmlString, int intWh, int id, DateTime dteDate, int enroll)
         {
             string strMsg = "";
             try
             {
-
                 sprInventoryTransferWebDamageEntryTableAdapter adp = new sprInventoryTransferWebDamageEntryTableAdapter();
                 adp.GetData(Type, xmlString, intWh, id, dteDate, enroll, ref strMsg);
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+
         public string[] AutoSearchVehicle(string unit, string prefix)
         {
-
             tableVehicle = new InventoryTransferTDS.VehicleSearchDataTable[Convert.ToInt32(unit)];
             VehicleSearchTableAdapter adpCOA = new VehicleSearchTableAdapter();
             tableVehicle[e] = adpCOA.GetVehicleData(Convert.ToInt32(unit));
-
 
             // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -65,7 +62,7 @@ namespace SCM_BLL
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableVehicle[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableVehicle[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.intID
                                select tmp;
                     if (rows.Count() > 0)
@@ -82,13 +79,10 @@ namespace SCM_BLL
                                    orderby tmp.strRegNo
                                    select tmp;
 
-
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
-
                         }
-
                     }
                     catch
                     {
@@ -110,9 +104,7 @@ namespace SCM_BLL
             {
                 return null;
             }
-
         }
-
 
         public DataTable GetWearHouse()
         {
@@ -125,6 +117,7 @@ namespace SCM_BLL
             TblItemTableAdapter adp = new TblItemTableAdapter();
             return adp.GetFGData(intunitid);
         }
+
         public DataTable GetSadUOMList(int intunit)
         {
             TblUOMTableAdapter adp = new TblUOMTableAdapter();
@@ -157,10 +150,8 @@ namespace SCM_BLL
 
         public DataTable InsertHSCodeData(string strHSCode, string strDescription, decimal CD, decimal RD, decimal SD, decimal VAT, decimal AIT, decimal ATV, decimal PSI, string strUnit, decimal TTI, decimal EXD)
         {
-
             SprAddHSCodeTableAdapter adp = new SprAddHSCodeTableAdapter();
             return adp.InsertHSCode(strHSCode, strDescription, CD, RD, SD, VAT, AIT, ATV, PSI, strUnit, TTI, EXD);
-
         }
 
         //public String InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, string SupplierAddress,int AccountNo, int RoutingNo,int RequestBy,int SuperviseBy,DateTime dteRequestBy,DateTime dteSuperviseBy,string xml)
@@ -176,7 +167,7 @@ namespace SCM_BLL
         //    return msg;
         //}
 
-        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName,int suppMasterID, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
+        public DataTable InsertSupplierAccountsInfoList(string RequesterName, string RequesterDesignation, string SupplierName, int suppMasterID, string SupplierAddress, int AccountNo, int RoutingNo, int RequestBy, int SuperviseBy, DateTime dteRequestBy, DateTime dteSuperviseBy, string xml)
         {
             sprSupplierAccountsInfoUpdateTableAdapter adp = new sprSupplierAccountsInfoUpdateTableAdapter();
             string msg = "";
@@ -186,7 +177,6 @@ namespace SCM_BLL
                 //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
             catch (Exception e) { return new DataTable(); }
-
         }
 
         public DataTable GetSupplyInfoById(int supplerMasterId)
@@ -199,30 +189,26 @@ namespace SCM_BLL
                 //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
             catch (Exception e) { return new DataTable(); }
-
         }
 
-        public DataTable GetAssetData(int whid,DateTime FromDate, DateTime toDate,int intSearchBy,string strID)
+        public DataTable GetAssetData(int whid, DateTime FromDate, DateTime toDate, int intSearchBy, string strID)
         {
             SprInventoryStatementTableAdapter adp = new SprInventoryStatementTableAdapter();
-            return adp.GetAssetData(whid,FromDate,toDate,intSearchBy,strID);
+            return adp.GetAssetData(whid, FromDate, toDate, intSearchBy, strID);
         }
 
         public DataTable InsertCurrentAssetAudit(string xml)
         {
-           
             sprCurrentAssetAuditTableAdapter adp = new sprCurrentAssetAuditTableAdapter();
             try
             {
-                 return adp.InsertCurrentAssetData(xml);
-                
+                return adp.InsertCurrentAssetData(xml);
             }
             catch
             {
                 return new DataTable();
             }
-           
-         }
+        }
 
         public DataTable GetWHList()
         {
@@ -240,7 +226,6 @@ namespace SCM_BLL
                 //msg = "SUPPLIER UPDATED SUCCESSFULLY..";
             }
             catch (Exception e) { return new DataTable(); }
-
         }
 
         //public string InsertGoodReceiveNote(int intItemId, string strItemName,string strDes,string strUoM,decimal numPoQnt, decimal numPreReceiveQnt, decimal numRemainingQnt, decimal numReceiveqnt,string strRemarks,int intActionBy,DateTime dteActionTime,bool ysnActive)
@@ -258,28 +243,29 @@ namespace SCM_BLL
 
         //    return message;
         //}
-        public int? InsertFactoryGoodReceive(int poId,int supplierId,string challanNo, DateTime challanDate, string driverName,string driverContact,string vechicleNo,string meterialDescription,int unitId,int WHId,string shipmentSl,int actionBy, ref int? intGNId)
+        public int? InsertFactoryGoodReceive(int poId, int supplierId, string challanNo, DateTime challanDate, string driverName, string driverContact, string vechicleNo, string meterialDescription, int unitId, int WHId, string shipmentSl, int actionBy, ref int? intGNId)
         {
             sprInsertFactoryGoodReceiveTableAdapter adp = new sprInsertFactoryGoodReceiveTableAdapter();
-            
+
             try
             {
-                adp.InsertFactoryGoodReceive(poId,supplierId,challanNo,challanDate,driverName,driverContact,vechicleNo,meterialDescription,unitId,WHId,shipmentSl,actionBy, ref intGNId);
+                adp.InsertFactoryGoodReceive(poId, supplierId, challanNo, challanDate, driverName, driverContact, vechicleNo, meterialDescription, unitId, WHId, shipmentSl, actionBy, ref intGNId);
             }
             catch (Exception ex)
             {
-                intGNId =0;
+                intGNId = 0;
             }
 
             return intGNId;
         }
-        public int? InsertFactoryGoodsReceiveDetail(int gnId, int itemId, int poId, decimal poQnt, decimal receiveQnt, string remarks,ref int? intId)
+
+        public int? InsertFactoryGoodsReceiveDetail(int gnId, int itemId, int poId, decimal poQnt, decimal receiveQnt, string remarks, ref int? intId)
         {
             sprInsertFactoryGoodsReceiveDetailTableAdapter adp = new sprInsertFactoryGoodsReceiveDetailTableAdapter();
 
             try
             {
-                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poId,poQnt, receiveQnt,remarks,ref intId);
+                adp.InsertFactoryGoodsReceiveDetail(gnId, itemId, poId, poQnt, receiveQnt, remarks, ref intId);
             }
             catch (Exception ex)
             {
@@ -288,6 +274,7 @@ namespace SCM_BLL
 
             return intId;
         }
+
         public bool UpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter(int gnId)
         {
             sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter adp = new sprUpdateFactoryGoodReceiveInActiveByGrnIdTableAdapter();
@@ -321,21 +308,72 @@ namespace SCM_BLL
             return adp.GetAllJobStation();
         }
 
-        public DataTable FixedAssetData(string xml,int intType,string strJobStationName,int enroll)
+        public DataTable FixedAssetData(string xml, int intType, string strJobStationName, int enroll)
         {
             SprFixedAuditTableAdapter adp = new SprFixedAuditTableAdapter();
-            return adp.GetFixedAuditData(xml,intType,strJobStationName,enroll);
+            return adp.GetFixedAuditData(xml, intType, strJobStationName, enroll);
         }
 
-        public DataTable InventorySearch(int intType,int intWHID,int ItemId)
+        public DataTable InventorySearch(int intType, int intWHID, int ItemId)
         {
             sprInventorySearchNewTableAdapter adp = new sprInventorySearchNewTableAdapter();
-            return adp.GetInventorySearchItem(intType,intWHID,ItemId);
+            return adp.GetInventorySearchItem(intType, intWHID, ItemId);
         }
+
         public DataTable GetWH(int intEnroll)
         {
             TblWHTableAdapter adp = new TblWHTableAdapter();
             return adp.GetWHByEnroll(intEnroll);
+        }
+
+        public DataTable InventoryAdjustment(int unit, int wh, int user, int intItem, decimal rcvQty, decimal monRate, int location, string remarks)
+        {
+            sprInsertMrrItemDetailWithoutPOTableAdapter adp = new sprInsertMrrItemDetailWithoutPOTableAdapter();
+            return adp.InventoryAdjustment(unit, wh, user, intItem, rcvQty, monRate, location, remarks);
+        }
+
+        public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate, int intType, int autoID,int  itemID,DateTime transactionDate, decimal transactionQTY, int productID )
+        {
+            sprFGReceiveTableAdapter adp = new sprFGReceiveTableAdapter();
+            return adp.GetFGReceiveData(whid, FromDate,ToDate,intType,autoID,itemID,transactionDate,transactionQTY,productID);
+        }
+        
+        public DataTable DistributionData(int whid, DateTime FromDate, DateTime ToDate,int type,int intTransferID)
+        {
+            sprDistributionReceiveTableAdapter adp  = new sprDistributionReceiveTableAdapter();
+            return adp.GetDistributionData(whid, FromDate, ToDate,type, intTransferID);
+        }
+        public DataTable InsertReceiveData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
+        {
+            
+            sprInventoryTransferTableAdapter adp = new sprInventoryTransferTableAdapter();
+            try
+            {
+                return adp.InsertTransferData(unit, intwh, outWH, location, user, item, qty, value, vehicle, remarks, intReff, intTransferType, ysnSalesEntry);              
+            }
+            catch
+            {
+                return new DataTable();
+            }
+           
+        }
+
+        public DataTable GetUnitByWH(int whid)
+        {
+            TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+            return adp.GetUnitByWhId(whid);
+        }
+
+        public DataTable InsertTransferData(int unit, int intWH, int outWH, int location, int user, int intSalesEntryID, int item,decimal qty,string remarks, int intItemTransferType,string strItemTransferType)
+        {
+            sprInventoryTransferSalesDetailTableAdapter adp = new sprInventoryTransferSalesDetailTableAdapter();
+            return adp.InsertInventoryTransferSalesData(unit,intWH,outWH,location,user,intSalesEntryID,item,qty,remarks,intItemTransferType,strItemTransferType);
+        }
+
+        public DataTable GetTripEntry(string strChallanNo,int intUnitID,int intSalesOffId,int intShipPointId)
+        {
+            sprChallanWiseRouteCostTableAdapter adp = new sprChallanWiseRouteCostTableAdapter();
+            return adp.TripEntry(strChallanNo,intUnitID,intSalesOffId,intShipPointId);
         }
         
     }

@@ -75,7 +75,7 @@ SELECT strUnit, intUnitID FROM tblUnit WHERE (intUnitID = @intUnitID) ORDER BY s
               <Mapping SourceColumn="intAccID" DataSetColumn="intAccID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdvAmount" GetMethodModifier="Public" GetMethodName="GetAdvAmount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdvAmount" UserSourceName="GetAdvAmount">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdvAmount" GetMethodModifier="Public" GetMethodName="GetAdvAmount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdvAmount" UserSourceName="GetAdvAmount">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ISNULL(SUM(pr.monApporveAmount),0) AS monAdvPaid FROM ERP_Payment.dbo.tblPaymentRequest pr JOIN ERP_Payment.dbo.tblBillRegister br ON pr.intBillID=br.intBillID 
@@ -86,7 +86,7 @@ WHERE br.intEntryType=2 AND br.intReffType=1 AND br.strReffNo = @intPOID AND ysn
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetLadgerBalance" GetMethodModifier="Public" GetMethodName="GetLadgerBalance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetLadgerBalance" UserSourceName="GetLadgerBalance">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetLadgerBalance" GetMethodModifier="Public" GetMethodName="GetLadgerBalance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetLadgerBalance" UserSourceName="GetLadgerBalance">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT (ISNULL(SUM(sl.monAmount),0)+ ISNULL(coa.monOpeningBalance,0)) as monLedgerBalance 
@@ -98,7 +98,7 @@ WHERE coa.intAccID=@intCOAID GROUP BY coa.monOpeningBalance</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNetAmountByPO" GetMethodModifier="Public" GetMethodName="GetNetAmountByPO" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNetAmountByPO" UserSourceName="GetNetAmountByPO">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNetAmountByPO" GetMethodModifier="Public" GetMethodName="GetNetAmountByPO" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNetAmountByPO" UserSourceName="GetNetAmountByPO">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>Select sum(Isnull(monNetPay,0)) as monNetPay, sum(isnull(monManualAdjAmount,0)) as monManualAdjAmount, sum(isnull(monAdvanceAdjAmount,0)) as monAdvanceAdjAmount From ERP_Payment.dbo.tblBillRegister Where strReffNo = @strPONo and ysnEnable = 1</CommandText>
@@ -164,7 +164,7 @@ WHERE intMRRID=mrr.intMRRID AND ysnMannual=0) group by mrr.intPOID,mrr.intMRRID,
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCOAID" GetMethodModifier="Public" GetMethodName="GetCOAID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCOAID" UserSourceName="GetCOAID">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCOAID" GetMethodModifier="Public" GetMethodName="GetCOAID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCOAID" UserSourceName="GetCOAID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ISNULL(intCOAID,0) AS intCOAID FROM ERP_Inventory.dbo.tblSupplier WHERE intSupplierID=@intSupplierid</CommandText>
@@ -235,7 +235,7 @@ where emp.intUnitID=@intUnitID and ysnActive=1 and intGroupID=1 ORDER BY strEmpl
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetPOIntoTableAdapter" GeneratorDataComponentClassName="GetPOIntoTableAdapter" Name="GetPOInto" UserDataComponentName="GetPOIntoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPOInfo" GetMethodModifier="Public" GetMethodName="GetPOInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetPOInfo" UserSourceName="GetPOInfo">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPOInfo" GetMethodModifier="Public" GetMethodName="GetPOInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetPOInfo" UserSourceName="GetPOInfo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT po.intUnitID,isnull(po.monAIT,0) as monAIT, u.strUnit, s.strSupplierName + '[' + cast(s.intSupplierID as varchar(50)) + ']' as strSupplierName, s.intSupplierID, 
@@ -343,7 +343,7 @@ and ysnEnable=1 order by intBillID</CommandText>
               <Mapping SourceColumn="mrrQty" DataSetColumn="mrrQty" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetChallanList" GetMethodModifier="Public" GetMethodName="GetChallanList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetChallanList" UserSourceName="GetChallanList">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetChallanList" GetMethodModifier="Public" GetMethodName="GetChallanList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetChallanList" UserSourceName="GetChallanList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>Select bmrr.strChallanNo,bmrr.intMRRID,bmrr.monAmount, mrr.strVoucherCode, SUM(CASE WHEN sl.monAmount&lt;0 THEN sl.monAmount*-1 ELSE 0 END) AS monVoucherTK from ERP_Payment.dbo.tblBillRegisterDetailMRR bmrr JOIN ERP_Inventory.dbo.tblFactoryReceiveMRR mrr ON bmrr.intMRRID=mrr.intMRRID LEFT JOIN ERP_Accounts.dbo.tblAccountsSubLedger sl ON mrr.strVoucherCode=sl.strEntryCode AND mrr.intUnitID=sl.intUnitID WHERE bmrr.intBillID=@intBillID GROUP BY bmrr.strChallanNo,bmrr.intMRRID,bmrr.monAmount, mrr.strVoucherCode</CommandText>
@@ -353,7 +353,7 @@ and ysnEnable=1 order by intBillID</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDocumentList" GetMethodModifier="Public" GetMethodName="GetDocumentList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDocumentList" UserSourceName="GetDocumentList">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDocumentList" GetMethodModifier="Public" GetMethodName="GetDocumentList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDocumentList" UserSourceName="GetDocumentList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>Select fl.intFileID,ft.strFileName,fl.strFtpPath From ERP_Payment.dbo.tblDocuments fd Join ERP_Payment.dbo.tblFileType ft 
@@ -366,7 +366,7 @@ where fd.intEntryTablePK = @intBillID and fd.intEntryType = @intEntryType</Comma
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetIndentList" GetMethodModifier="Public" GetMethodName="GetIndentList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIndentList" UserSourceName="GetIndentList">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetIndentList" GetMethodModifier="Public" GetMethodName="GetIndentList" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIndentList" UserSourceName="GetIndentList">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Distinct(intIndentID) as intIndentID FROM ERP_Inventory.dbo.tblIndentItemAndPOItem WHERE intPOID = @intPOID</CommandText>
@@ -376,7 +376,7 @@ where fd.intEntryTablePK = @intBillID and fd.intEntryType = @intEntryType</Comma
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNetPayForLevel1" GetMethodModifier="Public" GetMethodName="GetNetPayForLevel1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNetPayForLevel1" UserSourceName="GetNetPayForLevel1">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNetPayForLevel1" GetMethodModifier="Public" GetMethodName="GetNetPayForLevel1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNetPayForLevel1" UserSourceName="GetNetPayForLevel1">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>Select isnull(monNetPay,0) as monNetPay from ERP_Payment.dbo.tblBillRegister where intBillID=@intBillID</CommandText>
@@ -386,7 +386,7 @@ where fd.intEntryTablePK = @intBillID and fd.intEntryType = @intEntryType</Comma
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNetPayForLevel2" GetMethodModifier="Public" GetMethodName="GetNetPayForLevel2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNetPayForLevel2" UserSourceName="GetNetPayForLevel2">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetNetPayForLevel2" GetMethodModifier="Public" GetMethodName="GetNetPayForLevel2" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetNetPayForLevel2" UserSourceName="GetNetPayForLevel2">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>select top 1 isnull(monApproveAmount,0) as monApproveAmount from ERP_Payment.dbo.tblBillAuditDetail WHERE  intBillID=@intBillID and intApproveType=2 and intAuditLevel=1 order by dteApproveTime desc</CommandText>
@@ -396,7 +396,7 @@ where fd.intEntryTablePK = @intBillID and fd.intEntryType = @intEntryType</Comma
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPODate" GetMethodModifier="Public" GetMethodName="GetPODate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPODate" UserSourceName="GetPODate">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPODate" GetMethodModifier="Public" GetMethodName="GetPODate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPODate" UserSourceName="GetPODate">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>Select convert(varchar,dtePODate,106) as dtePODate  From ERP_Inventory.dbo.tblPurchaseOrderMain Where intPOID=@intPOID</CommandText>
@@ -416,7 +416,7 @@ where fd.intEntryTablePK = @intBillID and fd.intEntryType = @intEntryType</Comma
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUnitInfoByBillID" GetMethodModifier="Public" GetMethodName="GetUnitInfoByBillID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUnitInfoByBillID" UserSourceName="GetUnitInfoByBillID">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetUnitInfoByBillID" GetMethodModifier="Public" GetMethodName="GetUnitInfoByBillID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUnitInfoByBillID" UserSourceName="GetUnitInfoByBillID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT br.intUnitID, isnull(br.monNetPay,0) as monNetPay, br.strBillRegCode, u.strUnit, br.intEntryType FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_HR.dbo.tblUnit u ON br.intUnitID=u.intUnitID WHERE intBillID=@intBillID</CommandText>
@@ -426,7 +426,7 @@ where fd.intEntryTablePK = @intBillID and fd.intEntryType = @intEntryType</Comma
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetVoucherByBillID" GetMethodModifier="Public" GetMethodName="GetVoucherByBillID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetVoucherByBillID" UserSourceName="GetVoucherByBillID">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetVoucherByBillID" GetMethodModifier="Public" GetMethodName="GetVoucherByBillID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetVoucherByBillID" UserSourceName="GetVoucherByBillID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT br.intBillID, pr.strVoucherCode, pr.monVoucherTotal  
@@ -444,7 +444,7 @@ order by br.intBillID desc </CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetMRRInfoTableAdapter" GeneratorDataComponentClassName="GetMRRInfoTableAdapter" Name="GetMRRInfo" UserDataComponentName="GetMRRInfoTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetMRRInfo" GetMethodModifier="Public" GetMethodName="GetMRRInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMRRInfo" UserSourceName="GetMRRInfo">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetMRRInfo" GetMethodModifier="Public" GetMethodName="GetMRRInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMRRInfo" UserSourceName="GetMRRInfo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intMRRID,cast(mrr.dteLastActionTime as date) as mrrDate, u.strDescription, s.strSupplierName, isnull(strExtnlReff,'') as strExtnlReff,isnull(dteChallanDate,'') as dteChallanDate, 
@@ -468,7 +468,7 @@ where intMRRID = @intMRRID</CommandText>
               <Mapping SourceColumn="strEmployee" DataSetColumn="strEmployee" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetMRRItemInfo" GetMethodModifier="Public" GetMethodName="GetMRRItemInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMRRItemInfo" UserSourceName="GetMRRItemInfo">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetMRRItemInfo" GetMethodModifier="Public" GetMethodName="GetMRRItemInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetMRRItemInfo" UserSourceName="GetMRRItemInfo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT i.strItem, numPOQty,numReceiveQty,monFCRate,monBDTTotal
@@ -492,7 +492,7 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPriceListByItemID" GetMethodModifier="Public" GetMethodName="GetPriceListByItemID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPriceListByItemID" UserSourceName="GetPriceListByItemID">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPriceListByItemID" GetMethodModifier="Public" GetMethodName="GetPriceListByItemID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPriceListByItemID" UserSourceName="GetPriceListByItemID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>select top (15) pod.intPOID,dtePODate,s.strSupplierName,(pod.monRate+monCD+monRD+monSD+monVAT+pod.monAIT+monATV+monPSI) as rate, strCurrencyName 
@@ -509,7 +509,7 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetDocListByMRRTableAdapter" GeneratorDataComponentClassName="GetDocListByMRRTableAdapter" Name="GetDocListByMRR" UserDataComponentName="GetDocListByMRRTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_FTPConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDocLByMRRID" GetMethodModifier="Public" GetMethodName="GetDocLByMRRID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDocLByMRRID" UserSourceName="GetDocLByMRRID">
+              <DbSource ConnectionRef="ERP_FTPConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDocLByMRRID" GetMethodModifier="Public" GetMethodName="GetDocLByMRRID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDocLByMRRID" UserSourceName="GetDocLByMRRID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT doc.strDocName, af.strFtpPath FROM ERP_Inventory.dbo.tblFactoryReceiveMRRDocuments doc 
@@ -551,7 +551,7 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetApproveActionDataTableAdapter" GeneratorDataComponentClassName="GetApproveActionDataTableAdapter" Name="GetApproveActionData" UserDataComponentName="GetApproveActionDataTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetBillInfoForApprove" GetMethodModifier="Public" GetMethodName="GetBillInfoForApprove" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBillInfoForApprove" UserSourceName="GetBillInfoForApprove">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetBillInfoForApprove" GetMethodModifier="Public" GetMethodName="GetBillInfoForApprove" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetBillInfoForApprove" UserSourceName="GetBillInfoForApprove">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT br.intUnitID, isnull(br.monNetPay,0) as monNetPay, br.strBillRegCode, u.strUnit FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_HR.dbo.tblUnit u ON br.intUnitID=u.intUnitID WHERE intBillID=@intBillID</CommandText>
@@ -569,7 +569,7 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
               <Mapping SourceColumn="strUnit" DataSetColumn="strUnit" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdvance" GetMethodModifier="Public" GetMethodName="GetAdvance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdvance" UserSourceName="GetAdvance">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdvance" GetMethodModifier="Public" GetMethodName="GetAdvance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdvance" UserSourceName="GetAdvance">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ISNULL(SUM(pr.monVoucherTotal),0) AS monAdvPaid FROM ERP_Payment.dbo.tblPaymentRequest pr JOIN ERP_Payment.dbo.tblBillRegister br 
@@ -580,7 +580,7 @@ ON pr.intBillID=br.intBillID WHERE br.intEntryType=2 AND br.intReffType=1 AND br
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdvanceInfoForApprove" GetMethodModifier="Public" GetMethodName="GetAdvanceInfoForApprove" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdvanceInfoForApprove" UserSourceName="GetAdvanceInfoForApprove">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAdvanceInfoForApprove" GetMethodModifier="Public" GetMethodName="GetAdvanceInfoForApprove" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAdvanceInfoForApprove" UserSourceName="GetAdvanceInfoForApprove">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT br.intBillID, br.strReffNo, br.strBillRegCode, br.strPartyName, pr.monApporveAmount, isnull(pr.monVoucherTotal,0) AS monVoucherTotal 
@@ -595,7 +595,7 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetUserInfoForAuditApprovalTableAdapter" GeneratorDataComponentClassName="GetUserInfoForAuditApprovalTableAdapter" Name="GetUserInfoForAuditApproval" UserDataComponentName="GetUserInfoForAuditApprovalTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUserInfoForAudit" GetMethodModifier="Public" GetMethodName="GetUserInfoForAudit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserInfoForAudit" UserSourceName="GetUserInfoForAudit">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUserInfoForAudit" GetMethodModifier="Public" GetMethodName="GetUserInfoForAudit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserInfoForAudit" UserSourceName="GetUserInfoForAudit">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT top 1 ISNULL(ysnDutyVoucher,0) AS ysnDutyVoucher, isnull(ysnEdit,0) as ysnEdit,isnull(ysnBillRcv,0) as ysnBillRcv, isnull(ysnAudit1,0) as ysnAudit1, 
@@ -653,7 +653,7 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetLevel1AmountAuditTableAdapter" GeneratorDataComponentClassName="GetLevel1AmountAuditTableAdapter" Name="GetLevel1AmountAudit" UserDataComponentName="GetLevel1AmountAuditTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetLevel1Amount" GetMethodModifier="Public" GetMethodName="GetLevel1Amount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetLevel1Amount" UserSourceName="GetLevel1Amount">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetLevel1Amount" GetMethodModifier="Public" GetMethodName="GetLevel1Amount" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetLevel1Amount" UserSourceName="GetLevel1Amount">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT TOP 1 ISNULL(monApproveAmount,0) AS monApproveAmount FROM ERP_Payment.dbo.tblBillAuditDetail WHERE intBillID=@intBillID AND intAuditLevel=1 and intApproveType=2 ORDER BY dteApproveTime DESC</CommandText>
@@ -695,7 +695,7 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GetPreAdvTableAdapter" GeneratorDataComponentClassName="GetPreAdvTableAdapter" Name="GetPreAdv" UserDataComponentName="GetPreAdvTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPreviousAdvance" GetMethodModifier="Public" GetMethodName="GetPreviousAdvance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPreviousAdvance" UserSourceName="GetPreviousAdvance">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetPreviousAdvance" GetMethodModifier="Public" GetMethodName="GetPreviousAdvance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPreviousAdvance" UserSourceName="GetPreviousAdvance">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT at.strApproveType,cast(dteApproveTime as Date) as dteApproveTime,e.strEmployeeName,strRemarks,monApproveAmount 
@@ -716,7 +716,7 @@ FROM ERP_Payment.dbo.tblBillRegister br JOIN ERP_Payment.dbo.tblPaymentRequest p
               <Mapping SourceColumn="monApproveAmount" DataSetColumn="monApproveAmount" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAuditApproveAmountLabel1" GetMethodModifier="Public" GetMethodName="GetAuditApproveAmountLabel1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAuditApproveAmountLabel1" UserSourceName="GetAuditApproveAmountLabel1">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetAuditApproveAmountLabel1" GetMethodModifier="Public" GetMethodName="GetAuditApproveAmountLabel1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetAuditApproveAmountLabel1" UserSourceName="GetAuditApproveAmountLabel1">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT top 1 isnull(monApproveAmount,0) as monApproveAmount FROM ERP_Payment.dbo.tblBillAuditDetail where intBillID=@intBillID and intApproveType= 2 and intAuditLevel = 1
@@ -754,7 +754,7 @@ Order by dteApproveTime desc</CommandText>
               <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="ERP_Payment.dbo.tblAppoveType" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetApproveType" GetMethodModifier="Public" GetMethodName="GetApproveType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetApproveType" UserSourceName="GetApproveType">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT strApproveType, intID FROM ERP_Payment.dbo.tblAppoveType order by intID
+                    <CommandText>SELECT strApproveType, intID FROM ERP_Payment.dbo.tblAppoveType where ysnActive = 1  order by intID
 </CommandText>
                     <Parameters />
                   </DbCommand>
@@ -769,7 +769,7 @@ Order by dteApproveTime desc</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="UserInfoForPaymentModuleTableAdapter" GeneratorDataComponentClassName="UserInfoForPaymentModuleTableAdapter" Name="UserInfoForPaymentModule" UserDataComponentName="UserInfoForPaymentModuleTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUserInfoForPaymentModule" GetMethodModifier="Public" GetMethodName="GetUserInfoForPaymentModule" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserInfoForPaymentModule" UserSourceName="GetUserInfoForPaymentModule">
+              <DbSource ConnectionRef="ERP_PaymentConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUserInfoForPaymentModule" GetMethodModifier="Public" GetMethodName="GetUserInfoForPaymentModule" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUserInfoForPaymentModule" UserSourceName="GetUserInfoForPaymentModule">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ISNULL(ysnDutyVoucher,0) AS ysnDutyVoucher, isnull(ysnEdit,0) as ysnEdit,isnull(ysnBillRcv,0) as ysnBillRcv, isnull(ysnAudit1,0) as ysnAudit1, isnull(ysnAudit2,0) as ysnAudit2, 
@@ -810,7 +810,7 @@ isnull(ysnPay,0) as ysnPay FROM ERP_Payment.dbo.tblUserPermission WHERE intEmplo
               <Mapping SourceColumn="strUnit" DataSetColumn="strUnit" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCheckUserRoleForVoucher" GetMethodModifier="Public" GetMethodName="GetCheckUserRoleForVoucher" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCheckUserRoleForVoucher" UserSourceName="GetCheckUserRoleForVoucher">
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCheckUserRoleForVoucher" GetMethodModifier="Public" GetMethodName="GetCheckUserRoleForVoucher" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCheckUserRoleForVoucher" UserSourceName="GetCheckUserRoleForVoucher">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT Count(intGroupID) AS intCount FROM ERP_HR.dbo.tblEmployee WHERE strOfficeEmail= @strUserEmail AND intGroupID IN (1,2,4,6,11,38,50,55,56,3060,3077,2060,15)</CommandText>
@@ -935,7 +935,7 @@ Where p.intBillID = @intBillID Group By p.strVoucherCode</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="IndentViewDetailsTableAdapter" GeneratorDataComponentClassName="IndentViewDetailsTableAdapter" Name="IndentViewDetails" UserDataComponentName="IndentViewDetailsTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetIndentViewDetails" GetMethodModifier="Public" GetMethodName="GetIndentViewDetails" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIndentViewDetails" UserSourceName="GetIndentViewDetails">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetIndentViewDetails" GetMethodModifier="Public" GetMethodName="GetIndentViewDetails" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetIndentViewDetails" UserSourceName="GetIndentViewDetails">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intIndentID,dteIndentDate, u.strDescription, strIndentType, isnull(dteDueDate,'') as dteDueDate  
@@ -1334,6 +1334,26 @@ ORDER BY po.dtePODate DESC
               <Mapping SourceColumn="strSupplierName" DataSetColumn="strSupplierName" />
               <Mapping SourceColumn="rate" DataSetColumn="rate" />
               <Mapping SourceColumn="strCurrencyName" DataSetColumn="strCurrencyName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprGetAllUnitListTableAdapter" GeneratorDataComponentClassName="sprGetAllUnitListTableAdapter" Name="sprGetAllUnitList" UserDataComponentName="sprGetAllUnitListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprGetAllUnitList" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUnitByUserPermission" GetMethodModifier="Public" GetMethodName="GetUnitByUserPermission" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUnitByUserPermission" UserSourceName="GetUnitByUserPermission">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprGetAllUnitList</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUserID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="strUnit" DataSetColumn="strUnit" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -2254,6 +2274,20 @@ ORDER BY po.dtePODate DESC
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="sprGetAllUnitList" msprop:Generator_TableClassName="sprGetAllUnitListDataTable" msprop:Generator_TableVarName="tablesprGetAllUnitList" msprop:Generator_RowChangedName="sprGetAllUnitListRowChanged" msprop:Generator_TablePropName="sprGetAllUnitList" msprop:Generator_RowDeletingName="sprGetAllUnitListRowDeleting" msprop:Generator_RowChangingName="sprGetAllUnitListRowChanging" msprop:Generator_RowEvHandlerName="sprGetAllUnitListRowChangeEventHandler" msprop:Generator_RowDeletedName="sprGetAllUnitListRowDeleted" msprop:Generator_RowClassName="sprGetAllUnitListRow" msprop:Generator_UserTableName="sprGetAllUnitList" msprop:Generator_RowEvArgName="sprGetAllUnitListRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intUnitID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="strUnit" msprop:Generator_ColumnVarNameInTable="columnstrUnit" msprop:Generator_ColumnPropNameInRow="strUnit" msprop:Generator_ColumnPropNameInTable="strUnitColumn" msprop:Generator_UserColumnName="strUnit">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -2283,6 +2317,10 @@ ORDER BY po.dtePODate DESC
     <xs:unique name="TblPurchaseItem_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblPurchaseItem" />
       <xs:field xpath="mstns:intSupplierID" />
+    </xs:unique>
+    <xs:unique name="sprGetAllUnitList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:sprGetAllUnitList" />
+      <xs:field xpath="mstns:intUnitID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

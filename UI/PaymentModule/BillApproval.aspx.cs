@@ -1,15 +1,8 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
@@ -21,32 +14,33 @@ namespace UI.PaymentModule
     public partial class BillApproval : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
-        SeriLog log = new SeriLog();
-        string location = "PaymentModule";
-        string start = "starting PaymentModule/BillApproval.aspx";
-        string stop = "stopping PaymentModule/BillApproval.aspx";
+        private SeriLog log = new SeriLog();
+        private string location = "PaymentModule";
+        private string start = "starting PaymentModule/BillApproval.aspx";
+        private string stop = "stopping PaymentModule/BillApproval.aspx";
+        private int enroll = 0;
+        private Billing_BLL objBillReg = new Billing_BLL();
+        private DataTable dt;
 
-        Billing_BLL objBillReg = new Billing_BLL();
-        DataTable dt;
-
-        string filePathForXML, xmlString, xml, challan, mrrid, amount;
-        int intUnitid, intPOID, intSuppid, intCOAID, intEnroll, intAction, intEntryType, intLevel, intBillID;
-        string strPType, strReffNo, strSupplierName, billid, actionid;
-        DateTime dteFDate, dteTDate;
+        private string filePathForXML, xmlString, xml, challan, mrrid, amount;
+        private int intUnitid, intPOID, intSuppid, intCOAID, intEnroll, intAction, intEntryType, intLevel, intBillID;
+        private string strPType, strReffNo, strSupplierName, billid, actionid;
+        private DateTime dteFDate, dteTDate;
 
         #endregion ====================================================================================
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Page_Load", null);
             Flogger.WriteDiagnostic(fd);
-
+            enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
             // starting performance tracker
             var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx Page_Load", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
 
             try
             {
-                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+                hdnEnroll.Value = enroll.ToString();
                 hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                 filePathForXML = Server.MapPath("~/PaymentModule/Data/BillApp_" + hdnEnroll.Value + ".xml");
                 if (!IsPostBack)
@@ -67,23 +61,49 @@ namespace UI.PaymentModule
                         hdnLevel.Value = "1";
                         lblHeading.Text = "BILL APPROVAL (LEVEL-1)";
                     }
-                    if(hdnLevel.Value == "0")
+                    if (hdnLevel.Value == "0")
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Bill Approval Permission Denied.');", true);
                         return;
                     }
 
-                    //File.Delete(filePathForXML);   
+                    //File.Delete(filePathForXML);
                     txtFromDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                    dt = objBillReg.GetAllUnit(enroll);
+                    //if (enroll == 1178)
+                    //{
+                    //    DataRow dr = dt.AsEnumerable()
+                    //        .SingleOrDefault(r => r.Field<int>("intUnitID") == 105);
+                    //    //DataTable temp = new DataTable();
+                    //    //dt.Clear();
+                    //    //dt.AcceptChanges();
+                    //    //dt.Rows.Add(dr.ItemArray);
 
-                    dt = objBillReg.GetAllUnit();
+                    //    foreach (DataRow row in dt.Rows)
+                    //    {
+                    //        if (!row.Equals(dr))
+                    //        {
+                    //            dt.Rows.Remove(row);
+                    //        }
+                    //    }
+                    //    dt.AcceptChanges();
+                    //}
+                    //else
+                    //{
+                    //    DataRow dr = dt.AsEnumerable()
+                    //        .SingleOrDefault(r => r.Field<int>("intUnitID") == 105);
+                    //    dt.Rows.RemoveAt(dt.Rows.IndexOf(dr));
+                    //}
+
                     ddlUnit.DataTextField = "strUnit";
                     ddlUnit.DataValueField = "intUnitID";
                     ddlUnit.DataSource = dt;
-                    ddlUnit.DataBind(); 
-
-                    ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
+                    ddlUnit.DataBind();
+                    if (enroll != 1178)
+                    {
+                        ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
+                    }
                 }
             }
             catch (Exception ex)
@@ -99,6 +119,7 @@ namespace UI.PaymentModule
         }
 
         #region===== Button Action============ ===================================================
+
         protected void btnApproveAll_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnApproveAll_Click", null);
@@ -180,6 +201,7 @@ namespace UI.PaymentModule
             }
             doc.Save(filePathForXML);
         }
+
         private XmlNode CreateItemNode(XmlDocument doc, string billid, string actionid)
         {
             XmlNode node = doc.CreateElement("BillApp");
@@ -187,18 +209,20 @@ namespace UI.PaymentModule
             XmlAttribute Actionid = doc.CreateAttribute("actionid"); Actionid.Value = actionid;
 
             node.Attributes.Append(Billid);
-            node.Attributes.Append(Actionid);            
+            node.Attributes.Append(Actionid);
             return node;
         }
-        
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             LoadGrid();
         }
+
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            LoadGridSingle();            
+            LoadGridSingle();
         }
+
         private void LoadGridSingle()
         {
             var fd = log.GetFlogDetail(start, location, "btnGo_Click", null);
@@ -227,6 +251,7 @@ namespace UI.PaymentModule
             // ends
             tracker.Stop();
         }
+
         private void LoadGrid()
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
@@ -260,7 +285,6 @@ namespace UI.PaymentModule
                 dgvBillReport.Columns[7].Visible = true;
                 dgvBillReport.Columns[8].Visible = true;
                 dgvBillReport.Columns[11].Visible = false;
-
             }
             else
             {
@@ -276,6 +300,7 @@ namespace UI.PaymentModule
             // ends
             tracker.Stop();
         }
+
         #endregion=====================================================================================
 
         protected void dgvBillReport_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -286,12 +311,12 @@ namespace UI.PaymentModule
             char[] ch1 = { ':', ':' };
             string[] temp1 = (row.FindControl("lblReff") as Label).Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
             string strPOCheck = temp1[0].ToString();
-            try { intPOID = int.Parse(temp1[1].ToString());} catch { intPOID = 0; }
+            try { intPOID = int.Parse(temp1[1].ToString()); } catch { intPOID = 0; }
 
             if (e.CommandName == "S")
-            {                
+            {
                 try
-                {                        
+                {
                     if (strPOCheck == "PO")
                     {
                         Session["pono"] = intPOID.ToString();//intBillID.ToString();
@@ -303,7 +328,7 @@ namespace UI.PaymentModule
                         return;
                     }
                 }
-                catch { }                
+                catch { }
             }
             else if (e.CommandName == "SD")
             {
@@ -319,30 +344,6 @@ namespace UI.PaymentModule
                 intBillID = int.Parse((row.FindControl("lblID") as Label).Text);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewApproveActionPopup('" + intBillID.ToString() + "');", true);
             }
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }

@@ -34,7 +34,7 @@ namespace UI.Asset
                 try
                 {
 
-                    int Mnumber = int.Parse(Session["intMaintenanceNo"].ToString());
+                int Mnumber = int.Parse(Session["intMaintenanceNo"].ToString());
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
@@ -47,11 +47,13 @@ namespace UI.Asset
                 if (dt.Rows.Count > 0)
                 {
                     decimal total = dt.AsEnumerable().Sum(row => row.Field<decimal>("monValue"));
-                    //dt.Compute("SUM(Salary)", "EmployeeId > 2")); 
+                    decimal mtotal = dt.AsEnumerable().Sum(row => row.Field<decimal>("moncost"));
+                        //dt.Compute("SUM(Salary)", "EmployeeId > 2")); 
                     dgvPartsView.FooterRow.Cells[3].Text = "Ground Total";
                     dgvPartsView.FooterRow.Cells[3].HorizontalAlign = HorizontalAlign.Right;
                     dgvPartsView.FooterRow.Cells[4].Text = total.ToString("N2");
-                }
+                    dgvPartsView.FooterRow.Cells[5].Text = mtotal.ToString("N2");
+                    }
 
                 
              

@@ -1,10 +1,8 @@
 ﻿using Purchase_BLL.SupplyChain;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Script.Services;
@@ -18,31 +16,31 @@ namespace UI.SCM
 {
     public partial class SupplierAccountInfoChange : BasePage
     {
-        string filePathForXMLDocUpload, xmlStringDocUpload, fileName, xml,strDocType;
-        InventoryTransfer_BLL objBll = new InventoryTransfer_BLL();
-        CSM bankcheck = new CSM();
-        DataTable dt = new DataTable();
-        char[] delimeters = { '[',']' };
-        string[] arraykey;
-        int supplierMasterID;
+        private string filePathForXMLDocUpload, xmlStringDocUpload, fileName, xml, strDocType;
+        private InventoryTransfer_BLL objBll = new InventoryTransfer_BLL();
+        private CSM bankcheck = new CSM();
+        private DataTable dt = new DataTable();
+        private char[] delimeters = { '[', ']' };
+        private string[] arraykey;
+        private int supplierMasterID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
             Panel1.Visible = false;
-      
+
             filePathForXMLDocUpload = Server.MapPath("~/Inventory/Data/DocUpload_" + Session[SessionParams.USER_ID].ToString() + ".xml");
 
-            dt= objBll.GetEmpByEmpID(enroll);
+            dt = objBll.GetEmpByEmpID(enroll);
             txtRequesterName.Text = dt.Rows[0]["strEmployeeName"].ToString();
-            txtRequesterDesignation.Text= dt.Rows[0]["strDesignation"].ToString();
+            txtRequesterDesignation.Text = dt.Rows[0]["strDesignation"].ToString();
             txtRequestBy.Text = Session[SessionParams.USER_ID].ToString();
             txtSuperviseBy.Text = dt.Rows[0]["intSuperviserId"].ToString();
-
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string RequesterName, RequesterDesignation, SupplierName="", SupplierAddress, msg;
+            string RequesterName, RequesterDesignation, SupplierName = "", SupplierAddress, msg;
             int AccountNo, RequestBy, SuperviseBy, RoutingNo;
             DateTime dteRequestBy, dteSuperviseBy;
 
@@ -54,7 +52,7 @@ namespace UI.SCM
                 SupplierName = arraykey[0].ToString();
                 supplierMasterID = Convert.ToInt32(arraykey[1].ToString());
             }
-            
+
             SupplierAddress = txtSupplierAddress.Text;
             RoutingNo = Convert.ToInt32(txtRoutingNo.Text);
             AccountNo = Convert.ToInt32(txtAccountNo.Text);
@@ -78,10 +76,9 @@ namespace UI.SCM
                 {
                     fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();
                     FileUploadFTP(Server.MapPath("~/Inventory/Data/"), fileName, "ftp://ftp.akij.net/SupplierDoc/", "erp@akij.net", "erp123");
-
                 }
             }
-           
+
             dt = objBll.InsertSupplierAccountsInfoList(RequesterName, RequesterDesignation, SupplierName, supplierMasterID, SupplierAddress, AccountNo, RoutingNo, RequestBy, SuperviseBy, dteRequestBy, dteSuperviseBy, xml);
             if (filePathForXMLDocUpload != null)
             {
@@ -92,7 +89,6 @@ namespace UI.SCM
             //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             ClearControl();
             //Image1.ImageUrl = dt.Rows[0]["strFilePath"].ToString();
-            
         }
 
         private void ClearControl()
@@ -122,7 +118,6 @@ namespace UI.SCM
 
             if (txtDocUpload.FileName.ToString() != "")
             {
-
                 int intCount = 0;
                 strDocType = "Cheque-Statement";
                 if (txtDocUpload.HasFiles)
@@ -131,7 +126,7 @@ namespace UI.SCM
                     {
                         strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
 
-                        strDocUploadPath = strDocType + "_" +txtRequestBy.Text + "_" +strDocUploadPath;
+                        strDocUploadPath = strDocType + "_" + txtRequestBy.Text + "_" + strDocUploadPath;
                         fileName = strDocUploadPath.Replace(" ", "");
                         strFileName = fileName.Trim();
                         intCount = intCount + 1;
@@ -139,20 +134,20 @@ namespace UI.SCM
 
                         string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
                         uploadedFile.SaveAs(Server.MapPath("~/Inventory/Data/") + fileName.Trim());
-                       
+
                         strFileName = fileName;
                         CreateVoucherXmlDocUpload("1", strDocType, strFileName);
                     }
                 }
-
             }
         }
 
         #region===========xml code=================
+
         private void CreateVoucherXmlDocUpload(string doctypeid, string strDocName, string strFileName)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLDocUpload))
+            if (File.Exists(filePathForXMLDocUpload))
             {
                 doc.Load(filePathForXMLDocUpload);
                 XmlNode rootNode = doc.SelectSingleNode("DocUpload");
@@ -170,8 +165,9 @@ namespace UI.SCM
             }
             doc.Save(filePathForXMLDocUpload);
             LoadGridwithXmlDocUpload();
-            //Clear(); 
+            //Clear();
         }
+
         private void LoadGridwithXmlDocUpload()
         {
             XmlDocument doc = new XmlDocument();
@@ -192,6 +188,7 @@ namespace UI.SCM
             }
             dgvDocUp.DataBind();
         }
+
         private XmlNode CreateItemNodeDocUpload(XmlDocument doc, string doctypeid, string strDocName, string strFileName)
         {
             XmlNode node = doc.CreateElement("DocUpload");
@@ -206,6 +203,7 @@ namespace UI.SCM
 
             return node;
         }
+
         protected void dgvDocUp_RowDeleting1(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -236,27 +234,23 @@ namespace UI.SCM
                 else { LoadGridwithXmlDocUpload(); }
             }
             catch { }
-
         }
+
         #endregion=========end xml====================
-
-
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
         {
             arraykey = txtSupplier.Text.Split(delimeters);
-            if(arraykey.Length>0)
+            if (arraykey.Length > 0)
             {
-                supplierMasterID =Convert.ToInt32(arraykey[1].ToString());
+                supplierMasterID = Convert.ToInt32(arraykey[1].ToString());
                 dt = objBll.GetSupplierAddress(supplierMasterID);
                 txtSupplierAddress.Text = dt.Rows[0]["strOrgAddress"].ToString();
             }
-
         }
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
-           
             try
             {
                 FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
@@ -288,6 +282,7 @@ namespace UI.SCM
         }
 
         #region=======Radio Button Check========
+
         protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
             ChechRoutingNo();
@@ -321,12 +316,10 @@ namespace UI.SCM
                     RadioButton1.Checked = false;
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Routing No ??');", true); return;
                 }
-
-
             }
             catch { RadioButton1.Checked = false; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please click the check box');", true); }
-
         }
+
         #endregion====== end checking radio button===========
 
         //protected void FinalUpload()
@@ -347,7 +340,6 @@ namespace UI.SCM
 
         //}
 
-
         #region=======================Supplier Auto Search=========================
 
         [WebMethod]
@@ -358,21 +350,5 @@ namespace UI.SCM
         }
 
         #endregion====================Close===============================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
-
 }

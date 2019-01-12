@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PoDetalisView.aspx.cs" Inherits="UI.SCM.PoDetalisView" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>
 <head runat="server">
@@ -40,14 +39,13 @@
         }
     </script>
 
-    <script type="text/javascript"> 
+    <script type="text/javascript">
         function funConfirmAll() {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
             if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
             else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
         }
-
     </script>
     <script>
         function Print() {
@@ -59,9 +57,7 @@
             document.getElementById("btnDownload").style.visibility = "visible";
 
         }
-
     </script>
-
 </head>
 <body>
     <form id="frmselfresign" runat="server">
@@ -118,8 +114,6 @@
                                 <asp:Button ID="btnEmail" Text="E-mail" runat="server" OnClick="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
                             <td>
                                 <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
-
-
                         </tr>
                     </table>
                     <table style="border-color: black; width: 700px; -ms-border-radius: 10px; border-radius: 10px; border: 1px solid blue;">
@@ -235,12 +229,10 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
-
                                     </Columns>
                                     <FooterStyle BackColor="Gray" Font-Bold="True" HorizontalAlign="Right" ForeColor="Black" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" />
                                     <PagerStyle BackColor="Gray" ForeColor="Red" HorizontalAlign="Center" />
-
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -307,6 +299,7 @@
                             <td style="text-align: left; border: 1px solid gray">No of Installment</td>
                             <td style="text-align: left; border: 1px solid gray">
                                 <asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
+                             
                         </tr>
                         <tr>
                             <td style="text-align: left; border: 1px solid gray">Installment Interval (Days)</td>
@@ -318,7 +311,6 @@
                             <td style="text-align: left; border: 1px solid gray">
                                 <asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
                         </tr>
-
                     </table>
                     <table>
                         <tr>
@@ -413,7 +405,6 @@
                                         <div class="col-md-10 col-sm-10">
                                             <asp:Image ID="imgAttachment" CssClass="img-thumbnail image pull-left" runat="server" AlternateText="Po Image" Height="100px" Width="100px" />
                                         </div>
-                                        
                                     </div>
                                 </form>
                             </div>

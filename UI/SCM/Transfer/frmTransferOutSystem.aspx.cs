@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -15,17 +13,16 @@ using System.IO;
 
 namespace UI.SCM.Transfer
 {
-    public partial class frmTransferOutSystem : System.Web.UI.Page
-    {      
-        int intShipid,intLocationid,intOutWHid,intWHID,intVid,intUomid, vid, enroll, itemid, intReff = 0,inttTransferTypeid;
-        decimal Qty,Values,Stock;string xmlpath = "", xmlString,ItemName,UOM,msg,Remarks;
-        DataTable dt;
-        string[] arrayKeyItem; char[] delimiterChars = { '[', ']' };
+    public partial class frmTransferOutSystem : BasePage
+    {
+        private int intShipid, intLocationid, intOutWHid, intWHID, intVid, intUomid, vid, enroll, itemid, intReff = 0, inttTransferTypeid;
+        private decimal Qty, Values, Stock; private string xmlpath = "", xmlString, ItemName, UOM, msg, Remarks;
+        private DataTable dt;
+        private string[] arrayKeyItem; private char[] delimiterChars = { '[', ']' };
 
+        private TransferBLLNew TBLL = new TransferBLLNew();
+        private ExcelDataBLL objExcel = new ExcelDataBLL();
 
-        TransferBLLNew TBLL = new TransferBLLNew();
-        ExcelDataBLL objExcel = new ExcelDataBLL();
-     
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/SCM/Data/TOrder_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -44,13 +41,13 @@ namespace UI.SCM.Transfer
                 getTransferType();
                 getSavePermission(int.Parse(Session[SessionParams.USER_ID].ToString()));
             }
-            else {  }
+            else { }
         }
 
         private void getSavePermission(int Enroll)
         {
             dt = TBLL.getpermission(Enroll);
-            if(bool.Parse(dt.Rows[0]["ysnDistribution"].ToString())==false)
+            if (bool.Parse(dt.Rows[0]["ysnDistribution"].ToString()) == false)
             {
                 btnSave.Visible = true;
                 btnTransfer.Visible = false;
@@ -66,6 +63,7 @@ namespace UI.SCM.Transfer
         {
             GETItemUomInof();
         }
+
         protected void btnTransfer_Click(object sender, EventArgs e)
         {
             if (dgv.Rows.Count > 0)
@@ -97,15 +95,14 @@ namespace UI.SCM.Transfer
                     }
                     else { intVid = 0; }
                     Remarks = txtRemax.Text;
-                    msg = TBLL.getSavedata(int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWHID, intOutWHid, intLocationid, int.Parse(Session[SessionParams.USER_ID].ToString()), 0, qty="0", Values=0, intVid, Remarks, intReff, inttTransferTypeid, true);
+                    msg = TBLL.getSavedata(int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWHID, intOutWHid, intLocationid, int.Parse(Session[SessionParams.USER_ID].ToString()), 0, qty = "0", Values = 0, intVid, Remarks, intReff, inttTransferTypeid, true);
 
-                    msg = TBLL.GetSalesEntryDetils(int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWHID, intOutWHid, intLocationid, int.Parse(Session[SessionParams.USER_ID].ToString()),int.Parse(msg), int.Parse(pid), qty, Remarks, inttTransferTypeid, ddlTType.SelectedItem.ToString());
-
-
+                    msg = TBLL.GetSalesEntryDetils(int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWHID, intOutWHid, intLocationid, int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(msg), int.Parse(pid), qty, Remarks, inttTransferTypeid, ddlTType.SelectedItem.ToString());
                 }
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             }
         }
+
         private void getTransferType()
         {
             dt = TBLL.getTranfertype();
@@ -122,8 +119,8 @@ namespace UI.SCM.Transfer
                 char[] delimiterCharss = { '[', ']' };
                 arrayKeyItem = txtItemName.Text.Split(delimiterCharss);
                 itemid = Int32.Parse(arrayKeyItem[1].ToString());
-                int? id=null;
-                dt = TBLL.getIteminfo(int.Parse(ddlshippoint.SelectedValue),itemid, id);
+                int? id = null;
+                dt = TBLL.getIteminfo(int.Parse(ddlshippoint.SelectedValue), itemid, id);
                 if (dt.Rows.Count > 0)
                 {
                     ddlLocation.DataTextField = "strLocation";
@@ -138,7 +135,7 @@ namespace UI.SCM.Transfer
                 }
                 else
                 {
-                    if(hdnItemid.Value=="")
+                    if (hdnItemid.Value == "")
                     {
                         hdnItemid.Value = "0";
                     }
@@ -151,18 +148,16 @@ namespace UI.SCM.Transfer
                         ddlLocation.Items.Add(new ListItem(dt.Rows[0]["strlocationname"].ToString(), dt.Rows[0]["intlocationid"].ToString()));
                         hdnItemid.Value = itemid.ToString();
                     }
-
                 }
-               
-            }       
+            }
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
-        {            
-             if (dgv.Rows.Count > 0)
-             {
+        {
+            if (dgv.Rows.Count > 0)
+            {
                 for (int index = 0; index < dgv.Rows.Count; index++)
-                {                
+                {
                     string pid = ((Label)dgv.Rows[index].FindControl("lblitemid")).Text.ToString();
                     string paname = ((Label)dgv.Rows[index].FindControl("lblItemname")).Text.ToString();
                     string qty = ((Label)dgv.Rows[index].FindControl("lblQty")).Text.ToString();
@@ -173,9 +168,9 @@ namespace UI.SCM.Transfer
                     intWHID = int.Parse(ddlshippoint.SelectedValue);
                     intOutWHid = int.Parse(ddlToWH.SelectedValue);
                     intLocationid = int.Parse(ddlLocation.SelectedValue);
-                    if(lblstock.Text=="0")
+                    if (lblstock.Text == "0")
                     {
-                        Stock =Decimal.Parse("0");
+                        Stock = Decimal.Parse("0");
                     }
                     else { Stock = Decimal.Parse(lblstock.Text); }
                     Values = (decimal.Parse(lblStockvalue.Text.ToString()) / Stock) * decimal.Parse(txtQty.Text);
@@ -184,57 +179,47 @@ namespace UI.SCM.Transfer
                         char[] delimiterCharss = { '[', ']' };
                         arrayKeyItem = txtVehicle.Text.Split(delimiterCharss);
                         if (arrayKeyItem.Length > 0)
-                        {intVid = Int32.Parse(arrayKeyItem[1].ToString());}
+                        { intVid = Int32.Parse(arrayKeyItem[1].ToString()); }
                     }
                     else { intVid = 0; }
                     Remarks = txtRemax.Text;
-                    msg = TBLL.getSavedata(int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWHID, intOutWHid, intLocationid, int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(pid), qty, Values, intVid, Remarks, intReff, inttTransferTypeid,false);
-
+                    msg = TBLL.getSavedata(int.Parse(Session[SessionParams.UNIT_ID].ToString()), intWHID, intOutWHid, intLocationid, int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(pid), qty, Values, intVid, Remarks, intReff, inttTransferTypeid, false);
                 }
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+ msg + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             }
-       }
+        }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-           
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                if (txtItemName.Text != "")
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            if (txtItemName.Text != "")
+            {
+                char[] delimiterCharss = { '[', ']' };
+                arrayKeyItem = txtItemName.Text.Split(delimiterCharss);
+                if (arrayKeyItem.Length > 0)
                 {
-                    char[] delimiterCharss = { '[', ']' };
-                    arrayKeyItem = txtItemName.Text.Split(delimiterCharss);
-                    if (arrayKeyItem.Length > 0)
-                    {
-                        intUomid = int.Parse("1");
-                        Qty = decimal.Parse(txtQty.Text);
-                        itemid = Int32.Parse(arrayKeyItem[1].ToString());
-                        ItemName = arrayKeyItem[0].ToString();
-                        CreateXml(itemid.ToString(), ItemName,  lblUOM.Text.ToString(), Qty.ToString(),ddlTType.SelectedItem.ToString());
-
-                    }
-                       
-                    
+                    intUomid = int.Parse("1");
+                    Qty = decimal.Parse(txtQty.Text);
+                    itemid = Int32.Parse(arrayKeyItem[1].ToString());
+                    ItemName = arrayKeyItem[0].ToString();
+                    CreateXml(itemid.ToString(), ItemName, lblUOM.Text.ToString(), Qty.ToString(), ddlTType.SelectedItem.ToString());
                 }
-              
-                   
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Customer Blance.');", true);
-                    }
-                    //Clearcontrols();
-
-
-                
-           
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Customer Blance.');", true);
+            }
+            //Clearcontrols();
         }
-        private void CreateXml(string Itemid,string itemname,string uom, string Qty, string Type)
+
+        private void CreateXml(string Itemid, string itemname, string uom, string Qty, string Type)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(xmlpath))
+            if (File.Exists(xmlpath))
             {
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("Voucher");
-                XmlNode addItem = CreateNode(doc, Itemid,itemname, uom, Qty, Type);
+                XmlNode addItem = CreateNode(doc, Itemid, itemname, uom, Qty, Type);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -248,6 +233,7 @@ namespace UI.SCM.Transfer
             }
             doc.Save(xmlpath); LoadXml();
         }
+
         private void LoadXml()
         {
             try
@@ -263,7 +249,8 @@ namespace UI.SCM.Transfer
             }
             catch { dgv.DataSource = ""; dgv.DataBind(); }
         }
-        private XmlNode CreateNode(XmlDocument doc, string Itemid,string itemname,string uom, string Qty, string Type)
+
+        private XmlNode CreateNode(XmlDocument doc, string Itemid, string itemname, string uom, string Qty, string Type)
         {
             XmlNode node = doc.CreateElement("Item");
             XmlAttribute itemid = doc.CreateAttribute("Itemid");
@@ -287,8 +274,8 @@ namespace UI.SCM.Transfer
 
         protected void ddlShipPointTo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
         }
+
         private void getShippointTo()
         {
             dt = TBLL.getALLWH();
@@ -299,17 +286,19 @@ namespace UI.SCM.Transfer
         }
 
         #region ******* search **********
+
         [WebMethod]
         [ScriptMethod]
         public static string[] ItemnameSearch(string prefixText)
         {
             int typeid;
             DataTable dt;
-            dt=  DataClass.GetItemType(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()));
+            dt = DataClass.GetItemType(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()));
             typeid = int.Parse(dt.Rows[0]["intID"].ToString());
             TransferBLLNew objAutoSearch_BLL = new TransferBLLNew();
-            return objAutoSearch_BLL.GetItemlistInv( int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefixText);
+            return objAutoSearch_BLL.GetItemlistInv(int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefixText);
         }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] VehicleSearch(string prefixText)
@@ -317,6 +306,7 @@ namespace UI.SCM.Transfer
             ExcelDataBLL objAutoSearch_BLL = new ExcelDataBLL();
             return objAutoSearch_BLL.GetVehicle(prefixText);
         }
+
         protected void dgv_RowDeleting1(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -332,21 +322,19 @@ namespace UI.SCM.Transfer
             catch { }
         }
 
-
-        #endregion *********** Search ***************** 
+        #endregion ******* search **********
     }
-   
-
 }
+
 public class DataClassNew
 {
     public static TransferBLLNew TBLL = new TransferBLLNew();
     public static DataTable dt;
- 
+
     internal static DataTable GetItemType(int unitid)
-    {     
-            dt = TBLL.Itemtype(unitid);
-            return dt;      
+    {
+        dt = TBLL.Itemtype(unitid);
+        return dt;
     }
 
     internal static DataTable getShipPointList(int unitid)

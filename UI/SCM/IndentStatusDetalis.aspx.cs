@@ -2,31 +2,27 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class IndentStatusDetalis : System.Web.UI.Page
     {
-        Indents_BLL objIndent = new Indents_BLL();
-        DataTable dt = new DataTable();
-        int enroll, intwh, indentId;
+        private Indents_BLL objIndent = new Indents_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intwh, indentId;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IndentStatusDetalis";
-        string stop = "stopping SCM\\IndentStatusDetalis";
-        string perform = "Performance on SCM\\IndentStatusDetalis";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IndentStatusDetalis";
+        private string stop = "stopping SCM\\IndentStatusDetalis";
+        private string perform = "Performance on SCM\\IndentStatusDetalis";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 var fd = log.GetFlogDetail(start, location, "Page_Load", null);
                 Flogger.WriteDiagnostic(fd);
@@ -47,27 +43,45 @@ namespace UI.SCM
                     lbldteIndent.Text = dteIndent;
                     lblType.Text = dept;
 
-
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     dt = objIndent.DataView(14, "", 0, int.Parse(indentID), DateTime.Now, enroll);
                     if (dt.Rows.Count > 0)
                     {
+                        if (DateTime.TryParse(dt.Rows[0]["indentDate"].ToString(), out var indentDate) &&
+                            DateTime.TryParse(dt.Rows[0]["ApproveDate"].ToString(), out var approveDate))
+                        {
+                            lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" +
+                                               indentDate.ToString("D") + "]";
+                            lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" +
+                                                approveDate.ToString("D") + "]";
+                        }
+                        else
+                        {
+                            lblIndentBY.Text = dt.Rows[0]["indentBy"].ToString();
+                            lblApproveBy.Text = dt.Rows[0]["ApproveBY"].ToString();
+                        }
+
                         lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();
-                        lblIndentBY.Text = dt.Rows[0]["indentBy"].ToString();
-                        lblApproveBy.Text = dt.Rows[0]["ApproveBY"].ToString();
+
                         string unit = dt.Rows[0]["intUnit"].ToString();
                         int job = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
                         if (job == 28)
                         {
-                              imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png".ToString();
+                            imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png".ToString();
                         }
-                        else { imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); }
-                        if (lblApproveBy.Text.Length > 2) { imgApp.Visible = false; }
-                        else {
+                        else
+                        {
+                            imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
+                        }
+                        if (lblApproveBy.Text.Length > 2)
+                        {
+                            imgApp.Visible = false;
+                        }
+                        else
+                        {
                             imgApp.Visible = true;
                             imgUnit.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
                             imgApp.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
-
                         }
                     }
                     dgvIndentsDetalis.DataSource = dt;
@@ -83,9 +97,6 @@ namespace UI.SCM
                 Flogger.WriteDiagnostic(fd);
                 // ends
                 tracker.Stop();
-
-
-
             }
             else
             { }
@@ -95,15 +106,10 @@ namespace UI.SCM
         {
             try
             {
-                 
-                
-                    dgvIndentsDetalis.AllowPaging = false;
-                    SAD_BLL.Customer.Report.ExportClass.Export("indents.xls", dgvIndentsDetalis);
-                 
-
+                dgvIndentsDetalis.AllowPaging = false;
+                SAD_BLL.Customer.Report.ExportClass.Export("indents.xls", dgvIndentsDetalis);
             }
             catch { }
-
         }
     }
 }

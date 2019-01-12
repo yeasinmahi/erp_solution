@@ -62,5 +62,11 @@ namespace SAD_BLL.IHB
             return adapter.UpdateEmailAndEnroll(enrol, email, intID);
         }
 
+        public DataTable updatedeletbrg(int unitid,int entpcustomerId,int levelid ,int userid ,int ihbcustid)
+        {
+            SprEntpIHBCustomerDetTableAdapter adapter = new SprEntpIHBCustomerDetTableAdapter();
+            return adapter.GetDataEntpIHBCustomerDet(unitid,  entpcustomerId,  levelid,  userid,  ihbcustid);
+        }
+
     }
 }

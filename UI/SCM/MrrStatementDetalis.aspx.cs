@@ -2,35 +2,27 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text.RegularExpressions;
 using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
     public partial class MrrStatementDetalis : System.Web.UI.Page
     {
-        MrrReceive_BLL obj = new MrrReceive_BLL();
-        DataTable dt = new DataTable();
-        int enroll, intWh, MrrId; string dfile, xmlData;
+        private MrrReceive_BLL obj = new MrrReceive_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intWh, MrrId; private string dfile, xmlData;
 
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\MrrStatementDetalis";
+        private string stop = "stopping SCM\\MrrStatementDetalis";
+        private string perform = "Performance on SCM\\MrrStatementDetalis";
 
-
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\MrrStatementDetalis";
-        string stop = "stopping SCM\\MrrStatementDetalis";
-        string perform = "Performance on SCM\\MrrStatementDetalis";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 var fd = log.GetFlogDetail(start, location, "PageLoad", null);
                 Flogger.WriteDiagnostic(fd);
@@ -49,18 +41,17 @@ namespace UI.SCM
                         lblChallanDate.Text = dtechallan.ToString("dd-MM-yyyy");
                         lblWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                         lblSupplier.Text = dt.Rows[0]["strSupplierName"].ToString();
-                        DateTime dteMrr = DateTime.Parse(dt.Rows[0]["dteChallanDate"].ToString());
+                        DateTime dteMrr = DateTime.Parse(dt.Rows[0]["dteDate"].ToString());
                         lblMrrDate.Text = dteMrr.ToString("dd-MM-yyyy");
                         lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
                         string unit = dt.Rows[0]["intUnitID"].ToString();
-                        imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString(); 
+                        imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
                         lblMrrBy.Text = dt.Rows[0]["strName"].ToString();
                     }
                     else { }
                     dt = obj.DataView(14, "", intWh, MrrId, DateTime.Now, enroll);
                     dgvMrrDetlais.DataSource = dt;
                     dgvMrrDetlais.DataBind();
-                     
                 }
                 catch (Exception ex)
                 {
@@ -72,16 +63,9 @@ namespace UI.SCM
                 Flogger.WriteDiagnostic(fd);
                 // ends
                 tracker.Stop();
-
-
             }
             else
             { }
         }
-
-     
-        
-
-        
     }
 }

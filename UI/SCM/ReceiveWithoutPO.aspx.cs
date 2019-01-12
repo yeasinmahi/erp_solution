@@ -1,11 +1,8 @@
-﻿
-using Purchase_BLL.Asset;
+﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -18,14 +15,12 @@ namespace UI.SCM
 {
     public partial class ReceiveWithoutPO : BasePage
     {
-        MrrReceive_BLL objRecive= new MrrReceive_BLL();
-        DataTable dt = new DataTable();
-        Location_BLL objOperation = new Location_BLL();
+        private MrrReceive_BLL objRecive = new MrrReceive_BLL();
+        private DataTable dt = new DataTable();
+        private Location_BLL objOperation = new Location_BLL();
 
-        string xmlunit = ""; int enroll, CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string filePathForXML; string xmlString = "";
-
-       
+        private string xmlunit = ""; private int enroll, CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML; private string xmlString = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,10 +32,8 @@ namespace UI.SCM
                 catch { }
                 DefaltLoad();
                 pnlUpperControl.DataBind();
-
             }
             else { }
-
         }
 
         private void DefaltLoad()
@@ -54,7 +47,6 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                
                 try
                 {
                     Session["WareID"] = ddlWH.SelectedValue;
@@ -64,7 +56,8 @@ namespace UI.SCM
             catch { }
         }
 
-        #region========================Auto Search============================ 
+        #region========================Auto Search============================
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
@@ -72,11 +65,9 @@ namespace UI.SCM
             AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
-
         }
 
-        #endregion====================Close====================================== 
-
+        #endregion====================Close======================================
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -89,19 +80,17 @@ namespace UI.SCM
                 { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
 
                 checkXmlItemData(itemid);
-                if (CheckItem == 1 &&  double.Parse(txtQty.Text.ToString())>0 && txtRate.Text.Length>0)
+                if (CheckItem == 1 && double.Parse(txtQty.Text.ToString()) > 0 && txtRate.Text.Length > 0)
                 {
-                     
-                        string itemId = itemid;
-                        string itemName = item; 
-                        string qty = txtQty.Text.ToString();
-                        string rate = txtRate.Text.ToString();
-                        string locationid = ddlLocation.SelectedValue.ToString();
-                        string location = ddlLocation.SelectedItem.ToString();
-                        string remarks = txtPurpose.Text.ToString(); 
+                    string itemId = itemid;
+                    string itemName = item;
+                    string qty = txtQty.Text.ToString();
+                    string rate = txtRate.Text.ToString();
+                    string locationid = ddlLocation.SelectedValue.ToString();
+                    string location = ddlLocation.SelectedItem.ToString();
+                    string remarks = txtPurpose.Text.ToString();
 
-                        CreateXml(itemId, itemName, qty, rate, locationid, location, remarks);
-                     
+                    CreateXml(itemId, itemName, qty, rate, locationid, location, remarks);
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
                 txtItem.Text = ""; txtQty.Text = "0";
@@ -109,10 +98,10 @@ namespace UI.SCM
             catch { }
         }
 
-        private void CreateXml(string itemId, string itemName, string qty, string rate, string locationid,string location, string remarks)
+        private void CreateXml(string itemId, string itemName, string qty, string rate, string locationid, string location, string remarks)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
@@ -131,7 +120,9 @@ namespace UI.SCM
             doc.Save(filePathForXML);
             LoadGridwithXml();
         }
+
         #region========================Data Submit Action=====================
+
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             try
@@ -153,14 +144,12 @@ namespace UI.SCM
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
                         dgvRecive.DataSource = "";
                         dgvRecive.DataBind();
-
                     }
-
                 }
-                 
             }
             catch { try { File.Delete(filePathForXML); } catch { } }
         }
+
         #endregion======================Close=================================
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -175,10 +164,7 @@ namespace UI.SCM
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
                 else { LoadGridwithXml(); }
-
-
             }
-
             catch { }
         }
 
@@ -197,10 +183,10 @@ namespace UI.SCM
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = "";  
+                string item = ""; string itemid = "";
                 if (arrayKey.Length > 0)
                 { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
-                dt = objOperation.WhDataView(8, "", intWh, int.Parse(itemid), 1); 
+                dt = objOperation.WhDataView(8, "", intWh, int.Parse(itemid), 1);
                 ddlLocation.DataSource = dt;
                 ddlLocation.DataValueField = "intLocation";
                 ddlLocation.DataTextField = "strLocationName";
@@ -209,7 +195,7 @@ namespace UI.SCM
             catch { }
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string qty, string rate, string locationid,string location, string remarks)
+        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string qty, string rate, string locationid, string location, string remarks)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -224,10 +210,9 @@ namespace UI.SCM
             XmlAttribute Locationid = doc.CreateAttribute("locationid");
             Locationid.Value = locationid;
             XmlAttribute Location = doc.CreateAttribute("location");
-            Location.Value = location;  
-             XmlAttribute Remarks = doc.CreateAttribute("remarks");
+            Location.Value = location;
+            XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
-
 
             node.Attributes.Append(ItemId);
             node.Attributes.Append(ItemName);
@@ -236,11 +221,12 @@ namespace UI.SCM
 
             node.Attributes.Append(Locationid);
             node.Attributes.Append(Location);
-             
+
             node.Attributes.Append(Remarks);
 
             return node;
         }
+
         private void LoadGridwithXml()
         {
             try
@@ -255,7 +241,6 @@ namespace UI.SCM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 { dgvRecive.DataSource = ds; }
-
                 else { dgvRecive.DataSource = ""; }
                 dgvRecive.DataBind();
             }
@@ -266,7 +251,6 @@ namespace UI.SCM
         {
             try
             {
-
                 DataSet ds = new DataSet();
                 ds.ReadXml(filePathForXML);
                 int i = 0;
@@ -281,12 +265,9 @@ namespace UI.SCM
                     {
                         CheckItem = 1;
                     }
-
-
                 }
             }
             catch { }
-
         }
     }
 }

@@ -272,10 +272,10 @@ function SearchText() {
                         <asp:BoundField DataField="challanamoutnprim" HeaderText="ChallanAmountPrimary" SortExpression="challanamoutnprim" ItemStyle-HorizontalAlign="Center" />
                          
 
-                        <asp:TemplateField HeaderText="Rtnq">
+                        <asp:TemplateField HeaderText="Bill Qnt">
                             <ItemTemplate>
-                                <asp:HiddenField ID="hdnreturnqnt" runat="server" Value='<%# Bind("decrtnqnt","{0:0.0}") %>'></asp:HiddenField>
-                                <asp:TextBox ID="txtretqnt" runat="server" CssClass="txtBox" Width="60" Text='<%# Bind("decrtnqnt","0.00") %>'></asp:TextBox>
+                                <asp:HiddenField ID="hdnreturnqnt" runat="server" Value='<%# Bind("billqnt","{0:0.0}") %>'></asp:HiddenField>
+                                <asp:TextBox ID="txtretqnt" runat="server" CssClass="txtBox" Width="60" Text='<%# Bind("billqnt","0.00") %>'></asp:TextBox>
                             </ItemTemplate>
                         </asp:TemplateField>
                          

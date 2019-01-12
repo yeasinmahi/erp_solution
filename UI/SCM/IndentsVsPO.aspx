@@ -125,6 +125,10 @@
             <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
             <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>  
+              
+           <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
+            <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Due Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
             <ItemTemplate><asp:Label ID="lblDueDate" runat="server" Width="60px"  Text='<%# Bind("dteDueDate","{0:dd-mm-yyyy}") %>'></asp:Label></ItemTemplate>

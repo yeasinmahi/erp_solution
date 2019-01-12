@@ -68,10 +68,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo, int Mnumber)
+        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo,string strUser, int Mnumber)
         {
             TblUpdateAssetMaintenanceTableAdapter insertdate = new TblUpdateAssetMaintenanceTableAdapter();
-            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo, Mnumber);
+            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo,strUser, Mnumber);
         }
 
 
@@ -243,10 +243,10 @@ namespace Purchase_BLL.Asset
             return pmsdocview.TaskGridViewGetData(intItem, Mnumber, intenroll, intjobid, intdept);
         }
 
-        public void WOSpareParts(int Reffno, int parts, Decimal pqty, int intenroll, int intjobid, int intdept, int intwh, string remarks)
+        public void WOSpareParts(int Reffno, int parts, Decimal pqty, int intenroll, int intjobid, int intdept, int intwh, string remarks,decimal monAmount)
         {
             TblWOMaintenancePartsTableAdapter WOParts = new TblWOMaintenancePartsTableAdapter();
-            WOParts.InsertPartsGetData(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks);
+            WOParts.InsertPartsGetData(Reffno, parts, pqty, intenroll, intjobid, intdept, intwh, remarks, monAmount);
         }
 
         public void WOLaborCost(int Reffno, int technichin, string description, decimal hour, int intenroll, int intjobid, int intdept, int ysnTecnichin)
@@ -460,6 +460,12 @@ namespace Purchase_BLL.Asset
         {
             TblRequestServiceConfigureTableAdapter userrequestinsert = new TblRequestServiceConfigureTableAdapter();
             userrequestinsert.UserRequestSupport(assetId, intAssetAutoId, priority, problem, intenroll, intLocationId, dept, location, urgent, intType);
+        }
+
+        public void dgvPartsCostUpdate(int id, decimal cost)
+        {
+            TblWOMaintenancePartsTableAdapter wopartsdelete = new TblWOMaintenancePartsTableAdapter();
+            wopartsdelete.UpdateMaintenacePartsCost(cost, id);
         }
 
         public DataTable GriedViewUserRequestData(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)
@@ -955,13 +961,13 @@ namespace Purchase_BLL.Asset
             }
             catch(Exception ex) { return msg = ex.Message.ToString(); }
         }
-        public string UpdateFixedAssetRegisterUnit(int unit,string assetCode)
+        public string UpdateFixedAssetRegisterUnit(int unit,int jobstation,string assetCode)
         {
             string msg = "";
             try
             {
                 TblFixedAssetRegisterTableAdapter adp = new TblFixedAssetRegisterTableAdapter();
-                adp.UpdateFixedAssetRegUnit(unit, assetCode);
+                adp.UpdateFixedAssetRegUnit(unit, jobstation,assetCode);
                 return msg = "Unit Updated Successfully";
             }
             catch (Exception ex) { return msg = ex.Message.ToString(); }

@@ -1,26 +1,24 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class ItemManagerPurchasePopUp : System.Web.UI.Page
+    public partial class ItemManagerPurchasePopUp : BasePage
     {
         #region===== Variable & Object Declaration =====================================================
-        MasterMaterialBLL bll = new MasterMaterialBLL(); DataTable dt;
-        int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
+        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
+        private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
 
-        string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
-        decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
-        bool ysnVATApplicable;
+
+        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        private bool ysnVATApplicable;
         #endregion =====================================================================================
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -34,6 +32,7 @@ namespace UI.SCM
                 LoadPopUp();
             }
         }
+
         private void LoadPopUp()
         {
             try
@@ -49,7 +48,7 @@ namespace UI.SCM
                 txtBrand.Text = dt.Rows[0]["strBrand"].ToString();
                 txtSpecification.Text = dt.Rows[0]["strSpecifiaction"].ToString();
                 txtOrigin.Text = dt.Rows[0]["strOrigin"].ToString();
-                txtReorderQty.Text=dt.Rows[0]["numReOrderQty"].ToString();
+                txtReorderQty.Text = dt.Rows[0]["numReOrderQty"].ToString();
                 txtReOrder.Text = dt.Rows[0]["numReOrderLevel"].ToString();
                 txtMinimum.Text = dt.Rows[0]["numMinimumStock"].ToString();
                 txtMaximum.Text = dt.Rows[0]["numMaximumStock"].ToString();
@@ -76,7 +75,9 @@ namespace UI.SCM
             }
             catch { }
         }
+
         #region ===== Submit Action =========================================================
+
         protected void btnApprove_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")

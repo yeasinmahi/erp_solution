@@ -769,6 +769,25 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetDataTADAFuelAllowance( int employeeid)
+        {
+            try
+            {
+                SprTADAFuelAllowanceTableAdapter ta = new SprTADAFuelAllowanceTableAdapter();
+                return ta.GetDataTADAFuelAllowance( employeeid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetDataTADAFuelCostalready(DateTime billdate,int employeeid)
+        {
+            try
+            {
+                SprTADATADAFuelCostConsumeChekingTableAdapter ta = new SprTADATADAFuelCostConsumeChekingTableAdapter();
+                return ta.GetDataTADATADAFuelCostConsumeCheking(billdate,employeeid);
+            }
+            catch { return new DataTable(); }
+        }
 
 
         //public List<string> AutoSearchAssetName(string strSearchKey)

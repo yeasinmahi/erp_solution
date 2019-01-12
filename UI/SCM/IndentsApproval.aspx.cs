@@ -1,43 +1,38 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
-using HR_BLL.Global;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.Script.Services;
-using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
-using System.Xml.Linq;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IndentsApproval : System.Web.UI.Page
+    public partial class IndentsApproval : BasePage
     {
-        Indents_BLL objIndent = new Indents_BLL();
-        DataTable dt = new DataTable();
-        string xmlunit = ""; int enroll, CheckItem = 1, intWh; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string filePathForXML; string xmlString = "", indentQty;
+        private Indents_BLL objIndent = new Indents_BLL();
+        private DataTable dt = new DataTable();
+        private string xmlunit = ""; private int enroll, CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML; private string xmlString = "", indentQty;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IndentsApproval";
-        string stop = "stopping SCM\\IndentsApproval";
-        string perform = "Performance on SCM\\IndentsApproval";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IndentsApproval";
+        private string stop = "stopping SCM\\IndentsApproval";
+        private string perform = "Performance on SCM\\IndentsApproval";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/InAp__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML);}
-                catch { } 
+                try { File.Delete(filePathForXML); }
+                catch { }
                 CalendarExtenderFrom.SelectedDate = DateTime.Now.AddDays(-30);
                 CalendarExtenderTO.SelectedDate = DateTime.Now;
 
@@ -45,16 +40,14 @@ namespace UI.SCM
             }
             else
             {
-
             }
-
         }
 
         private void DefaltDataBind()
         {
             var fd = log.GetFlogDetail(start, location, "DefaltDataBind", null);
             Flogger.WriteDiagnostic(fd);
-           
+
             var tracker = new PerfTracker(perform + " " + "DefaltDataBind", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
@@ -74,9 +67,8 @@ namespace UI.SCM
             }
 
             fd = log.GetFlogDetail(stop, location, "DefaltDataBind", null);
-            Flogger.WriteDiagnostic(fd);           
+            Flogger.WriteDiagnostic(fd);
             tracker.Stop();
-
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
@@ -103,7 +95,7 @@ namespace UI.SCM
 
                 int indentId = int.Parse(lblIndents.Text);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "OpenHdnDiv();", true);
                 dgvIndent.Visible = false;
 
                 dt = objIndent.DataView(8, "", intWh, indentId, DateTime.Now, enroll);
@@ -111,16 +103,15 @@ namespace UI.SCM
                 dgvDetalis.DataBind();
                 dt.Clear();
             }
-           catch (Exception ex)
+            catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "btnDetalis_Click", ex);
                 Flogger.WriteError(efd);
             }
 
             fd = log.GetFlogDetail(stop, location, "btnDetalis_Click", null);
-            Flogger.WriteDiagnostic(fd);           
+            Flogger.WriteDiagnostic(fd);
             tracker.Stop();
-           
         }
 
         protected void btnClsoe_Click(object sender, EventArgs e)
@@ -128,8 +119,7 @@ namespace UI.SCM
             try
             {
                 dgvIndent.Visible = true;
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
-                 
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "CloseHdnDiv();", true);
             }
             catch { }
         }
@@ -138,19 +128,19 @@ namespace UI.SCM
         {
             try
             {
-                try { File.Delete(filePathForXML); } catch { } 
+                try { File.Delete(filePathForXML); } catch { }
                 intWh = int.Parse(ddlWH.SelectedValue);
                 if (dgvDetalis.Rows.Count > 0 && int.Parse(hdnConfirm.Value) == 1)
                 {
-                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString()); 
+                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                     {
                         if (((CheckBox)dgvDetalis.Rows[index].FindControl("chkRow")).Checked == true)
-                        { 
+                        {
                             string itemid = ((Label)dgvDetalis.Rows[index].FindControl("lblItemIds")).Text.ToString();
-                            string indentId = hdnIndentNo.Value.ToString(); 
-                            CreateVoucherXml(itemid, indentId); 
-                        } 
+                            string indentId = hdnIndentNo.Value.ToString();
+                            CreateVoucherXml(itemid, indentId);
+                        }
                     }
                 }
 
@@ -159,11 +149,11 @@ namespace UI.SCM
                 XmlNode dSftTm = doc.SelectSingleNode("voucher");
                 xmlString = dSftTm.InnerXml;
                 xmlString = "<voucher>" + xmlString + "</voucher>";
-                try { File.Delete(filePathForXML); } catch { } 
-                string  msgs = objIndent.IndentEntry(10, xmlString, intWh, 0, DateTime.Now, enroll);
+                try { File.Delete(filePathForXML); } catch { }
+                string msgs = objIndent.IndentEntry(10, xmlString, intWh, 0, DateTime.Now, enroll);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "CloseHdnDiv();", true);
 
                 dgvDetalis.DataSource = ""; dgvDetalis.DataBind();
                 dt = objIndent.DataView(7, "", intWh, 0, DateTime.Now, enroll);
@@ -172,15 +162,13 @@ namespace UI.SCM
                 dgvIndent.Visible = true;
                 dt.Clear();
             }
-
-
             catch { }
         }
 
         private void CreateVoucherXml(string itemid, string indentId)
         {
             XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
+            if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
@@ -206,13 +194,9 @@ namespace UI.SCM
             Itemid.Value = itemid;
             XmlAttribute IndentId = doc.CreateAttribute("indentId");
             IndentId.Value = indentId;
-             
-
-
-
 
             node.Attributes.Append(Itemid);
-            node.Attributes.Append(IndentId); 
+            node.Attributes.Append(IndentId);
             return node;
         }
 
@@ -229,15 +213,15 @@ namespace UI.SCM
                 intWh = int.Parse(ddlWH.SelectedValue);
                 if (dgvDetalis.Rows.Count > 0 && int.Parse(hdnConfirm.Value) == 1)
                 {
-                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString()); 
+                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                     {
                         if (((CheckBox)dgvDetalis.Rows[index].FindControl("chkRow")).Checked == true)
-                        { 
+                        {
                             string itemid = ((Label)dgvDetalis.Rows[index].FindControl("lblItemIds")).Text.ToString();
-                            string indentId = lblIndentNo.Text.ToString(); 
-                            CreateVoucherXml(itemid, indentId); 
-                        } 
+                            string indentId = lblIndentNo.Text.ToString();
+                            CreateVoucherXml(itemid, indentId);
+                        }
                     }
                 }
 
@@ -251,7 +235,7 @@ namespace UI.SCM
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
 
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "CloseHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "CloseHdnDiv();", true);
 
                 dgvDetalis.DataSource = ""; dgvDetalis.DataBind();
 
@@ -268,11 +252,7 @@ namespace UI.SCM
                     dgvIndent.DataBind();
                     dgvIndent.Visible = true;
                 }
-
-               
             }
-
-
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "btnApprove_Click", ex);
@@ -292,7 +272,6 @@ namespace UI.SCM
                 dgvIndent.DataBind();
             }
             catch { }
-            
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -308,7 +287,7 @@ namespace UI.SCM
                 string dteTo = txtdteTo.Text.ToString();
                 int Type = int.Parse(ddlApproval.SelectedValue.ToString());
                 int wh = int.Parse(ddlWH.SelectedValue);
-                string xml = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' +"/></voucher>".ToString();
+                string xml = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
 
                 dt = objIndent.DataView(7, xml, wh, Type, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
@@ -321,10 +300,8 @@ namespace UI.SCM
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Indent Number Invalid or Approve or Reject');", true);
                 }
-               
-                dt.Clear();
-                
 
+                dt.Clear();
             }
             catch (Exception ex)
             {
@@ -345,7 +322,6 @@ namespace UI.SCM
                 dgvIndent.DataBind();
             }
             catch { }
-
         }
     }
 }

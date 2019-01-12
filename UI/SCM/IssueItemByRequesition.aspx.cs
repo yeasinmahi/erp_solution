@@ -2,9 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -14,23 +12,24 @@ namespace UI.SCM
 {
     public partial class IssueItemByRequesition : BasePage
     {
-        StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        Location_BLL objOperation = new Location_BLL();
-        DataTable dt = new DataTable();
-        int enroll,intwh;
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private Location_BLL objOperation = new Location_BLL();
+        private DataTable dt = new DataTable();
+        private int enroll, intwh;
 
-        SeriLog log = new SeriLog();
-        string location = "SCM";
-        string start = "starting SCM\\IssueItemByRequesition";
-        string stop = "stopping SCM\\IssueItemByRequesition";
-        string perform = "Performance on SCM\\IssueItemByRequesition";
+        private SeriLog log = new SeriLog();
+        private string location = "SCM";
+        private string start = "starting SCM\\IssueItemByRequesition";
+        private string stop = "stopping SCM\\IssueItemByRequesition";
+        private string perform = "Performance on SCM\\IssueItemByRequesition";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 var fd = log.GetFlogDetail(start, location, "PageLoad", null);
                 Flogger.WriteDiagnostic(fd);
-                 
+
                 var tracker = new PerfTracker(perform + " " + "PageLoad", "", fd.UserName, fd.Location,
                     fd.Product, fd.Layer);
                 try
@@ -41,7 +40,6 @@ namespace UI.SCM
                     ddlWH.DataValueField = "Id";
                     ddlWH.DataTextField = "strName";
                     ddlWH.DataBind();
-
                 }
                 catch (Exception ex)
                 {
@@ -70,8 +68,8 @@ namespace UI.SCM
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
-                DateTime dteTo= DateTime.Parse(txtdteTo.Text.ToString());
-                string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom  + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
+                DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
+                string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
                 dt = objIssue.GetViewData(2, xmlData, intwh, 0, DateTime.Now, enroll);
                 dgvReq.DataSource = dt;
                 dgvReq.DataBind();
@@ -92,11 +90,11 @@ namespace UI.SCM
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                // your code to get data 
+                // your code to get data
                 // I assumed you are getting data in dataset using some query
 
                 Label lblItem = (Label)e.Row.FindControl("lblItemIds");
-                int Item = int.Parse(lblItem.Text); 
+                int Item = int.Parse(lblItem.Text);
 
                 intwh = int.Parse(ddlWH.SelectedValue);
                 dt = objOperation.WhDataView(8, "", intwh, Item, 1);
@@ -121,8 +119,7 @@ namespace UI.SCM
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblReqId = row.FindControl("lblReqId") as Label;
                 int ReqId = int.Parse(lblReqId.Text);
-                intwh = int.Parse(ddlWH.SelectedValue); 
-                  
+                intwh = int.Parse(ddlWH.SelectedValue);
 
                 char[] delimiterChars = { ',' };
                 string temp = ((Button)sender).CommandArgument.ToString();
@@ -130,18 +127,15 @@ namespace UI.SCM
                 string Reqid = datas[0].ToString();
                 string ReqCode = datas[1].ToString();
                 string dteReqDate = datas[2].ToString();
-                string strDepartmentName = datas[3].ToString();
+                string strDepartmentName = datas[3].Trim();
                 string strReqBy = datas[4].ToString();
                 string strApproveBy = datas[5].ToString();
-                
+
                 string DeptID = datas[6].ToString();
                 string SectionID = datas[7].ToString();
                 string SectionName = datas[8].ToString();
-                
-                   ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
 
-
-                
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + Reqid + "','" + ReqCode.ToString() + "','" + dteReqDate + "','" + strDepartmentName + "','" + strReqBy + "','" + strApproveBy + "','" + intwh.ToString() + "','" + DeptID + "','" + SectionID + "','" + SectionName + "');", true);
             }
             catch (Exception ex)
             {
@@ -155,11 +149,11 @@ namespace UI.SCM
             tracker.Stop();
         }
 
-        public string GetJSFunctionString(object ReqId, object ReqCode, object dteReqDate, object strDepartmentName, object strReqBy, object strApproveBy,object intDeptID, object intSectionID,object SectionName)
+        public string GetJSFunctionString(object ReqId, object ReqCode, object dteReqDate, object strDepartmentName, object strReqBy, object strApproveBy, object intDeptID, object intSectionID, object SectionName)
         {
-          //  Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"))
+            //  Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"))
             string str = "";
-            str = ReqId.ToString() + ',' + ReqCode.ToString()+","+ dteReqDate.ToString() + ',' + strDepartmentName.ToString()+ ',' + strReqBy.ToString()+ ',' + strApproveBy.ToString()+","+ intDeptID.ToString() + "," + intSectionID.ToString()+","+ SectionName.ToString();
+            str = ReqId.ToString() + ',' + ReqCode.ToString() + "," + dteReqDate.ToString() + ',' + strDepartmentName.ToString() + ',' + strReqBy.ToString() + ',' + strApproveBy.ToString() + "," + intDeptID.ToString() + "," + intSectionID.ToString() + "," + SectionName.ToString();
             return str;
         }
 
