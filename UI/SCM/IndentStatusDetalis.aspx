@@ -127,7 +127,7 @@
 
                             <Columns>
                                 <asp:TemplateField HeaderText="SL No.">
-                                    <ItemStyle HorizontalAlign="center" Width="30px" />
+                                    <ItemStyle HorizontalAlign="center" Width="10px" />
                                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                 </asp:TemplateField>
 
@@ -135,7 +135,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Left" Width="50px" />
+                                    <ItemStyle HorizontalAlign="Left" Width="35px" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Item Name" SortExpression="strName">
