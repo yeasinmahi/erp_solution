@@ -64,7 +64,12 @@ namespace UI.SCM
                 string dept = ddlDept.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                dt = objIndent.DataView(12, xmlData, intwh, indentId, dteFrom, enroll);
+                
+                //Code Stop By alamin@akij.net
+                //dt = objIndent.DataView(12, xmlData, intwh, indentId, dteFrom, enroll);
+                
+                
+                dt = objIndent.GetDataIndentView(12, dept, indentId, dteFrom, dteTo, intwh);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
             }
@@ -135,7 +140,11 @@ namespace UI.SCM
                 string dept = ddlDept.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                dt = objIndent.DataView(13, xmlData, intwh, indentId, dteFrom, enroll);
+
+                //Code Stop By alamin@akij.net
+                //dt = objIndent.DataView(13, xmlData, intwh, indentId, dteFrom, enroll);
+
+                dt = objIndent.GetDataIndentView(13, dept, indentId, dteFrom, dteTo, intwh);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
             }

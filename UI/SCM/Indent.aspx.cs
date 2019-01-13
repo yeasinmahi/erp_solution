@@ -220,7 +220,14 @@ namespace UI.SCM
                             "alert('Please select type');", true);
                         return;
                     }
-                    dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, enroll);
+
+
+                    // This code stop by alamin@akij.net 
+                    //dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, enroll);
+
+                    
+                    dt = new DataTable();
+                    dt = objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
                     if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text.ToString()) > 0)
                     {
                         string itemId = dt.Rows[0]["intItemID"].ToString();

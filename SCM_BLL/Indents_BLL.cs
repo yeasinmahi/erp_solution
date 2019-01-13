@@ -6,6 +6,37 @@ namespace SCM_BLL
 {
     public class Indents_BLL
     {
+        public DataTable GetDataIndentView(int type, string dept, int intReqId, DateTime dteFrom, DateTime dteTo, int intwh)
+        {
+            SprIndentViewTableAdapter adp = new SprIndentViewTableAdapter();
+            try
+            { return adp.GetDataIndentView(type, dept, intReqId, dteFrom, dteTo, intwh); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+        public DataTable GetIndentDetails(int indent)
+        {
+            GetIndentDataDetailsTableAdapter adp = new GetIndentDataDetailsTableAdapter();
+            try
+            { return adp.GetIndentDetails(indent); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+        public DataTable GetDataForIndentApproval(int type, int ReqId, DateTime dteFrom, DateTime dteTo, int intWh)
+        {
+            SprGetDataForIndentApprovalTableAdapter adp = new SprGetDataForIndentApprovalTableAdapter();
+            try
+            { return adp.GetDataForIndentApproval(type, ReqId, dteFrom, dteTo, intWh); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+        public DataTable GetItemStockAndPrice(int type, int ReqId, int wh)
+        {
+            SprGetItemStockAndPriceTableAdapter adp = new SprGetItemStockAndPriceTableAdapter();
+            try
+            { return adp.GetItemStockAndPrice(type, ReqId, wh); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
         public DataTable DataView(int type, string xmlunit, int wh, int ReqId, DateTime dteDate, int enroll)
         {
             try
