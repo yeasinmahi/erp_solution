@@ -120,8 +120,8 @@ namespace UI.SCM
             {
                 int reqId = int.Parse(ddlReqId.SelectedValue);
                 string indentType = ddlType.SelectedItem.ToString();
-                string purpose = txtPurpose.Text.ToString();
-                string qcby = ddlQcPersonal.SelectedValue.ToString();
+                string purpose = txtPurpose.Text;
+                string qcby = ddlQcPersonal.SelectedValue;
                 dt = objIndent.DataView(5, xmlunit, intWh, reqId, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0 && int.Parse(ddlType.SelectedValue) > 0)
                 {
@@ -220,13 +220,13 @@ namespace UI.SCM
                 string item = ""; string itemid = ""; bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString();
+                    item = arrayKey[0]; itemid = arrayKey[1];
                 }
-                string reqCode = "0".ToString();
-                string reqId = "0".ToString();
+                string reqCode = "0";
+                string reqId = "0";
                 string indentType = ddlType.SelectedItem.ToString();
-                string purpose = txtPurpose.Text.ToString();
-                string qcby = ddlQcPersonal.SelectedValue.ToString();
+                string purpose = txtPurpose.Text;
+                string qcby = ddlQcPersonal.SelectedValue;
                 CheckXmlItemReqData(itemid, reqCode);
                 if (CheckItem == 1)
                 {
@@ -242,7 +242,7 @@ namespace UI.SCM
 
                     dt = new DataTable();
                     dt = objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
-                    if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text.ToString()) > 0)
+                    if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
                     {
                         string itemId = dt.Rows[0]["intItemID"].ToString();
                         string itemName = dt.Rows[0]["strName"].ToString();
@@ -250,7 +250,7 @@ namespace UI.SCM
                         string stock = dt.Rows[0]["stockQty"].ToString();
                         string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
                         string rate = dt.Rows[0]["rate"].ToString();
-                        string indentQty = txtQty.Text.ToString();
+                        string indentQty = txtQty.Text;
                         int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
 
                         CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType,
@@ -447,12 +447,13 @@ namespace UI.SCM
                     XmlNode dSftTm = doc.SelectSingleNode("voucher");
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
-                    DateTime dtedate = DateTime.Parse(txtDueDate.Text.ToString());
+                    DateTime dtedate = DateTime.Parse(txtDueDate.Text);
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
                         string mrtg = objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, enroll);
                         string[] searchKey = Regex.Split(mrtg, ":");
+                        lblIndentNo.Text = "Indent Number: " + searchKey[1];
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
                         dgvIndent.DataSource = "";
                         dgvIndent.DataBind();

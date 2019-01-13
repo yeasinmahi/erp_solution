@@ -4,6 +4,7 @@ using SCM_BLL;
 using System;
 using System.Data;
 using System.Web;
+using System.Web.UI;
 using UI.ClassFiles;
 
 namespace UI.SCM
@@ -44,7 +45,7 @@ namespace UI.SCM
                     lblType.Text = dept;
 
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    dt = objIndent.DataView(14, "", 0, int.Parse(indentID), DateTime.Now, enroll);
+                    dt = objIndent.GetIndentItemDetails(int.Parse(indentID), out string message);
                     if (dt.Rows.Count > 0)
                     {
                         if (DateTime.TryParse(dt.Rows[0]["indentDate"].ToString(), out var indentDate) &&
@@ -83,6 +84,11 @@ namespace UI.SCM
                             imgUnit.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
                             imgApp.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
                         }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", message, true);
+                        return;
                     }
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();

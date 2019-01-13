@@ -66,6 +66,21 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable GetIndentItemDetails(int indentId, out string message)
+        {
+            try
+            {
+                message = "";
+                SprIndentItemDetailsTableAdapter adb = new SprIndentItemDetailsTableAdapter();
+                return adb.GetData(indentId);
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return new DataTable();
+            }
+        }
+
         public DataTable ProjectParent(int intunit)
         {
             throw new NotImplementedException();

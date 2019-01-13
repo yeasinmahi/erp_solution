@@ -175,6 +175,11 @@
                             </td>
                         </tr>
                         <tr>
+
+                            <td colspan="6">
+                                <asp:Label ID="lblIndentNo" runat="server" Font-Bold="true" Font-Size="Medium" ForeColor="#0066cc"></asp:Label></td>
+                        </tr>
+                        <tr>
                             <td colspan="6">
 
                                 <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting"
