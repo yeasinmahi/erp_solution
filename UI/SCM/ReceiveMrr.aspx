@@ -83,7 +83,7 @@
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
-                
+                return true;
             }
             return false;
         }
