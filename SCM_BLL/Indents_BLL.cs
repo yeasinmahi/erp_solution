@@ -13,6 +13,7 @@ namespace SCM_BLL
             { return adp.GetDataIndentView(type, dept, intReqId, dteFrom, dteTo, intwh); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+
         public DataTable GetIndentDetails(int indent)
         {
             GetIndentDataDetailsTableAdapter adp = new GetIndentDataDetailsTableAdapter();
@@ -44,6 +45,20 @@ namespace SCM_BLL
                 string strmsg = "";
                 SprIndentTableAdapter adb = new SprIndentTableAdapter();
                 return adb.GetIndentData(type, xmlunit, wh, ReqId, dteDate, enroll, ref strmsg);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
+        public DataTable GetDepartment()
+        {
+            try
+            {
+                string strmsg = "";
+                tblDepartmentTableAdapter adb = new tblDepartmentTableAdapter();
+                return adb.GetDepartment();
             }
             catch (Exception ex)
             {

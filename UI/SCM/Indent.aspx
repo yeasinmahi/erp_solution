@@ -168,16 +168,11 @@
                                 <asp:DropDownList ID="ddlDepartment" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
                                 </asp:DropDownList>
                             </td>
-                            
+
                             <td colspan="2" style="text-align: right;">
                                 <asp:Button ID="btnAdd" runat="server" Text="Add" ForeColor="Blue" OnClick="btnAdd_Click" />
                                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" ForeColor="Blue" OnClick="btnSubmit_Click" />
                             </td>
-                        </tr>
-                        <tr>
-
-                            <td colspan="6">
-                                <asp:Label ID="lblIndentNo" runat="server" Font-Bold="true" Font-Size="Medium" ForeColor="#0066cc"></asp:Label></td>
                         </tr>
                         <tr>
                             <td colspan="6">

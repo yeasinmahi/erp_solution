@@ -21,9 +21,12 @@ namespace UI.SCM
     {
         private Indents_BLL objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
-        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-        private string xmlunit = ""; private int enroll, CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "", indentQty;
+        private string xmlunit = "";
+        private int enroll, CheckItem = 1, intWh;
+        private string[] arrayKey;
+        private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML;
+        private string xmlString = "", indentQty;
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -33,12 +36,18 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + enroll + ".xml");
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvIndent.DataSource = ""; dgvIndent.DataBind(); }
-                catch { }
+                try
+                {
+                    File.Delete(filePathForXML);
+                    dgvIndent.DataSource = "";
+                    dgvIndent.DataBind();
+                }
+                catch (Exception ex) { }
                 DefaltLoad();
                 pnlUpperControl.DataBind();
             }
@@ -66,7 +75,7 @@ namespace UI.SCM
                 ddlQcPersonal.DataValueField = "Id";
                 ddlQcPersonal.DataBind();
 
-                dt = objIndent.DataView(17, xmlunit, int.Parse(ddlWH.SelectedValue), 0, DateTime.Now, enroll);
+                dt = objIndent.GetDepartment();
                 Common.LoadDropDownWithSelect(ddlDepartment, dt, "intdepartmentID", "strDepatrment");
 
                 dt = objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, enroll);
@@ -158,10 +167,17 @@ namespace UI.SCM
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvIndent.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); dgvIndent.DataSource = ""; dgvIndent.DataBind(); }
-                else { LoadGridwithXml(); }
+                {
+                    File.Delete(filePathForXML);
+                    dgvIndent.DataSource = "";
+                    dgvIndent.DataBind();
+                }
+                else
+                {
+                    LoadGridwithXml();
+                }
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
@@ -221,11 +237,9 @@ namespace UI.SCM
                         return;
                     }
 
-
-                    // This code stop by alamin@akij.net 
+                    // This code stop by alamin@akij.net
                     //dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, enroll);
 
-                    
                     dt = new DataTable();
                     dt = objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
                     if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text.ToString()) > 0)
@@ -252,9 +266,10 @@ namespace UI.SCM
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
                 }
-                txtItem.Text = ""; txtQty.Text = "0";
+                txtItem.Text = "";
+                txtQty.Text = "0";
             }
-            catch { }
+            catch (Exception ex) { }
 
             // string xmlunit = "<voucher><voucherentry itemId=" + '"' + ItemId + '"' + " SalesPrice=" + '"' + SalesPrice + '"' + " IssueQty=" + '"' + IssueQty + '"' + " rackId=" + '"' + RackId + '"' + " MrrId=" + '"' + MrrId + '"' + "/></voucher>".ToString();
         }
@@ -299,7 +314,7 @@ namespace UI.SCM
                     CheckItem = 1;
                 }
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         #endregion======================Close==================================
@@ -407,7 +422,7 @@ namespace UI.SCM
                 else { dgvIndent.DataSource = ""; }
                 dgvIndent.DataBind();
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         #endregion ===========================Close=======================
@@ -438,7 +453,6 @@ namespace UI.SCM
                     {
                         string mrtg = objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, enroll);
                         string[] searchKey = Regex.Split(mrtg, ":");
-                        lblIndentNo.Text = "Indent Number: " + searchKey[1].ToString();
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
                         dgvIndent.DataSource = "";
                         dgvIndent.DataBind();
