@@ -53,7 +53,10 @@ namespace UI.SCM
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIndent.DataView(16, xmlunit, 0, 0, DateTime.Now, enroll);
+                //dt = objIndent.DataView(16, xmlunit, 0, 0, DateTime.Now, enroll);
+
+                dt = objIndent.GetIndentApprovalWH(enroll);          
+
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataValueField = "Id";
@@ -98,7 +101,10 @@ namespace UI.SCM
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "OpenHdnDiv();", true);
                 dgvIndent.Visible = false;
 
-                dt = objIndent.DataView(8, "", intWh, indentId, DateTime.Now, enroll);
+                //Code Stop By alamin@akij.net
+                //dt = objIndent.DataView(8, "", intWh, indentId, DateTime.Now, enroll);
+
+                dt = objIndent.GetIndentDetails(indentId);                
                 dgvDetalis.DataSource = dt;
                 dgvDetalis.DataBind();
                 dt.Clear();
@@ -289,7 +295,10 @@ namespace UI.SCM
                 int wh = int.Parse(ddlWH.SelectedValue);
                 string xml = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
 
-                dt = objIndent.DataView(7, xml, wh, Type, DateTime.Now, enroll);
+                //Code Stop By alamin@akij.net
+                //dt = objIndent.DataView(7, xml, wh, Type, DateTime.Now, enroll);
+                                
+                dt = objIndent.GetDataForIndentApproval(7, Type, DateTime.Parse(dteFrom), DateTime.Parse(dteTo), wh);
                 if (dt.Rows.Count > 0)
                 {
                     dgvIndent.DataSource = dt;

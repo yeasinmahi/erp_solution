@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -27,8 +28,8 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                CalendarExtenderFrom.SelectedDate = DateTime.Now.AddMonths(-1);
-                CalendarExtenderTo.SelectedDate = DateTime.Now;
+                txtDteFrom.Text = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd");
+                txtdteTo.Text = DateTime.Now.ToString("yyyy-MM-dd");
 
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
@@ -54,17 +55,37 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
+                try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
+                if (indentId == 0 && Common.GetDdlSelectedValue(ddlDept) < 1)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "alertMessage", "alert('Please select Type');", true);
+                    GridViewUtil.UnLoadGridView(dgvStatement);
+                    return;
+                }
                 dgvIndent.Visible = true;
                 dgvStatement.Visible = false;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
-                try { dteFrom = DateTime.Parse(txtDteFrom.Text); } catch { dteFrom = DateTime.Now; }
-                try { dteTo = DateTime.Parse(txtdteTo.Text); } catch { dteTo = DateTime.Now; }
+                try
+                {
+                    dteFrom = DateTime.Parse(txtDteFrom.Text);
+                }
+                catch
+                {
+                    dteFrom = DateTime.Now;
+                }
+                try
+                {
+                    dteTo = DateTime.Parse(txtdteTo.Text);
+                }
+                catch
+                {
+                    dteTo = DateTime.Now;
+                }
 
                 string dept = ddlDept.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                dt = objIndent.DataView(12, xmlData, intwh, indentId, dteFrom, enroll);
+
+                dt = objIndent.GetDataIndentView(12, dept, indentId, dteFrom, dteTo, intwh);
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
             }
@@ -90,10 +111,11 @@ namespace UI.SCM
                 Label lblDueDate = row.FindControl("lblDueDate") as Label;
                 Label lblIndentDate = row.FindControl("lblIndentDate") as Label;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
+                Label lblType = row.FindControl("lblType") as Label;
                 string dteIndent = lblIndentDate.Text;
                 string dteDue = lblDueDate.Text;
                 string indentID = lblIndent.Text;
-                string dept = ddlDept.SelectedItem.ToString();
+                string dept = lblType.Text;
                 string whname = ddlWH.SelectedItem.ToString();
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteIndent + "','" + dteDue.ToString() + "','" + indentID + "','" + dept + "','" + whname + "');", true);
@@ -111,21 +133,30 @@ namespace UI.SCM
                 Label lblDueDate = row.FindControl("lblDueDate") as Label;
                 Label lblIndentDate = row.FindControl("lblIndentDate") as Label;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
+                Label lblType = row.FindControl("lblType") as Label;
                 string dteIndent = lblIndentDate.Text;
                 string dteDue = lblDueDate.Text;
                 string indentID = lblIndent.Text;
-                string dept = ddlDept.SelectedItem.ToString();
+                string dept = lblType.Text;
                 string whname = ddlWH.SelectedItem.ToString();
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + dteIndent + "','" + dteDue.ToString() + "','" + indentID + "','" + dept + "','" + whname + "');", true);
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         protected void btnStatement_Click(object sender, EventArgs e)
         {
             try
             {
+                try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
+                if (indentId == 0 && Common.GetDdlSelectedValue(ddlDept) < 1)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "alertMessage", "alert('Please select Type');", true);
+                    GridViewUtil.UnLoadGridView(dgvStatement);
+                    return;
+                }
+
                 dgvIndent.Visible = false;
                 dgvStatement.Visible = true;
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -133,13 +164,16 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 string dept = ddlDept.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                dt = objIndent.DataView(13, xmlData, intwh, indentId, dteFrom, enroll);
+
+                //Code Stop By alamin@akij.net
+                //dt = objIndent.DataView(13, xmlData, intwh, indentId, dteFrom, enroll);
+
+                dt = objIndent.GetDataIndentView(13, dept, indentId, dteFrom, dteTo, intwh);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         protected void btnDownload_Click(object sender, EventArgs e)

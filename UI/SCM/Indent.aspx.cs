@@ -13,6 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -20,9 +21,12 @@ namespace UI.SCM
     {
         private Indents_BLL objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
-        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-        private string xmlunit = ""; private int enroll, CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "", indentQty;
+        private string xmlunit = "";
+        private int enroll, CheckItem = 1, intWh;
+        private string[] arrayKey;
+        private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML;
+        private string xmlString = "", indentQty;
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -32,12 +36,18 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + enroll + ".xml");
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvIndent.DataSource = ""; dgvIndent.DataBind(); }
-                catch { }
+                try
+                {
+                    File.Delete(filePathForXML);
+                    dgvIndent.DataSource = "";
+                    dgvIndent.DataBind();
+                }
+                catch (Exception ex) { }
                 DefaltLoad();
                 pnlUpperControl.DataBind();
             }
@@ -64,6 +74,9 @@ namespace UI.SCM
                 ddlQcPersonal.DataTextField = "strName";
                 ddlQcPersonal.DataValueField = "Id";
                 ddlQcPersonal.DataBind();
+
+                dt = objIndent.GetDepartment();
+                Common.LoadDropDownWithSelect(ddlDepartment, dt, "intdepartmentID", "strDepatrment");
 
                 dt = objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, enroll);
                 ddlReqId.DataSource = dt;
@@ -107,8 +120,8 @@ namespace UI.SCM
             {
                 int reqId = int.Parse(ddlReqId.SelectedValue);
                 string indentType = ddlType.SelectedItem.ToString();
-                string purpose = txtPurpose.Text.ToString();
-                string qcby = ddlQcPersonal.SelectedValue.ToString();
+                string purpose = txtPurpose.Text;
+                string qcby = ddlQcPersonal.SelectedValue;
                 dt = objIndent.DataView(5, xmlunit, intWh, reqId, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0 && int.Parse(ddlType.SelectedValue) > 0)
                 {
@@ -126,7 +139,8 @@ namespace UI.SCM
                             string sftyStock = dt.Rows[i]["numSafetyStock"].ToString();
                             string rate = dt.Rows[i]["rate"].ToString();
                             indentQty = dt.Rows[i]["numApproveQty"].ToString();
-                            CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby);
+                            int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
+                            CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby, intDepartment);
                         }
                     }
                 }
@@ -153,10 +167,17 @@ namespace UI.SCM
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvIndent.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); dgvIndent.DataSource = ""; dgvIndent.DataBind(); }
-                else { LoadGridwithXml(); }
+                {
+                    File.Delete(filePathForXML);
+                    dgvIndent.DataSource = "";
+                    dgvIndent.DataBind();
+                }
+                else
+                {
+                    LoadGridwithXml();
+                }
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
@@ -199,13 +220,13 @@ namespace UI.SCM
                 string item = ""; string itemid = ""; bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString();
+                    item = arrayKey[0]; itemid = arrayKey[1];
                 }
-                string reqCode = "0".ToString();
-                string reqId = "0".ToString();
+                string reqCode = "0";
+                string reqId = "0";
                 string indentType = ddlType.SelectedItem.ToString();
-                string purpose = txtPurpose.Text.ToString();
-                string qcby = ddlQcPersonal.SelectedValue.ToString();
+                string purpose = txtPurpose.Text;
+                string qcby = ddlQcPersonal.SelectedValue;
                 CheckXmlItemReqData(itemid, reqCode);
                 if (CheckItem == 1)
                 {
@@ -215,8 +236,13 @@ namespace UI.SCM
                             "alert('Please select type');", true);
                         return;
                     }
-                    dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, enroll);
-                    if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text.ToString()) > 0)
+
+                    // This code stop by alamin@akij.net
+                    //dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, enroll);
+
+                    dt = new DataTable();
+                    dt = objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
+                    if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
                     {
                         string itemId = dt.Rows[0]["intItemID"].ToString();
                         string itemName = dt.Rows[0]["strName"].ToString();
@@ -224,10 +250,11 @@ namespace UI.SCM
                         string stock = dt.Rows[0]["stockQty"].ToString();
                         string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
                         string rate = dt.Rows[0]["rate"].ToString();
-                        string indentQty = txtQty.Text.ToString();
+                        string indentQty = txtQty.Text;
+                        int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
 
                         CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType,
-                            purpose, qcby);
+                            purpose, qcby, intDepartment);
                     }
                     else
                     {
@@ -239,9 +266,10 @@ namespace UI.SCM
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
                 }
-                txtItem.Text = ""; txtQty.Text = "0";
+                txtItem.Text = "";
+                txtQty.Text = "0";
             }
-            catch { }
+            catch (Exception ex) { }
 
             // string xmlunit = "<voucher><voucherentry itemId=" + '"' + ItemId + '"' + " SalesPrice=" + '"' + SalesPrice + '"' + " IssueQty=" + '"' + IssueQty + '"' + " rackId=" + '"' + RackId + '"' + " MrrId=" + '"' + MrrId + '"' + "/></voucher>".ToString();
         }
@@ -286,7 +314,7 @@ namespace UI.SCM
                     CheckItem = 1;
                 }
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         #endregion======================Close==================================
@@ -306,14 +334,14 @@ namespace UI.SCM
 
         #region ===========================XML Data Bind=======================
 
-        private void CreateXml(string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby)
+        private void CreateXml(string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby, int intDepartment)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby);
+                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby, intDepartment);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -321,7 +349,7 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby);
+                XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby, intDepartment);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -329,7 +357,7 @@ namespace UI.SCM
             LoadGridwithXml();
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby)
+        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby, int intDepartment)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -357,6 +385,8 @@ namespace UI.SCM
             Purpose.Value = purpose;
             XmlAttribute Qcby = doc.CreateAttribute("qcby");
             Qcby.Value = qcby;
+            XmlAttribute department = doc.CreateAttribute("intDepartment");
+            department.Value = intDepartment.ToString();
 
             node.Attributes.Append(ItemId);
             node.Attributes.Append(ItemName);
@@ -371,6 +401,7 @@ namespace UI.SCM
             node.Attributes.Append(IndentType);
             node.Attributes.Append(Purpose);
             node.Attributes.Append(Qcby);
+            node.Attributes.Append(department);
             return node;
         }
 
@@ -391,7 +422,7 @@ namespace UI.SCM
                 else { dgvIndent.DataSource = ""; }
                 dgvIndent.DataBind();
             }
-            catch { }
+            catch (Exception ex) { }
         }
 
         #endregion ===========================Close=======================
@@ -416,13 +447,13 @@ namespace UI.SCM
                     XmlNode dSftTm = doc.SelectSingleNode("voucher");
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
-                    DateTime dtedate = DateTime.Parse(txtDueDate.Text.ToString());
+                    DateTime dtedate = DateTime.Parse(txtDueDate.Text);
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
                         string mrtg = objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, enroll);
                         string[] searchKey = Regex.Split(mrtg, ":");
-                        lblIndentNo.Text = "Indent Number: " + searchKey[1].ToString();
+                        lblIndentNo.Text = "Indent Number: " + searchKey[1];
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
                         dgvIndent.DataSource = "";
                         dgvIndent.DataBind();
