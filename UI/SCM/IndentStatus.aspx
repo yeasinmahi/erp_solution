@@ -128,8 +128,8 @@
            <tr>
                <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Indent No: "></asp:Label></td>
                <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
-                <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
-               <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
+                <td style="text-align:left"><asp:Button ID="btnShow" ForeColor="#0033cc" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
+               <td style="text-align:right"><asp:Button ID="btnStatement" ForeColor="#0033cc" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
                 </tr>
         </table>
         <table>
