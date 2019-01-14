@@ -45,6 +45,19 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable GetPoCompleteStatus(int intPo)
+        {
+            tblPurchaseOrderMainTableAdapter adp = new tblPurchaseOrderMainTableAdapter();
+            try
+            {
+                return adp.GetPoCompleteStatus(intPo);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
         public DataTable GetWhByEnrollAndPo(int enroll, int intPo)
         {
             tblWearHouseOperatorTableAdapter adp = new tblWearHouseOperatorTableAdapter();

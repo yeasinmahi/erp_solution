@@ -1,4 +1,5 @@
 using System;
+using System.Web.UI;
 using UserSecurity;
 
 /// <summary>
@@ -7,7 +8,7 @@ using UserSecurity;
 /// </summary>
 namespace UI.ClassFiles
 {
-    public class BasePage : System.Web.UI.Page
+    public class BasePage : Page
     {
         protected override void OnPreInit(EventArgs e)
         {
@@ -15,6 +16,7 @@ namespace UI.ClassFiles
             UserActivityCheck();
             Page.Title = @"Welcome to Akij Group";
         }
+
         public BasePage()
         {
             //
@@ -43,6 +45,12 @@ namespace UI.ClassFiles
                 Response.Redirect(retStr);
                 return;
             }
+        }
+
+        public void Alert(string message)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                "alert('" + message + "');", true);
         }
     }
 }

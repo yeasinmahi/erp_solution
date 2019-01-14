@@ -225,6 +225,7 @@ namespace UI.SCM
                     }
                     else
                     {
+
                         int intwh = int.Parse(ddlWH.SelectedValue);
                         arrayKey = txtPoUser.Text.Split(delimiterChars);
                         string item = ""; string itemid = "";

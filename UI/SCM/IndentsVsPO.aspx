@@ -23,16 +23,31 @@
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
        
     <script>
-         function Viewdetails(dteIndent, dteDue, indentID, dept, whname) {
-             window.open('IndentStatusDetalis.aspx?dteIndent=' + dteIndent + '&dteDue=' + dteDue + '&indentID=' + indentID + '&dept=' + dept + '&whname=' + whname , 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
-         }
+        function Viewdetails(dteIndent, dteDue, indentID, dept, whname) {
+            window.open('IndentStatusDetalis.aspx?dteIndent=' + dteIndent + '&dteDue=' + dteDue + '&indentID=' + indentID + '&dept=' + dept + '&whname=' + whname , 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+        }
+        function ShowButtonValidation() {
+            var fromDate = document.getElementById("txtDteFrom").value;
+            var toDate = document.getElementById("txtdteTo").value;
+            if (fromDate == null || fromDate == "") {
+                alert("Plese select from date");
+                return false;
+            } else if (toDate == null || toDate == "") {
+                alert("Plese select to date");
+                return false;
+            }
+            return true;
+        }
     </script>
   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
     gtag('config', 'UA-125570863-1');
 </script>    
     <style type="text/css"> 
@@ -100,7 +115,7 @@
                 <asp:ListItem Value="0" Text="Pending"></asp:ListItem><asp:ListItem Value="1" Text="PO Issued"></asp:ListItem><asp:ListItem Value="2" Text="All"></asp:ListItem>
                  </asp:DropDownList></td>
 
-                <td style="text-align:right" colspan="2"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Show"  OnClick="btnStatement_Click"/> </td>
+                <td style="text-align:right" colspan="2"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Show" OnClientClick="return ShowButtonValidation();" OnClick="btnStatement_Click"/> </td>
            </tr>
 
         </table>
