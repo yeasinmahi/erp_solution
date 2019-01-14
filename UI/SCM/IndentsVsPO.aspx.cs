@@ -49,8 +49,8 @@ namespace UI.SCM
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 int sortBy = int.Parse(ddlSortBy.SelectedValue);
                 string dept = ddlType.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + " sortBy=" + '"' + sortBy + '"' + "/></voucher>".ToString();
-                dt = objIndent.DataView(15, xmlData, intwh, 0, DateTime.Now, enroll);
+
+                dt = objIndent.GetIndentVsPo(intwh, dteFrom, dteTo, dept, sortBy);
                 dgvStatement.DataSource = dt;
                 dgvStatement.DataBind();
             }

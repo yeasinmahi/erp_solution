@@ -60,6 +60,20 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable GetIndentVsPo(int wh, DateTime fromDate, DateTime toDate, string strDepartment, int type)
+        {
+            try
+            {
+                string strmsg = "";
+                sprGetIndentVsPOStatusTableAdapter adb = new sprGetIndentVsPOStatusTableAdapter();
+                return adb.GetIndentVsPo(wh, fromDate, toDate, strDepartment, type);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
         public DataTable GetDepartment()
         {
             try
