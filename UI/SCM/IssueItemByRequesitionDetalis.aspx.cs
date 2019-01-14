@@ -201,11 +201,12 @@ namespace UI.SCM
                 Label lblItemId = row.FindControl("lblItemId") as Label;
                 Label lblstock = row.FindControl("lblStock") as Label;
                 Label lblvalue = row.FindControl("lblValue") as Label;
+                TextBox txtIsueQty = row.FindControl("txtIssue") as TextBox;
 
                 int itemid = int.Parse(lblItemId.Text.ToString());
-
+               
                 intwh = int.Parse(Request.QueryString["intwh"].ToString());
-
+                txtIsueQty.Text = "0";
                 dt = objIssue.GetViewData(18, "", intwh, locationId, DateTime.Now, itemid);
                 if(dt.Rows.Count>0)
                 {

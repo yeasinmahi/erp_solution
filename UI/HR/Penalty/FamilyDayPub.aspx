@@ -97,7 +97,7 @@
     <tr class="tblheader"><td style="text-align:right;"><asp:Label ID="lblsps" CssClass="lbl" runat="server" Text="Spouse Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtSpouse" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="lbldob" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-    <td><asp:TextBox ID="txtSDOB" runat="server" CssClass="txtBox"></asp:TextBox>
+    <td><asp:TextBox ID="txtSDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox>
     <cc1:CalendarExtender ID="CEB" runat="server" Format="yyyy-MM-dd" TargetControlID="txtSDOB"></cc1:CalendarExtender></td>
     </tr>
 
@@ -116,7 +116,7 @@
     <tr class="tblheader"><td style="text-align:right;"><asp:Label ID="lblcld" CssClass="lbl" runat="server" Text="Child Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtChild" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="lblcdob" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-    <td><asp:TextBox ID="txtCDOB" runat="server" CssClass="txtBox"></asp:TextBox>
+    <td><asp:TextBox ID="txtCDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox>
     <cc1:CalendarExtender ID="cc1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtCDOB"></cc1:CalendarExtender></td>
     </tr>
 
