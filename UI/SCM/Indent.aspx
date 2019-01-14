@@ -68,6 +68,13 @@
         gtag('js', new Date());
         gtag('config', 'UA-125570863-1');
     </script>
+
+<%--    <script>
+        function isNumeric(num) {
+            return !isNaN(num)
+        }
+    </script>--%>
+
 </head>
 
 <body>
@@ -145,7 +152,7 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Due Date:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtDueDate" runat="server" CssClass="txtBox" Width="100px" autocomplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtDueDate" runat="server" CssClass="txtBox" Width="100px" autocomplete="off" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDueDate">
                                 </cc1:CalendarExtender>
                             </td>

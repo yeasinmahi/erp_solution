@@ -6,6 +6,14 @@ namespace SCM_BLL
 {
     public class Indents_BLL
     {
+        public DataTable GetIndentApprovalWH(int intEnroll)
+        {
+            GetIndentApprovalWHTableAdapter adp = new GetIndentApprovalWHTableAdapter();
+            try
+            { return adp.GetIndentApprovalWH(intEnroll); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
         public DataTable GetDataIndentView(int type, string dept, int intReqId, DateTime dteFrom, DateTime dteTo, int intwh)
         {
             SprIndentViewTableAdapter adp = new SprIndentViewTableAdapter();

@@ -53,7 +53,10 @@ namespace UI.SCM
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIndent.DataView(16, xmlunit, 0, 0, DateTime.Now, enroll);
+                //dt = objIndent.DataView(16, xmlunit, 0, 0, DateTime.Now, enroll);
+
+                dt = objIndent.GetIndentApprovalWH(enroll);          
+
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataValueField = "Id";
