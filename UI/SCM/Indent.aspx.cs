@@ -232,8 +232,7 @@ namespace UI.SCM
                 {
                     if (indentType.ToLower().Equals("select"))
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Please select type');", true);
+                        Alert("Please select type");
                         return;
                     }
 
