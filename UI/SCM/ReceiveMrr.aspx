@@ -229,9 +229,6 @@
                             <td style="font-style: normal">MRR No:</td>
                             <td style="font-weight: bold;">
                                 <asp:Label ID="lblMrrNo" Font-Size="Medium" ForeColor="Red" runat="server"></asp:Label></td>
-                            <td>MRR Date:</td>
-                            <td style="font-weight: bold;">
-                                <asp:Label ID="lblMrrDate" runat="server"></asp:Label></td>
                             <td>PO total Vat:</td>
                             <td style="font-weight: bold;">
                                 <asp:Label ID="lblPoTotal" runat="server"></asp:Label></td>

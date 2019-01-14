@@ -143,28 +143,35 @@ namespace UI.SCM
                         try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text.ToString())); expireDate = dteExp.ToString(); } catch { expireDate = null; }
                         try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text.ToString())); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
 
-                        if (decimal.Parse(numRcvQty) > 0 && int.Parse(location) > 0 && monRate > 0)
+                        if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
                         {
-                            //if (ysnQc.ToString() == "0")
-                            //{
-                            //    if (Double.Parse(numPreRcvQty) + Double.Parse(numRcvQty) > (Double.Parse(numPOQty)) * 1.1)
-                            //    {
-                            //        try { File.Delete(filePathForXML); } catch { }
-                            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Maximum receive quantity must be Less or equal than 10% more than PO quantity.');", true);
-                            //        break;
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    if (Double.Parse(numPreRcvQty) + Double.Parse(numRcvQty) > (Double.Parse(numQcQty)) * 1.1)
-                            //    {
-                            //        try { File.Delete(filePathForXML); } catch { }
-                            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Maximum receive quantity must be Less or equal than QC Passed quantity.');", true);
-                            //        break;
-                            //    }
-                            //}
-
-                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate, manufactureDate);
+                            if (int.TryParse(location, out int locationId))
+                            {
+                                if (monRate > 0)
+                                {
+                                    CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(),
+                                        dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan,
+                                        monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(),
+                                        monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty,
+                                        numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy,
+                                        batchNo, expireDate, manufactureDate);
+                                }
+                                else
+                                {
+                                    Alert("Rate can not load");
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                Alert("Current loacation should be sesected");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            Alert("input Receive Quantity properly");
+                            return;
                         }
                     }
                     txtChallan.Text = "";

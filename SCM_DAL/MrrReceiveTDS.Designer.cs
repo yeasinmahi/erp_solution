@@ -1977,7 +1977,7 @@ namespace SCM_DAL.MrrReceiveTDSTableAdapters {
             this._commandCollection[0].CommandText = @"select whop.intWHID,wh.strWareHoseName from ERP_Inventory.dbo.tblWearHouseOperator whop
 join ERP_Inventory.dbo.tblPurchaseOrderMain po on po.intWHID = whop.intWHID
 join ERP_Inventory.dbo.tblWearHouse wh on wh.intWHID = whop.intWHID
-where whop.intEnrollment = @enroll and intPOID = @poId
+where whop.intEnrollment = @enroll and intPOID = @poId or (intEnrollment = @enroll and (ysnSU = 1 or ysnAllUnitPO = 1))
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEnrollment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
