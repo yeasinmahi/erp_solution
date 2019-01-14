@@ -9,7 +9,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IndentStatusDetalis : System.Web.UI.Page
+    public partial class IndentStatusDetalis : Page
     {
         private Indents_BLL objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
