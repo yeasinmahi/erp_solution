@@ -100,7 +100,7 @@
                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label>
             </td>
             <td style="text-align:left;">
-                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"    ></asp:DropDownList>
+                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" ></asp:DropDownList>
             </td>
 
             <td   style="text-align:right;">
@@ -128,8 +128,8 @@
            <tr>
                <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Indent No: "></asp:Label></td>
                <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
-                <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
-               <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
+                <td style="text-align:left"><asp:Button ID="btnShow" ForeColor="#0033cc" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
+               <td style="text-align:right"><asp:Button ID="btnStatement" ForeColor="#0033cc" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
                 </tr>
         </table>
         <table>
@@ -182,7 +182,7 @@
             </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click"   /> </ItemTemplate>
+            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" forecolor="blue" Text="Detalis" OnClick="btnDetalis_Click"/> </ItemTemplate>
             </asp:TemplateField>
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
@@ -197,9 +197,9 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Indent Id" SortExpression="intIndentID"><ItemTemplate>
+            <asp:TemplateField HeaderText="Indent ID" SortExpression="intIndentID"><ItemTemplate>
             <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("intIndentID") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="60px" /></asp:TemplateField>
 
@@ -246,7 +246,7 @@
             <ItemStyle HorizontalAlign="Left" /> </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnStementDetalis" runat="server" Text="Detalis"  OnClick="btnStementDetalis_Click"  /> </ItemTemplate>
+            <ItemTemplate>   <asp:Button ID="btnStementDetalis" runat="server" Text="Detalis" forecolor="blue"  OnClick="btnStementDetalis_Click"  /> </ItemTemplate>
             </asp:TemplateField>
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

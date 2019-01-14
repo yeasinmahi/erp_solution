@@ -94,7 +94,7 @@
                 <tr>
                     <td></td>
                     <td style="text-align: center;">
-                        <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Indent Detalis"></asp:Label></td>
+                        <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Purchase Requisition"></asp:Label></td>
                 </tr>
                 <tr>
                     <td></td>
