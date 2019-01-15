@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <%--<webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />--%>
+    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
 
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
@@ -22,7 +22,7 @@
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-    <%--<link href="../Content/CSS/GridView.css" rel="stylesheet" />--%>
+    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
     <script type="text/javascript">
         function OpenHdnDiv() {
@@ -200,7 +200,10 @@
             <td><asp:GridView ID="dgvPoApp" runat="server" AutoGenerateColumns="False" ShowFooter="True"  Width="600px"  
                 CssClass="GridViewStyle" BackColor="White" BorderColor="#DEDFDE" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" >             
                 <HeaderStyle CssClass="HeaderStyle" BackColor="#6B696B" Font-Bold="True" ForeColor="White" Font-Size="10px" />  
-                <FooterStyle CssClass="FooterStyle" BackColor="#CCCC99" /> <RowStyle CssClass="RowStyle" BackColor="#F7F7DE" />  <PagerStyle CssClass="PagerStyle" BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" /> 
+                <FooterStyle CssClass="FooterStyle" BackColor="#CCCC99" /> 
+                <RowStyle CssClass="RowStyle" BackColor="#F7F7DE" />  
+                <SelectedRowStyle CssClass="RowStyle" BackColor="#efefef"></SelectedRowStyle>
+                <PagerStyle CssClass="PagerStyle" BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" /> 
                 <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="SL"><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              

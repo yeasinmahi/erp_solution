@@ -145,6 +145,10 @@ namespace UI.SCM
 
                         if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
                         {
+                            if (receiveQuantity <= 0)
+                            {
+                                break;
+                            }
                             if (int.TryParse(location, out int locationId))
                             {
                                 if (monRate > 0)
