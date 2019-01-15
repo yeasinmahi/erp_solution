@@ -66,9 +66,11 @@ namespace UI.HR.Penalty
         {
             try
             {
-                string childnm = txtChild.Text; string childgndr = ddlCGender.SelectedItem.ToString();string childdob = txtCDOB.Text;
-                if (childnm.Length <= 0 || childdob.Length<=0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please fillup child information properly.');", true); }
-                else {CreateXml(childnm, childgndr, childdob, "CHILD"); }                
+                if (hdnconfirm.Value == "1")
+                {
+                    string childnm = txtChild.Text; string childgndr = ddlCGender.SelectedItem.ToString(); string childdob = hdncdob.Value;
+                    CreateXml(childnm, childgndr, childdob, "CHILD");
+                }
             }
             catch { }
         }
@@ -149,12 +151,13 @@ namespace UI.HR.Penalty
                 {
                     XmlDocument doc = new XmlDocument(); dt = new DataTable(); int actionby = int.Parse(Session[SessionParams.USER_ID].ToString());
                     string pnd = ddlPnD.SelectedValue.ToString(); string ptype = ddlPtype.SelectedItem.ToString();
-                    string sname = txtSpouse.Text; string sgndr = ddlSGender.SelectedItem.ToString(); string sdob = txtSDOB.Text;
+                    string sname = txtSpouse.Text; string sgndr = ddlSGender.SelectedItem.ToString(); string sdob = hdnsdob.Value;
                     try
                     { doc.Load(filePathForXML); XmlNode dSftTm = doc.SelectSingleNode("FamilyDay"); xmlString = dSftTm.InnerXml;
                       xmlString = "<FamilyDay>" + xmlString + "</FamilyDay>";}
                     catch { xmlString = ""; }
                     dt = pnlty.Familydayinformation(0, hdncode.Value, int.Parse(pnd), ptype, sname, sgndr, sdob, actionby, xmlString);
+                    try { File.Delete(filePathForXML); } catch { }
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["OutMessage"].ToString() + "');", true);
                     BindPickandDrop();
                 }
