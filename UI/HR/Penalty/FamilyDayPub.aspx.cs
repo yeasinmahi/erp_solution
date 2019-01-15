@@ -21,7 +21,7 @@ namespace UI.HR.Penalty
         {
             try
             {
-                filePathForXML = Server.MapPath("~/HR/Penalty/Data/FD_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+                filePathForXML = Server.MapPath("~/HR/Penalty/Data/FD_" + Enroll + ".xml");
                 if (!IsPostBack)
                 {
                     pnlUpperControl.DataBind(); BindPickandDrop();
