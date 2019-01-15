@@ -292,7 +292,6 @@
             if (window.focus) { newwindow.focus() }
         }
     </script>
-    </script>
 
     
     
