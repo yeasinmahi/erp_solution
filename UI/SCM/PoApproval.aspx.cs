@@ -73,12 +73,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                int dept = int.Parse(ddlDepts.SelectedValue);
-                dt = DataTableLoad.GetPoViewDataTable(int.Parse(txtPoNo.Text), enroll, dept);
-                dgvPoApp.DataSource = dt;
-                dgvPoApp.DataBind();
-                dt.Clear();
+                PoNOShowGrid();
             }
             catch (Exception ex)
             {
@@ -92,6 +87,15 @@ namespace UI.SCM
             tracker.Stop();
         }
 
+        private void PoNOShowGrid()
+        {
+            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            int dept = int.Parse(ddlDepts.SelectedValue);
+            dt = DataTableLoad.GetPoViewDataTable(int.Parse(txtPoNo.Text), enroll, dept);
+            dgvPoApp.DataSource = dt;
+            dgvPoApp.DataBind();
+            dt.Clear();
+        }
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnPoUserShow_Click", null);
@@ -100,26 +104,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                arrayKey = txtPoUser.Text.Split(delimiterChars);
-                string item = ""; string itemid = "";
-                if (arrayKey.Length > 0)
-                {
-                    try
-                    {
-                        item = arrayKey[0].ToString();
-                        enroll = int.Parse(arrayKey[1].ToString());
-                    }
-                    catch { }
-                }
-
-                //  enroll = int.Parse(ddlPoUser.SelectedValue);
-                int intwh = int.Parse(ddlWH.SelectedValue);
-                int dept = int.Parse(ddlDepts.SelectedValue);
-                string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
-                dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, dept, xmlData);
-                dgvPoApp.DataSource = dt;
-                dgvPoApp.DataBind();
-                dt.Clear();
+                POUserGrid();
             }
             catch (Exception ex)
             {
@@ -132,7 +117,29 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+        private void POUserGrid()
+        {
+            arrayKey = txtPoUser.Text.Split(delimiterChars);
+            string item = ""; string itemid = "";
+            if (arrayKey.Length > 0)
+            {
+                try
+                {
+                    item = arrayKey[0].ToString();
+                    enroll = int.Parse(arrayKey[1].ToString());
+                }
+                catch { }
+            }
 
+            //  enroll = int.Parse(ddlPoUser.SelectedValue);
+            int intwh = int.Parse(ddlWH.SelectedValue);
+            int dept = int.Parse(ddlDepts.SelectedValue);
+            string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
+            dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, dept, xmlData);
+            dgvPoApp.DataSource = dt;
+            dgvPoApp.DataBind();
+            dt.Clear();
+        }
         protected void btnDetalis_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnDetalis_Click", null);
@@ -222,20 +229,30 @@ namespace UI.SCM
                         dgvPoApp.DataSource = dt;
                         dgvPoApp.DataBind();
                         dt.Clear();
+                        PoNOShowGrid();
                     }
                     else
                     {
+
                         int intwh = int.Parse(ddlWH.SelectedValue);
-                        arrayKey = txtPoUser.Text.Split(delimiterChars);
-                        string item = ""; string itemid = "";
-                        if (arrayKey.Length > 0)
-                        { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
+                        //arrayKey = txtPoUser.Text.Split(delimiterChars);
+                        //string item = "";
+                        //string itemid = "";
+                        //if (arrayKey.Length > 0)
+                        //{
+                        //    item = arrayKey[0].ToString();
+                        //    enroll = int.Parse(arrayKey[1].ToString());
+                        //}
                         string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
                         dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, int.Parse(ddlDepts.SelectedValue), xmlData);
                         dgvPoApp.DataSource = dt;
                         dgvPoApp.DataBind();
                         dt.Clear();
+
+                        enroll = 0;
+                        POUserGrid();
                     }
+                    
                 }
             }
             catch (Exception ex)

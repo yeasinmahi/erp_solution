@@ -186,7 +186,7 @@
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>   
 
                  <asp:TemplateField HeaderText="Store Location" ItemStyle-HorizontalAlign="right"  > 
-                 <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" CssClass="ddList"     ></asp:DropDownList> </ItemTemplate>  
+                 <ItemTemplate><asp:DropDownList ID="ddlStoreLocation" runat="server" AutoPostBack="true" CssClass="ddList" OnSelectedIndexChanged="ddlStoreLocation_SelectedIndexChanged"     ></asp:DropDownList> </ItemTemplate>  
                  <ItemStyle HorizontalAlign="Right"   /> </asp:TemplateField>  
 
                 <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue"  > 

@@ -332,10 +332,10 @@ namespace SCM_BLL
             return adp.InventoryAdjustment(unit, wh, user, intItem, rcvQty, monRate, location, remarks);
         }
 
-        public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate )
+        public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate, int intType, int autoID,int  itemID,DateTime transactionDate, decimal transactionQTY, int productID )
         {
-            sprInventoryProductionReceiveReportTableAdapter adp = new sprInventoryProductionReceiveReportTableAdapter();
-            return adp.GetFGReceiveData(whid, FromDate,ToDate);
+            sprFGReceiveTableAdapter adp = new sprFGReceiveTableAdapter();
+            return adp.GetFGReceiveData(whid, FromDate,ToDate,intType,autoID,itemID,transactionDate,transactionQTY,productID);
         }
         
         public DataTable DistributionData(int whid, DateTime FromDate, DateTime ToDate,int type,int intTransferID)
@@ -343,7 +343,7 @@ namespace SCM_BLL
             sprDistributionReceiveTableAdapter adp  = new sprDistributionReceiveTableAdapter();
             return adp.GetDistributionData(whid, FromDate, ToDate,type, intTransferID);
         }
-        public DataTable DistributionData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
+        public DataTable InsertReceiveData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
         {
             
             sprInventoryTransferTableAdapter adp = new sprInventoryTransferTableAdapter();
@@ -362,6 +362,18 @@ namespace SCM_BLL
         {
             TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
             return adp.GetUnitByWhId(whid);
+        }
+
+        public DataTable InsertTransferData(int unit, int intWH, int outWH, int location, int user, int intSalesEntryID, int item,decimal qty,string remarks, int intItemTransferType,string strItemTransferType)
+        {
+            sprInventoryTransferSalesDetailTableAdapter adp = new sprInventoryTransferSalesDetailTableAdapter();
+            return adp.InsertInventoryTransferSalesData(unit,intWH,outWH,location,user,intSalesEntryID,item,qty,remarks,intItemTransferType,strItemTransferType);
+        }
+
+        public DataTable GetTripEntry(string strChallanNo,int intUnitID,int intSalesOffId,int intShipPointId)
+        {
+            sprChallanWiseRouteCostTableAdapter adp = new sprChallanWiseRouteCostTableAdapter();
+            return adp.TripEntry(strChallanNo,intUnitID,intSalesOffId,intShipPointId);
         }
         
     }

@@ -10,14 +10,14 @@ namespace Purchase_BLL.Asset
 {
     public class Report_BLL
     {
-        public DataTable GetData(int intPart  , string   xml, int unit  ,  int jobstation, DateTime dteFrom , DateTime dteTo , int  intRptType ,int intEnroll)
+        public DataTable GetData(int intPart  , string   xml, int unit  ,  int jobstation, DateTime? dteFrom , DateTime? dteTo , int  intRptType ,int intEnroll)
         {
             try
             {
                 SprAssetReportTableAdapter adp = new SprAssetReportTableAdapter();
-                return adp.GetReportData(intPart, xml, unit, jobstation, dteFrom, dteTo, intRptType, intEnroll);
+                return adp.GetReportData(intPart, xml, unit, jobstation,  dteFrom, dteTo, intRptType, intEnroll);
             }
-            catch { return new DataTable(); }
+            catch (Exception ex ){ return new DataTable(); }
             
             
         }

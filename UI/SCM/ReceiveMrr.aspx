@@ -13,7 +13,6 @@
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>
 
-
     <script type="text/javascript">
 
         $("[id*=txtReceiveQty]").live("change", function () {
@@ -46,7 +45,6 @@
                         alert('Please Receive Qty Grather then Po Qty');
                     }
 
-
                 }
             } else {
                 $(this).val('');
@@ -56,11 +54,11 @@
 
         function MrrGenerateCheck() {
             var e = document.getElementById("ddlPo");
-            var Po = e.options[e.selectedIndex].value;
+            var po = e.options[e.selectedIndex].value;
             var challanDate = document.getElementById("txtdteChallan").value;
             var vatAmount = document.getElementById("txtVatAmount").value;
 
-            if ($.trim(Po) == 0 || $.trim(Po) == "" || $.trim(Po) == null || $.trim(Po) == undefined) {
+            if ($.trim(po) == 0 || $.trim(po) == "" || $.trim(po) == null || $.trim(po) == undefined) {
                 document.getElementById("hdnConfirm").value = "0"; alert('Please select Po');
             }
             else if ($.trim(challanDate) == 0 ||
@@ -85,8 +83,9 @@
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
-
+                return true;
             }
+            return false;
         }
 
         function PoViewCheck() {
@@ -142,7 +141,8 @@
             margin-top: 0px;
         }
 
-        .Textbox {
+        .auto-style1 {
+            height: 23px;
         }
     </style>
 </head>
@@ -218,10 +218,11 @@
                                 <asp:FileUpload ID="docUpload" Width="300px" runat="server" /></td>
 
                             <td style="text-align: right" colspan="2">
-                                <asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" /><asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+                                <asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" />
+                                <asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="return MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
                         </tr>
                         <tr>
-                            <td colspan="4">
+                            <td colspan="4" class="auto-style1">
                                 <asp:Label ID="lblSuppliyer" runat="server"></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false" runat="server"></asp:Label><asp:Label ID="lblCurrency" runat="server"></asp:Label>
                                 <asp:Label ID="lblConversion" runat="server"> </asp:Label><asp:Label ID="lblPoIssueBy" Visible="false" runat="server"></asp:Label></td>
                         </tr>
@@ -232,9 +233,6 @@
                             <td style="font-style: normal">MRR No:</td>
                             <td style="font-weight: bold;">
                                 <asp:Label ID="lblMrrNo" Font-Size="Medium" ForeColor="Red" runat="server"></asp:Label></td>
-                            <td>MRR Date:</td>
-                            <td style="font-weight: bold;">
-                                <asp:Label ID="lblMrrDate" runat="server"></asp:Label></td>
                             <td>PO total Vat:</td>
                             <td style="font-weight: bold;">
                                 <asp:Label ID="lblPoTotal" runat="server"></asp:Label></td>
@@ -280,73 +278,85 @@
 
                                         <asp:TemplateField HeaderText="ItemName" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblItemName" Width="250px" runat="server" Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblItemName" Width="250px" runat="server" Text='<%# Bind("strItem") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" Width="250px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Description" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strDes">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDescription" Width="250px" runat="server" Text='<%# Bind("strDes") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblDescription" Width="250px" runat="server" Text='<%# Bind("strDes") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="250px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUom") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUom") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO Qty" ItemStyle-HorizontalAlign="right" SortExpression="numPoQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPoQty" runat="server" Text='<%# Bind("numPoQty") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPoQty" runat="server" Text='<%# Bind("numPoQty") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monRate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblRate" Width="50px" runat="server" Text='<%# Bind("monRate") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblRate" Width="50px" runat="server" Text='<%# Bind("monRate") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblValue" runat="server" Text='<%# Bind("monValue") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblValue" runat="server" Text='<%# Bind("monValue") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monVat">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monVat" ) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monVat" ) %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="QC Passed" ItemStyle-HorizontalAlign="right" SortExpression="numQcQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQcPassedQty" runat="server" Text='<%# Bind("numQcQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblQcPassedQty" runat="server" Text='<%# Bind("numQcQty","{0:n2}") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Previous Receive" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreRecvQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPreviousReceive" runat="server" Text='<%# Bind("monPreRecvQty" ) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPreviousReceive" runat="server" Text='<%# Bind("monPreRecvQty" ) %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="YsnQC" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="ysnNeedQc">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblYsnQc" runat="server" Text='<%# Bind("ysnNeedQc") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblYsnQc" runat="server" Text='<%# Bind("ysnNeedQc") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Receive Qty" ItemStyle-HorizontalAlign="right" SortExpression="RecQty">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtReceiveQty" CssClass="txtBox" Width="60px" runat="server" Text='<%# Bind("RecQty") %>'></asp:TextBox></ItemTemplate>
+                                                <asp:TextBox ID="txtReceiveQty" CssClass="txtBox" Width="60px" runat="server" Text='<%# Bind("RecQty") %>'></asp:TextBox>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="50px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="MRR Value" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblMrrValue" Width="50px" runat="server"></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblMrrValue" Width="50px" runat="server"></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="50px" />
                                         </asp:TemplateField>
 
@@ -359,7 +369,8 @@
 
                                         <asp:TemplateField HeaderText="Previous Location" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPLocation" Width="150px" runat="server" Text='<%# Bind("strLocationName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPLocation" Width="150px" runat="server" Text='<%# Bind("strLocationName") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
@@ -384,7 +395,8 @@
 
                                         <asp:TemplateField HeaderText="Batch no" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtBatchNo" CssClass="txtBox" Width="50px" runat="server"></asp:TextBox></ItemTemplate>
+                                                <asp:TextBox ID="txtBatchNo" CssClass="txtBox" Width="50px" runat="server"></asp:TextBox>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="40px" />
                                         </asp:TemplateField>
 
@@ -407,7 +419,8 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtRemarks" runat="server" Width="50px" DataFormatString="{0:0.00}"></asp:TextBox></ItemTemplate>
+                                                <asp:TextBox ID="txtRemarks" runat="server" Width="50px" DataFormatString="{0:0.00}"></asp:TextBox>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Wrap="true" />
                                         </asp:TemplateField>
                                     </Columns>

@@ -31,10 +31,15 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Mr__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            filePathForXML = Server.MapPath("~/SCM/Data/Mr__" + enroll + ".xml");
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); } catch { }
+                try
+                {
+                    File.Delete(filePathForXML);
+                }
+                catch { }
                 ddlInvoice.Enabled = false;
                 DefaltBind();
             }
@@ -57,7 +62,7 @@ namespace UI.SCM
                 ddlPo.DataBind();
                 DataClear();
             }
-            catch { }
+            catch (Exception ex) { }
             txtPO.Text = "";
         }
 
@@ -75,7 +80,7 @@ namespace UI.SCM
                 ddlPo.DataBind();
                 DataClear();
             }
-            catch { }
+            catch (Exception ex) { }
             txtPO.Text = "";
         }
 
@@ -106,7 +111,6 @@ namespace UI.SCM
                 if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
                 {
                     intWh = int.Parse(ddlWH.SelectedValue.ToString());
-                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     //  try { intPOID = int.Parse(ddlPo.SelectedValue); } catch { }
                     try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
                     try { intShipment = int.Parse(hdnShipment.Value); } catch { }
@@ -139,28 +143,35 @@ namespace UI.SCM
                         try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text.ToString())); expireDate = dteExp.ToString(); } catch { expireDate = null; }
                         try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text.ToString())); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
 
-                        if (decimal.Parse(numRcvQty) > 0 && int.Parse(location) > 0 && monRate > 0)
+                        if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
                         {
-                            //if (ysnQc.ToString() == "0")
-                            //{
-                            //    if (Double.Parse(numPreRcvQty) + Double.Parse(numRcvQty) > (Double.Parse(numPOQty)) * 1.1)
-                            //    {
-                            //        try { File.Delete(filePathForXML); } catch { }
-                            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Maximum receive quantity must be Less or equal than 10% more than PO quantity.');", true);
-                            //        break;
-                            //    }
-                            //}
-                            //else
-                            //{
-                            //    if (Double.Parse(numPreRcvQty) + Double.Parse(numRcvQty) > (Double.Parse(numQcQty)) * 1.1)
-                            //    {
-                            //        try { File.Delete(filePathForXML); } catch { }
-                            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Maximum receive quantity must be Less or equal than QC Passed quantity.');", true);
-                            //        break;
-                            //    }
-                            //}
-
-                            CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(), dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan, monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(), monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy, batchNo, expireDate, manufactureDate);
+                            if (int.TryParse(location, out int locationId))
+                            {
+                                if (monRate > 0)
+                                {
+                                    CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(),
+                                        dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan,
+                                        monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(),
+                                        monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty,
+                                        numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy,
+                                        batchNo, expireDate, manufactureDate);
+                                }
+                                else
+                                {
+                                    Alert("Rate can not load");
+                                    return;
+                                }
+                            }
+                            else
+                            {
+                                Alert("Current loacation should be sesected");
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            Alert("input Receive Quantity properly");
+                            return;
                         }
                     }
                     txtChallan.Text = "";
@@ -177,12 +188,9 @@ namespace UI.SCM
                     dgvMrr.DataBind();
 
                     string msg = obj.MrrReceive(11, xmlString, intWh, intPOID, DateTime.Now, enroll);
-                   
 
                     string[] searchKey = Regex.Split(msg, ":");
                     lblMrrNo.Text = searchKey[1].ToString();
-
-                  
 
                     #region====================Mrr Document Attachment===========================
                     try
@@ -345,7 +353,6 @@ namespace UI.SCM
                 DataClear();
                 string poType = ddlPoType.SelectedItem.ToString();
                 intPo = int.Parse(ddlPo.SelectedValue);
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
                 if (poType == "Local")
                 {
@@ -378,48 +385,71 @@ namespace UI.SCM
             if (txtPO.Text.Length > 3)
             {
                 intPo = int.Parse(txtPO.Text);
-                dt = obj.GetWHByPO(intPo, intWh);
+                dt = obj.GetWhByEnrollAndPo(enroll, intPo);
                 if (dt.Rows.Count > 0)
                 {
-                    if (dt.Rows[0]["strPoFor"].ToString() == "Local")
+                    dt = obj.GetPoCompleteStatus(intPo);
+                    if (dt.Rows.Count > 0)
                     {
-                        ddlPoType.SelectedValue = "1";
-                        ddlInvoice.Enabled = false;
-                        ddlInvoice.DataSource = "";
-                        ddlInvoice.DataBind();
-                    }
-                    else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
-                    {
-                        ddlPoType.SelectedValue = "2";
-                        ddlInvoice.Enabled = true;
-                        dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
-                        ddlInvoice.DataSource = dt;
-                        ddlInvoice.DataTextField = "strName";
-                        ddlInvoice.DataValueField = "Id";
-                        ddlInvoice.DataBind();
-                    }
-                    else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
-                    {
-                        ddlPoType.SelectedValue = "3";
-                    }
+                        bool isComplete = Convert.ToBoolean(dt.Rows[0]["ysnComplete"].ToString());
+                        if (isComplete)
+                        {
+                            //po complete
+                            Alert("All Items of this PO has already been received.");
+                            return;
+                        }
+                        dt = obj.GetWhbyPo(intPo);
+                        if (dt.Rows.Count > 0)
+                        {
+                            intWh = int.Parse(dt.Rows[0]["intWHID"].ToString());
+                            ddlWH.SelectedValue = intWh.ToString();
+                            if (dt.Rows[0]["strPoFor"].ToString() == "Local")
+                            {
+                                ddlPoType.SelectedValue = "1";
+                                ddlInvoice.Enabled = false;
+                                ddlInvoice.DataSource = "";
+                                ddlInvoice.DataBind();
+                            }
+                            else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
+                            {
+                                ddlPoType.SelectedValue = "2";
+                                ddlInvoice.Enabled = true;
+                                dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
+                                ddlInvoice.DataSource = dt;
+                                ddlInvoice.DataTextField = "strName";
+                                ddlInvoice.DataValueField = "Id";
+                                ddlInvoice.DataBind();
+                            }
+                            else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
+                            {
+                                ddlPoType.SelectedValue = "3";
+                            }
+                            string poType = ddlPoType.SelectedItem.ToString();
+                            xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
+                            dt = obj.DataView(3, xmlString, intWh, 0, DateTime.Now, enroll);
+                            ddlPo.DataSource = dt;
+                            ddlPo.DataTextField = "strName";
+                            ddlPo.DataValueField = "Id";
+                            ddlPo.DataBind();
+                            ddlPo.SelectedValue = intPo.ToString();
 
-                    string poType = ddlPoType.SelectedItem.ToString();
-                    intWh = int.Parse(ddlWH.SelectedValue.ToString());
-                    xmlString = "<voucher><voucherentry poType=" + '"' + poType + '"' + "/></voucher>".ToString();
-                    dt = obj.DataView(3, xmlString, intWh, 0, DateTime.Now, enroll);
-                    ddlPo.DataSource = dt;
-                    ddlPo.DataTextField = "strName";
-                    ddlPo.DataValueField = "Id";
-                    ddlPo.DataBind();
-                    ddlPo.SelectedValue = intPo.ToString();
-
-                    PoView(intPo);
+                            PoView(intPo);
+                        }
+                        else
+                        {
+                            ddlPo.DataSource = ""; ddlPo.DataBind(); ddlInvoice.DataSource = ""; ddlInvoice.DataBind();
+                            intPo = 0;
+                            Alert("PO is not approve");
+                        }
+                    }
+                    else
+                    {
+                        Alert("PO not found");
+                    }
                 }
                 else
                 {
-                    ddlPo.DataSource = ""; ddlPo.DataBind(); ddlInvoice.DataSource = ""; ddlInvoice.DataBind();
-                    intPo = 0;
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO is not approve');", true);
+                    Alert("You have not permission to see this PO");
                 }
             }
             else
@@ -434,7 +464,7 @@ namespace UI.SCM
             try
             {
                 intWh = int.Parse(ddlWH.SelectedValue);
-                
+
                 try { intShipment = int.Parse(ddlInvoice.SelectedValue); hdnShipment.Value = intShipment.ToString(); } catch { intShipment = 0; hdnShipment.Value = "0".ToString(); }
                 xmlString = "<voucher><voucherentry intShipment=" + '"' + intShipment + '"' + "/></voucher>".ToString();
                 if (ddlInvoice.Enabled == true)
@@ -452,8 +482,10 @@ namespace UI.SCM
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
                         lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
                         lblCurrency.Text = " Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
-                        lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
+
                         monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
+                        lblConversion.Text = " Conversion: " + monConverRate;
+                        hdnConversion.Value = monConverRate.ToString();
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
 
                         dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);
@@ -503,8 +535,6 @@ namespace UI.SCM
         {
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-
                 dt = obj.DataView(1, xmlString, intWh, 0, DateTime.Now, enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
