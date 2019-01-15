@@ -292,6 +292,15 @@ namespace UI.HR.Penalty {
         protected global::System.Web.UI.WebControls.TextBox txtSDOB;
         
         /// <summary>
+        /// hdnsdob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnsdob;
+        
+        /// <summary>
         /// CEB control.
         /// </summary>
         /// <remarks>
@@ -371,6 +380,15 @@ namespace UI.HR.Penalty {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCDOB;
+        
+        /// <summary>
+        /// hdncdob control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdncdob;
         
         /// <summary>
         /// cc1 control.

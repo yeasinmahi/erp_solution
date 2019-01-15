@@ -29,13 +29,13 @@
         });
     }
     function Validation() {
-       // debugger;
         document.getElementById("hdnconfirm").value = "0";
         var ctp = document.forms["frmpubfmlydy"]["ddlChild"].value;
         var cname = document.forms["frmpubfmlydy"]["txtChild"].value;
         var cdob = document.forms["frmpubfmlydy"]["txtCDOB"].value;
+        document.getElementById("hdncdob").value = cdob;
         if ((ctp == "1") && (cname == null || cname == "")) { alert("Please fillup child information properly."); }
-        else if ((ctp == "1") && (cdob == null || cdob == "")) { alert("Please fillup child DOB by valid formate (yyyy-MM-dd)."); } 
+        else if ((ctp == "1") && (cdob == null || cdob == "")) {alert("Please fillup child DOB by valid formate (yyyy-MM-dd)");} 
         else {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
@@ -50,6 +50,7 @@
         var ptp = document.forms["frmpubfmlydy"]["ddlPtype"].value;
         var sname = document.forms["frmpubfmlydy"]["txtSpouse"].value;
         var sdob = document.forms["frmpubfmlydy"]["txtSDOB"].value;
+        document.getElementById("hdnsdob").value = sdob;
 
         if (searemp == null || searemp == "") { alert("Please select a manpower."); }
         else if (pnd == "0") { alert("Please select pick and drop point."); }
@@ -62,6 +63,7 @@
             else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
         }
     }
+   
 </script>
 
 </head>
@@ -112,7 +114,7 @@
     <tr class="tblheader"><td style="text-align:right;"><asp:Label ID="lblsps" CssClass="lbl" runat="server" Text="Spouse Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtSpouse" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="lbldob" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-    <td><asp:TextBox ID="txtSDOB" runat="server" CssClass="txtBox"></asp:TextBox>
+    <td><asp:TextBox ID="txtSDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox><asp:HiddenField ID="hdnsdob" runat="server"/>
     <cc1:CalendarExtender ID="CEB" runat="server" Format="yyyy-MM-dd" TargetControlID="txtSDOB"></cc1:CalendarExtender></td>
     </tr>
 
@@ -131,7 +133,7 @@
     <tr class="tblheader"><td style="text-align:right;"><asp:Label ID="lblcld" CssClass="lbl" runat="server" Text="Child Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtChild" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="lblcdob" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-    <td><asp:TextBox ID="txtCDOB" runat="server" CssClass="txtBox"></asp:TextBox>
+    <td><asp:TextBox ID="txtCDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox><asp:HiddenField ID="hdncdob" runat="server"/>
     <cc1:CalendarExtender ID="cc1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtCDOB"></cc1:CalendarExtender></td>
     </tr>
 

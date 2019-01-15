@@ -13,6 +13,7 @@
         var ctp = document.forms["frmprfmlydy"]["ddlChild"].value;
         var cname = document.forms["frmprfmlydy"]["txtChild"].value;
         var cdob = document.forms["frmprfmlydy"]["txtCDOB"].value;
+        document.getElementById("hdncdob").value = cdob;
         if ((ctp == "1") && (cname == null || cname == "")) { alert("Please fillup child information properly."); }
         else if ((ctp == "1") && (cdob == null || cdob == "")) { alert("Please fillup child DOB by valid formate (yyyy-MM-dd)."); } 
         else {
@@ -28,6 +29,7 @@
         var ptp = document.forms["frmprfmlydy"]["ddlPtype"].value;
         var sname = document.forms["frmprfmlydy"]["txtSpouse"].value;
         var sdob = document.forms["frmprfmlydy"]["txtSDOB"].value;
+        document.getElementById("hdnsdob").value = sdob;
 
         if (pnd == "0") {alert("Please select pick and drop point.");}
         else if ((ptp == "1") && (sname == null || sname == "")) { alert("Please fillup spouse information properly."); }
@@ -89,7 +91,7 @@
     <tr class="tblheader"><td style="text-align:right;"><asp:Label ID="lblsps" CssClass="lbl" runat="server" Text="Spouse Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtSpouse" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="lbldob" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-    <td><asp:TextBox ID="txtSDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox>
+    <td><asp:TextBox ID="txtSDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox><asp:HiddenField ID="hdnsdob" runat="server"/>
     <cc1:CalendarExtender ID="CEB" runat="server" Format="yyyy-MM-dd" TargetControlID="txtSDOB"></cc1:CalendarExtender></td>
     </tr>
 
@@ -108,7 +110,7 @@
     <tr class="tblheader"><td style="text-align:right;"><asp:Label ID="lblcld" CssClass="lbl" runat="server" Text="Child Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtChild" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox></td>
     <td style="text-align:right;"><asp:Label ID="lblcdob" CssClass="lbl" runat="server" Text="Date Of Birth : "></asp:Label></td>
-    <td><asp:TextBox ID="txtCDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox>
+    <td><asp:TextBox ID="txtCDOB" runat="server" CssClass="txtBox" ReadOnly="true"></asp:TextBox><asp:HiddenField ID="hdncdob" runat="server"/>
     <cc1:CalendarExtender ID="cc1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtCDOB"></cc1:CalendarExtender></td>
     </tr>
 
