@@ -319,22 +319,31 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlCurrency;
         
         /// <summary>
-        /// Label12 control.
+        /// Label14 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
+        protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// ddlDtePay control.
+        /// txtdtePo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDtePay;
+        protected global::System.Web.UI.WebControls.TextBox txtdtePo;
+        
+        /// <summary>
+        /// CalendarExtender3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender3;
         
         /// <summary>
         /// Label13 control.
@@ -364,31 +373,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnCommision;
         
         /// <summary>
-        /// Label14 control.
+        /// Label12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// txtdtePo control.
+        /// ddlDtePay control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtdtePo;
-        
-        /// <summary>
-        /// CalendarExtender3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDtePay;
         
         /// <summary>
         /// txtAit control.

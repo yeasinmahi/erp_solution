@@ -16,10 +16,10 @@ namespace UI.ClassFiles
 
         protected override void OnPreInit(EventArgs e)
         {
-            Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             base.OnPreInit(e);
             UserActivityCheck();
+            Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             Page.Title = @"Welcome to Akij Group";
         }
 
@@ -43,12 +43,12 @@ namespace UI.ClassFiles
             {
                 if (!us.UpdateUserActivity(Session[SessionParams.EMAIL].ToString(), Session.SessionID))
                 {
-                    retStr = "~/SessionExpired.aspx";
+                    retStr = "~/LoginProcess.aspx";
                 }
             }
             catch
             {
-                retStr = "~/SessionExpired.aspx";
+                retStr = "~/LoginProcess.aspx";
             }
 
             if (retStr != "")
