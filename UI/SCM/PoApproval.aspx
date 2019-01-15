@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <%--<webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />--%>
 
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
@@ -22,7 +22,7 @@
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <%--<link href="../Content/CSS/GridView.css" rel="stylesheet" />--%>
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
     <script type="text/javascript">
         function OpenHdnDiv() {
@@ -175,14 +175,14 @@
                         <tr>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="By PO No:"></asp:Label></td>
-                            <td style="text-align: left; -ms-column-width: 10px; -webkit-column-width: 10px; column-width: 10px;">
+                            <td style="text-align: left;">
                                 <asp:TextBox ID="txtPoNo" CssClass="txtBox" Font-Bold="False" runat="server" />
                                 <asp:Button ID="btnPoNoShow" runat="server" ForeColor="Blue" Text="Show" CssClass="btnButton" OnClick="btnPoNoShow_Click" />
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By PO User:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"></asp:TextBox>
+                                <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" Text="ALL" AutoPostBack="true" Width="300px"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtPoUser"
                                     ServiceMethod="GetPoUserSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -198,14 +198,15 @@
        <table> 
          <tr> 
             <td><asp:GridView ID="dgvPoApp" runat="server" AutoGenerateColumns="False" ShowFooter="True"  Width="600px"  
-                CssClass="GridViewStyle" CellPadding="3" GridLines="None" BackColor="White" BorderColor="White" BorderWidth="2px" BorderStyle="Ridge" CellSpacing="1" >             
-                <HeaderStyle CssClass="HeaderStyle" BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />  
-                <FooterStyle CssClass="FooterStyle" BackColor="#C6C3C6" ForeColor="Black" /> <RowStyle CssClass="RowStyle" BackColor="#DEDFDE" ForeColor="Black" />  <PagerStyle CssClass="PagerStyle" BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" /> 
+                CssClass="GridViewStyle" BackColor="White" BorderColor="#DEDFDE" BorderStyle="Solid" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Vertical" >             
+                <HeaderStyle CssClass="HeaderStyle" BackColor="#6B696B" Font-Bold="True" ForeColor="White" Font-Size="10px" />  
+                <FooterStyle CssClass="FooterStyle" BackColor="#CCCC99" /> <RowStyle CssClass="RowStyle" BackColor="#F7F7DE" />  <PagerStyle CssClass="PagerStyle" BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" /> 
+                <AlternatingRowStyle BackColor="White" />
             <Columns>
-                <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+                <asp:TemplateField HeaderText="SL"><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
   
                 <asp:TemplateField HeaderText="WareHouse" SortExpression="strShortName"><ItemTemplate>
-                <asp:Label ID="lblWhName" runat="server" Width="100px" Text='<%# Bind("strShortName") %>'></asp:Label></ItemTemplate>
+                <asp:Label ID="lblWhName" runat="server" Width="120px" Text='<%# Bind("strShortName") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
                 
                 <asp:TemplateField HeaderText="PO No" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="intPOID" >
@@ -213,15 +214,15 @@
                   <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>  
 
                 <asp:TemplateField HeaderText="PO Date" ItemStyle-HorizontalAlign="right" SortExpression="dtePODate" >
-                <ItemTemplate><asp:Label ID="lblPoDate" runat="server"  Width="65px" Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblPoDate" runat="server"  Width="75px" Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>
             
                 <asp:TemplateField HeaderText="Supplier Name" ItemStyle-HorizontalAlign="right" SortExpression="strSupplierName" >
-                <ItemTemplate><asp:Label ID="lblSuppliyer" runat="server" Width="170px"  Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblSuppliyer" runat="server" Width="200px"  Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
                  <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="PO Amount" ItemStyle-HorizontalAlign="right" SortExpression="monPOTotal" >
-                <ItemTemplate><asp:Label ID="lblPoTotal" width="70px" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblPoTotal"  runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
                   <ItemStyle HorizontalAlign="right" /> </asp:TemplateField>
             
                 <asp:TemplateField HeaderText="Currency" ItemStyle-HorizontalAlign="right" SortExpression="strCurrencyName" >
@@ -229,7 +230,7 @@
                   <ItemStyle HorizontalAlign="center" /> </asp:TemplateField> 
             
                 <asp:TemplateField HeaderText="PO Issuer" ItemStyle-HorizontalAlign="right" SortExpression="strEmployeeName" >
-                <ItemTemplate><asp:Label ID="lblEmpName" runat="server" Width="170px"  Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblEmpName" runat="server" Width="200px"  Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
                   <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Approve?" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="strIndentType" >
@@ -244,12 +245,14 @@
                 <asp:Button ID="btnApproval" runat="server" forecolor="blue" Text="Approval" OnClientClick="funConfirmAll();" OnClick="btnApproval_Click"   /></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             </Columns> 
-                <SelectedRowStyle BackColor="#9471DE" ForeColor="White" Font-Bold="True" />
-                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                <SortedAscendingHeaderStyle BackColor="#594B9C" />
-                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                <SortedDescendingHeaderStyle BackColor="#33276A" />
-            </asp:GridView></td> 
+                <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                <SortedAscendingCellStyle BackColor="#FBFBF2" />
+                <SortedAscendingHeaderStyle BackColor="#848384" />
+                <SortedDescendingCellStyle BackColor="#EAEAD3" />
+                <SortedDescendingHeaderStyle BackColor="#575357" />
+                <EditRowStyle Font-Size="10px"></EditRowStyle>           
+
+                </asp:GridView></td> 
         </tr>  
        </table> 
         </div>
