@@ -482,8 +482,10 @@ namespace UI.SCM
                         lblSuppliuerID.Text = dt.Rows[0]["intSupplierID"].ToString();
                         lblSuppliyer.Text = "Supplier: " + dt.Rows[0]["strSupplierName"].ToString();
                         lblCurrency.Text = " Currency: " + dt.Rows[0]["strCurrencyName"].ToString();
-                        lblConversion.Text = " Conversion: " + dt.Rows[0]["monBDTConversion"].ToString();
+
                         monConverRate = decimal.Parse(dt.Rows[0]["monBDTConversion"].ToString());
+                        lblConversion.Text = " Conversion: " + monConverRate;
+                        hdnConversion.Value = monConverRate.ToString();
                         lblPoIssueBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
 
                         dt = obj.DataView(8, xmlString, intWh, intPo, DateTime.Now, enroll);

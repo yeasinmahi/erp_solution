@@ -140,6 +140,10 @@
         .leaveApplication_container {
             margin-top: 0px;
         }
+
+        .auto-style1 {
+            height: 23px;
+        }
     </style>
 </head>
 <body>
@@ -218,7 +222,7 @@
                                 <asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="return MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
                         </tr>
                         <tr>
-                            <td colspan="4">
+                            <td colspan="4" class="auto-style1">
                                 <asp:Label ID="lblSuppliyer" runat="server"></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false" runat="server"></asp:Label><asp:Label ID="lblCurrency" runat="server"></asp:Label>
                                 <asp:Label ID="lblConversion" runat="server"> </asp:Label><asp:Label ID="lblPoIssueBy" Visible="false" runat="server"></asp:Label></td>
                         </tr>
