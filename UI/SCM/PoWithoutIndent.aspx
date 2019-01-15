@@ -353,7 +353,7 @@
                           <td style="text-align:right;"> <asp:Label ID="Label27" runat="server" CssClass="lbl" Text="PO No.:"></asp:Label> </td>                          
                           <td style="text-align:left;"> <asp:TextBox ID="txtPONo" runat="server"  AutoPostBack="false"  CssClass="txtBox" Font-Bold="False"> </asp:TextBox> </td>
 
-                          <td><asp:Button ID="btnViewPO" BackColor="#0099ff" style=" background-color:#FFCC99; border-radius:1px; "  runat="server" Text="View PO" OnClick="btnViewPO_Click"  /></td>
+                          <td><asp:Button ID="btnViewPO"  style="  border-radius:1px; " forecolor="Black" BackColor="#99ccff" runat="server" Text="View PO" OnClick="btnViewPO_Click" Height="28px"  /></td>
                       </tr>
                       <tr><td colspan="6"><hr /></td></tr> 
 
@@ -364,14 +364,14 @@
                           </td>
                       </tr>
                       <tr>
-                         <td colspan="3" style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>  
+                         <td colspan="3" style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="PO Type:"></asp:Label></td>  
                           <td style="text-align:left;"><asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlDepts_SelectedIndexChanged"> </asp:DropDownList></td>  
                         <td><asp:Label ID="lblPO" runat="server" ForeColor="Blue" ></asp:Label></td>
                         
                       </tr>
                       <tr>
                           <td style="text-align:right;">
-                              <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="WH-Name"></asp:Label>
+                              <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="WH-Name:"></asp:Label>
                           </td>
                           <td style="text-align:left;">
                               <asp:DropDownList ID="ddlWHPrepare" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlWHPrepare_SelectedIndexChanged">
@@ -385,23 +385,23 @@
                               </asp:DropDownList>
                           </td>--%>
                            <td style="text-align:right;">
-                              <asp:Label ID="Label28" runat="server" CssClass="lbl" Text="Supplier"></asp:Label>
+                              <asp:Label ID="Label28" runat="server" CssClass="lbl" Text="Supplier:"></asp:Label>
                           </td>
-                          <td style="text-align:left;"><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search" CssClass="txtBox" AutoPostBack="true" Width="200px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
+                          <td style="text-align:left;"><asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search" CssClass="txtBox" AutoPostBack="true" Width="250px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
                         <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
                         ServiceMethod="GetSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                         CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                         CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                         </cc1:AutoCompleteExtender></td>
                           <td style="text-align:right;">
-                              <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Transport"></asp:Label>
+                              <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Transport:"></asp:Label>
                           </td>
                           <td style="text-align:left;">
                               <asp:TextBox ID="txtTransport" runat="server" AutoPostBack="false" CssClass="txtBox" Font-Bold="False" Text="0"></asp:TextBox>
                           </td>
                       </tr>
                      <tr> 
-                              <td style="text-align:right;"><asp:Label ID="Label7" runat="server" CssClass="lbl" Text="CostCenter"></asp:Label></td>  
+                              <td style="text-align:right;"><asp:Label ID="Label7" runat="server" CssClass="lbl" Text="CostCenter:"></asp:Label></td>  
                                  
                               <td style="text-align:left;">  <asp:DropDownList ID="ddlCostCenter" runat="server" AutoPostBack="false" CssClass="ddList" Font-Bold="False"></asp:DropDownList></td>
                              
@@ -414,31 +414,39 @@
                               
                       </tr>
                       <tr>
-                           <td style="text-align:right;">  <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Currancy"></asp:Label></td>  
+                           <td style="text-align:right;">  <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Currancy:"></asp:Label></td>  
                            <td style="text-align:left;">
                            <asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="false" CssClass="ddList" Font-Bold="False"> </asp:DropDownList>
                            </td>
 
-                            <td style="text-align:right;"><asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Pay Date: "></asp:Label> </td> 
+                            <td style="text-align:right;"><asp:Label ID="Label12" runat="server" CssClass="lbl" Visible="false" Text="Pay Date: "></asp:Label> </td> 
                             <td style="text-align:left;">
-                            <asp:DropDownList ID="ddlDtePay" Enabled="false" runat="server" AutoPostBack="false" CssClass="ddList" Font-Bold="False">
+                            <asp:DropDownList ID="ddlDtePay" Enabled="false" runat="server" AutoPostBack="false" Visible="false" CssClass="ddList" Font-Bold="False">
                             </asp:DropDownList></td>
                           
                             <td style="text-align:right;"><asp:Label ID="Label13" runat="server" CssClass="lbl" Text="Commision: "></asp:Label></td> 
                             <td style="text-align:left;">
-                            <asp:TextBox ID="txtCommosion" runat="server"  onkeyup="GetCommision(this);"  CssClass="txtBox"  AutoPostBack="false" Font-Bold="False">
+                            <asp:TextBox ID="txtCommosion" runat="server"  onkeyup="GetCommision(this);"  CssClass="txtBox"  AutoPostBack="false" Text="0" Font-Bold="False">
                             </asp:TextBox><asp:Button ID="btnCommision" runat="server" Text="Set commission" Visible="false" /> </td> 
                        </tr>
 
                        <tr>
-                        <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="Po Date"></asp:Label> </td> 
+                        <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="Po Date:"></asp:Label> </td> 
                         <td style="text-align:left;"><asp:TextBox ID="txtdtePo" runat="server"  CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdtePo"></cc1:CalendarExtender> 
                         </td>
-                        <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
-                        <td  style="text-align:left;"><asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
-                        </asp:TextBox></td><td></td>                        
-                        <td   style="text-align:right;"><asp:Button ID="btnGeneratePO" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" /></td>
+                        
+                        <td  style="text-align:left;"><asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" Visible="false" CssClass="txtBox" Font-Bold="False"> 
+                        </asp:TextBox></td><td></td> 
+                           <td style="text-align:left;"><asp:Label ID="Label15" runat="server" Visible="false" CssClass="lbl" Text="AIT: "></asp:Label></td> 
+                           <td  style="text-align:left;"><asp:TextBox ID="TextBox1" runat="server" onkeyup="GetAIT(this);" Text="0" width="80px" AutoPostBack="false" Visible="false" CssClass="txtBox" Font-Bold="False"> 
+                        </asp:TextBox>
+                               <asp:Button ID="Button2" style=" border-radius:1px; height:29px" forecolor="black" BackColor="#99ccff" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" />
+                           </td>
+
+                            <td   style="text-align:right;"></td>
+                           <td></td> 
+                        
                       </tr>
                       </table>
                      <table style="border-color:cornflowerblue; border-radius:10px; border:1px solid blue;">
@@ -461,7 +469,7 @@
                         <td style="text-align:left;"><asp:TextBox ID="txtQantity" runat="server"  Text="0" AutoPostBack="false"  CssClass="txtBox" Font-Bold="False"></asp:TextBox></td>
                         <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Rate: "></asp:Label></td>  
                         <td style="text-align:left;"><asp:TextBox ID="txtRate" runat="server"  Text="0" AutoPostBack="false"  CssClass="txtBox" Font-Bold="False"></asp:TextBox>
-                         <asp:Button ID="btnAdd" BackColor="#0099ff" style=" background-color:#FFCC99; border-radius:1px; height:29px"  runat="server" Text="Add to PO" OnClick="btnAdd_Click" /> </td> 
+                         <asp:Button ID="btnAdd"  style=" border-radius:1px; height:29px"  runat="server" forecolor="black" BackColor="#99ccff" Text="Add to PO" OnClick="btnAdd_Click" /> </td> 
                         </tr>
                      </table>
                       <table> 
@@ -528,45 +536,45 @@
                   </table>
                   <Table>
                       <tr>
-                          <td><asp:Label ID="lblPartialShip" Text="Partial Shipment" runat="server" /></td>
+                          <td><asp:Label ID="lblPartialShip" Text="Partial Shipment:" runat="server" /></td>
                           <td><asp:DropDownList ID="ddlPartialShip" AutoPostBack="false" CssClass="ddList" runat="server">
                            <asp:ListItem Text="No" Value="0"></asp:ListItem><asp:ListItem Text="Yes" Value="1"></asp:ListItem>
                            </asp:DropDownList></td> 
-                          <td><asp:Label ID="lblNoOfShip" runat="server" Text="No of Shipment" /></td>
+                          <td><asp:Label ID="lblNoOfShip" runat="server" Text="No of Shipment:" /></td>
                           <td><asp:TextBox ID="txtNoOfShipment" runat="server" CssClass="txtBox" Text="1" /></td> 
                       </tr>
                        <tr>
-                          <td><asp:Label ID="Label17" runat="server" Text="Last Shipment Date" /></td>
+                          <td><asp:Label ID="Label17" runat="server" Text="Last Shipment Date:" /></td>
                           <td><asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox" runat="server"></asp:TextBox><cc1:CalendarExtender ID="CalendarExtender4" runat="server"  Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
                           </cc1:CalendarExtender></td>
-                          <td><asp:Label ID="Label18" runat="server" Text="Payment terms" /></td>
+                          <td><asp:Label ID="Label18" runat="server" Text="Payment terms:" /></td>
                           <td><asp:DropDownList ID="ddlPaymentTrams" AutoPostBack="false" CssClass="ddList" runat="server">
                           <asp:ListItem Text="Select" Selected="True" Value="0"></asp:ListItem>
                           <asp:ListItem Text="Credit" Value="1"></asp:ListItem><asp:ListItem Text="Advance" Value="2"></asp:ListItem>
                           <asp:ListItem Text="Cash" Value="3"></asp:ListItem> </asp:DropDownList></td>  
                       </tr>
                        <tr>
-                          <td><asp:Label ID="Label19" runat="server" Text="Payment days after MRR" /></td>
+                          <td><asp:Label ID="Label19" runat="server" Text="Payment Duration:" /></td>
                           <td><asp:TextBox ID="txtAfterMrrDay" CssClass="txtBox" runat="server" Text="7" /></td> 
-                          <td><asp:Label ID="Label20" runat="server" Text="No of Installment" /></td>
+                          <td><asp:Label ID="Label20" runat="server" Text="No of Installment:" /></td>
                           <td><asp:TextBox ID="txtNoOfInstall" CssClass="txtBox" runat="server"  Text="1"/></td> 
                       </tr>
                        <tr>
-                          <td><asp:Label ID="Label21" runat="server" Text="Installment Interval" /></td>
+                          <td><asp:Label ID="Label21" runat="server" Text="Installment Interval:" /></td>
                           <td><asp:TextBox ID="txtIntervel" runat="server" CssClass="txtBox"  Text="0"/></td> 
-                          <td><asp:Label ID="Label22" runat="server" Text="Delivery Destination" /></td>
+                          <td><asp:Label ID="Label22" runat="server" Text="Delivery Destination:" /></td>
                           <td><asp:TextBox ID="txtDestinationDelivery" CssClass="txtBox" runat="server" /></td> 
                       </tr>
                       <tr>
-                          <td><asp:Label ID="Label23" runat="server" Text="No of Payment" /></td>
+                          <td><asp:Label ID="Label23" runat="server" Text="No of Payment:" /></td>
                           <td><asp:TextBox ID="txtNoOfPayment" runat="server" Text="0"  CssClass="txtBox"/></td> 
-                          <td><asp:Label ID="Label24" runat="server" Text="Payment Schedule" /></td>
+                          <td><asp:Label ID="Label24" runat="server" Text="Payment Schedule:" /></td>
                           <td><asp:TextBox ID="txtPaymentSchedule" CssClass="txtBox" runat="server" /></td> 
                       </tr>
                        <tr>
-                           <td><asp:Label ID="Label26" runat="server" Text="Warrenty (in months)" /></td>
+                           <td><asp:Label ID="Label26" runat="server" Text="Warrenty (in months):" /></td>
                           <td><asp:TextBox ID="txtWarrenty" CssClass="txtBox" runat="server" /></td> 
-                          <td><asp:Label ID="Label25" runat="server" Text="Others Trems" /></td>
+                          <td><asp:Label ID="Label25" runat="server" Text="Others Trems:" /></td>
                           <td><asp:TextBox ID="txtOthersTerms" runat="server"  Width="220px" TextMode="MultiLine"  CssClass="txtBox"/></td> 
                          
                       </tr>

@@ -149,7 +149,7 @@
         <tr>                                                                                                        
         <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="By PO No"></asp:Label></td>
         <td style="text-align:left; column-width=10px;"><asp:TextBox ID="txtPoNo" CssClass="txtBox" Font-Bold="False"   runat="server"/> 
-        <asp:Button ID="btnPoNoShow" runat="server" Text="Show" CssClass="btnButton" OnClick="btnPoNoShow_Click" />
+        <asp:Button ID="btnPoNoShow" runat="server" ForeColor="Blue" Text="Show" CssClass="btnButton" OnClick="btnPoNoShow_Click" />
         </td>  
         <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By Po User"></asp:Label></td>
         <td style="text-align:left;">
@@ -163,7 +163,7 @@
             
             <%--<asp:DropDownList ID="ddlPoUser" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
         <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList>--%>
-        <asp:Button ID="btnPoUserShow" runat="server" Text="Show" OnClick="btnPoUserShow_Click"   />
+        <asp:Button ID="btnPoUserShow" runat="server" ForeColor="Blue" Text="Show" OnClick="btnPoUserShow_Click"   />
         </td> 
       </tr> 
        </table>

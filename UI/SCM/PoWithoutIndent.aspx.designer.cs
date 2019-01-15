@@ -391,15 +391,6 @@ namespace UI.SCM {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender3;
         
         /// <summary>
-        /// Label15 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
-        
-        /// <summary>
         /// txtAit control.
         /// </summary>
         /// <remarks>
@@ -409,13 +400,31 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtAit;
         
         /// <summary>
-        /// btnGeneratePO control.
+        /// Label15 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGeneratePO;
+        protected global::System.Web.UI.WebControls.Label Label15;
+        
+        /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        
+        /// <summary>
+        /// Button2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
         /// Label1 control.
