@@ -163,24 +163,24 @@
                     <table>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
+                                <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Type:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"></asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="By PO No"></asp:Label></td>
+                                <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="By PO No:"></asp:Label></td>
                             <td style="text-align: left; -ms-column-width: 10px; -webkit-column-width: 10px; column-width: 10px;">
                                 <asp:TextBox ID="txtPoNo" CssClass="txtBox" Font-Bold="False" runat="server" />
                                 <asp:Button ID="btnPoNoShow" runat="server" ForeColor="Blue" Text="Show" CssClass="btnButton" OnClick="btnPoNoShow_Click" />
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By Po User"></asp:Label></td>
+                                <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By PO User:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtPoUser"
@@ -198,11 +198,9 @@
        <table> 
          <tr> 
             <td><asp:GridView ID="dgvPoApp" runat="server" AutoGenerateColumns="False" ShowFooter="True"  Width="600px"  
-                CssClass="GridViewStyle" CellPadding="4" ForeColor="#333333" GridLines="both" >             
-                <HeaderStyle CssClass="HeaderStyle" BackColor="#507CD1" Font-Bold="True" ForeColor="White" />  
-                <EditRowStyle BackColor="#2461BF"  />
-                <FooterStyle CssClass="FooterStyle" BackColor="#507CD1" Font-Bold="True" ForeColor="White" /> <RowStyle CssClass="RowStyle" BackColor="#EFF3FB" />  <PagerStyle CssClass="PagerStyle" BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" /> 
-                <AlternatingRowStyle BackColor="White" />
+                CssClass="GridViewStyle" CellPadding="3" GridLines="None" BackColor="White" BorderColor="White" BorderWidth="2px" BorderStyle="Ridge" CellSpacing="1" >             
+                <HeaderStyle CssClass="HeaderStyle" BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />  
+                <FooterStyle CssClass="FooterStyle" BackColor="#C6C3C6" ForeColor="Black" /> <RowStyle CssClass="RowStyle" BackColor="#DEDFDE" ForeColor="Black" />  <PagerStyle CssClass="PagerStyle" BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" /> 
             <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
   
@@ -246,11 +244,11 @@
                 <asp:Button ID="btnApproval" runat="server" forecolor="blue" Text="Approval" OnClientClick="funConfirmAll();" OnClick="btnApproval_Click"   /></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             </Columns> 
-                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                <SortedAscendingCellStyle BackColor="#F5F7FB" />
-                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-                <SortedDescendingCellStyle BackColor="#E9EBEF" />
-                <SortedDescendingHeaderStyle BackColor="#4870BE" />
+                <SelectedRowStyle BackColor="#9471DE" ForeColor="White" Font-Bold="True" />
+                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                <SortedDescendingHeaderStyle BackColor="#33276A" />
             </asp:GridView></td> 
         </tr>  
        </table> 
