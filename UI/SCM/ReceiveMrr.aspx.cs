@@ -395,7 +395,7 @@ namespace UI.SCM
                         if (isComplete)
                         {
                             //po complete
-                            Alert("Po already completed. It can not MRR");
+                            Alert("All Items of this PO has already been received.");
                             return;
                         }
                         dt = obj.GetWhbyPo(intPo);
