@@ -66,9 +66,13 @@ namespace UI.HR.Penalty
         {
             try
             {
-                string childnm = txtChild.Text; string childgndr = ddlCGender.SelectedItem.ToString();string childdob = txtCDOB.Text;
-                if (childnm.Length <= 0 || childdob.Length<=0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please fillup child information properly.');", true); }
-                else {CreateXml(childnm, childgndr, childdob, "CHILD"); }                
+                if (hdnconfirm.Value == "1")
+                {
+                    string childnm = txtChild.Text; string childgndr = ddlCGender.SelectedItem.ToString(); string childdob = txtCDOB.Text;
+                    CreateXml(childnm, childgndr, childdob, "CHILD");
+                    //if (childnm.Length <= 0 || childdob.Length <= 0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please fillup child information properly.');", true); }
+                    //else { CreateXml(childnm, childgndr, childdob, "CHILD"); }
+                }
             }
             catch { }
         }

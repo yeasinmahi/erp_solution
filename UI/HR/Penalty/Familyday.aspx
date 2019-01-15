@@ -8,6 +8,20 @@
 <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
 <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/hrCSS" />
 <script>
+    function Validation() {
+        document.getElementById("hdnconfirm").value = "0";
+        var ctp = document.forms["frmprfmlydy"]["ddlChild"].value;
+        var cname = document.forms["frmprfmlydy"]["txtChild"].value;
+        var cdob = document.forms["frmprfmlydy"]["txtCDOB"].value;
+        if ((ctp == "1") && (cname == null || cname == "")) { alert("Please fillup child information properly."); }
+        else if ((ctp == "1") && (cdob == null || cdob == "")) { alert("Please fillup child DOB by valid formate (yyyy-MM-dd)."); } 
+        else {
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+            if (confirm("Do you want add child?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+            else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+        }
+    }
     function ConfirmAll() {
         document.getElementById("hdnconfirm").value = "0";
         var pnd = document.forms["frmprfmlydy"]["ddlPnD"].value;
@@ -102,7 +116,7 @@
     <td style="text-align:right;"><asp:Label ID="lblcgndr" CssClass="lbl" runat="server" Text="Gender : "></asp:Label></td>
     <td><asp:DropDownList ID="ddlCGender" runat="server" AutoPostBack="false" CssClass="dropdownList">
     <asp:ListItem Selected="True" Value="S">Son</asp:ListItem><asp:ListItem Value="D">Daughter</asp:ListItem></asp:DropDownList></td>
-    <td colspan="2" style="text-align:right;"><asp:Button id="btnAdd" runat="server" Text="Add-To-List" onclick="btnAdd_Click"/>
+    <td colspan="2" style="text-align:right;"><asp:Button id="btnAdd" runat="server" Text="Add-To-List" OnClientClick = "Validation()" onclick="btnAdd_Click"/>
     </td></tr>
     <tr class=""><td colspan="4" style="text-align:right;"><asp:GridView ID="dgvfml" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" 
         BorderStyle="Solid" BorderWidth="1px" CellPadding="1" ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvfml_RowDeleting"><AlternatingRowStyle BackColor="#CCCCCC" />

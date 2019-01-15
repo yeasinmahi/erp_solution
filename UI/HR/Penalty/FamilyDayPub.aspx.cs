@@ -38,13 +38,13 @@ namespace UI.HR.Penalty
                     }
                 }
             }
-            catch { }
+            catch (Exception ex){ }
         }
         private void BindPickandDrop()
         {
             try
             {
-                dt = new DataTable(); try { File.Delete(filePathForXML); } catch { }
+                dt = new DataTable(); try { File.Delete(filePathForXML); } catch (Exception ex){ }
                 dt = pnlty.GetPickDropList();
                 ddlPnD.DataSource = dt; ddlPnD.DataTextField = "Names";
                 ddlPnD.DataValueField = "ID"; ddlPnD.DataBind();
@@ -54,10 +54,10 @@ namespace UI.HR.Penalty
                 ddlChild.SelectedValue = "0"; txtChild.Text = ""; ddlCGender.SelectedValue = "M"; txtCDOB.Text = "";
                 txtChild.Enabled = false; ddlCGender.Enabled = false; txtCDOB.Enabled = false; btnAdd.Enabled = false;
                 hdnconfirm.Value = "0"; dgvfml.DataSource = ""; dgvfml.DataBind(); hdnsearch.Value = ""; hdncode.Value = "";
-                txtJobstation.Text = ""; txtEmployeeSearch.Text = ""; txtDepartment.Text = ""; 
+                txtJobstation.Text = ""; txtEmployeeSearch.Text = ""; txtDepartment.Text = "";
                 txtDesignation.Text = ""; txtJobtype.Text = ""; txtUnit.Text = "";
             }
-            catch { }
+            catch (Exception ex){ }
         }
         [WebMethod]
         public static List<string> GetAutoCompleteData(string strSearchKey)
@@ -87,23 +87,47 @@ namespace UI.HR.Penalty
         }
         protected void ddlPtype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlPtype.SelectedValue.ToString() == "0") { txtSpouse.Enabled = false; ddlSGender.Enabled = false; txtSDOB.Enabled = false; }
-            else { txtSpouse.Enabled = true; ddlSGender.Enabled = true; txtSDOB.Enabled = true; }
+            if (ddlPtype.SelectedValue.ToString() == "0")
+            {
+                txtSpouse.Enabled = false; ddlSGender.Enabled = false; txtSDOB.Enabled = false;
+            }
+            else
+            {
+                txtSpouse.Enabled = true; ddlSGender.Enabled = true; txtSDOB.Enabled = true;
+            }
         }
         protected void ddlChild_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ddlChild.SelectedValue.ToString() == "0") { txtChild.Enabled = false; ddlCGender.Enabled = false; txtCDOB.Enabled = false; btnAdd.Enabled = false; }
-            else { txtChild.Enabled = true; ddlCGender.Enabled = true; txtCDOB.Enabled = true; btnAdd.Enabled = true; }
+            if (ddlChild.SelectedValue.ToString() == "0")
+            {
+                txtChild.Enabled = false; ddlCGender.Enabled = false; txtCDOB.Enabled = false; btnAdd.Enabled = false;
+            }
+            else
+            {
+                txtChild.Enabled = true; ddlCGender.Enabled = true; txtCDOB.Enabled = true; btnAdd.Enabled = true;
+            }
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                string childnm = txtChild.Text; string childgndr = ddlCGender.SelectedItem.ToString(); string childdob = txtCDOB.Text;
-                if (childnm.Length <= 0 || childdob.Length <= 0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please fillup child information properly.');", true); }
-                else { CreateXml(childnm, childgndr, childdob, "CHILD"); }
+                if (hdnconfirm.Value == "1")
+                {
+                    string childnm = txtChild.Text;
+                    string childgndr = ddlCGender.SelectedItem.ToString();
+                    string childdob = txtCDOB.Text;
+                    if (!DateTime.TryParse(childdob, out DateTime childDateTime))
+                    {
+                        Alert("Please insert Child Date time in correct format yyyy-MM-dd");
+                        return;
+                    }
+
+                    CreateXml(childnm, childgndr, childDateTime.ToString("yyyy-MM-dd"), "CHILD");
+                    //if (childnm.Length <= 0 || childdob.Length <= 0) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please fillup child information properly.');", true); }
+                    //else { CreateXml(childnm, childgndr, childdob, "CHILD"); }
+                }
             }
-            catch { }
+            catch (Exception ex){ }
         }
         private void CreateXml(string childnm, string childgndr, string childdob, string who)
         {
@@ -159,7 +183,7 @@ namespace UI.HR.Penalty
                 else { dgvfml.DataSource = ""; }
                 dgvfml.DataBind(); txtChild.Text = ""; txtCDOB.Text = "";
             }
-            catch { }
+            catch (Exception ex){ }
         }
         protected void dgvfml_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -169,10 +193,13 @@ namespace UI.HR.Penalty
                 dsGrid.Tables[0].Rows[dgvfml.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvfml.DataSource;
-                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0) { File.Delete(filePathForXML); dgvfml.DataSource = ""; dgvfml.DataBind(); }
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML); dgvfml.DataSource = ""; dgvfml.DataBind();
+                }
                 else { LoadGridwithXml(); }
             }
-            catch { }
+            catch (Exception ex){ }
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -181,20 +208,28 @@ namespace UI.HR.Penalty
                 if (hdnconfirm.Value == "1")
                 {
                     XmlDocument doc = new XmlDocument(); dt = new DataTable(); int actionby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    string pnd = ddlPnD.SelectedValue.ToString(); string ptype = ddlPtype.SelectedItem.ToString();
-                    string sname = txtSpouse.Text; string sgndr = ddlSGender.SelectedItem.ToString(); string sdob = txtSDOB.Text;
+                    string pnd = ddlPnD.SelectedValue.ToString();
+                    string ptype = ddlPtype.SelectedItem.ToString();
+                    string sname = txtSpouse.Text;
+                    string sgndr = ddlSGender.SelectedItem.ToString();
+                    string sdob = txtSDOB.Text;
+                    if(!DateTime.TryParse(sdob,out DateTime spouseDateTime))
+                    {
+                        Alert("Please insert Spouse Date time in correct format yyyy-MM-dd");
+                        return;
+                    }
                     try
                     {
                         doc.Load(filePathForXML); XmlNode dSftTm = doc.SelectSingleNode("FamilyDay"); xmlString = dSftTm.InnerXml;
                         xmlString = "<FamilyDay>" + xmlString + "</FamilyDay>";
                     }
                     catch { xmlString = ""; }
-                    dt = pnlty.Familydayinformation(0, hdncode.Value, int.Parse(pnd), ptype, sname, sgndr, sdob, actionby, xmlString);
+                    dt = pnlty.Familydayinformation(0, hdncode.Value, int.Parse(pnd), ptype, sname, sgndr, spouseDateTime.ToString("yyyy-MM-dd"), actionby, xmlString);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["OutMessage"].ToString() + "');", true);
                     BindPickandDrop();
                 }
             }
-            catch { }
+            catch (Exception ex){ }
         }
     }
 }
