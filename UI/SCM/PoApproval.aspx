@@ -139,19 +139,19 @@
          
        <table>
         <tr> 
-        <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+        <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
          
-        <td   style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>  
+        <td   style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Type:"></asp:Label></td>  
         <td style="text-align:left;">
         <asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"> </asp:DropDownList></td> 
         </tr> 
         <tr>                                                                                                        
-        <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="By PO No"></asp:Label></td>
+        <td style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="By PO No:"></asp:Label></td>
         <td style="text-align:left; column-width=10px;"><asp:TextBox ID="txtPoNo" CssClass="txtBox" Font-Bold="False"   runat="server"/> 
         <asp:Button ID="btnPoNoShow" runat="server" ForeColor="Blue" Text="Show" CssClass="btnButton" OnClick="btnPoNoShow_Click" />
         </td>  
-        <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By Po User"></asp:Label></td>
+        <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="By Po User:"></asp:Label></td>
         <td style="text-align:left;">
          <asp:TextBox ID="txtPoUser" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"   ></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtenders2" runat="server" TargetControlID="txtPoUser"
@@ -169,9 +169,12 @@
        </table>
        <table> 
          <tr> 
-            <td><asp:GridView ID="dgvPoApp" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  Width="600px"  
-                CssClass="GridViewStyle">            
-                <HeaderStyle CssClass="HeaderStyle" />  <FooterStyle CssClass="FooterStyle" /> <RowStyle CssClass="RowStyle" />  <PagerStyle CssClass="PagerStyle" /> 
+            <td><asp:GridView ID="dgvPoApp" runat="server" AutoGenerateColumns="False" ShowFooter="True"  Width="600px"  
+                CssClass="GridViewStyle" CellPadding="4" ForeColor="#333333" GridLines="both" >             
+                <HeaderStyle CssClass="HeaderStyle" BackColor="#507CD1" Font-Bold="True" ForeColor="White" />  
+                <EditRowStyle BackColor="#2461BF"  />
+                <FooterStyle CssClass="FooterStyle" BackColor="#507CD1" Font-Bold="True" ForeColor="White" /> <RowStyle CssClass="RowStyle" BackColor="#EFF3FB" />  <PagerStyle CssClass="PagerStyle" BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" /> 
+                <AlternatingRowStyle BackColor="White" />
             <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
   
@@ -181,26 +184,26 @@
                 
                 <asp:TemplateField HeaderText="PO No" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="intPOID" >
                 <ItemTemplate><asp:Label ID="lblPoNo" runat="server"  Text='<%# Bind("intPOID") %>'></asp:Label></ItemTemplate>
-                  <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>  
+                  <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>  
 
-                <asp:TemplateField HeaderText="Po Date" ItemStyle-HorizontalAlign="right" SortExpression="dtePODate" >
-                <ItemTemplate><asp:Label ID="lblPoDate" runat="server"  Width="90px" Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+                <asp:TemplateField HeaderText="PO Date" ItemStyle-HorizontalAlign="right" SortExpression="dtePODate" >
+                <ItemTemplate><asp:Label ID="lblPoDate" runat="server"  Width="65px" Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
+                <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>
             
-                <asp:TemplateField HeaderText="Suppliyer Name" ItemStyle-HorizontalAlign="right" SortExpression="strSupplierName" >
-                <ItemTemplate><asp:Label ID="lblSuppliyer" runat="server" Width="150px"  Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
+                <asp:TemplateField HeaderText="Supplier Name" ItemStyle-HorizontalAlign="right" SortExpression="strSupplierName" >
+                <ItemTemplate><asp:Label ID="lblSuppliyer" runat="server" Width="170px"  Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
                  <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="PO Amount" ItemStyle-HorizontalAlign="right" SortExpression="monPOTotal" >
-                <ItemTemplate><asp:Label ID="lblPoTotal" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
-                  <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
+                <ItemTemplate><asp:Label ID="lblPoTotal" width="70px" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
+                  <ItemStyle HorizontalAlign="right" /> </asp:TemplateField>
             
                 <asp:TemplateField HeaderText="Currency" ItemStyle-HorizontalAlign="right" SortExpression="strCurrencyName" >
                 <ItemTemplate><asp:Label ID="lblCurrency" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strCurrencyName") %>'></asp:Label></ItemTemplate>
-                  <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+                  <ItemStyle HorizontalAlign="center" /> </asp:TemplateField> 
             
                 <asp:TemplateField HeaderText="PO Issuer" ItemStyle-HorizontalAlign="right" SortExpression="strEmployeeName" >
-                <ItemTemplate><asp:Label ID="lblEmpName" runat="server" Width="150px"  Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
+                <ItemTemplate><asp:Label ID="lblEmpName" runat="server" Width="170px"  Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
                   <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="Approve?" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="strIndentType" >
@@ -208,13 +211,18 @@
                  <ItemStyle HorizontalAlign="left" />  </asp:TemplateField> 
              
                 <asp:TemplateField HeaderText="Detalis">  <ItemTemplate>
-                <asp:Button ID="btnDetalis" runat="server" Text="Detalis View"  OnClick="btnDetalis_Click"  /></ItemTemplate>
+                <asp:Button ID="btnDetalis" runat="server" forecolor="blue" Text="Detalis"  OnClick="btnDetalis_Click"  /></ItemTemplate>
                  <ItemStyle HorizontalAlign="left" /> </asp:TemplateField>
 
                 <asp:TemplateField HeaderText="PO Approval">  <ItemTemplate>
-                <asp:Button ID="btnApproval" runat="server" Text="Approval" OnClientClick="funConfirmAll();" OnClick="btnApproval_Click"   /></ItemTemplate>
+                <asp:Button ID="btnApproval" runat="server" forecolor="blue" Text="Approval" OnClientClick="funConfirmAll();" OnClick="btnApproval_Click"   /></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" />  </asp:TemplateField>
             </Columns> 
+                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                <SortedAscendingCellStyle BackColor="#F5F7FB" />
+                <SortedAscendingHeaderStyle BackColor="#6D95E1" />
+                <SortedDescendingCellStyle BackColor="#E9EBEF" />
+                <SortedDescendingHeaderStyle BackColor="#4870BE" />
             </asp:GridView></td> 
         </tr>  
        </table> 
