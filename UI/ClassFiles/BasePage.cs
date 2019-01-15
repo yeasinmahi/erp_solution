@@ -1,4 +1,5 @@
 using System;
+using System.Web;
 using System.Web.UI;
 using UserSecurity;
 
@@ -10,12 +11,22 @@ namespace UI.ClassFiles
 {
     public class BasePage : Page
     {
+        protected int Enroll = 0;
+        protected int JobStationId = 0;
+
         protected override void OnPreInit(EventArgs e)
         {
+            Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             base.OnPreInit(e);
             UserActivityCheck();
             Page.Title = @"Welcome to Akij Group";
         }
+
+        //protected void OnLoad(object sender, EventArgs e)
+        //{
+        //    base.OnLoad(e);
+        //}
 
         public BasePage()
         {
