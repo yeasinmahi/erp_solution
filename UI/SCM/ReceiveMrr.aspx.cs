@@ -147,7 +147,7 @@ namespace UI.SCM
                         {
                             if (receiveQuantity <= 0)
                             {
-                                break;
+                                continue;
                             }
                             if (int.TryParse(location, out int locationId))
                             {
