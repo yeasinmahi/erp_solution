@@ -21556,7 +21556,7 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT who.intWHID,wh.strWareHoseName FROM  ERP_Inventory.dbo.tblWearHouseOperator who JOIN ERP_Inventory.dbo.tblWearHouse wh ON who.intWHID=wh.intWHID JOIN ERP_HR.dbo.tblUnit u ON wh.intUnitID=u.intUnitID WHERE intEnrollment=@intEnroll AND wh.ysnActive=1 ORDER BY wh.strWareHoseName";
+            this._commandCollection[0].CommandText = @"SELECT who.intWHID,wh.strWareHoseName FROM  ERP_Inventory.dbo.tblWearHouseOperator who JOIN ERP_Inventory.dbo.tblWearHouse wh ON who.intWHID=wh.intWHID JOIN ERP_HR.dbo.tblUnit u ON wh.intUnitID=u.intUnitID WHERE intEnrollment=@intEnroll AND wh.ysnActive=1 and ysnDistribution = 1 ORDER BY wh.strWareHoseName";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEnroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEnrollment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
