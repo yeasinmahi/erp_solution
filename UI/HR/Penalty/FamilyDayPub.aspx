@@ -63,7 +63,13 @@
             else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
         }
     }
-   
+    function Confirm() {
+        document.getElementById("hdnconfirm").value = "0";
+        var confirm_value = document.createElement("INPUT");
+        confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+        if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "1"; }
+        else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+    }
 </script>
 
 </head>
@@ -159,7 +165,32 @@
         </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
         </asp:GridView></td></tr>
     <tr class="tblroweven"><td style="text-align:right;" colspan="4"><asp:Button id="btnSubmit" runat="server" Text="Submit" onclick="btnSubmit_Click" OnClientClick = "ConfirmAll()"/></td></tr>
+    
+    <tr class=""><td style="text-align:right;" colspan="4">
+    <asp:GridView ID="dgvList" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" 
+    BorderStyle="Solid" BorderWidth="1px" CellPadding="1" ForeColor="Black" GridLines="Vertical" DataSourceID="odssummary"><AlternatingRowStyle BackColor="#CCCCCC" />
+    <Columns>
+    <asp:TemplateField HeaderText="Employee Name" SortExpression="empname">
+    <ItemTemplate><asp:Label ID="lblempnm" runat="server" Text='<%# Bind("empname") %>'></asp:Label></ItemTemplate>
+    <ItemStyle HorizontalAlign="Left" Width="200px" /></asp:TemplateField>
+    <asp:TemplateField HeaderText="Pick & Drop" SortExpression="pnd">
+    <ItemTemplate><asp:Label ID="lblpnd" runat="server" Text='<%# Bind("pnd") %>'></asp:Label></ItemTemplate>
+    <ItemStyle HorizontalAlign="Left" Width="285px" /></asp:TemplateField>
+    <asp:TemplateField HeaderText="Participate" SortExpression="ptype" >
+    <ItemTemplate><asp:Label ID="lblpart" runat="server" Text='<%# Bind("ptype") %>'></asp:Label></ItemTemplate>
+    <ItemStyle HorizontalAlign="Right" Width="75px" /></asp:TemplateField>
 
+    <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" SortExpression="">
+    <ItemTemplate><asp:Button ID="btnCancel" class="button" runat="server" Font-Size="10px" ForeColor="Red" OnClick="Cancel_Click" OnClientClick="Confirm()" 
+    CommandArgument='<%# Eval("mid") +"^"+ Eval("did") %>' Text="Cancel" /></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="35px" /></asp:TemplateField>
+    </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+    </asp:GridView><asp:ObjectDataSource ID="odssummary" runat="server" SelectMethod="Familydayinformation" TypeName="HR_BLL.Penalty.Penalty" OldValuesParameterFormatString="original_{0}">
+    <SelectParameters><asp:Parameter DefaultValue="2" Name="type" Type="Int32" />
+    <asp:ControlParameter ControlID="hdncode" Name="empcode" PropertyName="Value" Type="String" DefaultValue="" /><asp:Parameter DefaultValue="1" Name="pnd" Type="Int32" />
+    <asp:Parameter DefaultValue="1" Name="ptype" Type="String" /><asp:Parameter DefaultValue="" Name="sname" Type="String" />
+    <asp:Parameter Name="sgndr" Type="String" /><asp:Parameter Name="sdob" Type="String" /><asp:Parameter DefaultValue="1" Name="actionBy" Type="Int32" />
+    <asp:Parameter DefaultValue="" Name="xmlstring" Type="String" /></SelectParameters></asp:ObjectDataSource>
+    </td></tr>
 
     </table>
 <%--=========================================End My Code From Here=================================================--%>
