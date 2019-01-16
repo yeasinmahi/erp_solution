@@ -49,13 +49,13 @@
         var pnd = document.forms["frmpubfmlydy"]["ddlPnD"].value;
         var ptp = document.forms["frmpubfmlydy"]["ddlPtype"].value;
         var sname = document.forms["frmpubfmlydy"]["txtSpouse"].value;
-        var sdob = document.forms["frmpubfmlydy"]["txtSDOB"].value;
+        //var sdob = document.forms["frmpubfmlydy"]["txtSDOB"].value;
         document.getElementById("hdnsdob").value = sdob;
 
         if (searemp == null || searemp == "") { alert("Please select a manpower."); }
         else if (pnd == "0") { alert("Please select pick and drop point."); }
         else if ((ptp == "1") && (sname == null || sname == "")) { alert("Please fillup spouse information properly."); }
-        else if ((ptp == "1") && (sdob == null || sdob == "")) { alert("Please fillup spouse DOB by valid formate (yyyy-MM-dd)."); }
+        //else if ((ptp == "1") && (sdob == null || sdob == "")) { alert("Please fillup spouse DOB by valid formate (yyyy-MM-dd)."); }
         else {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
