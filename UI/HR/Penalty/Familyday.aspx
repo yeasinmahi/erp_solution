@@ -29,7 +29,7 @@
         var ptp = document.forms["frmprfmlydy"]["ddlPtype"].value;
         var sname = document.forms["frmprfmlydy"]["txtSpouse"].value;
         ///var sdob = document.forms["frmprfmlydy"]["txtSDOB"].value;
-        document.getElementById("hdnsdob").value = sdob;
+        //document.getElementById("hdnsdob").value = sdob;
 
         if (pnd == "0") {alert("Please select pick and drop point.");}
         else if ((ptp == "1") && (sname == null || sname == "")) { alert("Please fillup spouse information properly."); }

@@ -50,7 +50,7 @@
         var ptp = document.forms["frmpubfmlydy"]["ddlPtype"].value;
         var sname = document.forms["frmpubfmlydy"]["txtSpouse"].value;
         //var sdob = document.forms["frmpubfmlydy"]["txtSDOB"].value;
-        document.getElementById("hdnsdob").value = sdob;
+        //document.getElementById("hdnsdob").value = sdob;
 
         if (searemp == null || searemp == "") { alert("Please select a manpower."); }
         else if (pnd == "0") { alert("Please select pick and drop point."); }
