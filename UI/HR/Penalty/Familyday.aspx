@@ -28,12 +28,12 @@
         var pnd = document.forms["frmprfmlydy"]["ddlPnD"].value;
         var ptp = document.forms["frmprfmlydy"]["ddlPtype"].value;
         var sname = document.forms["frmprfmlydy"]["txtSpouse"].value;
-        var sdob = document.forms["frmprfmlydy"]["txtSDOB"].value;
-        document.getElementById("hdnsdob").value = sdob;
+        ///var sdob = document.forms["frmprfmlydy"]["txtSDOB"].value;
+        //document.getElementById("hdnsdob").value = sdob;
 
         if (pnd == "0") {alert("Please select pick and drop point.");}
         else if ((ptp == "1") && (sname == null || sname == "")) { alert("Please fillup spouse information properly."); }
-        else if ((ptp == "1") && (sdob == null || sdob == "")) { alert("Please fillup spouse DOB by valid formate (yyyy-MM-dd)."); }
+        //else if ((ptp == "1") && (sdob == null || sdob == "")) { alert("Please fillup spouse DOB by valid formate (yyyy-MM-dd)."); }
         else {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
@@ -42,7 +42,6 @@
         }
     }
 </script>
-
 
 </head>
 <body>

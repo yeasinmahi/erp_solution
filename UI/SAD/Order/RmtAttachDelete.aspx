@@ -1,6 +1,8 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RmtAttachDelete.aspx.cs" Inherits="UI.SAD.Order.RmtAttachDelete" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Assembly="ScriptReferenceProfiler" Namespace="ScriptReferenceProfiler" TagPrefix="cc2" %>
+
 <!DOCTYPE html>
  <html xmlns="http://www.w3.org/1999/xhtml">   
 <head runat="server">
@@ -23,7 +25,35 @@
 
           }
     </script>
-   
+        <script type="text/javascript">
+         $(document).ready(function () {
+             SearchText();
+         });
+         function Changed() {
+             document.getElementById('hdfSearchBoxTextChange').value = 'true';
+         }
+         function SearchText() {
+             $("#txtEmployeeSearch").autocomplete({
+                 source: function (request, response) {
+                     $.ajax({
+                         type: "POST",
+                         contentType: "application/json;",
+                         url: "RmtAttachDelete.aspx/getemplontadasupervisor",
+                         data: "{'strSearchKey':'" + document.getElementById('txtEmployeeSearch').value + "'}",
+                         dataType: "json",
+                         success: function (data) {
+                             response(data.d);
+                         },
+                         error: function (result) {
+                             alert("Error");
+                         }
+                     });
+                 }
+             });
+         }
+
+
+    </script>
 <script>
     //function ViewDocList() {
     //    window.open('RmtTADAAttachDocPathlist.aspx?ID=' + 'sub', "scrollbars=yes,toolbar=0,height=250,width=500,top=200,left=300, resizable=no, title=Preview");
@@ -35,29 +65,7 @@
 
 </script>
 
-     <script type="text/javascript">
-
-         $(document).ready(function () {
-             $("#<%=txtFullName.ClientID %>").autocomplete({
-                 source: function (request, response) {
-                     $.ajax({
-                         url: '<%=ResolveUrl("~/ClassFiles/AutoCompleteSearch.asmx/getNoOfficeEmailEmployeeList") %>',
-                             data: '{"ApproverEnrol":"' + $("#hdnAreamanagerEnrol").val() + '","prefix":"' + request.term + '"}',
-                             dataType: "json",
-                             type: "POST",
-                             contentType: "application/json; charset=utf-8",
-                             success: function (data) { response($.map(data.d, function (item) { return { label: item.split('^')[0], val: item.split(',')[1] } })) },
-                             error: function (response) { },
-                             failure: function (response) { }
-                         });
-                     },
-                    select: function (e, i) {
-                        $("#<%=hdnsearch.ClientID %>").val(i.item.val);
-                }, minLength: 1
-                });
-         });
-
-     </script>
+     
 
 
 
@@ -80,25 +88,49 @@
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
     <div class="divs_content_container">
-    <table border="0px"; style="width:Auto"; align="center" >
-        <tr class="tblroweven">
+    <table border="0px"; style="width:300px"; align="center" >
+           <tr class="tblroweven">
         <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" Enabled="true" Width="100"></asp:TextBox>
-        <script type="text/javascript"> new datepickr('txtFromDate', { 'dateFormat': 'Y-m-d' });</script></td>
-        <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date:  "></asp:Label></td>
-        <td><asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" Enabled="true" Width="100"></asp:TextBox>
-        <script type="text/javascript"> new datepickr('txtToDate', { 'dateFormat': 'Y-m-d' });</script></td>          
-        </tr>
-        <tr class="tblrowodd">
-            <td style="text-align:right"> <asp:Label ID="lblUserName" runat="server" CssClass="lbl" Text="Name"></asp:Label>  </td>
-            <td colspan="3"> 
-                <asp:HiddenField ID="hdnsearch" runat="server"/>
-                <asp:HiddenField ID="hdnField" runat="server"/>
-                <asp:TextBox ID="txtFullName" Width="300px" CssClass="txtBox" runat="server"></asp:TextBox></td>
-  
-        </tr>
+        <td>
+                                <asp:TextBox ID="txtDate" Enabled="false" runat="server"></asp:TextBox>
+                                <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDate" Format="dd/MM/yyyy"
+                                    PopupButtonID="imgCal_1" ID="CalendarExtender2" runat="server">
+                                </cc1:CalendarExtender>
+                                <img runat="server" id="imgCal_1" src="../../Content/images/img/calbtn.gif" style="border: 0px;
+                                    width: 34px; height: 23px; vertical-align: bottom;" />
+                            </td>
 
-        <tr>
+        <td style="text-align:right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="To Date:  "></asp:Label></td>
+         <td>
+                                <asp:TextBox ID="txtDelDate" Enabled="false" runat="server" AutoPostBack="True"></asp:TextBox>
+                                <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtDelDate" Format="dd/MM/yyyy"
+                                    PopupButtonID="imgCal_2" ID="CalendarExtender1" runat="server">
+                                </cc1:CalendarExtender>
+                                <img id="imgCal_2" src="../../Content/images/img/calbtn.gif"
+                                    style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
+                            </td>
+            
+        </tr>
+          <tr class="tblroweven">
+                <td style="text-align:right;"><asp:Label ID="lbltype" CssClass="lbl" runat="server" Text="User Type:  "></asp:Label>
+                <td><asp:RadioButtonList ID="rdbUserOption" runat="server" OnSelectedIndexChanged="rdbUserOption_SelectedIndexChanged"
+                RepeatDirection="Horizontal" AutoPostBack="true">
+                <asp:ListItem Text="Own" Value="0" Selected="True"></asp:ListItem>
+                <asp:ListItem Text="Other" Value="1"></asp:ListItem>
+                 
+                </asp:RadioButtonList>
+                </td>  
+                    <td style="text-align:right;"><asp:Label ID="lblfullname" CssClass="lbl" runat="server"  Text="Employee Name: "></asp:Label></td>
+          <td>  <asp:TextBox ID="txtEmployeeSearch" runat="server" CssClass="txtBox" Width="350px" AutoPostBack="true" onchange="javascript: Changed();"></asp:TextBox>
+            <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdnAction" runat="server" />
+        </td>
+                </tr>
+     
+  
+
+        <tr class="tblrowodd">
+            <asp:HiddenField ID="hdnsearch" runat="server"/>
+                <asp:HiddenField ID="hdnField" runat="server"/>
              <td  style="text-align:right">
                 <asp:Label ID="lblAttachType" runat="server" CssClass="lbl" Text="Attachment Type"></asp:Label>
 
@@ -129,24 +161,23 @@
             <td colspan="2"><asp:Button ID="btnShowAttachment" runat="server" Text="Show-report(Attchment)"  BackColor="#ffcc66" OnClick="btnShowAttachment_Click"/></td>
         </tr>
         <tr><td colspan="4">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" EmptyDataText = "No files uploaded">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" EmptyDataText = "No files uploaded" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                        <AlternatingRowStyle BackColor="#CCCCCC" />
              <Columns>
             <asp:BoundField DataField="id" HeaderText="ID" />
             
-             <asp:BoundField DataField="strContentName" HeaderText="FILE  Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" >
-                       <ItemStyle HorizontalAlign="Center" />
-                      </asp:BoundField>
-                       <asp:BoundField DataField="strType" HeaderText="Type" SortExpression="strDesg" ItemStyle-HorizontalAlign="Center" >
+            
+                       <asp:BoundField DataField="dtebilldate" HeaderText="billdate" SortExpression="dtebilldate" DataFormatString="{0:dd-M-yyyy}" ItemStyle-HorizontalAlign="Center" >
                        <ItemStyle HorizontalAlign="Center" />
                       </asp:BoundField>
                        
-                       <asp:BoundField DataField="decSize" HeaderText="File Size" SortExpression="strFromAdr" ItemStyle-HorizontalAlign="Center" >
+                       <asp:BoundField DataField="dteinsertdate" HeaderText="insertdate" DataFormatString="{0:dd-M-yyyy}" SortExpression="dteinsertdate" ItemStyle-HorizontalAlign="Center" >
 
                       <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
 
-                      <asp:BoundField DataField="strPathurl" HeaderText="File PATH" SortExpression="strFromAdr" ItemStyle-HorizontalAlign="Center" >
-
-                      <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
+                     <asp:BoundField DataField="strcontent" HeaderText="FILE  Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" >
+                       <ItemStyle HorizontalAlign="Center" />
+                      </asp:BoundField>
 
 
                      
@@ -156,11 +187,19 @@
 <asp:TemplateField>
   
 
- <ItemTemplate><asp:LinkButton ID="lnkDownload" Text = "Download" CommandArgument = '<%# Eval("strPathurl") %>' OnClick="DownloadFile" runat="server"></asp:LinkButton></ItemTemplate>
+ <ItemTemplate><asp:LinkButton ID="btnDelete" Text = "Delete" CommandArgument = '<%# Eval("id") %>' OnClick="btnDelete_Click" runat="server"></asp:LinkButton></ItemTemplate>
 </asp:TemplateField>
 
 
              </Columns>
+                        <FooterStyle BackColor="#CCCCCC" />
+                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                        <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                        <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                        <SortedAscendingHeaderStyle BackColor="#808080" />
+                        <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                        <SortedDescendingHeaderStyle BackColor="#383838" />
         </asp:GridView>
                     
             </td>

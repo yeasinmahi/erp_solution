@@ -51,10 +51,9 @@ namespace UI.HR.Penalty
                 ddlPnD.Items.Insert(0, new ListItem("Select Point", "0"));
                 ddlPtype.SelectedValue = "0"; txtSpouse.Text = ""; ddlSGender.SelectedValue = "M"; txtSDOB.Text = "";
                 txtSpouse.Enabled = false; ddlSGender.Enabled = false; txtSDOB.Enabled = false;
-                ddlChild.SelectedValue = "0"; txtChild.Text = ""; ddlCGender.SelectedValue = "M"; txtCDOB.Text = "";
+                ddlChild.SelectedValue = "0"; txtChild.Text = ""; ddlCGender.SelectedValue = "S"; txtCDOB.Text = "";
                 txtChild.Enabled = false; ddlCGender.Enabled = false; txtCDOB.Enabled = false; btnAdd.Enabled = false;
-                hdnconfirm.Value = "0"; dgvfml.DataSource = ""; dgvfml.DataBind(); hdnsearch.Value = ""; hdncode.Value = "";
-                txtJobstation.Text = ""; txtEmployeeSearch.Text = ""; txtDepartment.Text = ""; hdnsdob.Value = "";
+                hdnconfirm.Value = "0"; hdnsearch.Value = ""; txtJobstation.Text = ""; txtEmployeeSearch.Text = ""; txtDepartment.Text = ""; hdnsdob.Value = "";
                 txtDesignation.Text = ""; txtJobtype.Text = ""; txtUnit.Text = ""; hdncdob.Value = "";
             }
             catch { }
@@ -81,6 +80,7 @@ namespace UI.HR.Penalty
                 txtUnit.Text = objDT.Rows[0]["strUnit"].ToString();
                 hdnsearch.Value = employeeCode; hdncode.Value = employeeCode;
                 txtJobstation.Text = objDT.Rows[0]["strJobStationName"].ToString();
+                dgvList.DataBind();
             }
             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry !!! Employee not found.');", true); }
 
@@ -161,7 +161,7 @@ namespace UI.HR.Penalty
                 else { dgvfml.DataSource = ""; }
                 dgvfml.DataBind(); txtChild.Text = ""; txtCDOB.Text = "";
             }
-            catch { }
+            catch { dgvfml.DataSource = ""; dgvfml.DataBind();}
         }
         protected void dgvfml_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -192,12 +192,30 @@ namespace UI.HR.Penalty
                     }
                     catch { xmlString = ""; }
                     dt = pnlty.Familydayinformation(0, hdncode.Value, int.Parse(pnd), ptype, sname, sgndr, sdob, actionby, xmlString);
-                    try { File.Delete(filePathForXML); } catch { }
+                    try { File.Delete(filePathForXML); } catch { } LoadGridwithXml(); 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["OutMessage"].ToString() + "');", true);
                     BindPickandDrop();
                 }
             }
             catch { }
+        }
+        protected void Cancel_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "1")
+            {
+                try
+                {
+                    char[] delimiterChars = { '^' }; dt = new DataTable();
+                    string temp = ((Button)sender).CommandArgument.ToString();
+                    string[] searchKey = temp.Split(delimiterChars);
+                    int mid = int.Parse(searchKey[0].ToString());
+                    int did = int.Parse(searchKey[1].ToString());
+                    dt = pnlty.Familydayinformation(3, hdncode.Value, mid, "", "", "", "", did, "");
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["OutMessage"].ToString() + "');", true);
+                    dgvList.DataBind();
+                }
+                catch { }
+            }
         }
     }
 }
