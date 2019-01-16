@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Distribution_Receive.aspx.cs" Inherits="UI.SCM.Distribution_Receive" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Distribution_Receive.aspx.cs" Inherits="UI.SCM.DistributionReceive" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -66,7 +66,8 @@
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Distribution Receive Report" Font-Bold="true" Font-Size="16px"></asp:Label></div>
+                            <asp:Label runat="server" Text="Distribution Receive Report" Font-Bold="true" Font-Size="16px"></asp:Label>
+                        </div>
                         <div class="panel-body">
                             <asp:GridView ID="Distribution_Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="2">
 
@@ -115,7 +116,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Qty" SortExpression="Qty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("Qty","{0:N2}") %>' width="100%" CssClass="form-control input-xs rightAlign" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
+                                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("Qty","{0:N2}") %>' Width="100%" CssClass="form-control input-xs rightAlign" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>

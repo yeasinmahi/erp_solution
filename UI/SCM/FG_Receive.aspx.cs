@@ -13,8 +13,9 @@ namespace UI.SCM
 {
     public partial class FG_Receive : BasePage
     {
-        DataTable dt = new DataTable();
-        InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+        private DataTable dt = new DataTable();
+        private InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,10 +25,7 @@ namespace UI.SCM
                 {
                     int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
                     dt = objbll.GetWH(enroll);
-                    ddlWH.DataSource = dt;
-                    ddlWH.DataTextField = "strWareHoseName";
-                    ddlWH.DataValueField = "intWHID";
-                    ddlWH.DataBind();
+                    Common.LoadDropDown(ddlWH, dt, "intWHID", "strWareHoseName");
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
@@ -44,7 +42,7 @@ namespace UI.SCM
 
         private void GridBind()
         {
-            int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
+            int whid = Common.GetDdlSelectedValue(ddlWH);
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
             dt = objbll.FGReceive_Data(whid, FromDate, ToDate, 1, 0, 0, DateTime.Now, 0, 0);
@@ -59,7 +57,7 @@ namespace UI.SCM
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-            int location = 0,Vehicle = 0,intOutWH = 0, intSalesID=0;
+            int location = 0, Vehicle = 0, intOutWH = 0, intSalesID = 0;
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
             int autoid = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
@@ -90,21 +88,19 @@ namespace UI.SCM
             {
                 intSalesID = Convert.ToInt32(dt.Rows[0]["strOutput"].ToString());
             }
-            dt = objbll.InsertTransferData(unitID,whid,intOutWH,location,enroll,intSalesID,itemid,StoreQty, "Transfer To Distribution",1, "Good Product");
+            dt = objbll.InsertTransferData(unitID, whid, intOutWH, location, enroll, intSalesID, itemid, StoreQty, "Transfer To Distribution", 1, "Good Product");
             string strChallan = "";
-            if (dt.Rows.Count>0)
+            if (dt.Rows.Count > 0)
             {
                 strChallan = dt.Rows[0]["strChallan"].ToString();
             }
 
-            if(Vehicle>0)
+            if (Vehicle > 0)
             {
                 dt = objbll.GetTripEntry(strChallan, unitID, 0, 0);
             }
 
             GridBind();
-
-
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)

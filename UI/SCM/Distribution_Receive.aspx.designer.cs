@@ -10,7 +10,7 @@
 namespace UI.SCM {
     
     
-    public partial class Distribution_Receive {
+    public partial class DistributionReceive {
         
         /// <summary>
         /// PlaceHolder1 control.

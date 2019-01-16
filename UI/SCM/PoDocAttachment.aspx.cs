@@ -41,8 +41,6 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                Enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-
                 _dt = _objPo.GetUnit();
                 ddlUnit.DataSource = _dt;
                 ddlUnit.DataTextField = "strUnit";
@@ -105,6 +103,7 @@ namespace UI.SCM
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
+            int enroll = 0;
             var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -118,7 +117,8 @@ namespace UI.SCM
                 string item = ""; string itemid = "";
                 if (_arrayKey.Length > 0)
                 {
-                    item = _arrayKey[0].ToString(); Enroll = int.Parse(_arrayKey[1].ToString());
+                    item = _arrayKey[0].ToString();
+                    enroll = int.Parse(_arrayKey[1].ToString());
                 }
 
                 int unitId = int.Parse(ddlUnit.SelectedValue);
@@ -141,7 +141,7 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(34, xmlData, unitId, 0, dteFrom, Enroll);
+                _dt = _objPo.GetPoData(34, xmlData, unitId, 0, dteFrom, enroll);
                 dgvPO.DataSource = _dt;
                 dgvPO.DataBind();
 
@@ -181,14 +181,16 @@ namespace UI.SCM
                 _arrayKey = txtSupplier.Text.Split(_delimiterChars);
                 string strSupp = ""; int supplierid = 0;
                 if (_arrayKey.Length > 0)
-                { strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString()); }
+                {
+                    strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString());
+                }
                 strSupp = supplierid.ToString();
-                Enroll = supplierid;
+
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, Enroll);
+                _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, supplierid);
                 dgvPO.DataSource = _dt;
                 dgvPO.DataBind();
 
