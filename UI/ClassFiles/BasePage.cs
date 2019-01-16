@@ -11,7 +11,9 @@ namespace UI.ClassFiles
 {
     public class BasePage : Page
     {
-        protected int Enroll = 0;
+        //protected int Enroll = 0;
+        public int Enroll { get; private set; }
+
         protected int JobStationId = 0;
 
         protected override void OnPreInit(EventArgs e)

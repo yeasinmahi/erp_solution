@@ -1,9 +1,6 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
@@ -11,10 +8,10 @@ using Utility;
 
 namespace UI.SCM
 {
-    public partial class Distribution_Receive : BasePage
+    public partial class DistributionReceive : BasePage
     {
         private DataTable dt = new DataTable();
-        private InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+        private readonly InventoryTransfer_BLL _objbll = new InventoryTransfer_BLL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +20,7 @@ namespace UI.SCM
                 pnlUpperControl.DataBind();
                 try
                 {
-                    dt = objbll.GetWH(Enroll);
+                    dt = _objbll.GetWH(Enroll);
                     ddlWH.DataSource = dt;
                     ddlWH.DataTextField = "strWareHoseName";
                     ddlWH.DataValueField = "intWHID";
@@ -42,7 +39,7 @@ namespace UI.SCM
             int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
-            dt = objbll.DistributionData(whid, FromDate, ToDate, 1, 0);
+            dt = _objbll.DistributionData(whid, FromDate, ToDate, 1, 0);
 
             if (dt.Rows.Count > 0)
             {
@@ -78,7 +75,7 @@ namespace UI.SCM
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
 
-            dt = objbll.DistributionData(intInWHID, FromDate, ToDate, 2, intTransferID); //get location
+            dt = _objbll.DistributionData(intInWHID, FromDate, ToDate, 2, intTransferID); //get location
             if (dt.Rows.Count > 0)
             {
                 location = Convert.ToInt32(dt.Rows[0]["intStoreLocationID"].ToString());
@@ -86,7 +83,7 @@ namespace UI.SCM
 
             if (dt.Rows.Count > 0)
             {
-                dt = objbll.InsertReceiveData(intUnitID, intInWHID, intOutWH, location, Enroll, itemid, Qty, monValue, 0, strRemarks, intTransferID, 1, true);
+                dt = _objbll.InsertReceiveData(intUnitID, intInWHID, intOutWH, location, Enroll, itemid, Qty, monValue, 0, strRemarks, intTransferID, 1, true);
                 string msg = dt.Rows[0]["strOutput"].ToString();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Alert", "alert('" + msg + "')", true);
             }
