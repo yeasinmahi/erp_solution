@@ -426,7 +426,7 @@
         OnClick="Tab4_Click"  BackColor="#FFCC99" />
         <asp:Button Text="PO Report" BorderStyle="Solid" ID="Tab5"  CssClass="Initial" runat="server"
                     OnClick="Tab5_OnClick"  BackColor="#FFCC99" />
-       <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#3FD131"  ></asp:Label>
+       <asp:Label ID="lblPoNo" runat="server" Font-Bold="true"    Font-Size="Medium"  ForeColor="#000099" ></asp:Label>
         
 
         <asp:MultiView ID="MainView"  runat="server">
@@ -434,12 +434,12 @@
               <table style="width:80%; border-width: 1px; background-color:white;  border-color: #666; border-style: solid">
                   <table>
                       <tr>
-                          <td colspan="3" style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>  
+                          <td colspan="3" style="text-align:right;"> <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department:"></asp:Label></td>  
                           <td style="text-align:left;">
                           <asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"> </asp:DropDownList></td>  
                       </tr>
                       <tr>
-                          <td style="text-align:right;"> <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH-Name"></asp:Label></td>  
+                          <td style="text-align:right;"> <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH-Name:"></asp:Label></td>  
                           <td style="text-align:left;">
                           <asp:DropDownList ID="ddlWH" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"> 
                           </asp:DropDownList></td> 
@@ -459,16 +459,16 @@
                       </tr>
                       <tr>
                           <td style="text-align:right;">
-                              <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Indent No"></asp:Label>
+                              <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Indent No:"></asp:Label>
                           </td>
                           <td style="text-align:left;">
                               <asp:TextBox ID="txtIndentNo" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"></asp:TextBox>
                           </td>
                           <td>
-                              <asp:Button ID="btnSearchIndent" runat="server"  Text="Search Indent" OnClick="btnSearchIndent_Click" />
+                              <asp:Button ID="btnSearchIndent" runat="server" forecolor="blue" Text="Search Indent" OnClick="btnSearchIndent_Click" />
                           </td>
                           <td colspan="3" style="text-align:right">
-                              <asp:Button ID="btnShow" runat="server" OnClick="btnShow_Click" Text="Show Indent" />
+                              <asp:Button ID="btnShow" runat="server" forecolor="blue" OnClick="btnShow_Click" Text="Show Indent" />
                           </td>
                       </tr>
                       <tr>
@@ -500,17 +500,17 @@
                                           </ItemTemplate>
                                           <ItemStyle HorizontalAlign="Right" Width="60px" />
                                       </asp:TemplateField>
-                                      <asp:TemplateField HeaderText="Indent Date" ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" Visible="true">
+                                      <asp:TemplateField HeaderText="Indent Date" ItemStyle-HorizontalAlign="center" SortExpression="dteIndentDate" Visible="true">
                                           <ItemTemplate>
                                               <asp:Label ID="lbldteIndent" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                           </ItemTemplate>
-                                          <ItemStyle HorizontalAlign="Right" />
+                                          <ItemStyle HorizontalAlign="center" />
                                       </asp:TemplateField>
-                                      <asp:TemplateField HeaderText="Approve Date" ItemStyle-HorizontalAlign="right" SortExpression="dteApproveDate">
+                                      <asp:TemplateField HeaderText="Approve Date" ItemStyle-HorizontalAlign="center" SortExpression="dteApproveDate">
                                           <ItemTemplate>
                                               <asp:Label ID="lbldteApprove" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("dteApproveDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                           </ItemTemplate>
-                                          <ItemStyle HorizontalAlign="Right" />
+                                          <ItemStyle HorizontalAlign="center" />
                                       </asp:TemplateField>
                                       <asp:TemplateField HeaderText="Approved By" ItemStyle-HorizontalAlign="right" SortExpression="strName">
                                           <ItemTemplate>
@@ -518,7 +518,7 @@
                                           </ItemTemplate>
                                           <ItemStyle HorizontalAlign="Left" Width="250px" />
                                       </asp:TemplateField>
-                                      <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
+                                      <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" ControlStyle-ForeColor="Red" SortExpression="dteDueDate">
                                           <ItemTemplate>
                                               <asp:Label ID="lbldteDue" runat="server" Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                           </ItemTemplate>
@@ -526,7 +526,7 @@
                                       </asp:TemplateField>
                                       <asp:TemplateField HeaderText="Detalis">
                                           <ItemTemplate>
-                                              <asp:Button ID="btnIndentDet" runat="server" OnClick="btnIndentDetalis_Click" Text="Detalis" />
+                                              <asp:Button ID="btnIndentDet" runat="server" forecolor="blue" OnClick="btnIndentDetalis_Click" Text="Detalis" />
                                           </ItemTemplate>
                                           <ItemStyle HorizontalAlign="Left" Width="30px" />
                                       </asp:TemplateField>
@@ -559,14 +559,16 @@
                           <td colspan="5" style="text-align:center"><asp:Label ID="lblIndentDetWH" Font-Bold="true" runat="server" /></td> 
                       </tr> 
                       <tr>
-                     <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Indent No"></asp:Label></td> 
+                     <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Indent No:"></asp:Label></td> 
                      <td style="text-align:left;"><asp:TextBox ID="txtIndentNoDet" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" runat="server"></asp:TextBox>
-                      <asp:Button ID="btnIndentDetShow" runat="server" Text="Show" OnClick="btnIndentDetShow_Click" /></td>  
+                      <asp:Button ID="btnIndentDetShow" runat="server" forecolor="Blue" Text="Show" OnClick="btnIndentDetShow_Click" /></td>  
                                                                                                           
                      
                       <td style="text-align:right;"><asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item: "></asp:Label></td>
-                     <td><asp:DropDownList ID="ddlItem" CssClass="ddList"  runat="server"></asp:DropDownList></td>
-                     <td><asp:Button ID="btnAddItem" runat="server" Text="Add" OnClick="btnAddItem_Click" Height="26px" /><asp:Button ID="btnPrepare" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" /></td>
+                     <td><asp:DropDownList ID="ddlItem" CssClass="ddList" width="150px" runat="server"></asp:DropDownList></td>
+                     <td><asp:Button ID="btnAddItem" runat="server" forecolor="Blue" Text="Add" OnClick="btnAddItem_Click" Height="30px" />
+                         
+                         <asp:Button ID="btnPrepare" forecolor="Blue" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" Height="29px" /></td>
                      </tr> 
                   
                     </table>
@@ -577,14 +579,14 @@
                 <table>
                   <div  style="display: inline-block">
                       <tr style="text-align:left"> 
-                          <td>Indent Type :</td> <td><asp:Label ID="lblIndentType" runat="server"></asp:Label></td> 
+                          <td>Indent Type :</td> <td><asp:Label ID="lblIndentType" forecolor="blue" runat="server"></asp:Label></td> 
                      </tr>
                       <tr style="text-align:left"> 
-                          <td>Indent Date</td> <td><asp:Label ID="lblIndentDate" runat="server" /></td> 
+                          <td>Indent Date:</td> <td><asp:Label ID="lblIndentDate" runat="server" /></td> 
                      </tr>
                       <tr style="text-align:left"><td>Approve Date :</td><td><asp:Label ID="lblindentApproveDate" runat="server" /></td></tr> 
                      
-                       <tr><td>Due Date:</td> <td><asp:Label ID="lblInDueDate" runat="server" /></td></tr> 
+                       <tr><td>Due Date:</td> <td><asp:Label ID="lblInDueDate" forecolor="red" runat="server" /></td></tr> 
                   </div>
               </table>
               </td>
@@ -599,22 +601,22 @@
                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" > 
                         <AlternatingRowStyle BackColor="#CCCCCC" /> 
                         <Columns> 
-                        <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>  
+                        <asp:TemplateField HeaderText="SL"><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>  
                         <asp:TemplateField HeaderText="Indent Id" Visible="true" SortExpression="indentId"><ItemTemplate>  
                         <asp:Label ID="lblIndentId" runat="server" Text='<%# Bind("indentId") %>'></asp:Label></ItemTemplate> 
                         <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField> 
 
-                        <asp:TemplateField HeaderText="Item Id" SortExpression="ItemId"><ItemTemplate> 
+                        <asp:TemplateField HeaderText="Item ID" SortExpression="ItemId"><ItemTemplate> 
                         <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("ItemId") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Left" Width="70px"/></asp:TemplateField> 
+                        <ItemStyle HorizontalAlign="Left" /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="ItemName" ItemStyle-HorizontalAlign="right" SortExpression="strItem" > 
                         <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="left" Width="200px" /> </asp:TemplateField>  
+                        <ItemStyle HorizontalAlign="left" Width="250px" /> </asp:TemplateField>  
 
-                        <asp:TemplateField HeaderText="Uom" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom" > 
+                        <asp:TemplateField HeaderText="UoM" ItemStyle-HorizontalAlign="center" Visible="true" SortExpression="strUom" > 
                         <ItemTemplate><asp:Label ID="lblUom" runat="server"  Text='<%# Bind("strUom") %>'  ></asp:Label></ItemTemplate> 
-                        <ItemStyle HorizontalAlign="Right" /></asp:TemplateField> 
+                        <ItemStyle HorizontalAlign="center" /></asp:TemplateField> 
 
                         <asp:TemplateField HeaderText="HS Code" ItemStyle-HorizontalAlign="right" SortExpression="strHsCode" > 
                         <ItemTemplate><asp:Label ID="lblHsCode" runat="server"  Text='<%# Bind("strHsCode") %>'></asp:Label></ItemTemplate> 
@@ -756,7 +758,7 @@
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 
                         <td  style="text-align:left;"><asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox></td><td></td>
-                        <td   style="text-align:left;"><asp:Button ID="btnGeneratePO" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Generate PO" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" AutoPostBack="false" />
+                        <td   style="text-align:left;"><asp:Button ID="btnGeneratePO" style="  border-radius:1px; height:29px" runat="server" Text="Generate PO" forecolor="blue" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" AutoPostBack="false" />
                         
                         </td>
                       </tr>
@@ -770,18 +772,18 @@
                                   <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                     <asp:TemplateField HeaderText="SL No.">
-                                    <ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                    <ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                     </asp:TemplateField>
 
                                     <asp:TemplateField HeaderText="IndentId" Visible="false" SortExpression="indentId"><ItemTemplate>  
                                     <asp:Label ID="lblIndentId" runat="server" Text='<%# Bind("indentId") %>'></asp:Label></ItemTemplate> 
-                                    <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField> 
+                                    <ItemStyle HorizontalAlign="center" Width="45px"/></asp:TemplateField> 
 
                                     <asp:TemplateField HeaderText="IndentQty" Visible="false" SortExpression="numIndentQty"><ItemTemplate>  
                                     <asp:Label ID="lblIndentQty" runat="server" Text='<%# Bind("numIndentQty") %>'></asp:Label></ItemTemplate> 
-                                    <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField> 
+                                    <ItemStyle HorizontalAlign="center" Width="45px"/></asp:TemplateField> 
 
-                                    <asp:TemplateField HeaderText="ItemId" SortExpression="itemId" >
+                                    <asp:TemplateField HeaderText="Item ID" SortExpression="itemId" >
                                     <ItemTemplate> <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("itemId") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" />                                   
                                     </asp:TemplateField>
 
@@ -842,45 +844,45 @@
                  </table>
                   <Table>
                       <tr>
-                          <td><asp:Label ID="lblPartialShip" Text="Partial Shipment" runat="server" /></td>
+                          <td><asp:Label ID="lblPartialShip" Text="Partial Shipment:" runat="server" /></td>
                           <td><asp:DropDownList ID="ddlPartialShip" AutoPostBack="false" CssClass="ddList" runat="server">
                            <asp:ListItem Text="No" Value="0"></asp:ListItem><asp:ListItem Text="Yes" Value="1"></asp:ListItem>
                            </asp:DropDownList></td> 
-                          <td><asp:Label ID="lblNoOfShip" runat="server" Text="No of Shipment" /></td>
+                          <td><asp:Label ID="lblNoOfShip" runat="server" Text="No of Shipment:" /></td>
                           <td><asp:TextBox ID="txtNoOfShipment" runat="server" CssClass="txtBox" Text="1" /></td> 
                       </tr>
                        <tr>
-                          <td><asp:Label ID="Label17" runat="server" Text="Last Shipment Date" /></td>
+                          <td><asp:Label ID="Label17" runat="server" Text="Last Shipment Date:" /></td>
                           <td><asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox" runat="server"></asp:TextBox><cc1:CalendarExtender ID="CalendarExtender4" runat="server"  Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
                           </cc1:CalendarExtender></td>
-                          <td><asp:Label ID="Label18" runat="server" Text="Payment terms" /></td>
+                          <td><asp:Label ID="Label18" runat="server" Text="Payment terms:" /></td>
                           <td><asp:DropDownList ID="ddlPaymentTrams" AutoPostBack="false" CssClass="ddList" runat="server">
                           <asp:ListItem Text="Select" Selected="True" Value="0"></asp:ListItem>
                           <asp:ListItem Text="Credit" Value="1"></asp:ListItem><asp:ListItem Text="Advance" Value="2"></asp:ListItem>
                           <asp:ListItem Text="Cash" Value="3"></asp:ListItem> </asp:DropDownList></td>  
                       </tr>
                        <tr>
-                          <td><asp:Label ID="Label19" runat="server" Text="Payment days after MRR" /></td>
+                          <td><asp:Label ID="Label19" runat="server" Text="Payment Duration:" /></td>
                           <td><asp:TextBox ID="txtAfterMrrDay" CssClass="txtBox" runat="server" Text="7" /></td> 
-                          <td><asp:Label ID="Label20" runat="server" Text="No of Installment" /></td>
+                          <td><asp:Label ID="Label20" runat="server" Text="No. of Installment:" /></td>
                           <td><asp:TextBox ID="txtNoOfInstall" CssClass="txtBox" runat="server"  Text="1"/></td> 
                       </tr>
                        <tr>
-                          <td><asp:Label ID="Label21" runat="server" Text="Installment Interval" /></td>
+                          <td><asp:Label ID="Label21" runat="server" Text="Installment Interval:" /></td>
                           <td><asp:TextBox ID="txtIntervel" runat="server" CssClass="txtBox"  Text="0"/></td> 
-                          <td><asp:Label ID="Label22" runat="server" Text="Delivery Destination" /></td>
+                          <td><asp:Label ID="Label22" runat="server" Text="Delivery Destination:" /></td>
                           <td><asp:TextBox ID="txtDestinationDelivery" CssClass="txtBox" runat="server" /></td> 
                       </tr>
                       <tr>
-                          <td><asp:Label ID="Label23" runat="server" Text="No of Payment" /></td>
+                          <td><asp:Label ID="Label23" runat="server" Text="No. of Payment:" /></td>
                           <td><asp:TextBox ID="txtNoOfPayment" runat="server" Text="0"  CssClass="txtBox"/></td> 
-                          <td><asp:Label ID="Label24" runat="server" Text="Payment Schedule" /></td>
+                          <td><asp:Label ID="Label24" runat="server" Text="Payment Schedule:" /></td>
                           <td><asp:TextBox ID="txtPaymentSchedule" CssClass="txtBox" runat="server" /></td> 
                       </tr>
                        <tr>
-                           <td><asp:Label ID="Label26" runat="server" Text="Warrenty (in months)" /></td>
+                           <td><asp:Label ID="Label26" runat="server" Text="Warrenty (in months):" /></td>
                           <td><asp:TextBox ID="txtWarrenty" CssClass="txtBox" runat="server" /></td> 
-                          <td><asp:Label ID="Label25" runat="server" Text="Others Trems" /></td>
+                          <td><asp:Label ID="Label25" runat="server" Text="Others Trems:" /></td>
                           <td><asp:TextBox ID="txtOthersTerms" runat="server"  Width="300px" TextMode="MultiLine"  CssClass="txtBox"/></td> 
                          
                       </tr>
@@ -892,8 +894,8 @@
               <table style="width:100%; border-width: 1px; border-color: #666; border-style: solid">
                   <table>
                      <tr>
-                     <td style="text-align:right">PO Number</td><td style="text-align:left"><asp:TextBox ID="txtPoNumber" runat="server" CssClass="txtBox" ></asp:TextBox></td>
-                      <td style="text-align:left"><asp:Button ID="btnPoView" runat="server" Text="View" OnClick="btnPoView_Click" /></td>
+                     <td style="text-align:right">PO Number:</td><td style="text-align:left"><asp:TextBox ID="txtPoNumber" runat="server" CssClass="txtBox" ></asp:TextBox></td>
+                      <td style="text-align:left"><asp:Button ID="btnPoView" runat="server" forecolor="Blue" Text="View" OnClick="btnPoView_Click" /></td>
                     </tr>
                   </table>
                  
