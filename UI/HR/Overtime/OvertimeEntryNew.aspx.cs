@@ -14,22 +14,19 @@ using Utility;
 
 namespace UI.HR.Overtime
 {
-    public partial class OvertimeEntryNew : Page
+    public partial class OvertimeEntryNew : BasePage
     {
         private readonly TourPlanning _bll = new TourPlanning();
-        private int _enroll;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
                 Session["obj"] = null;
                 LoadPurpose();
-                LoadUnitDropDown(_enroll);
-                LoadJobStationDropDown(GetUnitId(), _enroll);
+                LoadUnitDropDown(Enroll);
+                LoadJobStationDropDown(GetUnitId(), Enroll);
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
             if (hdnSearch.Value == "1")
@@ -40,7 +37,7 @@ namespace UI.HR.Overtime
 
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadJobStationDropDown(GetUnitId(), _enroll);
+            LoadJobStationDropDown(GetUnitId(), Enroll);
             ddlJobStation_OnSelectedIndexChanged(ddlJobStation, null);
         }
 
@@ -156,7 +153,7 @@ namespace UI.HR.Overtime
             {
                 string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
                 string ipaddress = Common.GetIp();
-                message = _bll.OvertimeEntryNew(1, xmlString, _enroll, ipaddress);
+                message = _bll.OvertimeEntryNew(1, xmlString, Enroll, ipaddress);
 
                 if (message.Contains("Sucessfully"))
                 {
@@ -197,7 +194,7 @@ namespace UI.HR.Overtime
 
         public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            ddlJobStation.DataSource = _bll.GetJobStationByPermission(unitId, _enroll);
+            ddlJobStation.DataSource = _bll.GetJobStationByPermission(unitId, Enroll);
             ddlJobStation.DataValueField = "intEmployeeJobStationId";
             ddlJobStation.DataTextField = "strJobStationName";
             ddlJobStation.DataBind();
@@ -302,8 +299,9 @@ namespace UI.HR.Overtime
         private void LoadOverTimeDetailsGridView(int empId)
         {
             DateTime today = DateTime.Now;
-            DateTime fromDate = new DateTime(today.Year, today.AddMonths(-1).Month, 1);
-            DateTime toDate = new DateTime(today.Year, today.Month, fromDate.AddMonths(2).AddDays(-1).Day);
+            DateTime month = new DateTime(today.Year, today.Month, 1);
+            DateTime fromDate = month.AddMonths(-1);
+            DateTime toDate = month.AddMonths(1).AddDays(-1);
             GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
         }
@@ -346,7 +344,7 @@ namespace UI.HR.Overtime
                 remarks
             };
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
-            message = _bll.OvertimeEntryNew(2, xmlString, _enroll, "");
+            message = _bll.OvertimeEntryNew(2, xmlString, Enroll, "");
             if (!message.Contains("Sucessfully"))
             {
                 ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
