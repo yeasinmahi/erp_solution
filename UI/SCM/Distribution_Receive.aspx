@@ -10,6 +10,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+    <style>
+        th {
+            text-align: center
+        }
+    </style>
 </head>
 <body>
     <form id="frmattendancedetails" runat="server">
@@ -19,7 +24,10 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg">
+                                <%# UI.ClassFiles.CommonClass.GetGlobalMessage() %>
+                            </span>
+                        </marquee>
                     </div>
                 </asp:Panel>
                 <div style="height: 30px;"></div>
@@ -107,7 +115,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Qty" SortExpression="Qty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("Qty","{0:N2}") %>' CssClass="form-control input-xs " onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
+                                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Bind("Qty","{0:N2}") %>' width="100%" CssClass="form-control input-xs rightAlign" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
