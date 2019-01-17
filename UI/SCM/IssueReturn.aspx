@@ -143,36 +143,36 @@
                                     <PagerStyle CssClass="PagerStyle" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
-                                            <ItemStyle HorizontalAlign="center" Width="60px" />
+                                            <ItemStyle HorizontalAlign="center" Width="30px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="IssueID" SortExpression="intIssueID">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblIssueId" runat="server" Width="100px" Text='<%# Bind("intIssueID") %>'></asp:Label>
+                                                <asp:Label ID="lblIssueId" runat="server" Width="60px" Text='<%# Bind("intIssueID") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="SRNO" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strSrNo">
+                                        <asp:TemplateField HeaderText="SR NO" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strSrNo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSrNo" runat="server" Text='<%# Bind("strSrNo") %>'></asp:Label>
+                                                <asp:Label ID="lblSrNo" Width="100px" runat="server" Text='<%# Bind("strSrNo") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="SR Date" ItemStyle-HorizontalAlign="right" SortExpression="dteSrDate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSrDate" runat="server" Width="90px" Text='<%# Bind("dteSrDate","{0:dd-MM-yyyy}") %>'></asp:Label>
+                                                <asp:Label ID="lblSrDate" runat="server" Width="65px" Text='<%# Bind("dteSrDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="ISSUE Date" ItemStyle-HorizontalAlign="right" SortExpression="dteIssueDate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblIssueDate" runat="server" Width="150px" Text='<%# Bind("dteIssueDate") %>'></asp:Label>
+                                                <asp:Label ID="lblIssueDate" runat="server" Width="65px" Text='<%# Bind("dteIssueDate") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="QTY" ItemStyle-HorizontalAlign="right" SortExpression="numQty">
@@ -205,7 +205,7 @@
 
                                         <asp:TemplateField HeaderText="Return Qty" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtReturnQty" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtReturnQty" width="70px" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
