@@ -29,6 +29,10 @@ namespace UI.ClassFiles
         //{
         //    base.OnLoad(e);
         //}
+        public string GetActivePageUrl()
+        {
+            return Request.Url.AbsoluteUri;
+        }
 
         public BasePage()
         {
@@ -45,12 +49,12 @@ namespace UI.ClassFiles
             {
                 if (!us.UpdateUserActivity(Session[SessionParams.EMAIL].ToString(), Session.SessionID))
                 {
-                    retStr = "~/LoginProcess.aspx";
+                    retStr = "~/LoginProcess.aspx?returnUrl=" + GetActivePageUrl();
                 }
             }
             catch
             {
-                retStr = "~/LoginProcess.aspx";
+                retStr = "~/LoginProcess.aspx?returnUrl=" + GetActivePageUrl();
             }
 
             if (retStr != "")
