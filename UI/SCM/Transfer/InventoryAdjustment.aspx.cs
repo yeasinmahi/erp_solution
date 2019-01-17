@@ -21,7 +21,6 @@ namespace UI.SCM.Transfer
         //string connectString = @"server=10.17.110.5, databasse=test-ag, Uid=root;Pwd=vicidialnow";
 
         private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
-        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
         private Location_BLL objOperation = new Location_BLL();
         private StoreIssue_BLL objWH = new StoreIssue_BLL();
         private DataTable dt = new DataTable();

@@ -9,33 +9,19 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
 
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-
     <script src="../Content/JS/BlueBird.min.js"></script>
     <script src="../Content/JS/html2canvas.min.js"></script>
     <script>
         function Print() {
-
-            document.getElementById("btnMrr").style.visibility = "hidden";
-            document.getElementById("docUpload").style.visibility = "hidden";
-            document.getElementById("btnprint").style.display = "none"; window.print();
-
-            document.getElementById("btnMrr").style.visibility = "visible";
-            document.getElementById("docUpload").style.visibility = "visible";
+            document.getElementById("btnprint").style.display = "none";
+            window.print();
             self.close();
         }
     </script>
 
     <style type="text/css">
-        .auto-style1 {
-            width: 59px;
+        .auto-style2 {
+            height: 23px;
         }
     </style>
 </head>
@@ -49,12 +35,14 @@
             <asp:HiddenField ID="hfImageData" runat="server" />
             <table style="width: 700px">
                 <tr>
-                    <td colspan="3" style="text-align: center; font: bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a></td>
+                    <td colspan="3" style="text-align: center; font: bold 13px verdana;">
+                        <a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a>
+                    </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td class="auto-style2">
                         <asp:Image ID="imgUnit" runat="server" /></td>
-                    <td style="text-align: center; font-size: medium; font-weight: bold; font: u">
+                    <td style="text-align: center; font-size: medium; font-weight: bold;" class="auto-style2">
                         <asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
                 </tr>
                 <tr>
@@ -119,37 +107,43 @@
 
                                 <asp:TemplateField HeaderText="UOM" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strUOM">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblUOM" runat="server" Text='<%# Bind("strUOM") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblUOM" runat="server" Text='<%# Bind("strUOM") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" Width="50px" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="PO Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numPOQty">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblnumQty" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblnumQty" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Receive Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numReceiveQty">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRecQty" runat="server" Text='<%# Bind("numReceiveQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblRecQty" runat="server" Text='<%# Bind("numReceiveQty","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="monFCRate">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monFCRate","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monFCRate","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Amount(BDT)" ItemStyle-HorizontalAlign="right" SortExpression="monBDTTotal">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strReceiveRemarks">
                                     <ItemTemplate>
-                                        <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strReceiveRemarks") %>'></asp:Label></ItemTemplate>
+                                        <asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strReceiveRemarks") %>'></asp:Label>
+                                    </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
                             </Columns>
