@@ -90,7 +90,7 @@
                
                 <td style="text-align:right" colspan="3"> <td style="text-align:left">
                     <asp:Button ID="btnStatement" runat="server" Text="Show"  OnClick="btnStatement_Click"/>
-                     <asp:Button ID="btnDownloads" runat="server" CssClass="button" Font-Size="12px"  Text="Export" OnClick="btnDownloads_Click"   />
+                     <asp:Button ID="btnDownloads" runat="server" CssClass="button" Text=" Excel Export" OnClick="btnDownloads_Click"   />
                    </td>
            </tr>
 
