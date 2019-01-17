@@ -16,7 +16,7 @@ namespace UI.SCM
     {
         private DataTable dt = new DataTable();
         private PoGenerate_BLL objPo = new PoGenerate_BLL();
-        private int enroll; private string dfile, xmlData;
+        private string dfile, xmlData;
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -40,13 +40,13 @@ namespace UI.SCM
                 lblBillId.Text = BillId.ToString();
                 lblBillReg.Text = BillCode;
 
-                dt = objPo.GetPoData(27, "", 0, 0, DateTime.Now, enroll);
+                dt = objPo.GetPoData(27, "", 0, 0, DateTime.Now, Enroll);
                 ddlFileGroup.DataSource = dt;
                 ddlFileGroup.DataTextField = "strName";
                 ddlFileGroup.DataValueField = "Id";
                 ddlFileGroup.DataBind();
 
-                dt = objPo.GetPoData(28, "", 0, BillId, DateTime.Now, enroll);
+                dt = objPo.GetPoData(28, "", 0, BillId, DateTime.Now, Enroll);
                 dgvDocument.DataSource = dt;
                 dgvDocument.DataBind();
             }
@@ -74,9 +74,8 @@ namespace UI.SCM
                     HttpPostedFile userPostedFile = uploadedFiles[i];
 
                     var FileExtension = Path.GetExtension(userPostedFile.FileName).Substring(1);
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"' + " billCode=" + '"' + billCode + '"' + " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
-                    string msg = objPo.PoApprove(29, xmlData, 0, int.Parse(BillId), DateTime.Now, enroll);
+                    string msg = objPo.PoApprove(29, xmlData, 0, int.Parse(BillId), DateTime.Now, Enroll);
                     int fileId = int.Parse(msg);
                     if (fileId > 0)
                     {
@@ -87,10 +86,10 @@ namespace UI.SCM
                         File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
                         xmlData = "<voucher><voucherentry BillId=" + '"' + BillId + '"' + " entryType=" + '"' + entryType + '"' + " remarks=" + '"' + remarks + '"' + " billCode=" + '"' + billCode + '"' + "/></voucher>".ToString();
 
-                        string msgs = objPo.PoApprove(30, xmlData, 0, fileId, DateTime.Now, enroll);
+                        string msgs = objPo.PoApprove(30, xmlData, 0, fileId, DateTime.Now, Enroll);
 
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msgs + "');", true);
-                        dt = objPo.GetPoData(28, "", 0, int.Parse(BillId), DateTime.Now, enroll);
+                        dt = objPo.GetPoData(28, "", 0, int.Parse(BillId), DateTime.Now, Enroll);
                         dgvDocument.DataSource = dt;
                         dgvDocument.DataBind();
                     }

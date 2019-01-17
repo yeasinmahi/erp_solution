@@ -2,6 +2,7 @@
 using GLOBAL_BLL;
 using HR_BLL.Employee;
 using LOGIS_BLL.Supplier;
+using SAD_BLL.Customer.Report;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,7 +23,7 @@ namespace UI.SAD.Order
 
         char[] delimiterChars = { '[', ']' }; string[] arrayKey; string serial;
         SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
-
+        DeliverySupport obj = new DeliverySupport();
         string filePathForXML;
         string xmlString = "";
         int intCOAid; int RowIndex;
@@ -60,9 +61,9 @@ namespace UI.SAD.Order
                 txtFullName.Attributes.Add("onkeyUp", "SearchText();");
                 txtVheicleName.Attributes.Add("onkeyUp", "SearchTextVheicleList();");
                 DataTable dt = new DataTable();
-                dt = bll.getEndMilageApplicant(enroll);
-
-                if (dt.Rows.Count > 0) { txtStartMilage.Text = dt.Rows[0][0].ToString(); }
+                    //dt = bll.getEndMilageApplicant(enroll);
+                    dt = obj.getEndMilageStandVheicle(enroll);
+                    if (dt.Rows.Count > 0) { txtStartMilage.Text = dt.Rows[0][0].ToString(); }
                 else { txtStartMilage.Text = "0"; }
 
                 if (dt.Rows.Count > 0) { txtFromAddr.Text = dt.Rows[0][1].ToString(); }
@@ -641,11 +642,30 @@ namespace UI.SAD.Order
  );
 
                     }
+                        else if (grdvForStandByVehicle.Rows.Count == 2)
+                        {
+                            serial = "3";
+                            CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
+     remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
+     OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
+     mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
+     );
 
+                        }
+                        else if (grdvForStandByVehicle.Rows.Count == 3)
+                        {
+                            serial = "4";
+                            CreateVoucherXml(BillDate, enrol, vhehiclename, vhechleid, fromAddress, movementAddress, toAddress,
+     remarks, startmilage, endmilage, consumed, totoilltr, oilPaymentTypeid, oilSupplierID,
+     OilCashAmount, OilcreditAmount, cngPaymentTypeid, CNGSupplierID, CNGCashAmount, CNGCreditAmount, TotalGas,
+     mntCost, ownda, ownhotelfair, personalusedMilageQnt, personalusemilageTotcost, OtherCost, totalcost, serial
+     );
 
-                    else
+                        }
+
+                        else
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You are not allow to add more than two  rows !')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('You are not allow to add more than four  rows !')", true);
 
                     }
 

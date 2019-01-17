@@ -52,9 +52,6 @@
             <asp:HiddenField ID="hdnIndentNo" runat="server" />
             <asp:HiddenField ID="hdnIndentDate" runat="server" />
 
-            <div class="tabs_container" style="text-align: left">
-                PO Attachemnt  From<hr />
-            </div>
             <table style="width: 700px">
                 <tr>
                     <td style="text-align: right;">
@@ -81,6 +78,7 @@
                         <asp:Label ID="lblBillReg" CssClass="lbl" Font-Bold="true" runat="server"></asp:Label></td>
                 </tr>
             </table>
+            
             <table style="width: 600px">
                 <tr>
                     <td style="text-align: right;">

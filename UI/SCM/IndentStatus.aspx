@@ -96,17 +96,29 @@
 
        <table>
            <tr>
-            <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>
+            <td   style="text-align:right;">
+                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label>
+            </td>
+            <td style="text-align:left;">
+                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" ></asp:DropDownList>
+            </td>
 
-            <td   style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList></td>
+            <td   style="text-align:right;">
+                <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Type:"></asp:Label>
+            </td>
+            <td style="text-align:left;">
+                <asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"     ></asp:DropDownList>
+            </td>
            </tr>
            <tr>
-            <td style="text-align:right;"><asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>
-            <td style="text-align:left;"  ><asp:TextBox ID="txtDteFrom" runat="server"   CssClass="txtBox"></asp:TextBox>
+            <td style="text-align:right;">
+                <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label>
+            </td>
+            <td style="text-align:left;">
+                <asp:TextBox ID="txtDteFrom" runat="server"   CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="CalendarExtenderFrom" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
-            </cc1:CalendarExtender> </td>
+            </cc1:CalendarExtender>
+            </td>
 
             <td style="text-align:right;"><asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>
             <td style="text-align:left;"  ><asp:TextBox ID="txtdteTo" runat="server"   CssClass="txtBox"></asp:TextBox>
@@ -116,8 +128,8 @@
            <tr>
                <td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Indent No: "></asp:Label></td>
                <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
-                <td style="text-align:left"><asp:Button ID="btnShow" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
-               <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
+                <td style="text-align:left"><asp:Button ID="btnShow" ForeColor="#0033cc" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
+               <td style="text-align:right"><asp:Button ID="btnStatement" ForeColor="#0033cc" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
                 </tr>
         </table>
         <table>
@@ -126,27 +138,27 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="20px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Indent Id" SortExpression="intIndentID"><ItemTemplate>
+            <asp:TemplateField HeaderText="Indent ID" SortExpression="intIndentID"><ItemTemplate>
             <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("intIndentID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+            <ItemStyle HorizontalAlign="Center" Width="60px" /></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Indent Type" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType">
+            <asp:TemplateField HeaderText="Indent Type"  ItemStyle-HorizontalAlign="right" SortExpression="strIndentType">
             <ItemTemplate><asp:Label ID="lblType" runat="server"  Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Center" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate">
             <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Center" />  </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Reject"   ItemStyle-HorizontalAlign="right" SortExpression="ysnReject">
-            <ItemTemplate><asp:Label ID="lblReject" runat="server"  Text='<%# Bind("ysnReject") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            <asp:TemplateField HeaderText="Status"   ItemStyle-HorizontalAlign="right" SortExpression="ysnReject">
+            <ItemTemplate><asp:Label ID="lblReject" runat="server"  Text='<%# Bind("IndentStatus") %>'></asp:Label></ItemTemplate>
+            <ItemStyle HorizontalAlign="Center" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Approve Date" ItemStyle-HorizontalAlign="right" SortExpression="dteApproveDate">
             <ItemTemplate><asp:Label ID="lblApproveDate" runat="server"   Text='<%# Bind("dteApproveDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right"   SortExpression="dteDueDate">
             <ItemTemplate><asp:Label ID="lblDueDate" runat="server"   Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
@@ -166,10 +178,11 @@
 
             <asp:TemplateField HeaderText="MRR Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteLastActionTime">
             <ItemTemplate><asp:Label ID="lblMrrDate" runat="server"  Text='<%# Bind("dteLastActionTime") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Right" />
+            </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click"   /> </ItemTemplate>
+            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" forecolor="blue" Text="Detalis" OnClick="btnDetalis_Click"/> </ItemTemplate>
             </asp:TemplateField>
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
@@ -184,11 +197,15 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="40px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Indent Id" SortExpression="intIndentID"><ItemTemplate>
+            <asp:TemplateField HeaderText="Indent ID" SortExpression="intIndentID"><ItemTemplate>
             <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("intIndentID") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="60px" /></asp:TemplateField>
+
+                <asp:TemplateField HeaderText="Indent Type"  ItemStyle-HorizontalAlign="right" SortExpression="strIndentType">
+                    <ItemTemplate><asp:Label ID="lblType" runat="server"  Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" />  </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strName">
             <ItemTemplate><asp:Label ID="lblItemName" runat="server"  Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
@@ -210,20 +227,26 @@
             <ItemTemplate><asp:Label ID="lblDept" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Due Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
-            <ItemTemplate><asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
-
             <asp:TemplateField HeaderText="Indent Date"   ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate">
-            <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>
+            <ItemTemplate>
+                <asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate","{0:dd-MM-yyyy}") %>'></asp:Label>
+            </ItemTemplate>
+            <ItemStyle HorizontalAlign="Right" Width="60px" />
+            </asp:TemplateField>
+
+           <asp:TemplateField HeaderText="Due Date"  ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
+                    <ItemTemplate>
+                        <asp:Label ID="lblDueDate" runat="server"  Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Right" Width="60px" />
+            </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strPurpose">
             <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strPurpose") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Left" /> </asp:TemplateField>
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnStementDetalis" runat="server" Text="Detalis"  OnClick="btnStementDetalis_Click"  /> </ItemTemplate>
+            <ItemTemplate>   <asp:Button ID="btnStementDetalis" runat="server" Text="Detalis" forecolor="blue"  OnClick="btnStementDetalis_Click"  /> </ItemTemplate>
             </asp:TemplateField>
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

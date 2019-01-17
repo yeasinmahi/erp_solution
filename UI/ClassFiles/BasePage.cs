@@ -1,4 +1,6 @@
 using System;
+using System.Web;
+using System.Web.UI;
 using UserSecurity;
 
 /// <summary>
@@ -7,14 +9,27 @@ using UserSecurity;
 /// </summary>
 namespace UI.ClassFiles
 {
-    public class BasePage : System.Web.UI.Page
+    public class BasePage : Page
     {
+        //protected int Enroll = 0;
+        public int Enroll { get; private set; }
+
+        protected int JobStationId = 0;
+
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
             UserActivityCheck();
+            Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             Page.Title = @"Welcome to Akij Group";
         }
+
+        //protected void OnLoad(object sender, EventArgs e)
+        //{
+        //    base.OnLoad(e);
+        //}
+
         public BasePage()
         {
             //
@@ -30,12 +45,12 @@ namespace UI.ClassFiles
             {
                 if (!us.UpdateUserActivity(Session[SessionParams.EMAIL].ToString(), Session.SessionID))
                 {
-                    retStr = "~/SessionExpired.aspx";
+                    retStr = "~/LoginProcess.aspx";
                 }
             }
             catch
             {
-                retStr = "~/SessionExpired.aspx";
+                retStr = "~/LoginProcess.aspx";
             }
 
             if (retStr != "")
@@ -43,6 +58,12 @@ namespace UI.ClassFiles
                 Response.Redirect(retStr);
                 return;
             }
+        }
+
+        public void Alert(string message)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                "alert('" + message + "');", true);
         }
     }
 }

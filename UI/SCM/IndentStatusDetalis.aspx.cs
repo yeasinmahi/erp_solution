@@ -4,11 +4,12 @@ using SCM_BLL;
 using System;
 using System.Data;
 using System.Web;
+using System.Web.UI;
 using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IndentStatusDetalis : System.Web.UI.Page
+    public partial class IndentStatusDetalis : Page
     {
         private Indents_BLL objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
@@ -44,12 +45,24 @@ namespace UI.SCM
                     lblType.Text = dept;
 
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    dt = objIndent.DataView(14, "", 0, int.Parse(indentID), DateTime.Now, enroll);
+                    dt = objIndent.GetIndentItemDetails(int.Parse(indentID), out string message);
                     if (dt.Rows.Count > 0)
                     {
+                        if (DateTime.TryParse(dt.Rows[0]["indentDate"].ToString(), out var indentDate) &&
+                            DateTime.TryParse(dt.Rows[0]["ApproveDate"].ToString(), out var approveDate))
+                        {
+                            lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" +
+                                               indentDate.ToString("D") + "]";
+                            lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" +
+                                                approveDate.ToString("D") + "]";
+                        }
+                        else
+                        {
+                            lblIndentBY.Text = dt.Rows[0]["indentBy"].ToString();
+                            lblApproveBy.Text = dt.Rows[0]["ApproveBY"].ToString();
+                        }
+
                         lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();
-                        lblIndentBY.Text = dt.Rows[0]["indentBy"] + " [" + DateTime.Parse(dt.Rows[0]["indentDate"].ToString()).ToString("D") + "]";
-                        lblApproveBy.Text = dt.Rows[0]["ApproveBY"] + " [" + DateTime.Parse(dt.Rows[0]["ApproveDate"].ToString()).ToString("D") + "]";
 
                         string unit = dt.Rows[0]["intUnit"].ToString();
                         int job = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
@@ -71,6 +84,11 @@ namespace UI.SCM
                             imgUnit.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
                             imgApp.ImageUrl = "/Content/images/img/" + "NotApproved" + ".png".ToString();
                         }
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", message, true);
+                        return;
                     }
                     dgvIndentsDetalis.DataSource = dt;
                     dgvIndentsDetalis.DataBind();

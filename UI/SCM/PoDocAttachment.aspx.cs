@@ -16,7 +16,7 @@ namespace UI.SCM
     {
         private DataTable _dt = new DataTable();
         private PoGenerate_BLL _objPo = new PoGenerate_BLL(); private Payment_All_Voucher_BLL _obj = new Payment_All_Voucher_BLL();
-        private int _enroll, _intWh; private string[] _arrayKey; private string _strType; private char[] _delimiterChars = { '[', ']' };
+        private int _intWh; private string[] _arrayKey; private string _strType; private char[] _delimiterChars = { '[', ']' };
 
         private SeriLog _log = new SeriLog();
         private string _location = "SCM";
@@ -41,15 +41,13 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                _enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-
                 _dt = _objPo.GetUnit();
                 ddlUnit.DataSource = _dt;
                 ddlUnit.DataTextField = "strUnit";
                 ddlUnit.DataValueField = "intUnitId";
                 ddlUnit.DataBind();
                 _dt.Clear();
-                _dt = _objPo.GetPoData(21, "", 0, 0, DateTime.Now, _enroll);
+                _dt = _objPo.GetPoData(21, "", 0, 0, DateTime.Now, Enroll);
                 ddlDept.DataSource = _dt;
                 ddlDept.DataTextField = "strName";
                 ddlDept.DataValueField = "Id";
@@ -61,7 +59,7 @@ namespace UI.SCM
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, _enroll);
+                _dt = _objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, Enroll);
 
                 string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = dept;
@@ -105,6 +103,7 @@ namespace UI.SCM
 
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
+            int enroll = 0;
             var fd = GetFlogDetail("starting SCM\\PoDocAttachment Show", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -118,7 +117,8 @@ namespace UI.SCM
                 string item = ""; string itemid = "";
                 if (_arrayKey.Length > 0)
                 {
-                    item = _arrayKey[0].ToString(); _enroll = int.Parse(_arrayKey[1].ToString());
+                    item = _arrayKey[0].ToString();
+                    enroll = int.Parse(_arrayKey[1].ToString());
                 }
 
                 int unitId = int.Parse(ddlUnit.SelectedValue);
@@ -141,7 +141,7 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(34, xmlData, unitId, 0, dteFrom, _enroll);
+                _dt = _objPo.GetPoData(34, xmlData, unitId, 0, dteFrom, enroll);
                 dgvPO.DataSource = _dt;
                 dgvPO.DataBind();
 
@@ -181,14 +181,16 @@ namespace UI.SCM
                 _arrayKey = txtSupplier.Text.Split(_delimiterChars);
                 string strSupp = ""; int supplierid = 0;
                 if (_arrayKey.Length > 0)
-                { strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString()); }
+                {
+                    strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString());
+                }
                 strSupp = supplierid.ToString();
-                _enroll = supplierid;
+
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, _enroll);
+                _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, supplierid);
                 dgvPO.DataSource = _dt;
                 dgvPO.DataBind();
 
@@ -228,7 +230,7 @@ namespace UI.SCM
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
                 else { dept = "Fabrication"; }
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, _enroll);
+                _dt = _objPo.GetPoData(25, xmlData, int.Parse(ddlUnit.SelectedValue), 0, DateTime.Now, Enroll);
 
                 string strDept = ddlDept.SelectedItem.ToString();
                 Session["strType"] = dept;

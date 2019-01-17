@@ -83,7 +83,7 @@
 
                     <td>
                         <asp:Image ID="imgUnit" runat="server" /></td>
-                    <td style="text-align: center; font-size: medium; font-weight: bold; font: u">
+                    <td style="text-align: center; font-size: medium; font-weight: bold;">
                         <asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
                 </tr>
                 <tr>
@@ -94,7 +94,7 @@
                 <tr>
                     <td></td>
                     <td style="text-align: center;">
-                        <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Indent Detalis"></asp:Label></td>
+                        <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Purchase Requisition"></asp:Label></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -127,7 +127,7 @@
 
                             <Columns>
                                 <asp:TemplateField HeaderText="SL No.">
-                                    <ItemStyle HorizontalAlign="center" Width="30px" />
+                                    <ItemStyle HorizontalAlign="center" Width="10px" />
                                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                 </asp:TemplateField>
 
@@ -135,7 +135,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Left" Width="50px" />
+                                    <ItemStyle HorizontalAlign="Left" Width="35px" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Item Name" SortExpression="strName">

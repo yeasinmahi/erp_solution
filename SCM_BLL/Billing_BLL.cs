@@ -123,6 +123,13 @@ namespace SCM_BLL
             { return adp.GetBillInfoByBillReg(strBillReg); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        public DataTable GetBillInfoByBillReg(int action, string strBillReg)
+        {
+            SprPaymentApprovalSummarybybillregTableAdapter adp = new SprPaymentApprovalSummarybybillregTableAdapter();
+            try
+            { return adp.GetPaymentSummarybyBillReg(action, strBillReg); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
         public DataTable GetUnitInfoByBillID(int intBillID)
         {
@@ -348,8 +355,13 @@ namespace SCM_BLL
         {
             ApproveTypeTableAdapter adp = new ApproveTypeTableAdapter();
             try
-            { return adp.GetApproveType(); }
-            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+            {
+                return adp.GetApproveType();
+            }
+            catch (Exception ex)
+            {
+                ex.ToString(); return new DataTable();
+            }
         }
 
         public DataTable GetUserInfoForPaymentModule(int intUserID)

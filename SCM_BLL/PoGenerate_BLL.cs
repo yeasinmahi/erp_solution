@@ -235,7 +235,7 @@ namespace SCM_BLL
 
         public string[] AutoSearchSupplier(string prefix, string strType, string unit)
         {
-            tblSupplier = new PoGenerateTDS.TblSupplierDataTable[Convert.ToInt32(1)];
+            tblSupplier = new PoGenerateTDS.TblSupplierDataTable[Convert.ToInt32(unit)];
             TblSupplierTableAdapter adpCOA = new TblSupplierTableAdapter();
             tblSupplier[e] = adpCOA.GetSupplierData(int.Parse(unit));
 

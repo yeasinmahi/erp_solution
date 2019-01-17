@@ -92,7 +92,7 @@ namespace UI.SCM
                     lblOthersterms.Text = dt.Rows[0]["strOtherTerms"].ToString();
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
                     imgUnit.ImageUrl = "/Content/images/img/" + intunit + ".png";
-                    decimal groundTotal=decimal.Parse(dt.Rows[0]["monTotal"].ToString());
+                    decimal groundTotal = decimal.Parse(dt.Rows[0]["monTotal"].ToString());
                     AmountFormat formatAmount = new AmountFormat();
                     string totalAmountInWord = formatAmount.GetTakaInWords(groundTotal, "", "Only");
                     lblInWard.Text = "In Word GT: " + totalAmountInWord;
@@ -138,8 +138,6 @@ namespace UI.SCM
                     dgvPoDetalis.FooterRow.Cells[8].Text = "Total";
                     dgvPoDetalis.FooterRow.Cells[8].HorizontalAlign = HorizontalAlign.Right;
                     dgvPoDetalis.FooterRow.Cells[9].Text = total.ToString("N2");
-
-                  
                 }
                 else
                 {
@@ -255,7 +253,7 @@ namespace UI.SCM
                 }
             }
             txtSubject.Text = @"Purchase Order: " + lblpoNo.Text;
-            txtBody.Text = @"Dear " + lblSuppliyers.Text + ",\nYour Purchase Order Number is " + lblpoNo.Text + @". ";
+            txtBody.Text = @"Dear " + lblSuppliyers.Text + ",\nA purchase order have been sent from " + lblBillTo.Text + ".Purchase Order No.- " + lblpoNo.Text + ".\nPlease take necessary action.";
 
             try
             {
@@ -266,7 +264,7 @@ namespace UI.SCM
                     ms.Write(bytes, 0, bytes.Length);
                     System.Drawing.Image image = System.Drawing.Image.FromStream(ms, true);
                     image.Save(_filePath, System.Drawing.Imaging.ImageFormat.Bmp);
-                    imgAttachment.ImageUrl = "~/SCM/Data/PO.Bmp";
+                    imgAttachment.ImageUrl = "~/SCM/Data/Purchase_Order.Bmp";
                 }
             }
             catch (Exception e)

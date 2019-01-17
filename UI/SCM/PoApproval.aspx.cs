@@ -9,13 +9,14 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
     public partial class PoApproval : BasePage
     {
         private DataTable dt = new DataTable();
-        private int enroll; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -27,31 +28,29 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = DataTableLoad.GetWHDataTable(enroll);
-                ddlWH.DataSource = dt;
-                ddlWH.DataTextField = "strName";
-                ddlWH.DataValueField = "Id";
-                ddlWH.DataBind();
-                dt.Clear();
-
-                //dt = DataTableLoad.GetPoDataTable(enroll,14);
+                LoadWh();
+                LoadDepartment();
+                //dt = DataTableLoad.GetPoDataTable(Enroll,14);
                 //ddlPoUser.DataSource = dt;
                 //ddlPoUser.DataTextField = "strName";
                 //ddlPoUser.DataValueField = "Id";
                 //ddlPoUser.DataBind();
                 //dt.Clear();
+            }
+        }
 
-                dt = DataTableLoad.GetPoDataTable(enroll, 24);
-                ddlDepts.DataSource = dt;
-                ddlDepts.DataTextField = "strName";
-                ddlDepts.DataValueField = "Id";
-                ddlDepts.DataBind();
-                dt.Clear();
-            }
-            else
-            {
-            }
+        public void LoadDepartment()
+        {
+            dt = DataTableLoad.GetPoDataTable(Enroll, 24);
+            Common.LoadDropDown(ddlDepts, dt, "Id", "strName");
+            dt.Clear();
+        }
+
+        public void LoadWh()
+        {
+            dt = DataTableLoad.GetWHDataTable(Enroll);
+            Common.LoadDropDownWithAll(ddlWH, dt, "Id", "strName");
+            dt.Clear();
         }
 
         #region=======================Auto Search=========================
@@ -73,12 +72,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                int dept = int.Parse(ddlDepts.SelectedValue);
-                dt = DataTableLoad.GetPoViewDataTable(int.Parse(txtPoNo.Text), enroll, dept);
-                dgvPoApp.DataSource = dt;
-                dgvPoApp.DataBind();
-                dt.Clear();
+                PoNoShowGrid();
             }
             catch (Exception ex)
             {
@@ -92,6 +86,35 @@ namespace UI.SCM
             tracker.Stop();
         }
 
+        private void PoNoShowGrid()
+        {
+            string strPo = txtPoNo.Text;
+            if (string.IsNullOrWhiteSpace(strPo))
+            {
+                Alert("Please write PO number");
+                return;
+            }
+            if (int.TryParse(strPo, out int poNumber))
+            {
+                int dept = Common.GetDdlSelectedValue(ddlDepts);
+                dt = DataTableLoad.GetPoViewDataTable(poNumber, Enroll, dept);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvPoApp.DataSource = dt;
+                    dgvPoApp.DataBind();
+                    dt.Clear();
+                }
+                else
+                {
+                    Alert("No data found");
+                }
+            }
+            else
+            {
+                Alert("Please write po number properly");
+            }
+        }
+
         protected void btnPoUserShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnPoUserShow_Click", null);
@@ -100,26 +123,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                arrayKey = txtPoUser.Text.Split(delimiterChars);
-                string item = ""; string itemid = "";
-                if (arrayKey.Length > 0)
-                {
-                    try
-                    {
-                        item = arrayKey[0].ToString();
-                        enroll = int.Parse(arrayKey[1].ToString());
-                    }
-                    catch { }
-                }
-
-                //  enroll = int.Parse(ddlPoUser.SelectedValue);
-                int intwh = int.Parse(ddlWH.SelectedValue);
-                int dept = int.Parse(ddlDepts.SelectedValue);
-                string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
-                dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, dept, xmlData);
-                dgvPoApp.DataSource = dt;
-                dgvPoApp.DataBind();
-                dt.Clear();
+                PoUserGrid();
             }
             catch (Exception ex)
             {
@@ -131,6 +135,37 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        private void PoUserGrid()
+        {
+            arrayKey = txtPoUser.Text.Split(delimiterChars);
+            int enroll = 0;
+            string item = ""; string itemid = "";
+            if (arrayKey.Length > 0)
+            {
+                try
+                {
+                    item = arrayKey[0].ToString();
+                    enroll = int.Parse(arrayKey[1].ToString());
+                }
+                catch { }
+            }
+
+            int intwh = int.Parse(ddlWH.SelectedValue);
+            int dept = int.Parse(ddlDepts.SelectedValue);
+            string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
+            dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, dept, xmlData);
+            if (dt.Rows.Count > 0)
+            {
+                dgvPoApp.DataSource = dt;
+                dgvPoApp.DataBind();
+                dt.Clear();
+            }
+            else
+            {
+                Alert("No data found");
+            }
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
@@ -145,8 +180,7 @@ namespace UI.SCM
                 Label lblPO = row.FindControl("lblPoNo") as Label;
 
                 int pono = int.Parse(lblPO.Text.ToString());
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = DataTableLoad.GetPoViewDetalisDataTable(pono, enroll);
+                dt = DataTableLoad.GetPoViewDetalisDataTable(pono, Enroll);
                 if (dt.Rows.Count > 0)
                 {
                     lblSuppliyers.Text = dt.Rows[0]["strSupplierName"].ToString();
@@ -176,7 +210,7 @@ namespace UI.SCM
                     //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
                 }
 
-                dt = DataTableLoad.GetPoViewItemWaiseDetalisDataTable(pono, enroll);
+                dt = DataTableLoad.GetPoViewItemWaiseDetalisDataTable(pono, Enroll);
                 dgvPoDetalis.DataSource = dt;
                 dgvPoDetalis.DataBind();
 
@@ -211,30 +245,35 @@ namespace UI.SCM
                 {
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     Label lblPO = row.FindControl("lblPoNo") as Label;
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     int pono = int.Parse(lblPO.Text.ToString());
-                    string msg = DataTableLoad.POApproval(19, "", pono, enroll);
+                    string msg = DataTableLoad.POApproval(19, "", pono, Enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
 
                     if (txtPoNo.Text.Length > 1)
                     {
-                        dt = DataTableLoad.GetPoViewDataTable(int.Parse(txtPoNo.Text), enroll, int.Parse(ddlDepts.SelectedValue));
+                        dt = DataTableLoad.GetPoViewDataTable(int.Parse(txtPoNo.Text), Enroll, int.Parse(ddlDepts.SelectedValue));
                         dgvPoApp.DataSource = dt;
                         dgvPoApp.DataBind();
                         dt.Clear();
+                        PoNoShowGrid();
                     }
                     else
                     {
                         int intwh = int.Parse(ddlWH.SelectedValue);
-                        arrayKey = txtPoUser.Text.Split(delimiterChars);
-                        string item = ""; string itemid = "";
-                        if (arrayKey.Length > 0)
-                        { item = arrayKey[0].ToString(); enroll = int.Parse(arrayKey[1].ToString()); }
+                        //arrayKey = txtPoUser.Text.Split(delimiterChars);
+                        //string item = "";
+                        //string itemid = "";
+                        //if (arrayKey.Length > 0)
+                        //{
+                        //    item = arrayKey[0].ToString();
+                        //    Enroll = int.Parse(arrayKey[1].ToString());
+                        //}
                         string xmlData = "<voucher><voucherentry dept=" + '"' + ddlDepts.SelectedItem.ToString() + '"' + "/></voucher>".ToString();
-                        dt = DataTableLoad.GetPoViewUserDataTable(intwh, enroll, int.Parse(ddlDepts.SelectedValue), xmlData);
+                        dt = DataTableLoad.GetPoViewUserDataTable(intwh, Enroll, int.Parse(ddlDepts.SelectedValue), xmlData);
                         dgvPoApp.DataSource = dt;
                         dgvPoApp.DataBind();
                         dt.Clear();
+                        PoUserGrid();
                     }
                 }
             }
@@ -268,45 +307,45 @@ public class DataTableLoad
     public static PoGenerate_BLL objPos = new PoGenerate_BLL();
     public static DataTable ds = new DataTable();
 
-    public static DataTable GetWHDataTable(int enroll)
+    public static DataTable GetWHDataTable(int Enroll)
     {
-        ds = objPos.GetPoData(12, "", 0, 0, DateTime.Now, enroll);
+        ds = objPos.GetPoData(12, "", 0, 0, DateTime.Now, Enroll);
         return ds;
     }
 
-    public static DataTable GetPoDataTable(int enroll, int intPart)
+    public static DataTable GetPoDataTable(int Enroll, int intPart)
     {
-        ds = objPos.GetPoData(intPart, "", 0, 0, DateTime.Now, enroll);
+        ds = objPos.GetPoData(intPart, "", 0, 0, DateTime.Now, Enroll);
         return ds;
     }
 
-    internal static DataTable GetPoViewUserDataTable(int intwh, int enroll, int dept, string xmlData)
+    internal static DataTable GetPoViewUserDataTable(int intwh, int Enroll, int dept, string xmlData)
     {
-        ds = objPos.GetPoData(15, xmlData, intwh, dept, DateTime.Now, enroll);
+        ds = objPos.GetPoData(15, xmlData, intwh, dept, DateTime.Now, Enroll);
         return ds;
     }
 
-    internal static DataTable GetPoViewDataTable(int PoId, int enroll, int dept)
+    internal static DataTable GetPoViewDataTable(int PoId, int Enroll, int dept)
     {
-        ds = objPos.GetPoData(16, "", dept, PoId, DateTime.Now, enroll);
+        ds = objPos.GetPoData(16, "", dept, PoId, DateTime.Now, Enroll);
         return ds;
     }
 
-    internal static DataTable GetPoViewDetalisDataTable(int PoId, int enroll)
+    internal static DataTable GetPoViewDetalisDataTable(int PoId, int Enroll)
     {
-        ds = objPos.GetPoData(17, "", 0, PoId, DateTime.Now, enroll);
+        ds = objPos.GetPoData(17, "", 0, PoId, DateTime.Now, Enroll);
         return ds;
     }
 
-    internal static DataTable GetPoViewItemWaiseDetalisDataTable(int pono, int enroll)
+    internal static DataTable GetPoViewItemWaiseDetalisDataTable(int pono, int Enroll)
     {
-        ds = objPos.GetPoData(18, "", 0, pono, DateTime.Now, enroll);
+        ds = objPos.GetPoData(18, "", 0, pono, DateTime.Now, Enroll);
         return ds;
     }
 
-    internal static string POApproval(int intPart, string stringXml, int pono, int enroll)
+    internal static string POApproval(int intPart, string stringXml, int pono, int Enroll)
     {
-        string msg = objPos.PoApprove(intPart, stringXml, 0, pono, DateTime.Now, enroll);
+        string msg = objPos.PoApprove(intPart, stringXml, 0, pono, DateTime.Now, Enroll);
         return msg;
     }
 }

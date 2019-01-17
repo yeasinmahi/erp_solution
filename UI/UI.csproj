@@ -195,6 +195,7 @@
     <Content Include="Accounts\Voucher\JournalVoucher.aspx" />
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
+    <Content Include="AEFPS\Benificiary_Report.aspx" />
     <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
@@ -231,6 +232,7 @@
     <Content Include="AEFPS\StockReportWithBuyPrice.aspx" />
     <Content Include="AEFPS\StockReportForAudit.aspx" />
     <Content Include="AEFPS\StockReportWithSalesPrice.aspx" />
+    <Content Include="AEFPS\Total_Salary_Adjustment_Report.aspx" />
     <Content Include="AEFPS\TransferIn.aspx" />
     <Content Include="AEFPS\TransferInN.aspx" />
     <Content Include="AEFPS\TransferOut.aspx" />
@@ -399,11 +401,14 @@
     <Content Include="HR\Overtime\OvertimeEntryIndividual.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryNew.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
+    <Content Include="HR\Penalty\Familyday.aspx" />
+    <Content Include="HR\Penalty\FamilyDayPub.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
+    <Content Include="HR\Reports\Family_Day_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -479,6 +484,7 @@
     <Content Include="PaymentModule\POVoucherOfAFBL.aspx" />
     <Content Include="PaymentModule\PreviousPrice.aspx" />
     <Content Include="PaymentModule\PreviousPriceView.aspx" />
+    <Content Include="PaymentModule\Production_Report.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
@@ -1400,6 +1406,8 @@
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
+    <Content Include="SCM\Distribution_Receive.aspx" />
+    <Content Include="SCM\FG_Receive.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\FixedAssetAudit.aspx" />
     <Content Include="SCM\Indent.aspx">
@@ -2034,6 +2042,13 @@
     <Compile Include="AEFPS\BarcodeItemBridge.aspx.designer.cs">
       <DependentUpon>BarcodeItemBridge.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AEFPS\Benificiary_Report.aspx.cs">
+      <DependentUpon>Benificiary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\Benificiary_Report.aspx.designer.cs">
+      <DependentUpon>Benificiary_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AEFPS\BlockItem.aspx.cs">
       <DependentUpon>BlockItem.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2285,6 +2300,13 @@
     </Compile>
     <Compile Include="AEFPS\StockReportWithSalesPrice.aspx.designer.cs">
       <DependentUpon>StockReportWithSalesPrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\Total_Salary_Adjustment_Report.aspx.cs">
+      <DependentUpon>Total_Salary_Adjustment_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\Total_Salary_Adjustment_Report.aspx.designer.cs">
+      <DependentUpon>Total_Salary_Adjustment_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\TransferIn.aspx.cs">
       <DependentUpon>TransferIn.aspx</DependentUpon>
@@ -3073,6 +3095,20 @@
     <Compile Include="HR\Overtime\OvertimeEntryReport.aspx.designer.cs">
       <DependentUpon>OvertimeEntryReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Penalty\Familyday.aspx.cs">
+      <DependentUpon>Familyday.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Penalty\Familyday.aspx.designer.cs">
+      <DependentUpon>Familyday.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Penalty\FamilyDayPub.aspx.cs">
+      <DependentUpon>FamilyDayPub.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Penalty\FamilyDayPub.aspx.designer.cs">
+      <DependentUpon>FamilyDayPub.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3107,6 +3143,13 @@
     </Compile>
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Family_Day_Report.aspx.cs">
+      <DependentUpon>Family_Day_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Family_Day_Report.aspx.designer.cs">
+      <DependentUpon>Family_Day_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>
@@ -3499,6 +3542,13 @@
     </Compile>
     <Compile Include="PaymentModule\PreviousPriceView.aspx.designer.cs">
       <DependentUpon>PreviousPriceView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Production_Report.aspx.cs">
+      <DependentUpon>Production_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Production_Report.aspx.designer.cs">
+      <DependentUpon>Production_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucharDetalis.aspx.cs">
       <DependentUpon>PurchaseVoucharDetalis.aspx</DependentUpon>
@@ -7365,6 +7415,20 @@
     <Compile Include="SCM\DeliveryReturn.aspx.designer.cs">
       <DependentUpon>DeliveryReturn.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\Distribution_Receive.aspx.cs">
+      <DependentUpon>Distribution_Receive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Distribution_Receive.aspx.designer.cs">
+      <DependentUpon>Distribution_Receive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\FG_Receive.aspx.cs">
+      <DependentUpon>FG_Receive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\FG_Receive.aspx.designer.cs">
+      <DependentUpon>FG_Receive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\FinishedGoodsBridge.aspx.cs">
       <DependentUpon>FinishedGoodsBridge.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8891,6 +8955,7 @@
     <Folder Include="HR\KPI\Data\" />
     <Folder Include="HR\KPI\Uploads\" />
     <Folder Include="HR\Loan\Data\" />
+    <Folder Include="HR\Penalty\Data\" />
     <Folder Include="HR\Reports\Data\" />
     <Folder Include="HR\Salary\FileExcell\" />
     <Folder Include="HR\Settlement\Uploads\" />

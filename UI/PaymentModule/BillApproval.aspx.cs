@@ -236,7 +236,7 @@ namespace UI.PaymentModule
             {
                 strReffNo = txtBillRegNo.Text;
 
-                dt = objBillReg.GetBillInfoByBillReg(strReffNo);
+                dt = objBillReg.GetBillInfoByBillReg(enroll, strReffNo);
                 dgvBillReport.DataSource = dt;
                 dgvBillReport.DataBind();
             }

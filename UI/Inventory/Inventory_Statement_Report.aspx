@@ -156,7 +156,7 @@
 
             }
             function showPanel() {
-
+                console.log("show panel");
                 var search = document.getElementById("ddlSearchBy").value;
                 var subcategory = document.getElementById("subcategory");
                 var itemname = document.getElementById("itemname");

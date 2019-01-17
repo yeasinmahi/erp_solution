@@ -275,7 +275,10 @@ namespace UI.SCM.BOM
         {
             try
             {
-                try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
+                try
+                {
+                    File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind();
+                }
                 catch { }
 
                 txtBomName.Text = "";

@@ -31,6 +31,8 @@ namespace UI.Inventory
                 }
                 catch { }
             }
+
+            
         }
 
         protected void ddlSearchBy_SelectedIndexChanged(object sender, EventArgs e)
@@ -38,20 +40,29 @@ namespace UI.Inventory
             int itemId;
             int Type = Convert.ToInt32(ddlSearchBy.SelectedItem.Value);
             int WH = Convert.ToInt32(ddlWH.SelectedItem.Value);
-            try { itemId = Convert.ToInt32(txtItemID.Text); }
-            catch { itemId = 0; }
+            try
+            {
+                itemId = Convert.ToInt32(txtItemID.Text);
+            }
+            catch
+            {
+                itemId = 0;
+            }
 
+            if (!(Type == 3 || Type == 4))
+            {
+                dt = objbll.InventorySearch(Type, WH, itemId);
+                ddlSubCategory.DataSource = dt;
+                ddlSubCategory.DataTextField = "strSearch";
+                ddlSubCategory.DataValueField = "intId";
+                ddlSubCategory.DataBind();
+            }
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-
-            dt = objbll.InventorySearch(Type, WH, itemId);
-            ddlSubCategory.DataSource = dt;
-            ddlSubCategory.DataTextField = "strSearch";
-            ddlSubCategory.DataValueField = "intId";
-            ddlSubCategory.DataBind();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+
             string id = "";
             int WH = Convert.ToInt32(ddlWH.SelectedItem.Value);
             int ddlsearch = Convert.ToInt32(ddlSearchBy.SelectedItem.Value);

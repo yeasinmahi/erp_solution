@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using SAD_DAL.Customer.Report;
@@ -146,6 +147,67 @@ namespace SAD_BLL.Customer.Report
                 , ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity
                 , ref dteWgtIn, ref dteWgtOut);
             
+        }
+
+        public DataTable getEndMilageStandVheicle(int enrolentryby)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+
+                TblRemoteTADAEndMilageTableAdapter bll = new TblRemoteTADAEndMilageTableAdapter();
+                dt = bll.GetDataLastMilage(enrolentryby);
+                return bll.GetDataLastMilage(enrolentryby);
+
+            }
+
+            catch { return new DataTable(); }
+        }
+        public List<string> getemployeebaseTADAAttachment(int intLoginId, string strSearchKey)
+        {
+            List<string> result = new List<string>();
+            SprAutoserchEmployeebaseAttachmentTableAdapter ojbEmployeebaseonsupvisor = new SprAutoserchEmployeebaseAttachmentTableAdapter();
+            DataTable oDT = new DataTable();
+            oDT = ojbEmployeebaseonsupvisor.GetDataAutoserchEmployeebaseAttachment(intLoginId, strSearchKey);
+            if (oDT.Rows.Count > 0)
+            {
+                for (int index = 0; index < oDT.Rows.Count; index++)
+                {
+                    result.Add(oDT.Rows[index]["Emplname"].ToString());
+                }
+
+            }
+            return result;
+        }
+
+        public DataTable getAttachmentInfo(int enrolentryby,DateTime fromdate,DateTime todate,int rpttyepid , int autoid )
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+
+                SprAttachmentInfoTableAdapter bll = new SprAttachmentInfoTableAdapter();
+                dt = bll.GetDataAttachmentInfo(enrolentryby, fromdate, todate,rpttyepid,  autoid);
+                return bll.GetDataAttachmentInfo(enrolentryby, fromdate, todate, rpttyepid, autoid);
+
+            }
+
+            catch { return new DataTable(); }
+        }
+
+        public DataTable getAttachmentDelete(int deptid)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+
+                SprAttachDeleteAllowTableAdapter bll = new SprAttachDeleteAllowTableAdapter();
+                dt = bll.GetDataAttachDeleteAllow(deptid);
+                return bll.GetDataAttachDeleteAllow(deptid);
+
+            }
+
+            catch { return new DataTable(); }
         }
     }
 }

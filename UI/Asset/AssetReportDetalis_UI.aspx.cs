@@ -47,11 +47,13 @@ namespace UI.Asset
                 if (dt.Rows.Count > 0)
                 {
                     decimal total = dt.AsEnumerable().Sum(row => row.Field<decimal>("monValue"));
-                    //dt.Compute("SUM(Salary)", "EmployeeId > 2")); 
+                    decimal mtotal = dt.AsEnumerable().Sum(row => row.Field<decimal>("moncost"));
+                        //dt.Compute("SUM(Salary)", "EmployeeId > 2")); 
                     dgvPartsView.FooterRow.Cells[3].Text = "Ground Total";
                     dgvPartsView.FooterRow.Cells[3].HorizontalAlign = HorizontalAlign.Right;
                     dgvPartsView.FooterRow.Cells[4].Text = total.ToString("N2");
-                }
+                    dgvPartsView.FooterRow.Cells[5].Text = mtotal.ToString("N2");
+                    }
 
                 
              
