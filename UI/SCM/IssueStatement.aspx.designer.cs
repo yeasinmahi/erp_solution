@@ -58,15 +58,6 @@ namespace UI.SCM {
         protected global::System.Web.UI.ScriptManager ScriptManager0;
         
         /// <summary>
-        /// UpdatePanel0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
-        
-        /// <summary>
         /// pnlUpperControl control.
         /// </summary>
         /// <remarks>
@@ -236,6 +227,15 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnStatement;
+        
+        /// <summary>
+        /// btnDownloads control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnDownloads;
         
         /// <summary>
         /// dgvStatement control.
