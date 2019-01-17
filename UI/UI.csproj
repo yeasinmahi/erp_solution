@@ -1433,6 +1433,7 @@
     <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
+    <Content Include="SCM\Item_View.aspx" />
     <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
@@ -7588,6 +7589,13 @@
     </Compile>
     <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
       <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Item_View.aspx.cs">
+      <DependentUpon>Item_View.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Item_View.aspx.designer.cs">
+      <DependentUpon>Item_View.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Item_Wise_PO_Issued.aspx.cs">
       <DependentUpon>Item_Wise_PO_Issued.aspx</DependentUpon>
