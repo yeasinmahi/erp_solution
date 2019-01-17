@@ -20,13 +20,13 @@ namespace SCM_BLL
             }
         }
 
-        public string MrrReceive(int part, string xmlString, int intWh, int intPOID, DateTime dteDate, int enroll)
+        public string MrrReceive(int part, string xmlString, int intWh, int intPoid, DateTime dteDate, int enroll)
         {
             string strMsg = "";
             try
             {
                 SprMrrReceiveTableAdapter adp = new SprMrrReceiveTableAdapter();
-                adp.GetMrrReceiveData(part, xmlString, intWh, intPOID, dteDate, enroll, ref strMsg);
+                adp.GetMrrReceiveData(part, xmlString, intWh, intPoid, dteDate, enroll, ref strMsg);
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
