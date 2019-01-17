@@ -183,11 +183,11 @@ namespace UI.Asset
                 DdlCommonRepair.Visible = false;
                 TxtdteRepair.Visible = false;
                 DdlREPriotiyyd.Visible = false;
-                TxtProblem.Visible = false;
+                TxtProblem.Visible = true;
                 LblCommonRepair.Visible = false;
                 LbldteRepair.Visible = false;
                 LblPrioritys.Visible = false;
-                LblProblem.Visible = false;
+                LblProblem.Visible = true;
                 btnRepair.Visible = false;
 
 
