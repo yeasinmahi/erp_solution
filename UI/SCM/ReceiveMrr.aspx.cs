@@ -168,7 +168,7 @@ namespace UI.SCM
                             }
                             else
                             {
-                                Alert("Current loacation should be sesected");
+                                Alert("Current loacation should be selected");
                                 return;
                             }
                         }
