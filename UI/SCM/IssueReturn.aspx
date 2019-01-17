@@ -14,6 +14,15 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
 
+    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <script src="../../Content/JS/datepickr.min.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script>
+    <link href="jquery-ui.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <script src="jquery.min.js"></script>
+    <script src="jquery-ui.min.js"></script>
+
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
 
