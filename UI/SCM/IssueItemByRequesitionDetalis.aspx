@@ -121,7 +121,7 @@
                 <td style="text-align:left;"><asp:DropDownList ID="ddlCost" CssClass="ddList" AutoPostBack="false" Font-Bold="true"   runat="server"    ></asp:DropDownList></td> 
                 <td style="text-align:right;"><asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Receive By"></asp:Label></td>
                 <td style="text-align:left;"><asp:TextBox ID="txtReceiveBy" CssClass="txtBox"  AutoPostBack="false"    runat="server"></asp:TextBox></td> 
-                <td   style="text-align:right"><asp:Button ID="btnIssue" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Store Issue" OnClientClick="funConfirmAll()" OnClick="btnIssue_Click"  /> </td> 
+                <td   style="text-align:right"><asp:Button ID="btnIssue" style="  border-radius:1px; height:29px" forecolor="blue" runat="server" Text="Store Issue" OnClientClick="funConfirmAll()" OnClick="btnIssue_Click"  /> </td> 
                 </tr>
 
                 <tr><td></td></tr>
@@ -143,9 +143,11 @@
                   </tr>
                 <tr> 
                 <td>  
-                <asp:GridView ID="dgvDetalis" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView_RowDataBound" ShowFooter="true" ShowHeader="true"  Width="900px"  
-                CssClass="GridViewStyle">            
-                <HeaderStyle CssClass="HeaderStyle" />  <FooterStyle CssClass="FooterStyle" /> <RowStyle CssClass="RowStyle" />  <PagerStyle CssClass="PagerStyle" /> 
+                <asp:GridView ID="dgvDetalis" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView_RowDataBound" ShowFooter="True"  Width="900px"  
+                CssClass="GridViewStyle" CellPadding="4" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px">            
+                <HeaderStyle CssClass="HeaderStyle" BackColor="#6B696B" Font-Bold="True" ForeColor="White" />  
+                    <FooterStyle CssClass="FooterStyle" BackColor="#CCCC99" /> <RowStyle CssClass="RowStyle" BackColor="#F7F7DE" />  <PagerStyle CssClass="PagerStyle" BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" /> 
+                    <AlternatingRowStyle BackColor="White" />
                 <Columns>
                 <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
                  
@@ -155,7 +157,7 @@
                 
                 <asp:TemplateField HeaderText="Item Name"   ItemStyle-HorizontalAlign="right" SortExpression="strItem" >
                 <ItemTemplate><asp:Label ID="lblItem" runat="server"  Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
-                <ItemStyle HorizontalAlign="left" Width="400px" />  </asp:TemplateField>  
+                <ItemStyle HorizontalAlign="left" Width="500px" />  </asp:TemplateField>  
 
                 <asp:TemplateField HeaderText="Uom" ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
                 <ItemTemplate><asp:Label ID="lblUom" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>
@@ -182,7 +184,7 @@
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
                     
                 <asp:TemplateField HeaderText="Issue" ItemStyle-HorizontalAlign="right" SortExpression="monValue" > 
-                <ItemTemplate><asp:TextBox ID="txtIssue"  CssClass="txtBox"  Width="100px"  runat="server"   Text="0"></asp:TextBox></ItemTemplate>
+                <ItemTemplate><asp:TextBox ID="txtIssue"  CssClass="txtBox"  Width="60px"  runat="server"   Text="0"></asp:TextBox></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>   
 
                  <asp:TemplateField HeaderText="Store Location" ItemStyle-HorizontalAlign="right"  > 
@@ -197,13 +199,16 @@
                 <ItemTemplate><asp:Label ID="lblLocationName"    runat="server"   Text='<%# Bind("strLocation") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
 
-               
-
                 <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks" > 
                 <ItemTemplate><asp:Label ID="lblRemarks"    runat="server"   Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="150px" /> </asp:TemplateField>
                  
                 </Columns> 
+                    <SelectedRowStyle BackColor="#CE5D5A" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#FBFBF2" />
+                    <SortedAscendingHeaderStyle BackColor="#848384" />
+                    <SortedDescendingCellStyle BackColor="#EAEAD3" />
+                    <SortedDescendingHeaderStyle BackColor="#575357" />
                 </asp:GridView></td> 
                 </tr> 
                  

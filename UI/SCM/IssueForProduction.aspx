@@ -95,16 +95,16 @@
        <table>
             <tr>
             <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
-            <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"   ></asp:DropDownList></td>                                                                                      
+            <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"  OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"   ></asp:DropDownList></td>                                                                                      
            <td style="text-align:right;"><asp:Label ID="lblFrom" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
-            <td style="text-align:left"><asp:TextBox ID="txtdteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td style="text-align:left"><asp:TextBox ID="txtdteFrom" style="text-align:center" runat="server" Width="85px" autocomplete="off" CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="dteFrom" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteFrom"></cc1:CalendarExtender></td>
 
             <td style="text-align:right;"><asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
-            <td style="text-align:left"><asp:TextBox ID="txtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+            <td style="text-align:left"><asp:TextBox style="text-align:center" ID="txtdteTo" Width="85px" autocomplete="off" runat="server" CssClass="txtBox"></asp:TextBox>
             <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender></td> 
            
-           <td style="text-align:right"><asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /> </td>
+           <td style="text-align:right"><asp:Button ID="btnShow" forecolor="blue" runat="server" Text="Show" OnClick="btnShow_Click" /> </td>
             </tr> 
         </table>
         <table>
@@ -113,29 +113,29 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
  
             <asp:TemplateField HeaderText="Id" SortExpression="Id" Visible="false"><ItemTemplate>
             <asp:Label ID="lblReqId" runat="server" Text='<%# Bind("Id") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="100px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="SR NO And Dept" SortExpression="strCode"><ItemTemplate>
+            <asp:TemplateField HeaderText="SR NO. And Department" SortExpression="strCode"><ItemTemplate>
             <asp:Label ID="lblReqSR" runat="server" Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="200px"/></asp:TemplateField>
+            <ItemStyle HorizontalAlign="Left" Width="250px"/></asp:TemplateField>
 
             <asp:TemplateField HeaderText="SR Date" ItemStyle-HorizontalAlign="right" SortExpression="dteReqDate" >
             <ItemTemplate><asp:Label ID="lblReqDate" runat="server"   Text='<%# Bind("dteReqDate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
-            <asp:TemplateField HeaderText="ProductionOrder" ItemStyle-HorizontalAlign="right" SortExpression="intProdOrderID" > 
+            <asp:TemplateField HeaderText="Prod.Order No." ItemStyle-HorizontalAlign="center" SortExpression="intProdOrderID" > 
             <ItemTemplate><asp:Label ID="lblProduction"    runat="server"  Text='<%# Bind("intProdOrderID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField> 
 
-             <asp:TemplateField HeaderText="ProductionOrder Of" ItemStyle-HorizontalAlign="right" SortExpression="total" > 
+             <asp:TemplateField HeaderText="No.of Items" ItemStyle-HorizontalAlign="center" SortExpression="total" > 
             <ItemTemplate><asp:Label ID="lblProducQty"    runat="server"  Text='<%# Bind("total") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis"  CommandArgument='<%#GetJSFunctionString( Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"),Eval("intDeptID"),Eval("intSectionID"),Eval("strSectionName")) %>'    OnClick="btnDetalis_Click" /> </ItemTemplate> 
+            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" forecolor="Blue" CommandArgument='<%#GetJSFunctionString( Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"),Eval("intDeptID"),Eval("intSectionID"),Eval("strSectionName")) %>'    OnClick="btnDetalis_Click" /> </ItemTemplate> 
             </asp:TemplateField>
 
             </Columns>
