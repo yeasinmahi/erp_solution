@@ -24,8 +24,9 @@ namespace UI.SCM
                 try
                 {
                     int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
-                    dt = objbll.GetWH(enroll);
-                    Common.LoadDropDown(ddlWH, dt, "intWHID", "strWareHoseName");
+                    //dt = objbll.GetWH(enroll);
+                    dt = new InventoryTransfer_BLL().GetTtransferDatas(1, "", 0, 0, DateTime.Now, enroll);
+                    Common.LoadDropDown(ddlWH, dt, "Id", "strName");
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
