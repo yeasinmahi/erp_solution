@@ -15,13 +15,15 @@ using System.IO;
 using System.Xml;
 using GLOBAL_BLL;
 using Flogging.Core;
-
+using BLL.Accounts.ChartOfAccount;
 
 namespace UI.PaymentModule
 {
     public partial class BankPay : BasePage
     {
         #region===== Variable & Object Declaration ====================================================
+        string[] arrayKey; char[] delimiterChars = { '[', ']' };
+
         SeriLog log = new SeriLog();
         string location = "PaymentModule";
         string start = "starting PaymentModule/BankPay.aspx";
@@ -63,6 +65,7 @@ namespace UI.PaymentModule
                     File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
                     hdnBillUnitID.Value = Request.QueryString["unitid"];
                     hdnBillID.Value = Request.QueryString["billid"];
+                    Session["billUnit"] = Request.QueryString["unitid"];
                     entrycode = Request.QueryString["entrycode"];
                     party = Request.QueryString["party"];
                     hdnBillType.Value = Request.QueryString["billtypeid"];
@@ -148,21 +151,7 @@ namespace UI.PaymentModule
                         }
                     }
                     catch { }
-
-                    intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
-                    strInstrument = ddlInstrument.SelectedItem.ToString();
-
-                    dt = new DataTable();
-                    dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnUnit.Value), strInstrument);
-                    if (dt.Rows.Count > 0)
-                    {
-                        txtNo.Text = dt.Rows[0]["strCode"].ToString();
-                    }
-                    else
-                    {
-                        txtNo.Text = "";
-                    }
-
+                    
                     try
                     {
                         if (hdnBillType.Value == "1") // 'FOR ADVANCE PAYMENT
@@ -172,28 +161,35 @@ namespace UI.PaymentModule
                                 if (intPartyType == 1)
                                 {
                                     ysnCreditor = true;
+
+                                    /*
                                     dt = new DataTable();
                                     dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
                                     ddlDebitAc.DataTextField = "strAccName";
                                     ddlDebitAc.DataValueField = "intAccID";
                                     ddlDebitAc.DataSource = dt;
                                     ddlDebitAc.DataBind();
+                                    */
                                 }
                                 else
                                 {
                                     ysnPurchase = true;
+                                    /*
                                     dt = new DataTable();
                                     dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                                     ddlDebitAc.DataTextField = "strAccName";
                                     ddlDebitAc.DataValueField = "intAccID";
                                     ddlDebitAc.DataSource = dt;
                                     ddlDebitAc.DataBind();
+                                    */
                                 }
                             }
                             else
                             {
+                                /*
                                 ListItem item1 = new ListItem(strAccName, intAccID.ToString());
                                 ddlDebitAc.Items.Add(item1);
+                                */
                             }
 
                             if (intPOID == 0)
@@ -208,7 +204,10 @@ namespace UI.PaymentModule
                             ddlBank.SelectedValue = hdnBank.Value;
                             ddlACNumber.SelectedValue = hdnBankAcc.Value;
                             ddlInstrument.SelectedValue = hdnInstrument.Value;
+
+                            /*
                             ddlDebitAc.SelectedItem.Text = strAccName;
+                            */
                         }
                         else if (hdnBillType.Value == "2") // 'FOR PAYMENT AGAINST CREDIT PURCHASE BILL
                         {
@@ -219,39 +218,52 @@ namespace UI.PaymentModule
                                     if (intCountPVoucher == 0)
                                     {
                                         ysnPurchase = true;
+
+                                        /*
                                         dt = new DataTable();
                                         dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                                         ddlDebitAc.DataTextField = "strAccName";
                                         ddlDebitAc.DataValueField = "intAccID";
                                         ddlDebitAc.DataSource = dt;
                                         ddlDebitAc.DataBind();
+
+                                        */
                                     }
                                     else if (intCountPVoucher > 0)
                                     {
                                         ysnCreditor = true;
+
+                                        /*
                                         dt = new DataTable();
                                         dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
                                         ddlDebitAc.DataTextField = "strAccName";
                                         ddlDebitAc.DataValueField = "intAccID";
                                         ddlDebitAc.DataSource = dt;
                                         ddlDebitAc.DataBind();
+                                        */
                                     }
                                 }
                                 else
                                 {
                                     ysnPurchase = true;
+
+                                    /*
                                     dt = new DataTable();
                                     dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                                     ddlDebitAc.DataTextField = "strAccName";
                                     ddlDebitAc.DataValueField = "intAccID";
                                     ddlDebitAc.DataSource = dt;
                                     ddlDebitAc.DataBind();
+
+                                    */
                                 }
                             }
                             else
                             {
+                                /*
                                 ListItem item1 = new ListItem(strAccName, intAccID.ToString());
                                 ddlDebitAc.Items.Add(item1);
+                                */
                             }
 
                             if (intPOID == 0)
@@ -271,7 +283,9 @@ namespace UI.PaymentModule
                             ddlBank.SelectedValue = hdnBank.Value;
                             ddlACNumber.SelectedValue = hdnBankAcc.Value;
                             ddlInstrument.SelectedValue = hdnInstrument.Value;
+                            /*
                             ddlDebitAc.SelectedItem.Text = strAccName;
+                            */
                         }
                         else if (hdnBillType.Value == "3") // 'FOR PAYMENT AGAINST CASH PURCHASE BILL
                         {
@@ -280,29 +294,51 @@ namespace UI.PaymentModule
                                 if (intPartyType == 1)
                                 {
                                     ysnCreditor = true;
+
+                                    /*
                                     dt = new DataTable();
                                     dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
                                     ddlDebitAc.DataTextField = "strAccName";
                                     ddlDebitAc.DataValueField = "intAccID";
                                     ddlDebitAc.DataSource = dt;
                                     ddlDebitAc.DataBind();
+                                    */
                                 }
                                 else
                                 {
                                     ysnPurchase = true;
+
+                                    /*
                                     dt = new DataTable();
                                     dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
                                     ddlDebitAc.DataTextField = "strAccName";
                                     ddlDebitAc.DataValueField = "intAccID";
                                     ddlDebitAc.DataSource = dt;
                                     ddlDebitAc.DataBind();
+                                    */
                                 }
                             }
                             else
                             {
+                                /*
                                 ListItem item1 = new ListItem(strAccName, intAccID.ToString());
                                 ddlDebitAc.Items.Add(item1);
+                                */
                             }
+                        }
+
+                        intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
+                        strInstrument = ddlInstrument.SelectedItem.ToString();
+
+                        dt = new DataTable();
+                        dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnUnit.Value), strInstrument);
+                        if (dt.Rows.Count > 0)
+                        {
+                            txtNo.Text = dt.Rows[0]["strCode"].ToString();
+                        }
+                        else
+                        {
+                            txtNo.Text = "";
                         }
                     }
                     catch (Exception ex)
@@ -324,6 +360,16 @@ namespace UI.PaymentModule
             tracker.Stop();
             
         }
+
+        #region Web Method
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetCOAList(string prefixText, int count)
+        {
+            return ChartOfAccStaticDataProvider.GetCOADataForAutoFillPaymentRegister(HttpContext.Current.Session["billUnit"].ToString(), prefixText);
+        }
+
+        #endregion Web Method
 
         protected void ddlInstrument_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -363,9 +409,16 @@ namespace UI.PaymentModule
         {
             try
             {
-                accid = ddlDebitAc.SelectedValue.ToString();
-                accname = ddlDebitAc.SelectedItem.ToString();
+                arrayKey = txtCOA.Text.Split(delimiterChars);
+                accid = arrayKey[2].ToString();
+                accname = arrayKey[0].ToString();
 
+                if (accname == "")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select.');", true); return;
+                }
+
+                /*
                 try
                 {
                     char[] ch1 = { '[', ']' };
@@ -373,7 +426,7 @@ namespace UI.PaymentModule
                     accname = temp1[0].ToString();
                 }
                 catch { accname = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return; }
-
+                */
 
 
                 narration = txtNarration.Text;

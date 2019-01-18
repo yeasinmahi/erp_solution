@@ -23,6 +23,8 @@ namespace UI.PaymentModule
         Billing_BLL objBillApp = new Billing_BLL(); Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
 
+        string[] arrayKey; char[] delimiterChars = { '[', ']' };
+
         int intDept, intType, intPartyType, intAccID, intCountPVoucher, intPOID, intBankID;
         string unitid, billid, entrycode, party, bank, bankacc, instrument;
         string accid, accname, narration, debit, credit, strAccName, strNarrationBank, strNarrationJournal;
@@ -72,7 +74,7 @@ namespace UI.PaymentModule
                     monLedgerBalance = Math.Round(decimal.Parse(dt.Rows[0]["monLedgerBalance"].ToString()), 2);
                     monNetPay = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2);
                 }
-                
+
 
                 //ElseIf intCountPVoucher = 0 Then 'No Purchase Voucher inserted
                 //If monTotalAdvance = 0 Then 'No Previous advance
@@ -101,6 +103,8 @@ namespace UI.PaymentModule
                         if (intPartyType != 1)
                         {
                             ysnCreditor = true;
+                            txtCOA.Enabled = true;
+                            /*
                             dt = new DataTable();
                             dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
                             ddlAccHeadJournal.DataTextField = "strAccName";
@@ -111,6 +115,12 @@ namespace UI.PaymentModule
                             ListItem item1 = new ListItem("", "0");
                             ddlAccHeadJournal.Items.Add(item1);
                             ddlAccHeadJournal.SelectedValue = "0";
+
+                            */
+                        }
+                        else
+                        {
+                            txtCOA.Enabled = false;
                         }
 
                         //if (intAccID == 0)
@@ -176,6 +186,8 @@ namespace UI.PaymentModule
                         if (intPartyType != 1)
                         {
                             ysnPurchase = true;
+                            txtCOA.Enabled = true;
+                            /*
                             dt = new DataTable();
                             dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                             ddlAccHeadJournal.DataTextField = "strAccName";
@@ -186,6 +198,11 @@ namespace UI.PaymentModule
                             ListItem item1 = new ListItem("", "0");
                             ddlAccHeadJournal.Items.Add(item1);
                             ddlAccHeadJournal.SelectedValue = "0";
+                            */
+                        }
+                        else
+                        {
+                            txtCOA.Enabled = false;
                         }
 
                         //if (intAccID == 0)
@@ -228,7 +245,7 @@ namespace UI.PaymentModule
         [ScriptMethod]
         public static string[] GetCOAList(string prefixText, int count)
         {
-            return ChartOfAccStaticDataProvider.GetCOADataForAutoFill(HttpContext.Current.Session["billUnit"].ToString(), prefixText);
+            return ChartOfAccStaticDataProvider.GetCOADataForAutoFillPaymentRegister(HttpContext.Current.Session["billUnit"].ToString(), prefixText);
         }
 
         #endregion Web Method
@@ -236,20 +253,46 @@ namespace UI.PaymentModule
         {
             try
             {
-                accid = ddlAccHeadJournal.SelectedValue.ToString();
-                accname = ddlAccHeadJournal.SelectedItem.ToString();
+                arrayKey = txtCOA.Text.Split(delimiterChars);
+                accid = arrayKey[2].ToString();
+                accname = arrayKey[0].ToString();
 
-                try
+                if(accname == "")
                 {
-                    char[] ch1 = { '[', ']' };
-                    string[] temp1 = ddlAccHeadJournal.SelectedItem.ToString().Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                    accname = temp1[0].ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return;
                 }
-                catch { accname = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return; }
+
+                //////accid = ddlAccHeadJournal.SelectedValue.ToString();
+                /////accname = ddlAccHeadJournal.SelectedItem.ToString();
+
+                ////////try
+                ////////{
+                ////////    char[] ch1 = { '[', ']' };
+                ////////    string[] temp1 = ddlAccHeadJournal.SelectedItem.ToString().Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                ////////    accname = temp1[0].ToString();
+                ////////}
+                ////////catch { accname = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return; }
                 
                 narration = txtNarration.Text;
-                debit = txtAmount.Text;
-                credit = "0";
+
+                if(rdoDr.Checked == true)
+                {
+                    debit = txtAmount.Text;
+                }
+                else
+                {
+                    debit = "0";
+                }
+
+                if (rdoCr.Checked == true)
+                {
+                    credit = txtAmount.Text;
+                }
+                else
+                {
+                    credit = "0";
+                }
+
 
                 if (accname == "")
                 {
@@ -480,6 +523,7 @@ namespace UI.PaymentModule
             {
                 rdoCr.Checked = false;
             }
+            txtCOA.Text = "";
         }
         protected void rdoCr_CheckedChanged(object sender, EventArgs e)
         {
@@ -487,6 +531,8 @@ namespace UI.PaymentModule
             {
                 rdoDr.Checked = false;
             }
+
+            txtCOA.Text = "";
         }
 
         #endregion ===================================================

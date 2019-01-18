@@ -68,8 +68,15 @@
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="DEBIT A/C"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlDebitAc" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList></td>
-                <td style="text-align:right; "><asp:Label ID="Label10" runat="server" Text=""></asp:Label></td>
+                    <%--<asp:DropDownList ID="ddlDebitAc" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList>--%>
+                    <asp:TextBox ID="txtCOA" runat="server" AutoCompleteType="Search" CssClass="txtBox1" Width="350px" AutoPostBack="true"></asp:TextBox>
+                    <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCOA"
+                    ServiceMethod="GetCOAList" MinimumPrefixLength="1" CompletionSetCount="1" CompletionInterval="1"
+                    FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                    </cc1:AutoCompleteExtender>
+                </td>
+                
                 <td style="text-align:right;"><asp:Label ID="Label8" runat="server" Text="Tk" CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td><asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1"></asp:TextBox></td>    
             </tr>
