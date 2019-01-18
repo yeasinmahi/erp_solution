@@ -416,6 +416,7 @@ namespace BLL.Accounts.ChartOfAccount
         public static string[] GetCOADataForAutoFillPaymentRegister(string unitID, string prefix)
         {
             Inatialize();
+
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
             prefix = prefix.ToLower();
