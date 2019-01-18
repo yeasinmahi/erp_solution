@@ -337,6 +337,24 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
+        /// txtCOA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCOA;
+        
+        /// <summary>
+        /// AutoCompleteExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
+        
+        /// <summary>
         /// ddlAccHeadJournal control.
         /// </summary>
         /// <remarks>

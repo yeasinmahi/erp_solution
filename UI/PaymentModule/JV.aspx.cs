@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using BLL.Accounts.ChartOfAccount;
 
 namespace UI.PaymentModule
 {
@@ -54,7 +55,7 @@ namespace UI.PaymentModule
                 hdnBank.Value = Request.QueryString["bank"];
                 hdnBankAcc.Value = Request.QueryString["bankacc"];
                 hdnInstrument.Value = Request.QueryString["instrument"];
-
+                Session["billUnit"] = Request.QueryString["unitid"];
                 dt = new DataTable();
                 dt = objBillApp.GetBillInfoForBPVoucher(int.Parse(hdnBillID.Value));
                 if (dt.Rows.Count > 0)
@@ -220,7 +221,17 @@ namespace UI.PaymentModule
                 catch { }
             }
         }
-        
+
+
+        #region Web Method
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetCOAList(string prefixText, int count)
+        {
+            return ChartOfAccStaticDataProvider.GetCOADataForAutoFill(HttpContext.Current.Session["billUnit"].ToString(), prefixText);
+        }
+
+        #endregion Web Method
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
