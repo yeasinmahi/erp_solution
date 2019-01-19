@@ -419,6 +419,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WeightBridgeDataController_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Transfer\FGTransfer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FGTransfer.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Transfer\TransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1127,6 +1132,17 @@
     </None>
     <None Include="Sales\WeightBridgeDataController_TDS.xss">
       <DependentUpon>WeightBridgeDataController_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Transfer\FGTransfer.xsc">
+      <DependentUpon>FGTransfer.xsd</DependentUpon>
+    </None>
+    <None Include="Transfer\FGTransfer.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FGTransfer.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Transfer\FGTransfer.xss">
+      <DependentUpon>FGTransfer.xsd</DependentUpon>
     </None>
     <None Include="Transfer\TransferTDS.xsc">
       <DependentUpon>TransferTDS.xsd</DependentUpon>

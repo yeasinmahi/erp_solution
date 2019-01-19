@@ -30,6 +30,13 @@ namespace Utility
             return !File.Exists(path) ? File.CreateText(path) : null;
         }
 
+        public enum TosterType
+        {
+            Success,
+            Error,
+            Warning
+        }
+
         public enum ModulaFileName
         {
             Item,

@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using UserSecurity;
+using Utility;
 
 /// <summary>
 /// Developped By Akramul Haider
@@ -32,6 +34,13 @@ namespace UI.ClassFiles
         public string GetActivePageUrl()
         {
             return Request.Url.AbsoluteUri;
+        }
+
+        public string GetPageName()
+        {
+            string[] segments = Request.Url.Segments;
+            string pageName = segments[Array.FindIndex(segments, row => row.Contains(".aspx"))];
+            return pageName.Replace(".aspx", "");
         }
 
         public BasePage()
@@ -68,6 +77,12 @@ namespace UI.ClassFiles
         {
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                 "alert('" + message + "');", true);
+        }
+
+        public void Toaster(string message, Common.TosterType type)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                "ShowNotification('" + message + "','" + GetPageName() + "','" + type.ToString().ToLower() + "')", true);
         }
     }
 }

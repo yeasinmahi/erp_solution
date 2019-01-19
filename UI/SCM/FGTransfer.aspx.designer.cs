@@ -10,7 +10,7 @@
 namespace UI.SCM {
     
     
-    public partial class FgReceive {
+    public partial class FgTransfer {
         
         /// <summary>
         /// PlaceHolder1 control.
