@@ -412,7 +412,64 @@ namespace BLL.Accounts.ChartOfAccount
             return rows;
         }
 
+        //For Payment Register JV create by said
+        public static string[] GetCOADataForAutoFillPaymentRegister(string unitID, string prefix)
+        {
+            Inatialize();
 
-        
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            prefix = prefix.ToLower();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tableCOAs[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])
+                           where tmp.ysnEnable == true && tmp.ysnHasChild == false
+                           orderby tmp.strAccName
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+                    var rows = from tmp in tableCOAs[Convert.ToInt32(ht[unitID])]
+                               where tmp.ysnEnable == true && tmp.ysnHasChild == false
+                              && tmp.intModulesAutoID != "1"// All Bank Info
+                                                            //  && (tmp.IsintAccTemplateIDNull()?true:(tmp.intAccTemplateID != 19))// Cash In Hand
+                               && tmp.strAccName.ToLower().StartsWith(prefix, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               orderby tmp.strAccName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strAccName"] + " [" + tbl.Rows[i]["strCode"] + "]"+ " [" + tbl.Rows[i]["intAccID"] + "]" ;
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
     }
 }
