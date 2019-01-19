@@ -1,8 +1,7 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FG_Receive.aspx.cs" Inherits="UI.SCM.FgReceive" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FGTransfer.aspx.cs" Inherits="UI.SCM.FgTransfer" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
-
 <html>
 <head runat="server">
     <title>.:  :.</title>
@@ -32,7 +31,7 @@
                     <asp:HiddenField ID="hdnEnroll" runat="server" />
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="FG Receive" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="FG Transfer" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
                             <div class="row form-group">
@@ -59,21 +58,21 @@
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="FG Receive Report" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" Text="FG Transfer Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
                             <asp:GridView ID="FG_Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="2">
 
                                 <Columns>
-                                    <asp:TemplateField HeaderText="Auto ID" SortExpression="intautoid">
+                                    <asp:TemplateField HeaderText="SN" SortExpression="intautoid">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblAutoID" runat="server" CssClass="lbl" Text='<%# Bind("intautoid") %>'></asp:Label>
+                                            <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Product ID" SortExpression="intproductionid">
+                                    <asp:TemplateField HeaderText="Transfer ID">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblintproductionid" runat="server" CssClass="lbl" Text='<%# Bind("intproductionid") %>'></asp:Label>
+                                            <asp:Label ID="lblTransferId" runat="server" CssClass="lbl" Text='<%# Bind("intTransferID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -95,21 +94,21 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Store Qty" SortExpression="numSendStoreQty">
+                                    <asp:TemplateField HeaderText="Quantity" SortExpression="numSendStoreQty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtSendStoreQty" runat="server" Text='<%# Bind("numSendStoreQty","{0:N4}") %>' Width="120px" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
+                                            <asp:TextBox ID="txtSendStoreQty" runat="server" Text='<%# Bind("Qty","{0:N4}") %>' Width="120px" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="LastActionTime">
+                                    <asp:TemplateField HeaderText="Action Time">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblLastActionTime" runat="server" CssClass="lbl" Text='<%# Bind("Column1") %>' DataFormatString="{0:YYYY-MM-DD hh:mm:ss}"></asp:Label>
+                                            <asp:Label ID="lblLastActionTime" runat="server" CssClass="lbl" Text='<%# Bind("dteTransactionDate") %>' DataFormatString="{0:YYYY-MM-DD hh:mm:ss}"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField ShowHeader="true" HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" CssClass="btn btn-success btn-xs"></asp:Button>
+                                            <asp:Button ID="btnTransfer" runat="server" OnClick="btnTransfer_OnClick" Text="Transfer" CssClass="btn btn-success btn-xs"></asp:Button>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>

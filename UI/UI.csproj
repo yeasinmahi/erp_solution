@@ -1407,6 +1407,7 @@
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Distribution_Receive.aspx" />
+    <Content Include="SCM\FGTransfer.aspx" />
     <Content Include="SCM\FG_Receive.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\FixedAssetAudit.aspx" />
@@ -7421,6 +7422,13 @@
     </Compile>
     <Compile Include="SCM\Distribution_Receive.aspx.designer.cs">
       <DependentUpon>Distribution_Receive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\FGTransfer.aspx.cs">
+      <DependentUpon>FGTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\FGTransfer.aspx.designer.cs">
+      <DependentUpon>FGTransfer.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\FG_Receive.aspx.cs">
       <DependentUpon>FG_Receive.aspx</DependentUpon>
