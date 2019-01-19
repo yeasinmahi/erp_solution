@@ -410,7 +410,7 @@ namespace UI.PaymentModule
             try
             {
                 arrayKey = txtCOA.Text.Split(delimiterChars);
-                accid = arrayKey[2].ToString();
+                accid = arrayKey[3].ToString();
                 accname = arrayKey[0].ToString();
 
                 if (accname == "")
