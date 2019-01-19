@@ -1,204 +1,198 @@
-﻿
-	html.xp{
-		height:100%;
-	}
-	body.xp{	
-		height:100%;
-		margin:0px;
-		padding:0px;
-		font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
-	}
-	.ad{
-		/*margin-top:120px;*/
-	}
-	h1.xp{
-		font-size:0.9em;
-	}
+﻿html.xp {
+    height: 100%;
+}
 
-	a.xp{
-		color: #0066FF;/*#003366;*/
-		text-decoration:none;	
-		font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
-		font-size:13px;	
-		vertical-align:middle;
-	}
-	
-	a.xp:hover{
-		color: #000000;
-		text-decoration:none;
-	}
-	
-	
-	#sggbe_xpPane{
-		background-color: #EEF1FB;
-		float:left;
-		height:1700px;
-		width:200px;					
-	}
-	#sggbe_xpPane .sggbe_panel{
-		font-size:12px;
-		margin-left:20px;
-		margin-right:10px;
-		margin-top:10px;	
-	}
-	#sggbe_xpPane .panelContent
-	{		
-		font-size:12px;
-		background-image:url('../images/img/xpmenu/bg_pane_right.gif');
-		background-position:top right;
-		background-repeat:repeat-y;
-		border-left:1px solid #FFF;
-		border-bottom:1px solid #FFF;	
-		padding-left:10px;
-		padding-right:2px;	
-		/* new added */ padding-top:5px;
-		/* new added */ padding-bottom:5px;
-		overflow:hidden;
-		position:relative;
-		clear:both;
-	}
-	#sggbe_xpPane .panelContent div{
-		position:relative;		
-	}
-	#sggbe_xpPane .sggbe_panel .topBar{
-		background-image:url('../images/img/xpmenu/bg_panel_top_right.gif');
-		background-repeat:no-repeat;
-		background-position:top right;
-		height:25px;
-		padding-right:5px;
-		cursor:pointer;
-		overflow:hidden;
-	}
-	#sggbe_xpPane .sggbe_panel .topBar span{
-		line-height:25px;
-		vertical-align:middle;
-		font-family:arial;
-		font-size:0.7em;
-		color:#215DC6;
-		font-weight:bold;
-		float:left;
-		padding-left:5px;
-		font-size:12px;		
-	}
-	#sggbe_xpPane .sggbe_panel .topBar img{
-		float:right;
-		cursor:pointer;		
-	}
-	#otherContent{			/* Normal text content */
-		float:left;			/* Firefox - to avoid blank white space above panel */
-		padding-left:10px;	/* A little space at the left */
-	}	
-	
-	
-	
-	/* ------------------------------------------------------- */
-	
-	/* -------------------- TimePicker ----------------- */
-	
-	.time_picker_div {padding:2px;
-		border:solid #999999 1px;
-		background:#ffffff;}
-		
-	/* ------------------------------------------------------- */	
-	
-	img.menuicon
-	{
-		border:0px;		
-	}
-	
-	caption.blue
-	{
-		text-align:left;
-		background-color:navy;
-		color:#FFFFFF;
-		padding:2px;
-		border:0px;
-	}
-	
-	
-	.xp* /* for body, etc. */
-	{
-		margin:0px;
-	}
-	
-	
-	.xp0 /* for table, etc. */
-	{
-		font-family:Verdana;
-		font-size:8.5pt;
-		font-weight:bold;
-		text-decoration:none;
-	}
-	
-	.xp1 /* for button, etc. */
-	{
-		background-color:#DDDDDD;
-		color:#000099;
-		font-family:Verdana;
-		font-size:8pt;	
-		font-weight:bold;	
-		border:1px;			
-	}
-	
-	.xp2 /* for nav link */
-	{
-		background-color:transparent;
-		color:#000099;
-		font-family:Verdana;
-		font-size:8pt;	
-		font-weight:bold;			
-		text-decoration:none;		
-	}
-	
-	.xp2:hover
-	{	
-		text-decoration:underline;
-	}
-	
-	
-	.xp3 /* for table, etc. */
-	{
-		font-family:Verdana;
-		font-size:8.5pt;
-		font-weight:bold;
-		text-decoration:none;
-		color:DarkBlue;
-	}
-	
-	a.xp4:link /* phonebet link button*/
-	{
-		text-decoration:none;
-		font-family:Verdana;
-		border-top:2px solid #BBBBBB;
-		border-left:2px solid #BBBBBB;
-		border-bottom:2px solid #BBBBBB;
-		border-right:2px solid #BBBBBB;
-		font-size:10pt;
-		font-weight:bold;
-		padding-left:10px;
-		padding-right:10px;
-		color:#000000;
-		/*background-color:Navy;*/
-	}
+body.xp {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+}
 
-	a.xp4:visited
-	{
-		text-decoration:none;
-		font-family:Verdana;
-		border-top:2px solid #BBBBBB;
-		border-left:2px solid #BBBBBB;
-		border-bottom:2px solid #BBBBBB;
-		border-right:2px solid #BBBBBB;
-		font-size:10pt;
-		font-weight:bold;
-		padding-left:10px;
-		padding-right:10px;
-		color:#000000;
-		background-color:Orange;
-		text-align:center;
-	}
+h1.xp {
+    font-size: 0.9em;
+}
 
-	/*a.xp4:hover
+a.xp {
+    color: #0066FF; /*#003366;*/
+    text-decoration: none;
+    font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+    a.xp:hover {
+        color: #000000;
+        text-decoration: none;
+    }
+
+#sggbe_xpPane {
+    background-color: #EEF1FB;
+    float: left;
+    height: 3400px;
+    width: 200px;
+}
+
+    #sggbe_xpPane .sggbe_panel {
+        font-size: 12px;
+        margin-left: 20px;
+        margin-right: 10px;
+        margin-top: 10px;
+    }
+
+    #sggbe_xpPane .panelContent {
+        font-size: 12px;
+        background-image: url('../images/img/xpmenu/bg_pane_right.gif');
+        -ms-background-position: top right;
+        background-position: top right;
+        -ms-background-repeat: repeat-y;
+        background-repeat: repeat-y;
+        border-left: 1px solid #FFF;
+        border-bottom: 1px solid #FFF;
+        padding-left: 10px;
+        padding-right: 2px;
+        /* new added */ padding-top: 5px;
+        /* new added */ padding-bottom: 5px;
+        overflow: hidden;
+        position: relative;
+        clear: both;
+    }
+
+        #sggbe_xpPane .panelContent div {
+            position: relative;
+        }
+
+    #sggbe_xpPane .sggbe_panel .topBar {
+        background-image: url('../images/img/xpmenu/bg_panel_top_right.gif');
+        -ms-background-repeat: no-repeat;
+        background-repeat: no-repeat;
+        -ms-background-position: top right;
+        background-position: top right;
+        height: 25px;
+        padding-right: 5px;
+        cursor: pointer;
+        overflow: hidden;
+    }
+
+        #sggbe_xpPane .sggbe_panel .topBar span {
+            line-height: 25px;
+            vertical-align: middle;
+            font-family: arial;
+            font-size: 0.7em;
+            color: #215DC6;
+            font-weight: bold;
+            float: left;
+            padding-left: 5px;
+            font-size: 12px;
+        }
+
+        #sggbe_xpPane .sggbe_panel .topBar img {
+            float: right;
+            cursor: pointer;
+        }
+
+#otherContent { /* Normal text content */
+    float: left; /* Firefox - to avoid blank white space above panel */
+    padding-left: 10px; /* A little space at the left */
+}
+
+/* ------------------------------------------------------- */
+
+/* -------------------- TimePicker ----------------- */
+
+.time_picker_div {
+    padding: 2px;
+    border: solid #999999 1px;
+    background: #ffffff;
+}
+
+/* ------------------------------------------------------- */
+
+img.menuicon {
+    border: 0;
+}
+
+caption.blue {
+    text-align: left;
+    background-color: navy;
+    color: #FFFFFF;
+    padding: 2px;
+    border: 0;
+}
+
+.xp * /* for body, etc. */ {
+    margin: 0;
+}
+
+.xp0 /* for table, etc. */ {
+    font-family: Verdana;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.xp1 /* for button, etc. */ {
+    background-color: #DDDDDD;
+    color: #000099;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-weight: bold;
+    border: 1px;
+}
+
+.xp2 /* for nav link */ {
+    background-color: transparent;
+    color: #000099;
+    font-family: Verdana;
+    font-size: 8pt;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+    .xp2:hover {
+        text-decoration: underline;
+    }
+
+.xp3 /* for table, etc. */ {
+    font-family: Verdana;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-decoration: none;
+    color: DarkBlue;
+}
+
+a.xp4:link /* phonebet link button*/ {
+    text-decoration: none;
+    font-family: Verdana;
+    border-top: 2px solid #BBBBBB;
+    border-left: 2px solid #BBBBBB;
+    border-bottom: 2px solid #BBBBBB;
+    border-right: 2px solid #BBBBBB;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #000000;
+    /*background-color:Navy;*/
+}
+
+a.xp4:visited {
+    text-decoration: none;
+    font-family: Verdana;
+    border-top: 2px solid #BBBBBB;
+    border-left: 2px solid #BBBBBB;
+    border-bottom: 2px solid #BBBBBB;
+    border-right: 2px solid #BBBBBB;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #000000;
+    background-color: Orange;
+    text-align: center;
+}
+
+/*a.xp4:hover
 	{
 		text-decoration:none;
 		font-family:Verdana;
@@ -212,8 +206,8 @@
 		padding-right:10px;
 		color:#000000;
 	}*/
-	
-	/*a.xp4:active
+
+/*a.xp4:active
 	{
 		text-decoration:none;
 		font-family:Verdana;
@@ -228,448 +222,412 @@
 		color:#000000;
 		background-color:Gray;
 	}*/
-	
-	a.xp5:link /* phonebet link button*/
-	{
-		text-decoration:none;
-		font-family:Verdana;
-		border-top:2px solid #BBBBBB;
-		border-left:2px solid #BBBBBB;
-		border-bottom:2px solid #BBBBBB;
-		border-right:2px solid #BBBBBB;
-		font-size:10pt;
-		font-weight:bold;
-		padding-left:10px;
-		padding-right:10px;
-		color:#FFFFFF;
-		/*background-color:Navy;*/
-	}
 
-	a.xp5:visited
-	{
-		text-decoration:none;
-		font-family:Verdana;
-		border-top:2px solid #BBBBBB;
-		border-left:2px solid #BBBBBB;
-		border-bottom:2px solid #BBBBBB;
-		border-right:2px solid #BBBBBB;
-		font-size:10pt;
-		font-weight:bold;
-		padding-left:10px;
-		padding-right:10px;
-		color:#FFFFFF;
-		background-color:Navy;
-		text-align:center;
-	}
-	
-	a.xp6:link /* for phonebet ticket cancel link */
-	{
-		text-decoration:none;
-		font-family:Verdana;
-		border-top:1px solid #FFFFFF;
-		border-left:1px solid #FFFFFF;
-		border-bottom:1px solid #666666;
-		border-right:1px solid #666666;
-		font-size:10pt;
-		font-weight:bold;
-		padding-left:10px;
-		padding-right:10px;
-		color:#000099;
-		background-color:#DDDDDD;
-	}
+a.xp5:link /* phonebet link button*/ {
+    text-decoration: none;
+    font-family: Verdana;
+    border-top: 2px solid #BBBBBB;
+    border-left: 2px solid #BBBBBB;
+    border-bottom: 2px solid #BBBBBB;
+    border-right: 2px solid #BBBBBB;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #FFFFFF;
+    /*background-color:Navy;*/
+}
 
-	a.xp6:visited 
-	{
-		text-decoration:none;
-		font-family:Verdana;
-		border-top:1px solid #FFFFFF;
-		border-left:1px solid #FFFFFF;
-		border-bottom:1px solid #666666;
-		border-right:1px solid #666666;
-		font-size:10pt;
-		font-weight:bold;
-		padding-left:10px;
-		padding-right:10px;
-		color:#000099;
-		background-color:#DDDDDD;
-		text-align:center;
-	}
-	
-	a.DeleteLink
-	{
-		background:url(../images/icons/Delete.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.EditLink
-	{
-		background:url(../images/icons/Edit.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.CommLink
-	{
-		background:url(../images/icons/Comission.jpg) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.PosLink
-	{
-		background:url(Content/images/icons/Position.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	a.EventLink
-	{
-		background:url(../images/icons/EventLimit.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	td.GridViewTableCell
-	{
-		padding:5px;
-	}
-	
-	.TDrefNo
-	{
-		color:#0000AA;
-	}
-	
-		a.UpdateLink
-	{
-		background:url(../images/icons/Save.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
+a.xp5:visited {
+    text-decoration: none;
+    font-family: Verdana;
+    border-top: 2px solid #BBBBBB;
+    border-left: 2px solid #BBBBBB;
+    border-bottom: 2px solid #BBBBBB;
+    border-right: 2px solid #BBBBBB;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #FFFFFF;
+    background-color: Navy;
+    text-align: center;
+}
 
-	a.CancelLink
-	{
-		background:url(../images/icons/refresh.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.CancelLink2
-	{
-		background:url(../images/icons/cancel.png) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.OPENLink
-	{
-		background:url(../images/icons/Play.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	a.CLOSELink
-	{
-		background:url(../images/icons/Stop.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-		a.PAUSELink
-	{
-		background:url(../images/icons/Pause.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	a.ACTIVELink
-	{
-		background:url(../images/icons/Active.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	a.INACTIVELink
-	{
-		background:url(../images/icons/Inactive.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.ACTIVATELink
-	{
-		background:url(../images/icons/Active.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	a.DEACTIVATELink
-	{
-		background:url(../images/icons/Inactive.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	.loginbtn 
-	{
-		background-color:Transparent;
-		background: url(../images/img/login.png) no-repeat;
-		color:#FFFFFF;
-		font-family:Verdana;
-		font-size:9pt;
-		font-weight:bold;
-		padding-left:5px;
-		padding-right:5px;
-	}
-	a.LogoutLink
-	{
-		/*background:url(Images/icons/shutdown.gif) no-repeat;*/
-		border:0px;
-		width:24px;
-		height:24px;
-		text-decoration:none;
-		/*padding-bottom:8px;*/
-	}
-	
-	a.UnsubscribedLink
-	{
-		background:url(../images/icons/Unsubscribe.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.subscribedLink
-	{
-		background:url(../images/icons/Subscribe.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;	
-	}
-	
-	a.HelpLink
-	{
-		/*background:url(Images/icons/shutdown.gif) no-repeat;*/
-		border:0px;
-		width:18px;
-		height:18px;
-		text-decoration:none;
-		/*padding-bottom:8px;*/
-	}
-	
-	a.MsgLink
-	{
-		/*background:url(Images/icons/shutdown.gif) no-repeat;*/
-		border:0px;
-		width:18px;
-		height:12px;
-		text-decoration:none;
-		/*padding-bottom:8px;*/
-	}
-	
-	a.PassWordLink
-	{
-		background:url(../images/icons/settings.gif) no-repeat;
-		border:0px;
-		width:18px;
-		height:12px;
-		text-decoration:none;
-		/*padding-bottom:8px;*/
-	}
-	
-	a.TransferLink
-	{
-		background:url(../images/icons/Right.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;	
-	}
-	
-	.GroupByColumnRow
-	{
-		font-style:italic;
-		font-weight:bold;
-		background-color:#EEEEEE;
-		color:#000000;
-		font-size:8pt;
-	}
-	
-	.caption
-	{
-		background-color:Maroon;
-		color:#FFFFFF;
-	}
-	
-	a.ResetPasswordLink
-	{
-		background:url(../images/icons/ResetPassword.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.Print
-	{
-		background:url(../images/icons/print.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.Back
-	{
-		background:url(../images/icons/back4.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.History
-	{
-		background:url(../images/icons/History.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;	
-	}
-	a.HoldLink
-	{
-		background:url(../images/icons/pause_blue.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-		a.UnHoldLink
-	{
-		background:url(../images/icons/play_blue.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	a.UndoLink
-	{
-		background:url(../images/icons/arrow_undo.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-		a.RedoLink
-	{
-		background:url(../images/icons/arrow_redo.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-		a.DetailsLink
-	{
-		background:url(../images/icons/Details.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-		a.UndoLink2
-	{
-		background:url(../images/icons/arrow_undo2.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.RedoLink2
-	{
-		background:url(../images/icons/arrow_redo2.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.ReprocessLink
-	{
-		background:url(../images/icons/arrow_refresh.gif) no-repeat;
-		border:0px;
-		width:16px;
-		height:16px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	a.DocLink
-	{
-		background:url(../images/icons/fullscreen2.gif) no-repeat;
-		border:0px;
-		width:23px;
-		height:19px;
-		text-decoration:none;
-		padding-bottom:8px;
-	}
-	
-	
-	
-	
+a.xp6:link /* for phonebet ticket cancel link */ {
+    text-decoration: none;
+    font-family: Verdana;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #666666;
+    border-right: 1px solid #666666;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #000099;
+    background-color: #DDDDDD;
+}
+
+a.xp6:visited {
+    text-decoration: none;
+    font-family: Verdana;
+    border-top: 1px solid #FFFFFF;
+    border-left: 1px solid #FFFFFF;
+    border-bottom: 1px solid #666666;
+    border-right: 1px solid #666666;
+    font-size: 10pt;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #000099;
+    background-color: #DDDDDD;
+    text-align: center;
+}
+
+a.DeleteLink {
+    background: url(../images/icons/Delete.gif) no-repeat;
+    border: 0;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.EditLink {
+    background: url(../images/icons/Edit.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.CommLink {
+    background: url(../images/icons/Comission.jpg) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.PosLink {
+    background: url(Content/images/icons/Position.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.EventLink {
+    background: url(../images/icons/EventLimit.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+td.GridViewTableCell {
+    padding: 5px;
+}
+
+.TDrefNo {
+    color: #0000AA;
+}
+
+a.UpdateLink {
+    background: url(../images/icons/Save.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.CancelLink {
+    background: url(../images/icons/refresh.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.CancelLink2 {
+    background: url(../images/icons/cancel.png) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.OPENLink {
+    background: url(../images/icons/Play.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.CLOSELink {
+    background: url(../images/icons/Stop.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.PAUSELink {
+    background: url(../images/icons/Pause.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.ACTIVELink {
+    background: url(../images/icons/Active.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.INACTIVELink {
+    background: url(../images/icons/Inactive.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.ACTIVATELink {
+    background: url(../images/icons/Active.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.DEACTIVATELink {
+    background: url(../images/icons/Inactive.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+.loginbtn {
+    background-color: Transparent;
+    background: url(../images/img/login.png) no-repeat;
+    color: #FFFFFF;
+    font-family: Verdana;
+    font-size: 9pt;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+a.LogoutLink {
+    /*background:url(Images/icons/shutdown.gif) no-repeat;*/
+    border: 0px;
+    width: 24px;
+    height: 24px;
+    text-decoration: none;
+    /*padding-bottom:8px;*/
+}
+
+a.UnsubscribedLink {
+    background: url(../images/icons/Unsubscribe.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.subscribedLink {
+    background: url(../images/icons/Subscribe.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.HelpLink {
+    /*background:url(Images/icons/shutdown.gif) no-repeat;*/
+    border: 0px;
+    width: 18px;
+    height: 18px;
+    text-decoration: none;
+    /*padding-bottom:8px;*/
+}
+
+a.MsgLink {
+    /*background:url(Images/icons/shutdown.gif) no-repeat;*/
+    border: 0px;
+    width: 18px;
+    height: 12px;
+    text-decoration: none;
+    /*padding-bottom:8px;*/
+}
+
+a.PassWordLink {
+    background: url(../images/icons/settings.gif) no-repeat;
+    border: 0px;
+    width: 18px;
+    height: 12px;
+    text-decoration: none;
+    /*padding-bottom:8px;*/
+}
+
+a.TransferLink {
+    background: url(../images/icons/Right.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+.GroupByColumnRow {
+    font-style: italic;
+    font-weight: bold;
+    background-color: #EEEEEE;
+    color: #000000;
+    font-size: 8pt;
+}
+
+.caption {
+    background-color: Maroon;
+    color: #FFFFFF;
+}
+
+a.ResetPasswordLink {
+    background: url(../images/icons/ResetPassword.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.Print {
+    background: url(../images/icons/print.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.Back {
+    background: url(../images/icons/back4.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.History {
+    background: url(../images/icons/History.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.HoldLink {
+    background: url(../images/icons/pause_blue.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.UnHoldLink {
+    background: url(../images/icons/play_blue.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.UndoLink {
+    background: url(../images/icons/arrow_undo.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.RedoLink {
+    background: url(../images/icons/arrow_redo.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.DetailsLink {
+    background: url(../images/icons/Details.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.UndoLink2 {
+    background: url(../images/icons/arrow_undo2.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.RedoLink2 {
+    background: url(../images/icons/arrow_redo2.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.ReprocessLink {
+    background: url(../images/icons/arrow_refresh.gif) no-repeat;
+    border: 0px;
+    width: 16px;
+    height: 16px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}
+
+a.DocLink {
+    background: url(../images/icons/fullscreen2.gif) no-repeat;
+    border: 0px;
+    width: 23px;
+    height: 19px;
+    text-decoration: none;
+    padding-bottom: 8px;
+}

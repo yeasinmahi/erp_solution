@@ -19,25 +19,24 @@ namespace UI.SCM
 {
     public partial class Indent : BasePage
     {
-        private Indents_BLL objIndent = new Indents_BLL();
+        private readonly Indents_BLL _objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
-        private string xmlunit = "";
-        private int enroll, CheckItem = 1, intWh;
+        private readonly string xmlunit = "";
+        private int CheckItem = 1, intWh;
         private string[] arrayKey;
-        private char[] delimiterChars = { '[', ']' };
+        private readonly char[] delimiterChars = { '[', ']' };
         private string filePathForXML;
         private string xmlString = "", indentQty;
 
-        private SeriLog log = new SeriLog();
-        private string location = "SCM";
-        private string start = "starting SCM\\Indent";
-        private string stop = "stopping SCM\\Indent";
-        private string perform = "Performance on SCM\\Indent";
+        private readonly SeriLog log = new SeriLog();
+        private readonly string location = "SCM";
+        private readonly string start = "starting SCM\\Indent";
+        private readonly string stop = "stopping SCM\\Indent";
+        private readonly string perform = "Performance on SCM\\Indent";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + enroll + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
@@ -62,29 +61,28 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIndent.DataView(1, xmlunit, 0, 0, DateTime.Now, enroll);
+                dt = _objIndent.DataView(1, xmlunit, 0, 0, DateTime.Now, Enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                dt = objIndent.DataView(2, xmlunit, int.Parse(ddlWH.SelectedValue), 0, DateTime.Now, enroll);
+                dt = _objIndent.DataView(2, xmlunit, int.Parse(ddlWH.SelectedValue), 0, DateTime.Now, Enroll);
                 ddlQcPersonal.DataSource = dt;
                 ddlQcPersonal.DataTextField = "strName";
                 ddlQcPersonal.DataValueField = "Id";
                 ddlQcPersonal.DataBind();
 
-                dt = objIndent.GetDepartment();
+                dt = _objIndent.GetDepartment();
                 Common.LoadDropDownWithSelect(ddlDepartment, dt, "intdepartmentID", "strDepatrment");
 
-                dt = objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, enroll);
+                dt = _objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, Enroll);
                 ddlReqId.DataSource = dt;
                 ddlReqId.DataTextField = "strName";
                 ddlReqId.DataValueField = "Id";
                 ddlReqId.DataBind();
 
-                dt = objIndent.DataView(11, "", 0, 0, DateTime.Now, enroll);
+                dt = _objIndent.DataView(11, "", 0, 0, DateTime.Now, Enroll);
                 ddlType.DataSource = dt;
                 ddlType.DataTextField = "strName";
                 ddlType.DataValueField = "Id";
@@ -93,7 +91,10 @@ namespace UI.SCM
                 {
                     Session["WareID"] = ddlWH.SelectedValue;
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Alert(ex.Message);
+                }
             }
             catch (Exception ex)
             {
@@ -122,7 +123,7 @@ namespace UI.SCM
                 string indentType = ddlType.SelectedItem.ToString();
                 string purpose = txtPurpose.Text;
                 string qcby = ddlQcPersonal.SelectedValue;
-                dt = objIndent.DataView(5, xmlunit, intWh, reqId, DateTime.Now, enroll);
+                dt = _objIndent.DataView(5, xmlunit, intWh, reqId, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0 && int.Parse(ddlType.SelectedValue) > 0)
                 {
                     for (int i = 0; dt.Rows.Count > i; i++)
@@ -193,7 +194,7 @@ namespace UI.SCM
                 catch { }
                 Session["WareID"] = ddlWH.SelectedValue;
                 intWh = int.Parse(ddlWH.SelectedValue);
-                dt = objIndent.DataView(2, xmlunit, intWh, 0, DateTime.Now, enroll);
+                dt = _objIndent.DataView(2, xmlunit, intWh, 0, DateTime.Now, Enroll);
                 ddlQcPersonal.DataSource = dt;
                 ddlQcPersonal.DataTextField = "strName";
                 ddlQcPersonal.DataValueField = "Id";
@@ -217,10 +218,13 @@ namespace UI.SCM
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0]; itemid = arrayKey[1];
+                    item = arrayKey[0];
+                    itemid = arrayKey[1];
                 }
                 string reqCode = "0";
                 string reqId = "0";
@@ -237,10 +241,10 @@ namespace UI.SCM
                     }
 
                     // This code stop by alamin@akij.net
-                    //dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                    //dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, Enroll);
 
                     dt = new DataTable();
-                    dt = objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
+                    dt = _objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
                     if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
                     {
                         string itemId = dt.Rows[0]["intItemID"].ToString();
@@ -439,7 +443,6 @@ namespace UI.SCM
             {
                 if (int.Parse(ddlType.SelectedValue) > 0)
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(ddlWH.SelectedValue);
                     doc.Load(filePathForXML);
@@ -450,7 +453,7 @@ namespace UI.SCM
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string mrtg = objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, enroll);
+                        string mrtg = _objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, Enroll);
                         string[] searchKey = Regex.Split(mrtg, ":");
                         lblIndentNo.Text = "Indent Number: " + searchKey[1];
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
