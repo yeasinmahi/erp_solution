@@ -154,13 +154,25 @@
                     <table>
                         <tr>
                             <%--<MKB:TimeSelector ID="tpkEndTime" runat="server" SelectedTimeFormat="TwentyFour" ></MKB:TimeSelector>--%>
-                            <td style="text-align: left; width: 20px; display: inline">
-                                <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Product Qty"></asp:Label>
-                            </td>
-                            <td style="text-align: left">
-                                <asp:TextBox ID="txtProductQty" Width="100px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
-                            <td>
-                                <asp:Label ID="lblUom1" runat="server" ForeColor="Blue"></asp:Label></td>
+                           
+                            <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Product Qty"></asp:Label></td>
+                            
+                            <td style="text-align: left"><asp:TextBox ID="txtProductQty" Width="100px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
+                              
+                             
+                                <td><asp:Label ID="lblUom1" runat="server" ForeColor="Blue"></asp:Label></td>
+
+                             <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="Label4" Font-Bold="true" runat="server" Text="Actual Qty"></asp:Label></td>
+                            
+                            <td style="text-align: left"><asp:TextBox ID="txtActualQty" Width="90px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
+
+
+
+                             <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="Label3" Font-Bold="true" runat="server" Text="QcHold"></asp:Label></td>
+                            
+                            <td style="text-align: left"><asp:TextBox ID="txtQc" Width="90px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
+
+
                             <td style="text-align: right">
                                 <asp:Label Font-Bold="true" ID="lblSendStore" runat="server" Text="Send To Store"></asp:Label></td>
                             <td>
@@ -171,6 +183,14 @@
                             <td style="text-align: right">
                                 <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
                                 <asp:Button ID="btnSaves" ForeColor="Black" BackColor="#ffccff" Font-Bold="true" runat="server" OnClientClick="Confirms();" Text="Save" OnClick="btnSaves_Click" /></td>
+                        </tr>
+                        <tr>
+                              <td style="text-align: left;">
+                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Exp.Date :"></asp:Label></td>
+                            <td style="text-align: left" colspan="3">
+                                <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <cc1:CalendarExtender ID="CalendarExtenderExp" runat="server" Format="yyyy-MM-dd" TargetControlID="txtExpDate"></cc1:CalendarExtender>
+                            </td>
                         </tr>
                     </table>
                     <table>

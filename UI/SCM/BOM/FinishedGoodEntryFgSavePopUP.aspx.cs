@@ -32,6 +32,7 @@ namespace UI.SCM.BOM
                 try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
                 catch { }
                 claenderDte.SelectedDate = DateTime.Now;
+                CalendarExtenderExp.SelectedDate = DateTime.Now;
                 productionID = Request.QueryString["productID"].ToString();
                 productName = Request.QueryString["productName"].ToString();
                 bomName = Request.QueryString["bomName"].ToString();
@@ -109,10 +110,13 @@ namespace UI.SCM.BOM
                     {
                         string struom = lblUom1.Text.ToString();
                         string qty = txtProductQty.Text.ToString();
+                        string actualQty = txtActualQty.Text.ToString();
+                        string qcHoldQty = txtQc.Text.ToString();
                         string storeQty = txtSendToStore.Text.ToString();
                         string jobno = txtJob.Text.ToString();
                         string times = txtTime.Text.ToString();
-                        CreateXml(item, itemid, struom, qty, storeQty, jobno, times);
+                        string expDate = txtExpDate.Text.ToString();
+                        CreateXml(item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate);
                     }
                     else { }
                 }
@@ -124,14 +128,14 @@ namespace UI.SCM.BOM
             catch { }
         }
 
-        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times)
+        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,string actualQty,string qcHoldQty,string expDate)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times);
+                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -139,7 +143,7 @@ namespace UI.SCM.BOM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times);
+                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -147,7 +151,7 @@ namespace UI.SCM.BOM
             LoadGridwithXml();
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times)
+        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,string actualQty, string qcHoldQty,string expDate)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -166,6 +170,17 @@ namespace UI.SCM.BOM
             XmlAttribute Times = doc.CreateAttribute("times");
             Times.Value = times;
 
+            XmlAttribute ActualQty = doc.CreateAttribute("actualQty");
+            ActualQty.Value = actualQty;
+
+            XmlAttribute QcHoldQty = doc.CreateAttribute("qcHoldQty");
+            QcHoldQty.Value = qcHoldQty;
+
+            XmlAttribute ExpDate = doc.CreateAttribute("expDate");
+            ExpDate.Value = expDate;
+
+
+            
             node.Attributes.Append(Item);
             node.Attributes.Append(Itemid);
             node.Attributes.Append(Struom);
@@ -174,6 +189,12 @@ namespace UI.SCM.BOM
             node.Attributes.Append(StoreQty);
             node.Attributes.Append(Jobno);
             node.Attributes.Append(Times);
+
+            node.Attributes.Append(ActualQty);
+
+            node.Attributes.Append(QcHoldQty);
+
+            node.Attributes.Append(ExpDate);
 
             return node;
         }
@@ -256,7 +277,7 @@ namespace UI.SCM.BOM
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(9, xmlString, intWh, productionId, DateTime.Now, enroll);
+                        string msg = objBom.BomPostData(9, xmlString, intWh, productionId, dteDate, enroll);
 
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();
