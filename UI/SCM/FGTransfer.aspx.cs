@@ -136,16 +136,11 @@ namespace UI.SCM
                     {
                         TextBox txtQuantity = (TextBox)e.Row.FindControl("txtQuantity");
 
-                        _dt = objIssue.GetViewData(18, "", intwh, int.Parse(ddlLocation.SelectedValue), DateTime.Now,
-                            itemId);
-                        if (_dt.Rows.Count > 0)
-                        {
-                            txtQuantity.Text = _dt.Rows[0]["monStock"].ToString();
-                        }
-                        else
-                        {
-                            txtQuantity.Text = "0";
-                        }
+                        if (ddlLocation != null)
+                            _dt = objIssue.GetViewData(18, "", intwh, int.Parse(ddlLocation?.SelectedValue),
+                                DateTime.Now,
+                                itemId);
+                        txtQuantity.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["monStock"].ToString() : "0";
                     }
                     catch (Exception ex)
                     {
