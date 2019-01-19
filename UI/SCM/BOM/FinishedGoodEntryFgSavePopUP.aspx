@@ -235,6 +235,27 @@
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
+                                        <asp:TemplateField HeaderText="Act.Qty" ItemStyle-HorizontalAlign="right" SortExpression="actualQty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblActQty" runat="server" Width="" Text='<%# Bind("actualQty") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="Qc.Hold" ItemStyle-HorizontalAlign="right" SortExpression="qcHoldQty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblQcHo" runat="server" Width="" Text='<%# Bind("qcHoldQty") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Exp.Date" ItemStyle-HorizontalAlign="right" SortExpression="expDate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblExpD" runat="server" Width="" Text='<%# Bind("expDate") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                        
+
+
                                         <asp:TemplateField HeaderText="Job No" ItemStyle-HorizontalAlign="right" SortExpression="jobno">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblJobNo" runat="server" Width="" Text='<%# Bind("jobno") %>'></asp:Label></ItemTemplate>
