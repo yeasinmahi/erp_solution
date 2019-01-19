@@ -20,7 +20,7 @@ namespace UI.SCM.BOM
         private int intwh, enroll, BomId, intBomStandard; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
         private string filePathForXML; private string xmlString = "";
-
+        decimal qty, actualQty, qcHoldQty, storeQty;
         private string productionID, itemId, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -97,6 +97,7 @@ namespace UI.SCM.BOM
         {
             try
             {
+              
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
                 string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
@@ -106,17 +107,21 @@ namespace UI.SCM.BOM
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
                 {
-                    if (double.Parse(txtProductQty.Text.ToString()) > 0 || double.Parse(txtSendToStore.Text.ToString()) > 0)
+                    try { qty = decimal.Parse(txtProductQty.Text.ToString()); } catch { qty = 0; }
+                    try { actualQty = decimal.Parse(txtActualQty.Text.ToString()); } catch { actualQty = 0; }
+                    try { qcHoldQty = decimal.Parse(txtQc.Text.ToString()); } catch { qcHoldQty = 0; }
+                    try { storeQty = decimal.Parse(txtSendToStore.Text.ToString()); } catch { storeQty = 0; }
+
+
+                    if (qty > 0 || storeQty > 0)
                     {
+                      
                         string struom = lblUom1.Text.ToString();
-                        string qty = txtProductQty.Text.ToString();
-                        string actualQty = txtActualQty.Text.ToString();
-                        string qcHoldQty = txtQc.Text.ToString();
-                        string storeQty = txtSendToStore.Text.ToString();
+                       
                         string jobno = txtJob.Text.ToString();
                         string times = txtTime.Text.ToString();
                         string expDate = txtExpDate.Text.ToString();
-                        CreateXml(item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate);
+                        CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times, actualQty.ToString(), qcHoldQty.ToString(), expDate);
                     }
                     else { }
                 }
