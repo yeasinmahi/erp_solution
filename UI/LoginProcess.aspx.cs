@@ -12,13 +12,13 @@ namespace UI
     public partial class LoginProcess : System.Web.UI.Page
     {
         public string RetStr = null;
-        public string ReturnUrl = null;
+       // public string ReturnUrl = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             /*if (!IsPostBack && Request.Form.Count >= 2)
             {*/
-            ReturnUrl = Request.QueryString["returnUrl"];
+            //ReturnUrl = Request.QueryString["returnUrl"];
             string user = "" + Request.Form["txtUserID"];
             string pass = "" + Request.Form["txtPass"];
             if (user == "" && pass == "")
@@ -216,14 +216,20 @@ namespace UI
             Session[SessionParams.EMAIL] = id.Trim();
             Session[SessionParams.PHONE] = phone;
             Session[SessionParams.Supervisor] = supervisor;
-            if (string.IsNullOrWhiteSpace(ReturnUrl))
-            {
-                Response.Redirect("HomePage.aspx");
-            }
-            else
-            {
-                Response.Redirect(ReturnUrl);
-            }
+
+            //if (string.IsNullOrWhiteSpace(ReturnUrl))
+            //{
+            //    Response.Redirect("HomePage.aspx");
+            //}
+            //else
+            //{
+            //    Response.Redirect(ReturnUrl);
+            //}
+            //string useID = Session[SessionParams.EMAIL].ToString();
+
+            //Random rd = new Random();
+
+            Response.Redirect("HomePage.aspx");
         }
     }
 }

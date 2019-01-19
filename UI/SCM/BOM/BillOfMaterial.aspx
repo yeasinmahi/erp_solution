@@ -45,8 +45,8 @@
                 var code = document.getElementById("txtCode").value;
                 var name =document.getElementById("txtBomName").value;
            
-             if ($.trim(wastage) == 0 || $.trim(wastage) == "" || $.trim(wastage) == null || $.trim(wastage) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input wastage%'); }
-             else if ($.trim(code) == 0 || $.trim(code) == "" || $.trim(code) == null || $.trim(code) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Code'); }
+             //if ($.trim(wastage) == 0 || $.trim(wastage) == "" || $.trim(wastage) == null || $.trim(wastage) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input wastage%'); }
+              if ($.trim(code) == 0 || $.trim(code) == "" || $.trim(code) == null || $.trim(code) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Code'); }
              else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
              else if ($.trim(name) == 0 || $.trim(name) == "" || $.trim(name) == null || $.trim(name) == undefined || $.trim(name) =="NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Name'); }
              else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
@@ -110,13 +110,13 @@
        <div class="tabs_container">Bill of Material From<hr/></div> 
         <div>
            <div style="Text-align:left;" class="auto-style2">
-           <b><table style="width:650px">
+           <b><table style="width:100%">
             <tr> 
             <td style="text-align:left;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
 
             <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>            
-            <td style="text-align:left;"  ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="250px"   ></asp:TextBox>
+            <td style="text-align:left;"  ><asp:TextBox ID="txtItem" runat="server" TextMode="MultiLine" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="250px"   ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
             ServiceMethod="GetItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -136,7 +136,7 @@
            </tr>
             <tr>
               <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="BOM Name"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtBomName" CssClass="txtBox" Font-Bold="False" Text="0" AutoPostBack="false" runat="server"></asp:TextBox></td> 
+            <td style="text-align:left;"><asp:TextBox ID="txtBomName" CssClass="txtBox" TextMode="MultiLine" Font-Bold="False" Text="0"  runat="server"></asp:TextBox></td> 
                  <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Code"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtCode" CssClass="txtBox" Font-Bold="False"   Text="0" AutoPostBack="false" runat="server"></asp:TextBox> </td>
             </tr>
@@ -148,10 +148,10 @@
            </td>  
             </tr>
              </table>
-               <table style="width:800px"> 
+               <table style="width:600px"> 
             <tr><td> 
 
-            <asp:GridView ID="dgvRecive" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="650px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
+            <asp:GridView ID="dgvRecive" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="600px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting" 
 
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  >
 
@@ -199,7 +199,7 @@
           
        <div style="Text-align:right;Width:40%;float:right">
               
-               <table style="width:400px">
+               <table style="width:350px">
                    <tr>
                       
               <td style="Text-align:right;"><asp:TextBox ID="txtBomItem" runat="server" AutoCompleteType="Search" Placeholder="Bom Item Search" CssClass="txtBox" AutoPostBack="true" Width="400px" OnTextChanged="txtBomItem_TextChanged"   ></asp:TextBox>
@@ -210,7 +210,7 @@
             </cc1:AutoCompleteExtender></td>
                    </tr>
                    <tr>
-                       <td style="text-align:right"><asp:listbox ID="ListDatas" Width="400px" Height="300px" AutoPostBack="true"   runat="server" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"> 
+                       <td style="text-align:right"><asp:listbox ID="ListDatas" style="width:100%" Height="300px" AutoPostBack="true"   runat="server" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"> 
              </asp:listbox> </td>
                    </tr>
                </table>

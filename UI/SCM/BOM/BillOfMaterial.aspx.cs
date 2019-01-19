@@ -297,7 +297,7 @@ namespace UI.SCM.BOM
                         string itemid = dt.Rows[i]["intItemID"].ToString();
                         string item = dt.Rows[i]["strItem"].ToString();
                         string uom = dt.Rows[i]["strUoM"].ToString();
-                        txtBomName.Text = bomname; txtCode.Text = strCode;
+                        txtCode.Text = strCode;
                         CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
                     }
                 }
