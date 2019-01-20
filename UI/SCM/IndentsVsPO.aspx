@@ -187,7 +187,7 @@
 
                                         <asp:TemplateField HeaderText="Indent Date" ItemStyle-HorizontalAlign="right" SortExpression="stindDaterName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldteIndent" runat="server" Text='<%# Bind("indDate","{0:dd-mm-yyyy}") %>'></asp:Label>
+                                                <asp:Label ID="lbldteIndent" runat="server" Text='<%# Bind("indDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
@@ -208,7 +208,7 @@
 
                                         <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDueDate" runat="server" Width="60px" Text='<%# Bind("dteDueDate","{0:dd-mm-yyyy}") %>'></asp:Label>
+                                                <asp:Label ID="lblDueDate" runat="server" Width="60px" Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
