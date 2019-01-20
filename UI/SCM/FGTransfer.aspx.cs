@@ -68,52 +68,52 @@ namespace UI.SCM
         {
             Toaster("Under Maintainace", Common.TosterType.Warning);
             return;
-            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            //GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
 
-            int location = 0, vehicle = 0, intOutWh = 0, intSalesId = 0;
-            DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
-            DateTime toDate = Convert.ToDateTime(txtToDate.Text);
+            //int location = 0, vehicle = 0, intOutWh = 0, intSalesId = 0;
+            //DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
+            //DateTime toDate = Convert.ToDateTime(txtToDate.Text);
 
-            int autoid = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
-            int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
-            DateTime invDate = Convert.ToDateTime(((Label)row.FindControl("lblLastActionTime")).Text);
-            decimal storeQty = Convert.ToDecimal(((TextBox)row.FindControl("txtSendStoreQty")).Text);
-            int productid = Convert.ToInt32(((Label)row.FindControl("lblintproductionid")).Text);
-            int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
-            _dt = _objbll.GetUnitByWH(whid);
-            int unitId = Convert.ToInt32(_dt.Rows[0]["intUnitID"].ToString());
+            //int autoid = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
+            //int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
+            //DateTime invDate = Convert.ToDateTime(((Label)row.FindControl("lblLastActionTime")).Text);
+            //decimal storeQty = Convert.ToDecimal(((TextBox)row.FindControl("txtSendStoreQty")).Text);
+            //int productid = Convert.ToInt32(((Label)row.FindControl("lblintproductionid")).Text);
+            //int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
+            //_dt = _objbll.GetUnitByWH(whid);
+            //int unitId = Convert.ToInt32(_dt.Rows[0]["intUnitID"].ToString());
 
-            _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 2, autoid, itemid, invDate, storeQty, productid); //insert into inventory
+            //_dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 2, autoid, itemid, invDate, storeQty, productid); //insert into inventory
 
-            _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 3, autoid, itemid, invDate, storeQty, productid); // get outWHID
-            if (_dt.Rows.Count > 0)
-            {
-                intOutWh = Convert.ToInt32(_dt.Rows[0]["intOutWHID"].ToString());
-            }
-            _dt = _objbll.DistributionData(whid, fromDate, toDate, 2, 0); //get location
-            if (_dt.Rows.Count > 0)
-            {
-                location = Convert.ToInt32(_dt.Rows[0]["intStoreLocationID"].ToString());
-            }
-            _dt = _objbll.InsertReceiveData(unitId, whid, intOutWh, 0, Enroll, 0, 0, 0, 0, "Transfer To Distribution", 0, 2, true); //get sales ID
+            //_dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 3, autoid, itemid, invDate, storeQty, productid); // get outWHID
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    intOutWh = Convert.ToInt32(_dt.Rows[0]["intOutWHID"].ToString());
+            //}
+            //_dt = _objbll.DistributionData(whid, fromDate, toDate, 2, 0); //get location
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    location = Convert.ToInt32(_dt.Rows[0]["intStoreLocationID"].ToString());
+            //}
+            //_dt = _objbll.InsertReceiveData(unitId, whid, intOutWh, 0, Enroll, 0, 0, 0, 0, "Transfer To Distribution", 0, 2, true); //get sales ID
 
-            if (_dt.Rows.Count > 0)
-            {
-                intSalesId = Convert.ToInt32(_dt.Rows[0]["strOutput"].ToString());
-            }
-            _dt = _objbll.InsertTransferData(unitId, whid, intOutWh, location, Enroll, intSalesId, itemid, storeQty, "Transfer To Distribution", 1, "Good Product");
-            string strChallan = "";
-            if (_dt.Rows.Count > 0)
-            {
-                strChallan = _dt.Rows[0]["strChallan"].ToString();
-            }
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    intSalesId = Convert.ToInt32(_dt.Rows[0]["strOutput"].ToString());
+            //}
+            //_dt = _objbll.InsertTransferData(unitId, whid, intOutWh, location, Enroll, intSalesId, itemid, storeQty, "Transfer To Distribution", 1, "Good Product");
+            //string strChallan = "";
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    strChallan = _dt.Rows[0]["strChallan"].ToString();
+            //}
 
-            if (vehicle > 0)
-            {
-                _dt = _objbll.GetTripEntry(strChallan, unitId, 0, 0);
-            }
+            //if (vehicle > 0)
+            //{
+            //    _dt = _objbll.GetTripEntry(strChallan, unitId, 0, 0);
+            //}
 
-            GridBind();
+            //GridBind();
         }
 
         protected void FG_Grid_OnRowDataBound(object sender, GridViewRowEventArgs e)
@@ -144,7 +144,7 @@ namespace UI.SCM
                     }
                     catch (Exception ex)
                     {
-                        Toaster(ex.Message, Common.TosterType.Error);
+
                     }
                 }
             }

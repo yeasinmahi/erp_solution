@@ -77,3 +77,6 @@ function convertDatetoString(date) {
 
     return day + ' ' + monthNames[monthIndex] + ' ' + year;
 }
+function confirmMsg() {
+    return confirm("Do you want to proceed?");
+}
