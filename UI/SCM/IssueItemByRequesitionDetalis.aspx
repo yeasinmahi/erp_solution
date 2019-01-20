@@ -29,10 +29,18 @@
                     var row = $(this).closest("tr");
                     var IssueQty = parseFloat($(this).val())
                     var StockQty = parseFloat($("[id*=lblStock]", row).html());
-                    var remain = parseFloat($("[id*=lblRemainIssue]", row).html());
+                    var remain = parseFloat($("[id*=lblRemainIssue]", row).html()); 
+                    var actual =  parseFloat($("[id*=lblActual]", row).html());
 
-                    if (StockQty >= IssueQty) {
+                    if (actual >= IssueQty) {
                         if (remain >= IssueQty) {
+                            if (StockQty >= IssueQty) {
+
+                            }
+                            else {
+                                $("[id*=txtIssue]", row).val('0');
+                               alert("Please Check Issue Quantity");
+                            }
                         }
                         else {
                             $("[id*=txtIssue]", row).val('0');
@@ -179,8 +187,12 @@
                 <ItemTemplate><asp:Label ID="lblRemainIssue"    runat="server"   Text='<%# Bind("numRemainToIssueQty") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField> 
 
-                <asp:TemplateField HeaderText="Stock" ItemStyle-HorizontalAlign="right" SortExpression="monStock" > 
-                <ItemTemplate><asp:Label ID="lblStock"    runat="server"   Text='<%# Bind("monStock") %>'></asp:Label></ItemTemplate>
+                <asp:TemplateField HeaderText="Stock" ItemStyle-HorizontalAlign="right"   > 
+                <ItemTemplate><asp:Label ID="lblStock"    runat="server"   Text="0" ></asp:Label></ItemTemplate>
+                <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
+
+                <asp:TemplateField HeaderText="Actual Stock" ItemStyle-HorizontalAlign="right" SortExpression="monStock" > 
+                <ItemTemplate><asp:Label ID="lblActual"    runat="server"   Text='<%# Bind("monStock") %>'></asp:Label></ItemTemplate>
                 <ItemStyle HorizontalAlign="left" Width="100px" /> </asp:TemplateField>  
                     
                 <asp:TemplateField HeaderText="Issue" ItemStyle-HorizontalAlign="right" SortExpression="monValue" > 

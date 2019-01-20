@@ -1407,6 +1407,7 @@
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
     <Content Include="SCM\Distribution_Receive.aspx" />
+    <Content Include="SCM\FGTransfer.aspx" />
     <Content Include="SCM\FG_Receive.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\FixedAssetAudit.aspx" />
@@ -1418,6 +1419,7 @@
     <Content Include="SCM\IndentStatusDetalis.aspx" />
     <Content Include="SCM\IndentsVsPO.aspx" />
     <Content Include="SCM\IndentWithoutReceive.aspx" />
+    <Content Include="SCM\Indent_PO_MRR_Details.aspx" />
     <Content Include="SCM\InventoryReport.aspx" />
     <Content Include="SCM\InventoryStatement.aspx" />
     <Content Include="SCM\InventoryValuetion.aspx" />
@@ -7422,6 +7424,13 @@
     <Compile Include="SCM\Distribution_Receive.aspx.designer.cs">
       <DependentUpon>Distribution_Receive.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\FGTransfer.aspx.cs">
+      <DependentUpon>FGTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\FGTransfer.aspx.designer.cs">
+      <DependentUpon>FGTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\FG_Receive.aspx.cs">
       <DependentUpon>FG_Receive.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7484,6 +7493,13 @@
     </Compile>
     <Compile Include="SCM\IndentWithoutReceive.aspx.designer.cs">
       <DependentUpon>IndentWithoutReceive.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Indent_PO_MRR_Details.aspx.cs">
+      <DependentUpon>Indent_PO_MRR_Details.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Indent_PO_MRR_Details.aspx.designer.cs">
+      <DependentUpon>Indent_PO_MRR_Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\InventoryReport.aspx.cs">
       <DependentUpon>InventoryReport.aspx</DependentUpon>
