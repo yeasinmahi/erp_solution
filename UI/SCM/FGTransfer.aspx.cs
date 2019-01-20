@@ -11,6 +11,7 @@ namespace UI.SCM
     {
         private DataTable _dt = new DataTable();
         private readonly InventoryTransfer_BLL _objbll = new InventoryTransfer_BLL();
+        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private readonly FgTransferBll _bll = new FgTransferBll();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -22,6 +23,7 @@ namespace UI.SCM
                 {
                     _dt = new InventoryTransfer_BLL().GetTtransferDatas(1, "", 0, 0, DateTime.Now, Enroll);
                     Common.LoadDropDown(ddlWH, _dt, "Id", "strName");
+                    Common.LoadDropDown(ddlToWH, _dt, "Id", "strName");
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
@@ -112,6 +114,44 @@ namespace UI.SCM
             }
 
             GridBind();
+        }
+
+        protected void FG_Grid_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label lblItem = (Label)e.Row.FindControl("lblintItemID");
+                int itemId = int.Parse(lblItem.Text);
+
+                int intwh = Common.GetDdlSelectedValue(ddlWH);
+                //dt = objOperation.WhDataView(8, "", intwh, Item, 1);
+
+                _dt = objIssue.GetViewData(19, "", intwh, 0, DateTime.Now, itemId);
+                if (_dt.Rows.Count > 0)
+                {
+                    DropDownList ddlLocation = (e.Row.FindControl("ddlLocation") as DropDownList);
+                    Common.LoadDropDown(ddlLocation, _dt, "Id", "strName");
+
+                    try
+                    {
+                        TextBox txtQuantity = (TextBox)e.Row.FindControl("txtQuantity");
+
+                        if (ddlLocation != null)
+                            _dt = objIssue.GetViewData(18, "", intwh, int.Parse(ddlLocation?.SelectedValue),
+                                DateTime.Now,
+                                itemId);
+                        txtQuantity.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["monStock"].ToString() : "0";
+                    }
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message, Common.TosterType.Error);
+                    }
+                }
+            }
+        }
+
+        protected void ddlLocation_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }

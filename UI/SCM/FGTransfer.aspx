@@ -1,5 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FGTransfer.aspx.cs" Inherits="UI.SCM.FgTransfer" %>
 
+<%@ Import Namespace="Utility" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>
@@ -36,21 +38,25 @@
                         <div class="panel-body">
                             <div class="row form-group">
                                 <div class="col-md-3">
-                                    <asp:Label ID="Label3" runat="server" Text="Ware House" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:Label ID="Label3" runat="server" Text="From WareHouse" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
                                 <div class="col-md-3">
+                                    <asp:Label ID="Label4" runat="server" Text="To WareHouse" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:DropDownList ID="ddlToWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-2">
                                     <asp:Label ID="Label1" runat="server" Text="From Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <asp:Label ID="Label2" runat="server" Text="To Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                 </div>
-                                <div class="col-md-3" id="showbuttonDiv" style="padding-top: 20px;">
+                                <div class="col-md-2" id="showbuttonDiv" style="padding-top: 20px;">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
@@ -61,8 +67,7 @@
                             <asp:Label runat="server" Text="FG Transfer Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="FG_Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="2">
-
+                            <asp:GridView ID="FG_Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="2" OnRowDataBound="FG_Grid_OnRowDataBound">
                                 <Columns>
                                     <asp:TemplateField HeaderText="SN" SortExpression="intautoid">
                                         <ItemTemplate>
@@ -94,9 +99,15 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Store Location" ItemStyle-HorizontalAlign="right">
+                                        <ItemTemplate>
+                                            <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="true" Width="100%" CssClass="form-control" OnSelectedIndexChanged="ddlLocation_OnSelectedIndexChanged"></asp:DropDownList>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity" SortExpression="numSendStoreQty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtSendStoreQty" runat="server" Text='<%# Bind("Qty","{0:N4}") %>' Width="120px" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
+                                            <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Bind("Qty","{0:N4}") %>' Width="100%" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -136,14 +147,13 @@
                 var txtToDate = document.getElementById("txtToDate").value;
 
                 if (txtFromDate == "") {
-                    ShowNotification("From date can not be blank", "FG Receive", "warning");
+                    <% Toaster("From date can not be blank", Common.TosterType.Warning);%>
                     return false;
                 } else if (txtToDate == "") {
-                    ShowNotification("To date can not be blank", "FG Receive", "warning");
+                    <% Toaster("To date can not be blank", Common.TosterType.Warning);%>
                     return false;
                 }
                 return true;
-
             }
         </script>
     </form>
