@@ -15134,15 +15134,16 @@ Where s.intUnitID= @intUnitID AND s.ysnActive=1 AND s.strSupplierType IS NOT NUL
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select top 50 intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, 
+            this._commandCollection[0].CommandText = @"Select top(1000)  intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, 
 c.strCluster, m.strComGroupName, ca.strCategory as strNewCategory,
-isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName
+isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']'+'['+cast(coa.intAccID as varchar(500))+']', '') as strAccName
 From ERP_Inventory.dbo.qryItemList i 
 Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID 
 Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
 left join ERP_Inventory.dbo.tblItemMasterCluster c ON i.intMasterCluster=c.intCluster
 left Join ERP_Inventory.dbo.tblItemMasterCommodityGroup m ON i.intMasterComGroup=m.intComGroup
 left Join ERP_Inventory.dbo.tblItemMasterCategory ca ON i.intMasterCategory=ca.intCategory
+
 where i.intUnitID=@intUnitID And i.ysnActive=1 AND ISNULL(coa.intAccID,0)=0 Order By i.strItem";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15304,7 +15305,7 @@ where i.intUnitID=@intUnitID And i.ysnActive=1 AND ISNULL(coa.intAccID,0)=0 Orde
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']', '') as strAccName
+            this._commandCollection[0].CommandText = @"Select intItemID, i.strItem, ic.strReqItemCategory, isnull(strSubCategory,'') as strSubCategory, isnull(i.intCOAID,0) as intCOAID, isnull(coa.strAccName + ' ['+ coa.strCode +']'+'['+cast(coa.intAccID as varchar(500))+']', '') as strAccName
 From ERP_Inventory.dbo.qryItemList i Join ERP_Inventory.dbo.tblItemCategory ic on i.intCategoryID=ic.intAutoID Left Join ERP_Accounts.dbo.tblAccountsChartOfAcc coa on i.intCOAID=coa.intAccID 
 where i.intUnitID=@intUnitID and i.intCategoryID=@intCategoryID And i.ysnActive=1 AND ISNULL(coa.intAccID,0)=0 Order By i.strItem";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
