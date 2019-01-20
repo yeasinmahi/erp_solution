@@ -124,12 +124,16 @@
                 <ItemTemplate><asp:Label ID="lblCOAID" runat="server" Text='<%# Bind("intCOAID") %>' Width="70px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="70px"/></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Account Name" ItemStyle-HorizontalAlign="right" SortExpression="strAccName" > 
-                <ItemTemplate><asp:DropDownList ID="ddlAccountName" runat="server" CssClass="ddList" Width="300px" DataSourceID="odsItemCOA" DataTextField="strAccName" DataValueField="intAccID"></asp:DropDownList>
-                <asp:ObjectDataSource ID="odsItemCOA" runat="server" SelectMethod="GetItemCOA" TypeName="SCM_BLL.Payment_All_Voucher_BLL">
-                <SelectParameters><asp:ControlParameter ControlID="ddlUnit" Name="intUnitID" PropertyName="SelectedValue" Type="Int32" /></SelectParameters></asp:ObjectDataSource>
-                <%--<asp:HiddenField ID="hdnCOAID" runat="server" Value='<%# Bind("intCOAID") %>' />--%>
-                </ItemTemplate><ItemStyle HorizontalAlign="Right"/> </asp:TemplateField>
+                 <asp:TemplateField HeaderText="Account Name" SortExpression="intCOAID" >
+                    <ItemTemplate>  <asp:TextBox ID="txtCOA" runat="server" AutoCompleteType="Search" CssClass="txtBox1" Text='<%# Bind("strAccName") %>' Width="300px" AutoPostBack="true"></asp:TextBox>
+                    <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCOA"
+                    ServiceMethod="GetCOAList" MinimumPrefixLength="1" CompletionSetCount="1" CompletionInterval="1"
+                    FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                    </cc1:AutoCompleteExtender>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="70px"/></asp:TemplateField>
+
+
 
                 <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
                 </ItemTemplate></asp:TemplateField>

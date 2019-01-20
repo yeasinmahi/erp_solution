@@ -93,6 +93,7 @@ namespace UI.SCM
                     //imgUnit.ImageUrl = "/Content/images/img/<%# Session[UI.ClassFiles.SessionParams.UNIT_ID].ToString() %>.png".ToString();
                     imgUnit.ImageUrl = "/Content/images/img/" + intunit + ".png";
                     decimal groundTotal = decimal.Parse(dt.Rows[0]["monTotal"].ToString());
+
                     AmountFormat formatAmount = new AmountFormat();
                     string totalAmountInWord = formatAmount.GetTakaInWords(groundTotal, "", "Only");
                     lblInWard.Text = "In Word GT: " + totalAmountInWord;
@@ -135,8 +136,13 @@ namespace UI.SCM
                     dgvPoDetalis.DataSource = dt;
                     dgvPoDetalis.DataBind();
                     decimal total = dt.AsEnumerable().Sum(row => row.Field<decimal>("monAmount"));
-                    dgvPoDetalis.FooterRow.Cells[8].Text = "Total";
-                    dgvPoDetalis.FooterRow.Cells[8].HorizontalAlign = HorizontalAlign.Right;
+                    decimal AitTotal = dt.AsEnumerable().Sum(row => row.Field<decimal>("monAIT"));
+                    decimal Vatotal = dt.AsEnumerable().Sum(row => row.Field<decimal>("monVAT"));
+                    dgvPoDetalis.FooterRow.Cells[6].Text = "Total";
+                    dgvPoDetalis.FooterRow.Cells[6].HorizontalAlign = HorizontalAlign.Right; 
+                   
+                    dgvPoDetalis.FooterRow.Cells[7].Text = Vatotal.ToString("N2");
+                    dgvPoDetalis.FooterRow.Cells[8].Text = AitTotal.ToString("N2");
                     dgvPoDetalis.FooterRow.Cells[9].Text = total.ToString("N2");
                 }
                 else
