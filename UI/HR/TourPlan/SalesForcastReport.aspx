@@ -101,7 +101,7 @@
          <div class="leaveApplication_container"> 
              <table>
                  <tr class="tblroweven"><td>
-              <asp:GridView ID="grdvSalesForCast" runat="server" AutoGenerateColumns="False" AllowPaging="True" PageSize="25" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="grdvSalesForCast_PageIndexChanging" OnRowDataBound="grdvSalesForCast_RowDataBound">
+              <asp:GridView ID="grdvSalesForCast" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="10000" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="grdvSalesForCast_PageIndexChanging" OnRowDataBound="grdvSalesForCast_RowDataBound">
                   <AlternatingRowStyle BackColor="#CCCCCC" />
                   <Columns>
                     <%--strName ,strTerritory ,strArea ,strRegion ,intTerritoryID ,decDeliverQnt ,decTargetQnt ,decTargetQnt100percent ,decTargetQnt110percent ,decTargetQnt125percent--%> 
