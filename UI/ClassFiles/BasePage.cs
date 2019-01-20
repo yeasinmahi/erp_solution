@@ -81,8 +81,12 @@ namespace UI.ClassFiles
 
         public void Toaster(string message, Common.TosterType type)
         {
+            Toaster(message, GetPageName(), type);
+        }
+        public void Toaster(string message, string header, Common.TosterType type)
+        {
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                "ShowNotification('" + message + "','" + GetPageName() + "','" + type.ToString().ToLower() + "')", true);
+                "ShowNotification('" + message + "','" + header + "','" + type.ToString().ToLower() + "')", true);
         }
     }
 }

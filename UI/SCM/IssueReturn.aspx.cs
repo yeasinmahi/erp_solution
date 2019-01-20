@@ -37,10 +37,8 @@ namespace UI.SCM
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataBind();
 
-                Session["WareID"] = ddlWH.SelectedValue.ToString();
+                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
             }
-            else
-            { }
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -60,7 +58,7 @@ namespace UI.SCM
                 }
                 if (itemid <= 0)
                 {
-                    Alert("Item Id parsing problem solved");
+                    Alert("Item Id "+Message.ParsingProblem.ToFriendlyString());
                     return;
                 }
                 intwh = Common.GetDdlSelectedValue(ddlWH);
@@ -72,7 +70,7 @@ namespace UI.SCM
                 }
                 catch (Exception e)
                 {
-                    Alert("From date format error");
+                    Alert("From " + Message.DateFormatError.ToFriendlyString());
                 }
                 try
                 {
@@ -80,7 +78,7 @@ namespace UI.SCM
                 }
                 catch (Exception e)
                 {
-                    Alert("To date format error");
+                    Alert("To "+Message.DateFormatError.ToFriendlyString());
                 }
                 dt = objIssue.GetIssueItem(itemid,intwh,dteFrom,dteTo);
 
@@ -91,7 +89,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Alert("Data not found");
+                    Alert(Message.NoFound.ToFriendlyString());
                 }
             }
             catch (Exception e)
@@ -117,9 +115,12 @@ namespace UI.SCM
         {
             try
             {
-                Session["WareID"] = ddlWH.SelectedValue.ToString();
+                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Alert(ex.Message);
+            }
         }
 
         protected void btnReturn_Click(object sender, EventArgs e)
@@ -134,18 +135,18 @@ namespace UI.SCM
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 string item = ""; string itemid = "";
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
+                { item = arrayKey[0]; itemid = arrayKey[1]; }
 
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
                 TextBox txtRemarks = row.FindControl("txtRemarks") as TextBox;
                 Label lblIssueId = row.FindControl("lblIssueId") as Label;
 
-                string IssueID = lblIssueId.Text.ToString();
+                string IssueID = lblIssueId.Text;
 
-                double returnQty = double.Parse(txtReturnQty.Text.ToString());
-                string remarks = txtRemarks.Text.ToString();
-                string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty.ToString() + '"' + " remarks=" + '"' + remarks + '"' + " IssueID=" + '"' + IssueID + '"' + "/></voucher>".ToString();
+                double returnQty = double.Parse(txtReturnQty.Text);
+                string remarks = txtRemarks.Text;
+                string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty + '"' + " remarks=" + '"' + remarks + '"' + " IssueID=" + '"' + IssueID + '"' + "/></voucher>";
                 if (returnQty > 0)
                 {
                     string msg = objIssue.StoreIssue(7, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);

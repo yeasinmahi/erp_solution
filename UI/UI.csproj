@@ -473,6 +473,7 @@
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\BillRegisterReport.aspx" />
     <Content Include="PaymentModule\BillTopSheet.aspx" />
+    <Content Include="PaymentModule\BillUpdate.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
@@ -3467,6 +3468,13 @@
     </Compile>
     <Compile Include="PaymentModule\BillTopSheet.aspx.designer.cs">
       <DependentUpon>BillTopSheet.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\BillUpdate.aspx.cs">
+      <DependentUpon>BillUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BillUpdate.aspx.designer.cs">
+      <DependentUpon>BillUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
