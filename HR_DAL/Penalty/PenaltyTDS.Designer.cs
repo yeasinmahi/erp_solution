@@ -2412,6 +2412,10 @@ namespace HR_DAL.Penalty {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SprFamilyDayInformationDataTable : global::System.Data.TypedTableBase<SprFamilyDayInformationRow> {
             
+            private global::System.Data.DataColumn columnmid;
+            
+            private global::System.Data.DataColumn columndid;
+            
             private global::System.Data.DataColumn columnempname;
             
             private global::System.Data.DataColumn columnpnd;
@@ -2453,6 +2457,22 @@ namespace HR_DAL.Penalty {
             protected SprFamilyDayInformationDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn midColumn {
+                get {
+                    return this.columnmid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn didColumn {
+                get {
+                    return this.columndid;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2532,9 +2552,11 @@ namespace HR_DAL.Penalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprFamilyDayInformationRow AddSprFamilyDayInformationRow(string empname, string pnd, string ptype, int mmbr, string OutMessage) {
+            public SprFamilyDayInformationRow AddSprFamilyDayInformationRow(int mid, int did, string empname, string pnd, string ptype, int mmbr, string OutMessage) {
                 SprFamilyDayInformationRow rowSprFamilyDayInformationRow = ((SprFamilyDayInformationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
+                        mid,
+                        did,
                         empname,
                         pnd,
                         ptype,
@@ -2562,6 +2584,8 @@ namespace HR_DAL.Penalty {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
+                this.columnmid = base.Columns["mid"];
+                this.columndid = base.Columns["did"];
                 this.columnempname = base.Columns["empname"];
                 this.columnpnd = base.Columns["pnd"];
                 this.columnptype = base.Columns["ptype"];
@@ -2572,6 +2596,10 @@ namespace HR_DAL.Penalty {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
+                this.columnmid = new global::System.Data.DataColumn("mid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmid);
+                this.columndid = new global::System.Data.DataColumn("did", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndid);
                 this.columnempname = new global::System.Data.DataColumn("empname", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnempname);
                 this.columnpnd = new global::System.Data.DataColumn("pnd", typeof(string), null, global::System.Data.MappingType.Element);
@@ -3251,6 +3279,38 @@ namespace HR_DAL.Penalty {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int mid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprFamilyDayInformation.midColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mid\' in table \'SprFamilyDayInformation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprFamilyDayInformation.midColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int did {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprFamilyDayInformation.didColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'did\' in table \'SprFamilyDayInformation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprFamilyDayInformation.didColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string empname {
                 get {
                     try {
@@ -3327,6 +3387,30 @@ namespace HR_DAL.Penalty {
                 set {
                     this[this.tableSprFamilyDayInformation.OutMessageColumn] = value;
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmidNull() {
+                return this.IsNull(this.tableSprFamilyDayInformation.midColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmidNull() {
+                this[this.tableSprFamilyDayInformation.midColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdidNull() {
+                return this.IsNull(this.tableSprFamilyDayInformation.didColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdidNull() {
+                this[this.tableSprFamilyDayInformation.didColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5285,6 +5369,8 @@ SELECT Sl AS ID, PicknDrop AS Names FROM tblPickDrop WHERE (Sl = @Sl) ORDER BY N
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "SprFamilyDayInformation";
+            tableMapping.ColumnMappings.Add("mid", "mid");
+            tableMapping.ColumnMappings.Add("did", "did");
             tableMapping.ColumnMappings.Add("empname", "empname");
             tableMapping.ColumnMappings.Add("pnd", "pnd");
             tableMapping.ColumnMappings.Add("ptype", "ptype");

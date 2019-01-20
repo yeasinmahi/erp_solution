@@ -261,6 +261,17 @@ namespace UI.PaymentModule
                 ddlBank.DataBind();
             }
             catch { }
+
+            try
+            {
+                dt = new DataTable();
+                dt = objBillReg.GetAccountByBankID(int.Parse(ddlUnit.SelectedValue.ToString()), int.Parse(ddlBank.SelectedValue.ToString()));
+                ddlACNumber.DataTextField = "strBankAccount";
+                ddlACNumber.DataValueField = "intAccountID";
+                ddlACNumber.DataSource = dt;
+                ddlACNumber.DataBind();
+            }
+            catch { }
         }
 
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)

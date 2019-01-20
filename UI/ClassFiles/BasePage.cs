@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Web;
 using System.Web.UI;
 using UserSecurity;
+using Utility;
 
 /// <summary>
 /// Developped By Akramul Haider
@@ -11,7 +13,9 @@ namespace UI.ClassFiles
 {
     public class BasePage : Page
     {
-        protected int Enroll = 0;
+        //protected int Enroll = 0;
+        public int Enroll { get; private set; }
+
         protected int JobStationId = 0;
 
         protected override void OnPreInit(EventArgs e)
@@ -27,6 +31,17 @@ namespace UI.ClassFiles
         //{
         //    base.OnLoad(e);
         //}
+        public string GetActivePageUrl()
+        {
+            return Request.Url.AbsoluteUri;
+        }
+
+        public string GetPageName()
+        {
+            string[] segments = Request.Url.Segments;
+            string pageName = segments[Array.FindIndex(segments, row => row.Contains(".aspx"))];
+            return pageName.Replace(".aspx", "");
+        }
 
         public BasePage()
         {
@@ -43,12 +58,12 @@ namespace UI.ClassFiles
             {
                 if (!us.UpdateUserActivity(Session[SessionParams.EMAIL].ToString(), Session.SessionID))
                 {
-                    retStr = "~/LoginProcess.aspx";
+                    retStr = "~/LoginProcess.aspx?returnUrl=" + GetActivePageUrl();
                 }
             }
             catch
             {
-                retStr = "~/LoginProcess.aspx";
+                retStr = "~/LoginProcess.aspx?returnUrl=" + GetActivePageUrl();
             }
 
             if (retStr != "")
@@ -62,6 +77,12 @@ namespace UI.ClassFiles
         {
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                 "alert('" + message + "');", true);
+        }
+
+        public void Toaster(string message, Common.TosterType type)
+        {
+            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+                "ShowNotification('" + message + "','" + GetPageName() + "','" + type.ToString().ToLower() + "')", true);
         }
     }
 }

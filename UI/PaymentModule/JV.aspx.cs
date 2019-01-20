@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
+using BLL.Accounts.ChartOfAccount;
 
 namespace UI.PaymentModule
 {
@@ -21,6 +22,8 @@ namespace UI.PaymentModule
         #region===== Variable & Object Declaration ====================================================
         Billing_BLL objBillApp = new Billing_BLL(); Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
         DataTable dt;
+
+        string[] arrayKey; char[] delimiterChars = { '[', ']' };
 
         int intDept, intType, intPartyType, intAccID, intCountPVoucher, intPOID, intBankID;
         string unitid, billid, entrycode, party, bank, bankacc, instrument;
@@ -38,7 +41,7 @@ namespace UI.PaymentModule
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-            filePathForXML = Server.MapPath("~/PaymentModule/Data/CPVoucher_" + hdnEnroll.Value + ".xml");
+            filePathForXML = Server.MapPath("~/PaymentModule/Data/JVVoucher_" + hdnEnroll.Value + ".xml");
 
             if (!IsPostBack)
             {
@@ -54,7 +57,7 @@ namespace UI.PaymentModule
                 hdnBank.Value = Request.QueryString["bank"];
                 hdnBankAcc.Value = Request.QueryString["bankacc"];
                 hdnInstrument.Value = Request.QueryString["instrument"];
-
+                Session["billUnit"] = Request.QueryString["unitid"];
                 dt = new DataTable();
                 dt = objBillApp.GetBillInfoForBPVoucher(int.Parse(hdnBillID.Value));
                 if (dt.Rows.Count > 0)
@@ -71,7 +74,7 @@ namespace UI.PaymentModule
                     monLedgerBalance = Math.Round(decimal.Parse(dt.Rows[0]["monLedgerBalance"].ToString()), 2);
                     monNetPay = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2);
                 }
-                
+
 
                 //ElseIf intCountPVoucher = 0 Then 'No Purchase Voucher inserted
                 //If monTotalAdvance = 0 Then 'No Previous advance
@@ -100,6 +103,8 @@ namespace UI.PaymentModule
                         if (intPartyType != 1)
                         {
                             ysnCreditor = true;
+                            txtCOA.Enabled = true;
+                            /*
                             dt = new DataTable();
                             dt = objBillApp.GetPartyLedgerListByPartyType1(int.Parse(hdnBillUnitID.Value), ysnCreditor);
                             ddlAccHeadJournal.DataTextField = "strAccName";
@@ -110,6 +115,12 @@ namespace UI.PaymentModule
                             ListItem item1 = new ListItem("", "0");
                             ddlAccHeadJournal.Items.Add(item1);
                             ddlAccHeadJournal.SelectedValue = "0";
+
+                            */
+                        }
+                        else
+                        {
+                            txtCOA.Enabled = false;
                         }
 
                         //if (intAccID == 0)
@@ -175,6 +186,8 @@ namespace UI.PaymentModule
                         if (intPartyType != 1)
                         {
                             ysnPurchase = true;
+                            txtCOA.Enabled = true;
+                            /*
                             dt = new DataTable();
                             dt = objBillApp.GetPartyLedgerListByPartyTypeOthers(int.Parse(hdnBillUnitID.Value), ysnPurchase);
                             ddlAccHeadJournal.DataTextField = "strAccName";
@@ -185,6 +198,11 @@ namespace UI.PaymentModule
                             ListItem item1 = new ListItem("", "0");
                             ddlAccHeadJournal.Items.Add(item1);
                             ddlAccHeadJournal.SelectedValue = "0";
+                            */
+                        }
+                        else
+                        {
+                            txtCOA.Enabled = false;
                         }
 
                         //if (intAccID == 0)
@@ -220,25 +238,61 @@ namespace UI.PaymentModule
                 catch { }
             }
         }
-        
+
+
+        #region Web Method
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetCOAList(string prefixText, int count)
+        {
+            return ChartOfAccStaticDataProvider.GetCOADataForAutoFillPaymentRegister(HttpContext.Current.Session["billUnit"].ToString(), prefixText);
+        }
+
+        #endregion Web Method
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                accid = ddlAccHeadJournal.SelectedValue.ToString();
-                accname = ddlAccHeadJournal.SelectedItem.ToString();
+                arrayKey = txtCOA.Text.Split(delimiterChars);
+                accid = arrayKey[3].ToString();
+                accname = arrayKey[0].ToString();
 
-                try
+                if(accname == "")
                 {
-                    char[] ch1 = { '[', ']' };
-                    string[] temp1 = ddlAccHeadJournal.SelectedItem.ToString().Split(ch1, StringSplitOptions.RemoveEmptyEntries);
-                    accname = temp1[0].ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return;
                 }
-                catch { accname = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return; }
+
+                //////accid = ddlAccHeadJournal.SelectedValue.ToString();
+                /////accname = ddlAccHeadJournal.SelectedItem.ToString();
+
+                ////////try
+                ////////{
+                ////////    char[] ch1 = { '[', ']' };
+                ////////    string[] temp1 = ddlAccHeadJournal.SelectedItem.ToString().Split(ch1, StringSplitOptions.RemoveEmptyEntries);
+                ////////    accname = temp1[0].ToString();
+                ////////}
+                ////////catch { accname = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Employee Select For Loan.');", true); return; }
                 
                 narration = txtNarration.Text;
-                debit = txtAmount.Text;
-                credit = "0";
+
+                if(rdoDr.Checked == true)
+                {
+                    debit = txtAmount.Text;
+                }
+                else
+                {
+                    debit = "0";
+                }
+
+                if (rdoCr.Checked == true)
+                {
+                    credit = txtAmount.Text;
+                }
+                else
+                {
+                    credit = "0";
+                }
+
 
                 if (accname == "")
                 {
@@ -264,7 +318,7 @@ namespace UI.PaymentModule
             if (System.IO.File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
-                XmlNode rootNode = doc.SelectSingleNode("CPVoucher");
+                XmlNode rootNode = doc.SelectSingleNode("JVVoucher");
                 XmlNode addItem = CreateItemNode(doc, accid, accname, narration, debit, credit);
                 rootNode.AppendChild(addItem);
             }
@@ -272,7 +326,7 @@ namespace UI.PaymentModule
             {
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("CPVoucher");
+                XmlNode rootNode = doc.CreateElement("JVVoucher");
                 XmlNode addItem = CreateItemNode(doc, accid, accname, narration, debit, credit); ;
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
@@ -285,9 +339,9 @@ namespace UI.PaymentModule
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXML);
-            XmlNode dSftTm = doc.SelectSingleNode("CPVoucher");
+            XmlNode dSftTm = doc.SelectSingleNode("JVVoucher");
             xmlString = dSftTm.InnerXml;
-            xmlString = "<CPVoucher>" + xmlString + "</CPVoucher>";
+            xmlString = "<JVVoucher>" + xmlString + "</JVVoucher>";
             StringReader sr = new StringReader(xmlString);
             DataSet ds = new DataSet();
             ds.ReadXml(sr);
@@ -297,7 +351,7 @@ namespace UI.PaymentModule
         }
         private XmlNode CreateItemNode(XmlDocument doc, string accid, string accname, string narration, string debit, string credit)
         {
-            XmlNode node = doc.CreateElement("CPVoucher");
+            XmlNode node = doc.CreateElement("JVVoucher");
 
             XmlAttribute Accid = doc.CreateAttribute("accid");
             Accid.Value = accid;
@@ -323,9 +377,9 @@ namespace UI.PaymentModule
             {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("CPVoucher");
+                XmlNode dSftTm = doc.SelectSingleNode("JVVoucher");
                 xmlString = dSftTm.InnerXml;
-                xmlString = "<CPVoucher>" + xmlString + "</CPVoucher>";
+                xmlString = "<JVVoucher>" + xmlString + "</JVVoucher>";
                 StringReader sr = new StringReader(xmlString);
                 DataSet ds = new DataSet();
                 ds.ReadXml(sr);
@@ -378,18 +432,41 @@ namespace UI.PaymentModule
                     monVoucherTotal = decimal.Parse(txtVoucherIssued.Text);
 
                     decimal Gross = 0;
+                    decimal dr = 0;
+                    decimal cr = 0;
                     if (dgvReportForPaymentV.Rows.Count > 0)
                     {
                         for (int i = 0; i < dgvReportForPaymentV.Rows.Count; i++)
                         {
-                            Gross = Gross + Convert.ToDecimal(((Label)dgvReportForPaymentV.Rows[i].FindControl("lblDebit")).Text.ToString());
+                            //Gross = Gross + Convert.ToDecimal(((Label)dgvReportForPaymentV.Rows[i].FindControl("lblDebit")).Text.ToString());
+                            dr = dr + Convert.ToDecimal(((Label)dgvReportForPaymentV.Rows[i].FindControl("lblDebit")).Text.ToString());
+                            cr = cr + Convert.ToDecimal(((Label)dgvReportForPaymentV.Rows[i].FindControl("lblCredit")).Text.ToString());
                         }
                     }
 
-                    if (Gross > (monApproveAmount - monVoucherTotal))
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Total voucher amount Cannot be greater than approved amount.');", true); return;
-                    }
+                   // If monBalance<> 0 Then
+                   //    MsgBox "Total of Debit and Credit Amount is not same.", vbCritical
+                   //    Exit Sub
+                   //ElseIf monDrTotal = 0 Then
+                   //    MsgBox "Total of Debit and Credit Amount is zero.", vbCritical
+                   //    Exit Sub
+                   //End If
+
+                   Gross = dr - cr;
+                   if( Gross != 0)
+                   {
+                       ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Total of Debit and Credit Amount is not same.');", true); return;
+                   }
+                   else if(dr == 0)
+                   {
+                       ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Total of Debit and Credit Amount is zero.');", true); return;
+                   }
+
+
+                    //if (Gross > (monApproveAmount - monVoucherTotal))
+                    //{
+                    //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Total voucher amount Cannot be greater than approved amount.');", true); return;
+                    //}
 
                     intBillID = int.Parse(hdnBillID.Value);
                     strBillCode = txtEntryCode.Text;
@@ -444,16 +521,17 @@ namespace UI.PaymentModule
                     {
                         XmlDocument doc = new XmlDocument();
                         doc.Load(filePathForXML);
-                        XmlNode dSftTm = doc.SelectSingleNode("CPVoucher");
+                        XmlNode dSftTm = doc.SelectSingleNode("JVVoucher");
                         string xmlString = dSftTm.InnerXml;
-                        xmlString = "<CPVoucher>" + xmlString + "</CPVoucher>";
+                        xmlString = "<JVVoucher>" + xmlString + "</JVVoucher>";
                         xml = xmlString;
                     }
                     catch { }
                     strInstrumentNo = ""; //ddlInstrument.SelectedItem.ToString();
 
-                    //Final In Insert                                 
-                    string message = objVoucher.InsertPaymentVoucherCP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo);
+                    //Final In Insert  
+                    //int intUnitID, DateTime dteVoucherDate, string strNarration, decimal monDrTotal, decimal monCrTotal, int intUserID, string xml, int intBillID, string strBillCode
+                    string message = objVoucher.InsertJV(intUnitID, dteVoucherDate, strNarration, dr, cr, intUserID, xml, intBillID, strBillCode);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                 }
@@ -469,6 +547,7 @@ namespace UI.PaymentModule
             {
                 rdoCr.Checked = false;
             }
+            txtCOA.Text = "";
         }
         protected void rdoCr_CheckedChanged(object sender, EventArgs e)
         {
@@ -476,6 +555,8 @@ namespace UI.PaymentModule
             {
                 rdoDr.Checked = false;
             }
+
+            txtCOA.Text = "";
         }
 
         #endregion ===================================================

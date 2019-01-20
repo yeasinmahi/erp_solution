@@ -145,6 +145,10 @@ namespace UI.SCM
 
                         if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
                         {
+                            if (receiveQuantity <= 0)
+                            {
+                                continue;
+                            }
                             if (int.TryParse(location, out int locationId))
                             {
                                 if (monRate > 0)
@@ -164,7 +168,7 @@ namespace UI.SCM
                             }
                             else
                             {
-                                Alert("Current loacation should be sesected");
+                                Alert("Current loacation should be selected");
                                 return;
                             }
                         }

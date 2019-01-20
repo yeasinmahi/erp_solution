@@ -16,9 +16,9 @@ namespace UI.SCM
     public partial class IssueReturn : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        private Location_BLL objOperation = new Location_BLL();
         private DataTable dt = new DataTable();
-        private int enroll, intwh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private int intwh;
+        private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -30,8 +30,7 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, Enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataTextField = "strName";
@@ -45,28 +44,40 @@ namespace UI.SCM
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            try
-            {
-                getIssueItem();
-            }
-            catch { }
+            GetIssueItem();
         }
 
-        private void getIssueItem()
+        private void GetIssueItem()
         {
-            arrayKey = txtItem.Text.Split(delimiterChars);
-            string item = ""; string itemid = "";
-            if (arrayKey.Length > 0)
-            { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
+            try
+            {
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                string item = ""; string itemid = "";
+                if (arrayKey.Length > 0)
+                {
+                    item = arrayKey[0].ToString();
+                    itemid = arrayKey[1].ToString();
+                }
 
-            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            intwh = int.Parse(ddlWH.SelectedValue);
-            DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
-            DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-            string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-            dt = objIssue.GetViewData(6, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
-            dgvPoApp.DataSource = dt;
-            dgvPoApp.DataBind();
+                intwh = int.Parse(ddlWH.SelectedValue);
+                DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
+                DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
+                string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
+                dt = objIssue.GetViewData(6, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvPoApp.DataSource = dt;
+                    dgvPoApp.DataBind();
+                }
+                else
+                {
+                    Alert("Data not found");
+                }
+            }
+            catch (Exception e)
+            {
+                Alert(e.Message);
+            }
         }
 
         #region=======================Auto Search=========================
@@ -114,15 +125,14 @@ namespace UI.SCM
 
                     string IssueID = lblIssueId.Text.ToString();
 
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     double returnQty = double.Parse(txtReturnQty.Text.ToString());
                     string remarks = txtRemarks.Text.ToString();
                     string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty.ToString() + '"' + " remarks=" + '"' + remarks + '"' + " IssueID=" + '"' + IssueID + '"' + "/></voucher>".ToString();
                     if (returnQty > 0)
                     {
-                        string msg = objIssue.StoreIssue(7, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
+                        string msg = objIssue.StoreIssue(7, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                        getIssueItem();
+                        GetIssueItem();
                     }
                 }
             }

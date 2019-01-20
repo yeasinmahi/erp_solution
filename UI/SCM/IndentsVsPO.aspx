@@ -136,7 +136,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblFromDate" CssClass="lbl" runat="server" Text="From Date: "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtDteFrom" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtDteFrom" runat="server" autocomplete="off" CssClass="txtBox"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDteFrom">
                                 </cc1:CalendarExtender>
                             </td>
@@ -144,7 +144,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lbldteTo" CssClass="lbl" runat="server" Text="To Date: "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtdteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtdteTo" runat="server" autocomplete="off" CssClass="txtBox"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtdteTo">
                                 </cc1:CalendarExtender>
                             </td>
@@ -187,7 +187,7 @@
 
                                         <asp:TemplateField HeaderText="Indent Date" ItemStyle-HorizontalAlign="right" SortExpression="stindDaterName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldteIndent" runat="server" Text='<%# Bind("indDate","{0:dd-mm-yyyy}") %>'></asp:Label>
+                                                <asp:Label ID="lbldteIndent" runat="server" Text='<%# Bind("indDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
@@ -208,7 +208,7 @@
 
                                         <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDueDate" runat="server" Width="60px" Text='<%# Bind("dteDueDate","{0:dd-mm-yyyy}") %>'></asp:Label>
+                                                <asp:Label ID="lblDueDate" runat="server" Width="60px" Text='<%# Bind("dteDueDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>

@@ -284,6 +284,28 @@ namespace UI.SCM
                     ddlLocation.DataValueField = "Id";
                     ddlLocation.DataTextField = "strName";
                     ddlLocation.DataBind();
+
+                    try
+                    {
+                        
+                        Label lblstock = (Label)e.Row.FindControl("lblstock");
+                        Label lblvalue = (Label)e.Row.FindControl("lblvalue");
+
+                        dt = objIssue.GetViewData(18, "", intwh, int.Parse(ddlLocation.SelectedValue.ToString()), DateTime.Now, Item);
+                        if (dt.Rows.Count > 0)
+                        {
+                            lblstock.Text = dt.Rows[0]["monStock"].ToString();
+                            lblvalue.Text = dt.Rows[0]["monValue"].ToString();
+
+                        }
+                        else
+                        {
+
+                            lblstock.Text = "0";
+                            lblvalue.Text = "0";
+                        }
+                    }
+                    catch { }
                 }
 
               

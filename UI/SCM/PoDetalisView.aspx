@@ -67,10 +67,6 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
                 </asp:Panel>
-
-                <div style="text-align: left">
-                    PO Approval  From<hr />
-                </div>
                 <asp:Label runat="server" ID="lblNotification"></asp:Label>
                 <asp:HiddenField ID="hfImageData" runat="server" />
 
@@ -363,7 +359,7 @@
                                             <p>To: </p>
                                         </div>
                                         <div class="col-md-10 col-sm-10">
-                                            <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" Enabled="False" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
+                                            <asp:TextBox runat="server" ID="txtReceipentEmail" Width="100%" type="text" name="search" placeholder="Enter sender e-mail" class="form-control"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="form-group row">

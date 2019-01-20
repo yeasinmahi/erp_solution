@@ -319,22 +319,22 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// ddlDebitAc control.
+        /// txtCOA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDebitAc;
+        protected global::System.Web.UI.WebControls.TextBox txtCOA;
         
         /// <summary>
-        /// Label10 control.
+        /// AutoCompleteExtender2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
         /// Label8 control.

@@ -30,6 +30,13 @@ namespace Utility
             return !File.Exists(path) ? File.CreateText(path) : null;
         }
 
+        public enum TosterType
+        {
+            Success,
+            Error,
+            Warning
+        }
+
         public enum ModulaFileName
         {
             Item,
@@ -172,20 +179,16 @@ namespace Utility
 
         public static bool LoadDropDownWithSelect(DropDownList ddl, DataTable dt, string value, string text)
         {
-            if (dt.Rows.Count <= 0) return false;
-            try
-            {
-                ddl.DataSource = dt;
-                ddl.DataValueField = value;
-                ddl.DataTextField = text;
-                ddl.DataBind();
-                ddl.Items.Insert(0, new ListItem("Select", "0"));
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+            bool isLoad = LoadDropDown(ddl, dt, value, text);
+            ddl.Items.Insert(0, new ListItem("Select", "0"));
+            return isLoad;
+        }
+
+        public static bool LoadDropDownWithAll(DropDownList ddl, DataTable dt, string value, string text)
+        {
+            bool isLoad = LoadDropDown(ddl, dt, value, text);
+            ddl.Items.Insert(0, new ListItem("All", "0"));
+            return isLoad;
         }
 
         public static void UnLoadDropDown(DropDownList ddl)
@@ -196,9 +199,14 @@ namespace Utility
 
         public static void UnLoadDropDownWithSelect(DropDownList ddl)
         {
-            ddl.DataSource = null;
-            ddl.DataBind();
+            UnLoadDropDown(ddl);
             ddl.Items.Insert(0, new ListItem("Select", "0"));
+        }
+
+        public static void UnLoadDropDownWithAll(DropDownList ddl)
+        {
+            UnLoadDropDown(ddl);
+            ddl.Items.Insert(0, new ListItem("All", "0"));
         }
 
         public static void Clear(ControlCollection controls)

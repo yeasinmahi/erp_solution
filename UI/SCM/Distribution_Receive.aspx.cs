@@ -1,19 +1,18 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
-    public partial class Distribution_Receive : System.Web.UI.Page
+    public partial class DistributionReceive : BasePage
     {
-        DataTable dt = new DataTable();
-        InventoryTransfer_BLL objbll = new InventoryTransfer_BLL();
+        private DataTable dt = new DataTable();
+        private readonly InventoryTransfer_BLL _objbll = new InventoryTransfer_BLL();
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -21,8 +20,7 @@ namespace UI.SCM
                 pnlUpperControl.DataBind();
                 try
                 {
-                    int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
-                    dt = objbll.GetWH(enroll);
+                    dt = _objbll.GetWH(Enroll);
                     ddlWH.DataSource = dt;
                     ddlWH.DataTextField = "strWareHoseName";
                     ddlWH.DataValueField = "intWHID";
@@ -41,7 +39,7 @@ namespace UI.SCM
             int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
-            dt = objbll.DistributionData(whid, FromDate, ToDate, 1, 0);
+            dt = _objbll.DistributionData(whid, FromDate, ToDate, 1, 0);
 
             if (dt.Rows.Count > 0)
             {
@@ -49,6 +47,7 @@ namespace UI.SCM
                 Distribution_Grid.DataBind();
             }
         }
+
         protected void btnShow_Click(object sender, EventArgs e)
         {
             GridBind();
@@ -56,9 +55,9 @@ namespace UI.SCM
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            int location=0;
+            int location = 0;
             GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-            int enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+            int Enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
 
             int intTransferID = Convert.ToInt32(((Label)row.FindControl("lblintTransferID")).Text);
             int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
@@ -66,26 +65,25 @@ namespace UI.SCM
             DateTime TransactionDate = Convert.ToDateTime(((Label)row.FindControl("lbldteTransactionDate")).Text);
             decimal Qty = Convert.ToDecimal(((TextBox)row.FindControl("txtQty")).Text);
             int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
-            decimal monValue = Convert.ToDecimal(((Label)row.FindControl("lblmonValue")).Text); 
+            decimal monValue = Convert.ToDecimal(((Label)row.FindControl("lblmonValue")).Text);
             string strRemarks = "Received From APL Central Store";
 
-            int intInWHID = 603;
+            int intInWHID = Common.GetDdlSelectedValue(ddlWH);
             monValue = monValue * -1;
 
             int intOutWH = Convert.ToInt32(((Label)row.FindControl("lblintOutWHID")).Text); ;
             DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
 
-            dt = objbll.DistributionData(intInWHID, FromDate, ToDate, 2, intTransferID); //get location
-            if(dt.Rows.Count>0)
+            dt = _objbll.DistributionData(intInWHID, FromDate, ToDate, 2, intTransferID); //get location
+            if (dt.Rows.Count > 0)
             {
                 location = Convert.ToInt32(dt.Rows[0]["intStoreLocationID"].ToString());
             }
-            
-            
-            if(dt.Rows.Count>0)
+
+            if (dt.Rows.Count > 0)
             {
-                dt = objbll.InsertReceiveData(intUnitID, intInWHID, intOutWH, location, enroll, itemid, Qty, monValue, 0, strRemarks, intTransferID, 1, true);
+                dt = _objbll.InsertReceiveData(intUnitID, intInWHID, intOutWH, location, Enroll, itemid, Qty, monValue, 0, strRemarks, intTransferID, 1, true);
                 string msg = dt.Rows[0]["strOutput"].ToString();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Alert", "alert('" + msg + "')", true);
             }
@@ -95,7 +93,6 @@ namespace UI.SCM
             }
 
             GridBind();
-
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)

@@ -47,12 +47,13 @@
 
     <form id="frmselfresign" runat="server"> 
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager> 
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server"> 
+   <%-- <asp:UpdatePanel ID="UpdatePanel0" runat="server"> --%>
     <ContentTemplate> 
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%"> 
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;"> 
     <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%"> 
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div> 
+
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel> 
     <div style="height: 100px;"></div> 
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"> 
@@ -87,7 +88,10 @@
             </tr>
            <tr>
                
-                <td style="text-align:right" colspan="3"> <td style="text-align:left"><asp:Button ID="btnStatement" runat="server" Text="Show"  OnClick="btnStatement_Click"/> </td>
+                <td style="text-align:right" colspan="3"> <td style="text-align:left">
+                    <asp:Button ID="btnStatement" runat="server" Text="Show"  OnClick="btnStatement_Click"/>
+                     <asp:Button ID="btnDownloads" runat="server" CssClass="button" Text=" Excel Export" OnClick="btnDownloads_Click"   />
+                   </td>
            </tr>
 
         </table>
@@ -155,12 +159,12 @@
         </div>
         
 
-        </div>
+       <%-- </div>--%>
 
 <%--=========================================End My Code From Here=================================================--%>
 
-    </ContentTemplate>
-    </asp:UpdatePanel>
+   </ContentTemplate>
+   <%--  </asp:UpdatePanel>--%>
     </form>
 </body>
 </html>

@@ -114,7 +114,7 @@
                 <td style="text-align:left;"><asp:DropDownList ID="ddlCost" CssClass="ddList" AutoPostBack="false" Font-Bold="true"   runat="server"    ></asp:DropDownList></td> 
                 <td style="text-align:right;"><asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Receive By"></asp:Label></td>
                 <td style="text-align:left;"><asp:TextBox ID="txtReceiveBy" CssClass="txtBox"  AutoPostBack="false"    runat="server"></asp:TextBox></td> 
-                <td   style="text-align:right"><asp:Button ID="btnIssue" style=" background-color:#FFCC99; border-radius:1px; height:29px" runat="server" Text="Store Issue" OnClientClick="funConfirmAll()" OnClick="btnIssue_Click"  /> </td> 
+                <td   style="text-align:right"><asp:Button ID="btnIssue" style="  border-radius:1px; height:29px" runat="server" ForeColor="Blue" Text="Store Issue" OnClientClick="funConfirmAll()" OnClick="btnIssue_Click"  /> </td> 
                 </tr>
 
                 <tr><td style="text-align:right"><asp:Label ID="lblStock" runat="server"></asp:Label>

@@ -35,6 +35,20 @@ namespace UI.SCM
             catch { }
         }
 
+        protected void btnDownloads_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+
+                dgvStatement.AllowPaging = false;
+                SAD_BLL.Customer.Report.ExportClass.Export("IssueStatement.xls", dgvStatement);
+            }
+            catch { }
+
+
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)

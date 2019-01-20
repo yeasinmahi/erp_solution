@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Billing_BLL.cs" />
     <Compile Include="Bom_BLL.cs" />
+    <Compile Include="FGTransferBll.cs" />
     <Compile Include="Indents_BLL.cs" />
     <Compile Include="InventoryTransfer_BLL.cs" />
     <Compile Include="Location_BLL.cs" />
@@ -78,6 +79,10 @@
     <Compile Include="TransferBLLNew.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SAD_DAL\SAD_DAL.csproj">
+      <Project>{16E00442-31FA-416F-AF68-BE5AD09F4D2A}</Project>
+      <Name>SAD_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SCM_DAL\SCM_DAL.csproj">
       <Project>{43e9d794-020b-425f-857c-d313068c4bd5}</Project>
       <Name>SCM_DAL</Name>

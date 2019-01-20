@@ -102,6 +102,8 @@ namespace SCM_DAL {
         
         private sprGetAllUnitListDataTable tablesprGetAllUnitList;
         
+        private SprPaymentApprovalSummarybybillregDataTable tableSprPaymentApprovalSummarybybillreg;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -246,6 +248,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["sprGetAllUnitList"] != null)) {
                     base.Tables.Add(new sprGetAllUnitListDataTable(ds.Tables["sprGetAllUnitList"]));
+                }
+                if ((ds.Tables["SprPaymentApprovalSummarybybillreg"] != null)) {
+                    base.Tables.Add(new SprPaymentApprovalSummarybybillregDataTable(ds.Tables["SprPaymentApprovalSummarybybillreg"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -657,6 +662,16 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprPaymentApprovalSummarybybillregDataTable SprPaymentApprovalSummarybybillreg {
+            get {
+                return this.tableSprPaymentApprovalSummarybybillreg;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -838,6 +853,9 @@ namespace SCM_DAL {
                 }
                 if ((ds.Tables["sprGetAllUnitList"] != null)) {
                     base.Tables.Add(new sprGetAllUnitListDataTable(ds.Tables["sprGetAllUnitList"]));
+                }
+                if ((ds.Tables["SprPaymentApprovalSummarybybillreg"] != null)) {
+                    base.Tables.Add(new SprPaymentApprovalSummarybybillregDataTable(ds.Tables["SprPaymentApprovalSummarybybillreg"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -1106,6 +1124,12 @@ namespace SCM_DAL {
                     this.tablesprGetAllUnitList.InitVars();
                 }
             }
+            this.tableSprPaymentApprovalSummarybybillreg = ((SprPaymentApprovalSummarybybillregDataTable)(base.Tables["SprPaymentApprovalSummarybybillreg"]));
+            if ((initTable == true)) {
+                if ((this.tableSprPaymentApprovalSummarybybillreg != null)) {
+                    this.tableSprPaymentApprovalSummarybybillreg.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1194,6 +1218,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tablePurchase);
             this.tablesprGetAllUnitList = new sprGetAllUnitListDataTable();
             base.Tables.Add(this.tablesprGetAllUnitList);
+            this.tableSprPaymentApprovalSummarybybillreg = new SprPaymentApprovalSummarybybillregDataTable();
+            base.Tables.Add(this.tableSprPaymentApprovalSummarybybillreg);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1432,6 +1458,12 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprPaymentApprovalSummarybybillreg() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1601,6 +1633,9 @@ namespace SCM_DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void sprGetAllUnitListRowChangeEventHandler(object sender, sprGetAllUnitListRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprPaymentApprovalSummarybybillregRowChangeEventHandler(object sender, SprPaymentApprovalSummarybybillregRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -13717,6 +13752,466 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprPaymentApprovalSummarybybillregDataTable : global::System.Data.TypedTableBase<SprPaymentApprovalSummarybybillregRow> {
+            
+            private global::System.Data.DataColumn columnintBill;
+            
+            private global::System.Data.DataColumn columnstrBill;
+            
+            private global::System.Data.DataColumn columnstrParty;
+            
+            private global::System.Data.DataColumn columnstrItem;
+            
+            private global::System.Data.DataColumn columnmonLastPtice;
+            
+            private global::System.Data.DataColumn columnstrReff;
+            
+            private global::System.Data.DataColumn columndteBillRcvDate;
+            
+            private global::System.Data.DataColumn columnstrMRR;
+            
+            private global::System.Data.DataColumn columnmonbillAmount;
+            
+            private global::System.Data.DataColumn columnmonNetAmount;
+            
+            private global::System.Data.DataColumn columnstrApproveType;
+            
+            private global::System.Data.DataColumn columndteAuditApproveOneTime;
+            
+            private global::System.Data.DataColumn columnmonApproveL1;
+            
+            private global::System.Data.DataColumn columnmonApproveL2;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregDataTable() {
+                this.TableName = "SprPaymentApprovalSummarybybillreg";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprPaymentApprovalSummarybybillregDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprPaymentApprovalSummarybybillregDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intBillColumn {
+                get {
+                    return this.columnintBill;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strBillColumn {
+                get {
+                    return this.columnstrBill;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPartyColumn {
+                get {
+                    return this.columnstrParty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strItemColumn {
+                get {
+                    return this.columnstrItem;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monLastPticeColumn {
+                get {
+                    return this.columnmonLastPtice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strReffColumn {
+                get {
+                    return this.columnstrReff;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteBillRcvDateColumn {
+                get {
+                    return this.columndteBillRcvDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strMRRColumn {
+                get {
+                    return this.columnstrMRR;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monbillAmountColumn {
+                get {
+                    return this.columnmonbillAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monNetAmountColumn {
+                get {
+                    return this.columnmonNetAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strApproveTypeColumn {
+                get {
+                    return this.columnstrApproveType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteAuditApproveOneTimeColumn {
+                get {
+                    return this.columndteAuditApproveOneTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monApproveL1Column {
+                get {
+                    return this.columnmonApproveL1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monApproveL2Column {
+                get {
+                    return this.columnmonApproveL2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregRow this[int index] {
+                get {
+                    return ((SprPaymentApprovalSummarybybillregRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprPaymentApprovalSummarybybillregRowChangeEventHandler SprPaymentApprovalSummarybybillregRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprPaymentApprovalSummarybybillregRowChangeEventHandler SprPaymentApprovalSummarybybillregRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprPaymentApprovalSummarybybillregRowChangeEventHandler SprPaymentApprovalSummarybybillregRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprPaymentApprovalSummarybybillregRowChangeEventHandler SprPaymentApprovalSummarybybillregRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprPaymentApprovalSummarybybillregRow(SprPaymentApprovalSummarybybillregRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregRow AddSprPaymentApprovalSummarybybillregRow(string strBill, string strParty, string strItem, string monLastPtice, string strReff, System.DateTime dteBillRcvDate, string strMRR, decimal monbillAmount, int monNetAmount, string strApproveType, System.DateTime dteAuditApproveOneTime, int monApproveL1, int monApproveL2) {
+                SprPaymentApprovalSummarybybillregRow rowSprPaymentApprovalSummarybybillregRow = ((SprPaymentApprovalSummarybybillregRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        strBill,
+                        strParty,
+                        strItem,
+                        monLastPtice,
+                        strReff,
+                        dteBillRcvDate,
+                        strMRR,
+                        monbillAmount,
+                        monNetAmount,
+                        strApproveType,
+                        dteAuditApproveOneTime,
+                        monApproveL1,
+                        monApproveL2};
+                rowSprPaymentApprovalSummarybybillregRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprPaymentApprovalSummarybybillregRow);
+                return rowSprPaymentApprovalSummarybybillregRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregRow FindByintBill(int intBill) {
+                return ((SprPaymentApprovalSummarybybillregRow)(this.Rows.Find(new object[] {
+                            intBill})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprPaymentApprovalSummarybybillregDataTable cln = ((SprPaymentApprovalSummarybybillregDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprPaymentApprovalSummarybybillregDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintBill = base.Columns["intBill"];
+                this.columnstrBill = base.Columns["strBill"];
+                this.columnstrParty = base.Columns["strParty"];
+                this.columnstrItem = base.Columns["strItem"];
+                this.columnmonLastPtice = base.Columns["monLastPtice"];
+                this.columnstrReff = base.Columns["strReff"];
+                this.columndteBillRcvDate = base.Columns["dteBillRcvDate"];
+                this.columnstrMRR = base.Columns["strMRR"];
+                this.columnmonbillAmount = base.Columns["monbillAmount"];
+                this.columnmonNetAmount = base.Columns["monNetAmount"];
+                this.columnstrApproveType = base.Columns["strApproveType"];
+                this.columndteAuditApproveOneTime = base.Columns["dteAuditApproveOneTime"];
+                this.columnmonApproveL1 = base.Columns["monApproveL1"];
+                this.columnmonApproveL2 = base.Columns["monApproveL2"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintBill = new global::System.Data.DataColumn("intBill", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintBill);
+                this.columnstrBill = new global::System.Data.DataColumn("strBill", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrBill);
+                this.columnstrParty = new global::System.Data.DataColumn("strParty", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrParty);
+                this.columnstrItem = new global::System.Data.DataColumn("strItem", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrItem);
+                this.columnmonLastPtice = new global::System.Data.DataColumn("monLastPtice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonLastPtice);
+                this.columnstrReff = new global::System.Data.DataColumn("strReff", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrReff);
+                this.columndteBillRcvDate = new global::System.Data.DataColumn("dteBillRcvDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteBillRcvDate);
+                this.columnstrMRR = new global::System.Data.DataColumn("strMRR", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrMRR);
+                this.columnmonbillAmount = new global::System.Data.DataColumn("monbillAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonbillAmount);
+                this.columnmonNetAmount = new global::System.Data.DataColumn("monNetAmount", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonNetAmount);
+                this.columnstrApproveType = new global::System.Data.DataColumn("strApproveType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrApproveType);
+                this.columndteAuditApproveOneTime = new global::System.Data.DataColumn("dteAuditApproveOneTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteAuditApproveOneTime);
+                this.columnmonApproveL1 = new global::System.Data.DataColumn("monApproveL1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonApproveL1);
+                this.columnmonApproveL2 = new global::System.Data.DataColumn("monApproveL2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonApproveL2);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintBill}, true));
+                this.columnintBill.AutoIncrement = true;
+                this.columnintBill.AutoIncrementSeed = -1;
+                this.columnintBill.AutoIncrementStep = -1;
+                this.columnintBill.AllowDBNull = false;
+                this.columnintBill.ReadOnly = true;
+                this.columnintBill.Unique = true;
+                this.columnstrBill.MaxLength = 60;
+                this.columnstrParty.MaxLength = 250;
+                this.columnstrItem.ReadOnly = true;
+                this.columnstrItem.MaxLength = 1;
+                this.columnmonLastPtice.ReadOnly = true;
+                this.columnmonLastPtice.MaxLength = 1;
+                this.columnstrReff.ReadOnly = true;
+                this.columnstrReff.MaxLength = 54;
+                this.columnstrMRR.ReadOnly = true;
+                this.columnstrMRR.MaxLength = 1;
+                this.columnmonbillAmount.ReadOnly = true;
+                this.columnmonNetAmount.ReadOnly = true;
+                this.columnstrApproveType.ReadOnly = true;
+                this.columnstrApproveType.MaxLength = 1;
+                this.columnmonApproveL1.ReadOnly = true;
+                this.columnmonApproveL2.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregRow NewSprPaymentApprovalSummarybybillregRow() {
+                return ((SprPaymentApprovalSummarybybillregRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprPaymentApprovalSummarybybillregRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprPaymentApprovalSummarybybillregRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprPaymentApprovalSummarybybillregRowChanged != null)) {
+                    this.SprPaymentApprovalSummarybybillregRowChanged(this, new SprPaymentApprovalSummarybybillregRowChangeEvent(((SprPaymentApprovalSummarybybillregRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprPaymentApprovalSummarybybillregRowChanging != null)) {
+                    this.SprPaymentApprovalSummarybybillregRowChanging(this, new SprPaymentApprovalSummarybybillregRowChangeEvent(((SprPaymentApprovalSummarybybillregRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprPaymentApprovalSummarybybillregRowDeleted != null)) {
+                    this.SprPaymentApprovalSummarybybillregRowDeleted(this, new SprPaymentApprovalSummarybybillregRowChangeEvent(((SprPaymentApprovalSummarybybillregRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprPaymentApprovalSummarybybillregRowDeleting != null)) {
+                    this.SprPaymentApprovalSummarybybillregRowDeleting(this, new SprPaymentApprovalSummarybybillregRowChangeEvent(((SprPaymentApprovalSummarybybillregRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprPaymentApprovalSummarybybillregRow(SprPaymentApprovalSummarybybillregRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                BillingTDS ds = new BillingTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprPaymentApprovalSummarybybillregDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class TblUnitRow : global::System.Data.DataRow {
@@ -19017,6 +19512,409 @@ namespace SCM_DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprPaymentApprovalSummarybybillregRow : global::System.Data.DataRow {
+            
+            private SprPaymentApprovalSummarybybillregDataTable tableSprPaymentApprovalSummarybybillreg;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprPaymentApprovalSummarybybillregRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprPaymentApprovalSummarybybillreg = ((SprPaymentApprovalSummarybybillregDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intBill {
+                get {
+                    return ((int)(this[this.tableSprPaymentApprovalSummarybybillreg.intBillColumn]));
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.intBillColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strBill {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.strBillColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strBill\' in table \'SprPaymentApprovalSummarybybillreg\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.strBillColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strParty {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.strPartyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strParty\' in table \'SprPaymentApprovalSummarybybillreg\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.strPartyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strItem {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.strItemColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strItem\' in table \'SprPaymentApprovalSummarybybillreg\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.strItemColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string monLastPtice {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.monLastPticeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monLastPtice\' in table \'SprPaymentApprovalSummarybybillreg\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.monLastPticeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strReff {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.strReffColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strReff\' in table \'SprPaymentApprovalSummarybybillreg\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.strReffColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteBillRcvDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprPaymentApprovalSummarybybillreg.dteBillRcvDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteBillRcvDate\' in table \'SprPaymentApprovalSummarybybillre" +
+                                "g\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.dteBillRcvDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strMRR {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.strMRRColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strMRR\' in table \'SprPaymentApprovalSummarybybillreg\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.strMRRColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monbillAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprPaymentApprovalSummarybybillreg.monbillAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monbillAmount\' in table \'SprPaymentApprovalSummarybybillreg" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.monbillAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int monNetAmount {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprPaymentApprovalSummarybybillreg.monNetAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monNetAmount\' in table \'SprPaymentApprovalSummarybybillreg\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.monNetAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strApproveType {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprPaymentApprovalSummarybybillreg.strApproveTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strApproveType\' in table \'SprPaymentApprovalSummarybybillre" +
+                                "g\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.strApproveTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteAuditApproveOneTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprPaymentApprovalSummarybybillreg.dteAuditApproveOneTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteAuditApproveOneTime\' in table \'SprPaymentApprovalSummary" +
+                                "bybillreg\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.dteAuditApproveOneTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int monApproveL1 {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprPaymentApprovalSummarybybillreg.monApproveL1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monApproveL1\' in table \'SprPaymentApprovalSummarybybillreg\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.monApproveL1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int monApproveL2 {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprPaymentApprovalSummarybybillreg.monApproveL2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monApproveL2\' in table \'SprPaymentApprovalSummarybybillreg\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprPaymentApprovalSummarybybillreg.monApproveL2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrBillNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.strBillColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrBillNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.strBillColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrPartyNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.strPartyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrPartyNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.strPartyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrItemNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.strItemColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrItemNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.strItemColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonLastPticeNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.monLastPticeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonLastPticeNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.monLastPticeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrReffNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.strReffColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrReffNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.strReffColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteBillRcvDateNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.dteBillRcvDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteBillRcvDateNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.dteBillRcvDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrMRRNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.strMRRColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrMRRNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.strMRRColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonbillAmountNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.monbillAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonbillAmountNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.monbillAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonNetAmountNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.monNetAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonNetAmountNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.monNetAmountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrApproveTypeNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.strApproveTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrApproveTypeNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.strApproveTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteAuditApproveOneTimeNull() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.dteAuditApproveOneTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteAuditApproveOneTimeNull() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.dteAuditApproveOneTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonApproveL1Null() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.monApproveL1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonApproveL1Null() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.monApproveL1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonApproveL2Null() {
+                return this.IsNull(this.tableSprPaymentApprovalSummarybybillreg.monApproveL2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonApproveL2Null() {
+                this[this.tableSprPaymentApprovalSummarybybillreg.monApproveL2Column] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -20328,6 +21226,40 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprGetAllUnitListRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprPaymentApprovalSummarybybillregRowChangeEvent : global::System.EventArgs {
+            
+            private SprPaymentApprovalSummarybybillregRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregRowChangeEvent(SprPaymentApprovalSummarybybillregRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprPaymentApprovalSummarybybillregRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -28052,6 +28984,188 @@ ORDER BY po.dtePODate DESC
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprPaymentApprovalSummarybybillregTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprPaymentApprovalSummarybybillregTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprPaymentApprovalSummarybybillreg";
+            tableMapping.ColumnMappings.Add("intBill", "intBill");
+            tableMapping.ColumnMappings.Add("strBill", "strBill");
+            tableMapping.ColumnMappings.Add("strParty", "strParty");
+            tableMapping.ColumnMappings.Add("strItem", "strItem");
+            tableMapping.ColumnMappings.Add("monLastPtice", "monLastPtice");
+            tableMapping.ColumnMappings.Add("strReff", "strReff");
+            tableMapping.ColumnMappings.Add("dteBillRcvDate", "dteBillRcvDate");
+            tableMapping.ColumnMappings.Add("strMRR", "strMRR");
+            tableMapping.ColumnMappings.Add("monbillAmount", "monbillAmount");
+            tableMapping.ColumnMappings.Add("monNetAmount", "monNetAmount");
+            tableMapping.ColumnMappings.Add("strApproveType", "strApproveType");
+            tableMapping.ColumnMappings.Add("dteAuditApproveOneTime", "dteAuditApproveOneTime");
+            tableMapping.ColumnMappings.Add("monApproveL1", "monApproveL1");
+            tableMapping.ColumnMappings.Add("monApproveL2", "monApproveL2");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SCM_DAL.Properties.Settings.Default.ERP_PaymentConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprPaymentApprovalSummarybybillreg";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAction", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strBillReg", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual BillingTDS.SprPaymentApprovalSummarybybillregDataTable GetPaymentSummarybyBillReg(global::System.Nullable<int> intAction, string strBillReg) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intAction.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intAction.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((strBillReg == null)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(strBillReg));
+            }
+            BillingTDS.SprPaymentApprovalSummarybybillregDataTable dataTable = new BillingTDS.SprPaymentApprovalSummarybybillregDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -28277,21 +29391,21 @@ ORDER BY po.dtePODate DESC
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tblWearHouseTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TblWearHouse.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblWearHouseTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._tblCostCenterTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.TblCostCenter.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._tblCostCenterTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._tblWearHouseTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.TblWearHouse.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblWearHouseTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -28339,19 +29453,19 @@ ORDER BY po.dtePODate DESC
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tblWearHouseTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TblWearHouse.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblWearHouseTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._tblCostCenterTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.TblCostCenter.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._tblCostCenterTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._tblWearHouseTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.TblWearHouse.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblWearHouseTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -28397,19 +29511,19 @@ ORDER BY po.dtePODate DESC
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._tblCostCenterTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TblCostCenter.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblCostCenterTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tblWearHouseTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TblWearHouse.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._tblWearHouseTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._tblCostCenterTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.TblCostCenter.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblCostCenterTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

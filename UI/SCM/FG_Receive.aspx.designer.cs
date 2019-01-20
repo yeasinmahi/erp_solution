@@ -10,7 +10,7 @@
 namespace UI.SCM {
     
     
-    public partial class FG_Receive {
+    public partial class FgReceive {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -173,59 +173,5 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView FG_Grid;
-        
-        /// <summary>
-        /// lblAutoID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAutoID;
-        
-        /// <summary>
-        /// lblintproductionid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblintproductionid;
-        
-        /// <summary>
-        /// lblstrItem control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblstrItem;
-        
-        /// <summary>
-        /// lblintItemID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblintItemID;
-        
-        /// <summary>
-        /// lblstrUoM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblstrUoM;
-        
-        /// <summary>
-        /// txtSendStoreQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSendStoreQty;
     }
 }
