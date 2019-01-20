@@ -15,6 +15,7 @@ using System.IO;
 using System.Xml;
 using GLOBAL_BLL;
 using Flogging.Core;
+using BLL.Accounts.ChartOfAccount;
 
 namespace UI.PaymentModule
 {
@@ -27,8 +28,9 @@ namespace UI.PaymentModule
 
         Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL(); Billing_BLL objBillReg = new Billing_BLL();
         DataTable dt;
-    
-        string filePathForXML; string xmlString = ""; string xml, itemid, coaid, strSupplier;
+        string[] arrayKey; char[] delimiterChars = { '[', ']' };
+
+        string filePathForXML; string xmlString = ""; string xml, itemid,  strSupplier;
         int intUnitID, intCategoryID, intPart, intSupplierID, intCOAID;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -71,6 +73,7 @@ namespace UI.PaymentModule
                         ddlCategory.Items.Insert(0, new ListItem("All Category", "0"));
                     }
 
+                    Session["UnitM"] = ddlUnit.SelectedValue.ToString();
                     //LoadGrid();
                 }
             }
@@ -88,7 +91,18 @@ namespace UI.PaymentModule
         protected void btnShow_Click(object sender, EventArgs e)
         {
             LoadGrid();
-        }       
+        }
+
+        #region Web Method
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetCOAList(string prefixText, int count)
+        {
+            return ChartOfAccStaticDataProvider.GetCOADataForAutoFillPaymentRegister(HttpContext.Current.Session["UnitM"].ToString(), prefixText);
+        }
+
+        #endregion Web Method
+
         private void LoadGrid()
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
@@ -130,12 +144,15 @@ namespace UI.PaymentModule
 
         protected void ddlUnit_SelectedIndexChanged1(object sender, EventArgs e)
         {
+            Session["UnitM"] = ddlUnit.SelectedValue.ToString();
             dgvItemList.DataSource = "";
             dgvItemList.DataBind();
+
         }
 
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             dgvItemList.DataSource = "";
             dgvItemList.DataBind();
         }
@@ -153,11 +170,11 @@ namespace UI.PaymentModule
                 }
             }
         }
-        protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            dgvItemList.DataSource = "";
-            dgvItemList.DataBind();
-        }
+        //protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    dgvItemList.DataSource = "";
+        //    dgvItemList.DataBind();
+        //}
         protected void btnCOABankItem_Click(object sender, EventArgs e)
         {
             LoadGridBankItem();
@@ -218,12 +235,19 @@ namespace UI.PaymentModule
                     {
                         if (((CheckBox)dgvItemList.Rows[index].FindControl("chkRow")).Checked == true)
                         {
-                            itemid = ((Label)dgvItemList.Rows[index].FindControl("lblItemID")).Text.ToString();
-                            coaid = ((DropDownList)dgvItemList.Rows[index].FindControl("ddlAccountName")).SelectedValue.ToString();
+                          
 
-                            if (coaid != "0")
+
+                            itemid = ((Label)dgvItemList.Rows[index].FindControl("lblItemID")).Text.ToString();
+                            //coaid = ((DropDownList)dgvItemList.Rows[index].FindControl("ddlAccountName")).SelectedValue.ToString();
+
+                            string  coa = ((TextBox)dgvItemList.Rows[index].FindControl("txtCOA")).Text.ToString();
+                            arrayKey = coa.Split(delimiterChars);
+                            int coaid = int.Parse(arrayKey[3].ToString()); 
+
+                            if (coaid >0)
                             {
-                                CreateVoucherXml(itemid, coaid);
+                                CreateVoucherXml(itemid, coaid.ToString());
                             }
                         }
                     }

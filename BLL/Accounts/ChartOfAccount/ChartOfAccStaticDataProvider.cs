@@ -440,7 +440,7 @@ namespace BLL.Accounts.ChartOfAccount
                                where tmp.ysnEnable == true && tmp.ysnHasChild == false
                               && tmp.intModulesAutoID != "1"// All Bank Info
                                                             //  && (tmp.IsintAccTemplateIDNull()?true:(tmp.intAccTemplateID != 19))// Cash In Hand
-                               && tmp.strAccName.ToLower().StartsWith(prefix, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               && tmp.strAccName.ToLower().StartsWith(prefix, true, System.Globalization.CultureInfo.CurrentUICulture) 
                                orderby tmp.strAccName
                                select tmp;
                     if (rows.Count() > 0)
