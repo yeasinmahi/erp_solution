@@ -89,6 +89,21 @@ namespace SCM_BLL
             }
             catch (Exception ex) { return ex.ToString(); }
         }
+
+        public string InsertJV(int intUnitID, DateTime dteVoucherDate, string strNarration, decimal monDrTotal, decimal monCrTotal, int intUserID, string xml, int intBillID, string strBillCode)
+        {
+            try
+            {
+                string msg = "";
+                SprPaymentVoucherJVForWebTableAdapter adp = new SprPaymentVoucherJVForWebTableAdapter();
+                adp.InsertJV(intUnitID, dteVoucherDate, strNarration, monDrTotal, monCrTotal, intUserID, xml, intBillID, strBillCode, ref msg);
+                return msg;
+            }
+            catch (Exception ex) { return ex.ToString(); }
+        }
+
+        //
+
         public DataTable InsertPOVoucherForAFBL(int intUnitID, int intUser, int intBank, int intBankAcc, string xml)
         {
             SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter adp = new SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter();
