@@ -67,11 +67,15 @@
 
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblLoanType" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" width="110px" height="23px" AutoPostBack="true" ></asp:DropDownList>
+                <td style="text-align:left;"><asp:DropDownList ID="ddlUnit" CssClass="ddList" 
+                        Font-Bold="False" runat="server" width="110px" height="23px" 
+                        AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged1" ></asp:DropDownList>
                 </td>                
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Category :"></asp:Label></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlCategory" CssClass="ddList" Font-Bold="False" runat="server" width="130px" height="23px" AutoPostBack="false"></asp:DropDownList>
+                <asp:DropDownList ID="ddlCategory" CssClass="ddList" Font-Bold="False" 
+                        runat="server" width="130px" height="23px" AutoPostBack="false" 
+                        OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList>
                 <span style="padding-left:30px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show All Item" Height="30px" OnClick="btnShow_Click"/></span>
                 <span style="padding-left:30px"><asp:Button ID="btnCOABankItem" runat="server" class="myButton" Text="COA Blank Item" Height="30px" OnClick="btnCOABankItem_Click"/></span>
                 <span style="padding-left:30px"><asp:Button ID="btnUpdateBridge" runat="server" class="myButton" Text="Update Bridge" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateBridge_Click"/></span>
@@ -104,17 +108,17 @@
                 <ItemTemplate><asp:Label ID="lblSubCategory" runat="server" Text='<%# Bind("strSubCategory") %>' Width="110px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
 
-                <asp:TemplateField HeaderText="Cluster" SortExpression="strCluster">
+                <%--<asp:TemplateField HeaderText="Cluster" SortExpression="strCluster">
                 <ItemTemplate><asp:Label ID="lblCluster" runat="server" Text='<%# Bind("strCluster") %>' Width="110px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>--%>
 
-                <asp:TemplateField HeaderText="Commodity" SortExpression="strComGroupName">
+                <%--<asp:TemplateField HeaderText="Commodity" SortExpression="strComGroupName">
                 <ItemTemplate><asp:Label ID="lblCommodity" runat="server" Text='<%# Bind("strComGroupName") %>' Width="110px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
 
                 <asp:TemplateField HeaderText="New Category" SortExpression="strNewCategory">
                 <ItemTemplate><asp:Label ID="lblNewCategory" runat="server" Text='<%# Bind("strNewCategory") %>' Width="110px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>
+                </ItemTemplate><ItemStyle HorizontalAlign="left" Width="110px"/></asp:TemplateField>--%>
 
                 <asp:TemplateField HeaderText="COA ID" SortExpression="intCOAID" Visible="false">
                 <ItemTemplate><asp:Label ID="lblCOAID" runat="server" Text='<%# Bind("intCOAID") %>' Width="70px"></asp:Label>

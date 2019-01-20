@@ -127,6 +127,19 @@ namespace UI.PaymentModule
             // ends
             tracker.Stop();
         }
+
+        protected void ddlUnit_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            dgvItemList.DataSource = "";
+            dgvItemList.DataBind();
+        }
+
+        protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvItemList.DataSource = "";
+            dgvItemList.DataBind();
+        }
+
         protected void dgvItemList_DataBound(object sender, EventArgs e)
         {
             foreach (GridViewRow gvRow in dgvItemList.Rows)
