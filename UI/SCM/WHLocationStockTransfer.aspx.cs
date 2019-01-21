@@ -98,6 +98,7 @@ namespace UI.SCM
 
                 dgvWHLocation.DataSource = "";
                 dgvWHLocation.DataBind();
+                txtItem.Text = "";
             }
             catch { }
         }
@@ -110,6 +111,7 @@ namespace UI.SCM
                 ddlLocation.Visible = true;
                 dgvWHLocation.DataSource = "";
                 dgvWHLocation.DataBind();
+                txtItem.Text = "";
             }
             catch { }
         }
@@ -122,6 +124,7 @@ namespace UI.SCM
                 ddlLocation.Visible = false;
                 dgvWHLocation.DataSource = "";
                 dgvWHLocation.DataBind();
+                txtItem.Text = "";
             }
             catch { }
         }
@@ -191,7 +194,7 @@ namespace UI.SCM
                 string mrtg = objOperation.WHLocationCreate(9, xmlString, intWH, newLocation, enroll);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
-                dgvWHLocation.DataSource = ""; dgvWHLocation.DataBind();
+                dgvWHLocation.DataSource = ""; dgvWHLocation.DataBind();txtItem.Text = "";
             }
             catch { }
         }

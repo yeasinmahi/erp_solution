@@ -10,6 +10,7 @@ using UI.ClassFiles;
 using Purchase_BLL.Asset;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.SCM
 {
@@ -36,10 +37,8 @@ namespace UI.SCM
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataBind();
 
-                Session["WareID"] = ddlWH.SelectedValue.ToString();
+                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
             }
-            else
-            { }
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -52,18 +51,37 @@ namespace UI.SCM
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
-                string item = ""; string itemid = "";
+                int itemid = 0;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString();
-                    itemid = arrayKey[1].ToString();
+                    int.TryParse(arrayKey[1], out itemid);
                 }
+                if (itemid <= 0)
+                {
+                    Alert("Item Id "+Message.ParsingProblem.ToFriendlyString());
+                    return;
+                }
+                intwh = Common.GetDdlSelectedValue(ddlWH);
+                DateTime dteFrom = new DateTime();
+                DateTime dteTo = new DateTime();
+                try
+                {
+                    dteFrom = DateTime.Parse(txtdteFrom.Text);
+                }
+                catch (Exception e)
+                {
+                    Alert("From " + Message.DateFormatError.ToFriendlyString());
+                }
+                try
+                {
+                    dteTo = DateTime.Parse(txtdteTo.Text);
+                }
+                catch (Exception e)
+                {
+                    Alert("To "+Message.DateFormatError.ToFriendlyString());
+                }
+                dt = objIssue.GetIssueItem(itemid,intwh,dteFrom,dteTo);
 
-                intwh = int.Parse(ddlWH.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtdteFrom.Text.ToString());
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-                string xmlData = "<voucher><voucherentry dteFrom=" + '"' + dteFrom + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                dt = objIssue.GetViewData(6, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
                 {
                     dgvPoApp.DataSource = dt;
@@ -71,7 +89,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Alert("Data not found");
+                    Alert(Message.NoFound.ToFriendlyString());
                 }
             }
             catch (Exception e)
@@ -97,9 +115,12 @@ namespace UI.SCM
         {
             try
             {
-                Session["WareID"] = ddlWH.SelectedValue.ToString();
+                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Alert(ex.Message);
+            }
         }
 
         protected void btnReturn_Click(object sender, EventArgs e)
@@ -111,30 +132,28 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                if (hdnConfirm.Value == "1")
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                string item = ""; string itemid = "";
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0]; itemid = arrayKey[1]; }
+
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
+                TextBox txtRemarks = row.FindControl("txtRemarks") as TextBox;
+                Label lblIssueId = row.FindControl("lblIssueId") as Label;
+
+                string IssueID = lblIssueId.Text;
+
+                double returnQty = double.Parse(txtReturnQty.Text);
+                string remarks = txtRemarks.Text;
+                string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty + '"' + " remarks=" + '"' + remarks + '"' + " IssueID=" + '"' + IssueID + '"' + "/></voucher>";
+                if (returnQty > 0)
                 {
-                    arrayKey = txtItem.Text.Split(delimiterChars);
-                    string item = ""; string itemid = "";
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
-
-                    GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-                    TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
-                    TextBox txtRemarks = row.FindControl("txtRemarks") as TextBox;
-                    Label lblIssueId = row.FindControl("lblIssueId") as Label;
-
-                    string IssueID = lblIssueId.Text.ToString();
-
-                    double returnQty = double.Parse(txtReturnQty.Text.ToString());
-                    string remarks = txtRemarks.Text.ToString();
-                    string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty.ToString() + '"' + " remarks=" + '"' + remarks + '"' + " IssueID=" + '"' + IssueID + '"' + "/></voucher>".ToString();
-                    if (returnQty > 0)
-                    {
-                        string msg = objIssue.StoreIssue(7, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                        GetIssueItem();
-                    }
+                    string msg = objIssue.StoreIssue(7, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    GetIssueItem();
                 }
+
             }
             catch (Exception ex)
             {

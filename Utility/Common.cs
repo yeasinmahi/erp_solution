@@ -4,8 +4,6 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.UI;
@@ -105,43 +103,6 @@ namespace Utility
             return Convert.ToInt32(id);
         }
 
-        public static string GetMacAddress()
-        {
-            string macAddresses = "";
-            foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
-            {
-                if (nic.OperationalStatus == OperationalStatus.Up)
-                {
-                    macAddresses += nic.GetPhysicalAddress().ToString();
-                    break;
-                }
-            }
-            return macAddresses;
-        }
-
-        public static string GetIpAddress()
-        {
-            string ipAddress = null;
-            var hostname = Environment.MachineName;
-            var host = Dns.GetHostEntry(hostname);
-            foreach (IPAddress ip in host.AddressList)
-            {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                {
-                    ipAddress = Convert.ToString(ip);
-                }
-            }
-            return ipAddress;
-        }
-
-        public static string GetIp()
-        {
-            string host = Dns.GetHostName();
-            IPHostEntry ip = Dns.GetHostEntry(host);
-            string ipaddress = (ip.AddressList[1].ToString());
-            return ipaddress;
-        }
-
         public static int GetDdlSelectedValue(DropDownList ddl)
         {
             if (ddl?.SelectedItem != null)
@@ -157,7 +118,7 @@ namespace Utility
             {
                 return ddl.SelectedItem.Text;
             }
-            return String.Empty;
+            return string.Empty;
         }
 
         public static bool LoadDropDown(DropDownList ddl, DataTable dt, string value, string text)
@@ -171,7 +132,7 @@ namespace Utility
                 ddl.DataBind();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 return false;
             }

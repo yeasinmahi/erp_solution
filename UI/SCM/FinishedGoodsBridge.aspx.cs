@@ -142,7 +142,7 @@ namespace UI.SCM
             {
                 dt = objinventoryTransfer.GetFGList(intUnit);
                 ddlFG.DataSource = dt;
-                ddlFG.DataTextField = "strProductName";
+                ddlFG.DataTextField = "strProductName"; 
                 ddlFG.DataValueField = "intID";
                 ddlFG.DataBind();
             }

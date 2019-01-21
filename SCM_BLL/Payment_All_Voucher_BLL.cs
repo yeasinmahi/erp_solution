@@ -109,6 +109,7 @@ namespace SCM_BLL
             SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter adp = new SprAccountsInsertBPForBillWithoutAdjustmentForWebForAFBLTableAdapter();
             try
             { return adp.InsertPOVoucherForAFBL(intUnitID, intUser, intBank, intBankAcc, xml); }
+                                               
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
         public DataTable GetSupplierListForAddToChartOfAcount(int intUnitID)
