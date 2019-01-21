@@ -274,6 +274,15 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lbldataQuantity;
         
         /// <summary>
+        /// lblnb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblnb;
+        
+        /// <summary>
         /// lblcreatedistance control.
         /// </summary>
         /// <remarks>
