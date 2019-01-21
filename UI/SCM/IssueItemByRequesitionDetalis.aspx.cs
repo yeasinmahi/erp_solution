@@ -271,7 +271,7 @@ namespace UI.SCM
                 // I assumed you are getting data in dataset using some query
 
                 Label lblItem = (Label)e.Row.FindControl("lblItemId");
-                int Item = int.Parse(lblItem.Text);
+                int Item = int.Parse(lblItem.Text.ToString());
                 
                 intwh = int.Parse(Request.QueryString["intwh"].ToString());
                 //dt = objOperation.WhDataView(8, "", intwh, Item, 1);
