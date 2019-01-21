@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -17,7 +18,7 @@ namespace UI.SCM
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private Location_BLL objOperation = new Location_BLL();
         private DataTable dt = new DataTable();
-        private int enroll, intwh;
+        private int intwh;
         private string filePathForXML, xmlString = "";
         private string filePathForText;
 
@@ -30,20 +31,23 @@ namespace UI.SCM
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForText = Server.MapPath("~/SCM/Data/");
-            filePathForXML = Server.MapPath("~/SCM/Data/sIn__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/sIn__" + HttpContext.Current.Session[SessionParams.USER_ID] + ".xml");
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); } catch { }
-                int ReqId = int.Parse(Request.QueryString["ReqId"].ToString());
-                string ReqCode = Request.QueryString["ReqCode"].ToString();
-                DateTime dteReqDate = DateTime.Parse(Request.QueryString["dteReqDate"].ToString());
-                string strDepartmentName = Request.QueryString["strDepartmentName"].ToString();
-                string strReqBy = Request.QueryString["strReqBy"].ToString();
-                string strApproveBy = Request.QueryString["strApproveBy"].ToString();
-                string DeptId = Request.QueryString["DeptId"].ToString();
-                string SectionID = Request.QueryString["SectionID"].ToString();
-                string SectionName = Request.QueryString["SectionName"].ToString();
-                intwh = int.Parse(Request.QueryString["intwh"].ToString());
+                try
+                {
+                    File.Delete(filePathForXML);
+                } catch { }
+                int ReqId = int.Parse(Request.QueryString["ReqId"]);
+                string ReqCode = Request.QueryString["ReqCode"];
+                DateTime dteReqDate = DateTime.Parse(Request.QueryString["dteReqDate"]);
+                string strDepartmentName = Request.QueryString["strDepartmentName"];
+                string strReqBy = Request.QueryString["strReqBy"];
+                string strApproveBy = Request.QueryString["strApproveBy"];
+                string DeptId = Request.QueryString["DeptId"];
+                string SectionID = Request.QueryString["SectionID"];
+                string SectionName = Request.QueryString["SectionName"];
+                intwh = int.Parse(Request.QueryString["intwh"]);
 
                 lblReqCode.Text = ReqCode;
                 lblReqDate.Text = dteReqDate.ToString("dd-MM-yyyy");
@@ -52,15 +56,23 @@ namespace UI.SCM
                 lblApproved.Text = strApproveBy;
                 lblSection.Text = SectionName;
 
-                dt = objIssue.GetViewData(4, "", intwh, ReqId, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(4, "", intwh, ReqId, DateTime.Now, Enroll);
                 ddlCost.DataSource = dt;
                 ddlCost.DataTextField = "strName";
                 ddlCost.DataValueField = "Id";
                 ddlCost.DataBind();
 
-                dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, enroll);
-                dgvDetalis.DataSource = dt;
-                dgvDetalis.DataBind();
+                dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    dgvDetalis.DataSource = dt;
+                    dgvDetalis.DataBind();
+                }
+                else
+                {
+                    Alert(Message.NoFound.ToFriendlyString());
+                }
+                
             }
             else { }
         }
@@ -74,30 +86,29 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
+                if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value == "1")
                 {
-                    enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     try { File.Delete(filePathForXML); File.Delete(filePathForText); } catch { }
 
-                    string receiveBy = txtReceiveBy.Text.ToString();
-                    string reqId = Request.QueryString["ReqId"].ToString();
-                    string reqCode = lblReqCode.Text.ToString();
-                    string deptId = Request.QueryString["DeptId"].ToString();
+                    string receiveBy = txtReceiveBy.Text;
+                    string reqId = Request.QueryString["ReqId"];
+                    string reqCode = lblReqCode.Text;
+                    string deptId = Request.QueryString["DeptId"];
                     string strSection = lblSection.Text;
-                    string reqBy = lblReqBy.Text.ToString();
-                    intwh = int.Parse(Request.QueryString["intwh"].ToString());
+                    string reqBy = lblReqBy.Text;
+                    intwh = int.Parse(Request.QueryString["intwh"]);
 
                     for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                     {
-                        string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text.ToString();
-                        string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text.ToString();
-                        string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text.ToString();
-                        string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text.ToString();
+                        string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
+                        string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text;
+                        string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text;
+                        string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
 
-                        string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text.ToString();
-                        string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue.ToString();
+                        string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
+                        string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
 
-                        string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text.ToString();
+                        string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
 
                         if (decimal.Parse(issueQty) > 0)
                         {
@@ -111,7 +122,7 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<issue>" + xmlString + "</issue>";
                     try { File.Delete(filePathForXML); } catch { }
-                    string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now, enroll);
+                    string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now, Enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                 }
@@ -196,16 +207,16 @@ namespace UI.SCM
             {
                 GridViewRow row = (GridViewRow)((DropDownList)sender).NamingContainer;
                 DropDownList ddlLocation = row.FindControl("ddlStoreLocation") as DropDownList;
-                int locationId = int.Parse(ddlLocation.SelectedValue.ToString());
+                int locationId = int.Parse(ddlLocation.SelectedValue);
 
                 Label lblItemId = row.FindControl("lblItemId") as Label;
                 Label lblstock = row.FindControl("lblStock") as Label;
                 Label lblvalue = row.FindControl("lblValue") as Label;
                 TextBox txtIsueQty = row.FindControl("txtIssue") as TextBox;
 
-                int itemid = int.Parse(lblItemId.Text.ToString());
+                int itemid = int.Parse(lblItemId.Text);
                
-                intwh = int.Parse(Request.QueryString["intwh"].ToString());
+                intwh = int.Parse(Request.QueryString["intwh"]);
                 txtIsueQty.Text = "0";
                 dt = objIssue.GetViewData(18, "", intwh, locationId, DateTime.Now, itemid);
                 if(dt.Rows.Count>0)
@@ -273,7 +284,7 @@ namespace UI.SCM
                 Label lblItem = (Label)e.Row.FindControl("lblItemId");
                 int Item = int.Parse(lblItem.Text.ToString());
                 
-                intwh = int.Parse(Request.QueryString["intwh"].ToString());
+                intwh = int.Parse(Request.QueryString["intwh"]);
                 //dt = objOperation.WhDataView(8, "", intwh, Item, 1);
 
                 dt = objIssue.GetViewData(19, "", intwh, 0, DateTime.Now, Item);
@@ -291,7 +302,7 @@ namespace UI.SCM
                         Label lblstock = (Label)e.Row.FindControl("lblstock");
                         Label lblvalue = (Label)e.Row.FindControl("lblvalue");
 
-                        dt = objIssue.GetViewData(18, "", intwh, int.Parse(ddlLocation.SelectedValue.ToString()), DateTime.Now, Item);
+                        dt = objIssue.GetViewData(18, "", intwh, int.Parse(ddlLocation.SelectedValue), DateTime.Now, Item);
                         if (dt.Rows.Count > 0)
                         {
                             lblstock.Text = dt.Rows[0]["monStock"].ToString();

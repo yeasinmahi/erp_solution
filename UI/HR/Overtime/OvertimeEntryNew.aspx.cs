@@ -152,7 +152,7 @@ namespace UI.HR.Overtime
             if (objectsNew.Count > 0)
             {
                 string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objectsNew, out string message);
-                string ipaddress = Common.GetIp();
+                string ipaddress = MySystem.GetIp();
                 message = _bll.OvertimeEntryNew(1, xmlString, Enroll, ipaddress);
 
                 if (message.Contains("Sucessfully"))

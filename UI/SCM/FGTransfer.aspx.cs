@@ -60,13 +60,13 @@ namespace UI.SCM
             }
             else
             {
-                Toaster("No Data Found", Common.TosterType.Warning);
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
         }
 
         protected void btnTransfer_OnClick(object sender, EventArgs e)
         {
-            Toaster("Under Maintainace", Common.TosterType.Warning);
+            Toaster(Message.UnderMaintenance.ToFriendlyString(), Common.TosterType.Warning);
             return;
             //GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
 
