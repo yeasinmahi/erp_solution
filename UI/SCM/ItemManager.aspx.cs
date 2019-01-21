@@ -6,6 +6,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -30,7 +31,7 @@ namespace UI.SCM
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
                 ddlWh.DataBind();
-                wh = int.Parse(ddlWh.SelectedValue);
+                wh = Common.GetDdlSelectedValue(ddlWh);
                 dt = objIssue.GetWhByLocation(wh);
                 ddlLocation.DataSource = dt;
                 ddlLocation.DataValueField = "Id";
