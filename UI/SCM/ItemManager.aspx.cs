@@ -13,7 +13,7 @@ namespace UI.SCM
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private DataTable dt = new DataTable();
-        private int enroll, wh;
+        private int wh;
         private SeriLog log = new SeriLog();
         private string location = "SCM";
         private string start = "starting SCM\\IndentStatus";
@@ -24,8 +24,7 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(1, "", wh, 0, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(1, "", wh, 0, DateTime.Now, Enroll);
                 // dt = objIssue.GetWH();
                 ddlWh.DataSource = dt;
                 ddlWh.DataValueField = "Id";
@@ -78,7 +77,7 @@ namespace UI.SCM
                 int location = int.Parse(ddlLocation.SelectedValue);
                 if (location > 0)
                 {
-                    string msg = objIssue.StoreIssue(13, xmlData, wh, location, DateTime.Now, enroll);
+                    string msg = objIssue.StoreIssue(13, xmlData, wh, location, DateTime.Now, Enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Sselect your location');", true); }

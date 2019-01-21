@@ -304,7 +304,7 @@ namespace Purchase_BLL.Asset
                     var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]                         
                                orderby tmp.strItem
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }

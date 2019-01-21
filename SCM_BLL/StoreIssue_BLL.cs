@@ -8,12 +8,11 @@ namespace SCM_BLL
     {
         public DataTable GetViewData(int part, string xml, int Wh, int reqId, DateTime dteDate, int enroll)
         {
-            string strMsg = "";
+            string message = null;
             try
             {
-                
                 SprStoreIssueTableAdapter adp = new SprStoreIssueTableAdapter();
-                return adp.GetStoreIssueData(part, xml, Wh, reqId, dteDate, enroll, ref strMsg);
+                return adp.GetStoreIssueData(part, xml, Wh, reqId, dteDate, enroll, ref message);
             }
             catch (Exception e)
             {
