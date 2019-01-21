@@ -30,6 +30,21 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable DeletePayment(int billId, out string msg)
+        {
+            msg = null;
+            try
+            {
+                SprBillRemoveTableAdapter adp = new SprBillRemoveTableAdapter();
+                return adp.RemoveBill(billId, ref msg);
+            }
+            catch (Exception exception)
+            {
+                msg = exception.Message;
+                return new DataTable();
+            }
+            
+        }
         public DataTable GetAllUnit(int enroll)
         {
             sprGetAllUnitListTableAdapter adp = new sprGetAllUnitListTableAdapter();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web.UI.WebControls;
 using SCM_BLL;
 using UI.ClassFiles;
 using Utility;
@@ -10,6 +11,7 @@ namespace UI.PaymentModule
     {
         private DataTable _dt = new DataTable();
         private readonly Billing_BLL _bll = new Billing_BLL();
+        private readonly Payment_All_Voucher_BLL _PaymentVouchar = new Payment_All_Voucher_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -58,11 +60,11 @@ namespace UI.PaymentModule
             int intUnitid = int.Parse(ddlUnit.SelectedValue);
             DateTime dteFDate = DateTime.Parse(txtFromDate.Text);
             DateTime dteTDate = DateTime.Parse(txtToDate.Text);
-            int intAction = int.Parse(ddlAction.SelectedValue);
             int intEntryType = 1;
             int intLevel = int.Parse(hdnLevel.Value);
 
-            _dt = _bll.GetPaymentApprovalSummaryAllUnitForWeb(intUnitid, dteFDate, dteTDate, intAction, intEntryType, intLevel);
+            //_dt = _bll.GetPaymentApprovalSummaryAllUnitForWeb(intUnitid, dteFDate, dteTDate, intAction, intEntryType, intLevel);
+            _dt =  _PaymentVouchar.GetBillRegisterForWeb(intUnitid, dteFDate, dteTDate);
             if (_dt.Rows.Count > 0)
             {
                 grid.DataSource = _dt;
@@ -93,27 +95,49 @@ namespace UI.PaymentModule
         }
         protected void btnBillRegister_OnClick(object sender, EventArgs e)
         {
-            try
-            {
-                string strReffNo = txtBillReg.Text;
-                _dt = _bll.GetBillInfoByBillReg(Enroll, strReffNo);
-                if (_dt.Rows.Count > 0)
-                {
-                    grid.DataSource = _dt;
-                    grid.DataBind();
-                }
-                else
-                {
-                    Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
-                }
+            //try
+            //{
+            //    string strReffNo = txtBillReg.Text;
+            //    _dt = _bll.GetBillInfoByBillReg(Enroll, strReffNo);
+            //    if (_dt.Rows.Count > 0)
+            //    {
+            //        grid.DataSource = _dt;
+            //        grid.DataBind();
+            //    }
+            //    else
+            //    {
+            //        Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+            //    }
                 
-            }
-            catch (Exception ex)
-            {
-                Toaster(ex.Message,Common.TosterType.Error);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Toaster(ex.Message,Common.TosterType.Error);
+            //}
         }
 
-        
+
+        protected void grid_OnRowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRow(grid, e);
+            if (int.TryParse((row.FindControl("lblBillID") as Label)?.Text, out int billId))
+            {
+                if (e.CommandName.Equals("View"))
+                {
+                    Toaster("View", Common.TosterType.Warning);
+                }
+                else if (e.CommandName.Equals("Remove"))
+                {
+                    _bll.DeletePayment(billId, out string msg);
+                    Toaster(msg, msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                Toaster("Can not get Bill id from Grid",Common.TosterType.Error);
+            }
+            
+            
+        }
     }
 }

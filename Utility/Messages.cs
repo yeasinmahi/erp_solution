@@ -7,13 +7,18 @@ namespace Utility
     public enum Message
     {
         SubmitSuccess,
+        RemoveSuccess,
+        RemoveFailed,
         NotBlank,
         NoFound,
         PermissionDenied,
         DateFormatError,
         WriteError,
         ParsingProblem,
-        UnderMaintenance
+        UnderMaintenance,
+        Unapproved,
+        AlreadyApproved,
+
 
     }
 
@@ -27,6 +32,10 @@ namespace Utility
                     return "Submit Successfully";
                 case Message.NotBlank:
                     return "Cannot be Blank";
+                case Message.RemoveSuccess:
+                    return "Remove Successfully";
+                case Message.RemoveFailed:
+                    return "Remove Failed";
                 case Message.NoFound:
                     return "No Data Found";
                 case Message.PermissionDenied:
@@ -39,6 +48,10 @@ namespace Utility
                     return "Parsing Problem";
                 case Message.UnderMaintenance:
                     return "Under Maintenance";
+                case Message.Unapproved:
+                    return "This is Unapproved";
+                case Message.AlreadyApproved:
+                    return "This is Already Approved";
                 default:
                     return "UnKnown Message";
             }
