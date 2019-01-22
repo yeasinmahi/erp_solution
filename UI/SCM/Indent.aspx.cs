@@ -463,27 +463,44 @@ namespace UI.SCM
             {
                 if (int.Parse(ddlType.SelectedValue) > 0)
                 {
-                    XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWH.SelectedValue);
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<voucher>" + xmlString + "</voucher>";
-                    DateTime dtedate = DateTime.Parse(txtDueDate.Text);
-                    try { File.Delete(filePathForXML); } catch { }
-                    if (xmlString.Length > 5)
+                    if (Common.GetDdlSelectedValue(ddlDepartment) > 0)
                     {
-                        string mrtg = _objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, Enroll);
-                        string[] searchKey = Regex.Split(mrtg, ":");
-                        lblIndentNo.Text = "Indent Number: " + searchKey[1];
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
-                        dgvIndent.DataSource = "";
-                        dgvIndent.DataBind();
+                        XmlDocument doc = new XmlDocument();
+                        intWh = int.Parse(ddlWH.SelectedValue);
+                        doc.Load(filePathForXML);
+                        XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                        xmlString = dSftTm.InnerXml;
+                        xmlString = "<voucher>" + xmlString + "</voucher>";
+                        DateTime dtedate = DateTime.Parse(txtDueDate.Text);
+                        
+                        try
+                        {
+                            File.Delete(filePathForXML);
+                        }
+                        catch
+                        {
+                        }
+                        if (xmlString.Length > 5)
+                        {
+                            string mrtg = _objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, Enroll);
+                            string[] searchKey = Regex.Split(mrtg, ":");
+                            lblIndentNo.Text = "Indent Number: " + searchKey[1];
+                            Toaster(mrtg,
+                                mrtg.ToLower().Contains("sucessfully")
+                                    ? Common.TosterType.Success
+                                    : Common.TosterType.Error);
+                            GridViewUtil.UnLoadGridView(dgvIndent);
+                        }
                     }
+                    else
+                    {
+                        Toaster("Please select Department",Common.TosterType.Warning);
+                    }
+                    
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Indent Type');", true);
+                    Toaster("Please Select Indent Type", Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)
