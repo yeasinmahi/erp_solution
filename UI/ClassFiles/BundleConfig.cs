@@ -40,7 +40,10 @@ namespace UI.ClassFiles
                                                                                 "~/Content/JS/JQUERY/jquery-ui-1.8.22.custom.min.js",
                                                                                 "~/Content/JS/JQUERY/jquery.ui.ufd.js",
                                                                                 "~/Content/JS/datepickr.min.js",
-                                                                                "~/Content/JS/jquery.timepicker.js"
+                                                                                "~/Content/JS/jquery.timepicker.js",
+                                                                                "~/Content/JS/toastr.min.js",
+                                                                                "~/Content/JS/ui-toastr.min.js",
+                                                                                "~/Content/JS/StaticFunction.js"
                                                                             ));
             bundles.Add(new ScriptBundle("~/Content/Bundle/updatedJs").Include(
                 "~/Content/JS/jquery-3.3.1.js",
@@ -69,7 +72,9 @@ namespace UI.ClassFiles
 
             bundles.Add(new StyleBundle("~/Content/Bundle/defaultCSS").Include(
                                                                                  "~/Content/CSS/Banner.css",
-                                                                                 "~/Content/CSS/StyleSheet.css"
+                                                                                 "~/Content/CSS/StyleSheet.css",
+                                                                                 "~/Content/CSS/jquery-ui.min.css",
+                                                                                 "~/Content/CSS/toastr.min.css"
                                                                                ));
             bundles.Add(new StyleBundle("~/Content/Bundle/updatedCss").Include(
                 // defaultCSS
