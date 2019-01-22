@@ -471,7 +471,22 @@ namespace UI.SCM
                         XmlNode dSftTm = doc.SelectSingleNode("voucher");
                         xmlString = dSftTm.InnerXml;
                         xmlString = "<voucher>" + xmlString + "</voucher>";
-                        DateTime dtedate = DateTime.Parse(txtDueDate.Text);
+                        string dueDate = txtDueDate.Text;
+                        if (string.IsNullOrWhiteSpace(dueDate))
+                        {
+                            Toaster("Due date can not be blank",Common.TosterType.Warning);
+                            return;
+                        }
+                        DateTime dtedate;
+                        try
+                        {
+                            dtedate = DateTime.Parse(txtDueDate.Text);
+                        }
+                        catch
+                        {
+                            Toaster("Due "+Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                            return;
+                        }
                         
                         try
                         {
