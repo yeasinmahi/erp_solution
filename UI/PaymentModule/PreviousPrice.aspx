@@ -111,13 +111,13 @@
                     <asp:DropDownList ID="ddlwh" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlwh_SelectedIndexChanged"></asp:DropDownList>
                 </td>
                 <td style="text-align: right;">
-                    <asp:Label ID="Label2" runat="server" Text="Item ID : "></asp:Label></td>
+                    <asp:Label ID="Label2" runat="server" width="55px" Text="Item ID: "></asp:Label></td>
                 <td style="text-align: left;">
                     <asp:TextBox ID="txtItemId" runat="server" CssClass="txtBox" OnTextChanged="txtItemId_TextChanged"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align: right;">
-                    <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List "></asp:Label></td>
+                    <asp:Label ID="lblitm" CssClass="lbl" width="55px" runat="server" Text="Item List:"></asp:Label></td>
                 <td style="text-align: left;">
                     <asp:TextBox ID="txtItem" runat="server" OnTextChanged="txtItem_TextChanged" AutoCompleteType="Search" AutoPostBack="true" Width="300px" CssClass="txtBox"></asp:TextBox>
                     <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
@@ -168,6 +168,13 @@
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Rate" SortExpression="rate">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
+                            </asp:TemplateField>
+
+                               <asp:TemplateField HeaderText="Rate" SortExpression="rate">
                                 <ItemTemplate>
                                     <asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
