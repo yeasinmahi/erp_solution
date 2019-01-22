@@ -18,7 +18,7 @@ namespace Utility
         UnderMaintenance,
         Unapproved,
         AlreadyApproved,
-
+        AlreadyAdded
 
     }
 
@@ -52,6 +52,8 @@ namespace Utility
                     return "This is Unapproved";
                 case Message.AlreadyApproved:
                     return "This is Already Approved";
+                case Message.AlreadyAdded:
+                    return "This is Already Added";
                 default:
                     return "UnKnown Message";
             }
