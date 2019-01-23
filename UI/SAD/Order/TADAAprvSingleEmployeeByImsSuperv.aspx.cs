@@ -806,7 +806,7 @@ namespace UI.SAD.Order
 
                         if (grdvForApproveTADAByImmdediatesupervisor.Rows.Count > 0)
                         {
-                            for (int rowIndex = 0; rowIndex < grdvForApproveTADAByImmdediatesupervisor.Rows.Count - 1; rowIndex++)
+                            for (int rowIndex = 0; rowIndex < grdvForApproveTADAByImmdediatesupervisor.Rows.Count ; rowIndex++)
                             {
 
 
