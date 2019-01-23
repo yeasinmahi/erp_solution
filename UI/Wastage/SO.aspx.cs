@@ -63,7 +63,7 @@ namespace UI.Wastage
 
         private void Itemlist()
         {
-            dt = obj.ItemListRpt(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            dt = obj.ItemListRpt(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlItem.DataTextField = "strItemName";
             ddlItem.DataValueField = "intItemID";
             ddlItem.DataSource = dt;
@@ -81,7 +81,7 @@ namespace UI.Wastage
 
         private void CustList()
         {
-            dt = obj.CustomerList(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            dt = obj.CustomerList(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlCustomer.DataTextField = "strCustomerName";
             ddlCustomer.DataValueField = "intCustomerID";
             ddlCustomer.DataSource = dt;
@@ -128,6 +128,8 @@ namespace UI.Wastage
         protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
         {
             WHlist();
+            CustList();
+            Itemlist();
         }
         private void CreateAddXml(string itemid, string itemname, string uom, string qty, string rate, string value, string remarks)
         {
