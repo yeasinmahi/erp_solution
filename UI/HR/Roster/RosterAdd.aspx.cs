@@ -7,6 +7,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
+using System.Web.Services;
+using System.Web.Script.Services;
+using Purchase_BLL.Asset;
+using System.Web;
 
 namespace UI.HR.Roster
 {
@@ -14,8 +18,11 @@ namespace UI.HR.Roster
     {
         private readonly TourPlanning _tourPlanning = new TourPlanning();
         private readonly RosterBll _bll = new RosterBll();
+        AssetInOut objCheck = new AssetInOut();
+        DataTable dt = new DataTable();
         private int _enroll;
-
+        int  Anumber; string assetName = "";
+        string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             _enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
@@ -36,6 +43,48 @@ namespace UI.HR.Roster
         {
             DataTable dt = _tourPlanning.GetUnitName(enrol);
             Common.LoadDropDown(ddlUnit, dt, "intUnitID", "strUnit");
+        }
+
+
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetAssetAutoSearch(string prefixText, int count)
+        {
+
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
+            int Active = int.Parse(1.ToString());
+            
+           
+            return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
+           
+        }
+
+        protected void TxtAsset_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+
+                 
+                    arrayKey = TxtAsset.Text.Split(delimiterChars);
+                    string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                    if (arrayKey.Length > 0)
+                    { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); Anumber = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
+
+                
+                dt = objCheck.ShowassetData(Anumber.ToString());
+                if (dt.Rows.Count > 0)
+                {
+                    txtAssetLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString()+" Unit:" + dt.Rows[0]["strUnit"].ToString()+" JobStation:"+ dt.Rows[0]["strJobStationName"].ToString();
+                    
+                    //TxtNarration.Text = dt.Rows[0]["Detalis"].ToString();
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+
+                }
+            }
+            catch { }
         }
 
         public void LoadJobStationDropDown(int unitId, int enroll)
@@ -139,6 +188,15 @@ namespace UI.HR.Roster
             string jobstation = Common.GetDdlSelectedText(ddlJobStation);
             int sequenceId = Common.GetDdlSelectedValue(ddlSequence);
             string sequence = Common.GetDdlSelectedText(ddlSequence);
+            try
+            {
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = "";  string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); Anumber = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
+            }
+            catch { Anumber = 0; }
+            string number = Anumber.ToString();
             if (jobstationId < 1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
@@ -151,6 +209,12 @@ namespace UI.HR.Roster
                     "ShowNotification('Select Shift first','Roster','warning')", true);
                 return;
             }
+            //if( number<1)
+            //{
+            //    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+            //    "ShowNotification('Set Asset Number first','Roster','warning')", true);
+            //    return;
+            //}
             dynamic obj = new
             {
                 empEnroll,
@@ -160,7 +224,9 @@ namespace UI.HR.Roster
                 jobstationId,
                 jobstation,
                 sequenceId,
-                sequence
+                sequence,
+                number,
+                assetName
             };
             List<object> objects = new List<object>();
             if (Session["obj"] != null)

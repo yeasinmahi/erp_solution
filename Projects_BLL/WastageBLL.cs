@@ -60,7 +60,7 @@ namespace Projects_BLL
             }
             catch { return new DataTable(); }
         }
-
+     
         public DataTable getWH(int intinsertby)
         {
             try { tblWHListTableAdapter adpwh = new tblWHListTableAdapter();
@@ -68,7 +68,15 @@ namespace Projects_BLL
             }
             catch { return new DataTable(); }
         }
-
+        public DataTable getWHALL()
+        {
+            try
+            {
+                tblWHListALLTableAdapter adpwh = new tblWHListALLTableAdapter();
+                return adpwh.GetWHAll();
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable getSalesReport(string dtefate, string dtetdate, int whid, int part)
         {
             try
