@@ -26,14 +26,36 @@
             var inItem = document.getElementById("txtItem").value; 
             var quantity = parseFloat(txt.value);
             var stockQty = parseFloat(document.getElementById("hdnStockQty").value); 
+            var locationddl = document.getElementById("ddlLcation");
+            var location = locationddl.options[locationddl.selectedIndex].value;
 
-              if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("txTransferQty").value = "0"; alert('Please input Transfer Qty'); }
-              else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("txTransferQty").value="0"; alert('Please Select Item'); }
-              else if ($.trim(stockQty) == 0 || $.trim(stockQty) == "" || $.trim(stockQty) == null || $.trim(stockQty) == undefined) { document.getElementById("txTransferQty").value = "0";alert('Stock is not avaiable'); }
+              if ($.trim(quantity) == 0 ||
+                  $.trim(quantity) == "" ||
+                  $.trim(quantity) == null ||
+                  $.trim(quantity) == undefined) {
+                   document.getElementById("txTransferQty").value = "0"; alert('Please input Transfer Qty');
+              }
+              else if ($.trim(location) == 0 ||
+                  $.trim(location) == "" ||
+                  $.trim(location) == null ||
+                  $.trim(location) == undefined) {
+                   document.getElementById("txTransferQty").value="0"; alert('Please Select Location');
+              }
+              else if ($.trim(inItem) == 0 ||
+                  $.trim(inItem) == "" ||
+                  $.trim(inItem) == null ||
+                  $.trim(inItem) == undefined) {
+                  document.getElementById("txTransferQty").value="0"; alert('Please Select Item');
+              }
+              else if ($.trim(stockQty) == 0 ||
+                  $.trim(stockQty) == "" ||
+                  $.trim(stockQty) == null ||
+                  $.trim(stockQty) == undefined) {
+                   document.getElementById("txTransferQty").value = "0";alert('Stock is not avaiable');
+              }
               
-              else if (parseFloat(stockQty) < parseFloat(quantity)) { document.getElementById("txTransferQty").value = "0"; alert('Input Quantity greater then stock quantity'); }
-              else {
-
+              else if (parseFloat(stockQty) < parseFloat(quantity)) {
+                   document.getElementById("txTransferQty").value = "0"; alert('Input Quantity greater then stock quantity');
               } 
         }
           function AddConfirm() {
@@ -103,7 +125,7 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" />
         <asp:HiddenField ID="hdnPreConfirm" runat="server" /><asp:HiddenField ID="hdnUom" runat="server" /><asp:HiddenField ID="hdnStockQty" runat="server" />
      <asp:HiddenField ID="hdnValue" runat="server" />
-       <div class="tabs_container">INVENTORY TRANSFER <hr /></div>
+       <div class="tabs_container">INVENTORY TRANSFER OUT<hr /></div>
         
         <table    style="width:800px; text-align:right ">   
             <tr>
@@ -118,7 +140,6 @@
             </tr>
          </table>
         <table style="border-radius:10px; width:800px; border-style:groove">
-            <caption style="text-align:left">Transfer Out</caption>
         <tr>
             <td style='text-align: left;'>Item</td>
             <td ><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  Width="400px" OnTextChanged="txtItem_TextChanged"     ></asp:TextBox>
