@@ -84,7 +84,7 @@
                                 <div class="col-md-6 col-sm-6">
                                <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Asset Number:"></asp:Label> 
           
-                                <asp:TextBox ID="TxtAsset"   CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"    AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged" ></asp:TextBox>
+                                <asp:TextBox ID="TxtAsset"   CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Asser search"   AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged" ></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="TxtAsset"
                                 ServiceMethod="GetAssetAutoSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -143,6 +143,13 @@
                                             <asp:Label ID="lblSequence" runat="server" Text='<%# Bind("sequence") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Asset">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAssetName" runat="server" Text='<%# Bind("assetName") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
                                             <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-xs" CommandName="Delete" OnClick="btnDelete_OnClick" />

@@ -13617,13 +13617,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprGetAllUnitListRow FindByintUnitID(int intUnitID) {
-                return ((sprGetAllUnitListRow)(this.Rows.Find(new object[] {
-                            intUnitID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 sprGetAllUnitListDataTable cln = ((sprGetAllUnitListDataTable)(base.Clone()));
                 cln.InitVars();
@@ -13650,14 +13643,11 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnintUnitID);
                 this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrUnit);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintUnitID}, true));
                 this.columnintUnitID.AutoIncrement = true;
                 this.columnintUnitID.AutoIncrementSeed = -1;
                 this.columnintUnitID.AutoIncrementStep = -1;
                 this.columnintUnitID.AllowDBNull = false;
                 this.columnintUnitID.ReadOnly = true;
-                this.columnintUnitID.Unique = true;
                 this.columnstrUnit.AllowDBNull = false;
                 this.columnstrUnit.MaxLength = 50;
             }

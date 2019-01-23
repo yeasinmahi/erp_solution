@@ -1354,7 +1354,7 @@ ORDER BY po.dtePODate DESC
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprGetAllUnitListTableAdapter" GeneratorDataComponentClassName="sprGetAllUnitListTableAdapter" Name="sprGetAllUnitList" UserDataComponentName="sprGetAllUnitListTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprGetAllUnitList" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUnitByUserPermission" GetMethodModifier="Public" GetMethodName="GetUnitByUserPermission" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetUnitByUserPermission" UserSourceName="GetUnitByUserPermission">
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectName="ERP_HR.dbo.sprGetAllUnitList" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetUnitByUserPermission" GetMethodModifier="Public" GetMethodName="GetUnitByUserPermission" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetUnitByUserPermission" UserSourceName="GetUnitByUserPermission">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprGetAllUnitList</CommandText>
@@ -2449,10 +2449,6 @@ ORDER BY po.dtePODate DESC
     <xs:unique name="TblPurchaseItem_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TblPurchaseItem" />
       <xs:field xpath="mstns:intSupplierID" />
-    </xs:unique>
-    <xs:unique name="sprGetAllUnitList_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
-      <xs:selector xpath=".//mstns:sprGetAllUnitList" />
-      <xs:field xpath="mstns:intUnitID" />
     </xs:unique>
     <xs:unique name="SprPaymentApprovalSummarybybillreg_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:SprPaymentApprovalSummarybybillreg" />
