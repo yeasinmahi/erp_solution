@@ -26,7 +26,7 @@ namespace UI.Wastage
             {
                 dt = objWastage.getReffid();
                 hdnReffid.Value = dt.Rows[0]["intReceiveID"].ToString();
-                dt = objWastage.getWH(int.Parse(Session[SessionParams.USER_ID].ToString()));
+                dt = objWastage.getWHALL();
                 ddlWHName.DataTextField = "strWastageWareHouseName";
                 ddlWHName.DataValueField = "intWastageWHID";
                 ddlWHName.DataSource = dt;
