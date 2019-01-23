@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -83,7 +84,7 @@
                                 <div class="col-md-6 col-sm-6">
                                <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Asset Number:"></asp:Label> 
           
-                                <asp:TextBox ID="TxtAsset" CssClass="txtBox" runat="server" Width="300px"  AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged" ></asp:TextBox>
+                                <asp:TextBox ID="TxtAsset"   CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"    AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged" ></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="TxtAsset"
                                 ServiceMethod="GetAssetAutoSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -92,7 +93,8 @@
                                 </div>
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label10" runat="server" Text="Asset Location:"></asp:Label>
-                                    <asp:Label ID="lblAssetLocation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ></asp:Label>
+                                       <asp:TextBox ID="txtAssetLocation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ></asp:TextBox>
+                                    
                                 </div>
                                 <div class="col-md-12" style="padding-top: 10px">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />

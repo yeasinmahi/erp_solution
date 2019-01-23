@@ -310,13 +310,13 @@ namespace UI.HR.Roster {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// lblAssetLocation control.
+        /// txtAssetLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssetLocation;
+        protected global::System.Web.UI.WebControls.TextBox txtAssetLocation;
         
         /// <summary>
         /// btnAdd control.

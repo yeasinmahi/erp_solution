@@ -73,7 +73,7 @@ namespace UI.HR.Roster
                 dt = objCheck.ShowassetData(number);
                 if (dt.Rows.Count > 0)
                 {
-                    lblAssetLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString()+" Unit:" + dt.Rows[0]["strUnit"].ToString()+" JobStation:"+ dt.Rows[0]["strJobStationName"].ToString();
+                    txtAssetLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString()+" Unit:" + dt.Rows[0]["strUnit"].ToString()+" JobStation:"+ dt.Rows[0]["strJobStationName"].ToString();
                     
                     //TxtNarration.Text = dt.Rows[0]["Detalis"].ToString();
                 }
