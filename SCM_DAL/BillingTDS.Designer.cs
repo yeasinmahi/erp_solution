@@ -23782,12 +23782,16 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"select top (15) pod.intPOID,dtePODate,s.strSupplierName,(pod.monRate+monCD+monRD+monSD+monVAT+pod.monAIT+monATV+monPSI) as rate, strCurrencyName 
-from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pod join ERP_Inventory.dbo.tblPurchaseOrderMain po on pod.intPOID=po.intPOID join ERP_Inventory.dbo.tblSupplier s on po.intSupplierID=s.intSupplierID 
-join ERP_Inventory.dbo.tblCurrencyConversion c on po.intCurrencyID=c.intCurrencyID where intItemID=@intItemID 
-group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.monAIT+monATV+monPSI,dtePODate,strCurrencyName order by dtePODate desc";
+            this._commandCollection[3].CommandText = @"select top 10 intPOID,dtepodate,stritem,intItemID ,struoM,strSuppliername,numQty, monRate,monFreight,monPacking,monVAT,monAIT,monProductCost,strCurrencyName
+,monDiscount/(select sum(numQty*monRate)
+from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail 
+where intPOID in (select intPOID from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail 
+where intItemID = @itemId))*numQty*monRate discount
+from [ERP_Inventory].[dbo].[qryInventoryPOTotalCostDetail] 
+where  intItemID = @itemId
+order by dtePODate desc";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23835,9 +23839,9 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual BillingTDS.GetMRRInfoDataTable GetPriceListByItemID(int intItemID) {
+        public virtual BillingTDS.GetMRRInfoDataTable GetPriceListByItemID(int itemId) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intItemID));
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(itemId));
             BillingTDS.GetMRRInfoDataTable dataTable = new BillingTDS.GetMRRInfoDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
