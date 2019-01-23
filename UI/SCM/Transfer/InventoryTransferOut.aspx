@@ -117,8 +117,8 @@
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
     <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
-    <div style="height: 100px;"></div>
+    </asp:Panel>
+    <div style="height: 30px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
