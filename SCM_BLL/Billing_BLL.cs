@@ -238,8 +238,13 @@ namespace SCM_BLL
         {
             GetMRRInfoTableAdapter adp = new GetMRRInfoTableAdapter();
             try
-            { return adp.GetPriceListByItemID(intItemID); }
-            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+            {
+                return adp.GetPriceListByItemID(intItemID);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString(); return new DataTable();
+            }
         }
 
         public DataTable GetPriceChart(int intItemID)
