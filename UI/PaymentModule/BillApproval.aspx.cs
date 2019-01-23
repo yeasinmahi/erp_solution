@@ -95,6 +95,7 @@ namespace UI.PaymentModule
                     //        .SingleOrDefault(r => r.Field<int>("intUnitID") == 105);
                     //    dt.Rows.RemoveAt(dt.Rows.IndexOf(dr));
                     //}
+                     
 
                     ddlUnit.DataTextField = "strUnit";
                     ddlUnit.DataValueField = "intUnitID";
