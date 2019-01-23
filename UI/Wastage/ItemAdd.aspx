@@ -98,7 +98,9 @@
             <asp:TemplateField HeaderText="UOM" SortExpression="itemid">
             <ItemTemplate><asp:Label ID="lblSalesID" runat="server" Text='<%# Bind("strUOM") %>' Width="80px"></asp:Label>
             </ItemTemplate><ItemStyle HorizontalAlign="center" Width="80px"/></asp:TemplateField>
-                          
+                  
+                
+
            </Columns>
             <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
             <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />

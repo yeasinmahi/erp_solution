@@ -243,8 +243,8 @@
             <td class="tdheight"><asp:TextBox ID="txtWH" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>                                
         </tr>
         <tr>
-            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" Width="120px" OnClientClick = "Confirm()" OnClick="btnDeletePO_Click"/></td>
-            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Width="120px" OnClick="btnShow_Click"/></td>            
+            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" forecolor="Blue" Width="120px" OnClientClick = "Confirm()" OnClick="btnDeletePO_Click"/></td>
+            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" forecolor="Blue" Width="120px" OnClick="btnShow_Click"/></td>            
         </tr>
         <tr ><td style="padding: 15px 0px 0px 5px;" colspan="4"> </td></tr>
         <tr class="tblheader"><td style=" height:2px; background-color:#c1bdbd;" colspan="4"> </td></tr>
@@ -325,7 +325,7 @@
             <td class="tdheight" style="text-align:right;"><asp:Label ID="Label18" CssClass="lbl" runat="server" Text="Other Terms : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtOtherTerms" runat="server" CssClass="txtBox1" Height="100px" TextMode="MultiLine"></asp:TextBox></td> 
              
-            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label17" CssClass="lbl" runat="server" Text="Warrenty after delivery (in months) : "></asp:Label></td>
+            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label17" CssClass="lbl" runat="server" Text="Warrenty (in months) : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtWarrentyAfterDelivery" runat="server" CssClass="txtBox1" ></asp:TextBox></td>                                         
         </tr> 
         <tr>
