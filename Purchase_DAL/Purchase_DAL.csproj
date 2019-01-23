@@ -107,6 +107,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssetMaintenanceTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Asset\AssetOperatorTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssetOperatorTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Asset\AssetParkingTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -359,6 +364,17 @@
     </None>
     <None Include="Asset\AssetMaintenanceTDS.xss">
       <DependentUpon>AssetMaintenanceTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Asset\AssetOperatorTDS.xsc">
+      <DependentUpon>AssetOperatorTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Asset\AssetOperatorTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AssetOperatorTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Asset\AssetOperatorTDS.xss">
+      <DependentUpon>AssetOperatorTDS.xsd</DependentUpon>
     </None>
     <None Include="Asset\AssetParkingTDS.xsc">
       <DependentUpon>AssetParkingTDS.xsd</DependentUpon>

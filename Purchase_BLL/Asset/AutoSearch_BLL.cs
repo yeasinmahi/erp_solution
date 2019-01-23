@@ -76,7 +76,7 @@ namespace Purchase_BLL.Asset
                     try
                     {
                         var rows = from tmp in tblempbyJob[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.intEmployeeID.ToString().ToLower().Contains(prefix) || tmp.strEmployeeCode.ToString().ToLower().Contains(prefix) || tmp.strOfficeEmail.ToLower().Contains(prefix)
+                                   where tmp.strEmployeeName.ToString().ToLower().Contains(prefix) || tmp.strEmployeeCode.ToString().ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix)
                                    orderby tmp.intEmployeeID
                                    select tmp;
 
@@ -101,9 +101,9 @@ namespace Purchase_BLL.Asset
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                    // retStr[i] = tbl.Rows[i]["strOfficeEmail"] + "," + tbl.Rows[i]["strEmployeeName"] + "," + tbl.Rows[i]["strDesignation"] + "," + tbl.Rows[i]["strDepatrment"] + "," + tbl.Rows[i]["strJobStationName"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
+                     retStr[i] =tbl.Rows[i]["strEmployeeName"] + "[" + tbl.Rows[i]["strDesignation"] + "][Dept:" + tbl.Rows[i]["strDepatrment"] + "][Jobstation:" + tbl.Rows[i]["strJobStationName"]+ "[JobType:" + tbl.Rows[i]["strJobType"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
 
-                    retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + "Code:" + " " + tbl.Rows[i]["strEmployeeCode"] + "][" + tbl.Rows[i]["intEmployeeID"] + "]";
+                   // retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + "Code:" + " " + tbl.Rows[i]["strEmployeeCode"] + "][ Unit:" + tbl.Rows[i]["strUnit"] + "]" + "[JobStation:" + tbl.Rows[i]["strUnit"] + "]";
                 }
 
                 return retStr;
