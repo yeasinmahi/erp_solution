@@ -21,7 +21,7 @@ namespace UI.HR.Roster
         AssetInOut objCheck = new AssetInOut();
         DataTable dt = new DataTable();
         private int _enroll;
-        int  number; string assetName = "";
+        int  Anumber; string assetName = "";
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -68,10 +68,10 @@ namespace UI.HR.Roster
                     arrayKey = TxtAsset.Text.Split(delimiterChars);
                     string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
                     if (arrayKey.Length > 0)
-                    { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
+                    { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); Anumber = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
 
                 
-                dt = objCheck.ShowassetData(number.ToString());
+                dt = objCheck.ShowassetData(Anumber.ToString());
                 if (dt.Rows.Count > 0)
                 {
                     txtAssetLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString()+" Unit:" + dt.Rows[0]["strUnit"].ToString()+" JobStation:"+ dt.Rows[0]["strJobStationName"].ToString();
@@ -193,10 +193,10 @@ namespace UI.HR.Roster
                 arrayKey = TxtAsset.Text.Split(delimiterChars);
                 string assetId = "";  string assetType = ""; int assetAutoId = 0;
                 if (arrayKey.Length > 0)
-                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); Anumber = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
             }
-            catch { number = 0; }
-
+            catch { Anumber = 0; }
+            string number = Anumber.ToString();
             if (jobstationId < 1)
             {
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
