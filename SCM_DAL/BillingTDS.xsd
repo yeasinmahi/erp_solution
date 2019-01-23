@@ -496,11 +496,11 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,b.Totalamount,
-a.monDiscount/Totalamount*monRate discount,
+a.monDiscount/Totalamount*monRate*-1 discount,
 a.monAIT/Totalamount*monRate monAIT,
 a.monVAT/Totalamount*monRate monVAT,
 a.monFreight/Totalamount*monRate monFreight,
-a.monPacking/Totalamount*monRate monPackin,
+a.monPacking/Totalamount*monRate monPacking,
 (a.monRate)+ ((a.monAIT+a.monVAT+a.monCD+a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActual
 from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,po.monFreight,po.monPacking,monCD,s.strSupplierName,cu.strCurrencyName
 from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
