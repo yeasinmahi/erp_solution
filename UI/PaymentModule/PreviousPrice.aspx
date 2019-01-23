@@ -1,6 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PreviousPrice.aspx.cs" Inherits="UI.PaymentModule.PreviousPrice" %>
 
-<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -87,22 +86,27 @@
 
         <table>
 
-    <tr>        
-        <td style="color:blue; text-align:left; font-weight:900;"><a id="btnBack" href="BillDetails.aspx" class="nextclick" style="cursor:pointer; text-align:right;">Back</a></td>
-        <td style="text-align:center; font:bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor:pointer" onclick="Print()">Print</a></td>
-    </tr>
-    
-    <tr><td colspan="4" style="text-align:center;"><asp:Label ID="lblUnitName" runat="server" Text="PREVIOUS RATES" CssClass="lbl" Font-Size="18px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>    
-    <tr>
-        <td colspan="2" style="text-align:left;" class="auto-style1"><asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
-        <asp:Label ID="lblItemName" runat="server" Text="CHALLAN NO" CssClass="lbl" ForeColor="Blue"></asp:Label>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2" style="text-align:left;" class="auto-style1"><asp:Label ID="Label3" runat="server" Text="ITEM ID :" CssClass="lbl"></asp:Label>
-        <asp:Label ID="lblitemid" runat="server" CssClass="lbl" ForeColor="Blue"></asp:Label>
-        </td>
-    </tr>
+            <tr>
+                <td style="color: blue; text-align: left; font-weight: 900;"><a id="btnBack" href="BillDetails.aspx" class="nextclick" style="cursor: pointer; text-align: right;">Back</a></td>
+                <td style="text-align: center; font: bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a></td>
+            </tr>
+
+            <tr>
+                <td colspan="4" style="text-align: center;">
+                    <asp:Label ID="lblUnitName" runat="server" Text="PREVIOUS RATES" CssClass="lbl" Font-Size="18px" Font-Bold="true" Font-Underline="true"></asp:Label></td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left;" class="auto-style1">
+                    <asp:Label ID="lblC" runat="server" Text="ITEM NAME :" CssClass="lbl"></asp:Label>
+                    <asp:Label ID="lblItemName" runat="server" Text="CHALLAN NO" CssClass="lbl" ForeColor="Blue"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: left;" class="auto-style1">
+                    <asp:Label ID="Label3" runat="server" Text="ITEM ID :" CssClass="lbl"></asp:Label>
+                    <asp:Label ID="lblitemid" runat="server" CssClass="lbl" ForeColor="Blue"></asp:Label>
+                </td>
+            </tr>
             <tr>
 
                 <td style="text-align: right;">
@@ -111,13 +115,13 @@
                     <asp:DropDownList ID="ddlwh" runat="server" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlwh_SelectedIndexChanged"></asp:DropDownList>
                 </td>
                 <td style="text-align: right;">
-                    <asp:Label ID="Label2" runat="server" width="55px" Text="Item ID: "></asp:Label></td>
+                    <asp:Label ID="Label2" runat="server" Width="55px" Text="Item ID: "></asp:Label></td>
                 <td style="text-align: left;">
                     <asp:TextBox ID="txtItemId" runat="server" CssClass="txtBox" OnTextChanged="txtItemId_TextChanged"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align: right;">
-                    <asp:Label ID="lblitm" CssClass="lbl" width="55px" runat="server" Text="Item List:"></asp:Label></td>
+                    <asp:Label ID="lblitm" CssClass="lbl" Width="55px" runat="server" Text="Item List:"></asp:Label></td>
                 <td style="text-align: left;">
                     <asp:TextBox ID="txtItem" runat="server" OnTextChanged="txtItem_TextChanged" AutoCompleteType="Search" AutoPostBack="true" Width="300px" CssClass="txtBox"></asp:TextBox>
                     <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
@@ -161,17 +165,17 @@
                             </asp:TemplateField>
 
 
-                               <asp:TemplateField HeaderText="Item Name" SortExpression="strITem">
+                            <asp:TemplateField HeaderText="Item Name" SortExpression="strITem">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblItem" runat="server" Width="150px"></asp:Label>
+                                    <asp:Label ID="lblItem" runat="server" Text='<%#Bind("strItemName") %>' Width="150px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="center" Width="150px" />
                             </asp:TemplateField>
 
 
-                               <asp:TemplateField HeaderText="UoM" SortExpression="strUoM">
+                            <asp:TemplateField HeaderText="UoM" SortExpression="strUoM">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblUoM" runat="server" >' Width="80px"></asp:Label>
+                                    <asp:Label ID="lblUoM" runat="server" Width="80px" Text='<%#Bind("strUoM") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="center" Width="80px" />
                             </asp:TemplateField>
@@ -185,7 +189,7 @@
 
                             <asp:TemplateField HeaderText="Rate" SortExpression="rate">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                    <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate", "{0:n2}") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
@@ -197,37 +201,31 @@
                                 <ItemStyle HorizontalAlign="center" Width="80px" />
                             </asp:TemplateField>
 
-                               <asp:TemplateField HeaderText="Freight" SortExpression="Freight">
+                            <%--<asp:TemplateField HeaderText="Freight" SortExpression="Freight">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblFreight" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                    <asp:Label ID="lblFreight" runat="server" Text='<%# Bind("monFreight", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
+                            </asp:TemplateField>--%>
+
+
+<%--                            <asp:TemplateField HeaderText="AIT" SortExpression="ait">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAIT" runat="server" Text='<%# Bind("monAIT", "{0:n2}") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
 
-                         <asp:TemplateField HeaderText="Packing" SortExpression="Packing">
+                            <asp:TemplateField HeaderText="VAT" SortExpression="ait">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPacking" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                    <asp:Label ID="lblVat" runat="server" Text='<%# Bind("monVAT", "{0:n2}") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
-                            </asp:TemplateField>
+                            </asp:TemplateField>--%>
 
-                         <asp:TemplateField HeaderText="VAT" SortExpression="vat">
+                            <asp:TemplateField HeaderText="Discount" SortExpression="Discount">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblVat" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="right" Width="80px" />
-                            </asp:TemplateField>
-
-                         <asp:TemplateField HeaderText="AIT" SortExpression="ait">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblAIT" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="right" Width="80px" />
-                            </asp:TemplateField>
-
-                         <asp:TemplateField HeaderText="Discount" SortExpression="Discount">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblDiscount" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                    <asp:Label ID="lblDiscount" runat="server" Text='<%# Bind("discount", "{0:n2}") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
@@ -253,8 +251,6 @@
                                 <ItemStyle HorizontalAlign="center" Width="80px" />
                             </asp:TemplateField>
 
-
-
                             <asp:TemplateField HeaderText="PO Date" SortExpression="dtePODate">
                                 <ItemTemplate>
                                     <asp:Label ID="lblPODate" runat="server" Text='<%#Eval("dtePODate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label>
@@ -275,6 +271,13 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" Width="250px" />
                             </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="center" Width="80px" />
+                            </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Rate" SortExpression="rate">
                                 <ItemTemplate>
@@ -283,12 +286,7 @@
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
 
-                            <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="center" Width="80px" />
-                            </asp:TemplateField>
+                            
 
 
                         </Columns>
@@ -327,7 +325,7 @@
             $('#dgvPriceList tr').each(function () {
                 if (counter >= 1) {
                     var dates = $(this).find("td span:eq(1)").html();
-                    var rates = $(this).find("td span:eq(3)").html();
+                    var rates = $(this).find("td span:eq(5)").html();
                     rates = rates.replace(/[^\d\.\-eE+]/g, "");
                     var item = {}
                     item["date"] = dates;
@@ -347,7 +345,7 @@
                 labels: ['Rate'],
                 lineColors: ['#a0d0e0'],
                 hideHover: false,
-                smooth : false  
+                smooth: false
             });
         });
     </script>
