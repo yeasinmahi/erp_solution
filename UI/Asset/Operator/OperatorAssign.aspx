@@ -244,7 +244,7 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                          <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" DeleteText="UnAssign" >
+                                          <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" DeleteText="Unassign" >
                                         <ControlStyle Font-Bold="True" ForeColor="Red" />
                                         </asp:CommandField>
                                     </Columns>

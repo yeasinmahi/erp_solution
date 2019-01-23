@@ -279,9 +279,9 @@ namespace UI.Asset.Operator
                 dt = objCheck.ShowassetData(number);
                 if (dt.Rows.Count > 0)
                 {
-                    txtLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString();
-                   
-                }
+                    txtLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString() + " Unit:" + dt.Rows[0]["strUnit"].ToString() + " JobStation:" + dt.Rows[0]["strJobStationName"].ToString();
+
+               }
                 else
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
@@ -305,7 +305,7 @@ namespace UI.Asset.Operator
                 string Id = ((Label)dgvAsetiew.Rows[e.RowIndex].FindControl("lblId")).Text;
                 if (intResEnroll > 0)
                 {
-                    string msg = objCheck.OperatorSetup(3, xmlString, intResEnroll, Id, "", Enroll);
+                    string msg = objCheck.OperatorSetup(3, xmlString, intResEnroll, int.Parse(Id), "", Enroll);
                     
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     showData();
