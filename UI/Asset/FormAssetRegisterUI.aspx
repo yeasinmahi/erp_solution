@@ -1211,8 +1211,23 @@
                          <td>
                              <asp:TextBox ID="TxtEstSalvase" runat="server" CssClass="txtBox"  ></asp:TextBox>
                          </td>
+                         
+                    <td style="text-align: right;">
+                         <asp:Label ID="Label65" CssClass="lbl" runat="server" Text="Fuel-Conversion : "></asp:Label></td>
+                     <td>
+                         <asp:DropDownList ID="ddlFuelConversion" runat="server" CssClass="dropdownList"></asp:DropDownList>
+
+                     </td>
                 
-             </tr>
+                  </tr>
+              <tr> 
+                         <td style="text-align: right;">
+                             <asp:Label ID="Label66" runat="server" CssClass="lbl" Text="Seat: "></asp:Label>
+                         </td>
+                         <td>
+                             <asp:TextBox ID="txtSeat" runat="server"  TextMode="Number" CssClass="txtBox"  ></asp:TextBox>
+                         </td>
+              </tr>
 
 
                  <tr>
