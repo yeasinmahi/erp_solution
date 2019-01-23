@@ -49,9 +49,9 @@ namespace UI.Wastage
        
         private void WHlist()
         {
-            dt = obj.getWHbyUnit(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            dt = obj.getWHALL();
             ddlWHName.DataTextField = "strWastageWareHouseName";
-            ddlWHName.DataValueField = "intWastageWareHouseID";
+            ddlWHName.DataValueField = "intWastageWHID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
           
