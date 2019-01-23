@@ -20,7 +20,8 @@ namespace UI.HR.Roster
         private readonly RosterBll _bll = new RosterBll();
         AssetInOut objCheck = new AssetInOut();
         DataTable dt = new DataTable();
-        private int _enroll;string number;
+        private int _enroll;
+        int  number; string assetName = "";
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -67,10 +68,10 @@ namespace UI.HR.Roster
                     arrayKey = TxtAsset.Text.Split(delimiterChars);
                     string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
                     if (arrayKey.Length > 0)
-                    { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number = (arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                    { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
 
                 
-                dt = objCheck.ShowassetData(number);
+                dt = objCheck.ShowassetData(number.ToString());
                 if (dt.Rows.Count > 0)
                 {
                     txtAssetLocation.Text = dt.Rows[0]["strNameOfAsset"].ToString()+" Unit:" + dt.Rows[0]["strUnit"].ToString()+" JobStation:"+ dt.Rows[0]["strJobStationName"].ToString();
@@ -187,12 +188,14 @@ namespace UI.HR.Roster
             string jobstation = Common.GetDdlSelectedText(ddlJobStation);
             int sequenceId = Common.GetDdlSelectedValue(ddlSequence);
             string sequence = Common.GetDdlSelectedText(ddlSequence);
-
-            arrayKey = TxtAsset.Text.Split(delimiterChars);
-            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
-            if (arrayKey.Length > 0)
-            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number = (arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
-
+            try
+            {
+                arrayKey = TxtAsset.Text.Split(delimiterChars);
+                string assetId = "";  string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); number = int.Parse((arrayKey[3].ToString())); assetType = arrayKey[5].ToString(); }
+            }
+            catch { number = 0; }
 
             if (jobstationId < 1)
             {
@@ -206,12 +209,12 @@ namespace UI.HR.Roster
                     "ShowNotification('Select Shift first','Roster','warning')", true);
                 return;
             }
-            if(int.Parse(number)>1)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('Set Asset Number first','Roster','warning')", true);
-                return;
-            }
+            //if( number<1)
+            //{
+            //    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
+            //    "ShowNotification('Set Asset Number first','Roster','warning')", true);
+            //    return;
+            //}
             dynamic obj = new
             {
                 empEnroll,
@@ -222,7 +225,8 @@ namespace UI.HR.Roster
                 jobstation,
                 sequenceId,
                 sequence,
-                number
+                number,
+                assetName
             };
             List<object> objects = new List<object>();
             if (Session["obj"] != null)
