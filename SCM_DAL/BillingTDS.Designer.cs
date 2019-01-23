@@ -23772,16 +23772,28 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"select top 10 intPOID,dtepodate,stritem,intItemID ,struoM,strSuppliername,numQty, monRate,monFreight,monPacking,monVAT,monAIT,monProductCost,strCurrencyName
-,monDiscount/(select sum(numQty*monRate)
-from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail 
-where intPOID in (select intPOID from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail 
-where intItemID = @itemId))*numQty*monRate discount
-from [ERP_Inventory].[dbo].[qryInventoryPOTotalCostDetail] 
-where  intItemID = @itemId
+            this._commandCollection[3].CommandText = @"select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,b.Totalamount,
+a.monDiscount/Totalamount*monRate*-1 discount,
+a.monAIT/Totalamount*monRate monAIT,
+a.monVAT/Totalamount*monRate monVAT,
+a.monFreight/Totalamount*monRate monFreight,
+a.monPacking/Totalamount*monRate monPacking,
+(a.monRate)+ ((a.monAIT+a.monVAT+a.monCD+a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActual
+from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,po.monFreight,po.monPacking,monCD,s.strSupplierName,cu.strCurrencyName
+from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
+inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
+INNER JOIN dbo.qryItemList itm ON pid.intItemID = itm.intItemID 
+inner join dbo.tblCurrencyConversion cu ON po.intCurrencyID = cu.intCurrencyID 
+INNER JOIN dbo.tblSupplier s ON s.intSupplierID = po.intSupplierID
+where  pid.intItemID = @itemId) as a
+join 
+(select sum(numQty*monRate) Totalamount,po.intPOID
+from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
+inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
+group by po.intPOID) b on a.intPOID = b.intPOID
 order by dtePODate desc";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
