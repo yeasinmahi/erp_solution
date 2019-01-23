@@ -492,16 +492,17 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="SELECT pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,monFreight,monCD,s.strSupplierName,cu.strCurrencyName FROM ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid INNER JOIN ERP_Inventory.dbo.tblPurchaseOrderMain po ON pid.intPOID = po.intPOID INNER JOIN dbo.qryItemList itm ON pid.intItemID = itm.intItemID INNER JOIN dbo.tblCurrencyConversion cu ON po.intCurrencyID = cu.intCurrencyID INNER JOIN dbo.tblSupplier s ON s.intSupplierID = po.intSupplierID WHERE pid.intItemID = @itemId" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPriceListByItemID" GetMethodModifier="Public" GetMethodName="GetPriceListByItemID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPriceListByItemID" UserSourceName="GetPriceListByItemID">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetPriceListByItemID" GetMethodModifier="Public" GetMethodName="GetPriceListByItemID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetPriceListByItemID" UserSourceName="GetPriceListByItemID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,
+                    <CommandText>select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,b.Totalamount,
 a.monDiscount/Totalamount*monRate discount,
 a.monAIT/Totalamount*monRate monAIT,
 a.monVAT/Totalamount*monRate monVAT,
-a.monCD/Totalamount*monRate monCD,
-a.monFreight/Totalamount*monRate monFreight
-from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,monFreight,monCD,s.strSupplierName,cu.strCurrencyName
+a.monFreight/Totalamount*monRate monFreight,
+a.monPacking/Totalamount*monRate monPackin,
+(a.monRate)+ ((a.monAIT+a.monVAT+a.monCD+a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActual
+from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,po.monFreight,po.monPacking,monCD,s.strSupplierName,cu.strCurrencyName
 from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
 inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
 INNER JOIN dbo.qryItemList itm ON pid.intItemID = itm.intItemID 

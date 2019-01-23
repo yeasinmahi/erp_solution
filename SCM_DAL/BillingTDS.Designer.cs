@@ -23772,13 +23772,14 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,
+            this._commandCollection[3].CommandText = @"select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,b.Totalamount,
 a.monDiscount/Totalamount*monRate discount,
 a.monAIT/Totalamount*monRate monAIT,
 a.monVAT/Totalamount*monRate monVAT,
-a.monCD/Totalamount*monRate monCD,
-a.monFreight/Totalamount*monRate monFreight
-from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,monFreight,monCD,s.strSupplierName,cu.strCurrencyName
+a.monFreight/Totalamount*monRate monFreight,
+a.monPacking/Totalamount*monRate monPackin,
+(a.monRate)+ ((a.monAIT+a.monVAT+a.monCD+a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActual
+from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,po.monFreight,po.monPacking,monCD,s.strSupplierName,cu.strCurrencyName
 from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
 inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
 INNER JOIN dbo.qryItemList itm ON pid.intItemID = itm.intItemID 
