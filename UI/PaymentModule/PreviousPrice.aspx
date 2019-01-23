@@ -160,6 +160,22 @@
                                 <ItemStyle HorizontalAlign="center" Width="80px" />
                             </asp:TemplateField>
 
+
+                               <asp:TemplateField HeaderText="Item Name" SortExpression="strITem">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblItem" runat="server" Width="150px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="center" Width="150px" />
+                            </asp:TemplateField>
+
+
+                               <asp:TemplateField HeaderText="UoM" SortExpression="strUoM">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblUoM" runat="server" >' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="center" Width="80px" />
+                            </asp:TemplateField>
+
                             <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSupplier" runat="server" Text='<%# Bind("strSupplierName") %>' Width="250px"></asp:Label>
@@ -174,18 +190,46 @@
                                 <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
 
-                               <asp:TemplateField HeaderText="Rate" SortExpression="rate">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblRate" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="right" Width="80px" />
-                            </asp:TemplateField>
-
                             <asp:TemplateField HeaderText="Currency" SortExpression="strCurrencyName">
                                 <ItemTemplate>
                                     <asp:Label ID="lblCurrency" runat="server" Text='<%# Bind("strCurrencyName", "{0:n2}") %>' Width="80px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="center" Width="80px" />
+                            </asp:TemplateField>
+
+                               <asp:TemplateField HeaderText="Freight" SortExpression="Freight">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblFreight" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
+                            </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="Packing" SortExpression="Packing">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblPacking" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
+                            </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="VAT" SortExpression="vat">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblVat" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
+                            </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="AIT" SortExpression="ait">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblAIT" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
+                            </asp:TemplateField>
+
+                         <asp:TemplateField HeaderText="Discount" SortExpression="Discount">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblDiscount" runat="server" Text='<%# Bind("rate", "{0:n2}") %>' Width="80px"></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
 
                         </Columns>
