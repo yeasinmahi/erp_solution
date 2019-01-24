@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using SCM_BLL;
 using UI.ClassFiles;
@@ -53,7 +54,7 @@ namespace UI.PaymentModule
             {
                 hdnLevel.Value = "1";
             }
-            
+
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
@@ -64,7 +65,7 @@ namespace UI.PaymentModule
             int intLevel = int.Parse(hdnLevel.Value);
 
             //_dt = _bll.GetPaymentApprovalSummaryAllUnitForWeb(intUnitid, dteFDate, dteTDate, intAction, intEntryType, intLevel);
-            _dt =  _PaymentVouchar.GetBillRegisterForWeb(intUnitid, dteFDate, dteTDate);
+            _dt = _PaymentVouchar.GetBillRegisterForWeb(intUnitid, dteFDate, dteTDate);
             if (_dt.Rows.Count > 0)
             {
                 grid.DataSource = _dt;
@@ -72,9 +73,9 @@ namespace UI.PaymentModule
             }
             else
             {
-                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
-            
+
 
             //if (hdnLevel.Value == "1")
             //{
@@ -108,7 +109,7 @@ namespace UI.PaymentModule
             //    {
             //        Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             //    }
-                
+
             //}
             //catch (Exception ex)
             //{
@@ -124,7 +125,13 @@ namespace UI.PaymentModule
             {
                 if (e.CommandName.Equals("View"))
                 {
-                    Toaster("View", Common.TosterType.Warning);
+                    Session["party"] = (row.FindControl("lblPartyName") as Label)?.Text;
+                    Session["billamount"] = (row.FindControl("lblBillAmount") as Label)?.Text;
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "ViewBillDetailsPopup('" + billId + "');", true);
+
+
                 }
                 else if (e.CommandName.Equals("Remove"))
                 {
@@ -134,10 +141,10 @@ namespace UI.PaymentModule
             }
             else
             {
-                Toaster("Can not get Bill id from Grid",Common.TosterType.Error);
+                Toaster("Can not get Bill id from Grid", Common.TosterType.Error);
             }
-            
-            
+
+
         }
     }
 }
