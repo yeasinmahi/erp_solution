@@ -1525,6 +1525,7 @@
     <Content Include="Transport\Utility_ReportForSubmit.aspx" />
     <Content Include="Transport\Utility_ServiceProfile.aspx" />
     <Content Include="Transport\Utility_SubReportForSubmit.aspx" />
+    <Content Include="Transport\Vehicle_info_update.aspx" />
     <Content Include="Transport\VendorTTripCompleteEntry.aspx" />
     <Content Include="UnderMaintanance.aspx" />
     <Content Include="Vat\CurrentRegisterM18.aspx" />
@@ -8291,6 +8292,13 @@
     </Compile>
     <Compile Include="Transport\Utility_SubReportForSubmit.aspx.designer.cs">
       <DependentUpon>Utility_SubReportForSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\Vehicle_info_update.aspx.cs">
+      <DependentUpon>Vehicle_info_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\Vehicle_info_update.aspx.designer.cs">
+      <DependentUpon>Vehicle_info_update.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\VendorTTripCompleteEntry.aspx.cs">
       <DependentUpon>VendorTTripCompleteEntry.aspx</DependentUpon>
