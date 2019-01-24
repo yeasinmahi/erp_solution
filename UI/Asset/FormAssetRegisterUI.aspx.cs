@@ -263,8 +263,8 @@ namespace UI.Asset
             Ddljob.DataBind();
             dt = new DataTable();
             Int32 jobstation = Int32.Parse(Ddljob.SelectedValue.ToString());
-            Int32 VehicleCat = Int32.Parse(999998.ToString());
-            dt = objregister.DropdownCategoryView(VehicleCat);
+            Int32 VehicleCat = 8;
+            dt = objregister.DropdownVeheCategoryView(VehicleCat);
             DdlAssetCate.DataSource = dt;
             DdlAssetCate.DataTextField = "strCategoryName";
             DdlAssetCate.DataValueField = "intCategoryID";
