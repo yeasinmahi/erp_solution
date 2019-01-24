@@ -63,8 +63,6 @@ namespace UI.HR.Roster
         {
             try
             {
-
-                 
                     arrayKey = TxtAsset.Text.Split(delimiterChars);
                     string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
                     if (arrayKey.Length > 0)
