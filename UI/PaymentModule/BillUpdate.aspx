@@ -349,14 +349,14 @@
 
                                     <asp:TemplateField HeaderText="View" ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnShowDetail" class="btn btn-primary btn-xs" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"
+                                            <asp:Button ID="btnShowDetail" class="btn btn-primary btn-sm" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View"
                                                 Text="View" Width="80px"/>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Delete" ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnDelete" class="btn btn-danger btn-xs" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Remove"
+                                            <asp:Button ID="btnDelete" class="btn btn-danger btn-sm" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Remove"
                                                        Text="Delete" Width="80px"/>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center"/>

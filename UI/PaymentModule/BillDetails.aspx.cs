@@ -1,20 +1,12 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
-using System.IO;
-using System.Xml;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 
 namespace UI.PaymentModule
@@ -241,10 +233,22 @@ namespace UI.PaymentModule
             {
                 try
                 {
-                    mrrtkgrandtotal += decimal.Parse(((Label)e.Row.Cells[2].FindControl("lblMRRTK")).Text);
-                    vouchertkgrandtotal += decimal.Parse(((Label)e.Row.Cells[4].FindControl("lblVoucherTK")).Text);
+                    mrrtkgrandtotal += decimal.Parse(((Label) e.Row.Cells[2].FindControl("lblMRRTK")).Text);
+                    vouchertkgrandtotal += decimal.Parse(((Label) e.Row.Cells[4].FindControl("lblVoucherTK")).Text);
                 }
-                catch (Exception ex) { throw ex; }
+                catch (Exception ex)
+                {
+                    Toaster(Message.ParsingProblem.ToFriendlyString()+" :"+ex.Message,Common.TosterType.Error);
+                }
+                
+            }
+            try
+            {
+                e.Row.Cells[6].Visible = objBillApp.IsPermitedToRemoveMrr(Enroll);
+            }
+            catch (Exception exception)
+            {
+
             }
         }
         #endregion======================================================================================
@@ -328,6 +332,21 @@ namespace UI.PaymentModule
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewMRRDetailsPopup('" + intMRRID.ToString() + "');", true);                                       
                 }
                 catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
+            }
+            if (e.CommandName == "RemoveMrr")
+            {
+                int rowIndex = Convert.ToInt32(e.CommandArgument);
+                GridViewRow row = dgvChallanList.Rows[rowIndex];
+
+                try
+                {
+                    intMRRID = int.Parse((row.FindControl("lblMRR") as Label)?.Text);
+                    //todo: delete mrr
+                }
+                catch
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true);
+                }
             }
 
             fd = log.GetFlogDetail(stop, location, "dgvChallanList_RowCommand", null);
