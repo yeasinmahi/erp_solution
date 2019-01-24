@@ -19,8 +19,8 @@ namespace UI.PaymentModule
         string start = "starting PaymentModule/BillDetails.aspx";
         string stop = "stopping PaymentModule/BillDetails.aspx";
 
-        Billing_BLL objBillApp = new Billing_BLL();
-        DataTable dt;
+        private readonly Billing_BLL _bll = new Billing_BLL();
+        private DataTable _dt;
         
         int intPOID, intBillID, intMRRID;
         string strSPName, strPath;
@@ -48,13 +48,13 @@ namespace UI.PaymentModule
 
                     try
                     {
-                        dt = new DataTable();
-                        dt = objBillApp.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
-                        if (bool.Parse(dt.Rows[0]["ysnAudit2"].ToString()) == true)
+                        _dt = new DataTable();
+                        _dt = _bll.GetUserInfoForAudit(int.Parse(hdnEnroll.Value));
+                        if (bool.Parse(_dt.Rows[0]["ysnAudit2"].ToString()) == true)
                         {
                             hdnLevel.Value = "2";
                         }
-                        else if (bool.Parse(dt.Rows[0]["ysnAudit1"].ToString()) == true)
+                        else if (bool.Parse(_dt.Rows[0]["ysnAudit1"].ToString()) == true)
                         {
                             hdnLevel.Value = "1";
                         }
@@ -75,31 +75,31 @@ namespace UI.PaymentModule
 
                     if (hdnLevel.Value == "1")
                     {
-                        dt = new DataTable();
-                        dt = objBillApp.GetNetPayForLevel1(intBillID);
-                        if (dt.Rows.Count > 0)
+                        _dt = new DataTable();
+                        _dt = _bll.GetNetPayForLevel1(intBillID);
+                        if (_dt.Rows.Count > 0)
                         {
-                            txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2).ToString();
+                            txtNetAmount.Text = Math.Round(decimal.Parse(_dt.Rows[0]["monNetPay"].ToString()), 2).ToString();
                         }
                     }
 
                     if (hdnLevel.Value == "2")
                     {
-                        dt = new DataTable();
-                        dt = objBillApp.GetNetPayForLevel2(intBillID);
-                        if (dt.Rows.Count > 0)
+                        _dt = new DataTable();
+                        _dt = _bll.GetNetPayForLevel2(intBillID);
+                        if (_dt.Rows.Count > 0)
                         {
-                            txtNetAmount.Text = Math.Round(decimal.Parse(dt.Rows[0]["monApproveAmount"].ToString()), 2).ToString();
+                            txtNetAmount.Text = Math.Round(decimal.Parse(_dt.Rows[0]["monApproveAmount"].ToString()), 2).ToString();
                         }
                     }
 
                     try
                     {
-                        dt = new DataTable();
-                        dt = objBillApp.GetPOIDByBillID(intBillID);
-                        if (dt.Rows.Count > 0)
+                        _dt = new DataTable();
+                        _dt = _bll.GetPOIDByBillID(intBillID);
+                        if (_dt.Rows.Count > 0)
                         {
-                            hdnPOID.Value = dt.Rows[0]["strReffNo"].ToString();
+                            hdnPOID.Value = _dt.Rows[0]["strReffNo"].ToString();
                         }
                         if (hdnPOID.Value == "")
                         {
@@ -110,63 +110,63 @@ namespace UI.PaymentModule
 
                     txtPONo.Text = hdnPOID.Value;
                     txtBillID.Text = intBillID.ToString();
-                    dt = new DataTable();
-                    dt = objBillApp.GetPODate(int.Parse(hdnPOID.Value));
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetPODate(int.Parse(hdnPOID.Value));
+                    if (_dt.Rows.Count > 0)
                     {
-                        txtPODate.Text = dt.Rows[0]["dtePODate"].ToString();
+                        txtPODate.Text = _dt.Rows[0]["dtePODate"].ToString();
                     }
 
-                    dt = new DataTable();
-                    dt = objBillApp.GetUnitInfoByBillID(intBillID);
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetUnitInfoByBillID(intBillID);
+                    if (_dt.Rows.Count > 0)
                     {
-                        txtRegNo.Text = dt.Rows[0]["strBillRegCode"].ToString();
-                        hdnEntryType.Value = dt.Rows[0]["intEntryType"].ToString();
-                        txtNetPay.Text = Math.Round(decimal.Parse(dt.Rows[0]["monNetPay"].ToString()), 2).ToString();
-                        hdnUnitID.Value = dt.Rows[0]["intUnitID"].ToString();
+                        txtRegNo.Text = _dt.Rows[0]["strBillRegCode"].ToString();
+                        hdnEntryType.Value = _dt.Rows[0]["intEntryType"].ToString();
+                        txtNetPay.Text = Math.Round(decimal.Parse(_dt.Rows[0]["monNetPay"].ToString()), 2).ToString();
+                        hdnUnitID.Value = _dt.Rows[0]["intUnitID"].ToString();
                     }
 
                     //Document List =========================================
-                    dt = new DataTable();
-                    dt = objBillApp.GetDocumentList(intBillID, int.Parse(hdnEntryType.Value));
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetDocumentList(intBillID, int.Parse(hdnEntryType.Value));
+                    if (_dt.Rows.Count > 0)
                     {
-                        dgvDocList.DataSource = dt;
+                        dgvDocList.DataSource = _dt;
                         dgvDocList.DataBind();
                     }
                     //Challan List =========================================
-                    dt = new DataTable();
-                    dt = objBillApp.GetChallanList(intBillID);
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetChallanList(intBillID);
+                    if (_dt.Rows.Count > 0)
                     {
-                        dgvChallanList.DataSource = dt;
+                        dgvChallanList.DataSource = _dt;
                         dgvChallanList.DataBind();
                     }
 
                     //Item Details List =========================================
-                    dt = new DataTable();
-                    dt = objBillApp.GetItemDetailsByPO(int.Parse(hdnPOID.Value), true, intBillID);
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetItemDetailsByPO(int.Parse(hdnPOID.Value), true, intBillID);
+                    if (_dt.Rows.Count > 0)
                     {
-                        dgvBillReport.DataSource = dt;
+                        dgvBillReport.DataSource = _dt;
                         dgvBillReport.DataBind();
                     }
 
                     //Indent List =========================================
-                    dt = new DataTable();
-                    dt = objBillApp.GetIndentList(int.Parse(hdnPOID.Value));
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetIndentList(int.Parse(hdnPOID.Value));
+                    if (_dt.Rows.Count > 0)
                     {
-                        dgvIndentList.DataSource = dt;
+                        dgvIndentList.DataSource = _dt;
                         dgvIndentList.DataBind();
                     }
 
-                    dt = new DataTable();
-                    dt = objBillApp.GetVoucherListByBillID(intBillID);
-                    if (dt.Rows.Count > 0)
+                    _dt = new DataTable();
+                    _dt = _bll.GetVoucherListByBillID(intBillID);
+                    if (_dt.Rows.Count > 0)
                     {
-                        dgvVoucherList.DataSource = dt;
+                        dgvVoucherList.DataSource = _dt;
                         dgvVoucherList.DataBind();
                     }
                 }
@@ -244,7 +244,8 @@ namespace UI.PaymentModule
             }
             try
             {
-                e.Row.Cells[6].Visible = objBillApp.IsPermitedToRemoveMrr(Enroll);
+                e.Row.Cells[6].Visible = _bll.IsPermitedToRemoveMrr(Enroll);
+
             }
             catch (Exception exception)
             {
@@ -337,16 +338,37 @@ namespace UI.PaymentModule
             {
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = dgvChallanList.Rows[rowIndex];
-
-                try
+                string bill = txtBillID.Text;
+                if (string.IsNullOrWhiteSpace(bill))
                 {
-                    intMRRID = int.Parse((row.FindControl("lblMRR") as Label)?.Text);
-                    //todo: delete mrr
+                    Toaster("Bill ID not found", Common.TosterType.Error);
+                    return;
                 }
-                catch
+                if (int.TryParse(bill, out int billId))
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true);
+                    try
+                    {
+                        intMRRID = int.Parse((row.FindControl("lblMRR") as Label)?.Text);
+                        string message = _bll.RemoveMrr(Enroll, intMRRID, billId);
+                        if (message.ToLower().Contains("success"))
+                        {
+                            Toaster(Message.RemoveSuccess.ToFriendlyString(), Common.TosterType.Success);
+                        }
+                        else
+                        {
+                            Toaster(Message.RemoveFailed.ToFriendlyString(), Common.TosterType.Error);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message, Common.TosterType.Error);
+                    }
                 }
+                else
+                {
+                    Toaster("Bill ID parsing problem.", Common.TosterType.Error);
+                }
+                
             }
 
             fd = log.GetFlogDetail(stop, location, "dgvChallanList_RowCommand", null);
