@@ -502,12 +502,12 @@ a.monVAT/Totalamount*monRate monVAT,
 a.monFreight/Totalamount*monRate monFreight,
 a.monPacking/Totalamount*monRate monPacking,
 (a.monRate)+ ((a.monAIT+a.monVAT+a.monCD+a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActual
-from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , monDiscount,pid.numQty,pid.monRate,pid.monAmount,pid.monAIT,pid.monVAT,po.monFreight,po.monPacking,monCD,s.strSupplierName,cu.strCurrencyName
+from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , isnull(monDiscount,0) monDiscount,pid.numQty,pid.monRate,pid.monAmount,isnull(pid.monAIT,0) monAIT,isnull(pid.monVAT,0) monVAT,isnull(po.monFreight,0) monFreight,isnull(po.monPacking,0) monPacking,isnull(pid.monCD,0) monCD,s.strSupplierName,cu.strCurrencyName
 from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
 inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
-INNER JOIN dbo.qryItemList itm ON pid.intItemID = itm.intItemID 
-inner join dbo.tblCurrencyConversion cu ON po.intCurrencyID = cu.intCurrencyID 
-INNER JOIN dbo.tblSupplier s ON s.intSupplierID = po.intSupplierID
+INNER JOIN ERP_Inventory.dbo.qryItemList itm ON pid.intItemID = itm.intItemID 
+inner join ERP_Inventory.dbo.tblCurrencyConversion cu ON po.intCurrencyID = cu.intCurrencyID 
+INNER JOIN ERP_Inventory.dbo.tblSupplier s ON s.intSupplierID = po.intSupplierID
 where  pid.intItemID = @itemId) as a
 join 
 (select sum(numQty*monRate) Totalamount,po.intPOID

@@ -55,22 +55,7 @@
         }
     </script>
 
-    <style type="text/css">
-        .dynamicDivbn {
-            margin: 5px 5px 5px 5px;
-            width: Auto;
-            height: auto;
-            background-color: #FFFFFF;
-            font-size: 11px;
-            font-family: verdana;
-            color: #000;
-            padding: 5px 5px 5px 5px;
-        }
-
-        .auto-style1 {
-            height: 22px;
-        }
-    </style>
+    
 
 
 </head>
@@ -160,7 +145,7 @@
 
                             <asp:TemplateField HeaderText="Item Name" SortExpression="strITem">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblItem" runat="server" Text='<%#Bind("strItemName") %>' Width="150px"></asp:Label>
+                                    <asp:Label ID="lblItem" runat="server" Text='<%#Bind("strItemName") %>' Width="200px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="center" Width="150px" />
                             </asp:TemplateField>
@@ -178,13 +163,6 @@
                                     <asp:Label ID="lblSupplier" runat="server" Text='<%# Bind("strSupplierName") %>' Width="200px"></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" Width="200px" />
-                            </asp:TemplateField>
-
-                            <asp:TemplateField HeaderText="Rate" SortExpression="rate">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monRate", "{0:n2}") %>' Width="80px"></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="right" Width="80px" />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="Rate" SortExpression="rate">
@@ -363,5 +341,27 @@
             });
         });
     </script>
+<style type="text/css">
+    .dynamicDivbn {
+        margin: 5px 5px 5px 5px;
+        width: Auto;
+        height: auto;
+        background-color: #FFFFFF;
+        font-size: 11px;
+        font-family: verdana;
+        color: #000;
+        padding: 5px 5px 5px 5px;
+    }
+
+    .auto-style1 {
+        height: 22px;
+    }
+    table {
+        font-size: 11px;
+    }
+    th {
+        text-align: center
+    }
+</style>
 </body>
 </html>
