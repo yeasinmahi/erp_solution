@@ -43,7 +43,7 @@ namespace UI.Wastage
                     File.Delete(filePathForXML);
 
                     dt = new DataTable();
-                    //dt = obj.GetUnitList(int.Parse(hdnEnroll.Value));
+                  
                     dt = obj.GetUnit();
                     ddlUnitName.DataTextField = "strUnit";
                     ddlUnitName.DataValueField = "intUnitID";
