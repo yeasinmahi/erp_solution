@@ -12,7 +12,7 @@ namespace UI.PaymentModule
     {
         private DataTable _dt = new DataTable();
         private readonly Billing_BLL _bll = new Billing_BLL();
-        private readonly Payment_All_Voucher_BLL _PaymentVouchar = new Payment_All_Voucher_BLL();
+        private readonly Payment_All_Voucher_BLL _paymentVouchar = new Payment_All_Voucher_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,7 +32,6 @@ namespace UI.PaymentModule
                     if (hdnLevel.Value == "0")
                     {
                         Toaster(Message.PermissionDenied.ToFriendlyString(), Common.TosterType.Warning);
-                        return;
                     }
                 }
                 catch (Exception ex)
@@ -46,11 +45,11 @@ namespace UI.PaymentModule
         {
             hdnLevel.Value = "0";
             _dt = _bll.GetUserInfoForAudit(Enroll);
-            if (bool.Parse(_dt.Rows[0]["ysnAudit2"].ToString()) == true)
+            if (bool.Parse(_dt.Rows[0]["ysnAudit2"].ToString()))
             {
                 hdnLevel.Value = "2";
             }
-            else if (bool.Parse(_dt.Rows[0]["ysnAudit1"].ToString()) == true)
+            else if (bool.Parse(_dt.Rows[0]["ysnAudit1"].ToString()))
             {
                 hdnLevel.Value = "1";
             }
@@ -61,11 +60,8 @@ namespace UI.PaymentModule
             int intUnitid = int.Parse(ddlUnit.SelectedValue);
             DateTime dteFDate = DateTime.Parse(txtFromDate.Text);
             DateTime dteTDate = DateTime.Parse(txtToDate.Text);
-            int intEntryType = 1;
-            int intLevel = int.Parse(hdnLevel.Value);
-
-            //_dt = _bll.GetPaymentApprovalSummaryAllUnitForWeb(intUnitid, dteFDate, dteTDate, intAction, intEntryType, intLevel);
-            _dt = _PaymentVouchar.GetBillRegisterForWeb(intUnitid, dteFDate, dteTDate);
+            
+            _dt = _paymentVouchar.GetBillRegisterForWeb(intUnitid, dteFDate, dteTDate);
             if (_dt.Rows.Count > 0)
             {
                 grid.DataSource = _dt;
