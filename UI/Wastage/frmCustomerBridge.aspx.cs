@@ -19,6 +19,8 @@ namespace UI.Wastage
         int? intCOAID = null, intItemid = null, intCustid = null, CustTypeid = null,empid=null;
         string custname = null, CustAdd = null, Coaname = null, PhoneNo = null;
 
+      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,7 +43,10 @@ namespace UI.Wastage
                 CustomerList();
             }
         }
-
+        protected void ddlUnitCust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CustomerList();
+        }
         private void CustomerList()
         {
             dt = objWastage.CustomerList(int.Parse(ddlUnitCust.SelectedValue.ToString()));
