@@ -110,7 +110,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Line No :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlLine" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlLine" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">

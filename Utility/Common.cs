@@ -154,8 +154,7 @@ namespace Utility
 
         public static void UnLoadDropDown(DropDownList ddl)
         {
-            ddl.DataSource = null;
-            ddl.DataBind();
+            ddl.Items.Clear();
         }
 
         public static void UnLoadDropDownWithSelect(DropDownList ddl)
