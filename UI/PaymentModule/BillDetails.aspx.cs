@@ -155,12 +155,16 @@ namespace UI.PaymentModule
 
                     //Indent List =========================================
                     _dt = new DataTable();
-                    _dt = _bll.GetIndentList(int.Parse(hdnPOID.Value));
-                    if (_dt.Rows.Count > 0)
+                    if (int.Parse(hdnPOID.Value) > 0)
                     {
-                        dgvIndentList.DataSource = _dt;
-                        dgvIndentList.DataBind();
+                        _dt = _bll.GetIndentList(int.Parse(hdnPOID.Value));
+                        if (_dt.Rows.Count > 0)
+                        {
+                            dgvIndentList.DataSource = _dt;
+                            dgvIndentList.DataBind();
+                        }
                     }
+                    
 
                     _dt = new DataTable();
                     _dt = _bll.GetVoucherListByBillID(intBillID);
