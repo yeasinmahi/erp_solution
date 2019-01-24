@@ -31,6 +31,23 @@
             else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
 
         }
+        function validation() {
+            var actualQuantity = document.getElementById("txtActualQty").value;
+            var qcQuantity = document.getElementById("txtQc").value;
+            if (actualQuantity == null || actualQuantity == '' || actualQuantity =='0') {
+                ShowNotification('Actual Quantity should be greater than 0.','Production Transfer', 'warning');
+                return false;
+            }else if (qcQuantity == null || qcQuantity == '' ) {
+                ShowNotification('QC hold can not be blank','Production Transfer', 'warning');
+                return false;
+            }else if (qcQuantity > actualQuantity ) {
+                ShowNotification('QC quantity can not be greater than actual quantity','Production Transfer', 'warning');
+                return false;
+            }
+
+
+            return true;
+        }
     </script>
     <script>   function CloseWindow() { window.close(); }//window.onbeforeunload = RefreshParent();
         //function RefreshParent() {
@@ -74,10 +91,7 @@
             overflow-y: scroll;
         }
 
-        .auto-style1 {
-            height: 26px;
-        }
-    </style>
+        </style>
 </head>
 
 <body>
@@ -91,9 +105,8 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
 
@@ -106,7 +119,7 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
-                    <div class="tabs_container" style="text-align: left">Production Output<hr />
+                    <div class="tabs_container" style="text-align: left">PRODUCTION TANSFER<hr />
                     </div>
                     <table style="width: 750px">
                         <tr>
@@ -128,7 +141,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblitm" CssClass="lbl" Font-Bold="true" runat="server" Text="Item List :"></asp:Label>
                             <td>
-                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="250px" OnTextChanged="txtItem_TextChanged"></asp:TextBox>
+                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtItem_TextChanged" Enabled="False"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
                                     ServiceMethod="GetItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -138,7 +151,7 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Font-Bold="true" Text="Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="claenderDte" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </td>
 
@@ -155,40 +168,40 @@
                         <tr>
                             <%--<MKB:TimeSelector ID="tpkEndTime" runat="server" SelectedTimeFormat="TwentyFour" ></MKB:TimeSelector>--%>
                            
-                            <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Product Qty"></asp:Label></td>
+                            <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Production Qty"></asp:Label>:</td>
                             
-                            <td style="text-align: left"><asp:TextBox ID="txtProductQty" Width="100px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
+                            <td style="text-align: left"><asp:TextBox ID="txtProductQty" Width="100px" Text="0" CssClass="txtBox" runat="server" Enabled="False"></asp:TextBox></td>
                               
                              
                                 <td><asp:Label ID="lblUom1" runat="server" ForeColor="Blue"></asp:Label></td>
 
-                             <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="Label4" Font-Bold="true" runat="server" Text="Actual Qty"></asp:Label></td>
+                             <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="Label4" Font-Bold="true" runat="server" Text="Actual Qty"></asp:Label>:</td>
                             
                             <td style="text-align: left"><asp:TextBox ID="txtActualQty" Width="90px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
 
 
 
-                             <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="Label3" Font-Bold="true" runat="server" Text="QcHold"></asp:Label></td>
+                             <td style="text-align: left; width: 20px; display: inline"> <asp:Label ID="Label3" Font-Bold="true" runat="server" Text="QC Hold:"></asp:Label></td>
                             
                             <td style="text-align: left"><asp:TextBox ID="txtQc" Width="90px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
 
 
                             <td style="text-align: right">
-                                <asp:Label Font-Bold="true" ID="lblSendStore" runat="server" Text="Send To Store"></asp:Label></td>
+                                <asp:Label Font-Bold="true" ID="lblSendStore" runat="server" Text="Send To Store:"></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtSendToStore" CssClass="txtBox" Text="0" Width="100px" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtSendToStore" CssClass="txtBox" Text="0" Width="100px" runat="server" ></asp:TextBox></td>
                             <td>
                                 <asp:Label ID="lblUom2" ForeColor="Blue" runat="server"></asp:Label></td>
 
                             <td style="text-align: right">
-                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
+                                <asp:Button ID="btnAdd" runat="server" Text="Add" ForeColor="blue" OnClientClick="return validation();" OnClick="btnAdd_Click" />
                                 <asp:Button ID="btnSaves" ForeColor="Black" BackColor="#ffccff" Font-Bold="true" runat="server" OnClientClick="Confirms();" Text="Save" OnClick="btnSaves_Click" /></td>
                         </tr>
                         <tr>
                               <td style="text-align: left;">
-                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Exp.Date :"></asp:Label></td>
+                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Expire Date :"></asp:Label></td>
                             <td style="text-align: left" colspan="3">
-                                <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off" ></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtenderExp" runat="server" Format="yyyy-MM-dd" TargetControlID="txtExpDate"></cc1:CalendarExtender>
                             </td>
                         </tr>
