@@ -1,32 +1,24 @@
-<?xml version="1.0" standalone="yes"?>
+<?xml version="1.0"?>
 <voucher>
-  <voucherEntry itemid="524080" item="Plasticizer ( Triacetin P )" uom="KG" qty="0.009000000" wastage="2.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524237" item="Plug Wrap Paper 27 GSM" uom="BBN" qty="0.003330000" wastage="3.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524098" item="Adhesive ZH-6045 ( Hotmelt )" uom="KG" qty="0.000766000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="525236" item="Glycerine ( USP 99.7 PCT MIN )" uom="KG" qty="0.022500000" wastage="1.00" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524081" item="Organic Compound &quot; G &quot;" uom="KG" qty="0.000465000" wastage="0.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524106" item="Sodium Benzoate China" uom="KG" qty="0.000113000" wastage="0.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524105" item="Propylene Glycol (P G)" uom="KG" qty="0.000750000" wastage="0.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524925" item="Tobacco  Blue  B 87" uom="KG" qty="0.000250000" wastage="0.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524924" item="Tobacco  Red  D35" uom="KG" qty="0.000250000" wastage="0.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524168" item="Master Carton 120 mm Filter Rod" uom="PCS" qty="0.002203000" wastage="0.25" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524169" item="Master Carton Tray (120 mm Filter Rod)" uom="PCS" qty="0.013222000" wastage="0.25" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524170" item="Master Carton Lid ( 90 &amp;120mm filter rod )" uom="PCS" qty="0.013222000" wastage="0.25" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524085" item="Cigarette paper ( 26.5 mm x 6000 M ) Cigla 50 Velin, 27 GSM" uom="BBN" qty="0.010500000" wastage="2.70" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524222" item="Tipping Paper (N/G )52 mm" uom="BBN" qty="0.004500000" wastage="2.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524100" item="Adhesive 233-3005 ( Henkel )" uom="KG" qty="0.001750000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524240" item="Gum Tape ( 52 mm x 500 M )" uom="BBN" qty="0.000220000" wastage="0.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524232" item="Alu. Foil 81 mm ( G )" uom="BBN" qty="0.005450000" wastage="2.40" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524233" item="Inner Frame 95 mm ( W)" uom="BBN" qty="0.002610000" wastage="1.80" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524090" item="Bopp Film 347 mm x 25 HSB x 2400 M ( 18.95 kg/B )" uom="BBN" qty="0.000600000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="534118" item="Adhesive ZD 6760 N  ( Henkel ) ( Focke F-5 )" uom="KG" qty="0.007000000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524103" item="Adhesive ZD - 6800" uom="KG" qty="0.001250000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524101" item="Adhesive A7656N ( Henkel )" uom="KG" qty="0.009500000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524079" item="Acetate Tow Acetate Cellulose -2.5Y30000" uom="KG" qty="0.101567000" wastage="0.90" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524216" item="PKM - Blank ( Navy ) 20s ( HL ) 83 mm ( Export )" uom="PCS" qty="50.000000000" wastage="2.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524165" item="Master Carton Navy ( Export )20s (HL )( Brown)" uom="PCS" qty="0.100000000" wastage="0.20" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524093" item="Tear of Ribbon Clear" uom="BBN" qty="0.000828000" wastage="1.00" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524097" item="Holograms (10mm square)" uom="PCS" qty="0.100000000" wastage="0.20" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="524662" item="Inner Poly Bag ( Export Cig.) 29&quot; * 5 -1/2&quot; *5 -1/2&quot; *36&quot;" uom="PCS" qty="0.100000000" wastage="0.20" bomname="CIG-Navy Export-20s HL " strCode="02" />
-  <voucherEntry itemid="535109" item="BOPP Film ( Navy Printed ) ( 117 mm x 25 Micron x 2000 M )" uom="KG" qty="0.004230000" wastage="1.50" bomname="CIG-Navy Export-20s HL " strCode="02" />
+  <voucherEntry itemid="242888" item="Shisu Mehagunni Size Wood Pallet with Slate: 42inch x 42inch" uom="PCS" qty="0.740000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="162436" item="Jute Batching Oil (J.B.O) Made in bangladesh" uom="LTR" qty="21.825000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="284756" item="Rice Bran Oil" uom="KG" qty="1.983000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="161650" item="Emulsifier (Shunsol SCL) (Plastic Drum/ Steel Drum) Made in GERMANY" uom="KG" qty="0.300000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="338505" item="Chalk Pencil (Color)" uom="BOX" qty="0.098300000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="163197" item="Paper Board Brown (Liner)-81inch.x43inch. 2Ply Made in bangladesh" uom="PCS" qty="4.074000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="212331" item="Media Cutting Paper-40inch.x10inch. Made in Bangladesh" uom="KG" qty="2.963000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="163269" item="PE Stretch Wrapping Film (Machine rolls). Country of Origin: Malaysia. Specification: 30um x 500mm x 1087meters. Net weight: 15Kg/roll. Each Roll packed in Carton. Made in MALAYSIA" uom="ROLL" qty="0.039340000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="333333" item="PP Band Clip Size: 17.5 mm" uom="KG" qty="0.017280000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="163178" item="P.P Band 17.5MM" uom="ROLL" qty="0.099300000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="163723" item="Roll Polythene 36inch" uom="LBS" qty="0.244940000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="162138" item="Gum Tape-2inch. White" uom="PCS" qty="0.012870000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="161355" item="Container seal lock (Sl. no. 000001-006000)China Made in bangladesh" uom="PCS" qty="0.076900000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="161181" item="Chalk Pencil" uom="BOX" qty="0.053670000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="163300" item="Pin Sticker" uom="PCS" qty="0.740700000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="162741" item="Media Cutting Paper-44inch.x10inch. Made in bangladesh" uom="KG" qty="1.852000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="163354" item="Polythene Bag 25inch x 27inch" uom="LBS" qty="2.286000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="297438" item="JW-Hanks" uom="KG" qty="1.110000000" wastage="0.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="290886" item="Tossa Jute BTD-I (L)" uom="KG" qty="670.000000000" wastage="5.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="290889" item="Tossa Jute BTD-II (L)" uom="KG" qty="330.000000000" wastage="5.00" bomname="0" strCode="0" />
+  <voucherEntry itemid="164760" item="Wooden Conical Spool Centre 2inch x 1.1/2inch x 10inch x 1inch" uom="PCS" qty="54.000000000" wastage="0.50" bomname="0" strCode="0" />
 </voucher>

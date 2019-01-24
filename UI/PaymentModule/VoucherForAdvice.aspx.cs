@@ -55,7 +55,7 @@ namespace UI.PaymentModule
                 {
                     File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
                     
-                    if (hdnEnroll.Value != "1011" && hdnEnroll.Value != "1015" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1044" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "32897")
+                    if (hdnEnroll.Value != "1011" && hdnEnroll.Value != "1015" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1044" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "32897" && hdnEnroll.Value != "42815" && hdnEnroll.Value != "292454" && hdnEnroll.Value != "283830" && hdnEnroll.Value != "243013" && hdnEnroll.Value != "369116")
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not authorized to create payment voucher.');", true);
                         return;

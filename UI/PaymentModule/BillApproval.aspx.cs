@@ -71,6 +71,8 @@ namespace UI.PaymentModule
                     txtFromDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     dt = objBillReg.GetAllUnit(enroll);
+
+
                     //if (enroll == 1178)
                     //{
                     //    DataRow dr = dt.AsEnumerable()
@@ -95,6 +97,7 @@ namespace UI.PaymentModule
                     //        .SingleOrDefault(r => r.Field<int>("intUnitID") == 105);
                     //    dt.Rows.RemoveAt(dt.Rows.IndexOf(dr));
                     //}
+                     
 
                     ddlUnit.DataTextField = "strUnit";
                     ddlUnit.DataValueField = "intUnitID";

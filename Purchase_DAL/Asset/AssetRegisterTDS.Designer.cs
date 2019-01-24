@@ -17625,7 +17625,7 @@ GROUP BY ERP_HR.dbo.tblDepartment.strDepatrment, ERP_HR.dbo.tblEmployee.intDepar
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT [intCategoryID],[strCategoryName]FROM [ERP_Asset].[dbo].[tblAssetCategory]" +
@@ -17638,6 +17638,12 @@ GROUP BY ERP_HR.dbo.tblDepartment.strDepatrment, ERP_HR.dbo.tblEmployee.intDepar
                 "D = @buildcategorys) AND (YesnActive = 1)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@buildcategorys", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT [intCategoryID],[strCategoryName]FROM [ERP_Asset].[dbo].[tblAssetCategory]" +
+                " where intMajorType=@type  and YesnActive=1 ";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMajorType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17665,6 +17671,23 @@ GROUP BY ERP_HR.dbo.tblDepartment.strDepatrment, ERP_HR.dbo.tblEmployee.intDepar
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((buildcategorys.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(buildcategorys.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            AssetRegisterTDS.TblAssetCategoryDataTable dataTable = new AssetRegisterTDS.TblAssetCategoryDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual AssetRegisterTDS.TblAssetCategoryDataTable GetDataVehicleCate(global::System.Nullable<int> type) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((type.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(type.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;

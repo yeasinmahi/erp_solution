@@ -1,4 +1,6 @@
 ﻿
+using HR_DAL.Global;
+using HR_DAL.Global.AutoSearch_TDSTableAdapters;
 using Purchase_DAL.Asset;
 using Purchase_DAL.Asset.AssetMaintenanceTDSTableAdapters;
 using Purchase_DAL.Asset.SearchTDSTableAdapters;
@@ -28,6 +30,7 @@ namespace Purchase_BLL.Asset
         private static SearchTDS.AllJobstationDataTable[] tblAllJobstation = null;
 
         private static SearchTDS.TblSubServiceListDataTable[] tblSubServiceList = null;
+        private static AutoSearch_TDS.TblEmployeeByJobstationDataTable[] tblempbyJob = null;
 
         private static Hashtable ht = new Hashtable();
         int e;
@@ -47,6 +50,70 @@ namespace Purchase_BLL.Asset
             }
             return result;
         }
+        public string[] GetEmployeeByJobstationOperator(int enroll, string prefix)
+        {
+
+            tblempbyJob = new AutoSearch_TDS.TblEmployeeByJobstationDataTable[enroll];
+            TblEmployeeByJobstationTableAdapter emplists = new TblEmployeeByJobstationTableAdapter();
+            tblempbyJob[e] = emplists.GetEmpByJobstationData(enroll);
+
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tblempbyJob[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strOfficeEmail
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tblempbyJob[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strEmployeeName.ToString().ToLower().Contains(prefix) || tmp.strEmployeeCode.ToString().ToLower().Contains(prefix) || tmp.intEmployeeID.ToString().ToLower().Contains(prefix)
+                                   orderby tmp.intEmployeeID
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+
+                    }
+
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                     retStr[i] =tbl.Rows[i]["strEmployeeName"] + "[" + tbl.Rows[i]["strDesignation"] + "][Dept:" + tbl.Rows[i]["strDepatrment"] + "][Jobstation:" + tbl.Rows[i]["strJobStationName"]+ "[JobType:" + tbl.Rows[i]["strJobType"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
+
+                   // retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + "Code:" + " " + tbl.Rows[i]["strEmployeeCode"] + "][ Unit:" + tbl.Rows[i]["strUnit"] + "]" + "[JobStation:" + tbl.Rows[i]["strUnit"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         public string[] GetEmployeeLists(Boolean active, string prefix)
         {
@@ -304,7 +371,7 @@ namespace Purchase_BLL.Asset
                     var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]                         
                                orderby tmp.strItem
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }

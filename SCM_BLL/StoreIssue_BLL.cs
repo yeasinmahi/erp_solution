@@ -1,11 +1,6 @@
-﻿using SCM_DAL;
-using SCM_DAL.IndentTDSTableAdapters;
+﻿using SCM_DAL.IndentTDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SCM_BLL
 {
@@ -13,11 +8,33 @@ namespace SCM_BLL
     {
         public DataTable GetViewData(int part, string xml, int Wh, int reqId, DateTime dteDate, int enroll)
         {
-            string strMsg = "";
-            SprStoreIssueTableAdapter adp = new SprStoreIssueTableAdapter();
-            return adp.GetStoreIssueData(part, xml, Wh, reqId, dteDate, enroll, ref strMsg);
+            string message = null;
+            try
+            {
+                SprStoreIssueTableAdapter adp = new SprStoreIssueTableAdapter();
+                return adp.GetStoreIssueData(part, xml, Wh, reqId, dteDate, enroll, ref message);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+            
         }
+        public DataTable GetIssueItem(int intItemId, int intwh, DateTime dteFrom, DateTime dteTo)
+        {
+            string strMsg = "";
+            try
+            {
 
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetIssueItem(intItemId,intwh,dteFrom,dteTo);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+        }
         public string StoreIssue(int part, string xml, int Wh, int reqId, DateTime dteDate, int enroll)
         {
             string strMsg = "";

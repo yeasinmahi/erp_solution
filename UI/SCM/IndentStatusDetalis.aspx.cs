@@ -74,7 +74,7 @@ namespace UI.SCM
                         {
                             imgUnit.ImageUrl = "/Content/images/img/" + unit.ToString() + ".png".ToString();
                         }
-                        if (lblApproveBy.Text.Length > 2)
+                        if (lblApproveBy.Text.Length > 2 ||  whname.Contains("HO"))
                         {
                             imgApp.Visible = false;
                         }
@@ -87,6 +87,7 @@ namespace UI.SCM
                     }
                     else
                     {
+                        
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", message, true);
                         return;
                     }

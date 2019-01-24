@@ -27,6 +27,9 @@ namespace UI.SAD.Order
 {
     public partial class DOCreation : BasePage
     {
+
+        char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+        private int  CheckItem = 1;
         decimal promPrice = 0;
         XmlManagerSO xm = new XmlManagerSO();
         SalesOrderTDS.QrySalesOrderCustomerDataTable table;
@@ -482,7 +485,7 @@ namespace UI.SAD.Order
         protected void btnAdd_Click(object sender, EventArgs e)
         {
 
-
+            string item = ""; string itemids = "";
 
             var fd = log.GetFlogDetail(start, location, "Submit", null);
             Flogger.WriteDiagnostic(fd);
@@ -557,117 +560,138 @@ namespace UI.SAD.Order
             }
             else
             {
+                    int cnt = GridView1.Rows.Count;
+                    //if (arrayKey.Length > 0) {  itemids = arrayKey[0].ToString(); }
 
+                    //CheckXmlItemReqData(itemids);
+                    //if (CheckItem == 1)
+                    //{
 
-                if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
-                {
-                    lblError.Text = "";
-                   
-                   
-
-                    it.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, rdoSalesType.SelectedValue, ref coaId, ref coaName);
-                   
-
-                    if (coaId != "" && coaId != "0" && coaName != "")
-                    {
-                        string narr = txtQun.Text.Trim() + " " + ddlUOM.SelectedItem.Text + " " + hdnProductText.Value + " Sold";
-
-                        narr += " To " + hdnCustomerText.Value;
-
-                        string chrPr = "0.0", incPr = "0.0";
-
-                        if (hdnXFactoryChr.Value == "true" && rdoNeedVehicle.SelectedIndex == 0)
+                        if (cnt < 31)
                         {
-                            if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
-                        }
-                        else if (hdnXFactoryChr.Value != "true")
-                        {
-                            if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
-                        }
 
-                        if (hdnIncenBasedOnUom.Value == "true") incPr = txtIncPr.Text;
+                            //unitid = int.Parse(Session[SessionParams.UnitID].ToString());
+                            //if (arrayKey.Length > 0) { item = arrayKey[0].ToString(); itemids = arrayKey[1].ToString(); }
+
+                            //CheckXmlItemReqData(itemids);
 
 
+                            if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
+                            {
+                                lblError.Text = "";
+
+
+
+                                it.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, rdoSalesType.SelectedValue, ref coaId, ref coaName);
+
+
+                                if (coaId != "" && coaId != "0" && coaName != "")
+                                {
+                                    string narr = txtQun.Text.Trim() + " " + ddlUOM.SelectedItem.Text + " " + hdnProductText.Value + " Sold";
+
+                                    narr += " To " + hdnCustomerText.Value;
+
+                                    string chrPr = "0.0", incPr = "0.0";
+
+                                    if (hdnXFactoryChr.Value == "true" && rdoNeedVehicle.SelectedIndex == 0)
+                                    {
+                                        if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
+                                    }
+                                    else if (hdnXFactoryChr.Value != "true")
+                                    {
+                                        if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
+                                    }
+
+                                    if (hdnIncenBasedOnUom.Value == "true") incPr = txtIncPr.Text;
 
 
 
 
-                        #region ############# replace VAT value by discount amount For APL ################
-                        if(ddlSo.SelectedValue == "465" || ddlSo.SelectedValue == "1470")
-                        {
-                            hdnVat.Value = Convert.ToString(calculteddiscount);
+
+
+                                    #region ############# replace VAT value by discount amount For APL ################
+                                    if (ddlSo.SelectedValue == "465" || ddlSo.SelectedValue == "1470")
+                                    {
+                                        hdnVat.Value = Convert.ToString(calculteddiscount);
+                                    }
+                                    else
+                                    { hdnVat.Value = hdnVat.Value; }
+                                    #endregion
+
+
+                                    decimal promQnty = 0;
+                                    int promItemId = 0;
+                                    int promItemCOAId = 0;
+                                    int promItemUOM = 0;
+                                    string promItem = "";
+                                    string promUom = "";
+
+                                    ItemPromotion ip = new ItemPromotion();
+                                    promPrice = ip.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue
+                                        , ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+                                        , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+
+                                    if (promItemId.ToString() == hdnProduct.Value)
+                                    {
+                                        /*28,23,29,24*/
+                                        //if (sdv.Checked == true && ("23" != ddlSo.SelectedValue.ToString() || "24" != ddlSo.SelectedValue.ToString()
+                                        //|| "28" != ddlSo.SelectedValue.ToString() || "29" != ddlSo.SelectedValue.ToString()))
+                                        //{
+                                        //    decimal tempprc = Math.Round((decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
+                                        //                      (decimal.Parse(txtQun.Text) + promQnty)); //+ 1
+                                        //    hdnPrice.Value = tempprc.ToString("0.00");
+                                        //    promQnty = 0;
+                                        //}
+                                        //promPrice = decimal.Parse(hdnPrice.Value);
+                                        //promItemCOAId = int.Parse(coaId);
+
+
+                                        if (promQnty <= 0)
+
+                                        {
+                                            decimal tempprc = Math.Round((decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
+                                                              (decimal.Parse(txtQun.Text) + promQnty)); //+ 1
+                                            hdnPrice.Value = tempprc.ToString("0.00");
+                                            promQnty = 0;
+                                        }
+                                        promPrice = decimal.Parse(hdnPrice.Value);
+                                        promItemCOAId = int.Parse(coaId);
+                                    }
+
+                                    string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
+                                        , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, ddlExtra.SelectedValue
+                                        , ddlExtra.SelectedItem.Text, chrPr, ddlUOM.SelectedValue, ddlUOM.SelectedItem.Text
+                                        , ddlCurrency.SelectedValue, narr, rdoSalesType.SelectedValue.ToString()
+                                        , hdnDDLChangedSelectedIndexV.Value, promQnty.ToString(), lblComm.Text
+                                        , ddlIncentive.SelectedValue, incPr, hdnSuppTax.Value, hdnVat.Value, hdnVatPrice.Value
+                                        , promItemId.ToString(), promItem, promItemUOM.ToString(), promUom
+                                        , promPrice.ToString(), promItemCOAId.ToString());
+
+
+                                    XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
+                                    XmlNode selectNode = xmlDoc.SelectSingleNode(xm.MainNode);
+                                    selectNode.AppendChild(xm.CreateNodeForItem(xmlDoc, items));
+                                    xmlDoc.Save(GetXmlFilePath());
+
+                                    txtQun.Text = "";
+
+                                    BindGrid(GetXmlFilePath());
+
+                                    hdnProduct.Value = "";
+                                    txtProduct.Text = "";
+                                    txtProduct.Focus();
+                                }
+
+                            }
                         }
                         else
-                        { hdnVat.Value = hdnVat.Value;}
-                        #endregion
-
-
-                        decimal promQnty = 0;
-                        int promItemId = 0;
-                        int promItemCOAId = 0;
-                        int promItemUOM = 0;
-                        string promItem = "";
-                        string promUom = "";
-
-                        ItemPromotion ip = new ItemPromotion();
-                        promPrice = ip.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue
-                            , ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                            , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
-
-
-                        if (promItemId.ToString() == hdnProduct.Value)
                         {
-                            /*28,23,29,24*/
-                            //if (sdv.Checked == true && ("23" != ddlSo.SelectedValue.ToString() || "24" != ddlSo.SelectedValue.ToString()
-                            //|| "28" != ddlSo.SelectedValue.ToString() || "29" != ddlSo.SelectedValue.ToString()))
-                            //{
-                            //    decimal tempprc = Math.Round((decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
-                            //                      (decimal.Parse(txtQun.Text) + promQnty)); //+ 1
-                            //    hdnPrice.Value = tempprc.ToString("0.00");
-                            //    promQnty = 0;
-                            //}
-                            //promPrice = decimal.Parse(hdnPrice.Value);
-                            //promItemCOAId = int.Parse(coaId);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You can not add more than 30 item');", true);
 
-
-                            if (promQnty <= 0)
-
-                            {
-                                decimal tempprc = Math.Round((decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
-                                                  (decimal.Parse(txtQun.Text) + promQnty)); //+ 1
-                                hdnPrice.Value = tempprc.ToString("0.00");
-                                promQnty = 0;
-                            }
-                            promPrice = decimal.Parse(hdnPrice.Value);
-                            promItemCOAId = int.Parse(coaId);
                         }
-
-                        string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
-                            , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, ddlExtra.SelectedValue
-                            , ddlExtra.SelectedItem.Text, chrPr, ddlUOM.SelectedValue, ddlUOM.SelectedItem.Text
-                            , ddlCurrency.SelectedValue, narr, rdoSalesType.SelectedValue.ToString()
-                            , hdnDDLChangedSelectedIndexV.Value, promQnty.ToString(), lblComm.Text
-                            , ddlIncentive.SelectedValue, incPr, hdnSuppTax.Value, hdnVat.Value, hdnVatPrice.Value
-                            , promItemId.ToString(), promItem, promItemUOM.ToString(), promUom
-                            , promPrice.ToString(), promItemCOAId.ToString());
-
-
-                        XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
-                        XmlNode selectNode = xmlDoc.SelectSingleNode(xm.MainNode);
-                        selectNode.AppendChild(xm.CreateNodeForItem(xmlDoc, items));
-                        xmlDoc.Save(GetXmlFilePath());
-
-                        txtQun.Text = "";
-
-                        BindGrid(GetXmlFilePath());
-
-                        hdnProduct.Value = "";
-                        txtProduct.Text = "";
-                        txtProduct.Focus();
-                    }
-                
+                   
                 }
-            }
 
                 //string actotal =actualprice.ToString();
                 //hdndiscount.Value += decimal.Parse(actotal.ToString());
@@ -687,6 +711,28 @@ namespace UI.SAD.Order
 
 
         }
+        //private void CheckXmlItemReqData(string itemids)
+        //{
+        //    //try
+        //    //{
+        //    DataSet ds = new DataSet();
+        //    if (File.Exists(GetXmlFilePath()))
+        //    {
+        //        ds.ReadXml(GetXmlFilePath());
+        //        int i = 0;
+        //        for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+        //        {
+        //            if (itemids == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
+        //            {
+        //                CheckItem = 0;
+        //                break;
+        //            }
+        //            CheckItem = 1;
+        //        }
+        //    }
+        //    //}
+        //    //catch (Exception ex) { }
+        //}
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             RemoveGrid();

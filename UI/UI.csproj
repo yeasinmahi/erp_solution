@@ -81,9 +81,20 @@
     <Reference Include="Microsoft.ReportingServices.Interfaces, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ReportingServices.Interfaces.1.0.0\lib\Microsoft.ReportingServices.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.ReportViewer.Common">
+      <HintPath>Libray\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebDesign, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\Microsoft.ReportViewer.WebForms.dll</HintPath>
+      <HintPath>Libray\Microsoft.ReportViewer.WebDesign.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libray\Microsoft.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libray\Microsoft.ReportViewer.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -273,6 +284,7 @@
     <Content Include="Asset\Maintenance_Service_Cost_Update.aspx" />
     <Content Include="Asset\Maintenance_Unit_wise_summary_report.aspx" />
     <Content Include="Asset\Monthly_Maintenance_Cost.aspx" />
+    <Content Include="Asset\Operator\OperatorAssign.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
@@ -416,6 +428,8 @@
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
     <Content Include="IMPORT MANAGEMENT\HS Code.aspx" />
     <Content Include="Import\ImportFileManagement.aspx" />
+    <Content Include="Import\LCRegister.aspx" />
+    <Content Include="Import\OutStanding_LC.aspx" />
     <Content Include="Inventory\BrandItemChallanComplete.aspx" />
     <Content Include="Inventory\BrandItemChallanIssue.aspx" />
     <Content Include="Inventory\BrandItemChallanPrint.aspx" />
@@ -441,7 +455,6 @@
     <Content Include="Libray\AjaxControlToolkit.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
-    <Content Include="Libray\Microsoft.ReportViewer.Common.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.DataVisualization.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.Design.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.ProcessingObjectModel.DLL" />
@@ -473,8 +486,14 @@
     <Content Include="PaymentModule\BillDetails.aspx" />
     <Content Include="PaymentModule\BillRegisterReport.aspx" />
     <Content Include="PaymentModule\BillTopSheet.aspx" />
+    <Content Include="PaymentModule\BillUpdate.aspx" />
+    <Content Include="PaymentModule\Bill_Forward_List_Report.aspx" />
+    <Content Include="PaymentModule\Bill_Of_Entry_Report.aspx" />
+    <Content Include="PaymentModule\Bill_Top_Sheet_Report.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
+    <Content Include="PaymentModule\Consumption_Report.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
+    <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
@@ -490,8 +509,10 @@
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
     <Content Include="PaymentModule\Supplier.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
+    <Content Include="PaymentModule\Supplier_Statement.aspx" />
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
     <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
+    <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
@@ -2587,6 +2608,13 @@
     <Compile Include="Asset\Monthly_Maintenance_Cost.aspx.designer.cs">
       <DependentUpon>Monthly_Maintenance_Cost.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\Operator\OperatorAssign.aspx.cs">
+      <DependentUpon>OperatorAssign.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Operator\OperatorAssign.aspx.designer.cs">
+      <DependentUpon>OperatorAssign.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\PMSchedule.aspx.cs">
       <DependentUpon>PMSchedule.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3203,6 +3231,20 @@
     <Compile Include="Import\ImportFileManagement.aspx.designer.cs">
       <DependentUpon>ImportFileManagement.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Import\LCRegister.aspx.cs">
+      <DependentUpon>LCRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Import\LCRegister.aspx.designer.cs">
+      <DependentUpon>LCRegister.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Import\OutStanding_LC.aspx.cs">
+      <DependentUpon>OutStanding_LC.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Import\OutStanding_LC.aspx.designer.cs">
+      <DependentUpon>OutStanding_LC.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\BrandItemChallanComplete.aspx.cs">
       <DependentUpon>BrandItemChallanComplete.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3469,6 +3511,34 @@
     <Compile Include="PaymentModule\BillTopSheet.aspx.designer.cs">
       <DependentUpon>BillTopSheet.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\BillUpdate.aspx.cs">
+      <DependentUpon>BillUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\BillUpdate.aspx.designer.cs">
+      <DependentUpon>BillUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Forward_List_Report.aspx.cs">
+      <DependentUpon>Bill_Forward_List_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Forward_List_Report.aspx.designer.cs">
+      <DependentUpon>Bill_Forward_List_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Of_Entry_Report.aspx.cs">
+      <DependentUpon>Bill_Of_Entry_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Of_Entry_Report.aspx.designer.cs">
+      <DependentUpon>Bill_Of_Entry_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Top_Sheet_Report.aspx.cs">
+      <DependentUpon>Bill_Top_Sheet_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Top_Sheet_Report.aspx.designer.cs">
+      <DependentUpon>Bill_Top_Sheet_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3476,12 +3546,26 @@
     <Compile Include="PaymentModule\CashPay.aspx.designer.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\Consumption_Report.aspx.cs">
+      <DependentUpon>Consumption_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Consumption_Report.aspx.designer.cs">
+      <DependentUpon>Consumption_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\DocListByBillID.aspx.cs">
       <DependentUpon>DocListByBillID.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PaymentModule\DocListByBillID.aspx.designer.cs">
       <DependentUpon>DocListByBillID.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Duty_Summary_Report.aspx.cs">
+      <DependentUpon>Duty_Summary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Duty_Summary_Report.aspx.designer.cs">
+      <DependentUpon>Duty_Summary_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
@@ -3588,6 +3672,13 @@
     <Compile Include="PaymentModule\SupplierCOA.aspx.designer.cs">
       <DependentUpon>SupplierCOA.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\Supplier_Statement.aspx.cs">
+      <DependentUpon>Supplier_Statement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Supplier_Statement.aspx.designer.cs">
+      <DependentUpon>Supplier_Statement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\TreasuryChallan.aspx.cs">
       <DependentUpon>TreasuryChallan.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3601,6 +3692,13 @@
     </Compile>
     <Compile Include="PaymentModule\TreasuryDepositeForecast.aspx.designer.cs">
       <DependentUpon>TreasuryDepositeForecast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\VAT_Rebate.aspx.cs">
+      <DependentUpon>VAT_Rebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\VAT_Rebate.aspx.designer.cs">
+      <DependentUpon>VAT_Rebate.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -9109,34 +9207,34 @@
   <ItemGroup>
     <EmbeddedResource Include="Accounts\Banking\Report\ReportTemplates\AccountReconcile.rdlc" />
     <EmbeddedResource Include="Accounts\Banking\Report\ReportTemplates\DepositSlip.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\Bankbook.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\Cashbook.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\JournalBook.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\Ledger.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\LedgerDrCr.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\MdSlip.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\SubLedger.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\SubLedgerCodeRange.rdlc" />
-    <EmbeddedResource Include="Accounts\Report\ReportTemplates\TrialBalance.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\Bankbook.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\Cashbook.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\JournalBook.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\Ledger.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\LedgerDrCr.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\MdSlip.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\SubLedger.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\SubLedgerCodeRange.rdlc" />
+    <Content Include="Accounts\Report\ReportTemplates\TrialBalance.rdlc" />
     <EmbeddedResource Include="HR\Benifit\Report\ReportTemplate\PfEmployeesBalance.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\AbsentReport.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\BonusAdviceToBank.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\BonusDetailsUnitwise.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\Copy of DailyAttendanceSummaryTimeview.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\DailyAttendanceSummaryCalenderview.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\DailyAttendanceSummaryTimeview.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\DailyAttendanceSummaryTimeviewSubreport.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\DatewiseAttendanceInfo.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmployeesSalaryStatement.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpMonthlyAttandanceReport.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpProfile.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpSalaryMonthlyStatement.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\EmpSalaryStatementReport.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\JobStationwiseCurrentShiftInfo.rdlc" />
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\MonthwiseSalaryInfo.rdlc">
+    <Content Include="HR\Reports\ReportsTemplate\AbsentReport.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\BonusAdviceToBank.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\BonusDetailsUnitwise.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\Copy of DailyAttendanceSummaryTimeview.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\DailyAttendanceSummaryCalenderview.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\DailyAttendanceSummaryTimeview.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\DailyAttendanceSummaryTimeviewSubreport.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\DatewiseAttendanceInfo.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\EmployeesSalaryStatement.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\EmpMonthlyAttandanceReport.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\EmpProfile.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\EmpSalaryMonthlyStatement.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\EmpSalaryStatementReport.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\JobStationwiseCurrentShiftInfo.rdlc" />
+    <Content Include="HR\Reports\ReportsTemplate\MonthwiseSalaryInfo.rdlc">
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="HR\Reports\ReportsTemplate\SalaryAdviceToBank.rdlc" />
+    </Content>
+    <Content Include="HR\Reports\ReportsTemplate\SalaryAdviceToBank.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\CreditBalance.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\Statement.rdlc" />
     <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\StatementDrCr.rdlc" />

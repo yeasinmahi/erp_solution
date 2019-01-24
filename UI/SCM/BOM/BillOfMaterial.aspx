@@ -181,13 +181,14 @@
             <ItemTemplate><asp:Label ID="lblwastage" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("wastage") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Bom" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="bomname" > 
+           <%-- <asp:TemplateField HeaderText="Bom" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="bomname" > 
             <ItemTemplate><asp:Label ID="lblLOcationId" Width="150px"   runat="server"   Text='<%# Bind("bomname") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>--%>
 
-            <asp:TemplateField HeaderText="Code" ItemStyle-HorizontalAlign="right" SortExpression="strCode" > 
+           <%-- <asp:TemplateField HeaderText="Code" ItemStyle-HorizontalAlign="right" SortExpression="strCode" > 
             <ItemTemplate><asp:Label ID="lblCode" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> 
+            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField> --%>
+
             <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" /> 
             </Columns>
                 <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

@@ -66,6 +66,13 @@ namespace Purchase_BLL.Asset
             return category.AssetCategoryDropdownLoadGetData(jobstation);
         }
 
+        public DataTable DropdownVeheCategoryView(int type)
+        {
+            TblAssetCategoryTableAdapter category = new TblAssetCategoryTableAdapter();
+            return category.GetDataVehicleCate(type);
+        }
+
+
         public DataTable RegistrationDataInsert(int unit, int jobstation, int assettype, string assetname, string hscode, string description, string manufacture, string countryorigin, string countrymanufacture, string supplier, int category, string lcno, DateTime? dtelc, string pono, DateTime? dtepo, DateTime? WarrintyPreoid, decimal invoicevalue, string incortms, string location, string ManuProSL, string function, string capacity, DateTime? dteinstalation, decimal erectioncost, int department, DateTime? dteacusition, string life, decimal salvage, decimal landedC, decimal TAccumulatedC, decimal RateDepriciation, decimal AccumulatedDepriciation, string MethodDep, decimal ValueAfterDep, decimal writedownv, string remarks, int intjobid, int intenrollid, int intunitid, string currency, string maintType, int Plantname, int Costcenterid, string fmodel)
         {
             SprAssetRegisterTableAdapter register = new SprAssetRegisterTableAdapter();

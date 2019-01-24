@@ -13,6 +13,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <script src="../Content/JS/StaticFunction.js"></script>
 
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
@@ -32,58 +33,47 @@
             if (!jQuery.trim($(this).val()) == '') {
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
-                    var isssueqty = parseFloat($("[id*=lblQty]", row).html());
+                    var isssueQty = parseFloat($("[id*=lblQty]", row).html());
+                    var prvQty = parseFloat($("[id*=lblPrvQty]", row).html());
                     var returnQty = parseFloat($(this).val());
-
-                    if (isssueqty > returnQty) {
+                    if (returnQty+prvQty > isssueQty) {
                         $("[id*=txtReturnQty]", row).val('0');
-                        alert('Please Return Qty Grather then Issue Qty');
+                        alert('Return quantity can not be greater than available quantity');
                     }
-                    else {
-
-                    }
-
                 }
             } else {
                 $(this).val('');
             }
 
         });
-    </script>
-    <script type="text/javascript">
-        function funConfirmAll() {
-            var confirm_value = document.createElement("INPUT");
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+        function formValidation() {
+            var fromDate = document.getElementById("txtdteFrom").value;
+            var toDate = document.getElementById("txtdteTo").value;
+            if (fromDate==null || fromDate=="") {
+                alert('From Date filed can not be blank');
+                return false;
+            }else if (toDate==null || toDate=="") {
+                alert('To Date filed can not be blank');
+                return false;
+            }
+            return true;
         }
     </script>
 </head>
 
 <body>
-
     <form id="frmselfresign" runat="server">
-
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
-
             <ContentTemplate>
-
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
-
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
-
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                        </marquee>
                     </div>
-
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-
-                <div style="height: 100px;"></div>
-
+                <div style="height: 20px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
 
@@ -129,7 +119,7 @@
                             <td style="text-align: left">
                                 <asp:TextBox ID="txtdteTo" autocomplete="off" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender>
-                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
+                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClientClick="return formValidation();" OnClick="btnShow_Click" /></td>
                         </tr>
                     </table>
                     <table>
@@ -188,7 +178,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Prv. Qty" ItemStyle-HorizontalAlign="right" SortExpression="numQty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPrvQty" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("previousQuantity") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Issue Section" ItemStyle-HorizontalAlign="right" SortExpression="strSection">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblIssueSection" runat="server" Width="150px" Text='<%# Bind("strSection") %>'></asp:Label>
@@ -205,7 +200,7 @@
 
                                         <asp:TemplateField HeaderText="Return Qty" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType">
                                             <ItemTemplate>
-                                                <asp:TextBox ID="txtReturnQty" width="70px" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtReturnQty" Width="70px" runat="server"></asp:TextBox>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
@@ -219,7 +214,7 @@
 
                                         <asp:TemplateField HeaderText="Return">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnReturn" runat="server" Text="Return" OnClientClick="funConfirmAll();" OnClick="btnReturn_Click" />
+                                                <asp:Button ID="btnReturn" runat="server" Text="Return" OnClientClick="return confirmMsg();" OnClick="btnReturn_Click" />
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>

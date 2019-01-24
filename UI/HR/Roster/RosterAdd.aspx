@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
@@ -80,9 +81,25 @@
                                     <asp:Label ID="Label11" runat="server" Text="Employee Enroll"></asp:Label>
                                     <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ></asp:TextBox>
                                 </div>
+                                <div class="col-md-6 col-sm-6">
+                               <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="Asset Number:"></asp:Label> 
+          
+                                <asp:TextBox ID="TxtAsset"   CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Asser search"   AutoPostBack="true" OnTextChanged="TxtAsset_TextChanged" ></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="TxtAsset"
+                                ServiceMethod="GetAssetAutoSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                                CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>  
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <asp:Label ID="Label10" runat="server" Text="Asset Location:"></asp:Label>
+                                       <asp:TextBox ID="txtAssetLocation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ></asp:TextBox>
+                                    
+                                </div>
                                 <div class="col-md-12" style="padding-top: 10px">
                                     <asp:Button ID="btnAdd" runat="server" class="btn btn-primary form-control pull-right" Text="Add" OnClientClick="return Validate();" OnClick="btnAdd_OnClick" />
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -126,6 +143,13 @@
                                             <asp:Label ID="lblSequence" runat="server" Text='<%# Bind("sequence") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
+
+                                     <asp:TemplateField HeaderText="Asset">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAssetName" runat="server" Text='<%# Bind("assetName") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
+
                                     <asp:TemplateField HeaderText="Action" ItemStyle-Width="80px">
                                         <ItemTemplate>
                                             <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-xs" CommandName="Delete" OnClick="btnDelete_OnClick" />

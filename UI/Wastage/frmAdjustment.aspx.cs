@@ -42,7 +42,7 @@ namespace UI.Wastage
             if (!IsPostBack)
             {
                 try
-                { WHlist();
+                { 
                     pnlUpperControl.DataBind();
                     File.Delete(filePathForXML);
                     hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -51,8 +51,8 @@ namespace UI.Wastage
                     ddlUnitName.DataTextField = "strUnit";
                     ddlUnitName.DataValueField = "intUnitID";
                     ddlUnitName.DataSource = dt;
-                    ddlUnitName.DataBind();                 
-                   
+                    ddlUnitName.DataBind();
+                    WHlist();
                     Itemlist();
                 }
                 catch (Exception ex)
@@ -63,7 +63,7 @@ namespace UI.Wastage
         }
         private void Itemlist()
         {
-            dt = obj.ItemListRpt(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
+            dt = obj.ItemListRpt(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlItem.DataTextField = "strItemName";
             ddlItem.DataValueField = "intItemID";
             ddlItem.DataSource = dt;
@@ -71,9 +71,9 @@ namespace UI.Wastage
         }
         private void WHlist()
         {
-            dt = obj.getWHbyEnroll(int.Parse(Session[SessionParams.USER_ID].ToString()));
+            dt = obj.getWHbyUnitList(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlWHName.DataTextField = "strWastageWareHouseName";
-            ddlWHName.DataValueField = "intWastageWHID";
+            ddlWHName.DataValueField = "intWastageWareHouseID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
         }
@@ -96,7 +96,8 @@ namespace UI.Wastage
 
         protected void ddlUnitName_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            WHlist();
+            Itemlist();
         }
 
         #endregion ==========================================================================================

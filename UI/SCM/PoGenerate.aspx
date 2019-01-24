@@ -445,12 +445,12 @@
                           </asp:DropDownList></td> 
 
                             <td style="text-align:right;">  <asp:Label ID="LblDtePO" runat="server" CssClass="lbl" Text="From-Date : "></asp:Label></td>
-                            <td> <asp:TextBox ID="txtDtefroms" runat="server" CssClass="txtBox"></asp:TextBox>
+                            <td> <asp:TextBox ID="txtDtefroms" autocomplete="off" runat="server" CssClass="txtBox"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDtefroms">
                             </cc1:CalendarExtender>
 
                             <td style="text-align:right;">  <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="To-Date : "></asp:Label>  
-                            <td><asp:TextBox ID="txtDteTo" runat="server" CssClass="txtBox"></asp:TextBox>
+                            <td><asp:TextBox ID="txtDteTo" runat="server" autocomplete="off" CssClass="txtBox"></asp:TextBox>
                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteTo">
                             </cc1:CalendarExtender></td>
                                 
@@ -752,7 +752,7 @@
 
                        <tr>
                         <td style="text-align:right;"> <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="Po Date"></asp:Label> </td> 
-                        <td style="text-align:left;"><asp:TextBox ID="txtdtePo" Enabled="false" runat="server"  CssClass="txtBox" Font-Bold="False"> 
+                        <td style="text-align:left;"><asp:TextBox ID="txtdtePo" Enabled="false" runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False"> 
                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdtePo"></cc1:CalendarExtender> 
                         </td>
                         <td style="text-align:right;"><asp:Label ID="Label15" runat="server" CssClass="lbl" Text="AIT: "></asp:Label></td> 

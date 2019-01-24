@@ -124,7 +124,7 @@
                 <ItemTemplate><asp:Label ID="lblCOAID" runat="server" Text='<%# Bind("intCOAID") %>' Width="70px"></asp:Label>
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="70px"/></asp:TemplateField>
 
-                     <asp:TemplateField HeaderText="Account Name" SortExpression="intCOAID" >
+                 <asp:TemplateField HeaderText="Account Name" SortExpression="intCOAID" >
                     <ItemTemplate>  <asp:TextBox ID="txtCOA" runat="server" AutoCompleteType="Search" CssClass="txtBox1" Text='<%# Bind("strAccName") %>' Width="300px" AutoPostBack="true"></asp:TextBox>
                     <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCOA"
                     ServiceMethod="GetCOAList" MinimumPrefixLength="1" CompletionSetCount="1" CompletionInterval="1"
@@ -134,8 +134,6 @@
                 </ItemTemplate><ItemStyle HorizontalAlign="left" Width="70px"/></asp:TemplateField>
 
 
-
-                
 
                 <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate><ItemTemplate><asp:CheckBox ID="chkRow" runat="server" />
                 </ItemTemplate></asp:TemplateField>

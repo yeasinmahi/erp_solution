@@ -12,6 +12,7 @@ namespace SCM_BLL
     public class Bom_BLL
     {
         private static BomTDS.qryItemListDataTable[] tableBomItem = null;
+        private static BomTDS.qryFgWithBomItemListDataTable[] tableItem = null;
         private int e;
 
         public DataTable GetBomData(int Type, string xmlData, int intwh, int bomId, DateTime dteDate, int enroll)
@@ -169,5 +170,75 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+
+
+
+        public string[] AutoSearchFG(string unit, string prefix, int itemType)
+        {
+            tableItem = null;
+            if (itemType == 1)
+            {
+                //qryFgWithBomItemListTableAdapter
+                tableItem = new BomTDS.qryFgWithBomItemListDataTable[Convert.ToInt32(unit)];
+                qryFgWithBomItemListTableAdapter adpCOA = new qryFgWithBomItemListTableAdapter();
+                tableItem[e] = adpCOA.GetBOMItemData(Convert.ToInt32(unit));  
+            }
+            else
+            {
+                tableItem = new BomTDS.qryFgWithBomItemListDataTable[Convert.ToInt32(unit)];
+                qryFgWithBomItemListTableAdapter adpCOA = new qryFgWithBomItemListTableAdapter();
+                tableItem[e] = adpCOA.GetFGData(Convert.ToInt32(unit));
+            }
+
+            // prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3 || prefix == "*")
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableItem[e]//Convert.ToInt32(ht[unitID])
+                               orderby tmp.intItemID
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableItem[e]
+                                   where tmp.strItem.ToLower().Contains(prefix) || tmp.intItemID.ToString().ToLower().Contains(prefix)
+                                   orderby tmp.strItem
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+                        }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strItem"] + "[ UOM:" + tbl.Rows[i]["strUoM"] + "]" + "[" + tbl.Rows[i]["intItemID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
     }
 }

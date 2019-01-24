@@ -48,6 +48,8 @@ namespace UI.SCM.BOM
                     ddlWH.DataBind();
                 }
 
+
+
                 intwh = int.Parse(ddlWH.SelectedValue);
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
@@ -55,6 +57,15 @@ namespace UI.SCM.BOM
                 {
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
                     Session["unit"] = hdnUnit.Value.ToString();
+                }
+
+                dt = objBom.GetBomData(16, xmlData, intwh, BomId, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    ddlLine.DataSource = dt;
+                    ddlLine.DataTextField = "strName";
+                    ddlLine.DataValueField = "Id";
+                    ddlLine.DataBind();
                 }
             }
             catch { }
@@ -183,6 +194,15 @@ namespace UI.SCM.BOM
                 txtdteDate.Text = string.Empty;
                 Utility.Common.UnLoadDropDown(ddlBom);
                 Utility.Common.UnLoadDropDown(ddlLine);
+
+                dt = objBom.getBomRouting(16, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    ddlLine.DataSource = dt;
+                    ddlLine.DataTextField = "strName";
+                    ddlLine.DataValueField = "Id";
+                    ddlLine.DataBind();
+                }
             }
             catch { }
         }

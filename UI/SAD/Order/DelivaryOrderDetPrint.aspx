@@ -239,9 +239,31 @@
                     </td>
                     <td>
 
-                         &nbsp;
+                     
                     </td>
                 </tr>
+                <tr>
+                    <td>
+
+                         &nbsp;
+                    </td>
+                     <td>
+
+                         &nbsp;
+                    </td>
+                     <td>
+
+                         &nbsp;
+                    </td>
+                     <td>
+                       <asp:Label ID="lblnb"  runat="server" Text="[N:B: Delivery should be taken within 15(Fifteen) days hereafter]"></asp:Label>   
+                    </td>
+                    <td>
+
+                       
+                    </td>
+                </tr>
+
             </table>
         </div>
         <div id="divdistnace">

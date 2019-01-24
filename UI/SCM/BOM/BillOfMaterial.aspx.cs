@@ -291,8 +291,8 @@ namespace UI.SCM.BOM
                     {
                         string qty = dt.Rows[i]["numQty"].ToString();
                         string wastage = dt.Rows[i]["numWastagePercent"].ToString();
-                        string bomname = dt.Rows[i]["strBoMName"].ToString();
-                        string strCode = dt.Rows[i]["strBoMCode"].ToString();
+                        string bomname = "0".ToString();//dt.Rows[i]["strBoMName"].ToString();
+                        string strCode = "0".ToString(); //dt.Rows[i]["strBoMCode"].ToString();
 
                         string itemid = dt.Rows[i]["intItemID"].ToString();
                         string item = dt.Rows[i]["strItem"].ToString();
@@ -329,7 +329,7 @@ namespace UI.SCM.BOM
         {
             Bom_BLL objBoms = new Bom_BLL();
 
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText, 1);
+            return objBoms.AutoSearchFG(HttpContext.Current.Session["Unit"].ToString(), prefixText, 1);
         }
 
         [WebMethod]
@@ -337,8 +337,7 @@ namespace UI.SCM.BOM
         public static string[] GetItemBomSerach(string prefixText, int count)
         {
             Bom_BLL objBoms = new Bom_BLL();
-
-            return objBoms.AutoSearchBomId(HttpContext.Current.Session["Unit"].ToString(), prefixText, 2);
+            return objBoms.AutoSearchFG(HttpContext.Current.Session["Unit"].ToString(), prefixText, 2);
         }
 
         #endregion====================Close======================================

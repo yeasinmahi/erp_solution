@@ -221,10 +221,15 @@ namespace UI.SCM
                 string item = "";
                 string itemid = "";
                 bool proceed = false;
-                if (arrayKey.Length > 0)
+                if (arrayKey.Length > 1)
                 {
                     item = arrayKey[0];
                     itemid = arrayKey[1];
+                }
+                else
+                {
+                    Toaster("Please add Item name properly",Common.TosterType.Warning);
+                    return;
                 }
                 string reqCode = "0";
                 string reqId = "0";
@@ -236,43 +241,58 @@ namespace UI.SCM
                 {
                     if (indentType.ToLower().Equals("select"))
                     {
-                        Alert("Please select type");
+                        Toaster("Please select type",Common.TosterType.Warning);
                         return;
                     }
 
                     // This code stop by alamin@akij.net
                     //dt = objIndent.DataView(4, xmlunit, intWh, int.Parse(itemid), DateTime.Now, Enroll);
-
-                    dt = new DataTable();
-                    dt = _objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
-                    if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
+                    if (decimal.TryParse(txtQty.Text, out decimal quantity))
                     {
-                        string itemId = dt.Rows[0]["intItemID"].ToString();
-                        string itemName = dt.Rows[0]["strName"].ToString();
-                        string uom = dt.Rows[0]["strUom"].ToString();
-                        string stock = dt.Rows[0]["stockQty"].ToString();
-                        string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
-                        string rate = dt.Rows[0]["rate"].ToString();
-                        string indentQty = txtQty.Text;
-                        int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
+                        if (quantity > 0)
+                        {
+                            dt = new DataTable();
+                            dt = _objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
+                            if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
+                            {
+                                string itemId = dt.Rows[0]["intItemID"].ToString();
+                                string itemName = dt.Rows[0]["strName"].ToString();
+                                string uom = dt.Rows[0]["strUom"].ToString();
+                                string stock = dt.Rows[0]["stockQty"].ToString();
+                                string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
+                                string rate = dt.Rows[0]["rate"].ToString();
+                                int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
 
-                        CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType,
-                            purpose, qcby, intDepartment);
+                                CreateXml(itemId, itemName, uom, stock, sftyStock, rate, quantity.ToString(), reqCode, reqId, indentType,
+                                    purpose, qcby, intDepartment);
+                            }
+                            else
+                            {
+                                Toaster("Can not get items information", Common.TosterType.Warning);
+                            }
+                        }
+                        else
+                        {
+                            Toaster("Quantity should be greater than 0",Common.TosterType.Warning);
+                        }
                     }
                     else
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Qty is not found');", true);
+                        Toaster("Input Quantity properly",Common.TosterType.Warning);
                     }
+                    
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
+                    Toaster(Message.AlreadyAdded.ToFriendlyString(), Common.TosterType.Warning);
                 }
                 txtItem.Text = "";
                 txtQty.Text = "0";
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
 
             // string xmlunit = "<voucher><voucherentry itemId=" + '"' + ItemId + '"' + " SalesPrice=" + '"' + SalesPrice + '"' + " IssueQty=" + '"' + IssueQty + '"' + " rackId=" + '"' + RackId + '"' + " MrrId=" + '"' + MrrId + '"' + "/></voucher>".ToString();
         }
@@ -443,27 +463,59 @@ namespace UI.SCM
             {
                 if (int.Parse(ddlType.SelectedValue) > 0)
                 {
-                    XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWH.SelectedValue);
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<voucher>" + xmlString + "</voucher>";
-                    DateTime dtedate = DateTime.Parse(txtDueDate.Text);
-                    try { File.Delete(filePathForXML); } catch { }
-                    if (xmlString.Length > 5)
+                    if (Common.GetDdlSelectedValue(ddlDepartment) > 0)
                     {
-                        string mrtg = _objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, Enroll);
-                        string[] searchKey = Regex.Split(mrtg, ":");
-                        lblIndentNo.Text = "Indent Number: " + searchKey[1];
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
-                        dgvIndent.DataSource = "";
-                        dgvIndent.DataBind();
+                        XmlDocument doc = new XmlDocument();
+                        intWh = int.Parse(ddlWH.SelectedValue);
+                        doc.Load(filePathForXML);
+                        XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                        xmlString = dSftTm.InnerXml;
+                        xmlString = "<voucher>" + xmlString + "</voucher>";
+                        string dueDate = txtDueDate.Text;
+                        if (string.IsNullOrWhiteSpace(dueDate))
+                        {
+                            Toaster("Due date can not be blank",Common.TosterType.Warning);
+                            return;
+                        }
+                        DateTime dtedate;
+                        try
+                        {
+                            dtedate = DateTime.Parse(txtDueDate.Text);
+                        }
+                        catch
+                        {
+                            Toaster("Due "+Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                            return;
+                        }
+                        
+                        try
+                        {
+                            File.Delete(filePathForXML);
+                        }
+                        catch
+                        {
+                        }
+                        if (xmlString.Length > 5)
+                        {
+                            string mrtg = _objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, Enroll);
+                            string[] searchKey = Regex.Split(mrtg, ":");
+                            lblIndentNo.Text = "Indent Number: " + searchKey[1];
+                            Toaster(mrtg,
+                                mrtg.ToLower().Contains("sucessfully")
+                                    ? Common.TosterType.Success
+                                    : Common.TosterType.Error);
+                            GridViewUtil.UnLoadGridView(dgvIndent);
+                        }
                     }
+                    else
+                    {
+                        Toaster("Please select Department",Common.TosterType.Warning);
+                    }
+                    
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Indent Type');", true);
+                    Toaster("Please Select Indent Type", Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)

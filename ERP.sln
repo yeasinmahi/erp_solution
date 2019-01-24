@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flogging.Core", "Flogging.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "EmailService\EmailService.csproj", "{019E8B20-0E8C-47AB-886D-4E98BEE882E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Global_DAL", "Global_DAL\Global_DAL.csproj", "{27260601-8079-4669-985F-3964D7DB95DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -326,6 +328,14 @@ Global
 		{019E8B20-0E8C-47AB-886D-4E98BEE882E8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{019E8B20-0E8C-47AB-886D-4E98BEE882E8}.Release|x86.ActiveCfg = Release|Any CPU
 		{019E8B20-0E8C-47AB-886D-4E98BEE882E8}.Release|x86.Build.0 = Release|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Debug|x86.Build.0 = Debug|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Release|x86.ActiveCfg = Release|Any CPU
+		{27260601-8079-4669-985F-3964D7DB95DE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
