@@ -73,7 +73,7 @@ namespace UI.Wastage
         {
             dt = obj.getWHbyUnitList(int.Parse(ddlUnitName.SelectedValue.ToString()));
             ddlWHName.DataTextField = "strWastageWareHouseName";
-            ddlWHName.DataValueField = "intWastageWHID";
+            ddlWHName.DataValueField = "intWastageWareHouseID";
             ddlWHName.DataSource = dt;
             ddlWHName.DataBind();
         }
