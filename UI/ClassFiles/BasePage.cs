@@ -88,5 +88,11 @@ namespace UI.ClassFiles
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                 "ShowNotification('" + message + "','" + header + "','" + type.ToString().ToLower() + "')", true);
         }
+        public void ConfirmMsg()
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                "confirmMsg();", true);
+        }
+        
     }
 }
