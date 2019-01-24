@@ -65,7 +65,7 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
 
                     <div class="tabs_container" style="text-align: left">
-                        Finish Good Entry<hr />
+                        FINISH GOODS ENTRY<hr />
                     </div>
                     <table>
 
@@ -86,12 +86,12 @@
                         </tr>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+                                <asp:Label ID="Label3" runat="server" forecolor="blue" CssClass="lbl" Text="WH Name"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
 
-                            <td style="text-align: right" colspan="3">
-                                <asp:Button ID="btnEdit" runat="server" Text="Edit Production Order" /><asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" OnClick="btnViewProductionOrder_Click" /></td>
+                            <td style="text-align: right" colspan="2">
+                                <asp:Button ID="btnEdit" runat="server" forecolor="blue" Text="Edit Production Order" /><asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClick="btnViewProductionOrder_Click" /></td>
                         </tr>
                     </table>
                     <table>
@@ -131,16 +131,16 @@
 
                                         <asp:TemplateField HeaderText="BOM Name" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strBoMName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBomName" Width="120px" runat="server" Text='<%# Bind("strBoMName") %>'></asp:Label>
+                                                <asp:Label ID="lblBomName" Width="150px" runat="server" Text='<%# Bind("strBoMName") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Batch No" ItemStyle-HorizontalAlign="right" SortExpression="strBatchNo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatch" runat="server" Width="80px" Text='<%# Bind("strBatchNo") %>'></asp:Label>
+                                                <asp:Label ID="lblBatch" runat="server" Width="40px" Text='<%# Bind("strBatchNo") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Start Time" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="dteStartTime">
@@ -168,7 +168,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblSrNO" runat="server" Width="90px" Text='<%# Bind("strCode") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numOrderQty">
@@ -180,28 +180,28 @@
 
                                         <asp:TemplateField HeaderText="Line/ Process/ Machine" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLine" runat="server" Width="40px" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                                <asp:Label ID="lblLine" runat="server" Width="80px" Text='<%# Bind("strplantname") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" Width="40px" />
+                                            <ItemStyle HorizontalAlign="center" Width="40px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Save FG" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnSaveFG" runat="server" Width="70px" OnClick="btnSaveFG_Click" Text="Save FG"></asp:Button>
+                                                <asp:Button ID="btnSaveFG" forecolor="Blue" runat="server" Width="70px" OnClick="btnSaveFG_Click" Text="Save FG"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        <%--                                        <asp:TemplateField HeaderText="SR Detail" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
+                                        <asp:TemplateField HeaderText="SR Detail" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnSRDetail" runat="server" Width="70px" Text="SR Detail"></asp:Button>
+                                                <asp:Button ID="btnSRDetail" forecolor="GREEN" runat="server" Width="70px" Text="SR Detail"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
-                                        </asp:TemplateField>--%>
+                                        </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Inactive Order" ItemStyle-HorizontalAlign="right" SortExpression="lineprocess">
+                                        <asp:TemplateField HeaderText="Inactive Order" ItemStyle-HorizontalAlign="right"  SortExpression="lineprocess">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnInactive" runat="server" Width="83px" OnClick="btnInactive_Click" Text="Inactive Order"></asp:Button>
+                                                <asp:Button ID="btnInactive" forecolor="Red" runat="server" Width="85px" OnClick="btnInactive_Click" Text="Inactive Order"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
