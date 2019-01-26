@@ -59,6 +59,19 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
+        public DataTable IndentDetailsByIndentId(int intreqid)
+        {
+            try
+            {
+                string strmsg = "";
+                SprIndentDetailsByIndentIdTableAdapter adb = new SprIndentDetailsByIndentIdTableAdapter();
+                return adb.GetData(intreqid);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
         public DataTable GetIndentVsPo(int wh, DateTime fromDate, DateTime toDate, string strDepartment, int type)
         {

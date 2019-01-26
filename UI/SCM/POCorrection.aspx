@@ -232,7 +232,7 @@
 
     <div class="leaveApplication_container">
     <table class="tbldecoration" style="width:auto; float:left;">
-        <tr class="tblheader"><td class="tdheader" colspan="4"> PO CORRECTION :</td></tr>        
+        <tr class="tblheader"><td class="tdheader" colspan="4"> PO EDIT :</td></tr>        
         <tr class="tblheader"><td style=" height:2px; background-color:#c1bdbd;" colspan="4"> </td></tr>
         <tr><td colspan="4" style="height:5px;"></td></tr>
         <tr>        
