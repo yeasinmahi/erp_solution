@@ -112,7 +112,7 @@
            <div style="Text-align:left;" class="auto-style2">
            <b><table style="width:100%">
             <tr> 
-            <td style="text-align:left;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+            <td style="text-align:left;"><asp:Label ID="Label1" runat="server" width="50px" CssClass="lbl" Text="WH Name:"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"     ></asp:DropDownList></td>                                                                                      
 
             <td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List : "></asp:Label></td>            
@@ -125,9 +125,9 @@
                  
             </tr>
            <tr>
-            <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity"></asp:Label></td>
+            <td style="text-align:left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity:"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtQuantity" CssClass="txtBox" Text="0" Font-Bold="False" AutoPostBack="false" runat="server"   ></asp:TextBox></td>                                                                                      
-          <td style="text-align:right;" ><asp:Label ID="lblPurpose" runat="server" CssClass="lbl" Text="Wastage(%)"></asp:Label></td>            
+          <td style="text-align:right;" ><asp:Label ID="lblPurpose" runat="server" CssClass="lbl" Text="Wastage(%):"></asp:Label></td>            
 
             <td style="text-align:left;"><asp:TextBox ID="txtWastage" Text="0" CssClass="txtBox" Font-Bold="False"   AutoPostBack="false"   runat="server"></asp:TextBox> 
                  
@@ -135,9 +135,9 @@
       
            </tr>
             <tr>
-              <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="BOM Name"></asp:Label></td>
+              <td style="text-align:right;"><asp:Label ID="lblQty" runat="server" CssClass="lbl" Text="BOM Name:"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtBomName" CssClass="txtBox" TextMode="MultiLine" Font-Bold="False" Text="0"  runat="server"></asp:TextBox></td> 
-                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Code"></asp:Label></td>
+                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Code:"></asp:Label></td>
             <td style="text-align:left;"><asp:TextBox ID="txtCode" CssClass="txtBox" Font-Bold="False"   Text="0" AutoPostBack="false" runat="server"></asp:TextBox> </td>
             </tr>
             <tr>
