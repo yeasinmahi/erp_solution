@@ -227,7 +227,6 @@
 
                 <%--=========== Start Code =====================================================================--%>
     <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnWHID" runat="server" />
-    <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
     <asp:HiddenField ID="hdnPOUnit" runat="server" />
 
     <div class="leaveApplication_container">
@@ -244,7 +243,7 @@
         </tr>
         <tr>
             <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" forecolor="Blue" Width="120px" OnClientClick = "Confirm()" OnClick="btnDeletePO_Click"/></td>
-            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" forecolor="Blue" Width="120px" OnClick="btnShow_Click"/></td>            
+            <td colspan="2" style="text-align:right; padding: 10px 0px 0px 0px"><asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" forecolor="Blue" Width="120px" OnClick="btnShow_Click" /></td>            
         </tr>
         <tr ><td style="padding: 15px 0px 0px 5px;" colspan="4"> </td></tr>
         <tr class="tblheader"><td style=" height:2px; background-color:#c1bdbd;" colspan="4"> </td></tr>
@@ -399,8 +398,8 @@
                     </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" SortExpression="">
-                    <ItemTemplate><asp:Button ID="btnApprove" class="myButtonGrid" OnClientClick = "Confirm()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Y" Text="Update"/>
-                        <asp:Button ID="btnDelete" class="myButtonGrid" OnClientClick = "Confirm()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="Delete" Text="Delete"/>
+                    <ItemTemplate><asp:Button ID="btnApprove" class="myButtonGrid" OnClientClick = "Confirm()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="UpdateItem" Text="Update"/>
+                        <asp:Button ID="btnDelete" class="myButtonGrid" OnClientClick = "Confirm()" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="DeleteItem" Text="Delete"/>
                     </ItemTemplate>
                         <ItemStyle HorizontalAlign="center"/>
                     </asp:TemplateField>

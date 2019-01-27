@@ -422,6 +422,21 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable GetSuppliers(int poId)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetSupplier(poId);
+            }
+            catch (Exception exception)
+            {
+                return new DataTable();
+            }
+            
+        }
+        
+
         public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby, decimal monAIT)
         {
             string msg = "";
@@ -436,6 +451,18 @@ namespace SCM_BLL
             try
             {
                 return adp.GetPOApprovalAuthority(enroll, POType);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetApprovalInfo(int poId)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                return adp.GetApprovalInfo(poId);
             }
             catch
             {
