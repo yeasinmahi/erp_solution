@@ -71,5 +71,15 @@ namespace HR_BLL.Employee
             catch { return new DataTable(); }
         }
 
+        public DataTable AssetDataViw(int assetId)
+        {
+            try
+            {
+                AssetDataTableAdapter ast = new AssetDataTableAdapter();
+                return ast.GetAssetData(assetId);
+            }
+            catch { return new DataTable(); }
+
+        }
     }   
 }

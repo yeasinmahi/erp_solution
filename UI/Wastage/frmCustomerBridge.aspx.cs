@@ -19,6 +19,8 @@ namespace UI.Wastage
         int? intCOAID = null, intItemid = null, intCustid = null, CustTypeid = null,empid=null;
         string custname = null, CustAdd = null, Coaname = null, PhoneNo = null;
 
+      
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -38,13 +40,29 @@ namespace UI.Wastage
                 ddlCOAName.DataSource = dt;
                 ddlCOAName.DataBind();
 
-                dt = objWastage.CustomerList(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
-                ddlcustlist.DataTextField = "strCustomerName";
-                ddlcustlist.DataValueField = "intCustomerID";
-                ddlcustlist.DataSource = dt;
-                ddlcustlist.DataBind();
+                CustomerList();
             }
         }
+        protected void ddlUnitCust_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CustomerList();
+        }
+        private void CustomerList()
+        {
+            dt = objWastage.CustomerList(int.Parse(ddlUnitCust.SelectedValue.ToString()));
+            ddlcustlist.DataTextField = "strCustomerName";
+            ddlcustlist.DataValueField = "intCustomerID";
+            ddlcustlist.DataSource = dt;
+            ddlcustlist.DataBind();
+
+            intWorkCount = 5;
+            dt = objWastage.ItemListRpt(ItemName, intItemid, intItemCategoryID, int.Parse(ddlUnitCust.SelectedValue.ToString()), empid, dteinsertdate, true, intUOMID, intWorkCount, custname, CustAdd, PhoneNo, CustTypeid, intCOAID, Coaname, intCustid);
+            ddlCOAName.DataTextField = "strAccName";
+            ddlCOAName.DataValueField = "intAccid";
+            ddlCOAName.DataSource = dt;
+            ddlCOAName.DataBind();
+        }
+
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             dt = objWastage.getCheck(int.Parse(ddlCOAName.SelectedValue));

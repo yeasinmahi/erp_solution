@@ -3068,6 +3068,16 @@ namespace HR_DAL.Global {
             
             private global::System.Data.DataColumn columnstrOfficeEmail;
             
+            private global::System.Data.DataColumn columnstrUnit;
+            
+            private global::System.Data.DataColumn columnstrJobStationName;
+            
+            private global::System.Data.DataColumn columnstrDepatrment;
+            
+            private global::System.Data.DataColumn columnstrDesignation;
+            
+            private global::System.Data.DataColumn columnstrJobType;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblEmployeeByJobstationDataTable() {
@@ -3135,6 +3145,46 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUnitColumn {
+                get {
+                    return this.columnstrUnit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strJobStationNameColumn {
+                get {
+                    return this.columnstrJobStationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strDepatrmentColumn {
+                get {
+                    return this.columnstrDepatrment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strDesignationColumn {
+                get {
+                    return this.columnstrDesignation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strJobTypeColumn {
+                get {
+                    return this.columnstrJobType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3170,13 +3220,18 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblEmployeeByJobstationRow AddTblEmployeeByJobstationRow(string strEmployeeName, string strEmployeeCode, string strOfficeEmail) {
+            public TblEmployeeByJobstationRow AddTblEmployeeByJobstationRow(string strEmployeeName, string strEmployeeCode, string strOfficeEmail, string strUnit, string strJobStationName, string strDepatrment, string strDesignation, string strJobType) {
                 TblEmployeeByJobstationRow rowTblEmployeeByJobstationRow = ((TblEmployeeByJobstationRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strEmployeeName,
                         null,
                         strEmployeeCode,
-                        strOfficeEmail};
+                        strOfficeEmail,
+                        strUnit,
+                        strJobStationName,
+                        strDepatrment,
+                        strDesignation,
+                        strJobType};
                 rowTblEmployeeByJobstationRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblEmployeeByJobstationRow);
                 return rowTblEmployeeByJobstationRow;
@@ -3203,6 +3258,11 @@ namespace HR_DAL.Global {
                 this.columnintEmployeeID = base.Columns["intEmployeeID"];
                 this.columnstrEmployeeCode = base.Columns["strEmployeeCode"];
                 this.columnstrOfficeEmail = base.Columns["strOfficeEmail"];
+                this.columnstrUnit = base.Columns["strUnit"];
+                this.columnstrJobStationName = base.Columns["strJobStationName"];
+                this.columnstrDepatrment = base.Columns["strDepatrment"];
+                this.columnstrDesignation = base.Columns["strDesignation"];
+                this.columnstrJobType = base.Columns["strJobType"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3216,6 +3276,16 @@ namespace HR_DAL.Global {
                 base.Columns.Add(this.columnstrEmployeeCode);
                 this.columnstrOfficeEmail = new global::System.Data.DataColumn("strOfficeEmail", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrOfficeEmail);
+                this.columnstrUnit = new global::System.Data.DataColumn("strUnit", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUnit);
+                this.columnstrJobStationName = new global::System.Data.DataColumn("strJobStationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobStationName);
+                this.columnstrDepatrment = new global::System.Data.DataColumn("strDepatrment", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDepatrment);
+                this.columnstrDesignation = new global::System.Data.DataColumn("strDesignation", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrDesignation);
+                this.columnstrJobType = new global::System.Data.DataColumn("strJobType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrJobType);
                 this.columnstrEmployeeName.MaxLength = 1000;
                 this.columnintEmployeeID.AutoIncrement = true;
                 this.columnintEmployeeID.AutoIncrementSeed = -1;
@@ -3226,6 +3296,11 @@ namespace HR_DAL.Global {
                 this.columnstrEmployeeCode.MaxLength = 100;
                 this.columnstrOfficeEmail.ReadOnly = true;
                 this.columnstrOfficeEmail.MaxLength = 1000;
+                this.columnstrUnit.MaxLength = 50;
+                this.columnstrJobStationName.MaxLength = 250;
+                this.columnstrDepatrment.MaxLength = 100;
+                this.columnstrDesignation.MaxLength = 100;
+                this.columnstrJobType.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4193,6 +4268,89 @@ namespace HR_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUnit {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblEmployeeByJobstation.strUnitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUnit\' in table \'TblEmployeeByJobstation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblEmployeeByJobstation.strUnitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strJobStationName {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblEmployeeByJobstation.strJobStationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobStationName\' in table \'TblEmployeeByJobstation\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblEmployeeByJobstation.strJobStationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strDepatrment {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblEmployeeByJobstation.strDepatrmentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDepatrment\' in table \'TblEmployeeByJobstation\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableTblEmployeeByJobstation.strDepatrmentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strDesignation {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblEmployeeByJobstation.strDesignationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strDesignation\' in table \'TblEmployeeByJobstation\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblEmployeeByJobstation.strDesignationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strJobType {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblEmployeeByJobstation.strJobTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strJobType\' in table \'TblEmployeeByJobstation\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblEmployeeByJobstation.strJobTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrEmployeeNameNull() {
                 return this.IsNull(this.tableTblEmployeeByJobstation.strEmployeeNameColumn);
             }
@@ -4225,6 +4383,66 @@ namespace HR_DAL.Global {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrOfficeEmailNull() {
                 this[this.tableTblEmployeeByJobstation.strOfficeEmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUnitNull() {
+                return this.IsNull(this.tableTblEmployeeByJobstation.strUnitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUnitNull() {
+                this[this.tableTblEmployeeByJobstation.strUnitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrJobStationNameNull() {
+                return this.IsNull(this.tableTblEmployeeByJobstation.strJobStationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrJobStationNameNull() {
+                this[this.tableTblEmployeeByJobstation.strJobStationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDepatrmentNull() {
+                return this.IsNull(this.tableTblEmployeeByJobstation.strDepatrmentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDepatrmentNull() {
+                this[this.tableTblEmployeeByJobstation.strDepatrmentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrDesignationNull() {
+                return this.IsNull(this.tableTblEmployeeByJobstation.strDesignationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrDesignationNull() {
+                this[this.tableTblEmployeeByJobstation.strDesignationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrJobTypeNull() {
+                return this.IsNull(this.tableTblEmployeeByJobstation.strJobTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrJobTypeNull() {
+                this[this.tableTblEmployeeByJobstation.strJobTypeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6426,32 +6644,12 @@ SELECT strEmployeeName, intEmployeeID, ISNULL(strEmployeeCode, 'N/A') AS strEmpl
             tableMapping.ColumnMappings.Add("intEmployeeID", "intEmployeeID");
             tableMapping.ColumnMappings.Add("strEmployeeCode", "strEmployeeCode");
             tableMapping.ColumnMappings.Add("strOfficeEmail", "strOfficeEmail");
+            tableMapping.ColumnMappings.Add("strUnit", "strUnit");
+            tableMapping.ColumnMappings.Add("strJobStationName", "strJobStationName");
+            tableMapping.ColumnMappings.Add("strDepatrment", "strDepatrment");
+            tableMapping.ColumnMappings.Add("strDesignation", "strDesignation");
+            tableMapping.ColumnMappings.Add("strJobType", "strJobType");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [ERP_HR].[dbo].[tblEmployee] WHERE (((@IsNull_strEmployeeName = 1 AND" +
-                " [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) " +
-                "AND ([intEmployeeID] = @Original_intEmployeeID))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmployeeName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intEmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [ERP_HR].[dbo].[tblEmployee] ([strEmployeeName]) VALUES (@strEmployeeName);
-SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A') AS strEmployeeCode, ISNULL(emp.strOfficeEmail, 'N/A') AS strOfficeEmail FROM tblEmployee AS emp INNER JOIN tblEmployeeJobStationOperator AS opt ON emp.intJobStationID = opt.intJobStationId WHERE (emp.intEmployeeID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_HR].[dbo].[tblEmployee] SET [strEmployeeName] = @strEmployeeName WHERE (((@IsNull_strEmployeeName = 1 AND [strEmployeeName] IS NULL) OR ([strEmployeeName] = @Original_strEmployeeName)) AND ([intEmployeeID] = @Original_intEmployeeID));
-SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A') AS strEmployeeCode, ISNULL(emp.strOfficeEmail, 'N/A') AS strOfficeEmail FROM tblEmployee AS emp INNER JOIN tblEmployeeJobStationOperator AS opt ON emp.intJobStationID = opt.intJobStationId WHERE (emp.intEmployeeID = @intEmployeeID)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmployeeName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmployeeName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmployeeName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intEmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEmployeeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6467,8 +6665,11 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"Select strEmployeeName, emp.intEmployeeID, isnull(strEmployeeCode, 'N/A') as strEmployeeCode, isnull(strOfficeEmail, 'N/A') as strOfficeEmail From ERP_HR.dbo.tblEmployee  emp
- inner join erp_hr.dbo.tblEmployeeJobStationOperator opt on emp.intJobStationID=opt.intJobStationId	WHERE opt.intEmployeeId=@enroll  and opt.ysnActive=1 and emp.ysnActive=1
+            this._commandCollection[0].CommandText = @"
+Select strEmployeeName, emp.intEmployeeID, isnull(strEmployeeCode, 'N/A') as strEmployeeCode,strUnit,strJobStationName,strDepatrment,strDesignation,strJobType,isnull
+(strOfficeEmail, 'N/A') as strOfficeEmail 
+ From ERP_HR.dbo.QRYEMPLOYEEPROFILEALL  emp
+inner join erp_hr.dbo.tblEmployeeJobStationOperator opt on emp.intJobStationID=opt.intJobStationId	WHERE opt.intEmployeeId=@enroll  and opt.ysnActive=1 and emp.ysnActive=1
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6484,35 +6685,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
             AutoSearch_TDS.TblEmployeeByJobstationDataTable dataTable = new AutoSearch_TDS.TblEmployeeByJobstationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AutoSearch_TDS.TblEmployeeByJobstationDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(AutoSearch_TDS dataSet) {
-            return this.Adapter.Update(dataSet, "TblEmployeeByJobstation");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
         }
     }
     
@@ -6531,8 +6703,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
         private TblEmployeeTableAdapter _tblEmployeeTableAdapter;
         
         private TblEmployeeSearchTableAdapter _tblEmployeeSearchTableAdapter;
-        
-        private TblEmployeeByJobstationTableAdapter _tblEmployeeByJobstationTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -6579,20 +6749,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public TblEmployeeByJobstationTableAdapter TblEmployeeByJobstationTableAdapter {
-            get {
-                return this._tblEmployeeByJobstationTableAdapter;
-            }
-            set {
-                this._tblEmployeeByJobstationTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -6618,10 +6774,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                             && (this._tblEmployeeSearchTableAdapter.Connection != null))) {
                     return this._tblEmployeeSearchTableAdapter.Connection;
                 }
-                if (((this._tblEmployeeByJobstationTableAdapter != null) 
-                            && (this._tblEmployeeByJobstationTableAdapter.Connection != null))) {
-                    return this._tblEmployeeByJobstationTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -6639,9 +6791,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                     count = (count + 1);
                 }
                 if ((this._tblEmployeeSearchTableAdapter != null)) {
-                    count = (count + 1);
-                }
-                if ((this._tblEmployeeByJobstationTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -6673,15 +6822,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._tblEmployeeByJobstationTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.TblEmployeeByJobstation.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblEmployeeByJobstationTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -6708,14 +6848,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._tblEmployeeByJobstationTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.TblEmployeeByJobstation.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblEmployeeByJobstationTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -6726,14 +6858,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(AutoSearch_TDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tblEmployeeByJobstationTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.TblEmployeeByJobstation.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblEmployeeByJobstationTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._tblEmployeeSearchTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TblEmployeeSearch.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -6799,11 +6923,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
-            if (((this._tblEmployeeByJobstationTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblEmployeeByJobstationTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -6852,15 +6971,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                     if (this._tblEmployeeSearchTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblEmployeeSearchTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblEmployeeSearchTableAdapter.Adapter);
-                    }
-                }
-                if ((this._tblEmployeeByJobstationTableAdapter != null)) {
-                    revertConnections.Add(this._tblEmployeeByJobstationTableAdapter, this._tblEmployeeByJobstationTableAdapter.Connection);
-                    this._tblEmployeeByJobstationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblEmployeeByJobstationTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblEmployeeByJobstationTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblEmployeeByJobstationTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblEmployeeByJobstationTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -6928,10 +7038,6 @@ SELECT emp.strEmployeeName, emp.intEmployeeID, ISNULL(emp.strEmployeeCode, 'N/A'
                 if ((this._tblEmployeeSearchTableAdapter != null)) {
                     this._tblEmployeeSearchTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblEmployeeSearchTableAdapter]));
                     this._tblEmployeeSearchTableAdapter.Transaction = null;
-                }
-                if ((this._tblEmployeeByJobstationTableAdapter != null)) {
-                    this._tblEmployeeByJobstationTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblEmployeeByJobstationTableAdapter]));
-                    this._tblEmployeeByJobstationTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

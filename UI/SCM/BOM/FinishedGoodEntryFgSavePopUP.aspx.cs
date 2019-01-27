@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.BOM
 {
@@ -17,10 +18,10 @@ namespace UI.SCM.BOM
     {
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
-        private int intwh, enroll, BomId, intBomStandard; private string xmlData;
+        private int intwh, BomId, intBomStandard; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
         private string filePathForXML; private string xmlString = "";
-        decimal qty, actualQty, qcHoldQty, storeQty;
+        decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore;
         private string productionID, itemId, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -29,7 +30,12 @@ namespace UI.SCM.BOM
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
+                try
+                {
+                    File.Delete(filePathForXML);
+                    dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
                 catch { }
                 claenderDte.SelectedDate = DateTime.Now;
                 CalendarExtenderExp.SelectedDate = DateTime.Now;
@@ -53,16 +59,24 @@ namespace UI.SCM.BOM
 
                 txtItem.Text = productName + "[" + itemId + "]";
                 txtProductQty.Visible = true;
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(8, xmlData, intwh, int.Parse(productionID), DateTime.Now, enroll);
+                dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(productionID));
                 if (dt.Rows.Count > 0)
                 {
                     //txtItem.Text = dt.Rows[0]["strName"].ToString();
                     lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
+                    txtActualQty.Text = dt.Rows[0]["numActualQty"].ToString();
+                    txtActualQty.Enabled = false;
+
+                    Session["TotalStoreQuantity"] = dt.Rows[0]["totalSentToStore"].ToString();
 
                     dgvProductionEntry.DataSource = dt;
                     dgvProductionEntry.DataBind();
                 }
+                else
+                {
+                    Session["TotalStoreQuantity"] = null;
+                }
+                
             }
         }
 
@@ -97,43 +111,79 @@ namespace UI.SCM.BOM
         {
             try
             {
-              
+
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[1].ToString(); itemid = arrayKey[3].ToString(); }
+                {
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[1].ToString();
+                    itemid = arrayKey[3].ToString();
+                }
 
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
                 {
-                    try { qty = decimal.Parse(txtProductQty.Text.ToString()); } catch { qty = 0; }
-                    try { actualQty = decimal.Parse(txtActualQty.Text.ToString()); } catch { actualQty = 0; }
-                    try { qcHoldQty = decimal.Parse(txtQc.Text.ToString()); } catch { qcHoldQty = 0; }
-                    try { storeQty = decimal.Parse(txtSendToStore.Text.ToString()); } catch { storeQty = 0; }
-
-
-                    if (qty > 0 || storeQty > 0)
+                    decimal.TryParse(txtProductQty.Text, out qty);
+                    decimal.TryParse(txtActualQty.Text, out actualQty);
+                    decimal.TryParse(txtQc.Text, out qcHoldQty);
+                    decimal.TryParse(txtSendToStore.Text, out storeQty);
+                    if (Session["TotalStoreQuantity"] != null)
                     {
-                      
+                        if (!decimal.TryParse(Session["TotalStoreQuantity"].ToString(), out totalSentToStore))
+                        {
+                            Toaster("Can not get total store quantity. please contact with developper.", Common.TosterType.Warning);
+                            return;
+                        }
+                    }
+                    if (qty > 0 && storeQty > 0 && actualQty > 0)
+                    {
+                        decimal avaialableQuantity = actualQty - totalSentToStore;
+                        
+                        if (avaialableQuantity - qcHoldQty < 0)
+                        {
+                            Toaster("QC quantity can not be grater than available quantity "+ avaialableQuantity,Common.TosterType.Warning);
+                            return;
+                        }
+                        if (avaialableQuantity - storeQty < 0)
+                        {
+                            Toaster("Store quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                            return;
+                        }
+                        if (avaialableQuantity < qcHoldQty + storeQty)
+                        {
+                            Toaster("Sum of store Quantity and QC quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                            return;
+                        }
                         string struom = lblUom1.Text.ToString();
-                       
+
                         string jobno = txtJob.Text.ToString();
                         string times = txtTime.Text.ToString();
                         string expDate = txtExpDate.Text.ToString();
-                        CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times, actualQty.ToString(), qcHoldQty.ToString(), expDate);
+                        CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times,
+                            actualQty.ToString(), qcHoldQty.ToString(), expDate);
                     }
-                    else { }
+                    else
+                    {
+                        Toaster("Production,Actual and send to store Quantity should be grater than 0", Common.TosterType.Warning);
+                    }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
+                    Toaster(Message.AlreadyAdded.ToFriendlyString(), Common.TosterType.Warning);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
-        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,string actualQty,string qcHoldQty,string expDate)
+        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
@@ -156,7 +206,7 @@ namespace UI.SCM.BOM
             LoadGridwithXml();
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,string actualQty, string qcHoldQty,string expDate)
+        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -185,7 +235,7 @@ namespace UI.SCM.BOM
             ExpDate.Value = expDate;
 
 
-            
+
             node.Attributes.Append(Item);
             node.Attributes.Append(Itemid);
             node.Attributes.Append(Struom);
@@ -269,7 +319,6 @@ namespace UI.SCM.BOM
             {
                 if (hdnConfirm.Value.ToString() == "1")
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(Request.QueryString["whid"].ToString());
                     int productionId = int.Parse(Request.QueryString["productID"].ToString());
@@ -282,7 +331,7 @@ namespace UI.SCM.BOM
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(9, xmlString, intWh, productionId, dteDate, enroll);
+                        string msg = objBom.BomPostData(9, xmlString, intWh, productionId, dteDate, Enroll);
 
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();
@@ -293,6 +342,20 @@ namespace UI.SCM.BOM
                 }
             }
             catch { try { File.Delete(filePathForXML); } catch { } }
+        }
+
+        protected void dgvProductionEntry_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                if (e.Row.FindControl("lblTotalStore") is Label label)
+                {
+                    if (Session["TotalStoreQuantity"] != null)
+                    {
+                        label.Text = Session["TotalStoreQuantity"].ToString();
+                    }
+                }
+            }
         }
     }
 }

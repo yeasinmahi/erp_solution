@@ -101,7 +101,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtQty" Style="width: 150px" CssClass="txtBox" Font-Bold="False" TextMode="Number" AutoPostBack="false" Text="0" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtQty" Style="width: 150px" CssClass="txtBox" Font-Bold="False" TextMode="Number" autocomplete="off"  AutoPostBack="false" Text="0" runat="server"></asp:TextBox></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="BOM :"></asp:Label></td>
                             <td style="text-align: left;">
@@ -110,13 +110,13 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Line No :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlLine" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlLine" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtdteDate" Style="width: 150px" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtdteDate" Style="width: 150px" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender>
 
                                 <td style="text-align: right;">

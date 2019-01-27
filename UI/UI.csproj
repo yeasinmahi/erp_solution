@@ -487,8 +487,11 @@
     <Content Include="PaymentModule\BillRegisterReport.aspx" />
     <Content Include="PaymentModule\BillTopSheet.aspx" />
     <Content Include="PaymentModule\BillUpdate.aspx" />
+    <Content Include="PaymentModule\Bill_Forward_List_Report.aspx" />
     <Content Include="PaymentModule\Bill_Of_Entry_Report.aspx" />
+    <Content Include="PaymentModule\Bill_Top_Sheet_Report.aspx" />
     <Content Include="PaymentModule\CashPay.aspx" />
+    <Content Include="PaymentModule\Consumption_Report.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
@@ -509,6 +512,7 @@
     <Content Include="PaymentModule\Supplier_Statement.aspx" />
     <Content Include="PaymentModule\TreasuryChallan.aspx" />
     <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
+    <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
@@ -1542,6 +1546,7 @@
     <Content Include="Transport\Utility_ReportForSubmit.aspx" />
     <Content Include="Transport\Utility_ServiceProfile.aspx" />
     <Content Include="Transport\Utility_SubReportForSubmit.aspx" />
+    <Content Include="Transport\Vehicle_info_update.aspx" />
     <Content Include="Transport\VendorTTripCompleteEntry.aspx" />
     <Content Include="UnderMaintanance.aspx" />
     <Content Include="Vat\CurrentRegisterM18.aspx" />
@@ -3513,6 +3518,13 @@
     <Compile Include="PaymentModule\BillUpdate.aspx.designer.cs">
       <DependentUpon>BillUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\Bill_Forward_List_Report.aspx.cs">
+      <DependentUpon>Bill_Forward_List_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Forward_List_Report.aspx.designer.cs">
+      <DependentUpon>Bill_Forward_List_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\Bill_Of_Entry_Report.aspx.cs">
       <DependentUpon>Bill_Of_Entry_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3520,12 +3532,26 @@
     <Compile Include="PaymentModule\Bill_Of_Entry_Report.aspx.designer.cs">
       <DependentUpon>Bill_Of_Entry_Report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\Bill_Top_Sheet_Report.aspx.cs">
+      <DependentUpon>Bill_Top_Sheet_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Bill_Top_Sheet_Report.aspx.designer.cs">
+      <DependentUpon>Bill_Top_Sheet_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="PaymentModule\CashPay.aspx.designer.cs">
       <DependentUpon>CashPay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Consumption_Report.aspx.cs">
+      <DependentUpon>Consumption_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Consumption_Report.aspx.designer.cs">
+      <DependentUpon>Consumption_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\DocListByBillID.aspx.cs">
       <DependentUpon>DocListByBillID.aspx</DependentUpon>
@@ -3666,6 +3692,13 @@
     </Compile>
     <Compile Include="PaymentModule\TreasuryDepositeForecast.aspx.designer.cs">
       <DependentUpon>TreasuryDepositeForecast.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\VAT_Rebate.aspx.cs">
+      <DependentUpon>VAT_Rebate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\VAT_Rebate.aspx.designer.cs">
+      <DependentUpon>VAT_Rebate.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
@@ -8357,6 +8390,13 @@
     </Compile>
     <Compile Include="Transport\Utility_SubReportForSubmit.aspx.designer.cs">
       <DependentUpon>Utility_SubReportForSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\Vehicle_info_update.aspx.cs">
+      <DependentUpon>Vehicle_info_update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\Vehicle_info_update.aspx.designer.cs">
+      <DependentUpon>Vehicle_info_update.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\VendorTTripCompleteEntry.aspx.cs">
       <DependentUpon>VendorTTripCompleteEntry.aspx</DependentUpon>

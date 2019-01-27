@@ -18,7 +18,9 @@ namespace Utility
         UnderMaintenance,
         Unapproved,
         AlreadyApproved,
-        AlreadyAdded
+        AlreadyAdded,
+        SomethingError,
+        SessionOut
 
     }
 
@@ -54,6 +56,10 @@ namespace Utility
                     return "This is Already Approved";
                 case Message.AlreadyAdded:
                     return "This is Already Added";
+                case Message.SomethingError:
+                    return "Somethings Error";
+                case Message.SessionOut:
+                    return "Session timeout. please try again.";
                 default:
                     return "UnKnown Message";
             }

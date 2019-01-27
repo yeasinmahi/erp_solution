@@ -48,11 +48,11 @@ namespace UI.PaymentModule
             string url;
             if (string.IsNullOrWhiteSpace(fromTime) || string.IsNullOrWhiteSpace(toTime))
             {
-                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Payment/Production_Report" + "&wh=" + ddlWH.SelectedItem.Value + "&intUnit=" + unitid + "&fTime=" + txtFromDate.Text + "&tTime=" + txtToDate.Text + "&rc:LinkTarget=_self";
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Accounts/Payment/Production_Report" + "&wh=" + ddlWH.SelectedItem.Value + "&intUnit=" + unitid + "&fTime=" + txtFromDate.Text + "&tTime=" + txtToDate.Text + "&rc:LinkTarget=_self";
             }
             else
             {
-                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Payment/Production_Report" + "&wh=" + ddlWH.SelectedItem.Value + "&intUnit=" + unitid + "&fTime=" + txtFromDate.Text + " " + fromTime + "&tTime=" + txtToDate.Text + " " + toTime + "&rc:LinkTarget=_self";
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Accounts/Payment/Production_Report" + "&wh=" + ddlWH.SelectedItem.Value + "&intUnit=" + unitid + "&fTime=" + txtFromDate.Text + " " + fromTime + "&tTime=" + txtToDate.Text + " " + toTime + "&rc:LinkTarget=_self";
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }

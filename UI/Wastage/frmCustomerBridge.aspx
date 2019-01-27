@@ -48,7 +48,7 @@
           <tr>
             <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td style="text-align:left;">
-            <asp:DropDownList ID="ddlUnitCust" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false"></asp:DropDownList>                                                                                       
+            <asp:DropDownList ID="ddlUnitCust" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="True" OnSelectedIndexChanged="ddlUnitCust_SelectedIndexChanged"></asp:DropDownList>                                                                                       
             </td>
             <td style="text-align:right; ">&nbsp;</td>
             <td style="text-align:right;">&nbsp;</td>                
