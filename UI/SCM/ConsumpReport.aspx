@@ -107,10 +107,13 @@
                
                 <tr> 
                 <td></td>
-                <td  style="text-align:center"><asp:Label ID="lblbill" Font-Size="Small" Font-Bold="true" Text="Comsump. Statement Report" runat="server"></asp:Label></td>
+                <td  style="text-align:center"><asp:Label ID="lblbill" Font-Size="Small" Font-Bold="true" forrecolor="blue" Text="CONSUMPTION STATEMENT" runat="server"></asp:Label></td>
                 </tr>
                
-                <tr><td></td></tr>
+                <tr><td colspan="4">
+
+                    <hr />
+                    </td></tr>
               </table> 
        <table>
         <tr> 
@@ -126,13 +129,13 @@
 
         </tr> 
            <tr>
-                <td  style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Filter By"></asp:Label></td>
+                <td  style="text-align:right;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Department:"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlFilter" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"       >
         
          </asp:DropDownList><asp:Button ID="btnFilterDept" runat="server" Text="Show" OnClick="btnFilterDept_Click"    /></td>                                                                                      
          
 
-        <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Section"></asp:Label></td>
+        <td  style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Section:"></asp:Label></td>
         <td style="text-align:left;"><asp:DropDownList ID="ddlSection" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"  ></asp:DropDownList>
             <asp:Button ID="btnSection" runat="server" Text="Show" OnClick="btnShow_Click"   />
         </td>                                                                                      
