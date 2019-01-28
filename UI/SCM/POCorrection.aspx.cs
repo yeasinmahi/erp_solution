@@ -15,7 +15,7 @@ namespace UI.SCM
     {
         private PoGenerate_BLL obj = new PoGenerate_BLL();
         private DataTable dt;
-        private int intPart, intPOID, intUnitID, intCurrencyID, intShipment, ysnPartialShip, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, intEnroll, intMRRID, intSuppid;
+        private int intPart, intPOID, intCurrencyID, intShipment, ysnPartialShip, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, intMRRID, intSuppid;
         private DateTime dtePODate, dteLastShipmentDate;
         private decimal monFreight, monPacking, monDiscount, monRate, monVAT, monAmount, monAIT, numPOQty;
 
@@ -56,7 +56,7 @@ namespace UI.SCM
             {
                 contolText = "MRR Id ";
             }
-            
+
             if (string.IsNullOrWhiteSpace(s))
             {
                 Toaster(contolText + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
@@ -64,21 +64,21 @@ namespace UI.SCM
             }
             if (!int.TryParse(s, out id))
             {
-                Toaster("Input "+ contolText + "prperly", Common.TosterType.Warning);
+                Toaster("Input " + contolText + "prperly", Common.TosterType.Warning);
                 return false;
             }
-            
+
             return true;
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
             Common.Clear(Controls);
             Common.UnLoadDropDown(ddlSupplier);
-            if (!CheckTextBox(txtPONo, "PO",out intPOID))
+            if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {
                 return;
             }
-            
+
             dt = new DataTable();
             dt = obj.GetMRRNoByPO(intPOID);
 
@@ -103,7 +103,6 @@ namespace UI.SCM
                 HttpContext.Current.Session["Unitid"] = dt.Rows[0]["intUnitID"].ToString();
                 txtPOType.Text = dt.Rows[0]["strPoFor"].ToString();
                 PoType = dt.Rows[0]["strPoFor"].ToString();
-                intUnitID = int.Parse(hdnPOUnit.Value.ToString());
                 ddlSupplier.SelectedValue = dt.Rows[0]["intSupplierID"].ToString();
                 txtWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
             }
@@ -190,7 +189,7 @@ namespace UI.SCM
                         }
                         else
                         {
-                            Toaster("This is not your PO. You can not correction",Common.TosterType.Warning);
+                            Toaster("This is not your PO. You can not correction", Common.TosterType.Warning);
                             return;
                         }
                     }
@@ -200,10 +199,10 @@ namespace UI.SCM
                         return;
                     }
 
-                    
+
                 }
 
-                
+
                 dt = new DataTable();
                 dt = obj.GetItemInfoByPO(intPOID);
                 File.Delete(filePathForXML);
@@ -218,15 +217,15 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                    Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
                 }
-                
+
             }
             else
             {
                 btnUpdatePO.Visible = false;
                 btnDeletePO.Visible = false;
-                Toaster("MRR has already been issued. Remove MRR first.",Common.TosterType.Warning);
+                Toaster("MRR has already been issued. Remove MRR first.", Common.TosterType.Warning);
             }
         }
 
@@ -276,7 +275,7 @@ namespace UI.SCM
 
         private void update()
         {
-            if (!CheckTextBox(txtPONo, "PO",out intPOID))
+            if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {
                 return;
             }
@@ -291,16 +290,15 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Date Format.');", true); return;
+                    Toaster(Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
                 }
 
-                try
+                intCurrencyID = Common.GetDdlSelectedValue(ddlCurrency);
+                if (intCurrencyID == 0)
                 {
-                    intCurrencyID = int.Parse(ddlCurrency.SelectedValue.ToString());
-                }
-                catch
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Currency.');", true); return;
+                    Toaster("You should select currency", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -309,7 +307,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Freight Amount.');", true); return;
+                    Toaster("Wrong Freight Amount", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -318,7 +317,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Packing Amount.');", true); return;
+                    Toaster("Wrong Packing Amount", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -327,7 +327,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Discount Amount.');", true); return;
+                    Toaster("Wrong Discount Amount", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -336,7 +337,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong No of Shipment.');", true); return;
+                    Toaster("Wrong No of Shipment", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -345,7 +347,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Payment days after MRR (days)');", true); return;
+                    Toaster("Wrong Payment days after MRR (days)", Common.TosterType.Warning);
+                    return;
                 }
 
                 strDeliveryAddress = txtDestinationForDelivery.Text;
@@ -358,7 +361,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong No of Installment (for installment Payment)');", true); return;
+                    Toaster("Wrong No of Installment (for installment Payment)", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -367,7 +371,8 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Installment Interval (Days, for installment)');", true); return;
+                    Toaster("Wrong Installment Interval (Days, for installment)", Common.TosterType.Warning);
+                    return;
                 }
 
                 try
@@ -385,21 +390,29 @@ namespace UI.SCM
                 }
                 catch
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Last Shipment Date;", true); return;
+                    Toaster("Wrong Last Shipment Date", Common.TosterType.Warning);
+                    return;
                 }
+                int supplierId = Common.GetDdlSelectedValue(ddlSupplier);
 
                 strOtherTerms = txtOtherTerms.Text;
                 intPart = 1;
-                dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
-                strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intEnroll);
+                dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount,
+                    intShipment, strDeliveryAddress, ysnPartialShip,
+                    strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth,
+                    strOtherTerms, dteLastShipmentDate, Enroll, supplierId);
                 if (dt.Rows.Count > 0)
                 {
                     string msg = dt.Rows[0]["msg"].ToString();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    Toaster(msg,
+                        msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                     hdnconfirm.Value = "0";
                 }
             }
-            else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO correction is not possible after issuing MRR.');", true); }
+            else
+            {
+                Toaster("PO correction is not possible after issuing MRR", Common.TosterType.Warning);
+            }
         }
 
         protected void btnDeletePO_Click(object sender, EventArgs e)
@@ -410,16 +423,22 @@ namespace UI.SCM
                 {
                     intPart = 2;
 
-                    dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
-                    strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intEnroll);
+                    dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking,
+                        monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
+                        strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth,
+                        strOtherTerms, dteLastShipmentDate, Enroll, 0);
                     if (dt.Rows.Count > 0)
                     {
                         string msg = dt.Rows[0]["msg"].ToString();
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        Toaster(msg,
+                            msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                         hdnconfirm.Value = "0";
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message, Common.TosterType.Error);
+                }
             }
         }
 
@@ -499,7 +518,7 @@ namespace UI.SCM
 
         protected void dgvItemInfoByPO_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-            
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 totalqty += decimal.Parse(((TextBox)e.Row.FindControl("txtQty")).Text);
@@ -510,10 +529,10 @@ namespace UI.SCM
 
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                ((Label) e.Row.FindControl("lblGrandTotalQty")).Text = totalqty.ToString();
-                ((Label) e.Row.FindControl("lblGrandTotalVAT")).Text = totalvat.ToString();
-                ((Label) e.Row.FindControl("lblGrandTotalAIT")).Text = totalait.ToString();
-                ((Label) e.Row.FindControl("lblGrandTotal")).Text = totalval.ToString();
+                ((Label)e.Row.FindControl("lblGrandTotalQty")).Text = totalqty.ToString();
+                ((Label)e.Row.FindControl("lblGrandTotalVAT")).Text = totalvat.ToString();
+                ((Label)e.Row.FindControl("lblGrandTotalAIT")).Text = totalait.ToString();
+                ((Label)e.Row.FindControl("lblGrandTotal")).Text = totalval.ToString();
             }
         }
 
@@ -525,8 +544,6 @@ namespace UI.SCM
             {
                 //Determine the RowIndex of the Row whose Button was clicked.
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
-
-                //Reference the GridView Row.
                 GridViewRow row = dgvItemInfoByPO.Rows[rowIndex];
                 if (hdnconfirm.Value == "1")
                 {
@@ -594,11 +611,10 @@ namespace UI.SCM
                             {
                                 monAmount = 0;
                             }
-                            int supplierId = Common.GetDdlSelectedValue(ddlSupplier);
 
                             //Final Insert
                             string msg = obj.UpdateItemInfoByPONew(intPOID, numPOQty, intItemID, strSpecification,
-                                monRate, monVAT, monAmount, Enroll, monAIT, supplierId);
+                                monRate, monVAT, monAmount, Enroll, monAIT);
                             Toaster(msg,
                                 msg.ToLower().Contains("success")
                                     ? Common.TosterType.Success
@@ -621,6 +637,10 @@ namespace UI.SCM
                 {
                     int rowIndex = Convert.ToInt32(e.CommandArgument);
                     GridViewRow row = dgvItemInfoByPO.Rows[rowIndex];
+                    if (!CheckTextBox(txtPONo, "PO", out intPOID))
+                    {
+                        return;
+                    }
                     try
                     {
                         intMRRID = int.Parse(txtMrrNo.Text);
@@ -629,30 +649,24 @@ namespace UI.SCM
                     {
                         intMRRID = 0;
                     }
-                    try
+
+                    if (dgvItemInfoByPO.Rows.Count <= 1)
                     {
-                        intPOID = int.Parse(txtPONo.Text);
+                        Toaster("Item delete not possible", Common.TosterType.Warning);
+                        return;
                     }
-                    catch
+                    if (intMRRID == 0)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Number');", true); return;
-                    }
-                    if (dgvItemInfoByPO.Rows.Count == 1)
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item delete not possible.');", true); return;
+                        intItemID = int.Parse((row.FindControl("lblItemID") as Label).Text);
+                        string msg = obj.Delete_PO_Data(intItemID, intPOID, Enroll);
+                        Toaster(msg,
+                            msg.ToLower().Contains("success")
+                                ? Common.TosterType.Success
+                                : Common.TosterType.Error);
                     }
                     else
                     {
-                        if (intMRRID == 0)
-                        {
-                            intItemID = int.Parse((row.FindControl("lblItemID") as Label).Text);
-                            string msg = obj.Delete_PO_Data(intItemID, intPOID, Enroll);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item delete not possible after issuing MRR.');", true); return;
-                        }
+                        Toaster("Item delete not possible after issuing MRR", Common.TosterType.Warning);
                     }
                 }
             }

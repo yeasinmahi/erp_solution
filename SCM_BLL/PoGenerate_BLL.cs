@@ -407,13 +407,13 @@ namespace SCM_BLL
         }
 
         public DataTable POCurrection(int intPart, int intPOID, DateTime dtePODate, int intCurrencyID, decimal monFreight, decimal monPacking, decimal monDiscount, int intShipment, string strDeliveryAddress, int ysnPartialShip,
-        string strPayTerm, int intCreditDays, int intInstallmentNo, int intInstallmentInterval, int intWarrantyMonth, string strOtherTerms, DateTime dteLastShipmentDate, int intUpdateBy)
+        string strPayTerm, int intCreditDays, int intInstallmentNo, int intInstallmentInterval, int intWarrantyMonth, string strOtherTerms, DateTime dteLastShipmentDate, int intUpdateBy, int supplierId)
         {
             sprPOTableAdapter adp = new sprPOTableAdapter();
             try
             {
                 return adp.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
-                strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy);
+                strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy, supplierId);
             }
             catch (Exception ex)
             {
@@ -437,11 +437,11 @@ namespace SCM_BLL
         }
         
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,  decimal monAIT, int supplierId)
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,  decimal monAIT)
         {
             string msg = "";
             sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
-            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, supplierId, ref msg);
+            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, ref msg);
             return msg;
         }
 
