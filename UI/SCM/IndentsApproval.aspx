@@ -117,9 +117,9 @@
      <div class="tabs_container" style="text-align:left">Indent Approval  From<hr /></div>
          
        <table>
-            <tr> <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+            <tr> <td   style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"   ></asp:DropDownList></td>                                                                                      
-             <td style="text-align:left;"><asp:Label ID="lblAPproval" runat="server" CssClass="lbl" Text="Approval"></asp:Label></td>
+             <td style="text-align:left;"><asp:Label ID="lblAPproval" runat="server" CssClass="lbl" Text="Status:"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlApproval" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlApproval_SelectedIndexChanged">
             <asp:ListItem Value="1">Pending</asp:ListItem><asp:ListItem Value="2" >Approve</asp:ListItem><asp:ListItem Value="3">Reject</asp:ListItem> </asp:DropDownList></td>  
      
@@ -139,7 +139,7 @@
             </tr>
 
             <tr>
-            <td colspan="6" style="text-align:right"><asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /> </td>
+            <td colspan="4" style="text-align:right"><asp:Button ID="btnShow" ForeColor="blue" width="75px" runat="server" Text="Show" OnClick="btnShow_Click" /> </td>
             </tr> 
         </table>
         <table>
@@ -148,30 +148,30 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
  
-            <asp:TemplateField HeaderText="Indent Id" SortExpression="intIndentID"><ItemTemplate>
+            <asp:TemplateField HeaderText="Indent ID" SortExpression="intIndentID"><ItemTemplate>
             <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("intIndentID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="100px"/></asp:TemplateField>
+            <ItemStyle HorizontalAlign="center" /></asp:TemplateField>
                 
             <asp:TemplateField HeaderText="Indent Date" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="dteIndentDate" >
             <ItemTemplate><asp:Label ID="lblIndentDate" runat="server"  Text='<%# Bind("dteIndentDate") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="center" />  </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Due Date" ItemStyle-HorizontalAlign="right" SortExpression="dteDueDate" >
             <ItemTemplate><asp:Label ID="lblDueDate" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("dteDueDate","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Indent Type" ItemStyle-HorizontalAlign="right" SortExpression="strIndentType" >
             <ItemTemplate><asp:Label ID="lblIndentType" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strIndentType") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>
+            <ItemStyle HorizontalAlign="Center" /> </asp:TemplateField>
             
             <asp:TemplateField HeaderText="Indent By" ItemStyle-HorizontalAlign="right" SortExpression="strEmployeeName" > 
-            <ItemTemplate><asp:Label ID="lblIndentBy"    runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblIndentBy"  width="160px"  runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" /> </ItemTemplate> 
+            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" forecolor="#0033cc"   Text="Detalis" OnClick="btnDetalis_Click" /> </ItemTemplate> 
             </asp:TemplateField>
 
             </Columns>

@@ -1360,6 +1360,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
+    <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
     <Content Include="SAD\Sales\Return\CorporateSalesReturn.aspx" />
     <Content Include="SAD\Sales\Return\CorpReturnAccAdjust.aspx" />
@@ -7046,6 +7047,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.designer.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx.cs">
+      <DependentUpon>Vehicle_Per_Kilo_Cost_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx.designer.cs">
+      <DependentUpon>Vehicle_Per_Kilo_Cost_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx.cs">
       <DependentUpon>YearlyOperationalSummeryRpt.aspx</DependentUpon>
