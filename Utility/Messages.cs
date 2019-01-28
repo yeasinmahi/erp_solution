@@ -19,7 +19,8 @@ namespace Utility
         Unapproved,
         AlreadyApproved,
         AlreadyAdded,
-        SomethingError
+        SomethingError,
+        SessionOut
 
     }
 
@@ -57,6 +58,8 @@ namespace Utility
                     return "This is Already Added";
                 case Message.SomethingError:
                     return "Somethings Error";
+                case Message.SessionOut:
+                    return "Session timeout. please try again.";
                 default:
                     return "UnKnown Message";
             }

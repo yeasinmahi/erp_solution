@@ -87,8 +87,7 @@ namespace UI.SAD.Order
                                 UOM</th>
                             <th style=""width:100px;text-align:center"">
                                 QNT.</th>
-                           <th style=""width:100px;text-align:center"">
-                                RATE</th>
+                       
                             <th style=""width:100px;text-align:center"">
                                 PRICE</th>
                         </tr>");
@@ -121,7 +120,7 @@ namespace UI.SAD.Order
                         mainG.Append("<td>" + row.strUOM + "</td>");
                         mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.numQnt) + "</td>");
                         mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.monPrice) + "</td>");
-                        mainG.Append("<td>" + row.ProductRate + "</td>");
+                        //mainG.Append("<td>" + row.ProductRate + "</td>");
 
                         mainG.Append("</tr>");
 
@@ -261,8 +260,7 @@ namespace UI.SAD.Order
                                D. O  DATE</th>
                              <th style=""width:67px;text-align:center"">
                                CHALAN NUMBER</th>
-                             <th style=""width:67px;text-align:center"">
-                                                             RATE.</th>
+                           
                             <th style=""width:67px;text-align:center"">
                                 DELIVERY QNT.</th>
                             
@@ -280,8 +278,7 @@ namespace UI.SAD.Order
                                D. O  DATE</th>
                              <th style=""width:67px;text-align:center"">
                                CHALAN NUMBER</th>
-                             <th style=""width:67px;text-align:center"">
-                                                             RATE.</th>
+                           
                             <th style=""width:67px;text-align:center"">
                                 PENDING QNT.</th>
                             
@@ -323,7 +320,7 @@ namespace UI.SAD.Order
                         sbtotaldelvparybase.Append("<td>" + chDo + "</td>");
                         sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chDate.ToString("yyyy-MM-dd") + "</td>");
                         sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chNumber + "</td>");
-                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chrate + "</td>");
+                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chrate + "</td>");
                         sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chQty + "</td>");
                         sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
                         sbtotaldelvparybase.Append("</tr>");
@@ -349,7 +346,7 @@ namespace UI.SAD.Order
                         sbPending.Append("<td>" + Do + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingDate + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + "  " + "</td>");
-                        sbPending.Append("<td style=\"text-align:right\">" + pendingrate + "</td>");
+                        //sbPending.Append("<td style=\"text-align:right\">" + pendingrate + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingQty + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + Price + "</td>");
                         sbPending.Append("</tr>");

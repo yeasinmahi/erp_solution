@@ -422,11 +422,26 @@ namespace SCM_BLL
             }
         }
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby, decimal monAIT)
+        public DataTable GetSuppliers(int poId)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetSupplier(poId);
+            }
+            catch (Exception exception)
+            {
+                return new DataTable();
+            }
+            
+        }
+        
+
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,  decimal monAIT, int supplierId)
         {
             string msg = "";
             sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
-            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, ref msg);
+            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, supplierId, ref msg);
             return msg;
         }
 
@@ -436,6 +451,18 @@ namespace SCM_BLL
             try
             {
                 return adp.GetPOApprovalAuthority(enroll, POType);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetApprovalInfo(int poId)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                return adp.GetApprovalInfo(poId);
             }
             catch
             {
