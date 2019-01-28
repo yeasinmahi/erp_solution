@@ -16100,6 +16100,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intupdateby", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAIT", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@suppilerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strmsgvcd", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -16107,7 +16108,7 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual PoGenerateTDS.sprPOItemInfoUpdateDataTable UpdateItemInfoByPO(global::System.Nullable<int> intPOID, global::System.Nullable<decimal> numPOQty, global::System.Nullable<int> intItemID, string strSpecification, global::System.Nullable<decimal> monRate, global::System.Nullable<decimal> monVAT, global::System.Nullable<decimal> monAmount, global::System.Nullable<int> intupdateby, global::System.Nullable<decimal> monAIT, ref string strmsgvcd) {
+        public virtual PoGenerateTDS.sprPOItemInfoUpdateDataTable UpdateItemInfoByPO(global::System.Nullable<int> intPOID, global::System.Nullable<decimal> numPOQty, global::System.Nullable<int> intItemID, string strSpecification, global::System.Nullable<decimal> monRate, global::System.Nullable<decimal> monVAT, global::System.Nullable<decimal> monAmount, global::System.Nullable<int> intupdateby, global::System.Nullable<decimal> monAIT, global::System.Nullable<int> suppilerId, ref string strmsgvcd) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intPOID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intPOID.Value));
@@ -16163,20 +16164,26 @@ SELECT strWareHoseName, intWHID FROM tblWearHouse WHERE (intWHID = @intWHID)";
             else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((strmsgvcd == null)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            if ((suppilerId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(suppilerId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strmsgvcd));
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((strmsgvcd == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strmsgvcd));
             }
             PoGenerateTDS.sprPOItemInfoUpdateDataTable dataTable = new PoGenerateTDS.sprPOItemInfoUpdateDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[10].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[10].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[11].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[11].Value.GetType() == typeof(global::System.DBNull)))) {
                 strmsgvcd = null;
             }
             else {
-                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[10].Value));
+                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[11].Value));
             }
             return dataTable;
         }
@@ -16685,7 +16692,7 @@ FROM ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pod
 JOIN ERP_Inventory.dbo.tblItemList i ON pod.intItemID=i.intItemID  
 join [ERP_Inventory].[dbo].[tblPurchaseOrderMain] pm on pm.intPOID=pod.intPOID
 
- Where pod.intPOID = @intPOID";
+ Where pod.intPOID = @intPOID and pm.ysnActive = 1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPOID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intPOID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

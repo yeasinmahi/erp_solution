@@ -437,11 +437,11 @@ namespace SCM_BLL
         }
         
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby, decimal monAIT)
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,  decimal monAIT, int supplierId)
         {
             string msg = "";
             sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
-            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, ref msg);
+            adp.UpdateItemInfoByPO(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, intupdateby, monAIT, supplierId, ref msg);
             return msg;
         }
 
