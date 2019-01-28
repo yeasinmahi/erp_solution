@@ -43,10 +43,11 @@ namespace UI.SCM
             }
         }
 
-        private bool CheckTextBox(TextBox textBox, string type)
+        private bool CheckTextBox(TextBox textBox, string type, out int id)
         {
-            string s = txtPONo.Text;
+            string s = textBox.Text;
             string contolText;
+            id = 0;
             if (type.Equals("PO"))
             {
                 contolText = "PO Id ";
@@ -55,23 +56,25 @@ namespace UI.SCM
             {
                 contolText = "MRR Id ";
             }
+            
             if (string.IsNullOrWhiteSpace(s))
             {
                 Toaster(contolText + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
                 return false;
             }
-            if (!int.TryParse(s, out intPOID))
+            if (!int.TryParse(s, out id))
             {
                 Toaster("Input "+ contolText + "prperly", Common.TosterType.Warning);
                 return false;
             }
+            
             return true;
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
             Common.Clear(Controls);
             Common.UnLoadDropDown(ddlSupplier);
-            if (!CheckTextBox(txtPONo, "PO"))
+            if (!CheckTextBox(txtPONo, "PO",out intPOID))
             {
                 return;
             }
@@ -204,27 +207,20 @@ namespace UI.SCM
                 dt = new DataTable();
                 dt = obj.GetItemInfoByPO(intPOID);
                 File.Delete(filePathForXML);
+                GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
                 dgvItemInfoByPO.DataSource = "";
                 dgvItemInfoByPO.DataBind();
                 if (dt.Rows.Count > 0)
                 {
-                    for (int index = 0; index < dt.Rows.Count; index++)
-                    {
-                        intemid = dt.Rows[index]["intItemID"].ToString();
-                        itemname = dt.Rows[index]["strITemName"].ToString();
-                        specification = dt.Rows[index]["strSpecification"].ToString();
-                        uom = dt.Rows[index]["strUoM"].ToString();
-                        qty = dt.Rows[index]["numQty"].ToString();
-                        rate = dt.Rows[index]["monRate"].ToString();
-                        vat = dt.Rows[index]["monVAT"].ToString();
-                        ait = dt.Rows[index]["monAIT"].ToString();
-                        total = dt.Rows[index]["monTotal"].ToString();
-                        ysnExisting = dt.Rows[index]["ysnExisting"].ToString();
-
-                        CreateVoucherXml(intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting);
-                    }
+                    dgvItemInfoByPO.DataSource = dt;
+                    dgvItemInfoByPO.DataBind();
                     ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
                 }
+                else
+                {
+                    Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                }
+                
             }
             else
             {
@@ -240,8 +236,12 @@ namespace UI.SCM
             {
                 try
                 {
-                    intPOID = Convert.ToInt32(txtPONo.Text);
+                    if (!CheckTextBox(txtPONo, "PO", out intPOID))
+                    {
+                        return;
+                    }
                     dt = obj.GetPoData(45, "", 0, intPOID, DateTime.Now, Enroll);
+
                     ysnApprove = dt.Rows[0]["ysnApprove"].ToString();
                     intSingleApproveBy = dt.Rows[0]["ysnApprove"].ToString();
                     strPo = dt.Rows[0]["strPoFor"].ToString();
@@ -276,7 +276,7 @@ namespace UI.SCM
 
         private void update()
         {
-            if (!CheckTextBox(txtPONo, "PO"))
+            if (!CheckTextBox(txtPONo, "PO",out intPOID))
             {
                 return;
             }
@@ -499,12 +499,21 @@ namespace UI.SCM
 
         protected void dgvItemInfoByPO_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                totalqty += decimal.Parse(((TextBox)e.Row.Cells[6].FindControl("txtQty")).Text);
-                totalvat += decimal.Parse(((TextBox)e.Row.Cells[8].FindControl("txtVAT")).Text);
-                totalait += decimal.Parse(((TextBox)e.Row.Cells[9].FindControl("txtAIT")).Text);
-                totalval += decimal.Parse(((Label)e.Row.Cells[10].FindControl("lblTotalVal")).Text);
+                totalqty += decimal.Parse(((TextBox)e.Row.FindControl("txtQty")).Text);
+                totalvat += decimal.Parse(((TextBox)e.Row.FindControl("txtVAT")).Text);
+                totalait += decimal.Parse(((TextBox)e.Row.FindControl("txtAIT")).Text);
+                totalval += decimal.Parse(((Label)e.Row.FindControl("lblTotalVal")).Text);
+            }
+
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ((Label) e.Row.FindControl("lblGrandTotalQty")).Text = totalqty.ToString();
+                ((Label) e.Row.FindControl("lblGrandTotalVAT")).Text = totalvat.ToString();
+                ((Label) e.Row.FindControl("lblGrandTotalAIT")).Text = totalait.ToString();
+                ((Label) e.Row.FindControl("lblGrandTotal")).Text = totalval.ToString();
             }
         }
 
@@ -523,39 +532,87 @@ namespace UI.SCM
                 {
                     try
                     {
-                        try { intPOID = int.Parse(txtPONo.Text); }
-                        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong PO Number');", true); return; }
-
-                        try { intMRRID = int.Parse(txtMrrNo.Text); }
-                        catch { intMRRID = 0; }
+                        if (!CheckTextBox(txtPONo, "PO", out intPOID))
+                        {
+                            return;
+                        }
+                        try
+                        {
+                            intMRRID = int.Parse(txtMrrNo.Text);
+                        }
+                        catch
+                        {
+                            intMRRID = 0;
+                        }
 
                         if (intMRRID == 0)
                         {
                             intItemID = int.Parse((row.FindControl("lblItemID") as Label).Text);
                             strSpecification = (row.FindControl("txtSpecification") as TextBox).Text;
 
-                            try { numPOQty = decimal.Parse((row.FindControl("txtQty") as TextBox).Text); }
-                            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Quantity.');", true); return; }
+                            try
+                            {
+                                numPOQty = decimal.Parse((row.FindControl("txtQty") as TextBox).Text);
+                            }
+                            catch
+                            {
+                                Toaster("Wrong PO Quantity", Common.TosterType.Warning);
+                            }
 
-                            try { monRate = decimal.Parse((row.FindControl("txtRate") as TextBox).Text); }
-                            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong Rate.');", true); return; }
+                            try
+                            {
+                                monRate = decimal.Parse((row.FindControl("txtRate") as TextBox).Text);
+                            }
+                            catch
+                            {
+                                Toaster("Wrong Rate", Common.TosterType.Warning);
+                            }
 
-                            try { monVAT = decimal.Parse((row.FindControl("txtVAT") as TextBox).Text); }
-                            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong VAT Amount.');", true); return; }
+                            try
+                            {
+                                monVAT = decimal.Parse((row.FindControl("txtVAT") as TextBox).Text);
+                            }
+                            catch
+                            {
+                                Toaster("Wrong VAT Amount", Common.TosterType.Warning);
+                            }
 
-                            try { monAIT = decimal.Parse((row.FindControl("txtAIT") as TextBox).Text); }
-                            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Wrong AIT Amount.');", true); return; }
+                            try
+                            {
+                                monAIT = decimal.Parse((row.FindControl("txtAIT") as TextBox).Text);
+                            }
+                            catch
+                            {
+                                Toaster("Wrong AIT Amount", Common.TosterType.Warning);
+                            }
 
-                            try { monAmount = decimal.Parse((row.FindControl("lblTotalVal") as Label).Text); }
-                            catch { monAmount = 0; }
+                            try
+                            {
+                                monAmount = decimal.Parse((row.FindControl("lblTotalVal") as Label).Text);
+                            }
+                            catch
+                            {
+                                monAmount = 0;
+                            }
+                            int supplierId = Common.GetDdlSelectedValue(ddlSupplier);
 
                             //Final Insert
-                            string message = obj.UpdateItemInfoByPONew(intPOID, numPOQty, intItemID, strSpecification, monRate, monVAT, monAmount, Enroll, monAIT);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                            string msg = obj.UpdateItemInfoByPONew(intPOID, numPOQty, intItemID, strSpecification,
+                                monRate, monVAT, monAmount, Enroll, monAIT, supplierId);
+                            Toaster(msg,
+                                msg.ToLower().Contains("success")
+                                    ? Common.TosterType.Success
+                                    : Common.TosterType.Error);
                         }
-                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO correction is not possible after issuing MRR.');", true); }
+                        else
+                        {
+                            Toaster("PO correction is not possible after issuing MRR", Common.TosterType.Warning);
+                        }
                     }
-                    catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
+                    catch
+                    {
+                        Toaster("Please Try Again", Common.TosterType.Error);
+                    }
                 }
             }
             else if (e.CommandName == "DeleteItem")
