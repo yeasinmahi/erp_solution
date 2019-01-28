@@ -238,7 +238,7 @@
             <td class="tdheight" style="text-align:right;"><asp:Label ID="lbltotalmanpower" CssClass="lbl" runat="server" Text="PO No. : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtPONo" runat="server" CssClass="txtBox1" ></asp:TextBox></td>        
 
-            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label19" CssClass="lbl" runat="server" Text="Wear House : "></asp:Label></td>
+            <td class="tdheight" style="text-align:right;"><asp:Label ID="Label19" CssClass="lbl" runat="server" Text="Warehouse : "></asp:Label></td>
             <td class="tdheight"><asp:TextBox ID="txtWH" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>                                
         </tr>
         <tr>

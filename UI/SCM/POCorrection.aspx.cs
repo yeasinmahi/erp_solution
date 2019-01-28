@@ -45,7 +45,7 @@ namespace UI.SCM
 
         private bool CheckTextBox(TextBox textBox, string type)
         {
-            string s = txtPONo.Text;
+            string s = textBox.Text;
             string contolText;
             if (type.Equals("PO"))
             {
