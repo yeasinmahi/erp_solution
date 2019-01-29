@@ -169,8 +169,15 @@ namespace Utility
             ddl.Items.Insert(0, new ListItem("All", "0"));
         }
 
+        public static List<Control> GetContolList()
+        {
+            List<Control> controls = new List<Control>();
+            
+            return controls;
+        }
         public static void Clear(ControlCollection controls)
         {
+            
             foreach (Control ctrl in controls)
             {
                 if (ctrl is TextBox)

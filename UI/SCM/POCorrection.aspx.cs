@@ -72,7 +72,7 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            Common.Clear(Controls);
+            Common.Clear(UpdatePanel0.Controls);
             Common.UnLoadDropDown(ddlSupplier);
             if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {
@@ -147,7 +147,7 @@ namespace UI.SCM
                     //txtTransport.Text = string.Empty;
                     //txtGDiscount.Text = string.Empty;
                     //txtOthers.Text = string.Empty;
-                    Common.Clear(Controls);
+                    Common.Clear(UpdatePanel0.Controls);
                 }
             }
             catch
