@@ -198,28 +198,8 @@ namespace UI.SCM
                         Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
                         return;
                     }
-
-
                 }
-
-
-                dt = new DataTable();
-                dt = obj.GetItemInfoByPO(intPOID);
-                File.Delete(filePathForXML);
-                GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
-                dgvItemInfoByPO.DataSource = "";
-                dgvItemInfoByPO.DataBind();
-                if (dt.Rows.Count > 0)
-                {
-                    dgvItemInfoByPO.DataSource = dt;
-                    dgvItemInfoByPO.DataBind();
-                    ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
-                }
-                else
-                {
-                    Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
-                }
-
+                LoadItemGridview();
             }
             else
             {
@@ -229,6 +209,22 @@ namespace UI.SCM
             }
         }
 
+        public void LoadItemGridview()
+        {
+            dt = obj.GetItemInfoByPO(intPOID);
+            FileHelper.DeleteFile(filePathForXML);
+            GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
+            if (dt.Rows.Count > 0)
+            {
+                dgvItemInfoByPO.DataSource = dt;
+                dgvItemInfoByPO.DataBind();
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+            }
+        }
         protected void btnUpdatePO_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
@@ -407,6 +403,7 @@ namespace UI.SCM
                     Toaster(msg,
                         msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                     hdnconfirm.Value = "0";
+                    LoadItemGridview();
                 }
             }
             else
@@ -433,6 +430,7 @@ namespace UI.SCM
                         Toaster(msg,
                             msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                         hdnconfirm.Value = "0";
+                        LoadItemGridview();
                     }
                 }
                 catch (Exception ex)
@@ -442,75 +440,7 @@ namespace UI.SCM
             }
         }
 
-        #region ===== XML Start Code =======================================================
-
-        private void CreateVoucherXml(string intemid, string itemname, string specification, string uom, string qty, string rate, string vat, string ait, string total, string ysnExisting)
-        {
-            XmlDocument doc = new XmlDocument();
-            if (File.Exists(filePathForXML))
-            {
-                doc.Load(filePathForXML);
-                XmlNode rootNode = doc.SelectSingleNode("FDetails");
-                XmlNode addItem = CreateItemNode(doc, intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting);
-                rootNode.AppendChild(addItem);
-            }
-            else
-            {
-                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
-                doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("FDetails");
-                XmlNode addItem = CreateItemNode(doc, intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting);
-                rootNode.AppendChild(addItem);
-                doc.AppendChild(rootNode);
-            }
-            doc.Save(filePathForXML);
-            LoadGridwithXml();
-            //Clear();
-        }
-
-        private void LoadGridwithXml()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filePathForXML);
-            XmlNode dSftTm = doc.SelectSingleNode("FDetails");
-            xmlString = dSftTm.InnerXml;
-            xmlString = "<FDetails>" + xmlString + "</FDetails>";
-            StringReader sr = new StringReader(xmlString);
-            DataSet ds = new DataSet();
-            ds.ReadXml(sr);
-            if (ds.Tables[0].Rows.Count > 0) { dgvItemInfoByPO.DataSource = ds; }
-            else { dgvItemInfoByPO.DataSource = ""; }
-            dgvItemInfoByPO.DataBind();
-        }
-
-        private XmlNode CreateItemNode(XmlDocument doc, string intemid, string itemname, string specification, string uom, string qty, string rate, string vat, string ait, string total, string ysnExisting)
-        {
-            XmlNode node = doc.CreateElement("FDetails");
-
-            XmlAttribute Intemid = doc.CreateAttribute("intemid"); Intemid.Value = intemid;
-            XmlAttribute Itemname = doc.CreateAttribute("itemname"); Itemname.Value = itemname;
-            XmlAttribute Specification = doc.CreateAttribute("specification"); Specification.Value = specification;
-            XmlAttribute Uom = doc.CreateAttribute("uom"); Uom.Value = uom;
-            XmlAttribute Qty = doc.CreateAttribute("qty"); Qty.Value = qty;
-            XmlAttribute Rate = doc.CreateAttribute("rate"); Rate.Value = rate;
-            XmlAttribute Vat = doc.CreateAttribute("vat"); Vat.Value = vat;
-            XmlAttribute Ait = doc.CreateAttribute("ait"); Ait.Value = ait;
-            XmlAttribute Total = doc.CreateAttribute("total"); Total.Value = total;
-            XmlAttribute YsnExisting = doc.CreateAttribute("ysnExisting"); YsnExisting.Value = ysnExisting;
-
-            node.Attributes.Append(Intemid);
-            node.Attributes.Append(Itemname);
-            node.Attributes.Append(Specification);
-            node.Attributes.Append(Uom);
-            node.Attributes.Append(Qty);
-            node.Attributes.Append(Rate);
-            node.Attributes.Append(Vat);
-            node.Attributes.Append(Ait);
-            node.Attributes.Append(Total);
-            node.Attributes.Append(YsnExisting);
-            return node;
-        }
-
+        
         protected decimal totalqty = 0;
         protected decimal totalval = 0;
         protected decimal totalait = 0;
@@ -535,9 +465,6 @@ namespace UI.SCM
                 ((Label)e.Row.FindControl("lblGrandTotal")).Text = totalval.ToString();
             }
         }
-
-        #endregion ===== XML Start Code =======================================================
-
         protected void dgvItemInfoByPO_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "UpdateItem")
@@ -619,6 +546,7 @@ namespace UI.SCM
                                 msg.ToLower().Contains("success")
                                     ? Common.TosterType.Success
                                     : Common.TosterType.Error);
+                            LoadItemGridview();
                         }
                         else
                         {
@@ -663,6 +591,7 @@ namespace UI.SCM
                             msg.ToLower().Contains("success")
                                 ? Common.TosterType.Success
                                 : Common.TosterType.Error);
+                        LoadItemGridview();
                     }
                     else
                     {

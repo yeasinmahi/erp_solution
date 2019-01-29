@@ -253,9 +253,9 @@
                         </tr>
                         <tr>
                             <td colspan="2" style="text-align: right; padding: 10px 0px 0px 0px">
-                                <asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" ForeColor="Blue" Width="120px" OnClientClick="Confirm()" OnClick="btnDeletePO_Click" /></td>
+                                <asp:Button ID="btnDeletePO" runat="server" class="myButton" Text="Delete PO" ForeColor="White" Width="120px" OnClientClick="Confirm()" OnClick="btnDeletePO_Click" /></td>
                             <td colspan="2" style="text-align: right; padding: 10px 0px 0px 0px">
-                                <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" ForeColor="Blue" Width="120px" OnClick="btnShow_Click" /></td>
+                                <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" ForeColor="White" Width="120px" OnClick="btnShow_Click" /></td>
                         </tr>
                         <tr>
                             <td style="padding: 15px 0px 0px 5px;" colspan="4"></td>
