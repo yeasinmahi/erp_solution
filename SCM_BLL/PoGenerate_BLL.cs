@@ -389,7 +389,18 @@ namespace SCM_BLL
             { return adp.GetSupplierInfoByPO(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
+        public DataTable GetSupplierAddress(int supplierId)
+        {
+            tblSupplierTableAdapter adp = new tblSupplierTableAdapter();
+            try
+            {
+                return adp.GetSupplierAddress(supplierId);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
         public DataTable GetShipmentAndOtherInfoByPO(int intPOID)
         {
             TblShipmentTableAdapter adp = new TblShipmentTableAdapter();

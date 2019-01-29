@@ -208,6 +208,12 @@
         }
     </script>
 
+    <style type="text/css">
+        .auto-style1 {
+            height: 34px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -235,7 +241,7 @@
                             <td class="tdheader" colspan="4">PO EDIT :</td>
                         </tr>
                         <tr class="tblheader">
-                            <td style="height: 2px; background-color: #c1bdbd;" colspan="4"></td>
+                            <td style="height: 1px; background-color: #c1bdbd;" colspan="4"></td>
                         </tr>
                         <tr>
                             <td colspan="4" style="height: 5px;"></td>
@@ -261,17 +267,14 @@
                             <td style="padding: 15px 0px 0px 5px;" colspan="4"></td>
                         </tr>
                         <tr class="tblheader">
-                            <td style="height: 2px; background-color: #c1bdbd;" colspan="4"></td>
+                            <td style="height: 1px; background-color: #c1bdbd;" colspan="4"></td>
                         </tr>
                         <tr>
-                            <td style="padding: 15px 0px 0px 5px;" colspan="4"></td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 15px 0px 0px 5px; text-align: right;" >
+                            <td style="padding: 15px 0px 0px 5px; text-align: right;" class="auto-style1" >
                                 Address:
                             </td>
-                            <td style="padding: 15px 0px 0px 5px;" colspan="3">
-                                <asp:Label ID="lblSupplierAddress" CssClass="lbl" runat="server"></asp:Label>
+                            <td style="padding: 15px 0px 0px 5px;" colspan="3" class="auto-style1">
+                                <asp:Label ID="lblSupplierAddress" CssClass="lbl" ForeColor="blue" runat="server"></asp:Label>
                             </td>
                         </tr>
 
@@ -293,7 +296,7 @@
                             <td class="tdheight" style="text-align: right;">
                                 <asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Supplier Name : "></asp:Label></td>
                             <td class="tdheight">
-                                <asp:DropDownList ID="ddlSupplier" CssClass="ddList" Height="24px" Font-Bold="False" ForeColor="Black" Font-Size="11px" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSupplier" CssClass="ddList" Height="24px" Font-Bold="False" ForeColor="Black" Font-Size="11px" runat="server" OnSelectedIndexChanged="ddlSupplier_OnSelectedIndexChanged" AutoPostBack="True"></asp:DropDownList>
                             </td>
                             <%--<td class="tdheight"><asp:TextBox ID="txtSupplier" runat="server" CssClass="txtBox" Enabled="false" BackColor="WhiteSmoke" ></asp:TextBox></td>--%>
 

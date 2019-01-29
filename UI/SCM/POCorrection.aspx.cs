@@ -5,7 +5,6 @@ using System.IO;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using UI.ClassFiles;
 using Utility;
 
@@ -13,8 +12,8 @@ namespace UI.SCM
 {
     public partial class POCorrection : BasePage
     {
-        private PoGenerate_BLL obj = new PoGenerate_BLL();
-        private DataTable dt;
+        private readonly PoGenerate_BLL _bll = new PoGenerate_BLL();
+        private DataTable _dt;
         private int intPart, intPOID, intCurrencyID, intShipment, ysnPartialShip, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, intMRRID, intSuppid;
         private DateTime dtePODate, dteLastShipmentDate;
         private decimal monFreight, monPacking, monDiscount, monRate, monVAT, monAmount, monAIT, numPOQty;
@@ -35,8 +34,8 @@ namespace UI.SCM
                 //dgvItemInfoByPO.DataSource = "";
                 //dgvItemInfoByPO.DataBind();
 
-                dt = obj.GetCurrency();
-                Common.LoadDropDown(ddlCurrency, dt, "intCurrencyID", "strCurrencyName");
+                _dt = _bll.GetCurrency();
+                Common.LoadDropDown(ddlCurrency, _dt, "intCurrencyID", "strCurrencyName");
 
                 btnUpdatePO.Visible = false;
                 btnDeletePO.Visible = false;
@@ -46,16 +45,8 @@ namespace UI.SCM
         private bool CheckTextBox(TextBox textBox, string type, out int id)
         {
             string s = textBox.Text;
-            string contolText;
             id = 0;
-            if (type.Equals("PO"))
-            {
-                contolText = "PO Id ";
-            }
-            else
-            {
-                contolText = "MRR Id ";
-            }
+            string contolText = type.Equals("PO") ? "PO Id " : "MRR Id ";
 
             if (string.IsNullOrWhiteSpace(s))
             {
@@ -79,34 +70,34 @@ namespace UI.SCM
                 return;
             }
 
-            dt = new DataTable();
-            dt = obj.GetMRRNoByPO(intPOID);
+            _dt = new DataTable();
+            _dt = _bll.GetMRRNoByPO(intPOID);
 
-            if (dt.Rows.Count > 0)
+            if (_dt.Rows.Count > 0)
             {
-                txtMrrNo.Text = dt.Rows[0]["intMRRID"].ToString();
+                txtMrrNo.Text = _dt.Rows[0]["intMRRID"].ToString();
             }
             else
             {
                 txtMrrNo.Text = "";
             }
-            dt = obj.GetSuppliers(intPOID);
-            Common.LoadDropDown(ddlSupplier, dt, "intSupplierID", "strSupplierName");
+            _dt = _bll.GetSuppliers(intPOID);
+            Common.LoadDropDown(ddlSupplier, _dt, "intSupplierID", "strSupplierName");
 
-            dt = new DataTable();
-            dt = obj.GetSupplierInfoByPO(intPOID);
-            if (dt.Rows.Count > 0)
+            _dt = new DataTable();
+            _dt = _bll.GetSupplierInfoByPO(intPOID);
+            if (_dt.Rows.Count > 0)
             {
-                ddlCurrency.SelectedValue = dt.Rows[0]["intCurrencyID"].ToString();
-                txtPODate.Text = dt.Rows[0]["dtePODate"].ToString();
-                hdnPOUnit.Value = dt.Rows[0]["intUnitID"].ToString();
-                HttpContext.Current.Session["Unitid"] = dt.Rows[0]["intUnitID"].ToString();
-                txtPOType.Text = dt.Rows[0]["strPoFor"].ToString();
-                PoType = dt.Rows[0]["strPoFor"].ToString();
-                lblSupplierAddress.Text = dt.Rows[0]["strOrgAddress"].ToString();
+                ddlCurrency.SelectedValue = _dt.Rows[0]["intCurrencyID"].ToString();
+                txtPODate.Text = _dt.Rows[0]["dtePODate"].ToString();
+                hdnPOUnit.Value = _dt.Rows[0]["intUnitID"].ToString();
+                HttpContext.Current.Session["Unitid"] = _dt.Rows[0]["intUnitID"].ToString();
+                txtPOType.Text = _dt.Rows[0]["strPoFor"].ToString();
+                PoType = _dt.Rows[0]["strPoFor"].ToString();
+                lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
                 //ddlSupplier.SelectedValue = dt.Rows[0]["intSupplierID"].ToString();
-                Common.SetDdlSelectedValue(ddlSupplier, dt.Rows[0]["intSupplierID"].ToString());
-                txtWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                Common.SetDdlSelectedValue(ddlSupplier, _dt.Rows[0]["intSupplierID"].ToString());
+                txtWH.Text = _dt.Rows[0]["strWareHoseName"].ToString();
             }
             else
             {
@@ -119,22 +110,22 @@ namespace UI.SCM
 
             try
             {
-                dt = obj.GetShipmentAndOtherInfoByPO(intPOID);
-                if (dt.Rows.Count > 0)
+                _dt = _bll.GetShipmentAndOtherInfoByPO(intPOID);
+                if (_dt.Rows.Count > 0)
                 {
-                    ddlPartialShipment.SelectedValue = dt.Rows[0]["ysnPartialShip"].ToString();
-                    txtNoofShipment.Text = dt.Rows[0]["intShipment"].ToString();
-                    txtLastShipmentDate.Text = dt.Rows[0]["dteLastShipmentDate"].ToString();
-                    ddlPaymentTerms.SelectedItem.Text = dt.Rows[0]["strPayTerm"].ToString();
-                    txtPaymentdaysAfterMRR.Text = dt.Rows[0]["intCreditDays"].ToString();
-                    txtNoOfInstallment.Text = dt.Rows[0]["intInstallmentNo"].ToString();
-                    txtInstallmentIntervalDays.Text = dt.Rows[0]["intInstallmentInterval"].ToString();
-                    txtDestinationForDelivery.Text = dt.Rows[0]["strDeliveryAddress"].ToString();
-                    txtWarrentyAfterDelivery.Text = dt.Rows[0]["intWarrantyMonth"].ToString();
-                    txtOtherTerms.Text = dt.Rows[0]["strOtherTerms"].ToString();
-                    txtTransport.Text = dt.Rows[0]["monFreight"].ToString();
-                    txtGDiscount.Text = dt.Rows[0]["monDiscount"].ToString();
-                    txtOthers.Text = dt.Rows[0]["monPacking"].ToString();
+                    ddlPartialShipment.SelectedValue = _dt.Rows[0]["ysnPartialShip"].ToString();
+                    txtNoofShipment.Text = _dt.Rows[0]["intShipment"].ToString();
+                    txtLastShipmentDate.Text = _dt.Rows[0]["dteLastShipmentDate"].ToString();
+                    ddlPaymentTerms.SelectedItem.Text = _dt.Rows[0]["strPayTerm"].ToString();
+                    txtPaymentdaysAfterMRR.Text = _dt.Rows[0]["intCreditDays"].ToString();
+                    txtNoOfInstallment.Text = _dt.Rows[0]["intInstallmentNo"].ToString();
+                    txtInstallmentIntervalDays.Text = _dt.Rows[0]["intInstallmentInterval"].ToString();
+                    txtDestinationForDelivery.Text = _dt.Rows[0]["strDeliveryAddress"].ToString();
+                    txtWarrentyAfterDelivery.Text = _dt.Rows[0]["intWarrantyMonth"].ToString();
+                    txtOtherTerms.Text = _dt.Rows[0]["strOtherTerms"].ToString();
+                    txtTransport.Text = _dt.Rows[0]["monFreight"].ToString();
+                    txtGDiscount.Text = _dt.Rows[0]["monDiscount"].ToString();
+                    txtOthers.Text = _dt.Rows[0]["monPacking"].ToString();
                 }
                 else
                 {
@@ -159,8 +150,8 @@ namespace UI.SCM
 
             if (string.IsNullOrWhiteSpace(txtMrrNo.Text))
             {
-                dt = obj.GetApprovalAuthorityList(Enroll, PoType);
-                if (dt.Rows.Count > 0)
+                _dt = _bll.GetApprovalAuthorityList(Enroll, PoType);
+                if (_dt.Rows.Count > 0)
                 {
                     //Authority
                     btnDeletePO.Visible = true;
@@ -171,11 +162,11 @@ namespace UI.SCM
                     btnDeletePO.Visible = false;
                     btnUpdatePO.Visible = false;
 
-                    dt = obj.GetApprovalInfo(intPOID);
-                    if (dt.Rows.Count > 0)
+                    _dt = _bll.GetApprovalInfo(intPOID);
+                    if (_dt.Rows.Count > 0)
                     {
-                        int poActionBy = Convert.ToInt32(dt.Rows[0]["intLastActionBy"].ToString());
-                        bool ysnApproved = Convert.ToBoolean(dt.Rows[0]["ysnApprove"].ToString());
+                        int poActionBy = Convert.ToInt32(_dt.Rows[0]["intLastActionBy"].ToString());
+                        bool ysnApproved = Convert.ToBoolean(_dt.Rows[0]["ysnApprove"].ToString());
                         if (poActionBy == Enroll)
                         {
                             if (ysnApproved)
@@ -213,12 +204,16 @@ namespace UI.SCM
 
         public void LoadItemGridview()
         {
-            dt = obj.GetItemInfoByPO(intPOID);
+            if (!CheckTextBox(txtPONo, "PO", out intPOID))
+            {
+                return;
+            }
+            _dt = _bll.GetItemInfoByPO(intPOID);
             FileHelper.DeleteFile(filePathForXML);
             GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
-            if (dt.Rows.Count > 0)
+            if (_dt.Rows.Count > 0)
             {
-                dgvItemInfoByPO.DataSource = dt;
+                dgvItemInfoByPO.DataSource = _dt;
                 dgvItemInfoByPO.DataBind();
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             }
@@ -237,11 +232,11 @@ namespace UI.SCM
                     {
                         return;
                     }
-                    dt = obj.GetPoData(45, "", 0, intPOID, DateTime.Now, Enroll);
+                    _dt = _bll.GetPoData(45, "", 0, intPOID, DateTime.Now, Enroll);
 
-                    ysnApprove = dt.Rows[0]["ysnApprove"].ToString();
-                    intSingleApproveBy = dt.Rows[0]["ysnApprove"].ToString();
-                    strPo = dt.Rows[0]["strPoFor"].ToString();
+                    ysnApprove = _dt.Rows[0]["ysnApprove"].ToString();
+                    intSingleApproveBy = _dt.Rows[0]["ysnApprove"].ToString();
+                    strPo = _dt.Rows[0]["strPoFor"].ToString();
 
                     //PO Correction cannot be possible after approve
                     if (string.IsNullOrEmpty(ysnApprove) || string.IsNullOrEmpty(intSingleApproveBy))
@@ -251,11 +246,11 @@ namespace UI.SCM
                     else if (!string.IsNullOrEmpty(ysnApprove) || !string.IsNullOrEmpty(intSingleApproveBy))
                     {
                         // only this two Enroll can update PO even though PO already approved.
-                        dt = obj.GetApprovalAuthorityList(Enroll, strPo);
-                        if (dt.Rows.Count > 0)
+                        _dt = _bll.GetApprovalAuthorityList(Enroll, strPo);
+                        if (_dt.Rows.Count > 0)
                         {
-                            string POType = dt.Rows[0]["strPOType"].ToString();
-                            int ApprovedBy = Convert.ToInt32(dt.Rows[0]["intEnrollment"].ToString());
+                            string POType = _dt.Rows[0]["strPOType"].ToString();
+                            int ApprovedBy = Convert.ToInt32(_dt.Rows[0]["intEnrollment"].ToString());
                             if (Enroll == ApprovedBy && strPo == POType)
                             {
                                 update();
@@ -395,13 +390,13 @@ namespace UI.SCM
 
                 strOtherTerms = txtOtherTerms.Text;
                 intPart = 1;
-                dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount,
+                _dt = _bll.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount,
                     intShipment, strDeliveryAddress, ysnPartialShip,
                     strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth,
                     strOtherTerms, dteLastShipmentDate, Enroll, supplierId);
-                if (dt.Rows.Count > 0)
+                if (_dt.Rows.Count > 0)
                 {
-                    string msg = dt.Rows[0]["msg"].ToString();
+                    string msg = _dt.Rows[0]["msg"].ToString();
                     Toaster(msg,
                         msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                     hdnconfirm.Value = "0";
@@ -425,13 +420,13 @@ namespace UI.SCM
                         return;
                     }
                     intPart = 2;
-                    dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking,
+                    _dt = _bll.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking,
                         monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
                         strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth,
                         strOtherTerms, dteLastShipmentDate, Enroll, 0);
-                    if (dt.Rows.Count > 0)
+                    if (_dt.Rows.Count > 0)
                     {
-                        string msg = dt.Rows[0]["msg"].ToString();
+                        string msg = _dt.Rows[0]["msg"].ToString();
                         Toaster(msg,
                             msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                         hdnconfirm.Value = "0";
@@ -545,7 +540,7 @@ namespace UI.SCM
                             }
 
                             //Final Insert
-                            string msg = obj.UpdateItemInfoByPONew(intPOID, numPOQty, intItemID, strSpecification,
+                            string msg = _bll.UpdateItemInfoByPONew(intPOID, numPOQty, intItemID, strSpecification,
                                 monRate, monVAT, monAmount, Enroll, monAIT);
                             Toaster(msg,
                                 msg.ToLower().Contains("success")
@@ -591,7 +586,7 @@ namespace UI.SCM
                     if (intMRRID == 0)
                     {
                         intItemID = int.Parse((row.FindControl("lblItemID") as Label).Text);
-                        string msg = obj.Delete_PO_Data(intItemID, intPOID, Enroll);
+                        string msg = _bll.Delete_PO_Data(intItemID, intPOID, Enroll);
                         Toaster(msg,
                             msg.ToLower().Contains("success")
                                 ? Common.TosterType.Success
@@ -604,6 +599,13 @@ namespace UI.SCM
                     }
                 }
             }
+        }
+
+        protected void ddlSupplier_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            _dt = _bll.GetSupplierAddress(Common.GetDdlSelectedValue(ddlSupplier));
+            lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
+            LoadItemGridview();
         }
     }
 }
