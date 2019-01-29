@@ -45,6 +45,7 @@ namespace UI
                 string domainUser = Request.LogonUserIdentity.Name;
                 try
                 {
+             
                     string[] donainpatrs = domainUser.Split('\\');
                     var id = donainpatrs[1] + "@akij.net";
                     //var id = "a.shohel@akij.net";
