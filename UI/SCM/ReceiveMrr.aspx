@@ -174,57 +174,57 @@
                     <table style="border-width: 1px; border-color: #666; border-style: solid">
                         <tr style="text-align: center">
                             <td colspan="3" style="text-align: right">
-                                <asp:Label ID="lblUnit" Text="Ware House" runat="server" /></td>
+                                <asp:Label ID="lblUnit" Text="WareHouse:" runat="server" /></td>
                             <td colspan="1" style="text-align: left">
                                 <asp:DropDownList ID="ddlWH" Font-Bold="true" runat="server" CssClass="txtBox" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>
                             <td style="text-align: right">
-                                <asp:Label ID="Label1" Text="PO" runat="server" /></td>
+                                <asp:Label ID="Label1" Text="PO:" runat="server" /></td>
                             <td>
                                 <asp:TextBox ID="txtPO" runat="server" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>
                         </tr>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="PO Type"></asp:Label></td>
+                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="PO Type:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlPoType" CssClass="ddList" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlPoType_SelectedIndexChanged"></asp:DropDownList></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Select-PO: "></asp:Label></td>
                             <td>
                                 <asp:DropDownList ID="ddlPo" CssClass="ddList" Width="300px" AutoPostBack="true" Font-Size="Small" runat="server" OnSelectedIndexChanged="ddlPo_SelectedIndexChanged"></asp:DropDownList></td>
-                            <td>Invoice No</td>
+                            <td>Invoice No:</td>
                             <td>
                                 <asp:DropDownList ID="ddlInvoice" CssClass="ddList" AutoPostBack="true" Font-Size="Small" runat="server"></asp:DropDownList></td>
                         </tr>
                         <tr>
-                            <td>Challan/BOL</td>
+                            <td>Challan/BOL:</td>
                             <td>
                                 <asp:TextBox ID="txtChallan" runat="server" CssClass="txtBox"></asp:TextBox></td>
-                            <td style="text-align: right">Challan Date</td>
+                            <td style="text-align: right">Challan Date:</td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtdteChallan" Width="300px" runat="server" CssClass="txtBox" Font-Bold="False">
                                 </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender3" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteChallan"></cc1:CalendarExtender>
                             </td>
-                            <td>Vat Challan</td>
+                            <td>VAT Challan:</td>
                             <td>
                                 <asp:TextBox ID="txtVatChallan" runat="server" CssClass="txtBox"></asp:TextBox></td>
                         </tr>
                         <tr>
-                            <td>Vat Amount</td>
+                            <td>VAT Amount:</td>
                             <td>
                                 <asp:TextBox ID="txtVatAmount" runat="server" CssClass="txtBox"></asp:TextBox></td>
                             <td style="text-align: right">
-                                <asp:Label ID="lblMupload" Text="Upload" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblMupload" Text="Upload:" runat="server"></asp:Label></td>
                             <td>
-                                <asp:FileUpload ID="docUpload" Width="300px" runat="server" /></td>
+                                <asp:FileUpload ID="docUpload" Width="300px" runat="server" forecolor="blue"/></td>
 
                             <td style="text-align: right" colspan="2">
-                                <asp:Button ID="btnShow" Font-Bold="true" runat="server" Text="Show" OnClick="btnShow_Click" />
-                                <asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server" OnClientClick="return MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
+                                <asp:Button ID="btnShow" Font-Bold="true" forecolor="#006600" runat="server" Text="Show" OnClick="btnShow_Click" />
+                                <asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server"  forecolor="blue" OnClientClick="return MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
                         </tr>
                         <tr>
                             <td colspan="4" class="auto-style1">
-                                <asp:Label ID="lblSuppliyer" runat="server"></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false" runat="server"></asp:Label><asp:Label ID="lblCurrency" runat="server"></asp:Label>
-                                <asp:Label ID="lblConversion" runat="server"> </asp:Label><asp:Label ID="lblPoIssueBy" Visible="false" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblSuppliyer" ForeColor="Blue" runat="server"></asp:Label><asp:Label ID="lblSuppliuerID" Visible="false"  forecolor="blue" runat="server"></asp:Label><asp:Label ID="lblCurrency"  forecolor="Red" runat="server"></asp:Label>
+                                <asp:Label ID="lblConversion" runat="server"> </asp:Label><asp:Label ID="lblPoIssueBy" Visible="false"  forecolor="blue" runat="server"></asp:Label></td>
                         </tr>
                     </table>
 
@@ -262,7 +262,7 @@
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="ItemId" SortExpression="intItem">
+                                        <asp:TemplateField HeaderText="Item ID" SortExpression="intItem">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItem") %>'></asp:Label>
                                             </ItemTemplate>
@@ -276,7 +276,7 @@
                                             <ItemStyle HorizontalAlign="Left" Width="70px" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="ItemName" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
+                                        <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItemName" Width="250px" runat="server" Text='<%# Bind("strItem") %>'></asp:Label>
                                             </ItemTemplate>
@@ -285,12 +285,12 @@
 
                                         <asp:TemplateField HeaderText="Description" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strDes">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDescription" Width="250px" runat="server" Text='<%# Bind("strDes") %>'></asp:Label>
+                                                <asp:Label ID="lblDescription" Width="200px" runat="server" Text='<%# Bind("strDes") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="250px" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom">
+                                        <asp:TemplateField HeaderText="UoM" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="strUom">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUom") %>'></asp:Label>
                                             </ItemTemplate>
@@ -318,7 +318,7 @@
                                             <ItemStyle HorizontalAlign="Left" Width="50px" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Vat" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monVat">
+                                        <asp:TemplateField HeaderText="VAT" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monVat">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblVat" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monVat" ) %>'></asp:Label>
                                             </ItemTemplate>
@@ -334,7 +334,7 @@
 
                                         <asp:TemplateField HeaderText="Previous Receive" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreRecvQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPreviousReceive" runat="server" Text='<%# Bind("monPreRecvQty" ) %>'></asp:Label>
+                                                <asp:Label ID="lblPreviousReceive" forecolor="Red" runat="server" Text='<%# Bind("monPreRecvQty" ) %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                         </asp:TemplateField>
