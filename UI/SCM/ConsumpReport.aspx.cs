@@ -5,6 +5,7 @@ using System;
 using System.Data;
 using System.Web;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -48,13 +49,19 @@ namespace UI.SCM
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 //  ddlSection.Items.Insert(0, new ListItem("Select", ""));
-                dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, enroll);
-                ddlFilter.DataSource = dt;
-                ddlFilter.DataValueField = "Id";
-                ddlFilter.DataTextField = "strName";
-                ddlFilter.DataBind();
+                //dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, enroll);
+                //ddlFilter.DataSource = dt;
+                //ddlFilter.DataValueField = "Id";
+                //ddlFilter.DataTextField = "strName";
+                //ddlFilter.DataBind();
 
                 intwh = int.Parse(ddlWh.SelectedValue.ToString());
+                //intwh=Common.GetDdlSelectedValue(ddlWh);
+
+                dt = objIssue.GetDepartment(intwh);
+                Common.LoadDropDown(ddlFilter, dt, "Id", "strName");
+
+                
                 dt = objIssue.GetViewData(10, "", intwh, 0, DateTime.Now, enroll);
                 // ddlSection.Items.Insert(0, new ListItem("Select", ""));
                 ddlSection.DataSource = dt;

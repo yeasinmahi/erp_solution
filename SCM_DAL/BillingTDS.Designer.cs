@@ -24089,26 +24089,26 @@ group by pod.intPOID,s.strSupplierName,pod.monRate+monCD+monRD+monSD+monVAT+pod.
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a" +
-                ".monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,b.Totalamount,\r\na.monDi" +
-                "scount/Totalamount*monRate*-1 discount,\r\na.monAIT/Totalamount*monRate monAIT,\r\na" +
-                ".monVAT/Totalamount*monRate monVAT,\r\na.monFreight/Totalamount*monRate monFreight" +
-                ",\r\na.monPacking/Totalamount*monRate monPacking,\r\n(a.monRate)+ ((a.monAIT+a.monVA" +
-                "T+a.monCD+a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActua" +
-                "l\r\nfrom (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate" +
-                " , isnull(monDiscount,0) monDiscount,pid.numQty,pid.monRate,pid.monAmount,isnull" +
-                "(pid.monAIT,0) monAIT,isnull(pid.monVAT,0) monVAT,isnull(po.monFreight,0) monFre" +
-                "ight,isnull(po.monPacking,0) monPacking,isnull(pid.monCD,0) monCD,s.strSupplierN" +
-                "ame,cu.strCurrencyName\r\nfrom ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetai" +
-                "l pid\r\ninner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po." +
-                "intPOID\r\nINNER JOIN ERP_Inventory.dbo.qryItemList itm ON pid.intItemID = itm.int" +
-                "ItemID \r\ninner join ERP_Inventory.dbo.tblCurrencyConversion cu ON po.intCurrency" +
-                "ID = cu.intCurrencyID \r\nINNER JOIN ERP_Inventory.dbo.tblSupplier s ON s.intSuppl" +
-                "ierID = po.intSupplierID\r\nwhere  pid.intItemID = @itemId) as a\r\njoin \r\n(select s" +
-                "um(numQty*monRate) Totalamount,po.intPOID\r\nfrom ERP_Inventory.dbo.tblPurchaseOrd" +
-                "erShipmentItemDetail pid\r\ninner join ERP_Inventory.dbo.tblPurchaseOrderMain po o" +
-                "n pid.intPOID = po.intPOID\r\ngroup by po.intPOID) b on a.intPOID = b.intPOID\r\nord" +
-                "er by dtePODate desc";
+            this._commandCollection[3].CommandText = @"
+ select top 15 a.intItemID,a.strItemName,a.strUoM,a.intPOID,a.dtePODate,a.numQty,a.monRate,a.monAmount,a.strSupplierName,a.strCurrencyName,b.Totalamount,a.monVAT,a.monAIT,
+a.monDiscount/Totalamount*monRate*-1 discount,
+a.monFreight/Totalamount*monRate monFreight,
+a.monPacking/Totalamount*monRate monPacking,
+(a.monRate)+ a.monAIT+monVAT+a.monCD+((a.monFreight+a.monPacking-a.monDiscount)/Totalamount)*monRate monActual
+
+from (select pid.intItemID,itm.strItemName,itm.strUoM,po.intPOID,po.dtePODate , isnull(po.monDiscount,0) monDiscount,pid.numQty,pid.monRate,pid.monAmount,isnull(pid.monAIT,0) monAIT,isnull(pid.monVAT,0) monVAT,isnull(po.monFreight,0) monFreight,isnull(po.monPacking,0) monPacking,isnull(pid.monCD,0) monCD,s.strSupplierName,cu.strCurrencyName
+from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
+inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
+INNER JOIN ERP_Inventory.dbo.qryItemList itm ON pid.intItemID = itm.intItemID 
+inner join ERP_Inventory.dbo.tblCurrencyConversion cu ON po.intCurrencyID = cu.intCurrencyID 
+INNER JOIN ERP_Inventory.dbo.tblSupplier s ON s.intSupplierID = po.intSupplierID
+where  pid.intItemID = @itemId) as a
+join 
+(select sum(numQty*monRate) Totalamount,po.intPOID
+from ERP_Inventory.dbo.tblPurchaseOrderShipmentItemDetail pid
+inner join ERP_Inventory.dbo.tblPurchaseOrderMain po on pid.intPOID = po.intPOID
+group by po.intPOID) b on a.intPOID = b.intPOID
+order by dtePODate desc";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

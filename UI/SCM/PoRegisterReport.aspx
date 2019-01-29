@@ -114,12 +114,12 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
-                    <div class="tabs_container" style="text-align: left">PO  REGISTER<hr />
+                    <div class="tabs_container" style="text-align: center;font-size:16px;" ><u>PO  REGISTER</u><hr />
                     </div>
                     <table>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Department"></asp:Label></td>
+                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Department:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlDept" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server">
                                     <asp:ListItem Text="Local"></asp:ListItem>
@@ -130,20 +130,20 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Indent: "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtIndent" runat="server" CssClass="txtBox" Width="102px"></asp:TextBox></td>
+                                <asp:TextBox ID="txtIndent" runat="server" CssClass="txtBox" Width="150px"></asp:TextBox></td>
 
                             <td style="text-align: right;">
                                 <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="PO: "></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtPO" runat="server" CssClass="txtBox" Width="100px"></asp:TextBox></td>
+                                <asp:TextBox ID="txtPO" runat="server" CssClass="txtBox" Width="150px"></asp:TextBox></td>
 
                             <td style="text-align: right;">
                                 <asp:Label ID="Label5" CssClass="lbl" runat="server" Text="MRR: " ></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtMrr" runat="server" CssClass="txtBox"  Width="100px"></asp:TextBox></td>
+                                <asp:TextBox ID="txtMrr" runat="server" CssClass="txtBox"  Width="160px"></asp:TextBox></td>
                             <td style="text-align: right">
                             <td style="text-align: left">
-                                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" />
+                                <asp:Button ID="btnSearch" runat="server" forecolor="blue" Text="Search"  OnClick="btnSearch_Click" />
                             </td>
 
                         </tr>
@@ -152,7 +152,7 @@
                     <table>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
                             <td style="text-align: right;">
@@ -184,7 +184,7 @@
                             </td>
                             <td style="text-align: right">
                             <td style="text-align: left">
-                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" OnClientClick="return Confirm()" />
+                                <asp:Button ID="btnShow" runat="server" Text="Show" forecolor="blue"  OnClick="btnShow_Click" OnClientClick="return Confirm()" />
                             </td>
                         </tr>
                     </table>

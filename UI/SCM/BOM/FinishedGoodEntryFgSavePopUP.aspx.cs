@@ -22,7 +22,7 @@ namespace UI.SCM.BOM
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
         private string filePathForXML; private string xmlString = "";
         decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore;
-        private string productionID, itemId, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
+        private string productionID,  productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -49,15 +49,21 @@ namespace UI.SCM.BOM
                 srNo = Request.QueryString["srNo"].ToString();
                 quantity = Request.QueryString["quantity"].ToString();
                 whid = Request.QueryString["whid"].ToString();
-                itemId = Request.QueryString["itemId"].ToString();
-                lblProductName.Text = productName;
+                dt = objBom.GetItemNameByProductionId(Convert.ToInt32(productionID));
+                if (dt.Rows.Count>0)
+                {
+                    productName = dt.Rows[0]["strItemName"].ToString();
+                }
+                lblItemName.Text = productName;
+                lblItemId.Text = Request.QueryString["itemId"].ToString();
+                
                 lblProductionId.Text = productionID;
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
                 txtTime.Text = startTime.ToString("HH:ss");
                 txtProductQty.Text = quantity.ToString();
                 lblPlanQty.Text = quantity.ToString();
 
-                txtItem.Text = productName + "[" + itemId + "]";
+                txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
                 dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(productionID));
                 if (dt.Rows.Count > 0)
@@ -65,7 +71,11 @@ namespace UI.SCM.BOM
                     //txtItem.Text = dt.Rows[0]["strName"].ToString();
                     lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
                     txtActualQty.Text = dt.Rows[0]["numActualQty"].ToString();
-                    txtActualQty.Enabled = false;
+                    if (string.IsNullOrWhiteSpace(txtActualQty.Text))
+                    {
+                        txtActualQty.Text = lblPlanQty.Text;
+                    }
+                    //txtActualQty.Enabled = false;
 
                     Session["TotalStoreQuantity"] = dt.Rows[0]["totalSentToStore"].ToString();
 
@@ -114,16 +124,16 @@ namespace UI.SCM.BOM
 
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
-                string item = "";
-                string itemid = "";
+                string item = lblItemName.Text;
+                string itemid = lblItemId.Text;
                 string uom = "";
                 bool proceed = false;
-                if (arrayKey.Length > 0)
-                {
-                    item = arrayKey[0].ToString();
-                    uom = arrayKey[1].ToString();
-                    itemid = arrayKey[3].ToString();
-                }
+                //if (arrayKey.Length > 0)
+                //{
+                //    item = arrayKey[0].ToString();
+                //    uom = arrayKey[1].ToString();
+                //    itemid = arrayKey[3].ToString();
+                //}
 
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
