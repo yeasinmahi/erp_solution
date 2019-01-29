@@ -35,14 +35,14 @@
             var actualQuantity = document.getElementById("txtActualQty").value;
             var qcQuantity = document.getElementById("txtQc").value;
             var storeQuantity = document.getElementById("txtSendToStore").value;
-            
+
             if (actualQuantity == null || actualQuantity == '' || actualQuantity == '0') {
                 ShowNotification('Actual Quantity should be greater than 0.', 'Production Transfer', 'warning');
                 return false;
             } else if (qcQuantity == null || qcQuantity == '') {
                 ShowNotification('QC hold can not be blank', 'Production Transfer', 'warning');
                 return false;
-            }else if (storeQuantity == null || storeQuantity == '' || storeQuantity=="0") {
+            } else if (storeQuantity == null || storeQuantity == '' || storeQuantity == "0") {
                 ShowNotification('Send to Store Quantity can not be blank or 0', 'Production Transfer', 'warning');
                 return false;
             } else if (parseFloat(qcQuantity) > parseFloat(actualQuantity)) {
@@ -96,6 +96,10 @@
             padding: 15px;
             overflow-y: scroll;
         }
+
+        .auto-style1 {
+            height: 23px;
+        }
     </style>
 </head>
 
@@ -129,8 +133,12 @@
                     </div>
                     <table style="width: 750px">
                         <tr>
-                            <td style="text-align: left">Product Name:
-           <asp:Label ID="lblProductName" runat="server"></asp:Label></td>
+                            <td style="text-align: left" class="auto-style1">Item Name:
+                                <asp:Label ID="lblItemName" ForeColor="blue" runat="server"></asp:Label>
+                            </td>
+                            <td style="text-align: left" class="auto-style1">Item ID:
+                                <asp:Label ID="lblItemId" runat="server"></asp:Label>
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: left">Production ID:
@@ -157,7 +165,7 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Font-Bold="true" Text="Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off" ></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="claenderDte" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </td>
 
@@ -188,7 +196,7 @@
                                 <asp:Label ID="Label4" Font-Bold="true" runat="server" Text="Actual Qty"></asp:Label>:</td>
 
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtActualQty" Width="90px" CssClass="txtBox" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtActualQty" Width="90px" CssClass="txtBox" ForeColor="red" runat="server"></asp:TextBox></td>
 
 
 
@@ -214,7 +222,7 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Expire Date :"></asp:Label></td>
                             <td style="text-align: left" colspan="3">
-                                <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off" ></asp:TextBox>
+                                <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtenderExp" runat="server" Format="yyyy-MM-dd" TargetControlID="txtExpDate"></cc1:CalendarExtender>
                             </td>
                         </tr>

@@ -9,7 +9,7 @@ using SCM_DAL.TransferTDSTableAdapters;
 using SCM_DAL;
 using SCM_DAL.BomTDSTableAdapters;
 using SCM_DAL.WestageTDSRPTTableAdapters;
-
+using tblItemListTableAdapter = SCM_DAL.TransferTDSTableAdapters.tblItemListTableAdapter;
 
 namespace SCM_BLL
 {   
@@ -241,8 +241,8 @@ namespace SCM_BLL
             
             int shipid = 16;
             tableIteminv = new TransferTDS.tblItemListDataTable[Convert.ToInt32(shipid)];
-            tblItemListTableAdapter Itemlist = new tblItemListTableAdapter();
-            tableIteminv[e] = Itemlist.GetInvItemList(unitid);
+            tblItemListTableAdapter itemlist = new tblItemListTableAdapter();
+            tableIteminv[e] = itemlist.GetInvItemList(unitid);
 
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
@@ -253,7 +253,7 @@ namespace SCM_BLL
                     var rows = from tmp in tableIteminv[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.stritemname
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }

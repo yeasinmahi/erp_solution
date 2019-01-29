@@ -41,6 +41,18 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
+        public DataTable GetItemNameByProductionId(int productionId)
+        {
+            try
+            {
+                tblItemListTableAdapter adp = new tblItemListTableAdapter();
+                return adp.GetItemNameByProductionId(productionId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
 
         public DataTable UpdateRequsitionByReqId(decimal numQuantity, int reqId, int itemId)
         {
