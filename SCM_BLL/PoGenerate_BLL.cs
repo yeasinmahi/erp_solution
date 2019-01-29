@@ -409,10 +409,10 @@ namespace SCM_BLL
         public DataTable POCurrection(int intPart, int intPOID, DateTime dtePODate, int intCurrencyID, decimal monFreight, decimal monPacking, decimal monDiscount, int intShipment, string strDeliveryAddress, int ysnPartialShip,
         string strPayTerm, int intCreditDays, int intInstallmentNo, int intInstallmentInterval, int intWarrantyMonth, string strOtherTerms, DateTime dteLastShipmentDate, int intUpdateBy, int supplierId)
         {
-            sprPOTableAdapter adp = new sprPOTableAdapter();
+            sprPOUPdateDeleteTableAdapter adp = new sprPOUPdateDeleteTableAdapter();
             try
             {
-                return adp.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
+                return adp.POdeleteUpdate(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
                 strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy, supplierId);
             }
             catch (Exception ex)

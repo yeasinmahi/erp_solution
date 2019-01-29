@@ -266,6 +266,14 @@
                         <tr>
                             <td style="padding: 15px 0px 0px 5px;" colspan="4"></td>
                         </tr>
+                        <tr>
+                            <td style="padding: 15px 0px 0px 5px; text-align: right;" >
+                                Address:
+                            </td>
+                            <td style="padding: 15px 0px 0px 5px;" colspan="3">
+                                <asp:Label ID="lblSupplierAddress" CssClass="lbl" runat="server"></asp:Label>
+                            </td>
+                        </tr>
 
                         <tr>
                             <td class="tdheight" style="text-align: right;">

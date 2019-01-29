@@ -103,7 +103,9 @@ namespace UI.SCM
                 HttpContext.Current.Session["Unitid"] = dt.Rows[0]["intUnitID"].ToString();
                 txtPOType.Text = dt.Rows[0]["strPoFor"].ToString();
                 PoType = dt.Rows[0]["strPoFor"].ToString();
-                ddlSupplier.SelectedValue = dt.Rows[0]["intSupplierID"].ToString();
+                lblSupplierAddress.Text = dt.Rows[0]["strOrgAddress"].ToString();
+                //ddlSupplier.SelectedValue = dt.Rows[0]["intSupplierID"].ToString();
+                Common.SetDdlSelectedValue(ddlSupplier, dt.Rows[0]["intSupplierID"].ToString());
                 txtWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
             }
             else
@@ -418,8 +420,11 @@ namespace UI.SCM
             {
                 try
                 {
+                    if (!CheckTextBox(txtPONo, "PO", out intPOID))
+                    {
+                        return;
+                    }
                     intPart = 2;
-
                     dt = obj.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking,
                         monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
                         strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth,

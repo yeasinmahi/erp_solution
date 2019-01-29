@@ -111,6 +111,15 @@ namespace Utility
             }
             return 0;
         }
+        public static bool SetDdlSelectedValue(DropDownList ddl, string value)
+        {
+            if (ddl.Items.FindByValue(value) != null)
+            {
+                ddl.SelectedValue = value;
+                return true;
+            }
+            return false;
+        }
 
         public static string GetDdlSelectedText(DropDownList ddl)
         {
@@ -172,7 +181,7 @@ namespace Utility
         public static List<Control> GetContolList()
         {
             List<Control> controls = new List<Control>();
-            
+
             return controls;
         }
         public static void Clear(ControlCollection controls)
