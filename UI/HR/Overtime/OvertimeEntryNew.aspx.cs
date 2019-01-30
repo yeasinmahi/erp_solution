@@ -301,6 +301,10 @@ namespace UI.HR.Overtime
             DateTime today = DateTime.Now;
             DateTime month = new DateTime(today.Year, today.Month, 1);
             DateTime fromDate = month.AddMonths(-1);
+            if (today.Day > 7)
+            {
+                fromDate = month;
+            }
             DateTime toDate = month.AddMonths(1).AddDays(-1);
             GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
