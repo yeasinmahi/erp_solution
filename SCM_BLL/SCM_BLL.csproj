@@ -70,6 +70,7 @@
     <Compile Include="InventoryTransfer_BLL.cs" />
     <Compile Include="Location_BLL.cs" />
     <Compile Include="MasterMaterialBLL.cs" />
+    <Compile Include="MrrCorrection.cs" />
     <Compile Include="MrrReceive_BLL.cs" />
     <Compile Include="Payment_All_Voucher_BLL.cs" />
     <Compile Include="PoGenerate_BLL.cs" />

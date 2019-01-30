@@ -184,18 +184,27 @@ namespace Utility
 
             return controls;
         }
-        public static void Clear(ControlCollection controls)
+        public static void Clear(ControlCollection controls,List<Control> exceptControls)
         {
             
             foreach (Control ctrl in controls)
             {
+                if (exceptControls!=null)
+                {
+                    if (exceptControls.Contains(ctrl))
+                    {
+                        continue;
+                    }
+                }
+                
+
                 if (ctrl is TextBox)
                 {
                     ((TextBox)ctrl).Text = string.Empty;
                 }
                 else if (ctrl is DropDownList)
                 {
-                    ((DropDownList)ctrl).SelectedIndex = 0;
+                    SetDdlSelectedValue(((DropDownList)ctrl), "0");
                 }
                 else if (ctrl is CheckBoxList)
                 {
@@ -208,6 +217,10 @@ namespace Utility
                 else if (ctrl is RadioButtonList)
                 {
                     ((RadioButtonList)ctrl).SelectedIndex = 0;
+                }
+                else
+                {
+                    Clear(ctrl.Controls,exceptControls);
                 }
             }
         }

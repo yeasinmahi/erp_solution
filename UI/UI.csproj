@@ -309,6 +309,7 @@
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
     <Content Include="Content\CSS\morris.css" />
@@ -1460,6 +1461,7 @@
     <Content Include="SCM\Item_View.aspx" />
     <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
+    <Content Include="SCM\MrrCorrection.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -7734,6 +7736,13 @@
     </Compile>
     <Compile Include="SCM\MaterialApprovalStatus.aspx.designer.cs">
       <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MrrCorrection.aspx.cs">
+      <DependentUpon>MrrCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MrrCorrection.aspx.designer.cs">
+      <DependentUpon>MrrCorrection.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>

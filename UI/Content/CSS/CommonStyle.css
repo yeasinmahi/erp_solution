@@ -1,0 +1,15 @@
+﻿table {
+    max-width: 100%;
+    background-color: transparent;
+    text-align: center;
+}
+th {
+    text-align: center;
+}
+
+tr {
+    font-size: 14px;
+}
+td, th {
+    padding: 4;
+}

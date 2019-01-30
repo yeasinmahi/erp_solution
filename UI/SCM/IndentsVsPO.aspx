@@ -159,9 +159,9 @@
                                     <asp:ListItem Value="2" Text="All"></asp:ListItem>
                                 </asp:DropDownList></td>
 
-                            <td style="text-align: right" colspan="2">
+                            <td style="text-align: right" colspan="1">
                             <td style="text-align: left">
-                                <asp:Button ID="btnStatement" runat="server" Text="Show" OnClientClick="return ShowButtonValidation();" OnClick="btnStatement_Click" />
+                                <asp:Button ID="btnStatement" runat="server" Text="Show" forecolor="Blue" width="70px" OnClientClick="return ShowButtonValidation();" OnClick="btnStatement_Click" />
                             </td>
                         </tr>
                     </table>
@@ -174,7 +174,7 @@
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
-                                            <ItemStyle HorizontalAlign="center" Width="40px" />
+                                            <ItemStyle HorizontalAlign="center" Width="30px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
@@ -182,14 +182,14 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblIndent" runat="server" Text='<%# Bind("indent") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" Width="60px" />
+                                            <ItemStyle HorizontalAlign="center"  />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Indent Date" ItemStyle-HorizontalAlign="right" SortExpression="stindDaterName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lbldteIndent" runat="server" Text='<%# Bind("indDate","{0:dd-MM-yyyy}") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" Width="60px"/>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
@@ -238,7 +238,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPendingQty" runat="server" Text='<%# Bind("numRemainQty","{0:n2}" ) %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO Prepared By" ItemStyle-HorizontalAlign="right" SortExpression="strPoUser">
@@ -247,6 +247,16 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
+
+                                             <asp:TemplateField HeaderText="PO ID" ItemStyle-HorizontalAlign="right" SortExpression="strPoUser">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbl" runat="server" Text='<%# Bind("intPOID" ) %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="center" />
+                                        </asp:TemplateField>
+
+
+
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
