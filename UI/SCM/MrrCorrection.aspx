@@ -24,12 +24,7 @@
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========== Start Code =====================================================================--%>
-                <asp:HiddenField ID="hdnconfirm" runat="server" />
-                <asp:HiddenField ID="hdnWHID" runat="server" />
-                <asp:HiddenField ID="hdnMrrUnitID" runat="server" />
                 <div class="container">
-                    <asp:HiddenField runat="server" ID="hdnSearch" />
-                    <asp:HiddenField runat="server" ID="hdnEmployeeName" />
                     <div class="panel panel-info">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="MRR Correction" Font-Bold="true" Font-Size="16px"></asp:Label>
@@ -83,39 +78,41 @@
                     </div>
 
                     <div class="panel panel-info hidden" id="itemPanel">
-                        <div class="panel-heading">
+                        <%--<div class="panel-heading">
                             <asp:Label runat="server" Text="MRR Details" Font-Bold="true" Font-Size="16px"></asp:Label>
-                        </div>
+                        </div>--%>
                         <div class="panel-body">
-                            <asp:GridView ID="dgvItem" runat="server" AutoGenerateColumns="False" AllowPaging="true" PageSize="8"
-                                CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr">
-                                <AlternatingRowStyle BackColor="#CCCCCC" />
+                            <asp:GridView ID="dgvItem" runat="server" AutoGenerateColumns="False" Width="100%" AllowPaging="True" PageSize="8"
+                                CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" CellPadding="4" ForeColor="#333333" GridLines="Both">
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL." ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" Width="10px" />
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="ItemName" HeaderText="Item Name" ItemStyle-HorizontalAlign="Center" SortExpression="strItemName" HeaderStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Left" Width="350px" />
+                                    <asp:BoundField DataField="ItemName" HeaderText="Item Name">
+                                        <ItemStyle HorizontalAlign="Left" />
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="strUoM" HeaderText="UOM" ItemStyle-HorizontalAlign="Center" SortExpression="strUOM">
-                                        <ItemStyle HorizontalAlign="Left" Width="80px" />
-                                        <HeaderStyle HorizontalAlign="Center" />
+                                    <asp:BoundField DataField="strUoM" HeaderText="UOM" >
+                                        <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="POQty" HeaderText="PO Quantity" ItemStyle-HorizontalAlign="Center" SortExpression="POQty" HeaderStyle-HorizontalAlign="Center">
-                                        <ItemStyle HorizontalAlign="Left" Width="100px" />
+                                    <asp:BoundField DataField="POQty" HeaderText="PO Quantity" >
+                                        <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="POValue" HeaderText="PO Value" ItemStyle-HorizontalAlign="Center" SortExpression="POValue">
-                                        <ItemStyle HorizontalAlign="Left" Width="130px" />
+                                    <asp:BoundField DataField="POValue" HeaderText="PO Value" >
+                                        <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
                                 </Columns>
-                                <FooterStyle BackColor="#CCCCCC" />
-                                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
-                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                                <SortedAscendingHeaderStyle BackColor="#808080" />
-                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                                <SortedDescendingHeaderStyle BackColor="#383838" />
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </div>
 
@@ -125,13 +122,13 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <asp:Button ID="btnDeleteJv" runat="server" class="btn btn-primary form-control pull-left" Text="Delete JV" OnClick="btnDeleteJV_Click" />
+                                    <asp:Button ID="btnDeleteJv" runat="server" class="btn btn-primary form-control pull-left" Text="Delete JV" OnClientClick="return confirmMsg();" OnClick="btnDeleteJV_Click" />
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                                    <asp:Button ID="btnFreeMrr" runat="server" class="btn btn-primary form-control" Text="Free MRR" OnClick="btnFreeMRR_Click" />
+                                    <asp:Button ID="btnFreeMrr" runat="server" class="btn btn-primary form-control" Text="Free MRR" OnClientClick="return confirmMsg();" OnClick="btnFreeMRR_Click" />
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <asp:Button ID="btnDeleteMrr" runat="server" class="btn btn-primary form-control pull-right" Text="Delete MRR" OnClick="btnDeleteMRR_Click" />
+                                    <asp:Button ID="btnDeleteMrr" runat="server" class="btn btn-primary form-control pull-right" Text="Delete MRR" OnClientClick="return confirmMsg();" OnClick="btnDeleteMRR_Click" />
                                 </div>
                             </div>
                         </div>
@@ -143,8 +140,8 @@
         </asp:UpdatePanel>
     </form>
     <script>
-        function showPanel() {
-            var itemPanel = document.getElementById("divItemInfo");
+        function showPanel(id) {
+            var itemPanel = document.getElementById(id);
             itemPanel.classList.remove("hidden");
             return true;
         }

@@ -83,7 +83,6 @@ function confirmMsg() {
 
 function showDiv(id) {
     var element = document.getElementById(id);
-    debugger;
     element.classList.remove("hidden");
     return true;
 }

@@ -309,6 +309,7 @@
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
     <Content Include="Content\CSS\morris.css" />

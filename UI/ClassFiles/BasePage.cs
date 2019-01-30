@@ -100,11 +100,11 @@ namespace UI.ClassFiles
         {
             if (isVisible)
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "showDiv(" + id + ");", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "showDiv('" + id + "');", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "hideDiv(" + id + ");", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "hideDiv('" + id + "');", true);
             }
             
         }
