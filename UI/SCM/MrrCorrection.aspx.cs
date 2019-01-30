@@ -14,13 +14,10 @@ namespace UI.SCM
     {
         MrrCorrectionBll obj = new MrrCorrectionBll();
         DataTable dt;
-        int intPart, intMRRID;
+        int intMRRID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-            hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-
             if (!IsPostBack)
             {
             }
@@ -37,7 +34,7 @@ namespace UI.SCM
         {
             if (hdnconfirm.Value == "1")
             {
-                if (txtPaymentStatus.Text == "Voucher Complete")
+                if (txtStatus.Text == "Voucher Complete")
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Voucher completed. MRR cannot be Deleted.');", true); return;
                 }
@@ -49,10 +46,9 @@ namespace UI.SCM
                 {
                     try
                     {
-                        intPart = 1;
-                        intMRRID = int.Parse(txtMRRNo.Text);
+                        intMRRID = int.Parse(txtMrrNo.Text);
                         dt = new DataTable();
-                        dt = obj.CorrectionMrr(intPart, intMRRID);
+                        dt = obj.CorrectionMrr(1, intMRRID);
                         if (dt.Rows.Count > 0)
                         {
                             string msg = dt.Rows[0]["msg"].ToString();
@@ -70,10 +66,9 @@ namespace UI.SCM
             {
                 try
                 {
-                    intPart = 5;
-                    intMRRID = int.Parse(txtMRRNo.Text);
+                    intMRRID = int.Parse(txtMrrNo.Text);
                     dt = new DataTable();
-                    dt = obj.CorrectionMrr(intPart, intMRRID);
+                    dt = obj.CorrectionMrr(5, intMRRID);
                     if (dt.Rows.Count > 0)
                     {
                         string msg = dt.Rows[0]["msg"].ToString();
@@ -91,10 +86,9 @@ namespace UI.SCM
             {
                 try
                 {
-                    intPart = 4;
-                    intMRRID = int.Parse(txtMRRNo.Text);
+                    intMRRID = int.Parse(txtMrrNo.Text);
                     dt = new DataTable();
-                    dt = obj.CorrectionMrr(intPart, intMRRID);
+                    dt = obj.CorrectionMrr(4, intMRRID);
                     if (dt.Rows.Count > 0)
                     {
                         string msg = dt.Rows[0]["msg"].ToString();
@@ -110,29 +104,26 @@ namespace UI.SCM
         {
             try
             {
-                intPart = 2;
-                intMRRID = int.Parse(txtMRRNo.Text);
+                intMRRID = int.Parse(txtMrrNo.Text);
                 dt = new DataTable();
-                dt = obj.CorrectionMrr(intPart, intMRRID);
+                dt = obj.CorrectionMrr(2, intMRRID);
                 if (dt.Rows.Count > 0)
                 {
-                    txtMRRDate.Text = dt.Rows[0]["dteTransactionDate"].ToString();
+                    txtMrrDate.Text = dt.Rows[0]["dteTransactionDate"].ToString();
                     txtVoucherNo.Text = dt.Rows[0]["strVoucherCode"].ToString();
-                    txtPO.Text = dt.Rows[0]["intPOID"].ToString();
+                    txtPo.Text = dt.Rows[0]["intPOID"].ToString();
                     hdnMrrUnitID.Value = dt.Rows[0]["intUnitID"].ToString();
-                    txtWHName.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                    txtWhName.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     hdnWHID.Value = dt.Rows[0]["intWHID"].ToString();
                 }
-                intPart = 3;
                 dt = new DataTable();
-                dt = obj.CorrectionMrr(intPart, intMRRID);
+                dt = obj.CorrectionMrr(3, intMRRID);
                 if (dt.Rows.Count > 0)
                 {
-                    txtPaymentStatus.Text = dt.Rows[0]["strStatus"].ToString();
+                    txtStatus.Text = dt.Rows[0]["strStatus"].ToString();
                 }
-                intPart = 6;
                 dt = new DataTable();
-                dt = obj.CorrectionMrr(intPart, intMRRID);
+                dt = obj.CorrectionMrr(6, intMRRID);
                 if (dt.Rows.Count > 0)
                 {
                     txtSupplierName.Text = dt.Rows[0]["strSupplierName"].ToString();
@@ -148,14 +139,14 @@ namespace UI.SCM
         {
             try
             {
-                intPart = 7;
-                intMRRID = int.Parse(txtMRRNo.Text);
+                intMRRID = int.Parse(txtMrrNo.Text);
                 dt = new DataTable();
-                dt = obj.CorrectionMrr(intPart, intMRRID);
+                dt = obj.CorrectionMrr(7, intMRRID);
                 dgvItem.DataSource = dt; dgvItem.DataBind();
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+                //SetVisibility("itemPanel", true);
             }
             catch { }
         }
-
     }
 }

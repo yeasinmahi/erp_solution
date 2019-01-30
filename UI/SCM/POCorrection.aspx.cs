@@ -605,7 +605,7 @@ namespace UI.SCM
         {
             _dt = _bll.GetSupplierAddress(Common.GetDdlSelectedValue(ddlSupplier));
             lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
-            LoadItemGridview();
+            //LoadItemGridview(); it can not 
         }
     }
 }

@@ -80,3 +80,16 @@ function convertDatetoString(date) {
 function confirmMsg() {
     return confirm("Do you want to proceed?");
 }
+
+function showDiv(id) {
+    var element = document.getElementById(id);
+    debugger;
+    element.classList.remove("hidden");
+    return true;
+}
+function hideDiv(id) {
+    var element = document.getElementById(id);
+    element.classList.add("hidden");
+    return true;
+}
+
