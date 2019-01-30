@@ -36,26 +36,30 @@ namespace UI.SCM
 
             if (txtStatus.Text == "Voucher Complete")
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Voucher completed. MRR cannot be Deleted.');", true); return;
+                Toaster("Voucher completed. MRR cannot be Deleted.", Common.TosterType.Warning);
+                return;
             }
-            else if (txtVoucherNo.Text != "")
+            else if (!string.IsNullOrWhiteSpace(txtVoucherNo.Text))
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Delete JV Voucher.');", true); return;
+                Toaster("Please Delete JV Voucher.", Common.TosterType.Warning);
+                return;
             }
             else
             {
                 try
                 {
                     intMRRID = int.Parse(txtMrrNo.Text);
-                    dt = new DataTable();
+                    
                     dt = obj.CorrectionMrr(1, intMRRID);
                     if (dt.Rows.Count > 0)
                     {
                         string msg = dt.Rows[0]["msg"].ToString();
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        Toaster(msg, msg.ToLower().Contains("success")? Common.TosterType.Success:Common.TosterType.Error);
                     }
                 }
-                catch { }
+                catch(Exception ex) {
+                    Toaster(ex.Message, Common.TosterType.Error);
+                }
             }
 
         }
@@ -64,17 +68,23 @@ namespace UI.SCM
 
             try
             {
-                intMRRID = int.Parse(txtMrrNo.Text);
-                dt = new DataTable();
+                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out intMRRID, out string message))
+                {
+                    Toaster(message, Common.TosterType.Warning);
+                    return;
+                }
                 dt = obj.CorrectionMrr(5, intMRRID);
                 if (dt.Rows.Count > 0)
                 {
                     string msg = dt.Rows[0]["msg"].ToString();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    Toaster(msg, msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 }
                 ShowInfo();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
 
         }
         protected void btnDeleteJV_Click(object sender, EventArgs e)
@@ -82,17 +92,23 @@ namespace UI.SCM
 
             try
             {
-                intMRRID = int.Parse(txtMrrNo.Text);
-                dt = new DataTable();
+                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out intMRRID, out string message))
+                {
+                    Toaster(message, Common.TosterType.Warning);
+                    return;
+                }
                 dt = obj.CorrectionMrr(4, intMRRID);
                 if (dt.Rows.Count > 0)
                 {
                     string msg = dt.Rows[0]["msg"].ToString();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    Toaster(msg, msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 }
                 ShowInfo();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
 
         }
         private void ShowInfo()
@@ -152,7 +168,6 @@ namespace UI.SCM
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
-                dt = new DataTable();
                 dt = obj.CorrectionMrr(7, intMRRID);
                 if (dt.Rows.Count>0)
                 {

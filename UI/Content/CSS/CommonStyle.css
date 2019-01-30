@@ -3,13 +3,29 @@
     background-color: transparent;
     text-align: center;
 }
+
 th {
     text-align: center;
 }
 
 tr {
     font-size: 14px;
+    transition: transform .2s;
 }
+
 td, th {
     padding: 4;
+}
+
+.Grid {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.Grid tr:hover {
+    background-color: #ccc;
+    transform: translate(1px,1px);
+    transform: scale(.99);
 }

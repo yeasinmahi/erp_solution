@@ -82,9 +82,9 @@
                             <asp:Label runat="server" Text="MRR Details" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>--%>
                         <div class="panel-body">
-                            <asp:GridView ID="dgvItem" runat="server" AutoGenerateColumns="False" Width="100%" AllowPaging="True" PageSize="8"
-                                CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" CellPadding="4" ForeColor="#333333" GridLines="Both">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                            <asp:GridView ID="dgvItem" runat="server" AutoGenerateColumns="False" Width="100%" RowStyle-CssClass="GridRow" 
+                                CssClass="Grid" AlternatingRowStyle-CssClass="alt" CellPadding="4" ForeColor="#333333" GridLines="Both">
+                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" CssClass="GridRow" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL." ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
