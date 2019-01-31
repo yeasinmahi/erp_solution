@@ -40,7 +40,7 @@
 
 <frameset border="0" frameborder="no" framespacing="0" name="Akij" rows="50,*,15">
     <frame id="banner" marginheight="0" marginwidth="0" name="banner" noresize="noresize" scrolling="no" src="Banner.aspx"></frame>    
-    <frameset border="0" frameborder="no" framespacing="0" name="AkijMain" cols="200,15,*">
+    <frameset border="0" frameborder="no" framespacing="0" name="AkijMain" id="AkijMain" cols="200,15,*">
         <frame id="left" marginheight="0" marginwidth="0" name="left" noresize="noresize" scrolling="no" src="Left.aspx"></frame>                    
         <frame id="slide" marginheight="0" marginwidth="0" name="slide" noresize="noresize" scrolling="no" src="Slide.aspx"></frame>                    
         <frame id="filter" marginheight="0" marginwidth="0" name="filter" noresize="noresize" scrolling="yes" src="Personal/Default.aspx"></frame>        
