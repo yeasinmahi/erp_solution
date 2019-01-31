@@ -181,6 +181,7 @@ namespace UI.SCM
                             else
                             {
                                 btnDeletePO.Visible = true;
+                                btnUpdatePO.Visible = true;
                                 // show
                             }
                         }
@@ -245,7 +246,7 @@ namespace UI.SCM
                     //PO Correction cannot be possible after approve
                     if (string.IsNullOrEmpty(ysnApprove) || string.IsNullOrEmpty(intSingleApproveBy))
                     {
-                        update();
+                        Update();
                     }
                     else if (!string.IsNullOrEmpty(ysnApprove) || !string.IsNullOrEmpty(intSingleApproveBy))
                     {
@@ -253,24 +254,28 @@ namespace UI.SCM
                         _dt = _bll.GetApprovalAuthorityList(Enroll, strPo);
                         if (_dt.Rows.Count > 0)
                         {
-                            string POType = _dt.Rows[0]["strPOType"].ToString();
-                            int ApprovedBy = Convert.ToInt32(_dt.Rows[0]["intEnrollment"].ToString());
-                            if (Enroll == ApprovedBy && strPo == POType)
+                            string poType = _dt.Rows[0]["strPOType"].ToString();
+                            int approvedBy = Convert.ToInt32(_dt.Rows[0]["intEnrollment"].ToString());
+                            if (Enroll == approvedBy && strPo == poType)
                             {
-                                update();
+                                Update();
                             }
                             else
                             {
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO cannot update.PO already approved');", true);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                    "alert('PO cannot update.PO already approved');", true);
                             }
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message,Common.TosterType.Error);
+                }
             }
         }
 
-        private void update()
+        private void Update()
         {
             if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {

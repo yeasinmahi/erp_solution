@@ -23,34 +23,68 @@
 
 
     <script type="text/javascript">  
-        function Confirms() {
-            var r = document.getElementById('txtRemarsk')
-            var e = document.getElementById("ddlTransferItem");
-            var transferID = e.options[e.selectedIndex].value;
-            var e = document.getElementById("ddlLcation");
-            var locationId = e.options[e.selectedIndex].value;
+        function Validation() {
 
+            var e = document.getElementById("ddlWh");
+            var whId = e.options[e.selectedIndex].value;
+            e = document.getElementById("ddlTransferItem");
+            var transferId = e.options[e.selectedIndex].value;
+            e = document.getElementById("ddlLcation");
+            var locationId = e.options[e.selectedIndex].value;
             var inItem = document.getElementById("txtItem").value;
             var remarks = document.getElementById("txtRemarsk").value;
             var quantity = parseFloat(document.getElementById("txtQty").value);
             var inQty = parseFloat(document.getElementById("hdnInQty").value);
 
-            if ($.trim(transferID) == 0 || $.trim(transferID) == "" || $.trim(transferID) == null || $.trim(transferID) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Transfer In Item'); }
-            else if ($.trim(locationId) == 0 || $.trim(locationId) == "" || $.trim(locationId) == null || $.trim(locationId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Sotre Location'); }
-            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
-            else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please Input Remarks'); }
-            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-            else if (parseFloat(inQty) > parseFloat(quantity)) { document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Transfer In Quantity'); }
-            else {
-                var confirm_value = document.createElement("INPUT");
-                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnPreConfirm").value = "1"; }
-                else { confirm_value.value = "No"; document.getElementById("hdnPreConfirm").value = "0"; }
-
-                // document.getElementById("hdnPreConfirm").value = "1";
+            if ($.trim(whId) == 0 ||
+                $.trim(whId) == "" ||
+                $.trim(whId) == null ||
+                $.trim(whId) == undefined) {
+                ShowNotification('Please select Warehouse','Inventory Transfer IN','warning');
+                return false;
             }
-
-
+            else if ($.trim(transferId) == 0 ||
+                $.trim(transferId) == "" ||
+                $.trim(transferId) == null ||
+                $.trim(transferId) == undefined) {
+                ShowNotification('Please select Transfer In Item','Inventory Transfer IN','warning');
+                return false;
+            }
+            else if ($.trim(locationId) == 0 ||
+                $.trim(locationId) == "" ||
+                $.trim(locationId) == null ||
+                $.trim(locationId) == undefined) {
+                ShowNotification('Please select Sotre Location','Inventory Transfer IN','warning');
+                return false;
+            }
+            else if ($.trim(inItem) == 0 ||
+                $.trim(inItem) == "" ||
+                $.trim(inItem) == null ||
+                $.trim(inItem) == undefined) {
+                ShowNotification('Please select In Item','Inventory Transfer IN','warning');
+                return false;
+            }
+            else if ($.trim(remarks) == 0 ||
+                $.trim(remarks) == "" ||
+                $.trim(remarks) == null ||
+                $.trim(remarks) == undefined) {
+                ShowNotification('Please Input Remark','Inventory Transfer IN','warning');
+                return false;
+            }
+            else if ($.trim(quantity) == 0 ||
+                $.trim(quantity) == "" ||
+                $.trim(quantity) == null ||
+                $.trim(quantity) == undefined) {
+                ShowNotification('Please input Quantity','Inventory Transfer IN','warning');
+                return false;
+            }
+            else if (parseFloat(inQty) > parseFloat(quantity)) {
+                ShowNotification('Input Quantity greater then Transfer In Quantity','Inventory Transfer IN','warning');
+                return false;
+            }
+            else {
+                return confirm("Do you want to proceed?");
+            }
         }
     </script>
 </head>
@@ -72,7 +106,6 @@
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="leaveApplication_container">
-                    <asp:HiddenField ID="hdnEnroll" runat="server" />
                     <asp:HiddenField ID="hdnPreConfirm" runat="server" />
                     <asp:HiddenField ID="hdnTransfromValue" runat="server" />
                     <asp:HiddenField ID="hdnInQty" runat="server" />
@@ -124,16 +157,15 @@
                         <tr>
                             <td>
                                 <asp:Label ID="lblRemarks" Text="Remarks:" runat="server"></asp:Label></td>
-                            <td >
-                                <asp:TextBox ID="txtRemarsk" CssClass="txtBox" Width="400px" runat="server"></asp:TextBox>
-                               
-                                </td>
                             <td>
-                                 Qty:
+                                <asp:TextBox ID="txtRemarsk" CssClass="txtBox" Width="400px" runat="server"></asp:TextBox>
+
+                            </td>
+                            <td>Qty:
                             </td>
                             <td>
                                 <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox" Width="100px" TextMode="Number"></asp:TextBox>
-                                <asp:Button ID="btnSaveIn" runat="server" style="float: right" OnClientClick="Confirms();" ForeColor="Blue" Text="Transfer IN" AutoPostBack="false" OnClick="btnSaveIn_Click" />
+                                <asp:Button ID="btnSaveIn" runat="server" Style="float: right" OnClientClick="return Validation();" ForeColor="Blue" Text="Transfer IN"  OnClick="btnSaveIn_Click" />
                             </td>
                         </tr>
 
