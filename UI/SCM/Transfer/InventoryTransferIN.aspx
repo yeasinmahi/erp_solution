@@ -106,7 +106,6 @@
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="leaveApplication_container">
-                    <asp:HiddenField ID="hdnPreConfirm" runat="server" />
                     <asp:HiddenField ID="hdnTransfromValue" runat="server" />
                     <asp:HiddenField ID="hdnInQty" runat="server" />
                     <div class="tabs_container">
