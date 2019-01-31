@@ -1519,6 +1519,7 @@
     <Content Include="Support\CertificateReceiveDeliveryReport.aspx" />
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
+    <Content Include="Transport\AccidentRegisterEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
     <Content Include="Transport\InternalTDriverLedgerBalance.aspx" />
     <Content Include="Transport\InternalTForTransportDept.aspx" />
@@ -8198,6 +8199,13 @@
     </Compile>
     <Compile Include="CreativeSupportModule\HomeT.aspx.designer.cs">
       <DependentUpon>HomeT.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\AccidentRegisterEntry.aspx.cs">
+      <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
+      <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\InternalTDocPathList.aspx.cs">
       <DependentUpon>InternalTDocPathList.aspx</DependentUpon>
