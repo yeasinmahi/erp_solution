@@ -5,12 +5,82 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SAD_DAL.Transport;
 
 namespace SAD_BLL.Transport
 {
     public class InternalTransportBLL
     {
-       public DataTable GetUnitListForTransport(int Enroll) 
+        private static SAD_DAL.Transport.InternalTransportTDS.TblFixedAssetRegisterDataTable[] tableVehicle = null;
+        int e; //SAD_DAL.Transport.TblFixedAssetRegisterTableAdapter
+
+        public string[] AutoSearchVehicleAsset(string intUnitID, string prefix)
+        {
+            intUnitID = "8";
+            int unit = 8;
+            //Inatialize(intwh);
+
+            tableVehicle = new SAD_DAL.Transport.InternalTransportTDS.TblFixedAssetRegisterDataTable[Convert.ToInt32(intUnitID)];
+            //tableEmplist = new Global_DAL.TblEmployeeListDataTable[Convert.ToInt32(intUnitID)];
+            //tableEmplist = new Global_DAL.TblEmployeeDataTable[e];
+            TblFixedAssetRegisterTableAdapter adpCOA = new TblFixedAssetRegisterTableAdapter();
+            tableVehicle[e] = adpCOA.GetVehicleList(unit);
+            //tableEmplist[e] = adpCOA.GetEmpList(Convert.ToInt32(intUnitID)); 
+            //tableEmplist[e] = adpCOA.GetEmpListByUnit();
+
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tableVehicle[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strNameOfAsset
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tableVehicle[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strNameOfAsset.ToLower().Contains(prefix) || tmp.strAssetID.ToLower().Contains(prefix) //|| tmp.strOfficeEmail.ToString().ToLower().Contains(prefix)  //strOfficeEmail 
+                                   orderby tmp.strNameOfAsset
+                                   select tmp;
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+                        }
+                    }
+                    catch { return null; }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    //retStr[i] = tbl.Rows[i]["strEmployeeName"] + "; " + tbl.Rows[i]["intEmployeeID"];
+                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + " [" + tbl.Rows[i]["strAssetID"] + "]";
+                }
+                return retStr;
+            }
+            else { return null; }
+        }
+
+        public string InsertAccidentRegister(DateTime dteAccidentDate, int intVehicleID, string strVehicleRegistrationNumber, int intUserUnitID, string strUserUnit, int intDriverEnroll, string strDriverName, string strTravelingRouteFrom, string strTravelingRouteTo, string strPlaceOfAccident, TimeSpan tmTimeOfAccident, string strAccidentType, string strDescription, string strLossIncurredByAccident, decimal monSettlementPenaltyPaid, decimal monSettlementPenaltyReceive, int intSettlementPenaltyChargedCompanyUnit, string strSettlementPenaltyChargedCompanyUnit, int intSettlementPenaltyChargedDutyDriver, string strSettlementPenaltyChargedDutyDriver, string strSupportVehicleRegNo, decimal numRecoveredGoodsOrMaterialsQty, decimal monRecoveredGoodsOrMaterialsValue, decimal numLossGoodOrMaterialsQty, decimal monLossGoodOrMaterialsValue, int intInvestigationReportedByEnroll, string strInvestigationReportedByName, string strInvestigationReportedByDesignation, int intInsertBy)
+        {
+            string msg = "";
+            SprAccidentRegisterInsertTableAdapter adp = new SprAccidentRegisterInsertTableAdapter();
+            adp.InsertAccidentRegister(dteAccidentDate, intVehicleID, strVehicleRegistrationNumber, intUserUnitID, strUserUnit, intDriverEnroll, strDriverName, strTravelingRouteFrom, strTravelingRouteTo, strPlaceOfAccident, tmTimeOfAccident, strAccidentType, strDescription, strLossIncurredByAccident, monSettlementPenaltyPaid, monSettlementPenaltyReceive, intSettlementPenaltyChargedCompanyUnit, strSettlementPenaltyChargedCompanyUnit, intSettlementPenaltyChargedDutyDriver, strSettlementPenaltyChargedDutyDriver, strSupportVehicleRegNo, numRecoveredGoodsOrMaterialsQty, monRecoveredGoodsOrMaterialsValue, numLossGoodOrMaterialsQty, monLossGoodOrMaterialsValue, intInvestigationReportedByEnroll, strInvestigationReportedByName, strInvestigationReportedByDesignation, intInsertBy, ref msg);
+            return msg;
+        }
+
+        
+
+        public DataTable GetUnitListForTransport(int Enroll) 
         {
             SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
             try
@@ -348,9 +418,16 @@ namespace SAD_BLL.Transport
             { return adp.GetReportData(intWork, dteFDate, dteTDate, intShipPointid, intID); }
             catch { return new DataTable(); }
         }
+
+        /*=====================Accident Register================================================= */
+        public DataTable GetAllUnit()
+        {
+            TblUnitTableAdapter adp = new TblUnitTableAdapter();
+            try
+            { return adp.GetAllUnit(); }
+            catch { return new DataTable(); }
+        }
         
-
-
 
 
     }
