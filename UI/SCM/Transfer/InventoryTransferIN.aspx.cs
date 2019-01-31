@@ -213,10 +213,20 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                intWh = int.Parse(ddlWh.SelectedValue);
+                intWh = Common.GetDdlSelectedValue(ddlWh);
                 Session["WareID"] = intWh;
-                _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
-                Common.LoadDropDownWithSelect(ddlTransferItem, _dt, "Id", "strName");
+                if (intWh > 0)
+                {
+                    _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
+                    Common.LoadDropDownWithSelect(ddlTransferItem, _dt, "Id", "strName");
+                }
+                else
+                {
+                    Common.UnLoadDropDownWithSelect(ddlTransferItem);
+                    Common.Clear(UpdatePanel0.Controls,null);
+                    lblFrom.Text = "";
+                }
+                
             }
             catch (Exception ex)
             {
