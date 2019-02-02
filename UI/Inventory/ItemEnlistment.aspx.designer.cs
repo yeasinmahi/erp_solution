@@ -238,22 +238,22 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
         
         /// <summary>
-        /// lblBrand control.
+        /// lblModel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBrand;
+        protected global::System.Web.UI.WebControls.Label lblModel;
         
         /// <summary>
-        /// txtstrBrand control.
+        /// txtModel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtstrBrand;
+        protected global::System.Web.UI.WebControls.TextBox txtModel;
         
         /// <summary>
         /// lblUoM control.
@@ -274,22 +274,22 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.DropDownList ddlUoM;
         
         /// <summary>
-        /// lblSubcategory control.
+        /// lblBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSubcategory;
+        protected global::System.Web.UI.WebControls.Label lblBrand;
         
         /// <summary>
-        /// drdlsubcategory control.
+        /// txtstrBrand control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlsubcategory;
+        protected global::System.Web.UI.WebControls.TextBox txtstrBrand;
         
         /// <summary>
         /// lblProcureType control.
@@ -301,49 +301,49 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.Label lblProcureType;
         
         /// <summary>
-        /// drdlProcureType control.
+        /// ddlProcureType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlProcureType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlProcureType;
         
         /// <summary>
-        /// lblAssetminiorcategory control.
+        /// lblOrigin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAssetminiorcategory;
+        protected global::System.Web.UI.WebControls.Label lblOrigin;
         
         /// <summary>
-        /// drdlAssetMinorCategory control.
+        /// txtOrigin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlAssetMinorCategory;
+        protected global::System.Web.UI.WebControls.TextBox txtOrigin;
         
         /// <summary>
-        /// lblvatapplicable control.
+        /// lblSpecification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblvatapplicable;
+        protected global::System.Web.UI.WebControls.Label lblSpecification;
         
         /// <summary>
-        /// drdlvatapplicable control.
+        /// txtSpecification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList drdlvatapplicable;
+        protected global::System.Web.UI.WebControls.TextBox txtSpecification;
         
         /// <summary>
         /// btnSubmit control.

@@ -43,7 +43,7 @@
               });
           }
 
-          
+
 
     </script>
 
@@ -52,20 +52,26 @@
         .auto-style1 {
             width: 78px;
         }
+
         .ddList {
             height: 22px;
         }
+
         .auto-style6 {
             text-decoration: underline;
         }
+
         .auto-style7 {
             width: 28px;
         }
+
         .auto-style8 {
             height: 23px;
         }
-        .txtBox {}
-        </style>
+
+        .txtBox {
+        }
+    </style>
 
 </head>
 <body>
@@ -80,7 +86,7 @@
        <div class="tabs_container"> <span class="auto-style6"><strong>
            <asp:HiddenField ID="HdfSearchbox" runat="server" />
            <asp:HiddenField ID="hdnconfirm" runat="server" />
-           New Item Enlistment </strong></span> <hr /></div>
+           Item Enlistment </strong></span> <hr /></div>
         
 
         <table  class="tbldecoration" style="width:auto; float:left;">
@@ -93,7 +99,7 @@
            <%-- <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="txtItemName1" onchange="javascript: Changed();" runat="server" CssClass="txtBox" Width="190px" 
                 BackColor="#DCDADA" BorderColor="Gray" Height="17px" OnTextChanged="txtItemName_TextChanged"></asp:TextBox></td>--%>
              <td style="text-align:left;">
-                 <asp:TextBox ID="txtItemName" onchange="javascript: Changed();"  runat="server" CssClass="txtBox" Width="190px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" OnTextChanged="txtItemName_TextChanged" ></asp:TextBox>
+                 <asp:TextBox ID="txtItemName" onchange="javascript: Changed();"  runat="server" CssClass="txtBox" Width="190px" BackColor="#DCDADA" BorderColor="Gray" Height="17px" ></asp:TextBox>
              </td>
             
            
@@ -105,24 +111,24 @@
             <td style="text-align:right;"><asp:Label ID="lblSearch" runat="server" CssClass="lbl" Text="Search :"></asp:Label></td>
             
             <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="txtSearch" runat="server" CssClass="txtBox" Width="248px" Height="19px" BackColor="#EAE8E8" BorderColor="Gray" ForeColor="Black"></asp:TextBox>                                             
-            <td style="text-align:right;"><asp:Button ID="btnSearch" runat="server" class="nextclick" Font-Bold="true" ForeColor="Green"  Text="Search" style="background-color: lightgray" OnClick="btnSearch_Click" /></td>
+            <td style="text-align:right;"><asp:Button ID="btnSearch" runat="server" class="nextclick" Font-Bold="true" ForeColor="white"  Text="Search" style="background-color: gray" OnClick="btnSearch_Click" /></td>
         </tr>
 
           <tr>
-            <td style="text-align:right;"><asp:Label ID="lblDescription" runat="server" CssClass="lbl" Text="Item Description :"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="lblDescription" runat="server" CssClass="lbl" Text="Item Description:"></asp:Label></td>
             <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="txtDescription" runat="server" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray" ></asp:TextBox></td>
             
 
-            <td style="text-align:right;"><asp:Label ID="lblCommodity" runat="server" CssClass="lbl" Text="Commodity :"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="lblCommodity" runat="server" CssClass="lbl" Text="Commodity:"></asp:Label></td>
             <td style="text-align:left;" class="auto-style1"><asp:DropDownList ID="ddlCommodity" CssClass="ddList" Font-Bold="False" AutoPostBack="true" BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" OnSelectedIndexChanged="ddlCommodity_SelectedIndexChanged" ForeColor="Black"></asp:DropDownList></td>                                      
             <td style="text-align:right;"></td>
               <td style="text-align:right;" colspan="3"; rowspan="6" >
-                <asp:ListBox ID="ListBox1" runat="server" Height="181px" Width="400px"></asp:ListBox>
+                <asp:ListBox ID="ListBox1" runat="server" Height="200px" Width="400px"></asp:ListBox>
               </td>
           </tr>
 
             <tr>
-            <td style="text-align:right;"><asp:Label ID="lblPartNo" runat="server" CssClass="lbl" Text="Part/Model/Serial:"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="lblPartNo" runat="server" CssClass="lbl" Text="Part/Serial:"></asp:Label></td>
             <td style="text-align:left;" class="auto-style1"><asp:TextBox ID="txtPartNo" runat="server" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray"  ></asp:TextBox></td>
             
 
@@ -131,44 +137,46 @@
                  BorderColor="Gray" AutoPostBack="true" runat="server" Width="195px" ForeColor="Black" OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged"></asp:DropDownList></td>                                      --%>
          <td style="text-align:left;" >
 
+
+
                  <asp:DropDownList ID="ddlCategory" CssClass="ddList" Font-Bold="false" BackColor="LightGray"  runat="server"  BorderColor="Gray" AutoPostBack="true" Width="195px" ForeColor="Black" 
                     OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" ></asp:DropDownList>
              </td> 
 
             </tr>
-
+                <tr>        <td style="text-align:right;"><asp:Label ID="lblModel" runat="server" CssClass="lbl" Visible="True" Text="Model :"></asp:Label></td>
+            <td style="text-align:left;" ><asp:TextBox ID="txtModel" runat="server" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray"></asp:TextBox></td>  
+                
+                <td style="text-align:right;"><asp:Label ID="lblUoM" runat="server" CssClass="lbl" Text="UoM :"></asp:Label></td>
+            <td style="text-align:left;" ><asp:DropDownList ID="ddlUoM" CssClass="ddList" Font-Bold="False" 
+                BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
+                
+                </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblBrand" runat="server" CssClass="lbl" Text="Brand :"></asp:Label></td>
             <td style="text-align:left;" ><asp:TextBox ID="txtstrBrand" runat="server" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray"></asp:TextBox>                                                                                       
             </td>
-
-            <td style="text-align:right;"><asp:Label ID="lblUoM" runat="server" CssClass="lbl" Text="UoM :"></asp:Label></td>
-            <td style="text-align:left;" ><asp:DropDownList ID="ddlUoM" CssClass="ddList" Font-Bold="False" 
+            <td style="text-align:right;"><asp:Label ID="lblProcureType" runat="server" Visible="true" CssClass="lbl" Text="Procure Type :"></asp:Label></td>
+            <td style="text-align:left;" ><asp:DropDownList ID="ddlProcureType" Visible="true" CssClass="ddList" Font-Bold="False" 
                 BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
-                                                 
+                                             
 
         </tr>
-    
-        </tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="lblSubcategory" runat="server" Visible="false" CssClass="lbl" Text="Sub Category :"></asp:Label></td>
-             <td style="text-align:left;" ><asp:DropDownList ID="drdlsubcategory" Visible="false" CssClass="ddList" Font-Bold="False" 
-                BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
+                <td style="text-align:right;"><asp:Label ID="lblOrigin" runat="server" Visible="true" CssClass="lbl" Text="Origin :"></asp:Label></td>
+             <td style="text-align:left;" ><asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray"></asp:TextBox></td>  
 
-            <td style="text-align:right;"><asp:Label ID="lblProcureType" runat="server" Visible="false" CssClass="lbl" Text="Procure Type :"></asp:Label></td>
-            <td style="text-align:left;" ><asp:DropDownList ID="drdlProcureType" Visible="false" CssClass="ddList" Font-Bold="False" 
-                BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
-                </tr>
+            <td style="text-align:right;"><asp:Label ID="lblSpecification" runat="server" Visible="true" CssClass="lbl" Text="Specification:"></asp:Label></td>
+             <td style="text-align:left;" ><asp:TextBox ID="txtSpecification" runat="server" TextMode="MultiLine" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray"></asp:TextBox></td>   
+            </tr>
+                
 
-            <tr>
-                <td style="text-align:right;"><asp:Label ID="lblAssetminiorcategory" runat="server" Visible="false" CssClass="lbl" Text="Asset Minor Category :"></asp:Label></td>
-             <td style="text-align:left;" ><asp:DropDownList ID="drdlAssetMinorCategory" CssClass="ddList" Visible="false" Font-Bold="False" 
-                BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
+               
 
-            <td style="text-align:right;"><asp:Label ID="lblvatapplicable" runat="server" CssClass="lbl" Visible="false" Text="VAT Applicable :"></asp:Label></td>
-            <td style="text-align:left;" ><asp:DropDownList ID="drdlvatapplicable" CssClass="ddList" Font-Bold="False" Visible="false" 
-                BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
-                </tr>
+
+
+
+
 
 
 
