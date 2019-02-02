@@ -1314,6 +1314,7 @@
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
     <Content Include="SAD\Sales\Report\ProductLoadingStatus.aspx" />
+    <Content Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx" />
     <Content Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
@@ -6722,6 +6723,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\ProductLoadingStatus.aspx.designer.cs">
       <DependentUpon>ProductLoadingStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx.cs">
+      <DependentUpon>Product_Rate_vs_DO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx.designer.cs">
+      <DependentUpon>Product_Rate_vs_DO.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx.cs">
       <DependentUpon>Region_Area_item_wise_sales.aspx</DependentUpon>
