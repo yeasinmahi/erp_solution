@@ -85,24 +85,6 @@ namespace UI.SCM.Transfer {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnEnroll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
-        
-        /// <summary>
-        /// hdnPreConfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnPreConfirm;
-        
-        /// <summary>
         /// hdnTransfromValue control.
         /// </summary>
         /// <remarks>
