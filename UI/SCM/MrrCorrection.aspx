@@ -17,7 +17,8 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-                        <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                        </marquee>
                     </div>
                 </asp:Panel>
                 <div style="height: 30px;"></div>
@@ -84,7 +85,7 @@
                         <div class="panel-body">
                             <asp:GridView ID="dgvItem" runat="server" AutoGenerateColumns="False" Width="100%" RowStyle-CssClass="GridRow" 
                                 CssClass="Grid" AlternatingRowStyle-CssClass="alt" CellPadding="4" ForeColor="#333333" GridLines="Both">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" CssClass="GridRow" />
+                                <AlternatingRowStyle ForeColor="#284775" CssClass="GridRow" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL." ItemStyle-HorizontalAlign="Center">
                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
@@ -107,7 +108,7 @@
                                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                <RowStyle ForeColor="#333333" />
                                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                                 <SortedAscendingCellStyle BackColor="#E9E7E2" />
                                 <SortedAscendingHeaderStyle BackColor="#506C8C" />
@@ -125,7 +126,7 @@
                                     <asp:Button ID="btnDeleteJv" runat="server" class="btn btn-primary form-control pull-left" Text="Delete JV" OnClientClick="return confirmMsg();" OnClick="btnDeleteJV_Click" />
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-4 text-center">
-                                    <asp:Button ID="btnFreeMrr" runat="server" class="btn btn-primary form-control" Text="Free MRR" OnClientClick="return confirmMsg();" OnClick="btnFreeMRR_Click" />
+                                    <asp:Button ID="btnFreeMrr" runat="server" class="btn btn-primary form-control" Text="Free MRR" Visible="False" OnClientClick="return confirmMsg();" OnClick="btnFreeMRR_Click" />
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-4">
                                     <asp:Button ID="btnDeleteMrr" runat="server" class="btn btn-primary form-control pull-right" Text="Delete MRR" OnClientClick="return confirmMsg();" OnClick="btnDeleteMRR_Click" />
