@@ -30,7 +30,10 @@ namespace UI.SCM
 
         protected void btnDeleteMRR_Click(object sender, EventArgs e)
         {
-
+            if (!CheckUnitPermission())
+            {
+                return;
+            }
             if (txtStatus.Text == @"Voucher Complete")
             {
                 Toaster("Voucher completed. MRR cannot be Deleted.", Common.TosterType.Warning);
@@ -59,7 +62,10 @@ namespace UI.SCM
         }
         protected void btnFreeMRR_Click(object sender, EventArgs e)
         {
-
+            if (!CheckUnitPermission())
+            {
+                return;
+            }
             try
             {
                 if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
@@ -82,7 +88,10 @@ namespace UI.SCM
         }
         protected void btnDeleteJV_Click(object sender, EventArgs e)
         {
-
+            if (!CheckUnitPermission())
+            {
+                return;
+            }
             try
             {
                 if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
@@ -111,17 +120,17 @@ namespace UI.SCM
                 if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
                 {
                     Toaster(message, Common.TosterType.Warning);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "this.form.reset();", true);
                     return;
                 }
                 _dt = new DataTable();
-                _dt = _obj.CorrectionMrr(2, _intMrrid,Enroll,out message);
+                _dt = _obj.GetMrrInfo(_intMrrid);
                 if (_dt.Rows.Count > 0)
                 {
                     txtMrrDate.Text = _dt.Rows[0]["dteTransactionDate"].ToString();
                     txtVoucherNo.Text = _dt.Rows[0]["strVoucherCode"].ToString();
                     txtPo.Text = _dt.Rows[0]["intPOID"].ToString();
                     txtWhName.Text = _dt.Rows[0]["strWareHoseName"].ToString();
+                    txtSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
                 }
                 else
                 {
@@ -134,9 +143,6 @@ namespace UI.SCM
                 {
                     txtStatus.Text = _dt.Rows[0]["strStatus"].ToString();
                 }
-                _dt = new DataTable();
-                _dt = _obj.CorrectionMrr(6, _intMrrid,Enroll,out message);
-                txtSupplierName.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
             }
             catch (Exception ex)
             {
@@ -153,7 +159,7 @@ namespace UI.SCM
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
-                _dt = _obj.CorrectionMrr(7, _intMrrid,Enroll,out message);
+                _dt = _obj.GetMrrItemInfo(_intMrrid);
                 if (_dt.Rows.Count>0)
                 {
                     dgvItem.DataSource = _dt;
@@ -183,6 +189,36 @@ namespace UI.SCM
             List<Control> exceptControls = new List<Control>();
             exceptControls.Add(txtMrrNo);
             Common.Clear(UpdatePanel0.Controls, exceptControls);
+        }
+
+        public bool CheckUnitPermission()
+        {
+            if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
+            {
+                Toaster(message, Common.TosterType.Warning);
+                return false;
+            }
+            _dt =_obj.CorrectionMrr(8, _intMrrid, Enroll, out message);
+            if (_dt.Rows.Count > 0)
+            {
+                _dt = _obj.CorrectionMrr(9, _intMrrid, Enroll, out message);
+                if (_dt.Rows.Count > 0)
+                {
+                    bool.TryParse(_dt.Rows[0]["ysnPay"].ToString(), out bool isPermitted);
+                    return isPermitted;
+                }
+                else
+                {
+                    Toaster("You have not permission to delete MRR.", Common.TosterType.Warning);
+                    return false;
+                }
+            }
+            else
+            {
+                Toaster("You have not unit permission of this MRR ", Common.TosterType.Warning);
+                return false;
+            }
+            
         }
     }
 }
