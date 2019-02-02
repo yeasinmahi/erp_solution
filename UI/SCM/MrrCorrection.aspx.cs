@@ -2,10 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
 
@@ -13,9 +10,9 @@ namespace UI.SCM
 {
     public partial class MrrCorrection : BasePage
     {
-        MrrCorrectionBll obj = new MrrCorrectionBll();
-        DataTable dt;
-        int intMRRID;
+        private readonly MrrCorrectionBll _obj = new MrrCorrectionBll();
+        private DataTable _dt;
+        private int _intMrrid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,27 +31,24 @@ namespace UI.SCM
         protected void btnDeleteMRR_Click(object sender, EventArgs e)
         {
 
-            if (txtStatus.Text == "Voucher Complete")
+            if (txtStatus.Text == @"Voucher Complete")
             {
                 Toaster("Voucher completed. MRR cannot be Deleted.", Common.TosterType.Warning);
-                return;
             }
             else if (!string.IsNullOrWhiteSpace(txtVoucherNo.Text))
             {
                 Toaster("Please Delete JV Voucher.", Common.TosterType.Warning);
-                return;
             }
             else
             {
                 try
                 {
-                    intMRRID = int.Parse(txtMrrNo.Text);
+                    _intMrrid = int.Parse(txtMrrNo.Text);
                     
-                    dt = obj.CorrectionMrr(1, intMRRID);
-                    if (dt.Rows.Count > 0)
+                    _dt = _obj.CorrectionMrr(1, _intMrrid,Enroll, out string message);
+                    if (_dt.Rows.Count > 0)
                     {
-                        string msg = dt.Rows[0]["msg"].ToString();
-                        Toaster(msg, msg.ToLower().Contains("success")? Common.TosterType.Success:Common.TosterType.Error);
+                        Toaster(message, message.ToLower().Contains("success")? Common.TosterType.Success:Common.TosterType.Error);
                     }
                 }
                 catch(Exception ex) {
@@ -68,16 +62,15 @@ namespace UI.SCM
 
             try
             {
-                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out intMRRID, out string message))
+                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
                 {
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
-                dt = obj.CorrectionMrr(5, intMRRID);
-                if (dt.Rows.Count > 0)
+                _dt = _obj.CorrectionMrr(5, _intMrrid,Enroll, out  message);
+                if (_dt.Rows.Count > 0)
                 {
-                    string msg = dt.Rows[0]["msg"].ToString();
-                    Toaster(msg, msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+                    Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 }
                 ShowInfo();
             }
@@ -92,16 +85,15 @@ namespace UI.SCM
 
             try
             {
-                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out intMRRID, out string message))
+                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
                 {
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
-                dt = obj.CorrectionMrr(4, intMRRID);
-                if (dt.Rows.Count > 0)
+                _dt = _obj.CorrectionMrr(4, _intMrrid,Enroll,out message);
+                if (_dt.Rows.Count > 0)
                 {
-                    string msg = dt.Rows[0]["msg"].ToString();
-                    Toaster(msg, msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+                    Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 }
                 ShowInfo();
             }
@@ -116,42 +108,35 @@ namespace UI.SCM
             try
             {
                 ClearControls();
-                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out intMRRID, out string message))
+                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
                 {
                     Toaster(message, Common.TosterType.Warning);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "this.form.reset();", true);
                     return;
                 }
-                dt = new DataTable();
-                dt = obj.CorrectionMrr(2, intMRRID);
-                if (dt.Rows.Count > 0)
+                _dt = new DataTable();
+                _dt = _obj.CorrectionMrr(2, _intMrrid,Enroll,out message);
+                if (_dt.Rows.Count > 0)
                 {
-                    txtMrrDate.Text = dt.Rows[0]["dteTransactionDate"].ToString();
-                    txtVoucherNo.Text = dt.Rows[0]["strVoucherCode"].ToString();
-                    txtPo.Text = dt.Rows[0]["intPOID"].ToString();
-                    txtWhName.Text = dt.Rows[0]["strWareHoseName"].ToString();
+                    txtMrrDate.Text = _dt.Rows[0]["dteTransactionDate"].ToString();
+                    txtVoucherNo.Text = _dt.Rows[0]["strVoucherCode"].ToString();
+                    txtPo.Text = _dt.Rows[0]["intPOID"].ToString();
+                    txtWhName.Text = _dt.Rows[0]["strWareHoseName"].ToString();
                 }
                 else
                 {
                     Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
                     return;
                 }
-                dt = new DataTable();
-                dt = obj.CorrectionMrr(3, intMRRID);
-                if (dt.Rows.Count > 0)
+                _dt = new DataTable();
+                _dt = _obj.CorrectionMrr(3, _intMrrid,Enroll,out message);
+                if (_dt.Rows.Count > 0)
                 {
-                    txtStatus.Text = dt.Rows[0]["strStatus"].ToString();
+                    txtStatus.Text = _dt.Rows[0]["strStatus"].ToString();
                 }
-                dt = new DataTable();
-                dt = obj.CorrectionMrr(6, intMRRID);
-                if (dt.Rows.Count > 0)
-                {
-                    txtSupplierName.Text = dt.Rows[0]["strSupplierName"].ToString();
-                }
-                else
-                {
-                    txtSupplierName.Text = "";
-                }
+                _dt = new DataTable();
+                _dt = _obj.CorrectionMrr(6, _intMrrid,Enroll,out message);
+                txtSupplierName.Text = _dt.Rows.Count > 0 ? _dt.Rows[0]["strSupplierName"].ToString() : "";
             }
             catch (Exception ex)
             {
@@ -163,15 +148,15 @@ namespace UI.SCM
         {
             try
             {
-                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out intMRRID, out string message))
+                if (!Validation.CheckTextBox(txtMrrNo, "MRR No ", out _intMrrid, out string message))
                 {
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
-                dt = obj.CorrectionMrr(7, intMRRID);
-                if (dt.Rows.Count>0)
+                _dt = _obj.CorrectionMrr(7, _intMrrid,Enroll,out message);
+                if (_dt.Rows.Count>0)
                 {
-                    dgvItem.DataSource = dt;
+                    dgvItem.DataSource = _dt;
                     dgvItem.DataBind();
                     SetVisibility("itemPanel", true);
                 }

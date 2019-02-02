@@ -6,14 +6,17 @@ namespace SCM_BLL
 {
     public class MrrCorrectionBll
     {
-        public DataTable CorrectionMrr(int intPart, int intMRRID)
+        public DataTable CorrectionMrr(int intPart, int intMrrid, int enroll, out string message)
         {
-            sprMRRTableAdapter adp = new sprMRRTableAdapter();
+            message = null;
+            sprMRRCorrectionTableAdapter adp = new sprMRRCorrectionTableAdapter();
             try
             {
-                return adp.GetData(intPart, intMRRID);
+                return adp.GetData(intPart, intMrrid, enroll,ref message);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
+                message = ex.Message;
                 return new DataTable();
             }
         }

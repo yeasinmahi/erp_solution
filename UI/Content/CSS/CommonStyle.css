@@ -10,6 +10,9 @@ th {
 
 tr {
     font-size: 14px;
+    -ms-transition: transform .2s;
+    -o-transition: transform .2s;
+    -webkit-transition: transform .2s;
     transition: transform .2s;
 }
 
@@ -20,12 +23,15 @@ td, th {
 .Grid {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
     border-radius: 5px;
     overflow: hidden;
 }
 
-.Grid tr:hover {
-    background-color: #ccc;
-    transform: translate(1px,1px);
-    transform: scale(.99);
-}
+    .Grid tr:hover {
+        background-color: #ccc;
+        -ms-transform: translate(1px,1px);
+        -webkit-transform: translate(1px,1px);
+        transform: translate(1px,1px);
+        transform: scale(.99);
+    }
