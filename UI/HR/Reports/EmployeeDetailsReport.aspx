@@ -145,8 +145,7 @@
                             </asp:DropDownList>
                             <asp:ObjectDataSource ID="odsUnitID" runat="server" SelectMethod="GetUnits"
                                 TypeName="HR_BLL.Global.Unit">
-                                <SelectParameters>
-                                    
+                                <SelectParameters>                                    
                                     <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" />
                                 </SelectParameters>
                             </asp:ObjectDataSource>
