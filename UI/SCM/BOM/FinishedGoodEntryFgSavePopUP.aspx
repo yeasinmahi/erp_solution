@@ -129,7 +129,7 @@
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
                     <div class="tabs_container" style="text-align: left">
-                        PRODUCTION TANSFER<hr />
+                        PRODUCTION TRANSFER<hr />
                     </div>
                     <table style="width: 750px">
                         <tr>
