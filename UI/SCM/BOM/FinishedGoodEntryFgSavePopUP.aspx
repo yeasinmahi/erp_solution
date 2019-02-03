@@ -324,7 +324,16 @@
                                     ForeColor="#333333" GridLines="both" CellPadding="4">
                                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                     <Columns>
-
+                                        <asp:TemplateField HeaderText="SL">
+                                            <ItemStyle HorizontalAlign="center" Width="10px" />
+                                            <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Prod. Trans. ID" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblAutoId" runat="server" Text='<%# Bind("intAutoID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Product Name" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("strItem") %>'></asp:Label>
@@ -371,6 +380,18 @@
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Is Received" ItemStyle-HorizontalAlign="right" SortExpression="numSendStoreQty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblStoreReceivedStatus" runat="server" Width="" Text='<%# Bind("ysnStoreReceive") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right" SortExpression="numSendStoreQty">
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit"></asp:Button>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                     </Columns>
                                     <EditRowStyle BackColor="#999999" />
