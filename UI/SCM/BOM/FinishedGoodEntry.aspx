@@ -110,7 +110,7 @@
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Production ID" Visible="false" SortExpression="intProductionID">
+                                        <asp:TemplateField HeaderText="Prod. ID" Visible="True" SortExpression="intProductionID">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("intProductionID") %>'></asp:Label>
                                             </ItemTemplate>
