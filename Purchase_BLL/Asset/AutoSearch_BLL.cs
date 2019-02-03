@@ -16,7 +16,7 @@ namespace Purchase_BLL.Asset
     public class AutoSearch_BLL
     {
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableCusts = null;
-        private static SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
+        private SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
 
         private static SearchTDS.TblAutoSearchAssetRegisterDataTable[] tableCusts1 = null;
         private static SearchTDS.TblVehicleAutoSearchAssetRegisterDataTable[] tableCusts2 = null;
@@ -260,7 +260,7 @@ namespace Purchase_BLL.Asset
             }
             return result;
         }
-        private static void Inatialize(int intwh)
+        private  void Inatialize(int intwh)
         {
           
             if (tableItem == null)
@@ -358,9 +358,14 @@ namespace Purchase_BLL.Asset
             //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
             //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
             //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
-            tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
-            SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
-            tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+            
+            if (tableItem == null || tableItem.Length < 1)
+            {
+                tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
+                SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+                tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+            }
+            
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -385,7 +390,7 @@ namespace Purchase_BLL.Asset
                                    orderby tmp.strItem
                                    select tmp;
  
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
 

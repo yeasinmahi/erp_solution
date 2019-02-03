@@ -37,7 +37,17 @@ namespace UI.SCM
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + Enroll + ".xml");
-
+            if (hdnItemSeleced.Value.Equals("Selected"))
+            {
+                _ast = new AutoSearch_BLL();
+                hdnItemSeleced.Value = String.Empty;
+            }
+            string s = e.ToString();
+            Control ctrl = Common.GetControlThatCausedPostBack(this);
+            //if (ctrl != null && ctrl.ClientID.Equals(txtItem.ClientID))
+            //{
+            //    _ast = new AutoSearch_BLL();
+            //}
             if (!IsPostBack)
             {
                 try
@@ -344,12 +354,13 @@ namespace UI.SCM
 
         #region========================Auto Search============================
 
+        private static AutoSearch_BLL _ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            AutoSearch_BLL ast = new AutoSearch_BLL();
-            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            
+            return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
