@@ -91,7 +91,8 @@
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
 
                             <td style="text-align: right" colspan="2">
-                                <asp:Button ID="btnEdit" runat="server" forecolor="green" Text="Edit Production Order" /><asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClick="btnViewProductionOrder_Click" /></td>
+                                <asp:Button ID="btnEdit" runat="server" forecolor="green" Text="Edit Production Order" />
+                                <asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClick="btnViewProductionOrder_Click" /></td>
                         </tr>
                     </table>
                     <table>
