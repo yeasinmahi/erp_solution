@@ -163,14 +163,14 @@ namespace Purchase_BLL.SupplyChain
 
         }
 
-        public string    INSERTMasterItemlistCreate(string strName, string strDescription, string strPartNo, string strBrand, int intClusterId, int intCommodityId, int intCategoryId, string strUoM, int enroll)
+        public string    INSERTMasterItemlistCreate(string strName, string strDescription, string strPartNo, string strBrand, int intClusterId, int intCommodityId, int intCategoryId, string strUoM, int enroll, string strModel, string strOrigin, string strSpecification)
         {
             int? ids = 0;
 
             try
             {
                 sprItemMasterListCreateTableAdapter ins = new sprItemMasterListCreateTableAdapter();
-                ins.GetItemMasterCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll);
+                ins.GetItemMasterCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll,strModel,  strOrigin,strSpecification);
 
             }
             catch(Exception e) { ids = 0; }
