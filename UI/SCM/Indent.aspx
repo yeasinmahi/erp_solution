@@ -113,7 +113,6 @@
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
                     <asp:HiddenField ID="hdnDA" runat="server" />
-                    <asp:HiddenField id="hdnItemSeleced" runat="server" />
                     <div class="tabs_container">
                         Indent Entry :  <span style="color: red">Indent Policy (Please Create Indents between 1st to 3rd day of every month in case of Regular Items and for Irregular Items  only on Saturday And Tuesday)</span><hr />
                     </div>

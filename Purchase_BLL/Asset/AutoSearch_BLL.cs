@@ -20,7 +20,7 @@ namespace Purchase_BLL.Asset
 
         private static SearchTDS.TblAutoSearchAssetRegisterDataTable[] tableCusts1 = null;
         private static SearchTDS.TblVehicleAutoSearchAssetRegisterDataTable[] tableCusts2 = null;
-        private static SearchTDS.TblFixedAssetCOADataTable[] tblFixedAssetCoa= null;
+        private static SearchTDS.TblFixedAssetCOADataTable[] tblFixedAssetCoa = null;
         private static SearchTDS.TblAcountsChartOfACCDataTable[] tblAccountsChartOfAcc = null;
         private static SearchTDS.QRYEMPLOYEEPROFILEALLDataTable[] tableEmpList = null;
 
@@ -34,10 +34,10 @@ namespace Purchase_BLL.Asset
 
         private static Hashtable ht = new Hashtable();
         int e;
-        public List<string> AutoSearchEmployee(string strSearchKeyemp,int intjobid)
+        public List<string> AutoSearchEmployee(string strSearchKeyemp, int intjobid)
         {
             List<string> result = new List<string>();
-            DataTable1TableAdapter employeelist= new DataTable1TableAdapter();
+            DataTable1TableAdapter employeelist = new DataTable1TableAdapter();
             DataTable oDT2 = new DataTable();
             oDT2 = employeelist.EmployeeSearchGetDataBy(strSearchKeyemp, intjobid);
             if (oDT2.Rows.Count > 0)
@@ -101,9 +101,9 @@ namespace Purchase_BLL.Asset
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                     retStr[i] =tbl.Rows[i]["strEmployeeName"] + "[" + tbl.Rows[i]["strDesignation"] + "][Dept:" + tbl.Rows[i]["strDepatrment"] + "][Jobstation:" + tbl.Rows[i]["strJobStationName"]+ "[JobType:" + tbl.Rows[i]["strJobType"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + tbl.Rows[i]["strDesignation"] + "][Dept:" + tbl.Rows[i]["strDepatrment"] + "][Jobstation:" + tbl.Rows[i]["strJobStationName"] + "[JobType:" + tbl.Rows[i]["strJobType"] + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
 
-                   // retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + "Code:" + " " + tbl.Rows[i]["strEmployeeCode"] + "][ Unit:" + tbl.Rows[i]["strUnit"] + "]" + "[JobStation:" + tbl.Rows[i]["strUnit"] + "]";
+                    // retStr[i] = tbl.Rows[i]["strEmployeeName"] + "[" + "Code:" + " " + tbl.Rows[i]["strEmployeeCode"] + "][ Unit:" + tbl.Rows[i]["strUnit"] + "]" + "[JobStation:" + tbl.Rows[i]["strUnit"] + "]";
                 }
 
                 return retStr;
@@ -140,7 +140,7 @@ namespace Purchase_BLL.Asset
                     try
                     {
                         var rows = from tmp in tableEmpList[e]  //[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strOfficeEmail.ToLower().Contains(prefix)|| tmp.strEmployeeName.ToLower().Contains(prefix) ||
+                                   where tmp.strOfficeEmail.ToLower().Contains(prefix) || tmp.strEmployeeName.ToLower().Contains(prefix) ||
                                    tmp.intEmployeeID.ToString().ToLower().Contains(prefix)
                                    orderby tmp.strOfficeEmail
                                    select tmp;
@@ -166,7 +166,7 @@ namespace Purchase_BLL.Asset
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                    retStr[i] =  tbl.Rows[i]["strEmployeeName"] + "," + tbl.Rows[i]["strDesignation"] + "," + tbl.Rows[i]["strDepatrment"] + "," + tbl.Rows[i]["strJobStationName"]+ tbl.Rows[i]["strOfficeEmail"] + ","  + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strEmployeeName"] + "," + tbl.Rows[i]["strDesignation"] + "," + tbl.Rows[i]["strDepatrment"] + "," + tbl.Rows[i]["strJobStationName"] + tbl.Rows[i]["strOfficeEmail"] + "," + "[" + tbl.Rows[i]["intEmployeeID"] + "]";
 
                     //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
                 }
@@ -216,7 +216,7 @@ namespace Purchase_BLL.Asset
             DataTable1TableAdapter ServiceIndent = new DataTable1TableAdapter();
             DataTable oDT = new DataTable();
             oDT = ServiceIndent.IndentServiceListGetData(Uid, strSearchKeyItem);
-            
+
             if (oDT.Rows.Count > 0)
             {
                 for (int index = 0; index < oDT.Rows.Count; index++)
@@ -224,7 +224,7 @@ namespace Purchase_BLL.Asset
                     result.Add(oDT.Rows[index]["strItemName"].ToString());
                 }
 
-                
+
             }
             return result;
         }
@@ -260,20 +260,20 @@ namespace Purchase_BLL.Asset
             }
             return result;
         }
-        private  void Inatialize(int intwh)
+        private void Inatialize(int intwh)
         {
-          
+
             if (tableItem == null)
-            {                
+            {
                 WearHouseID unt = new WearHouseID();
                 SearchTDS.TblWearHouseDataTable tblUnit = unt.GetUnits();
                 ht = new Hashtable();
                 tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[tblUnit.Rows.Count];
                 SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
-                
+
                 for (int i = 0; i < tblUnit.Rows.Count; i++)
                 {
-                   
+
                     int untid = tblUnit[i].intWHID;
                     {
                         ht.Add(tblUnit[i].intWHID.ToString(), i);
@@ -351,21 +351,16 @@ namespace Purchase_BLL.Asset
 
         }
 
-        public  string[] AutoSearchLocationItem(string WHID, string prefix)
+        private string whId = String.Empty;
+        public string[] AutoSearchLocationItem(string WHID, string prefix)
         {
-           
-             //Inatialize(int.Parse(WHID));
-            //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
-            //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
-            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
-            
-            if (tableItem == null || tableItem.Length < 1)
+            if (tableItem == null || tableItem.Length < 1 || !whId.Equals(WHID))
             {
                 tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(WHID)];
                 SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
                 tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(WHID));
+                whId = WHID;
             }
-            
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -373,7 +368,7 @@ namespace Purchase_BLL.Asset
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]                         
+                    var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]
                                orderby tmp.strItem
                                select tmp;
                     if (rows.Any())
@@ -386,10 +381,11 @@ namespace Purchase_BLL.Asset
                     try
                     {
                         var rows = from tmp in tableItem[Convert.ToInt32(ht[WHID])]
-                                   where tmp.strItem.ToLower().Contains(prefix) || tmp.ItemNumber.ToLower().Contains(prefix)
+                                   where tmp.strItem.ToLower().Contains(prefix) ||
+                                         tmp.ItemNumber.ToLower().Contains(prefix)
                                    orderby tmp.strItem
                                    select tmp;
- 
+
                         if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
@@ -403,13 +399,18 @@ namespace Purchase_BLL.Asset
                     }
                 }
             }
+            else
+            {
+                return null;
+            }
             if (tbl.Rows.Count > 0)
             {
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
                     //retStr[i] = tbl.Rows[i]["strItem"] + "[" + "Stock" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" + "[" + tbl.Rows[i]["intItem"]+"]";
-                    retStr[i] = tbl.Rows[i]["strItem"] + "[" + tbl.Rows[i]["intItem"] + "]" + "[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]";
+                    retStr[i] = tbl.Rows[i]["strItem"] + "[" + tbl.Rows[i]["intItem"] + "]" + "[" + "Stock:" + " " +
+                                tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]";
                 }
 
                 return retStr;
@@ -418,6 +419,8 @@ namespace Purchase_BLL.Asset
             {
                 return null;
             }
+
+
 
         }
 
@@ -498,7 +501,7 @@ namespace Purchase_BLL.Asset
 
             // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
-            if (prefix.Trim().Length >= 3 || prefix=="*")
+            if (prefix.Trim().Length >= 3 || prefix == "*")
             {
                 if (prefix == "" || prefix == "*")
                 {
@@ -519,13 +522,13 @@ namespace Purchase_BLL.Asset
                                    orderby tmp.intGlobalCOA
                                    select tmp;
 
-                      
+
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
 
                         }
-                       
+
                     }
                     catch
                     {
@@ -560,7 +563,7 @@ namespace Purchase_BLL.Asset
             tblAccountsChartOfAcc[e] = adpCOA.GetAccountsCartAccData(Convert.ToInt32(unit));
 
 
-           // prefix = prefix.Trim().ToLower();
+            // prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
@@ -602,7 +605,7 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] =tbl.Rows[i]["strAccName"] + "[" + tbl.Rows[i]["strCode"] + "]";
+                    retStr[i] = tbl.Rows[i]["strAccName"] + "[" + tbl.Rows[i]["strCode"] + "]";
                 }
 
                 return retStr;
@@ -645,13 +648,13 @@ namespace Purchase_BLL.Asset
                                    where tmp.strNameOfAsset.ToLower().Contains(prefix) || tmp.strAssetID.ToLower().Contains(prefix)
                                    orderby tmp.intID
                                    select tmp;
-                       
+
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
 
                         }
-                       
+
 
                     }
 
@@ -669,9 +672,9 @@ namespace Purchase_BLL.Asset
                 {
                     retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["strAssetID"] + "]" + "[" + tbl.Rows[i]["intID"] + "]" + "[" + tbl.Rows[i]["intAssetType"] + "]";
 
-                 //   retStr[i] = tbl.Rows[i]["strNameOfAsset"]+","+ tbl.Rows[i]["intAssetType"] + ";" + tbl.Rows[i]["strAssetID"] ;
+                    //   retStr[i] = tbl.Rows[i]["strNameOfAsset"]+","+ tbl.Rows[i]["intAssetType"] + ";" + tbl.Rows[i]["strAssetID"] ;
 
-                 }
+                }
 
                 return retStr;
             }
@@ -712,13 +715,13 @@ namespace Purchase_BLL.Asset
                                    where tmp.strNameOfAsset.ToLower().Contains(prefix) || tmp.strAssetID.ToLower().Contains(prefix)
                                    orderby tmp.strAssetID
                                    select tmp;
-                       
+
                         if (rows.Count() > 0)
                         {
                             tbl = rows.CopyToDataTable();
 
                         }
-                       
+
 
                     }
 
@@ -735,7 +738,7 @@ namespace Purchase_BLL.Asset
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
 
-                    retStr[i] = tbl.Rows[i]["strNameOfAsset"]+"[" + tbl.Rows[i]["intId"] + "]" +"[" + tbl.Rows[i]["strAssetID"]+"]";
+                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["intId"] + "]" + "[" + tbl.Rows[i]["strAssetID"] + "]";
 
                     //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
                 }
@@ -753,12 +756,12 @@ namespace Purchase_BLL.Asset
         public string[] GetAssetItemByUnit(string unit, string prefix)
         {
 
-            
-           
-                tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(1)];
-                TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
-                tableCusts1[e] = adpCOA.GetAssetUnitByData(Convert.ToInt32(unit));
-           
+
+
+            tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(1)];
+            TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
+            tableCusts1[e] = adpCOA.GetAssetUnitByData(Convert.ToInt32(unit));
+
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
@@ -803,7 +806,7 @@ namespace Purchase_BLL.Asset
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
                     retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["strAssetID"] + "]" + "[" + tbl.Rows[i]["intID"] + "]";
-         
+
                 }
 
                 return retStr;
@@ -819,7 +822,7 @@ namespace Purchase_BLL.Asset
 
 
         public string[] GetStufVehicleList(int Active, string prefix)
-        { 
+        {
             if (tableStufVehicleList == null)
             {
                 tableStufVehicleList = new SearchTDS.AgFuelLogDataTable[Convert.ToInt32(Active)];
@@ -919,7 +922,7 @@ namespace Purchase_BLL.Asset
                         {
                             tbl = rows.CopyToDataTable();
 
-                        } 
+                        }
                     }
 
                     catch
@@ -934,7 +937,7 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strRegNo"].ToString(); 
+                    retStr[i] = tbl.Rows[i]["strRegNo"].ToString();
                 }
 
                 return retStr;
@@ -997,8 +1000,8 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strJobStationName"] + " [" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]"+ "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
-                    
+                    retStr[i] = tbl.Rows[i]["strJobStationName"] + " [" + tbl.Rows[i]["strUnit"] + "]" + "[" + tbl.Rows[i]["intUnitId"] + "]" + "[" + tbl.Rows[i]["intEmployeeJobStationId"] + "]";
+
                 }
 
                 return retStr;

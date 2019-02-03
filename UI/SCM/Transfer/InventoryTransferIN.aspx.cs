@@ -24,7 +24,7 @@ namespace UI.SCM.Transfer
         {
             if (!IsPostBack)
             {
-
+                ast = new AutoSearch_BLL();
                 _dt = _bll.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, Enroll);
                 Common.LoadDropDownWithSelect(ddlWh, _dt, "Id", "strName");
                 _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
@@ -34,12 +34,12 @@ namespace UI.SCM.Transfer
         }
 
         #region========================Auto Search============================
-
+        static AutoSearch_BLL ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            AutoSearch_BLL ast = new AutoSearch_BLL();
+            
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }

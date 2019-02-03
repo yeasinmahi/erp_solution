@@ -25,6 +25,7 @@ namespace UI.SCM
             filePathForXML = Server.MapPath("~/SCM/Data/Trn__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {
+                ast = new AutoSearch_BLL();
                 try { File.Delete(filePathForXML); dgvWHLocation.DataSource = ""; dgvWHLocation.DataBind(); }
                 catch { }
                 pnlUpperControl.DataBind();
@@ -65,12 +66,11 @@ namespace UI.SCM
         #endregion================Close==================================
 
         #region=======================Auto Search=========================
-
+        static AutoSearch_BLL ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetItemSearch(string prefixText, int count)
         {
-            AutoSearch_BLL ast = new AutoSearch_BLL();
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }

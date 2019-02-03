@@ -37,19 +37,10 @@ namespace UI.SCM
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + Enroll + ".xml");
-            if (hdnItemSeleced.Value.Equals("Selected"))
-            {
-                _ast = new AutoSearch_BLL();
-                hdnItemSeleced.Value = String.Empty;
-            }
-            string s = e.ToString();
-            Control ctrl = Common.GetControlThatCausedPostBack(this);
-            //if (ctrl != null && ctrl.ClientID.Equals(txtItem.ClientID))
-            //{
-            //    _ast = new AutoSearch_BLL();
-            //}
+            
             if (!IsPostBack)
             {
+                _ast = new AutoSearch_BLL();
                 try
                 {
                     File.Delete(filePathForXML);
