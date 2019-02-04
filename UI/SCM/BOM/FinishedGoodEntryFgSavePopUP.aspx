@@ -423,7 +423,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit" OnClick="btnEdit_OnClick"></asp:Button>
+                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_OnClick"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>

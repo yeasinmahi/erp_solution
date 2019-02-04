@@ -195,6 +195,20 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable UpdateProductionTransfer(int Type,decimal quantity,int transectionId,int enroll, out string  msg)
+        {
+            msg = null;
+            try
+            {
+                sprProductionTransferUpdateTableAdapter adp = new sprProductionTransferUpdateTableAdapter();
+
+                return adp.GetData(Type, quantity, transectionId, enroll, ref msg);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
 
 
 
