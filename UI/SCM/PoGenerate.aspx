@@ -59,9 +59,7 @@
 
             var poDate = new Date(poDateText);
             var lastShipmentDate = new Date(lastShipmentDte);
-
-            console.log(poDate, lastShipmentDate);
-
+            
             if ($.trim(poDateText).length < 3 ||
                 $.trim(poDateText) == "" ||
                 $.trim(poDateText) == null ||
@@ -73,37 +71,43 @@
                 $.trim(suppId) == "" ||
                 $.trim(suppId) == null ||
                 $.trim(suppId) == undefined) {
-                document.getElementById("hdnPreConfirm").value = "0"; alert('Please Set Suppliyer');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Set Suppliyer');
             }
             else if ($.trim(currencyId) == 0 ||
                 $.trim(currencyId) == "" ||
                 $.trim(currencyId) == null ||
                 $.trim(currencyId) == undefined) {
-                document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Currency');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Currency');
             }
             else if ($.trim(paymentTremsId) == 0 ||
                 $.trim(paymentTremsId) == "" ||
                 $.trim(paymentTremsId) == null ||
                 $.trim(paymentTremsId) == undefined) {
-                document.getElementById("hdnPreConfirm").value = "0"; alert('Please select PaymentTrems');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select PaymentTrems');
             }
             else if ($.trim(noOfShipment) == 0 ||
                 $.trim(noOfShipment) == "" ||
                 $.trim(noOfShipment) == null ||
                 $.trim(noOfShipment) == undefined) {
-                 document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Number of Shipment');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please set Number of Shipment');
             }
             else if ($.trim(afterMrrDay) == 0 ||
                 $.trim(afterMrrDay) == "" ||
                 $.trim(afterMrrDay) == null ||
                 $.trim(afterMrrDay) == undefined) {
-                 document.getElementById("hdnPreConfirm").value = "0"; alert('Please set After MRR Day');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please set After MRR Day');
             }
             else if ($.trim(destDelivery).length < 1 ||
                 $.trim(destDelivery) == "" ||
                 $.trim(destDelivery) == null ||
                 $.trim(destDelivery) == undefined) {
-                 document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Destination Delivery');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please set Destination Delivery');
             }
             else if ($.trim(lastShipmentDte).length < 3 ||
                 $.trim(lastShipmentDte) == "" ||
