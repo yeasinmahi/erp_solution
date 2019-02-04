@@ -2765,6 +2765,10 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columntotalSentToStore;
             
+            private global::System.Data.DataColumn columnintAutoID;
+            
+            private global::System.Data.DataColumn columnysnStoreReceive;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprProductionOrderTransferItemDetailsDataTable() {
@@ -2872,6 +2876,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intAutoIDColumn {
+                get {
+                    return this.columnintAutoID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnStoreReceiveColumn {
+                get {
+                    return this.columnysnStoreReceive;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2907,7 +2927,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprProductionOrderTransferItemDetailsRow AddSprProductionOrderTransferItemDetailsRow(int intItemID, string strItem, string strName, string strTime, decimal numProdQty, decimal numSendStoreQty, decimal numActualQty, decimal numQCHoldQty, decimal totalSentToStore) {
+            public SprProductionOrderTransferItemDetailsRow AddSprProductionOrderTransferItemDetailsRow(int intItemID, string strItem, string strName, string strTime, decimal numProdQty, decimal numSendStoreQty, decimal numActualQty, decimal numQCHoldQty, decimal totalSentToStore, bool ysnStoreReceive) {
                 SprProductionOrderTransferItemDetailsRow rowSprProductionOrderTransferItemDetailsRow = ((SprProductionOrderTransferItemDetailsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intItemID,
@@ -2918,10 +2938,19 @@ namespace SCM_DAL {
                         numSendStoreQty,
                         numActualQty,
                         numQCHoldQty,
-                        totalSentToStore};
+                        totalSentToStore,
+                        null,
+                        ysnStoreReceive};
                 rowSprProductionOrderTransferItemDetailsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprProductionOrderTransferItemDetailsRow);
                 return rowSprProductionOrderTransferItemDetailsRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprProductionOrderTransferItemDetailsRow FindByintAutoID(int intAutoID) {
+                return ((SprProductionOrderTransferItemDetailsRow)(this.Rows.Find(new object[] {
+                            intAutoID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2950,6 +2979,8 @@ namespace SCM_DAL {
                 this.columnnumActualQty = base.Columns["numActualQty"];
                 this.columnnumQCHoldQty = base.Columns["numQCHoldQty"];
                 this.columntotalSentToStore = base.Columns["totalSentToStore"];
+                this.columnintAutoID = base.Columns["intAutoID"];
+                this.columnysnStoreReceive = base.Columns["ysnStoreReceive"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2973,6 +3004,12 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnnumQCHoldQty);
                 this.columntotalSentToStore = new global::System.Data.DataColumn("totalSentToStore", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntotalSentToStore);
+                this.columnintAutoID = new global::System.Data.DataColumn("intAutoID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintAutoID);
+                this.columnysnStoreReceive = new global::System.Data.DataColumn("ysnStoreReceive", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnStoreReceive);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintAutoID}, true));
                 this.columnstrItem.ReadOnly = true;
                 this.columnstrItem.MaxLength = 805;
                 this.columnstrName.ReadOnly = true;
@@ -2980,6 +3017,12 @@ namespace SCM_DAL {
                 this.columnstrTime.ReadOnly = true;
                 this.columnstrTime.MaxLength = 100;
                 this.columntotalSentToStore.ReadOnly = true;
+                this.columnintAutoID.AutoIncrement = true;
+                this.columnintAutoID.AutoIncrementSeed = -1;
+                this.columnintAutoID.AutoIncrementStep = -1;
+                this.columnintAutoID.AllowDBNull = false;
+                this.columnintAutoID.ReadOnly = true;
+                this.columnintAutoID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4063,6 +4106,34 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intAutoID {
+                get {
+                    return ((int)(this[this.tableSprProductionOrderTransferItemDetails.intAutoIDColumn]));
+                }
+                set {
+                    this[this.tableSprProductionOrderTransferItemDetails.intAutoIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnStoreReceive {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprProductionOrderTransferItemDetails.ysnStoreReceiveColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnStoreReceive\' in table \'SprProductionOrderTransferItemDe" +
+                                "tails\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprProductionOrderTransferItemDetails.ysnStoreReceiveColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintItemIDNull() {
                 return this.IsNull(this.tableSprProductionOrderTransferItemDetails.intItemIDColumn);
             }
@@ -4167,6 +4238,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SettotalSentToStoreNull() {
                 this[this.tableSprProductionOrderTransferItemDetails.totalSentToStoreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnStoreReceiveNull() {
+                return this.IsNull(this.tableSprProductionOrderTransferItemDetails.ysnStoreReceiveColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnStoreReceiveNull() {
+                this[this.tableSprProductionOrderTransferItemDetails.ysnStoreReceiveColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6413,6 +6496,8 @@ SELECT intWorkstationId AS Id, strName FROM tblProcessWorkstation WHERE (intWork
             tableMapping.ColumnMappings.Add("numActualQty", "numActualQty");
             tableMapping.ColumnMappings.Add("numQCHoldQty", "numQCHoldQty");
             tableMapping.ColumnMappings.Add("totalSentToStore", "totalSentToStore");
+            tableMapping.ColumnMappings.Add("intAutoID", "intAutoID");
+            tableMapping.ColumnMappings.Add("ysnStoreReceive", "ysnStoreReceive");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
