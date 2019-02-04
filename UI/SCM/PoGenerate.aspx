@@ -471,9 +471,6 @@
         .leaveApplication_container {
             margin-top: 0px;
         }
-
-        .Textbox {
-        }
     </style>
 
 </head>
@@ -1157,9 +1154,5 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
-    <script type="text/javascript">
-        
-        
-    </script>
 </body>
 </html>
