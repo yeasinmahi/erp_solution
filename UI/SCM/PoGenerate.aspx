@@ -55,8 +55,21 @@
             var afterMrrDay = document.getElementById("txtAfterMrrDay").value;
             var destDelivery = document.getElementById("txtDestinationDelivery").value;
             var lastShipmentDte = document.getElementById("txtLastShipmentDate").value;
+            var poDateText = document.getElementById("txtdtePo").value;
 
-            if ($.trim(suppId).length < 3 ||
+            var poDate = new Date(poDateText);
+            var lastShipmentDate = new Date(lastShipmentDte);
+
+            console.log(poDate, lastShipmentDate);
+
+            if ($.trim(poDateText).length < 3 ||
+                $.trim(poDateText) == "" ||
+                $.trim(poDateText) == null ||
+                $.trim(poDateText) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Check PO Date');
+            }
+            else if ($.trim(suppId).length < 3 ||
                 $.trim(suppId) == "" ||
                 $.trim(suppId) == null ||
                 $.trim(suppId) == undefined) {
@@ -96,7 +109,11 @@
                 $.trim(lastShipmentDte) == "" ||
                 $.trim(lastShipmentDte) == null ||
                 $.trim(lastShipmentDte) == undefined) {
-                 document.getElementById("hdnPreConfirm").value = "0"; alert('Please set Last Shipment Date');
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please set Last Shipment Date');
+            } else if (poDate>lastShipmentDate) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Last Shipment Date can not be less than PO Date');
             }
             else {
                 var confirmValue = document.createElement("INPUT");
@@ -114,6 +131,21 @@
             }
 
 
+        }
+        function validation() {
+            var poDateText = document.getElementById("txtdtePo").value;
+            var lastShipmentDateText = document.getElementById("txtLastShipmentDate").value;
+            if (poDateText == null || poDateText == "") {
+                return false;
+            } else if (lastShipmentDateText == null || lastShipmentDateText == "") {
+                return false;
+            }
+            var poDate = new Date(poDateText);
+            var lastShipmentDate = new Date(lastShipmentDateText);
+            if (poDate > lastShipmentDate) {
+                return false;
+            }
+            return true;
         }
 
         function GetCommision(txt) {
@@ -1122,21 +1154,7 @@
         </asp:UpdatePanel>
     </form>
     <script type="text/javascript">
-        function validation() {
-            var poDateText = document.getElementById("txtdtePo").value;
-            var lastShipmentDateText = document.getElementById("txtLastShipmentDate").value;
-            if (poDateText == null || poDateText == "") {
-                return false;
-            } else if (lastShipmentDateText == null || lastShipmentDateText == "") {
-                return false;
-            }
-            var poDate = new Date(poDateText);
-            var lastShipmentDate = new Date(lastShipmentDateText);
-            if (poDate > lastShipmentDate) {
-                return false;
-            }
-            return true;
-        }
+        
         
     </script>
 </body>
