@@ -367,5 +367,15 @@ namespace UI.SCM.BOM
                 }
             }
         }
+
+        protected void btnUpdate_OnClick(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnEdit_OnClick(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

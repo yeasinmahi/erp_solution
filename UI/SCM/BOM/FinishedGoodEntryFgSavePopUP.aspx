@@ -423,7 +423,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit"></asp:Button>
+                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit" OnClick="btnEdit_OnClick"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
@@ -444,7 +444,90 @@
                     </table>
                 
                 </div>
+                
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Production Transfer Update</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label22" runat="server" Text="overtime Id"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtOvertimeId" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Overtime Id"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label14" runat="server" Text="Employee Name"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtEmployeeNameUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label12" runat="server" Text="Enroll"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtEnrollUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label13" runat="server" Text="Designation"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtDesignationUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Designation"></asp:TextBox>
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label15" runat="server" Text="Date"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtDateUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date"></asp:TextBox>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label16" runat="server" Text="Movement Hour"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtMoveUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label17" runat="server" Text="Start Time"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtStrtTimeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpanUpdate()" runat="server" placeholder="Start Time"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label18" runat="server" Text="End Time"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtEndTimeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpanUpdate()" runat="server" placeholder="End Time"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label19" runat="server" Text="Purpose"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlPurposeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label21" runat="server" Text="Remarks"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtRemarksUpdate" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-12">
+                                    <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary form-control pull-right" Text="Update" OnClientClick="return ValidateUpdate();" OnClick="btnUpdate_OnClick" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
