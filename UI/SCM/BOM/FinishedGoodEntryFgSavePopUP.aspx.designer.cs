@@ -418,13 +418,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label22;
         
         /// <summary>
-        /// txtOvertimeId control.
+        /// txtTransectionId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOvertimeId;
+        protected global::System.Web.UI.WebControls.TextBox txtTransectionId;
         
         /// <summary>
         /// Label14 control.
@@ -436,13 +436,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label14;
         
         /// <summary>
-        /// txtEmployeeNameUpdate control.
+        /// txtProductNameUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmployeeNameUpdate;
+        protected global::System.Web.UI.WebControls.TextBox txtProductNameUpdate;
         
         /// <summary>
         /// Label12 control.
@@ -454,13 +454,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// txtEnrollUpdate control.
+        /// txtActualQtyUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEnrollUpdate;
+        protected global::System.Web.UI.WebControls.TextBox txtActualQtyUpdate;
         
         /// <summary>
         /// Label13 control.
@@ -472,13 +472,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// txtDesignationUpdate control.
+        /// txtQcUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDesignationUpdate;
+        protected global::System.Web.UI.WebControls.TextBox txtQcUpdate;
         
         /// <summary>
         /// Label15 control.
@@ -490,103 +490,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// txtDateUpdate control.
+        /// txtSendToStoreUpdate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDateUpdate;
-        
-        /// <summary>
-        /// Label16 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
-        
-        /// <summary>
-        /// txtMoveUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMoveUpdate;
-        
-        /// <summary>
-        /// Label17 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
-        
-        /// <summary>
-        /// txtStrtTimeUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtStrtTimeUpdate;
-        
-        /// <summary>
-        /// Label18 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
-        
-        /// <summary>
-        /// txtEndTimeUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEndTimeUpdate;
-        
-        /// <summary>
-        /// Label19 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
-        
-        /// <summary>
-        /// ddlPurposeUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPurposeUpdate;
-        
-        /// <summary>
-        /// Label21 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label21;
-        
-        /// <summary>
-        /// txtRemarksUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRemarksUpdate;
+        protected global::System.Web.UI.WebControls.TextBox txtSendToStoreUpdate;
         
         /// <summary>
         /// btnUpdate control.

@@ -293,7 +293,7 @@ namespace UI.HR.Overtime
             LoadPurposeUpdate();
             //ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
             ddlPurposeUpdate.SelectedIndex = ddlPurposeUpdate.Items.IndexOf(ddlPurposeUpdate.Items.FindByText(((Label)row.FindControl("lblReson")).Text));
-            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+            SetVisibilityModal(true);
         }
 
         private void LoadOverTimeDetailsGridView(int empId)
@@ -351,7 +351,7 @@ namespace UI.HR.Overtime
             message = _bll.OvertimeEntryNew(2, xmlString, Enroll, "");
             if (!message.Contains("Sucessfully"))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+                SetVisibilityModal(true);
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
                 return;
             }

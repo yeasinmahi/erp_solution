@@ -375,6 +375,22 @@ namespace UI.SCM.BOM
 
         protected void btnEdit_OnClick(object sender, EventArgs e)
         {
+            GridViewRow row =  GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            string receiveQuantity = (row.FindControl("lblStoreReceivedQty") as Label)?.Text;
+            if (string.IsNullOrWhiteSpace(receiveQuantity))
+            {
+                txtTransectionId.Text = (row.FindControl("lblAutoId") as Label)?.Text;
+                txtProductNameUpdate.Text = (row.FindControl("lblProductName") as Label)?.Text;
+                txtActualQtyUpdate.Text = (row.FindControl("lblActualQty") as Label)?.Text;
+                txtQcUpdate.Text = (row.FindControl("lblQCQty") as Label)?.Text;
+                txtSendToStoreUpdate.Text = (row.FindControl("lblStore") as Label)?.Text;
+                SetVisibilityModal(true);
+
+            }
+            else
+            {
+                Toaster("This Item Already Received", Common.TosterType.Warning);
+            }
             
         }
     }

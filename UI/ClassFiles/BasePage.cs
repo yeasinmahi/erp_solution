@@ -106,8 +106,12 @@ namespace UI.ClassFiles
             {
                 ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "hideDiv('" + id + "');", true);
             }
-            
-        }
 
+        }
+        public void SetVisibilityModal(bool isVisible)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", isVisible ? "openModal();" : "closeModal();",
+                true);
+        }
     }
 }

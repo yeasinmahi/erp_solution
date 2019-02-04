@@ -417,7 +417,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Received Qty" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblStoreReceivedStatus" runat="server" Width="" Text='<%# Bind("numStoreReceiveQty","{0:n4}") %>'></asp:Label>
+                                                <asp:Label ID="lblStoreReceivedQty" runat="server" Width="" Text='<%# Bind("numStoreReceiveQty","{0:n4}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
@@ -457,65 +457,30 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label22" runat="server" Text="overtime Id"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtOvertimeId" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Overtime Id"></asp:TextBox>
+                                        <asp:Label ID="Label22" runat="server" Text="Transection Id"></asp:Label>
+                                        <asp:TextBox ID="txtTransectionId" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Transection Id"></asp:TextBox>
 
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label14" runat="server" Text="Employee Name"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtEmployeeNameUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
+                                        <asp:Label ID="Label14" runat="server" Text="Product Name"></asp:Label>
+                                        <asp:TextBox ID="txtProductNameUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Product Name"></asp:TextBox>
 
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label12" runat="server" Text="Enroll"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtEnrollUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
+                                        <asp:Label ID="Label12" runat="server" Text="Actual Quantity"></asp:Label>
+                                        <asp:TextBox ID="txtActualQtyUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Actual Quantity"></asp:TextBox>
 
                                     </div>
                                     <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label13" runat="server" Text="Designation"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtDesignationUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Designation"></asp:TextBox>
+                                        <asp:Label ID="Label13" runat="server" Text="QC Quantity"></asp:Label>
+                                        <asp:TextBox ID="txtQcUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="QC Quantity"></asp:TextBox>
 
                                     </div>
 
                                     <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label15" runat="server" Text="Date"></asp:Label>
+                                        <asp:Label ID="Label15" runat="server" Text="Sent To Store Quantity"></asp:Label>
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtDateUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Date"></asp:TextBox>
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label16" runat="server" Text="Movement Hour"></asp:Label>
-                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtMoveUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="OverTime Hour"></asp:TextBox>
-
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label17" runat="server" Text="Start Time"></asp:Label>
-                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtStrtTimeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpanUpdate()" runat="server" placeholder="Start Time"></asp:TextBox>
-
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label18" runat="server" Text="End Time"></asp:Label>
-                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtEndTimeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autoComplete="off" onchange="GetTimeSpanUpdate()" runat="server" placeholder="End Time"></asp:TextBox>
-
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label19" runat="server" Text="Purpose"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:DropDownList ID="ddlPurposeUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True"></asp:DropDownList>
-
-                                    </div>
-                                    <div class="col-md-6 col-sm-6">
-                                        <asp:Label ID="Label21" runat="server" Text="Remarks"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtRemarksUpdate" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Remarks"></asp:TextBox>
-
+                                        <asp:TextBox ID="txtSendToStoreUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Sent To Store Quantity"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
