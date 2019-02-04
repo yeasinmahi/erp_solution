@@ -1425,6 +1425,7 @@
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
@@ -7500,6 +7501,13 @@
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionReport.aspx.cs">
+      <DependentUpon>ProductionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionReport.aspx.designer.cs">
+      <DependentUpon>ProductionReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\ProfitCenter.aspx.cs">
       <DependentUpon>ProfitCenter.aspx</DependentUpon>

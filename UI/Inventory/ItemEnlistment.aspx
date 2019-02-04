@@ -151,7 +151,7 @@
             <td style="text-align:left;" ><asp:DropDownList ID="ddlUoM" CssClass="ddList" Font-Bold="False" 
                 BackColor="LightGray" BorderColor="Gray" runat="server" Width="195px" ForeColor="Black"></asp:DropDownList></td>  
                 
-                </tr>
+        </tr>
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblBrand" runat="server" CssClass="lbl" Text="Brand :"></asp:Label></td>
             <td style="text-align:left;" ><asp:TextBox ID="txtstrBrand" runat="server" CssClass="txtBox" Width="190px" Height="17px" BackColor="#DCDADA" BorderColor="Gray"></asp:TextBox>                                                                                       
