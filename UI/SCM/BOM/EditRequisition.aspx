@@ -85,11 +85,11 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnConfirm" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
      <asp:HiddenField ID="hdnIndentNo" runat="server" /><asp:HiddenField ID="hdnIndentDate" runat="server" />
      <asp:HiddenField ID="hdnDueDate" runat="server" /><asp:HiddenField ID="hdnIndentType" runat="server" /> 
-     <div class="tabs_container" style="text-align:left">Store Issue for Production From<hr /></div>
+     <div class="tabs_container" style="text-align:left">Edit Requisition<hr /></div>
          
        <table>
             <tr>
-            <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+            <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"    ></asp:DropDownList></td>                                                                                      
             <td style="text-align:right;"><asp:Label ID="lblFrom" runat="server" CssClass="lbl" Text="InterVal :"></asp:Label></td>
             <td style="text-align:left"><asp:DropDownList ID="ddlInterval" runat="server" CssClass="ddList">
@@ -110,7 +110,7 @@
             </asp:DropDownList></td>
           
           
-           <td style="text-align:right"><asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /> </td>
+           <td style="text-align:right"><asp:Button ID="btnShow" forecolor="Blue" runat="server" Text="Show" OnClick="btnShow_Click" /> </td>
             </tr> 
         </table>
         <table>
@@ -119,27 +119,27 @@
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right"  > 
             <AlternatingRowStyle BackColor="#CCCCCC" /> 
             <Columns>
-            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
+            <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="20px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
  
             <asp:TemplateField HeaderText="Id" SortExpression="Id" Visible="false"><ItemTemplate>
             <asp:Label ID="lblReqId" runat="server" Text='<%# Bind("Id") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="100px"/></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="SR NO And Dept" SortExpression="strCode"><ItemTemplate>
+            <asp:TemplateField HeaderText="SR No. And Departemnt" SortExpression="strCode"><ItemTemplate>
             <asp:Label ID="lblReqSR" runat="server" Text='<%# Bind("strCode") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Left" Width="200px"/></asp:TemplateField>
+            <ItemStyle HorizontalAlign="Left" Width="300px"/></asp:TemplateField>
 
              
-            <asp:TemplateField HeaderText="ProductionOrder" ItemStyle-HorizontalAlign="right" SortExpression="intProdOrderID" > 
+            <asp:TemplateField HeaderText="P. Order ID" ItemStyle-HorizontalAlign="right" SortExpression="intProdOrderID" > 
             <ItemTemplate><asp:Label ID="lblProduction"    runat="server"  Text='<%# Bind("intProdOrderID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="left" /> </asp:TemplateField> 
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField> 
 
-             <asp:TemplateField HeaderText="ProductionOrder Of" ItemStyle-HorizontalAlign="right" SortExpression="total" > 
+             <asp:TemplateField HeaderText="OrderNo." ItemStyle-HorizontalAlign="right" SortExpression="total" > 
             <ItemTemplate><asp:Label ID="lblProducQty"    runat="server"  Text='<%# Bind("total") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>  
+            <ItemStyle HorizontalAlign="center" /> </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalisReq" runat="server" Text="Detalis" OnClick="btnDetalisReq_Click"     /> </ItemTemplate> 
+            <ItemTemplate>   <asp:Button ID="btnDetalisReq" forecolor="Blue" runat="server" Text="Detalis" OnClick="btnDetalisReq_Click"     /> </ItemTemplate> 
             </asp:TemplateField>
 
             </Columns>
