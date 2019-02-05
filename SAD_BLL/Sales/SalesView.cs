@@ -788,7 +788,20 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
+        public DataTable getTADARptforSUpervisorAprove(DateTime dtFromDate, DateTime dtTodate, int enrol)
+        {
+            SprRmtTADAInsByImmediateSupvTableAdapter bllRptRmtTADABikeCarDetaills = new SprRmtTADAInsByImmediateSupvTableAdapter();
+            try
+            {
+                return bllRptRmtTADABikeCarDetaills.GetDataRmtTADAInsByImmediateSupv(dtFromDate, dtTodate, enrol);
+            }
 
+            catch
+            {
+                return new DataTable();
+            }
+
+        }
 
         //public List<string> AutoSearchAssetName(string strSearchKey)
         //{
