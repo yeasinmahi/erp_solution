@@ -23,6 +23,8 @@ namespace SAD_BLL.Sales
             catch { }
 
             SprVehicleAssignTableAdapter ta = new SprVehicleAssignTableAdapter();
+            //SprVehicleAssignForRNDTableAdapter ta= new SprVehicleAssignForRNDTableAdapter();
+
             ta.GetData(xmlStr, ref id, long.Parse(salesOrderId), int.Parse(userId)
                 , int.Parse(unitId), date, int.Parse(shippingPoint)
                 , int.Parse(vehicleId), isLogistic, isLogisByCompany

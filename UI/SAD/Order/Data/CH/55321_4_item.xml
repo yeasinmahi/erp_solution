@@ -1,0 +1,4 @@
+<?xml version="1.0" standalone="yes"?>
+<node>
+  <item Pid="761" PName="PCC" Qnt="1" ApprQnt="8000.00" Uom="12" Narr="1 Bag PCC Sold To M/s. Sreenagor Traders, Sirajdikhan" Prom="0.00" PromMain="0.00" UomTxt="Bag" PromItemId="761" PromItem="PCC" PromUom="12" PromUomText="Bag" PromPr="469.0000" PromItemCOA="38144" SoPkId="2535277" Price="469.0000" PrCoaId="38144" />
+</node>

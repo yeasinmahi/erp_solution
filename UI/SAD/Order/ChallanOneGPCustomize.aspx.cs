@@ -264,8 +264,7 @@ namespace UI.SAD.Order
                             <th style=""width:67px;text-align:center"">
                                 DELIVERY QNT.</th>
                             
-                            <th style=""width:100px;text-align:center"">
-                              DELIVERY  AMOUNT</th>
+                        
                         </tr>");
                     sbPending.Append(@"<tr style=""font-size:10px;background-color:#A0A0A0"">
                             <th style=""width:20px;text-align:center"">
@@ -282,8 +281,7 @@ namespace UI.SAD.Order
                             <th style=""width:67px;text-align:center"">
                                 PENDING QNT.</th>
                             
-                            <th style=""width:100px;text-align:center"">
-                              PENDING  AMOUNT</th>
+                          
                         </tr>");
 
 
@@ -322,7 +320,7 @@ namespace UI.SAD.Order
                         sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chNumber + "</td>");
                         //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chrate + "</td>");
                         sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chQty + "</td>");
-                        sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
+                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
                         sbtotaldelvparybase.Append("</tr>");
 
 
@@ -348,7 +346,7 @@ namespace UI.SAD.Order
                         sbPending.Append("<td style=\"text-align:right\">" + "  " + "</td>");
                         //sbPending.Append("<td style=\"text-align:right\">" + pendingrate + "</td>");
                         sbPending.Append("<td style=\"text-align:right\">" + PendingQty + "</td>");
-                        sbPending.Append("<td style=\"text-align:right\">" + Price + "</td>");
+                        //sbPending.Append("<td style=\"text-align:right\">" + Price + "</td>");
                         sbPending.Append("</tr>");
 
                         
