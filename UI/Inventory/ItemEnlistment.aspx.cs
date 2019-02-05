@@ -12,6 +12,7 @@ using System.IO;
 using System.Xml;
 using System.Web.Services;
 using HR_BLL.Global;
+using Utility;
 
 namespace UI.Inventory
 {
@@ -22,7 +23,7 @@ namespace UI.Inventory
         CSM Enlist = new CSM();
         CSM bankcheck = new CSM();
         CSM report = new CSM();
-        int enroll; int intClusterid;  int intCommodityId; int intCategoryId;  string strName; string strDescription; string strPartNo; string strBrand; string strUoM; int intLastActionBy;
+        int enroll; int intClusterid;  int intCommodityId; int intCategoryID;  string strName; string strDescription; string strPartNo; int intSubCategory; int intMinorCategory; string strBrand; string strUoM;  int intLastActionBy; string strModel;string strOrigin;  string strSpecification;  
         //string filePathForXML; string xmlString = ""; string xml;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -97,6 +98,15 @@ namespace UI.Inventory
             strPartNo = txtPartNo.Text;
             strBrand = txtstrBrand.Text;
             strUoM = ddlUoM.SelectedItem.ToString();
+            strModel = txtModel.Text;
+            strSpecification = txtSpecification.Text;
+            //intSubCategory = int.Parse(ddlsubcategory.SelectedValue.ToString());
+            //intMinorCategory = int.Parse(ddlsubcategory.SelectedValue.ToString());
+           
+            strOrigin = txtOrigin.Text;
+          
+
+
             int intCategoryId;
 
             int intClusterId = int.Parse(ddlCluster.SelectedValue.ToString());
@@ -104,13 +114,11 @@ namespace UI.Inventory
             if (intCommodityId == 0)
             { intCategoryId = 0; }
             else  { intCategoryId = int.Parse(ddlCategory.SelectedValue.ToString()); }
-
+            
             intLastActionBy = int.Parse(Session[SessionParams.USER_ID].ToString());
             string UoM;
             string Ittem =txtItemName.Text;
-            //string Cluster = ddlCluster.SelectedItem.ToString();
-            //string Commodity = ddlCommodity.SelectedItem.ToString();
-            //string Category = ddlCategory.SelectedItem.ToString();
+
             if (ddlUoM.SelectedItem.ToString() == null || ddlUoM.SelectedItem.ToString() == "") 
             {UoM="";}
             else{UoM=ddlUoM.SelectedItem.ToString();}
@@ -124,12 +132,13 @@ namespace UI.Inventory
             {
                // Enlist.INSERTMasterItemlist(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM,enroll);
 
-                Enlist.INSERTMasterItemlistCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll);
+                Enlist.INSERTMasterItemlistCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll, strModel, strOrigin, strSpecification);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item Added Successfully');", true);
+                Common.Clear(UpdatePanel0.Controls,null);
             }                   
         }
-
+ 
 
         protected void ddlCluster_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -179,15 +188,9 @@ namespace UI.Inventory
                 
         }
 
-        protected void txtItemName_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         protected void ddlCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-               
     }
 }

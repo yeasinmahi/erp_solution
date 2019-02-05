@@ -97,9 +97,9 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Store Qty" SortExpression="numSendStoreQty">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtSendStoreQty" runat="server" Text='<%# Bind("numSendStoreQty","{0:N4}") %>' Width="120px" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
+                                            <asp:TextBox ID="txtSendStoreQty" runat="server" Text='<%# Bind("numSendStoreQty","{0:N4}") %>' Width="100%" CssClass="form-control input-xs text-right" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
                                         </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="LastActionTime">
                                         <ItemTemplate>

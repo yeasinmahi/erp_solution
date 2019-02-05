@@ -247,6 +247,15 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
+        /// lblBomName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBomName;
+        
+        /// <summary>
         /// dgvRecive control.
         /// </summary>
         /// <remarks>

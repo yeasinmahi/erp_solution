@@ -37,9 +37,10 @@ namespace UI.SCM
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + Enroll + ".xml");
-
+            
             if (!IsPostBack)
             {
+                _ast = new AutoSearch_BLL();
                 try
                 {
                     File.Delete(filePathForXML);
@@ -344,12 +345,13 @@ namespace UI.SCM
 
         #region========================Auto Search============================
 
+        private static AutoSearch_BLL _ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            AutoSearch_BLL ast = new AutoSearch_BLL();
-            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            
+            return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 

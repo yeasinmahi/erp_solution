@@ -15,8 +15,9 @@ namespace UI.ClassFiles
     {
         //protected int Enroll = 0;
         public int Enroll { get; private set; }
-
-        protected int JobStationId = 0;
+        public int JobStationId { get; private set; }
+        public int UnitId { get; private set; }
+        public string UserEmail { get; private set; }
 
         protected override void OnPreInit(EventArgs e)
         {
@@ -24,6 +25,8 @@ namespace UI.ClassFiles
             UserActivityCheck();
             Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
+            UnitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            UserEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
             Page.Title = @"Welcome to Akij Group";
         }
 
@@ -85,6 +88,7 @@ namespace UI.ClassFiles
         }
         public void Toaster(string message, string header, Common.TosterType type)
         {
+            message = message.Replace("'", "\"");
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                 "ShowNotification('" + message + "','" + header + "','" + type.ToString().ToLower() + "')", true);
         }
@@ -93,6 +97,22 @@ namespace UI.ClassFiles
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                 "confirmMsg();", true);
         }
-        
+        public void SetVisibility(string id, bool isVisible)
+        {
+            if (isVisible)
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "showDiv('" + id + "');", true);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "hideDiv('" + id + "');", true);
+            }
+
+        }
+        public void SetVisibilityModal(bool isVisible)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", isVisible ? "openModal();" : "closeModal();",
+                true);
+        }
     }
 }

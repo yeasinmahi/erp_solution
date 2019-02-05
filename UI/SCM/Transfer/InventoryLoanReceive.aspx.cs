@@ -22,6 +22,7 @@ namespace UI.SCM.Transfer
         {
             if (!IsPostBack)
             {
+                ast = new AutoSearch_BLL();
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
                 dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, enroll);
@@ -43,12 +44,12 @@ namespace UI.SCM.Transfer
         }
 
         #region========================Auto Search============================
-
+        static AutoSearch_BLL ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            AutoSearch_BLL ast = new AutoSearch_BLL();
+            
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }

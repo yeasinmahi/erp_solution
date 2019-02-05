@@ -59022,7 +59022,7 @@ join ERP_HR.dbo.tblEmployee emp on  ov.intEmpID = emp.intEmployeeID
 JOIN ERP_HR.dbo.tblUserDesignation d ON emp.intDesignationID = d.intDesignationID
 JOIN ERP_HR.dbo.tblEmployee emp1 ON ov.intInsertBy = emp1.intEmployeeID
 where intEmpID = @intEmpId and dteDate between @fromDate and @toDate
-
+order by dteDate desc
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intEmpId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmpID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));

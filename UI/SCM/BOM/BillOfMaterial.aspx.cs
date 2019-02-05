@@ -285,8 +285,10 @@ namespace UI.SCM.BOM
                 BomId = int.Parse(ListDatas.SelectedValue.ToString());
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dt = objBom.GetBomData(3, xmlData, intwh, BomId, DateTime.Now, enroll);
+                lblBomName.Text = ListDatas.SelectedItem.Text;
                 if (dt.Rows.Count > 0)
                 {
+                    
                     for (int i = 0; i < dt.Rows.Count; i++)
                     {
                         string qty = dt.Rows[i]["numQty"].ToString();

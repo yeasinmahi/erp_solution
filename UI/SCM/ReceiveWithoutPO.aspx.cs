@@ -28,6 +28,7 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
+                ast = new AutoSearch_BLL();
                 try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
                 catch { }
                 DefaltLoad();
@@ -58,11 +59,12 @@ namespace UI.SCM
 
         #region========================Auto Search============================
 
+        static AutoSearch_BLL ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            AutoSearch_BLL ast = new AutoSearch_BLL();
+            
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }

@@ -293,7 +293,7 @@ namespace UI.HR.Overtime
             LoadPurposeUpdate();
             //ddlPurposeUpdate.SelectedItem.Text = ((Label)row.FindControl("lblReson")).Text;
             ddlPurposeUpdate.SelectedIndex = ddlPurposeUpdate.Items.IndexOf(ddlPurposeUpdate.Items.FindByText(((Label)row.FindControl("lblReson")).Text));
-            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+            SetVisibilityModal(true);
         }
 
         private void LoadOverTimeDetailsGridView(int empId)
@@ -301,6 +301,10 @@ namespace UI.HR.Overtime
             DateTime today = DateTime.Now;
             DateTime month = new DateTime(today.Year, today.Month, 1);
             DateTime fromDate = month.AddMonths(-1);
+            if (today.Day > 7)
+            {
+                fromDate = month;
+            }
             DateTime toDate = month.AddMonths(1).AddDays(-1);
             GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
             GridViewEmployeeDetails.DataBind();
@@ -347,7 +351,7 @@ namespace UI.HR.Overtime
             message = _bll.OvertimeEntryNew(2, xmlString, Enroll, "");
             if (!message.Contains("Sucessfully"))
             {
-                ScriptManager.RegisterStartupScript(this, GetType(), "Pop", "openModal();", true);
+                SetVisibilityModal(true);
                 ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
                 return;
             }

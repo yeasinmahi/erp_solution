@@ -1,5 +1,6 @@
 ﻿using SCM_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Web;
@@ -20,12 +21,13 @@ namespace UI.SCM
 
         private string filePathForXML, xmlString = "", xml, strPo, intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting, message, potype, ysnApprove, intSingleApproveBy, strDeliveryAddress, strPayTerm, strOtherTerms;
         private int intItemID; private string strSpecification, PoType;
-
+        List<Control> exceptControls = new List<Control>();
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             //hdnUnit.Value = Session[SessionParams.Unitid].ToString();
             filePathForXML = Server.MapPath("~/SCM/Data/ItemInfoByPO_" + Enroll + ".xml");
-
+            exceptControls.Add(txtPONo);
             if (!IsPostBack)
             {
                 File.Delete(filePathForXML);
@@ -63,7 +65,9 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            Common.Clear(UpdatePanel0.Controls);
+            
+            Common.Clear(UpdatePanel0.Controls,exceptControls);
+
             Common.UnLoadDropDown(ddlSupplier);
             if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {
@@ -140,12 +144,12 @@ namespace UI.SCM
                     //txtTransport.Text = string.Empty;
                     //txtGDiscount.Text = string.Empty;
                     //txtOthers.Text = string.Empty;
-                    Common.Clear(UpdatePanel0.Controls);
+                    Common.Clear(UpdatePanel0.Controls,exceptControls);
                 }
             }
             catch
             {
-                Common.Clear(Controls);
+                Common.Clear(UpdatePanel0.Controls, exceptControls);
             }
 
             if (string.IsNullOrWhiteSpace(txtMrrNo.Text))
@@ -177,6 +181,7 @@ namespace UI.SCM
                             else
                             {
                                 btnDeletePO.Visible = true;
+                                btnUpdatePO.Visible = true;
                                 // show
                             }
                         }
@@ -241,7 +246,7 @@ namespace UI.SCM
                     //PO Correction cannot be possible after approve
                     if (string.IsNullOrEmpty(ysnApprove) || string.IsNullOrEmpty(intSingleApproveBy))
                     {
-                        update();
+                        Update();
                     }
                     else if (!string.IsNullOrEmpty(ysnApprove) || !string.IsNullOrEmpty(intSingleApproveBy))
                     {
@@ -249,24 +254,28 @@ namespace UI.SCM
                         _dt = _bll.GetApprovalAuthorityList(Enroll, strPo);
                         if (_dt.Rows.Count > 0)
                         {
-                            string POType = _dt.Rows[0]["strPOType"].ToString();
-                            int ApprovedBy = Convert.ToInt32(_dt.Rows[0]["intEnrollment"].ToString());
-                            if (Enroll == ApprovedBy && strPo == POType)
+                            string poType = _dt.Rows[0]["strPOType"].ToString();
+                            int approvedBy = Convert.ToInt32(_dt.Rows[0]["intEnrollment"].ToString());
+                            if (Enroll == approvedBy && strPo == poType)
                             {
-                                update();
+                                Update();
                             }
                             else
                             {
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('PO cannot update.PO already approved');", true);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                    "alert('PO cannot update.PO already approved');", true);
                             }
                         }
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message,Common.TosterType.Error);
+                }
             }
         }
 
-        private void update()
+        private void Update()
         {
             if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {
@@ -605,7 +614,7 @@ namespace UI.SCM
         {
             _dt = _bll.GetSupplierAddress(Common.GetDdlSelectedValue(ddlSupplier));
             lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
-            LoadItemGridview();
+            //LoadItemGridview(); it can not 
         }
     }
 }

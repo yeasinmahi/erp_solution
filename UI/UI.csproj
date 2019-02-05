@@ -309,6 +309,7 @@
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
     <Content Include="Content\CSS\morris.css" />
@@ -1313,6 +1314,7 @@
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
     <Content Include="SAD\Sales\Report\ProductLoadingStatus.aspx" />
+    <Content Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx" />
     <Content Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AreaBaseCustomerTarget.aspx" />
@@ -1423,6 +1425,7 @@
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
+    <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
@@ -1460,6 +1463,7 @@
     <Content Include="SCM\Item_View.aspx" />
     <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
+    <Content Include="SCM\MrrCorrection.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
@@ -1517,9 +1521,11 @@
     <Content Include="Support\CertificateReceiveDeliveryReport.aspx" />
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
+    <Content Include="Transport\AccidentRegisterEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
     <Content Include="Transport\InternalTDriverLedgerBalance.aspx" />
     <Content Include="Transport\InternalTForTransportDept.aspx" />
+    <Content Include="Transport\InternalTForTransportDeptLavel1.aspx" />
     <Content Include="Transport\InternalTLocalAccountsReport.aspx" />
     <Content Include="Transport\InternalTPaymentHisory.aspx" />
     <Content Include="Transport\InternalTransportExtimatedExp.aspx" />
@@ -6719,6 +6725,13 @@
     <Compile Include="SAD\Sales\Report\ProductLoadingStatus.aspx.designer.cs">
       <DependentUpon>ProductLoadingStatus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx.cs">
+      <DependentUpon>Product_Rate_vs_DO.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx.designer.cs">
+      <DependentUpon>Product_Rate_vs_DO.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx.cs">
       <DependentUpon>Region_Area_item_wise_sales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7489,6 +7502,13 @@
     <Compile Include="SCM\BOM\ProductionOrder.aspx.designer.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\BOM\ProductionReport.aspx.cs">
+      <DependentUpon>ProductionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionReport.aspx.designer.cs">
+      <DependentUpon>ProductionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BOM\ProfitCenter.aspx.cs">
       <DependentUpon>ProfitCenter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7733,6 +7753,13 @@
     </Compile>
     <Compile Include="SCM\MaterialApprovalStatus.aspx.designer.cs">
       <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\MrrCorrection.aspx.cs">
+      <DependentUpon>MrrCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\MrrCorrection.aspx.designer.cs">
+      <DependentUpon>MrrCorrection.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrDocAttachmentPopUp.aspx.cs">
       <DependentUpon>MrrDocAttachmentPopUp.aspx</DependentUpon>
@@ -8189,6 +8216,13 @@
     <Compile Include="CreativeSupportModule\HomeT.aspx.designer.cs">
       <DependentUpon>HomeT.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Transport\AccidentRegisterEntry.aspx.cs">
+      <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
+      <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Transport\InternalTDocPathList.aspx.cs">
       <DependentUpon>InternalTDocPathList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8209,6 +8243,13 @@
     </Compile>
     <Compile Include="Transport\InternalTForTransportDept.aspx.designer.cs">
       <DependentUpon>InternalTForTransportDept.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\InternalTForTransportDeptLavel1.aspx.cs">
+      <DependentUpon>InternalTForTransportDeptLavel1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\InternalTForTransportDeptLavel1.aspx.designer.cs">
+      <DependentUpon>InternalTForTransportDeptLavel1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\InternalTLocalAccountsReport.aspx.cs">
       <DependentUpon>InternalTLocalAccountsReport.aspx</DependentUpon>
@@ -9018,9 +9059,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\pubiis8.pubxml" />
     <Content Include="Vehicle_Registration_Renewal\BRTAProfile_Update_UI.aspx" />
     <Content Include="Vehicle_Registration_Renewal\Detalis_DRC_UI.aspx" />
     <Content Include="Vehicle_Registration_Renewal\Detalis_FitnessAIT_UI.aspx" />
@@ -9054,6 +9092,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

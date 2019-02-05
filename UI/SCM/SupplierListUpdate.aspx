@@ -23,6 +23,16 @@
     <script>
         function CheckShow() {}
     </script>
+    <style type="text/css">
+        #GVList tr:hover {
+            background-color:#ED8;  
+        }
+        .alternativerow{
+            background-color:#cccccc;
+        }
+    </style>
+
+    
 </head>
 <body>
     <form id="frmattendancedetails" runat="server">
@@ -47,21 +57,20 @@
                     <td><asp:DropDownList ID="ddlUnit" runat="server" CssClass="dropdownList" DataSourceID="ObjectDataSource1" DataTextField="strShortName" DataValueField="intUnitID"></asp:DropDownList>
                         <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="UnitList" TypeName="SCM_DAL.BillingTDSTableAdapters.TblWearHouseTableAdapter"></asp:ObjectDataSource>
                     </td>
-                    <td style="text-align: right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Supplier Name : "></asp:Label></td>
+                    <td style="text-align: right;"><asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Supplier Type : "></asp:Label></td>
                     <td><asp:DropDownList ID="ddlsupplier" runat="server" CssClass="dropdownList">                        
                                     <asp:ListItem Value="1">Local</asp:ListItem>
                                     <asp:ListItem Value="2">Import</asp:ListItem>
                                     <asp:ListItem Value="3">Fabrication</asp:ListItem>
                         </asp:DropDownList></td>
                     
-                    <td><asp:Button ID="btnShow" runat="server" class="nextclick" Style="font-size: 12px; cursor: pointer;" Text="Show Report" OnClientClick="CheckShow()" OnClick="btnShow_Click" /></td>
+                    <td><asp:Button ID="btnShow" runat="server" class="nextclick" Style="font-size: 12px; cursor: pointer;" Text="Show Report" forecolor="Blue" OnClientClick="CheckShow()" OnClick="btnShow_Click" /></td>
 
                 </tr>               
         </table>
             <table>
                  <tr>
-                    <asp:GridView ID="GVList" runat="server" AutoGenerateColumns="False"  Font-Size="11px" DataKeyNames="intSupplierID" OnRowEditing="GVList_RowEditing" OnRowUpdating="GVList_RowUpdating" OnRowCancelingEdit="GVList_RowCancelingEdit" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
-                        <AlternatingRowStyle BackColor="#CCCCCC" />
+                    <asp:GridView ID="GVList" runat="server" AutoGenerateColumns="False" AlternatingRowStyle-CssClass="alternativerow" Font-Size="11px" DataKeyNames="intSupplierID" OnRowEditing="GVList_RowEditing" OnRowUpdating="GVList_RowUpdating" OnRowCancelingEdit="GVList_RowCancelingEdit"  BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
                         <Columns>
                             <asp:TemplateField HeaderText="SL" SortExpression="SL">
                                 <ItemTemplate>
@@ -83,7 +92,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Supplier Name" SortExpression="strSupplierName">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrSupplierName" runat="server" Text='<%# Bind("strSupplierName") %>'></asp:Label>
+                                    <asp:Label ID="lblstrSupplierName" width="200px" runat="server" Text='<%# Bind("strSupplierName") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>                          
@@ -95,7 +104,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Org Mail" SortExpression="strOrgMail">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrOrgMail" runat="server" Text='<%# Bind("strOrgMail") %>'></asp:Label>
+                                    <asp:Label ID="lblstrOrgMail" width="200px" runat="server" Text='<%# Bind("strOrgMail") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left"/>
                             </asp:TemplateField>
@@ -107,16 +116,11 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Org FAX No" SortExpression="strOrgFAXNo">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrOrgFAXNo" runat="server" Text='<%# Bind("strOrgFAXNo") %>'></asp:Label>
+                                    <asp:Label ID="lblstrOrgFAXNo" width="120px" runat="server" Text='<%# Bind("strOrgFAXNo") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Bank Account No" SortExpression="strBankAccountNo">
-                                <ItemTemplate>
-                                    <asp:Label ID="lblstrBankAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
-                                </ItemTemplate>
-                                <ItemStyle HorizontalAlign="left" />
-                            </asp:TemplateField>
+                            
                              <asp:TemplateField HeaderText="Business Type" SortExpression="strBusinessType">
                                 <ItemTemplate>
                                     <asp:Label ID="lblstrBusinessType" runat="server" Text='<%# Bind("strBusinessType") %>'></asp:Label>
@@ -131,7 +135,7 @@
                             </asp:TemplateField>
                              <asp:TemplateField HeaderText="Supplier Type" SortExpression="strSupplierType">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrSupplierType" runat="server" Text='<%# Bind("strSupplierType") %>'></asp:Label>
+                                    <asp:Label ID="lblstrSupplierType" width="100px" runat="server" Text='<%# Bind("strSupplierType") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
@@ -173,13 +177,20 @@
                                     <asp:TextBox ID="txtstrReprContactNo" runat="server" Text='<%# Bind("strReprContactNo") %>'></asp:TextBox>
                                 </EditItemTemplate>
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrReprContactNo" runat="server" Text='<%# Bind("strReprContactNo") %>'></asp:Label>
+                                    <asp:Label ID="lblstrReprContactNo" width="100px" runat="server" Text='<%# Bind("strReprContactNo") %>'></asp:Label>
+                                </ItemTemplate>
+                                <ItemStyle HorizontalAlign="left" />
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Bank Account No" SortExpression="strBankAccountNo">
+                                <ItemTemplate>
+                                    <asp:Label ID="lblstrBankAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Pay To Name" SortExpression="strPayToName">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblstrPayToName" runat="server" Text='<%# Bind("strPayToName") %>'></asp:Label>
+                                    <asp:Label ID="lblstrPayToName" width="180px" runat="server" Text='<%# Bind("strPayToName") %>'></asp:Label>
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                             </asp:TemplateField>

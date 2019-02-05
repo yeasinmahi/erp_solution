@@ -184,18 +184,27 @@ namespace Utility
 
             return controls;
         }
-        public static void Clear(ControlCollection controls)
+        public static void Clear(ControlCollection controls,List<Control> exceptControls)
         {
             
             foreach (Control ctrl in controls)
             {
+                if (exceptControls!=null)
+                {
+                    if (exceptControls.Contains(ctrl))
+                    {
+                        continue;
+                    }
+                }
+                
+
                 if (ctrl is TextBox)
                 {
                     ((TextBox)ctrl).Text = string.Empty;
                 }
                 else if (ctrl is DropDownList)
                 {
-                    ((DropDownList)ctrl).SelectedIndex = 0;
+                    SetDdlSelectedValue(((DropDownList)ctrl), "0");
                 }
                 else if (ctrl is CheckBoxList)
                 {
@@ -209,7 +218,24 @@ namespace Utility
                 {
                     ((RadioButtonList)ctrl).SelectedIndex = 0;
                 }
+                else
+                {
+                    Clear(ctrl.Controls,exceptControls);
+                }
             }
+        }
+        public static Control GetControlThatCausedPostBack(Page page)
+        {
+            //initialize a control and set it to null
+            Control ctrl = null;
+
+            //get the event target name and find the control
+            string ctrlName = page.Request.Params.Get("__EVENTTARGET");
+            if (!String.IsNullOrEmpty(ctrlName))
+                ctrl = page.FindControl(ctrlName);
+
+            //return the control to the calling method
+            return ctrl;
         }
     }
 }

@@ -111,8 +111,8 @@ namespace EmailService
         {
             return new SmtpClient
             {
-                Host = "ex5.akij.net",
-                Port = 587,
+                Host = "ex.akij.net",
+                Port = 25,
                 EnableSsl = false,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = true,
