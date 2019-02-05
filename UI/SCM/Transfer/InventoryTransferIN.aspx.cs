@@ -181,7 +181,6 @@ namespace UI.SCM.Transfer
                     txtQty.Text = "";
                     txtRemarsk.Text = "";
                     lblFrom.Text = "";
-                    xmlString = "";
                     string msg = _bll.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, Enroll);
                     if (msg.ToLower().Contains("success"))
                     {
