@@ -66,30 +66,36 @@ namespace UI.SCM.BOM
                 txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
                 dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(productionID));
-                if (dt.Rows.Count > 0)
-                {
-                    //txtItem.Text = dt.Rows[0]["strName"].ToString();
-                    lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
-                    txtActualQty.Text = dt.Rows[0]["numActualQty"].ToString();
-                    if (string.IsNullOrWhiteSpace(txtActualQty.Text))
-                    {
-                        txtActualQty.Text = lblPlanQty.Text;
-                    }
-                    //txtActualQty.Enabled = false;
+                LoadGrid();
 
-                    Session["TotalStoreQuantity"] = dt.Rows[0]["totalSentToStore"].ToString();
 
-                    dgvProductionEntry.DataSource = dt;
-                    dgvProductionEntry.DataBind();
-                }
-                else
-                {
-                    Session["TotalStoreQuantity"] = null;
-                }
-                
             }
         }
 
+        public void LoadGrid()
+        {
+            dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(lblProductionId.Text));
+            if (dt.Rows.Count > 0)
+            {
+                //txtItem.Text = dt.Rows[0]["strName"].ToString();
+                lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
+                txtActualQty.Text = dt.Rows[0]["numActualQty"].ToString();
+                if (string.IsNullOrWhiteSpace(txtActualQty.Text))
+                {
+                    txtActualQty.Text = lblPlanQty.Text;
+                }
+                //txtActualQty.Enabled = false;
+
+                Session["TotalStoreQuantity"] = dt.Rows[0]["totalSentToStore"].ToString();
+
+                dgvProductionEntry.DataSource = dt;
+                dgvProductionEntry.DataBind();
+            }
+            else
+            {
+                Session["TotalStoreQuantity"] = null;
+            }
+        }
         #region========================Auto Search============================
 
         [WebMethod]
@@ -334,7 +340,7 @@ namespace UI.SCM.BOM
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message, Common.TosterType.Error);
+                //Toaster(ex.Message, Common.TosterType.Error);
             }
         }
 
@@ -401,37 +407,51 @@ namespace UI.SCM.BOM
             int transectionId = Convert.ToInt32(txtTransectionId.Text);
             decimal.TryParse(txtActualQtyUpdate.Text, out actualQty);
             decimal.TryParse(txtQcUpdate.Text, out qcHoldQty);
+            decimal.TryParse(txtSendToStorePrv.Text, out decimal prvStoreQty);
             decimal.TryParse(txtSendToStoreUpdate.Text, out storeQty);
             if (Session["TotalStoreQuantity"] != null)
             {
                 if (!decimal.TryParse(Session["TotalStoreQuantity"].ToString(), out totalSentToStore))
                 {
                     Toaster("Can not get total store quantity. please contact with developper.", Common.TosterType.Warning);
+                    SetVisibilityModal(true);
                     return;
                 }
             }
             if (storeQty > 0)
             {
-                decimal avaialableQuantity = actualQty - totalSentToStore;
+                decimal avaialableQuantity = actualQty - totalSentToStore+ prvStoreQty;
                 if (avaialableQuantity - storeQty < 0)
                 {
                     Toaster("Store quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                    SetVisibilityModal(true);
                     return;
                 }
                 if (avaialableQuantity < qcHoldQty + storeQty)
                 {
                     Toaster("Sum of store Quantity and QC quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                    SetVisibilityModal(true);
                     return;
                 }
             }
             else
             {
                 Toaster("Send to store Quantity should be grater than 0", Common.TosterType.Warning);
+                SetVisibilityModal(true);
                 return;
             }
             objBom.UpdateProductionTransfer(1, storeQty, transectionId, Enroll, out string msg);
-            Toaster(msg,msg.ToLower().Contains("success")?Common.TosterType.Success:Common.TosterType.Error);
-
+            if (msg.ToLower().Contains("success"))
+            {
+                Toaster(msg, Common.TosterType.Success);
+                LoadGrid();
+            }
+            else
+            {
+                Toaster(msg, Common.TosterType.Error);
+                SetVisibilityModal(true);
+            }
+            
 
         }
 
@@ -445,7 +465,7 @@ namespace UI.SCM.BOM
                 txtProductNameUpdate.Text = (row.FindControl("lblProductName") as Label)?.Text;
                 txtActualQtyUpdate.Text = (row.FindControl("lblActualQty") as Label)?.Text;
                 txtQcUpdate.Text = (row.FindControl("lblQCQty") as Label)?.Text;
-                txtSendToStoreUpdate.Text = (row.FindControl("lblStore") as Label)?.Text;
+                txtSendToStorePrv.Text = (row.FindControl("lblStore") as Label)?.Text;
                 SetVisibilityModal(true);
 
             }

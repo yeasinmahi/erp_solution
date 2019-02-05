@@ -88,6 +88,7 @@ namespace UI.ClassFiles
         }
         public void Toaster(string message, string header, Common.TosterType type)
         {
+            message = message.Replace("'", "\"");
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                 "ShowNotification('" + message + "','" + header + "','" + type.ToString().ToLower() + "')", true);
         }

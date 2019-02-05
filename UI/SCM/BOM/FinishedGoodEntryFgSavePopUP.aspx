@@ -111,7 +111,7 @@
 
     <form id="frmselfresign" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel0" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -476,7 +476,12 @@
                                         <asp:TextBox ID="txtQcUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="QC Quantity"></asp:TextBox>
 
                                     </div>
-
+                                    
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label6" runat="server" Text="Prev. Send Store Quantity"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtSendToStorePrv" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Prev. Sent To Store Quantity"></asp:TextBox>
+                                    </div>
                                     <div class="col-md-6 col-sm-6">
                                         <asp:Label ID="Label15" runat="server" Text="Sent To Store Quantity"></asp:Label>
                                         <span style="color: red; font-size: 14px; text-align: left">*</span>
@@ -495,6 +500,11 @@
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnAdd" />
+            <asp:PostBackTrigger ControlID="btnSaves" />
+            <asp:PostBackTrigger ControlID="btnUpdate" />
+        </Triggers>
         </asp:UpdatePanel>
     </form>
 </body>
