@@ -39,9 +39,9 @@ namespace UI.SCM
         private void GridBind()
         {
             int whid = Common.GetDdlSelectedValue(ddlWH);
-            DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
-            DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
-            _dt = _objbll.FGReceive_Data(whid, FromDate, ToDate, 1, 0, 0, DateTime.Now, 0, 0);
+            DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
+            DateTime toDate = Convert.ToDateTime(txtToDate.Text);
+            _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 1, 0, 0, DateTime.Now, 0, 0);
 
             if (_dt.Rows.Count > 0)
             {
@@ -53,49 +53,56 @@ namespace UI.SCM
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-            int location = 0, Vehicle = 0, intOutWH = 0, intSalesID = 0;
-            DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
-            DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
+            DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
+            DateTime toDate = Convert.ToDateTime(txtToDate.Text);
             int autoid = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
             int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
-            DateTime InvDate = Convert.ToDateTime(((Label)row.FindControl("lblLastActionTime")).Text);
-            decimal StoreQty = Convert.ToDecimal(((TextBox)row.FindControl("txtSendStoreQty")).Text);
-            int productid = Convert.ToInt32(((Label)row.FindControl("lblintproductionid")).Text);
+            DateTime invDate = Convert.ToDateTime(((Label)row.FindControl("lblLastActionTime")).Text);
+            decimal storeQty = Convert.ToDecimal(((TextBox)row.FindControl("txtSendStoreQty")).Text);
+            int productionId = Convert.ToInt32(((Label)row.FindControl("lblintproductionid")).Text);
             int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
-            _dt = _objbll.GetUnitByWH(whid);
-            int unitID = Convert.ToInt32(_dt.Rows[0]["intUnitID"].ToString());
 
-            _dt = _objbll.FGReceive_Data(whid, FromDate, ToDate, 2, autoid, itemid, InvDate, StoreQty, productid); //insert into inventory
-
-            _dt = _objbll.FGReceive_Data(whid, FromDate, ToDate, 3, autoid, itemid, InvDate, StoreQty, productid); // get outWHID
-            if (_dt.Rows.Count > 0)
-            {
-                intOutWH = Convert.ToInt32(_dt.Rows[0]["intOutWHID"].ToString());
-            }
-            _dt = _objbll.DistributionData(whid, FromDate, ToDate, 2, 0); //get location
-            if (_dt.Rows.Count > 0)
-            {
-                location = Convert.ToInt32(_dt.Rows[0]["intStoreLocationID"].ToString());
-            }
-            _dt = _objbll.InsertReceiveData(unitID, whid, intOutWH, 0, Enroll, 0, 0, 0, 0, "Transfer To Distribution", 0, 2, true); //get sales ID
+            _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 2, autoid, itemid, invDate, storeQty, productionId); //insert into inventory
 
             if (_dt.Rows.Count > 0)
             {
-                intSalesID = Convert.ToInt32(_dt.Rows[0]["strOutput"].ToString());
+                GridBind();
+                Toaster("Successfully Updated",Common.TosterType.Success);
             }
-            _dt = _objbll.InsertTransferData(unitID, whid, intOutWH, location, Enroll, intSalesID, itemid, StoreQty, "Transfer To Distribution", 1, "Good Product");
-            string strChallan = "";
-            if (_dt.Rows.Count > 0)
+            else
             {
-                strChallan = _dt.Rows[0]["strChallan"].ToString();
+                Toaster("Update Failed", Common.TosterType.Error);
             }
 
-            if (Vehicle > 0)
-            {
-                _dt = _objbll.GetTripEntry(strChallan, unitID, 0, 0);
-            }
+            //_dt = _objbll.FGReceive_Data(whid, FromDate, ToDate, 3, autoid, itemid, InvDate, StoreQty, productionId); // get outWHID
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    intOutWH = Convert.ToInt32(_dt.Rows[0]["intOutWHID"].ToString());
+            //}
+            //_dt = _objbll.DistributionData(whid, FromDate, ToDate, 2, 0); //get location
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    location = Convert.ToInt32(_dt.Rows[0]["intStoreLocationID"].ToString());
+            //}
+            //_dt = _objbll.InsertReceiveData(unitID, whid, intOutWH, 0, Enroll, 0, 0, 0, 0, "Transfer To Distribution", 0, 2, true); //get sales ID
 
-            GridBind();
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    intSalesID = Convert.ToInt32(_dt.Rows[0]["strOutput"].ToString());
+            //}
+            //_dt = _objbll.InsertTransferData(unitID, whid, intOutWH, location, Enroll, intSalesID, itemid, StoreQty, "Transfer To Distribution", 1, "Good Product");
+            //string strChallan = "";
+            //if (_dt.Rows.Count > 0)
+            //{
+            //    strChallan = _dt.Rows[0]["strChallan"].ToString();
+            //}
+
+            //if (Vehicle > 0)
+            //{
+            //    _dt = _objbll.GetTripEntry(strChallan, unitID, 0, 0);
+            //}
+
+
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
