@@ -80,9 +80,23 @@ namespace UI.Asset
             int jobcard = int.Parse(txtJobCard.Text.ToString());
             if (jobcard > 0)
             {
-                string msg = objasset.UpdateMoney(amount, intID);
-                objasset.MaintenanceComplete(65, jobcard, 0, 0, 0);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                DataTable dt = new DataTable();
+                dt=objasset.PMSLaborcostShow(66, jobcard, 0, 0, 0);
+                if(dt.Rows.Count>0)
+                {
+                    int active = int.Parse(dt.Rows[0]["intID"].ToString());
+                    if (active == 1)
+                    {
+                        string msg = objasset.UpdateMoney(amount, intID);
+                        objasset.MaintenanceComplete(65, jobcard, 0, 0, 0);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Bill already submited of last month');", true);
+                    }
+                }
+              
             }
             else
             {
