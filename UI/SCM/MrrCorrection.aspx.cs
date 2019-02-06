@@ -99,6 +99,11 @@ namespace UI.SCM
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
+                if (string.IsNullOrWhiteSpace(txtVoucherNo.Text))
+                {
+                    Toaster("No JV Found on this MRR",Common.TosterType.Warning);
+                    return;
+                }
                 _dt = _obj.CorrectionMrr(4, _intMrrid,Enroll,out message);
                 if (_dt.Rows.Count > 0)
                 {
@@ -126,11 +131,21 @@ namespace UI.SCM
                 _dt = _obj.GetMrrInfo(_intMrrid);
                 if (_dt.Rows.Count > 0)
                 {
-                    txtMrrDate.Text = _dt.Rows[0]["dteTransactionDate"].ToString();
+                    DateTime.TryParse(_dt.Rows[0]["dteTransactionDate"].ToString(), out DateTime mrrDate);
+                    txtMrrDate.Text = mrrDate.ToShortDateString();
                     txtVoucherNo.Text = _dt.Rows[0]["strVoucherCode"].ToString();
                     txtPo.Text = _dt.Rows[0]["intPOID"].ToString();
                     txtWhName.Text = _dt.Rows[0]["strWareHoseName"].ToString();
                     txtSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    txtChanllanNo.Text = _dt.Rows[0]["strExtnlReff"].ToString();
+                    string chanllanDateText = _dt.Rows[0]["dteChallanDate"].ToString();
+                    if (!string.IsNullOrWhiteSpace(chanllanDateText))
+                    {
+                        DateTime.TryParse(chanllanDateText, out DateTime challanDate);
+                        txtChallanDate.Text = challanDate.ToShortDateString();
+                    }
+                    SetVisibility("contol","controlPanel",true);
+                    
                 }
                 else
                 {

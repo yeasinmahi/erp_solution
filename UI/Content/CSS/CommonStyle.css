@@ -9,7 +9,7 @@ th {
 }
 
 tr {
-    font-size: 14px;
+    font-size: 11px;
     -ms-transition: transform .2s;
     -o-transition: transform .2s;
     -webkit-transition: transform .2s;
@@ -35,3 +35,14 @@ td, th {
         transform: translate(1px,1px);
         transform: scale(.99);
     }
+
+.erpContainer {
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5px;
+    width: 100%;
+    -ms-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #eeeeee;
+    float: left;
+}

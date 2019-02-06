@@ -8,27 +8,29 @@
 
     <title></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
-    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
-    <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+    <%--<webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />--%>
 
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
 
     <script type="text/javascript">
 
         function Confirms() {
             var confirm_value = document.createElement("INPUT");
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm("Do you want to proceed?")) {
+                confirm_value.value = "Yes";
+                document.getElementById("hdnConfirm").value = "1";
+            } else {
+                confirm_value.value = "No";
+                document.getElementById("hdnConfirm").value = "0";
+            }
 
         }
         function validation() {
@@ -55,7 +57,9 @@
             return true;
         }
     </script>
-    <script>   function CloseWindow() { window.close(); }//window.onbeforeunload = RefreshParent();
+    <script>   function CloseWindow() {
+            window.close();
+        }//window.onbeforeunload = RefreshParent();
         //function RefreshParent() {
         //    if (window.opener != null && !window.opener.closed) {
         //        window.opener.location.reload();
@@ -107,12 +111,13 @@
 
     <form id="frmselfresign" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-        <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+        <asp:UpdatePanel ID="UpdatePanel0" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                        </marquee>
                     </div>
                 </asp:Panel>
                 <div style="height: 30px;"></div>
@@ -121,7 +126,7 @@
 
                 <%--=========================================Start My Code From Here===============================================--%>
 
-                <div class="leaveApplication_container">
+                <div class="erpContainer">
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
                     <asp:HiddenField ID="hdnIndentNo" runat="server" />
@@ -129,7 +134,7 @@
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
                     <div class="tabs_container" style="text-align: left">
-                        PRODUCTION TRANSFER<hr />
+                        <u>PRODUCTION TRANSFER</u>
                     </div>
                     <table style="width: 750px">
                         <tr>
@@ -141,12 +146,18 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="text-align: left">Production ID:
-            <asp:Label ID="lblProductionId" runat="server"></asp:Label></td>
-                            <td>Plan Qty :
-            <asp:Label ID="lblPlanQty" runat="server"></asp:Label></td>
-                            <td>Date & Time :
-            <asp:Label ID="lblDate" runat="server"></asp:Label></td>
+                            <td style="text-align: left">
+                                Production ID:
+                                <asp:Label ID="lblProductionId" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                                Plan Qty :
+                                <asp:Label ID="lblPlanQty" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                                Date & Time :
+                                <asp:Label ID="lblDate" runat="server"></asp:Label>
+                            </td>
                         </tr>
                     </table>
 
@@ -182,45 +193,66 @@
                         <tr>
                             <%--<MKB:TimeSelector ID="tpkEndTime" runat="server" SelectedTimeFormat="TwentyFour" ></MKB:TimeSelector>--%>
 
-                            <td style="text-align: left; width: 20px; display: inline">
-                                <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Production Qty"></asp:Label>:</td>
+                            <td style="text-align: left;">
+                                <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Production Qty:"></asp:Label>
+
+                            </td>
 
                             <td style="text-align: left">
                                 <asp:TextBox ID="txtProductQty" Width="100px" Text="0" CssClass="txtBox" runat="server" Enabled="False"></asp:TextBox></td>
 
 
                             <td>
-                                <asp:Label ID="lblUom1" runat="server" ForeColor="Blue"></asp:Label></td>
+                                <asp:Label ID="lblUom1" runat="server" ForeColor="Blue"></asp:Label>
 
-                            <td style="text-align: left; width: 20px; display: inline">
-                                <asp:Label ID="Label4" Font-Bold="true" runat="server" Text="Actual Qty"></asp:Label>:</td>
+                            </td>
 
-                            <td style="text-align: left">
-                                <asp:TextBox ID="txtActualQty" Width="90px" CssClass="txtBox" ForeColor="red" runat="server"></asp:TextBox></td>
+                            <td style="text-align: left;">
+                                <asp:Label ID="Label4" Font-Bold="true" runat="server" Text="Actual Qty:"></asp:Label>
 
-
-
-                            <td style="text-align: left; width: 20px; display: inline">
-                                <asp:Label ID="Label3" Font-Bold="true" runat="server" Text="QC Hold:"></asp:Label></td>
+                            </td>
 
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtQc" Width="90px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtActualQty" Width="90px" CssClass="txtBox" ForeColor="red" runat="server"></asp:TextBox>
+
+                            </td>
+
+
+
+                            <td style="text-align: left; ">
+                                <asp:Label ID="Label3" Font-Bold="true" runat="server" Text="QC Hold:"></asp:Label>
+                            </td>
+
+                            <td style="text-align: left">
+                                <asp:TextBox ID="txtQc" Width="90px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox>
+
+                            </td>
 
 
                             <td style="text-align: right">
-                                <asp:Label Font-Bold="true" ID="lblSendStore" runat="server" Text="Send To Store:"></asp:Label></td>
+                                <asp:Label Font-Bold="true" ID="lblSendStore" runat="server" Text="Send To Store:"></asp:Label>
+
+                            </td>
                             <td>
-                                <asp:TextBox ID="txtSendToStore" CssClass="txtBox" Text="0" Width="100px" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtSendToStore" CssClass="txtBox" Text="0" Width="100px" runat="server"></asp:TextBox>
+
+                            </td>
                             <td>
-                                <asp:Label ID="lblUom2" ForeColor="Blue" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblUom2" ForeColor="Blue" runat="server"></asp:Label>
+
+                            </td>
 
                             <td style="text-align: right">
                                 <asp:Button ID="btnAdd" runat="server" Text="Add" ForeColor="blue" OnClientClick="return validation();" OnClick="btnAdd_Click" />
-                                <asp:Button ID="btnSaves" ForeColor="Black" BackColor="#ffccff" Font-Bold="true" runat="server" OnClientClick="Confirms();" Text="Save" OnClick="btnSaves_Click" /></td>
+                                <asp:Button ID="btnSaves" ForeColor="Black" BackColor="#ffccff" Font-Bold="true" runat="server" OnClientClick="Confirms();" Text="Save" OnClick="btnSaves_Click" />
+
+                            </td>
                         </tr>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Expire Date :"></asp:Label></td>
+                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Expire Date :"></asp:Label>
+
+                            </td>
                             <td style="text-align: left" colspan="3">
                                 <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtenderExp" runat="server" Format="yyyy-MM-dd" TargetControlID="txtExpDate"></cc1:CalendarExtender>
@@ -314,6 +346,8 @@
                             <td></td>
                         </tr>
                     </table>
+                </div>
+                <div>
                     <table style="border-color: black; width: 100%; border-radius: 10px; border: 1px solid blue;">
                         <caption style="text-align: left; color: blue">Previous Entry</caption>
                         <tr>
@@ -371,25 +405,25 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Store Qty" ItemStyle-HorizontalAlign="right" SortExpression="numSendStoreQty">
+                                        <asp:TemplateField HeaderText="Send Qty" ItemStyle-HorizontalAlign="right" SortExpression="numSendStoreQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblStore" runat="server" Width="" Text='<%# Bind("numSendStoreQty","{0:n4}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <FooterTemplate>
-                                                <asp:Label ID="lblTotalStore" runat="server" Width="" Text='<%# Bind("totalSentToStore","{0:n4}") %>'></asp:Label>
+                                                <asp:Label ID="lblTotalStore" runat="server" Text='<%# Bind("totalSentToStore","{0:n4}") %>'></asp:Label>
                                             </FooterTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                             <FooterStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Is Received" ItemStyle-HorizontalAlign="right" SortExpression="numSendStoreQty">
+                                        <asp:TemplateField HeaderText="Received Qty" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblStoreReceivedStatus" runat="server" Width="" Text='<%# Bind("ysnStoreReceive") %>'></asp:Label>
+                                                <asp:Label ID="lblStoreReceivedQty" runat="server" Width="" Text='<%# Bind("numStoreReceiveQty","{0:n4}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right" SortExpression="numSendStoreQty">
+                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit"></asp:Button>
+                                                <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_OnClick"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
@@ -408,11 +442,69 @@
                             </td>
                         </tr>
                     </table>
+                
                 </div>
-                </div>
+                
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Production Transfer Update</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label22" runat="server" Text="Transection Id"></asp:Label>
+                                        <asp:TextBox ID="txtTransectionId" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Transection Id"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label14" runat="server" Text="Product Name"></asp:Label>
+                                        <asp:TextBox ID="txtProductNameUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Product Name"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label12" runat="server" Text="Actual Quantity"></asp:Label>
+                                        <asp:TextBox ID="txtActualQtyUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Actual Quantity"></asp:TextBox>
+
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label13" runat="server" Text="QC Quantity"></asp:Label>
+                                        <asp:TextBox ID="txtQcUpdate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="QC Quantity"></asp:TextBox>
+
+                                    </div>
+                                    
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label6" runat="server" Text="Prev. Send Store Quantity"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtSendToStorePrv" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Prev. Sent To Store Quantity"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6">
+                                        <asp:Label ID="Label15" runat="server" Text="Sent To Store Quantity"></asp:Label>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                        <asp:TextBox ID="txtSendToStoreUpdate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Sent To Store Quantity"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-md-12">
+                                    <asp:Button ID="btnUpdate" runat="server" class="btn btn-primary form-control pull-right" Text="Update" OnClientClick="return ValidateUpdate();" OnClick="btnUpdate_OnClick" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="btnAdd" />
+            <asp:PostBackTrigger ControlID="btnSaves" />
+            <asp:PostBackTrigger ControlID="btnUpdate" />
+        </Triggers>
         </asp:UpdatePanel>
     </form>
 </body>

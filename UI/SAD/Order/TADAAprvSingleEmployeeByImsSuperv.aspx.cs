@@ -142,9 +142,11 @@ namespace UI.SAD.Order
 
                 
                 SAD_BLL.Customer.Report.StatementC bll = new SAD_BLL.Customer.Report.StatementC();
+                SAD_BLL.Sales.SalesView bllsv= new SAD_BLL.Sales.SalesView();
                 if (rptype == 1)
                 {
-                    dt = bll.getTADARptforSUpervisorAproveV2(dtfrom, dtTo, enrol);
+                    //dt = bll.getTADARptforSUpervisorAproveV2(dtfrom, dtTo, enrol);
+                    dt = bllsv.getTADARptforSUpervisorAprove(dtfrom, dtTo, enrol);
                     if (dt.Rows.Count > 0)
                     {
                         grdvpreviousData.DataSource = null;
@@ -804,7 +806,7 @@ namespace UI.SAD.Order
                     if (rptTypeid == 1)
                     {
 
-                        if (grdvForApproveTADAByImmdediatesupervisor.Rows.Count > 0)
+                        if (grdvForApproveTADAByImmdediatesupervisor.Rows.Count-1 > 0)
                         {
                             for (int rowIndex = 0; rowIndex < grdvForApproveTADAByImmdediatesupervisor.Rows.Count ; rowIndex++)
                             {

@@ -547,12 +547,7 @@
                 document.getElementById("<%=txtMoveUpdate.ClientID%>").innerText = difference;
                 $('#txtMoveUpdate').val(difference);
             }
-            function openModal() {
-                $('#myModal').modal('show');
-            }
-            function closeModal() {
-                $('#myModal').modal('hide');
-            }
+            
             //var prm = Sys.WebForms.PageRequestManager.getInstance(); 
 
             //prm.add_endRequest(function() { 

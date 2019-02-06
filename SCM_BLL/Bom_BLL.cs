@@ -1,11 +1,8 @@
 ﻿using SCM_DAL;
 using SCM_DAL.BomTDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SCM_BLL
 {
@@ -197,6 +194,20 @@ namespace SCM_BLL
                 return adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
             }
             catch { return new DataTable(); }
+        }
+        public DataTable UpdateProductionTransfer(int Type,decimal quantity,int transectionId,int enroll, out string  msg)
+        {
+            msg = null;
+            try
+            {
+                sprProductionTransferUpdateTableAdapter adp = new sprProductionTransferUpdateTableAdapter();
+
+                return adp.GetData(Type, quantity, transectionId, enroll, ref msg);
+            }
+            catch
+            {
+                return new DataTable();
+            }
         }
 
 

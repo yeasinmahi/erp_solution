@@ -88,6 +88,7 @@ namespace UI.ClassFiles
         }
         public void Toaster(string message, string header, Common.TosterType type)
         {
+            message = message.Replace("'", "\"");
             ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                 "ShowNotification('" + message + "','" + header + "','" + type.ToString().ToLower() + "')", true);
         }
@@ -98,16 +99,25 @@ namespace UI.ClassFiles
         }
         public void SetVisibility(string id, bool isVisible)
         {
+            SetVisibility("Panel", id, isVisible);
+
+        }
+        public void SetVisibility(string head ,string id, bool isVisible)
+        {
             if (isVisible)
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "showDiv('" + id + "');", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "showDiv('" + id + "');", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "hideDiv('" + id + "');", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "hideDiv('" + id + "');", true);
             }
-            
-        }
 
+        }
+        public void SetVisibilityModal(bool isVisible)
+        {
+            ScriptManager.RegisterStartupScript(this, GetType(), "Pop", isVisible ? "openModal();" : "closeModal();",
+                true);
+        }
     }
 }

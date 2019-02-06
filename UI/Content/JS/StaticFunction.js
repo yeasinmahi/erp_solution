@@ -91,4 +91,12 @@ function hideDiv(id) {
     element.classList.add("hidden");
     return true;
 }
+function openModal() {
+    $('#myModal').modal('show');
+}
+function closeModal() {
+    $('#myModal').modal('hide');
+}
+
+
 
