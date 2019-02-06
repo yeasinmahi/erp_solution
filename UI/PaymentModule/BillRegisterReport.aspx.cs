@@ -145,11 +145,29 @@ namespace UI.PaymentModule
 
             try
             {
-                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                dteFDate = DateTime.Parse(txtFrom.Text);
-                dteTDate = DateTime.Parse(txtTo.Text);
+                intUnitID = Common.GetDdlSelectedValue(ddlUnit);
+                if (string.IsNullOrWhiteSpace(txtFrom.Text))
+                {
+                    Toaster("From Date "+Message.NotBlank.ToFriendlyString(),Common.TosterType.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtTo.Text))
+                {
+                    Toaster("To Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (!DateTime.TryParse(txtFrom.Text, out dteFDate))
+                {
+                    Toaster("From "+Message.DateFormatError.ToFriendlyString(),Common.TosterType.Warning);
+                    return;
+                }
+                if (!DateTime.TryParse(txtTo.Text, out dteTDate))
+                {
+                    Toaster("To " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
 
-                lblUnitName.Text = ddlUnit.SelectedItem.ToString();
+                lblUnitName.Text = Common.GetDdlSelectedText(ddlUnit);
                 lblReportName.Text = "Bill Register Report";
                 lblFromToDate.Text = "For The Month of " + Convert.ToDateTime(txtFrom.Text).ToString("yyyy-MM-dd") + " To " + Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
 
