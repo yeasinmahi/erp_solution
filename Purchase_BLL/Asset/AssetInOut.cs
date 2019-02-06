@@ -75,5 +75,10 @@ namespace Purchase_BLL.Asset
             catch { return new DataTable(); }
             
         }
+
+        public string OperatorSetup(object intPart, object )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -112,6 +112,21 @@ namespace UI.Asset.Operator
             return node;
         }
 
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                intWh = int.Parse(ddlWH.SelectedValue);
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<voucher>" + xmlString + "</voucher>";
+
+            }
+            catch { }
+        }
+
         private void LoadGridwithXml()
         {
             try
