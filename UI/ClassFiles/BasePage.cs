@@ -21,6 +21,7 @@ namespace UI.ClassFiles
 
         protected override void OnPreInit(EventArgs e)
         {
+            Page.LoadComplete += new EventHandler(Page_LoadComplete);
             base.OnPreInit(e);
             UserActivityCheck();
             Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
@@ -44,6 +45,11 @@ namespace UI.ClassFiles
             string[] segments = Request.Url.Segments;
             string pageName = segments[Array.FindIndex(segments, row => row.Contains(".aspx"))];
             return pageName.Replace(".aspx", "");
+        }
+
+        void Page_LoadComplete(object sender, EventArgs e)
+        {
+
         }
 
         public BasePage()

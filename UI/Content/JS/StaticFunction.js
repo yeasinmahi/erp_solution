@@ -97,6 +97,13 @@ function openModal() {
 function closeModal() {
     $('#myModal').modal('hide');
 }
+function showLoader() {
+    document.getElementById('loading').style.display = 'block';
+}
+
+function hideLoader() {
+    document.getElementById('loading').style.display = "none";
+}
 
 
 

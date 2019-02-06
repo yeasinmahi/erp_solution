@@ -20,7 +20,7 @@
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
-
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <script>
         function ViewBillDetailsPopup(Id) {
             window.open('BillDetails.aspx?ID=' + Id, 'sub', "height=600, width=1100, scrollbars=yes, left=100, top=25, resizable=no, title=Preview");
@@ -35,20 +35,23 @@
 
 </head>
 <body>
+
     <form id="frmSupplierCOA" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
-            <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
-                <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
-                    <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-                        <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
-                    </marquee>
-                </div>
-            </asp:Panel>
-            <div style="height: 30px;"></div>
-            <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2" runat="server">
-            </cc1:AlwaysVisibleControlExtender>
+                <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
+                    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
+                        <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
+                            <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                        </marquee>
+                    </div>
+                </asp:Panel>
+                <div style="height: 30px;"></div>
+                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2" runat="server">
+                </cc1:AlwaysVisibleControlExtender>
+                <div id="loading"></div>
+
                 <%--=========================================Start My Code From Here===============================================--%>
                 <asp:HiddenField ID="hdnconfirm" runat="server" />
                 <asp:HiddenField ID="hdnEnroll" runat="server" />
@@ -87,7 +90,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                             <td style="text-align: right; padding: 5px 0px 5px 0px">
-                                <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click" /></td>
+                                <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click" OnClientClick="showLoader()" /></td>
                         </tr>
                     </table>
                 </div>
@@ -235,7 +238,7 @@
                                     <asp:TemplateField HeaderText="Detail" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                         <ItemTemplate>
                                             <asp:Button ID="btnShowDetail" class="myButtonGrid" Font-Bold="true" CommandArgument="<%# Container.DataItemIndex %>" runat="server" CommandName="View" Text="View" />
-                                            
+
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>

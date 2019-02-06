@@ -115,6 +115,7 @@ namespace UI.PaymentModule
                 }
                 else
                 {
+                    
                     if (dgvReport.Rows.Count > 0)
                     {
                         lblUnitName.Visible = true;

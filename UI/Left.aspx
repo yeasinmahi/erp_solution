@@ -144,7 +144,7 @@
         <div style="position: absolute; left: 10px; top: 3px;">
             <span id="time" class="clock">ASD</span>
         </div>
-        <div id="scrollLinks" style="padding-top: 1px; padding-left: 170px; text-align: right;">
+        <div id="scrollLinks" style="padding-top: 1px; padding-left: 150px; text-align: right;">
             <table>
                 <tr>
                     <td>

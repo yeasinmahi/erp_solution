@@ -332,6 +332,7 @@
     <Content Include="Content\images\img\92.png" />
     <Content Include="Content\images\img\96.png" />
     <Content Include="Content\images\img\acrl2.png" />
+    <Content Include="Content\images\img\loader.gif" />
     <Content Include="Content\images\img\NotApproved.png" />
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
