@@ -81,7 +81,7 @@
                 <td><asp:TextBox ID="txtPreAdvance" runat="server" CssClass="txtBox1" width="100px"></asp:TextBox></td> 
                 <td style="text-align:right; "><asp:Label ID="Label4" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="lblAdvance" runat="server" Text="Total Advance:" CssClass="lbl"></asp:Label></td>
-                <td colspan="3" style="padding: 10px 0px 10px 0px""><asp:TextBox ID="txtAdvance" runat="server" CssClass="txtBox1" width="205px"></asp:TextBox></td>
+                <td colspan="3" style="padding: 10px 0px 10px 0px"><asp:TextBox ID="txtAdvance" runat="server" CssClass="txtBox1" width="205px"></asp:TextBox></td>
             </tr>
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label15" runat="server" Text="Party Name :" CssClass="lbl"></asp:Label></td>
