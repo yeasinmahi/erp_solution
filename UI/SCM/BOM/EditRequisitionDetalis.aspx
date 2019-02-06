@@ -53,10 +53,7 @@
             overflow-y: scroll;
         }
 
-        .auto-style1 {
-            height: 26px;
-        }
-    </style>
+        </style>
 </head>
 
 <body>
@@ -85,8 +82,8 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
-                    <div class="tabs_container" style="text-align: left">
-                        Production Output<hr />
+                    <div class="tabs_container"  style="text-align: left">
+                        Edit Requisition (Item-Details)
                     </div>
 
                     <table style="width: 900px">
@@ -95,21 +92,19 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Font-Bold="true" Text="SR Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                                <asp:TextBox ID="txtDate" runat="server"  width="100px" CssClass="txtBox" Enabled="False"></asp:TextBox>
                                 <cc1:CalendarExtender ID="claenderDte" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                             </td>
                         </tr>
                     </table>
 
                     <table style="border-color: black; width: 900px; border-radius: 10px;">
-                        <caption style="text-align: left; color: blue">Item Detalis</caption>
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvReq" runat="server" Width="800px" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                                <asp:GridView ID="dgvReq" runat="server" Width="800px" AutoGenerateColumns="False" PageSize="8"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                                    ForeColor="Black" GridLines="Vertical">
-                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" GridLines="Both" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1">
+                                    <AlternatingRowStyle />
                                     <Columns>
 
                                         <asp:TemplateField HeaderText="SR NO" ItemStyle-HorizontalAlign="right" SortExpression="intReqID">
@@ -155,13 +150,19 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:Button runat="server" ID="btnEditSr" Text="Edit" OnClick="btnEditSr_OnClick" />
+                                                <asp:Button runat="server" forecolor="Blue" ID="btnEditSr" Text="Edit" OnClick="btnEditSr_OnClick" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle Font-Size="11px" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <FooterStyle Font-Size="11px" BackColor="#C6C3C6" ForeColor="Black" />
+                                    <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                                    <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                                    <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#33276A" />
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -170,11 +171,10 @@
 
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvItems" runat="server" Width="800px" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                                <asp:GridView ID="dgvItems" runat="server" Width="800px" AutoGenerateColumns="False" PageSize="8"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                                    ForeColor="Black" GridLines="Vertical">
-                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" GridLines="Both" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1">
+                                    <AlternatingRowStyle />
                                     <Columns>
 
                                         <asp:TemplateField HeaderText="ItemID" ItemStyle-HorizontalAlign="right" SortExpression="intItemID">
@@ -184,56 +184,62 @@
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="ITEM" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
+                                        <asp:TemplateField HeaderText="Item" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItem" runat="server" Text='<%# Bind("strItem") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM">
+                                        <asp:TemplateField HeaderText="UoM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblUom" Width="60px" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
+                                                <asp:Label ID="lblUom" Width="30px" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Production" ItemStyle-HorizontalAlign="right" SortExpression="intProdOrderID">
+                                        <asp:TemplateField HeaderText="Production ID" ItemStyle-HorizontalAlign="right" SortExpression="intProdOrderID">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblProductionId" runat="server" Width="" Text='<%# Bind("intProdOrderID") %>'></asp:Label>
+                                                <asp:Label ID="lblProductionId" Width="30px" runat="server"  Text='<%# Bind("intProdOrderID") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="REQ QTY" ItemStyle-HorizontalAlign="right" SortExpression="numApproveQty">
+                                        <asp:TemplateField HeaderText="Req. Qty." ItemStyle-HorizontalAlign="right" SortExpression="numApproveQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQuantity" runat="server" Width="" Text='<%# Bind("numApproveQty","{0:n2}") %>'></asp:Label>
+                                                <asp:Label ID="lblQuantity" runat="server" Width="30px" Text='<%# Bind("numApproveQty","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="ISSUE QTY" ItemStyle-HorizontalAlign="right" SortExpression="numIssueQty">
+                                        <asp:TemplateField HeaderText="Issue Qty." ItemStyle-HorizontalAlign="right" SortExpression="numIssueQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblIssueQty" runat="server" Width="" Text='<%# Bind("numIssueQty","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="REMAIN QTY" ItemStyle-HorizontalAlign="right" SortExpression="numRemainToIssueQty">
+                                        <asp:TemplateField HeaderText="Remain Qty." ItemStyle-HorizontalAlign="right" SortExpression="numRemainToIssueQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblRemainQty" runat="server" Width="" Text='<%# Bind("numRemainToIssueQty","{0:n2}") %>'></asp:Label>
+                                                <asp:Label ID="lblRemainQty" runat="server" Width="30px" Text='<%# Bind("numRemainToIssueQty","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Action">
                                             <ItemTemplate>
-                                                <asp:Button runat="server" ID="btnEditItem" Text="Edit" OnClick="btnEditItem_OnClick" />
+                                                <asp:Button runat="server" forecolor="Blue" ID="btnEditItem" Text="Edit" OnClick="btnEditItem_OnClick" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>
-                                    <FooterStyle Font-Size="11px" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <FooterStyle Font-Size="11px" BackColor="#C6C3C6" ForeColor="Black" />
+                                    <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                                    <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                                    <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#33276A" />
                                 </asp:GridView>
                             </td>
                         </tr>

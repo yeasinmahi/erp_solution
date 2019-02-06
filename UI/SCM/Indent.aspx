@@ -59,6 +59,9 @@
             else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
 
         }
+        function autoCompleteEx_ItemSelected(sender, args) {
+            document.getElementById("hdnItemSeleced").value = "Selected";
+        }
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125570863-1"></script>
@@ -124,8 +127,8 @@
                                 <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List: "></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="400px"></asp:TextBox>
-                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
-                                    ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem" OnClientItemSelected="autoCompleteEx_ItemSelected"
+                                    ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1" 
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>

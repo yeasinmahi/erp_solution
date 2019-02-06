@@ -535,7 +535,39 @@ namespace SCM_BLL
             PurchaseTableAdapter adp = new PurchaseTableAdapter();
             return adp.GetPurchaseData(itemid);
         }
-
+        public string RemoveMrr(int enroll, int mrrId, int billId)
+        {
+            string msg = "";
+            try
+            {
+                SprMrrRemoveTableAdapter adp = new SprMrrRemoveTableAdapter();
+                adp.RemoveMrr(enroll,mrrId,billId,ref msg);
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+        public bool IsPermitedToRemoveMrr(int enroll)
+        {
+            try
+            {
+                QueriesTableAdapter adp = new QueriesTableAdapter();
+                bool? isPermitted = adp.IsPermitedToRemoveMrr(enroll);
+                if (isPermitted != null)
+                {
+                    return (bool) isPermitted;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            
+        }
+        
         #region===== Search COA Ledger List ===============================================
 
         public string[] AutoSearchCOALedger(string strUnit, string prefix)

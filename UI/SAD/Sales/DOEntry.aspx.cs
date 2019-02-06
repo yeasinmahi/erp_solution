@@ -1058,7 +1058,8 @@ namespace UI.SAD.Sales
                     (hdnUnit.Value != "21" && int.Parse(ddlUnit.SelectedValue.ToString()) != 21) &&
                     (hdnUnit.Value != "55" && int.Parse(ddlUnit.SelectedValue.ToString()) != 55) &&
                     (hdnUnit.Value != "56" && int.Parse(ddlUnit.SelectedValue.ToString()) != 56) &&
-                    (hdnUnit.Value != "15" && int.Parse(ddlUnit.SelectedValue.ToString()) != 15)) 
+                    (hdnUnit.Value != "15" && int.Parse(ddlUnit.SelectedValue.ToString()) != 15) &&
+                    (hdnUnit.Value != "91" && int.Parse(ddlUnit.SelectedValue.ToString()) != 91)) 
                 { btnAdd.Enabled = false; }
                 else { btnAdd.Enabled = true; }
                 if ((hdnsalestype.Value == "Local Sales" || hdnsalestype.Value == "Ready Mix") && hdnvisibility.Value == "False")

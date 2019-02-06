@@ -29,8 +29,8 @@ namespace UI.PaymentModule
 
         char[] delimiterChars = { '[', ']' };
         string[] arrayKey;
-        int intSeparationID,itemid;
-        string Id,itemName;
+        int intSeparationID, itemid;
+        string Id, itemName;
         string strDate;
         string strTodate;
         string UNITS;
@@ -47,52 +47,55 @@ namespace UI.PaymentModule
             // starting performance tracker
             var tracker = new PerfTracker("Performance on PaymentModule/PreviousPrice.aspx Page_Load", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
-
+            if (!IsPostBack)
+            {
+                _ast = new AutoSearch_BLL();
+            }
             //if (!IsPostBack)
             //{
-               try
-                {
+            try
+            {
                 try { hdnBillID.Value = Session["billid"].ToString(); }
                 catch { hdnBillID.Value = ""; }
-                    intItemID = int.Parse(Request.QueryString["Id"]);
-                    lblitemid.Text = Request.QueryString["Id"];
-                    //hdnItemID.Value = intItemID.ToString();
-                    ////Session["mrrid"] = intBillID.ToString();
-                    if (Session["itemname"].ToString() == "")
-                    {
-                        lblItemName.Text = "";
-                    }
-                    else
-                    {
-                        lblItemName.Text = Session["itemname"].ToString();
-                    }
-
-
-                    dt = new DataTable();
-                    dt = objBillApp.GetPriceListByItemID(intItemID);
-                    if (dt.Rows.Count > 0)
-                    {
-                       // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Hello');", true);
-                        dgvPriceList.DataSource = dt;
-                        dgvPriceList.DataBind();
-                    }
-
-                    //dt = new DataTable();
-                    //dt = objBillApp.GetChartOfPrice(int.Parse(hdnItemID.Value));
-                    //Chart1.DataSource = dt;
-                    //Chart1.DataBind();
-
-                    dt = objBillApp.GetWHList();
-                    ddlwh.DataSource = dt;
-                    ddlwh.DataTextField = "strWareHoseName";
-                    ddlwh.DataValueField = "intWHID";
-                    ddlwh.DataBind();
-                }
-                catch (Exception ex)
+                intItemID = int.Parse(Request.QueryString["Id"]);
+                lblitemid.Text = Request.QueryString["Id"];
+                //hdnItemID.Value = intItemID.ToString();
+                ////Session["mrrid"] = intBillID.ToString();
+                if (Session["itemname"].ToString() == "")
                 {
-                    var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
-                    Flogger.WriteError(efd);
+                    lblItemName.Text = "";
                 }
+                else
+                {
+                    lblItemName.Text = Session["itemname"].ToString();
+                }
+
+
+                dt = new DataTable();
+                dt = objBillApp.GetPriceListByItemID(intItemID);
+                if (dt.Rows.Count > 0)
+                {
+                    // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Hello');", true);
+                    dgvPriceList.DataSource = dt;
+                    dgvPriceList.DataBind();
+                }
+
+                //dt = new DataTable();
+                //dt = objBillApp.GetChartOfPrice(int.Parse(hdnItemID.Value));
+                //Chart1.DataSource = dt;
+                //Chart1.DataBind();
+
+                dt = objBillApp.GetWHList();
+                ddlwh.DataSource = dt;
+                ddlwh.DataTextField = "strWareHoseName";
+                ddlwh.DataValueField = "intWHID";
+                ddlwh.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
+                Flogger.WriteError(efd);
+            }
             //}
 
             fd = log.GetFlogDetail(stop, location, "Page_Load", null);
@@ -128,7 +131,7 @@ namespace UI.PaymentModule
 
 
             DataTable dtt = new DataTable();
-           
+
             if (txtItem.Text != "" && txtItemId.Text == "")
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
@@ -177,13 +180,12 @@ namespace UI.PaymentModule
         }
 
         #region========================Auto Search============================ 
+        static AutoSearch_BLL _ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            
-            AutoSearch_BLL ast = new AutoSearch_BLL();
-            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
 
         }

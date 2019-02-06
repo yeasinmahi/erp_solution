@@ -18,8 +18,29 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
+
             
         }
+
+        public DataTable GetDepartment(int intWH)
+        {
+       
+            try
+            {
+                GetDepartmentTableAdapter adp = new GetDepartmentTableAdapter();
+                return adp.GetDepartment(intWH);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+
+        }
+
+
+
+
         public DataTable GetIssueItem(int intItemId, int intwh, DateTime dteFrom, DateTime dteTo)
         {
             string strMsg = "";

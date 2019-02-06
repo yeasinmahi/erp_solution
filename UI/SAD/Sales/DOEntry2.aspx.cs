@@ -1054,7 +1054,8 @@ namespace UI.SAD.Sales
                     (hdnUnit.Value != "21" && hdnUnit2.Value != "21") &&
                     (hdnUnit.Value != "55" && hdnUnit2.Value != "55") &&
                     (hdnUnit.Value != "56" && hdnUnit2.Value != "56") &&
-                    (hdnUnit.Value != "15" && hdnUnit2.Value != "15")) 
+                    (hdnUnit.Value != "15" && hdnUnit2.Value != "15") &&
+                    (hdnUnit.Value != "91" && hdnUnit2.Value != "91")) 
                 { btnAdd.Enabled = false; }
                 else { btnAdd.Enabled = true; }
                 if ((hdnsalestype.Value == "Local Sales" || hdnsalestype.Value == "Ready Mix") && hdnvisibility.Value == "False")

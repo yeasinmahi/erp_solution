@@ -389,7 +389,18 @@ namespace SCM_BLL
             { return adp.GetSupplierInfoByPO(intPOID); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
-
+        public DataTable GetSupplierAddress(int supplierId)
+        {
+            tblSupplierTableAdapter adp = new tblSupplierTableAdapter();
+            try
+            {
+                return adp.GetSupplierAddress(supplierId);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
         public DataTable GetShipmentAndOtherInfoByPO(int intPOID)
         {
             TblShipmentTableAdapter adp = new TblShipmentTableAdapter();
@@ -407,22 +418,36 @@ namespace SCM_BLL
         }
 
         public DataTable POCurrection(int intPart, int intPOID, DateTime dtePODate, int intCurrencyID, decimal monFreight, decimal monPacking, decimal monDiscount, int intShipment, string strDeliveryAddress, int ysnPartialShip,
-        string strPayTerm, int intCreditDays, int intInstallmentNo, int intInstallmentInterval, int intWarrantyMonth, string strOtherTerms, DateTime dteLastShipmentDate, int intUpdateBy)
+        string strPayTerm, int intCreditDays, int intInstallmentNo, int intInstallmentInterval, int intWarrantyMonth, string strOtherTerms, DateTime dteLastShipmentDate, int intUpdateBy, int supplierId)
         {
-            sprPOTableAdapter adp = new sprPOTableAdapter();
+            sprPOUPdateDeleteTableAdapter adp = new sprPOUPdateDeleteTableAdapter();
             try
             {
-                return adp.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
-                strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy);
+                return adp.POdeleteUpdate(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount, intShipment, strDeliveryAddress, ysnPartialShip,
+                strPayTerm, intCreditDays, intInstallmentNo, intInstallmentInterval, intWarrantyMonth, strOtherTerms, dteLastShipmentDate, intUpdateBy, supplierId);
             }
             catch (Exception ex)
             {
-                ex.ToString();
                 return new DataTable();
             }
         }
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby, decimal monAIT)
+        public DataTable GetSuppliers(int poId)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetSupplier(poId);
+            }
+            catch (Exception exception)
+            {
+                return new DataTable();
+            }
+            
+        }
+        
+
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,  decimal monAIT)
         {
             string msg = "";
             sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
@@ -436,6 +461,18 @@ namespace SCM_BLL
             try
             {
                 return adp.GetPOApprovalAuthority(enroll, POType);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetApprovalInfo(int poId)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            try
+            {
+                return adp.GetApprovalInfo(poId);
             }
             catch
             {

@@ -111,6 +111,15 @@ namespace Utility
             }
             return 0;
         }
+        public static bool SetDdlSelectedValue(DropDownList ddl, string value)
+        {
+            if (ddl.Items.FindByValue(value) != null)
+            {
+                ddl.SelectedValue = value;
+                return true;
+            }
+            return false;
+        }
 
         public static string GetDdlSelectedText(DropDownList ddl)
         {
@@ -154,8 +163,7 @@ namespace Utility
 
         public static void UnLoadDropDown(DropDownList ddl)
         {
-            ddl.DataSource = null;
-            ddl.DataBind();
+            ddl.Items.Clear();
         }
 
         public static void UnLoadDropDownWithSelect(DropDownList ddl)
@@ -170,17 +178,33 @@ namespace Utility
             ddl.Items.Insert(0, new ListItem("All", "0"));
         }
 
-        public static void Clear(ControlCollection controls)
+        public static List<Control> GetContolList()
         {
+            List<Control> controls = new List<Control>();
+
+            return controls;
+        }
+        public static void Clear(ControlCollection controls,List<Control> exceptControls)
+        {
+            
             foreach (Control ctrl in controls)
             {
+                if (exceptControls!=null)
+                {
+                    if (exceptControls.Contains(ctrl))
+                    {
+                        continue;
+                    }
+                }
+                
+
                 if (ctrl is TextBox)
                 {
                     ((TextBox)ctrl).Text = string.Empty;
                 }
                 else if (ctrl is DropDownList)
                 {
-                    ((DropDownList)ctrl).SelectedIndex = 0;
+                    SetDdlSelectedValue(((DropDownList)ctrl), "0");
                 }
                 else if (ctrl is CheckBoxList)
                 {
@@ -194,7 +218,24 @@ namespace Utility
                 {
                     ((RadioButtonList)ctrl).SelectedIndex = 0;
                 }
+                else
+                {
+                    Clear(ctrl.Controls,exceptControls);
+                }
             }
+        }
+        public static Control GetControlThatCausedPostBack(Page page)
+        {
+            //initialize a control and set it to null
+            Control ctrl = null;
+
+            //get the event target name and find the control
+            string ctrlName = page.Request.Params.Get("__EVENTTARGET");
+            if (!String.IsNullOrEmpty(ctrlName))
+                ctrl = page.FindControl(ctrlName);
+
+            //return the control to the calling method
+            return ctrl;
         }
     }
 }

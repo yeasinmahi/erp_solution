@@ -82,12 +82,13 @@ namespace UI.ClassFiles
                 "~/Content/CSS/StyleSheet.css",
                 // hrCSS
                 "~/Content/CSS/EmpRegStyleSheet.css",
-                "~/Content/CSS/Lstyle.css",
                 "~/Content/CSS/jquery-ui-1.8.22.custom.css",
                 // yeasin new
                 "~/Content/CSS/bootstrap.min.css",
                 "~/Content/CSS/jquery-ui.min.css",
-                "~/Content/CSS/toastr.min.css"
+                "~/Content/CSS/toastr.min.css",
+                "~/Content/CSS/CommonStyle.css"
+
             ));
 
 

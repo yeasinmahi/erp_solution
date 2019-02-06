@@ -107,6 +107,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MrrCorrection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MrrCorrection.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MrrReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,6 +248,17 @@
     </None>
     <None Include="MasterMaterialTDS.xss">
       <DependentUpon>MasterMaterialTDS.xsd</DependentUpon>
+    </None>
+    <None Include="MrrCorrection.xsc">
+      <DependentUpon>MrrCorrection.xsd</DependentUpon>
+    </None>
+    <None Include="MrrCorrection.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MrrCorrection.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MrrCorrection.xss">
+      <DependentUpon>MrrCorrection.xsd</DependentUpon>
     </None>
     <None Include="MrrReceiveTDS.xsc">
       <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>

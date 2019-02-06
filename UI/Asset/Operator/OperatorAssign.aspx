@@ -118,21 +118,27 @@
                             <td style="text-align: right;">
                             <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Asset List: "></asp:Label></td>
                             <td style="text-align: left;">
-                            <asp:TextBox ID="txtAssetItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="450px"></asp:TextBox>
+                            <asp:TextBox ID="txtAssetItem" runat="server" AutoCompleteType="Search"   OnTextChanged="TxtAsset_TextChanged" CssClass="txtBox" AutoPostBack="true" Width="450px"></asp:TextBox>
                             <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAssetItem"
-                            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+                            ServiceMethod="GetAssetSerach" MinimumPrefixLength="1" CompletionSetCount="1"
                             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                             </cc1:AutoCompleteExtender>
                             </td>
                           </tr>
                         <tr>
+                            <td style="text-align: right;">
+                            <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Asset Location: "></asp:Label></td>
+                            <td style="text-align: left;">
+                            <asp:TextBox ID="txtLocation" runat="server" AutoCompleteType="Search" Enabled="false"  CssClass="txtBox" AutoPostBack="true" Width="450px"></asp:TextBox>
+                        </tr>
+                        <tr>
                              <td style="text-align: right;">
                             <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Employee List: "></asp:Label></td>
                             <td style="text-align: left;">
-                            <asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="450px"></asp:TextBox>
-                            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtItem"
-                            ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+                            <asp:TextBox ID="txtEmp" runat="server" AutoCompleteType="Search" TextMode="MultiLine" CssClass="txtBox" AutoPostBack="true" Width="450px"></asp:TextBox>
+                            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtEmp"
+                            ServiceMethod="GetEmployeeSerach" MinimumPrefixLength="1" CompletionSetCount="1"
                             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                             </cc1:AutoCompleteExtender>
@@ -145,18 +151,21 @@
                         </tr>
                         <tr>
                             
-                            <td colspan="2" style="text-align: right;"><asp:Button ID="btnAddd" runat="server" Text="Add" OnClick="btnAddd_Click" />
-                             <asp:Button ID="btnSubmit" runat="server" Text="Submit" /></td>
+                            <td colspan="2" style="text-align: right;">
+                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click"  />
+                             <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                                <asp:Button ID="btnAddd" runat="server" Text="Add" OnClick="btnAddd_Click" />
+                                
+                            </td>
                         </tr>
                         
                         </table>
                      
                      <table>
                         <tr>
-                            <td>
-
+                            <td> 
                                 <asp:GridView ID="dgvAsset" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid" OnRowDeleting="dgvGridView_RowDeleting"
-                                    DataKeyNames="assetId"  BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+                                   BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
 
@@ -187,6 +196,57 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                           <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
+                                    </Columns>
+                                    <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                </asp:GridView>
+                            </td>
+                        </tr>
+
+                         <tr>
+                            <td> 
+                                <asp:GridView ID="dgvAsetiew" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+                                   BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnRowDeleting="dgvAsetiew_RowDeleting">
+
+                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="SL">
+                                            <ItemStyle HorizontalAlign="center" Width="25px" />
+                                            <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        </asp:TemplateField>
+
+                                         <asp:TemplateField HeaderText="ID" SortExpression="intId">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblId" runat="server" Text='<%# Bind("intId") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Asset ID" SortExpression="assetId">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblAssetId" runat="server" Text='<%# Bind("strAssetID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Asset Name" SortExpression="assetName">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblAssetName" runat="server" Text='<%# Bind("strAssetName") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="250px" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Asset-Location" ItemStyle-HorizontalAlign="right" SortExpression="assetLocation">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("strDetalis") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" DeleteText="Unassign" >
+                                        <ControlStyle Font-Bold="True" ForeColor="Red" />
+                                        </asp:CommandField>
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

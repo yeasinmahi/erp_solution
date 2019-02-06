@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using Purchase_DAL.Asset.AssetCheckInOutTDSTableAdapters;
+using Purchase_DAL.Asset.AssetOperatorTDSTableAdapters;
 
 namespace Purchase_BLL.Asset
 {
@@ -76,9 +77,32 @@ namespace Purchase_BLL.Asset
             
         }
 
-        public string OperatorSetup(object intPart, object )
+        public string OperatorSetup(int intPart  , string XML  , int intEmpId  , int intId   , string strNarration  ,int intActionBy   )
         {
-            throw new NotImplementedException();
+            try
+            {
+                string msg = "";
+                SprAssetOperatorTableAdapter adp = new SprAssetOperatorTableAdapter();
+                adp.GetAssetOperatorData(intPart, XML, intEmpId, intId, strNarration, intActionBy , ref msg);
+                return msg;
+            }
+
+
+            catch { return ""; }
+        }
+
+        public DataTable OperatorSetupData(int intPart, string XML, int intEmpId, int intId, string strNarration, int intActionBy)
+        {
+            try
+            {
+                string msg = "";
+                SprAssetOperatorTableAdapter adp = new SprAssetOperatorTableAdapter();
+                return adp.GetAssetOperatorData(intPart, XML, intEmpId, intId, strNarration, intActionBy, ref msg);
+                 
+            }
+
+
+            catch { return new DataTable(); }
         }
     }
 }

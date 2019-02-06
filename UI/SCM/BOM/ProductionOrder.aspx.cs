@@ -9,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.BOM
 {
@@ -16,7 +17,7 @@ namespace UI.SCM.BOM
     {
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
-        private int intwh, enroll, BomId; private string xmlData;
+        private int intwh, BomId; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
         private string filePathForXML; private string xmlString = "";
 
@@ -38,39 +39,54 @@ namespace UI.SCM.BOM
         {
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    ddlWH.DataSource = dt;
-                    ddlWH.DataTextField = "strName";
-                    ddlWH.DataValueField = "Id";
-                    ddlWH.DataBind();
-                }
-
-
-
-                intwh = int.Parse(ddlWH.SelectedValue);
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    Session["unit"] = hdnUnit.Value.ToString();
-                }
-
-                dt = objBom.GetBomData(16, xmlData, intwh, BomId, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    ddlLine.DataSource = dt;
-                    ddlLine.DataTextField = "strName";
-                    ddlLine.DataValueField = "Id";
-                    ddlLine.DataBind();
-                }
+                LoadWh();
+                intwh = Common.GetDdlSelectedValue(ddlWH);
+                LoadUnit();
+                LoadLine();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
+        public void LoadWh()
+        {
+            dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                ddlWH.DataSource = dt;
+                ddlWH.DataTextField = "strName";
+                ddlWH.DataValueField = "Id";
+                ddlWH.DataBind();
+            }
+        }
+
+        public void LoadUnit()
+        {
+            dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
+                Session["unit"] = hdnUnit.Value.ToString();
+            }
+        }
+
+        public void LoadLine()
+        {
+            dt = objBom.GetBomData(16, xmlData, intwh, BomId, DateTime.Now, Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                ddlLine.DataSource = dt;
+                ddlLine.DataTextField = "strName";
+                ddlLine.DataValueField = "Id";
+                ddlLine.DataBind();
+            }
+            else
+            {
+                Common.UnLoadDropDown(ddlLine);
+            }
+        }
         #region========================Auto Search============================
 
         [WebMethod]
@@ -180,31 +196,22 @@ namespace UI.SCM.BOM
             try
             {
                 intwh = int.Parse(ddlWH.SelectedValue);
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.getBomRouting(4, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    Session["unit"] = hdnUnit.Value.ToString();
-                }
+
+                LoadUnit();
+                LoadLine();
+
                 txtItem.Text = string.Empty;
                 txtBatchNo.Text = string.Empty;
                 txtInvoice.Text = string.Empty;
                 txtQty.Text = @"0";
                 txtdteDate.Text = string.Empty;
-                Utility.Common.UnLoadDropDown(ddlBom);
-                Utility.Common.UnLoadDropDown(ddlLine);
 
-                dt = objBom.getBomRouting(16, xmlString, xmlData, intwh, 0, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    ddlLine.DataSource = dt;
-                    ddlLine.DataTextField = "strName";
-                    ddlLine.DataValueField = "Id";
-                    ddlLine.DataBind();
-                }
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         protected void txtItem_TextChanged(object sender, EventArgs e)
@@ -213,17 +220,20 @@ namespace UI.SCM.BOM
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(2, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
+                { item = arrayKey[0].ToString();
+                    uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                dt = objBom.GetBomData(2, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
                 ddlBom.DataSource = dt;
                 ddlBom.DataTextField = "strName";
                 ddlBom.DataValueField = "Id";
                 ddlBom.DataBind();
 
-                //dt = objBom.GetBomData(14, xmlData, intWh, int.Parse(itemid), DateTime.Now, enroll);
+                //dt = objBom.GetBomData(14, xmlData, intWh, int.Parse(itemid), DateTime.Now, Enroll);
                 //ddlStation.DataSource = dt;
                 //ddlStation.DataTextField = "strName";
                 //ddlStation.DataValueField = "Id";
@@ -238,7 +248,6 @@ namespace UI.SCM.BOM
             {
                 if (hdnConfirm.Value.ToString() == "1")
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(ddlWH.SelectedValue);
                     doc.Load(filePathForXML);
@@ -250,7 +259,7 @@ namespace UI.SCM.BOM
                     try { File.Delete(filePathForXML); } catch { }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(5, xmlString, intWh, BomId, dteDate, enroll);
+                        string msg = objBom.BomPostData(5, xmlString, intWh, BomId, dteDate, Enroll);
                         dgvBom.DataSource = "";
                         dgvBom.DataBind();
                         txtBatchNo.Text = ""; txtQty.Text = "0"; txtItem.Text = ""; txtInvoice.Text = "";

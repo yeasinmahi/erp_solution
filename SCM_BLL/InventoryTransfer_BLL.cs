@@ -332,30 +332,34 @@ namespace SCM_BLL
             return adp.InventoryAdjustment(unit, wh, user, intItem, rcvQty, monRate, location, remarks);
         }
 
-        public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate, int intType, int autoID,int  itemID,DateTime transactionDate, decimal transactionQTY, int productID )
+        public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate, int intType, int autoID, int itemID, DateTime transactionDate, decimal transactionQTY, int productID)
         {
+
             sprFGReceiveTableAdapter adp = new sprFGReceiveTableAdapter();
-            return adp.GetFGReceiveData(whid, FromDate,ToDate,intType,autoID,itemID,transactionDate,transactionQTY,productID);
+            return adp.GetFGReceiveData(whid, FromDate, ToDate, intType, autoID, itemID, transactionDate,
+                transactionQTY, productID);
+
+
         }
-        
-        public DataTable DistributionData(int whid, DateTime FromDate, DateTime ToDate,int type,int intTransferID)
+
+        public DataTable DistributionData(int whid, DateTime FromDate, DateTime ToDate, int type, int intTransferID)
         {
-            sprDistributionReceiveTableAdapter adp  = new sprDistributionReceiveTableAdapter();
-            return adp.GetDistributionData(whid, FromDate, ToDate,type, intTransferID);
+            sprDistributionReceiveTableAdapter adp = new sprDistributionReceiveTableAdapter();
+            return adp.GetDistributionData(whid, FromDate, ToDate, type, intTransferID);
         }
-        public DataTable InsertReceiveData(int unit,int intwh,int outWH,int location,int user,int item,decimal qty,decimal value, int vehicle,string remarks,int intReff,int intTransferType, bool ysnSalesEntry)
+        public DataTable InsertReceiveData(int unit, int intwh, int outWH, int location, int user, int item, decimal qty, decimal value, int vehicle, string remarks, int intReff, int intTransferType, bool ysnSalesEntry)
         {
-            
+
             sprInventoryTransferTableAdapter adp = new sprInventoryTransferTableAdapter();
             try
             {
-                return adp.InsertTransferData(unit, intwh, outWH, location, user, item, qty, value, vehicle, remarks, intReff, intTransferType, ysnSalesEntry);              
+                return adp.InsertTransferData(unit, intwh, outWH, location, user, item, qty, value, vehicle, remarks, intReff, intTransferType, ysnSalesEntry);
             }
             catch
             {
                 return new DataTable();
             }
-           
+
         }
 
         public DataTable GetUnitByWH(int whid)
@@ -364,17 +368,17 @@ namespace SCM_BLL
             return adp.GetUnitByWhId(whid);
         }
 
-        public DataTable InsertTransferData(int unit, int intWH, int outWH, int location, int user, int intSalesEntryID, int item,decimal qty,string remarks, int intItemTransferType,string strItemTransferType)
+        public DataTable InsertTransferData(int unit, int intWH, int outWH, int location, int user, int intSalesEntryID, int item, decimal qty, string remarks, int intItemTransferType, string strItemTransferType)
         {
             sprInventoryTransferSalesDetailTableAdapter adp = new sprInventoryTransferSalesDetailTableAdapter();
-            return adp.InsertInventoryTransferSalesData(unit,intWH,outWH,location,user,intSalesEntryID,item,qty,remarks,intItemTransferType,strItemTransferType);
+            return adp.InsertInventoryTransferSalesData(unit, intWH, outWH, location, user, intSalesEntryID, item, qty, remarks, intItemTransferType, strItemTransferType);
         }
 
-        public DataTable GetTripEntry(string strChallanNo,int intUnitID,int intSalesOffId,int intShipPointId)
+        public DataTable GetTripEntry(string strChallanNo, int intUnitID, int intSalesOffId, int intShipPointId)
         {
             sprChallanWiseRouteCostTableAdapter adp = new sprChallanWiseRouteCostTableAdapter();
-            return adp.TripEntry(strChallanNo,intUnitID,intSalesOffId,intShipPointId);
+            return adp.TripEntry(strChallanNo, intUnitID, intSalesOffId, intShipPointId);
         }
-        
+
     }
 }

@@ -63,7 +63,7 @@ namespace UI.HR.Reports
             var tracker = new PerfTracker("Performance on HR/Reports/EmployeeDetailsReport.aspx btnSubmit_Click", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
 
-            try {
+            try {       
                 string insertBy = Session[SessionParams.USER_ID].ToString();
                 DateTime date = DateTime.ParseExact(txtDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 string AttendanceDate = date.ToString("yyyy/MM/dd");

@@ -51,7 +51,7 @@ namespace UI.PaymentModule
                     }
                     
                     enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    dt = objIndent.DataView(14, "", 0, indentID, DateTime.Now, enroll);
+                    dt = objIndent.IndentDetailsByIndentId(indentID);
                     if (dt.Rows.Count > 0)
                     {
                         lblUnitName.Text = dt.Rows[0]["strUnit"].ToString();

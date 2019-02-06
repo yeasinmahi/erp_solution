@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.BOM
 {
@@ -17,11 +18,11 @@ namespace UI.SCM.BOM
     {
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
-        private int intwh, enroll, BomId, intBomStandard; private string xmlData;
+        private int intwh, BomId, intBomStandard; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
         private string filePathForXML; private string xmlString = "";
-        decimal qty, actualQty, qcHoldQty, storeQty;
-        private string productionID, itemId, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
+        decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore;
+        private string productionID,  productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +30,12 @@ namespace UI.SCM.BOM
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
+                try
+                {
+                    File.Delete(filePathForXML);
+                    dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
                 catch { }
                 claenderDte.SelectedDate = DateTime.Now;
                 CalendarExtenderExp.SelectedDate = DateTime.Now;
@@ -43,29 +49,53 @@ namespace UI.SCM.BOM
                 srNo = Request.QueryString["srNo"].ToString();
                 quantity = Request.QueryString["quantity"].ToString();
                 whid = Request.QueryString["whid"].ToString();
-                itemId = Request.QueryString["itemId"].ToString();
-                lblProductName.Text = productName;
+                dt = objBom.GetItemNameByProductionId(Convert.ToInt32(productionID));
+                if (dt.Rows.Count>0)
+                {
+                    productName = dt.Rows[0]["strItemName"].ToString();
+                }
+                lblItemName.Text = productName;
+                lblItemId.Text = Request.QueryString["itemId"].ToString();
+                
                 lblProductionId.Text = productionID;
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
                 txtTime.Text = startTime.ToString("HH:ss");
                 txtProductQty.Text = quantity.ToString();
                 lblPlanQty.Text = quantity.ToString();
 
-                txtItem.Text = productName + "[" + itemId + "]";
+                txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(8, xmlData, intwh, int.Parse(productionID), DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    //txtItem.Text = dt.Rows[0]["strName"].ToString();
-                    lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
+                dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(productionID));
+                LoadGrid();
 
-                    dgvProductionEntry.DataSource = dt;
-                    dgvProductionEntry.DataBind();
-                }
+
             }
         }
 
+        public void LoadGrid()
+        {
+            dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(lblProductionId.Text));
+            if (dt.Rows.Count > 0)
+            {
+                //txtItem.Text = dt.Rows[0]["strName"].ToString();
+                lblPlanQty.Text = dt.Rows[0]["numProdQty"].ToString();
+                txtActualQty.Text = dt.Rows[0]["numActualQty"].ToString();
+                if (string.IsNullOrWhiteSpace(txtActualQty.Text))
+                {
+                    txtActualQty.Text = lblPlanQty.Text;
+                }
+                //txtActualQty.Enabled = false;
+
+                Session["TotalStoreQuantity"] = dt.Rows[0]["totalSentToStore"].ToString();
+
+                dgvProductionEntry.DataSource = dt;
+                dgvProductionEntry.DataBind();
+            }
+            else
+            {
+                Session["TotalStoreQuantity"] = null;
+            }
+        }
         #region========================Auto Search============================
 
         [WebMethod]
@@ -86,54 +116,96 @@ namespace UI.SCM.BOM
 
                 string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[1].ToString(); itemid = arrayKey[3].ToString(); }
+                {
+                    item = arrayKey[0].ToString(); uom = arrayKey[1].ToString(); itemid = arrayKey[3].ToString();
+                }
                 string[] searchKey = Regex.Split(uom, ":");
-                lblUom1.Text = searchKey[1].ToString(); lblUom2.Text = searchKey[1].ToString();
+                lblUom1.Text = searchKey[1].ToString();
+                lblUom2.Text = searchKey[1].ToString();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-              
+
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
-                if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[1].ToString(); itemid = arrayKey[3].ToString(); }
+                string item = lblItemName.Text;
+                string itemid = lblItemId.Text;
+                string uom = "";
+                bool proceed = false;
+                //if (arrayKey.Length > 0)
+                //{
+                //    item = arrayKey[0].ToString();
+                //    uom = arrayKey[1].ToString();
+                //    itemid = arrayKey[3].ToString();
+                //}
 
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
                 {
-                    try { qty = decimal.Parse(txtProductQty.Text.ToString()); } catch { qty = 0; }
-                    try { actualQty = decimal.Parse(txtActualQty.Text.ToString()); } catch { actualQty = 0; }
-                    try { qcHoldQty = decimal.Parse(txtQc.Text.ToString()); } catch { qcHoldQty = 0; }
-                    try { storeQty = decimal.Parse(txtSendToStore.Text.ToString()); } catch { storeQty = 0; }
-
-
-                    if (qty > 0 || storeQty > 0)
+                    decimal.TryParse(txtProductQty.Text, out qty);
+                    decimal.TryParse(txtActualQty.Text, out actualQty);
+                    decimal.TryParse(txtQc.Text, out qcHoldQty);
+                    decimal.TryParse(txtSendToStore.Text, out storeQty);
+                    if (Session["TotalStoreQuantity"] != null)
                     {
-                      
+                        if (!decimal.TryParse(Session["TotalStoreQuantity"].ToString(), out totalSentToStore))
+                        {
+                            Toaster("Can not get total store quantity. please contact with developper.", Common.TosterType.Warning);
+                            return;
+                        }
+                    }
+                    if (qty > 0 && storeQty > 0 && actualQty > 0)
+                    {
+                        decimal avaialableQuantity = actualQty - totalSentToStore;
+                        
+                        if (avaialableQuantity - qcHoldQty < 0)
+                        {
+                            Toaster("QC quantity can not be grater than available quantity "+ avaialableQuantity,Common.TosterType.Warning);
+                            return;
+                        }
+                        if (avaialableQuantity - storeQty < 0)
+                        {
+                            Toaster("Store quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                            return;
+                        }
+                        if (avaialableQuantity < qcHoldQty + storeQty)
+                        {
+                            Toaster("Sum of store Quantity and QC quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                            return;
+                        }
                         string struom = lblUom1.Text.ToString();
-                       
+
                         string jobno = txtJob.Text.ToString();
                         string times = txtTime.Text.ToString();
                         string expDate = txtExpDate.Text.ToString();
-                        CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times, actualQty.ToString(), qcHoldQty.ToString(), expDate);
+                        CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times,
+                            actualQty.ToString(), qcHoldQty.ToString(), expDate);
                     }
-                    else { }
+                    else
+                    {
+                        Toaster("Production,Actual and send to store Quantity should be grater than 0", Common.TosterType.Warning);
+                    }
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
+                    Toaster(Message.AlreadyAdded.ToFriendlyString(), Common.TosterType.Warning);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
-        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,string actualQty,string qcHoldQty,string expDate)
+        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
@@ -156,7 +228,7 @@ namespace UI.SCM.BOM
             LoadGridwithXml();
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,string actualQty, string qcHoldQty,string expDate)
+        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -185,7 +257,7 @@ namespace UI.SCM.BOM
             ExpDate.Value = expDate;
 
 
-            
+
             node.Attributes.Append(Item);
             node.Attributes.Append(Itemid);
             node.Attributes.Append(Struom);
@@ -221,7 +293,10 @@ namespace UI.SCM.BOM
                 else { dgvStore.DataSource = ""; }
                 dgvStore.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -237,7 +312,10 @@ namespace UI.SCM.BOM
                 { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
                 else { LoadGridwithXml(); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         private void checkXmlItemData(string itemid)
@@ -260,7 +338,10 @@ namespace UI.SCM.BOM
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                //Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void btnSaves_Click(object sender, EventArgs e)
@@ -269,7 +350,6 @@ namespace UI.SCM.BOM
             {
                 if (hdnConfirm.Value.ToString() == "1")
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(Request.QueryString["whid"].ToString());
                     int productionId = int.Parse(Request.QueryString["productID"].ToString());
@@ -279,20 +359,121 @@ namespace UI.SCM.BOM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
 
-                    try { File.Delete(filePathForXML); } catch { }
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch
+                    {
+                    }
                     if (xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(9, xmlString, intWh, productionId, dteDate, enroll);
+                        string msg = objBom.BomPostData(9, xmlString, intWh, productionId, dteDate, Enroll);
 
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();
                         txtProductQty.Text = "0";
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + msg + "');", true);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                     }
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch
+            {
+                try
+                {
+                    File.Delete(filePathForXML);
+                } catch { }
+            }
+        }
+
+        protected void dgvProductionEntry_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                if (e.Row.FindControl("lblTotalStore") is Label label)
+                {
+                    if (Session["TotalStoreQuantity"] != null)
+                    {
+                        label.Text = Session["TotalStoreQuantity"].ToString();
+                    }
+                }
+            }
+        }
+
+        protected void btnUpdate_OnClick(object sender, EventArgs e)
+        {
+            int transectionId = Convert.ToInt32(txtTransectionId.Text);
+            decimal.TryParse(txtActualQtyUpdate.Text, out actualQty);
+            decimal.TryParse(txtQcUpdate.Text, out qcHoldQty);
+            decimal.TryParse(txtSendToStorePrv.Text, out decimal prvStoreQty);
+            decimal.TryParse(txtSendToStoreUpdate.Text, out storeQty);
+            if (Session["TotalStoreQuantity"] != null)
+            {
+                if (!decimal.TryParse(Session["TotalStoreQuantity"].ToString(), out totalSentToStore))
+                {
+                    Toaster("Can not get total store quantity. please contact with developper.", Common.TosterType.Warning);
+                    SetVisibilityModal(true);
+                    return;
+                }
+            }
+            if (storeQty > 0)
+            {
+                decimal avaialableQuantity = actualQty - totalSentToStore+ prvStoreQty;
+                if (avaialableQuantity - storeQty < 0)
+                {
+                    Toaster("Store quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                    SetVisibilityModal(true);
+                    return;
+                }
+                if (avaialableQuantity < qcHoldQty + storeQty)
+                {
+                    Toaster("Sum of store Quantity and QC quantity can not be grater than available quantity " + avaialableQuantity, Common.TosterType.Warning);
+                    SetVisibilityModal(true);
+                    return;
+                }
+            }
+            else
+            {
+                Toaster("Send to store Quantity should be grater than 0", Common.TosterType.Warning);
+                SetVisibilityModal(true);
+                return;
+            }
+            objBom.UpdateProductionTransfer(1, storeQty, transectionId, Enroll, out string msg);
+            if (msg.ToLower().Contains("success"))
+            {
+                Toaster(msg, Common.TosterType.Success);
+                LoadGrid();
+            }
+            else
+            {
+                Toaster(msg, Common.TosterType.Error);
+                SetVisibilityModal(true);
+            }
+            
+
+        }
+
+        protected void btnEdit_OnClick(object sender, EventArgs e)
+        {
+            GridViewRow row =  GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            string receiveQuantity = (row.FindControl("lblStoreReceivedQty") as Label)?.Text;
+            if (string.IsNullOrWhiteSpace(receiveQuantity))
+            {
+                txtTransectionId.Text = (row.FindControl("lblAutoId") as Label)?.Text;
+                txtProductNameUpdate.Text = (row.FindControl("lblProductName") as Label)?.Text;
+                txtActualQtyUpdate.Text = (row.FindControl("lblActualQty") as Label)?.Text;
+                txtQcUpdate.Text = (row.FindControl("lblQCQty") as Label)?.Text;
+                txtSendToStorePrv.Text = (row.FindControl("lblStore") as Label)?.Text;
+                SetVisibilityModal(true);
+
+            }
+            else
+            {
+                Toaster("This Item Already Received", Common.TosterType.Warning);
+            }
+            
         }
     }
 }

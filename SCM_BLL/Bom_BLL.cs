@@ -1,11 +1,8 @@
 ﻿using SCM_DAL;
 using SCM_DAL.BomTDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SCM_BLL
 {
@@ -23,7 +20,35 @@ namespace SCM_BLL
                 SprBuildOfMaterialTableAdapter adp = new SprBuildOfMaterialTableAdapter();
                 return adp.GetBomData(Type, xmlData, intwh, bomId, dteDate, enroll, ref msg);
             }
-            catch { return new DataTable(); }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetProductionOrderTransferItemDetails(int productionId)
+        {
+            try
+            {
+                string msg = "";
+                SprProductionOrderTransferItemDetailsTableAdapter adp = new SprProductionOrderTransferItemDetailsTableAdapter();
+                return adp.GetData(productionId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetItemNameByProductionId(int productionId)
+        {
+            try
+            {
+                tblItemListTableAdapter adp = new tblItemListTableAdapter();
+                return adp.GetItemNameByProductionId(productionId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
         }
 
         public DataTable UpdateRequsitionByReqId(decimal numQuantity, int reqId, int itemId)
@@ -169,6 +194,20 @@ namespace SCM_BLL
                 return adp.GetBomRoutingData(Type, xmlMachine, xmlAsset, intWh, Id, dteDate, enroll, ref strMsg);
             }
             catch { return new DataTable(); }
+        }
+        public DataTable UpdateProductionTransfer(int Type,decimal quantity,int transectionId,int enroll, out string  msg)
+        {
+            msg = null;
+            try
+            {
+                sprProductionTransferUpdateTableAdapter adp = new sprProductionTransferUpdateTableAdapter();
+
+                return adp.GetData(Type, quantity, transectionId, enroll, ref msg);
+            }
+            catch
+            {
+                return new DataTable();
+            }
         }
 
 
