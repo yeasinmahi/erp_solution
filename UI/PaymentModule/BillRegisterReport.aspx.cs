@@ -32,8 +32,8 @@ namespace UI.PaymentModule
             try
             {
 
-                GridViewRow row = (GridViewRow) ((LinkButton) sender).NamingContainer;
-                string poNo = ((LinkButton) row.FindControl("lblReff")).Text;
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                string poNo = ((LinkButton)row.FindControl("lblReff")).Text;
                 int id = 0;
                 if (poNo.ToLower().Contains("po"))
                 {
@@ -49,7 +49,7 @@ namespace UI.PaymentModule
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
 
@@ -57,12 +57,12 @@ namespace UI.PaymentModule
         {
             try
             {
-                
+
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                LinkButton lblBillNo = row.FindControl("lblBillID") as LinkButton;                
+                LinkButton lblBillNo = row.FindControl("lblBillID") as LinkButton;
                 Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
                 Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
-                int Id =int.Parse(lblBillNo.Text.ToString());
+                int Id = int.Parse(lblBillNo.Text.ToString());
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + Id + "');", true);
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace UI.PaymentModule
                 if (!IsPostBack)
                 {
                     pnlUpperControl.DataBind();
-                    dt = new DataTable();                   
+                    dt = new DataTable();
                     dt = _bll.GetCount(Enroll);
                     int count = int.Parse(dt.Rows[0]["intCount"].ToString());
                     if (count == 1)
@@ -113,10 +113,21 @@ namespace UI.PaymentModule
                         }
                     }
                 }
-
-                lblUnitName.Visible = false;
-                lblReportName.Visible = false;
-                lblFromToDate.Visible = false;
+                else
+                {
+                    if (dgvReport.Rows.Count > 0)
+                    {
+                        lblUnitName.Visible = true;
+                        lblReportName.Visible = true;
+                        lblFromToDate.Visible = true;
+                    }
+                    else
+                    {
+                        lblUnitName.Visible = false;
+                        lblReportName.Visible = false;
+                        lblFromToDate.Visible = false;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -148,7 +159,7 @@ namespace UI.PaymentModule
                 intUnitID = Common.GetDdlSelectedValue(ddlUnit);
                 if (string.IsNullOrWhiteSpace(txtFrom.Text))
                 {
-                    Toaster("From Date "+Message.NotBlank.ToFriendlyString(),Common.TosterType.Warning);
+                    Toaster("From Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(txtTo.Text))
@@ -158,7 +169,7 @@ namespace UI.PaymentModule
                 }
                 if (!DateTime.TryParse(txtFrom.Text, out dteFDate))
                 {
-                    Toaster("From "+Message.DateFormatError.ToFriendlyString(),Common.TosterType.Warning);
+                    Toaster("From " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
                     return;
                 }
                 if (!DateTime.TryParse(txtTo.Text, out dteTDate))
@@ -180,6 +191,10 @@ namespace UI.PaymentModule
 
                     dgvReport.DataSource = dt;
                     dgvReport.DataBind();
+                }
+                else
+                {
+                    GridViewUtil.UnLoadGridView(dgvReport);
                 }
             }
             catch (Exception ex)
@@ -215,7 +230,7 @@ namespace UI.PaymentModule
                 }
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = dgvReport.Rows[rowIndex];
-                
+
                 billid = (row.FindControl("lblBillID") as LinkButton).Text;
                 party = (row.FindControl("lblPartyName") as Label).Text;
 
@@ -228,7 +243,7 @@ namespace UI.PaymentModule
                 }
                 if (e.CommandName == "Remove")
                 {
-                     string   auditStatus = ((Label) row.FindControl("lblAuditStatus")).Text;
+                    string auditStatus = ((Label)row.FindControl("lblAuditStatus")).Text;
                     if (string.IsNullOrWhiteSpace(auditStatus))
                     {
                         _bll.RemoveBill(Enroll, int.Parse(billid), out string msg);
@@ -244,7 +259,7 @@ namespace UI.PaymentModule
                     }
                     else
                     {
-                        Toaster("This Bill Already Approved. This bill can not be delete.",Common.TosterType.Warning);
+                        Toaster("This Bill Already Approved. This bill can not be delete.", Common.TosterType.Warning);
                     }
                     //TODO:delete
                 }
@@ -265,7 +280,7 @@ namespace UI.PaymentModule
             }
             catch (Exception ex)
             {
-                Toaster("Report Grid data bound problem. "+ex.Message,Common.TosterType.Error);
+                Toaster("Report Grid data bound problem. " + ex.Message, Common.TosterType.Error);
             }
         }
     }
