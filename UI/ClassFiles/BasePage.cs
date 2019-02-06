@@ -99,13 +99,18 @@ namespace UI.ClassFiles
         }
         public void SetVisibility(string id, bool isVisible)
         {
+            SetVisibility("Panel", id, isVisible);
+
+        }
+        public void SetVisibility(string head ,string id, bool isVisible)
+        {
             if (isVisible)
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "showDiv('" + id + "');", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "showDiv('" + id + "');", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Panel", "hideDiv('" + id + "');", true);
+                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "hideDiv('" + id + "');", true);
             }
 
         }

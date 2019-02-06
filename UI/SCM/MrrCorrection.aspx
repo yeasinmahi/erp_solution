@@ -43,7 +43,7 @@
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClick="btnShow_Click" />
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row hidden" id="controlPanel">
                                 <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label8" runat="server" Text="Warehouse"></asp:Label>
                                     <asp:TextBox ID="txtWhName" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ware House"></asp:TextBox>
