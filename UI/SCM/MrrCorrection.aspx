@@ -44,35 +44,43 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label8" runat="server" Text="Warehouse"></asp:Label>
                                     <asp:TextBox ID="txtWhName" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ware House"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label9" runat="server" Text="Supplier"></asp:Label>
                                     <asp:TextBox ID="txtSupplierName" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Supplier Name"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label10" runat="server" Text="MRR Date"></asp:Label>
-                                    <asp:TextBox ID="txtMrrDate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="MRR Date"></asp:TextBox>
+                                    <asp:TextBox ID="txtMrrDate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="yyyy-MM-dd"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label11" runat="server" Text="PO"></asp:Label>
                                     <asp:TextBox ID="txtPo" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Purchase Order"></asp:TextBox>
 
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label12" runat="server" Text="Voucher No"></asp:Label>
                                     <asp:TextBox ID="txtVoucherNo" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autoComplete="off" placeholder="Voucher No."></asp:TextBox>
                                 </div>
 
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label13" runat="server" Text="Status"></asp:Label>
                                     <asp:TextBox ID="txtStatus" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Status"></asp:TextBox>
 
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <asp:Label ID="Label1" runat="server" Text="Challan No"></asp:Label>
+                                    <asp:TextBox ID="txtChanllanNo" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Challan Number"></asp:TextBox>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <asp:Label ID="Label2" runat="server" Text="Challan Date"></asp:Label>
+                                    <asp:TextBox ID="txtChallanDate" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="yyyy-MM-dd"></asp:TextBox>
                                 </div>
                             </div>
                         </div>
