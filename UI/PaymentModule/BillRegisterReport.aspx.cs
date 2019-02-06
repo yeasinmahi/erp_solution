@@ -81,7 +81,7 @@ namespace UI.PaymentModule
             {
                 if (!IsPostBack)
                 {
-                    
+                    pnlUpperControl.DataBind();
                     dt = new DataTable();                   
                     dt = _bll.GetCount(Enroll);
                     int count = int.Parse(dt.Rows[0]["intCount"].ToString());
