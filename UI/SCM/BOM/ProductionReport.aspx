@@ -177,7 +177,36 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Line/ Process/ Machine" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
+                                        <asp:TemplateField HeaderText="Plan Qty." ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="center" Width="40px" />
+                                        </asp:TemplateField>
+
+                                           <asp:TemplateField HeaderText="Actual Qty." ItemStyle-HorizontalAlign="right" SortExpression="numActualQty">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="center" Width="40px" />
+                                        </asp:TemplateField>
+
+                                           <asp:TemplateField HeaderText="Send to Store" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="center" Width="40px" />
+                                        </asp:TemplateField>
+
+                                           <asp:TemplateField HeaderText="Receive by Store" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="center" Width="40px" />
+                                        </asp:TemplateField>
+
+
+                                                                                <asp:TemplateField HeaderText="Line/ Process/ Machine" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
                                             </ItemTemplate>
