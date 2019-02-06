@@ -237,5 +237,12 @@ namespace Utility
             //return the control to the calling method
             return ctrl;
         }
+
+        public static int GetOnlyNumberFromString(string s)
+        {
+            string result = Regex.Match(s, @"\d+").Value;
+            int.TryParse(result, out int num);
+            return num;
+        }
     }
 }

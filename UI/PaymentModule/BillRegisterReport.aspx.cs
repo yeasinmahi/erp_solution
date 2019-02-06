@@ -33,14 +33,17 @@ namespace UI.PaymentModule
             {
 
                 GridViewRow row = (GridViewRow) ((LinkButton) sender).NamingContainer;
-                LinkButton lblPoNos = row.FindControl("lblReff") as LinkButton;
-
-                int Id = int.Parse(lblPoNos.Text.ToString());
-                if (Id > 0)
+                string poNo = ((LinkButton) row.FindControl("lblReff")).Text;
+                int id = 0;
+                if (poNo.ToLower().Contains("po"))
                 {
-                    Session["pono"] = Id.ToString();
+                    id = Common.GetOnlyNumberFromString(poNo);
+                }
+                if (id > 0)
+                {
+                    Session["pono"] = id.ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                        "Registration('..SCM/PoDetalisView.aspx');", true);
+                        "Registration('../SCM/PoDetalisView.aspx');", true);
 
                 }
             }
@@ -60,7 +63,7 @@ namespace UI.PaymentModule
                 Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
                 Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
                 int Id =int.Parse(lblBillNo.Text.ToString());
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + Id + "');", true);
             }
             catch (Exception ex)
             {
@@ -188,6 +191,10 @@ namespace UI.PaymentModule
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(e.CommandArgument.ToString()))
+                {
+                    return;
+                }
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = dgvReport.Rows[rowIndex];
                 
