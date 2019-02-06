@@ -98,6 +98,7 @@ function closeModal() {
     $('#myModal').modal('hide');
 }
 function showLoader() {
+    createLoaderDiv();
     document.getElementById('loading').style.display = 'block';
 }
 
@@ -105,5 +106,13 @@ function hideLoader() {
     document.getElementById('loading').style.display = "none";
 }
 
-
+function createLoaderDiv() {
+    var prvDiv = document.getElementById('loading');
+    if (prvDiv == null) {
+        var iDiv = document.createElement('div');
+        iDiv.id = 'loading';
+        iDiv.className = 'loading';
+        document.getElementById('UpdatePanel0').appendChild(iDiv);
+    }
+}
 
