@@ -48,11 +48,8 @@ namespace UI.SCM
                 {
                     _intMrrid = int.Parse(txtMrrNo.Text);
                     
-                    _dt = _obj.CorrectionMrr(1, _intMrrid,Enroll, out string message);
-                    if (_dt.Rows.Count > 0)
-                    {
-                        Toaster(message, message.ToLower().Contains("success")? Common.TosterType.Success:Common.TosterType.Error);
-                    }
+                    _obj.CorrectionMrr(1, _intMrrid,Enroll, out string message);
+                    Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 }
                 catch(Exception ex) {
                     Toaster(ex.Message, Common.TosterType.Error);
@@ -73,11 +70,8 @@ namespace UI.SCM
                     Toaster(message, Common.TosterType.Warning);
                     return;
                 }
-                _dt = _obj.CorrectionMrr(5, _intMrrid,Enroll, out  message);
-                if (_dt.Rows.Count > 0)
-                {
-                    Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
-                }
+                _obj.CorrectionMrr(5, _intMrrid,Enroll, out  message);
+                Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 ShowInfo();
             }
             catch (Exception ex)
@@ -104,11 +98,8 @@ namespace UI.SCM
                     Toaster("No JV Found on this MRR",Common.TosterType.Warning);
                     return;
                 }
-                _dt = _obj.CorrectionMrr(4, _intMrrid,Enroll,out message);
-                if (_dt.Rows.Count > 0)
-                {
-                    Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
-                }
+                _obj.CorrectionMrr(4, _intMrrid,Enroll,out message);
+                Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
                 ShowInfo();
             }
             catch (Exception ex)
