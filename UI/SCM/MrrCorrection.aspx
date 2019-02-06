@@ -99,16 +99,19 @@
                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         <ItemStyle HorizontalAlign="Center" Width="10px" />
                                     </asp:TemplateField>
-                                    <asp:BoundField DataField="ItemName" HeaderText="Item Name">
+                                    <asp:BoundField DataField="Item" HeaderText="Item Name">
                                         <ItemStyle HorizontalAlign="Left" />
                                     </asp:BoundField>
                                     <asp:BoundField DataField="strUoM" HeaderText="UOM" >
                                         <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="POQty" HeaderText="PO Quantity" >
+                                    <asp:BoundField DataField="numPOQty" HeaderText="PO Quantity" >
                                         <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
-                                    <asp:BoundField DataField="POValue" HeaderText="PO Value" >
+                                    <asp:BoundField DataField="numReceiveQty" HeaderText="MRR Quantity" >
+                                        <ItemStyle HorizontalAlign="Center"/>
+                                    </asp:BoundField>
+                                    <asp:BoundField DataField="monBDTTotal" HeaderText="MRR Value" >
                                         <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
                                 </Columns>
