@@ -13,6 +13,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -467,11 +468,15 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                int IndentNo = int.Parse(txtIndentNoDet.Text);
+                int indentNo = 0;
+                if (!Validation.CheckTextBox(txtIndentNoDet, "Indent No", out indentNo, out string message))
+                {
+                    return;
+                }
                 string dept = ddlDepts.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + "2018-01-01" + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
                 
-                dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value.ToString()), IndentNo, DateTime.Now, enroll);
+                dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value.ToString()), indentNo, DateTime.Now, enroll);
                 if(dt.Rows.Count>0)
                 {
                     ddlItem.DataSource = dt;

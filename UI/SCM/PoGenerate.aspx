@@ -656,18 +656,18 @@
                                                                     <td style="text-align: right;">
                                                                         <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Indent No:"></asp:Label></td>
                                                                     <td style="text-align: left;">
-                                                                        <asp:TextBox ID="txtIndentNoDet" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" runat="server"></asp:TextBox>
+                                                                        <asp:TextBox ID="txtIndentNoDet" Width="70px" CssClass="txtBox" Font-Bold="False" AutoPostBack="true" runat="server"></asp:TextBox>
                                                                         <asp:Button ID="btnIndentDetShow" runat="server" ForeColor="Blue" Text="Show" OnClick="btnIndentDetShow_Click" /></td>
 
 
                                                                     <td style="text-align: right;">
                                                                         <asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Item: "></asp:Label></td>
                                                                     <td>
-                                                                        <asp:DropDownList ID="ddlItem" CssClass="ddList" Width="150px" runat="server"></asp:DropDownList></td>
+                                                                        <asp:DropDownList ID="ddlItem" CssClass="ddList" Width="400px" runat="server"></asp:DropDownList></td>
                                                                     <td>
-                                                                        <asp:Button ID="btnAddItem" runat="server" ForeColor="Blue" Text="Add" OnClick="btnAddItem_Click" Height="30px" />
+                                                                        <asp:Button ID="btnAddItem" runat="server" ForeColor="Blue" Text="Add" OnClick="btnAddItem_Click" />
 
-                                                                        <asp:Button ID="btnPrepare" ForeColor="Blue" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" Height="29px" /></td>
+                                                                        <asp:Button ID="btnPrepare" ForeColor="Blue" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click"  /></td>
                                                                 </tr>
 
                                                             </table>

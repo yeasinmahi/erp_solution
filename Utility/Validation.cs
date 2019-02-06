@@ -21,7 +21,7 @@ namespace Utility
             }
             if (!int.TryParse(s, out id))
             {
-                message = "Input " + contolText + "prperly";
+                message = "Input " + contolText + " properly";
                 return false;
             }
             return true;
