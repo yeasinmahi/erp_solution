@@ -11,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -417,6 +418,7 @@ namespace UI.SCM
                             else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
                             {
                                 ddlPoType.SelectedValue = "2";
+                                
                                 ddlInvoice.Enabled = true;
                                 dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
                                 ddlInvoice.DataSource = dt;
@@ -598,6 +600,12 @@ namespace UI.SCM
             fileStream.Close();
 
             requestFTPUploader = null;
+        }
+
+        protected void ddlInvoice_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            intPo = int.Parse(ddlPo.SelectedValue);
+            PoView(intPo);
         }
     }
 }
