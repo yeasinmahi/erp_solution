@@ -120,6 +120,16 @@ namespace Utility
             }
             return false;
         }
+        public static bool SetDdlSelectedText(DropDownList ddl, string text)
+        {
+            ListItem item = ddl.Items.FindByText(text);
+            if (item != null)
+            {
+                ddl.SelectedValue = item.Value;
+                return true;
+            }
+            return false;
+        }
 
         public static string GetDdlSelectedText(DropDownList ddl)
         {
