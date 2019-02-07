@@ -226,17 +226,17 @@
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Enroll">
+                                    <asp:TemplateField HeaderText="Enroll" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblEmpEnroll" runat="server" Text='<%# Bind("intEmpID") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Employee Name">
+                                    <asp:TemplateField HeaderText="Employee Name" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblEmployeeName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Designation">
+                                    <asp:TemplateField HeaderText="Designation" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblDesignation" runat="server" Text='<%# Bind("strDesignation") %>'></asp:Label>
                                         </ItemTemplate>
