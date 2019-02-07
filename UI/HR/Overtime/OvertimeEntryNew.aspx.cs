@@ -82,8 +82,7 @@ namespace UI.HR.Overtime
             {
                 if (((Label)row.FindControl("lblEmpEnroll")).Text.Contains(empEnroll) && ((Label)row.FindControl("lblDate")).Text.Contains(date))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                        "ShowNotification('Can not add same enroll " + empEnroll + " and date " + date + " dublicate','OverTime','error')", true);
+                    Toaster("Can not add same enroll " + empEnroll + " and date " + date + " dublicate.", "Over Time", Common.TosterType.Error);
                     return;
                 }
                 //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
@@ -251,7 +250,7 @@ namespace UI.HR.Overtime
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + ex.Message + "\",'OverTime','error')", true);
+                Toaster(ex.Message, "Overtime", Common.TosterType.Error);
             }
         }
 
@@ -259,8 +258,7 @@ namespace UI.HR.Overtime
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification(\"" + message + "\",'OverTime','error')", true);
+                Toaster(message,"Overtime",Common.TosterType.Error);
                 SetVisibility("panel", false);
             }
             else
@@ -354,15 +352,15 @@ namespace UI.HR.Overtime
             };
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
             message = _bll.OvertimeEntryNew(2, xmlString, Enroll, "");
-            if (!message.Contains("Sucessfully"))
+            if (!message.ToLower().Contains("sucessfully"))
             {
                 SetVisibilityModal(true);
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
+                Toaster(message,"Over Time",Common.TosterType.Error);
                 return;
             }
             int empId = Convert.ToInt32(txtEnrollUpdate.Text);
             LoadOverTimeDetailsGridView(empId);
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','success')", true);
+            Toaster(message, "Over Time", Common.TosterType.Success);
         }
     }
 }
