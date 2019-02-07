@@ -161,7 +161,10 @@ namespace UI.SCM
                 Session["itemname"] = (row.FindControl("lblItemName") as Label).Text;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPriceListPopup('" + ItemId + "');", true);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         #region=============Indent Sumery Tab-1 ==============================
@@ -178,7 +181,10 @@ namespace UI.SCM
 
                 MainView.ActiveViewIndex = 0;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, "Indent", Common.TosterType.Error);
+            }
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -187,20 +193,34 @@ namespace UI.SCM
             {
                 dgvIndent.DataSource = "";
                 dgvIndent.DataBind();
-                
+
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
                 hdnWHName.Value = ddlWH.SelectedItem.ToString();
                 DateTime dteFrom = DateTime.Parse(txtDtefroms.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtDteTo.Text.ToString());
                 string dept = ddlDepts.SelectedItem.ToString();
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + txtDteTo.Text.ToString() + '"' + " dept=" + '"' + dept + '"' + " dteFrom=" + '"' + txtDtefroms.Text.ToString() + '"'+ "/></voucher>".ToString();
+                string xmlData = "<voucher><voucherentry dteTo=" + '"' + txtDteTo.Text.ToString() + '"' + " dept=" +
+                                 '"' + dept + '"' + " dteFrom=" + '"' + txtDtefroms.Text.ToString() + '"' +
+                                 "/></voucher>".ToString();
                 dt = objPo.GetPoData(2, xmlData, intWh, 0, dteFrom, Enroll);
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
-                dt.Clear();
+                if (dt.Rows.Count > 0)
+                {
+                    dgvIndent.DataSource = dt;
+                    dgvIndent.DataBind();
+                    dt.Clear();
+                }
+                else
+                {
+                    GridViewUtil.UnLoadGridView(dgvIndent);
+                    Toaster(Message.NoFound.ToFriendlyString(),"Indent", Common.TosterType.Warning);
+                }
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,"Indent",Common.TosterType.Error);
+            }
         }
 
         protected void btnSearchIndent_Click(object sender, EventArgs e)
@@ -234,12 +254,15 @@ namespace UI.SCM
                 else
                 {
                     GridViewUtil.UnLoadGridView(dgvIndent);
-                    Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                    Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
                 
                
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, "Indent", Common.TosterType.Error);
+            }
         }
 
         protected void btnIndentDetalis_Click(object sender, EventArgs e)
