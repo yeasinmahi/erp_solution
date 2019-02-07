@@ -105,7 +105,7 @@ namespace UI.ClassFiles
         }
         public void SetVisibility(string id, bool isVisible)
         {
-            SetVisibility("Panel", id, isVisible);
+            SetVisibility(id, id, isVisible);
 
         }
         public void SetVisibility(string head ,string id, bool isVisible)

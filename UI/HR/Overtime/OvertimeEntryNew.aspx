@@ -132,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-info" id="itemPanel">
+                    <div class="panel panel-info hidden" id="panel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
@@ -212,7 +212,7 @@
 
                     </div>
 
-                    <div class="panel panel-info">
+                    <div class="panel panel-info" id="itemPanel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Details Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>

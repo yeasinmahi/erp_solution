@@ -81,15 +81,33 @@ function confirmMsg() {
     return confirm("Do you want to proceed?");
 }
 
-function showDiv(id) {
-    var element = document.getElementById(id);
-    element.classList.remove("hidden");
-    return true;
+/**
+ * @param {string} divId The string
+ */
+function showDiv(divId) {
+    var element = document.getElementById(divId);
+    if (element != null) {
+        element.classList.remove("hidden");
+        return true;
+    } else {
+        console.log("The Show div function did not find your Id: " + divId + ".");
+        return false;
+    }
+    
 }
-function hideDiv(id) {
-    var element = document.getElementById(id);
-    element.classList.add("hidden");
-    return true;
+/**
+ * @param {string} divId The string
+ */
+function hideDiv(divId) {
+    var element = document.getElementById(divId);
+    if (element != null) {
+        element.classList.add("hidden");
+        return true;
+    } else {
+        console.log("The Hide div function did not find your Id: " + divId + ".");
+        return false;
+    }
+    
 }
 function openModal() {
     $('#myModal').modal('show');
