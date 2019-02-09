@@ -2,14 +2,9 @@
 using Flogging.Core;
 using GLOBAL_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.IO;
-using System.Linq;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml;
 using UI.ClassFiles;
 
 namespace UI.Accounts.Advice
@@ -19,6 +14,7 @@ namespace UI.Accounts.Advice
         DataTable dt; AdviceBLL bll = new AdviceBLL();
         int intID, intUnitID, intWork, ysnCompleted, intAdviceType, intBankType, intAutoID, intActionBy, intChillingID;
         string strAccountMandatory, strBankName, xmlpath; DateTime dteDate;
+        private readonly char[] delimiterChars = { '[', ']' };
         SeriLog log = new SeriLog();
         string location = "Accounts";
         string start = "starting Accounts\\Advice\\PaymentAdvice";
@@ -345,6 +341,27 @@ namespace UI.Accounts.Advice
                     ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
                     dt = new DataTable();
                     dt = bll.GetAdviceData(intActionBy);
+                    string accountNo = ddlBankAccount.SelectedItem.Text;
+                    string[] arrayKey = accountNo.Split(delimiterChars);
+                    if (arrayKey.Length > 0)
+                    {
+                        string acNo = arrayKey[0];
+                        string bankName = arrayKey[1];
+                        if (bankName.ToLower().Equals("scb"))
+                        {
+                            Session["accountNo"] = acNo;
+                        }
+                        else
+                        {
+                            Session["accountNo"] = null;
+                        }
+
+                    }
+                    else
+                    {
+                        Session["accountNo"] = null;
+                    }
+                    
                     dgvAdvice.DataSource = dt;
                     dgvAdvice.DataBind();
                     dgvReport.DataSource = dt;
@@ -405,12 +422,23 @@ namespace UI.Accounts.Advice
                     routingtext = ((Label)e.Row.Cells[9].FindControl("lblRoutingNo")).Text;
                     Label lblNum2 = (Label)(e.Row.FindControl("lblRoutingNo"));
                     lblNum2.Text = "'" + routingtext;
+                    if (Session["accountNo"] != null)
+                    {
+                        ((Label)e.Row.FindControl("lblDebitAcc")).Text = Session["accountNo"].ToString();
+                    }
 
                 }
-                if (e.Row.RowType == DataControlRowType.Footer)
+                else if (e.Row.RowType == DataControlRowType.Footer)
                 {
                     Label lbl = (Label)(e.Row.FindControl("lblTTTotal"));
                     lbl.Text = String.Format("{0:n}", totalamount);
+                }
+                else if(e.Row.RowType == DataControlRowType.Header)
+                {
+                    //if (Session["accountNo"] != null)
+                    //{
+                    //    ((Label) e.Row.FindControl("lblDebitAcc")).Text = Session["accountNo"].ToString();
+                    //}
                 }
             }
             catch { }
@@ -521,5 +549,9 @@ namespace UI.Accounts.Advice
         //    catch { intID = 0; return; }
         //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewDispatchPopup('" + intID.ToString() + "');", true);
         //}
+        protected void dgvReport_OnDataBinding(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

@@ -111,7 +111,7 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+                                    <asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox" autocomplete="off" Width="210px"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
@@ -178,7 +178,7 @@
                             </tr>
                             <tr>
                                 <td colspan="6">
-                                    <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false">
+                                    <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false" OnDataBinding="dgvReport_OnDataBinding">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
 
@@ -269,11 +269,18 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" Visible="false">
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" Visible="True">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
+                                            
+                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center" Visible="True">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Mail" ItemStyle-HorizontalAlign="right" SortExpression="strOrgMail" Visible="false">
@@ -467,9 +474,16 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="Center" SortExpression="intSlNo" Visible="False">
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="Center" SortExpression="intSlNo" Visible="True">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+                                            
+                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center" Visible="True">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
