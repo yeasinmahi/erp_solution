@@ -1,18 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using HR_BLL.Global;
 using Purchase_BLL.SupplyChain;
+using UI.ClassFiles;
 using Utility;
 
 namespace UI.Inventory
 {
-    public partial class SupplierDocView : Page
+    public partial class SupplierDocView : BasePage
     {
         private readonly string ftp = "ftp://ftp.akij.net/SupplierDoc/";
         protected void Page_Load(object sender, EventArgs e)
@@ -70,9 +68,17 @@ namespace UI.Inventory
         {
             int intSuppMasterId = Convert.ToInt32(Request.QueryString["intSuppMasterId"]);
             DataTable dt = new CSM().GetDocDetailsData(intSuppMasterId);
-            
-            gridView.DataSource = dt;
-            gridView.DataBind();
+            if (dt.Rows.Count > 0)
+            {
+                gridView.DataSource = dt;
+                gridView.DataBind();
+                SetVisibility("itemPanel", true);
+            }
+            else
+            {
+                SetVisibility("itemPanel", false);
+                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+            }
         }
     }
 }

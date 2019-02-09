@@ -105,15 +105,15 @@ namespace UI.ClassFiles
             SetVisibility(id, id, isVisible);
 
         }
-        public void SetVisibility(string head ,string id, bool isVisible)
+        private void SetVisibility(string head ,string id, bool isVisible)
         {
             if (isVisible)
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "showDiv('" + id + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), head, "showDiv('" + id + "');", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "hideDiv('" + id + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), head, "hideDiv('" + id + "');", true);
             }
 
         }

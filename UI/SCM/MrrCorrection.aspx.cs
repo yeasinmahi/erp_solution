@@ -135,7 +135,7 @@ namespace UI.SCM
                         DateTime.TryParse(chanllanDateText, out DateTime challanDate);
                         txtChallanDate.Text = challanDate.ToShortDateString();
                     }
-                    SetVisibility("contol","controlPanel",true);
+                    SetVisibility("controlPanel",true);
                     
                 }
                 else
