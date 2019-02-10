@@ -193,7 +193,7 @@
                                 <asp:DropDownList ID="ddlPo" CssClass="ddList" Width="300px" AutoPostBack="true" Font-Size="Small" runat="server" OnSelectedIndexChanged="ddlPo_SelectedIndexChanged"></asp:DropDownList></td>
                             <td>Invoice No:</td>
                             <td>
-                                <asp:DropDownList ID="ddlInvoice" CssClass="ddList" AutoPostBack="true" Font-Size="Small" runat="server"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlInvoice" CssClass="ddList" AutoPostBack="true" Font-Size="Small" runat="server" OnSelectedIndexChanged="ddlInvoice_OnSelectedIndexChanged"></asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td>Challan/BOL:</td>

@@ -1,20 +1,12 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
-using System.IO;
-using System.Xml;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.PaymentModule
 {
@@ -26,7 +18,7 @@ namespace UI.PaymentModule
         string start = "starting PaymentModule/BillRegisterReport.aspx";
         string stop = "stopping PaymentModule/BillRegisterReport.aspx";
 
-        Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
+        private readonly Payment_All_Voucher_BLL _bll = new Payment_All_Voucher_BLL();
         DataTable dt;
 
         int intUnitID;
@@ -39,34 +31,44 @@ namespace UI.PaymentModule
         {
             try
             {
-               
-                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                LinkButton lblPoNos = row.FindControl("lblReff") as LinkButton;
 
-                int Id = int.Parse(lblPoNos.Text.ToString());
-                if (Id > 0)
+                GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
+                string poNo = ((LinkButton)row.FindControl("lblReff")).Text;
+                int id = 0;
+                if (poNo.ToLower().Contains("po"))
                 {
-                    Session["pono"] = Id.ToString();
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('..SCM/PoDetalisView.aspx');", true);
+                    id = Common.GetOnlyNumberFromString(poNo);
+                }
+                if (id > 0)
+                {
+                    Session["pono"] = id.ToString();
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "Registration('../SCM/PoDetalisView.aspx');", true);
 
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void lblBillID_Click(object sender, EventArgs e)
         {
             try
             {
-                
+
                 GridViewRow row = (GridViewRow)((LinkButton)sender).NamingContainer;
-                LinkButton lblBillNo = row.FindControl("lblBillID") as LinkButton;                
+                LinkButton lblBillNo = row.FindControl("lblBillID") as LinkButton;
                 Session["party"] = (row.FindControl("lblPartyName") as Label).Text;
                 Session["billamount"] = (row.FindControl("lblBillAmount") as Label).Text;
-                int Id =int.Parse(lblBillNo.Text.ToString());
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
+                int Id = int.Parse(lblBillNo.Text.ToString());
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + Id + "');", true);
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -80,18 +82,15 @@ namespace UI.PaymentModule
 
             try
             {
-                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-                hdnEmail.Value = Session[SessionParams.EMAIL].ToString();
-                hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                 if (!IsPostBack)
                 {
-                    
-                    dt = new DataTable();                   
-                    dt = objVoucher.GetCount(int.Parse(hdnEnroll.Value));
+                    pnlUpperControl.DataBind();
+                    dt = new DataTable();
+                    dt = _bll.GetCount(Enroll);
                     int count = int.Parse(dt.Rows[0]["intCount"].ToString());
                     if (count == 1)
                     {
-                        dt = objVoucher.GetUnitListForAll();
+                        dt = _bll.GetUnitListForAll();
                         if (dt.Rows.Count > 0)
                         {
                             ddlUnit.DataTextField = "strUnit";
@@ -103,7 +102,7 @@ namespace UI.PaymentModule
                     }
                     else if (count == 0)
                     {
-                        dt = objVoucher.GetUnitList(int.Parse(hdnEnroll.Value));
+                        dt = _bll.GetUnitList(Enroll);
                         if (dt.Rows.Count > 0)
                         {
                             ddlUnit.DataTextField = "strUnit";
@@ -114,10 +113,22 @@ namespace UI.PaymentModule
                         }
                     }
                 }
-
-                lblUnitName.Visible = false;
-                lblReportName.Visible = false;
-                lblFromToDate.Visible = false;
+                else
+                {
+                    
+                    if (dgvReport.Rows.Count > 0)
+                    {
+                        lblUnitName.Visible = true;
+                        lblReportName.Visible = true;
+                        lblFromToDate.Visible = true;
+                    }
+                    else
+                    {
+                        lblUnitName.Visible = false;
+                        lblReportName.Visible = false;
+                        lblFromToDate.Visible = false;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -146,15 +157,33 @@ namespace UI.PaymentModule
 
             try
             {
-                intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-                dteFDate = DateTime.Parse(txtFrom.Text);
-                dteTDate = DateTime.Parse(txtTo.Text);
+                intUnitID = Common.GetDdlSelectedValue(ddlUnit);
+                if (string.IsNullOrWhiteSpace(txtFrom.Text))
+                {
+                    Toaster("From Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtTo.Text))
+                {
+                    Toaster("To Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (!DateTime.TryParse(txtFrom.Text, out dteFDate))
+                {
+                    Toaster("From " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (!DateTime.TryParse(txtTo.Text, out dteTDate))
+                {
+                    Toaster("To " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
 
-                lblUnitName.Text = ddlUnit.SelectedItem.ToString();
+                lblUnitName.Text = Common.GetDdlSelectedText(ddlUnit);
                 lblReportName.Text = "Bill Register Report";
                 lblFromToDate.Text = "For The Month of " + Convert.ToDateTime(txtFrom.Text).ToString("yyyy-MM-dd") + " To " + Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
 
-                dt = objVoucher.GetBillRegisterForWeb(intUnitID, dteFDate, dteTDate);
+                dt = _bll.GetBillRegisterForWeb(intUnitID, dteFDate, dteTDate);
                 if (dt.Rows.Count > 0)
                 {
                     lblUnitName.Visible = true;
@@ -163,6 +192,11 @@ namespace UI.PaymentModule
 
                     dgvReport.DataSource = dt;
                     dgvReport.DataBind();
+                }
+                else
+                {
+                    Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                    GridViewUtil.UnLoadGridView(dgvReport);
                 }
             }
             catch (Exception ex)
@@ -192,9 +226,13 @@ namespace UI.PaymentModule
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(e.CommandArgument.ToString()))
+                {
+                    return;
+                }
                 int rowIndex = Convert.ToInt32(e.CommandArgument);
                 GridViewRow row = dgvReport.Rows[rowIndex];
-                
+
                 billid = (row.FindControl("lblBillID") as LinkButton).Text;
                 party = (row.FindControl("lblPartyName") as Label).Text;
 
@@ -205,28 +243,47 @@ namespace UI.PaymentModule
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewBillDetailsPopup('" + billid + "');", true);
                 }
+                if (e.CommandName == "Remove")
+                {
+                    string auditStatus = ((Label)row.FindControl("lblAuditStatus")).Text;
+                    if (string.IsNullOrWhiteSpace(auditStatus))
+                    {
+                        _bll.RemoveBill(Enroll, int.Parse(billid), out string msg);
+                        if (msg.ToLower().Contains("success"))
+                        {
+                            Toaster(msg, Common.TosterType.Success);
+                            LoadGrid();
+                        }
+                        else
+                        {
+                            Toaster(msg, Common.TosterType.Warning);
+                        }
+                    }
+                    else
+                    {
+                        Toaster("This Bill Already Approved. This bill can not be delete.", Common.TosterType.Warning);
+                    }
+                    //TODO:delete
+                }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
 
+        protected void dgvReport_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            try
+            {
+                e.Row.Cells[16].Visible = new Billing_BLL().IsPermitedToRemoveMrr(Enroll);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            }
+            catch (Exception ex)
+            {
+                Toaster("Report Grid data bound problem. " + ex.Message, Common.TosterType.Error);
+            }
+        }
     }
 }

@@ -132,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-info" id="itemPanel">
+                    <div class="panel panel-info hidden" id="panel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
@@ -212,7 +212,7 @@
 
                     </div>
 
-                    <div class="panel panel-info">
+                    <div class="panel panel-info" id="itemPanel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Details Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
@@ -226,17 +226,17 @@
                                             <%# Container.DataItemIndex + 1 %>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Enroll">
+                                    <asp:TemplateField HeaderText="Enroll" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblEmpEnroll" runat="server" Text='<%# Bind("intEmpID") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Employee Name">
+                                    <asp:TemplateField HeaderText="Employee Name" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblEmployeeName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Designation">
+                                    <asp:TemplateField HeaderText="Designation" Visible="False">
                                         <ItemTemplate>
                                             <asp:Label ID="lblDesignation" runat="server" Text='<%# Bind("strDesignation") %>'></asp:Label>
                                         </ItemTemplate>

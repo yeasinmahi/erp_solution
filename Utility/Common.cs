@@ -120,6 +120,16 @@ namespace Utility
             }
             return false;
         }
+        public static bool SetDdlSelectedText(DropDownList ddl, string text)
+        {
+            ListItem item = ddl.Items.FindByText(text);
+            if (item != null)
+            {
+                ddl.SelectedValue = item.Value;
+                return true;
+            }
+            return false;
+        }
 
         public static string GetDdlSelectedText(DropDownList ddl)
         {
@@ -236,6 +246,13 @@ namespace Utility
 
             //return the control to the calling method
             return ctrl;
+        }
+
+        public static int GetOnlyNumberFromString(string s)
+        {
+            string result = Regex.Match(s, @"\d+").Value;
+            int.TryParse(result, out int num);
+            return num;
         }
     }
 }

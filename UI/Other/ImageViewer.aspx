@@ -7,6 +7,6 @@
     <title></title>
 </head>
 <body>
-<asp:Image runat="server" ID="image" class="image"/>
+    <asp:Image runat="server" ID="image" class="image" />
 </body>
 </html>

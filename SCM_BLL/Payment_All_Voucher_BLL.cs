@@ -249,43 +249,19 @@ namespace SCM_BLL
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public void RemoveBill(int enroll, int billId, out string msg)
+        {
+            msg = string.Empty;
+            try
+            {
+                SprBillRemoveTableAdapter adp = new SprBillRemoveTableAdapter();
+                adp.GetData(billId, enroll, ref msg);
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+            
+        }
     }
 }

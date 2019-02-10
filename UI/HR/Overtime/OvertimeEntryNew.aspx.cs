@@ -33,6 +33,8 @@ namespace UI.HR.Overtime
             {
                 LoadEmployeeInfo();
             }
+            
+            
         }
 
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -80,8 +82,7 @@ namespace UI.HR.Overtime
             {
                 if (((Label)row.FindControl("lblEmpEnroll")).Text.Contains(empEnroll) && ((Label)row.FindControl("lblDate")).Text.Contains(date))
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                        "ShowNotification('Can not add same enroll " + empEnroll + " and date " + date + " dublicate','OverTime','error')", true);
+                    Toaster("Can not add same enroll " + empEnroll + " and date " + date + " dublicate.", "Over Time", Common.TosterType.Error);
                     return;
                 }
                 //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
@@ -159,53 +160,38 @@ namespace UI.HR.Overtime
                 {
                     Session["obj"] = null;
                     GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                        "ShowNotification(\"" + message + "\",'OverTime','success')", true);
+                    Toaster(message, "OverTime", Common.TosterType.Success);
                     LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                 }
                 else
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                        "ShowNotification(\"" + message + "\",'OverTime','error')", true);
+                    Toaster(message, "OverTime", Common.TosterType.Error);
                 }
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
-                    "ShowNotification('No Data Found to Insert','OverTime','warning')", true);
+                Toaster("No Data Found to Insert", "OverTime", Common.TosterType.Warning);
             }
         }
 
         private void LoadPurpose()
         {
-            ddlPurpose.DataSource = _bll.getOvertimePurpouse();
-            ddlPurpose.DataValueField = "intID";
-            ddlPurpose.DataTextField = "strPurpouse";
-            ddlPurpose.DataBind();
+            Common.LoadDropDown(ddlPurpose, _bll.getOvertimePurpouse(), "intID", "strPurpouse");
         }
 
         private void LoadPurposeUpdate()
         {
-            ddlPurposeUpdate.DataSource = _bll.getOvertimePurpouse();
-            ddlPurposeUpdate.DataValueField = "intID";
-            ddlPurposeUpdate.DataTextField = "strPurpouse";
-            ddlPurposeUpdate.DataBind();
+            Common.LoadDropDown(ddlPurposeUpdate, _bll.getOvertimePurpouse(), "intID", "strPurpouse");
         }
 
         public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            ddlJobStation.DataSource = _bll.GetJobStationByPermission(unitId, Enroll);
-            ddlJobStation.DataValueField = "intEmployeeJobStationId";
-            ddlJobStation.DataTextField = "strJobStationName";
-            ddlJobStation.DataBind();
+            Common.LoadDropDown(ddlJobStation, _bll.GetJobStationByPermission(unitId, Enroll), "intEmployeeJobStationId", "strJobStationName");
         }
 
         public void LoadUnitDropDown(int enrol)
         {
-            ddlUnit.DataSource = _bll.GetUnitName(enrol);
-            ddlUnit.DataValueField = "intUnitID";
-            ddlUnit.DataTextField = "strUnit";
-            ddlUnit.DataBind();
+            Common.LoadDropDown(ddlUnit, _bll.GetUnitName(enrol), "intUnitID", "strUnit");
         }
 
         public int GetUnitId()
@@ -264,7 +250,7 @@ namespace UI.HR.Overtime
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + ex.Message + "\",'OverTime','error')", true);
+                Toaster(ex.Message, "Overtime", Common.TosterType.Error);
             }
         }
 
@@ -272,7 +258,12 @@ namespace UI.HR.Overtime
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
             {
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
+                Toaster(message,"Overtime",Common.TosterType.Error);
+                SetVisibility("panel", false);
+            }
+            else
+            {
+                SetVisibility("panel", true);
             }
         }
 
@@ -306,8 +297,20 @@ namespace UI.HR.Overtime
                 fromDate = month;
             }
             DateTime toDate = month.AddMonths(1).AddDays(-1);
-            GridViewEmployeeDetails.DataSource = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
-            GridViewEmployeeDetails.DataBind();
+            DataTable dt = _bll.GetEmployeeOvertimeDetails(empId, fromDate.ToString("yyyy-MM-dd"), toDate.ToString("yyyy-MM-dd"));
+            if (dt.Rows.Count > 0)
+            {
+                GridViewEmployeeDetails.DataSource = dt;
+                GridViewEmployeeDetails.DataBind();
+                SetVisibility("itemPanel", true);
+            }
+            else
+            {
+                SetVisibility("itemPanel", false);
+            }
+            
+
+            
         }
 
         protected void btnUpdateFinal_OnClick(object sender, EventArgs e)
@@ -349,15 +352,15 @@ namespace UI.HR.Overtime
             };
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", obj, out string message);
             message = _bll.OvertimeEntryNew(2, xmlString, Enroll, "");
-            if (!message.Contains("Sucessfully"))
+            if (!message.ToLower().Contains("sucessfully"))
             {
                 SetVisibilityModal(true);
-                ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','error')", true);
+                Toaster(message,"Over Time",Common.TosterType.Error);
                 return;
             }
             int empId = Convert.ToInt32(txtEnrollUpdate.Text);
             LoadOverTimeDetailsGridView(empId);
-            ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage", "ShowNotification(\"" + message + "\",'OverTime','success')", true);
+            Toaster(message, "Over Time", Common.TosterType.Success);
         }
     }
 }

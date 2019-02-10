@@ -1,15 +1,8 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
@@ -197,16 +190,24 @@ namespace UI.PaymentModule
                     {
                         for (int index = 0; index < dgvPurchaseV.Rows.Count; index++)
                         {
-                            entryid = ((Label)dgvPurchaseV.Rows[index].FindControl("lblID")).Text.ToString();
-                            partyid = ((Label)dgvPurchaseV.Rows[index].FindControl("lblPartyID")).Text.ToString();
-                            party = ((Label)dgvPurchaseV.Rows[index].FindControl("lblPartyName")).Text.ToString();
-                            poid = ((Label)dgvPurchaseV.Rows[index].FindControl("lblPOID")).Text.ToString();
-                            narrantion = strEntryTypeName + entryid + ", and PO NO: " + poid + ". Party: " + party;
-
-                            if (party != "" || entryid != "" || poid != "")
+                            if (((CheckBox) dgvPurchaseV.Rows[index].FindControl("chkRow")).Checked == true)
                             {
-                                CreateVoucherXml(entryid, partyid, party, poid, narrantion);
+                                entryid = ((Label) dgvPurchaseV.Rows[index].FindControl("lblID")).Text.ToString();
+                                partyid = ((Label) dgvPurchaseV.Rows[index].FindControl("lblPartyID")).Text.ToString();
+                                party = ((Label) dgvPurchaseV.Rows[index].FindControl("lblPartyName")).Text.ToString();
+                                poid = ((Label) dgvPurchaseV.Rows[index].FindControl("lblPOID")).Text.ToString();
+                                narrantion = strEntryTypeName + entryid + ", and PO NO: " + poid + ". Party: " + party;
+
+                                if (party != "" || entryid != "" || poid != "")
+                                {
+                                    CreateVoucherXml(entryid, partyid, party, poid, narrantion);
+                                }
                             }
+                            else
+                            {
+                                // not selected
+                            }
+                            
                         }
                     }
 

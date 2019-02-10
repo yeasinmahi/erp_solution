@@ -32845,20 +32845,31 @@ from ERP_Inventory.dbo.tblPurchaseIndentDetail id join ERP_Inventory.dbo.qryItem
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT     intSuppMasterID, strSuppMasterName, strOrgAddress, strOrgMail, strOrgContactNo, strOrgFAXNo, strBusinessType, strServiceType, strBIN, strTIN, 
-                         strVATRegNo, strTradeLisenceNo, strReprName, strReprContactNo, strPayToName, strSupplierType, cast (dteEnlistmentDate as date) as dteEnlistmentDate, 
-                         e.stremployeename as Request_By, strShortName, strACNO, strRoutingNo, strBank, strBranch, msd.intBankID, msd.intDistrictID, msd.intBranchID
+strVATRegNo, strTradeLisenceNo, strReprName, strReprContactNo, strPayToName, msd.strSupplierType, cast (dteEnlistmentDate as date) as dteEnlistmentDate, 
+e.stremployeename as Request_By, strShortName, strACNO, strRoutingNo, strBank, strBranch, msd.intBankID, msd.intDistrictID, msd.intBranchID
 
-FROM           erp_Inventory.dbo.tblMasterSupplierDump msd left join erp_hr.dbo.tblEmployee e ON msd.intRequestBy=e.intEmployeeID  
-where  msd.ysnActive=1 and ysnApprove1 is null and intApproved1by is null and ysnApprove2 is null and intApproved2by is null and intFinalApprovalby is null and ysnReject is null order by intSuppMasterID desc";
+FROM  erp_Inventory.dbo.tblMasterSupplierDump msd 
+join erp_hr.dbo.tblEmployee e ON msd.intRequestBy=e.intEmployeeID
+join ERP_Inventory.dbo.tblPOType pt on pt.strSupplierType = msd.strSupplierType
+join   ERP_Inventory.dbo.tblApprovalAuthority aut ON pt.strPOType=aut.strPOType
+where  aut.intEnrollment=@enroll and aut.ysnActive=1 and msd.ysnActive=1  and  intFinalApprovalby is null and ysnReject is null order by intSuppMasterID desc
+";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEnrollment", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Supplier.SUpplierListforApproval1DataTable SUpplierListforApproval1() {
+        public virtual Supplier.SUpplierListforApproval1DataTable SUpplierListforApproval1(global::System.Nullable<int> enroll) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((enroll.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(enroll.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             Supplier.SUpplierListforApproval1DataTable dataTable = new Supplier.SUpplierListforApproval1DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -37780,7 +37791,7 @@ ORDER BY SM.strSuppMasterName";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [tblSupplierDocList] WHERE (([intDocID] = @Original_intDocID) AND ((@IsNull_intSuppMasterID = 1 AND [intSuppMasterID] IS NULL) OR ([intSuppMasterID] = @Original_intSuppMasterID)) AND ((@IsNull_intDocType = 1 AND [intDocType] IS NULL) OR ([intDocType] = @Original_intDocType)) AND ((@IsNull_strDoctype = 1 AND [strDoctype] IS NULL) OR ([strDoctype] = @Original_strDoctype)) AND ((@IsNull_intInsertBy = 1 AND [intInsertBy] IS NULL) OR ([intInsertBy] = @Original_intInsertBy)) AND ((@IsNull_intInsertTime = 1 AND [intInsertTime] IS NULL) OR ([intInsertTime] = @Original_intInsertTime)) AND ((@IsNull_strFilePath = 1 AND [strFilePath] IS NULL) OR ([strFilePath] = @Original_strFilePath)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [erp_Inventory].[dbo].[tblSupplierDocList] WHERE (([intDocID] = @Original_intDocID) AND ((@IsNull_intSuppMasterID = 1 AND [intSuppMasterID] IS NULL) OR ([intSuppMasterID] = @Original_intSuppMasterID)) AND ((@IsNull_intDocType = 1 AND [intDocType] IS NULL) OR ([intDocType] = @Original_intDocType)) AND ((@IsNull_strDoctype = 1 AND [strDoctype] IS NULL) OR ([strDoctype] = @Original_strDoctype)) AND ((@IsNull_intInsertBy = 1 AND [intInsertBy] IS NULL) OR ([intInsertBy] = @Original_intInsertBy)) AND ((@IsNull_intInsertTime = 1 AND [intInsertTime] IS NULL) OR ([intInsertTime] = @Original_intInsertTime)) AND ((@IsNull_strFilePath = 1 AND [strFilePath] IS NULL) OR ([strFilePath] = @Original_strFilePath)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intDocID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intDocID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intSuppMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -37799,7 +37810,7 @@ ORDER BY SM.strSuppMasterName";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tblSupplierDocList] ([intSuppMasterID], [intDocType], [strDoctype], [intInsertBy], [intInsertTime], [strFilePath], [ysnActive]) VALUES (@intSuppMasterID, @intDocType, @strDoctype, @intInsertBy, @intInsertTime, @strFilePath, @ysnActive);
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [erp_Inventory].[dbo].[tblSupplierDocList] ([intSuppMasterID], [intDocType], [strDoctype], [intInsertBy], [intInsertTime], [strFilePath], [ysnActive]) VALUES (@intSuppMasterID, @intDocType, @strDoctype, @intInsertBy, @intInsertTime, @strFilePath, @ysnActive);
 SELECT intDocID, intSuppMasterID, intDocType, strDoctype, intInsertBy, intInsertTime, strFilePath, ysnActive FROM tblSupplierDocList WHERE (intDocID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSuppMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -37811,7 +37822,7 @@ SELECT intDocID, intSuppMasterID, intDocType, strDoctype, intInsertBy, intInsert
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tblSupplierDocList] SET [intSuppMasterID] = @intSuppMasterID, [intDocType] = @intDocType, [strDoctype] = @strDoctype, [intInsertBy] = @intInsertBy, [intInsertTime] = @intInsertTime, [strFilePath] = @strFilePath, [ysnActive] = @ysnActive WHERE (([intDocID] = @Original_intDocID) AND ((@IsNull_intSuppMasterID = 1 AND [intSuppMasterID] IS NULL) OR ([intSuppMasterID] = @Original_intSuppMasterID)) AND ((@IsNull_intDocType = 1 AND [intDocType] IS NULL) OR ([intDocType] = @Original_intDocType)) AND ((@IsNull_strDoctype = 1 AND [strDoctype] IS NULL) OR ([strDoctype] = @Original_strDoctype)) AND ((@IsNull_intInsertBy = 1 AND [intInsertBy] IS NULL) OR ([intInsertBy] = @Original_intInsertBy)) AND ((@IsNull_intInsertTime = 1 AND [intInsertTime] IS NULL) OR ([intInsertTime] = @Original_intInsertTime)) AND ((@IsNull_strFilePath = 1 AND [strFilePath] IS NULL) OR ([strFilePath] = @Original_strFilePath)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [erp_Inventory].[dbo].[tblSupplierDocList] SET [intSuppMasterID] = @intSuppMasterID, [intDocType] = @intDocType, [strDoctype] = @strDoctype, [intInsertBy] = @intInsertBy, [intInsertTime] = @intInsertTime, [strFilePath] = @strFilePath, [ysnActive] = @ysnActive WHERE (([intDocID] = @Original_intDocID) AND ((@IsNull_intSuppMasterID = 1 AND [intSuppMasterID] IS NULL) OR ([intSuppMasterID] = @Original_intSuppMasterID)) AND ((@IsNull_intDocType = 1 AND [intDocType] IS NULL) OR ([intDocType] = @Original_intDocType)) AND ((@IsNull_strDoctype = 1 AND [strDoctype] IS NULL) OR ([strDoctype] = @Original_strDoctype)) AND ((@IsNull_intInsertBy = 1 AND [intInsertBy] IS NULL) OR ([intInsertBy] = @Original_intInsertBy)) AND ((@IsNull_intInsertTime = 1 AND [intInsertTime] IS NULL) OR ([intInsertTime] = @Original_intInsertTime)) AND ((@IsNull_strFilePath = 1 AND [strFilePath] IS NULL) OR ([strFilePath] = @Original_strFilePath)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)));
 SELECT intDocID, intSuppMasterID, intDocType, strDoctype, intInsertBy, intInsertTime, strFilePath, ysnActive FROM tblSupplierDocList WHERE (intDocID = @intDocID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSuppMasterID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -37852,9 +37863,9 @@ SELECT intDocID, intSuppMasterID, intDocType, strDoctype, intInsertBy, intInsert
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT        intDocID, intSuppMasterID, intDocType, strDoctype, intInsertBy, int" +
-                "InsertTime, strFilePath, ysnActive\r\nFROM            tblSupplierDocList\r\nWHERE   " +
-                "     (intSuppMasterID = @intSuppMasterId)";
+            this._commandCollection[0].CommandText = "SELECT intDocID, intSuppMasterID, intDocType, strDoctype, intInsertBy, intInsertT" +
+                "ime, strFilePath, ysnActive\r\nFROM  erp_Inventory.dbo.tblSupplierDocList \r\nWHERE " +
+                "(intSuppMasterID = @intSuppMasterId) and ysnActive = 1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSuppMasterId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSuppMasterID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

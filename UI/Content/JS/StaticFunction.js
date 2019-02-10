@@ -81,15 +81,33 @@ function confirmMsg() {
     return confirm("Do you want to proceed?");
 }
 
-function showDiv(id) {
-    var element = document.getElementById(id);
-    element.classList.remove("hidden");
-    return true;
+/**
+ * @param {string} divId The string
+ */
+function showDiv(divId) {
+    var element = document.getElementById(divId);
+    if (element != null) {
+        element.classList.remove("hidden");
+        return true;
+    } else {
+        console.log("The Show div function did not find your Id: " + divId + ".");
+        return false;
+    }
+    
 }
-function hideDiv(id) {
-    var element = document.getElementById(id);
-    element.classList.add("hidden");
-    return true;
+/**
+ * @param {string} divId The string
+ */
+function hideDiv(divId) {
+    var element = document.getElementById(divId);
+    if (element != null) {
+        element.classList.add("hidden");
+        return true;
+    } else {
+        console.log("The Hide div function did not find your Id: " + divId + ".");
+        return false;
+    }
+    
 }
 function openModal() {
     $('#myModal').modal('show');
@@ -97,6 +115,40 @@ function openModal() {
 function closeModal() {
     $('#myModal').modal('hide');
 }
+function showLoader() {
+    createLoaderDiv();
+    document.getElementById('loading').style.display = 'block';
+}
 
+function hideLoader() {
+    document.getElementById('loading').style.display = "none";
+}
 
+function createLoaderDiv() {
+    var prvDiv = document.getElementById('loading');
+    if (prvDiv == null) {
+        var iDiv = document.createElement('div');
+        iDiv.id = 'loading';
+        iDiv.className = 'loading';
+        document.getElementById('UpdatePanel0').appendChild(iDiv);
+    }
+}
+function popup(url, title) {
+    var w = 900;
+    var h = 500;
+    var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
+    var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
+
+    var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
+    var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+
+    var left = ((width / 2) - (w / 2)) + dualScreenLeft;
+    var top = ((height / 2) - (h / 2)) + dualScreenTop;
+    var newwindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
+
+    //var newwindow = window.open(url, 'name', 'width=800,height=600,toolbar=0,menubar=0,location=0');
+    if (window.focus) {
+        newwindow.focus();
+    }
+}
 
