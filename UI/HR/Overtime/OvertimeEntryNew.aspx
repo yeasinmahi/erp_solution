@@ -60,7 +60,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <asp:Label ID="Label2" runat="server" Text="Job Station"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                    <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-6 col-sm-6">

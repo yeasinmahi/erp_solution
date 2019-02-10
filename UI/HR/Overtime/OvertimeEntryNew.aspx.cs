@@ -230,6 +230,10 @@ namespace UI.HR.Overtime
                 {
                     LoadFieldValue(searchKey[1]);
                 }
+                else
+                {
+                    Toaster("Your Employee Name Format Error",Common.TosterType.Warning);
+                }
             }
         }
 
@@ -311,9 +315,6 @@ namespace UI.HR.Overtime
             {
                 SetVisibility("itemPanel", false);
             }
-            
-
-            
         }
 
         protected void btnUpdateFinal_OnClick(object sender, EventArgs e)

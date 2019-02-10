@@ -92,14 +92,13 @@ namespace HR_BLL.Global
         public List<string> AutoSearchEmployeesData(int intLoginId, int intJobStationId, string strSearchKey)
         {
            List<string> result = new List<string>();
-            SprAutoSearchEmployeeFilterByJobStationTableAdapter objSprAutoSearchEmployeeFilterByJobStationTableAdapter = new SprAutoSearchEmployeeFilterByJobStationTableAdapter();
-            DataTable oDT = new DataTable();
-            oDT = objSprAutoSearchEmployeeFilterByJobStationTableAdapter.AutoSearchEmployeeFilterByJobStation(intLoginId, intJobStationId, strSearchKey);
-            if (oDT.Rows.Count > 0)
+            SprAutoSearchEmployeeFilterByJobStationTableAdapter adp = new SprAutoSearchEmployeeFilterByJobStationTableAdapter();
+            DataTable dt = adp.AutoSearchEmployeeFilterByJobStation(intLoginId, intJobStationId, strSearchKey);
+            if (dt.Rows.Count > 0)
             {
-                for (int index = 0; index < oDT.Rows.Count; index++)
+                for (int index = 0; index < dt.Rows.Count; index++)
                 {
-                    result.Add(oDT.Rows[index]["strEmployeeNameWithCode"].ToString());
+                    result.Add(dt.Rows[index]["strEmployeeNameWithCode"].ToString());
                 }
                 
             }
