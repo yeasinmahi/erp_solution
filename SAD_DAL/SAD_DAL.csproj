@@ -259,6 +259,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesOfficeTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\setupDAL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>setupDAL.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\ShipPointTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -809,6 +814,17 @@
     </None>
     <None Include="Global\SalesOfficeTDS.xss">
       <DependentUpon>SalesOfficeTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\setupDAL.xsc">
+      <DependentUpon>setupDAL.xsd</DependentUpon>
+    </None>
+    <None Include="Global\setupDAL.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>setupDAL.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\setupDAL.xss">
+      <DependentUpon>setupDAL.xsd</DependentUpon>
     </None>
     <None Include="Global\ShipPointTDS.xsc">
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>

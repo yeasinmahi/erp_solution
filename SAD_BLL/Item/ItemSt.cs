@@ -13,13 +13,13 @@ namespace SAD_BLL.Item
 {
     public static class ItemSt
     {
-
+        private static ItemTDS.tblItemBridge1DataTable[] tableProductsAPL = null;
         private static ItemTDS.TblItemDataTable[] tableProducts = null;
         private static Hashtable ht = new Hashtable();
 
         private static void Inatialize()
         {
-            if (tableProducts == null)
+            if (tableProductsAPL == null)
             {
                 Unit unt = new Unit();
                 UnitTDS.TblUnitDataTable tblUnit = unt.GetUnits();
@@ -35,11 +35,11 @@ namespace SAD_BLL.Item
                     TblItemTypeTableAdapter taTp = new TblItemTypeTableAdapter();
                     SAD_DAL.Item.ItemTDS.TblItemTypeDataTable tbl = taTp.GetTopFinishGoods(tblUnit[i].intUnitID);
 
-                    if(tblUnit[i].intUnitID==105)
+                    if (tblUnit[i].intUnitID == 105)
                     {
-                        ht.Add(tblUnit[i].intUnitID.ToString(), i); 
+                        ht.Add(tblUnit[i].intUnitID.ToString(), i);
                         tableProducts[i] = adpCOA.GetDataForUdtclItem(tblUnit[i].intUnitID, true);
-                                                  
+
                     }
                     else
                     {
@@ -49,11 +49,46 @@ namespace SAD_BLL.Item
                     }
                     //try { if (tbl.Rows.Count > 0) id = tbl[0].intID; } catch { }
 
-                  
+
                 }
             }
         }
+        private static void InatializeAPL()
+        {
+           if (tableProductsAPL == null)
+            {
+                Unit unt = new Unit();
+                UnitTDS.TblUnitDataTable tblUnit = unt.GetUnits();
+                ht = new Hashtable();
 
+                tableProductsAPL = new ItemTDS.tblItemBridge1DataTable[tblUnit.Rows.Count];
+                tblItemBridge1TableAdapter adpCOA = new tblItemBridge1TableAdapter();
+
+                int id = 0;
+
+                for (int i = 0; i < tblUnit.Rows.Count; i++)
+                {
+                    TblItemTypeTableAdapter taTp = new TblItemTypeTableAdapter();
+                    SAD_DAL.Item.ItemTDS.TblItemTypeDataTable tbl = taTp.GetTopFinishGoods(tblUnit[i].intUnitID);
+
+                    if (tblUnit[i].intUnitID == 105)
+                    {
+                        ht.Add(tblUnit[i].intUnitID.ToString(), i);
+                        tableProductsAPL[i] = adpCOA.GetDataForUdtclItem(tblUnit[i].intUnitID, true);
+
+                    }
+                    else
+                    {
+                        if (tbl.Rows.Count > 0) id = tbl[0].intID;
+                        ht.Add(tblUnit[i].intUnitID.ToString(), i);
+                        tableProductsAPL[i] = adpCOA.GetDataByUnit_Type(tblUnit[i].intUnitID, id, true);
+                    }
+                    //try { if (tbl.Rows.Count > 0) id = tbl[0].intID; } catch { }
+
+
+                }
+            }
+        }
         public static string[] GetProductDataForAutoFill(string unitID, string prefix)
         {
             Inatialize();
@@ -76,6 +111,58 @@ namespace SAD_BLL.Item
                 { 
 
                     var rows = from tmp in tableProducts[Convert.ToInt32(ht[unitID])]
+                               where tmp.strProductName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               orderby tmp.strProductName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string[] GetProductDataForAutoFillAPL(string unitID, string prefix)
+        {
+            InatializeAPL();
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tableProductsAPL[Convert.ToInt32(ht[unitID])]//Convert.ToInt32(ht[unitID])                           
+                           orderby tmp.strProductName
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    var rows = from tmp in tableProductsAPL[Convert.ToInt32(ht[unitID])]
                                where tmp.strProductName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
                                orderby tmp.strProductName
                                select tmp;

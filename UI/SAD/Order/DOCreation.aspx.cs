@@ -231,7 +231,7 @@ namespace UI.SAD.Order
         [ScriptMethod]
         public static string[] GetProductList(string prefixText, int count)
         {
-            return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+            return ItemSt.GetProductDataForAutoFillAPL(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
         }
 
         #endregion

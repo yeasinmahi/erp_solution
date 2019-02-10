@@ -42,6 +42,8 @@ namespace SAD_BLL.Item
             return price.Value;
         }
 
+       
+
         public DataTable getPromotionReport(int intActive, int customertype, int custid, int itemidSales)
         {
             try
@@ -73,12 +75,12 @@ namespace SAD_BLL.Item
             catch { return new DataTable(); }
         }
 
-        public string[] GetCstomer(string prefix)
+        public string[] GetCstomer(string unitid,string prefix)
         {
             int ysnActive = 1;
             tableCustsName = new ItemPromotionTDS.tblCustomerDataTable[Convert.ToInt32(ysnActive)];
             tblCustomerTableAdapter Vehicle = new tblCustomerTableAdapter();
-            tableCustsName[e] = Vehicle.GetCustomerList();
+            tableCustsName[e] = Vehicle.GetCustomerList(int.Parse(unitid));
 
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
@@ -141,8 +143,22 @@ namespace SAD_BLL.Item
             {
                 sprAccountTradeOfferEntryTableAdapter adpAccTrade = new sprAccountTradeOfferEntryTableAdapter();
                 adpAccTrade.GetPromEntry(part, custid, promotionName, itemidSales, intUomid, salesQty, itemidPromotion, pUomId, promotionQty, Enroll, dteFdate, dteTDate, rid, aid, intLineid,ref msg);
+                msg = "Successfully Save";
             }
             catch (Exception e) { msg = e.ToString();  }
+            return msg;
+        }
+
+        public string getPromotionEntryAllUnit(int part, int custid, string promotionName, int itemidSales, int intUomid, decimal salesQty, int itemidPromotion, int pUomId, decimal promotionQty, int Enroll, DateTime dteFdate, DateTime dteTDate, int rid, int aid, int intLineid)
+        {
+            string msg = "";
+            try
+            {
+                sprAccountTradeOfferEntryTableAdapter adpAccTrade = new sprAccountTradeOfferEntryTableAdapter();
+                adpAccTrade.GetPromEntry(part, custid, promotionName, itemidSales, intUomid, salesQty, itemidPromotion, pUomId, promotionQty, Enroll, dteFdate, dteTDate, rid, aid, intLineid, ref msg);
+                msg = "Successfully Save";
+            }
+            catch (Exception e) { msg = e.ToString(); }
             return msg;
         }
 

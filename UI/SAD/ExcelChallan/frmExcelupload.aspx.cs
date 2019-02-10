@@ -55,7 +55,7 @@ namespace UI.SAD.ExcelChallan
         public static string[] CustomerSearch(string prefixText, int count = 0)
         {
             ItemPromotion objPromotion = new ItemPromotion();
-            return objPromotion.GetCstomer(prefixText);
+            return objPromotion.GetCstomer("2",prefixText);
 
         }
         protected void btnDataView_Click(object sender, EventArgs e)

@@ -47,7 +47,15 @@ namespace UI.SAD.Order
 
                     if (Request.QueryString["id"] != null)
                 {
-                    Session[SessionParams.CURRENT_UNIT] = Request.QueryString["unit"];
+                        btnSubmit.Enabled = true;
+                        try
+                        {
+                            string path = GetXmlFilePath();
+                            File.Delete(path);
+                        }
+                        catch { }
+
+                        Session[SessionParams.CURRENT_UNIT] = Request.QueryString["unit"];
                     Session[SessionParams.CURRENT_SHIP] = Request.QueryString["ship"];
                     //SprSalesOrderCustomerDOwithReturnDO
                     //SalesOrderTDS.QrySalesOrderCustomerDataTable table;
@@ -146,7 +154,7 @@ namespace UI.SAD.Order
                 {
                     var efd = log.GetFlogDetail(stop, location, "Show", ex);
                     Flogger.WriteError(efd);
-
+                     btnSubmit.Enabled = true;
                 }
 
                 fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -162,7 +170,7 @@ namespace UI.SAD.Order
             {
 
                 Session["sesCurType"] = rdoVhlCompany.SelectedValue;
-
+                btnSubmit.Enabled = true;
                 BindGrid(GetXmlFilePath());
                 if (hdnDoCode.Value != "")
                 {
@@ -503,9 +511,10 @@ namespace UI.SAD.Order
 
 
 
-                if (hdnconfirm.Value == "1")
+              if (hdnconfirm.Value == "1")
             {
-                StatementC bll = new StatementC();
+                    btnSubmit.Enabled = false;
+                    StatementC bll = new StatementC();
 
                 StatementTDS.SprUnDelvQntBaseOutstandingAmountDataTable tabUndlvpv = bll.GetCustomerOutstandingbasedonUndelvQnt(hdnCustomer.Value);
                 StatementTDS.SprUndelvQntRateDataTable tabUndlvproductRate = bll.GetCustomerProductRate(hdnSOid.Value);
@@ -638,13 +647,14 @@ namespace UI.SAD.Order
                     lblmsg.Text = "Balance Exceed, Please contact with Credit Dept.";
                     lblmsg.BackColor = System.Drawing.Color.FromArgb(255, 50, 50); // this should be pink-ish;
                 }
-            }
+                    btnSubmit.Enabled = true;
+                }
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "Submit", ex);
                 Flogger.WriteError(efd);
-
+                btnSubmit.Enabled = true;
             }
 
             fd = log.GetFlogDetail(stop, location, "Submit", null);
@@ -654,7 +664,24 @@ namespace UI.SAD.Order
 
         }
 
+        //protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        //{
+        //    try
+        //    {
+        //        GetXmlFilePath();
+        //        DataSet dsGrid = (DataSet)GridView1.DataSource;
+        //        dsGrid.Tables[0].Rows[GridView1.Rows[e.RowIndex].DataItemIndex].Delete();
+        //        dsGrid.WriteXml(xmlFilePath);
+        //        DataSet dsGridAfterDelete = (DataSet)GridView1.DataSource;
+        //        if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+        //        { File.Delete(filePathForXML); GridView1.DataSource = ""; GridView1.DataBind(); }
+        //        else { LoadGridwithXml(); }
+              
+                
+        //    }
 
+        //    catch { }
+        //}
 
 
         protected void ddlExtra_DataBound(object sender, EventArgs e)
