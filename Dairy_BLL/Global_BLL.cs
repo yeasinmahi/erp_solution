@@ -158,11 +158,16 @@ namespace Dairy_BLL
          
         public DataTable GetMilkMRReport(int intWork, DateTime dteFrom, DateTime dteTo, int intCCID, int intSuppID, int intMRNo, int intPart)   
         { 
-            SprMilkMRReportTableAdapter adp = new SprMilkMRReportTableAdapter(); 
-            
+            SprMilkMRReportTableAdapter adp = new SprMilkMRReportTableAdapter();
+
             try
-            { return adp.GetMilkMRReport(intWork, dteFrom, dteTo, intCCID, intSuppID, intMRNo, intPart); }
-            catch { return new DataTable(); }
+            {
+                return adp.GetMilkMRReport(intWork, dteFrom, dteTo, intCCID, intSuppID, intMRNo, intPart);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
         }
         
         //@intWork int, @dteMRRReceivedDateFrom date = NULL, @dteMRRReceivedDateTo date = NULL, @intSearchChillingCenterID int = NULL, 

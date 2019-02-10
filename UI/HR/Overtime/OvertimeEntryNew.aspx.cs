@@ -33,8 +33,9 @@ namespace UI.HR.Overtime
             {
                 LoadEmployeeInfo();
             }
+
             
-            
+            SetVisibility("itemPanel", GridViewEmployeeDetails.Rows.Count > 0);
         }
 
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -83,6 +84,7 @@ namespace UI.HR.Overtime
                 if (((Label)row.FindControl("lblEmpEnroll")).Text.Contains(empEnroll) && ((Label)row.FindControl("lblDate")).Text.Contains(date))
                 {
                     Toaster("Can not add same enroll " + empEnroll + " and date " + date + " dublicate.", "Over Time", Common.TosterType.Error);
+                    SetVisibility("panel", true);
                     return;
                 }
                 //row.Cells["chat1"].Style.ForeColor = Color.CadetBlue;
@@ -90,6 +92,7 @@ namespace UI.HR.Overtime
             objects.Add(obj);
 
             Session["obj"] = objects;
+            
             string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
 
             LoadGridwithXml(xmlString, OvertimeEntryGridView);
@@ -258,7 +261,7 @@ namespace UI.HR.Overtime
         {
             if (!GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message))
             {
-                Toaster(message,"Overtime",Common.TosterType.Error);
+                Toaster(message, "Overtime", Common.TosterType.Error);
                 SetVisibility("panel", false);
             }
             else

@@ -132,7 +132,7 @@
                         </div>
                     </div>
 
-                    <div class="panel panel-info hidden" id="panel">
+                    <div class="panel panel-info" id="panel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Overtime Entry Form" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
