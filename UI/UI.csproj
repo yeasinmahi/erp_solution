@@ -1205,6 +1205,7 @@
     <Content Include="SAD\IHB\DistributorManPowerInfo.aspx" />
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
     <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
+    <Content Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
     <Content Include="SAD\Item\ItemManager.aspx" />
     <Content Include="SAD\Item\ItemManagerUOM.aspx" />
@@ -1385,6 +1386,7 @@
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
+    <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
     <Content Include="SAD\Vat\frmBrandroll.aspx" />
@@ -5956,6 +5958,13 @@
     <Compile Include="SAD\IHB\DistributorWithIhbReport.aspx.designer.cs">
       <DependentUpon>DistributorWithIhbReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx.cs">
+      <DependentUpon>frmItemPromotionSetupOtherUnit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx.designer.cs">
+      <DependentUpon>frmItemPromotionSetupOtherUnit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Item\frmItemPromotion.aspx.cs">
       <DependentUpon>frmItemPromotion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7216,6 +7225,13 @@
     </Compile>
     <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
       <DependentUpon>SalesPosting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\GeoMarketSetup.aspx.cs">
+      <DependentUpon>GeoMarketSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\GeoMarketSetup.aspx.designer.cs">
+      <DependentUpon>GeoMarketSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Transfer\FGTransfer.aspx.cs">
       <DependentUpon>FGTransfer.aspx</DependentUpon>

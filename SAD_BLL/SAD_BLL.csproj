@@ -123,6 +123,7 @@
     <Compile Include="Global\Incentive.cs" />
     <Compile Include="Global\Operator.cs" />
     <Compile Include="Global\SalesOffice.cs" />
+    <Compile Include="Global\SetupBLL.cs" />
     <Compile Include="Global\ShipPoint.cs" />
     <Compile Include="IHB\DistributorManpowerBll.cs" />
     <Compile Include="IHB\DistributorWithIhbBll.cs" />

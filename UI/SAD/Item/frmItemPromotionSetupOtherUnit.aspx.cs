@@ -14,7 +14,7 @@ using Flogging.Core;
 
 namespace UI.SAD.Item
 {
-    public partial class frmItemPromotion : System.Web.UI.Page
+    public partial class frmItemPromotionSetupOtherUnit : BasePage
     {
         DataTable dt;int Custid,intActive,rptTYpe,intLineid,intGroupid,PUomId, ItemidSales,ItemidPromotion,Groupid, Rid, Aid,part,intUomid;        
         ItemPromotion objPromotion = new ItemPromotion();
@@ -24,10 +24,12 @@ namespace UI.SAD.Item
         string location = "SAD";
         string start = "starting SAD\\Item\\frmItemPromotion";
         string stop = "stopping SAD\\Item\\frmItemPromotion";
+        SAD_BLL.Global.SalesOffice objsalesoffice = new SAD_BLL.Global.SalesOffice();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {              
+            {
+                
                 Datainitialization();               
             }
         }
@@ -35,12 +37,12 @@ namespace UI.SAD.Item
         private void Datainitialization()
         {
 
-            dt = objPromotion.getRegionList();
-            ddlRegion.DataTextField = "strRegion";
-            ddlRegion.DataValueField = "intRegionId";
-            ddlRegion.DataSource = dt;
-            ddlRegion.DataBind();
-
+            dt = new DataTable();
+            dt= objsalesoffice.GetSalesOffice(Session[SessionParams.UNIT_ID].ToString());
+            ddloffice.DataTextField = "strName";
+            ddloffice.DataValueField = "intid";
+            ddloffice.DataSource = dt;
+            ddloffice.DataBind();
             dt = new DataTable();
             dt = objPromotion.getUom(int.Parse(Session[SessionParams.UNIT_ID].ToString()));
             ddlUom.DataTextField = "struom";
@@ -52,13 +54,7 @@ namespace UI.SAD.Item
             ddlPUOM.DataSource = dt;
             ddlPUOM.DataBind();
 
-            dt = new DataTable();
-            dt = objPromotion.GetLine();
-            ddlLine.DataTextField = "strFGGroupName";
-            ddlLine.DataValueField = "intFGGroupID";
-            ddlLine.DataSource = dt;
-            ddlLine.DataBind();
-            Arealist();
+      
 
         }
         [WebMethod]
@@ -66,15 +62,22 @@ namespace UI.SAD.Item
         public static string[] ItemnameSearch(string prefixText)
         {
             ItemPromotion objPromotion = new ItemPromotion();
-            return objPromotion.GetItem( prefixText);
+            return objPromotion.GetItem(prefixText);
         }
         [WebMethod]
         [ScriptMethod]
         public static string[] CustomerSearch(string prefixText, int count = 0)
         {
+            
             ItemPromotion objPromotion = new ItemPromotion();
             return objPromotion.GetCstomer(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
 
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetProductList(string prefixText, int count)
+        {
+            return ItemSt.GetProductDataForAutoFillAPL(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
         }
         protected void ddlRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -82,11 +85,8 @@ namespace UI.SAD.Item
         }
         private void Arealist()
         {
-            dt = objPromotion.GetareaName(int.Parse(ddlRegion.SelectedValue),int.Parse(ddlLine.SelectedValue));
-            ddlAreaList.DataTextField = "strarea";
-            ddlAreaList.DataValueField = "intareaid";
-            ddlAreaList.DataSource = dt;
-            ddlAreaList.DataBind();
+            //dt = objPromotion.GetareaName(int.Parse(ddlRegion.SelectedValue),int.Parse(ddlLine.SelectedValue));
+          
         }
         protected void btnSave_Click(object sender, EventArgs e)
         {
@@ -115,9 +115,9 @@ namespace UI.SAD.Item
                 arrayKeyItem = txtPromotionItem.Text.Split(delimiterCharss);
                 ItemidPromotion = int.Parse(arrayKeyItem[1].ToString());
                 intUomid = int.Parse(ddlUom.SelectedValue);
-                intLineid = int.Parse(ddlLine.SelectedValue);
-                Rid = int.Parse(ddlRegion.SelectedValue);
-                Aid = int.Parse(ddlAreaList.SelectedValue);
+                intLineid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+                Rid = int.Parse(ddloffice.SelectedValue.ToString());
+                Aid = int.Parse("0");
                 Groupid = int.Parse(ddlPGroup.SelectedValue);
                 dteFdate = CommonClass.GetDateAtSQLDateFormat(txtFrom.Text).Date;
                 if (txtTo.Text == "")
@@ -132,7 +132,7 @@ namespace UI.SAD.Item
                 part = int.Parse(ddlPGroup.SelectedValue);
                 PromotionName = txtPromotionName.Text;
 
-                msg = objPromotion.getPromotionEntry(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
+                msg = objPromotion.getPromotionEntryAllUnit(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 txtCustomer.Text = "";
                 txtPromotionItem.Text = "";
