@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="PaymentAdvice.aspx.cs" Inherits="UI.Accounts.Advice.PaymentAdvice" %>
 
+<%@ Import Namespace="System.ComponentModel" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -178,7 +179,7 @@
                             </tr>
                             <tr>
                                 <td colspan="6">
-                                    <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false" OnDataBinding="dgvReport_OnDataBinding">
+                                    <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false" OnRowDataBound="dgvReport_OnRowDataBound">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
 
@@ -269,14 +270,14 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" Visible="True">
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>
+                                                    <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
                                             
-                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center" Visible="True">
+                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
                                                 </ItemTemplate>
@@ -390,6 +391,12 @@
                                         OnRowDataBound="dgvAdvice_RowDataBound">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
+                                            <asp:TemplateField HeaderText="ID No" ItemStyle-HorizontalAlign="right" SortExpression="intID" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Account Name" SortExpression="strSupplier">
                                                 <ItemTemplate>
@@ -474,14 +481,15 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="Center" SortExpression="intSlNo" Visible="True">
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="Center" SortExpression="intSlNo" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>
+                                                    <%--<asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>--%>
+                                                    <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
                                             
-                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center" Visible="True">
+                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center" >
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
                                                 </ItemTemplate>

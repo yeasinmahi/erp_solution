@@ -6,6 +6,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.Accounts.Advice
 {
@@ -239,8 +240,8 @@ namespace UI.Accounts.Advice
                     strBankName = ddlFormat.SelectedItem.ToString();
                     ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
                     dt = new DataTable();
-                    dt = bll.GetPartyAdvice(intAdviceType,intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted, intChillingID);
-                   
+                    dt = bll.GetPartyAdvice(intAdviceType, intActionBy, intUnitID, dteDate, intWork, strAccountMandatory, strBankName, ysnCompleted, intChillingID);
+
                 }
 
             }
@@ -257,10 +258,34 @@ namespace UI.Accounts.Advice
             // ends
             tracker.Stop();
         }
+        public void CheckScbBank()
+        {
+            string accountNo = ddlBankAccount.SelectedItem.Text;
+            string[] arrayKey = accountNo.Split(delimiterChars);
+            if (arrayKey.Length > 0)
+            {
+                string acNo = arrayKey[0];
+                string bankName = arrayKey[1];
+                if (bankName.ToLower().Equals("scb"))
+                {
+                    Session["accountNo"] = acNo;
+                }
+                else
+                {
+                    Session["accountNo"] = null;
+                }
+
+            }
+            else
+            {
+                Session["accountNo"] = null;
+            }
+        }
         private void LoadGridExport()
         {
             try
             {
+                Session["accountNo"] = null;
                 intAutoID = int.Parse(ddlBankAccount.SelectedValue.ToString());
                 intBankType = int.Parse(ddlFormat.SelectedValue.ToString());
                 intActionBy = int.Parse(hdnEnroll.Value.ToString());
@@ -341,27 +366,9 @@ namespace UI.Accounts.Advice
                     ysnCompleted = int.Parse(ddlVoucher.SelectedValue.ToString());
                     dt = new DataTable();
                     dt = bll.GetAdviceData(intActionBy);
-                    string accountNo = ddlBankAccount.SelectedItem.Text;
-                    string[] arrayKey = accountNo.Split(delimiterChars);
-                    if (arrayKey.Length > 0)
-                    {
-                        string acNo = arrayKey[0];
-                        string bankName = arrayKey[1];
-                        if (bankName.ToLower().Equals("scb"))
-                        {
-                            Session["accountNo"] = acNo;
-                        }
-                        else
-                        {
-                            Session["accountNo"] = null;
-                        }
 
-                    }
-                    else
-                    {
-                        Session["accountNo"] = null;
-                    }
-                    
+                    CheckScbBank();
+
                     dgvAdvice.DataSource = dt;
                     dgvAdvice.DataBind();
                     dgvReport.DataSource = dt;
@@ -401,7 +408,7 @@ namespace UI.Accounts.Advice
 
                     }
                 }
-                
+
             }
             catch { }
         }
@@ -422,10 +429,6 @@ namespace UI.Accounts.Advice
                     routingtext = ((Label)e.Row.Cells[9].FindControl("lblRoutingNo")).Text;
                     Label lblNum2 = (Label)(e.Row.FindControl("lblRoutingNo"));
                     lblNum2.Text = "'" + routingtext;
-                    if (Session["accountNo"] != null)
-                    {
-                        ((Label)e.Row.FindControl("lblDebitAcc")).Text = Session["accountNo"].ToString();
-                    }
 
                 }
                 else if (e.Row.RowType == DataControlRowType.Footer)
@@ -433,15 +436,12 @@ namespace UI.Accounts.Advice
                     Label lbl = (Label)(e.Row.FindControl("lblTTTotal"));
                     lbl.Text = String.Format("{0:n}", totalamount);
                 }
-                else if(e.Row.RowType == DataControlRowType.Header)
-                {
-                    //if (Session["accountNo"] != null)
-                    //{
-                    //    ((Label) e.Row.FindControl("lblDebitAcc")).Text = Session["accountNo"].ToString();
-                    //}
-                }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
+            ShowHideDebitCell(e);
         }
         protected decimal totalamountibbl = 0;
         protected string accounttextibbl;
@@ -549,9 +549,49 @@ namespace UI.Accounts.Advice
         //    catch { intID = 0; return; }
         //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewDispatchPopup('" + intID.ToString() + "');", true);
         //}
-        protected void dgvReport_OnDataBinding(object sender, EventArgs e)
+
+        protected void dgvReport_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            
+            ShowHideDebitCell(e);
+        }
+        public void ShowHideDebitCell(GridViewRowEventArgs e)
+        {
+            try
+            {
+                if (e.Row.RowType == DataControlRowType.DataRow)
+                {
+                    if (Session["accountNo"] != null)
+                    {
+                        ((Label)e.Row.FindControl("lblDebitAcc")).Text = Session["accountNo"].ToString();
+                        e.Row.Cells[12].Visible = true;
+                        e.Row.Cells[13].Visible = true;
+                    }
+                    else
+                    {
+                        e.Row.Cells[12].Visible = false;
+                        e.Row.Cells[13].Visible = false;
+                    }
+
+                }
+                else if (e.Row.RowType == DataControlRowType.Header)
+                {
+                    if (Session["accountNo"] != null)
+                    {
+                        e.Row.Cells[12].Visible = true;
+                        e.Row.Cells[13].Visible = true;
+                    }
+                    else
+                    {
+                        e.Row.Cells[12].Visible = false;
+                        e.Row.Cells[13].Visible = false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
     }
+
 }
