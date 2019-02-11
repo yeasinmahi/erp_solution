@@ -442,6 +442,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InternalTransportTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Transport\NewVehicleRegTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Transport\UtilityTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1181,6 +1186,17 @@
     </None>
     <None Include="Transport\InternalTransportTDS.xss">
       <DependentUpon>InternalTransportTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Transport\NewVehicleRegTDS.xsc">
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Transport\NewVehicleRegTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewVehicleRegTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Transport\NewVehicleRegTDS.xss">
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
     </None>
     <None Include="Transport\UtilityTDS.xsc">
       <DependentUpon>UtilityTDS.xsd</DependentUpon>

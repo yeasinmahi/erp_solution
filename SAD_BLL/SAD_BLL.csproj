@@ -162,6 +162,7 @@
     <Compile Include="Sales\WeightBridgeDataCollector.cs" />
     <Compile Include="Transfer\Transfer.cs" />
     <Compile Include="Transport\InternalTransportBLL.cs" />
+    <Compile Include="Transport\NewVehicleBLL.cs" />
     <Compile Include="Transport\Utility_BLL.cs" />
     <Compile Include="Vat\CreditNoteBLL.cs" />
     <Compile Include="Vat\Mushok11.cs" />
