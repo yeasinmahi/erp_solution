@@ -329,6 +329,7 @@ namespace UI.SCM.Transfer
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, enroll);
                 if (dt.Rows.Count > 0)
                 {
+
                     string strItems = dt.Rows[0]["strItem"].ToString();
                     string intItem = dt.Rows[0]["intItem"].ToString();
                     string strUom = dt.Rows[0]["strUom"].ToString();
