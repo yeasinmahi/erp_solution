@@ -34,7 +34,10 @@ namespace SCM_BLL
                 SprInventoryTransferWebTableAdapter adp = new SprInventoryTransferWebTableAdapter();
                 adp.GetTransferData(Type, xmlString, intWh, id, dteDate, enroll, ref strMsg);
             }
-            catch (Exception ex) { return strMsg = ex.ToString(); }
+            catch (Exception ex)
+            {
+                return strMsg = ex.ToString();
+            }
             return strMsg;
         }
 

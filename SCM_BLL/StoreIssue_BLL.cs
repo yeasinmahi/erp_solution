@@ -74,12 +74,12 @@ namespace SCM_BLL
             return adpCOA.GetMasterItemData(strSearchKey);
         }
 
-        public DataTable GetWH()
+        public DataTable GetWH(int enroll,int whId)
         {
             try
             {
                 TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
-                return adpCOA.GetWHData();
+                return adpCOA.GetWhByUnitForDistribution(enroll, whId);
             }
             catch { return new DataTable(); }
         }

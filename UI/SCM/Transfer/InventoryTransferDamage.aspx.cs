@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.Transfer
 {
@@ -40,7 +41,7 @@ namespace UI.SCM.Transfer
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
-                dt = objWH.GetWH();
+                dt = objWH.GetWH(Enroll,Common.GetDdlSelectedValue(ddlWh));
                 ddlToWh.DataSource = dt;
                 ddlToWh.DataTextField = "strName";
                 ddlToWh.DataValueField = "Id";
