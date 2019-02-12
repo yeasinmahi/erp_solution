@@ -442,6 +442,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InternalTransportTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Transport\NewVehicleRegTDS.cs">
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Transport\NewVehicleRegTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -220,13 +220,13 @@ namespace UI.Transport {
         protected global::System.Web.UI.WebControls.DropDownList ddlType;
         
         /// <summary>
-        /// DropDownList1 control.
+        /// ddlLocation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
         
         /// <summary>
         /// txtVehicleNo control.
@@ -247,6 +247,15 @@ namespace UI.Transport {
         protected global::System.Web.UI.WebControls.TextBox txtDriverName;
         
         /// <summary>
+        /// empsearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender empsearch;
+        
+        /// <summary>
         /// txtDriverContact control.
         /// </summary>
         /// <remarks>
@@ -256,13 +265,13 @@ namespace UI.Transport {
         protected global::System.Web.UI.WebControls.TextBox txtDriverContact;
         
         /// <summary>
-        /// txtDriveNId control.
+        /// txtDriverNId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDriveNId;
+        protected global::System.Web.UI.WebControls.TextBox txtDriverNId;
         
         /// <summary>
         /// txthelperName control.
@@ -272,6 +281,15 @@ namespace UI.Transport {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txthelperName;
+        
+        /// <summary>
+        /// AutoCompleteExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
         
         /// <summary>
         /// txtLisence control.
@@ -355,13 +373,13 @@ namespace UI.Transport {
         protected global::System.Web.UI.WebControls.TextBox txtOutstation;
         
         /// <summary>
-        /// TextBox3 control.
+        /// txtCNGAllowance control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox3;
+        protected global::System.Web.UI.WebControls.TextBox txtCNGAllowance;
         
         /// <summary>
         /// txtDieselPerKMOutsation control.
@@ -391,30 +409,66 @@ namespace UI.Transport {
         protected global::System.Web.UI.WebControls.DropDownList ddlUOM;
         
         /// <summary>
-        /// txtEmail control.
+        /// txtDiselPerKMLitter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtDiselPerKMLitter;
         
         /// <summary>
-        /// txtContact control.
+        /// txtDownTripDiselPerKM control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtContact;
+        protected global::System.Web.UI.WebControls.TextBox txtDownTripDiselPerKM;
         
         /// <summary>
-        /// btnSave control.
+        /// txtCNGPerKM control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSave;
+        protected global::System.Web.UI.WebControls.TextBox txtCNGPerKM;
+        
+        /// <summary>
+        /// txtLoadingcapacity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLoadingcapacity;
+        
+        /// <summary>
+        /// txtCNGPerKMOustStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCNGPerKMOustStation;
+        
+        /// <summary>
+        /// txtDiselPerKM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiselPerKM;
+        
+        /// <summary>
+        /// btnsSave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnsSave;
     }
 }

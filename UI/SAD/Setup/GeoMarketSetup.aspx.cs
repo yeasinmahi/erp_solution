@@ -21,7 +21,7 @@ namespace UI.SAD.Setup
         {
             if (!IsPostBack)
             {
-                dt = objunit.GetUnits("37426");
+                dt = objunit.GetUnits((Session[SessionParams.UNIT_ID].ToString()));
                 ddlunit.DataTextField = "strunit";
                 ddlunit.DataValueField = "intUnitID";
                 ddlunit.DataSource = dt;
