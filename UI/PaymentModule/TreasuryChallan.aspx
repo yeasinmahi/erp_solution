@@ -67,9 +67,18 @@
 
     </script>
     <style>
-        .tblborder {
-            border: 1px solid black;
-            border-collapse: collapse;
+        @page {
+            size: landscape;
+            margin: 2cm;
+            Border: none;
+            
+        }
+         .tblborder {
+             border: 1px solid black;
+             border-collapse: collapse;
+         }
+        .tblborder td{
+            padding: 5px;
         }
 
         .heading {
@@ -94,6 +103,9 @@
         #codeTable {
             font-weight: bold
         }
+        .auto-style1 {
+            height: 40px;
+        }
     </style>
 </head>
 <body>
@@ -106,9 +118,8 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
@@ -273,20 +284,20 @@
                         </tr>
                     </table>
 
-                    <table class="tblborder" style="width: 100%; background-color: white;">
+                    <table class="tblborder" style="width: 100%; background-color: white; ">
 
                         <tr style="text-align: center">
-                            <td class="tblborder" colspan="4">জমা প্রদানকারী কর্তৃক পূরণ করিতে হইবে</td>
-                            <td class="tblborder" colspan="2">টাকার অংক</td>
-                            <td class="tblborder" rowspan="2">বিভাগের নাম এবং চালানের পৃষ্ঠাংকনকারী কর্মকর্তার নাম, পদবী ও দপ্তর।*</td>
+                            <td class="tblborder" colspan="4" style="font-weight: bold">জমা প্রদানকারী কর্তৃক পূরণ করিতে হইবে</td>
+                            <td class="tblborder" colspan="2" style="font-weight: bold">টাকার অংক</td>
+                            <td class="tblborder" rowspan="2" style="font-weight: bold">বিভাগের নাম এবং চালানের পৃষ্ঠাংকনকারী কর্মকর্তার নাম, পদবী ও দপ্তর।*</td>
                         </tr>
                         <tr style="text-align: center">
-                            <td class="tblborder">যাহার মারফত প্রদত্ত হইল তাহার নাম ও ঠিকানা।</td>
-                            <td class="tblborder">যে ব্যক্তির/প্রতিষ্ঠানের পক্ষ হইতে টাকা প্রদত্ত হইল তাহার নাম, পদবী ও ঠিকানা।</td>
-                            <td class="tblborder">কি বাবদ জমা দেওয়া হইল তাহার বিবরণ।</td>
-                            <td class="tblborder">মুদ্রা ও নোটের বিবরণ/ ড্রাফট,পে-অর্ডার ও চেকের বিবরণ।</td>
-                            <td class="tblborder">টাকা</td>
-                            <td class="tblborder">পয়সা</td>
+                            <td class="tblborder" style="width: 18%; font-weight: bold">যাহার মারফত প্রদত্ত হইল তাহার নাম ও ঠিকানা।</td>
+                            <td class="tblborder" style="width: 18%; font-weight: bold">যে ব্যক্তির/প্রতিষ্ঠানের পক্ষ হইতে টাকা প্রদত্ত হইল তাহার নাম, পদবী ও ঠিকানা।</td>
+                            <td class="tblborder" style="width: 15%; font-weight: bold">কি বাবদ জমা দেওয়া হইল তাহার বিবরণ।</td>
+                            <td class="tblborder" style="width: 15%; font-weight: bold">মুদ্রা ও নোটের বিবরণ/ ড্রাফট,পে-অর্ডার ও চেকের বিবরণ।</td>
+                            <td class="tblborder" style="width: 10%; font-weight: bold">টাকা</td>
+                            <td class="tblborder" style="width: 5%; font-weight: bold">পয়সা</td>
                         </tr>
                         <tr style="text-align: center; color: black;">
                             <td class="tblborder">
@@ -297,9 +308,9 @@
                                 <asp:Label ID="lblvat" runat="server" Visible="true"></asp:Label></td>
                             <td class="tblborder">
                                 <asp:Label ID="lblcheque" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder">
+                            <td class="tblborder" style="text-align: right">
                                 <asp:Label ID="lblTaka" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder">
+                            <td class="tblborder"  style="text-align: right">
                                 <asp:Label ID="lblPoisha" runat="server" Visible="true"></asp:Label></td>
                             <td class="tblborder">
                                 <asp:Label ID="lbl" runat="server" Text="Label" Visible="false"></asp:Label></td>
@@ -309,31 +320,32 @@
                             <td class="tblborder"></td>
                             <td class="tblborder"></td>
                             <td class="tblborder" style="text-align: right;">মোট টাকা</td>
-                            <td class="tblborder" style="font-weight: bold">
+                            <td class="tblborder" style=" text-align: right; font-weight: bold">
                                 <asp:Label ID="lblTotalTaka" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder" style="font-weight: bold">
+                            <td class="tblborder" style="text-align: right; font-weight: bold">
                                 <asp:Label ID="lblTotalPoisha" runat="server" Visible="true"></asp:Label></td>
                             <td class="tblborder"></td>
                         </tr>
-                        <tr style="height: 40px;">
-                            <td style="border-left: 1px solid black; border-bottom: 1px solid black;">টাকা (কথায়)</td>
-                            <td colspan="3" style="border-right: 1px solid black; border-bottom: 1px solid black;">
+                        <tr>
+                            <td style="border-left: 1px solid black; border-bottom: 1px solid black;" class="auto-style1">টাকা (কথায়)</td>
+                            <td colspan="3" style="border-right: 1px solid black; border-bottom: 1px solid black;" class="auto-style1">
                                 <asp:Label ID="lblMoney" runat="server" Visible="true"></asp:Label>
                             </td>
-                            <td colspan="3" style="text-align: center; border-top: 1px solid black;"></td>
+                            <td colspan="3" style="text-align: center; border-top: 1px solid black;" class="auto-style1"></td>
                         </tr>
                         <tr>
-                            <td style="border-left: 1px solid black; border-bottom: 1px solid black;">টাকা পাওয়া গেল</td>
+                            <td style="border-left: 1px solid black; border-bottom: 1px solid black;" >টাকা পাওয়া গেল</td>
                             <td colspan="3" style="height: 40px; border-right: 1px solid black; border-bottom: 1px solid black;"></td>
                             <td colspan="3" style="text-align: center;">ম্যানেজার</td>
                         </tr>
                         <tr>
-                            <td>তারিখ : </td>
-                            <td colspan="3">
+                            <td  style="border-left: 1px solid black; border-bottom: 1px solid black;">তারিখ : </td>
+                            <td colspan="3" style="border-bottom: 1px solid black">
                                 <asp:Label ID="lblDate" runat="server" Visible="true"></asp:Label></td>
-                            <td colspan="3" style="text-align: center;">বাংলাদেশ ব্যাংক/ সোনালী ব্যাংক</td>
+                            <td colspan="3" style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center;">বাংলাদেশ ব্যাংক/ সোনালী ব্যাংক</td>
                         </tr>
                     </table>
+                    <br/>
                     <table style="background-color: white; width: 100%;">
                         <tr>
                             <td>নোট : ১। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</td>
