@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.PaymentModule
 {
@@ -128,21 +129,38 @@ namespace UI.PaymentModule
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = GvDetails.Rows[index];
             intType = int.Parse((row.FindControl("lblIntType") as Label).Text);
-            int intUserId = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
 
-            if (intVatAcc == 3){intUnit = 4;}
-            else{ intUnit = 105;}
+            if (intVatAcc == 3)
+            {
+                intUnit = 4;
+            }
+            else
+            {
+                intUnit = 105;
+            }
             
-            DateTime dteVdate = DateTime.Parse(txtVDate.Text);           
-            decimal monDramount = decimal.Parse((row.FindControl("lblColumn1") as Label).Text); 
+            DateTime dteVdate = DateTime.Parse(txtVDate.Text);
+            string strDrAmount = (row.FindControl("txtPay") as TextBox)?.Text;
+            if (string.IsNullOrWhiteSpace(strDrAmount))
+            {
+                Toaster("Please Input Debit Amount ",Common.TosterType.Warning);
+                return;
+            }
+
+            decimal.TryParse(strDrAmount, out var monDramount);
+            if (monDramount == 0)
+            {
+                Toaster("Please Input Debit Amount Properly", Common.TosterType.Warning);
+                return;
+            }
             decimal monCrAmount = monDramount*(-1);
             intBank = int.Parse(ddlBank.SelectedItem.Value);
             intBankAcc = int.Parse(ddlAccount.SelectedItem.Value);
 
             string strVatAcc = ddlUnit.SelectedItem.Text;
             DataTable dtAdd = new DataTable();
-            dtAdd = objtreasuryChallan.getUnitByUser(intUserId);
+            dtAdd = objtreasuryChallan.getUnitByUser(Enroll);
             string Address = strVatAcc + ',' + dtAdd.Rows[0]["strAddress"].ToString();
             string strName = "Managing Director, " + strVatAcc + " Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon I/A, Dhaka-1208.";
             
@@ -190,7 +208,7 @@ namespace UI.PaymentModule
             if(btnRadioCheque.Checked == true){ intPart = 1; }
             else if(btnRadioAdvice.Checked == true) { intPart = 2; }
             
-            objtreasuryChallan.GetTreasuryForcastDataList(intPart, intUserId, intVatAcc, intUnit, dteVdate, monDramount, monCrAmount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
+            objtreasuryChallan.GetTreasuryForcastDataList(intPart, Enroll, intVatAcc, intUnit, dteVdate, monDramount, monCrAmount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Treasury deposit voucher inserted successfully.');", true);
             
@@ -312,7 +330,7 @@ namespace UI.PaymentModule
                 totalDay_7 += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "day_7"));
                 totalNetPay += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "Column1"));
                 totalCurrentBalance += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "monCurrentBalance"));
-
+                
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
@@ -382,23 +400,6 @@ namespace UI.PaymentModule
 
         }
         #endregion ==========End RowBound=============
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

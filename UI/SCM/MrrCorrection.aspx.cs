@@ -32,15 +32,18 @@ namespace UI.SCM
         {
             if (!CheckUnitPermission())
             {
+                VisiblePanel();
                 return;
             }
-            if (txtStatus.Text == @"Voucher Complete")
+            if (txtStatus.Text.ToLower().Equals("complete"))
             {
                 Toaster("Voucher completed. MRR cannot be Deleted.", Common.TosterType.Warning);
+                VisiblePanel();
             }
             else if (!string.IsNullOrWhiteSpace(txtVoucherNo.Text))
             {
                 Toaster("Please Delete JV Voucher.", Common.TosterType.Warning);
+                VisiblePanel();
             }
             else
             {
@@ -49,10 +52,19 @@ namespace UI.SCM
                     _intMrrid = int.Parse(txtMrrNo.Text);
                     
                     _obj.CorrectionMrr(1, _intMrrid,Enroll, out string message);
-                    Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+                    if (message.ToLower().Contains("success"))
+                    {
+                        Toaster(message, Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster(message, Common.TosterType.Error);
+                        VisiblePanel();
+                    }
                 }
                 catch(Exception ex) {
                     Toaster(ex.Message, Common.TosterType.Error);
+                    VisiblePanel();
                 }
             }
 
@@ -61,6 +73,7 @@ namespace UI.SCM
         {
             if (!CheckUnitPermission())
             {
+                VisiblePanel();
                 return;
             }
             try
@@ -71,12 +84,22 @@ namespace UI.SCM
                     return;
                 }
                 _obj.CorrectionMrr(5, _intMrrid,Enroll, out  message);
-                Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
-                ShowInfo();
+                if (message.ToLower().Contains("success"))
+                {
+                    Toaster(message, Common.TosterType.Success);
+                    ShowInfo();
+                    LoadItemInfo();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                    VisiblePanel();
+                }
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
+                VisiblePanel();
             }
 
         }
@@ -84,6 +107,7 @@ namespace UI.SCM
         {
             if (!CheckUnitPermission())
             {
+                VisiblePanel();
                 return;
             }
             try
@@ -96,17 +120,35 @@ namespace UI.SCM
                 if (string.IsNullOrWhiteSpace(txtVoucherNo.Text))
                 {
                     Toaster("No JV Found on this MRR",Common.TosterType.Warning);
+                    VisiblePanel();
                     return;
                 }
                 _obj.CorrectionMrr(4, _intMrrid,Enroll,out message);
-                Toaster(message, message.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
-                ShowInfo();
+                if (message.ToLower().Contains("success"))
+                {
+                    Toaster(message, Common.TosterType.Success);
+                    ShowInfo();
+                    LoadItemInfo();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                    VisiblePanel();
+                }
+                
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
+                VisiblePanel();
             }
 
+        }
+
+        public void VisiblePanel()
+        {
+            SetVisibility("itemPanel", true);
+            SetVisibility("controlPanel", true);
         }
         private void ShowInfo()
         {
@@ -129,6 +171,8 @@ namespace UI.SCM
                     txtWhName.Text = _dt.Rows[0]["strWareHoseName"].ToString();
                     txtSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
                     txtChanllanNo.Text = _dt.Rows[0]["strExtnlReff"].ToString();
+                    txtStatus.Text = _dt.Rows[0]["status"].ToString();
+
                     string chanllanDateText = _dt.Rows[0]["dteChallanDate"].ToString();
                     if (!string.IsNullOrWhiteSpace(chanllanDateText))
                     {
@@ -142,12 +186,6 @@ namespace UI.SCM
                 {
                     Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
                     return;
-                }
-                _dt = new DataTable();
-                _dt = _obj.CorrectionMrr(3, _intMrrid,Enroll,out message);
-                if (_dt.Rows.Count > 0)
-                {
-                    txtStatus.Text = _dt.Rows[0]["strStatus"].ToString();
                 }
             }
             catch (Exception ex)

@@ -63,7 +63,7 @@ namespace UI.PaymentModule
             dtt = objtreasuryChallan.getVatreg(treasuryid);
             lblDepositorName.Text= dt.Rows[0]["strDepositorName"].ToString();
             lblDepositorAdd.Text= dt.Rows[0]["strDepositorAddress"].ToString();            
-            lblvat.Text = dt.Rows[0]["strTreasuryDepositDescription"].ToString() + " VAT Reg.NO:"+ dtt.Rows[0]["strVATRegNo"].ToString();
+            lblvat.Text = dt.Rows[0]["strTreasuryDepositDescription"].ToString() + " VAT Reg.NO: "+ dtt.Rows[0]["strVATRegNo"].ToString();
             lblcheque.Text = txtBankName.Text + " </br> " + dt.Rows[0]["Column1"].ToString();           
             lblChallanNo.Text = txtChallan.Text;           
             Double total = Convert.ToDouble(dt.Rows[0]["monAmount"].ToString());

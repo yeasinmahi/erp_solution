@@ -40,8 +40,6 @@ namespace UI.SCM.Transfer
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
-                dt = objWH.GetWH();
-
                 dt.Clear();
 
                 //dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, enroll);
