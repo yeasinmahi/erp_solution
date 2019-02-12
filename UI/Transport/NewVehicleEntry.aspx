@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewVehicleEntry.aspx.cs" Inherits="UI.Transport.NewVehicleEntry" %>
+﻿2<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NewVehicleEntry.aspx.cs" Inherits="UI.Transport.NewVehicleEntry" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>
@@ -23,54 +23,15 @@
     <script>
         function ValidationBasicInfoRegion() {
             document.getElementById("hdnconfirm").value = "0";
-            var txtRegion = document.forms["frmPurchase"]["txtRegion"].value;
+            var txtRegion = document.forms["frmPurchase"]["txtVehicleNo"].value;
             if (txtRegion == null || txtRegion == "") {
                 document.getElementById("hdnconfirm").value = "0";
-                alert("Please Entry Region Name !");
-            }
-            else {  document.getElementById("hdnconfirm").value = "1"; }
-        }
-        function ValidationBasicInfoArea() {
-            document.getElementById("hdnconfirm").value = "0";
-            var txtArea = document.forms["frmPurchase"]["txtArea"].value;
-            if (txtArea == null || txtArea == "") {
-                document.getElementById("hdnconfirm").value = "0";
-                alert("Please Entry Region Name !");
-            }
-            else {  document.getElementById("hdnconfirm").value = "1"; }
-        }
-        function ValidationBasicInfoTerritory() {
-            document.getElementById("hdnconfirm").value = "0";
-            var txtTerritory = document.forms["frmPurchase"]["txtTerritory"].value;
-            if (txtTerritory == null || txtTerritory == "") {
-                document.getElementById("hdnconfirm").value = "0";
-                alert("Please Entry Territory Name !");
-            }
-            else {  document.getElementById("hdnconfirm").value = "1"; }
-        }
-         function ValidationBasicInfoSave() {
-            document.getElementById("hdnconfirm").value = "0";
-             var txtEmail = document.forms["frmPurchase"]["txtEmail"].value;
-             var txtContact = document.forms["frmPurchase"]["txtContact"].value;
-            if (txtEmail == null || txtEmail == "") {
-                document.getElementById("hdnconfirm").value = "0";
-                alert("Please Entry Email Address !");
-            }
-             else if (txtContact == null || txtContact == "") {
-                document.getElementById("hdnconfirm").value = "0";
-                alert("Please Entry Contact No !");
+                alert("Please Vehicle No Entry !");
             }
             else {  document.getElementById("hdnconfirm").value = "1"; }
         }
 
     </script>
-  
-    <style type="text/css">
-        .auto-style1 {
-            height: 21px;
-        }
-    </style>
-  
     </head>
 <body>
     <form id="frmPurchase" runat="server">
@@ -100,54 +61,60 @@
      <table  class="tbldecoration" style="width:auto; float:left;">  
      <tr>
         <td>Unit</td><td>:</td>
-        <td> <asp:DropDownList ID="ddlunit" CssClass="ddllist" runat="server"  AutoPostBack="True" OnSelectedIndexChanged="ddlunit_SelectedIndexChanged" ></asp:DropDownList></td>
+        <td> <asp:DropDownList ID="ddlunit" CssClass="ddllist" runat="server"  AutoPostBack="True" ></asp:DropDownList></td>
         <td>Vehicle Type</td>
         <td>:</td>
         <td><asp:DropDownList ID="ddlType" CssClass="ddllist" runat="server"  ></asp:DropDownList></td>
         <td>Location</td>
         <td>:</td>
-        <td>
-            <asp:DropDownList ID="DropDownList1" runat="server" CssClass="ddllist">
-            </asp:DropDownList>
-         </td>
+        <td><asp:DropDownList ID="ddlLocation" runat="server" CssClass="ddllist"> </asp:DropDownList> </td>
      </tr>
      <tr><td>Vehicle No</td><td class="auto-style1">:</td>
-        <td >
-            <asp:TextBox ID="txtVehicleNo" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox>
-         </td>
+        <td > <asp:TextBox ID="txtVehicleNo" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox> </td>
         <td >Driver Name</td>
-         <td >:</td>
-        <td ><asp:TextBox ID="txtDriverName" CssClass="txtBox"   MaxLength="10" runat="server" AutoPostBack="true" ></asp:TextBox></td>
+        <td >:</td>
+        <td > <asp:TextBox ID="txtDriverName" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="180px" ></asp:TextBox>
+        <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtdrivername"
+        ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+        </cc1:AutoCompleteExtender>
+        </td>
         <td >Driver Contact</td>  
-         <td>:</td>
+        <td>:</td>
         <td ><asp:TextBox ID="txtDriverContact" CssClass="txtBox"   MaxLength="10" runat="server" AutoPostBack="true" ></asp:TextBox></td>
      </tr> 
      <tr><td>Driver NID</td><td class="auto-style1">:</td>
-         <td><asp:TextBox ID="txtDriveNId" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
-        
+        <td><asp:TextBox ID="txtDriverNId" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>       
         <td>Helper Name</td>
-         <td>:</td>
-        <td><asp:TextBox ID="txthelperName" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
+        <td>:</td>
+        <td><asp:TextBox ID="txthelperName" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox>
+        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txthelperName"
+        ServiceMethod="EmployeeSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+        </cc1:AutoCompleteExtender>
+        </td>
         <td>Lisence No</td>
-         <td>:</td>
+        <td>:</td>
         <td><asp:TextBox ID="txtLisence" CssClass="txtBox"   MaxLength="10" runat="server" AutoPostBack="true" ></asp:TextBox></td>
      </tr>
      <tr><td> Driver DA</td><td>:</td>
         <td><asp:TextBox ID="txtDriverDA" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
-        <td>   Helper DA</td>
-         <td>:</td>
+        <td> Helper DA</td>
+        <td>:</td>
         <td><asp:TextBox ID="txtHelperdA" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
         <td>Down Trip Allowance</td> 
-         <td>:</td>
+        <td>:</td>
         <td><asp:TextBox ID="txtDowntripAllowance" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
     </tr>
      <tr><td> Down Trip DA</td><td>:</td>
         <td><asp:TextBox ID="txtDownTripDA" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
         <td>   Millage Allowance 100KM</td>
-         <td>:</td>
+        <td>:</td>
         <td><asp:TextBox ID="MA100KM" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
         <td>Millage Allowance 100KM Above</td> 
-         <td>:</td>
+        <td>:</td>
         <td><asp:TextBox ID="txtMillageAllowance100KMAbove" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
     </tr>
      <tr><td> Millage Local</td><td>:</td>
@@ -155,41 +122,48 @@
         <td>   Millage Outstation</td>
          <td>:</td>
         <td><asp:TextBox ID="txtOutstation" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
-        <td>Millage Allowance 100KM Above</td> 
-         <td>:</td>
-        <td><asp:TextBox ID="TextBox3" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
+        <td>CNG Allowance</td> 
+        <td>:</td>
+        <td><asp:TextBox ID="txtCNGAllowance" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
     </tr>
-         <tr><td> Disel Per KM Outstation</td><td>:</td>
+     <tr><td> Disel Per KM Outstation</td><td>:</td>
         <td><asp:TextBox ID="txtDieselPerKMOutsation" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
-        <td> Disel Per KM Local</td>
-         <td>:</td>
+        <td> CNG Per KM Outstation</td>
+        <td>:</td>
         <td><asp:TextBox ID="txtDiselPerKMLocal" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
         <td>UOM</td> 
-         <td>:</td>
+        <td>:</td>
         <td><asp:DropDownList ID="ddlUOM" runat="server" CssClass="ddllist">
-            <asp:ListItem Value="1049">Ton</asp:ListItem>
-            <asp:ListItem Value="1050">KG</asp:ListItem>
-            <asp:ListItem Value="1055">SFT</asp:ListItem>
-            </asp:DropDownList></td>
+        <asp:ListItem Value="1049">Ton</asp:ListItem>
+        <asp:ListItem Value="1050">KG</asp:ListItem>
+        <asp:ListItem Value="1055">SFT</asp:ListItem>
+        </asp:DropDownList></td>
     </tr>
-     <tr><td colspan="10"><hr /></td></tr> 
-     <tr>
-        <td>Email Address:</td><td>:</td>
-        <td><asp:TextBox ID="txtEmail" CssClass="txtBox"   MaxLength="10" runat="server" AutoPostBack="true" ></asp:TextBox></td>
-        <td>Contact No:</td>
-         <td>:</td>
-        <td><asp:TextBox ID="txtContact" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
-        <td>&nbsp;</td>  
-         <td>:</td>
-        <td></td>
+     <tr><td> Disel Per KM Litter</td><td>:</td>
+        <td><asp:TextBox ID="txtDiselPerKMLitter" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
+        <td> Down Trip Disel Per KM</td>
+        <td>:</td>
+        <td><asp:TextBox ID="txtDownTripDiselPerKM" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
+        <td>CNG Per KM</td> 
+        <td>:</td>
+        <td><asp:TextBox ID="txtCNGPerKM" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
     </tr>
-   
-    <tr><td>&nbsp;</td>
-        <td></td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfoSave()" class="myButton" OnClick="btnSave_Click" Text="Save" />
+     <tr><td> Loading Capacity</td><td>:</td>
+        <td><asp:TextBox ID="txtLoadingcapacity" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
+        <td> CNG Per KM Outstation</td>
+        <td>:</td>
+        <td><asp:TextBox ID="txtCNGPerKMOustStation" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox></td>
+        <td>Disel Per KM</td> 
+        <td>&nbsp;</td>
+        <td><asp:TextBox ID="txtDiselPerKM" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="50"></asp:TextBox>
+        <asp:Button ID="btnsSave" OnClientClick="ValidationBasicInfoRegion()" class="myButton" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" /></td>
     </tr>
-    </table>
-    </td></tr>
-    <tr><td>
+     <tr><td colspan="9"><hr /></td></tr> 
+     <tr><td>&nbsp;</td><td></td>
+     </tr>
+     </table>
+     </td></tr>
+     <tr><td>
     
     </td></tr></table>
     </div>

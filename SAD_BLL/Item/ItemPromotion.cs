@@ -220,6 +220,18 @@ namespace SAD_BLL.Item
             }
         }
 
+        public DataTable getCustomerdetails(string cusId)
+        {
+            try
+            {
+                sprCustomerStatementSummaryTableAdapter adp = new sprCustomerStatementSummaryTableAdapter();
+
+                return adp.GetCustomerStatements(int.Parse(cusId));
+
+            }
+            catch { return new DataTable(); }
+        }
+
         public void getNationalPINactiveEnd(DateTime dteTdate, int itemidSales, string batchno,int custid,int part)
         {
             try

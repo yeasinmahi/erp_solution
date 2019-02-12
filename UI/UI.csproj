@@ -1187,6 +1187,7 @@
     <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
+    <Content Include="SAD\Customer\Report\StatementAPL.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
     <Content Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx" />
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
@@ -5832,6 +5833,13 @@
     </Compile>
     <Compile Include="SAD\Customer\Report\DeliverySupport.aspx.designer.cs">
       <DependentUpon>DeliverySupport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\StatementAPL.aspx.cs">
+      <DependentUpon>StatementAPL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\StatementAPL.aspx.designer.cs">
+      <DependentUpon>StatementAPL.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\Report\Statement.aspx.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
