@@ -14,7 +14,7 @@ namespace UI.SCM
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
         private Location_BLL objOperation = new Location_BLL();
         private DataTable dt = new DataTable();
-        private int enroll, intwh;
+        private int intwh;
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -25,8 +25,7 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, Enroll);
                 ddlWh.DataSource = dt;
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
@@ -47,9 +46,8 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 //  ddlSection.Items.Insert(0, new ListItem("Select", ""));
-                //dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, enroll);
+                //dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, Enroll);
                 //ddlFilter.DataSource = dt;
                 //ddlFilter.DataValueField = "Id";
                 //ddlFilter.DataTextField = "strName";
@@ -62,7 +60,7 @@ namespace UI.SCM
                 Common.LoadDropDown(ddlFilter, dt, "Id", "strName");
 
                 
-                dt = objIssue.GetViewData(10, "", intwh, 0, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(10, "", intwh, 0, DateTime.Now, Enroll);
                 // ddlSection.Items.Insert(0, new ListItem("Select", ""));
                 ddlSection.DataSource = dt;
                 ddlSection.DataValueField = "Id";
@@ -95,9 +93,8 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 int deptId = int.Parse(ddlSection.SelectedValue.ToString());
-                dt = objIssue.GetViewData(12, xmlData, intwh, deptId, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(12, xmlData, intwh, deptId, DateTime.Now, Enroll);
                 dgvConsump.DataSource = dt;
                 dgvConsump.DataBind();
             }
@@ -151,8 +148,7 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(11, xmlData, intwh, deptId, DateTime.Now, enroll);
+                dt = objIssue.GetViewData(11, xmlData, intwh, deptId, DateTime.Now, Enroll);
                 dgvConsump.DataSource = dt;
                 dgvConsump.DataBind();
             }

@@ -1,52 +1,69 @@
 ﻿using HR_BLL.Global;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using SCM_BLL;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.Inventory
 {
     public partial class Requisition : BasePage
     {
-        string xmlpath; string xmlString = "", xml = ""; DaysOfWeek bll = new DaysOfWeek(); string[] arrayKey; char[] delimiterChars = { '[', ']' };
-        string secid = "0"; DataTable dtbl = new DataTable(); DataTable dt = new DataTable(); int intEnroll, intInsertBy = 0;
-        int type, actionby, id;bool active;
+        string xmlpath;
+        string xmlString = "", xml = "";
+        DaysOfWeek bll = new DaysOfWeek();
+        string[] arrayKey;
+        char[] delimiterChars = { '[', ']' };
+        string secid = "0";
+        DataTable dtbl = new DataTable();
+        int intEnroll;
+        int type, actionby, id; bool active;
         DateTime fdate, tdate;
         protected void Page_Load(object sender, EventArgs e)
         {
-            hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-            xmlpath = Server.MapPath("~/Inventory/Data/REQ_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            xmlpath = Server.MapPath("~/Inventory/Data/REQ_" + Enroll + ".xml");
             if (!IsPostBack)
             {
-                hdnpoint.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
-                if ((int.Parse(hdnpoint.Value) >= 1 && int.Parse(hdnpoint.Value) <= 22)) { if (hdnpoint.Value == "2") { hdntype.Value = "0"; } else { hdntype.Value = "1"; } }
-                else { hdntype.Value = "0"; } txtSection.Text = ""; hdnwh.Value = ddlWH.SelectedValue.ToString();
+                if (JobStationId >= 1 && JobStationId <= 22 && JobStationId !=2)
+                {
+                    hdntype.Value = "1";
+                }
+                else
+                {
+                    hdntype.Value = "0";
+                }
+                txtSection.Text = "";
+                
                 lblDept.Text = HttpContext.Current.Session[SessionParams.DEPT_NAME].ToString();
-                pnlUpperControl.DataBind(); txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                pnlUpperControl.DataBind();
+                txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 //txtItem.Attributes.Add("onkeyUp", "SearchText();"); 
                 Clearcontrols();
                 try { File.Delete(xmlpath); } catch { }
 
-                Int32 intUnit = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                dt = new DataTable();
-                dt =bll.CostCetnterUnit(intUnit);
-                DdlCostCenter.DataSource = dt;
-                DdlCostCenter.DataTextField = "Name";
-                DdlCostCenter.DataValueField = "ID";
-                DdlCostCenter.DataBind();
+                int whId = Common.GetDdlSelectedValue(ddlWH);
+                DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
+                Common.LoadDropDownWithSelect(DdlCostCenter, dt, "Id", "strName");
+               
 
-                if(hdnEnroll.Value == "1039" || hdnEnroll.Value == "1388" || hdnEnroll.Value == "11621")
+                //dt = new DataTable();
+                //dt = bll.CostCetnterUnit(UnitId);
+                //DdlCostCenter.DataSource = dt;
+                //DdlCostCenter.DataTextField = "Name";
+                //DdlCostCenter.DataValueField = "ID";
+                //DdlCostCenter.DataBind();
+
+                if (Enroll == 1039 || Enroll == 1388 || Enroll == 11621)
                 {
                     txtSearchAssignedTo.Visible = true;
-                    lblReqBy.Visible = true;                    
+                    lblReqBy.Visible = true;
                 }
                 else
                 {
@@ -56,10 +73,15 @@ namespace UI.Inventory
 
                 dgvListByEnroll.Visible = false;
             }
-            
+
+        }
+        public void LoadCostCenter()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWH);
+            DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
+            Common.LoadDropDown(DdlCostCenter, dt, "Id", "strName");
         }
 
-        
         //[WebMethod]
         //public static List<string> GetAutoCompleteData(string whid, string searchKey)
         //{
@@ -71,32 +93,32 @@ namespace UI.Inventory
         //}
         [WebMethod]
         [ScriptMethod]
-        public static string[]GetWearHouseRequesision(string prefixText, int count)
+        public static string[] GetWearHouseRequesision(string prefixText, int count)
         {
-            Int32 WHID = Convert.ToInt32(HttpContext.Current.Session["WareID"].ToString());
-            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-                       
-           return objAutoSearch_BLL.GetItemLists(WHID.ToString(), prefixText);
-           
+            string whid =HttpContext.Current.Session["WareID"].ToString();
+            return new AutoSearch_BLL().GetItemLists(whid, prefixText);
+
         }
 
         [WebMethod]
         [ScriptMethod]
         public static string[] GetItemListsForStoreReq(string prefixText)
         {
-            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            return objAutoSearch_BLL.GetItemListsForStoreReq(prefixText);
+            return new AutoSearch_BLL().GetItemListsForStoreReq(prefixText);
         }
 
         protected void txtSearchAssignedTo_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                char[] ch1 = { '[', ']' };
+                char[] ch1 = {'[', ']'};
                 string[] temp1 = txtSearchAssignedTo.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
                 intEnroll = int.Parse(temp1[2].ToString());
             }
-            catch { intEnroll = 0; }
+            catch
+            {
+                intEnroll = 0;
+            }
 
             dgvListByEnroll.Visible = true;
             dgvlist.Visible = false;
@@ -113,24 +135,28 @@ namespace UI.Inventory
                 string td = "2020-12-31";
                 fdate = DateTime.Parse(fd.ToString());
                 tdate = DateTime.Parse(td.ToString());
-
-                dt = new DataTable();
-                dt = bll.CreateStoreRequisition(type, intEnroll, xml, id, fdate, tdate, intEnroll);
+                
+                DataTable dt = bll.CreateStoreRequisition(type, intEnroll, xml, id, fdate, tdate, intEnroll);
                 dgvListByEnroll.DataSource = dt;
                 dgvListByEnroll.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         public void linkGoSomewhere_Click(object sender, EventArgs e)
         {
-
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "ViewPolicy('" + 0 + "','" + "Monthlyindent.jpg".ToString() + "');", true);
-
-            
         }
         private void Clearcontrols()
-        { txtQuantity.Text = "0.00"; txtItem.Text = ""; hdfEmpCode.Value = ""; txtRemarks.Text = "";
-        txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); }
+        {
+            txtQuantity.Text = "0.00";
+            txtItem.Text = "";
+            hdfEmpCode.Value = "";
+            txtRemarks.Text = "";
+            txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+        }
         protected void dgv_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -140,10 +166,21 @@ namespace UI.Inventory
                 dsGrid.Tables[0].Rows[dgv.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(xmlpath);
                 DataSet dsGridAfterDelete = (DataSet)dgv.DataSource;
-                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0) { File.Delete(xmlpath); dgv.DataSource = ""; dgv.DataBind(); }
-                else { LoadXml(); }
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(xmlpath);
+                    dgv.DataSource = "";
+                    dgv.DataBind();
+                }
+                else
+                {
+                    LoadXml();
+                }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         private void LoadXml()
         {
@@ -155,9 +192,10 @@ namespace UI.Inventory
                 xmlString = "<Requisition>" + xmlString + "</Requisition>";
                 StringReader sr = new StringReader(xmlString);
                 DataSet ds = new DataSet(); ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0) { dgv.DataSource = ds; } else { dgv.DataSource = ""; } dgv.DataBind();
+                if (ds.Tables[0].Rows.Count > 0) { dgv.DataSource = ds; } else { dgv.DataSource = ""; }
+                dgv.DataBind();
             }
-            catch { dgv.DataSource = ""; dgv.DataBind();}
+            catch { dgv.DataSource = ""; dgv.DataBind(); }
         }
         protected void btnAdd_Click(object sender, EventArgs e)
         {
@@ -166,65 +204,79 @@ namespace UI.Inventory
                 if (hdnconfirm.Value == "1")
                 {
                     arrayKey = txtItem.Text.Split(delimiterChars);
-                    string item = ""; string itemid = ""; bool proceed=false;
+                    string item = "";
+                    string itemid = "";
+                    bool proceed = false;
                     if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
+                    {
+                        item = arrayKey[0].ToString();
+                        itemid = arrayKey[1].ToString();
+                    }
                     string dptid = HttpContext.Current.Session[SessionParams.DEPT_ID].ToString();
                     string dudt = DateTime.Parse(txtDueDate.Text).ToString("yyyy-MM-dd");
                     string quantity = txtQuantity.Text;
                     string remarks = txtRemarks.Text;
-                    string wh = hdnwh.Value;
+                    string wh = Common.GetDdlSelectedValue(ddlWH).ToString();
                     arrayKey = ddlWH.SelectedItem.Text.Split(delimiterChars);
                     string unit = arrayKey[1].ToString();
                     string sec = txtSection.Text;
                     int cnt = dgv.Rows.Count;
-                    string cos =DdlCostCenter.SelectedValue.ToString();
-                    dt = new DataTable();
+                    string cos = DdlCostCenter.SelectedValue.ToString();
                     // dt = bll.CheckCurrentStock(Convert.ToInt32(wh), Convert.ToInt32(itemid));
-                    int enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                    dt = bll.CheckItemPolisy(enroll, Convert.ToInt32(itemid));
+                    DataTable dt = bll.CheckItemPolisy(Enroll, Convert.ToInt32(itemid));
                     if (dt.Rows.Count > 0)
                     {
                         active = true;
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('(Policy Violation) " +
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('(Policy Violation) " +
                             "In the running month you have already given rquisition of same Item.');", true);
 
                     }
-                    else { active = false; }
+                    else
+                    {
+                        active = false;
+                    }
                     // decimal stocks = Decimal.Parse(dt.Rows[0]["stock"].ToString());
                     //ItemPolisyDataTableTableAdapter
-                     
-                        if (cnt == 0)
+
+                    if (cnt == 0)
+                    {
+                        CreateXml(itemid, item, secid, unit, wh, sec, dptid, dudt, quantity, remarks, cos);
+                        Clearcontrols();
+                    }
+                    else
+                    {
+                        for (int r = 0; r < cnt; r++)
+                        {
+                            string itmid = ((HiddenField) dgv.Rows[r].FindControl("hdnitmid")).Value.ToString();
+                            if (itemid != itmid)
+                            {
+                                proceed = true;
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                    "alert('Please select another item.');", true);
+                                break;
+                            }
+                        }
+                        if (proceed == true)
                         {
                             CreateXml(itemid, item, secid, unit, wh, sec, dptid, dudt, quantity, remarks, cos);
                             Clearcontrols();
                         }
-                        else
-                        {
-                            for (int r = 0; r < cnt; r++)
-                            {
-                                string itmid = ((HiddenField)dgv.Rows[r].FindControl("hdnitmid")).Value.ToString();
-                                if (itemid != itmid) { proceed = true; }
-                                else
-                                {
-                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please select another item.');", true);
-                                    break;
-                                }
-                            }
-                            if (proceed == true)
-                            {
-                                CreateXml(itemid, item, secid, unit, wh, sec, dptid, dudt, quantity, remarks, cos);
-                                Clearcontrols();
-                            }
-                        }
-                    
+                    }
+
                     //else
                     //{
                     //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('In the running month you have already given rquisition of same Item.');", true);
                     //}
                 }
             }
-            catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
 
@@ -249,7 +301,7 @@ namespace UI.Inventory
             }
             doc.Save(xmlpath); LoadXml();
         }
-        private XmlNode CreateNode(XmlDocument doc, string itemid, string item, string secid, string unit, string wh, string sec, string dptid, string dudt, string quantity, string remarks,string cos)
+        private XmlNode CreateNode(XmlDocument doc, string itemid, string item, string secid, string unit, string wh, string sec, string dptid, string dudt, string quantity, string remarks, string cos)
         {
             XmlNode node = doc.CreateElement("req");
             XmlAttribute Itemid = doc.CreateAttribute("itemid");
@@ -272,7 +324,7 @@ namespace UI.Inventory
             Quantity.Value = quantity;
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
-             XmlAttribute Cos = doc.CreateAttribute("cos");
+            XmlAttribute Cos = doc.CreateAttribute("cos");
             Cos.Value = cos;
 
             node.Attributes.Append(Itemid);
@@ -285,30 +337,32 @@ namespace UI.Inventory
             node.Attributes.Append(Dudt);
             node.Attributes.Append(Quantity);
             node.Attributes.Append(Remarks);
-              node.Attributes.Append(Cos);
+            node.Attributes.Append(Cos);
             return node;
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if(dgv.Rows.Count > 0)
+            if (dgv.Rows.Count > 0)
             {
                 try
                 {
                     try
                     {
-                        intInsertBy = int.Parse(hdnEnroll.Value);
                         if (txtSearchAssignedTo.Text == "")
                         {
-                            intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                            intEnroll = Enroll;
                         }
                         else
                         {
-                            char[] ch1 = { '[', ']' };
+                            char[] ch1 = {'[', ']'};
                             string[] temp1 = txtSearchAssignedTo.Text.Split(ch1, StringSplitOptions.RemoveEmptyEntries);
                             intEnroll = int.Parse(temp1[2].ToString());
                         }
                     }
-                    catch { intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); }
+                    catch
+                    {
+                        intEnroll = Enroll;
+                    }
 
                     XmlDocument doc = new XmlDocument(); XmlNode xmls;
                     if (File.Exists(xmlpath))
@@ -317,13 +371,16 @@ namespace UI.Inventory
                         xmls = doc.SelectSingleNode("Requisition");
                         xmlString = xmls.InnerXml;
                         xmlString = "<Requisition>" + xmlString + "</Requisition>";
-                        dtbl = bll.CreateStoreRequisition(0, intEnroll, xmlString, 0, DateTime.Now, DateTime.Now, intInsertBy);
+                        dtbl = bll.CreateStoreRequisition(0, intEnroll, xmlString, 0, DateTime.Now, DateTime.Now, Enroll);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dtbl.Rows[0]["Messages"].ToString() + "');", true);
                         File.Delete(xmlpath); Clearcontrols(); dgv.DataSource = ""; dgv.DataBind(); dgvlist.DataBind();
                         txtSearchAssignedTo.Text = "";
                     }
                 }
-                catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message, Common.TosterType.Error);
+                }
             }
         }
         protected void Dtls_Click(object sender, EventArgs e)
@@ -335,31 +392,31 @@ namespace UI.Inventory
                 string[] datas = temp.Split(delimiterChars);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + datas[0].ToString() + "');", true);
             }
-            catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
 
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
-        { 
-           // hdnwh.Value = ddlWH.SelectedValue.ToString();
+        {
             try
             {
-                hdnwh.Value = ddlWH.SelectedValue.ToString();
-                Session["WareID"] = hdnwh.Value;
+                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
             }
             catch { }
             File.Delete(xmlpath); LoadXml();
+            LoadCostCenter();
         }
         protected void ddlWH_DataBound(object sender, EventArgs e)
         {
-            //hdnwh.Value = ddlWH.SelectedValue.ToString();
-        try
-        {
-            hdnwh.Value = ddlWH.SelectedValue.ToString();
-            Session["WareID"] = hdnwh.Value;
-        }
-        catch { }
+            try
+            {
+                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
+            }
+            catch { }
             File.Delete(xmlpath); LoadXml();
 
         }
