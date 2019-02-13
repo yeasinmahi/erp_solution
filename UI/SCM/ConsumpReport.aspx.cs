@@ -26,6 +26,7 @@ namespace UI.SCM
             if (!IsPostBack)
             {
                 dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, Enroll);
+
                 ddlWh.DataSource = dt;
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
@@ -53,19 +54,22 @@ namespace UI.SCM
                 //ddlFilter.DataTextField = "strName";
                 //ddlFilter.DataBind();
 
-                intwh = int.Parse(ddlWh.SelectedValue.ToString());
-                //intwh=Common.GetDdlSelectedValue(ddlWh);
+                //intwh = int.Parse(ddlWh.SelectedValue.ToString());
+                intwh=Common.GetDdlSelectedValue(ddlWh);
 
                 dt = objIssue.GetDepartment(intwh);
                 Common.LoadDropDown(ddlFilter, dt, "Id", "strName");
 
                 
                 dt = objIssue.GetViewData(10, "", intwh, 0, DateTime.Now, Enroll);
+
                 // ddlSection.Items.Insert(0, new ListItem("Select", ""));
                 ddlSection.DataSource = dt;
                 ddlSection.DataValueField = "Id";
                 ddlSection.DataTextField = "strName";
                 ddlSection.DataBind();
+
+                LoadCostCenter();
             }
             catch (Exception ex)
             {
@@ -162,6 +166,26 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        protected void btnShowCostCenter_OnClick(object sender, EventArgs e)
+        {
+            //int whId = Common.GetDdlSelectedValue(ddlWh);
+            //int ccId = Common.GetDdlSelectedValue(ddlCostCenter);
+            //DateTime fromDate = Convert.ToDateTime(txtDteFrom.Text);
+            //DateTime toDate = Convert.ToDateTime(txtdteTo.Text);
+
+            //DataTable dt = new StoreIssue_BLL().GetConsumerStatementByCostCenterId(whId, fromDate, toDate, ccId);
+
+            Toaster("Comming soon",Common.TosterType.Warning);
+
+        }
+
+        public void LoadCostCenter()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
+            Common.LoadDropDown(ddlCostCenter, dt, "Id", "strName");
         }
     }
 }

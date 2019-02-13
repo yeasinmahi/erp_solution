@@ -113,5 +113,17 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetConsumerStatementByCostCenterId(int whId, DateTime fromDate, DateTime toDate,int costCenterId)
+        {
+            try
+            {
+                DataTable2TableAdapter adp = new DataTable2TableAdapter();
+                return adp.GetData(whId, fromDate, toDate, costCenterId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
     }
 }
