@@ -80,12 +80,12 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblUnit" CssClass="lbl" runat="server" Text="Unit : "></asp:Label></td>
                                 <td>
-                                    <asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="True" CssClass="dropdownList" DataSourceID="odsUnit" DataTextField="strVatAccountName" DataValueField="intVatAccountID"></asp:DropDownList>
-                                    <asp:ObjectDataSource ID="odsUnit" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUnitByUserId" TypeName="HR_DAL.Payment.TreasuryChallanTDSTableAdapters.sprGetVATAccountByAccountsUserTableAdapter">
+                                    <asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="True" CssClass="dropdownList" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged"></asp:DropDownList>
+                                    <%--<asp:ObjectDataSource ID="odsUnit" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUnitByUserId" TypeName="HR_DAL.Payment.TreasuryChallanTDSTableAdapters.sprGetVATAccountByAccountsUserTableAdapter">
                                         <SelectParameters>
                                             <asp:SessionParameter Name="intUser" SessionField="sesUserId" Type="Int32" />
                                         </SelectParameters>
-                                    </asp:ObjectDataSource>
+                                    </asp:ObjectDataSource>--%>
                                 </td>
                                 <td style="width: 10px;"></td>
                                 <td>
@@ -134,8 +134,13 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblIntType" runat="server" Text='<%# Bind("intType") %>'></asp:Label>
                                                 </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="strType" HeaderText="Deposite For" SortExpression="strType" FooterText="Total" />
+                                            <asp:TemplateField FooterText="Total" HeaderText="Deposite For" SortExpression="strType">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="Label1" runat="server" Width="200px" Text='<%# Bind("strType") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Day_7" SortExpression="day_7">
                                                 <ItemTemplate>
@@ -238,7 +243,7 @@
                                                 <ItemStyle HorizontalAlign="right" />
                                                 <FooterStyle HorizontalAlign="right" />
                                             </asp:TemplateField>
-                                            <asp:TemplateField HeaderText="Pay">
+                                            <asp:TemplateField HeaderText="Pay Amount">
                                                 <ItemTemplate>
                                                     <asp:TextBox runat="server" ID="txtPay"></asp:TextBox>
                                                 </ItemTemplate>
@@ -250,9 +255,6 @@
                                                     <asp:Button ID="btnDeposite" runat="server" CausesValidation="false" OnClientClick="return ShowDepositeVouchar()" CommandName="DepositV" Text="Treasury Deposit Vouchar" CommandArgument="<%# Container.DataItemIndex %>" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-
-
-
                                         </Columns>
                                     </asp:GridView>
                                 </td>
@@ -265,5 +267,10 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
+    <style>
+        #GvDetails td {
+            padding: 5px;
+        }
+    </style>
 </body>
 </html>

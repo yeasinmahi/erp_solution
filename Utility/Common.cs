@@ -160,7 +160,10 @@ namespace Utility
         public static bool LoadDropDownWithSelect(DropDownList ddl, DataTable dt, string value, string text)
         {
             bool isLoad = LoadDropDown(ddl, dt, value, text);
-            ddl.Items.Insert(0, new ListItem("Select", "0"));
+            if (isLoad)
+            {
+                ddl.Items.Insert(0, new ListItem("Select", "0"));
+            }
             return isLoad;
         }
 

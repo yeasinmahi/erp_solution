@@ -1,10 +1,6 @@
 ﻿using HR_BLL.Payment;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
@@ -21,7 +17,7 @@ namespace UI.PaymentModule
         string start = "starting PaymentModule/TreasuryDepositeForecast.aspx";
         string stop = "stopping PaymentModule/TreasuryDepositeForecast.aspx";
 
-        TreasuryChallanBLL objtreasuryChallan = new TreasuryChallanBLL();
+        readonly TreasuryChallanBLL _bll = new TreasuryChallanBLL();
         DataTable dt = new DataTable();
         DataTable dtbank = new DataTable();
         DataTable dtacc = new DataTable();
@@ -40,7 +36,10 @@ namespace UI.PaymentModule
 
             if (!IsPostBack)
             {
-                pnlUpperControl.DataBind(); txtVDate.Text = DateTime.Now.ToString();
+                pnlUpperControl.DataBind();
+                txtVDate.Text = DateTime.Now.ToString();
+                LoadUnit();
+                LoadBank();
             }
 
             fd = log.GetFlogDetail(stop, location, "Page_Load", null);
@@ -49,6 +48,42 @@ namespace UI.PaymentModule
             tracker.Stop();
         }
 
+        public void LoadUnit()
+        {
+            Common.LoadDropDown(ddlUnit,_bll.getUnitByUser(Enroll), "intVatAccountID", "strVatAccountName");
+
+        }
+        public void LoadBank()
+        {
+            int unitId = Common.GetDdlSelectedValue(ddlUnit);
+            DataTable dt = _bll.GetBankListData(unitId);
+            if (dt.Rows.Count > 0)
+            {
+                Common.LoadDropDownWithSelect(ddlBank, _bll.GetBankListData(unitId), "intBankID", "strBankName");
+            }
+            else
+            {
+                Common.UnLoadDropDownWithSelect(ddlBank);
+            }
+            
+
+        }
+        public void LoadAccount()
+        {
+            int unitId = Common.GetDdlSelectedValue(ddlUnit);
+            int bankId = Common.GetDdlSelectedValue(ddlBank);
+            DataTable dt = _bll.GetBankListData(unitId);
+            if (dt.Rows.Count > 0)
+            {
+                Common.LoadDropDownWithSelect(ddlAccount, _bll.GetAccountListData(unitId, bankId), "intAccountID", "strBankAccount");
+            }
+            else
+            {
+                Common.UnLoadDropDownWithSelect(ddlAccount);
+            }
+            
+
+        }
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnShow_Click", null);
@@ -59,25 +94,26 @@ namespace UI.PaymentModule
             fd.Product, fd.Layer);
              
             intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
-            dt = objtreasuryChallan.GetForecastDetails(intVatAcc);
+            dt = _bll.GetForecastDetails(intVatAcc);
             GvDetails.DataSource = dt;
             GvDetails.DataBind();
 
+            //LoadBank();
             
-            if(intVatAcc==3)
-            {
-                intUnit = 4;
-            }
-            else
-            {
-                intUnit = 105;
-            }
+            //if(intVatAcc==3)
+            //{
+            //    intUnit = 4;
+            //}
+            //else
+            //{
+            //    intUnit = 105;
+            //}
 
-            dtbank = objtreasuryChallan.GetBankListData(intUnit);
-            ddlBank.DataSource = dtbank;
-            ddlBank.DataTextField = "strBankName";
-            ddlBank.DataValueField = "intBankID";
-            ddlBank.DataBind();
+            //dtbank = _bll.GetBankListData(intVatAcc);
+            //ddlBank.DataSource = dtbank;
+            //ddlBank.DataTextField = "strBankName";
+            //ddlBank.DataValueField = "intBankID";
+            //ddlBank.DataBind();
 
             fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);
             Flogger.WriteDiagnostic(fd);
@@ -102,22 +138,24 @@ namespace UI.PaymentModule
         #region=======DropDown Index Change===========
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
         {
-            intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
-            intBank = int.Parse(ddlBank.SelectedItem.Value);
-            if (intVatAcc == 3)
-            {
-                intUnit = 4;
-            }
-            else
-            {
-                intUnit = 105;
-            }
+            LoadAccount();
+            //intVatAcc = int.Parse(ddlUnit.SelectedItem.Value);
+            //intBank = int.Parse(ddlBank.SelectedItem.Value);
+            //if (intVatAcc == 3)
+            //{
+            //    intUnit = 4;
+            //}
+            //else
+            //{
+            //    intUnit = 105;
+            //}
 
-            dtacc = objtreasuryChallan.GetAccountListData(intUnit, intBank);
-            ddlAccount.DataSource = dtacc;
-            ddlAccount.DataTextField = "strBankAccount";
-            ddlAccount.DataValueField = "intAccountID";
-            ddlAccount.DataBind();
+            //dtacc = _bll.GetAccountListData(intVatAcc, intBank);
+
+            //ddlAccount.DataSource = dtacc;
+            //ddlAccount.DataTextField = "strBankAccount";
+            //ddlAccount.DataValueField = "intAccountID";
+            //ddlAccount.DataBind();
         }
         #endregion==========end===============
 
@@ -160,7 +198,7 @@ namespace UI.PaymentModule
 
             string strVatAcc = ddlUnit.SelectedItem.Text;
             DataTable dtAdd = new DataTable();
-            dtAdd = objtreasuryChallan.getUnitByUser(Enroll);
+            dtAdd = _bll.getUnitByUser(Enroll);
             string Address = strVatAcc + ',' + dtAdd.Rows[0]["strAddress"].ToString();
             string strName = "Managing Director, " + strVatAcc + " Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon I/A, Dhaka-1208.";
             
@@ -175,17 +213,17 @@ namespace UI.PaymentModule
             if(intType==1)
             {
                 intTreasuryId = 1;
-                dtChartOfAcc=objtreasuryChallan.GetChartOfAccIdList(intVatAcc, intTreasuryId);
+                dtChartOfAcc=_bll.GetChartOfAccIdList(intVatAcc, intTreasuryId);
             }
             else if(intType == 2)
             {
                 intTreasuryId = 2;
-                dtChartOfAcc=objtreasuryChallan.GetChartOfAccIdList(intVatAcc, intTreasuryId);
+                dtChartOfAcc=_bll.GetChartOfAccIdList(intVatAcc, intTreasuryId);
             }
             else if (intType == 3)
             {
                 intTreasuryId = 11;
-                dtChartOfAcc=objtreasuryChallan.GetChartOfAccIdList(intVatAcc, intTreasuryId);
+                dtChartOfAcc=_bll.GetChartOfAccIdList(intVatAcc, intTreasuryId);
             }
             else
             {
@@ -208,7 +246,7 @@ namespace UI.PaymentModule
             if(btnRadioCheque.Checked == true){ intPart = 1; }
             else if(btnRadioAdvice.Checked == true) { intPart = 2; }
             
-            objtreasuryChallan.GetTreasuryForcastDataList(intPart, Enroll, intVatAcc, intUnit, dteVdate, monDramount, monCrAmount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
+            _bll.GetTreasuryForcastDataList(intPart, Enroll, intVatAcc, intUnit, dteVdate, monDramount, monCrAmount, intBank, intBankAcc, Address, strName, intTreasuryId, intCOA, strAccName, strPayTo, strNarration);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Treasury deposit voucher inserted successfully.');", true);
             
@@ -218,7 +256,7 @@ namespace UI.PaymentModule
             //===========insert Vouchar=================
             //    string strCode="", strVoucherCode;
             //    DataTable dtStrCode = new DataTable();
-            //    dtStrCode=objtreasuryChallan.InsertVoucharList(intUnit, "voucherBP", dteVdate, "BP",true,ref strCode);
+            //    dtStrCode=_bll.InsertVoucharList(intUnit, "voucherBP", dteVdate, "BP",true,ref strCode);
             //    strVoucherCode = dtStrCode.Rows[0]["strCode"].ToString();
 
             //    //===========Set Cheque No==================
@@ -226,7 +264,7 @@ namespace UI.PaymentModule
             //    if (btnRadioCheque.Checked == true)
             //    {
             //        DataTable dtCheck = new DataTable();
-            //        dtCheck = objtreasuryChallan.GetSetAndUpdateChequeList(intBankAcc, strVoucherCode, ref strCheckNo);
+            //        dtCheck = _bll.GetSetAndUpdateChequeList(intBankAcc, strVoucherCode, ref strCheckNo);
             //        strInstrument = dtCheck.Rows[0]["strCheckNo"].ToString();
 
             //        if(strInstrument=="")
@@ -237,15 +275,15 @@ namespace UI.PaymentModule
             //    else if(btnRadioAdvice.Checked == true)
             //    {
             //        DataTable dtAdvice = new DataTable();
-            //        dtAdvice = objtreasuryChallan.GetSetAndUpdateAdviceList(intUnit, ref strCode);
+            //        dtAdvice = _bll.GetSetAndUpdateAdviceList(intUnit, ref strCode);
             //        strInstrument = dtAdvice.Rows[0]["strCode"].ToString();
             //    }
 
             //    //==========voucher bank==========
             //    DateTime dteLastActionTime = DateTime.Now; string msg = "";
             //    DataTable dtinsert = new DataTable();           
-            //    objtreasuryChallan.InsertVoucharBank(strVoucherCode, intUnit, intBank, intBankAcc, strInstrument, dteVdate, strNarration, monCrAmount, intUserId, dteLastActionTime, strPayTo, intCOA, monDrAmount, strAccName, ref msg);
-            //    objtreasuryChallan.InsertVoucharList(intUnit, "Treasury", dteVdate, "TSR", true, ref strCode);
+            //    _bll.InsertVoucharBank(strVoucherCode, intUnit, intBank, intBankAcc, strInstrument, dteVdate, strNarration, monCrAmount, intUserId, dteLastActionTime, strPayTo, intCOA, monDrAmount, strAccName, ref msg);
+            //    _bll.InsertVoucharList(intUnit, "Treasury", dteVdate, "TSR", true, ref strCode);
             #endregion
 
         }
@@ -401,5 +439,9 @@ namespace UI.PaymentModule
         }
         #endregion ==========End RowBound=============
 
+        protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadBank();
+        }
     }
 }
