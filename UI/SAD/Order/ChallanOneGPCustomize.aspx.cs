@@ -36,6 +36,7 @@ namespace UI.SAD.Order
         OrderByTrip ot = new OrderByTrip();
         DataTable dt = new DataTable(); string tripId;
         DataTable chdt = new DataTable();
+        DataTable dtprom = new DataTable();
         SeriLog log = new SeriLog();
         string location = "SAD";
         string start = "starting SAD\\Order\\ChallanOneGPCustomize";
@@ -198,8 +199,8 @@ namespace UI.SAD.Order
 
             StringBuilder sbPending = new StringBuilder();
             StringBuilder sbtotaldelvparybase = new StringBuilder();
+            StringBuilder sbPromotion = new StringBuilder();
 
-         
 
             //string promItem = "";
             decimal count = 0, promCount = 0;
@@ -243,7 +244,7 @@ namespace UI.SAD.Order
                    
                     sbtotaldelvparybase.Append("<table style=\"width:100%;\"  class=\"TablePR\">");
                     sbPending.Append("<table style=\"width:100%;\"  class=\"TablePR\">");
-
+                    sbPromotion.Append("<table style=\"width:100%;\"  class=\"TablePR\">");
                 }
 
 
@@ -285,11 +286,65 @@ namespace UI.SAD.Order
                         </tr>");
 
 
+                    //sbPromotion.Append(@"</br><tr style=""font-size:10px;background-color:#FFFFFF"">
+
+                    //       <th style=""width:20px;text-align:center"">
+                    //            SL</th>
+                    //        <th style=""text-align:center"">
+                    //           DELIVERY PRODUCT </th>
+                    //        <th style=""width:67px;text-align:center"">
+                    //         D.O NUMBER</th>
+                    //         <th style=""width:67px;text-align:center"">
+                    //           D. O  DATE</th>
+                    //         <th style=""width:67px;text-align:center"">
+                    //           CHALAN NUMBER</th>
+
+                    //        <th style=""width:67px;text-align:center"">
+                    //            DELIVERY QNT.</th>
+
+                    //    </tr>");
+
+                    //sbPromotion.Append(@"</br><tr style=""font-size:10px;background-color:#FFFFFF"">
+
+                    //       <th style=""width:20px;text-align:center"">
+                    //            SL</th>
+                    //        <th style=""text-align:center"">
+                    //           DELIVERY PRODUCT </th>
+                    //        <th style=""width:67px;text-align:center"">
+                    //         D.O NUMBER</th>
+                    //         <th style=""width:67px;text-align:center"">
+                    //           D. O  DATE</th>
+                    //         <th style=""width:67px;text-align:center"">
+                    //           CHALAN NUMBER</th>
+
+                    //        <th style=""width:67px;text-align:center"">
+                    //            DELIVERY QNT.</th>
+
+                    //    </tr>");
+                    sbPromotion.Append(@"<tr style=""font-size:10px;background-color:#A0A0A0"">
+                            <th style=""width:20px;text-align:center"">
+                                SL</th>
+                            <th style=""text-align:center"">
+                               PROMOTION PRODUCT </th>
+                            <th style=""width:67px;text-align:center"">
+                             D.O NUMBER</th>
+                             <th style=""width:67px;text-align:center"">
+                               D. O  DATE</th>
+                             <th style=""width:67px;text-align:center"">
+                               CHALAN NUMBER</th>
+                           
+                            <th style=""width:67px;text-align:center"">
+                                DELIVERY QNT.</th>
+                            
+                        
+                        </tr>");
+
 
                 }
 
 
-                
+
+
 
                 #region ********************************************** 
                 if (maxChallan)
@@ -354,6 +409,42 @@ namespace UI.SAD.Order
 
                     }
 
+                    //customerId = 374089;
+                    dtprom = bllsv.getcustomerbasePromotionqnt(int.Parse(tripId), customerId);
+                    for (int K = 0; K < dtprom.Rows.Count; K++)
+                    {
+                        string chProduct = dtprom.Rows[K]["strProductName"].ToString();
+                        string chDo = dtprom.Rows[K]["strdonumber"].ToString();
+                        try
+                        {
+                            string dtedate = dtprom.Rows[K]["dtedodate"].ToString();
+                            chDate = DateTime.Parse(dtprom.Rows[K]["dtedodate"].ToString());
+                        }
+                        catch { }
+                       // chDate = DateTime.Parse(dt.Rows[K]["dtedodate"].ToString());
+                        string chNumber = dtprom.Rows[K]["strchallannumber"].ToString();
+                        string chQty = dtprom.Rows[K]["decchallanqnt"].ToString();
+                        string chrate = dtprom.Rows[K]["rate"].ToString();
+                        string chPrice = dtprom.Rows[K]["monAmount"].ToString();
+
+                        sbPromotion.Append("<tr style=\" font-size:10px;\"><td>" + dtprom.Rows[K]["intsl"] + @"</td>");
+                        sbPromotion.Append("<td>" + chProduct + "</td>");
+                        sbPromotion.Append("<td>" + chDo + "</td>");
+                        sbPromotion.Append("<td style=\"text-align:right\">" + chDate.ToString("yyyy-MM-dd") + "</td>");
+                        sbPromotion.Append("<td style=\"text-align:right\">" + chNumber + "</td>");
+                      
+                        sbPromotion.Append("<td style=\"text-align:right\">" + chQty + "</td>");
+                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
+                        sbPromotion.Append("</tr>");
+
+
+
+                    }
+
+
+
+
+
                 }
 
 
@@ -364,6 +455,7 @@ namespace UI.SAD.Order
                
                 sbtotaldelvparybase.Append("</table>");
                 sbPending.Append("</table>");
+                sbPromotion.Append("</table>");
                 if (maxChallan)
                 {
 
@@ -377,7 +469,8 @@ namespace UI.SAD.Order
             tempD.Append(sb.ToString());
             tempD.Append(sbtotaldelvparybase.ToString());
             tempD.Append(sbPending.ToString());
-           
+            tempD.Append(sbPromotion.ToString());
+
             tempD.Append(sbP.ToString());
             tempD.Append(sbGT.ToString());
             tempD.Append(sbT.ToString());

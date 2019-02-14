@@ -546,7 +546,7 @@ namespace SAD_BLL.Sales
 
 
 
-
+        
 
 
 
@@ -561,7 +561,17 @@ namespace SAD_BLL.Sales
             }
             catch (Exception ex) { return new DataTable(); }
         }
-     
+        public DataTable getcustomerbasePromotionqnt(int tripid, int customerid)
+        {
+            try
+            {
+                SprChalanQntTripandCustomerBasePromotionTableAdapter ta = new SprChalanQntTripandCustomerBasePromotionTableAdapter();
+                return ta.GetDataChalanQntTripandCustomerBasePromotion(tripid, customerid);
+            }
+            catch (Exception ex) { return new DataTable(); }
+        }
+
+
         public DataTable DRSummeryRpt(int unitid, int ToShippingid, DateTime fromdate, DateTime todate, int rptype)
         {
             try
