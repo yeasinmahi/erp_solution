@@ -68,7 +68,7 @@ namespace UI.SCM
             
             Common.Clear(UpdatePanel0.Controls,exceptControls);
 
-            Common.UnLoadDropDown(ddlSupplier);
+            ddlSupplier.UnLoad();
             if (!CheckTextBox(txtPONo, "PO", out intPOID))
             {
                 return;

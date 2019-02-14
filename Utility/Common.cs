@@ -174,28 +174,21 @@ namespace Utility
             return isLoad;
         }
 
-        public static void UnLoadDropDown(DropDownList ddl)
+        public static void UnLoad(this DropDownList ddl)
         {
             ddl.Items.Clear();
         }
 
-        public static void UnLoadDropDownWithSelect(DropDownList ddl)
+        public static void UnLoadWithSelect(this DropDownList ddl)
         {
-            UnLoadDropDown(ddl);
+            UnLoad(ddl);
             ddl.Items.Insert(0, new ListItem("Select", "0"));
         }
 
-        public static void UnLoadDropDownWithAll(DropDownList ddl)
+        public static void UnLoadWithAll(this DropDownList ddl)
         {
-            UnLoadDropDown(ddl);
+            UnLoad(ddl);
             ddl.Items.Insert(0, new ListItem("All", "0"));
-        }
-
-        public static List<Control> GetContolList()
-        {
-            List<Control> controls = new List<Control>();
-
-            return controls;
         }
         public static void Clear(ControlCollection controls,List<Control> exceptControls)
         {
@@ -251,7 +244,7 @@ namespace Utility
             return ctrl;
         }
 
-        public static int GetOnlyNumberFromString(string s)
+        public static int GetOnlyNumber(this string s)
         {
             string result = Regex.Match(s, @"\d+").Value;
             int.TryParse(result, out int num);

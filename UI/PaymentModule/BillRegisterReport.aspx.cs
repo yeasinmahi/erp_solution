@@ -37,7 +37,7 @@ namespace UI.PaymentModule
                 int id = 0;
                 if (poNo.ToLower().Contains("po"))
                 {
-                    id = Common.GetOnlyNumberFromString(poNo);
+                    id = poNo.GetOnlyNumber();
                 }
                 if (id > 0)
                 {

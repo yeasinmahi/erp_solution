@@ -111,7 +111,7 @@ namespace UI.SCM.Transfer
                 txtVehicle.Text = "";
                 lblDetalis.Text = "";
                 lblValue.Text = "";
-                Common.UnLoadDropDown(ddlLcation);
+                ddlLcation.UnLoad();
                 hdnStockQty.Value = "0";
                 LoadToWh();
                 LoadTransferType();
@@ -203,7 +203,7 @@ namespace UI.SCM.Transfer
                             txtItem.Text = "";
                             txTransferQty.Text = "";
                             lblValue.Text = "";
-                            Common.UnLoadDropDown(ddlLcation);
+                            ddlLcation.UnLoad();
                         }
                         else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
 

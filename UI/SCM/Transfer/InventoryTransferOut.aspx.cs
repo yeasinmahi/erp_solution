@@ -92,9 +92,9 @@ namespace UI.SCM.Transfer
             {
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
                 txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
-                
-                Common.UnLoadDropDownWithSelect(ddlLcation);
-                Common.UnLoadDropDownWithSelect(ddlToWh);
+
+                ddlLcation.UnLoadWithSelect();
+                ddlToWh.UnLoadWithSelect();
                 hdnStockQty.Value = "0";
             }
             catch (Exception ex)

@@ -84,7 +84,7 @@ namespace UI.SCM.BOM
             }
             else
             {
-                Common.UnLoadDropDown(ddlLine);
+                ddlLine.UnLoad();
             }
         }
         #region========================Auto Search============================

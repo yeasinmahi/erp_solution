@@ -63,7 +63,7 @@ namespace UI.PaymentModule
             }
             else
             {
-                Common.UnLoadDropDownWithSelect(ddlBank);
+                ddlBank.UnLoadWithSelect();
             }
             
 
@@ -79,7 +79,7 @@ namespace UI.PaymentModule
             }
             else
             {
-                Common.UnLoadDropDownWithSelect(ddlAccount);
+                ddlAccount.UnLoadWithSelect();
             }
             
 

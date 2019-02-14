@@ -194,7 +194,7 @@ namespace UI.SCM.Transfer
                     {
                         _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
                         Common.LoadDropDownWithSelect(ddlTransferItem, _dt, "Id", "strName");
-                        Common.UnLoadDropDown(ddlLcation);
+                        ddlLcation.UnLoad();
                         Toaster(msg, Common.TosterType.Success);
                     }
                     else
@@ -230,7 +230,7 @@ namespace UI.SCM.Transfer
                 }
                 else
                 {
-                    Common.UnLoadDropDownWithSelect(ddlTransferItem);
+                    ddlTransferItem.UnLoadWithSelect();
                     
                 }
                 
