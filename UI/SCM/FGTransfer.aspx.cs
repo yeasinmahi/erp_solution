@@ -22,8 +22,8 @@ namespace UI.SCM
                 try
                 {
                     _dt = new InventoryTransfer_BLL().GetTtransferDatas(1, "", 0, 0, DateTime.Now, Enroll);
-                    Common.LoadDropDown(ddlWH, _dt, "Id", "strName");
-                    Common.LoadDropDown(ddlToWH, _dt, "Id", "strName");
+                    ddlWH.Loads(_dt, "Id", "strName");
+                    ddlToWH.Loads(_dt, "Id", "strName");
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
@@ -130,7 +130,7 @@ namespace UI.SCM
                 if (_dt.Rows.Count > 0)
                 {
                     DropDownList ddlLocation = (e.Row.FindControl("ddlLocation") as DropDownList);
-                    Common.LoadDropDown(ddlLocation, _dt, "Id", "strName");
+                    ddlLocation.Loads(_dt, "Id", "strName");
 
                     try
                     {

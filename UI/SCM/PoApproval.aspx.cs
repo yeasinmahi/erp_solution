@@ -42,7 +42,7 @@ namespace UI.SCM
         public void LoadDepartment()
         {
             dt = DataTableLoad.GetPoDataTable(Enroll, 24);
-            Common.LoadDropDown(ddlDepts, dt, "Id", "strName");
+            ddlDepts.Loads(dt, "Id", "strName");
             dt.Clear();
         }
 

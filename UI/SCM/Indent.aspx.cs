@@ -75,7 +75,7 @@ namespace UI.SCM
                 ddlQcPersonal.DataBind();
 
                 dt = _objIndent.GetDepartment();
-                Common.LoadDropDownWithSelect(ddlDepartment, dt, "intdepartmentID", "strDepatrment");
+                ddlDepartment.LoadWithSelect(dt, "intdepartmentID", "strDepatrment");
 
                 dt = _objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, Enroll);
                 ddlReqId.DataSource = dt;

@@ -21,7 +21,7 @@ namespace UI.PaymentModule
                 try
                 {
                     _dt = _bll.GetAllUnit(Enroll);
-                    Common.LoadDropDown(ddlUnit, _dt, "intUnitID", "strUnit");
+                    ddlUnit.Loads(_dt, "intUnitID", "strUnit");
                     _dt.Clear();
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);

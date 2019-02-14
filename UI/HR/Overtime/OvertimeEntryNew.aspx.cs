@@ -179,22 +179,22 @@ namespace UI.HR.Overtime
 
         private void LoadPurpose()
         {
-            Common.LoadDropDown(ddlPurpose, _bll.getOvertimePurpouse(), "intID", "strPurpouse");
+            ddlPurpose.Loads(_bll.getOvertimePurpouse(), "intID", "strPurpouse");
         }
 
         private void LoadPurposeUpdate()
         {
-            Common.LoadDropDown(ddlPurposeUpdate, _bll.getOvertimePurpouse(), "intID", "strPurpouse");
+            ddlPurposeUpdate.Loads(_bll.getOvertimePurpouse(), "intID", "strPurpouse");
         }
 
         public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            Common.LoadDropDown(ddlJobStation, _bll.GetJobStationByPermission(unitId, Enroll), "intEmployeeJobStationId", "strJobStationName");
+            ddlJobStation.Loads(_bll.GetJobStationByPermission(unitId, Enroll), "intEmployeeJobStationId", "strJobStationName");
         }
 
         public void LoadUnitDropDown(int enrol)
         {
-            Common.LoadDropDown(ddlUnit, _bll.GetUnitName(enrol), "intUnitID", "strUnit");
+            ddlUnit.Loads(_bll.GetUnitName(enrol), "intUnitID", "strUnit");
         }
 
         public int GetUnitId()

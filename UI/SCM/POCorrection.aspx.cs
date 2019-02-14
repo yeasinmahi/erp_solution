@@ -37,7 +37,7 @@ namespace UI.SCM
                 //dgvItemInfoByPO.DataBind();
 
                 _dt = _bll.GetCurrency();
-                Common.LoadDropDown(ddlCurrency, _dt, "intCurrencyID", "strCurrencyName");
+                ddlCurrency.Loads(_dt, "intCurrencyID", "strCurrencyName");
 
                 btnUpdatePO.Visible = false;
                 btnDeletePO.Visible = false;
@@ -86,7 +86,7 @@ namespace UI.SCM
                 txtMrrNo.Text = "";
             }
             _dt = _bll.GetSuppliers(intPOID);
-            Common.LoadDropDown(ddlSupplier, _dt, "intSupplierID", "strSupplierName");
+            ddlSupplier.Loads(_dt, "intSupplierID", "strSupplierName");
 
             _dt = new DataTable();
             _dt = _bll.GetSupplierInfoByPO(intPOID);
