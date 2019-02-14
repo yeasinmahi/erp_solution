@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FGTransfer.aspx.cs" Inherits="UI.SCM.FgTransfer" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FgTransferReport.aspx.cs" Inherits="UI.SCM.Transfer.FgTransferReport" %>
 
 <%@ Import Namespace="Utility" %>
 
@@ -57,7 +57,7 @@
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                 </div>
                                 <div class="col-md-2" id="showbuttonDiv" style="padding-top: 20px;">
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClick="btnShow_Click" />
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClientClick="return  Validation()" OnClick="btnShow_Click" />
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                             <asp:Label runat="server" Text="FG Transfer Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="FG_Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="2" OnRowDataBound="FG_Grid_OnRowDataBound">
+                            <asp:GridView ID="Grid" CssClass="Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="4" ForeColor="#333333" GridLines="Both" >
                                 <Columns>
                                     <asp:TemplateField HeaderText="SN" SortExpression="intautoid">
                                         <ItemTemplate>
@@ -99,12 +99,6 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Store Location" ItemStyle-HorizontalAlign="right">
-                                        <ItemTemplate>
-                                            <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="true" Width="100%" CssClass="form-control" OnSelectedIndexChanged="ddlLocation_OnSelectedIndexChanged"></asp:DropDownList>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="Right" />
-                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity" SortExpression="numSendStoreQty">
                                         <ItemTemplate>
                                             <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Bind("Qty","{0:N4}") %>' Width="100%" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
@@ -117,13 +111,17 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField ShowHeader="true" HeaderText="Action">
-                                        <ItemTemplate>
-                                            <asp:Button ID="btnTransfer" runat="server" OnClick="btnTransfer_OnClick" Text="Transfer" CssClass="btn btn-success btn-xs"></asp:Button>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
-                                    </asp:TemplateField>
                                 </Columns>
+                                <EditRowStyle BackColor="#999999" />
+                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                <%--<RowStyle BackColor="#F7F6F3" ForeColor="#333333" />--%>
+                                <%--<SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />--%>
+                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                             </asp:GridView>
                         </div>
                     </div>
@@ -145,11 +143,11 @@
             function Validation() {
                 var txtFromDate = document.getElementById("txtFromDate").value;
                 var txtToDate = document.getElementById("txtToDate").value;
-
-                if (txtFromDate == "") {
+                console.log("From :"+txtFromDate);
+                if (txtFromDate === "") {
                     ShowNotification("From date can not be blank", "Transfer Report", "warning");
                     return false;
-                } else if (txtToDate == "") {
+                } else if (txtToDate === "") {
                     ShowNotification("To date can not be blank", "Transfer Report", "warning");
                     return false;
                 }

@@ -24,7 +24,7 @@ namespace UI.Inventory
         string secid = "0";
         DataTable dtbl = new DataTable();
         int intEnroll;
-        int type, actionby, id; bool active;
+        int type, id; bool active;
         DateTime fdate, tdate;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -417,7 +417,8 @@ namespace UI.Inventory
                 Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
             }
             catch { }
-            File.Delete(xmlpath); LoadXml();
+            File.Delete(xmlpath);
+            LoadXml();
 
         }
 
