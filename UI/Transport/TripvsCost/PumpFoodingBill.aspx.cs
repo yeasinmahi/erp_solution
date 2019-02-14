@@ -45,7 +45,7 @@ namespace UI.Transport.TripvsCost
                 
                 //SetUnitName(Int32.Parse(Session[SessionParams.USER_ID].ToString()));
                 LoadUnitDropDown(_enroll);
-                LoadJobStationDropDown(GetUnitID(_enroll),_enroll);
+                //LoadJobStationDropDown(GetUnitID(_enroll),_enroll);
 
                 ////---------xml----------
                 try { File.Delete(filePathForXML); }
@@ -342,15 +342,16 @@ namespace UI.Transport.TripvsCost
 
                             string tmDifferencehmswith = tmdur.ToString();
 
-                            string strpur = "Fooding Bill";
+                            string tripno = txttrip.Text.ToString();
                             string totalamount = txttotal.Text.ToString();
                             string remk = txtRemarks.Text;
+
                             string aplenrol = txtAplicnEnrol.Text;
 
 
                             Serial = "1";
 
-                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, "0", Serial, strstarttime, strendtime, df, remk, aplenrol);
+                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, tripno, "0", totalamount, strstarttime, strendtime, df, remk, aplenrol);
 
 
 
@@ -358,71 +359,7 @@ namespace UI.Transport.TripvsCost
 
 
 
-                        //else
-                        //{
-
-                        //    string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
-
-                        //    string strstarttime = (tmstart1.ToString());
-                        //    string strendtime = (tmend1.ToString());
-                        //    string strstar = starthours.ToString();
-                        //    string strendt = endhours.ToString();
-
-
-                        //    starttime1 = Convert.ToString(strstarttime.ToString());
-                        //    endtime1 = Convert.ToString(strendtime.ToString());
-                        //    DateTime dt11 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-                        //    DateTime dt12 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-
-
-                        //    DateTime dts = Convert.ToDateTime(dt11);
-                        //    DateTime dte = Convert.ToDateTime(dt12);
-                        //    TimeSpan diff;
-                        //    TimeSpan difff;
-                        //    if (endhours > starthours)
-                        //    {
-
-                        //        diff = (Convert.ToDateTime(dte) - Convert.ToDateTime(dts));
-                        //        string df = Convert.ToString(diff.ToString());
-
-
-                        //        string tmDifferencehms = txtMovDuration.Text;
-                        //        string tmDifferencehmswith = tmdur.ToString();
-
-                        //        string strpur = drdlPurpouse.SelectedItem.Text;
-                        //        string strpurid = drdlPurpouse.SelectedValue.ToString();
-                        //        string remk = txtRemarks.Text;
-                        //        string aplenrol = txtAplicnEnrol.Text;
-
-
-                        //        Serial = "1";
-
-                        //        CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-
-                        //    }
-                        //    else
-                        //    {
-                        //        diff = Convert.ToDateTime(dts) - Convert.ToDateTime(dte);
-                        //        difff = interval - diff;
-                        //        string df = Convert.ToString(difff.ToString());
-
-
-                        //        string tmDifferencehms = txtMovDuration.Text;
-                        //        string tmDifferencehmswith = tmdur.ToString();
-
-                        //        string strpur = drdlPurpouse.SelectedItem.Text;
-                        //        string strpurid = drdlPurpouse.SelectedValue.ToString();
-                        //        string remk = txtRemarks.Text;
-                        //        string aplenrol = txtAplicnEnrol.Text;
-
-
-                        //        Serial = "1";
-
-                        //        CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, strpur, strpurid, Serial, strstarttime, strendtime, df, remk, aplenrol);
-                        //    }
-
-
-                        //}
+                     
 
                     }
 
@@ -451,6 +388,8 @@ namespace UI.Transport.TripvsCost
                 string ipaddress = (ip.AddressList[1].ToString());
 
                 DateTime dteFromDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+               
+
                 hdnApplicantEnrol.Value = HttpContext.Current.Session[UI.ClassFiles.SessionParams.USER_ID].ToString();
                 Int32 enroll = Convert.ToInt32(hdnApplicantEnrol.Value);
                 int BikeCarUserTypeid = 1;
@@ -460,21 +399,22 @@ namespace UI.Transport.TripvsCost
                 int jobstation = Convert.ToInt32(hdnstation.Value);
                 XmlDocument doc = new XmlDocument();
 
-                try
-                {
+                //try
+                //{
                     doc.Load(filePathForXML);
                     XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
                     string xmlString = dSftTm.InnerXml;
                     xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
-                    string message = bll.overtimeInsertion(xmlString, dteFromDate, enroll, ipaddress);
+                    DataTable   dt = bll.PumpFoodingBill(0, enroll, xmlString, dteFromDate, dteFromDate, unit, 0);
+                    string  message = dt.Rows[0][11].ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                }
+                //}
 
-                catch
-                {
+                //catch
+                //{
 
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- wrong format data. plz check');", true);
-                }
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' Sorry-- wrong format data. plz check');", true);
+                //}
 
 
 
@@ -524,13 +464,7 @@ namespace UI.Transport.TripvsCost
         {
             return Int32.Parse(bll.GetUnitName(enrol).Rows[0]["intUnitID"].ToString());
         }
-        public void LoadJobStationDropDown(int unitId, int enroll)
-        {
-            ddlJobStation.DataSource = bll.GetJobStationByPermission(unitId, enroll);
-            ddlJobStation.DataValueField = "intEmployeeJobStationId";
-            ddlJobStation.DataTextField = "strJobStationName";
-            ddlJobStation.DataBind();
-        }
+    
         public void LoadUnitDropDown(int enrol)
         {
             ddlUnit.DataSource = bll.GetUnitName(enrol);
@@ -538,7 +472,13 @@ namespace UI.Transport.TripvsCost
             ddlUnit.DataTextField = "strUnit";
             ddlUnit.DataBind();
         }
-
+        //    public void LoadJobStationDropDown(int unitId, int enroll)
+        //{
+        //    ddlJobStation.DataSource = bll.GetJobStationByPermission(unitId, enroll);
+        //    ddlJobStation.DataValueField = "intEmployeeJobStationId";
+        //    ddlJobStation.DataTextField = "strJobStationName";
+        //    ddlJobStation.DataBind();
+        //}
         protected void txtFullName_TextChanged(object sender, EventArgs e)
         {
 
@@ -547,7 +487,8 @@ namespace UI.Transport.TripvsCost
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             int unitId = Convert.ToInt32((sender as DropDownList)?.SelectedValue);
-            LoadJobStationDropDown(unitId, _enroll);
+            int _enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            //LoadJobStationDropDown(unitId, _enroll);
             ddlJobStation_SelectedIndexChanged(ddlJobStation, null);
         }
 

@@ -983,5 +983,19 @@ namespace HR_BLL.TourPlan
             try { return adp.GetDataBrandItemInfoDet(type, actionby, xml, id, fdate, tdate, unitid); }
             catch { return new DataTable(); }
         }
+
+        public DataTable  PumpFoodingBill(int type, int actionby, string xmlString, DateTime dteFromDate, DateTime todate, int unitid, int id)
+        {
+            
+            try
+            {
+                SprFoodingBillDetTableAdapter ta = new SprFoodingBillDetTableAdapter();
+                //bll.GetDataFoodingBillDet(type, actionby, xmlString, dteFromDate, todate, unitid, id, ref msg);
+             return     ta.GetDataFoodingBillDet(type, actionby, xmlString, dteFromDate, todate, unitid, id);
+               
+            }
+            catch (Exception ex) { return new DataTable();  }
+        }
+
     }
 }

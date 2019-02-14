@@ -122,6 +122,9 @@ namespace SAD_BLL.Item
             ta.GetData(int.Parse(userId), int.Parse(levelOneId), idList, subLevelList, true, startDate.Date, endDate, price,int.Parse(unitId), prType, int.Parse(uomId), int.Parse(currencyId), code, int.Parse(salesType), ref error);
         }
 
+
+
+
         public void SetPriceDiscount(string userId, string unitId, string levelOneId, string idList, string subLevelList, DateTime startDate, DateTime? endDate, decimal price, string priceCatagory, string uomId, string currencyId, string salesType, ref int? error)
         {
             //CodeGenatator cg = new CodeGenatator();
@@ -188,6 +191,25 @@ namespace SAD_BLL.Item
         {
             QueriesTableAdapter adp = new QueriesTableAdapter();
             return bool.Parse(adp.GetPriceVisibility(itemid).ToString());
+        }
+
+
+        public string allTeritoryPriceSet(int unitId, decimal price, DateTime startDate, DateTime endDate, int prdid, int uomId, int userid  )
+        {
+            string msg = "";
+            try
+            {
+                SprPriceSetAllTerritoryTableAdapter ta = new SprPriceSetAllTerritoryTableAdapter();
+                ta.GetDataPriceSetAllTerritory(unitId, price, startDate, endDate, prdid, uomId, userid, ref msg);
+                return msg;
+
+
+            }
+            catch(Exception ex) {
+                return ex.ToString();
+            }
+
+
         }
 
     }

@@ -1184,6 +1184,7 @@
     <Content Include="SAD\Customer\CustomerInfoEdit.aspx" />
     <Content Include="SAD\Customer\CustomerInfoFactory.aspx" />
     <Content Include="SAD\Customer\DistributionPoint.aspx" />
+    <Content Include="SAD\Customer\PriceSetAllTerritory.aspx" />
     <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
@@ -5812,6 +5813,13 @@
     </Compile>
     <Compile Include="SAD\Customer\DistributionPoint.aspx.designer.cs">
       <DependentUpon>DistributionPoint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\PriceSetAllTerritory.aspx.cs">
+      <DependentUpon>PriceSetAllTerritory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\PriceSetAllTerritory.aspx.designer.cs">
+      <DependentUpon>PriceSetAllTerritory.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\Report\CashMemoBillForDO.aspx.cs">
       <DependentUpon>CashMemoBillForDO.aspx</DependentUpon>

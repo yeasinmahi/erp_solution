@@ -101,7 +101,7 @@
 
                 <div class="leaveApplication_container">
                     <div class="tabs_container">
-                        Overtime entry (Driver & Office Assistants) :
+                      Pump Fooding Bill :
                         <asp:HiddenField ID="hdUnitId" runat="server" />
                         <asp:HiddenField ID="hdnApplicantEnrol" runat="server" />
                         <asp:HiddenField ID="hdnstation" runat="server" />
@@ -132,7 +132,12 @@
                                 <asp:Label ID="lblJobStation" CssClass="lbl" runat="server" Text="Job Station Name"></asp:Label>
                             </td>
                             <td>
-                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_SelectedIndexChanged" DataSourceID="odsJobstation" DataTextField="strJobStationName" DataValueField="intEmployeeJobStationId"></asp:DropDownList>
+                                <asp:ObjectDataSource ID="odsJobstation" runat="server" SelectMethod="GetJobStation" TypeName="HR_BLL.TourPlan.TourPlanning">
+                                    <SelectParameters>
+                                        <asp:ControlParameter ControlID="ddlUnit" Name="unitId" PropertyName="SelectedValue" Type="Int32" />
+                                    </SelectParameters>
+                                </asp:ObjectDataSource>
                             </td>
                         </tr>
                         <tr class="tblroweven">
