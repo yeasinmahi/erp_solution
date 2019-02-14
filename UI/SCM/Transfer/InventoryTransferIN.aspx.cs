@@ -58,7 +58,7 @@ namespace UI.SCM.Transfer
                 Session["WareID"] = intWh;
 
                 List<Control> excepts = new List<Control> { ddlWh,ddlTransferItem };
-                Common.Clear(UpdatePanel0.Controls, excepts);
+                UpdatePanel0.Controls.Clear(excepts);
                 lblFrom.Text = string.Empty;
 
                 _dt = _bll.GetTtransferDatas(3, xmlString, intWh, Id, DateTime.Now, Enroll);
@@ -221,7 +221,7 @@ namespace UI.SCM.Transfer
                 intWh = ddlWh.SelectedValue();
                 Session["WareID"] = intWh;
                 List<Control> excepts = new List<Control> {ddlWh};
-                Common.Clear(UpdatePanel0.Controls, excepts);
+                UpdatePanel0.Controls.Clear(excepts);
                 lblFrom.Text = string.Empty;
                 if (intWh > 0)
                 {

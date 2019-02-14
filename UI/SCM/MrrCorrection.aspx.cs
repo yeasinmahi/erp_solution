@@ -232,7 +232,7 @@ namespace UI.SCM
 
             List<Control> exceptControls = new List<Control>();
             exceptControls.Add(txtMrrNo);
-            Common.Clear(UpdatePanel0.Controls, exceptControls);
+            UpdatePanel0.Controls.Clear(exceptControls);
         }
 
         public bool CheckUnitPermission()

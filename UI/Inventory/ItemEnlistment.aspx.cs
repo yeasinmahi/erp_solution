@@ -135,7 +135,7 @@ namespace UI.Inventory
                 Enlist.INSERTMasterItemlistCreate(strName, strDescription, strPartNo, strBrand, intClusterId, intCommodityId, intCategoryId, strUoM, enroll, strModel, strOrigin, strSpecification);
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item Added Successfully');", true);
-                Common.Clear(UpdatePanel0.Controls,null);
+                UpdatePanel0.Controls.ClearAll();
             }                   
         }
  

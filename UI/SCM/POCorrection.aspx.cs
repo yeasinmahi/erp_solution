@@ -65,8 +65,8 @@ namespace UI.SCM
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            
-            Common.Clear(UpdatePanel0.Controls,exceptControls);
+
+            UpdatePanel0.Controls.Clear(exceptControls);
 
             ddlSupplier.UnLoad();
             if (!CheckTextBox(txtPONo, "PO", out intPOID))
@@ -144,12 +144,12 @@ namespace UI.SCM
                     //txtTransport.Text = string.Empty;
                     //txtGDiscount.Text = string.Empty;
                     //txtOthers.Text = string.Empty;
-                    Common.Clear(UpdatePanel0.Controls,exceptControls);
+                    UpdatePanel0.Controls.Clear(exceptControls);
                 }
             }
             catch
             {
-                Common.Clear(UpdatePanel0.Controls, exceptControls);
+                UpdatePanel0.Controls.Clear(exceptControls);
             }
 
             if (string.IsNullOrWhiteSpace(txtMrrNo.Text))

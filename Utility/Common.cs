@@ -190,7 +190,11 @@ namespace Utility
             UnLoad(ddl);
             ddl.Items.Insert(0, new ListItem("All", "0"));
         }
-        public static void Clear(ControlCollection controls,List<Control> exceptControls)
+        public static void ClearAll(this ControlCollection controls)
+        {
+            controls.Clear(null);
+        }
+        public static void Clear(this ControlCollection controls,List<Control> exceptControls)
         {
             
             foreach (Control ctrl in controls)
