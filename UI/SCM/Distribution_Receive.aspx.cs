@@ -68,7 +68,7 @@ namespace UI.SCM
             decimal monValue = Convert.ToDecimal(((Label)row.FindControl("lblmonValue")).Text);
             string strRemarks = "Received From APL Central Store";
 
-            int intInWHID = Common.GetDdlSelectedValue(ddlWH);
+            int intInWHID = ddlWH.SelectedValue();
             monValue = monValue * -1;
 
             int intOutWH = Convert.ToInt32(((Label)row.FindControl("lblintOutWHID")).Text); ;

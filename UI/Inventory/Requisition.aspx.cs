@@ -48,7 +48,7 @@ namespace UI.Inventory
                 Clearcontrols();
                 try { File.Delete(xmlpath); } catch { }
 
-                int whId = Common.GetDdlSelectedValue(ddlWH);
+                int whId = ddlWH.SelectedValue();
                 DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
                 Common.LoadDropDownWithSelect(DdlCostCenter, dt, "Id", "strName");
                
@@ -77,7 +77,7 @@ namespace UI.Inventory
         }
         public void LoadCostCenter()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWH);
+            int whId = ddlWH.SelectedValue();
             DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
             Common.LoadDropDown(DdlCostCenter, dt, "Id", "strName");
         }
@@ -216,7 +216,7 @@ namespace UI.Inventory
                     string dudt = DateTime.Parse(txtDueDate.Text).ToString("yyyy-MM-dd");
                     string quantity = txtQuantity.Text;
                     string remarks = txtRemarks.Text;
-                    string wh = Common.GetDdlSelectedValue(ddlWH).ToString();
+                    string wh = ddlWH.SelectedValue().ToString();
                     arrayKey = ddlWH.SelectedItem.Text.Split(delimiterChars);
                     string unit = arrayKey[1].ToString();
                     string sec = txtSection.Text;
@@ -404,7 +404,7 @@ namespace UI.Inventory
         {
             try
             {
-                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
+                Session["WareID"] = ddlWH.SelectedValue();
             }
             catch { }
             File.Delete(xmlpath); LoadXml();
@@ -414,7 +414,7 @@ namespace UI.Inventory
         {
             try
             {
-                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
+                Session["WareID"] = ddlWH.SelectedValue();
             }
             catch { }
             File.Delete(xmlpath);

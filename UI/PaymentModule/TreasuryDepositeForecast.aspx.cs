@@ -55,7 +55,7 @@ namespace UI.PaymentModule
         }
         public void LoadBank()
         {
-            int unitId = Common.GetDdlSelectedValue(ddlUnit);
+            int unitId = ddlUnit.SelectedValue();
             DataTable dt = _bll.GetBankListData(unitId);
             if (dt.Rows.Count > 0)
             {
@@ -70,8 +70,8 @@ namespace UI.PaymentModule
         }
         public void LoadAccount()
         {
-            int unitId = Common.GetDdlSelectedValue(ddlUnit);
-            int bankId = Common.GetDdlSelectedValue(ddlBank);
+            int unitId = ddlUnit.SelectedValue();
+            int bankId = ddlBank.SelectedValue();
             DataTable dt = _bll.GetBankListData(unitId);
             if (dt.Rows.Count > 0)
             {

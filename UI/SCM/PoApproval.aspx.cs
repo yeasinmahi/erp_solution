@@ -96,7 +96,7 @@ namespace UI.SCM
             }
             if (int.TryParse(strPo, out int poNumber))
             {
-                int dept = Common.GetDdlSelectedValue(ddlDepts);
+                int dept = ddlDepts.SelectedValue();
                 dt = DataTableLoad.GetPoViewDataTable(poNumber, Enroll, dept);
                 if (dt.Rows.Count > 0)
                 {

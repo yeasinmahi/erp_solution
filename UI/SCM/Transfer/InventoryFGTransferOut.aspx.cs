@@ -72,7 +72,7 @@ namespace UI.SCM.Transfer
 
         public void LoadWh()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
+            int whId = ddlWh.SelectedValue();
             dt = objTransfer.GetTtransferDatas(1, xmlString, whId, Id, DateTime.Now, enroll);
             Common.LoadDropDownWithSelect(ddlWh, dt, "Id", "strName");
             dt.Clear();
@@ -80,7 +80,7 @@ namespace UI.SCM.Transfer
 
         public void LoadToWh()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
+            int whId = ddlWh.SelectedValue();
             dt = objWH.GetDataByWhId(whId);
             Common.LoadDropDownWithSelect(ddlToWh, dt, "Id", "strName");
             dt.Clear();
@@ -88,7 +88,7 @@ namespace UI.SCM.Transfer
 
         public void LoadTransferType()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
+            int whId = ddlWh.SelectedValue();
             dt = objTransfer.GetTtransferDatas(7, xmlString, whId, Id, DateTime.Now, enroll);
             Common.LoadDropDownWithSelect(ddlTransType, dt, "Id", "strName");
             ddlTransType.SelectedIndex = ddlTransType.Items.IndexOf(ddlTransType.Items.FindByText("Good Product"));

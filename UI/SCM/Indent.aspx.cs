@@ -141,7 +141,7 @@ namespace UI.SCM
                             string sftyStock = dt.Rows[i]["numSafetyStock"].ToString();
                             string rate = dt.Rows[i]["rate"].ToString();
                             indentQty = dt.Rows[i]["numApproveQty"].ToString();
-                            int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
+                            int intDepartment = ddlDepartment.SelectedValue();
                             CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby, intDepartment);
                         }
                     }
@@ -262,7 +262,7 @@ namespace UI.SCM
                                 string stock = dt.Rows[0]["stockQty"].ToString();
                                 string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
                                 string rate = dt.Rows[0]["rate"].ToString();
-                                int intDepartment = Common.GetDdlSelectedValue(ddlDepartment);
+                                int intDepartment = ddlDepartment.SelectedValue();
 
                                 CreateXml(itemId, itemName, uom, stock, sftyStock, rate, quantity.ToString(), reqCode, reqId, indentType,
                                     purpose, qcby, intDepartment);
@@ -465,7 +465,7 @@ namespace UI.SCM
             {
                 if (int.Parse(ddlType.SelectedValue) > 0)
                 {
-                    if (Common.GetDdlSelectedValue(ddlDepartment) > 0)
+                    if (ddlDepartment.SelectedValue() > 0)
                     {
                         XmlDocument doc = new XmlDocument();
                         intWh = int.Parse(ddlWH.SelectedValue);

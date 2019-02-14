@@ -180,12 +180,12 @@ namespace UI.HR.Roster
         {
             string empEnroll = txtEnroll.Text;
             string date = txtDutyDate.Text;
-            int shiftId = Common.GetDdlSelectedValue(ddlShift);
-            string shift = Common.GetDdlSelectedText(ddlShift);
-            int jobstationId = Common.GetDdlSelectedValue(ddlJobStation);
-            string jobstation = Common.GetDdlSelectedText(ddlJobStation);
-            int sequenceId = Common.GetDdlSelectedValue(ddlSequence);
-            string sequence = Common.GetDdlSelectedText(ddlSequence);
+            int shiftId = ddlShift.SelectedValue();
+            string shift = ddlShift.SelectedText();
+            int jobstationId = ddlJobStation.SelectedValue();
+            string jobstation = ddlJobStation.SelectedText();
+            int sequenceId = ddlSequence.SelectedValue();
+            string sequence = ddlSequence.SelectedText();
             try
             {
                 arrayKey = TxtAsset.Text.Split(delimiterChars);
@@ -259,13 +259,13 @@ namespace UI.HR.Roster
 
         protected void ddlUnit_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadJobStationDropDown(Common.GetDdlSelectedValue(ddlUnit), _enroll);
+            LoadJobStationDropDown(ddlUnit.SelectedValue(), _enroll);
             ddlJobStation_OnSelectedIndexChanged(null, null);
         }
 
         protected void ddlJobStation_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadTeamDropDown(Common.GetDdlSelectedValue(ddlJobStation));
+            LoadTeamDropDown(ddlJobStation.SelectedValue());
             ddlTeam_OnSelectedIndexChanged(null, null);
         }
 
@@ -275,7 +275,7 @@ namespace UI.HR.Roster
 
         protected void ddlTeam_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadShiftDropDown(Common.GetDdlSelectedValue(ddlTeam));
+            LoadShiftDropDown(ddlTeam.SelectedValue());
             ddlShift_OnSelectedIndexChanged(null, null);
         }
 
@@ -285,7 +285,7 @@ namespace UI.HR.Roster
 
         protected void ddlShift_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadShiftValue(Common.GetDdlSelectedValue(ddlShift));
+            LoadShiftValue(ddlShift.SelectedValue());
         }
     }
 }

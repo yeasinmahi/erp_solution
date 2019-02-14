@@ -157,7 +157,7 @@ namespace UI.PaymentModule
 
             try
             {
-                intUnitID = Common.GetDdlSelectedValue(ddlUnit);
+                intUnitID = ddlUnit.SelectedValue();
                 if (string.IsNullOrWhiteSpace(txtFrom.Text))
                 {
                     Toaster("From Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
@@ -179,7 +179,7 @@ namespace UI.PaymentModule
                     return;
                 }
 
-                lblUnitName.Text = Common.GetDdlSelectedText(ddlUnit);
+                lblUnitName.Text = ddlUnit.SelectedText();
                 lblReportName.Text = "Bill Register Report";
                 lblFromToDate.Text = "For The Month of " + Convert.ToDateTime(txtFrom.Text).ToString("yyyy-MM-dd") + " To " + Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
 

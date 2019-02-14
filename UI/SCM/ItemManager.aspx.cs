@@ -30,7 +30,7 @@ namespace UI.SCM
                 ddlWh.DataValueField = "Id";
                 ddlWh.DataTextField = "strName";
                 ddlWh.DataBind();
-                wh = Common.GetDdlSelectedValue(ddlWh);
+                wh = ddlWh.SelectedValue();
                 dt = objIssue.GetWhByLocation(wh);
                 ddlLocation.DataSource = dt;
                 ddlLocation.DataValueField = "Id";
