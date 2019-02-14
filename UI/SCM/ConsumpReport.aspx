@@ -133,11 +133,11 @@
                             </td>
                             
                             <td style="text-align: right;">
-                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Com Group:"></asp:Label>
+                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Master Category:"></asp:Label>
                             </td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlComGroup" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
-                                <asp:Button ID="btnComGroup" runat="server" Text="Show" OnClick="btnComGroup_OnClick" OnClientClick="return validation()" />
+                                <asp:DropDownList ID="ddlMasterCategory" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
+                                <asp:Button ID="btnMasterCategory" runat="server" Text="Show" OnClick="btnMasterCategory_OnClick" OnClientClick="return validation()" />
                             </td>
                         </tr>
                         <tr>
@@ -148,7 +148,7 @@
                     <table>
                         <tr>
                             <td>
-                                <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true" Width="700px" CssClass="GridViewStyle">
+                                <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  CssClass="GridViewStyle">
                                     <HeaderStyle CssClass="HeaderStyle" />
                                     <FooterStyle CssClass="FooterStyle" />
                                     <RowStyle CssClass="RowStyle" />
@@ -170,42 +170,42 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Sub Category" ItemStyle-HorizontalAlign="right" SortExpression="strSubCategory">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblSubcegory" runat="server" Text='<%# Bind("strSubCategory") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
                                         <asp:TemplateField HeaderText="Minor Category" ItemStyle-HorizontalAlign="right" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMinorCategory" runat="server" Text='<%# Bind("strMinorCategory") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
                                         <asp:TemplateField HeaderText="Master Comb Group" ItemStyle-HorizontalAlign="right" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMasterComGroup" runat="server" Text='<%# Bind("MasterComGroup") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
                                         <asp:TemplateField HeaderText="Master Category" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblMasterCategory" runat="server" Text='<%# Bind("MasterCategory") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         
                                         <asp:TemplateField HeaderText="ACC Name" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblAccNama" runat="server" Text='<%# Bind("strAccName") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Used Qty" ItemStyle-HorizontalAlign="right" SortExpression="usedQty">

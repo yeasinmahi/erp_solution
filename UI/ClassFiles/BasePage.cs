@@ -1,4 +1,5 @@
 using System;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
 using UserSecurity;
@@ -87,7 +88,7 @@ namespace UI.ClassFiles
 
         public void Toaster(string message, Common.TosterType type)
         {
-            Toaster(message, GetPageName(), type);
+            Toaster(message, GetPageName().SplitCamelCase(), type);
         }
         public void Toaster(string message, string header, Common.TosterType type)
         {

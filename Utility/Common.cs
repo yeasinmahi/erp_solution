@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace Utility
 {
-    public class Common
+    public static class Common
     {
         public static PropertyInfo[] GetProperties(object obj)
         {
@@ -256,6 +256,19 @@ namespace Utility
             string result = Regex.Match(s, @"\d+").Value;
             int.TryParse(result, out int num);
             return num;
+        }
+
+        public static string SplitCamelCase(this string str)
+        {
+            return Regex.Replace(
+                Regex.Replace(
+                    str,
+                    @"(\P{Ll})(\P{Ll}\p{Ll})",
+                    "$1 $2"
+                ),
+                @"(\p{Ll})(\P{Ll})",
+                "$1 $2"
+            );
         }
     }
 }

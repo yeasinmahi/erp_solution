@@ -136,7 +136,7 @@ namespace UI.SCM
         public void LoadComGroup()
         {
             _dt = _bll.GetViewData(20, "", 0, 0, DateTime.Now, Enroll);
-            Common.LoadDropDownWithSelect(ddlComGroup, _dt, "Id", "strName");
+            Common.LoadDropDownWithSelect(ddlMasterCategory, _dt, "Id", "strName");
         }
 
         public void LoadWh()
@@ -152,7 +152,7 @@ namespace UI.SCM
             int id = Common.GetDdlSelectedValue(ddlDepartment);
             if (id == 0)
             {
-                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                Toaster("Please select department first", Common.TosterType.Warning);
                 return;
             }
             LoadGridView(2, id);
@@ -163,7 +163,7 @@ namespace UI.SCM
             int id = Common.GetDdlSelectedValue(ddlSection);
             if (id == 0)
             {
-                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                Toaster("Please select section first", Common.TosterType.Warning);
                 return;
             }
             LoadGridView(1, id);
@@ -180,12 +180,12 @@ namespace UI.SCM
             LoadGridView(3, id);
         }
 
-        protected void btnComGroup_OnClick(object sender, EventArgs e)
+        protected void btnMasterCategory_OnClick(object sender, EventArgs e)
         {
-            int id = Common.GetDdlSelectedValue(ddlComGroup);
+            int id = Common.GetDdlSelectedValue(ddlMasterCategory);
             if (id == 0)
             {
-                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                Toaster("Please select master category first", Common.TosterType.Warning);
                 return;
             }
             LoadGridView(4, id);
@@ -193,22 +193,43 @@ namespace UI.SCM
 
         public void LoadGridView(int part, int id)
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
-
-            DateTime fromDate = Convert.ToDateTime(txtDteFrom.Text);
-            DateTime toDate = Convert.ToDateTime(txtdteTo.Text);
-
-            DataTable dt = _bll.GetConsumerReport(part, whId, fromDate, toDate, id);
-            if (dt.Rows.Count > 0)
+            try
             {
-                gridView.DataSource = dt;
-                gridView.DataBind();
-            }
-            else
-            {
-                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+                int whId = Common.GetDdlSelectedValue(ddlWh);
 
+                if (DateTime.TryParse(txtDteFrom.Text, out DateTime fromDate))
+                {
+                    if (DateTime.TryParse(txtdteTo.Text, out DateTime toDate))
+                    {
+                        DataTable dt = _bll.GetConsumerReport(part, whId, fromDate, toDate, id);
+                        if (dt.Rows.Count > 0)
+                        {
+                            gridView.DataSource = dt;
+                            gridView.DataBind();
+                        }
+                        else
+                        {
+                            Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+                        }
+                    }
+                    else
+                    {
+                        // to date
+                        Toaster("To "+Message.DateFormatError, Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    // from date
+                    Toaster("From " + Message.DateFormatError, Common.TosterType.Warning);
+                }
+                
             }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
+            
 
         }
     }
