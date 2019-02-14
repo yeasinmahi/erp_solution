@@ -325,7 +325,7 @@ namespace UI.SCM.Transfer
 
                     dt = objTransfer.InventoryAdjustment(0, intWh, enroll, intItemId, quantity, rate, intLocation, remarks);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0][0] + "');", true);
-                    GridViewUtil.UnLoadGridView(dgvStore);
+                    dgvStore.UnLoad();
                     try
                     {
                         File.Delete(filePathForXML);

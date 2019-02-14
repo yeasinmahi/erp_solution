@@ -59,7 +59,7 @@ namespace UI.SCM
                 if (indentId == 0 && Common.GetDdlSelectedValue(ddlDept) < 1)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "alertMessage", "alert('Please select Type');", true);
-                    GridViewUtil.UnLoadGridView(dgvStatement);
+                    dgvStatement.UnLoad();
                     return;
                 }
                 dgvIndent.Visible = true;
@@ -153,7 +153,7 @@ namespace UI.SCM
                 if (indentId == 0 && Common.GetDdlSelectedValue(ddlDept) < 1)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "alertMessage", "alert('Please select Type');", true);
-                    GridViewUtil.UnLoadGridView(dgvStatement);
+                    dgvStatement.UnLoad();
                     return;
                 }
 

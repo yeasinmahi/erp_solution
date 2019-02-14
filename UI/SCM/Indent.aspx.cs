@@ -506,7 +506,7 @@ namespace UI.SCM
                                 mrtg.ToLower().Contains("sucessfully")
                                     ? Common.TosterType.Success
                                     : Common.TosterType.Error);
-                            GridViewUtil.UnLoadGridView(dgvIndent);
+                            dgvIndent.UnLoad();
                         }
                     }
                     else

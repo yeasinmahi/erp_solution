@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Utility
 {
-    public class GridViewUtil
+    public static class GridViewUtil
     {
         public static GridViewRow GetCurrentGridViewRowOnButtonClick(object sender)
         {
@@ -92,7 +92,7 @@ namespace Utility
 
         }
 
-        public static bool UnLoadGridView(GridView gridView)
+        public static bool UnLoad(this GridView gridView)
         {
             try
             {

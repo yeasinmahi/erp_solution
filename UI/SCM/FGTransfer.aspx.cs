@@ -38,7 +38,7 @@ namespace UI.SCM
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            GridViewUtil.UnLoadGridView(FG_Grid);
+            FG_Grid.UnLoad();
         }
 
         protected void btnShow_Click(object sender, EventArgs e)

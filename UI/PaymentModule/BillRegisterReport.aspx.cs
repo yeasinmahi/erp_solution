@@ -196,7 +196,7 @@ namespace UI.PaymentModule
                 else
                 {
                     Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
-                    GridViewUtil.UnLoadGridView(dgvReport);
+                    dgvReport.UnLoad();
                 }
             }
             catch (Exception ex)

@@ -32,7 +32,7 @@ namespace UI.SCM
             {
                 File.Delete(filePathForXML);
 
-                GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
+                dgvItemInfoByPO.UnLoad();
                 //dgvItemInfoByPO.DataSource = "";
                 //dgvItemInfoByPO.DataBind();
 
@@ -215,7 +215,7 @@ namespace UI.SCM
             }
             _dt = _bll.GetItemInfoByPO(intPOID);
             filePathForXML.DeleteFile();
-            GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
+            dgvItemInfoByPO.UnLoad();
             if (_dt.Rows.Count > 0)
             {
                 dgvItemInfoByPO.DataSource = _dt;

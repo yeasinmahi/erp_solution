@@ -33,7 +33,7 @@ namespace UI.Import
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            GridViewUtil.UnLoadGridView(gridView);
+            gridView.UnLoad();
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "hidePanel", "hidePanel()", true);
             string poNumber = txtPoNumber.Text;
             string lcNumber = txtLcNumber.Text;

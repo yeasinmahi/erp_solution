@@ -212,7 +212,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    GridViewUtil.UnLoadGridView(dgvIndent);
+                    dgvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(),"Indent", Common.TosterType.Warning);
                 }
 
@@ -227,7 +227,7 @@ namespace UI.SCM
         {
             try
             {
-                GridViewUtil.UnLoadGridView(dgvIndent);
+                dgvIndent.UnLoad();
 
                 intWh = int.Parse(ddlWH.SelectedValue.ToString());
                 hdnWHId.Value = intWh.ToString();
@@ -253,7 +253,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    GridViewUtil.UnLoadGridView(dgvIndent);
+                    dgvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
                 

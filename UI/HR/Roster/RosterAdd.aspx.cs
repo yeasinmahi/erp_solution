@@ -134,12 +134,12 @@ namespace UI.HR.Roster
                 }
                 else
                 {
-                    GridViewUtil.UnLoadGridView(GridView);
+                    GridView.UnLoad();
                 }
             }
             else
             {
-                GridViewUtil.UnLoadGridView(GridView);
+                GridView.UnLoad();
             }
         }
 
@@ -159,7 +159,7 @@ namespace UI.HR.Roster
                 if (message.Contains("Sucessfully"))
                 {
                     Session["obj"] = null;
-                    GridViewUtil.UnLoadGridView(GridView);
+                    GridView.UnLoad();
                     ScriptManager.RegisterClientScriptBlock(this, GetType(), "alertMessage",
                         "ShowNotification(\"" + message + "\",'Roster','success')", true);
                 }

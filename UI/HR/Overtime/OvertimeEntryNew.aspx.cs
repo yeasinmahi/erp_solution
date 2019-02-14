@@ -111,12 +111,12 @@ namespace UI.HR.Overtime
                 }
                 else
                 {
-                    GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                    OvertimeEntryGridView.UnLoad();
                 }
             }
             else
             {
-                GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                OvertimeEntryGridView.UnLoad();
             }
         }
 
@@ -162,7 +162,7 @@ namespace UI.HR.Overtime
                 if (message.Contains("Sucessfully"))
                 {
                     Session["obj"] = null;
-                    GridViewUtil.UnLoadGridView(OvertimeEntryGridView);
+                    OvertimeEntryGridView.UnLoad();
                     Toaster(message, "OverTime", Common.TosterType.Success);
                     LoadOverTimeDetailsGridView(Convert.ToInt32(txtEnroll.Text));
                 }
