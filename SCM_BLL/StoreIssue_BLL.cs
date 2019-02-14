@@ -113,12 +113,12 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
-        public DataTable GetConsumerStatementByCostCenterId(int whId, DateTime fromDate, DateTime toDate,int costCenterId)
+        public DataTable GetConsumerReport(int part, int whId, DateTime fromDate, DateTime toDate,int id)
         {
             try
             {
-                DataTable2TableAdapter adp = new DataTable2TableAdapter();
-                return adp.GetData(whId, fromDate, toDate, costCenterId);
+                sprConsumptionReportTableAdapter adp = new sprConsumptionReportTableAdapter();
+                return adp.GetData(part,whId, fromDate, toDate, id);
             }
             catch
             {

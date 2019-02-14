@@ -33,7 +33,12 @@ namespace UI.SCM
         public void LoadImage()
         {
             int whId = Common.GetDdlSelectedValue(ddlWh);
-            imgUnit.ImageUrl = Path.Combine("/Content/images/img", whId + ".png");
+            string path = Path.Combine("/Content/images/img", whId + ".png");
+            //if (!File.Exists(path))
+            //{
+            //    path = Path.Combine("/Content/images/img", "ag.png");
+            //}
+            imgUnit.ImageUrl = path;
 
         }
         private void GetDefaultLoad()
@@ -70,6 +75,7 @@ namespace UI.SCM
                 LoadDepartment();
                 LoadSection();
                 LoadCostCenter();
+                LoadComGroup();
                 LoadImage();
             }
             catch (Exception ex)
@@ -106,112 +112,9 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
-        protected void btnShow_Click(object sender, EventArgs e)
-        {
-            var fd = _log.GetFlogDetail(start, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on SCM\\ConsumpReport Show", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
-            {
-                int sectionId = Common.GetDdlSelectedValue(ddlSection);
-                if (sectionId == 0)
-                {
-                    Toaster("Please Select Section First",Common.TosterType.Warning);
-                    return;
-                }
-                string dept = Common.GetDdlSelectedText(ddlSection);
-                _intwh = Common.GetDdlSelectedValue(ddlWh);
-
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text);
-
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>";
-                
-                _dt = _bll.GetViewData(12, xmlData, _intwh, sectionId, DateTime.Now, Enroll);
-                if (_dt.Rows.Count > 0)
-                {
-                    dgvConsump.DataSource = _dt;
-                    dgvConsump.DataBind();
-                }
-                else
-                {
-                    Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                var efd = _log.GetFlogDetail(stop, location, "Show", ex);
-                Flogger.WriteError(efd);
-            }
-
-            fd = _log.GetFlogDetail(stop, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
+        
 
         
-        
-        protected void btnFilterDept_Click(object sender, EventArgs e)
-        {
-            var fd = _log.GetFlogDetail(start, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
-            {
-                int deptId = Common.GetDdlSelectedValue(ddlFilter);
-                if (deptId == 0)
-                {
-                    Toaster("Please select department first",Common.TosterType.Warning);
-                    return;
-                }
-                string dept = ddlFilter.SelectedItem.ToString();
-                _intwh = int.Parse(ddlWh.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text);
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>";
-
-                _dt = _bll.GetViewData(11, xmlData, _intwh, deptId, DateTime.Now, Enroll);
-                if (_dt.Rows.Count > 0)
-                {
-                    dgvConsump.DataSource = _dt;
-                    dgvConsump.DataBind();
-                }
-                else
-                {
-                    Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
-                }
-            }
-            catch (Exception ex)
-            {
-                var efd = _log.GetFlogDetail(stop, location, "Show", ex);
-                Flogger.WriteError(efd);
-            }
-
-            fd = _log.GetFlogDetail(stop, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
-
-        protected void btnShowCostCenter_OnClick(object sender, EventArgs e)
-        {
-            //int whId = Common.GetDdlSelectedValue(ddlWh);
-            //int ccId = Common.GetDdlSelectedValue(ddlCostCenter);
-            //DateTime fromDate = Convert.ToDateTime(txtDteFrom.Text);
-            //DateTime toDate = Convert.ToDateTime(txtdteTo.Text);
-
-            //DataTable dt = new StoreIssue_BLL().GetConsumerStatementByCostCenterId(whId, fromDate, toDate, ccId);
-
-            Toaster("Comming soon",Common.TosterType.Warning);
-
-        }
-
         public void LoadCostCenter()
         {
             int whId = Common.GetDdlSelectedValue(ddlWh);
@@ -222,7 +125,7 @@ namespace UI.SCM
         {
             _intwh = Common.GetDdlSelectedValue(ddlWh);
             _dt = _bll.GetDepartment(_intwh);
-            Common.LoadDropDownWithSelect(ddlFilter, _dt, "Id", "strName");
+            Common.LoadDropDownWithSelect(ddlDepartment, _dt, "Id", "strName");
         }
         public void LoadSection()
         {
@@ -230,11 +133,82 @@ namespace UI.SCM
             _dt = _bll.GetViewData(10, "", whId, 0, DateTime.Now, Enroll);
             Common.LoadDropDownWithSelect(ddlSection, _dt, "Id", "strName");
         }
+        public void LoadComGroup()
+        {
+            _dt = _bll.GetViewData(20, "", 0, 0, DateTime.Now, Enroll);
+            Common.LoadDropDownWithSelect(ddlComGroup, _dt, "Id", "strName");
+        }
 
         public void LoadWh()
         {
             _dt = _bll.GetViewData(1, "", 0, 0, DateTime.Now, Enroll);
             Common.LoadDropDown(ddlWh, _dt, "Id", "strName");
+
+        }
+
+
+        protected void btnDept_OnClick(object sender, EventArgs e)
+        {
+            int id = Common.GetDdlSelectedValue(ddlDepartment);
+            if (id == 0)
+            {
+                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                return;
+            }
+            LoadGridView(2, id);
+        }
+
+        protected void btnSection_OnClick(object sender, EventArgs e)
+        {
+            int id = Common.GetDdlSelectedValue(ddlSection);
+            if (id == 0)
+            {
+                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                return;
+            }
+            LoadGridView(1, id);
+        }
+
+        protected void btnCostCenter_OnClick(object sender, EventArgs e)
+        {
+            int id = Common.GetDdlSelectedValue(ddlCostCenter);
+            if (id == 0)
+            {
+                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                return;
+            }
+            LoadGridView(3, id);
+        }
+
+        protected void btnComGroup_OnClick(object sender, EventArgs e)
+        {
+            int id = Common.GetDdlSelectedValue(ddlComGroup);
+            if (id == 0)
+            {
+                Toaster("Please select Cost Center first", Common.TosterType.Warning);
+                return;
+            }
+            LoadGridView(4, id);
+        }
+
+        public void LoadGridView(int part, int id)
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+
+            DateTime fromDate = Convert.ToDateTime(txtDteFrom.Text);
+            DateTime toDate = Convert.ToDateTime(txtdteTo.Text);
+
+            DataTable dt = _bll.GetConsumerReport(part, whId, fromDate, toDate, id);
+            if (dt.Rows.Count > 0)
+            {
+                gridView.DataSource = dt;
+                gridView.DataBind();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+
+            }
 
         }
     }

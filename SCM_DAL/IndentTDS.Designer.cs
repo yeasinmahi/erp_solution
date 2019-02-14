@@ -58,7 +58,7 @@ namespace SCM_DAL {
         
         private GetDepartmentDataTable tableGetDepartment;
         
-        private DataTable2DataTable tableDataTable2;
+        private sprConsumptionReportDataTable tablesprConsumptionReport;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -139,8 +139,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["GetDepartment"] != null)) {
                     base.Tables.Add(new GetDepartmentDataTable(ds.Tables["GetDepartment"]));
                 }
-                if ((ds.Tables["DataTable2"] != null)) {
-                    base.Tables.Add(new DataTable2DataTable(ds.Tables["DataTable2"]));
+                if ((ds.Tables["sprConsumptionReport"] != null)) {
+                    base.Tables.Add(new sprConsumptionReportDataTable(ds.Tables["sprConsumptionReport"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -334,9 +334,9 @@ namespace SCM_DAL {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataTable2DataTable DataTable2 {
+        public sprConsumptionReportDataTable sprConsumptionReport {
             get {
-                return this.tableDataTable2;
+                return this.tablesprConsumptionReport;
             }
         }
         
@@ -458,8 +458,8 @@ namespace SCM_DAL {
                 if ((ds.Tables["GetDepartment"] != null)) {
                     base.Tables.Add(new GetDepartmentDataTable(ds.Tables["GetDepartment"]));
                 }
-                if ((ds.Tables["DataTable2"] != null)) {
-                    base.Tables.Add(new DataTable2DataTable(ds.Tables["DataTable2"]));
+                if ((ds.Tables["sprConsumptionReport"] != null)) {
+                    base.Tables.Add(new sprConsumptionReportDataTable(ds.Tables["sprConsumptionReport"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -596,10 +596,10 @@ namespace SCM_DAL {
                     this.tableGetDepartment.InitVars();
                 }
             }
-            this.tableDataTable2 = ((DataTable2DataTable)(base.Tables["DataTable2"]));
+            this.tablesprConsumptionReport = ((sprConsumptionReportDataTable)(base.Tables["sprConsumptionReport"]));
             if ((initTable == true)) {
-                if ((this.tableDataTable2 != null)) {
-                    this.tableDataTable2.InitVars();
+                if ((this.tablesprConsumptionReport != null)) {
+                    this.tablesprConsumptionReport.InitVars();
                 }
             }
         }
@@ -646,8 +646,8 @@ namespace SCM_DAL {
             base.Tables.Add(this.tableSprIndentDetailsByIndentId);
             this.tableGetDepartment = new GetDepartmentDataTable();
             base.Tables.Add(this.tableGetDepartment);
-            this.tableDataTable2 = new DataTable2DataTable();
-            base.Tables.Add(this.tableDataTable2);
+            this.tablesprConsumptionReport = new sprConsumptionReportDataTable();
+            base.Tables.Add(this.tablesprConsumptionReport);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -754,7 +754,7 @@ namespace SCM_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeDataTable2() {
+        private bool ShouldSerializesprConsumptionReport() {
             return false;
         }
         
@@ -865,7 +865,7 @@ namespace SCM_DAL {
         public delegate void GetDepartmentRowChangeEventHandler(object sender, GetDepartmentRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void DataTable2RowChangeEventHandler(object sender, DataTable2RowChangeEvent e);
+        public delegate void sprConsumptionReportRowChangeEventHandler(object sender, sprConsumptionReportRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6284,7 +6284,7 @@ namespace SCM_DAL {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataTable2DataTable : global::System.Data.TypedTableBase<DataTable2Row> {
+        public partial class sprConsumptionReportDataTable : global::System.Data.TypedTableBase<sprConsumptionReportRow> {
             
             private global::System.Data.DataColumn columnintItemID;
             
@@ -6300,14 +6300,14 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrAccName;
             
-            private global::System.Data.DataColumn columnquantity;
+            private global::System.Data.DataColumn columnusedQty;
             
-            private global::System.Data.DataColumn columnamount;
+            private global::System.Data.DataColumn columnusedValue;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2DataTable() {
-                this.TableName = "DataTable2";
+            public sprConsumptionReportDataTable() {
+                this.TableName = "sprConsumptionReport";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -6315,7 +6315,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal DataTable2DataTable(global::System.Data.DataTable table) {
+            internal sprConsumptionReportDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -6332,7 +6332,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected DataTable2DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected sprConsumptionReportDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -6395,17 +6395,17 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn quantityColumn {
+            public global::System.Data.DataColumn usedQtyColumn {
                 get {
-                    return this.columnquantity;
+                    return this.columnusedQty;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn amountColumn {
+            public global::System.Data.DataColumn usedValueColumn {
                 get {
-                    return this.columnamount;
+                    return this.columnusedValue;
                 }
             }
             
@@ -6420,34 +6420,34 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2Row this[int index] {
+            public sprConsumptionReportRow this[int index] {
                 get {
-                    return ((DataTable2Row)(this.Rows[index]));
+                    return ((sprConsumptionReportRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable2RowChangeEventHandler DataTable2RowChanging;
+            public event sprConsumptionReportRowChangeEventHandler sprConsumptionReportRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable2RowChangeEventHandler DataTable2RowChanged;
+            public event sprConsumptionReportRowChangeEventHandler sprConsumptionReportRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable2RowChangeEventHandler DataTable2RowDeleting;
+            public event sprConsumptionReportRowChangeEventHandler sprConsumptionReportRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event DataTable2RowChangeEventHandler DataTable2RowDeleted;
+            public event sprConsumptionReportRowChangeEventHandler sprConsumptionReportRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddDataTable2Row(DataTable2Row row) {
+            public void AddsprConsumptionReportRow(sprConsumptionReportRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2Row AddDataTable2Row(int intItemID, string strItem, string strUoM, string strSubCategory, string strMinorCategory, string MasterCategory, string strAccName, decimal quantity, decimal amount) {
-                DataTable2Row rowDataTable2Row = ((DataTable2Row)(this.NewRow()));
+            public sprConsumptionReportRow AddsprConsumptionReportRow(int intItemID, string strItem, string strUoM, string strSubCategory, string strMinorCategory, string MasterCategory, string strAccName, decimal usedQty, decimal usedValue) {
+                sprConsumptionReportRow rowsprConsumptionReportRow = ((sprConsumptionReportRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intItemID,
                         strItem,
@@ -6456,17 +6456,17 @@ namespace SCM_DAL {
                         strMinorCategory,
                         MasterCategory,
                         strAccName,
-                        quantity,
-                        amount};
-                rowDataTable2Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataTable2Row);
-                return rowDataTable2Row;
+                        usedQty,
+                        usedValue};
+                rowsprConsumptionReportRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowsprConsumptionReportRow);
+                return rowsprConsumptionReportRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataTable2DataTable cln = ((DataTable2DataTable)(base.Clone()));
+                sprConsumptionReportDataTable cln = ((sprConsumptionReportDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -6474,7 +6474,7 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataTable2DataTable();
+                return new sprConsumptionReportDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6487,8 +6487,8 @@ namespace SCM_DAL {
                 this.columnstrMinorCategory = base.Columns["strMinorCategory"];
                 this.columnMasterCategory = base.Columns["MasterCategory"];
                 this.columnstrAccName = base.Columns["strAccName"];
-                this.columnquantity = base.Columns["quantity"];
-                this.columnamount = base.Columns["amount"];
+                this.columnusedQty = base.Columns["usedQty"];
+                this.columnusedValue = base.Columns["usedValue"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6508,44 +6508,44 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnMasterCategory);
                 this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrAccName);
-                this.columnquantity = new global::System.Data.DataColumn("quantity", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnquantity);
-                this.columnamount = new global::System.Data.DataColumn("amount", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnamount);
+                this.columnusedQty = new global::System.Data.DataColumn("usedQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusedQty);
+                this.columnusedValue = new global::System.Data.DataColumn("usedValue", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnusedValue);
                 this.columnstrItem.MaxLength = 752;
                 this.columnstrUoM.MaxLength = 50;
                 this.columnstrSubCategory.MaxLength = 50;
                 this.columnstrMinorCategory.MaxLength = 250;
                 this.columnMasterCategory.MaxLength = 250;
                 this.columnstrAccName.MaxLength = 200;
-                this.columnquantity.ReadOnly = true;
-                this.columnamount.ReadOnly = true;
+                this.columnusedQty.ReadOnly = true;
+                this.columnusedValue.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2Row NewDataTable2Row() {
-                return ((DataTable2Row)(this.NewRow()));
+            public sprConsumptionReportRow NewsprConsumptionReportRow() {
+                return ((sprConsumptionReportRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataTable2Row(builder);
+                return new sprConsumptionReportRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataTable2Row);
+                return typeof(sprConsumptionReportRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataTable2RowChanged != null)) {
-                    this.DataTable2RowChanged(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
+                if ((this.sprConsumptionReportRowChanged != null)) {
+                    this.sprConsumptionReportRowChanged(this, new sprConsumptionReportRowChangeEvent(((sprConsumptionReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6553,8 +6553,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataTable2RowChanging != null)) {
-                    this.DataTable2RowChanging(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
+                if ((this.sprConsumptionReportRowChanging != null)) {
+                    this.sprConsumptionReportRowChanging(this, new sprConsumptionReportRowChangeEvent(((sprConsumptionReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6562,8 +6562,8 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataTable2RowDeleted != null)) {
-                    this.DataTable2RowDeleted(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
+                if ((this.sprConsumptionReportRowDeleted != null)) {
+                    this.sprConsumptionReportRowDeleted(this, new sprConsumptionReportRowChangeEvent(((sprConsumptionReportRow)(e.Row)), e.Action));
                 }
             }
             
@@ -6571,14 +6571,14 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataTable2RowDeleting != null)) {
-                    this.DataTable2RowDeleting(this, new DataTable2RowChangeEvent(((DataTable2Row)(e.Row)), e.Action));
+                if ((this.sprConsumptionReportRowDeleting != null)) {
+                    this.sprConsumptionReportRowDeleting(this, new sprConsumptionReportRowChangeEvent(((sprConsumptionReportRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveDataTable2Row(DataTable2Row row) {
+            public void RemovesprConsumptionReportRow(sprConsumptionReportRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -6605,7 +6605,7 @@ namespace SCM_DAL {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataTable2DataTable";
+                attribute2.FixedValue = "sprConsumptionReportDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -9134,15 +9134,15 @@ namespace SCM_DAL {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataTable2Row : global::System.Data.DataRow {
+        public partial class sprConsumptionReportRow : global::System.Data.DataRow {
             
-            private DataTable2DataTable tableDataTable2;
+            private sprConsumptionReportDataTable tablesprConsumptionReport;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal DataTable2Row(global::System.Data.DataRowBuilder rb) : 
+            internal sprConsumptionReportRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataTable2 = ((DataTable2DataTable)(this.Table));
+                this.tablesprConsumptionReport = ((sprConsumptionReportDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9150,14 +9150,14 @@ namespace SCM_DAL {
             public int intItemID {
                 get {
                     try {
-                        return ((int)(this[this.tableDataTable2.intItemIDColumn]));
+                        return ((int)(this[this.tablesprConsumptionReport.intItemIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intItemID\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'intItemID\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.intItemIDColumn] = value;
+                    this[this.tablesprConsumptionReport.intItemIDColumn] = value;
                 }
             }
             
@@ -9166,14 +9166,14 @@ namespace SCM_DAL {
             public string strItem {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable2.strItemColumn]));
+                        return ((string)(this[this.tablesprConsumptionReport.strItemColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strItem\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strItem\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.strItemColumn] = value;
+                    this[this.tablesprConsumptionReport.strItemColumn] = value;
                 }
             }
             
@@ -9182,14 +9182,14 @@ namespace SCM_DAL {
             public string strUoM {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable2.strUoMColumn]));
+                        return ((string)(this[this.tablesprConsumptionReport.strUoMColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUoM\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.strUoMColumn] = value;
+                    this[this.tablesprConsumptionReport.strUoMColumn] = value;
                 }
             }
             
@@ -9198,14 +9198,14 @@ namespace SCM_DAL {
             public string strSubCategory {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable2.strSubCategoryColumn]));
+                        return ((string)(this[this.tablesprConsumptionReport.strSubCategoryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strSubCategory\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSubCategory\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.strSubCategoryColumn] = value;
+                    this[this.tablesprConsumptionReport.strSubCategoryColumn] = value;
                 }
             }
             
@@ -9214,14 +9214,15 @@ namespace SCM_DAL {
             public string strMinorCategory {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable2.strMinorCategoryColumn]));
+                        return ((string)(this[this.tablesprConsumptionReport.strMinorCategoryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strMinorCategory\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strMinorCategory\' in table \'sprConsumptionReport\' is DBNull" +
+                                ".", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.strMinorCategoryColumn] = value;
+                    this[this.tablesprConsumptionReport.strMinorCategoryColumn] = value;
                 }
             }
             
@@ -9230,14 +9231,14 @@ namespace SCM_DAL {
             public string MasterCategory {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable2.MasterCategoryColumn]));
+                        return ((string)(this[this.tablesprConsumptionReport.MasterCategoryColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'MasterCategory\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'MasterCategory\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.MasterCategoryColumn] = value;
+                    this[this.tablesprConsumptionReport.MasterCategoryColumn] = value;
                 }
             }
             
@@ -9246,155 +9247,155 @@ namespace SCM_DAL {
             public string strAccName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable2.strAccNameColumn]));
+                        return ((string)(this[this.tablesprConsumptionReport.strAccNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strAccName\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAccName\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.strAccNameColumn] = value;
+                    this[this.tablesprConsumptionReport.strAccNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal quantity {
+            public decimal usedQty {
                 get {
                     try {
-                        return ((decimal)(this[this.tableDataTable2.quantityColumn]));
+                        return ((decimal)(this[this.tablesprConsumptionReport.usedQtyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'quantity\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'usedQty\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.quantityColumn] = value;
+                    this[this.tablesprConsumptionReport.usedQtyColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal amount {
+            public decimal usedValue {
                 get {
                     try {
-                        return ((decimal)(this[this.tableDataTable2.amountColumn]));
+                        return ((decimal)(this[this.tablesprConsumptionReport.usedValueColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'amount\' in table \'DataTable2\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'usedValue\' in table \'sprConsumptionReport\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable2.amountColumn] = value;
+                    this[this.tablesprConsumptionReport.usedValueColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintItemIDNull() {
-                return this.IsNull(this.tableDataTable2.intItemIDColumn);
+                return this.IsNull(this.tablesprConsumptionReport.intItemIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintItemIDNull() {
-                this[this.tableDataTable2.intItemIDColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.intItemIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrItemNull() {
-                return this.IsNull(this.tableDataTable2.strItemColumn);
+                return this.IsNull(this.tablesprConsumptionReport.strItemColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrItemNull() {
-                this[this.tableDataTable2.strItemColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.strItemColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrUoMNull() {
-                return this.IsNull(this.tableDataTable2.strUoMColumn);
+                return this.IsNull(this.tablesprConsumptionReport.strUoMColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrUoMNull() {
-                this[this.tableDataTable2.strUoMColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.strUoMColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrSubCategoryNull() {
-                return this.IsNull(this.tableDataTable2.strSubCategoryColumn);
+                return this.IsNull(this.tablesprConsumptionReport.strSubCategoryColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrSubCategoryNull() {
-                this[this.tableDataTable2.strSubCategoryColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.strSubCategoryColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrMinorCategoryNull() {
-                return this.IsNull(this.tableDataTable2.strMinorCategoryColumn);
+                return this.IsNull(this.tablesprConsumptionReport.strMinorCategoryColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrMinorCategoryNull() {
-                this[this.tableDataTable2.strMinorCategoryColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.strMinorCategoryColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsMasterCategoryNull() {
-                return this.IsNull(this.tableDataTable2.MasterCategoryColumn);
+                return this.IsNull(this.tablesprConsumptionReport.MasterCategoryColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetMasterCategoryNull() {
-                this[this.tableDataTable2.MasterCategoryColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.MasterCategoryColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrAccNameNull() {
-                return this.IsNull(this.tableDataTable2.strAccNameColumn);
+                return this.IsNull(this.tablesprConsumptionReport.strAccNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrAccNameNull() {
-                this[this.tableDataTable2.strAccNameColumn] = global::System.Convert.DBNull;
+                this[this.tablesprConsumptionReport.strAccNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsquantityNull() {
-                return this.IsNull(this.tableDataTable2.quantityColumn);
+            public bool IsusedQtyNull() {
+                return this.IsNull(this.tablesprConsumptionReport.usedQtyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetquantityNull() {
-                this[this.tableDataTable2.quantityColumn] = global::System.Convert.DBNull;
+            public void SetusedQtyNull() {
+                this[this.tablesprConsumptionReport.usedQtyColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsamountNull() {
-                return this.IsNull(this.tableDataTable2.amountColumn);
+            public bool IsusedValueNull() {
+                return this.IsNull(this.tablesprConsumptionReport.usedValueColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetamountNull() {
-                this[this.tableDataTable2.amountColumn] = global::System.Convert.DBNull;
+            public void SetusedValueNull() {
+                this[this.tablesprConsumptionReport.usedValueColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9980,22 +9981,22 @@ namespace SCM_DAL {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class DataTable2RowChangeEvent : global::System.EventArgs {
+        public class sprConsumptionReportRowChangeEvent : global::System.EventArgs {
             
-            private DataTable2Row eventRow;
+            private sprConsumptionReportRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2RowChangeEvent(DataTable2Row row, global::System.Data.DataRowAction action) {
+            public sprConsumptionReportRowChangeEvent(sprConsumptionReportRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2Row Row {
+            public sprConsumptionReportRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -13615,7 +13616,7 @@ ORDER BY id.intIssueID";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DataTable2TableAdapter : global::System.ComponentModel.Component {
+    public partial class sprConsumptionReportTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -13629,7 +13630,7 @@ ORDER BY id.intIssueID";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public DataTable2TableAdapter() {
+        public sprConsumptionReportTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -13726,7 +13727,7 @@ ORDER BY id.intIssueID";
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DataTable2";
+            tableMapping.DataSetTable = "sprConsumptionReport";
             tableMapping.ColumnMappings.Add("intItemID", "intItemID");
             tableMapping.ColumnMappings.Add("strItem", "strItem");
             tableMapping.ColumnMappings.Add("strUoM", "strUoM");
@@ -13734,8 +13735,8 @@ ORDER BY id.intIssueID";
             tableMapping.ColumnMappings.Add("strMinorCategory", "strMinorCategory");
             tableMapping.ColumnMappings.Add("MasterCategory", "MasterCategory");
             tableMapping.ColumnMappings.Add("strAccName", "strAccName");
-            tableMapping.ColumnMappings.Add("quantity", "quantity");
-            tableMapping.ColumnMappings.Add("amount", "amount");
+            tableMapping.ColumnMappings.Add("usedQty", "usedQty");
+            tableMapping.ColumnMappings.Add("usedValue", "usedValue");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13752,50 +13753,53 @@ ORDER BY id.intIssueID";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT iss.intItemID, i.strItem, i.strUoM, i.strSubCategory,i.strMinorCategory,i.MasterCategory,i.strAccName, SUM(iss.numQty) quantity, SUM(iss.monValue) amount FROM ERP_Inventory.dbo.tblStoreIssueByItem iss 
-       JOIN ERP_Inventory.dbo.qryItemListNew i ON iss.intItemID=i.intItemID 
-       JOIN ERP_Inventory.dbo.tblStoreIssue si ON iss.intIssueID=si.intIssueID WHERE iss.intWHID=@whId AND si.dteIssueDate BETWEEN @fromDate AND @toDate and
-       iss.intCostCenter=@costCenterId
-       GROUP BY iss.intItemID, i.strItem, i.strUoM, i.strSubCategory,i.strMinorCategory,i.MasterCategory,i.strAccName ORDER BY i.strItem
-";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@whId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromDate", global::System.Data.SqlDbType.DateTime, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@toDate", global::System.Data.SqlDbType.DateTime, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@costCenterId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].CommandText = "dbo.sprConsumptionReport";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@part", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@whId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fromDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@toDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual IndentTDS.DataTable2DataTable GetData(global::System.Nullable<int> whId, global::System.Nullable<global::System.DateTime> fromDate, global::System.Nullable<global::System.DateTime> toDate, global::System.Nullable<int> costCenterId) {
+        public virtual IndentTDS.sprConsumptionReportDataTable GetData(global::System.Nullable<int> part, global::System.Nullable<int> whId, global::System.Nullable<global::System.DateTime> fromDate, global::System.Nullable<global::System.DateTime> toDate, global::System.Nullable<int> id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((whId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(whId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((fromDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fromDate.Value));
+            if ((part.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(part.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((toDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(toDate.Value));
+            if ((whId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(whId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((costCenterId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(costCenterId.Value));
+            if ((fromDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(fromDate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            IndentTDS.DataTable2DataTable dataTable = new IndentTDS.DataTable2DataTable();
+            if ((toDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(toDate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(id.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            IndentTDS.sprConsumptionReportDataTable dataTable = new IndentTDS.sprConsumptionReportDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
