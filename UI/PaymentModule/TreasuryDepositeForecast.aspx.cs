@@ -50,7 +50,7 @@ namespace UI.PaymentModule
 
         public void LoadUnit()
         {
-            Common.LoadDropDown(ddlUnit,_bll.getUnitByUser(Enroll), "intVatAccountID", "strVatAccountName");
+            ddlUnit.Loads(_bll.getUnitByUser(Enroll), "intVatAccountID", "strVatAccountName");
 
         }
         public void LoadBank()
@@ -59,7 +59,7 @@ namespace UI.PaymentModule
             DataTable dt = _bll.GetBankListData(unitId);
             if (dt.Rows.Count > 0)
             {
-                Common.LoadDropDownWithSelect(ddlBank, _bll.GetBankListData(unitId), "intBankID", "strBankName");
+                ddlBank.LoadWithSelect(_bll.GetBankListData(unitId), "intBankID", "strBankName");
             }
             else
             {
@@ -75,7 +75,7 @@ namespace UI.PaymentModule
             DataTable dt = _bll.GetBankListData(unitId);
             if (dt.Rows.Count > 0)
             {
-                Common.LoadDropDownWithSelect(ddlAccount, _bll.GetAccountListData(unitId, bankId), "intAccountID", "strBankAccount");
+                ddlAccount.LoadWithSelect(_bll.GetAccountListData(unitId, bankId), "intAccountID", "strBankAccount");
             }
             else
             {

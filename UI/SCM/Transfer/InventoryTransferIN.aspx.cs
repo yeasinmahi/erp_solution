@@ -29,10 +29,10 @@ namespace UI.SCM.Transfer
             {
                 ast = new AutoSearch_BLL();
                 _dt = _bll.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, Enroll);
-                Common.LoadDropDownWithSelect(ddlWh, _dt, "Id", "strName");
+                ddlWh.LoadWithSelect(_dt, "Id", "strName");
                 _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
-                Common.LoadDropDownWithSelect(ddlTransferItem, _dt, "Id", "strName");
-                Common.LoadDropDownWithSelect(ddlLcation, new DataTable(), "", "");
+                ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
+                ddlLcation.LoadWithSelect(new DataTable(), "", "");
             }
         }
 
@@ -84,7 +84,7 @@ namespace UI.SCM.Transfer
                     if (intUnitOUT == InUnitID)
                     {
                         _dt = _bll.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, Enroll);
-                        Common.LoadDropDownWithSelect(ddlLcation, _dt, "Id", "strName");
+                        ddlLcation.LoadWithSelect(_dt, "Id", "strName");
 
                         txtItem.Text =
                             strItem + "[" + intItemId + "]" + "[Stock:" + monQty + strUoM +
@@ -154,7 +154,7 @@ namespace UI.SCM.Transfer
                 //}
 
                 _dt = _bll.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, Enroll);
-                Common.LoadDropDownWithSelect(ddlLcation, _dt, "Id", "strName");
+                ddlLcation.LoadWithSelect(_dt, "Id", "strName");
             }
             catch (Exception ex)
             {
@@ -193,7 +193,7 @@ namespace UI.SCM.Transfer
                     if (msg.ToLower().Contains("success"))
                     {
                         _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
-                        Common.LoadDropDownWithSelect(ddlTransferItem, _dt, "Id", "strName");
+                        ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
                         ddlLcation.UnLoad();
                         Toaster(msg, Common.TosterType.Success);
                     }
@@ -226,7 +226,7 @@ namespace UI.SCM.Transfer
                 if (intWh > 0)
                 {
                     _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
-                    Common.LoadDropDownWithSelect(ddlTransferItem, _dt, "Id", "strName");
+                    ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
                 }
                 else
                 {

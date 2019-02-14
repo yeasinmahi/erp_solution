@@ -54,14 +54,14 @@ namespace UI.SCM.Transfer
                     catch { }
 
                     dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, Enroll);
-                    Common.LoadDropDownWithSelect(ddlWh, dt, "Id", "strName");
+                    ddlWh.LoadWithSelect(dt, "Id", "strName");
                     Session["WareID"] = ddlWh.SelectedValue.ToString();
 
                     //dt = objWH.GetWH(Enroll,Common.GetDdlSelectedValue(ddlWh));
-                    Common.LoadDropDownWithSelect(ddlToWh, new DataTable(), "Id", "strName");
+                    ddlToWh.LoadWithSelect(new DataTable(), "Id", "strName");
 
                     dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, Enroll);
-                    Common.LoadDropDownWithSelect(ddlTransType, dt, "Id", "strName");
+                    ddlTransType.LoadWithSelect(dt, "Id", "strName");
                     dt.Clear();
 
                     ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
@@ -135,13 +135,13 @@ namespace UI.SCM.Transfer
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
                 {
-                    Common.LoadDropDownWithSelect(ddlLcation, dt, "Id", "strName");
+                    ddlLcation.LoadWithSelect(dt, "Id", "strName");
                     dt.Clear();
                 }
                 dt = objWH.GetWH(Enroll, ddlWh.SelectedValue());
                 if (dt.Rows.Count>0)
                 {
-                    Common.LoadDropDownWithSelect(ddlToWh, dt, "Id", "strName");
+                    ddlToWh.LoadWithSelect(dt, "Id", "strName");
                     dt.Clear();
                 }
                 

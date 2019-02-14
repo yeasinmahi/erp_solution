@@ -140,7 +140,7 @@ namespace Utility
             return string.Empty;
         }
 
-        public static bool LoadDropDown(DropDownList ddl, DataTable dt, string value, string text)
+        public static bool Loads(this DropDownList ddl, DataTable dt, string value, string text)
         {
             if (dt.Rows.Count <= 0) return false;
             try
@@ -157,9 +157,9 @@ namespace Utility
             }
         }
 
-        public static bool LoadDropDownWithSelect(DropDownList ddl, DataTable dt, string value, string text)
+        public static bool LoadWithSelect(this DropDownList ddl, DataTable dt, string value, string text)
         {
-            bool isLoad = LoadDropDown(ddl, dt, value, text);
+            bool isLoad = Loads(ddl, dt, value, text);
             if (isLoad)
             {
                 ddl.Items.Insert(0, new ListItem("Select", "0"));
@@ -169,7 +169,7 @@ namespace Utility
 
         public static bool LoadWithAll(this DropDownList ddl, DataTable dt, string value, string text)
         {
-            bool isLoad = LoadDropDown(ddl, dt, value, text);
+            bool isLoad = Loads(ddl, dt, value, text);
             ddl.Items.Insert(0, new ListItem("All", "0"));
             return isLoad;
         }

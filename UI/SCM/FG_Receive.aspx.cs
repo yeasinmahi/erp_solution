@@ -21,7 +21,7 @@ namespace UI.SCM
                 {
                     //dt = objbll.GetWH(Enroll);
                     _dt = new InventoryTransfer_BLL().GetTtransferDatas(1, "", 0, 0, DateTime.Now, Enroll);
-                    Common.LoadDropDown(ddlWH, _dt, "Id", "strName");
+                    ddlWH.Loads(_dt, "Id", "strName");
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");

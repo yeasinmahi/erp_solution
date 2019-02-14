@@ -42,7 +42,7 @@ namespace UI.HR.Roster
         public void LoadUnitDropDown(int enrol)
         {
             DataTable dt = _tourPlanning.GetUnitName(enrol);
-            Common.LoadDropDown(ddlUnit, dt, "intUnitID", "strUnit");
+            ddlUnit.Loads(dt, "intUnitID", "strUnit");
         }
 
 
@@ -88,19 +88,19 @@ namespace UI.HR.Roster
         public void LoadJobStationDropDown(int unitId, int enroll)
         {
             DataTable dt = _tourPlanning.GetJobStationByPermission(unitId, enroll);
-            Common.LoadDropDown(ddlJobStation, dt, "intEmployeeJobStationId", "strJobStationName");
+            ddlJobStation.Loads(dt, "intEmployeeJobStationId", "strJobStationName");
         }
 
         public void LoadTeamDropDown(int jobStationId)
         {
             DataTable dt = _bll.GetTeamByJobstation(jobStationId);
-            Common.LoadDropDown(ddlTeam, dt, "intTeamId", "strTeamName");
+            ddlTeam.Loads(dt, "intTeamId", "strTeamName");
         }
 
         public void LoadShiftDropDown(int teamId)
         {
             DataTable dt = _bll.GetShiftByShiftId(teamId);
-            Common.LoadDropDown(ddlShift, dt, "intShiftId", "strShiftName");
+            ddlShift.Loads(dt, "intShiftId", "strShiftName");
         }
 
         public void LoadShiftValue(int shiftId)
@@ -118,7 +118,7 @@ namespace UI.HR.Roster
         public void LoadSequenceDropDown()
         {
             DataTable dt = _bll.GetSequence();
-            Common.LoadDropDown(ddlSequence, dt, "intSequenceId", "strSequenceName");
+            ddlSequence.Loads(dt, "intSequenceId", "strSequenceName");
         }
 
         protected void GridView_OnRowDeleting(object sender, GridViewDeleteEventArgs e)

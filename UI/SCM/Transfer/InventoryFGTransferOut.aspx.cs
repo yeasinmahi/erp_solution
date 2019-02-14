@@ -74,7 +74,7 @@ namespace UI.SCM.Transfer
         {
             int whId = ddlWh.SelectedValue();
             dt = objTransfer.GetTtransferDatas(1, xmlString, whId, Id, DateTime.Now, enroll);
-            Common.LoadDropDownWithSelect(ddlWh, dt, "Id", "strName");
+            ddlWh.LoadWithSelect(dt, "Id", "strName");
             dt.Clear();
         }
 
@@ -82,7 +82,7 @@ namespace UI.SCM.Transfer
         {
             int whId = ddlWh.SelectedValue();
             dt = objWH.GetDataByWhId(whId);
-            Common.LoadDropDownWithSelect(ddlToWh, dt, "Id", "strName");
+            ddlToWh.LoadWithSelect(dt, "Id", "strName");
             dt.Clear();
         }
 
@@ -90,14 +90,14 @@ namespace UI.SCM.Transfer
         {
             int whId = ddlWh.SelectedValue();
             dt = objTransfer.GetTtransferDatas(7, xmlString, whId, Id, DateTime.Now, enroll);
-            Common.LoadDropDownWithSelect(ddlTransType, dt, "Id", "strName");
+            ddlTransType.LoadWithSelect(dt, "Id", "strName");
             ddlTransType.SelectedIndex = ddlTransType.Items.IndexOf(ddlTransType.Items.FindByText("Good Product"));
             dt.Clear();
         }
 
         public void LoadLocation(DataTable dt)
         {
-            Common.LoadDropDownWithSelect(ddlLcation, dt, "intLocation", "strLocation");
+            ddlLcation.LoadWithSelect(dt, "intLocation", "strLocation");
         }
 
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)

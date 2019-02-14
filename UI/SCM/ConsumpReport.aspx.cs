@@ -119,30 +119,30 @@ namespace UI.SCM
         {
             int whId = ddlWh.SelectedValue();
             _dt = _bll.GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
-            Common.LoadDropDown(ddlCostCenter, _dt, "Id", "strName");
+            ddlCostCenter.Loads(_dt, "Id", "strName");
         }
         public void LoadDepartment()
         {
             _intwh = ddlWh.SelectedValue();
             _dt = _bll.GetDepartment(_intwh);
-            Common.LoadDropDownWithSelect(ddlDepartment, _dt, "Id", "strName");
+            ddlDepartment.LoadWithSelect(_dt, "Id", "strName");
         }
         public void LoadSection()
         {
             int whId = ddlWh.SelectedValue();
             _dt = _bll.GetViewData(10, "", whId, 0, DateTime.Now, Enroll);
-            Common.LoadDropDownWithSelect(ddlSection, _dt, "Id", "strName");
+            ddlSection.LoadWithSelect(_dt, "Id", "strName");
         }
         public void LoadComGroup()
         {
             _dt = _bll.GetViewData(20, "", 0, 0, DateTime.Now, Enroll);
-            Common.LoadDropDownWithSelect(ddlMasterCategory, _dt, "Id", "strName");
+            ddlMasterCategory.LoadWithSelect(_dt, "Id", "strName");
         }
 
         public void LoadWh()
         {
             _dt = _bll.GetViewData(1, "", 0, 0, DateTime.Now, Enroll);
-            Common.LoadDropDown(ddlWh, _dt, "Id", "strName");
+            ddlWh.Loads(_dt, "Id", "strName");
 
         }
 

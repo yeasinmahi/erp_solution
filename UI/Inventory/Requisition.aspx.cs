@@ -50,7 +50,7 @@ namespace UI.Inventory
 
                 int whId = ddlWH.SelectedValue();
                 DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
-                Common.LoadDropDownWithSelect(DdlCostCenter, dt, "Id", "strName");
+                DdlCostCenter.LoadWithSelect(dt, "Id", "strName");
                
 
                 //dt = new DataTable();
@@ -79,7 +79,7 @@ namespace UI.Inventory
         {
             int whId = ddlWH.SelectedValue();
             DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
-            Common.LoadDropDown(DdlCostCenter, dt, "Id", "strName");
+            DdlCostCenter.Loads(dt, "Id", "strName");
         }
 
         //[WebMethod]
