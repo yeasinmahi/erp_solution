@@ -57,9 +57,9 @@ namespace UI.SAD.Consumer
             //string teritoryName = "Faridpur";
             //string fromDate = "05/01/2018";
             //string toDate = "07/01/2018";
-            DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
+            DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
             fromDateTime = fromDateTime.AddHours(6);
-            DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+            DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
             toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
             
             LoadDoubleCashOfferGridView(teritoryName, fromDateTime, toDateTime);
@@ -71,9 +71,9 @@ namespace UI.SAD.Consumer
            
                 string fromDate = fromTextBox.Text;
                 string toDate = toTextBox.Text;
-                DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
+                DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
                 fromDateTime = fromDateTime.AddHours(6);
-                DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+                DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
                 toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
                 //Get the button that raised the event
                 Button btn = (Button)sender;

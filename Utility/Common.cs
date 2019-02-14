@@ -111,7 +111,7 @@ namespace Utility
             }
             return 0;
         }
-        public static bool SetDdlSelectedValue(DropDownList ddl, string value)
+        public static bool SetSelectedValue(this DropDownList ddl, string value)
         {
             if (ddl.Items.FindByValue(value) != null)
             {
@@ -120,7 +120,7 @@ namespace Utility
             }
             return false;
         }
-        public static bool SetDdlSelectedText(DropDownList ddl, string text)
+        public static bool SetSelectedText(this DropDownList ddl, string text)
         {
             ListItem item = ddl.Items.FindByText(text);
             if (item != null)
@@ -214,7 +214,7 @@ namespace Utility
                 }
                 else if (ctrl is DropDownList)
                 {
-                    SetDdlSelectedValue(((DropDownList)ctrl), "0");
+                    SetSelectedValue(((DropDownList)ctrl), "0");
                 }
                 else if (ctrl is CheckBoxList)
                 {

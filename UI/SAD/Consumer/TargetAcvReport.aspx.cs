@@ -40,9 +40,9 @@ namespace UI.SAD.Consumer
             {
                 string fromDate = fromTextBox.Text;
                 string toDate = toTextBox.Text;
-                DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
+                DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
                 fromDateTime = fromDateTime.AddHours(6);
-                DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+                DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
                 toDateTime = toDateTime.AddDays(1).AddHours(6).AddMilliseconds(-3);
                 if (_reportType.Equals("TargetAchievement"))
                 {

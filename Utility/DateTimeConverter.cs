@@ -2,17 +2,17 @@
 
 namespace Utility
 {
-    public class DateTimeConverter
+    public static class DateTimeConverter
     {
-        public static DateTime StringToDateTime(string date, string format)
+        public static DateTime ToDateTime(this string date, string format)
         {
             return DateTime.ParseExact(date, format, System.Globalization.CultureInfo.InvariantCulture);
         }
-        public static TimeSpan ConvertSecondToTimespan(double second)
+        public static TimeSpan ToTimeSpan(this double second)
         {
             return TimeSpan.FromSeconds(second);
         }
-        public static double ConvertTimeSpanToSecond(TimeSpan time)
+        public static double ToSecond(this TimeSpan time)
         {
             return time.TotalSeconds / 3600;
         }

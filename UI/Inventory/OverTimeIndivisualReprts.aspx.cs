@@ -91,20 +91,17 @@ namespace UI.Inventory
         private void LoadOverTimeReport()
         {
             string searchKey = txtFullName.Text;
-            DateTime date;
-            int enroll = 0;
             if (!String.IsNullOrWhiteSpace(searchKey))
             {
-                if (Int32.TryParse(searchKey, out enroll))
+                if (Int32.TryParse(searchKey, out var enroll))
                 {
-                    date = DateTimeConverter.StringToDateTime(txtMonth.Text, "yyyy-MMMM");
-                    if(DateTime.TryParse(txtMonth.Text, out date))
+                    txtMonth.Text.ToDateTime("yyyy-MMMM");
+                    if(DateTime.TryParse(txtMonth.Text, out var date))
                     {
                         OverTimeReport or = new OverTimeReport();
                         DataTable dataTable = or.EmployeeOverTimeByEndroll(enroll, date);
                         grdvOverTimeReports.DataSource = or.EmployeeOverTimeByEndroll(enroll, date);
                         grdvOverTimeReports.DataBind();
-                        
                     }
                 }
                 else

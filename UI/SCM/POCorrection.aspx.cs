@@ -100,7 +100,7 @@ namespace UI.SCM
                 PoType = _dt.Rows[0]["strPoFor"].ToString();
                 lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
                 //ddlSupplier.SelectedValue = dt.Rows[0]["intSupplierID"].ToString();
-                Common.SetDdlSelectedValue(ddlSupplier, _dt.Rows[0]["intSupplierID"].ToString());
+                ddlSupplier.SetSelectedValue(_dt.Rows[0]["intSupplierID"].ToString());
                 txtWH.Text = _dt.Rows[0]["strWareHoseName"].ToString();
             }
             else

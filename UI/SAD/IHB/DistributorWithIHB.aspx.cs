@@ -48,8 +48,8 @@ namespace UI.SAD.IHB
             {
                 string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
-            DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
-            DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+            DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
+            DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
 
              intCustIDEntp = Convert.ToInt32(ddlDistributor.SelectedItem.Value);
             string CustIDEntpName = ddlDistributor.SelectedItem.Text;

@@ -62,7 +62,7 @@ namespace UI.HR.Overtime
             {
                 // handle validation error
             }
-            double hour = DateTimeConverter.ConvertTimeSpanToSecond(time);
+            double hour = time.ToSecond();
             dynamic obj = new
             {
                 empEnroll,
@@ -285,7 +285,7 @@ namespace UI.HR.Overtime
             txtStrtTimeUpdate.Text = ((Label)row.FindControl("lblStartTime")).Text;
             txtEndTimeUpdate.Text = ((Label)row.FindControl("lblEndTime")).Text;
             string hour = ((Label)row.FindControl("lblHour")).Text;
-            txtMoveUpdate.Text = DateTimeConverter.ConvertSecondToTimespan(Convert.ToDouble(hour) * 3600).ToString("g");
+            txtMoveUpdate.Text = (Convert.ToDouble(hour) * 3600).ToTimeSpan().ToString("g");
             txtRemarksUpdate.Text = ((Label)row.FindControl("lblRemarks")).Text;
 
             LoadPurposeUpdate();
@@ -342,7 +342,7 @@ namespace UI.HR.Overtime
             string reason = ddlPurposeUpdate.SelectedItem.Text;
             string remarks = txtRemarksUpdate.Text;
 
-            double hour = DateTimeConverter.ConvertTimeSpanToSecond(diffTime);
+            double hour = diffTime.ToSecond();
             dynamic obj = new
             {
                 overtimeId,

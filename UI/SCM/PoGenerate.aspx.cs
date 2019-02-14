@@ -244,8 +244,8 @@ namespace UI.SCM
                     hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
                     string type = dt.Rows[0]["strIndentType"].ToString();
 
-                    Common.SetDdlSelectedValue(ddlWH, hdnWHId.Value);
-                    Common.SetDdlSelectedText(ddlDepts, type);
+                    ddlWH.SetSelectedValue(hdnWHId.Value);
+                    ddlDepts.SetSelectedText(type);
                     
                     dgvIndent.DataSource = dt;
                     dgvIndent.DataBind();

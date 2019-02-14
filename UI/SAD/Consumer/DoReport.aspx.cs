@@ -38,8 +38,8 @@ namespace UI.SAD.Consumer
                 string reportType = ddlReportType.SelectedItem.Value;
                 string fromDate = fromTextBox.Text;
                 string toDate = toTextBox.Text;
-                DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
-                DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+                DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
+                DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
                 string doNumber = doNumberTextBox.Text;
                 int salesOfficeId = Convert.ToInt32(ddlsalesOffice.SelectedItem.Value);
 
@@ -99,8 +99,8 @@ namespace UI.SAD.Consumer
             {
                 string fromDate = fromTextBox.Text;
                 string toDate = toTextBox.Text;
-                DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
-                DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+                DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
+                DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
                 int salesOfficeId = Convert.ToInt32(ddlsalesOffice.SelectedItem.Value);
 
                 LoadGridView(_bll.GetDoBySalesId(salesOfficeId, fromDateTime, toDateTime));

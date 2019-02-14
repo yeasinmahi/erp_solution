@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.Inventory
 {
@@ -49,7 +50,7 @@ namespace UI.Inventory
         {
             int poNumber = Convert.ToInt32(txtPoNumber.Text);
             int supplierId = Convert.ToInt32(hdnSupplerId.Value);
-            DateTime challanDate = Utility.DateTimeConverter.StringToDateTime(txtChallanDate.Text,"dd/MM/yyyy");
+            DateTime challanDate = txtChallanDate.Text.ToDateTime("dd/MM/yyyy");
             string shipmentNo = txtShipmentNo.Text;
             string challanNo =txtChallanNo.Text;
             string vehicleNo = txtVehicleNo.Text;

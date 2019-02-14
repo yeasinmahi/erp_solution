@@ -91,8 +91,8 @@ namespace UI.SAD.IHB
             {
                 string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
-            DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
-            DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+            DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
+            DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
             toDateTime = toDateTime.AddDays(1);
             grdvDistributorManpower.DataSource = _bll.GetDistributorManpowerInfo(fromDateTime, toDateTime);
             grdvDistributorManpower.DataBind();
@@ -133,9 +133,9 @@ namespace UI.SAD.IHB
         {
             string fromDate = fromTextBox.Text;
             string toDate = toTextBox.Text;
-            DateTime fromDateTime = DateTimeConverter.StringToDateTime(fromDate, "MM/dd/yyyy");
+            DateTime fromDateTime = fromDate.ToDateTime("MM/dd/yyyy");
             fromDateTime = fromDateTime.AddHours(6);
-            DateTime toDateTime = DateTimeConverter.StringToDateTime(toDate, "MM/dd/yyyy");
+            DateTime toDateTime = toDate.ToDateTime("MM/dd/yyyy");
             toDateTime = toDateTime.AddHours(6).AddMilliseconds(-3);
 
             int intCustIDEntp = Convert.ToInt32(ddlCustomer.SelectedItem.Value);
