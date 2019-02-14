@@ -29,7 +29,7 @@ namespace UI.SAD.Consumer
         {
             _filePathForXml = Server.MapPath("~/SAD/Consumer/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "subsidairyJv.xml");
             LoadNecessaryUi();
-            XmlParser.DeleteFile(_filePathForXml);
+            _filePathForXml.DeleteFile();
             if (!IsPostBack)
             {
             }
@@ -151,7 +151,7 @@ namespace UI.SAD.Consumer
             doc.Load(_filePathForXml);
             DataTable dt = _statement.insertdataforsalescommissionjv(doc.OuterXml, unitId, strVcode, strPrefix, glblnarration, totalCommision, enroll, intmainheadcoaid);
             jvNumverLbl.Text = dt.Rows[0][2].ToString();
-            XmlParser.DeleteFile(_filePathForXml);
+            _filePathForXml.DeleteFile();
             }
             catch (Exception ex)
             {

@@ -27,7 +27,7 @@ namespace UI.SAD.IHB
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SAD/IHB/Data/" + HttpContext.Current.Session[SessionParams.USER_ID] + "_" + "DistributorWithIHB.xml");
-            XmlParser.DeleteFile(_filePathForXml);
+            _filePathForXml.DeleteFile();
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
@@ -85,7 +85,7 @@ namespace UI.SAD.IHB
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
                 }
-                XmlParser.DeleteFile(_filePathForXml);
+                _filePathForXml.DeleteFile();
             }
             }
             catch (Exception ex)

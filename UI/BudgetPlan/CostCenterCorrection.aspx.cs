@@ -77,7 +77,7 @@ namespace UI.BudgetPlan
             document.Load(_filePathForXml);
             _bll.UpdateCostCenterSelected(document.InnerXml, out var msg);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('"+msg+"');", true);
-            XmlParser.DeleteFile(_filePathForXml);
+            _filePathForXml.DeleteFile();
         }
         private bool CreateXml(int intSubledgerId, int intCostCenterId, string costcenter, int intUnitId, out string message)
         {

@@ -165,7 +165,7 @@ namespace UI.SAD.IHB
             {
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('XmlFile-- " + message + "');", true);
             }
-            XmlParser.DeleteFile(_filePathForXml);
+            _filePathForXml.DeleteFile();
             LoadDistributorInfoGridView();
         }
 

@@ -234,18 +234,5 @@ namespace Utility
             xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
             return xmlString;
         }
-
-        public static bool DeleteFile(string filepath)
-        {
-            try
-            {
-                File.Delete(filepath);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
-        }
     }
 }
