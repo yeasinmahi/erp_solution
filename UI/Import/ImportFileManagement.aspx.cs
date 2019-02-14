@@ -167,7 +167,7 @@ namespace UI.Import
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                     "ShowNotification('" + ex.Message + "','Import File Management','error')", true);
                 }
-                FileHelper.DeleteFile(localPath);
+                localPath.DeleteFile();
             }
             else
             {
@@ -238,7 +238,7 @@ namespace UI.Import
             }
             else if (e.CommandName == "Download")
             {
-                byte[] bytes = Downloader.DownloadFromFtp(ftp + strPath);
+                byte[] bytes = (ftp + strPath).DownloadFromFtp();
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";

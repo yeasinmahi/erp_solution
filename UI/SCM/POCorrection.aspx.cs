@@ -214,7 +214,7 @@ namespace UI.SCM
                 return;
             }
             _dt = _bll.GetItemInfoByPO(intPOID);
-            FileHelper.DeleteFile(filePathForXML);
+            filePathForXML.DeleteFile();
             GridViewUtil.UnLoadGridView(dgvItemInfoByPO);
             if (_dt.Rows.Count > 0)
             {

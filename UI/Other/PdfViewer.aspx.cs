@@ -25,7 +25,7 @@ namespace UI.Other
         }
         public void LoadImage(string src)
         {
-            byte[] bytes = Downloader.DownloadFromFtp(src);
+            byte[] bytes = src.DownloadFromFtp();
             embad.Src = "data:application/pdf;base64," + Convert.ToBase64String(bytes);
             //embad.Src = src;
         }

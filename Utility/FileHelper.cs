@@ -3,9 +3,9 @@ using System.IO;
 
 namespace Utility
 {
-    public class FileHelper
+    public static class FileHelper
     {
-        public static bool DeleteFile(string fileName)
+        public static bool DeleteFile(this string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -13,11 +13,11 @@ namespace Utility
             }
             return true;
         }
-        public static bool IsExist(string fileName)
+        public static bool IsExist(this string fileName)
         {
             return File.Exists(fileName);
         }
-        public static bool DeleteFolder(string path)
+        public static bool DeleteFolder(this string path)
         {
             Directory.Delete(path, true);
             return true;

@@ -42,7 +42,7 @@ namespace UI.Inventory
             }
             else if (e.CommandName == "Download")
             {
-                byte[] bytes = Downloader.DownloadFromFtp(ftp + strPath);
+                byte[] bytes = (ftp + strPath).DownloadFromFtp();
                 Response.Clear();
                 Response.Buffer = true;
                 Response.Charset = "";

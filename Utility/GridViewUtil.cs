@@ -36,7 +36,7 @@ namespace Utility
         {
             BoundField field = new BoundField
             {
-                HeaderText = Common.ConvertUpperCamelCaseToTitle(value),
+                HeaderText = value.ToTitle(),
                 DataField = value
             };
             return field;

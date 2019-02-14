@@ -198,7 +198,7 @@ namespace UI.CreativeSupportModule
                         }
                         try
                         {
-                            byte[] bytes = Downloader.DownloadFromFtp(ftpPath);
+                            byte[] bytes = ftpPath.DownloadFromFtp();
                             string filePath = $@"{serverFilePath}\{strPath}";
                             File.WriteAllBytes(filePath, bytes);
                         }
@@ -210,7 +210,7 @@ namespace UI.CreativeSupportModule
 
                     Response.BinaryWrite(ZipHelper.CreateZip(serverFilePath));
                     Response.Flush();
-                    FileHelper.DeleteFolder(serverFilePath);
+                    serverFilePath.DeleteFolder();
                     Response.End();
 
                 }

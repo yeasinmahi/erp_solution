@@ -48,13 +48,13 @@ namespace Utility
             return path + fileName.ToString("F") + ".txt";
         }
 
-        public static string ConvertUpperCamelCaseToTitle(string value)
+        public static string ToTitle(this string value)
         {
             var s = Regex.Replace(value, "([A-Z])", " $1").Trim();
             return ConvertToTitleCase(s);
         }
 
-        public static string ConvertToTitleCase(string value)
+        private static string ConvertToTitleCase(string value)
         {
             TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
             return textInfo.ToTitleCase(value.ToLower());

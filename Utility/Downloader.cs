@@ -4,9 +4,9 @@ using System.Net;
 
 namespace Utility
 {
-    public class Downloader
+    public static class Downloader
     {
-        public static byte[] DownloadFromFtp(string remoteLink)
+        public static byte[] DownloadFromFtp(this string remoteLink)
         {
             //Create FTP Request.
             FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteLink);

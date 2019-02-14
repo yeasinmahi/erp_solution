@@ -23,7 +23,7 @@ namespace UI.Other
 
         public void LoadImage(string src)
         {
-            byte[] bytes = Downloader.DownloadFromFtp(src);
+            byte[] bytes = src.DownloadFromFtp();
             image.ImageUrl = "data:image;base64," + Convert.ToBase64String(bytes);
         }
     }
