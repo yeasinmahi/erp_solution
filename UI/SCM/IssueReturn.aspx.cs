@@ -38,7 +38,7 @@ namespace UI.SCM
                 ddlWH.DataTextField = "strName";
                 ddlWH.DataBind();
 
-                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
+                Session["WareID"] = ddlWH.SelectedValue();
             }
         }
 
@@ -62,7 +62,7 @@ namespace UI.SCM
                     Alert("Item Id "+Message.ParsingProblem.ToFriendlyString());
                     return;
                 }
-                intwh = Common.GetDdlSelectedValue(ddlWH);
+                intwh = ddlWH.SelectedValue();
                 DateTime dteFrom = new DateTime();
                 DateTime dteTo = new DateTime();
                 try
@@ -116,7 +116,7 @@ namespace UI.SCM
         {
             try
             {
-                Session["WareID"] = Common.GetDdlSelectedValue(ddlWH);
+                Session["WareID"] = ddlWH.SelectedValue();
             }
             catch (Exception ex)
             {

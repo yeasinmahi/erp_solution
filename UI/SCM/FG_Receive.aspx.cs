@@ -38,7 +38,7 @@ namespace UI.SCM
 
         private void GridBind()
         {
-            int whid = Common.GetDdlSelectedValue(ddlWH);
+            int whid = ddlWH.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
             _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 1, 0, 0, DateTime.Now, 0, 0);

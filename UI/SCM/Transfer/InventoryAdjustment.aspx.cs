@@ -131,7 +131,7 @@ namespace UI.SCM.Transfer
                 decimal rate = Convert.ToDecimal(txtRate.Text.ToString());
                 string remarks = txtRemarks.Text.ToString();
                 decimal monValue = qty * rate;
-                if (Common.GetDdlSelectedValue(ddlType).Equals(2))
+                if (ddlType.SelectedValue().Equals(2))
                 {
                     qty *= -1;
                     monValue *= -1;
@@ -314,7 +314,7 @@ namespace UI.SCM.Transfer
                 catch
                 {
                 }
-                intWh = Common.GetDdlSelectedValue(ddlWh);
+                intWh = ddlWh.SelectedValue();
                 foreach (GridViewRow row in dgvStore.Rows)
                 {
                     int intItemId = Convert.ToInt32(((Label)row.FindControl("lblItemId")).Text);

@@ -43,7 +43,7 @@ namespace UI.SCM.Transfer
         }
         private void GridBind()
         {
-            int whid = Common.GetDdlSelectedValue(ddlWH);
+            int whid = ddlWH.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
             _dt = _bll.GetData(1, whid, fromDate, toDate);

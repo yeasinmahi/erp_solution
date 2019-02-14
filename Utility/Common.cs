@@ -103,7 +103,7 @@ namespace Utility
             return Convert.ToInt32(id);
         }
 
-        public static int GetDdlSelectedValue(DropDownList ddl)
+        public static int SelectedValue(this DropDownList ddl)
         {
             if (ddl?.SelectedItem != null)
             {
@@ -131,7 +131,7 @@ namespace Utility
             return false;
         }
 
-        public static string GetDdlSelectedText(DropDownList ddl)
+        public static string SelectedText(this DropDownList ddl)
         {
             if (ddl?.SelectedItem != null)
             {

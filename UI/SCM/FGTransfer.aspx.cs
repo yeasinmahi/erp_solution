@@ -48,7 +48,7 @@ namespace UI.SCM
 
         private void GridBind()
         {
-            int whid = Common.GetDdlSelectedValue(ddlWH);
+            int whid = ddlWH.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
             _dt = _bll.GetData(1, whid, fromDate, toDate);
@@ -123,7 +123,7 @@ namespace UI.SCM
                 Label lblItem = (Label)e.Row.FindControl("lblintItemID");
                 int itemId = int.Parse(lblItem.Text);
 
-                int intwh = Common.GetDdlSelectedValue(ddlWH);
+                int intwh = ddlWH.SelectedValue();
                 //dt = objOperation.WhDataView(8, "", intwh, Item, 1);
 
                 _dt = objIssue.GetViewData(19, "", intwh, 0, DateTime.Now, itemId);

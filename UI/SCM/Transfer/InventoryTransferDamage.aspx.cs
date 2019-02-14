@@ -41,7 +41,7 @@ namespace UI.SCM.Transfer
                 ddlWh.DataBind();
                 ddlWh.Items.Insert(0, new ListItem("Select", "0"));
                 Session["WareID"] = ddlWh.SelectedValue.ToString();
-                dt = objWH.GetWH(Enroll,Common.GetDdlSelectedValue(ddlWh));
+                dt = objWH.GetWH(Enroll, ddlWh.SelectedValue());
                 ddlToWh.DataSource = dt;
                 ddlToWh.DataTextField = "strName";
                 ddlToWh.DataValueField = "Id";

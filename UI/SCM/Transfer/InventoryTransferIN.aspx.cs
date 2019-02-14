@@ -218,7 +218,7 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                intWh = Common.GetDdlSelectedValue(ddlWh);
+                intWh = ddlWh.SelectedValue();
                 Session["WareID"] = intWh;
                 List<Control> excepts = new List<Control> {ddlWh};
                 Common.Clear(UpdatePanel0.Controls, excepts);

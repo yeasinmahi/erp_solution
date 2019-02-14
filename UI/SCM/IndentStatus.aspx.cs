@@ -56,7 +56,7 @@ namespace UI.SCM
             try
             {
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                if (indentId == 0 && Common.GetDdlSelectedValue(ddlDept) < 1)
+                if (indentId == 0 && ddlDept.SelectedValue() < 1)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "alertMessage", "alert('Please select Type');", true);
                     dgvStatement.UnLoad();
@@ -150,7 +150,7 @@ namespace UI.SCM
             try
             {
                 try { indentId = int.Parse(txtIndentNo.Text); } catch { indentId = 0; }
-                if (indentId == 0 && Common.GetDdlSelectedValue(ddlDept) < 1)
+                if (indentId == 0 && ddlDept.SelectedValue() < 1)
                 {
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "alertMessage", "alert('Please select Type');", true);
                     dgvStatement.UnLoad();

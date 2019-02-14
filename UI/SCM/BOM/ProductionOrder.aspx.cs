@@ -40,7 +40,7 @@ namespace UI.SCM.BOM
             try
             {
                 LoadWh();
-                intwh = Common.GetDdlSelectedValue(ddlWH);
+                intwh = ddlWH.SelectedValue();
                 LoadUnit();
                 LoadLine();
             }

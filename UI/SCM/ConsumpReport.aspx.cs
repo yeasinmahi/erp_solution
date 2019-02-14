@@ -32,7 +32,7 @@ namespace UI.SCM
 
         public void LoadImage()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
+            int whId = ddlWh.SelectedValue();
             string path = Path.Combine("/Content/images/img", whId + ".png");
             //if (!File.Exists(path))
             //{
@@ -117,19 +117,19 @@ namespace UI.SCM
         
         public void LoadCostCenter()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
+            int whId = ddlWh.SelectedValue();
             _dt = _bll.GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
             Common.LoadDropDown(ddlCostCenter, _dt, "Id", "strName");
         }
         public void LoadDepartment()
         {
-            _intwh = Common.GetDdlSelectedValue(ddlWh);
+            _intwh = ddlWh.SelectedValue();
             _dt = _bll.GetDepartment(_intwh);
             Common.LoadDropDownWithSelect(ddlDepartment, _dt, "Id", "strName");
         }
         public void LoadSection()
         {
-            int whId = Common.GetDdlSelectedValue(ddlWh);
+            int whId = ddlWh.SelectedValue();
             _dt = _bll.GetViewData(10, "", whId, 0, DateTime.Now, Enroll);
             Common.LoadDropDownWithSelect(ddlSection, _dt, "Id", "strName");
         }
@@ -149,7 +149,7 @@ namespace UI.SCM
 
         protected void btnDept_OnClick(object sender, EventArgs e)
         {
-            int id = Common.GetDdlSelectedValue(ddlDepartment);
+            int id = ddlDepartment.SelectedValue();
             if (id == 0)
             {
                 Toaster("Please select department first", Common.TosterType.Warning);
@@ -160,7 +160,7 @@ namespace UI.SCM
 
         protected void btnSection_OnClick(object sender, EventArgs e)
         {
-            int id = Common.GetDdlSelectedValue(ddlSection);
+            int id = ddlSection.SelectedValue();
             if (id == 0)
             {
                 Toaster("Please select section first", Common.TosterType.Warning);
@@ -171,7 +171,7 @@ namespace UI.SCM
 
         protected void btnCostCenter_OnClick(object sender, EventArgs e)
         {
-            int id = Common.GetDdlSelectedValue(ddlCostCenter);
+            int id = ddlCostCenter.SelectedValue();
             if (id == 0)
             {
                 Toaster("Please select Cost Center first", Common.TosterType.Warning);
@@ -182,7 +182,7 @@ namespace UI.SCM
 
         protected void btnMasterCategory_OnClick(object sender, EventArgs e)
         {
-            int id = Common.GetDdlSelectedValue(ddlMasterCategory);
+            int id = ddlMasterCategory.SelectedValue();
             if (id == 0)
             {
                 Toaster("Please select master category first", Common.TosterType.Warning);
@@ -195,7 +195,7 @@ namespace UI.SCM
         {
             try
             {
-                int whId = Common.GetDdlSelectedValue(ddlWh);
+                int whId = ddlWh.SelectedValue();
 
                 if (DateTime.TryParse(txtDteFrom.Text, out DateTime fromDate))
                 {

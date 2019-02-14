@@ -296,7 +296,7 @@ namespace UI.SCM
                     return;
                 }
 
-                intCurrencyID = Common.GetDdlSelectedValue(ddlCurrency);
+                intCurrencyID = ddlCurrency.SelectedValue();
                 if (intCurrencyID == 0)
                 {
                     Toaster("You should select currency", Common.TosterType.Warning);
@@ -395,7 +395,7 @@ namespace UI.SCM
                     Toaster("Wrong Last Shipment Date", Common.TosterType.Warning);
                     return;
                 }
-                int supplierId = Common.GetDdlSelectedValue(ddlSupplier);
+                int supplierId = ddlSupplier.SelectedValue();
 
                 strOtherTerms = txtOtherTerms.Text;
                 intPart = 1;
@@ -612,7 +612,7 @@ namespace UI.SCM
 
         protected void ddlSupplier_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            _dt = _bll.GetSupplierAddress(Common.GetDdlSelectedValue(ddlSupplier));
+            _dt = _bll.GetSupplierAddress(ddlSupplier.SelectedValue());
             lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
             //LoadItemGridview(); it can not 
         }

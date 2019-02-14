@@ -138,7 +138,7 @@ namespace UI.SCM.Transfer
                     Common.LoadDropDownWithSelect(ddlLcation, dt, "Id", "strName");
                     dt.Clear();
                 }
-                dt = objWH.GetWH(Enroll, Common.GetDdlSelectedValue(ddlWh));
+                dt = objWH.GetWH(Enroll, ddlWh.SelectedValue());
                 if (dt.Rows.Count>0)
                 {
                     Common.LoadDropDownWithSelect(ddlToWh, dt, "Id", "strName");
