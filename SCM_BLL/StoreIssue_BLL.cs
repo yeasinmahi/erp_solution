@@ -74,12 +74,12 @@ namespace SCM_BLL
             return adpCOA.GetMasterItemData(strSearchKey);
         }
 
-        public DataTable GetWH()
+        public DataTable GetWH(int enroll,int whId)
         {
             try
             {
                 TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
-                return adpCOA.GetWHData();
+                return adpCOA.GetWhByUnitForDistribution(enroll, whId);
             }
             catch { return new DataTable(); }
         }
@@ -112,6 +112,18 @@ namespace SCM_BLL
                 return adpCOA.GetData(mrrid);
             }
             catch { return new DataTable(); }
+        }
+        public DataTable GetConsumerStatementByCostCenterId(int whId, DateTime fromDate, DateTime toDate,int costCenterId)
+        {
+            try
+            {
+                DataTable2TableAdapter adp = new DataTable2TableAdapter();
+                return adp.GetData(whId, fromDate, toDate, costCenterId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
         }
     }
 }

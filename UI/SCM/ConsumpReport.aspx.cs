@@ -3,7 +3,7 @@ using GLOBAL_BLL;
 using SCM_BLL;
 using System;
 using System.Data;
-using System.Web;
+using System.IO;
 using UI.ClassFiles;
 using Utility;
 
@@ -11,12 +11,11 @@ namespace UI.SCM
 {
     public partial class ConsumpReport : BasePage
     {
-        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        private Location_BLL objOperation = new Location_BLL();
-        private DataTable dt = new DataTable();
-        private int enroll, intwh;
+        private readonly StoreIssue_BLL _bll = new StoreIssue_BLL();
+        private DataTable _dt = new DataTable();
+        private int _intwh;
 
-        private SeriLog log = new SeriLog();
+        private readonly SeriLog _log = new SeriLog();
         private string location = "SCM";
         private string start = "starting SCM\\ConsumpReport";
         private string stop = "stopping SCM\\ConsumpReport";
@@ -25,147 +24,218 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(1, "", 0, 0, DateTime.Now, enroll);
-                ddlWh.DataSource = dt;
-                ddlWh.DataValueField = "Id";
-                ddlWh.DataTextField = "strName";
-                ddlWh.DataBind();
-                getDefaultLoad();
-            }
-            else
-            {
+                LoadWh();
+                GetDefaultLoad();
+                
             }
         }
 
-        private void getDefaultLoad()
+        public void LoadImage()
         {
-            var fd = log.GetFlogDetail(start, location, "Show", null);
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            imgUnit.ImageUrl = Path.Combine("/Content/images/img", whId + ".png");
+
+        }
+        private void GetDefaultLoad()
+        {
+            var fd = _log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // starting performance tracker
             var tracker = new PerfTracker("Performance on SCM\\ConsumpReport Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 //  ddlSection.Items.Insert(0, new ListItem("Select", ""));
-                //dt = objIssue.GetViewData(9, "", 0, 0, DateTime.Now, enroll);
+                //dt = _bll.GetViewData(9, "", 0, 0, DateTime.Now, Enroll);
                 //ddlFilter.DataSource = dt;
                 //ddlFilter.DataValueField = "Id";
                 //ddlFilter.DataTextField = "strName";
                 //ddlFilter.DataBind();
 
-                intwh = int.Parse(ddlWh.SelectedValue.ToString());
+                //intwh = int.Parse(ddlWh.SelectedValue.ToString());
                 //intwh=Common.GetDdlSelectedValue(ddlWh);
 
-                dt = objIssue.GetDepartment(intwh);
-                Common.LoadDropDown(ddlFilter, dt, "Id", "strName");
+                //_dt = _bll.GetDepartment(intwh);
+                //Common.LoadDropDownWithSelect(ddlFilter, _dt, "Id", "strName");
 
                 
-                dt = objIssue.GetViewData(10, "", intwh, 0, DateTime.Now, enroll);
+                //_dt = _bll.GetViewData(10, "", intwh, 0, DateTime.Now, Enroll);
+                //Common.LoadDropDownWithSelect(ddlSection, _dt, "Id", "strName");
                 // ddlSection.Items.Insert(0, new ListItem("Select", ""));
-                ddlSection.DataSource = dt;
-                ddlSection.DataValueField = "Id";
-                ddlSection.DataTextField = "strName";
-                ddlSection.DataBind();
+                //ddlSection.DataSource = dt;
+                //ddlSection.DataValueField = "Id";
+                //ddlSection.DataTextField = "strName";
+                //ddlSection.DataBind();
+
+                LoadDepartment();
+                LoadSection();
+                LoadCostCenter();
+                LoadImage();
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                var efd = _log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "Show", null);
+            fd = _log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
         }
+        protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var fd = _log.GetFlogDetail(start, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                GetDefaultLoad();
+            }
+            catch (Exception ex)
+            {
+                var efd = _log.GetFlogDetail(stop, location, "Show", ex);
+                Flogger.WriteError(efd);
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
 
+            fd = _log.GetFlogDetail(stop, location, "Show", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "Show", null);
+            var fd = _log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // starting performance tracker
             var tracker = new PerfTracker("Performance on SCM\\ConsumpReport Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                string dept = ddlSection.SelectedItem.ToString();
-                intwh = int.Parse(ddlWh.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                int deptId = int.Parse(ddlSection.SelectedValue.ToString());
-                dt = objIssue.GetViewData(12, xmlData, intwh, deptId, DateTime.Now, enroll);
-                dgvConsump.DataSource = dt;
-                dgvConsump.DataBind();
+                int sectionId = Common.GetDdlSelectedValue(ddlSection);
+                if (sectionId == 0)
+                {
+                    Toaster("Please Select Section First",Common.TosterType.Warning);
+                    return;
+                }
+                string dept = Common.GetDdlSelectedText(ddlSection);
+                _intwh = Common.GetDdlSelectedValue(ddlWh);
+
+                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);
+                DateTime dteTo = DateTime.Parse(txtdteTo.Text);
+
+                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>";
+                
+                _dt = _bll.GetViewData(12, xmlData, _intwh, sectionId, DateTime.Now, Enroll);
+                if (_dt.Rows.Count > 0)
+                {
+                    dgvConsump.DataSource = _dt;
+                    dgvConsump.DataBind();
+                }
+                else
+                {
+                    Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                var efd = _log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "Show", null);
+            fd = _log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
         }
 
-        protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            var fd = log.GetFlogDetail(start, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
-            {
-                getDefaultLoad();
-            }
-            catch (Exception ex)
-            {
-                var efd = log.GetFlogDetail(stop, location, "Show", ex);
-                Flogger.WriteError(efd);
-            }
-
-            fd = log.GetFlogDetail(stop, location, "Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
-
+        
+        
         protected void btnFilterDept_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "Show", null);
+            var fd = _log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // starting performance tracker
             var tracker = new PerfTracker("Performance on SCM\\PoRegisterReport Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                int deptId = int.Parse(ddlFilter.SelectedValue.ToString());
+                int deptId = Common.GetDdlSelectedValue(ddlFilter);
+                if (deptId == 0)
+                {
+                    Toaster("Please select department first",Common.TosterType.Warning);
+                    return;
+                }
                 string dept = ddlFilter.SelectedItem.ToString();
-                intwh = int.Parse(ddlWh.SelectedValue);
-                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text.ToString());
-                DateTime dteTo = DateTime.Parse(txtdteTo.Text.ToString());
-                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objIssue.GetViewData(11, xmlData, intwh, deptId, DateTime.Now, enroll);
-                dgvConsump.DataSource = dt;
-                dgvConsump.DataBind();
+                _intwh = int.Parse(ddlWh.SelectedValue);
+                DateTime dteFrom = DateTime.Parse(txtDteFrom.Text);
+                DateTime dteTo = DateTime.Parse(txtdteTo.Text);
+                string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + " dept=" + '"' + dept + '"' + "/></voucher>";
+
+                _dt = _bll.GetViewData(11, xmlData, _intwh, deptId, DateTime.Now, Enroll);
+                if (_dt.Rows.Count > 0)
+                {
+                    dgvConsump.DataSource = _dt;
+                    dgvConsump.DataBind();
+                }
+                else
+                {
+                    Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+                }
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                var efd = _log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
             }
 
-            fd = log.GetFlogDetail(stop, location, "Show", null);
+            fd = _log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        protected void btnShowCostCenter_OnClick(object sender, EventArgs e)
+        {
+            //int whId = Common.GetDdlSelectedValue(ddlWh);
+            //int ccId = Common.GetDdlSelectedValue(ddlCostCenter);
+            //DateTime fromDate = Convert.ToDateTime(txtDteFrom.Text);
+            //DateTime toDate = Convert.ToDateTime(txtdteTo.Text);
+
+            //DataTable dt = new StoreIssue_BLL().GetConsumerStatementByCostCenterId(whId, fromDate, toDate, ccId);
+
+            Toaster("Comming soon",Common.TosterType.Warning);
+
+        }
+
+        public void LoadCostCenter()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            _dt = _bll.GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
+            Common.LoadDropDown(ddlCostCenter, _dt, "Id", "strName");
+        }
+        public void LoadDepartment()
+        {
+            _intwh = Common.GetDdlSelectedValue(ddlWh);
+            _dt = _bll.GetDepartment(_intwh);
+            Common.LoadDropDownWithSelect(ddlFilter, _dt, "Id", "strName");
+        }
+        public void LoadSection()
+        {
+            int whId = Common.GetDdlSelectedValue(ddlWh);
+            _dt = _bll.GetViewData(10, "", whId, 0, DateTime.Now, Enroll);
+            Common.LoadDropDownWithSelect(ddlSection, _dt, "Id", "strName");
+        }
+
+        public void LoadWh()
+        {
+            _dt = _bll.GetViewData(1, "", 0, 0, DateTime.Now, Enroll);
+            Common.LoadDropDown(ddlWh, _dt, "Id", "strName");
+
         }
     }
 }

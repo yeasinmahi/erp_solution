@@ -1,5 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" CodeBehind="PaymentAdvice.aspx.cs" Inherits="UI.Accounts.Advice.PaymentAdvice" %>
 
+<%@ Import Namespace="System.ComponentModel" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -111,7 +112,7 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="Date :"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox" Enabled="true" Width="210px"></asp:TextBox>
+                                    <asp:TextBox ID="txtDate" runat="server" AutoPostBack="false" CssClass="txtBox" autocomplete="off" Width="210px"></asp:TextBox>
                                     <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
@@ -178,7 +179,7 @@
                             </tr>
                             <tr>
                                 <td colspan="6">
-                                    <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false">
+                                    <asp:GridView ID="dgvReport" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical" ShowFooter="false" OnRowDataBound="dgvReport_OnRowDataBound">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
 
@@ -269,11 +270,18 @@
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" Visible="false">
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>
+                                                    <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
+                                            
+                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Mail" ItemStyle-HorizontalAlign="right" SortExpression="strOrgMail" Visible="false">
@@ -383,6 +391,12 @@
                                         OnRowDataBound="dgvAdvice_RowDataBound">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
+                                            <asp:TemplateField HeaderText="ID No" ItemStyle-HorizontalAlign="right" SortExpression="intID" Visible="false">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblID" runat="server" Text='<%# Bind("intID") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="left" />
+                                            </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Account Name" SortExpression="strSupplier">
                                                 <ItemTemplate>
@@ -394,42 +408,42 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Code No" ItemStyle-HorizontalAlign="right" SortExpression="intSuppID" Visible="true">
+                                            <asp:TemplateField HeaderText="Code No" ItemStyle-HorizontalAlign="Center" SortExpression="intSuppID" Visible="true">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCodeNo" runat="server" Text='<%# Bind("intSuppID") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Bank Name" ItemStyle-HorizontalAlign="right" SortExpression="strBankName">
+                                            <asp:TemplateField HeaderText="Bank Name" ItemStyle-HorizontalAlign="Center" SortExpression="strBankName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBankName" runat="server" Text='<%# Bind("strBankName") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="left" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Branch" ItemStyle-HorizontalAlign="right" SortExpression="strBranchName">
+                                            <asp:TemplateField HeaderText="Branch" ItemStyle-HorizontalAlign="Center" SortExpression="strBranchName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBranch" runat="server" Text='<%# Bind("strBranchName") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="A/C Type" ItemStyle-HorizontalAlign="right" SortExpression="strAccType">
+                                            <asp:TemplateField HeaderText="A/C Type" ItemStyle-HorizontalAlign="Center" SortExpression="strAccType">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblACType" runat="server" Text='<%# Bind("strAccType") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Account No" ItemStyle-HorizontalAlign="right" SortExpression="strBankAccountNo">
+                                            <asp:TemplateField HeaderText="Account No" ItemStyle-HorizontalAlign="Center" SortExpression="strBankAccountNo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" Width="100px" />
+                                                <ItemStyle HorizontalAlign="Center" Width="100px" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="right" SortExpression="monVoucher">
+                                            <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="Center" SortExpression="monVoucher">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAmount" runat="server" Text='<%# Eval("monVoucher", "{0:0,0.00}") %>'></asp:Label>
                                                 </ItemTemplate>
@@ -439,39 +453,47 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="right" SortExpression="strPaymentInfo">
+                                            <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="Center" SortExpression="strPaymentInfo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPaymentInfo" runat="server" Text='<%# Bind("strPaymentInfo") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Comments" ItemStyle-HorizontalAlign="right" SortExpression="strcomments">
+                                            <asp:TemplateField HeaderText="Comments" ItemStyle-HorizontalAlign="Center" SortExpression="strcomments">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblComments" runat="server" Text='<%# Bind("strcomments") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Routing No" ItemStyle-HorizontalAlign="right" SortExpression="strRoutingNumber">
+                                            <asp:TemplateField HeaderText="Routing No" ItemStyle-HorizontalAlign="Center" SortExpression="strRoutingNumber">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblRoutingNo" runat="server" Text='<%# Bind("strRoutingNumber") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Instrument No" ItemStyle-HorizontalAlign="right" SortExpression="intInstrumentNo">
+                                            <asp:TemplateField HeaderText="Instrument No" ItemStyle-HorizontalAlign="Center" SortExpression="intInstrumentNo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblInstrumentNo" runat="server" Text='<%# Bind("intInstrumentNo") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="right" SortExpression="intSlNo" Visible="false">
+                                            <asp:TemplateField HeaderText="SL No" ItemStyle-HorizontalAlign="Center" SortExpression="intSlNo" >
                                                 <ItemTemplate>
-                                                    <asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>
+                                                    <%--<asp:Label ID="lblSLNo" runat="server" Text='<%# Bind("intSlNo") %>'></asp:Label>--%>
+                                                    <%# Container.DataItemIndex + 1 %>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
+                                            </asp:TemplateField>
+                                            
+                                            <asp:TemplateField HeaderText="Debit Account" ItemStyle-HorizontalAlign="Center" >
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblDebitAcc" runat="server" ></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Mail" ItemStyle-HorizontalAlign="right" SortExpression="strOrgMail" Visible="false">
@@ -606,11 +628,11 @@
                                                 <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Account No" ItemStyle-HorizontalAlign="right" SortExpression="strBankAccountNo">
+                                            <asp:TemplateField HeaderText="Account No" ItemStyle-HorizontalAlign="Center" SortExpression="strBankAccountNo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAccountNo" runat="server" Text='<%# Bind("strBankAccountNo") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" Width="90px" />
+                                                <ItemStyle HorizontalAlign="Center" Width="90px" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Account Name" SortExpression="strSupplier">
@@ -623,14 +645,14 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Code No" ItemStyle-HorizontalAlign="right" SortExpression="intSuppID" Visible="false">
+                                            <asp:TemplateField HeaderText="Code No" ItemStyle-HorizontalAlign="Center" SortExpression="intSuppID" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblCodeNo" runat="server" Text='<%# Bind("intSuppID") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="right" SortExpression="monVoucher">
+                                            <asp:TemplateField HeaderText="Amount" ItemStyle-HorizontalAlign="Center" SortExpression="monVoucher">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblAmount" runat="server" Text='<%# Eval("monVoucher", "{0:0,0.00}") %>'></asp:Label>
                                                 </ItemTemplate>
@@ -640,28 +662,28 @@
                                                 </FooterTemplate>
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="right" SortExpression="intInstrumentNo">
+                                            <asp:TemplateField HeaderText="Payment Info" ItemStyle-HorizontalAlign="Center" SortExpression="intInstrumentNo">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblPaymentInfo" runat="server" Text='<%# Bind("intInstrumentNo") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Bank Name" ItemStyle-HorizontalAlign="right" SortExpression="strBankName" Visible="false">
+                                            <asp:TemplateField HeaderText="Bank Name" ItemStyle-HorizontalAlign="Center" SortExpression="strBankName" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBankName" runat="server" Text='<%# Bind("strBankName") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="Branch" ItemStyle-HorizontalAlign="right" SortExpression="strBranchName">
+                                            <asp:TemplateField HeaderText="Branch" ItemStyle-HorizontalAlign="Center" SortExpression="strBranchName">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblBranch" runat="server" Text='<%# Bind("strBranchName") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
-                                            <asp:TemplateField HeaderText="A/C Type" ItemStyle-HorizontalAlign="right" SortExpression="strAccType" Visible="false">
+                                            <asp:TemplateField HeaderText="A/C Type" ItemStyle-HorizontalAlign="Center" SortExpression="strAccType" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblACType" runat="server" Text='<%# Bind("strAccType") %>'></asp:Label>
                                                 </ItemTemplate>
@@ -672,7 +694,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="lblComments" runat="server" Text='<%# Bind("strcomments") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <ItemStyle HorizontalAlign="left" />
+                                                <ItemStyle HorizontalAlign="Center" />
                                             </asp:TemplateField>
 
                                             <asp:TemplateField HeaderText="Routing No" ItemStyle-HorizontalAlign="right" SortExpression="strRoutingNumber" Visible="false">

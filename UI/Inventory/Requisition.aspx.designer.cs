@@ -94,15 +94,6 @@ namespace UI.Inventory {
         protected global::System.Web.UI.WebControls.HiddenField hdnsearch;
         
         /// <summary>
-        /// hdnpoint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnpoint;
-        
-        /// <summary>
         /// hdnunit control.
         /// </summary>
         /// <remarks>
@@ -110,15 +101,6 @@ namespace UI.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnunit;
-        
-        /// <summary>
-        /// hdnEnroll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
         /// linkGoSomewhere control.
@@ -164,15 +146,6 @@ namespace UI.Inventory {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource odswh;
-        
-        /// <summary>
-        /// hdnwh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnwh;
         
         /// <summary>
         /// lbldpt control.

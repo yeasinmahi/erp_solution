@@ -1,20 +1,14 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.Services;
-using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.PaymentModule
 {
@@ -55,9 +49,9 @@ namespace UI.PaymentModule
                 {
                     File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
                     
-                    if (hdnEnroll.Value != "1011" && hdnEnroll.Value != "1015" && hdnEnroll.Value != "1010" && hdnEnroll.Value != "1044" && hdnEnroll.Value != "1039" && hdnEnroll.Value != "11621" && hdnEnroll.Value != "32897" && hdnEnroll.Value != "42815" && hdnEnroll.Value != "292454" && hdnEnroll.Value != "283830" && hdnEnroll.Value != "243013" && hdnEnroll.Value != "369116")
+                    if (!objVoucher.GetVoucherPermission(Enroll))
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not authorized to create payment voucher.');", true);
+                        Toaster("You are not authorized to create payment voucher", Common.TosterType.Warning);
                         return;
                     }
 
@@ -67,16 +61,24 @@ namespace UI.PaymentModule
                         dt = objVoucher.GetUserRollCheck(hdnEmail.Value);
                         if (dt.Rows.Count > 0)
                         {
-                            hdnCount.Value = dt.Rows[0]["intCount"].ToString();
+                            if (dt.Rows[0]["intCount"].ToString() == "0")
+                            {
+                                Toaster("You are not in authorized group", Common.TosterType.Warning);
+                                return;
+                            }
                         }
-
-                        if (hdnCount.Value == "0")
+                        else
                         {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not authorized to create payment voucher.');", true);
+                            Toaster("Something error in data feaching.", Common.TosterType.Error);
                             return;
                         }
+
+                        
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message,Common.TosterType.Error);
+                    }
 
                     try
                     {
@@ -91,11 +93,14 @@ namespace UI.PaymentModule
                         }
                         else
                         {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('You are not authorized to create payment voucher.');", true);
+                            Toaster("You have to get Unit permission to perform payment vouchar",Common.TosterType.Warning);
                             return;
                         }
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message, Common.TosterType.Error);
+                    }
 
                     try
                     {
@@ -110,7 +115,10 @@ namespace UI.PaymentModule
                             ddlBank.DataBind();
                         }
                     }
-                    catch { }
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message, Common.TosterType.Error);
+                    }
 
                     try
                     {
@@ -125,13 +133,17 @@ namespace UI.PaymentModule
                             ddlAccount.DataBind();
                         }
                     }
-                    catch { }                    
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message, Common.TosterType.Error);
+                    }
                 }
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
                 Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
 
             fd = log.GetFlogDetail(stop, location, "Page_Load", null);

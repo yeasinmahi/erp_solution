@@ -199,24 +199,7 @@
             itemPanel.style.visibility = 'hidden';
 
         }
-        function popup(url, title) {
-            var w = 900;
-            var h = 500;
-            var dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : window.screenX;
-            var dualScreenTop = window.screenTop != undefined ? window.screenTop : window.screenY;
-
-            var width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-            var height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
-            
-            var left = ((width / 2) - (w / 2)) + dualScreenLeft;
-            var top = ((height / 2) - (h / 2)) + dualScreenTop;
-            var newwindow = window.open(url, title, 'scrollbars=yes, width=' + w + ', height=' + h + ', top=' + top + ', left=' + left);
-
-            //var newwindow = window.open(url, 'name', 'width=800,height=600,toolbar=0,menubar=0,location=0');
-            if (window.focus) {
-                newwindow.focus();
-            }
-        }
+        
     </script>
    
     </form>

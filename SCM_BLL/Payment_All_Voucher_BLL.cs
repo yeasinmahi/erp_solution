@@ -21,8 +21,14 @@ namespace SCM_BLL
         {
             SprGetUnitTableAdapter adp = new SprGetUnitTableAdapter();
             try
-            { return adp.GetUserRollCheck(strEmail); }
-            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+            {
+                return adp.GetUserRollCheck(strEmail);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+                return new DataTable();
+            }
         }
         public DataTable GetBankList(int intUnitID)
         {
@@ -262,6 +268,19 @@ namespace SCM_BLL
                 msg = e.Message;
             }
             
+        }
+        public bool GetVoucherPermission(int enroll)
+        {
+            DataTable1TableAdapter adp = new DataTable1TableAdapter();
+            try
+            {
+                DataTable dt = adp.GetVoucherPermission(enroll);
+                return dt.Rows.Count > 0;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

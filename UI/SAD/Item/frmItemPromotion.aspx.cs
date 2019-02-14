@@ -66,14 +66,14 @@ namespace UI.SAD.Item
         public static string[] ItemnameSearch(string prefixText)
         {
             ItemPromotion objPromotion = new ItemPromotion();
-            return objPromotion.GetItem(prefixText);
+            return objPromotion.GetItem( prefixText);
         }
         [WebMethod]
         [ScriptMethod]
         public static string[] CustomerSearch(string prefixText, int count = 0)
         {
             ItemPromotion objPromotion = new ItemPromotion();
-            return objPromotion.GetCstomer(prefixText);
+            return objPromotion.GetCstomer(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
 
         }
         protected void ddlRegion_SelectedIndexChanged(object sender, EventArgs e)

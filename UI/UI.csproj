@@ -478,6 +478,7 @@
     <Content Include="MedialManagement\ReportEntryOthers.aspx" />
     <Content Include="MedialManagement\ReportEntryRyans.aspx" />
     <Content Include="NewProject\pg_ProjectCreate.aspx" />
+    <Content Include="Other\DocumentView.aspx" />
     <Content Include="Other\ImageViewer.aspx" />
     <Content Include="Other\PdfViewer.aspx" />
     <Content Include="Other\Practice.aspx" />
@@ -1187,6 +1188,7 @@
     <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
     <Content Include="SAD\Customer\Report\DeliverySupport.aspx" />
+    <Content Include="SAD\Customer\Report\StatementAPL.aspx" />
     <Content Include="SAD\Customer\Report\Statement.aspx" />
     <Content Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx" />
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
@@ -1205,6 +1207,7 @@
     <Content Include="SAD\IHB\DistributorManPowerInfo.aspx" />
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
     <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
+    <Content Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
     <Content Include="SAD\Item\ItemManager.aspx" />
     <Content Include="SAD\Item\ItemManagerUOM.aspx" />
@@ -1385,6 +1388,7 @@
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
+    <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
     <Content Include="SAD\Vat\frmBrandroll.aspx" />
@@ -1524,6 +1528,7 @@
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
     <Content Include="Transport\AccidentRegisterEntry.aspx" />
+    <Content Include="Transport\NewVehicleEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
     <Content Include="Transport\InternalTDriverLedgerBalance.aspx" />
     <Content Include="Transport\InternalTForTransportDept.aspx" />
@@ -3453,6 +3458,13 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Other\DocumentView.aspx.cs">
+      <DependentUpon>DocumentView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Other\DocumentView.aspx.designer.cs">
+      <DependentUpon>DocumentView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Other\ImageViewer.aspx.cs">
       <DependentUpon>ImageViewer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5830,6 +5842,13 @@
     <Compile Include="SAD\Customer\Report\DeliverySupport.aspx.designer.cs">
       <DependentUpon>DeliverySupport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Customer\Report\StatementAPL.aspx.cs">
+      <DependentUpon>StatementAPL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\Report\StatementAPL.aspx.designer.cs">
+      <DependentUpon>StatementAPL.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Customer\Report\Statement.aspx.cs">
       <DependentUpon>Statement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5955,6 +5974,13 @@
     </Compile>
     <Compile Include="SAD\IHB\DistributorWithIhbReport.aspx.designer.cs">
       <DependentUpon>DistributorWithIhbReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx.cs">
+      <DependentUpon>frmItemPromotionSetupOtherUnit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx.designer.cs">
+      <DependentUpon>frmItemPromotionSetupOtherUnit.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Item\frmItemPromotion.aspx.cs">
       <DependentUpon>frmItemPromotion.aspx</DependentUpon>
@@ -7217,6 +7243,13 @@
     <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
       <DependentUpon>SalesPosting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\GeoMarketSetup.aspx.cs">
+      <DependentUpon>GeoMarketSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\GeoMarketSetup.aspx.designer.cs">
+      <DependentUpon>GeoMarketSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Transfer\FGTransfer.aspx.cs">
       <DependentUpon>FGTransfer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8231,6 +8264,13 @@
     </Compile>
     <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\NewVehicleEntry.aspx.cs">
+      <DependentUpon>NewVehicleEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\NewVehicleEntry.aspx.designer.cs">
+      <DependentUpon>NewVehicleEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\InternalTDocPathList.aspx.cs">
       <DependentUpon>InternalTDocPathList.aspx</DependentUpon>

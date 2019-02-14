@@ -1,10 +1,13 @@
 ﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
+using System.Web.UI;
+using Org.BouncyCastle.Asn1.Crmf;
 using UI.ClassFiles;
 using Utility;
 
@@ -53,6 +56,11 @@ namespace UI.SCM.Transfer
                 intWh = int.Parse(ddlWh.SelectedValue);
                 Id = int.Parse(ddlTransferItem.SelectedValue);
                 Session["WareID"] = intWh;
+
+                List<Control> excepts = new List<Control> { ddlWh,ddlTransferItem };
+                Common.Clear(UpdatePanel0.Controls, excepts);
+                lblFrom.Text = string.Empty;
+
                 _dt = _bll.GetTtransferDatas(3, xmlString, intWh, Id, DateTime.Now, Enroll);
                 if (_dt.Rows.Count > 0)
                 {
@@ -212,6 +220,9 @@ namespace UI.SCM.Transfer
             {
                 intWh = Common.GetDdlSelectedValue(ddlWh);
                 Session["WareID"] = intWh;
+                List<Control> excepts = new List<Control> {ddlWh};
+                Common.Clear(UpdatePanel0.Controls, excepts);
+                lblFrom.Text = string.Empty;
                 if (intWh > 0)
                 {
                     _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
@@ -220,8 +231,7 @@ namespace UI.SCM.Transfer
                 else
                 {
                     Common.UnLoadDropDownWithSelect(ddlTransferItem);
-                    Common.Clear(UpdatePanel0.Controls,null);
-                    lblFrom.Text = "";
+                    
                 }
                 
             }

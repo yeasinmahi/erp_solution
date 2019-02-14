@@ -123,6 +123,7 @@
     <Compile Include="Global\Incentive.cs" />
     <Compile Include="Global\Operator.cs" />
     <Compile Include="Global\SalesOffice.cs" />
+    <Compile Include="Global\SetupBLL.cs" />
     <Compile Include="Global\ShipPoint.cs" />
     <Compile Include="IHB\DistributorManpowerBll.cs" />
     <Compile Include="IHB\DistributorWithIhbBll.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Sales\WeightBridgeDataCollector.cs" />
     <Compile Include="Transfer\Transfer.cs" />
     <Compile Include="Transport\InternalTransportBLL.cs" />
+    <Compile Include="Transport\NewVehicleBLL.cs" />
     <Compile Include="Transport\Utility_BLL.cs" />
     <Compile Include="Vat\CreditNoteBLL.cs" />
     <Compile Include="Vat\Mushok11.cs" />

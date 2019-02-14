@@ -259,6 +259,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesOfficeTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\setupDAL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>setupDAL.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\ShipPointTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -436,6 +441,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InternalTransportTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\NewVehicleRegTDS.cs">
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\NewVehicleRegTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Transport\UtilityTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -810,6 +823,17 @@
     <None Include="Global\SalesOfficeTDS.xss">
       <DependentUpon>SalesOfficeTDS.xsd</DependentUpon>
     </None>
+    <None Include="Global\setupDAL.xsc">
+      <DependentUpon>setupDAL.xsd</DependentUpon>
+    </None>
+    <None Include="Global\setupDAL.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>setupDAL.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\setupDAL.xss">
+      <DependentUpon>setupDAL.xsd</DependentUpon>
+    </None>
     <None Include="Global\ShipPointTDS.xsc">
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
     </None>
@@ -1165,6 +1189,17 @@
     </None>
     <None Include="Transport\InternalTransportTDS.xss">
       <DependentUpon>InternalTransportTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Transport\NewVehicleRegTDS.xsc">
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Transport\NewVehicleRegTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NewVehicleRegTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Transport\NewVehicleRegTDS.xss">
+      <DependentUpon>NewVehicleRegTDS.xsd</DependentUpon>
     </None>
     <None Include="Transport\UtilityTDS.xsc">
       <DependentUpon>UtilityTDS.xsd</DependentUpon>

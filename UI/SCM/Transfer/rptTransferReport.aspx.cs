@@ -10,7 +10,7 @@ using UI.ClassFiles;
 
 namespace UI.SCM.Transfer
 {
-    public partial class rptTransferReport : System.Web.UI.Page
+    public partial class rptTransferReport : BasePage
     {
         private int intShipid, intLocationid, intOutWHid, intWHID, intVid, intUomid, vid, enroll, itemid, intReff = 0, inttTransferTypeid;
         private decimal Qty, Values, Stock; private string xmlpath = "", xmlString, ItemName, UOM, msg, Remarks;

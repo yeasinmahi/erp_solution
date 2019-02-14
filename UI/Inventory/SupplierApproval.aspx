@@ -117,13 +117,13 @@
                     <ItemStyle HorizontalAlign="center" Width="100px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="strSuppMasterName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" SortExpression="strReffNo">
-                    <ItemStyle HorizontalAlign="center" Width="300px" />
+                    <ItemStyle HorizontalAlign="left" Width="350px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="strOrgAddress" HeaderText="Address" ItemStyle-HorizontalAlign="Center" SortExpression="strOrgAddress">
-                    <ItemStyle HorizontalAlign="center" Width="350px" />
+                    <ItemStyle HorizontalAlign="left" Width="350px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="strOrgMail" HeaderText="Mail" ItemStyle-HorizontalAlign="Center" SortExpression="strOrgMail">
-                    <ItemStyle HorizontalAlign="center" Width="100px" />
+                    <ItemStyle HorizontalAlign="center" Width="150px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="strOrgContactNo" HeaderText="Contact" ItemStyle-HorizontalAlign="Center" SortExpression="strOrgContactNo">
                     <ItemStyle HorizontalAlign="center" Width="100px" />
@@ -147,19 +147,19 @@
                     <ItemStyle HorizontalAlign="center" Width="100px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="strTradeLisenceNo" HeaderText="Trade Lic" ItemStyle-HorizontalAlign="Center" SortExpression="strTradeLisenceNo">
-                    <ItemStyle HorizontalAlign="center" Width="100px" />
+                    <ItemStyle HorizontalAlign="center" Width="120px" />
                     </asp:BoundField>
                     <asp:BoundField DataField="strReprName" HeaderText="CP Name" ItemStyle-HorizontalAlign="Center" SortExpression="strReprName">
-                    <ItemStyle HorizontalAlign="center" Width="150px" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="strPayToName" HeaderText="PayTo" ItemStyle-HorizontalAlign="Center" SortExpression="strPayToName">
                     <ItemStyle HorizontalAlign="center" Width="200px" />
                     </asp:BoundField>
-<%--                    <asp:BoundField DataField="strSupplierType" HeaderText="SType" ItemStyle-HorizontalAlign="Center" SortExpression="strSupplierType">
-                    <ItemStyle HorizontalAlign="center" Width="100px" />
-                    </asp:BoundField>--%>
+                    <asp:BoundField DataField="strPayToName" HeaderText="PayTo" ItemStyle-HorizontalAlign="Center" SortExpression="strPayToName">
+                    <ItemStyle HorizontalAlign="center" Width="250px" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="strSupplierType" HeaderText="SType" ItemStyle-HorizontalAlign="Center" SortExpression="strSupplierType">
+                    <ItemStyle HorizontalAlign="center" Width="150px" />
+                    </asp:BoundField>
                     <asp:BoundField DataField="dteEnlistmentDate" HeaderText="Enlist Date" ItemStyle-HorizontalAlign="Center" DataFormatString="{0:yyyy-MM-dd}"  SortExpression="dteEnlistmentDate">
-                    <ItemStyle HorizontalAlign="center" Width="110px" />
+                    <ItemStyle HorizontalAlign="center" />
                     </asp:BoundField>
 <%--                    <asp:BoundField DataField="dteLastActionTime" HeaderText="LastAct" ItemStyle-HorizontalAlign="Center" SortExpression="dteLastActionTime">
                     <ItemStyle HorizontalAlign="center" Width="75px" />
@@ -172,7 +172,7 @@
                     </asp:BoundField>--%>
 
                         <asp:BoundField DataField="Request_By" HeaderText="Request By" Visible="true" ItemStyle-HorizontalAlign="Center" SortExpression="Request_By">
-                    <ItemStyle HorizontalAlign="center" Width="150px" />
+                    <ItemStyle HorizontalAlign="center" Width="200px" />
                     </asp:BoundField>
 
 <%--                    <asp:BoundField DataField="strShortName" HeaderText="ShortN" ItemStyle-HorizontalAlign="Center" SortExpression="strShortName">
@@ -192,11 +192,11 @@
                     </asp:BoundField>
                     
                     <asp:BoundField DataField="strBank" HeaderText="Bank" ItemStyle-HorizontalAlign="Center" SortExpression="strBank">
-                    <ItemStyle HorizontalAlign="center" Width="150px" />
+                    <ItemStyle HorizontalAlign="center" Width="200px" />
                     </asp:BoundField>
                     
                     <asp:BoundField DataField="strBranch" HeaderText="Branch" ItemStyle-HorizontalAlign="Center" SortExpression="strBranch">
-                    <ItemStyle HorizontalAlign="center" Width="120px" />
+                    <ItemStyle HorizontalAlign="center" Width="150px" />
                     </asp:BoundField>
 
                    <%-- <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" SortExpression="">
@@ -204,7 +204,7 @@
                     Eval("strOrgContactNo"),""+Eval("strOrgFAXNo"),""+Eval("strBusinessType"),""+Eval("strServiceType"),""+Eval("strBIN"),""+
                     Eval("strTIN"),""+Eval("strVATRegNo"),""+Eval("strTradeLisenceNo"),""+Eval("strReprName"),""+Eval("strPayToName"),""+Eval("strSupplierType")) %>">Approved</a></ItemTemplate><ItemStyle HorizontalAlign="Left" Width="35px" /></asp:TemplateField>--%>
                     
-                    <asp:TemplateField HeaderText="Edit">
+                    <asp:TemplateField HeaderText="Edit" Visible="False">
                     <ItemTemplate>
                     <asp:Button ID="brnEdits" runat="server" Text="Edit" CommandName="complete" ForeColor="Blue" OnClick="Edit_Click" CommandArgument='<%# Eval("intSuppMasterID") %>' /></ItemTemplate>
                     </asp:TemplateField> 

@@ -49,7 +49,7 @@ namespace UI.Inventory
         {
             try
             {
-                dt = report.SUpplierListforApproval1();
+                dt = report.SUpplierListforApproval1(Enroll);
                 dgvSuppRequest.DataSource = dt;
                 dgvSuppRequest.DataBind();
             }
@@ -136,15 +136,15 @@ namespace UI.Inventory
                             txtDistrictId.Text = dt.Rows[0]["intDistrictID"].ToString();
                             txtBranchId.Text = dt.Rows[0]["intBranchID"].ToString();
                             lblPOTypevalue.Text = dt.Rows[0]["strSupplierType"].ToString();
-                            if(lblPOTypevalue.Text == "Foreign Purchase")
+                            if (lblPOTypevalue.Text == "Foreign Purchase")
                             {
                                 Labelotherinformation.Visible = false;
                                 btnMaster.Visible = false;
                                 btnForign.Visible = true;
                                 btnclose.Visible = true;
-                                txtPayTo.Visible=false;
+                                txtPayTo.Visible = false;
                                 lblpayto.Visible = false;
-                                
+
                                 txtACNo.Visible = false;
                                 lblAcNo.Visible = false;
 
@@ -164,7 +164,7 @@ namespace UI.Inventory
                                 lbldistrictid.Visible = false;
                                 txtBranchId.Visible = false;
                                 lblbranchid.Visible = false;
-                                
+
 
                             }
 
@@ -183,7 +183,7 @@ namespace UI.Inventory
 
                                 txtRouting.Visible = true;
                                 lblrouting.Visible = true;
-                               
+
                                 RadioButton1.Visible = true;
                                 txtBank.Visible = true;
                                 lblbank.Visible = true;
@@ -232,7 +232,7 @@ namespace UI.Inventory
                             else { }
 
                         }
-                        }
+                    }
                 }
                 catch { }
 
@@ -270,12 +270,12 @@ namespace UI.Inventory
                     //Session["ordernumber"] = intid; Complete1_Click
 
                     report.getSupplierApproval(enroll, intSuppid);
-                   // report.InsertSupplierApprove(intSuppid, enroll);
+                    // report.InsertSupplierApprove(intSuppid, enroll);
 
                     string mesages = report.GridSubmitMasterSupplier(1, intSuppid, enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mesages + "');", true);
                     dt = new DataTable();
-                    dt = report.SUpplierListforApproval1();
+                    dt = report.SUpplierListforApproval1(Enroll);
                     dgvSuppRequest.DataSource = dt;
                     dgvSuppRequest.DataBind();
                 }
@@ -287,7 +287,7 @@ namespace UI.Inventory
 
             }
 
-}
+        }
 
 
         protected void Complete2_Click(object sender, EventArgs e)
@@ -295,22 +295,22 @@ namespace UI.Inventory
             string msg = "";
             try
             {
-                Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                DataTable dtcount = new DataTable();
-                dtcount = bankcheck.getcount(enroll);
-                Int32 permissioncoun = Convert.ToInt32(dtcount.Rows[0]["count"].ToString());
-                if (permissioncoun > 0)
-                {
+                //Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                //DataTable dtcount = new DataTable();
+                //dtcount = bankcheck.getcount(enroll);
+                //Int32 permissioncoun = Convert.ToInt32(dtcount.Rows[0]["count"].ToString());
+                //if (permissioncoun > 0)
+                //{
 
-                    char[] delimiterChars = { '^' };
-                    string temp1 = ((Button)sender).CommandArgument.ToString();
-                    string temp = temp1.Replace("'", " ");
-                    string[] searchKey = temp.Split(delimiterChars);
-                    Int32 intSuppid = int.Parse(searchKey[0].ToString());
-                    report.GetSuppReject(enroll, intSuppid);
-                    msg = "Rejected.";
-                    Loadgrid();
-                }
+                char[] delimiterChars = { '^' };
+                string temp1 = ((Button)sender).CommandArgument.ToString();
+                string temp = temp1.Replace("'", " ");
+                string[] searchKey = temp.Split(delimiterChars);
+                Int32 intSuppid = int.Parse(searchKey[0].ToString());
+                report.GetSuppReject(Enroll, intSuppid);
+                msg = "Rejected.";
+                Loadgrid();
+                //}
             }
             catch { msg = "Sorry to reject."; }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
@@ -318,7 +318,7 @@ namespace UI.Inventory
 
 
 
-      
+
 
 
         protected void submit_Clicken(object sender, EventArgs e)
@@ -483,8 +483,8 @@ namespace UI.Inventory
 
         protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
         {
-           string strRoutingNo = txtRouting.Text;
-            if (strRoutingNo == "" || strRoutingNo.Length!=9)
+            string strRoutingNo = txtRouting.Text;
+            if (strRoutingNo == "" || strRoutingNo.Length != 9)
             {
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please mention Routing number in nine digit format');", true);
@@ -618,10 +618,10 @@ namespace UI.Inventory
                 lblbranch.Visible = false;
                 lblbranchid.Visible = false;
                 lbldistrictid.Visible = false;
-               
+
                 hid.Value = txtSuppliername.Text;
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", false);
-               
+
             }
             else if (suppliertypeid == 2)
             {
@@ -657,7 +657,7 @@ namespace UI.Inventory
             }
 
 
-            else 
+            else
             {
                 txtACNo.Visible = false;
                 txtRouting.Visible = false;
@@ -1046,47 +1046,47 @@ namespace UI.Inventory
             //if (hdnconfirm.Value == "1")
             //{
 
-                string strSuppMasterName; string strOrgAddress; string strOrgMail; string strOrgContactNo; string strOrgFAXNo; string strBusinessType; string strServiceType; string strBIN;
-                string strTIN; string strVATRegNo; string strTradeLisenceNo; string strReprName; string strReprContactNo; string strPayToName; string strSupplierType; DateTime dteEnlistment;
-                //DateTime dteLastActionTime; bool ysnActive; int intMasterSupplierType; int intPreferedInstrument;
-                int RequestBy ,BankID, DistrictID, BranchID,  MasterId; string strShortName, strACNO, strRoutingNo;
+            string strSuppMasterName; string strOrgAddress; string strOrgMail; string strOrgContactNo; string strOrgFAXNo; string strBusinessType; string strServiceType; string strBIN;
+            string strTIN; string strVATRegNo; string strTradeLisenceNo; string strReprName; string strReprContactNo; string strPayToName; string strSupplierType; DateTime dteEnlistment;
+            //DateTime dteLastActionTime; bool ysnActive; int intMasterSupplierType; int intPreferedInstrument;
+            int RequestBy, BankID, DistrictID, BranchID, MasterId; string strShortName, strACNO, strRoutingNo;
 
 
-                strSuppMasterName = txtSuppliername.Text;
-                strOrgAddress = txtAddress.Text;
-                strOrgMail = txtemail.Text;
-                strOrgContactNo = txtContactNo.Text;
-                strOrgFAXNo = txtFax.Text;
-                strBusinessType = ddlBussType.SelectedItem.ToString();
-                strServiceType = ddlservice.SelectedItem.ToString();
-                strBIN = txtBin.Text;
-                strTIN = txtTin.Text;
-                strVATRegNo = txtVatReg.Text;
-                strTradeLisenceNo = txtTradeLicn.Text;
-                strReprName = txtContactP.Text;
-                strReprContactNo = txtPhone.Text;
-                strPayToName = txtPayTo.Text;
-                strSupplierType = ddlSupplierType.SelectedItem.ToString();
-                strShortName = txtShortName.Text;
-                //strACNO = txtACNo.Text;
-                //strRoutingNo = txtRouting.Text;
-                //strBank = txtBank.Text;
-                //strBranch = txtBranch.Text;
-                //BankID = int.Parse(txtBankId.Text);
-                //DistrictID = int.Parse(txtDistrictId.Text);
-                //BranchID = int.Parse(txtDistrictId.Text);
-                dteEnlistment = DateTime.Parse(txtEnlishmentDate.Text);
-                //Int32 MasterId = int.Parse(Session["msid"].ToString());
+            strSuppMasterName = txtSuppliername.Text;
+            strOrgAddress = txtAddress.Text;
+            strOrgMail = txtemail.Text;
+            strOrgContactNo = txtContactNo.Text;
+            strOrgFAXNo = txtFax.Text;
+            strBusinessType = ddlBussType.SelectedItem.ToString();
+            strServiceType = ddlservice.SelectedItem.ToString();
+            strBIN = txtBin.Text;
+            strTIN = txtTin.Text;
+            strVATRegNo = txtVatReg.Text;
+            strTradeLisenceNo = txtTradeLicn.Text;
+            strReprName = txtContactP.Text;
+            strReprContactNo = txtPhone.Text;
+            strPayToName = txtPayTo.Text;
+            strSupplierType = ddlSupplierType.SelectedItem.ToString();
+            strShortName = txtShortName.Text;
+            //strACNO = txtACNo.Text;
+            //strRoutingNo = txtRouting.Text;
+            //strBank = txtBank.Text;
+            //strBranch = txtBranch.Text;
+            //BankID = int.Parse(txtBankId.Text);
+            //DistrictID = int.Parse(txtDistrictId.Text);
+            //BranchID = int.Parse(txtDistrictId.Text);
+            dteEnlistment = DateTime.Parse(txtEnlishmentDate.Text);
+            //Int32 MasterId = int.Parse(Session["msid"].ToString());
 
-                RequestBy = int.Parse(Session[SessionParams.USER_ID].ToString());
-                dteEnlistment = DateTime.Parse(dteEnlistment.ToShortDateString());
-                //strSuppMasterName = hid.Value;
+            RequestBy = int.Parse(Session[SessionParams.USER_ID].ToString());
+            dteEnlistment = DateTime.Parse(dteEnlistment.ToShortDateString());
+            //strSuppMasterName = hid.Value;
 
-                //try
-                //{
+            //try
+            //{
 
-                    strSupplierType = ddlSupplierType.SelectedItem.ToString();
-                    Int32 suppliertypeid = int.Parse(ddlSupplierType.SelectedValue.ToString());
+            strSupplierType = ddlSupplierType.SelectedItem.ToString();
+            Int32 suppliertypeid = int.Parse(ddlSupplierType.SelectedValue.ToString());
             //if (suppliertypeid == 3)
             //{
             //    txtACNo.Text = "";
@@ -1106,29 +1106,29 @@ namespace UI.Inventory
             //Enlist.InsertSupplierDumpFTempory(strSuppMasterName, strOrgAddress, strOrgMail, strOrgContactNo, strOrgFAXNo, strBusinessType, strServiceType, strBIN, strTIN, strVATRegNo, strTradeLisenceNo, strReprName, strReprContactNo, strPayToName, strSupplierType, dteEnlistment, RequestBy, strShortName);
             BankID = 0; DistrictID = 0; BranchID = 0; strACNO = ""; strRoutingNo = ""; MasterId = 0;
             string msg = "";
-           
+
             msg = Enlist.InsertNewSupplierEdit(strSuppMasterName, strOrgAddress, strOrgMail, strOrgContactNo, strOrgFAXNo, strBusinessType, strServiceType, strBIN, strTIN, strVATRegNo, strTradeLisenceNo, strReprName, strReprContactNo, strPayToName, strSupplierType, dteEnlistment, RequestBy, strShortName, BankID, DistrictID, BranchID, strACNO, strRoutingNo, MasterId);
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "ClosehdnDivision();", true);
             txtSuppliername.Text = "";
-                    txtemail.Text = "";
-                    txtContactNo.Text = "";
-                    txtFax.Text = "";
-                    ddlBussType.DataBind();
-                    ddlservice.DataBind();
-                    txtBin.Text = "";
-                    txtTin.Text = "";
-                    txtVatReg.Text = "";
-                    txtTradeLicn.Text = "";
-                    txtContactP.Text = "";
-                    txtAddress.Text = "";
-                    ddlSupplierType.DataBind();
-                    txtPhone.Text = "";
-                    ddlservice.DataBind();
-                    //txtEnlishmentDate.Text = "";
-                    txtPayTo.Text = "";
-                    txtShortName.Text = "";
+            txtemail.Text = "";
+            txtContactNo.Text = "";
+            txtFax.Text = "";
+            ddlBussType.DataBind();
+            ddlservice.DataBind();
+            txtBin.Text = "";
+            txtTin.Text = "";
+            txtVatReg.Text = "";
+            txtTradeLicn.Text = "";
+            txtContactP.Text = "";
+            txtAddress.Text = "";
+            ddlSupplierType.DataBind();
+            txtPhone.Text = "";
+            ddlservice.DataBind();
+            //txtEnlishmentDate.Text = "";
+            txtPayTo.Text = "";
+            txtShortName.Text = "";
             //}
 
 
@@ -1242,8 +1242,8 @@ namespace UI.Inventory
             Button btn = (Button)sender;
             GridViewRow gvr = (GridViewRow)btn.NamingContainer;
             string intSuppMasterId = gvr.Cells[0].Text;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('SupplierDocView.aspx?intSuppMasterId=" + intSuppMasterId+"');", true);
-            
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('SupplierDocView.aspx?intSuppMasterId=" + intSuppMasterId + "');", true);
+
         }
     }
 }

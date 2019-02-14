@@ -1,14 +1,15 @@
 using System;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using UserSecurity;
 using Utility;
 
+#pragma warning disable 1587
 /// <summary>
-/// Developped By Akramul Haider
-/// Base of al *.aspx pages
+/// Developped By Akramul Haider, Update by MD. Yeasin Arafat
+/// Base of all *.aspx pages
 /// </summary>
+#pragma warning restore 1587
 namespace UI.ClassFiles
 {
     public class BasePage : Page
@@ -17,16 +18,17 @@ namespace UI.ClassFiles
         public int Enroll { get; private set; }
         public int JobStationId { get; private set; }
         public int UnitId { get; private set; }
+        public String UnitName { get; private set; }
         public string UserEmail { get; private set; }
 
         protected override void OnPreInit(EventArgs e)
         {
-            Page.LoadComplete += new EventHandler(Page_LoadComplete);
             base.OnPreInit(e);
             UserActivityCheck();
             Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             UnitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            UnitName = HttpContext.Current.Session[SessionParams.UNIT_NAME].ToString();
             UserEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
             Page.Title = @"Welcome to Akij Group";
         }
@@ -46,12 +48,8 @@ namespace UI.ClassFiles
             string pageName = segments[Array.FindIndex(segments, row => row.Contains(".aspx"))];
             return pageName.Replace(".aspx", "");
         }
-
-        void Page_LoadComplete(object sender, EventArgs e)
-        {
-
-        }
-
+        
+        // ReSharper disable once EmptyConstructor
         public BasePage()
         {
             //
@@ -78,7 +76,6 @@ namespace UI.ClassFiles
             if (retStr != "")
             {
                 Response.Redirect(retStr);
-                return;
             }
         }
 
@@ -108,15 +105,15 @@ namespace UI.ClassFiles
             SetVisibility(id, id, isVisible);
 
         }
-        public void SetVisibility(string head ,string id, bool isVisible)
+        private void SetVisibility(string head ,string id, bool isVisible)
         {
             if (isVisible)
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "showDiv('" + id + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), head, "showDiv('" + id + "');", true);
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), head, "hideDiv('" + id + "');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), head, "hideDiv('" + id + "');", true);
             }
 
         }

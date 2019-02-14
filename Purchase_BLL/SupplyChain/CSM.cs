@@ -320,11 +320,11 @@ namespace Purchase_BLL.SupplyChain
             return ad.GetDataAllBusinessUnit(searchkey);
         }
 
-        public DataTable SUpplierListforApproval1()
+        public DataTable SUpplierListforApproval1(int enroll)
 
         {
             SUpplierListforApproval1TableAdapter sla = new SUpplierListforApproval1TableAdapter();
-            return sla.SUpplierListforApproval1();
+            return sla.SUpplierListforApproval1(enroll);
         }
         
            

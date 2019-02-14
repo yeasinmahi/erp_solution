@@ -318,12 +318,15 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
 
-                                                  <asp:TemplateField HeaderText="SL.N"><HeaderTemplate>                                 
-                                       
-                     <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_GridView1(this, 'GridView1')"></asp:TextBox></HeaderTemplate>
-                                
-                         
-                     <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate> <ItemStyle HorizontalAlign="Left" Width="10px"/></asp:TemplateField>  
+                                        <asp:TemplateField HeaderText="SL.N"><HeaderTemplate>                                                                       
+                                        <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_GridView1(this, 'GridView1')"></asp:TextBox></HeaderTemplate>                                                      
+                                        <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate> <ItemStyle HorizontalAlign="Left" Width="10px"/></asp:TemplateField>  
+
+                                        <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" HeaderText="Action" ControlStyle-Font-Bold="true">
+
+                                        <ControlStyle Font-Bold="True" ForeColor="Red"></ControlStyle>
+                                        </asp:CommandField>
+
 
                                         </Columns>
                                         <FooterStyle BackColor="#CCCCCC" />

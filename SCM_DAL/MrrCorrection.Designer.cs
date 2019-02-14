@@ -697,6 +697,8 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrSupplierName;
             
+            private global::System.Data.DataColumn columnstatus;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable2DataTable() {
@@ -828,6 +830,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn statusColumn {
+                get {
+                    return this.columnstatus;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -863,7 +873,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable2Row AddDataTable2Row(int intUnitID, string strVatChallan, decimal monTotalVAT, bool ysnVoucherInserted, string strVoucherCode, int intPOID, int intWHID, string strWareHoseName, string strExtnlReff, System.DateTime dteChallanDate, string dteTransactionDate, string strSupplierName) {
+            public DataTable2Row AddDataTable2Row(int intUnitID, string strVatChallan, decimal monTotalVAT, bool ysnVoucherInserted, string strVoucherCode, int intPOID, int intWHID, string strWareHoseName, string strExtnlReff, System.DateTime dteChallanDate, string dteTransactionDate, string strSupplierName, string status) {
                 DataTable2Row rowDataTable2Row = ((DataTable2Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intUnitID,
@@ -877,7 +887,8 @@ namespace SCM_DAL {
                         strExtnlReff,
                         dteChallanDate,
                         dteTransactionDate,
-                        strSupplierName};
+                        strSupplierName,
+                        status};
                 rowDataTable2Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable2Row);
                 return rowDataTable2Row;
@@ -912,6 +923,7 @@ namespace SCM_DAL {
                 this.columndteChallanDate = base.Columns["dteChallanDate"];
                 this.columndteTransactionDate = base.Columns["dteTransactionDate"];
                 this.columnstrSupplierName = base.Columns["strSupplierName"];
+                this.columnstatus = base.Columns["status"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -941,6 +953,8 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columndteTransactionDate);
                 this.columnstrSupplierName = new global::System.Data.DataColumn("strSupplierName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrSupplierName);
+                this.columnstatus = new global::System.Data.DataColumn("status", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstatus);
                 this.columnintUnitID.AllowDBNull = false;
                 this.columnstrVatChallan.MaxLength = 250;
                 this.columnmonTotalVAT.ReadOnly = true;
@@ -953,6 +967,8 @@ namespace SCM_DAL {
                 this.columndteTransactionDate.ReadOnly = true;
                 this.columndteTransactionDate.MaxLength = 30;
                 this.columnstrSupplierName.MaxLength = 250;
+                this.columnstatus.ReadOnly = true;
+                this.columnstatus.MaxLength = 12;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1709,6 +1725,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string status {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable2.statusColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'status\' in table \'DataTable2\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.statusColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrVatChallanNull() {
                 return this.IsNull(this.tableDataTable2.strVatChallanColumn);
             }
@@ -1825,6 +1857,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrSupplierNameNull() {
                 this[this.tableDataTable2.strSupplierNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstatusNull() {
+                return this.IsNull(this.tableDataTable2.statusColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstatusNull() {
+                this[this.tableDataTable2.statusColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2276,6 +2320,7 @@ where mrr.intMRRID=@MrrId
             tableMapping.ColumnMappings.Add("dteChallanDate", "dteChallanDate");
             tableMapping.ColumnMappings.Add("dteTransactionDate", "dteTransactionDate");
             tableMapping.ColumnMappings.Add("strSupplierName", "strSupplierName");
+            tableMapping.ColumnMappings.Add("status", "status");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2294,10 +2339,11 @@ where mrr.intMRRID=@MrrId
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT mrr.intUnitID, mrr.strVatChallan, ISNULL(mrr.monTotaVAT,0) AS monTotalVAT, ISNULL(mrr.ysnVoucherInserted,0) AS ysnVoucherInserted, 
 isnull(mrr.strVoucherCode,'') as strVoucherCode, mrr.intPOID, mrr.intWHID, wh.strWareHoseName, mrr.strExtnlReff, mrr.dteChallanDate, 
-convert(varchar,CAST(mrr.dteLastActionTime AS DATE), 23) AS dteTransactionDate, s.strSupplierName
+convert(varchar,CAST(mrr.dteLastActionTime AS DATE), 23) AS dteTransactionDate, s.strSupplierName, case when j.ysnCompleted = 1 then 'Complete' else 'Not Complete' end as status
 FROM ERP_Inventory.dbo.tblFactoryReceiveMRR mrr
 Join ERP_Inventory.dbo.tblWearHouse wh on mrr.intWHID=wh.intWHID 
 join tblSupplier s on mrr.intSupplierID = s.intSupplierID
+left join ERP_Accounts.dbo.tblAccountsVoucherJournal j on mrr.strVoucherCode = j.strCode and mrr.intUnitID = j.intUnitID
 Where mrr.intMRRID = @intMrrId";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMrrId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intMRRID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
