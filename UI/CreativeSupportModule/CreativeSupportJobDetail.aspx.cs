@@ -208,7 +208,7 @@ namespace UI.CreativeSupportModule
                     Response.AddHeader("content-disposition", "attachment;filename=" + "Attachment.zip");
                     Response.Cache.SetCacheability(HttpCacheability.NoCache);
 
-                    Response.BinaryWrite(ZipHelper.CreateZip(serverFilePath));
+                    Response.BinaryWrite(serverFilePath.CreateZip());
                     Response.Flush();
                     serverFilePath.DeleteFolder();
                     Response.End();

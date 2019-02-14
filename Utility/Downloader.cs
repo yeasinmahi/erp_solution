@@ -6,10 +6,10 @@ namespace Utility
 {
     public static class Downloader
     {
-        public static byte[] DownloadFromFtp(this string remoteLink)
+        public static byte[] DownloadFromFtp(this string remoteUrl)
         {
             //Create FTP Request.
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteLink);
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(remoteUrl);
             request.Method = WebRequestMethods.Ftp.DownloadFile;
 
             //Enter FTP Server credentials.
@@ -31,14 +31,14 @@ namespace Utility
 
         }
 
-        public static bool UploadToFtp(string ftpurl, string localUrl)
+        public static bool UploadToFtp(this string remoteLink, string localUrl)
         {
             try
             {
                 using (WebClient client = new WebClient())
                 {
                     client.Credentials = new NetworkCredential("erp", "erp123");
-                    client.UploadFile(ftpurl, WebRequestMethods.Ftp.UploadFile, localUrl);
+                    client.UploadFile(remoteLink, WebRequestMethods.Ftp.UploadFile, localUrl);
                 }
                 return true;
             }

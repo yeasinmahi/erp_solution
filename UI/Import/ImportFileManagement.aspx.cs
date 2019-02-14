@@ -13,7 +13,7 @@ namespace UI.Import
     public partial class ImportFileManagement : BasePage
     {
         private readonly Import_BLL _bll = new Import_BLL();
-        private DataTable dt = new DataTable();
+        private DataTable _dt = new DataTable();
         readonly string ftp = "ftp://ftp.akij.net/";
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,10 +46,10 @@ namespace UI.Import
             }
             if (!string.IsNullOrWhiteSpace(lcNumber))
             {
-                dt = _bll.GetPoByLcNumber(lcNumber);
-                if (dt.Rows.Count > 0)
+                _dt = _bll.GetPoByLcNumber(lcNumber);
+                if (_dt.Rows.Count > 0)
                 {
-                    int.TryParse(dt.Rows[0]["intPOID"].ToString(), out po);
+                    int.TryParse(_dt.Rows[0]["intPOID"].ToString(), out po);
                     if (po == 0)
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
@@ -78,13 +78,13 @@ namespace UI.Import
                     "ShowNotification('Input po number properly','Import File Management','warning')", true);
                     return;
                 }
-                dt = _bll.GetLcIdbyPoId(po);
+                _dt = _bll.GetLcIdbyPoId(po);
                 int lcId;
-                if (dt.Rows.Count > 0)
+                if (_dt.Rows.Count > 0)
                 {
-                    if (int.TryParse(dt.Rows[0]["intLCID"].ToString(), out lcId))
+                    if (int.TryParse(_dt.Rows[0]["intLCID"].ToString(), out lcId))
                     {
-                        txtLcNumber.Text = dt.Rows[0]["strLCNumber"].ToString();
+                        txtLcNumber.Text = _dt.Rows[0]["strLCNumber"].ToString();
                         LoadShipmentSl(lcId);
                         hdLcId.Value = lcId.ToString();
                         LoadGridView();
@@ -140,7 +140,7 @@ namespace UI.Import
                     string strFilePath = "Import_Doc/" + filename;
                     string ftpPath = ftp + strFilePath;
 
-                    if (Downloader.UploadToFtp(ftpPath, localPath))
+                    if (ftpPath.UploadToFtp(localPath))
                     {
                         if (InsertData(strFilePath))
                         {
@@ -190,9 +190,9 @@ namespace UI.Import
             int intLcID = Convert.ToInt32(hdLcId.Value);
             int intUnit = Convert.ToInt32(ddlUnitName.SelectedItem.Value);
             string strRemarks = txtNote.Text;
-            dt = _bll.InsertImportFileUploadDetails(fileTypeId, strFilePath, intLcID, intShipmentID, Enroll, intUnit,
+            _dt = _bll.InsertImportFileUploadDetails(fileTypeId, strFilePath, intLcID, intShipmentID, Enroll, intUnit,
                 strRemarks);
-            if (Convert.ToInt32(dt.Rows[0]["autoId"]) > 0)
+            if (Convert.ToInt32(_dt.Rows[0]["autoId"]) > 0)
             {
                 return true;
             }
@@ -205,15 +205,15 @@ namespace UI.Import
             int lcId = Convert.ToInt32(hdLcId.Value);
             if (fileGroupId == 1)
             {
-                dt = _bll.GetImportFileUploadDetail(fileGroupId, lcId);
+                _dt = _bll.GetImportFileUploadDetail(fileGroupId, lcId);
             }
             else
             {
                 int shipmentId = Convert.ToInt32(ddlShipment.SelectedItem.Value);
-                dt = _bll.GetImportFileUploadDetail(fileGroupId, lcId, shipmentId);
+                _dt = _bll.GetImportFileUploadDetail(fileGroupId, lcId, shipmentId);
             }
             
-            gridView.DataSource = dt;
+            gridView.DataSource = _dt;
             gridView.DataBind();
         }
 

@@ -22,6 +22,7 @@
 
     public static class MessageExtensions
     {
+         
         public static string ToFriendlyString(this Message msg)
         {
             switch (msg)

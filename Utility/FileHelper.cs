@@ -22,7 +22,7 @@ namespace Utility
             Directory.Delete(path, true);
             return true;
         }
-        public static bool CopyFile(string source, string destionation)
+        public static bool CopyTo(this string source, string destionation)
         {
             try
             {

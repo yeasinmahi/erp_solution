@@ -3,9 +3,9 @@ using System.IO.Compression;
 
 namespace Utility
 {
-    public class ZipHelper
+    public static class ZipHelper
     {
-        public static byte[] CreateZip(string fileName)
+        public static byte[] CreateZip(this string fileName)
         {
             //if zip already exists then delete it
 
