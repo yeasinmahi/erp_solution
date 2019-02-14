@@ -49,7 +49,7 @@ namespace UI.SCM
         public void LoadWh()
         {
             dt = DataTableLoad.GetWHDataTable(Enroll);
-            Common.LoadDropDownWithAll(ddlWH, dt, "Id", "strName");
+            ddlWH.LoadWithAll(dt, "Id", "strName");
             dt.Clear();
         }
 

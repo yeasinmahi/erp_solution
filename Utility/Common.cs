@@ -167,7 +167,7 @@ namespace Utility
             return isLoad;
         }
 
-        public static bool LoadDropDownWithAll(DropDownList ddl, DataTable dt, string value, string text)
+        public static bool LoadWithAll(this DropDownList ddl, DataTable dt, string value, string text)
         {
             bool isLoad = LoadDropDown(ddl, dt, value, text);
             ddl.Items.Insert(0, new ListItem("All", "0"));
