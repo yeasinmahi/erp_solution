@@ -201,7 +201,7 @@ namespace UI.SAD.Customer.Report
                 ItemPromotion objitem = new ItemPromotion();
                 dt = objitem.getCustomerdetails(cusId);
                 lblCalculation.Text ="Do Qty :"+Math.Round(decimal.Parse(dt.Rows[0]["Doqty"].ToString())) + " Do Amount :" + Math.Round(decimal.Parse(dt.Rows[0]["DoAmount"].ToString())) + " Delivery Qty :" + Math.Round(decimal.Parse(dt.Rows[0]["Deliveryqty"].ToString()))
-                    + " Delivery Amount :" + Math.Round(decimal.Parse(dt.Rows[0]["deliveryamount"].ToString())) + " Due Qty :" + Math.Round(decimal.Parse(dt.Rows[0]["Dueqty"].ToString())) + " Due Amount :" + Math.Round(decimal.Parse(dt.Rows[0]["DueDeliverAmount"].ToString()))
+                    + " Delivery Amount :" + Math.Round(decimal.Parse(dt.Rows[0]["deliveryamount"].ToString())) + " Un-Delivery Qty :" + Math.Round(decimal.Parse(dt.Rows[0]["Dueqty"].ToString())) + " Un-Delivery Amount :" + Math.Round(decimal.Parse(dt.Rows[0]["DueDeliverAmount"].ToString()))
                     + " Discount :" + Math.Round(decimal.Parse(dt.Rows[0]["Discounts"].ToString())) + " Credit Balance :" + Math.Round(decimal.Parse(dt.Rows[0]["crBalance"].ToString())) + " Accounts Balance :" + Math.Round(decimal.Parse(dt.Rows[0]["Accbalance"].ToString()))
                     + " Net Balance :" + Math.Round(decimal.Parse(dt.Rows[0]["netbalance"].ToString()));
 
