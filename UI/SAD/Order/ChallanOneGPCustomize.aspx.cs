@@ -185,7 +185,6 @@ namespace UI.SAD.Order
 
         }
 
-
         private void GetChallan(string id, int rowCount, int customerId, Boolean maxChallan)
         {
 
@@ -304,23 +303,24 @@ namespace UI.SAD.Order
 
                     //    </tr>");
 
-                    //sbPromotion.Append(@"</br><tr style=""font-size:10px;background-color:#FFFFFF"">
+                    sbPromotion.Append(@"</br><tr style=""font-size:10px;background-color:#FFFFFF"">
 
-                    //       <th style=""width:20px;text-align:center"">
-                    //            SL</th>
-                    //        <th style=""text-align:center"">
-                    //           DELIVERY PRODUCT </th>
-                    //        <th style=""width:67px;text-align:center"">
-                    //         D.O NUMBER</th>
-                    //         <th style=""width:67px;text-align:center"">
-                    //           D. O  DATE</th>
-                    //         <th style=""width:67px;text-align:center"">
-                    //           CHALAN NUMBER</th>
+                           <th style=""width:20px;text-align:center"">
+                                SL</th>
+                            <th style=""text-align:center"">
+                               DELIVERY PRODUCT </th>
+                            <th style=""width:67px;text-align:center"">
+                             D.O NUMBER</th>
+                             <th style=""width:67px;text-align:center"">
+                               D. O  DATE</th>
+                             <th style=""width:67px;text-align:center"">
+                               CHALAN NUMBER</th>
 
-                    //        <th style=""width:67px;text-align:center"">
-                    //            DELIVERY QNT.</th>
+                            <th style=""width:67px;text-align:center"">
+                                DELIVERY QNT.</th>
 
-                    //    </tr>");
+                        </tr>");
+
                     sbPromotion.Append(@"<tr style=""font-size:10px;background-color:#A0A0A0"">
                             <th style=""width:20px;text-align:center"">
                                 SL</th>
@@ -338,13 +338,10 @@ namespace UI.SAD.Order
                             
                         
                         </tr>");
-
+                        
 
                 }
-
-
-
-
+                
 
                 #region ********************************************** 
                 if (maxChallan)
@@ -410,6 +407,7 @@ namespace UI.SAD.Order
                     }
 
                     //customerId = 374089;
+                   
                     dtprom = bllsv.getcustomerbasePromotionqnt(int.Parse(tripId), customerId);
                     for (int K = 0; K < dtprom.Rows.Count; K++)
                     {
@@ -437,12 +435,12 @@ namespace UI.SAD.Order
                         //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + chPrice + "</td>");
                         sbPromotion.Append("</tr>");
 
-
+    
 
                     }
 
-
-
+                    
+    
 
 
                 }
@@ -505,7 +503,6 @@ namespace UI.SAD.Order
         {
            
         }
-
 
 
         private StringBuilder Banner(string heading, string challanNo, string doNo, string unitName, string unitAddr
@@ -709,3 +706,4 @@ namespace UI.SAD.Order
         }
     }
 }
+
