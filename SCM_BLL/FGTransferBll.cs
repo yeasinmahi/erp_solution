@@ -6,10 +6,15 @@ namespace SCM_BLL
 {
     public class FgTransferBll
     {
-        public DataTable GetData(int type, int outWh, DateTime fromDate, DateTime toDate)
+        public DataTable GetFgTransferReport(int type, int outWh, DateTime fromDate, DateTime toDate)
         {
             SprFGTransferTableAdapter adp = new SprFGTransferTableAdapter();
             return adp.GetData(type, outWh, fromDate, toDate);
+        }
+        public DataTable GetFgProductionReport(int whId, DateTime fromDate, DateTime toDate)
+        {
+            DataTable1TableAdapter adp = new DataTable1TableAdapter();
+            return adp.GetData(whId, fromDate, toDate);
         }
     }
 }

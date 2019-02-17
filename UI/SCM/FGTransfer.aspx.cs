@@ -51,7 +51,7 @@ namespace UI.SCM
             int whid = ddlWH.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
-            _dt = _bll.GetData(1, whid, fromDate, toDate);
+            _dt = _bll.GetFgTransferReport(1, whid, fromDate, toDate);
 
             if (_dt.Rows.Count > 0)
             {

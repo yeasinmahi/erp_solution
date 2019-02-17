@@ -19,7 +19,7 @@ namespace UI.SCM.Transfer
                 {
                     _dt = new InventoryTransfer_BLL().GetTtransferDatas(1, "", 0, 0, DateTime.Now, Enroll);
                     ddlWH.Loads(_dt, "Id", "strName");
-                    ddlToWH.Loads(_dt, "Id", "strName");
+                    //ddlToWH.Loads(_dt, "Id", "strName");
                     DateTime now = DateTime.Now;
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
@@ -27,7 +27,7 @@ namespace UI.SCM.Transfer
                 }
                 catch (Exception ex)
                 {
-                    Alert(ex.Message);
+                    Toaster(ex.Message, Common.TosterType.Warning);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace UI.SCM.Transfer
             int whid = ddlWH.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
-            _dt = _bll.GetData(1, whid, fromDate, toDate);
+            _dt = _bll.GetFgProductionReport(whid, fromDate, toDate);
 
             if (_dt.Rows.Count > 0)
             {
