@@ -75,7 +75,7 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Production ID">
+                                    <asp:TemplateField HeaderText="Prod. ID">
                                         <ItemTemplate>
                                             <asp:Label ID="lblProductionID" runat="server" CssClass="lbl" Text='<%# Bind("intProductionID") %>'></asp:Label>
                                         </ItemTemplate>
@@ -103,14 +103,14 @@
                                         </FooterTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Prd. Qty" >
+                                    <asp:TemplateField HeaderText="Prod. Qty" >
                                         <ItemTemplate>
                                             <asp:Label ID="lblNumProdQty" runat="server" CssClass="lbl" Text='<%# Bind("numProdQty") %>'></asp:Label>
                                         </ItemTemplate>
                                         <FooterTemplate>
                                             <asp:Label runat="server" ID="lblNumProdQtyFooter"></asp:Label>
                                         </FooterTemplate>
-                                        <ItemStyle HorizontalAlign="center"/>
+                                        <ItemStyle HorizontalAlign="Right"/>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Sent Qty" >
                                         <ItemTemplate>
@@ -119,7 +119,7 @@
                                         <FooterTemplate>
                                             <asp:Label runat="server" ID="lblNumSendStoreQtyFooter"></asp:Label>
                                         </FooterTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rcv. Qty" >
                                         <ItemTemplate>
@@ -128,7 +128,7 @@
                                         <FooterTemplate>
                                             <asp:Label runat="server" ID="lblNumStoreReceiveQtyFooter"></asp:Label>
                                         </FooterTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
+                                        <ItemStyle HorizontalAlign="Right" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Sent Date">
                                         <ItemTemplate>
