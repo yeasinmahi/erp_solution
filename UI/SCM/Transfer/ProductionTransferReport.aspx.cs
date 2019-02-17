@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
+using System.Web.UI.WebControls;
 using SCM_BLL;
 using UI.ClassFiles;
 using Utility;
 
 namespace UI.SCM.Transfer
 {
-    public partial class FgTransferReport : BasePage
+    public partial class ProductionTransferReport : BasePage
     {
         private DataTable _dt = new DataTable();
         private readonly FgTransferBll _bll = new FgTransferBll();
@@ -57,6 +59,26 @@ namespace UI.SCM.Transfer
             {
                 Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
+        }
+
+        private double _productionQuantity = 0;
+        private double _sentQuantity = 0;
+        private double _receiveQuantity = 0;
+        protected void Grid_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                _productionQuantity += !string.IsNullOrWhiteSpace((e.Row.FindControl("lblNumProdQty") as Label)?.Text) ?  Convert.ToDouble((e.Row.FindControl("lblNumProdQty") as Label)?.Text):0;
+                _sentQuantity += !string.IsNullOrWhiteSpace((e.Row.FindControl("lblNumSendStoreQty") as Label)?.Text) ? Convert.ToDouble((e.Row.FindControl("lblNumSendStoreQty") as Label)?.Text):0;
+                _receiveQuantity += !string.IsNullOrWhiteSpace((e.Row.FindControl("lblNumStoreReceiveQty") as Label)?.Text)? Convert.ToDouble((e.Row.FindControl("lblNumStoreReceiveQty") as Label)?.Text):0;
+            }
+            else if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                if (e.Row.FindControl("lblNumProdQtyFooter") is Label s) s.Text = _productionQuantity.ToString(CultureInfo.InvariantCulture);
+                if (e.Row.FindControl("lblNumSendStoreQtyFooter") is Label t) t.Text = _sentQuantity.ToString(CultureInfo.InvariantCulture);
+                if (e.Row.FindControl("lblNumStoreReceiveQtyFooter") is Label u) u.Text = _receiveQuantity.ToString(CultureInfo.InvariantCulture);
+            }
+            
         }
     }
 }

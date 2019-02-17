@@ -1502,7 +1502,7 @@
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
-    <Content Include="SCM\Transfer\FgTransferReport.aspx" />
+    <Content Include="SCM\Transfer\ProductionTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\InventoryAdjustment.aspx" />
@@ -8028,12 +8028,12 @@
     <Compile Include="SCM\SupplierStatementReport.aspx.designer.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SCM\Transfer\FgTransferReport.aspx.cs">
-      <DependentUpon>FgTransferReport.aspx</DependentUpon>
+    <Compile Include="SCM\Transfer\ProductionTransferReport.aspx.cs">
+      <DependentUpon>ProductionTransferReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SCM\Transfer\FgTransferReport.aspx.designer.cs">
-      <DependentUpon>FgTransferReport.aspx</DependentUpon>
+    <Compile Include="SCM\Transfer\ProductionTransferReport.aspx.designer.cs">
+      <DependentUpon>ProductionTransferReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferReceive.aspx.cs">
       <DependentUpon>frmTransferReceive.aspx</DependentUpon>

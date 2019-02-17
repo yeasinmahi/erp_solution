@@ -10,7 +10,7 @@
 namespace UI.SCM.Transfer {
     
     
-    public partial class FgTransferReport {
+    public partial class ProductionTransferReport {
         
         /// <summary>
         /// PlaceHolder1 control.
