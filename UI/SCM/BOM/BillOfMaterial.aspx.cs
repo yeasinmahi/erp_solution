@@ -1,5 +1,7 @@
 ﻿using SCM_BLL;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Web;
@@ -63,33 +65,30 @@ namespace UI.SCM.BOM
         {
             try
             {
-                if (hdnPreConfirm.Value == "1")
+                _arrayKey = txtItem.Text.Split(_delimiterChars);
+                _intWh = ddlWH.SelectedValue();
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                if (_arrayKey.Length > 0)
                 {
-                    _arrayKey = txtItem.Text.Split(_delimiterChars);
-                    _intWh = ddlWH.SelectedValue();
-                    string item = "";
-                    string itemid = "";
-                    string uom = "";
-                    if (_arrayKey.Length > 0)
-                    {
-                        item = _arrayKey[0].ToString();
-                        uom = _arrayKey[2].ToString();
-                        itemid = _arrayKey[3].ToString();
-                    }
-                    CheckXmlItemData(itemid);
-                    if (_checkItem == 1)
-                    {
-                        string qty = txtQuantity.Text.ToString();
-                        string wastage = txtWastage.Text.ToString();
-                        string bomname = txtBomName.Text.ToString();
-                        string strCode = txtCode.Text.ToString();
-                        CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
-                        txtItem.Text = "";
-                    }
-                    else
-                    {
-                        Toaster("Item already added",Common.TosterType.Warning);
-                    }
+                    item = _arrayKey[0];
+                    uom = _arrayKey[2];
+                    itemid = _arrayKey[3];
+                }
+                CheckXmlItemData(itemid);
+                if (_checkItem == 1)
+                {
+                    string qty = txtQuantity.Text;
+                    string wastage = txtWastage.Text;
+                    string bomname = txtBomName.Text;
+                    string strCode = txtCode.Text;
+                    CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
+                    txtItem.Text = "";
+                }
+                else
+                {
+                    Toaster("Item already added", Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)
@@ -156,43 +155,44 @@ namespace UI.SCM.BOM
         {
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
+                btnSubmit.Enabled = false;
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(_filePathForXml);
+                XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                _xmlString = dSftTm.InnerXml;
+                _xmlString = "<voucher>" + _xmlString + "</voucher>";
+
+                _arrayKey = txtBomItem.Text.Split(_delimiterChars);
+                _intWh = ddlWH.SelectedValue();
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
+                itemid = _arrayKey[_arrayKey.Length - 2];
+                int bomid = int.Parse(itemid);
+
+                try
                 {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(_filePathForXml);
-                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    _xmlString = dSftTm.InnerXml;
-                    _xmlString = "<voucher>" + _xmlString + "</voucher>";
-
-                    _arrayKey = txtBomItem.Text.Split(_delimiterChars);
-                    _intWh = ddlWH.SelectedValue();
-                    string item = "";
-                    string itemid = "";
-                    string uom = "";
-                    bool proceed = false;
-                    itemid = _arrayKey[_arrayKey.Length - 2].ToString();
-                    int bomid = int.Parse(itemid.ToString());
-
-                    try
-                    {
-                        File.Delete(_filePathForXml);
-                    }
-                    catch
-                    {
-                    }
-                    if (_xmlString.Length > 5)
-                    {
-                        string msg = _bll.BomPostData(4, _xmlString, _intWh, bomid, DateTime.Now, Enroll);
-                        Toaster(msg,msg.ToLower().Contains("success")?Common.TosterType.Success:Common.TosterType.Error);
-                        dgvRecive.UnLoad();
-
-                        txtCode.Text = "";
-                        txtBomName.Text = "";
-                        txtQuantity.Text = "0";
-                        txtWastage.Text = "0";
-                        txtItem.Text = "";
-                    }
+                    File.Delete(_filePathForXml);
                 }
+                catch
+                {
+                }
+                if (_xmlString.Length > 5)
+                {
+                    string msg = _bll.BomPostData(4, _xmlString, _intWh, bomid, DateTime.Now, Enroll);
+                    Toaster(msg,
+                        msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+                    dgvRecive.UnLoad();
+
+                    txtCode.Text = "";
+                    txtBomName.Text = "";
+                    txtQuantity.Text = "0";
+                    txtWastage.Text = "0";
+                    txtItem.Text = "";
+                }
+
             }
             catch (Exception ex)
             {
@@ -202,7 +202,14 @@ namespace UI.SCM.BOM
                 try
                 {
                     File.Delete(_filePathForXml);
-                } catch { }
+                }
+                catch
+                {
+                }
+            }
+            finally
+            {
+                btnSubmit.Enabled = true;
             }
         }
 
@@ -236,10 +243,16 @@ namespace UI.SCM.BOM
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _intwh = int.Parse(ddlWH.SelectedValue);
+            _intwh = ddlWH.SelectedValue();
             txtBomItem.Text = "";
             txtItem.Text = "";
             txtBomName.Text = "";
+            txtQuantity.Text = "0";
+            txtWastage.Text = "0";
+            txtCode.Text = "0";
+            dgvRecive.UnLoad();
+            _filePathForXml.DeleteFile();
+
             _dt = _bll.GetBomData(15, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
             if (_dt.Rows.Count > 0)
             {
@@ -260,20 +273,28 @@ namespace UI.SCM.BOM
             try
             {
                 DataSet ds = new DataSet();
-                ds.ReadXml(_filePathForXml);
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                if (_filePathForXml.IsExist())
                 {
-                    if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
+                    ds.ReadXml(_filePathForXml);
+                    int i = 0;
+                    for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                     {
-                        _checkItem = 0;
-                        break;
-                    }
-                    else
-                    {
-                        _checkItem = 1;
+                        if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
+                        {
+                            _checkItem = 0;
+                            break;
+                        }
+                        else
+                        {
+                            _checkItem = 1;
+                        }
                     }
                 }
+                else
+                {
+                    // file not found
+                }
+
             }
             catch (Exception ex)
             {
@@ -291,7 +312,7 @@ namespace UI.SCM.BOM
                 string itemid = "";
                 string uom = "";
                 bool proceed = false;
-                itemid = _arrayKey[_arrayKey.Length - 2].ToString();
+                itemid = _arrayKey[_arrayKey.Length - 2];
                 //if (arrayKey.Length > 0)
                 //{
                 //    item = arrayKey[0].ToString();
@@ -323,7 +344,7 @@ namespace UI.SCM.BOM
                 catch { }
 
                 txtBomName.Text = "";
-                _bomId = int.Parse(ListDatas.SelectedValue.ToString());
+                _bomId = int.Parse(ListDatas.SelectedValue);
                 _dt = _bll.GetBomData(3, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
                 lblBomName.Text = ListDatas.SelectedItem.Text;
                 if (_dt.Rows.Count > 0)
@@ -333,8 +354,8 @@ namespace UI.SCM.BOM
                     {
                         string qty = _dt.Rows[i]["numQty"].ToString();
                         string wastage = _dt.Rows[i]["numWastagePercent"].ToString();
-                        string bomname = "0".ToString();//dt.Rows[i]["strBoMName"].ToString();
-                        string strCode = "0".ToString(); //dt.Rows[i]["strBoMCode"].ToString();
+                        string bomname = "0";//dt.Rows[i]["strBoMName"].ToString();
+                        string strCode = "0"; //dt.Rows[i]["strBoMCode"].ToString();
 
                         string itemid = _dt.Rows[i]["intItemID"].ToString();
                         string item = _dt.Rows[i]["strItem"].ToString();
@@ -377,7 +398,7 @@ namespace UI.SCM.BOM
 
         #region========================Auto Search============================
 
-        private static readonly Bom_BLL  BomBll = new Bom_BLL();
+        private static readonly Bom_BLL BomBll = new Bom_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetItemSerach(string prefixText, int count)

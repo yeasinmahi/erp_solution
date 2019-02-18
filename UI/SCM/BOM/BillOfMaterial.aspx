@@ -23,14 +23,8 @@
 
     <script src="../../Content/JS/JSSettlement.js"></script>
 
-    <link href="jquery-ui.css" rel="stylesheet" />
-
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-
-    <script src="jquery-ui.min.js"></script>
-
-
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
 
     <script type="text/javascript"> 
         function AddConfirm() {
@@ -44,27 +38,44 @@
             var wastage = parseFloat(document.getElementById("txtWastage").value);
             var code = document.getElementById("txtCode").value;
             var name = document.getElementById("txtBomName").value;
-
-            //if ($.trim(wastage) == 0 || $.trim(wastage) == "" || $.trim(wastage) == null || $.trim(wastage) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input wastage%'); }
-            if ($.trim(code) == 0 || $.trim(code) == "" || $.trim(code) == null || $.trim(code) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Code'); }
-            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
-            else if ($.trim(name) == 0 || $.trim(name) == "" || $.trim(name) == null || $.trim(name) == undefined || $.trim(name) == "NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input BOM Name'); }
-            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-
-
-            else {
-                document.getElementById("hdnPreConfirm").value = "1";
+            var bom = document.getElementById("txtBomItem").value;
+            //if ($.trim(wastage) == 0 || $.trim(wastage) == "" || $.trim(wastage) == null || $.trim(wastage) == undefined) {  alert('Please input wastage%'); }
+            
+            if ($.trim(inItem) == 0 || $.trim(inItem) == "" ||  $.trim(inItem) == null || $.trim(inItem) == undefined) {
+                //alert('Please select In Item');
+                ShowNotification("Please select In Item", "Bill Of Meterial", "warning");
+                return false;
             }
+            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) {
+                //alert('Please input Quantity');
+                ShowNotification("Please input Quantity", "Bill Of Meterial", "warning");
+            }
+            else if ($.trim(name) == 0 || $.trim(name) == "" || $.trim(name) == null || $.trim(name) == undefined || $.trim(name) == "NaN") {
+                //alert('Please input BOM Name');
+                ShowNotification("Please input BOM Name", "Bill Of Meterial", "warning");
+                return false;
+            }
+            else if ($.trim(code) == 0 || $.trim(code) == "" || $.trim(code) == null || $.trim(code) == undefined) {
+                ShowNotification("Please input BOM Code", "Bill Of Meterial", "warning");
+                return false;
+            }
+            else if ($.trim(bom) == 0 || $.trim(bom) == "" || $.trim(bom) == null || $.trim(bom) == undefined) {
+                ShowNotification("Please input BOM Search", "Bill Of Meterial", "warning");
+                return false;
+            }
+            else {
+                return true;
+            }
+            return true;
         }
 
         function funConfirmAll() {
-            var confirm_value = document.createElement("INPUT");
-
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
-
-            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+            if (confirm("Do you want to proceed?")) {
+                showLoader();
+                return true;
+            } else {
+                return false;
+            }
 
         }
 
@@ -105,10 +116,9 @@
                 <%--=========================================Start My Code From Here===============================================--%>
 
                 <div class="leaveApplication_container">
-                    <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <asp:HiddenField ID="hdnPreConfirm" runat="server" />
-                    <div class="tabs_container">Bill of Material From<hr />
+                    <div class="tabs_container">
+                        Bill of Material From<hr />
                     </div>
                     <div>
                         <div style="text-align: left;" class="auto-style2">
@@ -160,14 +170,14 @@
                                     <tr>
 
                                         <td style="text-align: right" colspan="4">
-                                            <asp:Button ID="btnAdd" runat="server" Font-Bold="true" OnClientClick="AddConfirm();" Text="Add" OnClick="btnAdd_Click" />
-                                            <asp:Button ID="btnSubmit" runat="server" Text="Submit" Font-Bold="true" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click" />
+                                            <asp:Button ID="btnAdd" runat="server" Font-Bold="true" OnClientClick="return AddConfirm();" Text="Add" OnClick="btnAdd_Click" />
+                                            <asp:Button ID="btnSubmit" runat="server" Text="Submit" Font-Bold="true" OnClientClick="return funConfirmAll();" OnClick="btnSubmit_Click" />
 
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="4">
-                                                <asp:Label runat="server" ID="lblBomName" ForeColor="blue"></asp:Label>
+                                            <asp:Label runat="server" ID="lblBomName" ForeColor="blue"></asp:Label>
                                         </td>
                                     </tr>
                                 </table>
@@ -186,7 +196,7 @@
                                                         <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="ItemId"  SortExpression="itemid">
+                                                    <asp:TemplateField HeaderText="ItemId" SortExpression="itemid">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("itemid") %>'></asp:Label>
                                                         </ItemTemplate>
@@ -203,19 +213,22 @@
 
                                                     <asp:TemplateField HeaderText="UoM" Visible="true" ItemStyle-HorizontalAlign="right">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblQty" runat="server" Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
+                                                            <asp:Label ID="lblQty" runat="server" Text='<%# Bind("uom") %>'></asp:Label>
+                                                        </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Right" />
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="qty">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblValue" runat="server" Text='<%# Bind("qty") %>'></asp:Label></ItemTemplate>
+                                                            <asp:Label ID="lblValue" runat="server" Text='<%# Bind("qty") %>'></asp:Label>
+                                                        </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Right" />
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Wastage" ItemStyle-HorizontalAlign="right" SortExpression="wastage">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblwastage" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("wastage") %>'></asp:Label></ItemTemplate>
+                                                            <asp:Label ID="lblwastage" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("wastage") %>'></asp:Label>
+                                                        </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Right" />
                                                     </asp:TemplateField>
 

@@ -238,7 +238,7 @@ namespace SCM_BLL
                     var rows = from tmp in tableItem[e]//Convert.ToInt32(ht[unitID])
                                orderby tmp.intItemID
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
