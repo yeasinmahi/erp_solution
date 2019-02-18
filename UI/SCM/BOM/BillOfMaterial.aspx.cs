@@ -9,41 +9,52 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.BOM
 {
     public partial class BillOfMaterial : BasePage
     {
-        private Bom_BLL objBom = new Bom_BLL();
-        private DataTable dt = new DataTable();
-        private int intwh, enroll, BomId, intBomStandard; private string xmlData;
-        private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "";
-
+        private readonly Bom_BLL _bll = new Bom_BLL();
+        private DataTable _dt = new DataTable();
+        private int _intwh;
+        private int _bomId;
+        private int _checkItem = 1;
+        private int _intWh;
+        private string _xmlData, _filePathForXml, _xmlString = "";
+        private string[] _arrayKey;
+        private readonly char[] _delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            _filePathForXml = Server.MapPath("~/SCM/Data/BomMat__" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
-                try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
+                try
+                {
+                    File.Delete(_filePathForXml);
+                    dgvRecive.UnLoad();
+                }
                 catch { }
 
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(1, xmlData, intwh, BomId, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
+                _dt = _bll.GetBomData(1, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
+                if (_dt.Rows.Count > 0)
                 {
-                    ddlWH.DataSource = dt;
-                    ddlWH.DataTextField = "strName";
-                    ddlWH.DataValueField = "Id";
-                    ddlWH.DataBind();
+                    ddlWH.Loads(_dt, "Id", "strName");
                 }
-                intwh = int.Parse(ddlWH.SelectedValue);
-                dt = objBom.GetBomData(15, xmlData, intwh, BomId, DateTime.Now, enroll);
-                if (dt.Rows.Count > 0)
+                _intwh = ddlWH.SelectedValue();
+                _dt = _bll.GetBomData(15, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
+                if (_dt.Rows.Count > 0)
                 {
-                    hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    try { Session["Unit"] = hdnUnit.Value; } catch { }
+                    hdnUnit.Value = _dt.Rows[0]["intunit"].ToString();
+                    try
+                    {
+                        Session["Unit"] = hdnUnit.Value;
+                    }
+                    catch (Exception ex)
+                    {
+                        Toaster(ex.Message, Common.TosterType.Error);
+                    }
                 }
             }
         }
@@ -54,13 +65,19 @@ namespace UI.SCM.BOM
             {
                 if (hdnPreConfirm.Value == "1")
                 {
-                    arrayKey = txtItem.Text.Split(delimiterChars);
-                    intWh = int.Parse(ddlWH.SelectedValue);
-                    string item = ""; string itemid = ""; string uom = "";
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
-                    checkXmlItemData(itemid);
-                    if (CheckItem == 1)
+                    _arrayKey = txtItem.Text.Split(_delimiterChars);
+                    _intWh = ddlWH.SelectedValue();
+                    string item = "";
+                    string itemid = "";
+                    string uom = "";
+                    if (_arrayKey.Length > 0)
+                    {
+                        item = _arrayKey[0].ToString();
+                        uom = _arrayKey[2].ToString();
+                        itemid = _arrayKey[3].ToString();
+                    }
+                    CheckXmlItemData(itemid);
+                    if (_checkItem == 1)
                     {
                         string qty = txtQuantity.Text.ToString();
                         string wastage = txtWastage.Text.ToString();
@@ -69,18 +86,24 @@ namespace UI.SCM.BOM
                         CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
                         txtItem.Text = "";
                     }
-                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+                    else
+                    {
+                        Toaster("Item already added",Common.TosterType.Warning);
+                    }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         private void CreateXml(string itemid, string item, string uom, string qty, string wastage, string bomname, string strCode)
         {
             XmlDocument doc = new XmlDocument();
-            if (File.Exists(filePathForXML))
+            if (File.Exists(_filePathForXml))
             {
-                doc.Load(filePathForXML);
+                doc.Load(_filePathForXml);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
                 XmlNode addItem = CreateItemNode(doc, itemid, item, uom, qty, wastage, bomname, strCode);
                 rootNode.AppendChild(addItem);
@@ -94,7 +117,7 @@ namespace UI.SCM.BOM
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
-            doc.Save(filePathForXML);
+            doc.Save(_filePathForXml);
             LoadGridwithXml();
         }
 
@@ -135,37 +158,34 @@ namespace UI.SCM.BOM
             {
                 if (hdnConfirm.Value.ToString() == "1")
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWH.SelectedValue);
-                    doc.Load(filePathForXML);
+                    doc.Load(_filePathForXml);
                     XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                    _xmlString = dSftTm.InnerXml;
+                    _xmlString = "<voucher>" + _xmlString + "</voucher>";
 
-                    arrayKey = txtBomItem.Text.Split(delimiterChars);
-                    intWh = int.Parse(ddlWH.SelectedValue);
+                    _arrayKey = txtBomItem.Text.Split(_delimiterChars);
+                    _intWh = ddlWH.SelectedValue();
                     string item = "";
                     string itemid = "";
                     string uom = "";
                     bool proceed = false;
-                    itemid = arrayKey[arrayKey.Length - 2].ToString();
+                    itemid = _arrayKey[_arrayKey.Length - 2].ToString();
                     int bomid = int.Parse(itemid.ToString());
 
                     try
                     {
-                        File.Delete(filePathForXML);
+                        File.Delete(_filePathForXml);
                     }
                     catch
                     {
                     }
-                    if (xmlString.Length > 5)
+                    if (_xmlString.Length > 5)
                     {
-                        string msg = objBom.BomPostData(4, xmlString, intWh, bomid, DateTime.Now, enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('" + msg + "');", true);
-                        dgvRecive.DataSource = "";
-                        dgvRecive.DataBind();
+                        string msg = _bll.BomPostData(4, _xmlString, _intWh, bomid, DateTime.Now, Enroll);
+                        Toaster(msg,msg.ToLower().Contains("success")?Common.TosterType.Success:Common.TosterType.Error);
+                        dgvRecive.UnLoad();
+
                         txtCode.Text = "";
                         txtBomName.Text = "";
                         txtQuantity.Text = "0";
@@ -176,9 +196,13 @@ namespace UI.SCM.BOM
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                    "alert('" + ex.Message + "');", true);
-                try { File.Delete(filePathForXML); } catch { }
+
+                Toaster(ex.Message, Common.TosterType.Error);
+
+                try
+                {
+                    File.Delete(_filePathForXml);
+                } catch { }
             }
         }
 
@@ -187,79 +211,95 @@ namespace UI.SCM.BOM
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
+                doc.Load(_filePathForXml);
                 XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<voucher>" + xmlString + "</voucher>";
-                StringReader sr = new StringReader(xmlString);
+                _xmlString = dSftTm.InnerXml;
+                _xmlString = "<voucher>" + _xmlString + "</voucher>";
+                StringReader sr = new StringReader(_xmlString);
                 DataSet ds = new DataSet();
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
-                { dgvRecive.DataSource = ds; }
-                else { dgvRecive.DataSource = ""; }
+                {
+                    dgvRecive.DataSource = ds;
+                }
+                else
+                {
+                    dgvRecive.DataSource = "";
+                }
                 dgvRecive.DataBind();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            intwh = int.Parse(ddlWH.SelectedValue);
+            _intwh = int.Parse(ddlWH.SelectedValue);
             txtBomItem.Text = "";
             txtItem.Text = "";
             txtBomName.Text = "";
-            dt = objBom.GetBomData(15, xmlData, intwh, BomId, DateTime.Now, enroll);
-            if (dt.Rows.Count > 0)
+            _dt = _bll.GetBomData(15, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
+            if (_dt.Rows.Count > 0)
             {
-                hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                try { Session["Unit"] = hdnUnit.Value; } catch { }
+                hdnUnit.Value = _dt.Rows[0]["intunit"].ToString();
+                try
+                {
+                    Session["Unit"] = hdnUnit.Value;
+                }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message, Common.TosterType.Error);
+                }
             }
         }
 
-        private void checkXmlItemData(string itemid)
+        private void CheckXmlItemData(string itemid)
         {
             try
             {
                 DataSet ds = new DataSet();
-                ds.ReadXml(filePathForXML);
+                ds.ReadXml(_filePathForXml);
                 int i = 0;
                 for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                 {
                     if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
                     {
-                        CheckItem = 0;
+                        _checkItem = 0;
                         break;
                     }
                     else
                     {
-                        CheckItem = 1;
+                        _checkItem = 1;
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void txtBomItem_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                arrayKey = txtBomItem.Text.Split(delimiterChars);
-                intWh = int.Parse(ddlWH.SelectedValue);
+                _arrayKey = txtBomItem.Text.Split(_delimiterChars);
+                _intWh = int.Parse(ddlWH.SelectedValue);
                 string item = "";
                 string itemid = "";
                 string uom = "";
                 bool proceed = false;
-                itemid = arrayKey[arrayKey.Length - 2].ToString();
+                itemid = _arrayKey[_arrayKey.Length - 2].ToString();
                 //if (arrayKey.Length > 0)
                 //{
                 //    item = arrayKey[0].ToString();
                 //    uom = arrayKey[2].ToString();
                 //    itemid = arrayKey[5].ToString();
                 //}
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(2, xmlData, intwh, int.Parse(itemid), DateTime.Now, enroll);
-                ListDatas.DataSource = dt;
+                _dt = _bll.GetBomData(2, _xmlData, _intwh, int.Parse(itemid), DateTime.Now, Enroll);
+                ListDatas.DataSource = _dt;
                 ListDatas.DataTextField = "strName";
                 ListDatas.DataValueField = "Id";
                 ListDatas.DataBind();
@@ -267,7 +307,7 @@ namespace UI.SCM.BOM
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.Message + "');", true);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
 
@@ -277,34 +317,37 @@ namespace UI.SCM.BOM
             {
                 try
                 {
-                    File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind();
+                    File.Delete(_filePathForXml);
+                    dgvRecive.UnLoad();
                 }
                 catch { }
 
                 txtBomName.Text = "";
-                BomId = int.Parse(ListDatas.SelectedValue.ToString());
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objBom.GetBomData(3, xmlData, intwh, BomId, DateTime.Now, enroll);
+                _bomId = int.Parse(ListDatas.SelectedValue.ToString());
+                _dt = _bll.GetBomData(3, _xmlData, _intwh, _bomId, DateTime.Now, Enroll);
                 lblBomName.Text = ListDatas.SelectedItem.Text;
-                if (dt.Rows.Count > 0)
+                if (_dt.Rows.Count > 0)
                 {
-                    
-                    for (int i = 0; i < dt.Rows.Count; i++)
+
+                    for (int i = 0; i < _dt.Rows.Count; i++)
                     {
-                        string qty = dt.Rows[i]["numQty"].ToString();
-                        string wastage = dt.Rows[i]["numWastagePercent"].ToString();
+                        string qty = _dt.Rows[i]["numQty"].ToString();
+                        string wastage = _dt.Rows[i]["numWastagePercent"].ToString();
                         string bomname = "0".ToString();//dt.Rows[i]["strBoMName"].ToString();
                         string strCode = "0".ToString(); //dt.Rows[i]["strBoMCode"].ToString();
 
-                        string itemid = dt.Rows[i]["intItemID"].ToString();
-                        string item = dt.Rows[i]["strItem"].ToString();
-                        string uom = dt.Rows[i]["strUoM"].ToString();
+                        string itemid = _dt.Rows[i]["intItemID"].ToString();
+                        string item = _dt.Rows[i]["strItem"].ToString();
+                        string uom = _dt.Rows[i]["strUoM"].ToString();
                         txtCode.Text = strCode;
                         CreateXml(itemid, item, uom, qty, wastage, bomname, strCode);
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -314,32 +357,39 @@ namespace UI.SCM.BOM
                 LoadGridwithXml();
                 DataSet dsGrid = (DataSet)dgvRecive.DataSource;
                 dsGrid.Tables[0].Rows[dgvRecive.Rows[e.RowIndex].DataItemIndex].Delete();
-                dsGrid.WriteXml(filePathForXML);
+                dsGrid.WriteXml(_filePathForXml);
                 DataSet dsGridAfterDelete = (DataSet)dgvRecive.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
-                else { LoadGridwithXml(); }
+                {
+                    File.Delete(_filePathForXml);
+                    dgvRecive.UnLoad();
+                }
+                else
+                {
+                    LoadGridwithXml();
+                }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         #region========================Auto Search============================
 
+        private static readonly Bom_BLL  BomBll = new Bom_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetItemSerach(string prefixText, int count)
         {
-            Bom_BLL objBoms = new Bom_BLL();
-
-            return objBoms.AutoSearchFG(HttpContext.Current.Session["Unit"].ToString(), prefixText, 1);
+            return BomBll.AutoSearchFG(HttpContext.Current.Session["Unit"].ToString(), prefixText, 1);
         }
 
         [WebMethod]
         [ScriptMethod]
         public static string[] GetItemBomSerach(string prefixText, int count)
         {
-            Bom_BLL objBoms = new Bom_BLL();
-            return objBoms.AutoSearchFG(HttpContext.Current.Session["Unit"].ToString(), prefixText, 2);
+            return BomBll.AutoSearchFG(HttpContext.Current.Session["Unit"].ToString(), prefixText, 2);
         }
 
         #endregion====================Close======================================

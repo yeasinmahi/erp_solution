@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace Utility
 {
@@ -267,5 +268,15 @@ namespace Utility
                 "$1 $2"
             );
         }
+
+        //public static IEnumerable<string> Dublicate(this string xml,string parent, string attribute)
+        //{
+        //    var dublicates = XDocument.Parse(xml)
+        //        .Descendants(parent)
+        //        .GroupBy(g => (string)g.Attribute(attribute))
+        //        .Where(g => g.Count() > 1)
+        //        .Select(g => g.Key);
+        //    return dublicates;
+        //}
     }
 }

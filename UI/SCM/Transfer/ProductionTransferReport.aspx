@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="FgTransferReport.aspx.cs" Inherits="UI.SCM.Transfer.FgTransferReport" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductionTransferReport.aspx.cs" Inherits="UI.SCM.Transfer.ProductionTransferReport" %>
 
 <%@ Import Namespace="Utility" %>
 
@@ -41,10 +41,10 @@
                                     <asp:Label ID="Label3" runat="server" Text="From WareHouse" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                 </div>
-                                <div class="col-md-3">
+                                <%--<div class="col-md-3">
                                     <asp:Label ID="Label4" runat="server" Text="To WareHouse" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:DropDownList ID="ddlToWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
-                                </div>
+                                </div>--%>
                                 <div class="col-md-2">
                                     <asp:Label ID="Label1" runat="server" Text="From Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
@@ -67,7 +67,7 @@
                             <asp:Label runat="server" Text="FG Transfer Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="Grid" CssClass="Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="4" ForeColor="#333333" GridLines="Both" >
+                            <asp:GridView ID="Grid" CssClass="Grid" runat="server" AutoGenerateColumns="False" Width="100%" CellPadding="4" ForeColor="#333333" GridLines="Both" ShowFooter="True" OnRowDataBound="Grid_OnRowDataBound" >
                                 <Columns>
                                     <asp:TemplateField HeaderText="SN" SortExpression="intautoid">
                                         <ItemTemplate>
@@ -75,9 +75,15 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Transfer ID">
+                                    <asp:TemplateField HeaderText="Prod. ID">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblTransferId" runat="server" CssClass="lbl" Text='<%# Bind("intTransferID") %>'></asp:Label>
+                                            <asp:Label ID="lblProductionID" runat="server" CssClass="lbl" Text='<%# Bind("intProductionID") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Item ID" SortExpression="intItemID">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblintItemID" runat="server" CssClass="lbl" Text='<%# Bind("intItemID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -87,27 +93,52 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Item ID" SortExpression="intItemID">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblintItemID" runat="server" CssClass="lbl" Text='<%# Bind("intItemID") %>'></asp:Label>
-                                        </ItemTemplate>
-                                        <ItemStyle HorizontalAlign="center" />
-                                    </asp:TemplateField>
+                                    
                                     <asp:TemplateField HeaderText="UoM" SortExpression="strUoM">
                                         <ItemTemplate>
                                             <asp:Label ID="lblstrUoM" runat="server" CssClass="lbl" Text='<%# Bind("strUoM") %>'></asp:Label>
                                         </ItemTemplate>
+                                        <FooterTemplate>
+                                            Total
+                                        </FooterTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Quantity" SortExpression="numSendStoreQty">
+                                    <asp:TemplateField HeaderText="Prod. Qty" >
                                         <ItemTemplate>
-                                            <asp:TextBox ID="txtQuantity" runat="server" Text='<%# Bind("Qty","{0:N4}") %>' Width="100%" CssClass="form-control input-xs" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
+                                            <asp:Label ID="lblNumProdQty" runat="server" CssClass="lbl" Text='<%# Bind("numProdQty") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label runat="server" ID="lblNumProdQtyFooter"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Right"/>
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Sent Qty" >
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNumSendStoreQty" runat="server" CssClass="lbl" Text='<%# Bind("numSendStoreQty") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label runat="server" ID="lblNumSendStoreQtyFooter"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Rcv. Qty" >
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNumStoreReceiveQty" runat="server" CssClass="lbl" Text='<%# Bind("numStoreReceiveQty") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <FooterTemplate>
+                                            <asp:Label runat="server" ID="lblNumStoreReceiveQtyFooter"></asp:Label>
+                                        </FooterTemplate>
+                                        <ItemStyle HorizontalAlign="Right" />
+                                    </asp:TemplateField>
+                                    <asp:TemplateField HeaderText="Sent Date">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblDteSentQuantityDate" runat="server" CssClass="lbl" Text='<%# Bind("dteSentQuantityDate") %>' DataFormatString="{0:YYYY-MM-DD hh:mm:ss}"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
-                                    <asp:TemplateField HeaderText="Action Time">
+                                    <asp:TemplateField HeaderText="Rcv. Date">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblLastActionTime" runat="server" CssClass="lbl" Text='<%# Bind("dteTransactionDate") %>' DataFormatString="{0:YYYY-MM-DD hh:mm:ss}"></asp:Label>
+                                            <asp:Label ID="lblDteStoreReceiveDate" runat="server" CssClass="lbl" Text='<%# Bind("dteStoreReceiveDate") %>' DataFormatString="{0:YYYY-MM-DD hh:mm:ss}"></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -151,6 +182,7 @@
                     ShowNotification("To date can not be blank", "Transfer Report", "warning");
                     return false;
                 }
+                showLoader();
                 return true;
             }
         </script>
