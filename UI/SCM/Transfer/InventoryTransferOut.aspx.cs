@@ -20,7 +20,6 @@ namespace UI.SCM.Transfer
     public partial class InventoryTransferOut : BasePage
     {
         private InventoryTransfer_BLL objTransfer = new InventoryTransfer_BLL();
-        private AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
         private StoreIssue_BLL objWH = new StoreIssue_BLL();
         private DataTable dt = new DataTable();
         private string xmlString, filePathForXML;
@@ -38,7 +37,7 @@ namespace UI.SCM.Transfer
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" +Enroll + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMat__" + Enroll + ".xml");
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -49,13 +48,15 @@ namespace UI.SCM.Transfer
             {
                 if (!IsPostBack)
                 {
-                    ast = new AutoSearch_BLL();
+                    _ast = new AutoSearch_BLL();
+                    _objserch = new InventoryTransfer_BLL();
+
                     try { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
                     catch { }
 
                     dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, Enroll);
                     ddlWh.LoadWithSelect(dt, "Id", "strName");
-                    Session["WareID"] = ddlWh.SelectedValue.ToString();
+                    Session["WareID"] = ddlWh.SelectedValue();
 
                     //dt = objWH.GetWH(Enroll,Common.GetDdlSelectedValue(ddlWh));
                     ddlToWh.LoadWithSelect(new DataTable(), "Id", "strName");
@@ -72,7 +73,7 @@ namespace UI.SCM.Transfer
                 var efd = log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
 
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -90,7 +91,7 @@ namespace UI.SCM.Transfer
                 fd.Product, fd.Layer);
             try
             {
-                Session["WareID"] = ddlWh.SelectedValue.ToString();
+                Session["WareID"] = ddlWh.SelectedValue();
                 txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
 
                 ddlLcation.UnLoadWithSelect();
@@ -101,6 +102,7 @@ namespace UI.SCM.Transfer
             {
                 var efd = log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
+                Toaster(ex.Message,Common.TosterType.Error);
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -139,18 +141,19 @@ namespace UI.SCM.Transfer
                     dt.Clear();
                 }
                 dt = objWH.GetWH(Enroll, ddlWh.SelectedValue());
-                if (dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     ddlToWh.LoadWithSelect(dt, "Id", "strName");
                     dt.Clear();
                 }
-                
+
                 //else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -163,77 +166,74 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                if (hdnPreConfirm.Value == "1")
+
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
+                if (arrayKey.Length > 0)
                 {
-                    arrayKey = txtItem.Text.Split(delimiterChars);
-                    string item = "";
-                    string itemid = "";
-                    string uom = "";
-                    bool proceed = false;
-                    if (arrayKey.Length > 0)
-                    {
-                        item = arrayKey[0].ToString();
-                        uom = arrayKey[3].ToString();
-                        itemid = arrayKey[1].ToString();
-                    }
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[3].ToString();
+                    itemid = arrayKey[1].ToString();
+                }
 
-                    arrayKeyV = txtItem.Text.Split(delimiterChars);
-                    string vehicle = "";
-                    if (arrayKeyV.Length > 0)
-                    {
-                        vehicle = arrayKeyV[1].ToString();
-                    }
+                arrayKeyV = txtVehicle.Text.Split(delimiterChars);
+                string vehicle = "";
+                if (arrayKeyV.Length > 0)
+                {
+                    vehicle = arrayKeyV[1].ToString();
+                }
 
-                    if (int.Parse(vehicle) > 0)
-                    {
-                    }
-                    else
-                    {
-                        vehicle = "0";
-                    }
-                    string locationId = ddlLcation.SelectedValue.ToString();
-                    string locationName = ddlLcation.SelectedValue.ToString();
-                    string transType = ddlTransType.SelectedItem.ToString();
-                    string transTypeId = ddlTransType.SelectedValue.ToString();
-                    uom = hdnUom.Value.ToString();
-                    string qty = txTransferQty.Text.ToString();
-                    string remarks = txtRemarks.Text.ToString();
-
-                    try
-                    {
-                        decimal values =
-                            (decimal.Parse(hdnValue.Value.ToString()) / decimal.Parse(hdnStockQty.Value.ToString())) *
-                            decimal.Parse(qty.ToString());
-                    }
-                    catch
-                    {
-                        values = 0;
-                    }
-                    string monValue = values.ToString();
-                    checkXmlItemData(itemid);
-                    if (decimal.Parse(qty) > 0 && CheckItem == 1)
-                    {
-                        CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue,
-                            remarks, vehicle);
-                        txtItem.Text = "";
-                        txTransferQty.Text = "";
-                        lblValue.Text = "";
-                        ddlLcation.DataSource = "";
-                        ddlLcation.DataBind();
-                        ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
-                    }
-                    else
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Item already added');", true);
-                    }
+                if (int.Parse(vehicle) > 0)
+                {
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set Vehicle No');", true);
+                    vehicle = "0";
+                }
+                string locationId = ddlLcation.SelectedValue.ToString();
+                string locationName = ddlLcation.SelectedValue.ToString();
+                string transType = ddlTransType.SelectedItem.ToString();
+                string transTypeId = ddlTransType.SelectedValue.ToString();
+                uom = hdnUom.Value.ToString();
+                string qty = txTransferQty.Text.ToString();
+                string remarks = txtRemarks.Text.ToString();
+
+                try
+                {
+                    decimal values =
+                        (decimal.Parse(hdnValue.Value.ToString()) / decimal.Parse(hdnStockQty.Value.ToString())) *
+                        decimal.Parse(qty.ToString());
+                }
+                catch
+                {
+                    values = 0;
+                }
+                string monValue = values.ToString();
+                CheckXmlItemData(itemid);
+                if (decimal.Parse(qty) > 0 && CheckItem == 1)
+                {
+                    CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue,
+                        remarks, vehicle);
+                    txtItem.Text = "";
+                    txTransferQty.Text = "";
+                    lblValue.Text = "";
+                    ddlLcation.DataSource = "";
+                    ddlLcation.DataBind();
+                    ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "alert('Item already added');", true);
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         private void CreateXml(string item, string itemid, string qty, string locationId, string locationName, string transType, string transTypeId, string uom, string monValue, string remarks, string vehicle)
@@ -318,34 +318,50 @@ namespace UI.SCM.Transfer
                 DataSet ds = new DataSet();
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
-                { dgvStore.DataSource = ds; }
-                else { dgvStore.DataSource = ""; }
-                dgvStore.DataBind();
+                {
+                    dgvStore.DataSource = ds;
+                    dgvStore.DataBind();
+                }
+                else
+                {
+                    dgvStore.UnLoad();
+                }
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
-        private void checkXmlItemData(string itemid)
+        private void CheckXmlItemData(string itemid)
         {
             try
             {
                 DataSet ds = new DataSet();
-                ds.ReadXml(filePathForXML);
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                if(filePathForXML.IsExist())
                 {
-                    if (itemid == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
+                    ds.ReadXml(filePathForXML);
+                    int i = 0;
+                    for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                     {
-                        CheckItem = 0;
-                        break;
-                    }
-                    else
-                    {
-                        CheckItem = 1;
+                        if (itemid == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
+                        {
+                            CheckItem = 0;
+                            break;
+                        }
+                        else
+                        {
+                            CheckItem = 1;
+                        }
                     }
                 }
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void ddlLcation_SelectedIndexChanged(object sender, EventArgs e)
@@ -393,7 +409,7 @@ namespace UI.SCM.Transfer
                     }
                     else
                     {
-                        Toaster("No stock under this location",Common.TosterType.Warning);
+                        Toaster("No stock under this location", Common.TosterType.Warning);
                     }
                     //string strItems = dt.Rows[0]["strItem"].ToString();
                     //string intItem = dt.Rows[0]["intItem"].ToString();
@@ -416,6 +432,7 @@ namespace UI.SCM.Transfer
             {
                 var efd = log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
+                Toaster(ex.Message,Common.TosterType.Error);
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -424,6 +441,7 @@ namespace UI.SCM.Transfer
             tracker.Stop();
         }
 
+        private readonly object _locker = new object();
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -431,10 +449,10 @@ namespace UI.SCM.Transfer
 
             var tracker = new PerfTracker("Performance on SCM\\Transfer\\InventoryTransferOut Submit", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
-
+            btnSubmit.Enabled = false;
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
+                lock (_locker)
                 {
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(ddlWh.SelectedValue);
@@ -445,27 +463,57 @@ namespace UI.SCM.Transfer
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
 
-                    try { File.Delete(filePathForXML); } catch { }
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch
+                    {
+                    }
+
                     if (xmlString.Length > 5)
                     {
-                        string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, Enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                        dgvStore.DataSource = "";
-                        dgvStore.DataBind();
 
-                        txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
+                        string msg = objTransfer.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        xmlString = String.Empty;
+                        Toaster(msg,
+                            msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+
+                        dgvStore.UnLoad();
+
+                        txtItem.Text = "";
+                        txTransferQty.Text = "";
+                        txtRemarks.Text = "";
+                        txtVehicle.Text = "";
+                        lblDetalis.Text = "";
+                        lblValue.Text = "";
                         ddlLcation.DataSource = dt;
                         ddlLcation.DataBind();
                         ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
                         hdnStockQty.Value = "0";
+
+
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
-                try { File.Delete(filePathForXML); } catch { }
+
+                try
+                {
+                    File.Delete(filePathForXML);
+                }
+                catch
+                {
+                }
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
+            finally
+            {
+                btnSubmit.Enabled = true;
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -490,22 +538,25 @@ namespace UI.SCM.Transfer
         }
 
         #region========================Auto Search============================
-        static AutoSearch_BLL ast = new AutoSearch_BLL();
+        private static AutoSearch_BLL _ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
+            if (HttpContext.Current.Session["WareID"] != null && !HttpContext.Current.Session["WareID"].ToString().Equals("0"))
+            {
+                return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            }
+            return new string[0];
 
-            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
-
+        private static InventoryTransfer_BLL _objserch = new InventoryTransfer_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetVehicleSerach(string prefixText, int count)
         {
-            InventoryTransfer_BLL objserch = new InventoryTransfer_BLL();
-            return objserch.AutoSearchVehicle(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
+            return _objserch.AutoSearchVehicle(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
         }
 
         #endregion====================Close======================================
