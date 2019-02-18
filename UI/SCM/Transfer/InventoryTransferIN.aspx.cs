@@ -22,6 +22,7 @@ namespace UI.SCM.Transfer
         private int intWh;
         private string[] arrayKey;
         private readonly char[] _delimiterChars = { '[', ']' };
+        private readonly object _locker = new object();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -173,52 +174,62 @@ namespace UI.SCM.Transfer
         {
             try
             {
-
-                arrayKey = txtItem.Text.Split(_delimiterChars);
-                string item = "";
-                string itemid = "";
-                string uom = "";
-                if (arrayKey.Length > 0)
+                lock (_locker)
                 {
-                    item = arrayKey[0];
-                    uom = arrayKey[3];
-                    itemid = arrayKey[1];
-                }
-                intWh = int.Parse(ddlWh.SelectedValue);
-                Id = int.Parse(ddlTransferItem.SelectedValue);
-                int location = int.Parse(ddlLcation.SelectedValue);
-                double monTransQty = double.Parse(txtQty.Text);
-                string strRemarks = txtRemarsk.Text;
-                xmlString = "<voucher><voucherentry monTransQty=" + '"' + monTransQty + '"' + " strRemarks=" + '"' + strRemarks + '"' + " location=" + '"' + location + '"' + " itemid=" + '"' + itemid + '"' + "/></voucher>";
-                if (int.Parse(itemid) > 1 && double.Parse(hdnInQty.Value) <= monTransQty)
-                {
-                    txtItem.Text = "";
-                    txtQty.Text = "";
-                    txtRemarsk.Text = "";
-                    lblFrom.Text = "";
+                    btnSaveIn.Enabled = false;
 
-                    string msg = _bll.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, Enroll);
-                    if (msg.ToLower().Contains("success"))
+                    arrayKey = txtItem.Text.Split(_delimiterChars);
+                    string item = "";
+                    string itemid = "";
+                    string uom = "";
+                    if (arrayKey.Length > 0)
                     {
-                        _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
-                        ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
-                        ddlLcation.UnLoad();
-                        Toaster(msg, Common.TosterType.Success);
+                        item = arrayKey[0];
+                        uom = arrayKey[3];
+                        itemid = arrayKey[1];
+                    }
+                    intWh = int.Parse(ddlWh.SelectedValue);
+                    Id = int.Parse(ddlTransferItem.SelectedValue);
+                    int location = int.Parse(ddlLcation.SelectedValue);
+                    double monTransQty = double.Parse(txtQty.Text);
+                    string strRemarks = txtRemarsk.Text;
+                    xmlString = "<voucher><voucherentry monTransQty=" + '"' + monTransQty + '"' + " strRemarks=" + '"' +
+                                strRemarks + '"' + " location=" + '"' + location + '"' + " itemid=" + '"' + itemid +
+                                '"' + "/></voucher>";
+                    if (int.Parse(itemid) > 1 && double.Parse(hdnInQty.Value) <= monTransQty)
+                    {
+                        txtItem.Text = "";
+                        txtQty.Text = "";
+                        txtRemarsk.Text = "";
+                        lblFrom.Text = "";
+
+                        string msg = _bll.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, Enroll);
+                        xmlString =string.Empty;
+                        if (msg.ToLower().Contains("success"))
+                        {
+                            _dt = _bll.GetTtransferDatas(2, "", intWh, Id, DateTime.Now, Enroll);
+                            ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
+                            ddlLcation.UnLoad();
+                            Toaster(msg, Common.TosterType.Success);
+                        }
+                        else
+                        {
+                            Toaster(msg, Common.TosterType.Error);
+                        }
                     }
                     else
                     {
-                        Toaster(msg, Common.TosterType.Error);
+                        Toaster("Check Item and stock properly", Common.TosterType.Warning);
                     }
                 }
-                else
-                {
-                    Toaster("Check Item and stock properly", Common.TosterType.Warning);
-                }
-
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
+            }
+            finally
+            {
+                btnSaveIn.Enabled = true;
             }
         }
 

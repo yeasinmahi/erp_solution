@@ -26,6 +26,7 @@ namespace UI.SCM.BOM
         private string _xmlData, _filePathForXml, _xmlString = "";
         private string[] _arrayKey;
         private readonly char[] _delimiterChars = { '[', ']' };
+        private readonly object _locker = new object();
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SCM/Data/BomMat__" + Enroll + ".xml");
@@ -61,12 +62,11 @@ namespace UI.SCM.BOM
             }
         }
 
-        private readonly object _locker = new object();
+        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-
                 _arrayKey = txtItem.Text.Split(_delimiterChars);
                 _intWh = ddlWH.SelectedValue();
                 string item = "";
@@ -161,41 +161,43 @@ namespace UI.SCM.BOM
             try
             {
                 btnSubmit.Enabled = false;
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(_filePathForXml);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                _xmlString = dSftTm.InnerXml;
-                _xmlString = "<voucher>" + _xmlString + "</voucher>";
-
-                _arrayKey = txtBomItem.Text.Split(_delimiterChars);
-                _intWh = ddlWH.SelectedValue();
-                string item = "";
-                string itemid = "";
-                string uom = "";
-                bool proceed = false;
-                itemid = _arrayKey[_arrayKey.Length - 2];
-                int bomid = int.Parse(itemid);
-
-                try
+                lock (_locker)
                 {
-                    File.Delete(_filePathForXml);
-                }
-                catch
-                {
-                }
-                if (_xmlString.Length > 5)
-                {
-                    string msg = _bll.BomPostData(4, _xmlString, _intWh, bomid, DateTime.Now, Enroll);
-                    Toaster(msg,
-                        msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
-                    dgvRecive.UnLoad();
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(_filePathForXml);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    _xmlString = dSftTm.InnerXml;
+                    _xmlString = "<voucher>" + _xmlString + "</voucher>";
 
-                    txtCode.Text = "";
-                    txtBomName.Text = "";
-                    txtQuantity.Text = "0";
-                    txtWastage.Text = "0";
-                    txtItem.Text = "";
+                    _arrayKey = txtBomItem.Text.Split(_delimiterChars);
+                    _intWh = ddlWH.SelectedValue();
+                    string item = "";
+                    string itemid = "";
+                    string uom = "";
+                    bool proceed = false;
+                    itemid = _arrayKey[_arrayKey.Length - 2];
+                    int bomid = int.Parse(itemid);
+
+                    try
+                    {
+                        File.Delete(_filePathForXml);
+                    }
+                    catch
+                    {
+                    }
+                    if (_xmlString.Length > 5)
+                    {
+                        string msg = _bll.BomPostData(4, _xmlString, _intWh, bomid, DateTime.Now, Enroll);
+                        Toaster(msg,
+                            msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
+                        dgvRecive.UnLoad();
+
+                        txtCode.Text = "";
+                        txtBomName.Text = "";
+                        txtQuantity.Text = "0";
+                        txtWastage.Text = "0";
+                        txtItem.Text = "";
+                    }
                 }
 
             }

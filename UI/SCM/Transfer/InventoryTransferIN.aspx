@@ -19,7 +19,7 @@
     <script src="jquery-ui.min.js"></script>
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
-
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
 
 
     <script type="text/javascript">  
@@ -83,7 +83,12 @@
                 return false;
             }
             else {
-                return confirm("Do you want to proceed?");
+                if (confirm("Do you want to proceed?")) {
+                    showLoader();
+                    return true;
+                } else {
+                    return false;
+                }
             }
         }
     </script>
