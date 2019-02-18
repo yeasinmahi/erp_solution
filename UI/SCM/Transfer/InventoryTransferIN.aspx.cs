@@ -42,7 +42,7 @@ namespace UI.SCM.Transfer
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            
+
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
@@ -57,7 +57,7 @@ namespace UI.SCM.Transfer
                 Id = int.Parse(ddlTransferItem.SelectedValue);
                 Session["WareID"] = intWh;
 
-                List<Control> excepts = new List<Control> { ddlWh,ddlTransferItem };
+                List<Control> excepts = new List<Control> { ddlWh, ddlTransferItem };
                 UpdatePanel0.Controls.Clear(excepts);
                 lblFrom.Text = string.Empty;
 
@@ -130,9 +130,16 @@ namespace UI.SCM.Transfer
             try
             {
                 arrayKey = txtItem.Text.Split(_delimiterChars);
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0]; uom = arrayKey[3]; itemid = arrayKey[1]; }
+                {
+                    item = arrayKey[0];
+                    uom = arrayKey[3];
+                    itemid = arrayKey[1];
+                }
 
                 lblDetalis.Text = item + ", " + itemid + "," + uom;
                 intWh = int.Parse(ddlWh.SelectedValue);
@@ -189,6 +196,7 @@ namespace UI.SCM.Transfer
                     txtQty.Text = "";
                     txtRemarsk.Text = "";
                     lblFrom.Text = "";
+
                     string msg = _bll.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, Enroll);
                     if (msg.ToLower().Contains("success"))
                     {
@@ -220,7 +228,7 @@ namespace UI.SCM.Transfer
             {
                 intWh = ddlWh.SelectedValue();
                 Session["WareID"] = intWh;
-                List<Control> excepts = new List<Control> {ddlWh};
+                List<Control> excepts = new List<Control> { ddlWh };
                 UpdatePanel0.Controls.Clear(excepts);
                 lblFrom.Text = string.Empty;
                 if (intWh > 0)
@@ -231,9 +239,9 @@ namespace UI.SCM.Transfer
                 else
                 {
                     ddlTransferItem.UnLoadWithSelect();
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {

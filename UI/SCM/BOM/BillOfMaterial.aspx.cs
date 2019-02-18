@@ -61,10 +61,12 @@ namespace UI.SCM.BOM
             }
         }
 
+        private readonly object _locker = new object();
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
+
                 _arrayKey = txtItem.Text.Split(_delimiterChars);
                 _intWh = ddlWH.SelectedValue();
                 string item = "";
@@ -88,8 +90,11 @@ namespace UI.SCM.BOM
                 }
                 else
                 {
+                    LoadGridwithXml();
                     Toaster("Item already added", Common.TosterType.Warning);
                 }
+
+
             }
             catch (Exception ex)
             {
