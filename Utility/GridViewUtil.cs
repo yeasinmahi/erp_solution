@@ -129,17 +129,25 @@ namespace Utility
             //return sampleDataTable;
         }
 
-        public static DataTable AddRow(this DataTable dt, object obj)
+        public static bool AddRow(this DataTable dt, object obj)
         {
-            var sampleDataRow = dt.NewRow();
-            PropertyInfo[] propertyInfos = Common.GetProperties(obj);
-
-            foreach (PropertyInfo p in propertyInfos)
+            try
             {
-                sampleDataRow[p.Name] = Common.GetPropertyValue(obj, p.Name);
+                var sampleDataRow = dt.NewRow();
+                PropertyInfo[] propertyInfos = Common.GetProperties(obj);
+
+                foreach (PropertyInfo p in propertyInfos)
+                {
+                    sampleDataRow[p.Name] = Common.GetPropertyValue(obj, p.Name);
+                }
+                dt.Rows.Add(sampleDataRow);
+                return true;
             }
-            dt.Rows.Add(sampleDataRow);
-            return dt;
+            catch (Exception ex)
+            {
+                return false;
+            }
+           
         }
         public static bool UnLoad(this GridView gridView)
         {
@@ -169,6 +177,15 @@ namespace Utility
             //    .Where(r => r.Field<string>(columnName) != value)
             //    .CopyToDataTable();
             return true;
+        }
+        public static bool IsExist(this DataTable dt, string columnName, string value)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return false;
+            }
+            var query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == value);
+            return query.ToList().Count > 0;
         }
     }
     public class CreateItemTemplate : ITemplate

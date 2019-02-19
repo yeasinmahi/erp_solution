@@ -76,9 +76,10 @@ namespace UI.SCM
             _dt.Clear();
         }
 
-        private string itemName, uom;
+        private string itemId,itemName, uom;
         protected void ListDatas_SelectedIndexChanged(object sender, EventArgs e)
         {
+            itemId = ListDatas.SelectedItem.Value;
             string itemFullName = ListDatas.SelectedItem.Text;
 
             string[] array = itemFullName.Split(Variables.GetInstance().DelimiterChars);
@@ -91,11 +92,11 @@ namespace UI.SCM
             {
                 return;
             }
-
+            
             DataTable dataTable;
             dynamic obj = new
             {
-                intMasterId = ListDatas.SelectedItem.Value,
+                intMasterId = itemId,
                 strItemName = itemName,
                 strUom = uom
             };
@@ -107,11 +108,19 @@ namespace UI.SCM
             {
                 dataTable = (DataTable)Session["ItemManager"];
             }
-            dataTable = GridViewUtil.AddRow(dataTable, obj);
-            Session["ItemManager"] = dataTable;
+            if (!dataTable.IsExist("intMasterId", itemId))
+            {
+                dataTable.AddRow((object) obj);
+                Session["ItemManager"] = dataTable;
 
-            gridView.DataSource = dataTable;
-            gridView.DataBind();
+                gridView.DataSource = dataTable;
+                gridView.DataBind();
+            }
+            else
+            {
+                Toaster(Message.AlreadyAdded.ToFriendlyString(),Common.TosterType.Warning);
+            }
+            
 
         }
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
