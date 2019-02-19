@@ -269,61 +269,91 @@ namespace UI.SCM
         {
             try
             {
-                try { File.Delete(filePathForXML); File.Delete(filePathForXMLPo); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); } catch { File.Delete(filePathForXML); File.Delete(filePathForXMLPo); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); }
+                try
+                {
+                    File.Delete(filePathForXML);
+                    File.Delete(filePathForXMLPo);
+                    dgvIndentPrepare.DataSource = "";
+                    dgvIndentPrepare.DataBind();
+                }
+                catch
+                {
+                    File.Delete(filePathForXML);
+                    File.Delete(filePathForXMLPo);
+                    dgvIndentPrepare.DataSource = "";
+                    dgvIndentPrepare.DataBind();
+                }
 
-                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
                 int indent = int.Parse(lblIndent.Text.ToString());
                 intWh = int.Parse(hdnWHId.Value.ToString());
                 lblIndentType.Text = ddlDepts.SelectedItem.ToString();
                 dt = objPo.GetPoData(3, "", intWh, indent, DateTime.Now, Enroll);
+
                 if (dt.Rows.Count > 0)
                 {
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
                     hdnUnitId.Value = dt.Rows[0]["intUnitID"].ToString();
-                    
-                    Session["unitId"] = hdnUnitId.Value.ToString(); 
+
+                    Session["unitId"] = hdnUnitId.Value.ToString();
 
                     lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     lblIndentDate.Text = DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
-                    lblindentApproveDate.Text = DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
+                    lblindentApproveDate.Text =
+                        DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
                     lblInDueDate.Text = DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
-               
-
-                Tab1.CssClass = "Initial";
-                Tab2.CssClass = "Clicked";
-                Tab3.CssClass = "Initial";
-                Tab4.CssClass = "Initial";
-                MainView.ActiveViewIndex = 1;
-                string dept = ddlDepts.SelectedItem.ToString();
-
-                dt = objPo.GetPoData(4, "", intWh, indent, DateTime.Now, Enroll);// Indent Detalis
-
-                for (int i = 0; i < dt.Rows.Count; i++)
+                else
                 {
-                    string indentId = dt.Rows[i]["indentId"].ToString();
-                    string itemId = dt.Rows[i]["ItemId"].ToString();
-                    string strItem = dt.Rows[i]["strItem"].ToString();
-                    string strUom = dt.Rows[i]["strUom"].ToString();
-                    string strHsCode = dt.Rows[i]["strHsCode"].ToString();
-                    string strDesc = dt.Rows[i]["strDesc"].ToString();
-                    string numCurStock = dt.Rows[i]["numCurStock"].ToString();
-                    string numSafetyStock = dt.Rows[i]["numSafetyStock"].ToString();
-                    string numIndentQty = dt.Rows[i]["numIndentQty"].ToString();
-                    string numPoIssued = dt.Rows[i]["numPoIssued"].ToString();
-                    string numRemain = dt.Rows[i]["numRemain"].ToString();
-                    string numNewPo = dt.Rows[i]["numNewPo"].ToString();
-                    string strSpecification = dt.Rows[i]["strSpecification"].ToString();
-                    string monPreviousRate = dt.Rows[i]["monPreviousRate"].ToString();
-                    CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
+                    Toaster("Can not Load Indent Summery", Common.TosterType.Error);
+                    return;
                 }
-                txtIndentNoDet.Text = "";
-                ddlItem.DataSource = "";
-                ddlItem.DataBind();
-                LoadGridwithXml();
+
+                dt = objPo.GetPoData(4, "", intWh, indent, DateTime.Now, Enroll); // Indent Detalis
+                if (dt.Rows.Count > 0)
+                {
+                    Tab1.CssClass = "Initial";
+                    Tab2.CssClass = "Clicked";
+                    Tab3.CssClass = "Initial";
+                    Tab4.CssClass = "Initial";
+                    MainView.ActiveViewIndex = 1;
+                    string dept = ddlDepts.SelectedItem.ToString();
+                    for (int i = 0; i < dt.Rows.Count; i++)
+                    {
+                        string indentId = dt.Rows[i]["indentId"].ToString();
+                        string itemId = dt.Rows[i]["ItemId"].ToString();
+                        string strItem = dt.Rows[i]["strItem"].ToString();
+                        string strUom = dt.Rows[i]["strUom"].ToString();
+                        string strHsCode = dt.Rows[i]["strHsCode"].ToString();
+                        string strDesc = dt.Rows[i]["strDesc"].ToString();
+                        string numCurStock = dt.Rows[i]["numCurStock"].ToString();
+                        string numSafetyStock = dt.Rows[i]["numSafetyStock"].ToString();
+                        string numIndentQty = dt.Rows[i]["numIndentQty"].ToString();
+                        string numPoIssued = dt.Rows[i]["numPoIssued"].ToString();
+                        string numRemain = dt.Rows[i]["numRemain"].ToString();
+                        string numNewPo = dt.Rows[i]["numNewPo"].ToString();
+                        string strSpecification = dt.Rows[i]["strSpecification"].ToString();
+                        string monPreviousRate = dt.Rows[i]["monPreviousRate"].ToString();
+                        CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock,
+                            numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
+
+                        LoadGridwithXml();
+                    }
+                }
+                else
+                {
+                    txtIndentNoDet.Text = "";
+                    ddlItem.UnLoad();
+                    return;
+                }
+
             }
-            catch { Session["unitId"] = "0".ToString(); }
+            catch(Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+                Session["unitId"] = "0".ToString();
+            }
         }
 
         private void CreateXml(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
