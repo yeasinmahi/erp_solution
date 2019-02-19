@@ -59,7 +59,7 @@
                             </td>
                             <td style="text-align: right;">Item List</td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="100px"></asp:TextBox></td>
+                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="250px"></asp:TextBox></td>
                             <td colspan="1" style="text-align: left;">
                                 <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
                         </tr>
@@ -80,7 +80,8 @@
                     </table>
                     
                     <div style="width: 100%">
-                        <asp:GridView runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both">
+                        <asp:GridView runat="server" ID="gridView" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="Both" 
+                            OnRowDataBound="gridView_OnRowDataBound">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
                                 <asp:TemplateField HeaderText="SL">
@@ -90,17 +91,18 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Master Id">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lblMasterId" Text="intMasterItemId"></asp:Label>
+                                        <asp:Label runat="server" ID="lblMasterId" Text='<%# Bind("intMasterId") %>' ></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item Name">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lblItemName" Text="strItemName"></asp:Label>
+                                        <asp:Label runat="server" ID="lblItemName" Text='<%# Bind("strItemName") %>'></asp:Label>
                                     </ItemTemplate>
+                                    <ItemStyle HorizontalAlign="Left"></ItemStyle>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="UoM">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lblUom" Text="strUom"></asp:Label>
+                                        <asp:Label runat="server" ID="lblUom" Text='<%# Bind("strUom") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Store Location">
@@ -108,11 +110,7 @@
                                         <asp:DropDownList runat="server" ID="ddlStoreLocation"></asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Category">
-                                    <ItemTemplate>
-                                        <asp:DropDownList runat="server" ID="ddlCategory"></asp:DropDownList>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
+                                
                                 <asp:TemplateField HeaderText="Sub Category">
                                     <ItemTemplate>
                                         <asp:DropDownList runat="server" ID="ddlSubCategory"></asp:DropDownList>
@@ -121,6 +119,16 @@
                                 <asp:TemplateField HeaderText="Minor Category">
                                     <ItemTemplate>
                                         <asp:DropDownList runat="server" ID="ddlMinorCategory"></asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Category">
+                                    <ItemTemplate>
+                                        <asp:DropDownList runat="server" ID="ddlCategory"></asp:DropDownList>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Action">
+                                    <ItemTemplate>
+                                        <asp:Button runat="server" ID="btnRemove" Text="Remove" OnClick="btnRemove_OnClick"></asp:Button>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>

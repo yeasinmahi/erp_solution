@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace Utility
 {
@@ -91,7 +94,53 @@ namespace Utility
             }
 
         }
+        public static bool Loads(this GridView gridView, DataTable dataTable)
+        {
+            if (gridView == null) return false;
+            if (dataTable == null) return false;
+            
+            gridView.DataSource = dataTable;
+            gridView.DataBind();
+            return true;
+        }
 
+        public static DataTable InitDataTable(object obj)
+        {
+            DataSet sampleDataSet = new DataSet {Locale = CultureInfo.InvariantCulture};
+            DataTable sampleDataTable = sampleDataSet.Tables.Add("TblDaynamic");
+
+            PropertyInfo[] propertyInfos = Common.GetProperties(obj);
+            foreach (PropertyInfo p in propertyInfos)
+            {
+                sampleDataTable.Columns.Add(p.Name, typeof(string));
+            }
+            return sampleDataTable;
+
+            //sampleDataTable.Columns.Add("intMasterId", typeof(string));
+            //sampleDataTable.Columns.Add("strItemName", typeof(string));
+            //for (int i = 1; i <= 49; i++)
+            //{
+            //    var sampleDataRow = sampleDataTable.NewRow();
+            //    sampleDataRow["intMasterId"] = "Cell1: " + i.ToString(CultureInfo.CurrentCulture);
+            //    sampleDataRow["strItemName"] = "Cell2: " + i.ToString(CultureInfo.CurrentCulture);
+            //    sampleDataTable.Rows.Add(sampleDataRow);
+            //}
+
+            //return sampleDataTable;
+        }
+
+        public static DataTable AddRow(this DataTable dt, object obj)
+        {
+            var sampleDataRow = dt.NewRow();
+            PropertyInfo[] propertyInfos = Common.GetProperties(obj);
+
+            foreach (PropertyInfo p in propertyInfos)
+            {
+                sampleDataRow[p.Name] = Common.GetPropertyValue(obj, p.Name);
+            }
+            dt.Rows.Add(sampleDataRow);
+            return dt;
+        }
         public static bool UnLoad(this GridView gridView)
         {
             try
@@ -105,6 +154,21 @@ namespace Utility
                 return false;
             }
             
+        }
+
+        public static bool RemoveRow(this DataTable dt,string columnName,string value)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return false;
+            }
+            var query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == value);
+            foreach (var row in query.ToList())
+                row.Delete();
+            //dt = dt.AsEnumerable()
+            //    .Where(r => r.Field<string>(columnName) != value)
+            //    .CopyToDataTable();
+            return true;
         }
     }
     public class CreateItemTemplate : ITemplate

@@ -4,6 +4,7 @@ using SCM_BLL;
 using System;
 using System.Data;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
 
@@ -24,6 +25,7 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
+                Session["ItemManager"] = null;
                 LoadWh();
                 LoadStoreLocation();
             }
@@ -34,11 +36,6 @@ namespace UI.SCM
             _dt = _bll.GetViewData(1, "", _wh, 0, DateTime.Now, Enroll);
             ddlWh.Loads(_dt, "Id", "strName");
             _dt.Clear();
-            // dt = _bll.GetWH();
-            //ddlWh.DataSource = _dt;
-            //ddlWh.DataValueField = "Id";
-            //ddlWh.DataTextField = "strName";
-            //ddlWh.DataBind();
         }
 
         public void LoadStoreLocation()
@@ -47,52 +44,85 @@ namespace UI.SCM
             _dt = _bll.GetLocationByWh(_wh);
             ddlLocation.Loads(_dt, "Id", "strName");
             _dt.Clear();
-
-            //ddlLocation.DataSource = _dt;
-            //ddlLocation.DataValueField = "Id";
-            //ddlLocation.DataTextField = "strName";
-            //ddlLocation.DataBind();
         }
-
-        public void LoadItemCategory()
+        public void LoadStoreLocation(DropDownList ddl)
         {
             _wh = ddlWh.SelectedValue();
-            _dt = _bll.GetItemDropDownData(3,_wh);
-
+            _dt = _bll.GetLocationByWh(_wh);
+            ddl.LoadWithSelect(_dt, "Id", "strName");
             _dt.Clear();
         }
-        public void LoadItemSubCategory()
+
+        public void LoadItemCategory(DropDownList ddl)
+        {
+            _wh = ddlWh.SelectedValue();
+            _dt = _bll.GetItemDropDownData(3, _wh);
+            ddl.LoadWithSelect(_dt, "Id", "strName");
+            _dt.Clear();
+        }
+        public void LoadItemSubCategory(DropDownList ddl)
         {
             _wh = ddlWh.SelectedValue();
             _dt = _bll.GetItemDropDownData(2, _wh);
-
+            ddl.LoadWithSelect(_dt, "Id", "strName");
             _dt.Clear();
         }
-        public void LoadItemMinorCategory()
+        public void LoadItemMinorCategory(DropDownList ddl)
         {
             _wh = ddlWh.SelectedValue();
             _dt = _bll.GetItemDropDownData(1, _wh);
-
+            ddl.LoadWithSelect(_dt, "Id", "strName");
             _dt.Clear();
         }
+
+        private string itemName, uom;
         protected void ListDatas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DataTable dataTable = new DataTable();
+            string itemFullName = ListDatas.SelectedItem.Text;
+
+            string[] array = itemFullName.Split(Variables.GetInstance().DelimiterChars);
+            if (array.Length > 0)
+            {
+                itemName = array[2];
+                uom = array[3];
+            }
+            else
+            {
+                return;
+            }
+
+            DataTable dataTable;
+            dynamic obj = new
+            {
+                intMasterId = ListDatas.SelectedItem.Value,
+                strItemName = itemName,
+                strUom = uom
+            };
+            if (Session["ItemManager"] == null)
+            {
+                dataTable = GridViewUtil.InitDataTable(obj);
+            }
+            else
+            {
+                dataTable = (DataTable)Session["ItemManager"];
+            }
+            dataTable = GridViewUtil.AddRow(dataTable, obj);
+            Session["ItemManager"] = dataTable;
+
+            gridView.DataSource = dataTable;
+            gridView.DataBind();
 
         }
-
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                _wh = int.Parse(ddlWh.SelectedValue);
-                _dt = _bll.GetLocationByWh(_wh);
-                ddlLocation.DataSource = _dt;
-                ddlLocation.DataValueField = "Id";
-                ddlLocation.DataTextField = "strName";
-                ddlLocation.DataBind();
+                LoadStoreLocation();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -153,6 +183,26 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        protected void gridView_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            LoadStoreLocation(e.Row.FindControl("ddlStoreLocation") as DropDownList);
+            LoadItemCategory(e.Row.FindControl("ddlCategory") as DropDownList);
+            LoadItemSubCategory(e.Row.FindControl("ddlSubCategory") as DropDownList);
+            LoadItemMinorCategory(e.Row.FindControl("ddlMinorCategory") as DropDownList);
+
+
+        }
+
+        protected void btnRemove_OnClick(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            string itemId =(row.FindControl("lblMasterId") as Label)?.Text;
+            DataTable dt = (DataTable)Session["ItemManager"];
+            dt.RemoveRow("intMasterId", itemId);
+            gridView.Loads(dt);
+            Session["ItemManager"] = dt;
         }
     }
 }
