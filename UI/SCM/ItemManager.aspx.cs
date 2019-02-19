@@ -11,9 +11,9 @@ namespace UI.SCM
 {
     public partial class ItemManager : BasePage
     {
-        private StoreIssue_BLL objIssue = new StoreIssue_BLL();
-        private DataTable dt = new DataTable();
-        private int wh;
+        private readonly StoreIssue_BLL _bll = new StoreIssue_BLL();
+        private DataTable _dt = new DataTable();
+        private int _wh;
         private SeriLog log = new SeriLog();
         private string location = "SCM";
         private string start = "starting SCM\\IndentStatus";
@@ -24,37 +24,70 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                dt = objIssue.GetViewData(1, "", wh, 0, DateTime.Now, Enroll);
-                // dt = objIssue.GetWH();
-                ddlWh.DataSource = dt;
-                ddlWh.DataValueField = "Id";
-                ddlWh.DataTextField = "strName";
-                ddlWh.DataBind();
-                wh = ddlWh.SelectedValue();
-                dt = objIssue.GetWhByLocation(wh);
-                ddlLocation.DataSource = dt;
-                ddlLocation.DataValueField = "Id";
-                ddlLocation.DataTextField = "strName";
-                ddlLocation.DataBind();
+                LoadWh();
+                LoadStoreLocation();
             }
-            else { }
         }
 
+        public void LoadWh()
+        {
+            _dt = _bll.GetViewData(1, "", _wh, 0, DateTime.Now, Enroll);
+            ddlWh.Loads(_dt, "Id", "strName");
+            _dt.Clear();
+            // dt = _bll.GetWH();
+            //ddlWh.DataSource = _dt;
+            //ddlWh.DataValueField = "Id";
+            //ddlWh.DataTextField = "strName";
+            //ddlWh.DataBind();
+        }
+
+        public void LoadStoreLocation()
+        {
+            _wh = ddlWh.SelectedValue();
+            _dt = _bll.GetLocationByWh(_wh);
+            ddlLocation.Loads(_dt, "Id", "strName");
+            _dt.Clear();
+
+            //ddlLocation.DataSource = _dt;
+            //ddlLocation.DataValueField = "Id";
+            //ddlLocation.DataTextField = "strName";
+            //ddlLocation.DataBind();
+        }
+
+        public void LoadItemCategory()
+        {
+            _wh = ddlWh.SelectedValue();
+            _dt = _bll.GetItemDropDownData(3,_wh);
+
+            _dt.Clear();
+        }
+        public void LoadItemSubCategory()
+        {
+            _wh = ddlWh.SelectedValue();
+            _dt = _bll.GetItemDropDownData(2, _wh);
+
+            _dt.Clear();
+        }
+        public void LoadItemMinorCategory()
+        {
+            _wh = ddlWh.SelectedValue();
+            _dt = _bll.GetItemDropDownData(1, _wh);
+
+            _dt.Clear();
+        }
         protected void ListDatas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-            }
-            catch { }
+            DataTable dataTable = new DataTable();
+
         }
 
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                wh = int.Parse(ddlWh.SelectedValue);
-                dt = objIssue.GetWhByLocation(wh);
-                ddlLocation.DataSource = dt;
+                _wh = int.Parse(ddlWh.SelectedValue);
+                _dt = _bll.GetLocationByWh(_wh);
+                ddlLocation.DataSource = _dt;
                 ddlLocation.DataValueField = "Id";
                 ddlLocation.DataTextField = "strName";
                 ddlLocation.DataBind();
@@ -72,12 +105,12 @@ namespace UI.SCM
             try
             {
                 string masteritem = ListDatas.SelectedValue.ToString();
-                wh = int.Parse(ddlWh.SelectedValue);
+                _wh = int.Parse(ddlWh.SelectedValue);
                 string xmlData = "<voucher><voucherentry masteritem=" + '"' + masteritem + '"' + "/></voucher>".ToString();
                 int location = int.Parse(ddlLocation.SelectedValue);
                 if (location > 0)
                 {
-                    string msg = objIssue.StoreIssue(13, xmlData, wh, location, DateTime.Now, Enroll);
+                    string msg = _bll.StoreIssue(13, xmlData, _wh, location, DateTime.Now, Enroll);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Sselect your location');", true); }
@@ -104,8 +137,8 @@ namespace UI.SCM
             try
             {
                 string strSearchKey = txtItem.Text.ToString();
-                dt = objIssue.GetMasterItem(strSearchKey);
-                ListDatas.DataSource = dt;
+                _dt = _bll.GetMasterItem(strSearchKey);
+                ListDatas.DataSource = _dt;
                 ListDatas.DataValueField = "intItemMasterID";
                 ListDatas.DataTextField = "strItemMasterName";
                 ListDatas.DataBind();

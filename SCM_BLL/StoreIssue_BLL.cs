@@ -1,6 +1,7 @@
 ﻿using SCM_DAL.IndentTDSTableAdapters;
 using System;
 using System.Data;
+using SCM_DAL.ItemTDSTableAdapters;
 
 namespace SCM_BLL
 {
@@ -94,12 +95,21 @@ namespace SCM_BLL
             catch { return new DataTable(); }
         }
 
-        public DataTable GetWhByLocation(int Wh)
+        public DataTable GetLocationByWh(int wh)
         {
             try
             {
                 TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
-                return adpCOA.GetDataByWhLocation(Wh);
+                return adpCOA.GetDataByWhLocation(wh);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetItemDropDownData(int type, int whId)
+        {
+            try
+            {
+                sprItemDropDownTableAdapter adp = new sprItemDropDownTableAdapter();
+                return adp.GetItemDropDownData(type, whId);
             }
             catch { return new DataTable(); }
         }
