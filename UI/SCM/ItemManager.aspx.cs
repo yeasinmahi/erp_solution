@@ -2,6 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -27,7 +28,7 @@ namespace UI.SCM
             {
                 Session["ItemManager"] = null;
                 LoadWh();
-                LoadStoreLocation();
+                //LoadStoreLocation();
             }
         }
 
@@ -38,13 +39,13 @@ namespace UI.SCM
             _dt.Clear();
         }
 
-        public void LoadStoreLocation()
-        {
-            _wh = ddlWh.SelectedValue();
-            _dt = _bll.GetLocationByWh(_wh);
-            ddlLocation.Loads(_dt, "Id", "strName");
-            _dt.Clear();
-        }
+        //public void LoadStoreLocation()
+        //{
+        //    _wh = ddlWh.SelectedValue();
+        //    _dt = _bll.GetLocationByWh(_wh);
+        //    ddlLocation.Loads(_dt, "Id", "strName");
+        //    _dt.Clear();
+        //}
         public void LoadStoreLocation(DropDownList ddl)
         {
             _wh = ddlWh.SelectedValue();
@@ -117,7 +118,15 @@ namespace UI.SCM
         {
             try
             {
-                LoadStoreLocation();
+                List<Control> exceptList = new List<Control>();
+                exceptList.Add(ddlWh);
+                UpdatePanel0.Controls.Clear(exceptList);
+                ListDatas.Items.Clear();
+                if (gridView.UnLoad())
+                {
+                    Session["ItemManager"] = null;
+                }
+                //LoadStoreLocation();
             }
             catch (Exception ex)
             {
