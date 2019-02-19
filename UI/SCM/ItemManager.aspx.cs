@@ -125,6 +125,7 @@ namespace UI.SCM
         }
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //_bll.Test();
             try
             {
                 List<Control> exceptList = new List<Control>();

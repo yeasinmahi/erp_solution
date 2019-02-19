@@ -43,7 +43,7 @@ namespace Utility
             OrderLine,
             StrockUpdate
         }
-
+        
         public static string GetModulaFullPath(string path, Enum fileName)
         {
             return path + fileName.ToString("F") + ".txt";

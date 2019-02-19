@@ -88,6 +88,14 @@
       <Project>{43e9d794-020b-425f-857c-d313068c4bd5}</Project>
       <Name>SCM_DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServiceGateWay\ServiceGateWay.csproj">
+      <Project>{DBF3E407-6F42-4BF3-9FB1-5DA88BA65D22}</Project>
+      <Name>ServiceGateWay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

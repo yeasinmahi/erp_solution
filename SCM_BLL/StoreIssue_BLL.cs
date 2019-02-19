@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using SCM_DAL.ItemTDSTableAdapters;
+using ServiceGateWay;
 
 namespace SCM_BLL
 {
@@ -19,7 +20,6 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
-
             
         }
 
@@ -134,6 +134,12 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
+        }
+
+        public void Test()
+        {
+            ItemDal dal = new ItemDal();
+            dal.GetItems();
         }
     }
 }
