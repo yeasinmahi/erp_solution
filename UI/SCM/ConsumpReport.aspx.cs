@@ -75,7 +75,7 @@ namespace UI.SCM
                 LoadDepartment();
                 LoadSection();
                 LoadCostCenter();
-                LoadComGroup();
+                LoadMasterCategory();
                 LoadImage();
             }
             catch (Exception ex)
@@ -133,10 +133,20 @@ namespace UI.SCM
             _dt = _bll.GetViewData(10, "", whId, 0, DateTime.Now, Enroll);
             ddlSection.LoadWithSelect(_dt, "Id", "strName");
         }
-        public void LoadComGroup()
+        public void LoadMasterCategory()
         {
             _dt = _bll.GetViewData(20, "", 0, 0, DateTime.Now, Enroll);
             ddlMasterCategory.LoadWithSelect(_dt, "Id", "strName");
+        }
+        public void LoadMinorCategory()
+        {
+            _dt = _bll.GetViewData(21, "", 0, 0, DateTime.Now, Enroll);
+            ddlMinorCategory.LoadWithSelect(_dt, "Id", "strName");
+        }
+        public void LoadSubCategory()
+        {
+            _dt = _bll.GetViewData(22, "", 0, 0, DateTime.Now, Enroll);
+            ddlSubCategory.LoadWithSelect(_dt, "Id", "strName");
         }
 
         public void LoadWh()
@@ -190,7 +200,15 @@ namespace UI.SCM
             }
             LoadGridView(4, id);
         }
+        protected void btnMinorCategory_OnClick(object sender, EventArgs e)
+        {
+            Toaster("Comming Soon",Common.TosterType.Warning);
+        }
 
+        protected void btnSubCategory_OnClick(object sender, EventArgs e)
+        {
+            Toaster("Comming Soon", Common.TosterType.Warning);
+        }
         public void LoadGridView(int part, int id)
         {
             try
@@ -232,5 +250,7 @@ namespace UI.SCM
             
 
         }
+
+       
     }
 }
