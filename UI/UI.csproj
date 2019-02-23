@@ -291,6 +291,7 @@
     <Content Include="Asset\Report\VehicleMaintenanceSummary.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummaryByUnit.aspx" />
     <Content Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx" />
+    <Content Include="Asset\Report\Vehicle_maintenance_data_store.aspx" />
     <Content Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
@@ -2672,6 +2673,13 @@
     </Compile>
     <Compile Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx.designer.cs">
       <DependentUpon>Vehicle_Maintenance_Bill_Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_maintenance_data_store.aspx.cs">
+      <DependentUpon>Vehicle_maintenance_data_store.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_maintenance_data_store.aspx.designer.cs">
+      <DependentUpon>Vehicle_maintenance_data_store.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx.cs">
       <DependentUpon>Vehicle_Renewal_Bill_Unit.aspx</DependentUpon>

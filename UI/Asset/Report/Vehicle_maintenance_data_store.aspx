@@ -1,11 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Product_Rate_vs_DO.aspx.cs" Inherits="UI.SAD.Sales.Report.Product_Rate_vs_DO" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Vehicle_maintenance_data_store.aspx.cs" Inherits="UI.Asset.Report.Vehicle_maintenance_data_store" %>
+
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title>.: Product Rate vs DO :.</title>
+    <title>.: Vehicle Maintenance Data Store :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
