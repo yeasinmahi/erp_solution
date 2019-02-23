@@ -108,6 +108,42 @@ namespace UI.Asset
 
         }
 
+        protected void btnReopen_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int jobcard = int.Parse(txtJobCard.Text.ToString());
+                if (jobcard > 0)
+                {
+                    DataTable dt = new DataTable();
+                    dt = objasset.PMSLaborcostShow(66, jobcard, 0, 0, 0);
+                    if (dt.Rows.Count > 0)
+                    {
+                        int active = int.Parse(dt.Rows[0]["intID"].ToString());
+                        if (active == 1)
+                        {
+
+                            objasset.MaintenanceComplete(67, jobcard, 0, 0, 0);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Job Card Re-Open');", true);
+                        }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Bill already submited of last month');", true);
+                        }
+                    }
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Set Job Card Number');", true);
+                }
+            }
+            catch { }
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanelJoB();", true);
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
+
+        }
+
         protected void btnUnitUpdate_Click(object sender, EventArgs e)
         {
             int jobStation = 0, unit= 0; string msg = "",AssetCode = "";

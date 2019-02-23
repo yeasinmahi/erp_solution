@@ -79,6 +79,7 @@
                             </div>
                             <div class="row" style="padding-top:10px;">                              
                                 <div class="col-md-12 btn-toolbar hidden" id="btnshow">
+                                     <asp:Button ID="btnReopen" runat="server" class="btn btn-primary btn-md-6 form-control pull-left" Text="Re-Open" OnClientClick="return Validate();" OnClick="btnReopen_Click" />
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-md-6 form-control pull-right" Text="Show Service Cost" OnClientClick="return Validate();" OnClick="btnShow_Click" />
                                 </div>
                                  <div class="col-md-12 btn-toolbar hidden" id="btnupdate">
