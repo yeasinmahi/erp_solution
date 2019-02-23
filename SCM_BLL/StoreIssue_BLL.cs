@@ -68,6 +68,28 @@ namespace SCM_BLL
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+        public string InsertIntoItem(int enroll, int Wh, int locationId,int  intItemMasterId, int intSubCAT, int intMinorCAT,int intCATID)
+        {
+            string strMsg = "";
+            try
+            {
+                sprAddItemFromItemMasterNewTableAdapter adp = new sprAddItemFromItemMasterNewTableAdapter();
+                DataTable dt = adp.InsertItem(enroll, Wh, locationId, intItemMasterId, intSubCAT, intMinorCAT, intCATID);
+                if (dt.Rows.Count > 0)
+                {
+                    strMsg = dt.Rows[0]["strMessage"] + "Your ItemId = " + dt.Rows[0]["intItem"];
+                }
+                else
+                {
+                    strMsg = "Something error in database";
+                }
+            }
+            catch (Exception ex)
+            {
+                return strMsg = ex.ToString();
+            }
+            return strMsg;
+        }
 
         public DataTable GetMasterItem(string strSearchKey)
         {

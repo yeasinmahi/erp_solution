@@ -68,7 +68,7 @@
                                 <asp:ListBox ID="ListDatas" Width="800px" Height="200px" DataMember="s" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"></asp:ListBox>
                             </td>
                         </tr>
-                        <tr>
+                        <%--<tr>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Store Location"></asp:Label></td>
                             <td colspan="3" style="text-align: left;">
@@ -76,7 +76,7 @@
                                 </asp:DropDownList></td>
                             <td  style="text-align: left;">
                                 <asp:Button ID="btnAdd" runat="server" Text="Add Item" OnClick="btnAdd_Click" /></td>
-                        </tr>
+                        </tr>--%>
                     </table>
                     
                     <div style="width: 100%">
@@ -128,6 +128,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Action">
                                     <ItemTemplate>
+                                        <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_OnClick"></asp:Button>
                                         <asp:Button runat="server" ID="btnRemove" Text="Remove" OnClick="btnRemove_OnClick"></asp:Button>
                                     </ItemTemplate>
                                 </asp:TemplateField>

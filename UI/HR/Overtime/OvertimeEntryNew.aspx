@@ -51,19 +51,19 @@
                         </div>
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label20" runat="server" Text="Unit"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:DropDownList ID="ddlUnit" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_OnSelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label2" runat="server" Text="Job Station"></asp:Label>
                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                     <asp:DropDownList ID="ddlJobStation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="True" AutoPostBack="True" OnSelectedIndexChanged="ddlJobStation_OnSelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
-                                <div class="col-md-6 col-sm-6">
+                                <div class="col-md-4 col-sm-6">
                                     <asp:Label ID="Label1" runat="server" Text="Employee Name"></asp:Label>
                                     <span style="color: red; font-size: 14px; text-align: left">*</span>
                                     <asp:TextBox ID="txtEmployeeName" ClientIDMode="Static" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>

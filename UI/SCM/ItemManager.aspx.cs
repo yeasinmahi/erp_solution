@@ -28,7 +28,7 @@ namespace UI.SCM
             {
                 Session["ItemManager"] = null;
                 LoadWh();
-                LoadStoreLocation();
+                //LoadStoreLocation();
             }
         }
 
@@ -39,13 +39,13 @@ namespace UI.SCM
             _dt.Clear();
         }
 
-        public void LoadStoreLocation()
-        {
-            _wh = ddlWh.SelectedValue();
-            _dt = _bll.GetLocationByWh(_wh);
-            ddlLocation.Loads(_dt, "Id", "strName");
-            _dt.Clear();
-        }
+        //public void LoadStoreLocation()
+        //{
+        //    _wh = ddlWh.SelectedValue();
+        //    _dt = _bll.GetLocationByWh(_wh);
+        //    ddlLocation.Loads(_dt, "Id", "strName");
+        //    _dt.Clear();
+        //}
         public void LoadStoreLocation(DropDownList ddl)
         {
             _wh = ddlWh.SelectedValue();
@@ -144,37 +144,37 @@ namespace UI.SCM
             }
         }
 
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);
-            Flogger.WriteDiagnostic(fd);
+        //protected void btnAdd_Click(object sender, EventArgs e)
+        //{
+        //    var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);
+        //    Flogger.WriteDiagnostic(fd);
 
-            var tracker = new PerfTracker(perform + " " + "btnAdd_Click", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
-            {
-                string masteritem = ListDatas.SelectedValue.ToString();
-                _wh = int.Parse(ddlWh.SelectedValue);
-                string xmlData = "<voucher><voucherentry masteritem=" + '"' + masteritem + '"' + "/></voucher>".ToString();
-                int location = int.Parse(ddlLocation.SelectedValue);
-                if (location > 0)
-                {
-                    string msg = _bll.StoreIssue(13, xmlData, _wh, location, DateTime.Now, Enroll);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Sselect your location');", true); }
-            }
-            catch (Exception ex)
-            {
-                var efd = log.GetFlogDetail(stop, location, "btnAdd_Click", ex);
-                Flogger.WriteError(efd);
-            }
+        //    var tracker = new PerfTracker(perform + " " + "btnAdd_Click", "", fd.UserName, fd.Location,
+        //        fd.Product, fd.Layer);
+        //    try
+        //    {
+        //        string masteritem = ListDatas.SelectedValue.ToString();
+        //        _wh = int.Parse(ddlWh.SelectedValue);
+        //        string xmlData = "<voucher><voucherentry masteritem=" + '"' + masteritem + '"' + "/></voucher>".ToString();
+        //        int location = int.Parse(ddlLocation.SelectedValue);
+        //        if (location > 0)
+        //        {
+        //            string msg = _bll.StoreIssue(13, xmlData, _wh, location, DateTime.Now, Enroll);
+        //            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+        //        }
+        //        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Sselect your location');", true); }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        var efd = log.GetFlogDetail(stop, location, "btnAdd_Click", ex);
+        //        Flogger.WriteError(efd);
+        //    }
 
-            fd = log.GetFlogDetail(stop, location, "btnAdd_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
+        //    fd = log.GetFlogDetail(stop, location, "btnAdd_Click", null);
+        //    Flogger.WriteDiagnostic(fd);
+        //    // ends
+        //    tracker.Stop();
+        //}
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
@@ -216,12 +216,64 @@ namespace UI.SCM
 
         protected void btnRemove_OnClick(object sender, EventArgs e)
         {
+            RemoveRow(sender);
+        }
+
+        private void RemoveRow(object sender)
+        {
             GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            string itemId =(row.FindControl("lblMasterId") as Label)?.Text;
+            string itemId = (row.FindControl("lblMasterId") as Label)?.Text;
             DataTable dt = (DataTable)Session["ItemManager"];
             dt.RemoveRow("intMasterId", itemId);
             gridView.Loads(dt);
             Session["ItemManager"] = dt;
+        }
+        protected void btnAdd_OnClick(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                _wh = ddlWh.SelectedValue();
+                
+                
+                GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+                int itemMasterId = Convert.ToInt32((row.FindControl("lblMasterId") as Label)?.Text);
+
+                int locationId = (row.FindControl("ddlStoreLocation") as DropDownList).SelectedValue();
+                int subCategoryId = (row.FindControl("ddlSubCategory") as DropDownList).SelectedValue();
+                int minorCategoryId = (row.FindControl("ddlMinorCategory") as DropDownList).SelectedValue();
+                int categoryId = (row.FindControl("ddlCategory") as DropDownList).SelectedValue();
+                if (itemMasterId > 0)
+                {
+                    if (locationId > 0)
+                    {
+                        string msg = _bll.InsertIntoItem(Enroll, _wh, locationId, itemMasterId, subCategoryId,
+                            minorCategoryId, categoryId);
+                        if (msg.ToLower().Contains("success"))
+                        {
+                            RemoveRow(sender);
+                            Toaster(msg, Common.TosterType.Success);
+                        }
+                        else
+                        {
+                            Toaster(msg, Common.TosterType.Error);
+                        }
+                    }
+                    else
+                    {
+                        Toaster("Please Sselect your location", Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    Toaster("Problem in item master ID.", Common.TosterType.Warning);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
     }
 }
