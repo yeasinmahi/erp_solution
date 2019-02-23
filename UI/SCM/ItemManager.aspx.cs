@@ -28,7 +28,7 @@ namespace UI.SCM
             {
                 Session["ItemManager"] = null;
                 LoadWh();
-                //LoadStoreLocation();
+                LoadStoreLocation();
             }
         }
 
@@ -39,13 +39,13 @@ namespace UI.SCM
             _dt.Clear();
         }
 
-        //public void LoadStoreLocation()
-        //{
-        //    _wh = ddlWh.SelectedValue();
-        //    _dt = _bll.GetLocationByWh(_wh);
-        //    ddlLocation.Loads(_dt, "Id", "strName");
-        //    _dt.Clear();
-        //}
+        public void LoadStoreLocation()
+        {
+            _wh = ddlWh.SelectedValue();
+            _dt = _bll.GetLocationByWh(_wh);
+            ddlLocation.Loads(_dt, "Id", "strName");
+            _dt.Clear();
+        }
         public void LoadStoreLocation(DropDownList ddl)
         {
             _wh = ddlWh.SelectedValue();
