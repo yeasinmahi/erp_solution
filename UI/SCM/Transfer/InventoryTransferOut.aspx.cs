@@ -545,7 +545,7 @@ namespace UI.SCM.Transfer
         {
             if (HttpContext.Current.Session["WareID"] != null && !HttpContext.Current.Session["WareID"].ToString().Equals("0"))
             {
-                return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+                return _ast.AutoSearchrawMeterial(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             }
             return new string[0];
 
