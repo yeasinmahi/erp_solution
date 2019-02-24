@@ -261,7 +261,7 @@ namespace UI.SCM
                     }
                     else
                     {
-                        Toaster("Please Sselect your location", Common.TosterType.Warning);
+                        Toaster("Please Select store location", Common.TosterType.Warning);
                     }
                 }
                 else
