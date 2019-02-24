@@ -130,9 +130,16 @@ namespace UI.SCM.Transfer
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[3].ToString(); }
+                {
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[3].ToString();
+                    itemid = arrayKey[1].ToString();
+                }
                 Id = int.Parse(itemid.ToString());
                 intWh = int.Parse(ddlWh.SelectedValue);
 
@@ -155,9 +162,18 @@ namespace UI.SCM.Transfer
                     LoadLocation(dt);
                     dt.Clear();
                 }
-                else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
+                else
+                {
+                    lblDetalis.Text = "";
+                    lblValue.Text = "";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        "alert('Stock is not avaiable!');", true);
+                }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)

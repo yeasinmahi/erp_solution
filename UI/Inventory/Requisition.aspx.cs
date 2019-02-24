@@ -98,12 +98,13 @@ namespace UI.Inventory
         //    { result = objAutoSearch_BLL.GetItemLists(int.Parse(whid), searchKey); }
         //    return result;
         //}
+        private static readonly AutoSearch_BLL AutoSearchBll = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
-        public static string[] GetWearHouseRequesision(string prefixText, int count)
+        public static string[] GetWearHouseRequesision(string prefixText)
         {
             string whid =HttpContext.Current.Session["WareID"].ToString();
-            return new AutoSearch_BLL().GetItemLists(whid, prefixText);
+            return AutoSearchBll.GetItemLists(whid, prefixText);
 
         }
 
@@ -111,7 +112,7 @@ namespace UI.Inventory
         [ScriptMethod]
         public static string[] GetItemListsForStoreReq(string prefixText)
         {
-            return new AutoSearch_BLL().GetItemListsForStoreReq(prefixText);
+            return AutoSearchBll.GetItemListsForStoreReq(prefixText);
         }
 
         protected void txtSearchAssignedTo_TextChanged(object sender, EventArgs e)
