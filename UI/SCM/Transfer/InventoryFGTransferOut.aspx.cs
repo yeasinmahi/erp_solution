@@ -191,7 +191,7 @@ namespace UI.SCM.Transfer
                         arrayKey = txtItem.Text.Split(delimiterChars);
                         string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
                         if (arrayKey.Length > 0)
-                        { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[3].ToString(); }
+                        { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
 
                         arrayKeyV = txtItem.Text.Split(delimiterChars);
                         string vehicle = "0";
