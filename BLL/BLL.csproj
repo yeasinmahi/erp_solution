@@ -145,7 +145,7 @@
     <Compile Include="Accounts\Voucher\JournalVoucher.cs" />
     <Compile Include="Accounts\Voucher\VoucherRollback.cs" />
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
-    <Compile Include="AutoSearch\CostCenterBll.cs" />
+    <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,7 +166,9 @@
       <Name>HR_DAL</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AutoSearch\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

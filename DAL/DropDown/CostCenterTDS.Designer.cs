@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace DAL.AutoSearch {
+namespace DAL.DropDown {
     
     
     /// <summary>
@@ -638,7 +638,7 @@ namespace DAL.AutoSearch {
         }
     }
 }
-namespace DAL.AutoSearch.CostCenterTDSTableAdapters {
+namespace DAL.DropDown.CostCenterTDSTableAdapters {
     
     
     /// <summary>

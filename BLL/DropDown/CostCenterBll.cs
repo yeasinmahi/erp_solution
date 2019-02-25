@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using DAL.AutoSearch.CostCenterTDSTableAdapters;
+using DAL.DropDown.CostCenterTDSTableAdapters;
 
 namespace BLL.AutoSearch
 {
