@@ -241,8 +241,21 @@ namespace UI.Transport.TripvsCost
 
         protected void btnAddBikeCarUser_Click(object sender, EventArgs e)
         {
-            if (grdvOvertimeEntry.Rows.Count < 1)
-            {
+            //if (grdvOvertimeEntry.Rows.Count > 1)
+            //{
+
+                string BillDate = txtFromDate.Text;
+
+
+                if (BillDate == string.Empty || BillDate == "")
+                {
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
+                }
+
+
+                else
+                {
                 string durt = txtMovDuration.Text;
                 string start = txtstrt.Text;
                 string endt = txtend.Text;
@@ -269,19 +282,8 @@ namespace UI.Transport.TripvsCost
 
                 string MovDuration = txtMovDuration.Text;
                 string Serial;
-                string BillDate = txtFromDate.Text;
 
-
-                if (BillDate == string.Empty || BillDate == "")
-                {
-
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
-                }
-
-
-                else
-                {
-                    string cureentdate = DateTime.Now.ToString("yyyy-MM-dd");
+                string cureentdate = DateTime.Now.ToString("yyyy-MM-dd");
                     var now = DateTime.Now;
                     var startOfMonth = new DateTime(now.Year, now.Month, 1);
                     var DaysInMonth = DateTime.DaysInMonth(now.Year, now.Month);
@@ -300,7 +302,7 @@ namespace UI.Transport.TripvsCost
                         {
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please select from date from calender !')", true);
                         }
-                        else if (true/*selectvalue == 0*/)
+                        else
                         {
                             string strBillDate = DateTime.Parse(txtFromDate.Text).ToString("yyyy-MM-dd");
 
@@ -308,14 +310,10 @@ namespace UI.Transport.TripvsCost
                             string strendtime = (tmend1.ToString());
                             string strstar = starthours.ToString();
                             string strendt = endhours.ToString();
-
-
                             starttime1 = Convert.ToString(strstarttime.ToString());
                             endtime1 = Convert.ToString(strendtime.ToString());
                             DateTime dt11 = DateTime.ParseExact(starttime1, "HH:mm:ss", CultureInfo.InvariantCulture);
                             DateTime dt12 = DateTime.ParseExact(endtime1, "HH:mm:ss", CultureInfo.InvariantCulture);
-
-
                             DateTime dts = Convert.ToDateTime(dt11);
                             DateTime dte = Convert.ToDateTime(dt12);
                             TimeSpan diff;
@@ -332,23 +330,13 @@ namespace UI.Transport.TripvsCost
                                 diff = (Convert.ToDateTime(dte) - Convert.ToDateTime(dts));
                                 df = Convert.ToString(diff.ToString());
                             }
-
-
                             string tmDifferencehms = tmdur.ToString();
-                            tmDifferencehms = "0";
-
-
-
-
-                            string tmDifferencehmswith = tmdur.ToString();
-
-                            string tripno = txttrip.Text.ToString();
+                        tmDifferencehms = "0";
+                        string tmDifferencehmswith = tmdur.ToString();
+                        string tripno = txttrip.Text.ToString();
                             string totalamount = txttotal.Text.ToString();
                             string remk = txtRemarks.Text;
-
                             string aplenrol = txtAplicnEnrol.Text;
-
-
                             Serial = "1";
 
                             CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, remk, tripno, totalamount, strstarttime, strendtime, df, remk, aplenrol);
@@ -365,11 +353,11 @@ namespace UI.Transport.TripvsCost
 
                 }
 
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' You can not add more than one row');", true);
-            }
+            
+            //else
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' You can not add more than one row');", true);
+            //}
 
 
         }
@@ -380,7 +368,7 @@ namespace UI.Transport.TripvsCost
        
         protected void btnSubmitBikeCar_Click(object sender, EventArgs e)
         {
-            if (grdvOvertimeEntry.Rows.Count > 0)
+            if (grdvOvertimeEntry.Rows.Count < 2)
             {
                 #region ------------ Insert into dataBase -----------
                 string host = Dns.GetHostName();
@@ -421,11 +409,17 @@ namespace UI.Transport.TripvsCost
                 #endregion ------------ Insertion End ----------------
 
                 //////////
+                grdvOvertimeEntry.DataBind();
+                File.Delete(filePathForXML);
+                grdvOvertimeEntry.DataSource = "";
+                grdvOvertimeEntry.DataBind();
             }
-            grdvOvertimeEntry.DataBind();
-            File.Delete(filePathForXML);
-            grdvOvertimeEntry.DataSource = "";
-            grdvOvertimeEntry.DataBind();
+
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(' You can add only one row at a time');", true);
+            }
+          
         }
 
         protected void grdvOvertimeEntry_SelectedIndexChanged(object sender, EventArgs e)
