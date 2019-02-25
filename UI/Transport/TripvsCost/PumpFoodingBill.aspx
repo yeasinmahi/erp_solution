@@ -198,8 +198,7 @@
                                  <asp:TextBox ID="txttotal" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblRemarks" CssClass="lbl" runat="server"  Text="Remarks: "></asp:Label>
-                            </td>
+                                Delv. Address</td>
                             <td>
                                 <asp:TextBox ID="txtRemarks" runat="server" Font-Bold="true" CssClass="txtBox"  TextMode="MultiLine"></asp:TextBox>
                             </td>
@@ -255,8 +254,8 @@
                                         <asp:BoundField DataField="starttime" HeaderText="Start" SortExpression="starttime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="endtime" HeaderText="End" SortExpression="endtime" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="MovDuration" HeaderText="Hour" SortExpression="decDur" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="purpouse" HeaderText="Reason" SortExpression="purpouse" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                                        <asp:BoundField DataField="remarks" HeaderText="Remarks" SortExpression="remarks" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="purpouse" HeaderText="Addres" SortExpression="purpouse" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                                        <asp:BoundField DataField="slNo" HeaderText="Bill Amount" SortExpression="slNo" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
 
                                         <asp:BoundField DataField="purpouseid" HeaderText="Purpouseid" SortExpression="purpouseid" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                                         <asp:BoundField DataField="applicantenrol" HeaderText="Enrol" SortExpression="applicantenrol" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
