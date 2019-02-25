@@ -59,6 +59,7 @@ namespace UI.Transport.TripvsCost
                 grdvTopSheet.DataSource = dataTable;
                 grdvTopSheet.DataBind();
 
+                grdvsummery.Visible = false;
                 grdvDetails.Visible = false;
                 grdvTopSheet.Visible = true;
             }
@@ -66,9 +67,19 @@ namespace UI.Transport.TripvsCost
             {
                 grdvDetails.DataSource = dataTable;
                 grdvDetails.DataBind();
-
+                grdvsummery.Visible = false;
                 grdvTopSheet.Visible = false;
                 grdvDetails.Visible = true;
+            }
+
+            else if (reportType.Equals(4))
+            {
+                grdvsummery.DataSource = dataTable;
+                grdvDetails.DataBind();
+                grdvTopSheet.Visible = false;
+                grdvDetails.Visible = false;
+                grdvsummery.Visible = true;
+                
             }
             else
             {
@@ -87,6 +98,10 @@ namespace UI.Transport.TripvsCost
             else if (reportType.Equals("2"))
             {
                 enrollTr.Visible = true;
+            }
+          else  if (reportType.Equals("4"))
+            {
+                enrollTr.Visible = false;
             }
             else
             {

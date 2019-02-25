@@ -351,8 +351,8 @@ namespace UI.Transport.TripvsCost
 
                             Serial = "1";
 
-                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, tripno, "0", totalamount, strstarttime, strendtime, df, remk, aplenrol);
-
+                            CreateVoucherXml(strBillDate, strstar, strendt, tmDifferencehms, remk, tripno, totalamount, strstarttime, strendtime, df, remk, aplenrol);
+                            //BillDate, starttime, endtime, MovDuration, purpouse, purpouseid, slNo, txtstrtwihtHMS, tmendwithHMS, tmdifferencewithHMS, remarks, applicantenrol
 
 
                         }
