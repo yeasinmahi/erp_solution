@@ -67,6 +67,24 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.UpdatePanel UpdatePanel0;
         
         /// <summary>
+        /// pnlUpperControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlUpperControl;
+        
+        /// <summary>
+        /// AlwaysVisibleControlExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender2;
+        
+        /// <summary>
         /// hdnconfirm control.
         /// </summary>
         /// <remarks>

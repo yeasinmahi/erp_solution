@@ -166,7 +166,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblitm" CssClass="lbl" Font-Bold="true" runat="server" Text="Item List :"></asp:Label>
                             <td>
-                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtItem_TextChanged" Enabled="False"></asp:TextBox>
+                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtItem_TextChanged" ></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
                                     ServiceMethod="GetItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"

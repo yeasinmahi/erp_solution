@@ -210,7 +210,7 @@ namespace UI.SCM.Transfer
 
                         try { decimal values = (decimal.Parse(hdnValue.Value.ToString()) / decimal.Parse(hdnStockQty.Value.ToString())) * decimal.Parse(qty.ToString()); } catch { values = 0; }
                         string monValue = values.ToString();
-                        checkXmlItemData(itemid);
+                        CheckXmlItemData(itemid);
                         if (decimal.Parse(qty) > 0 && CheckItem == 1)
                         {
                             CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue, remarks, vehicle);
@@ -317,7 +317,7 @@ namespace UI.SCM.Transfer
             catch { }
         }
 
-        private void checkXmlItemData(string itemid)
+        private void CheckXmlItemData(string itemid)
         {
             try
             {
@@ -355,15 +355,27 @@ namespace UI.SCM.Transfer
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
 
-                    try { File.Delete(filePathForXML); } catch { }
+                    try
+                    {
+                        File.Delete(filePathForXML);
+                    }
+                    catch
+                    {
+                    }
                     if (xmlString.Length > 5)
                     {
                         string msg = objTransfer.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, Enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + msg + "');", true);
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();
 
-                        txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
+                        txtItem.Text = "";
+                        txTransferQty.Text = "";
+                        txtRemarks.Text = "";
+                        txtVehicle.Text = "";
+                        lblDetalis.Text = "";
+                        lblValue.Text = "";
                         ddlLcation.DataSource = dt;
                         ddlLcation.DataBind();
                         ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
@@ -371,7 +383,11 @@ namespace UI.SCM.Transfer
                     }
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch(Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+                try { File.Delete(filePathForXML); } catch { }
+            }
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -379,15 +395,25 @@ namespace UI.SCM.Transfer
             try
             {
                 LoadGridwithXml();
-                DataSet dsGrid = (DataSet)dgvStore.DataSource;
+                DataSet dsGrid = (DataSet) dgvStore.DataSource;
                 dsGrid.Tables[0].Rows[dgvStore.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
-                DataSet dsGridAfterDelete = (DataSet)dgvStore.DataSource;
+                DataSet dsGridAfterDelete = (DataSet) dgvStore.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
-                else { LoadGridwithXml(); }
+                {
+                    File.Delete(filePathForXML);
+                    dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
+                else
+                {
+                    LoadGridwithXml();
+                }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         #region========================Auto Search============================
