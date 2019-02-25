@@ -9,10 +9,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
-
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <script type="text/javascript">
 
         $("[id*=txtReceiveQty]").live("change", function () {
@@ -83,7 +80,9 @@
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
                 else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+                showLoader();
                 return true;
+                
             }
             return false;
         }
