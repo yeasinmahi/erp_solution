@@ -4,9 +4,7 @@ using System.Linq;
 using HR_DAL.Global.AutoSearch_TDSTableAdapters;
 using System.Data;
 using HR_DAL.Global.InventoryTDSTableAdapters;
-using System.Collections;
 using HR_DAL.Global;
-using HR_DAL.Employee.EmpRegistrationTDSTableAdapters;
 
 namespace HR_BLL.Global
 {
@@ -356,7 +354,7 @@ namespace HR_BLL.Global
                     var rows = from tmp in tableCorporate[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strname
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -370,7 +368,7 @@ namespace HR_BLL.Global
                                    orderby tmp.strname
                                    select tmp;
                       
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
 
@@ -426,7 +424,7 @@ namespace HR_BLL.Global
                     var rows = from tmp in tableCorporateProduct[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strProductName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -440,7 +438,7 @@ namespace HR_BLL.Global
                                    orderby tmp.strProductName
                                    select tmp;
 
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
 
@@ -490,7 +488,7 @@ namespace HR_BLL.Global
                     var rows = from tmp in tblEmpListForStroreReq[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strEmployeeName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -504,7 +502,7 @@ namespace HR_BLL.Global
                                    orderby tmp.strEmployeeName
                                    select tmp;
 
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
 
@@ -541,13 +539,11 @@ namespace HR_BLL.Global
 
         }
 
-        public string[] GetItemLists(string WHID, string prefix)
+        public string[] GetItemLists(string whid, string prefix)
         {
-            int intwh = Int32.Parse(WHID.ToString());
-            //Inatialize(intwh);
-            tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[Convert.ToInt32(WHID)];
+            tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[Convert.ToInt32(whid)];
             SprRequesitionAutosearchTableAdapter adpCOA = new SprRequesitionAutosearchTableAdapter();
-            tableCusts[e] = adpCOA.WHAutoSearchGetData(Convert.ToInt32(WHID));
+            tableCusts[e] = adpCOA.WHAutoSearchGetData(Convert.ToInt32(whid));
 
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >=3)
@@ -558,7 +554,7 @@ namespace HR_BLL.Global
                     var rows = from tmp in tableCusts[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strItem
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -572,7 +568,7 @@ namespace HR_BLL.Global
                                    orderby tmp.strItem
                                    select tmp;
                        
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
 
@@ -703,7 +699,7 @@ namespace HR_BLL.Global
                     var rows = from tmp in qryItemLists[e]//Convert.ToInt32(ht[unitID])                           
                                orderby tmp.strItemName
                                select tmp;
-                    if (rows.Count() > 0)
+                    if (rows.Any())
                     {
                         tbl = rows.CopyToDataTable();
                     }
@@ -717,7 +713,7 @@ namespace HR_BLL.Global
                                    orderby tmp.strItemName
                                    select tmp;
 
-                        if (rows.Count() > 0)
+                        if (rows.Any())
                         {
                             tbl = rows.CopyToDataTable();
                         }
@@ -747,18 +743,6 @@ namespace HR_BLL.Global
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

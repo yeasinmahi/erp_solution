@@ -64,7 +64,7 @@ namespace UI.SCM
 
             _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 2, autoid, itemid, invDate, storeQty, productionId); //insert into inventory
 
-            if (_dt.Rows.Count > 0)
+            if (true)
             {
                 GridBind();
                 Toaster("Successfully Updated",Common.TosterType.Success);

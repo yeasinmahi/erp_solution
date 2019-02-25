@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 namespace Utility
 {
@@ -42,7 +43,7 @@ namespace Utility
             OrderLine,
             StrockUpdate
         }
-
+        
         public static string GetModulaFullPath(string path, Enum fileName)
         {
             return path + fileName.ToString("F") + ".txt";
@@ -266,6 +267,20 @@ namespace Utility
                 @"(\p{Ll})(\P{Ll})",
                 "$1 $2"
             );
+        }
+
+        public static bool Dublicate(this string xml, string parent, string attribute)
+        {
+            //var dublicates = XDocument.Parse(xml)
+            //    .Descendants(parent)
+            //    .GroupBy(g => (string)g.Attribute(attribute))
+            //    .Where(g => g.Count() > 1)
+            //    .Select(g => g.Key);
+            var dublicates = XDocument.Parse(xml)
+                .Descendants(parent)
+                .GroupBy(x => new { x.Parent?.Name, orderno = x.Attribute(attribute)?.Value })
+                .Where(g => g.Count() > 1);
+            return dublicates.Any();
         }
     }
 }

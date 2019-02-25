@@ -97,6 +97,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ItemTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="LocationTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,6 +231,17 @@
     </None>
     <None Include="InventoryTransferTDS.xss">
       <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ItemTDS.xsc">
+      <DependentUpon>ItemTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ItemTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ItemTDS.xss">
+      <DependentUpon>ItemTDS.xsd</DependentUpon>
     </None>
     <None Include="LocationTDS.xsc">
       <DependentUpon>LocationTDS.xsd</DependentUpon>

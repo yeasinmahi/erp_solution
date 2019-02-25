@@ -291,6 +291,7 @@
     <Content Include="Asset\Report\VehicleMaintenanceSummary.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummaryByUnit.aspx" />
     <Content Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx" />
+    <Content Include="Asset\Report\Vehicle_maintenance_data_store.aspx" />
     <Content Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
@@ -1493,6 +1494,7 @@
     <Content Include="SCM\PurchaseOrder.aspx" />
     <Content Include="SCM\PurchaseReturn.aspx" />
     <Content Include="SCM\PurchaserPermormance.aspx" />
+    <Content Include="SCM\Received_against_Production.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
@@ -1502,7 +1504,7 @@
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
-    <Content Include="SCM\Transfer\FgTransferReport.aspx" />
+    <Content Include="SCM\Transfer\ProductionTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
     <Content Include="SCM\Transfer\InventoryAdjustment.aspx" />
@@ -2671,6 +2673,13 @@
     </Compile>
     <Compile Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx.designer.cs">
       <DependentUpon>Vehicle_Maintenance_Bill_Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_maintenance_data_store.aspx.cs">
+      <DependentUpon>Vehicle_maintenance_data_store.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_maintenance_data_store.aspx.designer.cs">
+      <DependentUpon>Vehicle_maintenance_data_store.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx.cs">
       <DependentUpon>Vehicle_Renewal_Bill_Unit.aspx</DependentUpon>
@@ -7965,6 +7974,13 @@
     <Compile Include="SCM\PurchaserPermormance.aspx.designer.cs">
       <DependentUpon>PurchaserPermormance.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\Received_against_Production.aspx.cs">
+      <DependentUpon>Received_against_Production.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Received_against_Production.aspx.designer.cs">
+      <DependentUpon>Received_against_Production.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8028,12 +8044,12 @@
     <Compile Include="SCM\SupplierStatementReport.aspx.designer.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SCM\Transfer\FgTransferReport.aspx.cs">
-      <DependentUpon>FgTransferReport.aspx</DependentUpon>
+    <Compile Include="SCM\Transfer\ProductionTransferReport.aspx.cs">
+      <DependentUpon>ProductionTransferReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SCM\Transfer\FgTransferReport.aspx.designer.cs">
-      <DependentUpon>FgTransferReport.aspx</DependentUpon>
+    <Compile Include="SCM\Transfer\ProductionTransferReport.aspx.designer.cs">
+      <DependentUpon>ProductionTransferReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferReceive.aspx.cs">
       <DependentUpon>frmTransferReceive.aspx</DependentUpon>

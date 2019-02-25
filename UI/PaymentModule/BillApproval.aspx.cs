@@ -18,7 +18,6 @@ namespace UI.PaymentModule
         private string location = "PaymentModule";
         private string start = "starting PaymentModule/BillApproval.aspx";
         private string stop = "stopping PaymentModule/BillApproval.aspx";
-        private int enroll = 0;
         private Billing_BLL objBillReg = new Billing_BLL();
         private DataTable dt;
 
@@ -33,14 +32,13 @@ namespace UI.PaymentModule
         {
             var fd = log.GetFlogDetail(start, location, "Page_Load", null);
             Flogger.WriteDiagnostic(fd);
-            enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
             // starting performance tracker
             var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx Page_Load", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
 
             try
             {
-                hdnEnroll.Value = enroll.ToString();
+                hdnEnroll.Value = Enroll.ToString();
                 hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                 filePathForXML = Server.MapPath("~/PaymentModule/Data/BillApp_" + hdnEnroll.Value + ".xml");
                 if (!IsPostBack)
@@ -70,10 +68,10 @@ namespace UI.PaymentModule
                     //File.Delete(filePathForXML);
                     txtFromDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    dt = objBillReg.GetAllUnit(enroll);
+                    dt = objBillReg.GetAllUnit(Enroll);
 
 
-                    //if (enroll == 1178)
+                    //if (Enroll == 1178)
                     //{
                     //    DataRow dr = dt.AsEnumerable()
                     //        .SingleOrDefault(r => r.Field<int>("intUnitID") == 105);
@@ -103,7 +101,7 @@ namespace UI.PaymentModule
                     ddlUnit.DataValueField = "intUnitID";
                     ddlUnit.DataSource = dt;
                     ddlUnit.DataBind();
-                    if (enroll != 1178)
+                    if (Enroll != 1178)
                     {
                         ddlUnit.Items.Insert(0, new ListItem("All Unit", "0"));
                     }
@@ -239,7 +237,7 @@ namespace UI.PaymentModule
             {
                 strReffNo = txtBillRegNo.Text;
 
-                dt = objBillReg.GetBillInfoByBillReg(enroll, strReffNo);
+                dt = objBillReg.GetBillInfoByBillReg(Enroll, strReffNo);
                 dgvBillReport.DataSource = dt;
                 dgvBillReport.DataBind();
             }

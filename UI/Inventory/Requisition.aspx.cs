@@ -31,6 +31,7 @@ namespace UI.Inventory
             xmlpath = Server.MapPath("~/Inventory/Data/REQ_" + Enroll + ".xml");
             if (!IsPostBack)
             {
+
                 if (JobStationId >= 1 && JobStationId <= 22 && JobStationId !=2)
                 {
                     hdntype.Value = "1";
@@ -47,6 +48,12 @@ namespace UI.Inventory
                 //txtItem.Attributes.Add("onkeyUp", "SearchText();"); 
                 Clearcontrols();
                 try { File.Delete(xmlpath); } catch { }
+                intEnroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                dtbl = bll.GetWarehouseList(intEnroll,Convert.ToInt32(hdntype.Value));
+                ddlWH.DataSource = dtbl;
+                ddlWH.DataTextField = "WH";
+                ddlWH.DataValueField = "intWHID";
+                ddlWH.DataBind();
 
                 int whId = ddlWH.SelectedValue();
                 DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
@@ -91,12 +98,13 @@ namespace UI.Inventory
         //    { result = objAutoSearch_BLL.GetItemLists(int.Parse(whid), searchKey); }
         //    return result;
         //}
+        private static readonly AutoSearch_BLL AutoSearchBll = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
-        public static string[] GetWearHouseRequesision(string prefixText, int count)
+        public static string[] GetWearHouseRequesision(string prefixText)
         {
             string whid =HttpContext.Current.Session["WareID"].ToString();
-            return new AutoSearch_BLL().GetItemLists(whid, prefixText);
+            return AutoSearchBll.GetItemLists(whid, prefixText);
 
         }
 
@@ -104,7 +112,7 @@ namespace UI.Inventory
         [ScriptMethod]
         public static string[] GetItemListsForStoreReq(string prefixText)
         {
-            return new AutoSearch_BLL().GetItemListsForStoreReq(prefixText);
+            return AutoSearchBll.GetItemListsForStoreReq(prefixText);
         }
 
         protected void txtSearchAssignedTo_TextChanged(object sender, EventArgs e)

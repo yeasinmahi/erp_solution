@@ -9,11 +9,11 @@ using UI.ClassFiles;
 
 namespace UI.SCM
 {
-    public partial class IndentStatusDetalis : Page
+    public partial class IndentStatusDetalis : BasePage
     {
         private Indents_BLL objIndent = new Indents_BLL();
         private DataTable dt = new DataTable();
-        private int enroll, intwh, indentId;
+        private int intwh, indentId;
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
@@ -43,8 +43,7 @@ namespace UI.SCM
                     lbldteDue.Text = dteDue;
                     lbldteIndent.Text = dteIndent;
                     lblType.Text = dept;
-
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                    
                     dt = objIndent.GetIndentItemDetails(int.Parse(indentID), out string message);
                     if (dt.Rows.Count > 0)
                     {

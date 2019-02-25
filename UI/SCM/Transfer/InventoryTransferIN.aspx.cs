@@ -22,6 +22,7 @@ namespace UI.SCM.Transfer
         private int intWh;
         private string[] arrayKey;
         private readonly char[] _delimiterChars = { '[', ']' };
+        private readonly object _locker = new object();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +43,7 @@ namespace UI.SCM.Transfer
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            
+
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
@@ -57,7 +58,7 @@ namespace UI.SCM.Transfer
                 Id = int.Parse(ddlTransferItem.SelectedValue);
                 Session["WareID"] = intWh;
 
-                List<Control> excepts = new List<Control> { ddlWh,ddlTransferItem };
+                List<Control> excepts = new List<Control> { ddlWh, ddlTransferItem };
                 UpdatePanel0.Controls.Clear(excepts);
                 lblFrom.Text = string.Empty;
 
@@ -130,9 +131,16 @@ namespace UI.SCM.Transfer
             try
             {
                 arrayKey = txtItem.Text.Split(_delimiterChars);
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0]; uom = arrayKey[3]; itemid = arrayKey[1]; }
+                {
+                    item = arrayKey[0];
+                    uom = arrayKey[3];
+                    itemid = arrayKey[1];
+                }
 
                 lblDetalis.Text = item + ", " + itemid + "," + uom;
                 intWh = int.Parse(ddlWh.SelectedValue);
@@ -166,51 +174,62 @@ namespace UI.SCM.Transfer
         {
             try
             {
+                lock (_locker)
+                {
+                    btnSaveIn.Enabled = false;
 
-                arrayKey = txtItem.Text.Split(_delimiterChars);
-                string item = "";
-                string itemid = "";
-                string uom = "";
-                if (arrayKey.Length > 0)
-                {
-                    item = arrayKey[0];
-                    uom = arrayKey[3];
-                    itemid = arrayKey[1];
-                }
-                intWh = int.Parse(ddlWh.SelectedValue);
-                Id = int.Parse(ddlTransferItem.SelectedValue);
-                int location = int.Parse(ddlLcation.SelectedValue);
-                double monTransQty = double.Parse(txtQty.Text);
-                string strRemarks = txtRemarsk.Text;
-                xmlString = "<voucher><voucherentry monTransQty=" + '"' + monTransQty + '"' + " strRemarks=" + '"' + strRemarks + '"' + " location=" + '"' + location + '"' + " itemid=" + '"' + itemid + '"' + "/></voucher>";
-                if (int.Parse(itemid) > 1 && double.Parse(hdnInQty.Value) <= monTransQty)
-                {
-                    txtItem.Text = "";
-                    txtQty.Text = "";
-                    txtRemarsk.Text = "";
-                    lblFrom.Text = "";
-                    string msg = _bll.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, Enroll);
-                    if (msg.ToLower().Contains("success"))
+                    arrayKey = txtItem.Text.Split(_delimiterChars);
+                    string item = "";
+                    string itemid = "";
+                    string uom = "";
+                    if (arrayKey.Length > 0)
                     {
-                        _dt = _bll.GetTtransferDatas(2, xmlString, intWh, Id, DateTime.Now, Enroll);
-                        ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
-                        ddlLcation.UnLoad();
-                        Toaster(msg, Common.TosterType.Success);
+                        item = arrayKey[0];
+                        uom = arrayKey[3];
+                        itemid = arrayKey[1];
+                    }
+                    intWh = int.Parse(ddlWh.SelectedValue);
+                    Id = int.Parse(ddlTransferItem.SelectedValue);
+                    int location = int.Parse(ddlLcation.SelectedValue);
+                    double monTransQty = double.Parse(txtQty.Text);
+                    string strRemarks = txtRemarsk.Text;
+                    xmlString = "<voucher><voucherentry monTransQty=" + '"' + monTransQty + '"' + " strRemarks=" + '"' +
+                                strRemarks + '"' + " location=" + '"' + location + '"' + " itemid=" + '"' + itemid +
+                                '"' + "/></voucher>";
+                    if (int.Parse(itemid) > 1 && double.Parse(hdnInQty.Value) <= monTransQty)
+                    {
+                        txtItem.Text = "";
+                        txtQty.Text = "";
+                        txtRemarsk.Text = "";
+                        lblFrom.Text = "";
+
+                        string msg = _bll.PostTransfer(6, xmlString, intWh, Id, DateTime.Now, Enroll);
+                        xmlString =string.Empty;
+                        if (msg.ToLower().Contains("success"))
+                        {
+                            _dt = _bll.GetTtransferDatas(2, "", intWh, Id, DateTime.Now, Enroll);
+                            ddlTransferItem.LoadWithSelect(_dt, "Id", "strName");
+                            ddlLcation.UnLoad();
+                            Toaster(msg, Common.TosterType.Success);
+                        }
+                        else
+                        {
+                            Toaster(msg, Common.TosterType.Error);
+                        }
                     }
                     else
                     {
-                        Toaster(msg, Common.TosterType.Error);
+                        Toaster("Check Item and stock properly", Common.TosterType.Warning);
                     }
                 }
-                else
-                {
-                    Toaster("Check Item and stock properly", Common.TosterType.Warning);
-                }
-
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
+            }
+            finally
+            {
+                btnSaveIn.Enabled = true;
             }
         }
 
@@ -220,7 +239,7 @@ namespace UI.SCM.Transfer
             {
                 intWh = ddlWh.SelectedValue();
                 Session["WareID"] = intWh;
-                List<Control> excepts = new List<Control> {ddlWh};
+                List<Control> excepts = new List<Control> { ddlWh };
                 UpdatePanel0.Controls.Clear(excepts);
                 lblFrom.Text = string.Empty;
                 if (intWh > 0)
@@ -231,9 +250,9 @@ namespace UI.SCM.Transfer
                 else
                 {
                     ddlTransferItem.UnLoadWithSelect();
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {

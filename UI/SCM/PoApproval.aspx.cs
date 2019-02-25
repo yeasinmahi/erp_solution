@@ -16,7 +16,8 @@ namespace UI.SCM
     public partial class PoApproval : BasePage
     {
         private DataTable dt = new DataTable();
-        private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
+        private string[] arrayKey;
+        private char[] delimiterChars = { '[', ']' };
 
         private SeriLog log = new SeriLog();
         private string location = "SCM";
