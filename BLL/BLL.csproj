@@ -145,6 +145,7 @@
     <Compile Include="Accounts\Voucher\JournalVoucher.cs" />
     <Compile Include="Accounts\Voucher\VoucherRollback.cs" />
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
+    <Compile Include="AutoSearch\CostCenterBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

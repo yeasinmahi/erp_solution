@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.AutoSearch;
 using UI.ClassFiles;
 using Utility;
 
@@ -16,6 +17,7 @@ namespace UI.SCM
     public partial class IssueItemByRequesitionDetalis : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private CostCenterBll CostCenterBll = new CostCenterBll();
         private Location_BLL objOperation = new Location_BLL();
         private DataTable dt = new DataTable();
         private int intwh;
@@ -56,11 +58,7 @@ namespace UI.SCM
                 lblApproved.Text = strApproveBy;
                 lblSection.Text = SectionName;
 
-                dt = objIssue.GetViewData(4, "", intwh, ReqId, DateTime.Now, Enroll);
-                ddlCost.DataSource = dt;
-                ddlCost.DataTextField = "strName";
-                ddlCost.DataValueField = "Id";
-                ddlCost.DataBind();
+                LoadCostCenter(intwh);
 
                 dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
@@ -72,11 +70,14 @@ namespace UI.SCM
                 {
                     Alert(Message.NoFound.ToFriendlyString());
                 }
-                
             }
-            else { }
         }
 
+        private void LoadCostCenter(int whId)
+        {
+            dt = CostCenterBll.GetCostCenter(whId);
+            ddlCost.Loads(dt, "Id", "strName");
+        }
         protected void btnIssue_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnIssue_Click", null);

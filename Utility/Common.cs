@@ -143,7 +143,7 @@ namespace Utility
 
         public static bool Loads(this DropDownList ddl, DataTable dt, string value, string text)
         {
-            if (dt.Rows.Count <= 0) return false;
+            if (dt == null) return false;
             try
             {
                 ddl.DataSource = dt;
