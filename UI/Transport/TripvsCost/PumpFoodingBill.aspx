@@ -118,6 +118,22 @@
                     </div>
                     <table border="0" style="width: Auto">
                         <tr class="tblroweven">
+                            <td>
+                                <asp:Label ID="Label1" CssClass="lbl" runat="server"  Text="Trip No: "></asp:Label></td>
+                            <td>
+                               <asp:TextBox ID="txttrip" runat="server" OnTextChanged="txttrip_TextChanged"></asp:TextBox>
+                            </td>
+                            
+                            <td>
+                               <asp:Label ID="lbl" CssClass="lbl" runat="server"  Text="QNT:"></asp:Label>
+                                <asp:Label ID="lblquntity" CssClass="lbl" runat="server"></asp:Label>
+                            </td>
+                            <td>
+                               <asp:Label ID="Label4" CssClass="lbl" runat="server"  Text="Site:"></asp:Label>
+                                <asp:Label ID="lblSiteadr" CssClass="lbl" runat="server"></asp:Label>
+                            </td>
+                        </tr>
+                        <tr class="tblroweven">
                             <td style="text-align: right;">
                                 <asp:Label ID="lbl1" CssClass="lbl" runat="server" Text="Unit Name"></asp:Label>
                             </td>
@@ -205,22 +221,7 @@
                             
                         </tr>
 
-                        <tr class="tblroweven">
-                            <td>
-                                <asp:Label ID="Label1" CssClass="lbl" runat="server"  Text="Trip No: "></asp:Label></td>
-                            <td>
-                               <asp:TextBox ID="txttrip" runat="server" OnTextChanged="txttrip_TextChanged"></asp:TextBox>
-                            </td>
-                            
-                            <td>
-                               <asp:Label ID="lbl" CssClass="lbl" runat="server"  Text="QNT:"></asp:Label>
-                                <asp:Label ID="lblquntity" CssClass="lbl" runat="server"></asp:Label>
-                            </td>
-                            <td>
-                               <asp:Label ID="Label4" CssClass="lbl" runat="server"  Text="Site:"></asp:Label>
-                                <asp:Label ID="lblSiteadr" CssClass="lbl" runat="server"></asp:Label>
-                            </td>
-                        </tr>
+                        
 
 
                         <tr class="tblrowOdd">
