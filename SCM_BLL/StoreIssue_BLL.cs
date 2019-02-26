@@ -106,6 +106,15 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetAllWh()
+        {
+            try
+            {
+                tblWearHouseTableAdapter adpCOA = new tblWearHouseTableAdapter();
+                return adpCOA.GetData();
+            }
+            catch { return new DataTable(); }
+        }
 
         public DataTable GetDataByWhId(int intWhId)
         {
