@@ -361,8 +361,22 @@ namespace UI.Inventory
                     strACNO = txtACNo.Text;
                     int acclenth = strACNO.Length;
                     strReprContactNo = txtPhone.Text.ToString();
+                    strOrgAddress = txtAddress.Text;
+                    strSuppMasterName = txtSuppliername.Text;
 
-                    if (strReprContactNo.Length != 11)
+                    if (string.IsNullOrWhiteSpace(strSuppMasterName))
+                    {
+                        Toaster("Supplier name can not be blank", Common.TosterType.Warning);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
+                    }
+                    else if (string.IsNullOrWhiteSpace(strOrgAddress))
+                    {
+                        Toaster("Address can not be blank", Common.TosterType.Warning);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
+                    }
+                    else if (strReprContactNo.Length != 11)
                     {
                         Toaster("Contact No Must be 11 digit ??", Common.TosterType.Warning);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
@@ -393,8 +407,7 @@ namespace UI.Inventory
                         strRoutingNo = txtRouting.Text;
                         strACNO = txtACNo.Text;
 
-                        strSuppMasterName = txtSuppliername.Text;
-                        strOrgAddress = txtAddress.Text;
+                        
                         strOrgMail = txtemail.Text;
                         strOrgContactNo = txtContactNo.Text;
                         strOrgFAXNo = txtFax.Text;
