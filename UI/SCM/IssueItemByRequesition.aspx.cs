@@ -150,7 +150,7 @@ namespace UI.SCM
             tracker.Stop();
         }
 
-        public string GetJSFunctionString(object ReqId, object ReqCode, object dteReqDate, object strDepartmentName, object strReqBy, object strApproveBy, object intDeptID, object intSectionID, object SectionName)
+        public string GetJsFunctionString(object ReqId, object ReqCode, object dteReqDate, object strDepartmentName, object strReqBy, object strApproveBy, object intDeptID, object intSectionID, object SectionName)
         {
             //  Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"))
             string str = "";
