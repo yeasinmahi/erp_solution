@@ -38,7 +38,7 @@
     </script>
     <script> function CloseWindow() {
             window.close();
-        } 
+        }
     </script>
 
     <script type="text/javascript">
@@ -225,7 +225,7 @@
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblpayto" runat="server" CssClass="lbl" Text="Pay To Name :"></asp:Label></td>
                                 <td style="text-align: left;">
-                                    <asp:TextBox ID="txtPayTo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" Width="190px"></asp:TextBox>
+                                    <asp:TextBox ID="txtPayTo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" Width="175px"></asp:TextBox>
                                     <span style="color: red; font-size: 16px">*</span>
                                 </td>
 
@@ -241,7 +241,7 @@
                                         <asp:Label ID="lblAcNo" runat="server" CssClass="lbl" Text="A C Number :"></asp:Label></td>
                                     <%--<td  style="text-align:left;"><asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onchange="javascript: Changed(this.value);" onkeypress="javascript:return isNumber (event)" Width="190px"></asp:TextBox></td>--%>
                                     <td style="text-align: left;">
-                                        <asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onkeypress="return ACNoCheck();" Width="190px"></asp:TextBox>
+                                        <asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onkeypress="return ACNoCheck();" Width="175px"></asp:TextBox>
                                         <span style="color: red; font-size: 16px">*</span>
                                     </td>
 
@@ -276,13 +276,12 @@
                                         <asp:TextBox ID="txtDistrictId" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Enabled="false" ForeColor="#0066FF" Width="190px"></asp:TextBox>
                                     </td>
 
-                                    <td style="text-align: right; width: auto;">
+                                    <td style="text-align: right;">
                                         <asp:Label ID="lblbranchid" runat="server" CssClass="lbl" Text="Branch ID :"></asp:Label>
                                     </td>
 
                                     <td style="text-align: left;">
                                         <asp:TextBox ID="txtBranchId" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Enabled="false" ForeColor="#0066FF" Width="190px"></asp:TextBox>
-                                    </td>
                                     </td>
                                 </tr>
                                 <tr>
