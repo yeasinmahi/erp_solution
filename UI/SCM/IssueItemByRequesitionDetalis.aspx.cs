@@ -76,7 +76,7 @@ namespace UI.SCM
         private void LoadCostCenter(int whId)
         {
             dt = CostCenterBll.GetCostCenter(whId);
-            ddlCost.Loads(dt, "Id", "strName");
+            ddlCost.LoadWithSelect(dt, "Id", "strName");
         }
         protected void btnIssue_Click(object sender, EventArgs e)
         {
@@ -98,7 +98,7 @@ namespace UI.SCM
                     string strSection = lblSection.Text;
                     string reqBy = lblReqBy.Text;
                     intwh = int.Parse(Request.QueryString["intwh"]);
-
+                    int costCenterId = ddlCost.SelectedValue();
                     for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                     {
                         string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
@@ -113,19 +113,52 @@ namespace UI.SCM
 
                         if (decimal.Parse(issueQty) > 0)
                         {
-                            CreateXmlIssue(itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
+                            //CreateXmlIssue(itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
+                            dynamic obj = new
+                            {
+                                itemId,
+                                issueQty,
+                                stockVlaue,
+                                locationId,
+                                stockQty,
+                                reqId,
+                                reqCode,
+                                deptId,
+                                strSection,
+                                reqBy,
+                                receiveBy,
+                                costCenterId
+                            };
+                            xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string message);
+                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                Enroll);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                "alert('" + msg + "');", true);
+                            if (msg.ToLower().Contains("success"))
+                            {
+                                Toaster(msg, Common.TosterType.Success);
+                            }
+                            else
+                            {
+                                Toaster(msg, Common.TosterType.Error);
+                            }
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                        }
+                        else
+                        {
+                            Toaster("Please input issue quantity",Common.TosterType.Warning);
                         }
                     }
 
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("issue");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<issue>" + xmlString + "</issue>";
-                    try { File.Delete(filePathForXML); } catch { }
-                    string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now, Enroll);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                    //XmlDocument doc = new XmlDocument();
+                    //doc.Load(filePathForXML);
+                    //XmlNode dSftTm = doc.SelectSingleNode("issue");
+                    //xmlString = dSftTm.InnerXml;
+                    //xmlString = "<issue>" + xmlString + "</issue>";
+                    //try { File.Delete(filePathForXML); } catch { }
+                    //string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now, Enroll);
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                 }
             }
             catch (Exception ex)
@@ -180,7 +213,7 @@ namespace UI.SCM
         //    };
         //}
 
-        private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string receiveBy)
+        private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string costCenterId,string receiveBy)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))

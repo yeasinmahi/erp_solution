@@ -95,7 +95,7 @@ namespace UI.SCM.Transfer
                 txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
 
                 ddlLcation.UnLoadWithSelect();
-                ddlToWh.UnLoadWithSelect();
+                
                 hdnStockQty.Value = "0";
             }
             catch (Exception ex)
