@@ -31,7 +31,6 @@
                 confirm_value.value = "No";
                 document.getElementById("hdnConfirm").value = "0";
             }
-
         }
         function autoCompleteEx_ItemSelected(sender, args) {
             document.getElementById("hdnItemSeleced").value = "Selected";
