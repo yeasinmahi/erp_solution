@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -161,10 +162,12 @@ namespace UI.SCM
         {
             try
             {
-                dgvReq.DataSource = "";
-                dgvReq.DataBind();
+                dgvReq.UnLoad();
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
     }
 }
