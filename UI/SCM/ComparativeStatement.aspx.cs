@@ -38,7 +38,7 @@ namespace UI.SCM
                 try { File.Delete(filePathForXML); } catch { }
                 try { File.Delete(filePathForXMLPrepare); } catch { }
                 try { File.Delete(filePathForXMLPo); } catch { }
-
+                Session["indentItems"] = null;
                 InitLoad();
             }
         }
@@ -230,7 +230,7 @@ namespace UI.SCM
                 intWh = int.Parse(hdnWHId.Value);
                 lblIndentType.Text = ddlDepts.SelectedItem.ToString();
                 dt = objPo.GetPoData(3, "", intWh, indent, DateTime.Now, Enroll);
-
+                
                 if (dt.Rows.Count > 0)
                 {
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
@@ -257,6 +257,7 @@ namespace UI.SCM
                     Tab2.CssClass = "Clicked";
                     MainView.ActiveViewIndex = 1;
                     dgvIndentDet.Loads(dt);
+                    Session["indentItems"] = dt;
                 }
                 else
                 {
@@ -271,13 +272,6 @@ namespace UI.SCM
                 Toaster(ex.Message, Common.TosterType.Error);
                 Session["unitId"] = "0";
             }
-        }
-
-        private void CreateXml(string indentId, string itemId, string strItem, string strUom, string strHsCode, string strDesc, string numCurStock, string numSafetyStock, string numIndentQty, string numPoIssued, string numRemain, string numNewPo, string strSpecification, string monPreviousRate)
-        {
-            
-
-
         }
         #endregion
 
@@ -333,9 +327,15 @@ namespace UI.SCM
 */
                 if (CheckDuplicate == 1)
                 {
+                    DataTable dt1 = new DataTable();
                     try { File.Delete(filePathForXML); } catch { };
+                    if (Session["indentItems"] != null)
+                    {
+                        dt1 = (DataTable) Session["indentItems"];
+                    }
                     dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, Enroll);// Indent Detalis
-                    dgvIndentDet.Loads(dt);
+                    dt1.Merge(dt);
+                    dgvIndentDet.Loads(dt1);
                     //for (int i = 0; i < dt.Rows.Count; i++)
                     //{
                     //    string indentId = dt.Rows[i]["indentId"].ToString();
