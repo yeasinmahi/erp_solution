@@ -187,6 +187,34 @@ namespace Utility
             var query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == value);
             return query.ToList().Count > 0;
         }
+        public static bool IsExist(this DataTable dt, string columnName, int value)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return false;
+            }
+            var query = dt.AsEnumerable().Where(r => r.Field<int>(columnName) == value);
+            return query.ToList().Count > 0;
+        }
+
+        public static bool IsExist<T>(this DataTable dt, string columnName, T value)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return false;
+            }
+            EnumerableRowCollection<DataRow> query = null;
+            if (typeof(T) == typeof(int))
+            {
+                var intValue = Convert.ToInt32(value);
+                query = dt.AsEnumerable().Where(r => r.Field<int>(columnName) == intValue);
+            }else if (typeof(T) == typeof(string))
+            {
+                var strValue = Convert.ToString(value);
+                query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
+            }
+            return query != null && query.ToList().Count > 0;
+        }
     }
     public class CreateItemTemplate : ITemplate
     {

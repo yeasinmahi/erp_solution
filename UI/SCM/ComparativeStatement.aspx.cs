@@ -282,9 +282,9 @@ namespace UI.SCM
         {
             try
             {
-                int indentNo = 0;
                 if (!Validation.CheckTextBox(txtIndentNoDet, "Indent No", out indentNo, out string message))
                 {
+                    Toaster(message,Common.TosterType.Warning);
                     return;
                 }
                 string dept = ddlDepts.SelectedItem.ToString();
@@ -293,13 +293,13 @@ namespace UI.SCM
                 dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value), indentNo, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
                 {
-                    ddlItem.DataSource = dt;
-                    ddlItem.DataTextField = "strName";
-                    ddlItem.DataValueField = "Id";
-                    ddlItem.DataBind();
+                    ddlItem.Loads(dt, "Id", "strName");
                     dt.Clear();
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value + "'');", true); }
+                else
+                {
+                    Toaster("This is not valid againest.'" + hdnWHName.Value + "'",Common.TosterType.Warning);
+                }
 
             }
             catch (Exception ex)
@@ -312,7 +312,7 @@ namespace UI.SCM
         {
             try
             {
-                string itemid = ddlItem.SelectedValue;
+                int itemid = ddlItem.SelectedValue();
                 intWh = int.Parse(hdnWHId.Value);
                 try
                 {
@@ -323,92 +323,29 @@ namespace UI.SCM
                     Toaster(ex.Message, Common.TosterType.Error);
                 }
                 string stringXml = "<voucher><voucherentry itemid=" + '"' + itemid + '"' + "/></voucher>";
-                int CheckDuplicate = 1;/* checkXmlItemData(itemid);
-*/
-                if (CheckDuplicate == 1)
+                DataTable dt1 = new DataTable();
+                if (Session["indentItems"] != null)
                 {
-                    DataTable dt1 = new DataTable();
-                    try { File.Delete(filePathForXML); } catch { };
-                    if (Session["indentItems"] != null)
-                    {
-                        dt1 = (DataTable) Session["indentItems"];
-                    }
-                    dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, Enroll);// Indent Detalis
+                    dt1 = (DataTable)Session["indentItems"];
+                }
+                bool isExist = dt1.IsExist<int>("ItemId", itemid);
+                if (!isExist)
+                {
+                    dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, Enroll); // Indent Detalis
                     dt1.Merge(dt);
                     dgvIndentDet.Loads(dt1);
-                    //for (int i = 0; i < dt.Rows.Count; i++)
-                    //{
-                    //    string indentId = dt.Rows[i]["indentId"].ToString();
-                    //    string itemId = dt.Rows[i]["ItemId"].ToString();
-                    //    string strItem = dt.Rows[i]["strItem"].ToString();
-                    //    string strUom = dt.Rows[i]["strUom"].ToString();
-                    //    string strHsCode = dt.Rows[i]["strHsCode"].ToString();
-                    //    string strDesc = dt.Rows[i]["strDesc"].ToString();
-                    //    string numCurStock = dt.Rows[i]["numCurStock"].ToString();
-                    //    string numSafetyStock = dt.Rows[i]["numSafetyStock"].ToString();
-                    //    string numIndentQty = dt.Rows[i]["numIndentQty"].ToString();
-                    //    string numPoIssued = dt.Rows[i]["numPoIssued"].ToString();
-                    //    string numRemain = dt.Rows[i]["numRemain"].ToString();
-                    //    string numNewPo = dt.Rows[i]["numNewPo"].ToString();
-                    //    string strSpecification = dt.Rows[i]["strSpecification"].ToString();
-                    //    string monPreviousRate = dt.Rows[i]["monPreviousRate"].ToString();
-                    //    CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                    //}
-
-                    ////============================
-                    //if (dgvIndentDet.Rows.Count > 0)
-                    //{
-                    //    for (int index = 0; index < dgvIndentDet.Rows.Count; index++)
-                    //    {
-                    //        string indentId = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentId")).Text;
-                    //        string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text;
-                    //        string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text;
-                    //        string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text;
-                    //        string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text;
-                    //        string strDesc = ((Label)dgvIndentDet.Rows[index].FindControl("lblPurpose")).Text;// lblPurpose
-                    //        string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text;
-                    //        string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text;
-                    //        string numIndentQty = ((Label)dgvIndentDet.Rows[index].FindControl("lblIndentQty")).Text;
-                    //        string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text;
-                    //        string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text;
-                    //        string numNewPo = ((TextBox)dgvIndentDet.Rows[index].FindControl("TxtNewPO")).Text;
-                    //        string strSpecification = ((TextBox)dgvIndentDet.Rows[index].FindControl("txtSpecification")).Text; //lblSpecification as TextBox --
-                    //        string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text;
-
-                    //        CreateXml(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
-                    //    }
-                    //}
-                    //LoadGridwithXml();
-                    //========================================
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+                else
+                {
+                    Toaster(Message.AlreadyAdded.ToFriendlyString(),Common.TosterType.Warning);
+                }
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
             }
         }
-
-        private int checkXmlItemData(string itemid)
-        {
-            DataSet ds = new DataSet();
-            ds.ReadXml(filePathForXML);
-            int i = 0;
-            for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
-            {
-                if (itemid == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
-                {
-                    CheckItem = 0;
-
-                    break;
-                }
-                else
-                {
-                    CheckItem = 1;
-                }
-            }
-            return CheckItem;
-        }
+        
         #endregion
 
 
@@ -425,9 +362,6 @@ namespace UI.SCM
                     File.Delete(filePathForXML);
                     dgvIndentDet.DataSource = "";
                     dgvIndentDet.DataBind();
-                }
-                else
-                {
                 }
             }
             catch (Exception ex)
