@@ -14,24 +14,34 @@
             document.getElementById("btnEmail").hidden = true;
             document.getElementById("btnprint").style.display = "none";
             window.print();
-            self.close();
         }
     </script>
 
     <style type="text/css">
-        .Initial {
-            display: block;
-            padding: 4px 18px 4px 18px;
-            float: left;
-            background: url("../Images/InitialImage.png") no-repeat right top;
-            color: Black;
-            font-weight: bold;
-        }
+        @media print {
+            body * { visibility: hidden; }
 
-            .Initial:hover {
-                color: White;
-                background: #eeeeee;
+            #dvTable, #dvTable * { visibility: visible; }
+
+            #section-to-print {
+                position: absolute;
+                left: 0;
+                top: 0;
             }
+        }
+         .Initial {
+             display: block;
+             padding: 4px 18px 4px 18px;
+             float: left;
+             background: url("../Images/InitialImage.png") no-repeat right top;
+             color: Black;
+             font-weight: bold;
+         }
+
+        .Initial:hover {
+            color: White;
+            background: #eeeeee;
+        }
 
         .Clicked {
             float: left;
@@ -50,6 +60,9 @@
     <style type="text/css">
         .leaveApplication_container {
             margin-top: 0px;
+        }
+        .auto-style2 {
+            height: 20px;
         }
     </style>
 
@@ -275,7 +288,6 @@
                                             </tr>
 
                                         </table>
-                                </table>
                                 <table>
                                     <tr>
                                         <td>
@@ -397,9 +409,8 @@
 
                             <asp:View ID="View3" runat="server">
                                 <div style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
-                                    <table>
+                                    <table style="width: 100%">
                                         <tr>
-
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier:"></asp:Label></td>
                                             <td style="text-align: left;">
@@ -412,7 +423,6 @@
                                         </tr>
                                     </table>
                                     <div id="dvTable" style="width: auto; background-color: white; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
-                                        <asp:HiddenField ID="hfImageData" runat="server" />
 
                                         <table style="width: 700px">
 
@@ -434,7 +444,7 @@
                                             </tr>
                                             <tr>
                                                 <td style="text-align: center;">
-                                                    <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Purchase Requisition"></asp:Label></td>
+                                                    <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Request for quotation"></asp:Label></td>
                                             </tr>
                                         </table>
                                         <table>
@@ -543,10 +553,6 @@
                                             </tr>
                                         </table>
                                         <table>
-                                            <tr>
-                                                <td>
-                                                    <asp:Image ID="imgApp" runat="server" /></td>
-                                            </tr>
                                             <tr>
                                                 <td></td>
                                             </tr>

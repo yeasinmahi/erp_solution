@@ -17,7 +17,9 @@ namespace UI.SCM
     {
         private DataTable dt = new DataTable();
         private readonly PoGenerate_BLL _objPo = new PoGenerate_BLL();
-        private readonly Supplier supplier = new Supplier();
+        private readonly SupplierBll supplier = new SupplierBll();
+        private readonly ComparativeStatementBll _bll = new ComparativeStatementBll();
+
         private int intWh;
         private string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod;
         private string xmlString = "";
@@ -128,8 +130,6 @@ namespace UI.SCM
             }
             hdnWHId.Value = ddlWH.SelectedValue().ToString();
             hdnWHName.Value = ddlWH.SelectedItem.ToString();
-
-            hdnUnitName.Value = "0";
         }
 
         protected void btnSearchIndent_Click(object sender, EventArgs e)
@@ -371,23 +371,47 @@ namespace UI.SCM
 
         protected void btnPrepareRfq_OnClick(object sender, EventArgs e)
         {
-            Tab2.CssClass = "Initial";
-            Tab3.CssClass = "Clicked";
-            MainView.ActiveViewIndex = 2;
-
+            LoadRfqView();
             LoadSupplier();
 
             InsertRfq();
 
         }
 
+        public void LoadRfqView()
+        {
+            Tab2.CssClass = "Initial";
+            Tab3.CssClass = "Clicked";
+            MainView.ActiveViewIndex = 2;
+
+            //lblUnitName.Text = hdnUnitName.Value;
+            lblWH.Text = hdnWHName.Value;
+            lblRfqBy.Text = UserEmail;
+            
+            if (JobStationId == 28)
+            {
+                imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png";
+            }
+            else
+            {
+                imgUnit.ImageUrl = "/Content/images/img/" + hdnUnitId.Value + ".png";
+            }
+        }
         public void InsertRfq()
         {
             List<object> objects = GetGridViewData();
             if (objects.Count > 0)
             {
-                string xml = XmlParser.GetXml("", "", objects, out string message);
-
+                string xml = XmlParser.GetXml("RFQ", "Item", objects, out string message);
+                string msg = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll);
+                if (msg.ToLower().Contains("success"))
+                {
+                    Toaster(msg, Common.TosterType.Success);
+                }
+                else
+                {
+                    Toaster(msg, Common.TosterType.Error);
+                }
             }
             else
             {

@@ -463,15 +463,6 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
         
         /// <summary>
-        /// hfImageData control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfImageData;
-        
-        /// <summary>
         /// imgUnit control.
         /// </summary>
         /// <remarks>
@@ -533,15 +524,6 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvRfq;
-        
-        /// <summary>
-        /// imgApp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgApp;
         
         /// <summary>
         /// lblRfqBy control.
