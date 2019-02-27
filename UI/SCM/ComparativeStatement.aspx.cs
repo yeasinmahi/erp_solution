@@ -23,7 +23,7 @@ namespace UI.SCM
         private string xmlString = "";
         private int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem;
         private string payDate, paymentTrems, destDelivery, paymentSchedule;
-        
+
 
         private DateTime dtePo, dtelastShipment;
         private decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
@@ -43,7 +43,7 @@ namespace UI.SCM
                 InitLoad();
             }
         }
-        
+
         #region Tab Click
 
         private void SetTabClickCss(object sender)
@@ -53,8 +53,8 @@ namespace UI.SCM
                 Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
-                ((Button) sender).CssClass = "Clicked";
-                
+                ((Button)sender).CssClass = "Clicked";
+
             }
             catch (Exception ex)
             {
@@ -232,7 +232,7 @@ namespace UI.SCM
                 intWh = int.Parse(hdnWHId.Value);
                 lblIndentType.Text = ddlDepts.SelectedItem.ToString();
                 dt = _objPo.GetPoData(3, "", intWh, indent, DateTime.Now, Enroll);
-                
+
                 if (dt.Rows.Count > 0)
                 {
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
@@ -286,7 +286,7 @@ namespace UI.SCM
             {
                 if (!Validation.CheckTextBox(txtIndentNoDet, "Indent No", out indentNo, out string message))
                 {
-                    Toaster(message,Common.TosterType.Warning);
+                    Toaster(message, Common.TosterType.Warning);
                     return;
                 }
                 string dept = ddlDepts.SelectedItem.ToString();
@@ -300,7 +300,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Toaster("This is not valid againest.'" + hdnWHName.Value + "'",Common.TosterType.Warning);
+                    Toaster("This is not valid againest.'" + hdnWHName.Value + "'", Common.TosterType.Warning);
                 }
 
             }
@@ -339,7 +339,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Toaster(Message.AlreadyAdded.ToFriendlyString(),Common.TosterType.Warning);
+                    Toaster(Message.AlreadyAdded.ToFriendlyString(), Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)
@@ -360,7 +360,7 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Toaster("There are no existing Data", Common.TosterType.Warning);
+                    Toaster("Session out, Please go from begining", Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)
@@ -371,10 +371,53 @@ namespace UI.SCM
 
         protected void btnPrepareRfq_OnClick(object sender, EventArgs e)
         {
-            //hdnUnitId.Value;
             Tab2.CssClass = "Initial";
             Tab3.CssClass = "Clicked";
             MainView.ActiveViewIndex = 2;
+
+            LoadSupplier();
+
+            InsertRfq();
+
+        }
+
+        public void InsertRfq()
+        {
+            List<object> objects = GetGridViewData();
+            if (objects.Count > 0)
+            {
+                string xml = XmlParser.GetXml("", "", objects, out string message);
+
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+            }
+        }
+
+        public List<object> GetGridViewData()
+        {
+            List<object> objects = new List<object>();
+            foreach (GridViewRow row in dgvIndentDet.Rows)
+            {
+                string indentId = ((Label)row.FindControl("lblIndentId")).Text;
+                string itemId = ((Label)row.FindControl("lblItemId")).Text;
+                string indentQty = ((Label)row.FindControl("lblIndentQty")).Text;
+                string numRfqQty = ((TextBox)row.FindControl("txtRfqQty")).Text;
+
+                dynamic obj = new
+                {
+                    indentId,
+                    itemId,
+                    indentQty,
+                    numRfqQty
+                };
+                objects.Add(obj);
+            }
+            return objects;
+        }
+        public void LoadSupplier()
+        {
             dt = supplier.GetSupplierInfo(1, Convert.ToInt32(hdnUnitId.Value), out string message);
             if (dt.Rows.Count > 0)
             {
@@ -382,16 +425,22 @@ namespace UI.SCM
             }
             else
             {
-                Toaster(message,Common.TosterType.Error);
+                Toaster(message, Common.TosterType.Error);
             }
+        }
+
+        #endregion
+
+        #region RFQ
+
+        protected void btnEmail_OnClick(object sender, EventArgs e)
+        {
 
         }
 
         #endregion
 
 
-       
 
-        
     }
 }
