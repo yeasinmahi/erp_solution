@@ -164,55 +164,46 @@ namespace Utility
             
         }
 
-        public static bool RemoveRow(this DataTable dt,string columnName,string value)
+        private static EnumerableRowCollection<DataRow> GetRows<T>(this DataTable dt, string columnName, T value)
+        {
+            EnumerableRowCollection<DataRow> query = null;
+            if (typeof(T) == typeof(int))
+            {
+                var intValue = Convert.ToInt32(value);
+                query = dt.AsEnumerable().Where(r => r.Field<int>(columnName) == intValue);
+            }
+            else if (typeof(T) == typeof(string))
+            {
+                var strValue = Convert.ToString(value);
+                query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
+            }
+            return query;
+        }
+        public static bool RemoveRow<T>(this DataTable dt,string columnName,T value)
         {
             if (dt == null || dt.Rows.Count == 0)
             {
                 return false;
             }
-            var query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == value);
-            foreach (var row in query.ToList())
-                row.Delete();
-            //dt = dt.AsEnumerable()
-            //    .Where(r => r.Field<string>(columnName) != value)
-            //    .CopyToDataTable();
-            return true;
-        }
-        public static bool IsExist(this DataTable dt, string columnName, string value)
-        {
-            if (dt == null || dt.Rows.Count == 0)
-            {
-                return false;
-            }
-            var query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == value);
-            return query.ToList().Count > 0;
-        }
-        public static bool IsExist(this DataTable dt, string columnName, int value)
-        {
-            if (dt == null || dt.Rows.Count == 0)
-            {
-                return false;
-            }
-            var query = dt.AsEnumerable().Where(r => r.Field<int>(columnName) == value);
-            return query.ToList().Count > 0;
-        }
+            EnumerableRowCollection<DataRow> query = dt.GetRows<T>(columnName,value);
 
+            if (query != null)
+            {
+                foreach (var row in query.ToList())
+                    row.Delete();
+                dt.AcceptChanges();
+                return true;
+            }
+            return false;
+
+        }
         public static bool IsExist<T>(this DataTable dt, string columnName, T value)
         {
             if (dt == null || dt.Rows.Count == 0)
             {
                 return false;
             }
-            EnumerableRowCollection<DataRow> query = null;
-            if (typeof(T) == typeof(int))
-            {
-                var intValue = Convert.ToInt32(value);
-                query = dt.AsEnumerable().Where(r => r.Field<int>(columnName) == intValue);
-            }else if (typeof(T) == typeof(string))
-            {
-                var strValue = Convert.ToString(value);
-                query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
-            }
+            EnumerableRowCollection<DataRow> query = dt.GetRows<T>(columnName, value);
             return query != null && query.ToList().Count > 0;
         }
     }

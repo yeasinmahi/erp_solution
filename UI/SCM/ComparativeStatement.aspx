@@ -9,7 +9,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
 
- 
+
     <style type="text/css">
         .Initial {
             display: block;
@@ -72,9 +72,11 @@
                     <td>
                         <asp:Button Text="Indent View" BorderStyle="Solid" ID="Tab1" CssClass="Initial" runat="server"
                             OnClick="Tab1_Click" BackColor="#FFCC99" />
-                        <asp:Button Text=" Indent Detail" BorderStyle="Solid" ID="Tab2" CssClass="Initial" runat="server"
+                        <asp:Button Text="Indent Detail" BorderStyle="Solid" ID="Tab2" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab2_Click" />
-                        
+                        <asp:Button Text="RFQ" BorderStyle="Solid" ID="Tab3" CssClass="Initial" runat="server"
+                            BackColor="#FFCC99" OnClick="Tab3_OnClick" />
+
 
                         <asp:MultiView ID="MainView" runat="server">
                             <asp:View ID="View1" runat="server">
@@ -228,7 +230,7 @@
                                                                     <td>
                                                                         <asp:Button ID="btnAddItem" runat="server" ForeColor="Blue" Text="Add" OnClick="btnAddItem_Click" />
 
-                                                                        <%--<asp:Button ID="btnPrepare" ForeColor="Blue" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" />--%>
+                                                                        <asp:Button ID="btnPrepareRfq" ForeColor="Blue" runat="server" Text="Prepare RFQ" OnClick="btnPrepareRfq_OnClick" />
 
                                                                     </td>
                                                                 </tr>
@@ -356,14 +358,14 @@
                                                         <ItemStyle HorizontalAlign="Right" />
                                                     </asp:TemplateField>
 
-<%--                                                    <asp:TemplateField HeaderText="Specification"  ItemStyle-HorizontalAlign="right" SortExpression="strSpecification">
+                                                    <%--                                                    <asp:TemplateField HeaderText="Specification"  ItemStyle-HorizontalAlign="right" SortExpression="strSpecification">
                                                         <ItemTemplate>
                                                             <asp:TextBox ID="txtSpecification" runat="server" DataFormatString="{0:0.00}" TextMode="MultiLine" Text='<%# Bind("strSpecification") %>'></asp:TextBox>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Right" Wrap="true" />
                                                     </asp:TemplateField>--%>
 
-                                                    
+
                                                     <asp:CommandField HeaderText="Delete" ShowDeleteButton="True">
                                                         <ControlStyle ForeColor="Red" />
                                                     </asp:CommandField>
@@ -380,6 +382,22 @@
                                 </tr> 
                             </asp:View>
 
+                            <asp:View ID="View3" runat="server">
+                                <div style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                                    <table>
+                                        <tr>
+                                            
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:DropDownList ID="ddlSupplier" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" ></asp:DropDownList></td>
+                                        </tr>
+                                    </table>
+                                    <div>
+                                        
+                                    </div>
+                                </div>
+                            </asp:View>
                         </asp:MultiView>
                 </div>
 

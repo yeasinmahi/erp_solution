@@ -16,7 +16,8 @@ namespace UI.SCM
     public partial class ComparativeStatement : BasePage
     {
         private DataTable dt = new DataTable();
-        private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private readonly PoGenerate_BLL _objPo = new PoGenerate_BLL();
+        private readonly Supplier supplier = new Supplier();
         private int intWh;
         private string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod;
         private string xmlString = "";
@@ -43,36 +44,38 @@ namespace UI.SCM
             }
         }
         
-        #region Tab1 Click
+        #region Tab Click
 
-        protected void Tab1_Click(object sender, EventArgs e)
+        private void SetTabClickCss(object sender)
         {
             try
             {
-                Tab1.CssClass = "Clicked";
+                Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Initial";
-
-                MainView.ActiveViewIndex = 0;
+                Tab3.CssClass = "Initial";
+                ((Button) sender).CssClass = "Clicked";
+                
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, "Indent", Common.TosterType.Error);
             }
         }
+        protected void Tab1_Click(object sender, EventArgs e)
+        {
+            SetTabClickCss(sender);
+            MainView.ActiveViewIndex = 0;
+        }
 
         protected void Tab2_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Tab1.CssClass = "Initial";
-                Tab2.CssClass = "Clicked";
-
-                MainView.ActiveViewIndex = 1;
-            }
-            catch (Exception ex)
-            {
-                Toaster(ex.Message, "Indent", Common.TosterType.Error);
-            }
+            SetTabClickCss(sender);
+            MainView.ActiveViewIndex = 1;
+        }
+        protected void Tab3_OnClick(object sender, EventArgs e)
+        {
+            SetTabClickCss(sender);
+            MainView.ActiveViewIndex = 2;
         }
 
         #endregion
@@ -97,14 +100,14 @@ namespace UI.SCM
 
         private void LoadWh()
         {
-            dt = objPo.GetPoData(1, "", 0, 0, DateTime.Now, Enroll);
+            dt = _objPo.GetPoData(1, "", 0, 0, DateTime.Now, Enroll);
             ddlWH.Loads(dt, "Id", "strName");
             dt.Clear();
         }
 
         private void LoadDepartment()
         {
-            dt = objPo.GetPoData(21, "", 0, 0, DateTime.Now, Enroll);
+            dt = _objPo.GetPoData(21, "", 0, 0, DateTime.Now, Enroll);
             ddlDepts.Loads(dt, "Id", "strName");
             dt.Clear();
         }
@@ -113,7 +116,7 @@ namespace UI.SCM
             dgvIndent.UnLoad();
             dgvIndentDet.UnLoad();
 
-            dt = objPo.GetUnitID(ddlWH.SelectedValue());
+            dt = _objPo.GetUnitID(ddlWH.SelectedValue());
             if (dt.Rows.Count > 0)
             {
                 hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
@@ -121,7 +124,6 @@ namespace UI.SCM
             }
             else
             {
-
                 hdnUnitId.Value = "0";
             }
             hdnWHId.Value = ddlWH.SelectedValue().ToString();
@@ -144,7 +146,7 @@ namespace UI.SCM
                 string dept = ddlDepts.SelectedItem.ToString();
                 int indentId = int.Parse(txtIndentNo.Text);
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dept=" + '"' + dept + '"' + "/></voucher>";
-                dt = objPo.GetPoData(2, xmlData, intWh, indentId, dteFrom, Enroll);
+                dt = _objPo.GetPoData(2, xmlData, intWh, indentId, dteFrom, Enroll);
                 if (dt.Rows.Count > 0)
                 {
                     hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
@@ -189,7 +191,7 @@ namespace UI.SCM
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + txtDteTo.Text + '"' + " dept=" +
                                  '"' + dept + '"' + " dteFrom=" + '"' + txtDtefroms.Text + '"' +
                                  "/></voucher>";
-                dt = objPo.GetPoData(2, xmlData, intWh, 0, dteFrom, Enroll);
+                dt = _objPo.GetPoData(2, xmlData, intWh, 0, dteFrom, Enroll);
                 if (dt.Rows.Count > 0)
                 {
                     dgvIndent.DataSource = dt;
@@ -229,7 +231,7 @@ namespace UI.SCM
                 int indent = int.Parse(lblIndent.Text);
                 intWh = int.Parse(hdnWHId.Value);
                 lblIndentType.Text = ddlDepts.SelectedItem.ToString();
-                dt = objPo.GetPoData(3, "", intWh, indent, DateTime.Now, Enroll);
+                dt = _objPo.GetPoData(3, "", intWh, indent, DateTime.Now, Enroll);
                 
                 if (dt.Rows.Count > 0)
                 {
@@ -250,7 +252,7 @@ namespace UI.SCM
                     return;
                 }
 
-                dt = objPo.GetPoData(4, "", intWh, indent, DateTime.Now, Enroll); // Indent Detalis
+                dt = _objPo.GetPoData(4, "", intWh, indent, DateTime.Now, Enroll); // Indent Detalis
                 if (dt.Rows.Count > 0)
                 {
                     Tab1.CssClass = "Initial";
@@ -290,7 +292,7 @@ namespace UI.SCM
                 string dept = ddlDepts.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + "2018-01-01" + '"' + " dept=" + '"' + dept + '"' + "/></voucher>";
 
-                dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value), indentNo, DateTime.Now, Enroll);
+                dt = _objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value), indentNo, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
                 {
                     ddlItem.Loads(dt, "Id", "strName");
@@ -331,7 +333,7 @@ namespace UI.SCM
                 bool isExist = dt1.IsExist<int>("ItemId", itemid);
                 if (!isExist)
                 {
-                    dt = objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, Enroll); // Indent Detalis
+                    dt = _objPo.GetPoData(4, stringXml, intWh, indentNo, DateTime.Now, Enroll); // Indent Detalis
                     dt1.Merge(dt);
                     dgvIndentDet.Loads(dt1);
                 }
@@ -345,29 +347,51 @@ namespace UI.SCM
                 Toaster(ex.Message, Common.TosterType.Error);
             }
         }
-        
-        #endregion
-
-
         protected void dgvIndentDet_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                DataSet dsGrid = (DataSet) dgvIndentDet.DataSource;
-                dsGrid.Tables[0].Rows[dgvIndentDet.Rows[e.RowIndex].DataItemIndex].Delete();
-                dsGrid.WriteXml(filePathForXML);
-                DataSet dsGridAfterDelete = (DataSet) dgvIndentDet.DataSource;
-                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                int itemId = Convert.ToInt32((dgvIndentDet.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
+                if (Session["indentItems"] != null)
                 {
-                    File.Delete(filePathForXML);
-                    dgvIndentDet.DataSource = "";
-                    dgvIndentDet.DataBind();
+                    dt = (DataTable)Session["indentItems"];
+                    dt.RemoveRow("ItemId", itemId);
+                    dgvIndentDet.Loads(dt);
+                }
+                else
+                {
+                    Toaster("There are no existing Data", Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
+
+        protected void btnPrepareRfq_OnClick(object sender, EventArgs e)
+        {
+            //hdnUnitId.Value;
+            Tab2.CssClass = "Initial";
+            Tab3.CssClass = "Clicked";
+            MainView.ActiveViewIndex = 2;
+            dt = supplier.GetSupplierInfo(1, Convert.ToInt32(hdnUnitId.Value), out string message);
+            if (dt.Rows.Count > 0)
+            {
+                ddlSupplier.Loads(dt, "intSupplierID", "strSupplierName");
+            }
+            else
+            {
+                Toaster(message,Common.TosterType.Error);
+            }
+
+        }
+
+        #endregion
+
+
+       
+
+        
     }
 }
