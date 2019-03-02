@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement"  EnableEventValidation="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -11,8 +11,8 @@
 
     <script>
         function Print() {
-            document.getElementById("btnEmail").hidden = true;
-            document.getElementById("btnprint").style.display = "none";
+            //document.getElementById("btnEmail").hidden = true;
+            //document.getElementById("btnprint").style.display = "none";
             window.print();
         }
     </script>
@@ -433,6 +433,10 @@
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierContact" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
+                                                <td style="text-align: center; font: bold 13px verdana;">
+                                                    <a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a>
+                                                </td>
+                                            
                                         </tr>
                                         <tr>
                                             <td style="text-align: right;">
@@ -454,18 +458,15 @@
                                             </td>--%>
                                         </tr>
                                     </table>
-                                    <div id="dvTable" style="width: auto; background-color: white; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
+                                    <div id="dvTable" runat="server" style="width: auto; background-color: white; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
 
                                         <table style="width: 700px">
-
-                                            <tr>
-                                                <td colspan="2" style="text-align: center; font: bold 13px verdana;"><a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a></td>
-                                            </tr>
+                                           
 
                                             <tr>
 
                                                 <td rowspan="3" style="width: 80px">
-                                                    <asp:Image ID="imgUnit" Width="80" runat="server" />
+                                                    <asp:Image ID="imgUnit" Width="80" AlternateText="Unit Image" runat="server" />
                                                 </td>
                                                 <td style="text-align: center; font-size: medium; font-weight: bold;">
                                                     <asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
@@ -560,6 +561,12 @@
                                                             <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numRFQQty") %>'></asp:Label>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Right" Width="50px" />
+                                                            </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Price Per Item" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox runat="server" Enabled="False"></asp:TextBox>
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Right" Width="50px" />
                                                             </asp:TemplateField>

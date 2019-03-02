@@ -544,6 +544,15 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnEmail;
         
         /// <summary>
+        /// dvTable control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl dvTable;
+        
+        /// <summary>
         /// imgUnit control.
         /// </summary>
         /// <remarks>

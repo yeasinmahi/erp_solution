@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
+using System.Text;
+using System.Web.UI;
 using System.Web.UI.WebControls;
+using EmailService;
 using SCM_BLL;
 using UI.ClassFiles;
 using Utility;
@@ -24,6 +28,9 @@ namespace UI.SCM
                 Session["indentItems"] = null;
                 InitLoad();
             }
+        }
+        public override void VerifyRenderingInServerForm(Control control)
+        {
         }
 
         #region Tab Click
@@ -451,7 +458,37 @@ namespace UI.SCM
 
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
+            string email = lblSupplierEmail.Text;
+            email = "arafat.corp@akij.net";
+            if (!string.IsNullOrWhiteSpace(email))
+            {
+                var sb = new StringBuilder();
+                dvTable.RenderControl(new HtmlTextWriter(new StringWriter(sb)));
+                string s = sb.ToString();
 
+                EmailOptions options = new EmailOptions
+                {
+                    Attachments = null,
+                    BccAddress = null,
+                    CcAddress = null,
+                    Body = "Dear "+lblSupplierName+" ,\nPlease give me the Price Qutation of following items.\n" + sb,
+                    Subject = "Request For Qutation",
+                    ToAddress = new List<string> { email },
+                    ToAddressDisplayName = "Akij Procurement Department"
+                };
+                if (Email.SendEmail(options))
+                {
+                    Toaster("Successfully sent mail to supplier", Common.TosterType.Success);
+                }
+                else
+                {
+                    Toaster(options.Exceptions.Message,Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                Toaster("This supplier have no email address to sent",Common.TosterType.Warning);
+            }
         }
 
         #endregion
