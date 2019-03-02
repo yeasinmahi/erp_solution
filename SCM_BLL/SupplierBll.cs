@@ -4,7 +4,7 @@ using System.Data;
 using SCM_DAL.SupplierTableAdapters;
 namespace SCM_BLL
 {
-    public class Supplier
+    public class SupplierBll
     {
         public DataTable GetSupplierInfo(int type, int unitId, out string message)
         {

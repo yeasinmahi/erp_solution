@@ -1406,34 +1406,34 @@
                  <asp:GridView ID="grdvForApproveTADAByImmdediatesupervisor" runat="server" AutoGenerateColumns="False" AllowPaging="false" Width="1024px" PageSize="3000" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" ForeColor="Black" HeaderStyle-Wrap="true" OnRowDataBound="grdvForApproveTADAByImmdediatesupervisor_RowDataBound" ShowFooter="true" OnSelectedIndexChanged="grdvForApproveTADAByImmdediatesupervisor_SelectedIndexChanged">
                    
                      <Columns>
-                       <asp:TemplateField HeaderText="SL No." Visible="false"><ItemStyle HorizontalAlign="center" Width="15px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>          
+                       <asp:TemplateField HeaderText="SL No." Visible="false"><ItemStyle HorizontalAlign="center" Width="100px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>          
 
 
                     <asp:TemplateField HeaderText="From Date" SortExpression="dteFromDate">
                     <ItemTemplate>
                      <asp:HiddenField   ID="hdBillDate"   runat="server" Value='<%# Bind("dteFromdate", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="dteFromdateNoBikeDet"   CssClass="txtBox" runat="server" Width="75px" TextMode="Date"  Text='<%# Bind("dteFromdate") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left" Width="75px" />
+                    <asp:TextBox ID="dteFromdateNoBikeDet"   CssClass="txtBox" runat="server" Width="100px" TextMode="Date"  Text='<%# Bind("dteFromdate") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="100px" />
                      </asp:TemplateField>
 
  <asp:TemplateField HeaderText="Inst. Date" SortExpression="dteToDate">
                     <ItemTemplate>
                      <asp:HiddenField   ID="hdInsdate"   runat="server" Value='<%# Bind("dtIns", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="dteInsdateNoBikeDet"  CssClass="txtBox" runat="server" Width="75px" TextMode="Date"  Text='<%# Bind("dtIns") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left" Width="75px" />
+                    <asp:TextBox ID="dteInsdateNoBikeDet"  CssClass="txtBox" runat="server" Width="100px" TextMode="Date"  Text='<%# Bind("dtIns") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="100px" />
                      </asp:TemplateField>
  <asp:TemplateField HeaderText="Employee  Name" SortExpression="strEmplName">
                     <ItemTemplate>
                      <asp:HiddenField  ID="hdEmpName" runat="server"  Value='<%# Bind("strNam", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="strNamNoBikeDet" CssClass="txtBox" runat="server" Width="75px" TextMode="SingleLine" Text='<%# Bind("strNam") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left" Width="75px" />
+                    <asp:TextBox ID="strNamNoBikeDet" CssClass="txtBox" runat="server" Width="100px" TextMode="SingleLine" Text='<%# Bind("strNam") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="100px" />
                      </asp:TemplateField>
 
  <asp:TemplateField HeaderText="Designation" SortExpression="strDesignation">
                     <ItemTemplate>
                      <asp:HiddenField  ID="hdDesignation" runat="server"  Value='<%# Bind("strDesg", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="strDesgNoBikeDet" CssClass="txtBox" runat="server" Width="75px" TextMode="SingleLine" Text='<%# Bind("strDesg") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
-                    <ItemStyle HorizontalAlign="Left" Width="75px" />
+                    <asp:TextBox ID="strDesgNoBikeDet" CssClass="txtBox" runat="server" Width="100px" TextMode="SingleLine" Text='<%# Bind("strDesg") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="100px" />
                      </asp:TemplateField>
 
 
@@ -1824,9 +1824,9 @@
              <ItemTemplate>
              <asp:Button ID="CompleteAttachment" runat="server" Text="Attachment" class="button" CommandName="complete" OnClick="CompleteAttachment_Click"  CommandArgument='<%# Eval("intApplicantEnrol")+","+Eval("dteFromdate")+","+Eval("intApplicantUnit")%>' /></ItemTemplate>
              </asp:TemplateField>  
-                          <asp:BoundField DataField="dteattachdate" HeaderText="UploadDate" ItemStyle-Width="75px" SortExpression="dteattachdate" DataFormatString="{0:dd-MM-yyyy}" ItemStyle-HorizontalAlign="Center" >
+                          <asp:BoundField DataField="dteattachdate" HeaderText="UploadDate" ItemStyle-Width="100px" SortExpression="dteattachdate" DataFormatString="{0:dd-MM}" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
-                  <asp:BoundField DataField="ysnattachment" HeaderText="Attachment status" ItemStyle-Width="75px" SortExpression="ysnattachment" ItemStyle-HorizontalAlign="Center" >
+                  <asp:BoundField DataField="ysnattachment" HeaderText="Attachment status" ItemStyle-Width="100px" SortExpression="ysnattachment" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center" /> </asp:BoundField>
                      
                           <asp:TemplateField HeaderText="StationName" SortExpression="strFuelStationaname">

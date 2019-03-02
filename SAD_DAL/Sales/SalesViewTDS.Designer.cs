@@ -48,8 +48,6 @@ namespace SAD_DAL.Sales {
         
         private TblAccountsChartOfAccDataTable tableTblAccountsChartOfAcc;
         
-        private SprCollectionBaseCommissionDataTable tableSprCollectionBaseCommission;
-        
         private TblUnitvsBankInfoDataTable tableTblUnitvsBankInfo;
         
         private TblCommissionTypeDataTable tableTblCommissionType;
@@ -128,6 +126,10 @@ namespace SAD_DAL.Sales {
         
         private SprRmtTADAInsByImmediateSupvDataTable tableSprRmtTADAInsByImmediateSupv;
         
+        private SprCollectionBaseCommissionDetDataTable tableSprCollectionBaseCommissionDet;
+        
+        private SprCollectionBaseCommissionDataTable tableSprCollectionBaseCommission;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -191,9 +193,6 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["TblAccountsChartOfAcc"] != null)) {
                     base.Tables.Add(new TblAccountsChartOfAccDataTable(ds.Tables["TblAccountsChartOfAcc"]));
-                }
-                if ((ds.Tables["SprCollectionBaseCommission"] != null)) {
-                    base.Tables.Add(new SprCollectionBaseCommissionDataTable(ds.Tables["SprCollectionBaseCommission"]));
                 }
                 if ((ds.Tables["TblUnitvsBankInfo"] != null)) {
                     base.Tables.Add(new TblUnitvsBankInfoDataTable(ds.Tables["TblUnitvsBankInfo"]));
@@ -311,6 +310,12 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["SprRmtTADAInsByImmediateSupv"] != null)) {
                     base.Tables.Add(new SprRmtTADAInsByImmediateSupvDataTable(ds.Tables["SprRmtTADAInsByImmediateSupv"]));
+                }
+                if ((ds.Tables["SprCollectionBaseCommissionDet"] != null)) {
+                    base.Tables.Add(new SprCollectionBaseCommissionDetDataTable(ds.Tables["SprCollectionBaseCommissionDet"]));
+                }
+                if ((ds.Tables["SprCollectionBaseCommission"] != null)) {
+                    base.Tables.Add(new SprCollectionBaseCommissionDataTable(ds.Tables["SprCollectionBaseCommission"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -447,16 +452,6 @@ namespace SAD_DAL.Sales {
         public TblAccountsChartOfAccDataTable TblAccountsChartOfAcc {
             get {
                 return this.tableTblAccountsChartOfAcc;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprCollectionBaseCommissionDataTable SprCollectionBaseCommission {
-            get {
-                return this.tableSprCollectionBaseCommission;
             }
         }
         
@@ -852,6 +847,26 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprCollectionBaseCommissionDetDataTable SprCollectionBaseCommissionDet {
+            get {
+                return this.tableSprCollectionBaseCommissionDet;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprCollectionBaseCommissionDataTable SprCollectionBaseCommission {
+            get {
+                return this.tableSprCollectionBaseCommission;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -952,9 +967,6 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["TblAccountsChartOfAcc"] != null)) {
                     base.Tables.Add(new TblAccountsChartOfAccDataTable(ds.Tables["TblAccountsChartOfAcc"]));
-                }
-                if ((ds.Tables["SprCollectionBaseCommission"] != null)) {
-                    base.Tables.Add(new SprCollectionBaseCommissionDataTable(ds.Tables["SprCollectionBaseCommission"]));
                 }
                 if ((ds.Tables["TblUnitvsBankInfo"] != null)) {
                     base.Tables.Add(new TblUnitvsBankInfoDataTable(ds.Tables["TblUnitvsBankInfo"]));
@@ -1073,6 +1085,12 @@ namespace SAD_DAL.Sales {
                 if ((ds.Tables["SprRmtTADAInsByImmediateSupv"] != null)) {
                     base.Tables.Add(new SprRmtTADAInsByImmediateSupvDataTable(ds.Tables["SprRmtTADAInsByImmediateSupv"]));
                 }
+                if ((ds.Tables["SprCollectionBaseCommissionDet"] != null)) {
+                    base.Tables.Add(new SprCollectionBaseCommissionDetDataTable(ds.Tables["SprCollectionBaseCommissionDet"]));
+                }
+                if ((ds.Tables["SprCollectionBaseCommission"] != null)) {
+                    base.Tables.Add(new SprCollectionBaseCommissionDataTable(ds.Tables["SprCollectionBaseCommission"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -1176,12 +1194,6 @@ namespace SAD_DAL.Sales {
             if ((initTable == true)) {
                 if ((this.tableTblAccountsChartOfAcc != null)) {
                     this.tableTblAccountsChartOfAcc.InitVars();
-                }
-            }
-            this.tableSprCollectionBaseCommission = ((SprCollectionBaseCommissionDataTable)(base.Tables["SprCollectionBaseCommission"]));
-            if ((initTable == true)) {
-                if ((this.tableSprCollectionBaseCommission != null)) {
-                    this.tableSprCollectionBaseCommission.InitVars();
                 }
             }
             this.tableTblUnitvsBankInfo = ((TblUnitvsBankInfoDataTable)(base.Tables["TblUnitvsBankInfo"]));
@@ -1418,6 +1430,18 @@ namespace SAD_DAL.Sales {
                     this.tableSprRmtTADAInsByImmediateSupv.InitVars();
                 }
             }
+            this.tableSprCollectionBaseCommissionDet = ((SprCollectionBaseCommissionDetDataTable)(base.Tables["SprCollectionBaseCommissionDet"]));
+            if ((initTable == true)) {
+                if ((this.tableSprCollectionBaseCommissionDet != null)) {
+                    this.tableSprCollectionBaseCommissionDet.InitVars();
+                }
+            }
+            this.tableSprCollectionBaseCommission = ((SprCollectionBaseCommissionDataTable)(base.Tables["SprCollectionBaseCommission"]));
+            if ((initTable == true)) {
+                if ((this.tableSprCollectionBaseCommission != null)) {
+                    this.tableSprCollectionBaseCommission.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1452,8 +1476,6 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprDelvOrderPendingQntPrint);
             this.tableTblAccountsChartOfAcc = new TblAccountsChartOfAccDataTable();
             base.Tables.Add(this.tableTblAccountsChartOfAcc);
-            this.tableSprCollectionBaseCommission = new SprCollectionBaseCommissionDataTable();
-            base.Tables.Add(this.tableSprCollectionBaseCommission);
             this.tableTblUnitvsBankInfo = new TblUnitvsBankInfoDataTable();
             base.Tables.Add(this.tableTblUnitvsBankInfo);
             this.tableTblCommissionType = new TblCommissionTypeDataTable();
@@ -1532,6 +1554,10 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprTADATADAFuelCostConsumeCheking);
             this.tableSprRmtTADAInsByImmediateSupv = new SprRmtTADAInsByImmediateSupvDataTable();
             base.Tables.Add(this.tableSprRmtTADAInsByImmediateSupv);
+            this.tableSprCollectionBaseCommissionDet = new SprCollectionBaseCommissionDetDataTable();
+            base.Tables.Add(this.tableSprCollectionBaseCommissionDet);
+            this.tableSprCollectionBaseCommission = new SprCollectionBaseCommissionDataTable();
+            base.Tables.Add(this.tableSprCollectionBaseCommission);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1603,12 +1629,6 @@ namespace SAD_DAL.Sales {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeTblAccountsChartOfAcc() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprCollectionBaseCommission() {
             return false;
         }
         
@@ -1848,6 +1868,18 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprCollectionBaseCommissionDet() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprCollectionBaseCommission() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -1936,9 +1968,6 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblAccountsChartOfAccRowChangeEventHandler(object sender, TblAccountsChartOfAccRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprCollectionBaseCommissionRowChangeEventHandler(object sender, SprCollectionBaseCommissionRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblUnitvsBankInfoRowChangeEventHandler(object sender, TblUnitvsBankInfoRowChangeEvent e);
@@ -2056,6 +2085,12 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprRmtTADAInsByImmediateSupvRowChangeEventHandler(object sender, SprRmtTADAInsByImmediateSupvRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprCollectionBaseCommissionDetRowChangeEventHandler(object sender, SprCollectionBaseCommissionDetRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprCollectionBaseCommissionRowChangeEventHandler(object sender, SprCollectionBaseCommissionRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -7366,448 +7401,6 @@ namespace SAD_DAL.Sales {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "TblAccountsChartOfAccDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprCollectionBaseCommissionDataTable : global::System.Data.TypedTableBase<SprCollectionBaseCommissionRow> {
-            
-            private global::System.Data.DataColumn columnstrGroup;
-            
-            private global::System.Data.DataColumn columnaremangaername;
-            
-            private global::System.Data.DataColumn columnAMenrol;
-            
-            private global::System.Data.DataColumn columnmonCollection;
-            
-            private global::System.Data.DataColumn columnmoncommission;
-            
-            private global::System.Data.DataColumn columnstrarea;
-            
-            private global::System.Data.DataColumn columnstrRegion;
-            
-            private global::System.Data.DataColumn columnstrSalesOffice;
-            
-            private global::System.Data.DataColumn columnAMaccountnumber;
-            
-            private global::System.Data.DataColumn columnAMbankname;
-            
-            private global::System.Data.DataColumn columnAMbranchname;
-            
-            private global::System.Data.DataColumn columnAMroutingnumbr;
-            
-            private global::System.Data.DataColumn columnamdesignationid;
-            
-            private global::System.Data.DataColumn columnamdesignationid1;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprCollectionBaseCommissionDataTable() {
-                this.TableName = "SprCollectionBaseCommission";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprCollectionBaseCommissionDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprCollectionBaseCommissionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strGroupColumn {
-                get {
-                    return this.columnstrGroup;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn aremangaernameColumn {
-                get {
-                    return this.columnaremangaername;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AMenrolColumn {
-                get {
-                    return this.columnAMenrol;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monCollectionColumn {
-                get {
-                    return this.columnmonCollection;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn moncommissionColumn {
-                get {
-                    return this.columnmoncommission;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strareaColumn {
-                get {
-                    return this.columnstrarea;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strRegionColumn {
-                get {
-                    return this.columnstrRegion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strSalesOfficeColumn {
-                get {
-                    return this.columnstrSalesOffice;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AMaccountnumberColumn {
-                get {
-                    return this.columnAMaccountnumber;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AMbanknameColumn {
-                get {
-                    return this.columnAMbankname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AMbranchnameColumn {
-                get {
-                    return this.columnAMbranchname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn AMroutingnumbrColumn {
-                get {
-                    return this.columnAMroutingnumbr;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn amdesignationidColumn {
-                get {
-                    return this.columnamdesignationid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn amdesignationid1Column {
-                get {
-                    return this.columnamdesignationid1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprCollectionBaseCommissionRow this[int index] {
-                get {
-                    return ((SprCollectionBaseCommissionRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprCollectionBaseCommissionRow(SprCollectionBaseCommissionRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprCollectionBaseCommissionRow AddSprCollectionBaseCommissionRow(string strGroup, string aremangaername, int AMenrol, decimal monCollection, decimal moncommission, string strarea, string strRegion, string strSalesOffice, string AMaccountnumber, string AMbankname, string AMbranchname, string AMroutingnumbr, decimal amdesignationid, int amdesignationid1) {
-                SprCollectionBaseCommissionRow rowSprCollectionBaseCommissionRow = ((SprCollectionBaseCommissionRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        strGroup,
-                        aremangaername,
-                        AMenrol,
-                        monCollection,
-                        moncommission,
-                        strarea,
-                        strRegion,
-                        strSalesOffice,
-                        AMaccountnumber,
-                        AMbankname,
-                        AMbranchname,
-                        AMroutingnumbr,
-                        amdesignationid,
-                        amdesignationid1};
-                rowSprCollectionBaseCommissionRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprCollectionBaseCommissionRow);
-                return rowSprCollectionBaseCommissionRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SprCollectionBaseCommissionDataTable cln = ((SprCollectionBaseCommissionDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SprCollectionBaseCommissionDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnstrGroup = base.Columns["strGroup"];
-                this.columnaremangaername = base.Columns["aremangaername"];
-                this.columnAMenrol = base.Columns["AMenrol"];
-                this.columnmonCollection = base.Columns["monCollection"];
-                this.columnmoncommission = base.Columns["moncommission"];
-                this.columnstrarea = base.Columns["strarea"];
-                this.columnstrRegion = base.Columns["strRegion"];
-                this.columnstrSalesOffice = base.Columns["strSalesOffice"];
-                this.columnAMaccountnumber = base.Columns["AMaccountnumber"];
-                this.columnAMbankname = base.Columns["AMbankname"];
-                this.columnAMbranchname = base.Columns["AMbranchname"];
-                this.columnAMroutingnumbr = base.Columns["AMroutingnumbr"];
-                this.columnamdesignationid = base.Columns["amdesignationid"];
-                this.columnamdesignationid1 = base.Columns["amdesignationid1"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnstrGroup = new global::System.Data.DataColumn("strGroup", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrGroup);
-                this.columnaremangaername = new global::System.Data.DataColumn("aremangaername", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnaremangaername);
-                this.columnAMenrol = new global::System.Data.DataColumn("AMenrol", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAMenrol);
-                this.columnmonCollection = new global::System.Data.DataColumn("monCollection", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonCollection);
-                this.columnmoncommission = new global::System.Data.DataColumn("moncommission", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmoncommission);
-                this.columnstrarea = new global::System.Data.DataColumn("strarea", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrarea);
-                this.columnstrRegion = new global::System.Data.DataColumn("strRegion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrRegion);
-                this.columnstrSalesOffice = new global::System.Data.DataColumn("strSalesOffice", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrSalesOffice);
-                this.columnAMaccountnumber = new global::System.Data.DataColumn("AMaccountnumber", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAMaccountnumber);
-                this.columnAMbankname = new global::System.Data.DataColumn("AMbankname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAMbankname);
-                this.columnAMbranchname = new global::System.Data.DataColumn("AMbranchname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAMbranchname);
-                this.columnAMroutingnumbr = new global::System.Data.DataColumn("AMroutingnumbr", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnAMroutingnumbr);
-                this.columnamdesignationid = new global::System.Data.DataColumn("amdesignationid", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnamdesignationid);
-                this.columnamdesignationid1 = new global::System.Data.DataColumn("amdesignationid1", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnamdesignationid1);
-                this.columnstrGroup.MaxLength = 100;
-                this.columnaremangaername.MaxLength = 500;
-                this.columnmonCollection.ReadOnly = true;
-                this.columnmoncommission.ReadOnly = true;
-                this.columnstrarea.MaxLength = 500;
-                this.columnstrRegion.MaxLength = 500;
-                this.columnstrSalesOffice.MaxLength = 500;
-                this.columnAMaccountnumber.MaxLength = 500;
-                this.columnAMbankname.MaxLength = 500;
-                this.columnAMbranchname.MaxLength = 500;
-                this.columnAMroutingnumbr.MaxLength = 500;
-                this.columnamdesignationid.ReadOnly = true;
-                this.columnamdesignationid1.ReadOnly = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprCollectionBaseCommissionRow NewSprCollectionBaseCommissionRow() {
-                return ((SprCollectionBaseCommissionRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprCollectionBaseCommissionRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SprCollectionBaseCommissionRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SprCollectionBaseCommissionRowChanged != null)) {
-                    this.SprCollectionBaseCommissionRowChanged(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SprCollectionBaseCommissionRowChanging != null)) {
-                    this.SprCollectionBaseCommissionRowChanging(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SprCollectionBaseCommissionRowDeleted != null)) {
-                    this.SprCollectionBaseCommissionRowDeleted(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SprCollectionBaseCommissionRowDeleting != null)) {
-                    this.SprCollectionBaseCommissionRowDeleting(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprCollectionBaseCommissionRow(SprCollectionBaseCommissionRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesViewTDS ds = new SalesViewTDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprCollectionBaseCommissionDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -24994,6 +24587,790 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprCollectionBaseCommissionDetDataTable : global::System.Data.TypedTableBase<SprCollectionBaseCommissionDetRow> {
+            
+            private global::System.Data.DataColumn columnintCustomerId;
+            
+            private global::System.Data.DataColumn columnstrCustomerName;
+            
+            private global::System.Data.DataColumn columnstrTerritory;
+            
+            private global::System.Data.DataColumn columnstrarea;
+            
+            private global::System.Data.DataColumn columnstrRegion;
+            
+            private global::System.Data.DataColumn columndectotaldo;
+            
+            private global::System.Data.DataColumn columndectotaldoamount;
+            
+            private global::System.Data.DataColumn columnmonCreditLimit;
+            
+            private global::System.Data.DataColumn columnmonDebit;
+            
+            private global::System.Data.DataColumn columnmonCollection;
+            
+            private global::System.Data.DataColumn columnmonOutstanding;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDetDataTable() {
+                this.TableName = "SprCollectionBaseCommissionDet";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprCollectionBaseCommissionDetDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprCollectionBaseCommissionDetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCustomerIdColumn {
+                get {
+                    return this.columnintCustomerId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strCustomerNameColumn {
+                get {
+                    return this.columnstrCustomerName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strTerritoryColumn {
+                get {
+                    return this.columnstrTerritory;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strareaColumn {
+                get {
+                    return this.columnstrarea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strRegionColumn {
+                get {
+                    return this.columnstrRegion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dectotaldoColumn {
+                get {
+                    return this.columndectotaldo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dectotaldoamountColumn {
+                get {
+                    return this.columndectotaldoamount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monCreditLimitColumn {
+                get {
+                    return this.columnmonCreditLimit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monDebitColumn {
+                get {
+                    return this.columnmonDebit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monCollectionColumn {
+                get {
+                    return this.columnmonCollection;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monOutstandingColumn {
+                get {
+                    return this.columnmonOutstanding;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDetRow this[int index] {
+                get {
+                    return ((SprCollectionBaseCommissionDetRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionDetRowChangeEventHandler SprCollectionBaseCommissionDetRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionDetRowChangeEventHandler SprCollectionBaseCommissionDetRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionDetRowChangeEventHandler SprCollectionBaseCommissionDetRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionDetRowChangeEventHandler SprCollectionBaseCommissionDetRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprCollectionBaseCommissionDetRow(SprCollectionBaseCommissionDetRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDetRow AddSprCollectionBaseCommissionDetRow(int intCustomerId, string strCustomerName, string strTerritory, string strarea, string strRegion, decimal dectotaldo, decimal dectotaldoamount, decimal monCreditLimit, decimal monDebit, decimal monCollection, decimal monOutstanding) {
+                SprCollectionBaseCommissionDetRow rowSprCollectionBaseCommissionDetRow = ((SprCollectionBaseCommissionDetRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intCustomerId,
+                        strCustomerName,
+                        strTerritory,
+                        strarea,
+                        strRegion,
+                        dectotaldo,
+                        dectotaldoamount,
+                        monCreditLimit,
+                        monDebit,
+                        monCollection,
+                        monOutstanding};
+                rowSprCollectionBaseCommissionDetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprCollectionBaseCommissionDetRow);
+                return rowSprCollectionBaseCommissionDetRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprCollectionBaseCommissionDetDataTable cln = ((SprCollectionBaseCommissionDetDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprCollectionBaseCommissionDetDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintCustomerId = base.Columns["intCustomerId"];
+                this.columnstrCustomerName = base.Columns["strCustomerName"];
+                this.columnstrTerritory = base.Columns["strTerritory"];
+                this.columnstrarea = base.Columns["strarea"];
+                this.columnstrRegion = base.Columns["strRegion"];
+                this.columndectotaldo = base.Columns["dectotaldo"];
+                this.columndectotaldoamount = base.Columns["dectotaldoamount"];
+                this.columnmonCreditLimit = base.Columns["monCreditLimit"];
+                this.columnmonDebit = base.Columns["monDebit"];
+                this.columnmonCollection = base.Columns["monCollection"];
+                this.columnmonOutstanding = base.Columns["monOutstanding"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintCustomerId = new global::System.Data.DataColumn("intCustomerId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCustomerId);
+                this.columnstrCustomerName = new global::System.Data.DataColumn("strCustomerName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCustomerName);
+                this.columnstrTerritory = new global::System.Data.DataColumn("strTerritory", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTerritory);
+                this.columnstrarea = new global::System.Data.DataColumn("strarea", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrarea);
+                this.columnstrRegion = new global::System.Data.DataColumn("strRegion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrRegion);
+                this.columndectotaldo = new global::System.Data.DataColumn("dectotaldo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndectotaldo);
+                this.columndectotaldoamount = new global::System.Data.DataColumn("dectotaldoamount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndectotaldoamount);
+                this.columnmonCreditLimit = new global::System.Data.DataColumn("monCreditLimit", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonCreditLimit);
+                this.columnmonDebit = new global::System.Data.DataColumn("monDebit", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonDebit);
+                this.columnmonCollection = new global::System.Data.DataColumn("monCollection", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonCollection);
+                this.columnmonOutstanding = new global::System.Data.DataColumn("monOutstanding", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonOutstanding);
+                this.columnstrCustomerName.MaxLength = 200;
+                this.columnstrTerritory.MaxLength = 2147483647;
+                this.columnstrarea.MaxLength = 2147483647;
+                this.columnstrRegion.MaxLength = 2147483647;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDetRow NewSprCollectionBaseCommissionDetRow() {
+                return ((SprCollectionBaseCommissionDetRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprCollectionBaseCommissionDetRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprCollectionBaseCommissionDetRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprCollectionBaseCommissionDetRowChanged != null)) {
+                    this.SprCollectionBaseCommissionDetRowChanged(this, new SprCollectionBaseCommissionDetRowChangeEvent(((SprCollectionBaseCommissionDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprCollectionBaseCommissionDetRowChanging != null)) {
+                    this.SprCollectionBaseCommissionDetRowChanging(this, new SprCollectionBaseCommissionDetRowChangeEvent(((SprCollectionBaseCommissionDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprCollectionBaseCommissionDetRowDeleted != null)) {
+                    this.SprCollectionBaseCommissionDetRowDeleted(this, new SprCollectionBaseCommissionDetRowChangeEvent(((SprCollectionBaseCommissionDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprCollectionBaseCommissionDetRowDeleting != null)) {
+                    this.SprCollectionBaseCommissionDetRowDeleting(this, new SprCollectionBaseCommissionDetRowChangeEvent(((SprCollectionBaseCommissionDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprCollectionBaseCommissionDetRow(SprCollectionBaseCommissionDetRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesViewTDS ds = new SalesViewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprCollectionBaseCommissionDetDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprCollectionBaseCommissionDataTable : global::System.Data.TypedTableBase<SprCollectionBaseCommissionRow> {
+            
+            private global::System.Data.DataColumn columnaremangaername;
+            
+            private global::System.Data.DataColumn columnAMenrol;
+            
+            private global::System.Data.DataColumn columnmonCollection;
+            
+            private global::System.Data.DataColumn columnmoncommission;
+            
+            private global::System.Data.DataColumn columnstrSalesOffice;
+            
+            private global::System.Data.DataColumn columnAMaccountnumber;
+            
+            private global::System.Data.DataColumn columnAMbankname;
+            
+            private global::System.Data.DataColumn columnAMbranchname;
+            
+            private global::System.Data.DataColumn columnAMroutingnumbr;
+            
+            private global::System.Data.DataColumn columndectotaldo;
+            
+            private global::System.Data.DataColumn columnamdesignationid;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDataTable() {
+                this.TableName = "SprCollectionBaseCommission";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprCollectionBaseCommissionDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprCollectionBaseCommissionDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn aremangaernameColumn {
+                get {
+                    return this.columnaremangaername;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AMenrolColumn {
+                get {
+                    return this.columnAMenrol;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monCollectionColumn {
+                get {
+                    return this.columnmonCollection;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn moncommissionColumn {
+                get {
+                    return this.columnmoncommission;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strSalesOfficeColumn {
+                get {
+                    return this.columnstrSalesOffice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AMaccountnumberColumn {
+                get {
+                    return this.columnAMaccountnumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AMbanknameColumn {
+                get {
+                    return this.columnAMbankname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AMbranchnameColumn {
+                get {
+                    return this.columnAMbranchname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AMroutingnumbrColumn {
+                get {
+                    return this.columnAMroutingnumbr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dectotaldoColumn {
+                get {
+                    return this.columndectotaldo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn amdesignationidColumn {
+                get {
+                    return this.columnamdesignationid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionRow this[int index] {
+                get {
+                    return ((SprCollectionBaseCommissionRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCollectionBaseCommissionRowChangeEventHandler SprCollectionBaseCommissionRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprCollectionBaseCommissionRow(SprCollectionBaseCommissionRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionRow AddSprCollectionBaseCommissionRow(string aremangaername, int AMenrol, decimal monCollection, decimal moncommission, string strSalesOffice, string AMaccountnumber, string AMbankname, string AMbranchname, string AMroutingnumbr, decimal dectotaldo, int amdesignationid) {
+                SprCollectionBaseCommissionRow rowSprCollectionBaseCommissionRow = ((SprCollectionBaseCommissionRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        aremangaername,
+                        AMenrol,
+                        monCollection,
+                        moncommission,
+                        strSalesOffice,
+                        AMaccountnumber,
+                        AMbankname,
+                        AMbranchname,
+                        AMroutingnumbr,
+                        dectotaldo,
+                        amdesignationid};
+                rowSprCollectionBaseCommissionRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprCollectionBaseCommissionRow);
+                return rowSprCollectionBaseCommissionRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprCollectionBaseCommissionDataTable cln = ((SprCollectionBaseCommissionDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprCollectionBaseCommissionDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnaremangaername = base.Columns["aremangaername"];
+                this.columnAMenrol = base.Columns["AMenrol"];
+                this.columnmonCollection = base.Columns["monCollection"];
+                this.columnmoncommission = base.Columns["moncommission"];
+                this.columnstrSalesOffice = base.Columns["strSalesOffice"];
+                this.columnAMaccountnumber = base.Columns["AMaccountnumber"];
+                this.columnAMbankname = base.Columns["AMbankname"];
+                this.columnAMbranchname = base.Columns["AMbranchname"];
+                this.columnAMroutingnumbr = base.Columns["AMroutingnumbr"];
+                this.columndectotaldo = base.Columns["dectotaldo"];
+                this.columnamdesignationid = base.Columns["amdesignationid"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnaremangaername = new global::System.Data.DataColumn("aremangaername", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnaremangaername);
+                this.columnAMenrol = new global::System.Data.DataColumn("AMenrol", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMenrol);
+                this.columnmonCollection = new global::System.Data.DataColumn("monCollection", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonCollection);
+                this.columnmoncommission = new global::System.Data.DataColumn("moncommission", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmoncommission);
+                this.columnstrSalesOffice = new global::System.Data.DataColumn("strSalesOffice", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrSalesOffice);
+                this.columnAMaccountnumber = new global::System.Data.DataColumn("AMaccountnumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMaccountnumber);
+                this.columnAMbankname = new global::System.Data.DataColumn("AMbankname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMbankname);
+                this.columnAMbranchname = new global::System.Data.DataColumn("AMbranchname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMbranchname);
+                this.columnAMroutingnumbr = new global::System.Data.DataColumn("AMroutingnumbr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAMroutingnumbr);
+                this.columndectotaldo = new global::System.Data.DataColumn("dectotaldo", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndectotaldo);
+                this.columnamdesignationid = new global::System.Data.DataColumn("amdesignationid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnamdesignationid);
+                this.columnaremangaername.MaxLength = 500;
+                this.columnstrSalesOffice.MaxLength = 500;
+                this.columnAMaccountnumber.MaxLength = 500;
+                this.columnAMbankname.MaxLength = 500;
+                this.columnAMbranchname.MaxLength = 500;
+                this.columnAMroutingnumbr.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionRow NewSprCollectionBaseCommissionRow() {
+                return ((SprCollectionBaseCommissionRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprCollectionBaseCommissionRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprCollectionBaseCommissionRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprCollectionBaseCommissionRowChanged != null)) {
+                    this.SprCollectionBaseCommissionRowChanged(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprCollectionBaseCommissionRowChanging != null)) {
+                    this.SprCollectionBaseCommissionRowChanging(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprCollectionBaseCommissionRowDeleted != null)) {
+                    this.SprCollectionBaseCommissionRowDeleted(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprCollectionBaseCommissionRowDeleting != null)) {
+                    this.SprCollectionBaseCommissionRowDeleting(this, new SprCollectionBaseCommissionRowChangeEvent(((SprCollectionBaseCommissionRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprCollectionBaseCommissionRow(SprCollectionBaseCommissionRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesViewTDS ds = new SalesViewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprCollectionBaseCommissionDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class SprSalesInfoRow : global::System.Data.DataRow {
@@ -29624,425 +30001,6 @@ namespace SAD_DAL.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintTravelAndConveyIDNull() {
                 this[this.tableTblAccountsChartOfAcc.intTravelAndConveyIDColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SprCollectionBaseCommissionRow : global::System.Data.DataRow {
-            
-            private SprCollectionBaseCommissionDataTable tableSprCollectionBaseCommission;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprCollectionBaseCommissionRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSprCollectionBaseCommission = ((SprCollectionBaseCommissionDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strGroup {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.strGroupColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strGroup\' in table \'SprCollectionBaseCommission\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.strGroupColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string aremangaername {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.aremangaernameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'aremangaername\' in table \'SprCollectionBaseCommission\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.aremangaernameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int AMenrol {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprCollectionBaseCommission.AMenrolColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMenrol\' in table \'SprCollectionBaseCommission\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.AMenrolColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monCollection {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprCollectionBaseCommission.monCollectionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monCollection\' in table \'SprCollectionBaseCommission\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.monCollectionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal moncommission {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprCollectionBaseCommission.moncommissionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'moncommission\' in table \'SprCollectionBaseCommission\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.moncommissionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strarea {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.strareaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strarea\' in table \'SprCollectionBaseCommission\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.strareaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strRegion {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.strRegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strRegion\' in table \'SprCollectionBaseCommission\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.strRegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strSalesOffice {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.strSalesOfficeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strSalesOffice\' in table \'SprCollectionBaseCommission\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.strSalesOfficeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string AMaccountnumber {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.AMaccountnumberColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMaccountnumber\' in table \'SprCollectionBaseCommission\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.AMaccountnumberColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string AMbankname {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.AMbanknameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMbankname\' in table \'SprCollectionBaseCommission\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.AMbanknameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string AMbranchname {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.AMbranchnameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMbranchname\' in table \'SprCollectionBaseCommission\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.AMbranchnameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string AMroutingnumbr {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprCollectionBaseCommission.AMroutingnumbrColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AMroutingnumbr\' in table \'SprCollectionBaseCommission\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.AMroutingnumbrColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal amdesignationid {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprCollectionBaseCommission.amdesignationidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'amdesignationid\' in table \'SprCollectionBaseCommission\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.amdesignationidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int amdesignationid1 {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprCollectionBaseCommission.amdesignationid1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'amdesignationid1\' in table \'SprCollectionBaseCommission\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprCollectionBaseCommission.amdesignationid1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrGroupNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.strGroupColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrGroupNull() {
-                this[this.tableSprCollectionBaseCommission.strGroupColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsaremangaernameNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.aremangaernameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetaremangaernameNull() {
-                this[this.tableSprCollectionBaseCommission.aremangaernameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAMenrolNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.AMenrolColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAMenrolNull() {
-                this[this.tableSprCollectionBaseCommission.AMenrolColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonCollectionNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.monCollectionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonCollectionNull() {
-                this[this.tableSprCollectionBaseCommission.monCollectionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmoncommissionNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.moncommissionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmoncommissionNull() {
-                this[this.tableSprCollectionBaseCommission.moncommissionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrareaNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.strareaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrareaNull() {
-                this[this.tableSprCollectionBaseCommission.strareaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrRegionNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.strRegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrRegionNull() {
-                this[this.tableSprCollectionBaseCommission.strRegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrSalesOfficeNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.strSalesOfficeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrSalesOfficeNull() {
-                this[this.tableSprCollectionBaseCommission.strSalesOfficeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAMaccountnumberNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.AMaccountnumberColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAMaccountnumberNull() {
-                this[this.tableSprCollectionBaseCommission.AMaccountnumberColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAMbanknameNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.AMbanknameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAMbanknameNull() {
-                this[this.tableSprCollectionBaseCommission.AMbanknameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAMbranchnameNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.AMbranchnameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAMbranchnameNull() {
-                this[this.tableSprCollectionBaseCommission.AMbranchnameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsAMroutingnumbrNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.AMroutingnumbrColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetAMroutingnumbrNull() {
-                this[this.tableSprCollectionBaseCommission.AMroutingnumbrColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsamdesignationidNull() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.amdesignationidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetamdesignationidNull() {
-                this[this.tableSprCollectionBaseCommission.amdesignationidColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Isamdesignationid1Null() {
-                return this.IsNull(this.tableSprCollectionBaseCommission.amdesignationid1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Setamdesignationid1Null() {
-                this[this.tableSprCollectionBaseCommission.amdesignationid1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -45417,6 +45375,673 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprCollectionBaseCommissionDetRow : global::System.Data.DataRow {
+            
+            private SprCollectionBaseCommissionDetDataTable tableSprCollectionBaseCommissionDet;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprCollectionBaseCommissionDetRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprCollectionBaseCommissionDet = ((SprCollectionBaseCommissionDetDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCustomerId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprCollectionBaseCommissionDet.intCustomerIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intCustomerId\' in table \'SprCollectionBaseCommissionDet\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.intCustomerIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strCustomerName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommissionDet.strCustomerNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strCustomerName\' in table \'SprCollectionBaseCommissionDet\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.strCustomerNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strTerritory {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommissionDet.strTerritoryColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTerritory\' in table \'SprCollectionBaseCommissionDet\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.strTerritoryColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strarea {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommissionDet.strareaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strarea\' in table \'SprCollectionBaseCommissionDet\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.strareaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strRegion {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommissionDet.strRegionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRegion\' in table \'SprCollectionBaseCommissionDet\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.strRegionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal dectotaldo {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommissionDet.dectotaldoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dectotaldo\' in table \'SprCollectionBaseCommissionDet\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.dectotaldoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal dectotaldoamount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommissionDet.dectotaldoamountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dectotaldoamount\' in table \'SprCollectionBaseCommissionDet\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.dectotaldoamountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monCreditLimit {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommissionDet.monCreditLimitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monCreditLimit\' in table \'SprCollectionBaseCommissionDet\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.monCreditLimitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monDebit {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommissionDet.monDebitColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monDebit\' in table \'SprCollectionBaseCommissionDet\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.monDebitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monCollection {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommissionDet.monCollectionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monCollection\' in table \'SprCollectionBaseCommissionDet\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.monCollectionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monOutstanding {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommissionDet.monOutstandingColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monOutstanding\' in table \'SprCollectionBaseCommissionDet\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommissionDet.monOutstandingColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintCustomerIdNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.intCustomerIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintCustomerIdNull() {
+                this[this.tableSprCollectionBaseCommissionDet.intCustomerIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrCustomerNameNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.strCustomerNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrCustomerNameNull() {
+                this[this.tableSprCollectionBaseCommissionDet.strCustomerNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrTerritoryNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.strTerritoryColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrTerritoryNull() {
+                this[this.tableSprCollectionBaseCommissionDet.strTerritoryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrareaNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.strareaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrareaNull() {
+                this[this.tableSprCollectionBaseCommissionDet.strareaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrRegionNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.strRegionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrRegionNull() {
+                this[this.tableSprCollectionBaseCommissionDet.strRegionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdectotaldoNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.dectotaldoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdectotaldoNull() {
+                this[this.tableSprCollectionBaseCommissionDet.dectotaldoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdectotaldoamountNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.dectotaldoamountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdectotaldoamountNull() {
+                this[this.tableSprCollectionBaseCommissionDet.dectotaldoamountColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonCreditLimitNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.monCreditLimitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonCreditLimitNull() {
+                this[this.tableSprCollectionBaseCommissionDet.monCreditLimitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonDebitNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.monDebitColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonDebitNull() {
+                this[this.tableSprCollectionBaseCommissionDet.monDebitColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonCollectionNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.monCollectionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonCollectionNull() {
+                this[this.tableSprCollectionBaseCommissionDet.monCollectionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonOutstandingNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommissionDet.monOutstandingColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonOutstandingNull() {
+                this[this.tableSprCollectionBaseCommissionDet.monOutstandingColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprCollectionBaseCommissionRow : global::System.Data.DataRow {
+            
+            private SprCollectionBaseCommissionDataTable tableSprCollectionBaseCommission;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprCollectionBaseCommissionRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprCollectionBaseCommission = ((SprCollectionBaseCommissionDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string aremangaername {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommission.aremangaernameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'aremangaername\' in table \'SprCollectionBaseCommission\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.aremangaernameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int AMenrol {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprCollectionBaseCommission.AMenrolColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMenrol\' in table \'SprCollectionBaseCommission\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.AMenrolColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monCollection {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommission.monCollectionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monCollection\' in table \'SprCollectionBaseCommission\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.monCollectionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal moncommission {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommission.moncommissionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'moncommission\' in table \'SprCollectionBaseCommission\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.moncommissionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strSalesOffice {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommission.strSalesOfficeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strSalesOffice\' in table \'SprCollectionBaseCommission\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.strSalesOfficeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AMaccountnumber {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommission.AMaccountnumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMaccountnumber\' in table \'SprCollectionBaseCommission\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.AMaccountnumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AMbankname {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommission.AMbanknameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMbankname\' in table \'SprCollectionBaseCommission\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.AMbanknameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AMbranchname {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommission.AMbranchnameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMbranchname\' in table \'SprCollectionBaseCommission\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.AMbranchnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string AMroutingnumbr {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCollectionBaseCommission.AMroutingnumbrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AMroutingnumbr\' in table \'SprCollectionBaseCommission\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.AMroutingnumbrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal dectotaldo {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCollectionBaseCommission.dectotaldoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dectotaldo\' in table \'SprCollectionBaseCommission\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.dectotaldoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int amdesignationid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprCollectionBaseCommission.amdesignationidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'amdesignationid\' in table \'SprCollectionBaseCommission\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCollectionBaseCommission.amdesignationidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsaremangaernameNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.aremangaernameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetaremangaernameNull() {
+                this[this.tableSprCollectionBaseCommission.aremangaernameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAMenrolNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.AMenrolColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAMenrolNull() {
+                this[this.tableSprCollectionBaseCommission.AMenrolColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonCollectionNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.monCollectionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonCollectionNull() {
+                this[this.tableSprCollectionBaseCommission.monCollectionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmoncommissionNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.moncommissionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmoncommissionNull() {
+                this[this.tableSprCollectionBaseCommission.moncommissionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrSalesOfficeNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.strSalesOfficeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrSalesOfficeNull() {
+                this[this.tableSprCollectionBaseCommission.strSalesOfficeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAMaccountnumberNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.AMaccountnumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAMaccountnumberNull() {
+                this[this.tableSprCollectionBaseCommission.AMaccountnumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAMbanknameNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.AMbanknameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAMbanknameNull() {
+                this[this.tableSprCollectionBaseCommission.AMbanknameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAMbranchnameNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.AMbranchnameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAMbranchnameNull() {
+                this[this.tableSprCollectionBaseCommission.AMbranchnameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAMroutingnumbrNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.AMroutingnumbrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAMroutingnumbrNull() {
+                this[this.tableSprCollectionBaseCommission.AMroutingnumbrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdectotaldoNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.dectotaldoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdectotaldoNull() {
+                this[this.tableSprCollectionBaseCommission.dectotaldoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsamdesignationidNull() {
+                return this.IsNull(this.tableSprCollectionBaseCommission.amdesignationidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetamdesignationidNull() {
+                this[this.tableSprCollectionBaseCommission.amdesignationidColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -45810,40 +46435,6 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblAccountsChartOfAccRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprCollectionBaseCommissionRowChangeEvent : global::System.EventArgs {
-            
-            private SprCollectionBaseCommissionRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprCollectionBaseCommissionRowChangeEvent(SprCollectionBaseCommissionRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprCollectionBaseCommissionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -47170,6 +47761,74 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprRmtTADAInsByImmediateSupvRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprCollectionBaseCommissionDetRowChangeEvent : global::System.EventArgs {
+            
+            private SprCollectionBaseCommissionDetRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDetRowChangeEvent(SprCollectionBaseCommissionDetRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionDetRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprCollectionBaseCommissionRowChangeEvent : global::System.EventArgs {
+            
+            private SprCollectionBaseCommissionRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionRowChangeEvent(SprCollectionBaseCommissionRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCollectionBaseCommissionRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -49802,209 +50461,6 @@ update erp_sad.dbo.tblSalesOrderTrip set ysnEnable=0,dteInactiveDate=getdate(),i
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             SalesViewTDS.TblAccountsChartOfAccDataTable dataTable = new SalesViewTDS.TblAccountsChartOfAccDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprCollectionBaseCommissionTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprCollectionBaseCommissionTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprCollectionBaseCommission";
-            tableMapping.ColumnMappings.Add("strGroup", "strGroup");
-            tableMapping.ColumnMappings.Add("aremangaername", "aremangaername");
-            tableMapping.ColumnMappings.Add("AMenrol", "AMenrol");
-            tableMapping.ColumnMappings.Add("monCollection", "monCollection");
-            tableMapping.ColumnMappings.Add("moncommission", "moncommission");
-            tableMapping.ColumnMappings.Add("strarea", "strarea");
-            tableMapping.ColumnMappings.Add("strRegion", "strRegion");
-            tableMapping.ColumnMappings.Add("strSalesOffice", "strSalesOffice");
-            tableMapping.ColumnMappings.Add("AMaccountnumber", "AMaccountnumber");
-            tableMapping.ColumnMappings.Add("AMbankname", "AMbankname");
-            tableMapping.ColumnMappings.Add("AMbranchname", "AMbranchname");
-            tableMapping.ColumnMappings.Add("AMroutingnumbr", "AMroutingnumbr");
-            tableMapping.ColumnMappings.Add("amdesignationid", "amdesignationid");
-            tableMapping.ColumnMappings.Add("amdesignationid1", "amdesignationid1");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprCollectionBaseCommission";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intsalesoffice", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rtptye", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesViewTDS.SprCollectionBaseCommissionDataTable GetData(global::System.Nullable<global::System.DateTime> fdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> unitID, global::System.Nullable<int> intsalesoffice, global::System.Nullable<int> rtptye) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((fdate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fdate.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((todate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(todate.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((unitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(unitID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((intsalesoffice.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intsalesoffice.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((rtptye.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(rtptye.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            SalesViewTDS.SprCollectionBaseCommissionDataTable dataTable = new SalesViewTDS.SprCollectionBaseCommissionDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -57925,6 +58381,406 @@ left join erp_hr.dbo.tblUnitAddress adr on adr.intUnitID=u.intUnitID
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             SalesViewTDS.SprRmtTADAInsByImmediateSupvDataTable dataTable = new SalesViewTDS.SprRmtTADAInsByImmediateSupvDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprCollectionBaseCommissionDetTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprCollectionBaseCommissionDetTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprCollectionBaseCommissionDet";
+            tableMapping.ColumnMappings.Add("intCustomerId", "intCustomerId");
+            tableMapping.ColumnMappings.Add("strCustomerName", "strCustomerName");
+            tableMapping.ColumnMappings.Add("strTerritory", "strTerritory");
+            tableMapping.ColumnMappings.Add("strarea", "strarea");
+            tableMapping.ColumnMappings.Add("strRegion", "strRegion");
+            tableMapping.ColumnMappings.Add("dectotaldo", "dectotaldo");
+            tableMapping.ColumnMappings.Add("dectotaldoamount", "dectotaldoamount");
+            tableMapping.ColumnMappings.Add("monCreditLimit", "monCreditLimit");
+            tableMapping.ColumnMappings.Add("monDebit", "monDebit");
+            tableMapping.ColumnMappings.Add("monCollection", "monCollection");
+            tableMapping.ColumnMappings.Add("monOutstanding", "monOutstanding");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprCollectionBaseCommissionDet";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intsalesoffice", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rtptye", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesViewTDS.SprCollectionBaseCommissionDetDataTable GetDataCollectionBaseCommissionDet(global::System.Nullable<global::System.DateTime> fdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> unitID, global::System.Nullable<int> intsalesoffice, global::System.Nullable<int> rtptye) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((fdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fdate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((todate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(todate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((unitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(unitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((intsalesoffice.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intsalesoffice.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((rtptye.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(rtptye.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            SalesViewTDS.SprCollectionBaseCommissionDetDataTable dataTable = new SalesViewTDS.SprCollectionBaseCommissionDetDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprCollectionBaseCommissionTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprCollectionBaseCommissionTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprCollectionBaseCommission";
+            tableMapping.ColumnMappings.Add("aremangaername", "aremangaername");
+            tableMapping.ColumnMappings.Add("AMenrol", "AMenrol");
+            tableMapping.ColumnMappings.Add("monCollection", "monCollection");
+            tableMapping.ColumnMappings.Add("moncommission", "moncommission");
+            tableMapping.ColumnMappings.Add("strSalesOffice", "strSalesOffice");
+            tableMapping.ColumnMappings.Add("AMaccountnumber", "AMaccountnumber");
+            tableMapping.ColumnMappings.Add("AMbankname", "AMbankname");
+            tableMapping.ColumnMappings.Add("AMbranchname", "AMbranchname");
+            tableMapping.ColumnMappings.Add("AMroutingnumbr", "AMroutingnumbr");
+            tableMapping.ColumnMappings.Add("dectotaldo", "dectotaldo");
+            tableMapping.ColumnMappings.Add("amdesignationid", "amdesignationid");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprCollectionBaseCommission";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@fdate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@todate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intsalesoffice", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@rtptye", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesViewTDS.SprCollectionBaseCommissionDataTable GetDataCollectionBaseCommission(global::System.Nullable<global::System.DateTime> fdate, global::System.Nullable<global::System.DateTime> todate, global::System.Nullable<int> unitID, global::System.Nullable<int> intsalesoffice, global::System.Nullable<int> rtptye) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((fdate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(fdate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((todate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(todate.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((unitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(unitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((intsalesoffice.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intsalesoffice.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((rtptye.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(rtptye.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            SalesViewTDS.SprCollectionBaseCommissionDataTable dataTable = new SalesViewTDS.SprCollectionBaseCommissionDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

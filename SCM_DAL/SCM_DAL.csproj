@@ -76,6 +76,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BomTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ComparativeStatementTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComparativeStatementTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DmageTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,6 +208,17 @@
     </None>
     <None Include="BomTDS.xss">
       <DependentUpon>BomTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ComparativeStatementTDS.xsc">
+      <DependentUpon>ComparativeStatementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ComparativeStatementTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ComparativeStatementTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ComparativeStatementTDS.xss">
+      <DependentUpon>ComparativeStatementTDS.xsd</DependentUpon>
     </None>
     <None Include="DmageTDS.xsc">
       <DependentUpon>DmageTDS.xsd</DependentUpon>
