@@ -130,6 +130,7 @@
                <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
                 <td style="text-align:left"><asp:Button ID="btnShow" ForeColor="#0033cc" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
                <td style="text-align:right"><asp:Button ID="btnStatement" ForeColor="#0033cc" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
+               <td style="text-align:right"><asp:Button ID="btnReport" ForeColor="#0033cc" runat="server" Text="Show Report"  OnClick="btnReport_Click" /> </td>
                 </tr>
         </table>
         <table>
