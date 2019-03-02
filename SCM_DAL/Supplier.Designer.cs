@@ -287,6 +287,10 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnstrSupplierType;
             
+            private global::System.Data.DataColumn columnstrOrgAddress;
+            
+            private global::System.Data.DataColumn columnstrOrgContactNo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprSupplierInfoDataTable() {
@@ -354,6 +358,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strOrgAddressColumn {
+                get {
+                    return this.columnstrOrgAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strOrgContactNoColumn {
+                get {
+                    return this.columnstrOrgContactNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -389,13 +409,15 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprSupplierInfoRow AddsprSupplierInfoRow(string strSupplierName, string strOrgMail, string strSupplierType) {
+            public sprSupplierInfoRow AddsprSupplierInfoRow(string strSupplierName, string strOrgMail, string strSupplierType, string strOrgAddress, string strOrgContactNo) {
                 sprSupplierInfoRow rowsprSupplierInfoRow = ((sprSupplierInfoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         strSupplierName,
                         strOrgMail,
-                        strSupplierType};
+                        strSupplierType,
+                        strOrgAddress,
+                        strOrgContactNo};
                 rowsprSupplierInfoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsprSupplierInfoRow);
                 return rowsprSupplierInfoRow;
@@ -429,6 +451,8 @@ namespace SCM_DAL {
                 this.columnstrSupplierName = base.Columns["strSupplierName"];
                 this.columnstrOrgMail = base.Columns["strOrgMail"];
                 this.columnstrSupplierType = base.Columns["strSupplierType"];
+                this.columnstrOrgAddress = base.Columns["strOrgAddress"];
+                this.columnstrOrgContactNo = base.Columns["strOrgContactNo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -442,6 +466,10 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrOrgMail);
                 this.columnstrSupplierType = new global::System.Data.DataColumn("strSupplierType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrSupplierType);
+                this.columnstrOrgAddress = new global::System.Data.DataColumn("strOrgAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOrgAddress);
+                this.columnstrOrgContactNo = new global::System.Data.DataColumn("strOrgContactNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOrgContactNo);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintSupplierID}, true));
                 this.columnintSupplierID.AutoIncrement = true;
@@ -453,6 +481,9 @@ namespace SCM_DAL {
                 this.columnstrSupplierName.MaxLength = 250;
                 this.columnstrOrgMail.MaxLength = 550;
                 this.columnstrSupplierType.MaxLength = 50;
+                this.columnstrOrgAddress.AllowDBNull = false;
+                this.columnstrOrgAddress.MaxLength = 500;
+                this.columnstrOrgContactNo.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -654,6 +685,33 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strOrgAddress {
+                get {
+                    return ((string)(this[this.tablesprSupplierInfo.strOrgAddressColumn]));
+                }
+                set {
+                    this[this.tablesprSupplierInfo.strOrgAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strOrgContactNo {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprSupplierInfo.strOrgContactNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOrgContactNo\' in table \'sprSupplierInfo\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprSupplierInfo.strOrgContactNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrSupplierNameNull() {
                 return this.IsNull(this.tablesprSupplierInfo.strSupplierNameColumn);
             }
@@ -686,6 +744,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrSupplierTypeNull() {
                 this[this.tablesprSupplierInfo.strSupplierTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrOrgContactNoNull() {
+                return this.IsNull(this.tablesprSupplierInfo.strOrgContactNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrOrgContactNoNull() {
+                this[this.tablesprSupplierInfo.strOrgContactNoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -852,6 +922,8 @@ namespace SCM_DAL.SupplierTableAdapters {
             tableMapping.ColumnMappings.Add("strSupplierName", "strSupplierName");
             tableMapping.ColumnMappings.Add("strOrgMail", "strOrgMail");
             tableMapping.ColumnMappings.Add("strSupplierType", "strSupplierType");
+            tableMapping.ColumnMappings.Add("strOrgAddress", "strOrgAddress");
+            tableMapping.ColumnMappings.Add("strOrgContactNo", "strOrgContactNo");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -872,14 +944,14 @@ namespace SCM_DAL.SupplierTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Supplier.sprSupplierInfoDataTable GetData(global::System.Nullable<int> type, global::System.Nullable<int> unitId) {
+        public virtual Supplier.sprSupplierInfoDataTable GetData(global::System.Nullable<int> type, global::System.Nullable<int> id) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((type.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(type.Value));
@@ -887,8 +959,8 @@ namespace SCM_DAL.SupplierTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((unitId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(unitId.Value));
+            if ((id.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(id.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
