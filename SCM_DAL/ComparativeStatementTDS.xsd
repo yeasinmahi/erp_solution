@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprRFQTableAdapter" GeneratorDataComponentClassName="sprRFQTableAdapter" Name="sprRFQ" UserDataComponentName="sprRFQTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprRFQ" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprRFQ" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprRFQ</CommandText>
@@ -25,7 +25,21 @@
                 </SelectCommand>
               </DbSource>
             </MainSource>
-            <Mappings />
+            <Mappings>
+              <Mapping SourceColumn="intRFQID" DataSetColumn="intRFQID" />
+              <Mapping SourceColumn="dteRFQDate" DataSetColumn="dteRFQDate" />
+              <Mapping SourceColumn="dteInsertTime" DataSetColumn="dteInsertTime" />
+              <Mapping SourceColumn="intIndentID" DataSetColumn="intIndentID" />
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="numIndentQty" DataSetColumn="numIndentQty" />
+              <Mapping SourceColumn="numRFQQty" DataSetColumn="numRFQQty" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="intWHID" DataSetColumn="intWHID" />
+              <Mapping SourceColumn="strItemName" DataSetColumn="strItemName" />
+              <Mapping SourceColumn="strUoM" DataSetColumn="strUoM" />
+              <Mapping SourceColumn="strDescription" DataSetColumn="strDescription" />
+              <Mapping SourceColumn="strEmployeeName" DataSetColumn="strEmployeeName" />
+            </Mappings>
             <Sources />
           </TableAdapter>
         </Tables>
@@ -36,8 +50,47 @@
   <xs:element name="ComparativeStatementTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ComparativeStatementTDS" msprop:Generator_UserDSName="ComparativeStatementTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="sprRFQ" msprop:Generator_TableClassName="sprRFQDataTable" msprop:Generator_TableVarName="tablesprRFQ" msprop:Generator_TablePropName="sprRFQ" msprop:Generator_RowDeletingName="sprRFQRowDeleting" msprop:Generator_RowChangingName="sprRFQRowChanging" msprop:Generator_RowEvHandlerName="sprRFQRowChangeEventHandler" msprop:Generator_RowDeletedName="sprRFQRowDeleted" msprop:Generator_UserTableName="sprRFQ" msprop:Generator_RowChangedName="sprRFQRowChanged" msprop:Generator_RowEvArgName="sprRFQRowChangeEvent" msprop:Generator_RowClassName="sprRFQRow">
+        <xs:element name="sprRFQ" msprop:Generator_TableClassName="sprRFQDataTable" msprop:Generator_TableVarName="tablesprRFQ" msprop:Generator_RowChangedName="sprRFQRowChanged" msprop:Generator_TablePropName="sprRFQ" msprop:Generator_RowDeletingName="sprRFQRowDeleting" msprop:Generator_RowChangingName="sprRFQRowChanging" msprop:Generator_RowEvHandlerName="sprRFQRowChangeEventHandler" msprop:Generator_RowDeletedName="sprRFQRowDeleted" msprop:Generator_RowClassName="sprRFQRow" msprop:Generator_UserTableName="sprRFQ" msprop:Generator_RowEvArgName="sprRFQRowChangeEvent">
           <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intRFQID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintRFQID" msprop:Generator_ColumnPropNameInRow="intRFQID" msprop:Generator_ColumnPropNameInTable="intRFQIDColumn" msprop:Generator_UserColumnName="intRFQID" type="xs:int" />
+              <xs:element name="dteRFQDate" msprop:Generator_ColumnVarNameInTable="columndteRFQDate" msprop:Generator_ColumnPropNameInRow="dteRFQDate" msprop:Generator_ColumnPropNameInTable="dteRFQDateColumn" msprop:Generator_UserColumnName="dteRFQDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteInsertTime" msprop:Generator_ColumnVarNameInTable="columndteInsertTime" msprop:Generator_ColumnPropNameInRow="dteInsertTime" msprop:Generator_ColumnPropNameInTable="dteInsertTimeColumn" msprop:Generator_UserColumnName="dteInsertTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intIndentID" msprop:Generator_ColumnVarNameInTable="columnintIndentID" msprop:Generator_ColumnPropNameInRow="intIndentID" msprop:Generator_ColumnPropNameInTable="intIndentIDColumn" msprop:Generator_UserColumnName="intIndentID" type="xs:int" minOccurs="0" />
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" minOccurs="0" />
+              <xs:element name="numIndentQty" msprop:Generator_ColumnVarNameInTable="columnnumIndentQty" msprop:Generator_ColumnPropNameInRow="numIndentQty" msprop:Generator_ColumnPropNameInTable="numIndentQtyColumn" msprop:Generator_UserColumnName="numIndentQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numRFQQty" msprop:Generator_ColumnVarNameInTable="columnnumRFQQty" msprop:Generator_ColumnPropNameInRow="numRFQQty" msprop:Generator_ColumnPropNameInTable="numRFQQtyColumn" msprop:Generator_UserColumnName="numRFQQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="intWHID" msprop:Generator_ColumnVarNameInTable="columnintWHID" msprop:Generator_ColumnPropNameInRow="intWHID" msprop:Generator_ColumnPropNameInTable="intWHIDColumn" msprop:Generator_UserColumnName="intWHID" type="xs:int" minOccurs="0" />
+              <xs:element name="strItemName" msprop:Generator_ColumnVarNameInTable="columnstrItemName" msprop:Generator_ColumnPropNameInRow="strItemName" msprop:Generator_ColumnPropNameInTable="strItemNameColumn" msprop:Generator_UserColumnName="strItemName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strUoM" msprop:Generator_ColumnVarNameInTable="columnstrUoM" msprop:Generator_ColumnPropNameInRow="strUoM" msprop:Generator_ColumnPropNameInTable="strUoMColumn" msprop:Generator_UserColumnName="strUoM">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strDescription" msprop:Generator_ColumnVarNameInTable="columnstrDescription" msprop:Generator_ColumnPropNameInRow="strDescription" msprop:Generator_ColumnPropNameInTable="strDescriptionColumn" msprop:Generator_UserColumnName="strDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strEmployeeName" msprop:Generator_ColumnVarNameInTable="columnstrEmployeeName" msprop:Generator_ColumnPropNameInRow="strEmployeeName" msprop:Generator_ColumnPropNameInTable="strEmployeeNameColumn" msprop:Generator_UserColumnName="strEmployeeName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>

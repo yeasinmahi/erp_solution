@@ -371,11 +371,7 @@ namespace UI.SCM
 
         protected void btnPrepareRfq_OnClick(object sender, EventArgs e)
         {
-            LoadRfqView();
-            LoadSupplier();
-
             InsertRfq();
-
         }
 
         public void LoadRfqView()
@@ -403,10 +399,24 @@ namespace UI.SCM
             if (objects.Count > 0)
             {
                 string xml = XmlParser.GetXml("RFQ", "Item", objects, out string message);
-                string msg = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll);
+                DataTable dt = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll,out string msg);
                 if (msg.ToLower().Contains("success"))
                 {
-                    Toaster(msg, Common.TosterType.Success);
+                    LoadRfqView();
+                    LoadSupplier();
+                    if (dt.Rows.Count > 0)
+                    {
+                        gvRfq.Loads(dt);
+                        lblRfqNo.Text = dt.Rows[0]["intRFQID"].ToString();
+                        lblRfqDate.Text = dt.Rows[0]["dteRFQDate"].ToString();
+                        lblRfqBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                        Toaster(msg, Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster("RFQ Item Load Problem", Common.TosterType.Warning);
+                    }
+                    
                 }
                 else
                 {
@@ -428,15 +438,26 @@ namespace UI.SCM
                 string itemId = ((Label)row.FindControl("lblItemId")).Text;
                 string indentQty = ((Label)row.FindControl("lblIndentQty")).Text;
                 string numRfqQty = ((TextBox)row.FindControl("txtRfqQty")).Text;
-
-                dynamic obj = new
+                if (string.IsNullOrWhiteSpace(numRfqQty))
                 {
-                    indentId,
-                    itemId,
-                    indentQty,
-                    numRfqQty
-                };
-                objects.Add(obj);
+                    continue;
+                }
+                if (double.TryParse(numRfqQty, out double result))
+                {
+                    dynamic obj = new
+                    {
+                        indentId,
+                        itemId,
+                        indentQty,
+                        numRfqQty
+                    };
+                    objects.Add(obj);
+                }
+                else
+                {
+                    return objects;
+                }
+                
             }
             return objects;
         }

@@ -463,6 +463,15 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlSupplier;
         
         /// <summary>
+        /// btnEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnEmail;
+        
+        /// <summary>
         /// imgUnit control.
         /// </summary>
         /// <remarks>
@@ -499,22 +508,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label lblDetalis;
         
         /// <summary>
-        /// lblIndent control.
+        /// lblRfqNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIndent;
+        protected global::System.Web.UI.WebControls.Label lblRfqNo;
         
         /// <summary>
-        /// btnEmail control.
+        /// lblRfqDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEmail;
+        protected global::System.Web.UI.WebControls.Label lblRfqDate;
         
         /// <summary>
         /// gvRfq control.

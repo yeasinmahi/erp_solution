@@ -1,23 +1,25 @@
 ﻿using System;
+using System.Data;
 using SCM_DAL.ComparativeStatementTDSTableAdapters;
 
 namespace SCM_BLL
 {
     public class ComparativeStatementBll
     {
-        public string InsertRfq(int intUnitId, int intWhid,string xmlString,int enroll)
+        public DataTable InsertRfq(int intUnitId, int intWhid,string xmlString,int enroll, out string msg)
         {
-            string msg = string.Empty;
+            msg = string.Empty;
             try
             {
                 sprRFQTableAdapter adp = new sprRFQTableAdapter();
-                adp.GetData(intUnitId, intWhid, xmlString, enroll, ref msg);
+                return adp.GetData(intUnitId, intWhid, xmlString, enroll, ref msg);
             }
             catch (Exception e)
             {
+                
                 msg = e.Message;
+                return new DataTable();
             }
-            return msg;
 
         }
     }
