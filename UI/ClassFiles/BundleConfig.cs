@@ -75,6 +75,7 @@ namespace UI.ClassFiles
                                                                                  "~/Content/CSS/StyleSheet.css",
                                                                                  "~/Content/CSS/jquery-ui.min.css",
                                                                                  "~/Content/CSS/toastr.min.css"
+                                                                                 
                                                                                ));
             bundles.Add(new StyleBundle("~/Content/Bundle/updatedCss").Include(
                 // defaultCSS
@@ -117,7 +118,8 @@ namespace UI.ClassFiles
 
                                                                               "~/Content/CSS/EmpRegStyleSheet.css",
                                                                               "~/Content/CSS/Lstyle.css",
-                                                                               "~/Content/CSS/jquery-ui-1.8.22.custom.css"
+                                                                               "~/Content/CSS/jquery-ui-1.8.22.custom.css",
+                                                                              "~/Content/CSS/AutoComplete.css"
 
                                                                             ));
 

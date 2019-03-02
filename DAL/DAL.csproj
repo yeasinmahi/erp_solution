@@ -379,6 +379,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DropDown\CostCenterTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CostCenterTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DropDown\Supplier.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Supplier.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -984,6 +994,28 @@
     <None Include="Accounts\Bank\BankInfoTDS.xss">
       <DependentUpon>BankInfoTDS.xsd</DependentUpon>
     </None>
+    <None Include="DropDown\CostCenterTDS.xsc">
+      <DependentUpon>CostCenterTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DropDown\CostCenterTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CostCenterTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DropDown\CostCenterTDS.xss">
+      <DependentUpon>CostCenterTDS.xsd</DependentUpon>
+    </None>
+    <None Include="DropDown\Supplier.xsc">
+      <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
+    <None Include="DropDown\Supplier.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Supplier.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DropDown\Supplier.xss">
+      <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -992,7 +1024,9 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="AutoSearch\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

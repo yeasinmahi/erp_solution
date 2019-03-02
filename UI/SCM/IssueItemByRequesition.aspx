@@ -152,7 +152,7 @@
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>  
 
             <asp:TemplateField HeaderText="Detalis">
-            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" forecolor="blue" CommandArgument='<%#GetJSFunctionString( Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"),Eval("intDeptID"),Eval("intSectionID"),Eval("strSectionName")) %>'   OnClick="btnDetalis_Click" /> </ItemTemplate> 
+            <ItemTemplate>   <asp:Button ID="btnDetalis" runat="server" Text="Detalis" forecolor="blue" CommandArgument='<%#GetJsFunctionString( Eval("Id"),Eval("ReqCode"),Eval("dteReqDate"),Eval("strDepartmentName"),Eval("strReqBy"),Eval("strApproveBy"),Eval("intDeptID"),Eval("intSectionID"),Eval("strSectionName")) %>'   OnClick="btnDetalis_Click" /> </ItemTemplate> 
             </asp:TemplateField>
 
             </Columns>

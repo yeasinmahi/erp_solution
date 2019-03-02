@@ -99,136 +99,164 @@ namespace UI.SCM
             }
         }
 
+        private readonly object locker =new object();
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnSaveMrr_Click", null);
             Flogger.WriteDiagnostic(fd);
             var tracker = new PerfTracker(perform + " " + "btnSaveMrr_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
-            try
+            lock (locker)
             {
-                try { File.Delete(filePathForXML); } catch { }
-
-                if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
+                try
                 {
-                    intWh = int.Parse(ddlWH.SelectedValue.ToString());
-                    //  try { intPOID = int.Parse(ddlPo.SelectedValue); } catch { }
-                    try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
-                    try { intShipment = int.Parse(hdnShipment.Value); } catch { }
-                    try { dteChallan = DateTime.Parse(txtdteChallan.Text.ToString()); } catch { }
-                    try { monVatAmount = decimal.Parse(txtVatAmount.Text); } catch { }
-                    try { challanNo = txtChallan.Text.ToString(); } catch { }
-                    try { strVatChallan = txtVatChallan.Text.ToString(); } catch { }
-                    try { monProductCost = decimal.Parse(lblProductCost.Text.ToString()); } catch { }
-                    try { monTransport = decimal.Parse(lblTransportCost.Text.ToString()); } catch { monTransport = 0; }
-                    try { monOther = decimal.Parse(lblOtherCost.Text.ToString()); } catch { monOther = 0; }
-                    try { monDiscount = decimal.Parse(lblDiscount.Text.ToString()); } catch { }
-                    try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { }
-                    poIssueBy = lblPoIssueBy.Text.ToString();
-                    monOtherTotal = monOther + monTransport;
-                    for (int index = 0; index < dgvMrr.Rows.Count; index++)
-                    {
-                        intPOID = int.Parse(((Label)dgvMrr.Rows[index].FindControl("lblPoId")).Text.ToString());
-                        string intItemID = ((Label)dgvMrr.Rows[index].FindControl("lblItemId")).Text.ToString();
-                        string numPOQty = ((Label)dgvMrr.Rows[index].FindControl("lblPoQty")).Text.ToString();
-                        string numPreRcvQty = ((Label)dgvMrr.Rows[index].FindControl("lblPreviousReceive")).Text.ToString();
-                        string numRcvQty = ((TextBox)dgvMrr.Rows[index].FindControl("txtReceiveQty")).Text.ToString();
-                        try { monRate = decimal.Parse(((Label)dgvMrr.Rows[index].FindControl("lblRate")).Text.ToString()); } catch { monRate = 0; }
-                        string numRcvValue = (decimal.Parse(numPOQty.ToString()) * monRate).ToString();//((Label)dgvMrr.Rows[index].FindControl("lblMrrValue")).Text.ToString();
-                        string numRcvVatValue = ((Label)dgvMrr.Rows[index].FindControl("lblVat")).Text.ToString();
-                        string location = ((DropDownList)dgvMrr.Rows[index].FindControl("ddlStoreLocation")).SelectedValue.ToString();
-                        string remarks = ((TextBox)dgvMrr.Rows[index].FindControl("txtRemarks")).Text.ToString();
-                        string ysnQc = ((Label)dgvMrr.Rows[index].FindControl("lblYsnQc")).Text.ToString();
-                        string numQcQty = ((Label)dgvMrr.Rows[index].FindControl("lblQcPassedQty")).Text.ToString();
-                        string batchNo = ((TextBox)dgvMrr.Rows[index].FindControl("txtBatchNo")).Text.ToString();
-                        try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text.ToString())); expireDate = dteExp.ToString(); } catch { expireDate = null; }
-                        try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text.ToString())); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
+                    try { File.Delete(filePathForXML); } catch { }
 
-                        if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
+                    if (dgvMrr.Rows.Count > 0 && hdnConfirm.Value.ToString() == "1")
+                    {
+                        intWh = int.Parse(ddlWH.SelectedValue.ToString());
+                        //  try { intPOID = int.Parse(ddlPo.SelectedValue); } catch { }
+                        try { intSupplierID = int.Parse(lblSuppliuerID.Text); } catch { }
+                        try { intShipment = int.Parse(hdnShipment.Value); } catch { }
+                        try { dteChallan = DateTime.Parse(txtdteChallan.Text.ToString()); } catch { }
+                        try { monVatAmount = decimal.Parse(txtVatAmount.Text); } catch { }
+                        try { challanNo = txtChallan.Text.ToString(); } catch { }
+                        try { strVatChallan = txtVatChallan.Text.ToString(); } catch { }
+                        try { monProductCost = decimal.Parse(lblProductCost.Text.ToString()); } catch { }
+                        try { monTransport = decimal.Parse(lblTransportCost.Text.ToString()); } catch { monTransport = 0; }
+                        try { monOther = decimal.Parse(lblOtherCost.Text.ToString()); } catch { monOther = 0; }
+                        try { monDiscount = decimal.Parse(lblDiscount.Text.ToString()); } catch { }
+                        try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { }
+                        poIssueBy = lblPoIssueBy.Text.ToString();
+                        monOtherTotal = monOther + monTransport;
+                        for (int index = 0; index < dgvMrr.Rows.Count; index++)
                         {
-                            if (receiveQuantity <= 0)
+                            intPOID = int.Parse(((Label)dgvMrr.Rows[index].FindControl("lblPoId")).Text.ToString());
+                            string intItemID = ((Label)dgvMrr.Rows[index].FindControl("lblItemId")).Text.ToString();
+                            string numPOQty = ((Label)dgvMrr.Rows[index].FindControl("lblPoQty")).Text.ToString();
+                            string numPreRcvQty = ((Label)dgvMrr.Rows[index].FindControl("lblPreviousReceive")).Text.ToString();
+                            string numRcvQty = ((TextBox)dgvMrr.Rows[index].FindControl("txtReceiveQty")).Text.ToString();
+                            try { monRate = decimal.Parse(((Label)dgvMrr.Rows[index].FindControl("lblRate")).Text.ToString()); } catch { monRate = 0; }
+                            string numRcvValue = (decimal.Parse(numPOQty.ToString()) * monRate).ToString();//((Label)dgvMrr.Rows[index].FindControl("lblMrrValue")).Text.ToString();
+                            string numRcvVatValue = ((Label)dgvMrr.Rows[index].FindControl("lblVat")).Text.ToString();
+                            string location = ((DropDownList)dgvMrr.Rows[index].FindControl("ddlStoreLocation")).SelectedValue.ToString();
+                            string remarks = ((TextBox)dgvMrr.Rows[index].FindControl("txtRemarks")).Text.ToString();
+                            string ysnQc = ((Label)dgvMrr.Rows[index].FindControl("lblYsnQc")).Text.ToString();
+                            string numQcQty = ((Label)dgvMrr.Rows[index].FindControl("lblQcPassedQty")).Text.ToString();
+                            string batchNo = ((TextBox)dgvMrr.Rows[index].FindControl("txtBatchNo")).Text.ToString();
+                            try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text.ToString())); expireDate = dteExp.ToString(); } catch { expireDate = null; }
+                            try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text.ToString())); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
+
+                            if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
                             {
-                                continue;
-                            }
-                            if (int.TryParse(location, out int locationId))
-                            {
-                                if (monRate > 0)
+                                if (receiveQuantity <= 0)
                                 {
-                                    CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(),
-                                        dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan,
-                                        monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(),
-                                        monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty,
-                                        numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy,
-                                        batchNo, expireDate, manufactureDate);
+                                    continue;
+                                }
+                                if (int.TryParse(location, out int locationId))
+                                {
+                                    if (monRate > 0)
+                                    {
+                                        CreateXml(intPOID.ToString(), intSupplierID.ToString(), intShipment.ToString(),
+                                            dteChallan.ToString(), monVatAmount.ToString(), challanNo, strVatChallan,
+                                            monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(),
+                                            monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty,
+                                            numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy,
+                                            batchNo, expireDate, manufactureDate);
+                                    }
+                                    else
+                                    {
+                                        Toaster("Rate can not load", Common.TosterType.Warning);
+                                        return;
+                                    }
                                 }
                                 else
                                 {
-                                    Alert("Rate can not load");
+                                    Toaster("Current loacation should be selected", Common.TosterType.Warning);
                                     return;
                                 }
                             }
                             else
                             {
-                                Alert("Current loacation should be selected");
+                                Toaster("input Receive Quantity properly", Common.TosterType.Warning);
                                 return;
+                            }
+                        }
+                        txtChallan.Text = "";
+                        txtVatAmount.Text = "0";
+
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXML);
+                        XmlNode dSftTm = doc.SelectSingleNode("mrr");
+                        xmlString = dSftTm.InnerXml;
+                        xmlString = "<mrr>" + xmlString + "</mrr>";
+
+                        try { File.Delete(filePathForXML); } catch { }
+                        dgvMrr.DataSource = "";
+                        dgvMrr.DataBind();
+
+                        string msg = obj.MrrReceive(11, xmlString, intWh, intPOID, DateTime.Now, enroll);
+                        if (msg.ToLower().Contains("success"))
+                        {
+                            string message = msg;
+                            string[] searchKey = Regex.Split(msg, ":");
+                            lblMrrNo.Text = searchKey[1].ToString();
+
+                            #region====================Mrr Document Attachment===========================
+
+                            try
+                            {
+                                string fileExtension = Path.GetExtension(docUpload.PostedFile.FileName).Substring(1);
+                                string xmlData = "<voucher><voucherentry strFileName=" + '"' + "MRR Challan" + '"' +
+                                                 " FileExtension=" + '"' + fileExtension + '"' + "/></voucher>".ToString();
+
+                                if (fileExtension.Length > 1)
+                                {
+                                    msg = obj.MrrReceive(15, xmlData, intWh, int.Parse(lblMrrNo.Text.ToString()),
+                                        DateTime.Now,
+                                        enroll);
+                                    if (msg.ToLower().Contains("success"))
+                                    {
+                                        string[] searchKeyAt = Regex.Split(msg, ":");
+                                        string fileId = searchKeyAt[1].ToString();
+
+                                        string dfile = fileId.ToString() + "." + fileExtension;
+                                        docUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                                        FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(),
+                                            "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
+                                        File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
+                                        Toaster(message, Common.TosterType.Success);
+                                    }
+                                    else
+                                    {
+                                        Toaster(msg, Common.TosterType.Error);
+                                    }
+
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Toaster(ex.Message, Common.TosterType.Error);
                             }
                         }
                         else
                         {
-                            Alert("input Receive Quantity properly");
-                            return;
+                            Toaster(msg, Common.TosterType.Error);
                         }
+
+                        #endregion===================Close============================================
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        //PoView(intPOID);
                     }
-                    txtChallan.Text = "";
-                    txtVatAmount.Text = "0";
-
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("mrr");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<mrr>" + xmlString + "</mrr>";
-
-                    try { File.Delete(filePathForXML); } catch { }
-                    dgvMrr.DataSource = "";
-                    dgvMrr.DataBind();
-
-                    string msg = obj.MrrReceive(11, xmlString, intWh, intPOID, DateTime.Now, enroll);
-
-                    string[] searchKey = Regex.Split(msg, ":");
-                    lblMrrNo.Text = searchKey[1].ToString();
-
-                    #region====================Mrr Document Attachment===========================
-                    try
-                    {
-                        string FileExtension = Path.GetExtension(docUpload.PostedFile.FileName).Substring(1);
-                        string xmlData = "<voucher><voucherentry strFileName=" + '"' + "MRR Challan" + '"' + " FileExtension=" + '"' + FileExtension + '"' + "/></voucher>".ToString();
-
-                        if (FileExtension.Length > 1)
-                        {
-                            msg = obj.MrrReceive(15, xmlData, intWh, int.Parse(lblMrrNo.Text.ToString()), DateTime.Now, enroll);
-
-                            string[] searchKeyAt = Regex.Split(msg, ":");
-                            string fileId = searchKeyAt[1].ToString();
-
-                            string dfile = fileId.ToString() + "." + FileExtension;
-                            docUpload.PostedFile.SaveAs(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
-                            FileUploadFTP(Server.MapPath("~/SCM/Uploads/"), dfile.ToString(), "ftp://ftp.akij.net/ERP_FTP/", "erp@akij.net", "erp123");
-                            File.Delete(Server.MapPath("~/SCM/Uploads/") + dfile.ToString());
-                        }
-                    }
-                    catch { }
-
-                    #endregion===================Close============================================
-
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    //PoView(intPOID);
                 }
-            }
-            catch (Exception ex)
-            {
-                var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
-                Flogger.WriteError(efd);
-                try { File.Delete(filePathForXML); } catch { }
+                catch (Exception ex)
+                {
+                    var efd = log.GetFlogDetail(stop, location, "btnShow_Click", ex);
+                    Flogger.WriteError(efd);
+                    try { File.Delete(filePathForXML); } catch { }
+                }
+
             }
 
             fd = log.GetFlogDetail(stop, location, "btnShow_Click", null);

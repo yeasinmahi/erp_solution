@@ -1435,6 +1435,7 @@
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
+    <Content Include="SCM\ComparativeStatement.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
@@ -7574,6 +7575,13 @@
     </Compile>
     <Compile Include="SCM\BOM\WorkStationCreate.aspx.designer.cs">
       <DependentUpon>WorkStationCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ComparativeStatement.aspx.cs">
+      <DependentUpon>ComparativeStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ComparativeStatement.aspx.designer.cs">
+      <DependentUpon>ComparativeStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
