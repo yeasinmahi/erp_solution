@@ -317,18 +317,30 @@ namespace SAD_BLL.Sales
             catch (Exception ex) { return new DataTable(); }
             
         }
-
+        
         public DataTable CollectionbaseCommission (DateTime from,DateTime to,int unit, int salesoffice, int rpttype)
         {
             try
             {
                 SprCollectionBaseCommissionTableAdapter bll = new SprCollectionBaseCommissionTableAdapter();
-                return bll.GetData(from, to, unit, salesoffice, rpttype);
+                return bll.GetDataCollectionBaseCommission(from, to, unit, salesoffice, rpttype);
             }
             catch(Exception ex) { return new DataTable(); }
            
 
         }
+        public DataTable CollectionbaseCommissionDET(DateTime from, DateTime to, int unit, int salesoffice, int rpttype)
+        {
+            try
+            {
+                SprCollectionBaseCommissionDetTableAdapter bll = new SprCollectionBaseCommissionDetTableAdapter();
+                return bll.GetDataCollectionBaseCommissionDet(from, to, unit, salesoffice, rpttype);
+            }
+            catch (Exception ex) { return new DataTable(); }
+
+
+        }
+
 
         public DataTable UnitvsBankinfo(int unitid)
         {
