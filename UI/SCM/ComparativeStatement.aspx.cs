@@ -432,6 +432,7 @@ namespace UI.SCM
                 string itemId = ((Label)row.FindControl("lblItemId")).Text;
                 string indentQty = ((Label)row.FindControl("lblIndentQty")).Text;
                 string numRfqQty = ((TextBox)row.FindControl("txtRfqQty")).Text;
+                string remarks = ((TextBox)row.FindControl("txtRemarks")).Text;
                 if (string.IsNullOrWhiteSpace(numRfqQty))
                 {
                     continue;
@@ -443,7 +444,8 @@ namespace UI.SCM
                         indentId,
                         itemId,
                         indentQty,
-                        numRfqQty
+                        numRfqQty,
+                        remarks
                     };
                     objects.Add(obj);
                 }

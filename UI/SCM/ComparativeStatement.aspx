@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement"  EnableEventValidation="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement" EnableEventValidation="false" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -369,7 +369,7 @@
                                                                 <ItemStyle HorizontalAlign="Right" Width="50px" />
                                                             </asp:TemplateField>
 
-                                                           
+
 
                                                             <asp:TemplateField HeaderText="PO Issue" ItemStyle-HorizontalAlign="right" SortExpression="numPoIssued">
                                                                 <ItemTemplate>
@@ -387,10 +387,17 @@
 
                                                             <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtRfqQty" runat="server"  Width="80px"></asp:TextBox>
+                                                                    <asp:TextBox ID="txtRfqQty" runat="server" Width="80px"></asp:TextBox>
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Right" Width="80px" />
                                                             </asp:TemplateField>
+                                                            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strDesc">
+                                                                <ItemTemplate>
+                                                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                                                </ItemTemplate>
+                                                                <ItemStyle HorizontalAlign="Left" Width="200px" />
+                                                            </asp:TemplateField>
+
 
                                                             <%--                                                    <asp:TemplateField HeaderText="Specification"  ItemStyle-HorizontalAlign="right" SortExpression="strSpecification">
                                                         <ItemTemplate>
@@ -430,21 +437,21 @@
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierName" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
-                                            
+
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Supplier Contact:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierContact" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
-                                                <td style="text-align: center; font: bold 13px verdana;">
-                                                    <a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a>
-                                                </td>
-                                            
+                                            <td style="text-align: center; font: bold 13px verdana;">
+                                                <a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a>
+                                            </td>
+
                                         </tr>
                                         <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Supplier Address:"></asp:Label></td>
-                                            <td  colspan="3" style="text-align: left;">
+                                            <td colspan="3" style="text-align: left;">
                                                 <asp:Label ID="lblSupplierAddress" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
                                             <td style="text-align: right;">
@@ -452,7 +459,7 @@
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierEmail" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
-                                            
+
                                             <td>
                                                 <asp:Button ID="btnEmail" runat="server" Text="Email" OnClick="btnEmail_OnClick" />
                                             </td>
@@ -464,7 +471,7 @@
                                     <div id="dvTable" runat="server" style="width: auto; background-color: white; padding-left: 50px; padding-right: 50px; padding-top: 10px; padding-bottom: 20px;">
 
                                         <table style="width: 700px">
-                                           
+
 
                                             <tr>
 
@@ -554,11 +561,11 @@
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                             </asp:TemplateField>--%>
 
-                                                            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strDesc">
+                                                            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox ID="txtRemarks" runat="server" TextMode="MultiLine" ></asp:TextBox>
+                                                                    <asp:Label ID="lblRemarks" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strRemarks") %>'></asp:Label>
                                                                 </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Left" Width="200px" />
+                                                                <ItemStyle HorizontalAlign="Right" Width="50px" />
                                                             </asp:TemplateField>
 
                                                             <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
@@ -569,15 +576,15 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox runat="server" Enabled="False"  Width="50px" ></asp:TextBox>
+                                                                    <asp:TextBox runat="server" Enabled="False" Width="50px"></asp:TextBox>
                                                                 </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" Width="50px"/>
+                                                                <ItemStyle HorizontalAlign="Center" Width="50px" />
                                                             </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
+                                                            <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox runat="server" Enabled="False"  Width="80px" ></asp:TextBox>
+                                                                    <asp:TextBox runat="server" Enabled="False" Width="80px"></asp:TextBox>
                                                                 </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" Width="80px"/>
+                                                                <ItemStyle HorizontalAlign="Center" Width="80px" />
                                                             </asp:TemplateField>
 
                                                             <%--<asp:TemplateField HeaderText="PO Issue" ItemStyle-HorizontalAlign="right" SortExpression="numPoIssued">
