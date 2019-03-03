@@ -22,5 +22,34 @@ namespace SCM_BLL
             }
 
         }
+        public void InsertRfqSentEmail(int intRfqId, int intSupplierId, int enroll, out string msg)
+        {
+            msg = string.Empty;
+            try
+            {
+                sprRfqSentEmailTableAdapter adp = new sprRfqSentEmailTableAdapter();
+                adp.GetData(intRfqId, intSupplierId,  enroll, ref msg);
+            }
+            catch (Exception e)
+            {
+                msg = e.Message;
+            }
+
+        }
+        public bool UpdateRfqEmailToSupplier(int intRfqId, int intSupplierId)
+        {
+            bool isUpdate;
+            try
+            {
+                sprRfqSentEmailTableAdapter adp = new sprRfqSentEmailTableAdapter();
+                isUpdate = adp.UpdateRfqEmailToSupplier(intRfqId, intSupplierId)>0;
+            }
+            catch (Exception e)
+            {
+                isUpdate = false;
+            }
+            return isUpdate;
+
+        }
     }
 }
