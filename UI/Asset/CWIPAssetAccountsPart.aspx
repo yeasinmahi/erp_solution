@@ -175,7 +175,9 @@
                 
            <table>
                <tr>
-                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Accounting: "></asp:Label></td>
+                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Accounting: "></asp:Label>
+                    <asp:Label ID="lblVoucher" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"></asp:Label>
+                </td>
                 </tr>
                <tr>
 

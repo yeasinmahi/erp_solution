@@ -71,7 +71,7 @@ namespace UI.Asset
 
                 fd = log.GetFlogDetail(stop, location, "Show", null);
                 Flogger.WriteDiagnostic(fd);
-                // ends
+                 
                 tracker.Stop();
             }
             else
@@ -650,11 +650,11 @@ namespace UI.Asset
                 string message = parking.InsertParkingData(15, xmlString, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
+
             }
             catch { }
         }
-        #endregion ===========================Close===================================
-         
+        #endregion ===========================Close=================================== 
 
         #region ==============================Land Asset============================
         private void LandAssetInfoLoad()
@@ -2026,11 +2026,13 @@ namespace UI.Asset
                     //string= int.Parse(hdnReceive.Value);
                     try { File.Delete(filePathForXMlAssetParking); }
                     catch { }
-                    dt = parking.CwipAssetView(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
-                    dgvGridView.DataSource = dt;
-                    dgvGridView.DataBind();
+                   
 
                     string message = parking.InsertParkingData(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
+                    lblVoucher.Text = "Voucher No: " + message.ToString();
+                    dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
+                    dgvGridView.DataSource = dt;
+                    dgvGridView.DataBind();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 }
 
