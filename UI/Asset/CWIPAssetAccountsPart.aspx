@@ -175,7 +175,7 @@
                 
            <table>
                <tr>
-                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="CWIP Asset Parking Registration: "></asp:Label></td>
+                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Accounting: "></asp:Label></td>
                 </tr>
                <tr>
 
@@ -186,10 +186,11 @@
                      <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate></asp:TemplateField>
                            
                       <asp:BoundField DataField="intAutoid" HeaderText="intAutoID" SortExpression="intAutoid"/>
-                       <asp:BoundField DataField="strAssetId" HeaderText="Asset ID" Visible="false" SortExpression="strAssetId" />
-                       <asp:BoundField DataField="MainType" HeaderText="Asset Type" SortExpression="MainType" />
+                       <asp:BoundField DataField="strAssetId" HeaderText="Asset ID"  SortExpression="strAssetId" />
+                       <asp:BoundField DataField="strlcoation" HeaderText="Location"  SortExpression="strlcoation" />
+                      <%-- <asp:BoundField DataField="MainType" HeaderText="Asset Type" SortExpression="MainType" />--%>
                         <asp:BoundField DataField="intAssetTypeID" HeaderText="MejorCategoryID" Visible="false" SortExpression="strAssetTypeName" />
-                         <asp:BoundField DataField="strAssetTypeName" HeaderText="MejorCategory"  SortExpression="strAssetTypeName" />
+                         <asp:BoundField DataField="strAssetTypeName" HeaderText="Asset Type"  SortExpression="strAssetTypeName" />
 
                       <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
                       <asp:BoundField DataField="strJobStationName" HeaderText="Jobstation"  SortExpression="strJobStationName" />        
@@ -201,7 +202,7 @@
          
                        <asp:TemplateField HeaderText="Submit">
                            <ItemTemplate>
-                            <asp:Button ID="btnSubmit" runat="server"  CommandArgument='<%#GetJSFunctionString( Eval("intAutoid"),Eval("intAssetTypeID"))%>' Text="Registration" OnClick="btnSubmit_Click" />
+                            <asp:Button ID="btnSubmit" runat="server"  CommandArgument='<%#GetJSFunctionString( Eval("intAutoid"),Eval("intAssetTypeID"))%>' Text="View & Edit" OnClick="btnSubmit_Click" />
                            </ItemTemplate>
                        </asp:TemplateField>
                                                            
@@ -226,7 +227,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
+                <td><asp:DropDownList ID="ddlUnit" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
                   
                <td style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetname" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -234,7 +235,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="lblBranch" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="dlJobstation" runat="server"  CssClass="dropdownList" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>   
+                <td><asp:DropDownList ID="dlJobstation" runat="server" Enabled="false"  CssClass="dropdownList" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>   
 
                 <td style="text-align:right;"><asp:Label ID="Label16" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescription" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -305,7 +306,7 @@
                 </tr>
                  <tr>
                  <td style="text-align:right;"><asp:Label ID="lblSupplier" CssClass="lbl" runat="server" Text="Supplier/Local Agent Name:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtSuppliers" runat="server" CssClass="txtBox"></asp:TextBox></td>        
+                 <td><asp:TextBox ID="txtSuppliers" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>        
 
                 <td style="text-align:right;"><asp:Label ID="lblCountryOrigin" CssClass="lbl" runat="server" Text="Country Origin : "></asp:Label></td>
                 <td><asp:TextBox ID="txtCountryOrigin" runat="server" CssClass="txtBox"></asp:TextBox></td>
@@ -313,7 +314,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumber" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbers" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbers" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label52" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturer" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
@@ -429,7 +430,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label19" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnitV" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitV_SelectedIndexChanged"> </asp:DropDownList>                   
+                <td><asp:DropDownList ID="ddlUnitV" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitV_SelectedIndexChanged"> </asp:DropDownList>                   
                   
                <td style="text-align:right;"><asp:Label ID="Label20" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetnameV" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -437,7 +438,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="Label21" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="ddlJobstationV" runat="server"  CssClass="dropdownList" ></asp:DropDownList> 
+                <td><asp:DropDownList ID="ddlJobstationV" runat="server" Enabled="false"  CssClass="dropdownList" ></asp:DropDownList> 
 
                 <td style="text-align:right;"><asp:Label ID="Label22" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescriptionV" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -619,7 +620,7 @@
                 </tr>
                  <tr>
                  <td style="text-align:right;"><asp:Label ID="lblSupplierV" CssClass="lbl" runat="server" Text="Supplier/Local Agent Name:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtSuppliersV" runat="server" CssClass="txtBox"></asp:TextBox></td>        
+                 <td><asp:TextBox ID="txtSuppliersV" Enabled="false" runat="server" CssClass="txtBox"></asp:TextBox></td>        
 
                 <td style="text-align:right;"><asp:Label ID="lblCountryOriginV" CssClass="lbl" runat="server" Text="Country Origin : "></asp:Label></td>
                 <td><asp:TextBox ID="txtCountryOriginV" runat="server" CssClass="txtBox"></asp:TextBox></td>
@@ -627,7 +628,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumberV" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbersV" runat="server" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbersV" runat="server" Enabled="false" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label29" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturerV" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
@@ -838,7 +839,7 @@
                 </tr>
                  <tr>
                  <td style="text-align:right;"><asp:Label ID="Label100" CssClass="lbl" runat="server" Text="Supplier/Local Agent Name:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtSupplierL" runat="server" CssClass="txtBox"></asp:TextBox></td>        
+                 <td><asp:TextBox ID="txtSupplierL" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>        
 
                 <td style="text-align:right;"><asp:Label ID="Label101" CssClass="lbl" runat="server" Text="Name of Buyer as per Deed: "></asp:Label></td>
                 <td><asp:TextBox ID="txtBuyerName" runat="server" CssClass="txtBox"></asp:TextBox></td>
@@ -846,13 +847,13 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="Label102" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPoNumberL" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPoNumberL" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label103" CssClass="lbl" runat="server" Text="Deed Receipt NO:"></asp:Label></td>
                 <td><asp:TextBox ID="txtDeedReceiptNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
                     <tr>
                          <td style="text-align:right;"><asp:Label ID="Label104" CssClass="lbl" runat="server" Text="Po Date:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPoDateL" runat="server" CssClass="txtBox"></asp:TextBox>  
+                <td><asp:TextBox ID="txtPoDateL" Enabled="false"  runat="server" CssClass="txtBox"></asp:TextBox>  
                 <cc1:CalendarExtender ID="CalendarExtender18" runat="server" Format="yyyy-MM-dd" TargetControlID="dtePoDateV">
                 </cc1:CalendarExtender>   </td>
 
@@ -1142,7 +1143,7 @@
 
                      <tr>
                  <td style="text-align:right;"><asp:Label ID="Label142" CssClass="lbl" runat="server" Text="Supplier/Local Agent Name:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtBSupplier" runat="server" CssClass="txtBox"></asp:TextBox></td>        
+                 <td><asp:TextBox ID="txtBSupplier" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>        
 
                 <td style="text-align:right;"><asp:Label ID="Label143" CssClass="lbl" runat="server" Text="Country Origin : "></asp:Label></td>
                 <td><asp:TextBox ID="txtBCountryOrigin" runat="server" CssClass="txtBox"></asp:TextBox></td>
@@ -1150,7 +1151,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="Label144" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtBPoNumber" runat="server" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtBPoNumber" runat="server" Enabled="false" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label145" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtBNameManufacturer" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>

@@ -59,7 +59,7 @@ namespace UI.Asset
 
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
+                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 dgvGridView.DataSource = dt;
                 dgvGridView.DataBind();
                 }
@@ -1959,6 +1959,8 @@ namespace UI.Asset
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
             try
             {
+                try { File.Delete(filePathForXMlAssetParking); }
+                catch { }
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -2008,28 +2010,31 @@ namespace UI.Asset
                 try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1990-01-01".ToString()); }
 
                 string reffid = hdnReceive.Value; 
-
-
-                CreateParkingXML(reffid, unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
+                if (accusitioncost>0&& invoicevalue > 0)
+                {
+                    CreateParkingXML(reffid, unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
                 , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
                 manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString());
 
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXMlAssetParking);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                string xmlStringG = dSftTm.InnerXml;
-                xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                //string= int.Parse(hdnReceive.Value);
-                try { File.Delete(filePathForXMlAssetParking); }
-                catch { }
-                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
-                dgvGridView.DataSource = dt;
-                dgvGridView.DataBind();
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXMlAssetParking);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    string xmlStringG = dSftTm.InnerXml;
+                    xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    //string= int.Parse(hdnReceive.Value);
+                    try { File.Delete(filePathForXMlAssetParking); }
+                    catch { }
+                    dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
+                    dgvGridView.DataSource = dt;
+                    dgvGridView.DataBind();
 
-                string message = parking.InsertParkingData(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    string message = parking.InsertParkingData(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                }
+
+                
                  
             }
             catch { }

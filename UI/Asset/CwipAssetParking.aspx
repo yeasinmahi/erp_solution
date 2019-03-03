@@ -175,7 +175,9 @@
                 
            <table>
                <tr>
-                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="CWIP Asset Parking Registration: "></asp:Label></td>
+                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="CWIP Asset Parking Registration: "></asp:Label>                    
+                <asp:Label ID="lblAssetId" CssClass="lbl" runat="server" ForeColor="Red" Font-Size="small" Font-Bold="true"></asp:Label> 
+                </td>
                 </tr>
                <tr>
 
@@ -223,7 +225,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
+                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList" Enabled="false"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
                   
                <td style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetname" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -231,7 +233,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="lblBranch" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="dlJobstation" runat="server"  CssClass="dropdownList" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>   
+                <td><asp:DropDownList ID="dlJobstation" runat="server"  CssClass="dropdownList" Enabled="false" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>   
 
                 <td style="text-align:right;"><asp:Label ID="Label16" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescription" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -310,7 +312,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumber" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbers" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbers" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label52" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturer" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
@@ -426,7 +428,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label19" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnitV" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitV_SelectedIndexChanged"> </asp:DropDownList>                   
+                <td><asp:DropDownList ID="ddlUnitV" runat="server"  CssClass="dropdownList" Enabled="false" AutoPostBack="True" OnSelectedIndexChanged="ddlUnitV_SelectedIndexChanged"> </asp:DropDownList>                   
                   
                <td style="text-align:right;"><asp:Label ID="Label20" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetnameV" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -624,7 +626,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumberV" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbersV" runat="server" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbersV" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label29" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturerV" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
@@ -735,7 +737,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label70" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnitLand" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitLand_SelectedIndexChanged"> </asp:DropDownList>                   
+                <td><asp:DropDownList ID="ddlUnitLand" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitLand_SelectedIndexChanged"> </asp:DropDownList>                   
                   
                <td style="text-align:right;"><asp:Label ID="Label71" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetNameL" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -743,7 +745,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="Label72" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="ddlJobstationL" runat="server"  CssClass="dropdownList"  AutoPostBack="False"  ></asp:DropDownList> 
+                <td><asp:DropDownList ID="ddlJobstationL" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="False"  ></asp:DropDownList> 
 
                 <td style="text-align:right;"><asp:Label ID="Label73" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescriptionL" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -843,7 +845,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="Label102" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPoNumberL" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPoNumberL" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label103" CssClass="lbl" runat="server" Text="Deed Receipt NO:"></asp:Label></td>
                 <td><asp:TextBox ID="txtDeedReceiptNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
