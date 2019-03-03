@@ -279,11 +279,8 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     recieveqty = decimal.Parse(txtAssetQty.Text);
                     try { File.Delete(filePathForXMlAssetParking); }
-                    catch { }
-
-                    string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);
-
-
+                    catch { } 
+                    string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll); 
                     dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
                     dgvGridView.DataSource = dt;
                     dgvGridView.DataBind();
