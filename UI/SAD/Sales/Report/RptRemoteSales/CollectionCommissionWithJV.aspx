@@ -171,6 +171,7 @@
 
              <td style="text-align:right"><asp:Label ID="lbltype" CssClass="lbl" runat="server" Text="Report type:  "></asp:Label></td>
                                 <td><asp:DropDownList ID="drdlSalesview" runat="server">
+                                    <asp:ListItem Text="Commission Report " Value="0"></asp:ListItem>
                                     <asp:ListItem Text="Top Sheet " Value="1"></asp:ListItem>
                                     <asp:ListItem Text="Detaills" Value="2"></asp:ListItem>
                                   

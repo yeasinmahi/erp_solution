@@ -1308,6 +1308,7 @@
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_OC_Report.aspx" />
@@ -1435,6 +1436,7 @@
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
+    <Content Include="SCM\ComparativeStatement.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
@@ -6686,6 +6688,13 @@
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.cs">
+      <DependentUpon>indent_statement_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.designer.cs">
+      <DependentUpon>indent_statement_report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx.cs">
       <DependentUpon>Itemwise_Deptwise_DO_vs_OC_Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7574,6 +7583,13 @@
     </Compile>
     <Compile Include="SCM\BOM\WorkStationCreate.aspx.designer.cs">
       <DependentUpon>WorkStationCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ComparativeStatement.aspx.cs">
+      <DependentUpon>ComparativeStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ComparativeStatement.aspx.designer.cs">
+      <DependentUpon>ComparativeStatement.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>

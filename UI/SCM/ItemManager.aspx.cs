@@ -108,7 +108,7 @@ namespace UI.SCM
             {
                 dataTable = (DataTable)Session["ItemManager"];
             }
-            if (!dataTable.IsExist("intMasterId", itemId))
+            if (!dataTable.IsExist<string>("intMasterId", itemId))
             {
                 dataTable.AddRow((object) obj);
                 Session["ItemManager"] = dataTable;
@@ -261,7 +261,7 @@ namespace UI.SCM
                     }
                     else
                     {
-                        Toaster("Please Sselect your location", Common.TosterType.Warning);
+                        Toaster("Please Select store location", Common.TosterType.Warning);
                     }
                 }
                 else

@@ -87,6 +87,7 @@ namespace UI.SCM.BOM
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
+            dgvBom.UnLoad();
         }
 
         protected void btnSaveFG_Click(object sender, EventArgs e)

@@ -31,15 +31,18 @@ namespace EmailService
                     {
                         message.To.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
                     }
+                    if(emailOptions.CcAddress!=null)
                     foreach (string address in emailOptions.CcAddress)
                     {
                         message.CC.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
                     }
-                    foreach (string address in emailOptions.BccAddress)
+                    if (emailOptions.BccAddress != null)
+                        foreach (string address in emailOptions.BccAddress)
                     {
                         message.Bcc.Add(new MailAddress(address, emailOptions.ToAddressDisplayName));
                     }
-                    foreach (EmailAttachment emailAttachment in emailOptions.Attachments)
+                    if (emailOptions.Attachments != null)
+                        foreach (EmailAttachment emailAttachment in emailOptions.Attachments)
                     {
                         Attachment attachment = new Attachment(new MemoryStream(emailAttachment.Bytes), emailAttachment.FileName);
                         message.Attachments.Add(attachment);

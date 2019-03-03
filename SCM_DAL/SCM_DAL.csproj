@@ -76,6 +76,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BomTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ComparativeStatementTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ComparativeStatementTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DmageTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -154,6 +159,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RFQTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Supplier.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Supplier.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TransferTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -198,6 +208,17 @@
     </None>
     <None Include="BomTDS.xss">
       <DependentUpon>BomTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ComparativeStatementTDS.xsc">
+      <DependentUpon>ComparativeStatementTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ComparativeStatementTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ComparativeStatementTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ComparativeStatementTDS.xss">
+      <DependentUpon>ComparativeStatementTDS.xsd</DependentUpon>
     </None>
     <None Include="DmageTDS.xsc">
       <DependentUpon>DmageTDS.xsd</DependentUpon>
@@ -334,6 +355,17 @@
     </None>
     <None Include="RFQTDS.xss">
       <DependentUpon>RFQTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Supplier.xsc">
+      <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
+    <None Include="Supplier.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Supplier.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Supplier.xss">
+      <DependentUpon>Supplier.xsd</DependentUpon>
     </None>
     <None Include="TransferTDS.xsc">
       <DependentUpon>TransferTDS.xsd</DependentUpon>

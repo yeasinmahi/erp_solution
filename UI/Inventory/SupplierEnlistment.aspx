@@ -25,14 +25,21 @@
             document.getElementById("hdnconfirm").value = "0";
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnconfirm").value = "3"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnconfirm").value = "0"; }
+            if (confirm("Do you want to proceed?")) {
+                confirm_value.value = "Yes";
+                document.getElementById("hdnconfirm").value = "3";
+            }
+            else {
+                confirm_value.value = "No";
+                document.getElementById("hdnconfirm").value = "0";
+            }
             __doPostBack();
         }
     </script>
     <script> function CloseWindow() {
             window.close();
-        } </script>
+        }
+    </script>
 
     <script type="text/javascript">
         function RefreshParent() {
@@ -77,55 +84,59 @@
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblSupname" runat="server" CssClass="lbl" Text="Supplier Name :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
-                                    <asp:TextBox ID="txtSuppliername" runat="server" CssClass="txtBox" Width="190px" BackColor="white" AutoPostBack="true" OnTextChanged="txtSuppliername_TextChanged" BorderColor="Gray" BorderStyle="Ridge"></asp:TextBox></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtSuppliername" runat="server" CssClass="txtBox" Width="190px" BackColor="white" AutoPostBack="true" OnTextChanged="txtSuppliername_TextChanged" BorderColor="Gray" BorderStyle="Ridge"></asp:TextBox>
+                                    <span style="color: red; font-size: 16px">*</span>
+                                </td>
 
                                 <td style="text-align: right;">
-                                    <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Contact :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                    <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Org. Contact :"></asp:Label></td>
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtContactNo" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
                             </tr>
 
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Address :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
-                                    <asp:TextBox ID="txtAddress" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtAddress" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox>
+                                    <span style="color: red; font-size: 16px">*</span>
+                                </td>
 
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Fax No :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtFax" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
                             </tr>
 
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Email :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtemail" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray" ForeColor="Blue"></asp:TextBox></td>
 
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="BIN :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtBin" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
                             </tr>
 
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Vat Reg. :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtVatReg" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
 
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="TIN :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtTin" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
                             </tr>
 
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Trade License :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtTradeLicn" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
 
                                 <td style="text-align: right;">
@@ -141,7 +152,7 @@
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Contact Person :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtContactP" runat="server" CssClass="txtBox" Width="190px" BackColor="white" BorderColor="Gray"></asp:TextBox></td>
 
                                 <td style="text-align: right;">
@@ -158,8 +169,10 @@
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label13" runat="server" CssClass="lbl" Text="Phone No :"></asp:Label></td>
-                                <td style="text-align: left;" class="auto-style5">
-                                    <asp:TextBox ID="txtPhone" runat="server" CssClass="txtBox" Width="190px" BackColor="white" onkeypress="javascript:return isNumber (event)" BorderColor="Gray"></asp:TextBox></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtPhone" runat="server" CssClass="txtBox" Width="190px" BackColor="white" onkeypress="javascript:return isNumber (event)" BorderColor="Gray"></asp:TextBox>
+                                    <span style="color: red; font-size: 16px">*</span>
+                                </td>
 
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Supplier Type :"></asp:Label></td>
@@ -174,12 +187,14 @@
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label15" runat="server" CssClass="lbl" Text="Short Name :"></asp:Label></td>
-                                <td class="auto-style5" style="text-align: left;">
-                                    <asp:TextBox ID="txtShortName" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Width="190px" Enabled="false"></asp:TextBox></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtShortName" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Width="190px" Enabled="false"></asp:TextBox>
+
+                                </td>
 
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Enlishment Date :"></asp:Label></td>
-                                <td class="auto-style5" style="text-align: left;">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtEnlishmentDate" runat="server" BackColor="white" BorderColor="Gray"
                                         CssClass="txtBox" Font-Bold="True" ForeColor="#006600" Style="text-align: center" Width="190px"></asp:TextBox></td>
                             </tr>
@@ -209,26 +224,30 @@
                             <tr>
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblpayto" runat="server" CssClass="lbl" Text="Pay To Name :"></asp:Label></td>
-                                <td class="auto-style5" style="text-align: left;">
-                                    <asp:TextBox ID="txtPayTo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" Width="190px"></asp:TextBox></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtPayTo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" Width="175px"></asp:TextBox>
+                                    <span style="color: red; font-size: 16px">*</span>
+                                </td>
 
                                 <td style="text-align: right;">
                                     <asp:Label ID="lblrouting" runat="server" CssClass="lbl" Text="Routing :"></asp:Label></td>
-                                <td class="auto-style5" style="text-align: left;">
+                                <td style="text-align: left;">
                                     <asp:TextBox ID="txtRouting" runat="server" BackColor="Lightyellow" BorderColor="Gray" CssClass="txtBox" onkeypress="return RoutingNoCheck();" ForeColor="#990000" Style="text-align: center" Width="120px"></asp:TextBox>
-
+                                    <span style="color: red; font-size: 16px">*</span>
                                     <asp:RadioButton ID="RadioButton1" runat="server" AutoPostBack="True" OnCheckedChanged="RadioButton1_CheckedChanged" Style="font-weight: 700; color: #0000FF" Text="Check" /></td>
                                 <tr>
 
                                     <td style="text-align: right;">
                                         <asp:Label ID="lblAcNo" runat="server" CssClass="lbl" Text="A C Number :"></asp:Label></td>
-                                    <%--<td class="auto-style5" style="text-align:left;"><asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onchange="javascript: Changed(this.value);" onkeypress="javascript:return isNumber (event)" Width="190px"></asp:TextBox></td>--%>
-                                    <td class="auto-style5" style="text-align: left;">
-                                        <asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onkeypress="return ACNoCheck();" Width="190px"></asp:TextBox></td>
+                                    <%--<td  style="text-align:left;"><asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onchange="javascript: Changed(this.value);" onkeypress="javascript:return isNumber (event)" Width="190px"></asp:TextBox></td>--%>
+                                    <td style="text-align: left;">
+                                        <asp:TextBox ID="txtACNo" runat="server" BackColor="white" BorderColor="Gray" CssClass="txtBox" onkeypress="return ACNoCheck();" Width="175px"></asp:TextBox>
+                                        <span style="color: red; font-size: 16px">*</span>
+                                    </td>
 
                                     <td style="text-align: right;">
                                         <asp:Label ID="lblbank" runat="server" CssClass="lbl" Text="Bank :"></asp:Label></td>
-                                    <td class="auto-style5" style="text-align: left;">
+                                    <td style="text-align: left;">
                                         <asp:TextBox ID="txtBank" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Width="190px" ForeColor="#0066FF" Enabled="false"></asp:TextBox></td>
                                 </tr>
 
@@ -237,13 +256,13 @@
                                         <asp:Label ID="lblbankid" runat="server" CssClass="lbl" Text="Bank ID :"></asp:Label>
                                     </td>
 
-                                    <td class="auto-style5" style="text-align: left;">
+                                    <td style="text-align: left;">
                                         <asp:TextBox ID="txtBankId" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Enabled="false" ForeColor="#0066FF" Width="190px"></asp:TextBox>
                                     </td>
 
                                     <td style="text-align: right;">
                                         <asp:Label ID="lblbranch" runat="server" CssClass="lbl" Text="Branch :"></asp:Label></td>
-                                    <td class="auto-style5" style="text-align: left;">
+                                    <td style="text-align: left;">
                                         <asp:TextBox ID="txtBranch" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Enabled="false" ForeColor="#0066FF" Width="190px"></asp:TextBox>
                                     </td>
                                 </tr>
@@ -253,17 +272,16 @@
                                         <asp:Label ID="lbldistrictid" runat="server" CssClass="lbl" Text="District ID :"></asp:Label>
                                     </td>
 
-                                    <td class="auto-style5" style="text-align: left;">
+                                    <td style="text-align: left;">
                                         <asp:TextBox ID="txtDistrictId" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Enabled="false" ForeColor="#0066FF" Width="190px"></asp:TextBox>
                                     </td>
 
-                                    <td style="text-align: right; width: auto;">
+                                    <td style="text-align: right;">
                                         <asp:Label ID="lblbranchid" runat="server" CssClass="lbl" Text="Branch ID :"></asp:Label>
                                     </td>
 
-                                    <td class="auto-style5" style="text-align: left;">
+                                    <td style="text-align: left;">
                                         <asp:TextBox ID="txtBranchId" runat="server" BackColor="Lightgray" BorderColor="Gray" CssClass="txtBox" Enabled="false" ForeColor="#0066FF" Width="190px"></asp:TextBox>
-                                    </td>
                                     </td>
                                 </tr>
                                 <tr>

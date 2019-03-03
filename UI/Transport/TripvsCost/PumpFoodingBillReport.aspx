@@ -59,6 +59,7 @@
                                 <asp:DropDownList ID="ddlReportType" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlReportType_OnSelectedIndexChanged">
                                     <asp:ListItem Text="Top Sheet" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="Details" Value="2"></asp:ListItem>
+                                    <asp:ListItem Text="Summery" Value="4"></asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                             
@@ -136,6 +137,67 @@
                                 </asp:GridView>
                             </td>
                         </tr>
+
+                          <tr class="tblroweven">
+                            <td>
+                                <asp:GridView ID="grdvsummery" runat="server" AutoGenerateColumns="False" RowStyle-Wrap="true" HeaderStyle-Wrap="true" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="SL.">
+                                            <ItemTemplate>
+                                                <%# Container.DataItemIndex + 1 %>
+                                                <asp:HiddenField ID="intID" runat="server" Value='<%# Bind("intpkid") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="strName" HeaderText="Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="intEnroll" HeaderText="Enroll" SortExpression="intEnroll" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="strDesignation" HeaderText="Designation" SortExpression="strDesignation" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="intTripNo" HeaderText="Total Trip" SortExpression="intTripNo" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="decTotalBill" HeaderText="Total Bill " SortExpression="decTotalBill" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="dteInDate" HeaderText="In Date" SortExpression="dteInDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="dteOutDate" HeaderText="Out Date" SortExpression="dteOutDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="intInsertBy" HeaderText="Insert By" SortExpression="intInsertBy" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        <asp:BoundField DataField="dteInsertionDate" HeaderText="Insertion Date" SortExpression="dteInsertionDate" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" >
+                                        
+                                        <ItemStyle HorizontalAlign="Center" Width="100px" />
+                                        </asp:BoundField>
+                                        
+                                        <asp:TemplateField HeaderText="Action">
+                                            <ItemTemplate>
+                                                <asp:Button ID="inActive" runat="server" BackColor="#ffcccc" Font-Bold="true" Text="InActive" OnClick="inActive_OnClick" OnClientClick="return confirm('Are you sure you want to delete?');"/>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <%--<asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True" />--%>
+                                    </Columns>
+                                    <FooterStyle BackColor="#CCCCCC" />
+                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" Wrap="True" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <RowStyle Wrap="True" />
+                                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                                </asp:GridView>
+                            </td>
+                        </tr>
+
                     </table>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>

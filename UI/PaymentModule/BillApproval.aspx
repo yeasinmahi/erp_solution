@@ -13,13 +13,11 @@
     <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../Content/JS/datepickr.min.js"></script>
     <script src="../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
     <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
 
     <script language="javascript">
 
@@ -65,7 +63,17 @@
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
-
+                <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
+                    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
+                        <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
+                        <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                    </marquee>
+                    </div>
+                </asp:Panel>
+                <div style="height: 30px;"></div>
+                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2" runat="server">
+                </cc1:AlwaysVisibleControlExtender>
+                <div id="loading"></div>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <asp:HiddenField ID="hdnconfirm" runat="server" />
                 <asp:HiddenField ID="hdnEnroll" runat="server" />
@@ -98,7 +106,7 @@
                                         <td style="text-align: right;">
                                             <asp:Label ID="lblDate" runat="server" CssClass="lbl" Text="From Date"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                                         <td>
-                                            <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                                            <asp:TextBox ID="txtFromDate" runat="server" AutoPostBack="false" autocomplete="off" CssClass="txtBox1" Enabled="true"></asp:TextBox>
                                             <cc1:CalendarExtender ID="fdt" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                                         </td>
                                         <td style="text-align: right;">
@@ -106,13 +114,13 @@
                                         <td style="text-align: right;">
                                             <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="To Date"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                                         <td>
-                                            <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true"></asp:TextBox>
+                                            <asp:TextBox ID="txtToDate" runat="server" AutoPostBack="false" autocomplete="off" CssClass="txtBox1" Enabled="true"></asp:TextBox>
                                             <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td colspan="5" style="text-align: right; padding: 10px 0px 5px 0px">
-                                            <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClick="btnShow_Click" /></td>
+                                            <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" OnClientClick="showLoader();" OnClick="btnShow_Click" /></td>
                                     </tr>
                                     <tr>
                                         <td colspan="5">

@@ -114,14 +114,21 @@ namespace UI.SCM.BOM
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
-                string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                string uom = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString(); uom = arrayKey[1].ToString(); itemid = arrayKey[3].ToString();
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[1].ToString();
+                    itemid = arrayKey[3].ToString();
                 }
                 string[] searchKey = Regex.Split(uom, ":");
                 lblUom1.Text = searchKey[1].ToString();
                 lblUom2.Text = searchKey[1].ToString();
+                lblItemId.Text = itemid;
+                lblItemName.Text = item;
             }
             catch (Exception ex)
             {

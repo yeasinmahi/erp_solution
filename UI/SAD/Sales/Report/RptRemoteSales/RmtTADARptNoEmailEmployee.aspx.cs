@@ -217,7 +217,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 }
 
             }
-            else if (rptTypeid == 8)               //standvheiclle detaills report
+            else if (rptTypeid == 8)               //Transport Date Basis Report
             {
 
                 try
