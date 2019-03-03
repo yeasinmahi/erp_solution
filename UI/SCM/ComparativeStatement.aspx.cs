@@ -490,7 +490,7 @@ namespace UI.SCM
                     if (int.TryParse(lblRfqId, out int rfqId))
                     {
                         int suppliertId = ddlSupplier.SelectedValue();
-                        _bll.InsertRfqSentEmail(rfqId, suppliertId, "", Enroll, out string message);
+                        _bll.InsertRfqSentEmail(rfqId, suppliertId, Enroll, out string message);
                         if (message.ToLower().Contains("success"))
                         {
                             var sb = new StringBuilder();
