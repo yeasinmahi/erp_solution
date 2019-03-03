@@ -104,6 +104,8 @@
                             BackColor="#FFCC99" OnClick="Tab2_Click" />
                         <asp:Button Text="RFQ" BorderStyle="Solid" ID="Tab3" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab3_OnClick" />
+                    <asp:Button Text="Qutation" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
+                                BackColor="#FFCC99" OnClick="Tab4_OnClick" />
 
 
                         <asp:MultiView ID="MainView" runat="server">
@@ -475,8 +477,8 @@
 
                                             <tr>
 
-                                                <td rowspan="3" style="width: 80px">
-                                                    <asp:Image ID="imgUnit" Width="80" AlternateText="Unit Image" runat="server" />
+                                                <td rowspan="3" style="width: 60px">
+                                                    <asp:Image ID="imgUnit" Width="60" AlternateText="Unit Image" runat="server" />
                                                 </td>
                                                 <td style="text-align: center; font-size: medium; font-weight: bold;">
                                                     <asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
@@ -629,6 +631,57 @@
                                             </tr>--%>
                                         </table>
                                     </div>
+                                </div>
+                            </asp:View>
+                            
+                            <asp:View ID="View4" runat="server">
+                                <div style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label10" runat="server" CssClass="lbl" Text="RFQ:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:TextBox ID="txtRfq" runat="server"></asp:TextBox>
+                                            </td>
+                                            <td>
+                                                <asp:Button runat="server" Text="Show" ID="btnShowRFQ" />
+                                            </td>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Supplier:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:DropDownList ID="ddlEmailedSupplier" runat="server" Font-Bold="true"></asp:DropDownList>
+                                            </td>
+
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label13" runat="server" CssClass="lbl" Text="Supplier Contact:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:Label ID="Label14" runat="server" Font-Bold="true"></asp:Label>
+                                            </td>
+                                            <td style="text-align: center; font: bold 13px verdana;">
+                                                <a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label15" runat="server" CssClass="lbl" Text="Supplier Address:"></asp:Label></td>
+                                            <td colspan="3" style="text-align: left;">
+                                                <asp:Label ID="Label17" runat="server" Font-Bold="true"></asp:Label>
+                                            </td>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label18" runat="server" CssClass="lbl" Text="Supplier Email:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:Label ID="Label19" runat="server" Font-Bold="true"></asp:Label>
+                                            </td>
+
+                                            <td>
+                                                <asp:Button ID="Button1" runat="server" Text="Email" OnClick="btnEmail_OnClick" />
+                                            </td>
+                                            <%--<td>
+                                                <asp:Button runat="server" ID="btnSentEmail" Text="SentEmail" OnClick="btnSentEmail_OnClick"/>
+                                            </td>--%>
+                                        </tr>
+                                    </table>
                                 </div>
                             </asp:View>
                         </asp:MultiView>
