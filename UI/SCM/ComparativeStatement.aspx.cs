@@ -49,6 +49,7 @@ namespace UI.SCM
                 Tab1.CssClass = "Initial";
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
+                Tab4.CssClass = "Initial";
                 ((Button)sender).CssClass = "Clicked";
                 Clear();
 
@@ -73,6 +74,11 @@ namespace UI.SCM
         {
             SetTabClickCss(sender);
             MainView.ActiveViewIndex = 2;
+        }
+        protected void Tab4_OnClick(object sender, EventArgs e)
+        {
+            SetTabClickCss(sender);
+            MainView.ActiveViewIndex = 3;
         }
 
         #endregion
@@ -570,6 +576,7 @@ namespace UI.SCM
             }
 
         }
+
 
         
     }
