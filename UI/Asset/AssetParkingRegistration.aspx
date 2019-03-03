@@ -219,7 +219,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList>  </td>                 
+                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList" Enabled="false"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList>  </td>                 
                   
                <td style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetname" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -227,7 +227,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="lblBranch" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="dlJobstation" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlJob_SelectedIndexChanged"></asp:DropDownList> </td>
+                <td><asp:DropDownList ID="dlJobstation" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlJob_SelectedIndexChanged"></asp:DropDownList> </td>
 
                 <td style="text-align:right;"><asp:Label ID="Label16" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescription" runat="server" CssClass="txtBox"></asp:TextBox></td>        
