@@ -210,6 +210,8 @@ namespace UI.Asset
             // starting performance tracker
             var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration btnSave_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
+            try { File.Delete(filePathForXMlAssetParking); }
+            catch { }
             try
             {
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
@@ -235,10 +237,10 @@ namespace UI.Asset
 
                 string lcoation = txtAssetLocation.Text.ToString();
                 try { userenroll = int.Parse(txtEnrolment.Text); } catch { userenroll = 0; }
-                try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-                try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-                try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-                try { accusitioncost = decimal.Parse(txtAcisitionCost.Text); } catch { accusitioncost = 0; }
+                try { invoicevalue = decimal.Parse(txtInvoiceValue.Text.ToString()); } catch { invoicevalue = 0; }
+                try { landedcost = decimal.Parse(txtLandedCost.Text.ToString()); } catch { landedcost = 0; }
+                try { otherCost = decimal.Parse(txtErectionOtherCost.Text.ToString()); } catch { otherCost = 0; }
+                try { accusitioncost = decimal.Parse(txtAcisitionCost.Text.ToString()); } catch { accusitioncost = 0; }
                 string remarks = txtRemarks.Text.ToString();
 
 
@@ -256,36 +258,47 @@ namespace UI.Asset
                 string lcnumber = txtLCnumber.Text.ToString();
                 string others = txtOthers.Text.ToString();
                 string capacity = txtCapacity.Text.ToString();
-                try { recommandlife = decimal.Parse(txtRecommandLife.Text); } catch { recommandlife = 0; }
+                try { recommandlife = decimal.Parse(txtRecommandLife.Text.ToString()); } catch { recommandlife = 0; }
                 try { depMethode = int.Parse(ddlMethodOfDep.SelectedValue); } catch { depMethode = 0; }
-                try { depRate = decimal.Parse(txtRateDep.Text); } catch { depRate = 0; }
-                try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Today; }
+                try { depRate = decimal.Parse(txtRateDep.Text.ToString()); } catch { depRate = 0; }
+                try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text.ToString()); } catch { dteDepRunDate = DateTime.Today; }
                 try { totalaccdep = decimal.Parse(txtAccDep.Text.ToString()); } catch { totalaccdep = 0; }
 
-                string intItemid =hdnItemID.Value.ToString(); string intMrrId=hdnMrrID.Value.ToString();string intPoID = hdnPoID.Value.ToString();
+                int intItemid =int.Parse(hdnItemID.Value.ToString()); int intMrrId=int.Parse(hdnMrrID.Value.ToString());int intPoID =int.Parse(hdnPoID.Value.ToString());
+                if (intItemid > 0 && intMrrId > 0 && invoicevalue>0)
+                { 
+                    CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
+                    , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
+                    manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
 
-                CreateParkingXML(intItemid, intMrrId, intPoID, unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
-                , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
-                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXMlAssetParking);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    string xmlStringG = dSftTm.InnerXml;
+                    xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    recieveqty = decimal.Parse(txtAssetQty.Text);
+                    try { File.Delete(filePathForXMlAssetParking); }
+                    catch { }
+
+                    string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);
 
 
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXMlAssetParking);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                string xmlStringG = dSftTm.InnerXml;
-                xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                recieveqty = decimal.Parse(txtAssetQty.Text);
-                try { File.Delete(filePathForXMlAssetParking);  }
-                catch { }
-                string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty,intenroll);              
-              
+                    dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
+                    dgvGridView.DataSource = dt;
+                    dgvGridView.DataBind();
 
-                dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
-                dgvGridView.DataSource = dt;
-                dgvGridView.DataBind();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+
                 }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Invoice Value');", true);
+                    try { File.Delete(filePathForXMlAssetParking); }
+                    catch { }
+                }
+
+            }
                 catch (Exception ex)
                 {
                     var efd = log.GetFlogDetail(stop, location, "Save", ex);
@@ -542,6 +555,9 @@ namespace UI.Asset
             {
 
                 LoadView();
+                hdnItemID.Value ="0".ToString();
+                hdnMrrID.Value ="0".ToString();
+                hdnPoID.Value ="0".ToString();
 
                 char[] delimiterChars = { ',' };
                 string temp = ((Button)sender).CommandArgument.ToString();
@@ -549,6 +565,7 @@ namespace UI.Asset
                 string intItem =datas[0].ToString();
                 string intPO = datas[1].ToString();
                 string intMrrID =datas[2].ToString();
+
                 hdnReceive.Value = datas[3].ToString();
                 hdnItemID.Value = intItem.ToString();
                 hdnMrrID.Value = intMrrID.ToString();
