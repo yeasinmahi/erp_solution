@@ -185,19 +185,16 @@
                     <asp:TemplateField HeaderText="SL.N"> 
                      <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate></asp:TemplateField>
                            
-                      <asp:BoundField DataField="intAutoid" HeaderText="intAutoID" SortExpression="intAutoid"/>
-                       <asp:BoundField DataField="strAssetId" HeaderText="Asset ID" Visible="false" SortExpression="strAssetId" />
-                       <asp:BoundField DataField="MainType" HeaderText="Asset Type" SortExpression="MainType" />
+                        <asp:BoundField DataField="intAutoid" HeaderText="intAutoID" SortExpression="intAutoid"/>
+                        <asp:BoundField DataField="strlcoation" HeaderText="Location"  SortExpression="strlcoation" />
+                        <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
+                        <asp:BoundField DataField="strJobStationName" HeaderText="Jobstation"  SortExpression="strJobStationName" />    
+                        <asp:BoundField DataField="MainType" HeaderText="Asset Type" SortExpression="MainType" />
                         <asp:BoundField DataField="intAssetTypeID" HeaderText="MejorCategoryID" Visible="false" SortExpression="strAssetTypeName" />
-                         <asp:BoundField DataField="strAssetTypeName" HeaderText="MejorCategory"  SortExpression="strAssetTypeName" />
-
-                      <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
-                      <asp:BoundField DataField="strJobStationName" HeaderText="Jobstation"  SortExpression="strJobStationName" />        
-                      <asp:BoundField DataField="strNameOfAsset" HeaderText="Asset Name" SortExpression="strNameOfAsset" />
-                      <asp:BoundField DataField="strDescription" HeaderText="Description"  SortExpression="strDescription" /> 
-                      <asp:BoundField DataField="monAccusitioncost" HeaderText="AccusitionValue"  SortExpression="monAccusitioncost" /> 
-                                                           
-                       
+                        <asp:BoundField DataField="strAssetTypeName" HeaderText="MejorCategory"  SortExpression="strAssetTypeName" /> 
+                        <asp:BoundField DataField="strNameOfAsset" HeaderText="Asset Name" SortExpression="strNameOfAsset" />
+                        <asp:BoundField DataField="strDescription" HeaderText="Description"  SortExpression="strDescription" /> 
+                        <asp:BoundField DataField="monAccusitioncost" HeaderText="AccusitionValue"  SortExpression="monAccusitioncost" />  
          
                        <asp:TemplateField HeaderText="Submit">
                            <ItemTemplate>

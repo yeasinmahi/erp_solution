@@ -178,7 +178,7 @@
                    <Columns>
                     <asp:TemplateField HeaderText="SL.N"> 
                      <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate></asp:TemplateField>
-                           
+                           <asp:BoundField DataField="strWareHoseName" HeaderText="WH" SortExpression="strWareHoseName"/>
                       <asp:BoundField DataField="intMRRID" HeaderText="MRRID" SortExpression="intMRRID"/>
                        <asp:BoundField DataField="intPOID" HeaderText="POID" SortExpression="intPOID" />
                        <asp:BoundField DataField="intitemid" HeaderText="ItemID" SortExpression="intitemid" />
@@ -316,7 +316,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumber" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbers" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbers" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label52" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturer" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
