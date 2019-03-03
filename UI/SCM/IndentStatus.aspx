@@ -82,8 +82,7 @@
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
     <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
-    <div style="height: 100px;"></div>
+    <div style="height: 30px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 
@@ -130,7 +129,7 @@
                <td><asp:TextBox ID="txtIndentNo" runat="server" ></asp:TextBox></td>
                 <td style="text-align:left"><asp:Button ID="btnShow" ForeColor="#0033cc" runat="server" Text="Status" OnClick="btnShow_Click" /></td>
                <td style="text-align:right"><asp:Button ID="btnStatement" ForeColor="#0033cc" runat="server" Text="Statement"  OnClick="btnStatement_Click" /> </td>
-               <td style="text-align:right"><asp:Button ID="btnReport" ForeColor="#0033cc" runat="server" Text="Show Report"  OnClick="btnReport_Click" /> </td>
+               <%--<td style="text-align:right"><asp:Button ID="btnReport" ForeColor="#0033cc" runat="server" Text="Show Report"  OnClick="btnReport_Click" /> </td>--%>
                 </tr>
         </table>
         <table>

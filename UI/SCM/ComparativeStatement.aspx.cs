@@ -35,6 +35,13 @@ namespace UI.SCM
 
         #region Tab Click
 
+        private void Clear()
+        {
+            List<Control> excepControlses = new List<Control>{ txtDteTo,txtDtefroms};
+            UpdatePanel0.Controls.Clear(excepControlses);
+
+
+        }
         private void SetTabClickCss(object sender)
         {
             try
@@ -43,6 +50,7 @@ namespace UI.SCM
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
                 ((Button)sender).CssClass = "Clicked";
+                Clear();
 
             }
             catch (Exception ex)
@@ -253,6 +261,15 @@ namespace UI.SCM
                 Session["unitId"] = "0";
             }
         }
+        protected void dgvIndentDet_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType.Equals(DataControlRowType.DataRow))
+            {
+                string remainQty = ((Label)e.Row.FindControl("lblRemaining")).Text;
+                ((TextBox)e.Row.FindControl("txtRfqQty")).Text = remainQty;
+            }
+
+        }
         #endregion
 
 
@@ -385,16 +402,15 @@ namespace UI.SCM
                     if (dt.Rows.Count > 0)
                     {
                         gvRfq.Loads(dt);
-                        lblRfqNo.Text = dt.Rows[0]["intRFQID"].ToString();
-                        lblRfqDate.Text = dt.Rows[0]["dteRFQDate"].ToString();
-                        lblRfqBy.Text = dt.Rows[0]["strEmployeeName"].ToString();
+                        lblRfqNo.Text = dt.Rows[0]["intRfqId"].ToString();
+                        lblRfqDate.Text = dt.Rows[0]["dteRfqDate"].ToString();
+                        lblRfqBy.Text = dt.Rows[0]["strInsertBy"].ToString();
                         Toaster(msg, Common.TosterType.Success);
                     }
                     else
                     {
                         Toaster("RFQ Item Load Problem", Common.TosterType.Warning);
                     }
-                    
                 }
                 else
                 {
@@ -406,7 +422,7 @@ namespace UI.SCM
                 Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
             }
         }
-
+        
         public List<object> GetGridViewData()
         {
             List<object> objects = new List<object>();
@@ -458,36 +474,77 @@ namespace UI.SCM
 
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
+            if (ddlSupplier.SelectedValue() <1)
+            {
+                Toaster("Please Select Supplier",Common.TosterType.Warning);
+                return;
+            }
             string email = lblSupplierEmail.Text;
             email = "arafat.corp@akij.net";
             if (!string.IsNullOrWhiteSpace(email))
             {
-                var sb = new StringBuilder();
-                dvTable.RenderControl(new HtmlTextWriter(new StringWriter(sb)));
-                string s = sb.ToString();
 
-                EmailOptions options = new EmailOptions
+                string lblRfqId = lblRfqNo.Text;
+                if (!string.IsNullOrWhiteSpace(lblRfqId))
                 {
-                    Attachments = null,
-                    BccAddress = null,
-                    CcAddress = null,
-                    Body = "Dear "+lblSupplierName+" ,\nPlease give me the Price Qutation of following items.\n" + sb,
-                    Subject = "Request For Qutation",
-                    ToAddress = new List<string> { email },
-                    ToAddressDisplayName = "Akij Procurement Department"
-                };
-                if (Email.SendEmail(options))
-                {
-                    Toaster("Successfully sent mail to supplier", Common.TosterType.Success);
+                    if (int.TryParse(lblRfqId, out int rfqId))
+                    {
+                        int suppliertId = ddlSupplier.SelectedValue();
+                        _bll.InsertRfqSentEmail(rfqId, suppliertId, Enroll, out string message);
+                        if (message.ToLower().Contains("success"))
+                        {
+                            var sb = new StringBuilder();
+                            dvTable.RenderControl(new HtmlTextWriter(new StringWriter(sb)));
+
+                            EmailOptions options = new EmailOptions
+                            {
+                                Attachments = null,
+                                BccAddress = null,
+                                CcAddress = null,
+                                Body = "Dear " + lblSupplierName.Text + " ,\nPlease give me the Price Qutation of following items.\n" + sb,
+                                Subject = "Request For Qutation",
+                                ToAddress = new List<string> { email },
+                                ToAddressDisplayName = "Akij Procurement Department"
+                            };
+                            if (Email.SendEmail(options))
+                            {
+                                if (_bll.UpdateRfqEmailToSupplier(rfqId, suppliertId))
+                                {
+                                    Toaster(message, Common.TosterType.Success);
+                                }
+                                else
+                                {
+                                    Toaster("Email Sent Successfully but can not update email sent status.",Common.TosterType.Warning);
+                                }
+                                
+                            }
+                            else
+                            {
+                                Toaster(options.Exceptions.Message, Common.TosterType.Error);
+                            }
+
+                            
+                        }
+                        else
+                        {
+                            Toaster(message, Common.TosterType.Error);
+                        }
+                    }
+                    else
+                    {
+                        Toaster("RFQ id not in correct format", Common.TosterType.Warning);
+                    }
+
                 }
                 else
                 {
-                    Toaster(options.Exceptions.Message,Common.TosterType.Error);
+                    Toaster("No RFQ Id Found", Common.TosterType.Warning);
                 }
+
             }
             else
             {
-                Toaster("This supplier have no email address to sent",Common.TosterType.Warning);
+                Toaster("This supplier have no email address to send",Common.TosterType.Warning);
             }
         }
 
@@ -511,5 +568,7 @@ namespace UI.SCM
             }
 
         }
+
+        
     }
 }
