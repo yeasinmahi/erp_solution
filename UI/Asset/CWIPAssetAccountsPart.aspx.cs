@@ -2026,7 +2026,7 @@ namespace UI.Asset
                     //string= int.Parse(hdnReceive.Value);
                     try { File.Delete(filePathForXMlAssetParking); }
                     catch { }
-                    dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
+                    dt = parking.CwipAssetView(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
                     dgvGridView.DataSource = dt;
                     dgvGridView.DataBind();
 
