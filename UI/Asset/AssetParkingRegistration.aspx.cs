@@ -17,12 +17,12 @@ namespace UI.Asset
     public partial class AssetParkingRegistration : System.Web.UI.Page
     {
         string filePathForXMlAssetParking;
-        string XMLVehicle, XMLBuilding, XMLLand; int enroll;decimal recieveqty;
+        string XMLVehicle, XMLBuilding, XMLLand;   
         string xmlStringG = "";
         AssetParking_BLL parking = new AssetParking_BLL();
         Assetregister_BLL objregister = new Assetregister_BLL();
         DataTable dt = new DataTable(); 
-        int unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, ponumber, userenroll, depMethode;
+        int unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, ponumber, userenroll, depMethode, intItemid, intMrrId, intPoID, enroll, recieveqty;
         decimal invoicevalue, landedcost, otherCost, accusitioncost, depRate, recommandlife, totalaccdep; 
         DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
          
@@ -263,13 +263,17 @@ namespace UI.Asset
                 try { depRate = decimal.Parse(txtRateDep.Text.ToString()); } catch { depRate = 0; }
                 try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text.ToString()); } catch { dteDepRunDate = DateTime.Today; }
                 try { totalaccdep = decimal.Parse(txtAccDep.Text.ToString()); } catch { totalaccdep = 0; }
+              
+                 try { intItemid = int.Parse(hdnItemID.Value.ToString()); }catch { intItemid = 0; }
+                 try { intMrrId = int.Parse(hdnMrrID.Value.ToString()); } catch { intMrrId = 0; }
+                 try { intPoID = int.Parse(hdnPoID.Value.ToString()); } catch { intPoID = 0; }
+                try { recieveqty = int.Parse(txtAssetQty.Text.ToString()); } catch { recieveqty = 0; }
 
-                int intItemid =int.Parse(hdnItemID.Value.ToString()); int intMrrId=int.Parse(hdnMrrID.Value.ToString());int intPoID =int.Parse(hdnPoID.Value.ToString());
-                if (intItemid > 0 && intMrrId > 0 && invoicevalue>0)
-                { 
+                if (ddlUnit.Enabled && recieveqty>0)
+                {
                     CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
-                    , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
-                    manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
+                   , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
+                   manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
 
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXMlAssetParking);
@@ -277,23 +281,49 @@ namespace UI.Asset
                     string xmlStringG = dSftTm.InnerXml;
                     xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                    recieveqty = decimal.Parse(txtAssetQty.Text);
+                  
                     try { File.Delete(filePathForXMlAssetParking); }
-                    catch { } 
-                    string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll); 
+                    catch { }
+                    string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);
                     dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
                     dgvGridView.DataSource = dt;
                     dgvGridView.DataBind();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Invoice Value');", true);
-                    try { File.Delete(filePathForXMlAssetParking); }
-                    catch { }
+                    if (intItemid > 0 && intMrrId > 0 && invoicevalue > 0 && recieveqty>0)
+                    {
+                        CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
+                        , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
+                        manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
+
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXMlAssetParking);
+                        XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                        string xmlStringG = dSftTm.InnerXml;
+                        xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
+                        int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                       
+                        try { File.Delete(filePathForXMlAssetParking); }
+                        catch { }
+                        string message = parking.InsertParkingData(1, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);
+                        dt = parking.CwipAssetView(5, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
+                        dgvGridView.DataSource = dt;
+                        dgvGridView.DataBind();
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fill-Up Invoice Value or Asset Qty');", true);
+                        try { File.Delete(filePathForXMlAssetParking); }
+                        catch { }
+                    }
                 }
+               
 
             }
                 catch (Exception ex)
@@ -517,6 +547,15 @@ namespace UI.Asset
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
             txtAccDep.Visible = true;
             lblAccdep.Visible = true;
+            ddlUnit.Enabled = true;
+            dlJobstation.Enabled = true;
+            txtPonumbers.Enabled = true;
+            txtAcisitionCost.Enabled = true;
+
+            hdnItemID.Value = "0".ToString();
+            hdnMrrID.Value = "0".ToString();
+            hdnPoID.Value = "0".ToString();
+
             LoadView();
             txtPonumbers.Text = "0".ToString();
             txtSuppliers.Text = "0".ToString();
@@ -550,6 +589,10 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
+                ddlUnit.Enabled = false;
+                dlJobstation.Enabled = false;
+                txtPonumbers.Enabled = false;
+                
 
                 LoadView();
                 hdnItemID.Value ="0".ToString();
