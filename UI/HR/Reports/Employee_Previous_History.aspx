@@ -33,8 +33,30 @@
                             <asp:Label runat="server" Text="Employee Previous History" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <div class="row">
+                            <div class="row form-group">
+                                 <div class="col-md-4">
+                                      <asp:Label ID="Label1" runat="server" Text="From Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                      <asp:TextBox ID="txtEmpSearch" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>
+                                 </div>
+                                <div class="col-md-4">
+                                      <asp:Label ID="Label2" runat="server" Text="From Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                      <asp:DropDownList ID="ddlyear" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" >
+                                          <asp:ListItem Value="1">2012</asp:ListItem>
+                                          <asp:ListItem Value="2">2013</asp:ListItem>
+                                          <asp:ListItem Value="3">2014</asp:ListItem>
+                                          <asp:ListItem Value="4">2015</asp:ListItem>
+                                          <asp:ListItem Value="5">2016</asp:ListItem>
+                                          <asp:ListItem Value="6">2017</asp:ListItem>
+                                          <asp:ListItem Value="7">2018</asp:ListItem>
+                                          <asp:ListItem Value="8">2019</asp:ListItem>
+
+                                      </asp:DropDownList>
+                                 </div>
+                                <div class="col-md-4" style="padding-top:20px;">                                
+                               
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return Validation()" Text="Show" OnClick="btnShow_Click"/>
                                 
+                                </div>
                             </div>
                         </div>
 
