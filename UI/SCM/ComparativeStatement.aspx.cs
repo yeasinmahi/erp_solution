@@ -630,6 +630,7 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 LoadSupplierQuotation(rfqId);
+
             }
             else
             {
@@ -638,22 +639,42 @@ namespace UI.SCM
 
         }
 
+        public void LoadRfqData(int rfqId)
+        {
+            DataTable dt = _bll.GetRfq(rfqId);
+            if (dt.Rows.Count > 0)
+            {
+                gvQutation.Loads(dt);
+                lblRfqNoQ.Text = dt.Rows[0]["intRfqId"].ToString();
+                lblRfqDateQ.Text = dt.Rows[0]["dteRfqDate"].ToString();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+            }
+        }
+
         public void LoadSupplierQuotation(int rfqId)
         {
             _dt = _supplier.GetSupplierInfo(3, rfqId, out string message);
             if (_dt.Rows.Count > 0)
             {
                 ddlSupplierQ.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                LoadRfqData(rfqId);
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
         }
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+
+        }
 
         #endregion
 
 
-        
+
     }
 }

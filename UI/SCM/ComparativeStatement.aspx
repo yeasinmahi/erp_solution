@@ -777,7 +777,7 @@
                                                             </asp:TemplateField>
                                                             <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right">
                                                                 <ItemTemplate>
-                                                                    <asp:TextBox runat="server" Enabled="False" Width="80px"></asp:TextBox>
+                                                                    <asp:TextBox runat="server" Width="80px"></asp:TextBox>
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Center" Width="80px" />
                                                             </asp:TemplateField>
@@ -801,6 +801,11 @@
                                                         <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                                     </asp:GridView>
                                                 </td>
+                                                <tr>
+                                                   <td>
+                                                       <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_OnClick"/>
+                                                   </td> 
+                                                </tr>
                                             </tr>
                                         </table>
                                 </div>

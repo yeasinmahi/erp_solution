@@ -51,5 +51,18 @@ namespace SCM_BLL
             return isUpdate;
 
         }
+        public DataTable GetRfq(int intRfqId)
+        {
+            try
+            {
+                sprGetRFQTableAdapter adp = new sprGetRFQTableAdapter();
+                return adp.GetData(intRfqId);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+        }
     }
 }
