@@ -22,7 +22,7 @@ namespace UI.SCM
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 Session["indentItems"] = null;
@@ -37,7 +37,7 @@ namespace UI.SCM
 
         private void Clear()
         {
-            List<Control> excepControlses = new List<Control>{ txtDteTo,txtDtefroms};
+            List<Control> excepControlses = new List<Control> { txtDteTo, txtDtefroms };
             UpdatePanel0.Controls.Clear(excepControlses);
 
 
@@ -384,7 +384,7 @@ namespace UI.SCM
             //lblUnitName.Text = hdnUnitName.Value;
             lblWH.Text = hdnWHName.Value;
             lblRfqBy.Text = UserEmail;
-            
+
             if (JobStationId == 28)
             {
                 imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png";
@@ -400,7 +400,7 @@ namespace UI.SCM
             if (objects.Count > 0)
             {
                 string xml = XmlParser.GetXml("RFQ", "Item", objects, out string _);
-                DataTable dt = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll,out string msg);
+                DataTable dt = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll, out string msg);
                 if (msg.ToLower().Contains("success"))
                 {
                     LoadRfqView();
@@ -425,10 +425,10 @@ namespace UI.SCM
             }
             else
             {
-                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
         }
-        
+
         public List<object> GetGridViewData()
         {
             List<object> objects = new List<object>();
@@ -459,7 +459,7 @@ namespace UI.SCM
                 {
                     return objects;
                 }
-                
+
             }
             return objects;
         }
@@ -480,11 +480,38 @@ namespace UI.SCM
 
         #region RFQ
 
+        protected void ddlSupplier_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int supplierId = ddlSupplier.SelectedValue();
+            if (supplierId != 0)
+            {
+                _dt = _supplier.GetSupplierInfo(2, supplierId, out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    lblSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
+                    lblSupplierContact.Text = _dt.Rows[0]["strOrgContactNo"].ToString();
+                    lblSupplierEmail.Text = _dt.Rows[0]["strOrgMail"].ToString();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                lblSupplierName.Text = string.Empty;
+                lblSupplierAddress.Text = string.Empty;
+                lblSupplierContact.Text = string.Empty;
+                lblSupplierEmail.Text = string.Empty;
+            }
+            
+        }
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
-            if (ddlSupplier.SelectedValue() <1)
+            if (ddlSupplier.SelectedValue() < 1)
             {
-                Toaster("Please Select Supplier",Common.TosterType.Warning);
+                Toaster("Please Select Supplier", Common.TosterType.Warning);
                 return;
             }
             string email = lblSupplierEmail.Text;
@@ -522,16 +549,16 @@ namespace UI.SCM
                                 }
                                 else
                                 {
-                                    Toaster("Email Sent Successfully but can not update email sent status.",Common.TosterType.Warning);
+                                    Toaster("Email Sent Successfully but can not update email sent status.", Common.TosterType.Warning);
                                 }
-                                
+
                             }
                             else
                             {
                                 Toaster(options.Exceptions.Message, Common.TosterType.Error);
                             }
 
-                            
+
                         }
                         else
                         {
@@ -552,32 +579,102 @@ namespace UI.SCM
             }
             else
             {
-                Toaster("This supplier have no email address to send",Common.TosterType.Warning);
+                Toaster("This supplier have no email address to send", Common.TosterType.Warning);
             }
         }
+        protected void btnRFQ_OnClick(object sender, EventArgs e)
+        {
 
+        }
         #endregion
 
 
-        protected void ddlSupplier_OnSelectedIndexChanged(object sender, EventArgs e)
+        #region Quotation
+
+        protected void ddlSupplierQ_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            int supplierId = ddlSupplier.SelectedValue();
-            _dt = _supplier.GetSupplierInfo(2, supplierId, out string message);
+            int supplierId = ddlSupplierQ.SelectedValue();
+            if (supplierId != 0)
+            {
+                _dt = _supplier.GetSupplierInfo(2, supplierId, out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    lblSupplierNameQ.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    lblSupplierAddressQ.Text = _dt.Rows[0]["strOrgAddress"].ToString();
+                    lblSupplierContactQ.Text = _dt.Rows[0]["strOrgContactNo"].ToString();
+                    lblSupplierEmailQ.Text = _dt.Rows[0]["strOrgMail"].ToString();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                lblSupplierNameQ.Text = string.Empty;
+                lblSupplierAddressQ.Text = string.Empty;
+                lblSupplierContactQ.Text = string.Empty;
+                lblSupplierEmailQ.Text = string.Empty;
+            }
+            
+        }
+
+        protected void btnShowRFQQuotation_OnClick(object sender, EventArgs e)
+        {
+            string rfq = txtRfqQuotation.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank",Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                LoadSupplierQuotation(rfqId);
+
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly",Common.TosterType.Warning);
+            }
+
+        }
+
+        public void LoadRfqData(int rfqId)
+        {
+            DataTable dt = _bll.GetRfq(rfqId);
+            if (dt.Rows.Count > 0)
+            {
+                gvQutation.Loads(dt);
+                lblRfqNoQ.Text = dt.Rows[0]["intRfqId"].ToString();
+                lblRfqDateQ.Text = dt.Rows[0]["dteRfqDate"].ToString();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+            }
+        }
+
+        public void LoadSupplierQuotation(int rfqId)
+        {
+            _dt = _supplier.GetSupplierInfo(3, rfqId, out string message);
             if (_dt.Rows.Count > 0)
             {
-                lblSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
-                lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
-                lblSupplierContact.Text = _dt.Rows[0]["strOrgContactNo"].ToString();
-                lblSupplierEmail.Text = _dt.Rows[0]["strOrgMail"].ToString();
+                ddlSupplierQ.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                LoadRfqData(rfqId);
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
+        }
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
 
         }
 
+        #endregion
 
-        
+
+
     }
 }

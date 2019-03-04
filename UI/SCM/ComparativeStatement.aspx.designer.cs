@@ -454,6 +454,33 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
+        /// Label14 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label14;
+        
+        /// <summary>
+        /// txtRfq control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtRfq;
+        
+        /// <summary>
+        /// btnRFQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRFQ;
+        
+        /// <summary>
         /// Label6 control.
         /// </summary>
         /// <remarks>
@@ -652,22 +679,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// txtRfq control.
+        /// txtRfqQuotation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtRfq;
+        protected global::System.Web.UI.WebControls.TextBox txtRfqQuotation;
         
         /// <summary>
-        /// btnShowRFQ control.
+        /// btnShowRFQQuotation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowRFQ;
+        protected global::System.Web.UI.WebControls.Button btnShowRFQQuotation;
         
         /// <summary>
         /// Label11 control.
@@ -679,13 +706,31 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// ddlEmailedSupplier control.
+        /// ddlSupplierQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlEmailedSupplier;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSupplierQ;
+        
+        /// <summary>
+        /// Label12 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label12;
+        
+        /// <summary>
+        /// lblSupplierNameQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSupplierNameQ;
         
         /// <summary>
         /// Label13 control.
@@ -697,13 +742,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// Label14 control.
+        /// lblSupplierContactQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
+        protected global::System.Web.UI.WebControls.Label lblSupplierContactQ;
         
         /// <summary>
         /// Label15 control.
@@ -715,13 +760,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// Label17 control.
+        /// lblSupplierAddressQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
+        protected global::System.Web.UI.WebControls.Label lblSupplierAddressQ;
         
         /// <summary>
         /// Label18 control.
@@ -733,21 +778,48 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// Label19 control.
+        /// lblSupplierEmailQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label19;
+        protected global::System.Web.UI.WebControls.Label lblSupplierEmailQ;
         
         /// <summary>
-        /// Button1 control.
+        /// lblRfqNoQ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Label lblRfqNoQ;
+        
+        /// <summary>
+        /// lblRfqDateQ control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRfqDateQ;
+        
+        /// <summary>
+        /// gvQutation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvQutation;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
     }
 }
