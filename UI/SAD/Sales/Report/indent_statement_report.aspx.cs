@@ -16,7 +16,7 @@ namespace UI.SAD.Sales.Report
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/SCM/Indent_Statement_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/indent_status_report_new?rs:Embed=true');", true);
         }
     }
 }

@@ -423,6 +423,7 @@
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
+    <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
@@ -3200,6 +3201,13 @@
     </Compile>
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Previous_History.aspx.cs">
+      <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Previous_History.aspx.designer.cs">
+      <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\Family_Day_Report.aspx.cs">
       <DependentUpon>Family_Day_Report.aspx</DependentUpon>
