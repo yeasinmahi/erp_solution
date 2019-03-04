@@ -3291,8 +3291,7 @@ namespace SCM_DAL.ComparativeStatementTDSTableAdapters {
             this._commandCollection[0].CommandText = "dbo.sprQuotation";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuotationNo", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@quotationNo", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intRfqId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@supplierId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCurrency", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3305,64 +3304,58 @@ namespace SCM_DAL.ComparativeStatementTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ComparativeStatementTDS.sprQuotationDataTable GetData(global::System.Nullable<int> intUnitID, string QuotationNo, global::System.Nullable<int> intRfqId, global::System.Nullable<int> supplierId, global::System.Nullable<int> intCurrency, object xmlString, global::System.Nullable<int> enroll, ref string msg) {
+        public virtual ComparativeStatementTDS.sprQuotationDataTable GetData(string quotationNo, global::System.Nullable<int> intRfqId, global::System.Nullable<int> supplierId, global::System.Nullable<int> intCurrency, object xmlString, global::System.Nullable<int> enroll, ref string msg) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intUnitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUnitID.Value));
-            }
-            else {
+            if ((quotationNo == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((QuotationNo == null)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(QuotationNo));
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(quotationNo));
             }
             if ((intRfqId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intRfqId.Value));
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intRfqId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((supplierId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(supplierId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((supplierId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(supplierId.Value));
+            if ((intCurrency.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intCurrency.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((intCurrency.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(intCurrency.Value));
-            }
-            else {
+            if ((xmlString == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((xmlString == null)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
             else {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((object)(xmlString));
+                this.Adapter.SelectCommand.Parameters[5].Value = ((object)(xmlString));
             }
             if ((enroll.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(enroll.Value));
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(enroll.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((msg == null)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(msg));
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(msg));
             }
             ComparativeStatementTDS.sprQuotationDataTable dataTable = new ComparativeStatementTDS.sprQuotationDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[8].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[8].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
                 msg = null;
             }
             else {
-                msg = ((string)(this.Adapter.SelectCommand.Parameters[8].Value));
+                msg = ((string)(this.Adapter.SelectCommand.Parameters[7].Value));
             }
             return dataTable;
         }

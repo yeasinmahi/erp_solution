@@ -64,13 +64,13 @@ namespace SCM_BLL
             }
 
         }
-        public string InsertQuotation(int intUnitId, string quotationNo,int intRfqId, int supplierId, int intCurrency ,string xmlString, int enroll)
+        public string InsertQuotation(string quotationNo,int intRfqId, int supplierId, int intCurrency ,string xmlString, int enroll)
         {
             string msg = string.Empty;
             try
             {
                 sprQuotationTableAdapter adp = new sprQuotationTableAdapter();
-                adp.GetData(intUnitId, quotationNo, intRfqId, supplierId, intCurrency, xmlString, enroll,
+                adp.GetData( quotationNo, intRfqId, supplierId, intCurrency, xmlString, enroll,
                     ref msg);
                 return msg;
             }

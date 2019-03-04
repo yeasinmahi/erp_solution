@@ -643,6 +643,7 @@ namespace UI.SCM
         public void LoadCurrencyQuotation()
         {
             ddlCurrencyQ.LoadWithSelect(_currency.GetCurrency(), "id", "strName");
+            ddlCurrencyQ.SetSelectedValue("1");
         }
         public void LoadRfqData(int rfqId)
         {
@@ -683,14 +684,23 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 int supplierId = ddlSupplierQ.SelectedValue();
+                if (supplierId<1)
+                {
+                    Toaster("You have to select Supplier First",Common.TosterType.Warning);
+                    return;
+                }
                 int currencyId = ddlCurrencyQ.SelectedValue();
+                if (currencyId < 1)
+                {
+                    Toaster("You have to select Currency First", Common.TosterType.Warning);
+                    return;
+                }
                 string quotation = txtQutationNo.Text;
-                int unitId = 1;
                 List<object> objects = GetQutationGridViewData();
                 if (objects.Count > 0)
                 {
                     string xml = XmlParser.GetXml("Quotation", "Item", objects, out string _);
-                    string msg = _bll.InsertQuotation(unitId, quotation, rfqId, supplierId, currencyId, xml, Enroll);
+                    string msg = _bll.InsertQuotation(quotation, rfqId, supplierId, currencyId, xml, Enroll);
                     if (msg.ToLower().Contains("success"))
                     {
                         Toaster(msg, Common.TosterType.Success);
