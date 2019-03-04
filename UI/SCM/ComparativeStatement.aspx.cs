@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL.DropDown;
 using EmailService;
 using SCM_BLL;
 using UI.ClassFiles;
@@ -18,6 +19,7 @@ namespace UI.SCM
         private readonly PoGenerate_BLL _objPo = new PoGenerate_BLL();
         private readonly SupplierBll _supplier = new SupplierBll();
         private readonly ComparativeStatementBll _bll = new ComparativeStatementBll();
+        private readonly Currency _currency = new Currency();
         private int _intWh, _indentNo;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -630,7 +632,7 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 LoadSupplierQuotation(rfqId);
-
+                LoadCurrencyQuotation();
             }
             else
             {
@@ -638,7 +640,10 @@ namespace UI.SCM
             }
 
         }
-
+        public void LoadCurrencyQuotation()
+        {
+            ddlCurrencyQ.LoadWithSelect(_currency.GetCurrency(), "id", "strName");
+        }
         public void LoadRfqData(int rfqId)
         {
             DataTable dt = _bll.GetRfq(rfqId);
@@ -669,7 +674,76 @@ namespace UI.SCM
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            string rfq = txtRfqQuotation.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                int supplierId = ddlSupplierQ.SelectedValue();
+                int currencyId = ddlCurrencyQ.SelectedValue();
+                string quotation = txtQutationNo.Text;
+                int unitId = 1;
+                List<object> objects = GetQutationGridViewData();
+                if (objects.Count > 0)
+                {
+                    string xml = XmlParser.GetXml("Quotation", "Item", objects, out string _);
+                    string msg = _bll.InsertQuotation(unitId, quotation, rfqId, supplierId, currencyId, xml, Enroll);
+                    if (msg.ToLower().Contains("success"))
+                    {
+                        Toaster(msg, Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster(msg, Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    Toaster("Please Input All Quantity Properly",Common.TosterType.Warning);
+                }
 
+                
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
+        }
+
+        public List<object> GetQutationGridViewData()
+        {
+            List<object> objects = new List<object>();
+            foreach (GridViewRow row in gvQutation.Rows)
+            {
+                string itemId = ((Label)row.FindControl("lblItemId")).Text;
+                string numRfqQty = ((Label)row.FindControl("lblRfqQuantity")).Text;
+                string numRate = ((TextBox)row.FindControl("rate")).Text;
+                string numTotal = ((TextBox)row.FindControl("total")).Text;
+                if (string.IsNullOrWhiteSpace(numRfqQty))
+                {
+                    continue;
+                }
+                if (double.TryParse(numRfqQty, out double _))
+                {
+                    dynamic obj = new
+                    {
+                        itemId,
+                        numRfqQty,
+                        numRate,
+                        numTotal
+                    };
+                    objects.Add(obj);
+                }
+                else
+                {
+                    return objects;
+                }
+
+            }
+            return objects;
         }
 
         #endregion

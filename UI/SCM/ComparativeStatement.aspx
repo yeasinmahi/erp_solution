@@ -433,7 +433,7 @@
                                                 <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="RFQ:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:TextBox ID="txtRfq" runat="server"></asp:TextBox>
-                                                <asp:Button runat="server" Text="Show" ID="btnRFQ" OnClick="btnRFQ_OnClick"/>
+                                                <asp:Button runat="server" Text="Show" ID="btnRFQ" OnClick="btnRFQ_OnClick" />
                                             </td>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Supplier:"></asp:Label></td>
@@ -648,14 +648,15 @@
                                                 <asp:Label ID="Label10" runat="server" CssClass="lbl" Text="RFQ:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:TextBox ID="txtRfqQuotation" runat="server"></asp:TextBox>
-                                                <asp:Button runat="server" Text="Show" ID="btnShowRFQQuotation" OnClick="btnShowRFQQuotation_OnClick"/>
+                                                <asp:Button runat="server" Text="Show" ID="btnShowRFQQuotation" OnClick="btnShowRFQQuotation_OnClick" />
                                             </td>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Supplier:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:DropDownList ID="ddlSupplierQ" runat="server" Font-Bold="true" CssClass="ddList" AutoPostBack="True" OnSelectedIndexChanged="ddlSupplierQ_OnSelectedIndexChanged"></asp:DropDownList>
                                             </td>
-
+                                        </tr>
+                                        <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label12" runat="server" CssClass="lbl" Text="Supplier Name:"></asp:Label></td>
                                             <td style="text-align: left;">
@@ -666,15 +667,14 @@
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierContactQ" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
-                                         <%--   <td style="text-align: center; font: bold 13px verdana;">
+                                            <%--   <td style="text-align: center; font: bold 13px verdana;">
                                                 <a id="btnprint" href="#" class="nextclick" style="cursor: pointer" onclick="Print()">Print</a>
                                             </td>--%>
-
                                         </tr>
                                         <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label15" runat="server" CssClass="lbl" Text="Supplier Address:"></asp:Label></td>
-                                            <td colspan="3" style="text-align: left;">
+                                            <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierAddressQ" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
                                             <td style="text-align: right;">
@@ -682,10 +682,22 @@
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierEmailQ" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
-                                            
+
                                             <%--<td>
                                                 <asp:Button runat="server" ID="btnSentEmail" Text="SentEmail" OnClick="btnSentEmail_OnClick"/>
                                             </td>--%>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label19" runat="server" CssClass="lbl" Text="Quotation No:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:TextBox ID="txtQutationNo" runat="server"></asp:TextBox>
+                                            </td>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label17" runat="server" CssClass="lbl" Text="Currency:"></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:DropDownList ID="ddlCurrencyQ" runat="server" Font-Bold="true" CssClass="ddList" ></asp:DropDownList>
+                                            </td>
                                         </tr>
                                     </table>
                                     <table>
@@ -707,82 +719,82 @@
                                                     <asp:Label ID="Label8" runat="server" Text="Due Date:"></asp:Label><asp:Label ID="lbldteDue" Font-Bold="true" Font-Size="small" runat="server"></asp:Label></td>--%>
                                         </tr>
                                     </table>
-                                    <table style="width: 800px">
-                                            <tr>
-                                                <td>
-                                                    <asp:GridView ID="gvQutation" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"
-                                                        BorderWidth="1px" CellPadding="5" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" BorderStyle="Solid" FooterStyle-BackColor="#999999" ForeColor="Black">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <asp:GridView ID="gvQutation" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"
+                                                    BorderWidth="1px" CellPadding="5" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" BorderStyle="Solid" FooterStyle-BackColor="#999999" ForeColor="Black">
 
-                                                        <AlternatingRowStyle BackColor="#CCCCCC" />
+                                                    <AlternatingRowStyle BackColor="#CCCCCC" />
 
-                                                        <Columns>
-                                                            <asp:TemplateField HeaderText="SL">
-                                                                <ItemStyle HorizontalAlign="center" Width="30px" />
-                                                                <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
-                                                            </asp:TemplateField>
+                                                    <Columns>
+                                                        <asp:TemplateField HeaderText="SL">
+                                                            <ItemStyle HorizontalAlign="center" Width="30px" />
+                                                            <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                                        </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Indent Id" SortExpression="indentId" Visible="true">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblIndentId" runat="server" Text='<%# Bind("intIndentId") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Left" Width="45px" />
-                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Indent Id" SortExpression="indentId" Visible="true">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblIndentId" runat="server" Text='<%# Bind("intIndentId") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                                        </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Item ID" SortExpression="ItemId">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemId") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Left" />
-                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Item ID" SortExpression="ItemId">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemId") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Left" />
+                                                        </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strItemName") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="left" Width="250px" />
-                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strItemName") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="left" Width="250px" />
+                                                        </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="UoM" Visible="true" ItemStyle-HorizontalAlign="center" SortExpression="strUom">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUom") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="center" />
-                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="UoM" Visible="true" ItemStyle-HorizontalAlign="center" SortExpression="strUom">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUom") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="center" />
+                                                        </asp:TemplateField>
 
-                                                            <%--<asp:TemplateField HeaderText="HS Code" ItemStyle-HorizontalAlign="right" SortExpression="strHsCode">
+                                                        <%--<asp:TemplateField HeaderText="HS Code" ItemStyle-HorizontalAlign="right" SortExpression="strHsCode">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblHsCode" runat="server" Text='<%# Bind("strHsCode") %>'></asp:Label>
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                             </asp:TemplateField>--%>
 
-                                                            <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblRemarks" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strRemarks") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Right" Width="50px" />
-                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblRemarks" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strRemarks") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Right" Width="50px" />
+                                                        </asp:TemplateField>
 
-                                                            <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
-                                                                <ItemTemplate>
-                                                                    <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numRfqQty") %>'></asp:Label>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Right" Width="50px" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox runat="server" Width="50px"></asp:TextBox>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" Width="50px" />
-                                                            </asp:TemplateField>
-                                                            <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right">
-                                                                <ItemTemplate>
-                                                                    <asp:TextBox runat="server" Width="80px"></asp:TextBox>
-                                                                </ItemTemplate>
-                                                                <ItemStyle HorizontalAlign="Center" Width="80px" />
-                                                            </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numRfqQty") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Right" Width="50px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox runat="server" ID="rate" Width="50px"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                                        </asp:TemplateField>
+                                                        <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right">
+                                                            <ItemTemplate>
+                                                                <asp:TextBox runat="server"  id="total" Width="80px"></asp:TextBox>
+                                                            </ItemTemplate>
+                                                            <ItemStyle HorizontalAlign="Center" Width="80px" />
+                                                        </asp:TemplateField>
 
-                                                            <%--<asp:TemplateField HeaderText="PO Issue" ItemStyle-HorizontalAlign="right" SortExpression="numPoIssued">
+                                                        <%--<asp:TemplateField HeaderText="PO Issue" ItemStyle-HorizontalAlign="right" SortExpression="numPoIssued">
                                                                 <ItemTemplate>
                                                                     <asp:Label ID="lblPoIssue" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numPoIssued") %>'></asp:Label>
                                                                 </ItemTemplate>
@@ -795,19 +807,19 @@
                                                                 </ItemTemplate>
                                                                 <ItemStyle HorizontalAlign="Right" />
                                                             </asp:TemplateField>--%>
-                                                        </Columns>
-                                                        <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-                                                        <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                                        <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                                    </asp:GridView>
-                                                </td>
-                                                <tr>
-                                                   <td>
-                                                       <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_OnClick"/>
-                                                   </td> 
-                                                </tr>
-                                            </tr>
-                                        </table>
+                                                    </Columns>
+                                                    <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right">
+                                                <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_OnClick" />
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </asp:View>
                         </asp:MultiView>

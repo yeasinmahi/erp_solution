@@ -379,6 +379,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Currency.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Currency.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DropDown\CostCenterTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -993,6 +998,17 @@
     </None>
     <None Include="Accounts\Bank\BankInfoTDS.xss">
       <DependentUpon>BankInfoTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Currency.xsc">
+      <DependentUpon>Currency.xsd</DependentUpon>
+    </None>
+    <None Include="Currency.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Currency.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Currency.xss">
+      <DependentUpon>Currency.xsd</DependentUpon>
     </None>
     <None Include="DropDown\CostCenterTDS.xsc">
       <DependentUpon>CostCenterTDS.xsd</DependentUpon>
