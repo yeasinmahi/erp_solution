@@ -118,8 +118,8 @@ namespace UI.SCM
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvIndent.UnLoad();
-            dgvIndentDet.UnLoad();
+            gvIndent.UnLoad();
+            gvIndentDetails.UnLoad();
 
             _dt = _objPo.GetUnitID(ddlWH.SelectedValue());
             if (_dt.Rows.Count > 0)
@@ -139,7 +139,7 @@ namespace UI.SCM
         {
             try
             {
-                dgvIndent.UnLoad();
+                gvIndent.UnLoad();
 
                 _intWh = ddlWH.SelectedValue();
                 hdnWHId.Value = _intWh.ToString();
@@ -159,13 +159,13 @@ namespace UI.SCM
                     ddlWH.SetSelectedValue(hdnWHId.Value);
                     ddlDepts.SetSelectedText(type);
 
-                    dgvIndent.DataSource = _dt;
-                    dgvIndent.DataBind();
+                    gvIndent.DataSource = _dt;
+                    gvIndent.DataBind();
                     _dt.Clear();
                 }
                 else
                 {
-                    dgvIndent.UnLoad();
+                    gvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
@@ -181,8 +181,8 @@ namespace UI.SCM
         {
             try
             {
-                dgvIndent.UnLoad();
-                dgvIndent.DataBind();
+                gvIndent.UnLoad();
+                gvIndent.DataBind();
 
                 _intWh = ddlWH.SelectedValue();
                 hdnWHId.Value = _intWh.ToString();
@@ -196,13 +196,13 @@ namespace UI.SCM
                 _dt = _objPo.GetPoData(2, xmlData, _intWh, 0, dteFrom, Enroll);
                 if (_dt.Rows.Count > 0)
                 {
-                    dgvIndent.DataSource = _dt;
-                    dgvIndent.DataBind();
+                    gvIndent.DataSource = _dt;
+                    gvIndent.DataBind();
                     _dt.Clear();
                 }
                 else
                 {
-                    dgvIndent.UnLoad();
+                    gvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
@@ -253,7 +253,7 @@ namespace UI.SCM
                     Tab1.CssClass = "Initial";
                     Tab2.CssClass = "Clicked";
                     MainView.ActiveViewIndex = 1;
-                    dgvIndentDet.Loads(_dt);
+                    gvIndentDetails.Loads(_dt);
                     Session["indentItems"] = _dt;
                 }
                 else
@@ -338,7 +338,7 @@ namespace UI.SCM
                 {
                     _dt = _objPo.GetPoData(4, stringXml, _intWh, _indentNo, DateTime.Now, Enroll); // Indent Detalis
                     dt1.Merge(_dt);
-                    dgvIndentDet.Loads(dt1);
+                    gvIndentDetails.Loads(dt1);
                 }
                 else
                 {
@@ -354,12 +354,12 @@ namespace UI.SCM
         {
             try
             {
-                int itemId = Convert.ToInt32((dgvIndentDet.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
+                int itemId = Convert.ToInt32((gvIndentDetails.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
                 if (Session["indentItems"] != null)
                 {
                     _dt = (DataTable)Session["indentItems"];
                     _dt.RemoveRow("ItemId", itemId);
-                    dgvIndentDet.Loads(_dt);
+                    gvIndentDetails.Loads(_dt);
                 }
                 else
                 {
@@ -434,7 +434,7 @@ namespace UI.SCM
         public List<object> GetGridViewData()
         {
             List<object> objects = new List<object>();
-            foreach (GridViewRow row in dgvIndentDet.Rows)
+            foreach (GridViewRow row in gvIndentDetails.Rows)
             {
                 string indentId = ((Label)row.FindControl("lblIndentId")).Text;
                 string itemId = ((Label)row.FindControl("lblItemId")).Text;
@@ -650,7 +650,7 @@ namespace UI.SCM
             DataTable dt = _bll.GetRfq(rfqId);
             if (dt.Rows.Count > 0)
             {
-                gvQutation.Loads(dt);
+                gvQuotation.Loads(dt);
                 lblRfqNoQ.Text = dt.Rows[0]["intRfqId"].ToString();
                 lblRfqDateQ.Text = dt.Rows[0]["dteRfqDate"].ToString();
             }
@@ -726,7 +726,7 @@ namespace UI.SCM
         public List<object> GetQutationGridViewData()
         {
             List<object> objects = new List<object>();
-            foreach (GridViewRow row in gvQutation.Rows)
+            foreach (GridViewRow row in gvQuotation.Rows)
             {
                 string itemId = ((Label)row.FindControl("lblItemId")).Text;
                 string numRfqQty = ((Label)row.FindControl("lblRfqQuantity")).Text;

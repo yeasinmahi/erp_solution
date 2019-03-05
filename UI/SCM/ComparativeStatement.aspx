@@ -104,7 +104,7 @@
                             BackColor="#FFCC99" OnClick="Tab2_Click" />
                         <asp:Button Text="RFQ" BorderStyle="Solid" ID="Tab3" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab3_OnClick" />
-                        <asp:Button Text="Qutation" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
+                        <asp:Button Text="Quotation" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab4_OnClick" />
 
 
@@ -156,7 +156,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="4">
-                                                <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
+                                                <asp:GridView ID="gvIndent" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
                                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="SL No.">
@@ -300,7 +300,7 @@
                                         <table>
                                             <tr>
                                                 <td>
-                                                    <asp:GridView ID="dgvIndentDet" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvIndentDet_RowDeleting" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"
+                                                    <asp:GridView ID="gvIndentDetails" runat="server" AutoGenerateColumns="False" OnRowDeleting="dgvIndentDet_RowDeleting" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"
                                                         BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnRowDataBound="dgvIndentDet_OnRowDataBound">
                                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                                         <Columns>
@@ -440,6 +440,8 @@
                                             <td style="text-align: left;">
                                                 <asp:DropDownList ID="ddlSupplier" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlSupplier_OnSelectedIndexChanged"></asp:DropDownList>
                                             </td>
+                                            </tr>
+                                        <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Supplier Name:"></asp:Label></td>
                                             <td style="text-align: left;">
@@ -462,16 +464,18 @@
                                             <td colspan="3" style="text-align: left;">
                                                 <asp:Label ID="lblSupplierAddress" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
+                                            </tr>
+                                        <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Supplier Email:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:Label ID="lblSupplierEmail" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
 
-                                            <td>
+                                            <td colspan="2" style="text-align: right;" >
                                                 <asp:Button ID="btnEmail" runat="server" Text="Email" OnClick="btnEmail_OnClick" />
                                             </td>
-                                            <%--<td>
+                                            <%--<td>2
                                                 <asp:Button runat="server" ID="btnSentEmail" Text="SentEmail" OnClick="btnSentEmail_OnClick"/>
                                             </td>--%>
                                         </tr>
@@ -722,7 +726,7 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <asp:GridView ID="gvQutation" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"
+                                                <asp:GridView ID="gvQuotation" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"
                                                     BorderWidth="1px" CellPadding="5" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" BorderStyle="Solid" FooterStyle-BackColor="#999999" ForeColor="Black">
 
                                                     <AlternatingRowStyle BackColor="#CCCCCC" />

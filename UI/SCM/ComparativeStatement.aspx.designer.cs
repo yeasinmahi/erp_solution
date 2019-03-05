@@ -301,13 +301,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// dgvIndent control.
+        /// gvIndent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvIndent;
+        protected global::System.Web.UI.WebControls.GridView gvIndent;
         
         /// <summary>
         /// View2 control.
@@ -436,13 +436,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label lblInDueDate;
         
         /// <summary>
-        /// dgvIndentDet control.
+        /// gvIndentDetails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvIndentDet;
+        protected global::System.Web.UI.WebControls.GridView gvIndentDetails;
         
         /// <summary>
         /// View3 control.
@@ -841,13 +841,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label lblRfqDateQ;
         
         /// <summary>
-        /// gvQutation control.
+        /// gvQuotation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvQutation;
+        protected global::System.Web.UI.WebControls.GridView gvQuotation;
         
         /// <summary>
         /// btnSubmit control.
