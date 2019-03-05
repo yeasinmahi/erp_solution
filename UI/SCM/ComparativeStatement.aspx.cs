@@ -675,7 +675,7 @@ namespace UI.SCM
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            string rfq = txtRfqQuotation.Text;
+            string rfq = lblRfqNoQ.Text;
             if (string.IsNullOrWhiteSpace(rfq))
             {
                 Toaster("RFQ id can not be blank", Common.TosterType.Warning);
