@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL.DropDown;
 using EmailService;
 using SCM_BLL;
 using UI.ClassFiles;
@@ -18,11 +19,12 @@ namespace UI.SCM
         private readonly PoGenerate_BLL _objPo = new PoGenerate_BLL();
         private readonly SupplierBll _supplier = new SupplierBll();
         private readonly ComparativeStatementBll _bll = new ComparativeStatementBll();
+        private readonly Currency _currency = new Currency();
         private int _intWh, _indentNo;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             if (!IsPostBack)
             {
                 Session["indentItems"] = null;
@@ -37,7 +39,7 @@ namespace UI.SCM
 
         private void Clear()
         {
-            List<Control> excepControlses = new List<Control>{ txtDteTo,txtDtefroms};
+            List<Control> excepControlses = new List<Control> { txtDteTo, txtDtefroms };
             UpdatePanel0.Controls.Clear(excepControlses);
 
 
@@ -116,8 +118,8 @@ namespace UI.SCM
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvIndent.UnLoad();
-            dgvIndentDet.UnLoad();
+            gvIndent.UnLoad();
+            gvIndentDetails.UnLoad();
 
             _dt = _objPo.GetUnitID(ddlWH.SelectedValue());
             if (_dt.Rows.Count > 0)
@@ -137,7 +139,7 @@ namespace UI.SCM
         {
             try
             {
-                dgvIndent.UnLoad();
+                gvIndent.UnLoad();
 
                 _intWh = ddlWH.SelectedValue();
                 hdnWHId.Value = _intWh.ToString();
@@ -157,13 +159,13 @@ namespace UI.SCM
                     ddlWH.SetSelectedValue(hdnWHId.Value);
                     ddlDepts.SetSelectedText(type);
 
-                    dgvIndent.DataSource = _dt;
-                    dgvIndent.DataBind();
+                    gvIndent.DataSource = _dt;
+                    gvIndent.DataBind();
                     _dt.Clear();
                 }
                 else
                 {
-                    dgvIndent.UnLoad();
+                    gvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
@@ -179,8 +181,8 @@ namespace UI.SCM
         {
             try
             {
-                dgvIndent.UnLoad();
-                dgvIndent.DataBind();
+                gvIndent.UnLoad();
+                gvIndent.DataBind();
 
                 _intWh = ddlWH.SelectedValue();
                 hdnWHId.Value = _intWh.ToString();
@@ -194,13 +196,13 @@ namespace UI.SCM
                 _dt = _objPo.GetPoData(2, xmlData, _intWh, 0, dteFrom, Enroll);
                 if (_dt.Rows.Count > 0)
                 {
-                    dgvIndent.DataSource = _dt;
-                    dgvIndent.DataBind();
+                    gvIndent.DataSource = _dt;
+                    gvIndent.DataBind();
                     _dt.Clear();
                 }
                 else
                 {
-                    dgvIndent.UnLoad();
+                    gvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
@@ -251,7 +253,7 @@ namespace UI.SCM
                     Tab1.CssClass = "Initial";
                     Tab2.CssClass = "Clicked";
                     MainView.ActiveViewIndex = 1;
-                    dgvIndentDet.Loads(_dt);
+                    gvIndentDetails.Loads(_dt);
                     Session["indentItems"] = _dt;
                 }
                 else
@@ -336,7 +338,7 @@ namespace UI.SCM
                 {
                     _dt = _objPo.GetPoData(4, stringXml, _intWh, _indentNo, DateTime.Now, Enroll); // Indent Detalis
                     dt1.Merge(_dt);
-                    dgvIndentDet.Loads(dt1);
+                    gvIndentDetails.Loads(dt1);
                 }
                 else
                 {
@@ -352,12 +354,12 @@ namespace UI.SCM
         {
             try
             {
-                int itemId = Convert.ToInt32((dgvIndentDet.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
+                int itemId = Convert.ToInt32((gvIndentDetails.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
                 if (Session["indentItems"] != null)
                 {
                     _dt = (DataTable)Session["indentItems"];
                     _dt.RemoveRow("ItemId", itemId);
-                    dgvIndentDet.Loads(_dt);
+                    gvIndentDetails.Loads(_dt);
                 }
                 else
                 {
@@ -384,7 +386,7 @@ namespace UI.SCM
             //lblUnitName.Text = hdnUnitName.Value;
             lblWH.Text = hdnWHName.Value;
             lblRfqBy.Text = UserEmail;
-            
+
             if (JobStationId == 28)
             {
                 imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png";
@@ -400,7 +402,7 @@ namespace UI.SCM
             if (objects.Count > 0)
             {
                 string xml = XmlParser.GetXml("RFQ", "Item", objects, out string _);
-                DataTable dt = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll,out string msg);
+                DataTable dt = _bll.InsertRfq(Convert.ToInt32(hdnUnitId.Value), Convert.ToInt32(hdnWHId.Value), xml, Enroll, out string msg);
                 if (msg.ToLower().Contains("success"))
                 {
                     LoadRfqView();
@@ -425,14 +427,14 @@ namespace UI.SCM
             }
             else
             {
-                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
         }
-        
+
         public List<object> GetGridViewData()
         {
             List<object> objects = new List<object>();
-            foreach (GridViewRow row in dgvIndentDet.Rows)
+            foreach (GridViewRow row in gvIndentDetails.Rows)
             {
                 string indentId = ((Label)row.FindControl("lblIndentId")).Text;
                 string itemId = ((Label)row.FindControl("lblItemId")).Text;
@@ -459,7 +461,7 @@ namespace UI.SCM
                 {
                     return objects;
                 }
-                
+
             }
             return objects;
         }
@@ -480,11 +482,38 @@ namespace UI.SCM
 
         #region RFQ
 
+        protected void ddlSupplier_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int supplierId = ddlSupplier.SelectedValue();
+            if (supplierId != 0)
+            {
+                _dt = _supplier.GetSupplierInfo(2, supplierId, out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    lblSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
+                    lblSupplierContact.Text = _dt.Rows[0]["strOrgContactNo"].ToString();
+                    lblSupplierEmail.Text = _dt.Rows[0]["strOrgMail"].ToString();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                lblSupplierName.Text = string.Empty;
+                lblSupplierAddress.Text = string.Empty;
+                lblSupplierContact.Text = string.Empty;
+                lblSupplierEmail.Text = string.Empty;
+            }
+            
+        }
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
-            if (ddlSupplier.SelectedValue() <1)
+            if (ddlSupplier.SelectedValue() < 1)
             {
-                Toaster("Please Select Supplier",Common.TosterType.Warning);
+                Toaster("Please Select Supplier", Common.TosterType.Warning);
                 return;
             }
             string email = lblSupplierEmail.Text;
@@ -522,16 +551,16 @@ namespace UI.SCM
                                 }
                                 else
                                 {
-                                    Toaster("Email Sent Successfully but can not update email sent status.",Common.TosterType.Warning);
+                                    Toaster("Email Sent Successfully but can not update email sent status.", Common.TosterType.Warning);
                                 }
-                                
+
                             }
                             else
                             {
                                 Toaster(options.Exceptions.Message, Common.TosterType.Error);
                             }
 
-                            
+
                         }
                         else
                         {
@@ -552,32 +581,184 @@ namespace UI.SCM
             }
             else
             {
-                Toaster("This supplier have no email address to send",Common.TosterType.Warning);
+                Toaster("This supplier have no email address to send", Common.TosterType.Warning);
             }
         }
+        protected void btnRFQ_OnClick(object sender, EventArgs e)
+        {
 
+        }
         #endregion
 
 
-        protected void ddlSupplier_OnSelectedIndexChanged(object sender, EventArgs e)
+        #region Quotation
+
+        protected void ddlSupplierQ_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            int supplierId = ddlSupplier.SelectedValue();
-            _dt = _supplier.GetSupplierInfo(2, supplierId, out string message);
+            int supplierId = ddlSupplierQ.SelectedValue();
+            if (supplierId != 0)
+            {
+                _dt = _supplier.GetSupplierInfo(2, supplierId, out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    lblSupplierNameQ.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    lblSupplierAddressQ.Text = _dt.Rows[0]["strOrgAddress"].ToString();
+                    lblSupplierContactQ.Text = _dt.Rows[0]["strOrgContactNo"].ToString();
+                    lblSupplierEmailQ.Text = _dt.Rows[0]["strOrgMail"].ToString();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                lblSupplierNameQ.Text = string.Empty;
+                lblSupplierAddressQ.Text = string.Empty;
+                lblSupplierContactQ.Text = string.Empty;
+                lblSupplierEmailQ.Text = string.Empty;
+            }
+            
+        }
+
+        protected void btnShowRFQQuotation_OnClick(object sender, EventArgs e)
+        {
+            string rfq = txtRfqQuotation.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank",Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                LoadSupplierQuotation(rfqId);
+                LoadCurrencyQuotation();
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly",Common.TosterType.Warning);
+            }
+
+        }
+        public void LoadCurrencyQuotation()
+        {
+            ddlCurrencyQ.LoadWithSelect(_currency.GetCurrency(), "id", "strName");
+            ddlCurrencyQ.SetSelectedValue("1");
+        }
+        public void LoadRfqData(int rfqId)
+        {
+            DataTable dt = _bll.GetRfq(rfqId);
+            if (dt.Rows.Count > 0)
+            {
+                gvQuotation.Loads(dt);
+                lblRfqNoQ.Text = dt.Rows[0]["intRfqId"].ToString();
+                lblRfqDateQ.Text = dt.Rows[0]["dteRfqDate"].ToString();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+            }
+        }
+
+        public void LoadSupplierQuotation(int rfqId)
+        {
+            _dt = _supplier.GetSupplierInfo(3, rfqId, out string message);
             if (_dt.Rows.Count > 0)
             {
-                lblSupplierName.Text = _dt.Rows[0]["strSupplierName"].ToString();
-                lblSupplierAddress.Text = _dt.Rows[0]["strOrgAddress"].ToString();
-                lblSupplierContact.Text = _dt.Rows[0]["strOrgContactNo"].ToString();
-                lblSupplierEmail.Text = _dt.Rows[0]["strOrgMail"].ToString();
+                ddlSupplierQ.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                LoadRfqData(rfqId);
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
+        }
+        protected void btnSubmit_OnClick(object sender, EventArgs e)
+        {
+            string rfq = txtRfqQuotation.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                int supplierId = ddlSupplierQ.SelectedValue();
+                if (supplierId<1)
+                {
+                    Toaster("You have to select Supplier First",Common.TosterType.Warning);
+                    return;
+                }
+                int currencyId = ddlCurrencyQ.SelectedValue();
+                if (currencyId < 1)
+                {
+                    Toaster("You have to select Currency First", Common.TosterType.Warning);
+                    return;
+                }
+                string quotation = txtQutationNo.Text;
+                List<object> objects = GetQutationGridViewData();
+                if (objects.Count > 0)
+                {
+                    string xml = XmlParser.GetXml("Quotation", "Item", objects, out string _);
+                    string msg = _bll.InsertQuotation(quotation, rfqId, supplierId, currencyId, xml, Enroll);
+                    if (msg.ToLower().Contains("success"))
+                    {
+                        Toaster(msg, Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster(msg, Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    Toaster("Please Input All Quantity Properly",Common.TosterType.Warning);
+                }
 
+                
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
         }
 
+        public List<object> GetQutationGridViewData()
+        {
+            List<object> objects = new List<object>();
+            foreach (GridViewRow row in gvQuotation.Rows)
+            {
+                string itemId = ((Label)row.FindControl("lblItemId")).Text;
+                string numRfqQty = ((Label)row.FindControl("lblRfqQuantity")).Text;
+                string numRate = ((TextBox)row.FindControl("rate")).Text;
+                string numTotal = ((TextBox)row.FindControl("total")).Text;
+                if (string.IsNullOrWhiteSpace(numRfqQty))
+                {
+                    continue;
+                }
+                if (double.TryParse(numRfqQty, out double _))
+                {
+                    dynamic obj = new
+                    {
+                        itemId,
+                        numRfqQty,
+                        numRate,
+                        numTotal
+                    };
+                    objects.Add(obj);
+                }
+                else
+                {
+                    return objects;
+                }
 
-        
+            }
+            return objects;
+        }
+
+        #endregion
+
+
+
     }
 }

@@ -51,5 +51,35 @@ namespace SCM_BLL
             return isUpdate;
 
         }
+        public DataTable GetRfq(int intRfqId)
+        {
+            try
+            {
+                sprGetRFQTableAdapter adp = new sprGetRFQTableAdapter();
+                return adp.GetData(intRfqId);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+        }
+        public string InsertQuotation(string quotationNo,int intRfqId, int supplierId, int intCurrency ,string xmlString, int enroll)
+        {
+            string msg = string.Empty;
+            try
+            {
+                sprQuotationTableAdapter adp = new sprQuotationTableAdapter();
+                adp.GetData( quotationNo, intRfqId, supplierId, intCurrency, xmlString, enroll,
+                    ref msg);
+                return msg;
+            }
+            catch (Exception e)
+            {
+
+                return e.Message;
+            }
+
+        }
     }
 }
