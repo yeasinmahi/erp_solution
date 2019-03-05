@@ -22,8 +22,8 @@ namespace UI.Asset
         AssetParking_BLL parking = new AssetParking_BLL();
         Assetregister_BLL objregister = new Assetregister_BLL();
         DataTable dt = new DataTable(); 
-        int unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, ponumber, userenroll, depMethode, intItemid, intMrrId, intPoID, enroll, recieveqty;
-        decimal invoicevalue, landedcost, otherCost, accusitioncost, depRate, recommandlife, totalaccdep; 
+        int unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, ponumber, userenroll, depMethode, intItemid, intMrrId, intPoID, enroll;
+        decimal invoicevalue, landedcost, otherCost, accusitioncost, depRate, recommandlife, totalaccdep, recieveqty; 
         DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
          
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
@@ -225,7 +225,7 @@ namespace UI.Asset
                 try { asettype = int.Parse(ddlAssetType.SelectedValue); } catch { asettype = 1; }
                 try { mazorcategory = int.Parse(ddlMajorCat.SelectedValue); } catch { mazorcategory = 1; }
                 try { minorcatagory1 = int.Parse(ddlMinorCate1.SelectedValue); } catch { minorcatagory1 = 1; }
-                try { minorcatagory2 = int.Parse(ddlMinorCate2.SelectedValue); } catch { minorcatagory2 = 1; }
+                try { minorcatagory2 = int.Parse(ddlMinorCate2.SelectedValue); } catch { minorcatagory2 = 0; }
                 try { coscenter = int.Parse(ddlCostCenter.SelectedValue); } catch { coscenter = 1; }
 
 
@@ -267,7 +267,7 @@ namespace UI.Asset
                  try { intItemid = int.Parse(hdnItemID.Value.ToString()); }catch { intItemid = 0; }
                  try { intMrrId = int.Parse(hdnMrrID.Value.ToString()); } catch { intMrrId = 0; }
                  try { intPoID = int.Parse(hdnPoID.Value.ToString()); } catch { intPoID = 0; }
-                try { recieveqty = int.Parse(txtAssetQty.Text.ToString()); } catch { recieveqty = 0; }
+                try { recieveqty = decimal.Parse(txtAssetQty.Text.ToString()); } catch { recieveqty = 0; }
 
                 if (ddlUnit.Enabled && recieveqty>0)
                 {
@@ -582,8 +582,7 @@ namespace UI.Asset
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
             var fd = log.GetFlogDetail(start, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-
+            Flogger.WriteDiagnostic(fd); 
             // starting performance tracker
             var tracker = new PerfTracker("Performance on Asset\\AssetManualRegistration btnSubmit_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
@@ -591,8 +590,7 @@ namespace UI.Asset
             {
                 ddlUnit.Enabled = false;
                 dlJobstation.Enabled = false;
-                txtPonumbers.Enabled = false;
-                
+                txtPonumbers.Enabled = false; 
 
                 LoadView();
                 hdnItemID.Value ="0".ToString();
@@ -653,6 +651,7 @@ namespace UI.Asset
                     try { txtHsCode.Text = pk.Rows[0]["strHSCode"].ToString(); } catch { }
                     try { txtIssueDate.Text = pk.Rows[0]["dteChallanDate"].ToString(); } catch { }
                     try { txtAssetQty.Text = hdnReceive.Value; } catch { }
+                    try { txtGrndDate.Text = pk.Rows[0]["MrrDate"].ToString(); } catch { }
                     try
                     {
                         txtProjectID.Text = pk.Rows[0]["projectid"].ToString();
