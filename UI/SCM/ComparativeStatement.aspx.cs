@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL.DropDown;
 using EmailService;
 using SCM_BLL;
 using UI.ClassFiles;
@@ -18,6 +19,7 @@ namespace UI.SCM
         private readonly PoGenerate_BLL _objPo = new PoGenerate_BLL();
         private readonly SupplierBll _supplier = new SupplierBll();
         private readonly ComparativeStatementBll _bll = new ComparativeStatementBll();
+        private readonly Currency _currency = new Currency();
         private int _intWh, _indentNo;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -116,8 +118,8 @@ namespace UI.SCM
         }
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dgvIndent.UnLoad();
-            dgvIndentDet.UnLoad();
+            gvIndent.UnLoad();
+            gvIndentDetails.UnLoad();
 
             _dt = _objPo.GetUnitID(ddlWH.SelectedValue());
             if (_dt.Rows.Count > 0)
@@ -137,7 +139,7 @@ namespace UI.SCM
         {
             try
             {
-                dgvIndent.UnLoad();
+                gvIndent.UnLoad();
 
                 _intWh = ddlWH.SelectedValue();
                 hdnWHId.Value = _intWh.ToString();
@@ -157,13 +159,13 @@ namespace UI.SCM
                     ddlWH.SetSelectedValue(hdnWHId.Value);
                     ddlDepts.SetSelectedText(type);
 
-                    dgvIndent.DataSource = _dt;
-                    dgvIndent.DataBind();
+                    gvIndent.DataSource = _dt;
+                    gvIndent.DataBind();
                     _dt.Clear();
                 }
                 else
                 {
-                    dgvIndent.UnLoad();
+                    gvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
@@ -179,8 +181,8 @@ namespace UI.SCM
         {
             try
             {
-                dgvIndent.UnLoad();
-                dgvIndent.DataBind();
+                gvIndent.UnLoad();
+                gvIndent.DataBind();
 
                 _intWh = ddlWH.SelectedValue();
                 hdnWHId.Value = _intWh.ToString();
@@ -194,13 +196,13 @@ namespace UI.SCM
                 _dt = _objPo.GetPoData(2, xmlData, _intWh, 0, dteFrom, Enroll);
                 if (_dt.Rows.Count > 0)
                 {
-                    dgvIndent.DataSource = _dt;
-                    dgvIndent.DataBind();
+                    gvIndent.DataSource = _dt;
+                    gvIndent.DataBind();
                     _dt.Clear();
                 }
                 else
                 {
-                    dgvIndent.UnLoad();
+                    gvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
@@ -251,7 +253,7 @@ namespace UI.SCM
                     Tab1.CssClass = "Initial";
                     Tab2.CssClass = "Clicked";
                     MainView.ActiveViewIndex = 1;
-                    dgvIndentDet.Loads(_dt);
+                    gvIndentDetails.Loads(_dt);
                     Session["indentItems"] = _dt;
                 }
                 else
@@ -336,7 +338,7 @@ namespace UI.SCM
                 {
                     _dt = _objPo.GetPoData(4, stringXml, _intWh, _indentNo, DateTime.Now, Enroll); // Indent Detalis
                     dt1.Merge(_dt);
-                    dgvIndentDet.Loads(dt1);
+                    gvIndentDetails.Loads(dt1);
                 }
                 else
                 {
@@ -352,12 +354,12 @@ namespace UI.SCM
         {
             try
             {
-                int itemId = Convert.ToInt32((dgvIndentDet.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
+                int itemId = Convert.ToInt32((gvIndentDetails.Rows[e.RowIndex].FindControl("lblItemId") as Label)?.Text);
                 if (Session["indentItems"] != null)
                 {
                     _dt = (DataTable)Session["indentItems"];
                     _dt.RemoveRow("ItemId", itemId);
-                    dgvIndentDet.Loads(_dt);
+                    gvIndentDetails.Loads(_dt);
                 }
                 else
                 {
@@ -432,7 +434,7 @@ namespace UI.SCM
         public List<object> GetGridViewData()
         {
             List<object> objects = new List<object>();
-            foreach (GridViewRow row in dgvIndentDet.Rows)
+            foreach (GridViewRow row in gvIndentDetails.Rows)
             {
                 string indentId = ((Label)row.FindControl("lblIndentId")).Text;
                 string itemId = ((Label)row.FindControl("lblItemId")).Text;
@@ -630,7 +632,7 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 LoadSupplierQuotation(rfqId);
-
+                LoadCurrencyQuotation();
             }
             else
             {
@@ -638,13 +640,17 @@ namespace UI.SCM
             }
 
         }
-
+        public void LoadCurrencyQuotation()
+        {
+            ddlCurrencyQ.LoadWithSelect(_currency.GetCurrency(), "id", "strName");
+            ddlCurrencyQ.SetSelectedValue("1");
+        }
         public void LoadRfqData(int rfqId)
         {
             DataTable dt = _bll.GetRfq(rfqId);
             if (dt.Rows.Count > 0)
             {
-                gvQutation.Loads(dt);
+                gvQuotation.Loads(dt);
                 lblRfqNoQ.Text = dt.Rows[0]["intRfqId"].ToString();
                 lblRfqDateQ.Text = dt.Rows[0]["dteRfqDate"].ToString();
             }
@@ -669,7 +675,85 @@ namespace UI.SCM
         }
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
+            string rfq = txtRfqQuotation.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                int supplierId = ddlSupplierQ.SelectedValue();
+                if (supplierId<1)
+                {
+                    Toaster("You have to select Supplier First",Common.TosterType.Warning);
+                    return;
+                }
+                int currencyId = ddlCurrencyQ.SelectedValue();
+                if (currencyId < 1)
+                {
+                    Toaster("You have to select Currency First", Common.TosterType.Warning);
+                    return;
+                }
+                string quotation = txtQutationNo.Text;
+                List<object> objects = GetQutationGridViewData();
+                if (objects.Count > 0)
+                {
+                    string xml = XmlParser.GetXml("Quotation", "Item", objects, out string _);
+                    string msg = _bll.InsertQuotation(quotation, rfqId, supplierId, currencyId, xml, Enroll);
+                    if (msg.ToLower().Contains("success"))
+                    {
+                        Toaster(msg, Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster(msg, Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    Toaster("Please Input All Quantity Properly",Common.TosterType.Warning);
+                }
 
+                
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
+        }
+
+        public List<object> GetQutationGridViewData()
+        {
+            List<object> objects = new List<object>();
+            foreach (GridViewRow row in gvQuotation.Rows)
+            {
+                string itemId = ((Label)row.FindControl("lblItemId")).Text;
+                string numRfqQty = ((Label)row.FindControl("lblRfqQuantity")).Text;
+                string numRate = ((TextBox)row.FindControl("rate")).Text;
+                string numTotal = ((TextBox)row.FindControl("total")).Text;
+                if (string.IsNullOrWhiteSpace(numRfqQty))
+                {
+                    continue;
+                }
+                if (double.TryParse(numRfqQty, out double _))
+                {
+                    dynamic obj = new
+                    {
+                        itemId,
+                        numRfqQty,
+                        numRate,
+                        numTotal
+                    };
+                    objects.Add(obj);
+                }
+                else
+                {
+                    return objects;
+                }
+
+            }
+            return objects;
         }
 
         #endregion
