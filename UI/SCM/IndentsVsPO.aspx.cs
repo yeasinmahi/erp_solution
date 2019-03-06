@@ -13,7 +13,7 @@ namespace UI.SCM
         private Indents_BLL objIndent = new Indents_BLL();
 
         private DataTable dt = new DataTable();
-        private int enroll, intwh;
+        private int intwh;
         private SeriLog log = new SeriLog();
         private string location = "SCM";
         private string start = "starting SCM\\IndentsVsPO";
@@ -26,13 +26,12 @@ namespace UI.SCM
         {
             if (!IsPostBack)
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 dteFrom = DateTime.Now.AddMonths(-1);
                 dteTo = DateTime.Now;
                 txtDteFrom.Text = dteFrom.ToString("yyyy-MM-dd");
                 txtdteTo.Text = dteTo.ToString("yyyy-MM-dd");
 
-                dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, enroll);
+                dt = objIndent.DataView(1, "", 0, 0, DateTime.Now, Enroll);
                 ddlWH.DataSource = dt;
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataTextField = "strName";
@@ -50,7 +49,6 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 intwh = int.Parse(ddlWH.SelectedValue);
 
                 try

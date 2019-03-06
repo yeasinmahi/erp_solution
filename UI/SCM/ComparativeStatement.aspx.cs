@@ -52,6 +52,7 @@ namespace UI.SCM
                 Tab2.CssClass = "Initial";
                 Tab3.CssClass = "Initial";
                 Tab4.CssClass = "Initial";
+                Tab5.CssClass = "Initial";
                 ((Button)sender).CssClass = "Clicked";
 
                 MainView.ActiveViewIndex = index;
@@ -778,19 +779,32 @@ namespace UI.SCM
 
         protected void btnShowCs_OnClick(object sender, EventArgs e)
         {
-            DataTable dt = _bll.GetComperativeStatement(1755);
-            string table = ToHtmlTable(dt);
-            csTd.InnerHtml = table;
+            string rfq = txtRfqCs.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                DataTable dt = _bll.GetComperativeStatement(rfqId);
+                string table = ToHtmlTable(dt);
+                csTd.InnerHtml = table;
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
         }
         public string ToHtmlTable(DataTable dt)
         {
-            string html = "<table style='border:1px solid black;'>";
+            string html = "<table style='border:1px solid grey;'>";
             int prefixColumn = 4;
             int countColumn = dt.Columns.Count;
             int countRow = dt.Rows.Count;
             int countSupplier = (countColumn - prefixColumn) / 2;
             //add header row
-            html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
+            html += "<tr style='border:1px solid grey; font-weight:bold; background-color:black; color:white'>";
             html += "<td rowspan=2 style='border:1px solid grey;'>SN</td>";
             html += "<td rowspan=2 style='border:1px solid grey;'>Item Id</td>";
             html += "<td rowspan=2 style='border:1px solid grey;'>Item Name</td>";
@@ -799,7 +813,7 @@ namespace UI.SCM
             for (int i = prefixColumn; i < countColumn- countSupplier; i++)
                 html += "<td colspan=2 style='border:1px solid grey;'>" + dt.Columns[i].ColumnName.Replace("(rate)","") + "</td>";
             html += "</tr>";
-            html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
+            html += "<tr style='border:1px solid grey; font-weight:bold; background-color:black; color:white'>";
             for (int i = 0; i < countSupplier; i++)
             {
                 html += "<td style='border:1px solid grey;'>Rate</td>";
@@ -809,13 +823,14 @@ namespace UI.SCM
             //add rows
             for (int i = 0; i < countRow; i++)
             {
-                html += "<tr style='border:1px solid black;'> ";
+                html += "<tr style='border:1px solid grey;'> ";
                 html += "<td style='border:1px solid grey;'>"+(i+1)+"</td>";
                 for (int j = 0; j < countColumn - countSupplier; j++)
                 {
-                    html += "<td style='border:1px solid black;'>" + dt.Rows[i][j] + "</td>";
+                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j] + "</td>";
                     if(j>= prefixColumn)
-                    html += "<td style='border:1px solid black;'>" + dt.Rows[i][j+ countSupplier] + "</td>";
+                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j+ countSupplier].ToString().ToString("0.####") + "</td>";
+                    
                 }
                     
                 html += "</tr>";

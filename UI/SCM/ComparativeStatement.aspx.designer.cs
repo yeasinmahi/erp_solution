@@ -157,13 +157,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button Tab4;
         
         /// <summary>
-        /// Button1 control.
+        /// Tab5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Tab5;
         
         /// <summary>
         /// MainView control.
@@ -877,13 +877,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.View View5;
         
         /// <summary>
-        /// Label20 control.
+        /// Label21 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label20;
+        protected global::System.Web.UI.WebControls.Label Label21;
         
         /// <summary>
         /// txtRfqCs control.

@@ -109,7 +109,7 @@
                             BackColor="#FFCC99" OnClick="Tab3_OnClick" />
                         <asp:Button Text="Quotation" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab4_OnClick" />
-                        <asp:Button Text="Comparative Statement" BorderStyle="Solid" ID="Button1" CssClass="Initial" runat="server"
+                        <asp:Button Text="Comparative Statement" BorderStyle="Solid" ID="Tab5" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab5_OnClick" />
 
 
@@ -835,9 +835,8 @@
                                 <div style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
                                     <table style="width: 100%">
                                         <tr>
-                                            <td style="text-align: right;">
-                                                <asp:Label ID="Label20" runat="server" CssClass="lbl" Text="RFQ:"></asp:Label></td>
                                             <td style="text-align: left;">
+                                                <asp:Label ID="Label21" runat="server" CssClass="lbl" Text="RFQ:"></asp:Label>
                                                 <asp:TextBox ID="txtRfqCs" runat="server"></asp:TextBox>
                                                 <asp:Button runat="server" Text="Show" ID="btnShowCs" OnClick="btnShowCs_OnClick" />
                                             </td>

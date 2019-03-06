@@ -268,6 +268,21 @@ namespace Utility
                 "$1 $2"
             );
         }
+        //public static string RemoveZero<T>(this T str)
+        //{
+        //    Type type = typeof(T);
+        //    if (type == typeof(string))
+        //    {
+        //        double d = str.ToString().GetOnlyNumber();
+        //        return d.ToString("G29");
+        //    }
+        //    else if(type == typeof(double) || type == typeof(float) || type == typeof(decimal))
+        //    {
+        //        double d = str.ToString().GetOnlyNumber();
+        //        return d.ToString("G29");
+        //    }
+            
+        //}
 
         public static bool Dublicate(this string xml, string parent, string attribute)
         {
