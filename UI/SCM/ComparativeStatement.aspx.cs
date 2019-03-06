@@ -791,13 +791,20 @@ namespace UI.SCM
             int countSupplier = (countColumn - prefixColumn) / 2;
             //add header row
             html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
-            html += "<td style='border:1px solid grey;'>SN</td>";
-            html += "<td style='border:1px solid grey;'>Item Id</td>";
-            html += "<td style='border:1px solid grey;'>Item Name</td>";
-            html += "<td style='border:1px solid grey;'>UoM</td>";
-            html += "<td style='border:1px solid grey;'>RFQ Quantity</td>";
+            html += "<td rowspan=2 style='border:1px solid grey;'>SN</td>";
+            html += "<td rowspan=2 style='border:1px solid grey;'>Item Id</td>";
+            html += "<td rowspan=2 style='border:1px solid grey;'>Item Name</td>";
+            html += "<td rowspan=2 style='border:1px solid grey;'>UoM</td>";
+            html += "<td rowspan=2 style='border:1px solid grey;'>RFQ Quantity</td>";
             for (int i = prefixColumn; i < countColumn- countSupplier; i++)
-                html += "<td colspan=2 style='border:1px solid grey;'>" + dt.Columns[i].ColumnName + "</td>";
+                html += "<td colspan=2 style='border:1px solid grey;'>" + dt.Columns[i].ColumnName.Replace("(rate)","") + "</td>";
+            html += "</tr>";
+            html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
+            for (int i = 0; i < countSupplier; i++)
+            {
+                html += "<td style='border:1px solid grey;'>Rate</td>";
+                html += "<td style='border:1px solid grey;'>Total</td>";
+            }
             html += "</tr>";
             //add rows
             for (int i = 0; i < countRow; i++)
