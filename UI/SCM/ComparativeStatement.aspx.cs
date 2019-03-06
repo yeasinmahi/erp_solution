@@ -44,7 +44,7 @@ namespace UI.SCM
 
 
         }
-        private void SetTabClickCss(object sender)
+        private void SetTabClickCss(object sender,int index)
         {
             try
             {
@@ -53,6 +53,8 @@ namespace UI.SCM
                 Tab3.CssClass = "Initial";
                 Tab4.CssClass = "Initial";
                 ((Button)sender).CssClass = "Clicked";
+
+                MainView.ActiveViewIndex = index;
                 Clear();
 
             }
@@ -63,24 +65,25 @@ namespace UI.SCM
         }
         protected void Tab1_Click(object sender, EventArgs e)
         {
-            SetTabClickCss(sender);
-            MainView.ActiveViewIndex = 0;
+            SetTabClickCss(sender,0);
+            
         }
 
         protected void Tab2_Click(object sender, EventArgs e)
         {
-            SetTabClickCss(sender);
-            MainView.ActiveViewIndex = 1;
+            SetTabClickCss(sender,1);
         }
         protected void Tab3_OnClick(object sender, EventArgs e)
         {
-            SetTabClickCss(sender);
-            MainView.ActiveViewIndex = 2;
+            SetTabClickCss(sender,2);
         }
         protected void Tab4_OnClick(object sender, EventArgs e)
         {
-            SetTabClickCss(sender);
-            MainView.ActiveViewIndex = 3;
+            SetTabClickCss(sender,3);
+        }
+        protected void Tab5_OnClick(object sender, EventArgs e)
+        {
+            SetTabClickCss(sender,4);
         }
 
         #endregion
@@ -586,7 +589,20 @@ namespace UI.SCM
         }
         protected void btnRFQ_OnClick(object sender, EventArgs e)
         {
-
+            string rfq = txtRfq.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                LoadSupplier();
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
         }
         #endregion
 
@@ -758,7 +774,16 @@ namespace UI.SCM
 
         #endregion
 
+        #region Comparative Statement
 
+        protected void btnShowCs_OnClick(object sender, EventArgs e)
+        {
+            DataTable dt = _bll.GetComperativeStatement(1755);
+            string table= dt.ToHtml();
+            csTd.InnerHtml = table;
+        }
+
+        #endregion
 
     }
 }
