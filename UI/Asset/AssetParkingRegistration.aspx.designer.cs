@@ -40,6 +40,24 @@ namespace UI.Asset {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
+        /// PlaceHolder2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder2;
+        
+        /// <summary>
+        /// BundleReference1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference1;
+        
+        /// <summary>
         /// frmaccountsrealize control.
         /// </summary>
         /// <remarks>
@@ -56,6 +74,15 @@ namespace UI.Asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager0;
+        
+        /// <summary>
+        /// UpdatePanel0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
         
         /// <summary>
         /// pnlUpperControl control.
@@ -202,13 +229,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.TextBox txtMrrId;
         
         /// <summary>
-        /// btnManual control.
+        /// btnManuals control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnManual;
+        protected global::System.Web.UI.WebControls.Button btnManuals;
         
         /// <summary>
         /// btnMrrView control.
@@ -1055,5 +1082,32 @@ namespace UI.Asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClose;
+        
+        /// <summary>
+        /// ModalPopupExtender1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender1;
+        
+        /// <summary>
+        /// pnlPopup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlPopup;
+        
+        /// <summary>
+        /// btnHide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnHide;
     }
 }

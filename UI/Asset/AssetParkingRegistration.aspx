@@ -11,14 +11,18 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <asp:PlaceHolder ID="PlaceHolder2" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/updatedCss" /> 
+
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>    
     <!-- Bootstrap -->
-<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+<%--<script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
 <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
-<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'
-    media="screen" />
+<link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css'--%>
+
+    <%--media="screen" />--%>
 <!-- Bootstrap -->
   
     <style type="text/css">
@@ -38,16 +42,20 @@
             line-height: 1.428571429;
             vertical-align: top;
             border-top: none;
-        }
+        } 
         </style>  
       
     <script type="text/javascript"> 
-            function ShowPopup(title, body) {   
-            $('#MyPopup').modal({
-            show: true,
-            keyboard: false,
-            backdrop: 'static'
-            });}
+         function OpenHdnDiv() {
+             $("#hdnDivision").fadeIn("slow");
+             document.getElementById('hdnDivision').style.visibility = 'visible';
+         }
+
+         function ClosehdnDivision() {
+
+             $("#hdnDivision").fadeOut("slow");
+         }
+         
 
         function Validation() { 
             var Assetname = document.getElementById("txtAssetname").value;
@@ -151,6 +159,48 @@
 
         }
      </script> 
+
+    
+   <style type="text/css">
+    .Initial
+{
+  display: block;
+  padding: 4px 18px 4px 18px;
+  float: left;
+  background: url("../Images/InitialImage.png") no-repeat right top;
+  color: Black;
+  font-weight: bold;
+}
+     .Initial:hover
+     {
+  color: White;
+  background:#eeeeee;
+   }
+     .Clicked
+     {
+  float: left;
+  display: block;
+  background:padding-box;
+  padding: 4px 18px 4px 18px;
+  color: Black;
+  font-weight: bold;
+  color:Green;
+}
+</style>
+     <style type="text/css"> 
+        .rounds {
+        height: 80px;
+        width: 30px;
+           
+        -moz-border-colors:25px;
+        border-radius:25px;
+        } 
+
+        .HyperLinkButtonStyle { float:right; text-align:left; border: none; background: none; 
+        color: blue; text-decoration: underline; font: normal 10px verdana;} 
+        .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
+        width:100%; height: 100%;    margin-left:100px;  margin-top:40px; margin-right:00px; padding: 15px; overflow-y:scroll; }
+        </style>
    
     </head>
    <body>
@@ -158,7 +208,7 @@
 
     
    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <%--<asp:UpdatePanel ID="UpdatePanel0" runat="server">--%>
+    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
     <ContentTemplate>
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -179,7 +229,6 @@
                 </tr>
            </table>
            <table>
-               
                <tr>
                    <td style="text-align:right;" ><asp:Label ID="Label1" CssClass="lbl" runat="server" Font-Bold="true" Text="Unit Name: "></asp:Label></td>
                    <td><asp:DropDownList ID="ddlUnitby" runat="server" AutoPostBack="true"   CssClass="ddList" OnSelectedIndexChanged="ddlUnitby_SelectedIndexChanged"> </asp:DropDownList>  </td>                 
@@ -189,9 +238,9 @@
                </tr>
             <tr>
                  <td style="text-align:right;"><asp:Label ID="lblMrr" Text="Mrr No"  runat="server"></asp:Label></td>
-                   <td colspan="3">  <asp:TextBox ID="txtMrrId" runat="server" CssClass="txtBox"></asp:TextBox>
-                 <asp:Button ID="btnManual" runat="server" Visible="true"  Text="Manual" OnClick="btnManual_Click"  /></td>
-                   <asp:Button ID="btnMrrView" runat="server"  Font-Bold="true"  onclick="btnMrrView_Click" Text="Show"   />
+                 <td>  <asp:TextBox ID="txtMrrId" runat="server" CssClass="txtBox"></asp:TextBox></td>
+                 <td><asp:Button ID="btnManuals" runat="server" Visible="true"  OnClick="btnManuals_Click"  Text="Manual"  /> 
+                   <asp:Button ID="btnMrrView" runat="server"  Font-Bold="true"  onclick="btnMrrView_Click" Text="Show"   /></td>
                   
                   <td style="text-align:right;"><asp:Label ID="lblMessage" Font-Bold="true" ForeColor="Green"  runat="server"></asp:Label></td>
             </tr>
@@ -199,7 +248,7 @@
           <table>
                <tr>
 
-                <td colspan="2">
+                <td>
                <asp:GridView ID="dgvGridView" runat="server"  Font-Bold="False" AutoGenerateColumns="False">
                    <Columns>
                     <asp:TemplateField HeaderText="SL.N"> 
@@ -233,24 +282,7 @@
      <%--   General Asset Parking Registratiron         class="hdnDivision" --%> 
                 <div id="hdnDivision"   class="hdnDivision"  style="width:auto;  height:500px;">
                      <table style="width:auto;  float:left; " >   
-                       
-                </table>
-                </div>
-       
-    
-<!-- Modal Popup -->
-        <div id="MyPopup" class="modal fade" role="dialog">
-        <div class="modal-dialog modla-table">
-        <!-- Modal content-->
-        <div class="modal-content">
-        <div class="modal-header parking-header">
-        <button type="button" class="close" data-dismiss="modal">
-        &times;</button>
-        <h4 class="modal-title">Asset Additon/Recognition/Registration: </h4>
-        </div>
-        <div class="modal-body"> 
-            
-                <table class="table" >
+                        
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
                 <td><asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="true"  CssClass="ddList"    OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList>  </td>                 
@@ -440,29 +472,56 @@
                        
                     <tr>
                         <td colspan="4" style="text-align:right;">
-                            <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" class="btn btn-primary" OnClick="btnSave_Click" Text="Save" />
-                            <asp:Button ID="btnClose" runat="server"  class="btn btn-secondary" OnClick="btnClose_Click" Text="Close" />
+                            <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" class="btn btn-primary"  OnClick="btnSave_Click" Text="Save" />
+                            <asp:Button ID="btnClose" runat="server"  class="btn btn-secondary"      OnClick=" btnClose_Click" Text="Close" />
                         </td>
                          
                     </tr>
+               
                 </table>
+                </div>
+       
+    
+<!-- Modal Popup -->
+        <div id="MyPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog modla-table">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header parking-header">
+        <button type="button" class="close" data-dismiss="modal">
+        &times;</button>
+        <h4 class="modal-title">Asset Additon/Recognition/Registration: </h4>
+        </div>
+        <div class="modal-body"> 
+            
+              
                
            
             
         </div>
-        <%--<div class="modal-footer">
          
-         
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>--%>
         </div>
         </div>
     <!-- Modal Popup --> 
 
+    <cc1:ModalPopupExtender ID="ModalPopupExtender1" BehaviorID="mpe" runat="server"
+    PopupControlID="pnlPopup" TargetControlID="btnManual" BackgroundCssClass="modalBackground">
+    </cc1:ModalPopupExtender>
+    <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="display: none">
+    <div class="header">
+    Modal Popup
+    </div>
+    <div class="body">
+    This is a Modal Popup.
+    <br />
+    <asp:Button ID="btnHide" runat="server" Text="Hide Modal Popup" OnClientClick="return HideModalPopup()" />
+    </div>
+    </asp:Panel>
+
         </div> 
 <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
-    <%--</asp:UpdatePanel>--%>
+    </asp:UpdatePanel>
     </form>
 </body>
 </html>

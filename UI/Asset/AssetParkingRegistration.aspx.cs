@@ -26,7 +26,7 @@ namespace UI.Asset
         decimal invoicevalue, landedcost, otherCost, accusitioncost, depRate, recommandlife, totalaccdep, recieveqty; 
         DateTime? dtePo=null, dteWarranty=null , detInstalation=null, issudate=null, grnDate=null, servicedate=null, dteDepRunDate=null;
 
-       
+      
 
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
         SeriLog log = new SeriLog();
@@ -302,7 +302,8 @@ namespace UI.Asset
 
                     if (ddlUnit.Enabled && recieveqty > 0)
                     {
-                        ScriptManager.RegisterStartupScript(this, this.GetType(), "HidePopup", "$('#MyPopup').modal('hide')", true);
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "HidePopup", "$('#MyPopup').modal('hide')", true);
 
                         CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
                        , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
@@ -332,7 +333,9 @@ namespace UI.Asset
                     {
                         if (intItemid > 0 && intMrrId > 0 && invoicevalue > 0 && recieveqty > 0)
                         {
-                            ScriptManager.RegisterStartupScript(this, this.GetType(), "HidePopup", "$('#MyPopup').modal('hide')", true);
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+                           // ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Popup", "ShowPopup();", true);
+                           // ScriptManager.RegisterStartupScript(this, this.GetType(), "HidePopup", "$('#MyPopup').modal('hide')", true);
 
                             CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
                             , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
@@ -379,7 +382,7 @@ namespace UI.Asset
             }
             else
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
             }
            
 
@@ -611,13 +614,11 @@ namespace UI.Asset
             str = intItem.ToString() + ',' + intPO.ToString() + ',' + intMrrID.ToString()+ ',' + numReceiveQty.ToString();
             return str;
         }
-        protected void btnManual_Click(object sender, EventArgs e)
+        
+        protected void btnManuals_Click(object sender, EventArgs e)
         {
-            //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            string title = "Greetings";
-            string body = "Welcome to ASPSnippets.com";
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + title + "', '" + body + "');", true);
-
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true); 
+             
             txtAccDep.Visible = true;
             lblAccdep.Visible = true;
             ddlUnit.Enabled = true;
@@ -640,26 +641,19 @@ namespace UI.Asset
             txtHsCode.Text = "0".ToString();
             txtIssueDate.Text = "0".ToString();
             txtAssetQty.Text = "0".ToString();
-            txtAcisitionCost.Text = "0".ToString(); 
-             
+            txtAcisitionCost.Text = "0".ToString();
+
             txtProjectID.Text = "0".ToString();
             txtProjectName.Text = "0".ToString();
             txtAssetLocation.Text = "0".ToString();
             txtCountryOrigin.Text = "0".ToString(); ;
             txtManufacturer.Text = "0".ToString();
-            txtModelNo.Text = "0".ToString();
-           
-
-  
-
+            txtModelNo.Text = "0".ToString(); 
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
-
            
-
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true); 
 
             var fd = log.GetFlogDetail(start, location, "Submit", null);
             Flogger.WriteDiagnostic(fd); 
@@ -776,15 +770,15 @@ namespace UI.Asset
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "HidePopup", "$('#MyPopup').modal('hide')", true);
-            // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+             //ScriptManager.RegisterStartupScript(this, this.GetType(), "HidePopup", " ClosePopup();", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
                
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
@@ -805,8 +799,8 @@ namespace UI.Asset
                 ddlCostCenter.DataValueField = "Id";
                 ddlCostCenter.DataBind();
                 ddlCostCenter.Items.Insert(0, new ListItem("Select", "0"));
-                ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
-                
+               // ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Popup", "ShowPopup();", true);
+
             }
             catch { }
            
@@ -814,21 +808,21 @@ namespace UI.Asset
 
         protected void ddlMajorCat_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
-            // ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Popup", "ShowPopup();", true);
+             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
         }
 
         protected void ddlMinorCate1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
-            //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Popup", "ShowPopup();", true);
+            // ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
         }
         protected void ddlJob_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-          //  ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
-            ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
-
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+            //ClientScript.RegisterStartupScript(this.GetType(), "Popup", "ShowPopup('" + "title" + "', '" + "body" + "');", true);
+            //ScriptManager.RegisterStartupScript(this.Page, this.Page.GetType(), "Popup", "ShowPopup();", true);
             dt = objregister.DropdownCategoryView(int.Parse(dlJobstation.SelectedValue));
             ddlMinorCate1.DataSource = dt;
             ddlMinorCate1.DataTextField = "strCategoryName";
