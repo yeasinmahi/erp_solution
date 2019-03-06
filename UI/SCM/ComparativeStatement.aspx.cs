@@ -827,9 +827,9 @@ namespace UI.SCM
                 html += "<td style='border:1px solid grey;'>"+(i+1)+"</td>";
                 for (int j = 0; j < countColumn - countSupplier; j++)
                 {
-                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j] + "</td>";
+                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j].RemoveZero() + "</td>";
                     if(j>= prefixColumn)
-                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j+ countSupplier].ToString().ToString("0.####") + "</td>";
+                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j+ countSupplier].RemoveZero()+ "</td>";
                     
                 }
                     
