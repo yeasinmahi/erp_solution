@@ -58,15 +58,6 @@ namespace UI.Asset {
         protected global::System.Web.UI.ScriptManager ScriptManager0;
         
         /// <summary>
-        /// UpdatePanel0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel0;
-        
-        /// <summary>
         /// pnlUpperControl control.
         /// </summary>
         /// <remarks>
@@ -94,13 +85,13 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.HiddenField hdnEnroll;
         
         /// <summary>
-        /// hdnsearch control.
+        /// hdnPreConfirm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnsearch;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPreConfirm;
         
         /// <summary>
         /// hdnEnrollUnit control.
@@ -157,6 +148,42 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Label Label47;
         
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+        
+        /// <summary>
+        /// ddlUnitby control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUnitby;
+        
+        /// <summary>
+        /// Label20 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label20;
+        
+        /// <summary>
+        /// ddlWh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlWh;
+        
+        /// <summary>
         /// lblMrr control.
         /// </summary>
         /// <remarks>
@@ -175,15 +202,6 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.TextBox txtMrrId;
         
         /// <summary>
-        /// btnMrrView control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMrrView;
-        
-        /// <summary>
         /// btnManual control.
         /// </summary>
         /// <remarks>
@@ -193,6 +211,24 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.Button btnManual;
         
         /// <summary>
+        /// btnMrrView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnMrrView;
+        
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+        
+        /// <summary>
         /// dgvGridView control.
         /// </summary>
         /// <remarks>
@@ -200,15 +236,6 @@ namespace UI.Asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvGridView;
-        
-        /// <summary>
-        /// Label105 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label105;
         
         /// <summary>
         /// Label51 control.

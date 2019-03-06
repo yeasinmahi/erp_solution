@@ -16,11 +16,29 @@
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>    
+    <script type="text/javascript" src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.3.min.js'></script>
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js'></script>
+    <link rel="stylesheet" href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css' media="screen" />
+
     <style type="text/css">
         .leaveApplication_container {
             margin-top: 0px;
         }
         .Textbox {}
+        
+        .modal-dialog.modla-table {
+            width: 1000px;
+        }
+        .modal-header.parking-header {
+            border-bottom: none;
+            margin-bottom: -26px;
+        }
+        .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+            padding: 8px;
+            line-height: 1.428571429;
+            vertical-align: top;
+            border-top: none;
+        }
         </style>
 
    
@@ -93,6 +111,117 @@
              $("#hdnBuildingDivision").fadeOut("slow");
          }
     </script>
+
+       
+      
+    <script type="text/javascript"> 
+            function ShowPopup(title, body) {   
+            $('#MyPopup').modal({
+            show: true,
+            keyboard: false,
+                    backdrop: 'static'
+                }); return false;
+            }
+
+        function Validation() { 
+            var Assetname = document.getElementById("txtAssetname").value;
+            alert(Assetname);
+            var e = document.getElementById("ddlUnit");
+            var unitid = e.options[e.selectedIndex].value;
+            var e = document.getElementById("dlJobstation");
+            var jobstation = e.options[e.selectedIndex].value;
+            var e = document.getElementById("ddlMajorCat");
+            var majorcat = e.options[e.selectedIndex].value;
+            var e = document.getElementById("ddlCostCenter");
+            var costcenter = e.options[e.selectedIndex].value;
+
+             var e = document.getElementById("ddlMinorCate1");
+            var minorcat1 = e.options[e.selectedIndex].value;
+            
+            var acisitionCost = document.getElementById("txtAcisitionCost").value;
+            var astqty = document.getElementById("txtAssetQty").value;
+
+            if ($.trim(Assetname).length < 3 ||
+                $.trim(Assetname) == "" ||
+                $.trim(Assetname) == null ||
+                $.trim(Assetname) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up Asset Name');
+                return false
+            }
+            else if ($.trim(unitid).length ==0 ||
+                $.trim(unitid) == "" ||
+                $.trim(unitid) == null ||
+                $.trim(unitid) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Unit Name');
+                return false
+            }
+            else if ($.trim(jobstation) == 0 ||
+                $.trim(jobstation) == "" ||
+                $.trim(jobstation) == null ||
+                $.trim(jobstation) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Jobstation');
+                return false
+            }
+            else if ($.trim(majorcat) == 0 ||
+                $.trim(majorcat) == "" ||
+                $.trim(majorcat) == null ||
+                $.trim(majorcat) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Major Category');
+                return false
+            }
+            else if ($.trim(costcenter) == 0 ||
+                $.trim(costcenter) == "" ||
+                $.trim(costcenter) == null ||
+                $.trim(costcenter) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Cost Center');
+                return false
+            }
+            else if ($.trim(minorcat1) == 0 ||
+                $.trim(minorcat1) == "" ||
+                $.trim(minorcat1) == null ||
+                $.trim(minorcat1) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Minor Category');
+                return false
+            }
+            else if ($.trim(astqty) == 0 ||
+                $.trim(astqty) == "" ||
+                $.trim(astqty) == null ||
+                $.trim(astqty) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please set Asset Quantity');
+                return false
+            }
+            else if ($.trim(acisitionCost).length < 1 ||
+                $.trim(acisitionCost) == "" ||
+                $.trim(acisitionCost) == null ||
+                $.trim(acisitionCost) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Acusition Cost');
+                return false
+            }
+            
+            else {
+                var confirmValue = document.createElement("INPUT");
+                confirmValue.type = "hidden";
+                confirmValue.name = "confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirmValue.value = "Yes";
+                    document.getElementById("hdnPreConfirm").value = "1";
+                } else {
+                    confirmValue.value = "No";
+                    document.getElementById("hdnPreConfirm").value = "0";
+                    return false
+                }
+                return true 
+            } 
+        }
+     </script> 
         <style type="text/css"> 
         .rounds {
         height: 80px;
@@ -159,7 +288,7 @@
 
     
    <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+    <%--<asp:UpdatePanel ID="UpdatePanel0" runat="server">--%>
     <ContentTemplate>
     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -175,11 +304,16 @@
                 
            <table>
                <tr>
-                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Accounting: "></asp:Label>
+                 <%--   <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Accounting: "></asp:Label></td>--%> 
+                   <td style="text-align:right;" ><asp:Label ID="Label105" Font-Bold="true" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
+                   <td ><asp:DropDownList ID="ddlUnitby" runat="server"   CssClass="ddList"> </asp:DropDownList>  </td>  
+                   <td><asp:Button runat="server" ID="btnShow"  class="btn btn-primary"    Text="Show" Height="27px" Width="67px" />
                     <asp:Label ID="lblVoucher" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"></asp:Label>
-                </td>
+                   </td> 
                 </tr>
-               <tr>
+           </table>
+           <table>
+             <tr>
 
               <td>
                <asp:GridView ID="dgvGridView" runat="server"  Font-Bold="False" AutoGenerateColumns="False">
@@ -216,13 +350,21 @@
         
 
                 <div id="hdnDivision"  class="hdnDivision"   style="width:auto; height:500px;">
-                <table style="width:auto;  float:left; " >    
-                   
-                <tr>
-                <td style="text-align:left;" colspan="4"><asp:Label ID="Label105" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Additon/Recognition/Registration: "></asp:Label></td>
-                </tr>
-                
-                
+              
+                </div>
+
+        <!-- Modal Popup -->
+        <div id="MyPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog modla-table">
+        <!-- Modal content-->
+        <div class="modal-content">
+        <div class="modal-header parking-header">
+        <button type="button" class="close" data-dismiss="modal">
+        &times;</button>
+        <h4 class="modal-title">Asset Additon/Recognition/Registration: </h4>
+        </div>
+        <div class="modal-body"> 
+                  <table  class="table"  >   
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
                 <td><asp:DropDownList ID="ddlUnit" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
@@ -318,12 +460,12 @@
                    </tr>
                     <tr>
                          <td style="text-align:right;"><asp:Label ID="lblPodate" CssClass="lbl" runat="server" Text="Po Date:"></asp:Label></td>
-                <td><asp:TextBox ID="dtePoDate" runat="server" CssClass="txtBox"></asp:TextBox>  
-                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="dtePoDate">
-                </cc1:CalendarExtender>   </td>
+                          <td><asp:TextBox ID="dtePoDate" runat="server" CssClass="txtBox"></asp:TextBox>  
+                            <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="dtePoDate">
+                            </cc1:CalendarExtender></td>
 
                         <td style="text-align:right;"><asp:Label ID="Label57" CssClass="lbl" runat="server" Text="Manufacturer Provice SL No:"></asp:Label></td>
-                <td><asp:TextBox ID="txtManuProviceSlNo" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                         <td><asp:TextBox ID="txtManuProviceSlNo" runat="server" CssClass="txtBox"></asp:TextBox></td>     
 
                     </tr>
                     <tr>
@@ -399,22 +541,23 @@
                 <td style="text-align:right;"><asp:Label ID="lblGlCode" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
                 <td><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td>      
 
-                </tr> 
-
-                </tr>
+                </tr>  
                        
-                    <tr>
-                        <td colspan="2" style="text-align:right;">
-                            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
+                  <tr>
+                        <td colspan="4" style="text-align:right;">
+                            <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" class="btn btn-primary" OnClick="btnSave_Click" Text="Save" />
+                            <asp:Button ID="btnClose" runat="server"  class="btn btn-secondary" OnClick="btnClose_Click" Text="Close" />
                         </td>
-
-                        <td colspan="2" style="text-align:right;">
-                        <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close" />
-                    </td>
                     </tr>
                        
                 </table>
-                </div>
+         </div> 
+        </div>
+        </div>
+    <!-- Modal Popup --> 
+
+        </div> 
+
           <%-- Close  --%>
 
       <%-- Vehicle Asset Parking class="hdnDivisionVehicle"   --%>
@@ -1280,7 +1423,7 @@
               
 <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
-    </asp:UpdatePanel>
+    <%--</asp:UpdatePanel>--%>
     </form>
 </body>
 </html>

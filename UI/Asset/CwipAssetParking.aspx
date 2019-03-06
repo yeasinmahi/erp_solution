@@ -92,6 +92,100 @@
 
              $("#hdnBuildingDivision").fadeOut("slow");
          }
+             function Validation() { 
+            var Assetname = document.getElementById("txtAssetname").value;
+            ;
+            var e = document.getElementById("ddlUnit");
+            var unitid = e.options[e.selectedIndex].value;
+            var e = document.getElementById("dlJobstation");
+            var jobstation = e.options[e.selectedIndex].value;
+            var e = document.getElementById("ddlMajorCat");
+            var majorcat = e.options[e.selectedIndex].value;
+            var e = document.getElementById("ddlCostCenter");
+            var costcenter = e.options[e.selectedIndex].value;
+
+             var e = document.getElementById("ddlMinorCate1");
+            var minorcat1 = e.options[e.selectedIndex].value;
+            
+            var acisitionCost = document.getElementById("txtAcisitionCost").value;
+             
+
+            if ($.trim(Assetname).length < 3 ||
+                $.trim(Assetname) == "" ||
+                $.trim(Assetname) == null ||
+                $.trim(Assetname) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up Asset Name');
+                return false
+            }
+            else if ($.trim(unitid).length ==0 ||
+                $.trim(unitid) == "" ||
+                $.trim(unitid) == null ||
+                $.trim(unitid) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Unit Name');
+                return false
+            }
+            else if ($.trim(jobstation) == 0 ||
+                $.trim(jobstation) == "" ||
+                $.trim(jobstation) == null ||
+                $.trim(jobstation) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Jobstation');
+                return false
+            }
+            else if ($.trim(majorcat) == 0 ||
+                $.trim(majorcat) == "" ||
+                $.trim(majorcat) == null ||
+                $.trim(majorcat) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Major Category');
+                return false
+            }
+            else if ($.trim(costcenter) == 0 ||
+                $.trim(costcenter) == "" ||
+                $.trim(costcenter) == null ||
+                $.trim(costcenter) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Cost Center');
+                return false
+            }
+            else if ($.trim(minorcat1) == 0 ||
+                $.trim(minorcat1) == "" ||
+                $.trim(minorcat1) == null ||
+                $.trim(minorcat1) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Minor Category');
+                return false
+            }
+            
+            else if ($.trim(acisitionCost).length < 1 ||
+                $.trim(acisitionCost) == "" ||
+                $.trim(acisitionCost) == null ||
+                $.trim(acisitionCost) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Acusition Cost');
+                return false
+            }
+            
+            else {
+                var confirmValue = document.createElement("INPUT");
+                confirmValue.type = "hidden";
+                confirmValue.name = "confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirmValue.value = "Yes";
+                    document.getElementById("hdnPreConfirm").value = "1";
+                } else {
+                    confirmValue.value = "No";
+                    document.getElementById("hdnPreConfirm").value = "0";
+                    return false
+                }
+                return true
+                
+            }
+
+
+        }
     </script>
         <style type="text/css"> 
         .rounds {
@@ -170,12 +264,12 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
+     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnPreConfirm" runat="server" />
     <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnReceive" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
                 
            <table>
                <tr>
-                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="CWIP Asset Parking Registration: "></asp:Label>                    
+                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Primary Asset Parking Registration: "></asp:Label>                    
                 <asp:Label ID="lblAssetId" CssClass="lbl" runat="server" ForeColor="Red" Font-Size="small" Font-Bold="true"></asp:Label> 
                 </td>
                 </tr>
@@ -405,7 +499,7 @@
                        
                     <tr>
                         <td colspan="2" style="text-align:right;">
-                            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
+                            <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" OnClick="btnSave_Click" Text="Save" />
                         </td>
 
                         <td colspan="2" style="text-align:right;">
