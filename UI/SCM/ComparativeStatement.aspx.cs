@@ -779,8 +779,42 @@ namespace UI.SCM
         protected void btnShowCs_OnClick(object sender, EventArgs e)
         {
             DataTable dt = _bll.GetComperativeStatement(1755);
-            string table= dt.ToHtml();
+            string table = ToHtmlTable(dt);
             csTd.InnerHtml = table;
+        }
+        public string ToHtmlTable(DataTable dt)
+        {
+            string html = "<table style='border:1px solid black;'>";
+            int prefixColumn = 4;
+            int countColumn = dt.Columns.Count;
+            int countRow = dt.Rows.Count;
+            int countSupplier = (countColumn - prefixColumn) / 2;
+            //add header row
+            html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
+            html += "<td style='border:1px solid grey;'>SN</td>";
+            html += "<td style='border:1px solid grey;'>Item Id</td>";
+            html += "<td style='border:1px solid grey;'>Item Name</td>";
+            html += "<td style='border:1px solid grey;'>UoM</td>";
+            html += "<td style='border:1px solid grey;'>RFQ Quantity</td>";
+            for (int i = prefixColumn; i < countColumn- countSupplier; i++)
+                html += "<td colspan=2 style='border:1px solid grey;'>" + dt.Columns[i].ColumnName + "</td>";
+            html += "</tr>";
+            //add rows
+            for (int i = 0; i < countRow; i++)
+            {
+                html += "<tr style='border:1px solid black;'> ";
+                html += "<td style='border:1px solid grey;'>"+(i+1)+"</td>";
+                for (int j = 0; j < countColumn - countSupplier; j++)
+                {
+                    html += "<td style='border:1px solid black;'>" + dt.Rows[i][j] + "</td>";
+                    if(j>= prefixColumn)
+                    html += "<td style='border:1px solid black;'>" + dt.Rows[i][j+ countSupplier] + "</td>";
+                }
+                    
+                html += "</tr>";
+            }
+            html += "</table>";
+            return html;
         }
 
         #endregion

@@ -282,24 +282,6 @@ namespace Utility
                 .Where(g => g.Count() > 1);
             return dublicates.Any();
         }
-        public static string ToHtml(this DataTable dt)
-        {
-            string html = "<table style='border:1px solid black;'>";
-            //add header row
-            html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
-            for (int i = 0; i < dt.Columns.Count; i++)
-                html += "<td style='border:1px solid grey;'>" + dt.Columns[i].ColumnName + "</td>";
-            html += "</tr>";
-            //add rows
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                html += "<tr style='border:1px solid black;'> ";
-                for (int j = 0; j < dt.Columns.Count; j++)
-                    html += "<td style='border:1px solid black;'>" + dt.Rows[i][j].ToString() + "</td>";
-                html += "</tr>";
-            }
-            html += "</table>";
-            return html;
-        }
+        
     }
 }
