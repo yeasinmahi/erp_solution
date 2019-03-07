@@ -44,7 +44,7 @@ namespace UI.SCM
 
 
         }
-        private void SetTabClickCss(object sender,int index)
+        private void SetTabClickCss(object sender, int index)
         {
             try
             {
@@ -66,25 +66,25 @@ namespace UI.SCM
         }
         protected void Tab1_Click(object sender, EventArgs e)
         {
-            SetTabClickCss(sender,0);
-            
+            SetTabClickCss(sender, 0);
+
         }
 
         protected void Tab2_Click(object sender, EventArgs e)
         {
-            SetTabClickCss(sender,1);
+            SetTabClickCss(sender, 1);
         }
         protected void Tab3_OnClick(object sender, EventArgs e)
         {
-            SetTabClickCss(sender,2);
+            SetTabClickCss(sender, 2);
         }
         protected void Tab4_OnClick(object sender, EventArgs e)
         {
-            SetTabClickCss(sender,3);
+            SetTabClickCss(sender, 3);
         }
         protected void Tab5_OnClick(object sender, EventArgs e)
         {
-            SetTabClickCss(sender,4);
+            SetTabClickCss(sender, 4);
         }
 
         #endregion
@@ -471,6 +471,27 @@ namespace UI.SCM
         }
         public void LoadSupplier()
         {
+            if (!string.IsNullOrWhiteSpace(hdnUnitId.Value))
+            {
+                _dt = _supplier.GetSupplierInfo(1, Convert.ToInt32(hdnUnitId.Value), out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    ddlSupplier.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                Toaster("No unit found to get supplier", Common.TosterType.Error);
+            }
+
+        }
+        public void LoadSupplier(int rfq)
+        {
+            //int unitId = _bll.GetUnitIdBy
             _dt = _supplier.GetSupplierInfo(1, Convert.ToInt32(hdnUnitId.Value), out string message);
             if (_dt.Rows.Count > 0)
             {
@@ -480,6 +501,7 @@ namespace UI.SCM
             {
                 Toaster(message, Common.TosterType.Error);
             }
+
         }
 
         #endregion
@@ -511,7 +533,7 @@ namespace UI.SCM
                 lblSupplierContact.Text = string.Empty;
                 lblSupplierEmail.Text = string.Empty;
             }
-            
+
         }
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {
@@ -598,7 +620,7 @@ namespace UI.SCM
             }
             if (int.TryParse(rfq, out int rfqId))
             {
-                LoadSupplier();
+                LoadSupplier(rfqId);
             }
             else
             {
@@ -635,7 +657,7 @@ namespace UI.SCM
                 lblSupplierContactQ.Text = string.Empty;
                 lblSupplierEmailQ.Text = string.Empty;
             }
-            
+
         }
 
         protected void btnShowRFQQuotation_OnClick(object sender, EventArgs e)
@@ -643,7 +665,7 @@ namespace UI.SCM
             string rfq = txtRfqQuotation.Text;
             if (string.IsNullOrWhiteSpace(rfq))
             {
-                Toaster("RFQ id can not be blank",Common.TosterType.Warning);
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
                 return;
             }
             if (int.TryParse(rfq, out int rfqId))
@@ -653,7 +675,7 @@ namespace UI.SCM
             }
             else
             {
-                Toaster("Enter Rfq Id properly",Common.TosterType.Warning);
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
             }
 
         }
@@ -701,9 +723,9 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 int supplierId = ddlSupplierQ.SelectedValue();
-                if (supplierId<1)
+                if (supplierId < 1)
                 {
-                    Toaster("You have to select Supplier First",Common.TosterType.Warning);
+                    Toaster("You have to select Supplier First", Common.TosterType.Warning);
                     return;
                 }
                 int currencyId = ddlCurrencyQ.SelectedValue();
@@ -729,10 +751,10 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Toaster("Please Input All Quantity Properly",Common.TosterType.Warning);
+                    Toaster("Please Input All Quantity Properly", Common.TosterType.Warning);
                 }
 
-                
+
             }
             else
             {
@@ -810,8 +832,8 @@ namespace UI.SCM
             html += "<td rowspan=2 style='border:1px solid grey;'>Item Name</td>";
             html += "<td rowspan=2 style='border:1px solid grey;'>UoM</td>";
             html += "<td rowspan=2 style='border:1px solid grey;'>RFQ Quantity</td>";
-            for (int i = prefixColumn; i < countColumn- countSupplier; i++)
-                html += "<td colspan=2 style='border:1px solid grey;'>" + dt.Columns[i].ColumnName.Replace("(rate)","") + "</td>";
+            for (int i = prefixColumn; i < countColumn - countSupplier; i++)
+                html += "<td colspan=2 style='border:1px solid grey;'>" + dt.Columns[i].ColumnName.Replace("(rate)", "") + "</td>";
             html += "</tr>";
             html += "<tr style='border:1px solid grey; font-weight:bold; background-color:black; color:white'>";
             for (int i = 0; i < countSupplier; i++)
@@ -824,15 +846,15 @@ namespace UI.SCM
             for (int i = 0; i < countRow; i++)
             {
                 html += "<tr style='border:1px solid grey;'> ";
-                html += "<td style='border:1px solid grey;'>"+(i+1)+"</td>";
+                html += "<td style='border:1px solid grey;'>" + (i + 1) + "</td>";
                 for (int j = 0; j < countColumn - countSupplier; j++)
                 {
                     html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j].RemoveZero() + "</td>";
-                    if(j>= prefixColumn)
-                    html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j+ countSupplier].RemoveZero()+ "</td>";
-                    
+                    if (j >= prefixColumn)
+                        html += "<td style='border:1px solid grey;'>" + dt.Rows[i][j + countSupplier].RemoveZero() + "</td>";
+
                 }
-                    
+
                 html += "</tr>";
             }
             html += "</table>";

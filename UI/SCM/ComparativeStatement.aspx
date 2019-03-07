@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement" EnableEventValidation="false" %>
+<%@ Import Namespace="Utility" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -786,7 +787,7 @@
 
                                                         <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numRfqQty") %>'></asp:Label>
+                                                                <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:#.##}" Text='<%# Bind("numRfqQty") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                                         </asp:TemplateField>
