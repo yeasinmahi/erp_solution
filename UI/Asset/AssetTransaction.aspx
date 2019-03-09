@@ -371,7 +371,7 @@
                 alert('Please  Set Asset Total Cost');
                 return false
             } 
-                else if ($.trim(capitallos) <3 ||
+                else if ($.trim(capitallos) ==0 ||
                 $.trim(capitallos) == "" ||
                 $.trim(capitallos) == null ||
                 $.trim(capitallos) == undefined) {
@@ -1045,9 +1045,9 @@
                      
                       <tr>
                   <td style="text-align:right;"><asp:Label ID="Label36" CssClass="lbl" runat="server" Text="Total Cost:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtDispoTotalCost" runat="server"  ReadOnly="true" CssClass="txtBox"></asp:TextBox></td> 
+                 <td><asp:TextBox ID="txtDispoTotalCost" runat="server"   CssClass="txtBox"></asp:TextBox></td> 
                  <td style="text-align:right;"><asp:Label ID="Label37" CssClass="lbl" runat="server" Text="Capital Loss/Gain:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtDispoCapitalLoss" runat="server"  ReadOnly="true" CssClass="txtBox"></asp:TextBox></td>                      
+                 <td><asp:TextBox ID="txtDispoCapitalLoss" runat="server"   CssClass="txtBox"></asp:TextBox></td>                      
                  </tr>
                      <tr>
                       <td colspan="2" style="text-align:right;"><asp:Button ID="btnDisposal" runat="server" Text="Save" OnClientClick="return Disposal();" OnClick="btnDisposal_Click" /> </td>                          
