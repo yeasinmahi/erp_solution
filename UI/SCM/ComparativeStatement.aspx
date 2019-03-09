@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement" EnableEventValidation="false" %>
+<%@ Import Namespace="Utility" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
@@ -61,6 +62,9 @@
         .auto-style1 {
             width: 819px;
         }
+        .border {
+            border:1px solid black
+        }
     </style>
     <style type="text/css">
         .leaveApplication_container {
@@ -106,6 +110,8 @@
                             BackColor="#FFCC99" OnClick="Tab3_OnClick" />
                         <asp:Button Text="Quotation" BorderStyle="Solid" ID="Tab4" CssClass="Initial" runat="server"
                             BackColor="#FFCC99" OnClick="Tab4_OnClick" />
+                        <asp:Button Text="Comparative Statement" BorderStyle="Solid" ID="Tab5" CssClass="Initial" runat="server"
+                            BackColor="#FFCC99" OnClick="Tab5_OnClick" />
 
 
                         <asp:MultiView ID="MainView" runat="server">
@@ -781,7 +787,7 @@
 
                                                         <asp:TemplateField HeaderText="RFQ Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIndentQty">
                                                             <ItemTemplate>
-                                                                <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numRfqQty") %>'></asp:Label>
+                                                                <asp:Label ID="lblRfqQuantity" runat="server" DataFormatString="{0:#.##}" Text='<%# Bind("numRfqQty") %>'></asp:Label>
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Right" Width="50px" />
                                                         </asp:TemplateField>
@@ -823,6 +829,31 @@
                                                 <asp:Button runat="server" ID="btnSubmit" Text="Submit" OnClick="btnSubmit_OnClick" />
                                             </td>
                                         </tr>
+                                    </table>
+                                </div>
+                            </asp:View>
+                            <asp:View ID="View5" runat="server">
+                                <div style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+                                    <table style="width: 100%">
+                                        <tr>
+                                            <td style="text-align: left;">
+                                                <asp:Label ID="Label21" runat="server" CssClass="lbl" Text="RFQ:"></asp:Label>
+                                                <asp:TextBox ID="txtRfqCs" runat="server"></asp:TextBox>
+                                                <asp:Button runat="server" Text="Show" ID="btnShowCs" OnClick="btnShowCs_OnClick" />
+                                            </td>
+                                            
+                                        </tr>
+                                    </table>
+                                    <%--<span id="cs" runat="server"></span>--%>
+                                    <table>
+                                        <tr>
+                                            <td runat="server" id="csTd"></td>
+                                        </tr>
+                                        <%--<tr>
+                                            <td style="text-align: right">
+                                                <asp:Button runat="server" ID="Button3" Text="Submit" OnClick="btnSubmit_OnClick" />
+                                            </td>
+                                        </tr>--%>
                                     </table>
                                 </div>
                             </asp:View>

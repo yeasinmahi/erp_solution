@@ -81,5 +81,19 @@ namespace SCM_BLL
             }
 
         }
+        
+        public DataTable GetComperativeStatement(int intRfqId)
+        {
+            try
+            {
+                sprComparativeStatementTableAdapter adp = new sprComparativeStatementTableAdapter();
+                return adp.GetData(intRfqId);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+        }
     }
 }
