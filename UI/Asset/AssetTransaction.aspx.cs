@@ -25,13 +25,15 @@ namespace UI.Asset
         Assetregister_BLL objregisterUpdate = new Assetregister_BLL();
         DataTable dt = new DataTable();
         string filePathForXMlAssetParking;
-        string XMLVehicle, XMLBuilding, XMLLand; int enroll; decimal recieveqty;
+        string XMLVehicle, XMLBuilding, XMLLand;  decimal recieveqty;
         string xmlStringG = ""; string[] arrayKey; char[] delimiterChars = { '[', ']' };
-       string accCOAid = null,accCOAName = null;
+        string accCOAid = null,accCOAName = null;
         SeriLog log = new SeriLog();
         string location = "Asset";
         string start = "starting Asset\\AssetTransaction";
-        string stop = "stopping Asset\\AssetTransaction";
+        string stop = "stopping Asset\\AssetTransaction"; 
+        int? enroll, unit, jostation, mainType, mejorcat, minorcat1, minorcat2, costcenter;
+        DateTime dteTransaction;
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXMlAssetParking = Server.MapPath("~/Asset/Data/p_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
@@ -80,7 +82,7 @@ namespace UI.Asset
             ddlSaleJob.DataBind(); 
 
 
-            dt = objregister.AssetTypeName();
+            dt = objregister.AssetTypeAll();
             ddlSaMajorCat.DataSource = dt;
             ddlSaMajorCat.DataTextField = "strAssetTypeName";
             ddlSaMajorCat.DataValueField = "intAssetTypeID";
@@ -407,36 +409,70 @@ namespace UI.Asset
             ddlReUnit.DataTextField = "strUnit";
             ddlReUnit.DataValueField = "intUnitID";
             ddlReUnit.DataBind();
+            ddlReUnit.Items.Insert(0, new ListItem("Select", "0"));
+
 
             dt = objregister.JobstationName(8, int.Parse(ddlReUnit.SelectedValue), intenroll, intjobid, intdept, "0");
             ddlRejobstation.DataSource = dt;
             ddlRejobstation.DataTextField = "strJobStationName";
             ddlRejobstation.DataValueField = "intEmployeeJobStationId";
             ddlRejobstation.DataBind();
+            ddlRejobstation.Items.Insert(0, new ListItem("Select", "0"));
 
-            dt = objregister.AssetTypeName();
+            dt = objregister.AssetTypeAll();
             ddlReMejorCat.DataSource = dt;
             ddlReMejorCat.DataTextField = "strAssetTypeName";
             ddlReMejorCat.DataValueField = "intAssetTypeID";
             ddlReMejorCat.DataBind();
+            ddlReMejorCat.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlRemajorCatp.DataSource = dt;
+            ddlRemajorCatp.DataTextField = "strAssetTypeName";
+            ddlRemajorCatp.DataValueField = "intAssetTypeID";
+            ddlRemajorCatp.DataBind();
+            ddlRemajorCatp.Items.Insert(0, new ListItem("Select", "0"));
+
+
 
             dt = objregister.DropdownCategoryView(int.Parse(ddlRejobstation.SelectedValue));
             ddlReMinorCat1.DataSource = dt;
             ddlReMinorCat1.DataTextField = "strCategoryName";
             ddlReMinorCat1.DataValueField = "intCategoryID";
             ddlReMinorCat1.DataBind();
+            ddlReMinorCat1.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlTrnsUnit.Items.Insert(0, new ListItem("Select", "0"));
+            ddlReMinorCat1P.DataSource = dt;
+            ddlReMinorCat1P.DataTextField = "strCategoryName";
+            ddlReMinorCat1P.DataValueField = "intCategoryID";
+            ddlReMinorCat1P.DataBind();
+            ddlReMinorCat1P.Items.Insert(0, new ListItem("Select", "0"));
 
             dt = parking.CwipAssetView(6, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
             ddlRemonorCat2.DataSource = dt;
             ddlRemonorCat2.DataTextField = "Name";
             ddlRemonorCat2.DataValueField = "ID";
             ddlRemonorCat2.DataBind();
+            ddlRemonorCat2.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlReMinorCat2p.DataSource = dt;
+            ddlReMinorCat2p.DataTextField = "Name";
+            ddlReMinorCat2p.DataValueField = "ID";
+            ddlReMinorCat2p.DataBind();
+            ddlReMinorCat2p.Items.Insert(0, new ListItem("Select", "0"));
 
             dt = objregister.RegCostCenter(int.Parse(ddlReUnit.SelectedValue));
             ddlReCostCenter.DataSource = dt;
             ddlReCostCenter.DataTextField = "Name";
             ddlReCostCenter.DataValueField = "Id";
             ddlReCostCenter.DataBind();
+            ddlReCostCenter.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlReCostcenterp.DataSource = dt;
+            ddlReCostcenterp.DataTextField = "Name";
+            ddlReCostcenterp.DataValueField = "Id";
+            ddlReCostcenterp.DataBind();
+            ddlReCostcenterp.Items.Insert(0, new ListItem("Select", "0"));
 
 
             int Mnumber = int.Parse("1".ToString());
@@ -460,11 +496,26 @@ namespace UI.Asset
                     ddlRejobstation.DataTextField = "strJobStationName";
                     ddlRejobstation.DataValueField = "intEmployeeJobStationId";
                     ddlRejobstation.DataBind();
+                    ddlRejobstation.Items.Insert(0, new ListItem("Select", "0"));
                 }
                 catch { }
-                try { ddlRejobstation.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString(); } catch { }
-                try { ddlReAssetType.SelectedValue = rt.Rows[0]["intMaintype"].ToString(); } catch { }
-                try { ddlReMejorCat.SelectedValue = rt.Rows[0]["intAssetType"].ToString(); } catch { }
+                try
+                {
+                    ddlRejobstation.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString();
+                }
+                catch { }
+                try
+                {
+                   ddlReAssetType.SelectedValue = rt.Rows[0]["intMaintype"].ToString();
+                    ddlRassetTypep.SelectedValue = rt.Rows[0]["intMaintype"].ToString();
+                }
+                catch { }
+                try
+                {
+                   ddlReMejorCat.SelectedValue = rt.Rows[0]["intAssetType"].ToString();
+                    ddlRemajorCatp.SelectedValue = rt.Rows[0]["intAssetType"].ToString();
+                }
+                catch { }
 
                 //dt = objregister.DropdownCategoryView(int.Parse(ddlTrnsJobstation.SelectedValue));
                 dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlRejobstation.SelectedValue));//Parking List
@@ -473,20 +524,46 @@ namespace UI.Asset
                 ddlReMinorCat1.DataTextField = "strCategoryName";
                 ddlReMinorCat1.DataValueField = "intCategoryID";
                 ddlReMinorCat1.DataBind();
+                ddlReMinorCat1.Items.Insert(0, new ListItem("Select", "0"));
 
-                try { ddlReMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString(); } catch { }
+                ddlReMinorCat1P.DataSource = dt;
+                ddlReMinorCat1P.DataTextField = "strCategoryName";
+                ddlReMinorCat1P.DataValueField = "intCategoryID";
+                ddlReMinorCat1P.DataBind();
+                ddlReMinorCat1P.Items.Insert(0, new ListItem("Select", "0"));
 
-                try { ddlRemonorCat2.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString(); } catch { }
+                try
+                {
+                    ddlReMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString();
+                    ddlReMinorCat1P.SelectedValue = rt.Rows[0]["intCategory"].ToString();
+                }
+                catch { }
+
+                try
+                {
+                    ddlRemonorCat2.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString();
+                    ddlReMinorCat2p.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString();
+                }
+                catch { }
 
                 dt = objregister.RegCostCenter(int.Parse(ddlReUnit.SelectedValue));
                 ddlReCostCenter.DataSource = dt;
                 ddlReCostCenter.DataTextField = "Name";
                 ddlReCostCenter.DataValueField = "Id";
                 ddlReCostCenter.DataBind();
+                ddlReCostCenter.Items.Insert(0, new ListItem("Select", "0"));
+
+                dt = objregister.RegCostCenter(int.Parse(ddlReUnit.SelectedValue));
+                ddlReCostcenterp.DataSource = dt;
+                ddlReCostcenterp.DataTextField = "Name";
+                ddlReCostcenterp.DataValueField = "Id";
+                ddlReCostcenterp.DataBind();
+                ddlReCostcenterp.Items.Insert(0, new ListItem("Select", "0"));
 
                 try
                 {
                     ddlReCostCenter.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
+                    ddlReCostcenterp.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
                 }
                 catch { }
                 txtReAsetname.Text = rt.Rows[0]["strNameOfAsset"].ToString();
@@ -494,22 +571,24 @@ namespace UI.Asset
         }
         private void ReClasificationXml()
         {
-            int enroll;
-            string unit = ddlReUnit.SelectedValue.ToString();
+            
+            try { unit = int.Parse(ddlReUnit.SelectedValue.ToString()); } catch { }
             string assetname = txtReAsetname.Text.ToString();
-            string jostation = ddlRejobstation.SelectedValue.ToString();
+            try { jostation = int.Parse(ddlRejobstation.SelectedValue.ToString()); } catch { }
             string description = txtReDescrip.Text.ToString();
-            string mainType = ddlReAssetType.SelectedValue.ToString();
-            string mejorcat = ddlReMejorCat.SelectedValue.ToString();
-            string minorcat1 = ddlReMinorCat1.SelectedValue.ToString();
-            string minorcat2 = ddlRemonorCat2.SelectedValue.ToString();
-            string costcenter = ddlReCostCenter.SelectedValue.ToString();
+            try { mainType = int.Parse(ddlReAssetType.SelectedValue.ToString()); } catch { }
+            try { mejorcat = int.Parse(ddlReMejorCat.SelectedValue.ToString()); } catch { }
+            try { minorcat1 = int.Parse(ddlReMinorCat1.SelectedValue.ToString()); } catch { }
+            try { minorcat2 = int.Parse(ddlRemonorCat2.SelectedValue.ToString()); } catch { }
+            try { costcenter = int.Parse(ddlReCostCenter.SelectedValue.ToString()); } catch { }
+
             try { enroll =int.Parse(txtReUserEnroll.Text.ToString()); } catch { enroll = 0; }
             string reff = txtReReff.Text.ToString();
-            string dteTransaction = txtReDate.Text.ToString();
+            try { dteTransaction = DateTime.Parse(txtReDate.Text.ToString());} catch { dteTransaction = DateTime.Parse("1900-01-01".ToString()); }
+
             string remarks = txtReRemarks.Text.ToString();
             string assetid = "".ToString();
-            CreateXmlReclasification(assetid, mainType, mejorcat, minorcat1, minorcat2,  reff, dteTransaction, remarks);
+            CreateXmlReclasification(assetid, mainType.ToString(), mejorcat.ToString(), minorcat1.ToString(), minorcat2.ToString(),  reff, dteTransaction.ToString(), remarks);
         }
 
         private void CreateXmlReclasification(string assetid, string mainType, string mejorcat, string minorcat1, string minorcat2, string reff, string dteTransaction, string remarks)
@@ -613,22 +692,30 @@ namespace UI.Asset
         }
         protected void btnReclassSubmit_Click(object sender, EventArgs e)
         {
-            ReClasificationXml();
+            try
+            {
+                if (hdnPreConfirm.Value == "1")
+                { 
+                    ReClasificationXml();
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXMlAssetParking);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filePathForXMlAssetParking);
-            XmlNode dSftTm = doc.SelectSingleNode("voucher");
-            string xmlString = dSftTm.InnerXml;
-            xmlString = "<voucher>" + xmlString + "</voucher>";
-            try { File.Delete(filePathForXMlAssetParking); } catch { }
+                    int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
-            dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
+                    divClose();
+                }
 
-            divClose();
+            }
+            catch { }
+        
         }
 
         #endregion===========================Close====================================================
@@ -663,7 +750,7 @@ namespace UI.Asset
             ddlRevJobstation.DataValueField = "intEmployeeJobStationId";
             ddlRevJobstation.DataBind();
 
-            dt = objregister.AssetTypeName();
+            dt = objregister.AssetTypeAll();
             ddlRevMejorCat.DataSource = dt;
             ddlRevMejorCat.DataTextField = "strAssetTypeName";
             ddlRevMejorCat.DataValueField = "intAssetTypeID";
@@ -778,7 +865,7 @@ namespace UI.Asset
             { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
 
 
-            string totalRev = "".ToString();
+            string totalRev = "0".ToString();
             CreateXmlRevalutation(assetId, reff, dtetransaction, remarks, increse.ToString(), totalcost, totalRev);
         }
 
@@ -886,10 +973,8 @@ namespace UI.Asset
             var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
-            {
-
-
-                RevaluationXml();
+            { 
+            RevaluationXml(); 
 
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXMlAssetParking);
@@ -940,7 +1025,7 @@ namespace UI.Asset
             ddlDispoJobstation.DataValueField = "intEmployeeJobStationId";
             ddlDispoJobstation.DataBind();
 
-            dt = objregister.AssetTypeName();
+            dt = objregister.AssetTypeAll();
             ddlDispoMejorCat.DataSource = dt;
             ddlDispoMejorCat.DataTextField = "strAssetTypeName";
             ddlDispoMejorCat.DataValueField = "intAssetTypeID";
@@ -1135,10 +1220,10 @@ namespace UI.Asset
 
         protected void ddlDispoJobstation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+            //int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            //int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+            //int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+            //int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
            
             dt = objregister.DropdownCategoryView(int.Parse(ddlDispoJobstation.SelectedValue));
             ddlDispoMonorCat1.DataSource = dt;
@@ -1149,23 +1234,30 @@ namespace UI.Asset
         }
         protected void btnDisposal_Click(object sender, EventArgs e)
         {
+            try
+            {
+                if (hdnPreConfirm.Value == "1")
+                {
+                    DisposalXml();
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXMlAssetParking);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-            DisposalXml();
+                    int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filePathForXMlAssetParking);
-            XmlNode dSftTm = doc.SelectSingleNode("voucher");
-            string xmlString = dSftTm.InnerXml;
-            xmlString = "<voucher>" + xmlString + "</voucher>";
-            try { File.Delete(filePathForXMlAssetParking); } catch { }
+                    dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
-            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                    divClose();
+                }
 
-            dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
-
-            divClose();
+            }
+            catch { }
+           
 
         }
         #endregion=======================Close===============================================================
@@ -1185,99 +1277,229 @@ namespace UI.Asset
             ddlTrnsUnit.DataTextField = "strUnit";
             ddlTrnsUnit.DataValueField = "intUnitID";
             ddlTrnsUnit.DataBind();
+            ddlTrnsUnit.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlTrunitp.DataSource = dt;
+            ddlTrunitp.DataTextField = "strUnit";
+            ddlTrunitp.DataValueField = "intUnitID";
+            ddlTrunitp.DataBind();
 
             dt = objregister.JobstationName(8, int.Parse(ddlTrnsUnit.SelectedValue), intenroll, intjobid, intdept, "0");
             ddlTrnsJobstation.DataSource = dt;
             ddlTrnsJobstation.DataTextField = "strJobStationName";
             ddlTrnsJobstation.DataValueField = "intEmployeeJobStationId";
             ddlTrnsJobstation.DataBind();
+            ddlTrnsJobstation.Items.Insert(0, new ListItem("Select", "0"));
 
-            dt = objregister.AssetTypeName();
+            ddlTjobp.DataSource = dt;
+            ddlTjobp.DataTextField = "strJobStationName";
+            ddlTjobp.DataValueField = "intEmployeeJobStationId";
+            ddlTjobp.DataBind();
+
+            dt = objregister.AssetTypeAll();
             ddlTrnsMajorCat.DataSource = dt;
             ddlTrnsMajorCat.DataTextField = "strAssetTypeName";
             ddlTrnsMajorCat.DataValueField = "intAssetTypeID";
             ddlTrnsMajorCat.DataBind();
+            ddlTrnsMajorCat.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlTmajorCatp.DataSource = dt;
+            ddlTmajorCatp.DataTextField = "strAssetTypeName";
+            ddlTmajorCatp.DataValueField = "intAssetTypeID";
+            ddlTmajorCatp.DataBind();
 
             dt = objregister.DropdownCategoryView(int.Parse(ddlTrnsJobstation.SelectedValue));
             ddlTrnsMinorCat1.DataSource = dt;
             ddlTrnsMinorCat1.DataTextField = "strCategoryName";
             ddlTrnsMinorCat1.DataValueField = "intCategoryID";
             ddlTrnsMinorCat1.DataBind();
+            ddlTrnsMinorCat1.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlTminorCatp1.DataSource = dt;
+            ddlTminorCatp1.DataTextField = "strCategoryName";
+            ddlTminorCatp1.DataValueField = "intCategoryID";
+            ddlTminorCatp1.DataBind(); 
 
             dt = parking.CwipAssetView(6, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
             ddlTrnsMinorCat2.DataSource = dt;
             ddlTrnsMinorCat2.DataTextField = "Name";
             ddlTrnsMinorCat2.DataValueField = "ID";
             ddlTrnsMinorCat2.DataBind();
+            ddlTrnsMinorCat2.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlTminorcatp2.DataSource = dt;
+            ddlTminorcatp2.DataTextField = "Name";
+            ddlTminorcatp2.DataValueField = "ID";
+            ddlTminorcatp2.DataBind();
 
             dt = objregister.RegCostCenter(int.Parse(ddlTrnsUnit.SelectedValue));
             ddlTrnsCostCenter.DataSource = dt;
             ddlTrnsCostCenter.DataTextField = "Name";
             ddlTrnsCostCenter.DataValueField = "Id";
-            ddlTrnsCostCenter.DataBind(); 
+            ddlTrnsCostCenter.DataBind();
+            ddlTrnsCostCenter.Items.Insert(0, new ListItem("Select", "0"));
+
+            ddlTCostcenterp.DataSource = dt;
+            ddlTCostcenterp.DataTextField = "Name";
+            ddlTCostcenterp.DataValueField = "Id";
+            ddlTCostcenterp.DataBind();
 
 
             arrayKey = txtAssetID.Text.Split(delimiterChars);
             string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
-            if(arrayKey.Length > 0)
-            {assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
-
+            if (arrayKey.Length > 0)
+            {
+                assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString();
+            } 
 
             int Mnumber = int.Parse("1".ToString());
-             
-                DataTable rt = new DataTable();
-        
-                rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
 
-                if (rt.Rows.Count > 0)
+            DataTable rt = new DataTable();
+            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
+
+            if (rt.Rows.Count > 0)
+            {
+                try
                 {
+                   // ddlTrnsUnit.SelectedValue = rt.Rows[0]["intUnit"].ToString();
+                    ddlTrunitp.SelectedValue = rt.Rows[0]["intUnit"].ToString();
+                }
+                catch { }
+                try
+                {
+                    dt = objregister.JobstationName(8, int.Parse(ddlTrnsUnit.SelectedValue), intenroll, intjobid, intdept, "0");
+                    ddlTrnsJobstation.DataSource = dt;
+                    ddlTrnsJobstation.DataTextField = "strJobStationName";
+                    ddlTrnsJobstation.DataValueField = "intEmployeeJobStationId";
+                    ddlTrnsJobstation.DataBind();
+                    ddlTrnsJobstation.Items.Insert(0, new ListItem("Select", "0"));
 
+                    ddlTjobp.DataSource = dt;
+                    ddlTjobp.DataTextField = "strJobStationName";
+                    ddlTjobp.DataValueField = "intEmployeeJobStationId";
+                    ddlTjobp.DataBind();
+                    ddlTjobp.Items.Insert(0, new ListItem("Select", "0"));
+                }
+                catch { }
 
-                    try { ddlTrnsUnit.SelectedValue = rt.Rows[0]["intUnit"].ToString(); }
-                    catch { }
-                    try
-                    {
-                        dt = objregister.JobstationName(8, int.Parse(ddlTrnsUnit.SelectedValue), intenroll, intjobid, intdept, "0");
-                        ddlTrnsJobstation.DataSource = dt;
-                        ddlTrnsJobstation.DataTextField = "strJobStationName";
-                        ddlTrnsJobstation.DataValueField = "intEmployeeJobStationId";
-                        ddlTrnsJobstation.DataBind();
-                    }
-                    catch { }
-                    try { ddlTrnsJobstation.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString(); } catch { }
-                    try { ddlTrnsAssetType.SelectedValue = rt.Rows[0]["intMaintype"].ToString(); } catch { }
-                    try { ddlTrnsMajorCat.SelectedValue = rt.Rows[0]["intAssetType"].ToString(); } catch { }
+                try
+                {
+                    //ddlTrnsJobstation.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString();
+                    ddlTjobp.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString();
+                }
+                catch { }
+                try
+                {
+                    //ddlTrnsAssetType.SelectedValue = rt.Rows[0]["intMaintype"].ToString();
+                    ddlTassetTypep.SelectedValue = rt.Rows[0]["intMaintype"].ToString();
+                }
+                catch { }
+                try
+                {
+                    //ddlTrnsMajorCat.SelectedValue = rt.Rows[0]["intAssetType"].ToString();
+                    ddlTmajorCatp.SelectedValue = rt.Rows[0]["intAssetType"].ToString();
+                }
+                catch (Exception ex){ }
 
-                    //dt = objregister.DropdownCategoryView(int.Parse(ddlTrnsJobstation.SelectedValue));
-                    dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlTrnsJobstation.SelectedValue));//Parking List
+                //dt = objregister.DropdownCategoryView(int.Parse(ddlTrnsJobstation.SelectedValue));
+                dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlTrnsJobstation.SelectedValue));//Parking List
 
-                    ddlTrnsMinorCat1.DataSource = dt;
-                    ddlTrnsMinorCat1.DataTextField = "strCategoryName";
-                    ddlTrnsMinorCat1.DataValueField = "intCategoryID";
-                    ddlTrnsMinorCat1.DataBind();
+                ddlTrnsMinorCat1.DataSource = dt;
+                ddlTrnsMinorCat1.DataTextField = "strCategoryName";
+                ddlTrnsMinorCat1.DataValueField = "intCategoryID";
+                ddlTrnsMinorCat1.DataBind();
+                ddlTrnsMinorCat1.Items.Insert(0, new ListItem("Select", "0"));
 
-                    try { ddlTrnsMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString(); } catch { }
+                ddlTminorCatp1.DataSource = dt;
+                ddlTminorCatp1.DataTextField = "strCategoryName";
+                ddlTminorCatp1.DataValueField = "intCategoryID";
+                ddlTminorCatp1.DataBind();
+                ddlTminorCatp1.Items.Insert(0, new ListItem("Select", "0"));
 
-                    try { ddlTrnsMinorCat1.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString(); } catch { }
-                 
-                    dt = objregister.RegCostCenter(int.Parse(ddlTrnsUnit.SelectedValue));
-                    ddlTrnsCostCenter.DataSource = dt;
-                    ddlTrnsCostCenter.DataTextField = "Name";
-                    ddlTrnsCostCenter.DataValueField = "Id";
-                    ddlTrnsCostCenter.DataBind();
+                try
+                {
+                   // ddlTrnsMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString();
+                    ddlTminorCatp1.SelectedValue = rt.Rows[0]["intCategory"].ToString();
+                }
+                catch { }
 
-                    try
-                    {
-                        ddlTrnsCostCenter.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
-                    }
-                    catch { }
-                    txtTrnsAssetName.Text = rt.Rows[0]["strNameOfAsset"].ToString();
-                    txtTrnsDescription.Text= rt.Rows[0]["strDescriptionAsset"].ToString();
-              
+                try
+                {
+                   // ddlTrnsMinorCat2.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString();
+                    ddlTminorcatp2.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString();
+                }
+                catch { }
+
+                dt = objregister.RegCostCenter(int.Parse(ddlTrnsUnit.SelectedValue));
+                ddlTrnsCostCenter.DataSource = dt;
+                ddlTrnsCostCenter.DataTextField = "Name";
+                ddlTrnsCostCenter.DataValueField = "Id";
+                ddlTrnsCostCenter.DataBind();
+                ddlTrnsCostCenter.Items.Insert(0, new ListItem("Select", "0"));
+
+                ddlTCostcenterp.DataSource = dt;
+                ddlTCostcenterp.DataTextField = "Name";
+                ddlTCostcenterp.DataValueField = "Id";
+                ddlTCostcenterp.DataBind();
+                ddlTCostcenterp.Items.Insert(0, new ListItem("Select", "0"));
+
+                try
+                {
+                   // ddlTrnsCostCenter.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
+                    ddlTCostcenterp.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
+                }
+                catch { }
+                txtTrnsAssetName.Text = rt.Rows[0]["strNameOfAsset"].ToString();
+                txtTrnsDescription.Text = rt.Rows[0]["strDescriptionAsset"].ToString();
+                txtTAssetP.Text = rt.Rows[0]["strNameOfAsset"].ToString();
+                txtTdescriptionp.Text = rt.Rows[0]["strDescriptionAsset"].ToString();
+
 
             }
-                
+
+        }
+
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int type = int.Parse(ddlTransactionType.SelectedValue);
+                if (type == 3)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
+                   // TransferPageLoad();
+
+                }
+                else if (type == 4)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
+
+                   // ReClasificationPageLoad();
+
+                }
+                else if (type == 5)
+                {
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
+                    //SalePageLoad();
+                }
+                else if (type == 6)
+                {
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
+                    //RevaluationPageLoad();
+                }
+                else if (type == 7)
+                {
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
+                    //DisposalPageLoad();
+                }
             }
+            catch { }
+        }
 
         private void TransferXml()
         {
@@ -1300,17 +1522,17 @@ namespace UI.Asset
             if (arrayKey.Length > 0)
             { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
 
-            CreateTransferXml(assetId, unit, jobstation,costcentrer, enroll, reffno, remarks, dteTransaction, trnType);
+            CreateTransferXml(assetId, unit, jobstation,costcentrer, enroll, reffno, remarks, dteTransaction, trnType, mejorcat,minorcat1, minorcat2);
         }
 
-        private void CreateTransferXml(string assetId,string unit, string jobstation, string costcentrer, string enroll, string reffno, string remarks,string dteTransaction,string trnType)
+        private void CreateTransferXml(string assetId,string unit, string jobstation, string costcentrer, string enroll, string reffno, string remarks,string dteTransaction,string trnType,string mejorcat, string minorcat1, string minorcat2)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXMlAssetParking))
             {
                 doc.Load(filePathForXMlAssetParking);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNodeTransfer(doc, assetId, unit, jobstation, costcentrer, enroll, reffno, remarks, dteTransaction, trnType);
+                XmlNode addItem = CreateItemNodeTransfer(doc, assetId, unit, jobstation, costcentrer, enroll, reffno, remarks, dteTransaction, trnType, mejorcat, minorcat1, minorcat2);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -1318,14 +1540,15 @@ namespace UI.Asset
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNodeTransfer(doc, assetId, unit, jobstation, costcentrer, enroll, reffno, remarks, dteTransaction, trnType);
+                XmlNode addItem = CreateItemNodeTransfer(doc, assetId, unit, jobstation, costcentrer, enroll, reffno, remarks, dteTransaction, trnType, mejorcat, minorcat1, minorcat2);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXMlAssetParking);
         }
 
-        private XmlNode CreateItemNodeTransfer(XmlDocument doc, string assetId, string unit, string jobstation, string costcentrer, string enroll, string reffno, string remarks,string dteTransaction,string trnType)
+        private XmlNode CreateItemNodeTransfer(XmlDocument doc, string assetId, string unit, string jobstation, string costcentrer, string enroll, string reffno, 
+            string remarks,string dteTransaction,string trnType,string mejorcat,string minorcat1,string minorcat2)
         {
             XmlNode node = doc.CreateElement("voucherentry");
 
@@ -1345,14 +1568,25 @@ namespace UI.Asset
 
             XmlAttribute Reffno = doc.CreateAttribute("reffno");
             Reffno.Value = reffno;
+
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
 
             XmlAttribute DteTransaction = doc.CreateAttribute("dteTransaction");
             DteTransaction.Value = dteTransaction;
+
             XmlAttribute TrnType = doc.CreateAttribute("trnType");
             TrnType.Value = trnType;
-            
+
+            XmlAttribute Mejorcat = doc.CreateAttribute("mejorcat");
+            Mejorcat.Value = mejorcat;
+
+            XmlAttribute Minorcat1 = doc.CreateAttribute("minorcat1");
+            Minorcat1.Value = minorcat1;
+
+            XmlAttribute Minorcat2 = doc.CreateAttribute("minorcat2");
+            Minorcat2.Value = minorcat2;
+
 
 
             node.Attributes.Append(AssetId);
@@ -1365,6 +1599,9 @@ namespace UI.Asset
             node.Attributes.Append(DteTransaction);
             node.Attributes.Append(TrnType);
 
+            node.Attributes.Append(Mejorcat);
+            node.Attributes.Append(Minorcat1);
+            node.Attributes.Append(Minorcat2);
 
 
 
@@ -1383,12 +1620,14 @@ namespace UI.Asset
             ddlTrnsJobstation.DataTextField = "strJobStationName";
             ddlTrnsJobstation.DataValueField = "intEmployeeJobStationId";
             ddlTrnsJobstation.DataBind();
+            ddlTrnsJobstation.Items.Insert(0, new ListItem("Select", "0"));
 
             dt = objregister.RegCostCenter(int.Parse(ddlTrnsUnit.SelectedValue));
             ddlTrnsCostCenter.DataSource = dt;
             ddlTrnsCostCenter.DataTextField = "Name";
             ddlTrnsCostCenter.DataValueField = "Id";
             ddlTrnsCostCenter.DataBind();
+            ddlTrnsCostCenter.Items.Insert(0, new ListItem("Select", "0"));
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
 
         }
@@ -1416,26 +1655,34 @@ namespace UI.Asset
             ddlTrnsMinorCat1.DataTextField = "strCategoryName";
             ddlTrnsMinorCat1.DataValueField = "intCategoryID";
             ddlTrnsMinorCat1.DataBind();
+            ddlTrnsMinorCat1.Items.Insert(0, new ListItem("Select", "0"));
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
         }
         protected void btnTransfer_Click(object sender, EventArgs e)
         {
-            TransferXml();
+            try
+            {
+                if(hdnPreConfirm.Value=="1")
+                {
+                    TransferXml();
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXMlAssetParking);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                    try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filePathForXMlAssetParking);
-            XmlNode dSftTm = doc.SelectSingleNode("voucher");
-            string xmlString = dSftTm.InnerXml;
-            xmlString = "<voucher>" + xmlString + "</voucher>";
-            try { File.Delete(filePathForXMlAssetParking); } catch { }
+                    int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
-            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-
-            dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
-             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
-                      
-            divClose();
+                    dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
+                    divClose();
+                }
+               
+            }
+            catch { }
+           
           
         }
         #endregion ==========================Close================================================
@@ -1447,38 +1694,43 @@ namespace UI.Asset
 
         protected void ddlTransactionType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+
+            }
+            catch { }
             int type = int.Parse(ddlTransactionType.SelectedValue);
             if (type == 3)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-                try { File.Delete(filePathForXMlAssetParking); } catch { }
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                //try { File.Delete(filePathForXMlAssetParking); } catch { }
                 TransferPageLoad();
                
             }
            else if (type == 4)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
-                try { File.Delete(filePathForXMlAssetParking); } catch { }
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
+                //try { File.Delete(filePathForXMlAssetParking); } catch { }
 
                 ReClasificationPageLoad(); 
                
             }
           else  if (type == 5)
             {
-                try { File.Delete(filePathForXMlAssetParking); } catch { }
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
+                //try { File.Delete(filePathForXMlAssetParking); } catch { }
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
                 SalePageLoad();
             }
          else   if (type == 6)
             {
-                try { File.Delete(filePathForXMlAssetParking); } catch { }
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
+                //try { File.Delete(filePathForXMlAssetParking); } catch { }
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
                 RevaluationPageLoad();
             }
           else if (type == 7)
             {
-                try { File.Delete(filePathForXMlAssetParking); } catch { }
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
+                //try { File.Delete(filePathForXMlAssetParking); } catch { }
+                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
                 DisposalPageLoad();
             }
 

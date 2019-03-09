@@ -2019,35 +2019,7 @@ namespace UI.Asset
         #endregion ===========================Building Asset==========================
 
 
-        protected void txtErectionOtherCost_TextChanged(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-            try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-            try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-            txtAcisitionCost.Text = ( landedcost + otherCost).ToString();
-            txtAcisitionCost.ReadOnly = true;
-        }
-
-        protected void txtLandedCost_TextChanged(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-            try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-            try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-            txtAcisitionCost.Text = ( landedcost + otherCost).ToString();
-            txtAcisitionCost.ReadOnly = true;
-        }
-
-        protected void txtInvoiceValue_TextChanged(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-            try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-            try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-            txtAcisitionCost.Text = ( landedcost + otherCost).ToString();
-            txtAcisitionCost.ReadOnly = true;
-        }
+        
         private void LoadView()
         {
             try

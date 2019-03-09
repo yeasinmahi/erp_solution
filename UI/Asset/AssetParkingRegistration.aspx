@@ -43,6 +43,9 @@
             vertical-align: top;
             border-top: none;
         } 
+        tbody {
+        z-index: -1;
+        }
         </style>  
       
     <script type="text/javascript"> 
@@ -54,12 +57,22 @@
          function ClosehdnDivision() {
 
              $("#hdnDivision").fadeOut("slow");
+               document.getElementById('hdnDivision').style.visibility = 'hidden';
          }
+
+        function sumValue() {
+            var invoiceValue = parseFloat(document.getElementById("txtInvoiceValue").value);
+            var landedCost = parseFloat(document.getElementById("txtLandedCost").value);
+            var erection = parseFloat(document.getElementById("txtErectionOtherCost").value);
+            document.getElementById("txtAcisitionCost").value = parseFloat(invoiceValue+landedCost+erection);
+
+        }
+         
          
 
         function Validation() { 
             var Assetname = document.getElementById("txtAssetname").value;
-            alert(Assetname);
+             
             var e = document.getElementById("ddlUnit");
             var unitid = e.options[e.selectedIndex].value;
             var e = document.getElementById("dlJobstation");
@@ -162,30 +175,30 @@
 
     
    <style type="text/css">
-    .Initial
-{
-  display: block;
-  padding: 4px 18px 4px 18px;
-  float: left;
-  background: url("../Images/InitialImage.png") no-repeat right top;
-  color: Black;
-  font-weight: bold;
-}
-     .Initial:hover
-     {
-  color: White;
-  background:#eeeeee;
-   }
-     .Clicked
-     {
-  float: left;
-  display: block;
-  background:padding-box;
-  padding: 4px 18px 4px 18px;
-  color: Black;
-  font-weight: bold;
-  color:Green;
-}
+        .Initial
+        {
+        display: block;
+        padding: 4px 18px 4px 18px;
+        float: left;
+        background: url("../Images/InitialImage.png") no-repeat right top;
+        color: Black;
+        font-weight: bold;
+        }
+        .Initial:hover
+        {
+        color: White;
+        background:#eeeeee;
+        }
+        .Clicked
+        {
+        float: left;
+        display: block;
+        background:padding-box;
+        padding: 4px 18px 4px 18px;
+        color: Black;
+        font-weight: bold;
+        color:Green;
+        }
 </style>
      <style type="text/css"> 
         .rounds {
@@ -198,8 +211,8 @@
 
         .HyperLinkButtonStyle { float:right; text-align:left; border: none; background: none; 
         color: blue; text-decoration: underline; font: normal 10px verdana;} 
-        .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden; border:10px double black; text-align:center;
-        width:100%; height: 100%;    margin-left:100px;  margin-top:40px; margin-right:00px; padding: 15px; overflow-y:scroll; }
+        .hdnDivision { background-color: #EFEFEF; position:absolute;z-index:1; visibility:hidden;z-index:100;top:20%;left:0; border:10px double black; text-align:center;
+        width:100%; height: 100%;    margin-left:100px;  margin-right:00px; padding: 15px; overflow-y:scroll; }
         </style>
    
     </head>
@@ -233,7 +246,7 @@
                    <td style="text-align:right;" ><asp:Label ID="Label1" CssClass="lbl" runat="server" Font-Bold="true" Text="Unit Name: "></asp:Label></td>
                    <td><asp:DropDownList ID="ddlUnitby" runat="server" AutoPostBack="true"   CssClass="ddList" OnSelectedIndexChanged="ddlUnitby_SelectedIndexChanged"> </asp:DropDownList>  </td>                 
                    <td style="text-align:right;" ><asp:Label ID="Label20" CssClass="lbl" Font-Bold="true" runat="server" Text="WH Name: "></asp:Label></td>
-                   <td><asp:DropDownList ID="ddlWh" runat="server" AutoPostBack="true"   CssClass="ddList" > </asp:DropDownList>  </td>                 
+                   <td><asp:DropDownList ID="ddlWh" runat="server" AutoPostBack="true"   CssClass="ddList" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged" > </asp:DropDownList>  </td>                 
                     
                </tr>
             <tr>
@@ -281,7 +294,7 @@
 
      <%--   General Asset Parking Registratiron         class="hdnDivision" --%> 
                 <div id="hdnDivision"   class="hdnDivision"  style="width:auto;  height:500px;">
-                     <table style="width:auto;  float:left; " >   
+                     <table style="width:auto;  float:left;z-index: 99;" >  
                         
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
@@ -430,31 +443,30 @@
                 </tr>
                     <tr>
                    <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Invoice Value BDT:"></asp:Label></td>
-                <td><asp:TextBox ID="txtInvoiceValue" runat="server" CssClass="txtBox" ></asp:TextBox></td>  
+                <td><asp:TextBox ID="txtInvoiceValue" runat="server" Text="0"  onkeyup="sumValue(this)"    CssClass="txtBox" ></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Recommand Life:"></asp:Label></td>
                 <td><asp:TextBox ID="txtRecommandLife" runat="server" CssClass="txtBox"></asp:TextBox></td>     
 
                     </tr>
                     <tr>
                          <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="Landed Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtLandedCost" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtLandedCost_TextChanged"></asp:TextBox></td>  
+                <td><asp:TextBox ID="txtLandedCost" runat="server" Text="0"  onkeyup="sumValue(this)"   CssClass="txtBox"   ></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label10" CssClass="lbl" runat="server" Text="Method of Depreciation:"></asp:Label></td>
                  <td><asp:DropDownList ID="ddlMethodOfDep" runat="server"  CssClass="ddList"  >  
                       <asp:ListItem Value="1" Text="Straight line "></asp:ListItem>    <asp:ListItem Value="2" Text="Reducing Balance"></asp:ListItem>   
-                </asp:DropDownList> </td>
-                 
+                </asp:DropDownList> </td> 
 
                     </tr>
                     <tr>
                          <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtErectionOtherCost_TextChanged"></asp:TextBox></td>  
+                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" Text="0" onkeyup="sumValue(this)" CssClass="txtBox" ></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label170" CssClass="lbl" runat="server" Text="Rate of Depreciation:"></asp:Label></td>
                 <td><asp:TextBox ID="txtRateDep" runat="server" AutoPostBack="true" CssClass="txtBox" ></asp:TextBox></td>  
                
                     </tr>
                     <tr>
                  <td style="text-align:right;"><asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Total Acquisition Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtAcisitionCost" runat="server" CssClass="txtBox"></asp:TextBox></td>  
+                <td><asp:TextBox ID="txtAcisitionCost" runat="server" Text="0" CssClass="txtBox"></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Depreciation Run Date:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDepRunDate" runat="server" CssClass="txtBox"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender7" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepRunDate">
@@ -473,7 +485,7 @@
                     <tr>
                         <td colspan="4" style="text-align:right;">
                             <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" class="btn btn-primary"  OnClick="btnSave_Click" Text="Save" />
-                            <asp:Button ID="btnClose" runat="server"  class="btn btn-secondary"      OnClick=" btnClose_Click" Text="Close" />
+                            <asp:Button ID="btnClose" runat="server"  class="btn btn-warning"      OnClick=" btnClose_Click" Text="Close" />
                         </td>
                          
                     </tr>
@@ -492,31 +504,13 @@
         &times;</button>
         <h4 class="modal-title">Asset Additon/Recognition/Registration: </h4>
         </div>
-        <div class="modal-body"> 
-            
-              
-               
-           
+        <div class="modal-body">  
             
         </div>
          
         </div>
         </div>
-    <!-- Modal Popup --> 
-
-    <cc1:ModalPopupExtender ID="ModalPopupExtender1" BehaviorID="mpe" runat="server"
-    PopupControlID="pnlPopup" TargetControlID="btnManual" BackgroundCssClass="modalBackground">
-    </cc1:ModalPopupExtender>
-    <asp:Panel ID="pnlPopup" runat="server" CssClass="modalPopup" Style="display: none">
-    <div class="header">
-    Modal Popup
-    </div>
-    <div class="body">
-    This is a Modal Popup.
-    <br />
-    <asp:Button ID="btnHide" runat="server" Text="Hide Modal Popup" OnClientClick="return HideModalPopup()" />
-    </div>
-    </asp:Panel>
+    <!-- Modal Popup -->  
 
         </div> 
 <%--=========================================End My Code From Here=================================================--%>

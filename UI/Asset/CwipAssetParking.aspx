@@ -13,6 +13,9 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+     <asp:PlaceHolder ID="PlaceHolder2" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/updatedCss" /> 
+
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>    
@@ -92,6 +95,13 @@
 
              $("#hdnBuildingDivision").fadeOut("slow");
          }
+         function sumValue() {
+            var invoiceValue = parseFloat(document.getElementById("txtInvoiceValue").value);
+            var landedCost = parseFloat(document.getElementById("txtLandedCost").value);
+            var erection = parseFloat(document.getElementById("txtErectionOtherCost").value);
+            document.getElementById("txtAcisitionCost").value = parseFloat(invoiceValue+landedCost+erection);
+
+          }
              function Validation() { 
             var Assetname = document.getElementById("txtAssetname").value;
             ;
@@ -457,14 +467,14 @@
                 </tr>
                     <tr>
                    <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Invoice Value BDT:"></asp:Label></td>
-                <td><asp:TextBox ID="txtInvoiceValue" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtInvoiceValue_TextChanged"></asp:TextBox></td>  
+                <td><asp:TextBox ID="txtInvoiceValue" runat="server" onkeyup="sumValue(this)"   CssClass="txtBox"></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Recommand Life:"></asp:Label></td>
                 <td><asp:TextBox ID="txtRecommandLife" runat="server" CssClass="txtBox"></asp:TextBox></td>     
 
                     </tr>
                     <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="LandedCostt:"></asp:Label></td>
-                <td><asp:TextBox ID="txtLandedCost" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtLandedCost_TextChanged"></asp:TextBox></td>  
+                   <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="LandedCostt:"></asp:Label></td>
+                <td><asp:TextBox ID="txtLandedCost" runat="server" onkeyup="sumValue(this)"   CssClass="txtBox"  ></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label10" CssClass="lbl" runat="server" Text="Method of Depreciation:"></asp:Label></td>
                  <td><asp:DropDownList ID="ddlMethodOfDep" runat="server"  CssClass="dropdownList" >  
                      <asp:ListItem Value="1" Text="Straight line "></asp:ListItem>    <asp:ListItem Value="2" Text="Reducing Balance"></asp:ListItem>          
@@ -473,15 +483,15 @@
 
                     </tr>
                     <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtErectionOtherCost_TextChanged"></asp:TextBox></td>  
+                 <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" onkeyup="sumValue(this)"  CssClass="txtBox"></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label12" CssClass="lbl" runat="server" Text="Rate of Depreciation:"></asp:Label></td>
                 <td><asp:TextBox ID="txtRateDep" runat="server" CssClass="txtBox"></asp:TextBox></td>     
 
                     </tr>
                     <tr>
                          <td style="text-align:right;"><asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Total Acquisition Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtAcisitionCost" runat="server" CssClass="txtBox"></asp:TextBox></td>  
+                <td><asp:TextBox ID="txtAcisitionCost" runat="server" onkeyup="sumValue(this)"  CssClass="txtBox"></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Depreciation Run Date:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDepRunDate" runat="server" CssClass="txtBox"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender7" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepRunDate">
@@ -498,12 +508,10 @@
                 </tr>
                        
                     <tr>
-                        <td colspan="2" style="text-align:right;">
-                            <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" OnClick="btnSave_Click" Text="Save" />
-                        </td>
-
-                        <td colspan="2" style="text-align:right;">
-                        <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close" />
+                        <td colspan="4" style="text-align:right;">
+                        <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" class="btn btn-primary" OnClick="btnSave_Click" Text="Save" />
+                         
+                        <asp:Button ID="btnClose" runat="server" class="btn btn-warning" OnClick="btnClose_Click" Text="Close" />
                     </td>
                     </tr>
                        
