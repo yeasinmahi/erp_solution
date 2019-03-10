@@ -1740,6 +1740,7 @@ namespace UI.Asset
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
         }
+
         #region===============AutoSearch==============================
         [WebMethod]
         [ScriptMethod]
@@ -1756,7 +1757,5 @@ namespace UI.Asset
 
         #endregion===============Close================================
 
-
-      
     }
 }
