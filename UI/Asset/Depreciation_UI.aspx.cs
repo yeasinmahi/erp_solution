@@ -28,6 +28,7 @@ namespace UI.Asset
         string location = "Asset";
         string start = "starting Asset\\Depreciation_UI";
         string stop = "stopping Asset\\Depreciation_UI";
+        string[] arrayKey; char[] delimiterChars = { '[', ']' };
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -76,8 +77,15 @@ namespace UI.Asset
                 string assetcode, xmlString;
                 string strSearchKey = txtAssetID.Text;
                 string[] searchKey = Regex.Split(strSearchKey, ";");
-                try { assetcode = searchKey[1]; } catch { assetcode = "0".ToString(); }
-                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetcode + '"' + "/></voucher>".ToString();
+                arrayKey = txtAssetID.Text.Split(delimiterChars);
+
+                string assetid = "0"; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                
+
+
+                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString();
                 if (int.Parse(ddltype.SelectedValue) == 1)
                 {
                     dt = objdep.DepreciationView(6, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0); 
@@ -123,8 +131,13 @@ namespace UI.Asset
                 string assetcode, xmlString;
                 string strSearchKey = txtAssetID.Text;
                 string[] searchKey = Regex.Split(strSearchKey, ";");
-                try { assetcode = searchKey[1]; } catch { assetcode = "0".ToString(); }
-                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetcode + '"' + "/></voucher>".ToString();
+                arrayKey = txtAssetID.Text.Split(delimiterChars);
+
+                string assetid = "0"; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+                 
+                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString(); 
                 if (int.Parse(ddltype.SelectedValue) == 1)
                 {
                     dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0);
