@@ -86,9 +86,6 @@
             var costcenter = e.options[e.selectedIndex].value;
             
             var dtedate = document.getElementById("txtReDate").value;
-           
-           
-
             
 
             if ($.trim(type).length < 1 ||
@@ -115,14 +112,7 @@
                 alert('Please select Minor Category 1');
                 return false
             }
-            else if ($.trim(minorcat2) == 0 ||
-                $.trim(minorcat2) == "" ||
-                $.trim(minorcat2) == null ||
-                $.trim(minorcat2) == undefined) {
-                document.getElementById("hdnPreConfirm").value = "0";
-                alert('Please select Minor Category 2');
-                return false
-            }
+            
             else if ($.trim(costcenter) == 0 ||
                 $.trim(costcenter) == "" ||
                 $.trim(costcenter) == null ||
@@ -355,14 +345,14 @@
                 alert('Please  Set Remarks');
                 return false
             } 
-                else if ($.trim(totaldep) <3 ||
-                $.trim(totaldep) == "" ||
-                $.trim(totaldep) == null ||
-                $.trim(totaldep) == undefined) {
-                document.getElementById("hdnPreConfirm").value = "0";
-                alert('Please  Set Total Depreciation');
-                return false
-            } 
+            //    else if ($.trim(totaldep) <3 ||
+            //    $.trim(totaldep) == "" ||
+            //    $.trim(totaldep) == null ||
+            //    $.trim(totaldep) == undefined) {
+            //    document.getElementById("hdnPreConfirm").value = "0";
+            //    alert('Please  Set Total Depreciation');
+            //    return false
+            //} 
                 else if ($.trim(totalcost) <3 ||
                 $.trim(totalcost) == "" ||
                 $.trim(totalcost) == null ||
@@ -699,6 +689,14 @@
             } 
         }
 
+        function disDepCal() {
+            var totaldep = parseFloat(document.getElementById("txtDispoTotalDep").value);  
+            var totalcost = parseFloat(document.getElementById("txtDispoTotalCost").value);
+            
+            document.getElementById("txtDispoCapitalLoss").value = parseFloat( totaldep -totalcost)
+
+        }
+
 
     </script>
 
@@ -827,6 +825,7 @@
                      <asp:ListItem Value="5" Text="Sale"></asp:ListItem> 
                      </asp:DropDownList>
                      <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
+                     <asp:Label ID="lblMsg" runat="server" ForeColor="Red" ></asp:Label>
                  </td>        
 
                 </tr>
@@ -1039,7 +1038,7 @@
                  <td><asp:TextBox ID="txtDispoRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td> 
                         
               <td style="text-align:right;"><asp:Label ID="Label35" CssClass="lbl" runat="server" Text="Total Depreciation:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtDispoTotalDep" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+                 <td><asp:TextBox ID="txtDispoTotalDep" runat="server" onkeyup="disDepCal(this);" CssClass="txtBox"></asp:TextBox></td> 
 
                     </tr>
                      

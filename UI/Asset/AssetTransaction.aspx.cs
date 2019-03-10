@@ -587,7 +587,13 @@ namespace UI.Asset
             try { dteTransaction = DateTime.Parse(txtReDate.Text.ToString());} catch { dteTransaction = DateTime.Parse("1900-01-01".ToString()); }
 
             string remarks = txtReRemarks.Text.ToString();
-            string assetid = "".ToString();
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+
+            string assetid = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
+
             CreateXmlReclasification(assetid, mainType.ToString(), mejorcat.ToString(), minorcat1.ToString(), minorcat2.ToString(),  reff, dteTransaction.ToString(), remarks);
         }
 
@@ -708,6 +714,7 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
                     dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    lblMsg.Text = "Voucher No"+ dt.Rows[0]["Mesasge"].ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                     divClose();
@@ -730,10 +737,8 @@ namespace UI.Asset
             var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
-            {
-
-
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            { 
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -987,6 +992,7 @@ namespace UI.Asset
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
             dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+            lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
             divClose();
@@ -1250,6 +1256,7 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
                     dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                     divClose();
