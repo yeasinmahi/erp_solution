@@ -2116,9 +2116,9 @@ namespace UI.Asset
 
                     suppliers = txtSuppliers.Text.ToString();
                     try { ponumber = int.Parse(txtPonumbers.Text.ToString()); } catch { ponumber = 0; }
-                    try { dtePo = DateTime.Parse(dtePoDate.Text.ToString()); } catch {   }
-                    try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch {    }
-                    try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch {   }
+                    try { dtePo = DateTime.Parse(dtePoDate.Text.ToString()); } catch { dtePo= DateTime.Parse("1990-01-01".ToString()); }
+                    try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty=DateTime.Parse("1990-01-01".ToString()); }
+                    try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation=DateTime.Parse("1990-01-01".ToString()); }
 
                     string lcoation = txtAssetLocation.Text.ToString();
                     try { userenroll = int.Parse(txtEnrolment.Text); } catch { userenroll = 0; }
@@ -2132,9 +2132,9 @@ namespace UI.Asset
                     string assetname = txtAssetname.Text.ToString();
                     string description = txtDescription.Text.ToString();
                     string hscode = txtHsCode.Text;
-                    try { issudate = DateTime.Parse(txtIssueDate.Text); } catch {   }
-                    try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch {   }
-                    try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch {   }
+                    try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate= DateTime.Parse("1990-01-01".ToString()); }
+                    try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate= DateTime.Parse("1990-01-01".ToString()); }
+                    try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate =DateTime.Parse("1990-01-01".ToString()); }
 
                     string countryorigin = txtCountryOrigin.Text.ToString();
                     string manufacturer = txtManufacturer.Text.ToString();
@@ -2146,7 +2146,7 @@ namespace UI.Asset
                     try { recommandlife = decimal.Parse(txtRecommandLife.Text); } catch { recommandlife = 0; }
                     try { depMethode = int.Parse(ddlMethodOfDep.SelectedValue); } catch { depMethode = 0; }
                     try { depRate = decimal.Parse(txtRateDep.Text); } catch { depRate = 0; }
-                    try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch {   }
+                    try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate= DateTime.Parse("1990-01-01".ToString()); }
 
                     int reffid = int.Parse(hdnReceive.Value);
 
