@@ -94,8 +94,8 @@
             OnClick="Tab5_Click"  BackColor="#FFCC99" />
           <asp:MultiView ID="MainView"   runat="server">
             <asp:View ID="View1"  runat="server">
-            <table style="width: 1050px; border-width: 1px; border-color: #666; border-style: solid">
-            <iframe runat="server" oncontextmenu="return false;" id="frameGEneral" name="frame" style="width:100%;height:500px;   border:0px solid red;"></iframe>
+            <table style="width: 1200px; border-width: 1px; border-color: #666; border-style: solid">
+            <iframe runat="server" oncontextmenu="return false;" id="frmDepreciation" name="frame" style="width:100%;height:500px;   border:0px solid red;"></iframe>
             </table>
             </span> 
 
@@ -107,14 +107,14 @@
             <table style="width:1200px;">
                 
             <%--//**********************************************Vehicle Registration TAB***********************************************************--%>
-            <iframe runat="server" oncontextmenu="return false;" id="IframeVehicle" name="frame" style="width:100%; font-size:small;  height:500px;  border:0px solid red;"></iframe>
+            <iframe runat="server" oncontextmenu="return false;" id="FrmDisposal" name="frame" style="width:100%; font-size:small;  height:500px;  border:0px solid red;"></iframe>
                 
             </table>
                    
             </asp:View>
               
             <asp:View ID="View3" runat="server">
-            <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+            <table style="width: 1200px; border-width: 1px; border-color: #666; border-style: solid">
             <tr>
             <td>
             <h3>
@@ -123,7 +123,7 @@
             <%--//**********************************************Land Registration TAB***********************************************************--%>  
 
             <table> 
-            <iframe runat="server" oncontextmenu="return false;" id="IframeLand" name="frame" style="width:100%; height:1500px; border:0px solid red;"></iframe>
+            <iframe runat="server" oncontextmenu="return false;" id="FrmRevaluation" name="frame" style="width:100%; height:500px; border:0px solid red;"></iframe>
             </table> 
             </span>
                      
@@ -133,7 +133,7 @@
             </asp:View>
 
             <asp:View ID="View4" runat="server">
-            <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
+            <table style="width:1200px; border-width: 1px; border-color: #666; border-style: solid">
             <tr>
             <td>
             <h3>
@@ -142,7 +142,7 @@
         
             <%--//**********************************************Building Registration TAB***********************************************************--%>
           
-            <iframe runat="server" oncontextmenu="return false;" id="IframeBuilding" name="frame" style="width:100%; height:1500px; border:0px solid red;"></iframe>
+            <iframe runat="server" oncontextmenu="return false;" id="FrmTransection" name="frame" style="width:100%; height:500px; border:0px solid red;"></iframe>
 
             <table> 
         
@@ -154,9 +154,9 @@
             </table>
             </asp:View>
 
-         <asp:View ID="View5"  runat="server">
+            <asp:View ID="View5"  runat="server">
               <table style="width: 1050px; border-width: 1px; border-color: #666; border-style: solid">
-               <iframe runat="server" oncontextmenu="return false;" id="Iframe1" name="frame" style="width:100%;height:500px;   border:0px solid red;"></iframe>
+               <iframe runat="server" oncontextmenu="return false;" id="FrmSchedule" name="frame" style="width:100%;height:500px;   border:0px solid red;"></iframe>
               </table>
                 </span> 
                </asp:View>

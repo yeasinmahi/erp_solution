@@ -148,13 +148,13 @@ namespace UI.Asset.Report {
         protected global::System.Web.UI.WebControls.View View1;
         
         /// <summary>
-        /// frameGEneral control.
+        /// frmDepreciation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe frameGEneral;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe frmDepreciation;
         
         /// <summary>
         /// View2 control.
@@ -166,13 +166,13 @@ namespace UI.Asset.Report {
         protected global::System.Web.UI.WebControls.View View2;
         
         /// <summary>
-        /// IframeVehicle control.
+        /// FrmDisposal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe IframeVehicle;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe FrmDisposal;
         
         /// <summary>
         /// View3 control.
@@ -184,13 +184,13 @@ namespace UI.Asset.Report {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// IframeLand control.
+        /// FrmRevaluation control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe IframeLand;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe FrmRevaluation;
         
         /// <summary>
         /// View4 control.
@@ -202,13 +202,13 @@ namespace UI.Asset.Report {
         protected global::System.Web.UI.WebControls.View View4;
         
         /// <summary>
-        /// IframeBuilding control.
+        /// FrmTransection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe IframeBuilding;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe FrmTransection;
         
         /// <summary>
         /// View5 control.
@@ -220,12 +220,12 @@ namespace UI.Asset.Report {
         protected global::System.Web.UI.WebControls.View View5;
         
         /// <summary>
-        /// Iframe1 control.
+        /// FrmSchedule control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlIframe Iframe1;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe FrmSchedule;
     }
 }
