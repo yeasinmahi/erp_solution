@@ -97,7 +97,7 @@
                 <cc1:CalendarExtender ID="CalendarExtenderMonthly" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtDteFrom"></cc1:CalendarExtender> </td>
                             
                 <td style="text-align:right;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="To Date"  Font-Bold="true"></asp:Label></td> 
-                <td> <asp:TextBox ID="txtdteTo" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
+                <td> <asp:TextBox ID="txtdteTo" runat="server" Font-Bold="true" CssClass="txtBox" AutoPostBack="true" OnTextChanged="txtdteTo_TextChanged"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtdteTo"></cc1:CalendarExtender> </td>
 
                 </tr>

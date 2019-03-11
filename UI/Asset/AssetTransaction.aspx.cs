@@ -587,7 +587,13 @@ namespace UI.Asset
             try { dteTransaction = DateTime.Parse(txtReDate.Text.ToString());} catch { dteTransaction = DateTime.Parse("1900-01-01".ToString()); }
 
             string remarks = txtReRemarks.Text.ToString();
-            string assetid = "".ToString();
+            arrayKey = txtAssetID.Text.Split(delimiterChars);
+
+            string assetid = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
+
             CreateXmlReclasification(assetid, mainType.ToString(), mejorcat.ToString(), minorcat1.ToString(), minorcat2.ToString(),  reff, dteTransaction.ToString(), remarks);
         }
 
@@ -708,6 +714,7 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
                     dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    lblMsg.Text = "Voucher No"+ dt.Rows[0]["Mesasge"].ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                     divClose();
@@ -730,10 +737,8 @@ namespace UI.Asset
             var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
-            {
-
-
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+            { 
+            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
@@ -987,6 +992,7 @@ namespace UI.Asset
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
             dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+            lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
             divClose();
@@ -1250,6 +1256,7 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
 
                     dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
+                    lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                     divClose();
@@ -1367,7 +1374,7 @@ namespace UI.Asset
                 catch { }
                 try
                 {
-                    dt = objregister.JobstationName(8, int.Parse(ddlTrnsUnit.SelectedValue), intenroll, intjobid, intdept, "0");
+                    dt = objregister.JobstationName(8, int.Parse(ddlTrunitp.SelectedValue), intenroll, intjobid, intdept, "0");
                     ddlTrnsJobstation.DataSource = dt;
                     ddlTrnsJobstation.DataTextField = "strJobStationName";
                     ddlTrnsJobstation.DataValueField = "intEmployeeJobStationId";
@@ -1468,7 +1475,7 @@ namespace UI.Asset
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
-                   // TransferPageLoad();
+                   TransferPageLoad();
 
                 }
                 else if (type == 4)
@@ -1476,26 +1483,26 @@ namespace UI.Asset
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-                   // ReClasificationPageLoad();
+                   ReClasificationPageLoad();
 
                 }
                 else if (type == 5)
                 {
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
-                    //SalePageLoad();
+                    SalePageLoad();
                 }
                 else if (type == 6)
                 {
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
-                    //RevaluationPageLoad();
+                    RevaluationPageLoad();
                 }
                 else if (type == 7)
                 {
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
-                    //DisposalPageLoad();
+                    DisposalPageLoad();
                 }
             }
             catch { }
@@ -1699,40 +1706,40 @@ namespace UI.Asset
 
             }
             catch { }
-            int type = int.Parse(ddlTransactionType.SelectedValue);
-            if (type == 3)
-            {
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                TransferPageLoad();
+         //   int type = int.Parse(ddlTransactionType.SelectedValue);
+         //   if (type == 3)
+         //   {
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //      // TransferPageLoad();
                
-            }
-           else if (type == 4)
-            {
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //   }
+         //  else if (type == 4)
+         //   {
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-                ReClasificationPageLoad(); 
+         //       //ReClasificationPageLoad(); 
                
-            }
-          else  if (type == 5)
-            {
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
-                SalePageLoad();
-            }
-         else   if (type == 6)
-            {
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
-                RevaluationPageLoad();
-            }
-          else if (type == 7)
-            {
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
-                DisposalPageLoad();
-            }
+         //   }
+         // else  if (type == 5)
+         //   {
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
+         //      // SalePageLoad();
+         //   }
+         //else   if (type == 6)
+         //   {
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
+         //      // RevaluationPageLoad();
+         //   }
+         // else if (type == 7)
+         //   {
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
+         //      // DisposalPageLoad();
+         //   }
 
         } 
 

@@ -10914,6 +10914,10 @@ namespace Purchase_DAL.Asset {
             
             private global::System.Data.DataColumn columndecDepreciation;
             
+            private global::System.Data.DataColumn columnintID;
+            
+            private global::System.Data.DataColumn columnColumn1;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprDepreciationConfig_DataTable() {
@@ -10989,6 +10993,22 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intIDColumn {
+                get {
+                    return this.columnintID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn Column1Column {
+                get {
+                    return this.columnColumn1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -11024,14 +11044,16 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprDepreciationConfig_Row AddSprDepreciationConfig_Row(int intGlobalCOA, string strCOACode, string strCOAName, string strUnit, decimal decDepreciation) {
+            public SprDepreciationConfig_Row AddSprDepreciationConfig_Row(int intGlobalCOA, string strCOACode, string strCOAName, string strUnit, decimal decDepreciation, int Column1) {
                 SprDepreciationConfig_Row rowSprDepreciationConfig_Row = ((SprDepreciationConfig_Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intGlobalCOA,
                         strCOACode,
                         strCOAName,
                         strUnit,
-                        decDepreciation};
+                        decDepreciation,
+                        null,
+                        Column1};
                 rowSprDepreciationConfig_Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprDepreciationConfig_Row);
                 return rowSprDepreciationConfig_Row;
@@ -11059,6 +11081,8 @@ namespace Purchase_DAL.Asset {
                 this.columnstrCOAName = base.Columns["strCOAName"];
                 this.columnstrUnit = base.Columns["strUnit"];
                 this.columndecDepreciation = base.Columns["decDepreciation"];
+                this.columnintID = base.Columns["intID"];
+                this.columnColumn1 = base.Columns["Column1"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11074,9 +11098,19 @@ namespace Purchase_DAL.Asset {
                 base.Columns.Add(this.columnstrUnit);
                 this.columndecDepreciation = new global::System.Data.DataColumn("decDepreciation", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndecDepreciation);
+                this.columnintID = new global::System.Data.DataColumn("intID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintID);
+                this.columnColumn1 = new global::System.Data.DataColumn("Column1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnColumn1);
                 this.columnstrCOACode.MaxLength = 250;
                 this.columnstrCOAName.MaxLength = 500;
                 this.columnstrUnit.MaxLength = 100;
+                this.columnintID.AutoIncrement = true;
+                this.columnintID.AutoIncrementSeed = -1;
+                this.columnintID.AutoIncrementStep = -1;
+                this.columnintID.AllowDBNull = false;
+                this.columnintID.ReadOnly = true;
+                this.columnColumn1.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17631,6 +17665,33 @@ namespace Purchase_DAL.Asset {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intID {
+                get {
+                    return ((int)(this[this.tableSprDepreciationConfig_.intIDColumn]));
+                }
+                set {
+                    this[this.tableSprDepreciationConfig_.intIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int Column1 {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprDepreciationConfig_.Column1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Column1\' in table \'SprDepreciationConfig \' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprDepreciationConfig_.Column1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintGlobalCOANull() {
                 return this.IsNull(this.tableSprDepreciationConfig_.intGlobalCOAColumn);
             }
@@ -17687,6 +17748,18 @@ namespace Purchase_DAL.Asset {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetdecDepreciationNull() {
                 this[this.tableSprDepreciationConfig_.decDepreciationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsColumn1Null() {
+                return this.IsNull(this.tableSprDepreciationConfig_.Column1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetColumn1Null() {
+                this[this.tableSprDepreciationConfig_.Column1Column] = global::System.Convert.DBNull;
             }
         }
         
@@ -27185,6 +27258,8 @@ FROM            ERP_Accounts.dbo.tblAccountsChartOfAcc
             tableMapping.ColumnMappings.Add("strCOAName", "strCOAName");
             tableMapping.ColumnMappings.Add("strUnit", "strUnit");
             tableMapping.ColumnMappings.Add("decDepreciation", "decDepreciation");
+            tableMapping.ColumnMappings.Add("intID", "intID");
+            tableMapping.ColumnMappings.Add("Column1", "Column1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
