@@ -1374,7 +1374,7 @@ namespace UI.Asset
                 catch { }
                 try
                 {
-                    dt = objregister.JobstationName(8, int.Parse(ddlTrnsUnit.SelectedValue), intenroll, intjobid, intdept, "0");
+                    dt = objregister.JobstationName(8, int.Parse(ddlTrunitp.SelectedValue), intenroll, intjobid, intdept, "0");
                     ddlTrnsJobstation.DataSource = dt;
                     ddlTrnsJobstation.DataTextField = "strJobStationName";
                     ddlTrnsJobstation.DataValueField = "intEmployeeJobStationId";
@@ -1475,7 +1475,7 @@ namespace UI.Asset
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
-                   // TransferPageLoad();
+                   TransferPageLoad();
 
                 }
                 else if (type == 4)
@@ -1483,26 +1483,26 @@ namespace UI.Asset
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-                   // ReClasificationPageLoad();
+                   ReClasificationPageLoad();
 
                 }
                 else if (type == 5)
                 {
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
-                    //SalePageLoad();
+                    SalePageLoad();
                 }
                 else if (type == 6)
                 {
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
-                    //RevaluationPageLoad();
+                    RevaluationPageLoad();
                 }
                 else if (type == 7)
                 {
                     try { File.Delete(filePathForXMlAssetParking); } catch { }
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
-                    //DisposalPageLoad();
+                    DisposalPageLoad();
                 }
             }
             catch { }
@@ -1706,40 +1706,40 @@ namespace UI.Asset
 
             }
             catch { }
-            int type = int.Parse(ddlTransactionType.SelectedValue);
-            if (type == 3)
-            {
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                TransferPageLoad();
+         //   int type = int.Parse(ddlTransactionType.SelectedValue);
+         //   if (type == 3)
+         //   {
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //      // TransferPageLoad();
                
-            }
-           else if (type == 4)
-            {
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //   }
+         //  else if (type == 4)
+         //   {
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnReclassDiv();", true);
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
 
-                ReClasificationPageLoad(); 
+         //       //ReClasificationPageLoad(); 
                
-            }
-          else  if (type == 5)
-            {
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
-                SalePageLoad();
-            }
-         else   if (type == 6)
-            {
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
-                RevaluationPageLoad();
-            }
-          else if (type == 7)
-            {
-                //try { File.Delete(filePathForXMlAssetParking); } catch { }
-                //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
-                DisposalPageLoad();
-            }
+         //   }
+         // else  if (type == 5)
+         //   {
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
+         //      // SalePageLoad();
+         //   }
+         //else   if (type == 6)
+         //   {
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnRevDiv();", true);
+         //      // RevaluationPageLoad();
+         //   }
+         // else if (type == 7)
+         //   {
+         //       //try { File.Delete(filePathForXMlAssetParking); } catch { }
+         //       //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDivDisposal();", true);
+         //      // DisposalPageLoad();
+         //   }
 
         } 
 

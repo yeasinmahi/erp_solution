@@ -168,5 +168,18 @@ namespace UI.Asset
             tracker.Stop();
 
         }
+
+        protected void txtdteTo_TextChanged(object sender, EventArgs e)
+        {
+            DateTime fromdate = DateTime.Parse(txtDteFrom.Text.ToString());
+            DateTime todate = DateTime.Parse(txtdteTo.Text.ToString());
+            if (fromdate > todate)
+            {
+                txtdteTo.Text = "";
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check To Date');", true);
+
+            }
+
+        }
     }
 }

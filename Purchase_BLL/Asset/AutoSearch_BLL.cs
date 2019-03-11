@@ -764,15 +764,14 @@ namespace Purchase_BLL.Asset
         }
 
         public string[] GetAssetItem(Int32 Active, string prefix)
-        {
-
+        { 
             //Inatialize(intwh);
-            if (tableCusts1 == null)
-            {
+            //if (tableCusts1 == null)
+            //{
                 tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(Active)];
                 TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
                 tableCusts1[e] = adpCOA.AssetAutoSearchGetData(Convert.ToBoolean(Active));
-            }
+           // }
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
