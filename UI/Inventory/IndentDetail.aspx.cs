@@ -11,7 +11,7 @@ using Purchase_BLL.SupplyChain;
 
 namespace UI.Inventory
 {
-    public partial class IndentDetail : System.Web.UI.Page
+    public partial class IndentDetail : Page
     {
         DataTable dt = new DataTable();
         CSM Suppliereport = new CSM();
