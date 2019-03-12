@@ -28,11 +28,11 @@ namespace DAL.Accounts.Voucher {
         
         private QryAccountsVoucherJournalDetailsDataTable tableQryAccountsVoucherJournalDetails;
         
-        private SprAccountsVoucherJournalGetDataDataTable tableSprAccountsVoucherJournalGetData;
-        
         private SprAccountsVoucherJournalEditAfterCompleteDataTable tableSprAccountsVoucherJournalEditAfterComplete;
         
         private SprAccountsVoucherJournalInsertUpdateDataTable tableSprAccountsVoucherJournalInsertUpdate;
+        
+        private SprAccountsVoucherJournalGetDataDataTable tableSprAccountsVoucherJournalGetData;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -68,14 +68,14 @@ namespace DAL.Accounts.Voucher {
                 if ((ds.Tables["QryAccountsVoucherJournalDetails"] != null)) {
                     base.Tables.Add(new QryAccountsVoucherJournalDetailsDataTable(ds.Tables["QryAccountsVoucherJournalDetails"]));
                 }
-                if ((ds.Tables["SprAccountsVoucherJournalGetData"] != null)) {
-                    base.Tables.Add(new SprAccountsVoucherJournalGetDataDataTable(ds.Tables["SprAccountsVoucherJournalGetData"]));
-                }
                 if ((ds.Tables["SprAccountsVoucherJournalEditAfterComplete"] != null)) {
                     base.Tables.Add(new SprAccountsVoucherJournalEditAfterCompleteDataTable(ds.Tables["SprAccountsVoucherJournalEditAfterComplete"]));
                 }
                 if ((ds.Tables["SprAccountsVoucherJournalInsertUpdate"] != null)) {
                     base.Tables.Add(new SprAccountsVoucherJournalInsertUpdateDataTable(ds.Tables["SprAccountsVoucherJournalInsertUpdate"]));
+                }
+                if ((ds.Tables["SprAccountsVoucherJournalGetData"] != null)) {
+                    base.Tables.Add(new SprAccountsVoucherJournalGetDataDataTable(ds.Tables["SprAccountsVoucherJournalGetData"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -119,16 +119,6 @@ namespace DAL.Accounts.Voucher {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprAccountsVoucherJournalGetDataDataTable SprAccountsVoucherJournalGetData {
-            get {
-                return this.tableSprAccountsVoucherJournalGetData;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public SprAccountsVoucherJournalEditAfterCompleteDataTable SprAccountsVoucherJournalEditAfterComplete {
             get {
                 return this.tableSprAccountsVoucherJournalEditAfterComplete;
@@ -142,6 +132,16 @@ namespace DAL.Accounts.Voucher {
         public SprAccountsVoucherJournalInsertUpdateDataTable SprAccountsVoucherJournalInsertUpdate {
             get {
                 return this.tableSprAccountsVoucherJournalInsertUpdate;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprAccountsVoucherJournalGetDataDataTable SprAccountsVoucherJournalGetData {
+            get {
+                return this.tableSprAccountsVoucherJournalGetData;
             }
         }
         
@@ -218,14 +218,14 @@ namespace DAL.Accounts.Voucher {
                 if ((ds.Tables["QryAccountsVoucherJournalDetails"] != null)) {
                     base.Tables.Add(new QryAccountsVoucherJournalDetailsDataTable(ds.Tables["QryAccountsVoucherJournalDetails"]));
                 }
-                if ((ds.Tables["SprAccountsVoucherJournalGetData"] != null)) {
-                    base.Tables.Add(new SprAccountsVoucherJournalGetDataDataTable(ds.Tables["SprAccountsVoucherJournalGetData"]));
-                }
                 if ((ds.Tables["SprAccountsVoucherJournalEditAfterComplete"] != null)) {
                     base.Tables.Add(new SprAccountsVoucherJournalEditAfterCompleteDataTable(ds.Tables["SprAccountsVoucherJournalEditAfterComplete"]));
                 }
                 if ((ds.Tables["SprAccountsVoucherJournalInsertUpdate"] != null)) {
                     base.Tables.Add(new SprAccountsVoucherJournalInsertUpdateDataTable(ds.Tables["SprAccountsVoucherJournalInsertUpdate"]));
+                }
+                if ((ds.Tables["SprAccountsVoucherJournalGetData"] != null)) {
+                    base.Tables.Add(new SprAccountsVoucherJournalGetDataDataTable(ds.Tables["SprAccountsVoucherJournalGetData"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -272,12 +272,6 @@ namespace DAL.Accounts.Voucher {
                     this.tableQryAccountsVoucherJournalDetails.InitVars();
                 }
             }
-            this.tableSprAccountsVoucherJournalGetData = ((SprAccountsVoucherJournalGetDataDataTable)(base.Tables["SprAccountsVoucherJournalGetData"]));
-            if ((initTable == true)) {
-                if ((this.tableSprAccountsVoucherJournalGetData != null)) {
-                    this.tableSprAccountsVoucherJournalGetData.InitVars();
-                }
-            }
             this.tableSprAccountsVoucherJournalEditAfterComplete = ((SprAccountsVoucherJournalEditAfterCompleteDataTable)(base.Tables["SprAccountsVoucherJournalEditAfterComplete"]));
             if ((initTable == true)) {
                 if ((this.tableSprAccountsVoucherJournalEditAfterComplete != null)) {
@@ -288,6 +282,12 @@ namespace DAL.Accounts.Voucher {
             if ((initTable == true)) {
                 if ((this.tableSprAccountsVoucherJournalInsertUpdate != null)) {
                     this.tableSprAccountsVoucherJournalInsertUpdate.InitVars();
+                }
+            }
+            this.tableSprAccountsVoucherJournalGetData = ((SprAccountsVoucherJournalGetDataDataTable)(base.Tables["SprAccountsVoucherJournalGetData"]));
+            if ((initTable == true)) {
+                if ((this.tableSprAccountsVoucherJournalGetData != null)) {
+                    this.tableSprAccountsVoucherJournalGetData.InitVars();
                 }
             }
         }
@@ -304,12 +304,12 @@ namespace DAL.Accounts.Voucher {
             base.Tables.Add(this.tableTblAccountsVoucherJournal);
             this.tableQryAccountsVoucherJournalDetails = new QryAccountsVoucherJournalDetailsDataTable();
             base.Tables.Add(this.tableQryAccountsVoucherJournalDetails);
-            this.tableSprAccountsVoucherJournalGetData = new SprAccountsVoucherJournalGetDataDataTable();
-            base.Tables.Add(this.tableSprAccountsVoucherJournalGetData);
             this.tableSprAccountsVoucherJournalEditAfterComplete = new SprAccountsVoucherJournalEditAfterCompleteDataTable();
             base.Tables.Add(this.tableSprAccountsVoucherJournalEditAfterComplete);
             this.tableSprAccountsVoucherJournalInsertUpdate = new SprAccountsVoucherJournalInsertUpdateDataTable();
             base.Tables.Add(this.tableSprAccountsVoucherJournalInsertUpdate);
+            this.tableSprAccountsVoucherJournalGetData = new SprAccountsVoucherJournalGetDataDataTable();
+            base.Tables.Add(this.tableSprAccountsVoucherJournalGetData);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -326,12 +326,6 @@ namespace DAL.Accounts.Voucher {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprAccountsVoucherJournalGetData() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprAccountsVoucherJournalEditAfterComplete() {
             return false;
         }
@@ -339,6 +333,12 @@ namespace DAL.Accounts.Voucher {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprAccountsVoucherJournalInsertUpdate() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprAccountsVoucherJournalGetData() {
             return false;
         }
         
@@ -404,13 +404,13 @@ namespace DAL.Accounts.Voucher {
         public delegate void QryAccountsVoucherJournalDetailsRowChangeEventHandler(object sender, QryAccountsVoucherJournalDetailsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprAccountsVoucherJournalGetDataRowChangeEventHandler(object sender, SprAccountsVoucherJournalGetDataRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprAccountsVoucherJournalEditAfterCompleteRowChangeEventHandler(object sender, SprAccountsVoucherJournalEditAfterCompleteRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprAccountsVoucherJournalInsertUpdateRowChangeEventHandler(object sender, SprAccountsVoucherJournalInsertUpdateRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprAccountsVoucherJournalGetDataRowChangeEventHandler(object sender, SprAccountsVoucherJournalGetDataRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1209,431 +1209,6 @@ namespace DAL.Accounts.Voucher {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprAccountsVoucherJournalGetDataDataTable : global::System.Data.TypedTableBase<SprAccountsVoucherJournalGetDataRow> {
-            
-            private global::System.Data.DataColumn columnintJournalVoucherID;
-            
-            private global::System.Data.DataColumn columnstrCode;
-            
-            private global::System.Data.DataColumn columnintUnitID;
-            
-            private global::System.Data.DataColumn columnstrNarration;
-            
-            private global::System.Data.DataColumn columnmonAmountDr;
-            
-            private global::System.Data.DataColumn columnmonAmountCr;
-            
-            private global::System.Data.DataColumn columnintLastActionBy;
-            
-            private global::System.Data.DataColumn columndteLastActionTime;
-            
-            private global::System.Data.DataColumn columndteVoucherDate;
-            
-            private global::System.Data.DataColumn columnysnEnable;
-            
-            private global::System.Data.DataColumn columnysnCompleted;
-            
-            private global::System.Data.DataColumn columnintVoucherPrintCount;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataDataTable() {
-                this.TableName = "SprAccountsVoucherJournalGetData";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprAccountsVoucherJournalGetDataDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprAccountsVoucherJournalGetDataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intJournalVoucherIDColumn {
-                get {
-                    return this.columnintJournalVoucherID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strCodeColumn {
-                get {
-                    return this.columnstrCode;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIDColumn {
-                get {
-                    return this.columnintUnitID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNarrationColumn {
-                get {
-                    return this.columnstrNarration;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monAmountDrColumn {
-                get {
-                    return this.columnmonAmountDr;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monAmountCrColumn {
-                get {
-                    return this.columnmonAmountCr;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intLastActionByColumn {
-                get {
-                    return this.columnintLastActionBy;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteLastActionTimeColumn {
-                get {
-                    return this.columndteLastActionTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteVoucherDateColumn {
-                get {
-                    return this.columndteVoucherDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnEnableColumn {
-                get {
-                    return this.columnysnEnable;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnCompletedColumn {
-                get {
-                    return this.columnysnCompleted;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intVoucherPrintCountColumn {
-                get {
-                    return this.columnintVoucherPrintCount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataRow this[int index] {
-                get {
-                    return ((SprAccountsVoucherJournalGetDataRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprAccountsVoucherJournalGetDataRow(SprAccountsVoucherJournalGetDataRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataRow AddSprAccountsVoucherJournalGetDataRow(string strCode, int intUnitID, string strNarration, decimal monAmountDr, decimal monAmountCr, int intLastActionBy, System.DateTime dteLastActionTime, System.DateTime dteVoucherDate, bool ysnEnable, bool ysnCompleted, int intVoucherPrintCount) {
-                SprAccountsVoucherJournalGetDataRow rowSprAccountsVoucherJournalGetDataRow = ((SprAccountsVoucherJournalGetDataRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        strCode,
-                        intUnitID,
-                        strNarration,
-                        monAmountDr,
-                        monAmountCr,
-                        intLastActionBy,
-                        dteLastActionTime,
-                        dteVoucherDate,
-                        ysnEnable,
-                        ysnCompleted,
-                        intVoucherPrintCount};
-                rowSprAccountsVoucherJournalGetDataRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprAccountsVoucherJournalGetDataRow);
-                return rowSprAccountsVoucherJournalGetDataRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataRow FindByintJournalVoucherID(long intJournalVoucherID) {
-                return ((SprAccountsVoucherJournalGetDataRow)(this.Rows.Find(new object[] {
-                            intJournalVoucherID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SprAccountsVoucherJournalGetDataDataTable cln = ((SprAccountsVoucherJournalGetDataDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SprAccountsVoucherJournalGetDataDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnintJournalVoucherID = base.Columns["intJournalVoucherID"];
-                this.columnstrCode = base.Columns["strCode"];
-                this.columnintUnitID = base.Columns["intUnitID"];
-                this.columnstrNarration = base.Columns["strNarration"];
-                this.columnmonAmountDr = base.Columns["monAmountDr"];
-                this.columnmonAmountCr = base.Columns["monAmountCr"];
-                this.columnintLastActionBy = base.Columns["intLastActionBy"];
-                this.columndteLastActionTime = base.Columns["dteLastActionTime"];
-                this.columndteVoucherDate = base.Columns["dteVoucherDate"];
-                this.columnysnEnable = base.Columns["ysnEnable"];
-                this.columnysnCompleted = base.Columns["ysnCompleted"];
-                this.columnintVoucherPrintCount = base.Columns["intVoucherPrintCount"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnintJournalVoucherID = new global::System.Data.DataColumn("intJournalVoucherID", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintJournalVoucherID);
-                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrCode);
-                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitID);
-                this.columnstrNarration = new global::System.Data.DataColumn("strNarration", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrNarration);
-                this.columnmonAmountDr = new global::System.Data.DataColumn("monAmountDr", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonAmountDr);
-                this.columnmonAmountCr = new global::System.Data.DataColumn("monAmountCr", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonAmountCr);
-                this.columnintLastActionBy = new global::System.Data.DataColumn("intLastActionBy", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintLastActionBy);
-                this.columndteLastActionTime = new global::System.Data.DataColumn("dteLastActionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteLastActionTime);
-                this.columndteVoucherDate = new global::System.Data.DataColumn("dteVoucherDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteVoucherDate);
-                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnEnable);
-                this.columnysnCompleted = new global::System.Data.DataColumn("ysnCompleted", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnCompleted);
-                this.columnintVoucherPrintCount = new global::System.Data.DataColumn("intVoucherPrintCount", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintVoucherPrintCount);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintJournalVoucherID}, true));
-                this.columnintJournalVoucherID.AutoIncrement = true;
-                this.columnintJournalVoucherID.AutoIncrementSeed = -1;
-                this.columnintJournalVoucherID.AutoIncrementStep = -1;
-                this.columnintJournalVoucherID.AllowDBNull = false;
-                this.columnintJournalVoucherID.ReadOnly = true;
-                this.columnintJournalVoucherID.Unique = true;
-                this.columnstrCode.AllowDBNull = false;
-                this.columnstrCode.MaxLength = 20;
-                this.columnintUnitID.AllowDBNull = false;
-                this.columnstrNarration.MaxLength = 5000;
-                this.columnmonAmountDr.AllowDBNull = false;
-                this.columnmonAmountCr.AllowDBNull = false;
-                this.columnysnEnable.AllowDBNull = false;
-                this.columnysnCompleted.AllowDBNull = false;
-                this.columnintVoucherPrintCount.AllowDBNull = false;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataRow NewSprAccountsVoucherJournalGetDataRow() {
-                return ((SprAccountsVoucherJournalGetDataRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprAccountsVoucherJournalGetDataRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SprAccountsVoucherJournalGetDataRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SprAccountsVoucherJournalGetDataRowChanged != null)) {
-                    this.SprAccountsVoucherJournalGetDataRowChanged(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SprAccountsVoucherJournalGetDataRowChanging != null)) {
-                    this.SprAccountsVoucherJournalGetDataRowChanging(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SprAccountsVoucherJournalGetDataRowDeleted != null)) {
-                    this.SprAccountsVoucherJournalGetDataRowDeleted(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SprAccountsVoucherJournalGetDataRowDeleting != null)) {
-                    this.SprAccountsVoucherJournalGetDataRowDeleting(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprAccountsVoucherJournalGetDataRow(SprAccountsVoucherJournalGetDataRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                JournalVoucherTDS ds = new JournalVoucherTDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprAccountsVoucherJournalGetDataDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class SprAccountsVoucherJournalEditAfterCompleteDataTable : global::System.Data.TypedTableBase<SprAccountsVoucherJournalEditAfterCompleteRow> {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2055,6 +1630,453 @@ namespace DAL.Accounts.Voucher {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SprAccountsVoucherJournalInsertUpdateDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprAccountsVoucherJournalGetDataDataTable : global::System.Data.TypedTableBase<SprAccountsVoucherJournalGetDataRow> {
+            
+            private global::System.Data.DataColumn columnintJournalVoucherID;
+            
+            private global::System.Data.DataColumn columnstrCode;
+            
+            private global::System.Data.DataColumn columnintUnitID;
+            
+            private global::System.Data.DataColumn columnstrNarration;
+            
+            private global::System.Data.DataColumn columnmonAmountDr;
+            
+            private global::System.Data.DataColumn columnmonAmountCr;
+            
+            private global::System.Data.DataColumn columnintLastActionBy;
+            
+            private global::System.Data.DataColumn columndteLastActionTime;
+            
+            private global::System.Data.DataColumn columndteVoucherDate;
+            
+            private global::System.Data.DataColumn columnysnEnable;
+            
+            private global::System.Data.DataColumn columnysnCompleted;
+            
+            private global::System.Data.DataColumn columnintVoucherPrintCount;
+            
+            private global::System.Data.DataColumn columndownload;
+            
+            private global::System.Data.DataColumn columnstrFilePath;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprAccountsVoucherJournalGetDataDataTable() {
+                this.TableName = "SprAccountsVoucherJournalGetData";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprAccountsVoucherJournalGetDataDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprAccountsVoucherJournalGetDataDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intJournalVoucherIDColumn {
+                get {
+                    return this.columnintJournalVoucherID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strCodeColumn {
+                get {
+                    return this.columnstrCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIDColumn {
+                get {
+                    return this.columnintUnitID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strNarrationColumn {
+                get {
+                    return this.columnstrNarration;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monAmountDrColumn {
+                get {
+                    return this.columnmonAmountDr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monAmountCrColumn {
+                get {
+                    return this.columnmonAmountCr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLastActionByColumn {
+                get {
+                    return this.columnintLastActionBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteLastActionTimeColumn {
+                get {
+                    return this.columndteLastActionTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteVoucherDateColumn {
+                get {
+                    return this.columndteVoucherDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnEnableColumn {
+                get {
+                    return this.columnysnEnable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnCompletedColumn {
+                get {
+                    return this.columnysnCompleted;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intVoucherPrintCountColumn {
+                get {
+                    return this.columnintVoucherPrintCount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn downloadColumn {
+                get {
+                    return this.columndownload;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strFilePathColumn {
+                get {
+                    return this.columnstrFilePath;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprAccountsVoucherJournalGetDataRow this[int index] {
+                get {
+                    return ((SprAccountsVoucherJournalGetDataRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprAccountsVoucherJournalGetDataRowChangeEventHandler SprAccountsVoucherJournalGetDataRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprAccountsVoucherJournalGetDataRow(SprAccountsVoucherJournalGetDataRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprAccountsVoucherJournalGetDataRow AddSprAccountsVoucherJournalGetDataRow(string strCode, int intUnitID, string strNarration, decimal monAmountDr, decimal monAmountCr, int intLastActionBy, System.DateTime dteLastActionTime, System.DateTime dteVoucherDate, bool ysnEnable, bool ysnCompleted, int intVoucherPrintCount, string download, string strFilePath) {
+                SprAccountsVoucherJournalGetDataRow rowSprAccountsVoucherJournalGetDataRow = ((SprAccountsVoucherJournalGetDataRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        strCode,
+                        intUnitID,
+                        strNarration,
+                        monAmountDr,
+                        monAmountCr,
+                        intLastActionBy,
+                        dteLastActionTime,
+                        dteVoucherDate,
+                        ysnEnable,
+                        ysnCompleted,
+                        intVoucherPrintCount,
+                        download,
+                        strFilePath};
+                rowSprAccountsVoucherJournalGetDataRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprAccountsVoucherJournalGetDataRow);
+                return rowSprAccountsVoucherJournalGetDataRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprAccountsVoucherJournalGetDataDataTable cln = ((SprAccountsVoucherJournalGetDataDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprAccountsVoucherJournalGetDataDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintJournalVoucherID = base.Columns["intJournalVoucherID"];
+                this.columnstrCode = base.Columns["strCode"];
+                this.columnintUnitID = base.Columns["intUnitID"];
+                this.columnstrNarration = base.Columns["strNarration"];
+                this.columnmonAmountDr = base.Columns["monAmountDr"];
+                this.columnmonAmountCr = base.Columns["monAmountCr"];
+                this.columnintLastActionBy = base.Columns["intLastActionBy"];
+                this.columndteLastActionTime = base.Columns["dteLastActionTime"];
+                this.columndteVoucherDate = base.Columns["dteVoucherDate"];
+                this.columnysnEnable = base.Columns["ysnEnable"];
+                this.columnysnCompleted = base.Columns["ysnCompleted"];
+                this.columnintVoucherPrintCount = base.Columns["intVoucherPrintCount"];
+                this.columndownload = base.Columns["download"];
+                this.columnstrFilePath = base.Columns["strFilePath"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintJournalVoucherID = new global::System.Data.DataColumn("intJournalVoucherID", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintJournalVoucherID);
+                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCode);
+                this.columnintUnitID = new global::System.Data.DataColumn("intUnitID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitID);
+                this.columnstrNarration = new global::System.Data.DataColumn("strNarration", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrNarration);
+                this.columnmonAmountDr = new global::System.Data.DataColumn("monAmountDr", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonAmountDr);
+                this.columnmonAmountCr = new global::System.Data.DataColumn("monAmountCr", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonAmountCr);
+                this.columnintLastActionBy = new global::System.Data.DataColumn("intLastActionBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLastActionBy);
+                this.columndteLastActionTime = new global::System.Data.DataColumn("dteLastActionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteLastActionTime);
+                this.columndteVoucherDate = new global::System.Data.DataColumn("dteVoucherDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteVoucherDate);
+                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnEnable);
+                this.columnysnCompleted = new global::System.Data.DataColumn("ysnCompleted", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnCompleted);
+                this.columnintVoucherPrintCount = new global::System.Data.DataColumn("intVoucherPrintCount", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintVoucherPrintCount);
+                this.columndownload = new global::System.Data.DataColumn("download", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndownload);
+                this.columnstrFilePath = new global::System.Data.DataColumn("strFilePath", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrFilePath);
+                this.columnintJournalVoucherID.AutoIncrement = true;
+                this.columnintJournalVoucherID.AutoIncrementSeed = -1;
+                this.columnintJournalVoucherID.AutoIncrementStep = -1;
+                this.columnintJournalVoucherID.AllowDBNull = false;
+                this.columnintJournalVoucherID.ReadOnly = true;
+                this.columnstrCode.AllowDBNull = false;
+                this.columnstrCode.MaxLength = 20;
+                this.columnintUnitID.AllowDBNull = false;
+                this.columnstrNarration.ReadOnly = true;
+                this.columnstrNarration.MaxLength = 2147483647;
+                this.columnmonAmountDr.AllowDBNull = false;
+                this.columnmonAmountCr.AllowDBNull = false;
+                this.columnysnEnable.AllowDBNull = false;
+                this.columnysnCompleted.AllowDBNull = false;
+                this.columnintVoucherPrintCount.AllowDBNull = false;
+                this.columndownload.ReadOnly = true;
+                this.columndownload.MaxLength = 11;
+                this.columnstrFilePath.MaxLength = 50;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprAccountsVoucherJournalGetDataRow NewSprAccountsVoucherJournalGetDataRow() {
+                return ((SprAccountsVoucherJournalGetDataRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprAccountsVoucherJournalGetDataRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprAccountsVoucherJournalGetDataRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprAccountsVoucherJournalGetDataRowChanged != null)) {
+                    this.SprAccountsVoucherJournalGetDataRowChanged(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprAccountsVoucherJournalGetDataRowChanging != null)) {
+                    this.SprAccountsVoucherJournalGetDataRowChanging(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprAccountsVoucherJournalGetDataRowDeleted != null)) {
+                    this.SprAccountsVoucherJournalGetDataRowDeleted(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprAccountsVoucherJournalGetDataRowDeleting != null)) {
+                    this.SprAccountsVoucherJournalGetDataRowDeleting(this, new SprAccountsVoucherJournalGetDataRowChangeEvent(((SprAccountsVoucherJournalGetDataRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprAccountsVoucherJournalGetDataRow(SprAccountsVoucherJournalGetDataRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                JournalVoucherTDS ds = new JournalVoucherTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprAccountsVoucherJournalGetDataDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -2539,6 +2561,36 @@ namespace DAL.Accounts.Voucher {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
+        public partial class SprAccountsVoucherJournalEditAfterCompleteRow : global::System.Data.DataRow {
+            
+            private SprAccountsVoucherJournalEditAfterCompleteDataTable tableSprAccountsVoucherJournalEditAfterComplete;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprAccountsVoucherJournalEditAfterCompleteRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprAccountsVoucherJournalEditAfterComplete = ((SprAccountsVoucherJournalEditAfterCompleteDataTable)(this.Table));
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprAccountsVoucherJournalInsertUpdateRow : global::System.Data.DataRow {
+            
+            private SprAccountsVoucherJournalInsertUpdateDataTable tableSprAccountsVoucherJournalInsertUpdate;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprAccountsVoucherJournalInsertUpdateRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprAccountsVoucherJournalInsertUpdate = ((SprAccountsVoucherJournalInsertUpdateDataTable)(this.Table));
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
         public partial class SprAccountsVoucherJournalGetDataRow : global::System.Data.DataRow {
             
             private SprAccountsVoucherJournalGetDataDataTable tableSprAccountsVoucherJournalGetData;
@@ -2708,6 +2760,40 @@ namespace DAL.Accounts.Voucher {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string download {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprAccountsVoucherJournalGetData.downloadColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'download\' in table \'SprAccountsVoucherJournalGetData\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAccountsVoucherJournalGetData.downloadColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strFilePath {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprAccountsVoucherJournalGetData.strFilePathColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strFilePath\' in table \'SprAccountsVoucherJournalGetData\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprAccountsVoucherJournalGetData.strFilePathColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrNarrationNull() {
                 return this.IsNull(this.tableSprAccountsVoucherJournalGetData.strNarrationColumn);
             }
@@ -2753,35 +2839,29 @@ namespace DAL.Accounts.Voucher {
             public void SetdteVoucherDateNull() {
                 this[this.tableSprAccountsVoucherJournalGetData.dteVoucherDateColumn] = global::System.Convert.DBNull;
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SprAccountsVoucherJournalEditAfterCompleteRow : global::System.Data.DataRow {
-            
-            private SprAccountsVoucherJournalEditAfterCompleteDataTable tableSprAccountsVoucherJournalEditAfterComplete;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprAccountsVoucherJournalEditAfterCompleteRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSprAccountsVoucherJournalEditAfterComplete = ((SprAccountsVoucherJournalEditAfterCompleteDataTable)(this.Table));
+            public bool IsdownloadNull() {
+                return this.IsNull(this.tableSprAccountsVoucherJournalGetData.downloadColumn);
             }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SprAccountsVoucherJournalInsertUpdateRow : global::System.Data.DataRow {
-            
-            private SprAccountsVoucherJournalInsertUpdateDataTable tableSprAccountsVoucherJournalInsertUpdate;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprAccountsVoucherJournalInsertUpdateRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSprAccountsVoucherJournalInsertUpdate = ((SprAccountsVoucherJournalInsertUpdateDataTable)(this.Table));
+            public void SetdownloadNull() {
+                this[this.tableSprAccountsVoucherJournalGetData.downloadColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrFilePathNull() {
+                return this.IsNull(this.tableSprAccountsVoucherJournalGetData.strFilePathColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrFilePathNull() {
+                this[this.tableSprAccountsVoucherJournalGetData.strFilePathColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2857,40 +2937,6 @@ namespace DAL.Accounts.Voucher {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprAccountsVoucherJournalGetDataRowChangeEvent : global::System.EventArgs {
-            
-            private SprAccountsVoucherJournalGetDataRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataRowChangeEvent(SprAccountsVoucherJournalGetDataRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprAccountsVoucherJournalGetDataRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public class SprAccountsVoucherJournalEditAfterCompleteRowChangeEvent : global::System.EventArgs {
             
             private SprAccountsVoucherJournalEditAfterCompleteRow eventRow;
@@ -2941,6 +2987,40 @@ namespace DAL.Accounts.Voucher {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprAccountsVoucherJournalInsertUpdateRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprAccountsVoucherJournalGetDataRowChangeEvent : global::System.EventArgs {
+            
+            private SprAccountsVoucherJournalGetDataRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprAccountsVoucherJournalGetDataRowChangeEvent(SprAccountsVoucherJournalGetDataRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprAccountsVoucherJournalGetDataRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3520,214 +3600,6 @@ where [strCode]= @strCode AND [intUnitID]=@intUnitID";
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprAccountsVoucherJournalGetDataTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprAccountsVoucherJournalGetDataTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprAccountsVoucherJournalGetData";
-            tableMapping.ColumnMappings.Add("intJournalVoucherID", "intJournalVoucherID");
-            tableMapping.ColumnMappings.Add("strCode", "strCode");
-            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
-            tableMapping.ColumnMappings.Add("strNarration", "strNarration");
-            tableMapping.ColumnMappings.Add("monAmountDr", "monAmountDr");
-            tableMapping.ColumnMappings.Add("monAmountCr", "monAmountCr");
-            tableMapping.ColumnMappings.Add("intLastActionBy", "intLastActionBy");
-            tableMapping.ColumnMappings.Add("dteLastActionTime", "dteLastActionTime");
-            tableMapping.ColumnMappings.Add("dteVoucherDate", "dteVoucherDate");
-            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
-            tableMapping.ColumnMappings.Add("ysnCompleted", "ysnCompleted");
-            tableMapping.ColumnMappings.Add("intVoucherPrintCount", "intVoucherPrintCount");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprAccountsVoucherJournalGetData";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnCompleted", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@from", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@to", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual JournalVoucherTDS.SprAccountsVoucherJournalGetDataDataTable GetData(string strCode, global::System.Nullable<int> intUnitID, global::System.Nullable<bool> ysnEnable, global::System.Nullable<bool> ysnCompleted, global::System.Nullable<global::System.DateTime> from, global::System.Nullable<global::System.DateTime> to) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((strCode == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strCode));
-            }
-            if ((intUnitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUnitID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((ysnEnable.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(ysnEnable.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((ysnCompleted.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((bool)(ysnCompleted.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((from.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(from.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((to.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(to.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            JournalVoucherTDS.SprAccountsVoucherJournalGetDataDataTable dataTable = new JournalVoucherTDS.SprAccountsVoucherJournalGetDataDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class SprAccountsVoucherJournalEditAfterCompleteTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -4134,6 +4006,216 @@ where [strCode]= @strCode AND [intUnitID]=@intUnitID";
             else {
                 strCode = ((string)(this.Adapter.SelectCommand.Parameters[9].Value));
             }
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprAccountsVoucherJournalGetDataTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprAccountsVoucherJournalGetDataTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprAccountsVoucherJournalGetData";
+            tableMapping.ColumnMappings.Add("intJournalVoucherID", "intJournalVoucherID");
+            tableMapping.ColumnMappings.Add("strCode", "strCode");
+            tableMapping.ColumnMappings.Add("intUnitID", "intUnitID");
+            tableMapping.ColumnMappings.Add("strNarration", "strNarration");
+            tableMapping.ColumnMappings.Add("monAmountDr", "monAmountDr");
+            tableMapping.ColumnMappings.Add("monAmountCr", "monAmountCr");
+            tableMapping.ColumnMappings.Add("intLastActionBy", "intLastActionBy");
+            tableMapping.ColumnMappings.Add("dteLastActionTime", "dteLastActionTime");
+            tableMapping.ColumnMappings.Add("dteVoucherDate", "dteVoucherDate");
+            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
+            tableMapping.ColumnMappings.Add("ysnCompleted", "ysnCompleted");
+            tableMapping.ColumnMappings.Add("intVoucherPrintCount", "intVoucherPrintCount");
+            tableMapping.ColumnMappings.Add("download", "download");
+            tableMapping.ColumnMappings.Add("strFilePath", "strFilePath");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprAccountsVoucherJournalGetData";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnEnable", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnCompleted", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@from", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@to", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual JournalVoucherTDS.SprAccountsVoucherJournalGetDataDataTable GetData(string strCode, global::System.Nullable<int> intUnitID, global::System.Nullable<bool> ysnEnable, global::System.Nullable<bool> ysnCompleted, global::System.Nullable<global::System.DateTime> from, global::System.Nullable<global::System.DateTime> to) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((strCode == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(strCode));
+            }
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUnitID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((ysnEnable.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((bool)(ysnEnable.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((ysnCompleted.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((bool)(ysnCompleted.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((from.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(from.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((to.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(to.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            JournalVoucherTDS.SprAccountsVoucherJournalGetDataDataTable dataTable = new JournalVoucherTDS.SprAccountsVoucherJournalGetDataDataTable();
+            this.Adapter.Fill(dataTable);
             return dataTable;
         }
     }
