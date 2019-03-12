@@ -66,14 +66,6 @@
                     <asp:Label ID="lblReffIDG" runat="server" Text='<%# Bind("intID") %>'></asp:Label></ItemTemplate>
                     <ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
                           
-
-
-
-
-
-
-
-
                     <asp:TemplateField HeaderText="custid" SortExpression="intCustomerID" Visible="false"><ItemTemplate>
                     <asp:Label ID="lblCustIDG" runat="server" Text='<%# Bind("intCustomerID") %>'></asp:Label></ItemTemplate>
                     <ItemStyle HorizontalAlign="Left" Width="45px" /></asp:TemplateField>
