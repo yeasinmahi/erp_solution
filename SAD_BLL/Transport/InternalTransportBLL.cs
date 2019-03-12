@@ -427,7 +427,40 @@ namespace SAD_BLL.Transport
             { return adp.GetAllUnit(); }
             catch { return new DataTable(); }
         }
-        
+
+        public DataTable GetDataForRouteCostUpdate(int intUnitID, int intShipPointId)
+        {
+            GetDataRouteCostUpdateTableAdapter adp = new GetDataRouteCostUpdateTableAdapter();
+            try
+            { return adp.GetDataForRouteCostUpdate(intUnitID, intShipPointId); }
+            catch { return new DataTable(); }
+        }
+
+        public string UpdateRouteCostUpdateByAdminUser(int intUnitid, int intInsertBy, string xml)
+        {
+            string msg = "";
+            SprInternalTRouteCostUpdateByCustomerForAdminUserTableAdapter adp = new SprInternalTRouteCostUpdateByCustomerForAdminUserTableAdapter();
+            adp.UpdateRouteCostUpdateByAdminUser(intUnitid, intInsertBy, xml, ref msg);
+            return msg;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }

@@ -250,6 +250,8 @@ namespace UI.Asset
                     try { otherCost = decimal.Parse(txtErectionOtherCost.Text.ToString()); } catch { otherCost = 0; }
                     try { accusitioncost = decimal.Parse(txtAcisitionCost.Text.ToString()); } catch { accusitioncost = 0; }
                     string remarks = txtRemarks.Text.ToString();
+                    string group = txtGroupName.Text.ToString();
+                    string projectName = txtProjectName.Text.ToString();
 
 
                     string assetname = txtAssetname.Text.ToString();
@@ -283,7 +285,7 @@ namespace UI.Asset
                     { 
                         CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
                        , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
-                       manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
+                       manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString(),group, projectName);
 
                         XmlDocument doc = new XmlDocument();
                         doc.Load(filePathForXMlAssetParking);
@@ -315,7 +317,7 @@ namespace UI.Asset
 
                             CreateParkingXML(intItemid.ToString(), intMrrId.ToString(), intPoID.ToString(), unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
                             , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
-                            manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString());
+                            manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), totalaccdep.ToString(), group, projectName);
 
                             XmlDocument doc = new XmlDocument();
                             doc.Load(filePathForXMlAssetParking);
@@ -378,7 +380,7 @@ namespace UI.Asset
             txtAssetQty.Text = "0".ToString();
             txtAcisitionCost.Text = "0".ToString();
 
-            txtProjectID.Text = "0".ToString();
+            txtGroupName.Text = "0".ToString();
             txtProjectName.Text = "0".ToString();
             txtAssetLocation.Text = "0".ToString();
             txtCountryOrigin.Text = "0".ToString(); ;
@@ -386,7 +388,8 @@ namespace UI.Asset
             txtModelNo.Text = "0".ToString();
         }
 
-        private void CreateParkingXML(string intItemid, string intMrrId,string intPoID, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost,string accusitioncost, string remarks, string assetname, string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode, string depRate, string dteDepRunDate,string totalaccdep)
+        private void CreateParkingXML(string intItemid, string intMrrId,string intPoID, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost,string accusitioncost, string remarks, string assetname, string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, string provideSlnumber, 
+            string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode, string depRate, string dteDepRunDate,string totalaccdep,string group,string projectName)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXMlAssetParking))
@@ -395,7 +398,7 @@ namespace UI.Asset
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
                 XmlNode addItem = CreateItemNode(doc, intItemid, intMrrId, intPoID,unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, suppliers, ponumber, dtePo, dteWarranty, detInstalation, lcoation
                 , userenroll, invoicevalue, landedcost, otherCost, accusitioncost, remarks, assetname, description, hscode, issudate, grnDate, servicedate, countryorigin,
-                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate, totalaccdep);
+                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate, totalaccdep, group, projectName);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -405,184 +408,188 @@ namespace UI.Asset
                 XmlNode rootNode = doc.CreateElement("voucher");
                 XmlNode addItem = CreateItemNode(doc, intItemid, intMrrId, intPoID, unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, suppliers, ponumber, dtePo, dteWarranty, detInstalation, lcoation
                 , userenroll, invoicevalue, landedcost, otherCost,accusitioncost, remarks, assetname, description, hscode, issudate, grnDate, servicedate, countryorigin,
-                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate, totalaccdep);
+                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate, totalaccdep, group, projectName);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXMlAssetParking);
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc,string intItemid, string intMrrId,string intPoID, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, 
-        string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, 
-        string lcoation, string userenroll, string invoicevalue, string landedcost,string otherCost, string accusitioncost, string remarks, string assetname,
-        string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, 
+        private XmlNode CreateItemNode(XmlDocument doc, string intItemid, string intMrrId, string intPoID, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1,
+        string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation,
+        string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost, string accusitioncost, string remarks, string assetname,
+        string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer,
         string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode,
-        string depRate, string dteDepRunDate,string totalaccdep)
+        string depRate, string dteDepRunDate, string totalaccdep, string group, string projectName)
 
-            {
-                XmlNode node = doc.CreateElement("voucherentry");          
+        {
+            XmlNode node = doc.CreateElement("voucherentry");
 
-                 XmlAttribute IntItemid = doc.CreateAttribute("intItemid");
-                IntItemid.Value = intItemid;
+            XmlAttribute IntItemid = doc.CreateAttribute("intItemid");
+            IntItemid.Value = intItemid;
 
-               XmlAttribute IntMrrId = doc.CreateAttribute("intMrrId");
-               IntMrrId.Value = intMrrId;
+            XmlAttribute IntMrrId = doc.CreateAttribute("intMrrId");
+            IntMrrId.Value = intMrrId;
 
-               XmlAttribute IntPoID = doc.CreateAttribute("intPoID");
-               IntPoID.Value = intPoID;
+            XmlAttribute IntPoID = doc.CreateAttribute("intPoID");
+            IntPoID.Value = intPoID;
 
-               XmlAttribute Unit = doc.CreateAttribute("unit");
-                Unit.Value = unit;
-                XmlAttribute Jobstation = doc.CreateAttribute("jobstation");
-                Jobstation.Value = jobstation;
+            XmlAttribute Unit = doc.CreateAttribute("unit");
+            Unit.Value = unit;
+            XmlAttribute Jobstation = doc.CreateAttribute("jobstation");
+            Jobstation.Value = jobstation;
 
-                XmlAttribute Asettype = doc.CreateAttribute("asettype");
-                Asettype.Value = asettype;
-                XmlAttribute Mazorcategory = doc.CreateAttribute("mazorcategory");
-                Mazorcategory.Value = mazorcategory;
+            XmlAttribute Asettype = doc.CreateAttribute("asettype");
+            Asettype.Value = asettype;
+            XmlAttribute Mazorcategory = doc.CreateAttribute("mazorcategory");
+            Mazorcategory.Value = mazorcategory;
 
-                XmlAttribute Minorcatagory1 = doc.CreateAttribute("minorcatagory1");
-                Minorcatagory1.Value = minorcatagory1;
-           
-
-                XmlAttribute Minorcatagory2 = doc.CreateAttribute("minorcatagory2");
-                Minorcatagory2.Value = minorcatagory2;
-                XmlAttribute Coscenter = doc.CreateAttribute("coscenter");
-                Coscenter.Value = coscenter;
-
-                XmlAttribute Suppliers = doc.CreateAttribute("suppliers");
-                Suppliers.Value = suppliers;
-                XmlAttribute Ponumber = doc.CreateAttribute("ponumber");
-                Ponumber.Value = ponumber;
-                XmlAttribute DtePo = doc.CreateAttribute("dtePo");
-                DtePo.Value = dtePo;
-
-                XmlAttribute DteWarranty = doc.CreateAttribute("dteWarranty");
-                DteWarranty.Value = dteWarranty;
-
-           
+            XmlAttribute Minorcatagory1 = doc.CreateAttribute("minorcatagory1");
+            Minorcatagory1.Value = minorcatagory1;
 
 
-                XmlAttribute DetInstalation = doc.CreateAttribute("detInstalation");
-                DetInstalation.Value = detInstalation;
-                XmlAttribute Lcoation = doc.CreateAttribute("lcoation");
-                Lcoation.Value = lcoation;
+            XmlAttribute Minorcatagory2 = doc.CreateAttribute("minorcatagory2");
+            Minorcatagory2.Value = minorcatagory2;
+            XmlAttribute Coscenter = doc.CreateAttribute("coscenter");
+            Coscenter.Value = coscenter;
 
-                XmlAttribute Userenroll = doc.CreateAttribute("userenroll");
-                Userenroll.Value = userenroll;
-                XmlAttribute Invoicevalue = doc.CreateAttribute("invoicevalue");
-                Invoicevalue.Value = invoicevalue;
-                XmlAttribute Landedcost = doc.CreateAttribute("landedcost");
-                Landedcost.Value = landedcost;
+            XmlAttribute Suppliers = doc.CreateAttribute("suppliers");
+            Suppliers.Value = suppliers;
+            XmlAttribute Ponumber = doc.CreateAttribute("ponumber");
+            Ponumber.Value = ponumber;
+            XmlAttribute DtePo = doc.CreateAttribute("dtePo");
+            DtePo.Value = dtePo;
 
-                XmlAttribute OtherCost = doc.CreateAttribute("otherCost");
-                OtherCost.Value = otherCost;
+            XmlAttribute DteWarranty = doc.CreateAttribute("dteWarranty");
+            DteWarranty.Value = dteWarranty;
 
-                XmlAttribute Accusitioncost = doc.CreateAttribute("accusitioncost");
-                Accusitioncost.Value = accusitioncost;
 
-                XmlAttribute Remarks = doc.CreateAttribute("remarks");
-                Remarks.Value = remarks;
-                XmlAttribute Assetname = doc.CreateAttribute("assetname");
-                Assetname.Value = assetname;
 
-                XmlAttribute Description = doc.CreateAttribute("description");
-                Description.Value = description;
-                XmlAttribute Hscode = doc.CreateAttribute("hscode");
-                Hscode.Value = hscode;
-           
 
-                XmlAttribute Issudate = doc.CreateAttribute("issudate");
-                Issudate.Value = issudate;
+            XmlAttribute DetInstalation = doc.CreateAttribute("detInstalation");
+            DetInstalation.Value = detInstalation;
+            XmlAttribute Lcoation = doc.CreateAttribute("lcoation");
+            Lcoation.Value = lcoation;
 
-                XmlAttribute GrnDate = doc.CreateAttribute("grnDate");
-                GrnDate.Value = grnDate;
-                XmlAttribute Servicedate = doc.CreateAttribute("servicedate");
-                Servicedate.Value = servicedate;
-                XmlAttribute Countryorigin = doc.CreateAttribute("countryorigin");
-                Countryorigin.Value = countryorigin;
+            XmlAttribute Userenroll = doc.CreateAttribute("userenroll");
+            Userenroll.Value = userenroll;
+            XmlAttribute Invoicevalue = doc.CreateAttribute("invoicevalue");
+            Invoicevalue.Value = invoicevalue;
+            XmlAttribute Landedcost = doc.CreateAttribute("landedcost");
+            Landedcost.Value = landedcost;
 
-                XmlAttribute Manufacturer = doc.CreateAttribute("manufacturer");
-                Manufacturer.Value = manufacturer;
-                XmlAttribute ProvideSlnumber = doc.CreateAttribute("provideSlnumber");
-                ProvideSlnumber.Value = provideSlnumber;
-                XmlAttribute Modelono = doc.CreateAttribute("modelono");
-                Modelono.Value = modelono;
-                XmlAttribute Lcnumber = doc.CreateAttribute("lcnumber");
-                Lcnumber.Value = lcnumber;
+            XmlAttribute OtherCost = doc.CreateAttribute("otherCost");
+            OtherCost.Value = otherCost;
 
-                XmlAttribute Others = doc.CreateAttribute("others");
-                Others.Value = others;
+            XmlAttribute Accusitioncost = doc.CreateAttribute("accusitioncost");
+            Accusitioncost.Value = accusitioncost;
 
-                XmlAttribute Capacity = doc.CreateAttribute("capacity");
-                Capacity.Value = capacity;
-                XmlAttribute Recommandlife = doc.CreateAttribute("recommandlife");
-                Recommandlife.Value = recommandlife;
-                XmlAttribute DepMethode = doc.CreateAttribute("depMethode");
-                DepMethode.Value = depMethode;
+            XmlAttribute Remarks = doc.CreateAttribute("remarks");
+            Remarks.Value = remarks;
+            XmlAttribute Assetname = doc.CreateAttribute("assetname");
+            Assetname.Value = assetname;
 
-                XmlAttribute DepRate = doc.CreateAttribute("depRate");
-                DepRate.Value = depRate;
-                XmlAttribute DteDepRunDate = doc.CreateAttribute("dteDepRunDate");
-                DteDepRunDate.Value = dteDepRunDate;
+            XmlAttribute Description = doc.CreateAttribute("description");
+            Description.Value = description;
+            XmlAttribute Hscode = doc.CreateAttribute("hscode");
+            Hscode.Value = hscode;
+
+
+            XmlAttribute Issudate = doc.CreateAttribute("issudate");
+            Issudate.Value = issudate;
+
+            XmlAttribute GrnDate = doc.CreateAttribute("grnDate");
+            GrnDate.Value = grnDate;
+            XmlAttribute Servicedate = doc.CreateAttribute("servicedate");
+            Servicedate.Value = servicedate;
+            XmlAttribute Countryorigin = doc.CreateAttribute("countryorigin");
+            Countryorigin.Value = countryorigin;
+
+            XmlAttribute Manufacturer = doc.CreateAttribute("manufacturer");
+            Manufacturer.Value = manufacturer;
+            XmlAttribute ProvideSlnumber = doc.CreateAttribute("provideSlnumber");
+            ProvideSlnumber.Value = provideSlnumber;
+            XmlAttribute Modelono = doc.CreateAttribute("modelono");
+            Modelono.Value = modelono;
+            XmlAttribute Lcnumber = doc.CreateAttribute("lcnumber");
+            Lcnumber.Value = lcnumber;
+
+            XmlAttribute Others = doc.CreateAttribute("others");
+            Others.Value = others;
+
+            XmlAttribute Capacity = doc.CreateAttribute("capacity");
+            Capacity.Value = capacity;
+            XmlAttribute Recommandlife = doc.CreateAttribute("recommandlife");
+            Recommandlife.Value = recommandlife;
+            XmlAttribute DepMethode = doc.CreateAttribute("depMethode");
+            DepMethode.Value = depMethode;
+
+            XmlAttribute DepRate = doc.CreateAttribute("depRate");
+            DepRate.Value = depRate;
+            XmlAttribute DteDepRunDate = doc.CreateAttribute("dteDepRunDate");
+            DteDepRunDate.Value = dteDepRunDate;
             XmlAttribute Totalaccdep = doc.CreateAttribute("totalaccdep");
-            Totalaccdep.Value = totalaccdep;
+            Totalaccdep.Value = totalaccdep; 
+            XmlAttribute Group = doc.CreateAttribute("group");
+            Group.Value = group;
+            XmlAttribute ProjectName = doc.CreateAttribute("projectName");
+            ProjectName.Value = projectName;
 
-            
 
+             
             node.Attributes.Append(IntItemid);
             node.Attributes.Append(IntMrrId);
             node.Attributes.Append(IntPoID);
 
 
             node.Attributes.Append(Unit);
-                node.Attributes.Append(Jobstation);
-                node.Attributes.Append(Asettype);
-                node.Attributes.Append(Mazorcategory);
-                node.Attributes.Append(Minorcatagory1);
-                node.Attributes.Append(Minorcatagory2);
-                node.Attributes.Append(Coscenter);
-                node.Attributes.Append(Suppliers);
-                node.Attributes.Append(Ponumber);
-                node.Attributes.Append(DtePo);
-                node.Attributes.Append(DteWarranty);
-                node.Attributes.Append(DetInstalation);
-                node.Attributes.Append(Lcoation);
-                node.Attributes.Append(Userenroll);
-                node.Attributes.Append(Invoicevalue);
+            node.Attributes.Append(Jobstation);
+            node.Attributes.Append(Asettype);
+            node.Attributes.Append(Mazorcategory);
+            node.Attributes.Append(Minorcatagory1);
+            node.Attributes.Append(Minorcatagory2);
+            node.Attributes.Append(Coscenter);
+            node.Attributes.Append(Suppliers);
+            node.Attributes.Append(Ponumber);
+            node.Attributes.Append(DtePo);
+            node.Attributes.Append(DteWarranty);
+            node.Attributes.Append(DetInstalation);
+            node.Attributes.Append(Lcoation);
+            node.Attributes.Append(Userenroll);
+            node.Attributes.Append(Invoicevalue);
 
-                node.Attributes.Append(Landedcost);
-                node.Attributes.Append(OtherCost);
-                node.Attributes.Append(Accusitioncost);
-                node.Attributes.Append(Remarks);
-                node.Attributes.Append(Assetname);
-                node.Attributes.Append(Description);
-                node.Attributes.Append(Hscode);
+            node.Attributes.Append(Landedcost);
+            node.Attributes.Append(OtherCost);
+            node.Attributes.Append(Accusitioncost);
+            node.Attributes.Append(Remarks);
+            node.Attributes.Append(Assetname);
+            node.Attributes.Append(Description);
+            node.Attributes.Append(Hscode);
 
-                node.Attributes.Append(Issudate);
-                node.Attributes.Append(GrnDate);
-                node.Attributes.Append(DepRate);
-                node.Attributes.Append(Issudate);
-                node.Attributes.Append(Servicedate);
+            node.Attributes.Append(Issudate);
+            node.Attributes.Append(GrnDate);
+            node.Attributes.Append(DepRate);
+            node.Attributes.Append(Issudate);
+            node.Attributes.Append(Servicedate);
 
-                node.Attributes.Append(Countryorigin);
-                node.Attributes.Append(Manufacturer);
-                node.Attributes.Append(ProvideSlnumber);
-                node.Attributes.Append(Modelono);
-                node.Attributes.Append(Lcnumber);
+            node.Attributes.Append(Countryorigin);
+            node.Attributes.Append(Manufacturer);
+            node.Attributes.Append(ProvideSlnumber);
+            node.Attributes.Append(Modelono);
+            node.Attributes.Append(Lcnumber);
 
-                node.Attributes.Append(Others);
-                node.Attributes.Append(Capacity);
-                node.Attributes.Append(Recommandlife);
-                node.Attributes.Append(DepMethode);
-                node.Attributes.Append(DepRate);
-                node.Attributes.Append(DteDepRunDate);
+            node.Attributes.Append(Others);
+            node.Attributes.Append(Capacity);
+            node.Attributes.Append(Recommandlife);
+            node.Attributes.Append(DepMethode);
+            node.Attributes.Append(DepRate);
+            node.Attributes.Append(DteDepRunDate);
             node.Attributes.Append(Totalaccdep);
-            
-                return node;
+
+            return node;
 
 
-            }
+        }
 
         public string GetJSFunctionString(object intItem, object intPO, object intMrrID,object numReceiveQty)
         {
@@ -595,8 +602,7 @@ namespace UI.Asset
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true); 
              
-            txtAccDep.Visible = true;
-            lblAccdep.Visible = true;
+           
             ddlUnit.Enabled = true;
             dlJobstation.Enabled = true;
             txtPonumbers.Enabled = true;
@@ -619,7 +625,7 @@ namespace UI.Asset
             txtAssetQty.Text = "0".ToString();
             txtAcisitionCost.Text = "0".ToString();
 
-            txtProjectID.Text = "0".ToString();
+            txtGroupName.Text = "0".ToString();
             txtProjectName.Text = "0".ToString();
             txtAssetLocation.Text = "0".ToString();
             txtCountryOrigin.Text = "0".ToString(); ;
@@ -703,33 +709,22 @@ namespace UI.Asset
                     try { txtHsCode.Text = pk.Rows[0]["strHSCode"].ToString(); } catch { }
                     try { txtIssueDate.Text = pk.Rows[0]["dteChallanDate"].ToString(); } catch { }
                     try { txtAssetQty.Text = hdnReceive.Value; } catch { }
-                    try { txtGrndDate.Text = pk.Rows[0]["MrrDate"].ToString(); } catch { }
-                    try
-                    {
-                        txtProjectID.Text = pk.Rows[0]["projectid"].ToString();
-                    }
-                    catch { }
-                    }
-               
-                  
+                    try { txtGrndDate.Text = pk.Rows[0]["MrrDate"].ToString(); } catch { } 
+
+
                     try { txtProjectName.Text = pk.Rows[0]["projectName"].ToString(); } catch { }
                     try { txtAssetLocation.Text = pk.Rows[0]["locations"].ToString(); } catch { }
                     try { txtCountryOrigin.Text = pk.Rows[0]["countryorigin"].ToString(); } catch { }
                     try { txtManufacturer.Text = pk.Rows[0]["manufacturer"].ToString(); } catch { }
-                    try { txtModelNo.Text = pk.Rows[0]["modelno"].ToString(); } catch { }
-                    
-                  
-
-
+                    try { txtModelNo.Text = pk.Rows[0]["modelno"].ToString(); } catch { } 
 
                     try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
                     try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
                     try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-                    txtAcisitionCost.Text = ( landedcost + otherCost).ToString();
+                    txtAcisitionCost.Text = (landedcost + otherCost).ToString();
                     txtAcisitionCost.ReadOnly = true;
-                    lblAccdep.Visible = false;
-                    txtAccDep.Visible = false;
-
+                    
+                }
             }
             catch (Exception ex)
             {
