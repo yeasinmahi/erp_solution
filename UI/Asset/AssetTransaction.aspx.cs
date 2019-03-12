@@ -594,17 +594,17 @@ namespace UI.Asset
             { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
 
 
-            CreateXmlReclasification(assetid, mainType.ToString(), mejorcat.ToString(), minorcat1.ToString(), minorcat2.ToString(),  reff, dteTransaction.ToString(), remarks);
+            CreateXmlReclasification(assetid, mainType.ToString(), mejorcat.ToString(), minorcat1.ToString(), minorcat2.ToString(),  reff, dteTransaction.ToString(), remarks, costcenter.ToString());
         }
 
-        private void CreateXmlReclasification(string assetid, string mainType, string mejorcat, string minorcat1, string minorcat2, string reff, string dteTransaction, string remarks)
+        private void CreateXmlReclasification(string assetid, string mainType, string mejorcat, string minorcat1, string minorcat2, string reff, string dteTransaction, string remarks,string costcenter)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXMlAssetParking))
             {
                 doc.Load(filePathForXMlAssetParking);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNodeReClas(doc, assetid, mainType, mejorcat, minorcat1, minorcat2, reff, dteTransaction, remarks);
+                XmlNode addItem = CreateItemNodeReClas(doc, assetid, mainType, mejorcat, minorcat1, minorcat2, reff, dteTransaction, remarks, costcenter);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -612,14 +612,14 @@ namespace UI.Asset
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNodeReClas(doc, assetid, mainType, mejorcat, minorcat1, minorcat2, reff, dteTransaction, remarks);
+                XmlNode addItem = CreateItemNodeReClas(doc, assetid, mainType, mejorcat, minorcat1, minorcat2, reff, dteTransaction, remarks, costcenter);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXMlAssetParking);
         }
 
-        private XmlNode CreateItemNodeReClas(XmlDocument doc, string assetid, string mainType, string mejorcat, string minorcat1, string minorcat2, string reff, string dteTransaction, string remarks)
+        private XmlNode CreateItemNodeReClas(XmlDocument doc, string assetid, string mainType, string mejorcat, string minorcat1, string minorcat2, string reff, string dteTransaction, string remarks,string costcenter)
         {
 
             XmlNode node = doc.CreateElement("voucherentry");
@@ -645,8 +645,10 @@ namespace UI.Asset
 
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
+            XmlAttribute Costcenter = doc.CreateAttribute("costcenter");
+            Costcenter.Value = costcenter;
 
-           
+            
 
             node.Attributes.Append(Assetid);
             node.Attributes.Append(MainType);
@@ -656,7 +658,8 @@ namespace UI.Asset
             node.Attributes.Append(Reff);
             node.Attributes.Append(DteTransaction);
             node.Attributes.Append(Remarks);
-          
+            node.Attributes.Append(Costcenter);
+
 
             return node;
         }

@@ -122,7 +122,11 @@
             var erection = parseFloat(document.getElementById("txtErectionOtherCost").value);
             document.getElementById("txtAcisitionCost").value = parseFloat(invoiceValue+landedCost+erection);
 
-          }
+        }
+         function RateCal() { 
+             var recomyear = document.getElementById("txtRecommandLife").value; 
+             document.getElementById("txtRateDep").value = parseFloat(100/recomyear).toFixed(2) 
+        }
         function Validation() { 
             var Assetname = document.getElementById("txtAssetname").value;
           
@@ -145,6 +149,9 @@
             var DepRunDate = document.getElementById("txtDepRunDate").value;
             var InvoiceValue = document.getElementById("txtInvoiceValue").value;
             var grnDate = document.getElementById("txtGrndDate").value;  
+
+             var recomyear = document.getElementById("txtRecommandLife").value;
+            var ratedep = document.getElementById("txtRateDep").value;
 
             if ($.trim(Assetname).length < 3 ||
                 $.trim(Assetname) == "" ||
@@ -243,7 +250,24 @@
                 alert('Please set GRN Date  ');
                 return false
              }
-            
+             else if ($.trim(recomyear).length < 1 ||
+                $.trim(recomyear) == "0" ||
+                 $.trim(recomyear) == "" ||
+                $.trim(recomyear) == null ||
+                $.trim(recomyear) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Recomanded Year');
+                return false
+            }
+                  else if ($.trim(ratedep).length < 1 ||
+                $.trim(ratedep) == "0" ||
+                 $.trim(ratedep) == "" ||
+                $.trim(ratedep) == null ||
+                $.trim(ratedep) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Rate of Depreciation');
+                return false
+            }
             else {
                 var confirmValue = document.createElement("INPUT");
                 confirmValue.type = "hidden";
@@ -448,8 +472,8 @@
                 </cc1:CalendarExtender>   </td>
                 </tr>
                     <tr>
-                 <td style="text-align:right;"><asp:Label ID="Label180" CssClass="lbl" runat="server" Text="Project ID:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtProjectID" runat="server" CssClass="txtBox"></asp:TextBox></td>        
+                <td style="text-align:right;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Text="Asset Group: "></asp:Label></td>
+                <td><asp:TextBox ID="txtGroupName" runat="server"  CssClass="txtBox"  ></asp:TextBox></td>   
 
                 <td style="text-align:right;"><asp:Label ID="Label181" CssClass="lbl" runat="server" Text="Project Name: "></asp:Label></td>
                 <td><asp:TextBox ID="txtProjectName" runat="server" CssClass="txtBox"></asp:TextBox></td>
@@ -519,48 +543,52 @@
                     </tr>
                    
             
+                   <tr>
+                    <td style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Depreciation Run Date:"></asp:Label></td>
+                    <td><asp:TextBox ID="txtDepRunDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                    <cc1:CalendarExtender ID="CalendarExtender7" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepRunDate">
+                    </cc1:CalendarExtender>   </td>
+                     <td style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Recommand Life:"></asp:Label></td>
+                     <td><asp:TextBox ID="txtRecommandLife" runat="server" onkeyup="RateCal(this);"  TextMode="Number" CssClass="txtBox"></asp:TextBox></td>  
+                     
+                  </tr>
+                    <tr>
+                         <td style="text-align:right;"><asp:Label ID="Label6" CssClass="lbl" runat="server" Text="Rate of Depreciation:"></asp:Label></td>
+                    <td><asp:TextBox ID="txtRateDep" runat="server"  Enabled="false" CssClass="txtBox" ></asp:TextBox></td>  
+
+                    </tr>
+               
                      <tr>
-                <td style="text-align:left;" colspan="4"><asp:Label ID="Label6" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Accounts Part: "></asp:Label></td>
+                <td style="text-align:left;" colspan="4"><asp:Label ID="Label7" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Accounts Part: "></asp:Label></td>
                 </tr>
                     <tr>
-                   <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Invoice Value BDT:"></asp:Label></td>
-                <td><asp:TextBox ID="txtInvoiceValue" runat="server" onkeyup="sumValue(this)"  Text="0"   CssClass="txtBox" ></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Recommand Life:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRecommandLife" runat="server" CssClass="txtBox"></asp:TextBox></td>     
-
-                    </tr>
-                    <tr>
-                 <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="LandedCostt:"></asp:Label></td>
-                <td><asp:TextBox ID="txtLandedCost" runat="server" onkeyup="sumValue(this)"   CssClass="txtBox"  ></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label10" CssClass="lbl" runat="server" Text="Method of Depreciation:"></asp:Label></td>
-                 <td><asp:DropDownList ID="ddlMethodOfDep" runat="server"  CssClass="dropdownList" >  
-                     <asp:ListItem Value="1" Text="Straight line "></asp:ListItem>    <asp:ListItem Value="2" Text="Reducing Balance"></asp:ListItem>          
-                </asp:DropDownList> </td>
-                 
-
-                    </tr>
-                    <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" onkeyup="sumValue(this)"  CssClass="txtBox" ></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label12" CssClass="lbl" runat="server" Text="Rate of Depreciation:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRateDep" runat="server" CssClass="txtBox"></asp:TextBox></td>     
-
-                    </tr>
-                    <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Total Acquisition Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtAcisitionCost" runat="server" onkeyup="sumValue(this)"  Text="0" CssClass="txtBox"></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Depreciation Run Date:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtDepRunDate" runat="server" CssClass="txtBox"></asp:TextBox>
-                <cc1:CalendarExtender ID="CalendarExtender7" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepRunDate">
-                </cc1:CalendarExtender>   </td>  
-
-                    </tr>
+                   <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="Invoice Value BDT:"></asp:Label></td>
+                <td><asp:TextBox ID="txtInvoiceValue" runat="server" Text="0"  onkeyup="sumValue(this)"    CssClass="txtBox" ></asp:TextBox></td>  
+                        
+                         <td style="text-align:right;"><asp:Label ID="Label10" CssClass="lbl" runat="server" Text="Landed Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtLandedCost" runat="server" Text="0"  onkeyup="sumValue(this)"   CssClass="txtBox"   ></asp:TextBox></td>  
+                </tr>
                 <tr>
-               
-                <td style="text-align:right;"><asp:Label ID="lblGlCode" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td>      
+                        <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Method of Depreciation:"></asp:Label></td>
+                 <td><asp:DropDownList ID="ddlMethodOfDep" runat="server"  CssClass="ddList"  >  
+                      <asp:ListItem Value="1" Text="Straight line "></asp:ListItem>    <asp:ListItem Value="2" Text="Reducing Balance"></asp:ListItem>   
+                </asp:DropDownList> </td> 
+ 
+                 <td style="text-align:right;"><asp:Label ID="Label12" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" Text="0" onkeyup="sumValue(this)" CssClass="txtBox" ></asp:TextBox></td>  
+                              
+                    </tr>
+                    <tr>
+                 <td style="text-align:right;"><asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Total Acquisition Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtAcisitionCost" runat="server" Text="0" CssClass="txtBox"></asp:TextBox></td>  
+               <td style="text-align:right;"><asp:Label ID="lblAccdep" CssClass="lbl" runat="server" Text="Total Accumulated Dep:"></asp:Label></td>
+                <td><asp:TextBox ID="txtAccDep" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+               </tr>
+                 <tr>  
+               <td style="text-align:right;"><asp:Label ID="lblGlCode" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
+                <td><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td> 
 
-                </tr>  
+                    </tr>
                        
                   <tr>
                         <td colspan="4" style="text-align:right;">
