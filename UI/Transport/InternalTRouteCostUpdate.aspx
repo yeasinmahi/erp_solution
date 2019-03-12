@@ -15,22 +15,7 @@
     <link href="jquery-ui.css" rel="stylesheet" />
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-
-    <script>
-        function InEntry(reqsid) {
-            window.open('InternalTransportRouteExpInEntry.aspx?intID=' + reqsid, 'sub', "height=600, width=800, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
-        }
-        function FuelCostOut(reqsid) {
-            window.open('InternalTransportExtimatedExp.aspx?intID=' + reqsid, 'sub', "height=600, width=800, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
-        }
-        function TripDetails(reqsid) {
-            window.open('InternalTTripDetails.aspx?intID=' + reqsid, 'sub', "height=400, width=670, scrollbars=yes, left=330, top=50, resizable=no, title=Preview");
-        }
-        function TripComplete(reqsid) {
-            window.open('VendorTTripCompleteEntry.aspx?intID=' + reqsid, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
-        }
-    </script>
-      
+          
 </head>
 <body>
     <form id="frmselfresign" runat="server">
