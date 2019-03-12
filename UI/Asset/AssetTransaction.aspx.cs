@@ -63,7 +63,7 @@ namespace UI.Asset
             try
             {
 
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
@@ -161,6 +161,7 @@ namespace UI.Asset
                 txtSaleAssetDescrip.Text = rt.Rows[0]["strDescriptionAsset"].ToString();
                 txtSaTotalDep.Text = rt.Rows[0]["totalDep"].ToString();
                 txtSaTotalCost.Text = rt.Rows[0]["monTAccumulatedCost"].ToString();
+                sessionUnit(int.Parse(ddlSaleUnit.SelectedValue));
                 try { txtSaCapitalLoss.Text = (decimal.Parse(txtSaTotalDep.Text) - decimal.Parse(txtSaTotalCost.Text)).ToString(); }
                 catch { txtSaCapitalLoss.Text = "0".ToString(); }
             }
@@ -193,8 +194,7 @@ namespace UI.Asset
             string reff = txtSaReff.Text.ToString();
             string dteTransaction = txtSaDteDate.Text.ToString();
             string remarks = txtSaRemarks.Text.ToString();
-            string depStartDate = "2017-01-01".ToString();
-            string depEndDate = "2017-01-01".ToString();
+           
             try { depValue = decimal.Parse(txtSaTotalDep.Text.ToString()); } catch { depValue = 0; }
             try {   totalcost = decimal.Parse(txtSaTotalCost.Text.ToString()); } catch { totalcost = 0; }
             try {  salesprocess = decimal.Parse(txtSalesProcess.Text.ToString()); } catch { salesprocess = 0; }
@@ -206,9 +206,13 @@ namespace UI.Asset
 
             string recieveId = accCOAid.ToString();
             string receiveName = txtSaReceiveableName.Text.ToString();
-            string strSearchKey = txtAssetID.Text;
-            string[] searchKey = Regex.Split(strSearchKey, ";");
-            string assetid = searchKey[1];         
+              
+            arrayKey = txtAssetID.Text.Split(delimiterChars); 
+            string assetid = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+            if (arrayKey.Length > 0)
+            { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
+
 
             CreateXmlSales( assetid,reff, dteTransaction, remarks,depValue.ToString(),totalcost.ToString(), salesprocess.ToString(), capitalloss.ToString(), receiveName, recieveId);
 
@@ -284,29 +288,7 @@ namespace UI.Asset
         }
 
         protected void ddlSaleUnit_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-            int Mnumber = int.Parse("1".ToString());
-            string assetcode = "162820122".ToString();
-            DataTable rt = new DataTable();
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetcode);
-
-            dt = objregister.JobstationName(8, int.Parse(ddlSaleUnit.SelectedValue), intenroll, intjobid, intdept, "0");
-            ddlSaleJob.DataSource = dt;
-            ddlSaleJob.DataTextField = "strJobStationName";
-            ddlSaleJob.DataValueField = "intEmployeeJobStationId";
-            ddlSaleJob.DataBind();
-
-            dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlSaleJob.SelectedValue));//Parking List
-
-            ddlSaCostCenter.DataSource = dt;
-            ddlSaCostCenter.DataTextField = "Name";
-            ddlSaCostCenter.DataValueField = "Id";
-            ddlSaCostCenter.DataBind();
+        { 
             try
             {
                 Session["UnitID"] = ddlSaleUnit.SelectedValue.ToString();
@@ -318,11 +300,7 @@ namespace UI.Asset
 
         protected void ddlSaleJob_SelectedIndexChanged(object sender, EventArgs e)
         {
-            dt = objregister.DropdownCategoryView(int.Parse(ddlSaleJob.SelectedValue));
-            ddlSaMinorCat1.DataSource = dt;
-            ddlSaMinorCat1.DataTextField = "strCategoryName";
-            ddlSaMinorCat1.DataValueField = "intCategoryID";
-            ddlSaMinorCat1.DataBind();
+            
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
         }
         protected void btnSales_Click(object sender, EventArgs e)
@@ -335,11 +313,8 @@ namespace UI.Asset
             var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Submit", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
-            {
-
-
-                SalePageXml();
-
+            { 
+            SalePageXml(); 
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXMlAssetParking);
             XmlNode dSftTm = doc.SelectSingleNode("voucher");
@@ -366,13 +341,7 @@ namespace UI.Asset
             // ends
             tracker.Stop();
         }
-        protected void txtSalesProcess_TextChanged(object sender, EventArgs e)
-        {
-            try { txtSaCapitalLoss.Text = (decimal.Parse(txtSaTotalDep.Text) - decimal.Parse(txtSaTotalCost.Text) + decimal.Parse(txtSalesProcess.Text)).ToString(); }
-            catch { txtSaCapitalLoss.Text = "0".ToString(); }
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnSaleDiv();", true);
-
-        }
+        
         protected void ddlSaleUnit_DataBound(object sender, EventArgs e)
         {
             try
@@ -740,88 +709,41 @@ namespace UI.Asset
             var tracker = new PerfTracker("Performance on Asset\\AssetTransaction Show", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
-            { 
-            int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-            int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-            int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-
-            dt = objregister.Unitname(5, 1, intenroll, intjobid, intdept, "0"); ;
-            ddlRevUnit.DataSource = dt;
-            ddlRevUnit.DataTextField = "strUnit";
-            ddlRevUnit.DataValueField = "intUnitID";
-            ddlRevUnit.DataBind();
-
-            dt = objregister.JobstationName(8, int.Parse(ddlRevUnit.SelectedValue), intenroll, intjobid, intdept, "0");
-            ddlRevJobstation.DataSource = dt;
-            ddlRevJobstation.DataTextField = "strJobStationName";
-            ddlRevJobstation.DataValueField = "intEmployeeJobStationId";
-            ddlRevJobstation.DataBind();
-
-            dt = objregister.AssetTypeAll();
-            ddlRevMejorCat.DataSource = dt;
-            ddlRevMejorCat.DataTextField = "strAssetTypeName";
-            ddlRevMejorCat.DataValueField = "intAssetTypeID";
-            ddlRevMejorCat.DataBind();
-
-            dt = objregister.DropdownCategoryView(int.Parse(ddlRevJobstation.SelectedValue));
-            ddlRevMinorCat1.DataSource = dt;
-            ddlRevMinorCat1.DataTextField = "strCategoryName";
-            ddlRevMinorCat1.DataValueField = "intCategoryID";
-            ddlRevMinorCat1.DataBind();
-
-            dt = parking.CwipAssetView(6, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
-            ddlRevMinorCat2.DataSource = dt;
-            ddlRevMinorCat2.DataTextField = "Name";
-            ddlRevMinorCat2.DataValueField = "ID";
-            ddlRevMinorCat2.DataBind();
-
-            dt = objregister.RegCostCenter(int.Parse(ddlRevUnit.SelectedValue));
-            ddlRevCostCenter.DataSource = dt;
-            ddlRevCostCenter.DataTextField = "Name";
-            ddlRevCostCenter.DataValueField = "Id";
-            ddlRevCostCenter.DataBind();
-
-            arrayKey = txtAssetID.Text.Split(delimiterChars);
-            string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
-            if (arrayKey.Length > 0)
-            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
-
-
-            int Mnumber = int.Parse("1".ToString());
-          
-            DataTable rt = new DataTable();
-
-            rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
-
-            if (rt.Rows.Count > 0)
             {
-                try { ddlRevUnit.SelectedValue = rt.Rows[0]["intUnit"].ToString(); }
-                catch { }
-                try
-                {
-                    dt = objregister.JobstationName(8, int.Parse(ddlRevUnit.SelectedValue), intenroll, intjobid, intdept, "0");
-                    ddlRevJobstation.DataSource = dt;
-                    ddlRevJobstation.DataTextField = "strJobStationName";
-                    ddlRevJobstation.DataValueField = "intEmployeeJobStationId";
-                    ddlRevJobstation.DataBind();
-                }
-                catch { }
-                try { ddlRevJobstation.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString(); } catch { }
-                try { ddlRevType.SelectedValue = rt.Rows[0]["intMaintype"].ToString(); } catch { }
-                try { ddlRevMejorCat.SelectedValue = rt.Rows[0]["intAssetType"].ToString(); } catch { }
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-                //dt = objregister.DropdownCategoryView(int.Parse(ddlTrnsJobstation.SelectedValue));
-                dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlRevJobstation.SelectedValue));//Parking List
+                dt = objregister.Unitname(5, 1, intenroll, intjobid, intdept, "0"); ;
+                ddlRevUnit.DataSource = dt;
+                ddlRevUnit.DataTextField = "strUnit";
+                ddlRevUnit.DataValueField = "intUnitID";
+                ddlRevUnit.DataBind();
 
+                dt = objregister.JobstationName(8, int.Parse(ddlRevUnit.SelectedValue), intenroll, intjobid, intdept, "0");
+                ddlRevJobstation.DataSource = dt;
+                ddlRevJobstation.DataTextField = "strJobStationName";
+                ddlRevJobstation.DataValueField = "intEmployeeJobStationId";
+                ddlRevJobstation.DataBind();
+
+                dt = objregister.AssetTypeAll();
+                ddlRevMejorCat.DataSource = dt;
+                ddlRevMejorCat.DataTextField = "strAssetTypeName";
+                ddlRevMejorCat.DataValueField = "intAssetTypeID";
+                ddlRevMejorCat.DataBind();
+
+                dt = objregister.DropdownCategoryView(int.Parse(ddlRevJobstation.SelectedValue));
                 ddlRevMinorCat1.DataSource = dt;
                 ddlRevMinorCat1.DataTextField = "strCategoryName";
                 ddlRevMinorCat1.DataValueField = "intCategoryID";
                 ddlRevMinorCat1.DataBind();
 
-                try { ddlRevMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString(); } catch { }
-
-                try { ddlRevMinorCat2.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString(); } catch { }
+                dt = parking.CwipAssetView(6, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
+                ddlRevMinorCat2.DataSource = dt;
+                ddlRevMinorCat2.DataTextField = "Name";
+                ddlRevMinorCat2.DataValueField = "ID";
+                ddlRevMinorCat2.DataBind();
 
                 dt = objregister.RegCostCenter(int.Parse(ddlRevUnit.SelectedValue));
                 ddlRevCostCenter.DataSource = dt;
@@ -829,13 +751,64 @@ namespace UI.Asset
                 ddlRevCostCenter.DataValueField = "Id";
                 ddlRevCostCenter.DataBind();
 
-                try
+                arrayKey = txtAssetID.Text.Split(delimiterChars);
+                string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
+
+                int Mnumber = int.Parse("1".ToString());
+
+                DataTable rt = new DataTable();
+
+                rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);
+
+                if (rt.Rows.Count > 0)
                 {
-                    ddlRevCostCenter.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
+                    try { ddlRevUnit.SelectedValue = rt.Rows[0]["intUnit"].ToString(); }
+                    catch { }
+                    try
+                    {
+                        dt = objregister.JobstationName(8, int.Parse(ddlRevUnit.SelectedValue), intenroll, intjobid, intdept, "0");
+                        ddlRevJobstation.DataSource = dt;
+                        ddlRevJobstation.DataTextField = "strJobStationName";
+                        ddlRevJobstation.DataValueField = "intEmployeeJobStationId";
+                        ddlRevJobstation.DataBind();
+                    }
+                    catch { }
+                    try { ddlRevJobstation.SelectedValue = rt.Rows[0]["intEmployeeJobStationId"].ToString(); } catch { }
+                    try { ddlRevType.SelectedValue = rt.Rows[0]["intMaintype"].ToString(); } catch { }
+                    try { ddlRevMejorCat.SelectedValue = rt.Rows[0]["intAssetType"].ToString(); } catch { }
+
+                    //dt = objregister.DropdownCategoryView(int.Parse(ddlTrnsJobstation.SelectedValue));
+                    dt = parking.CwipAssetView(7, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, int.Parse(rt.Rows[0]["intAssetType"].ToString()), int.Parse(ddlRevJobstation.SelectedValue));//Parking List
+
+                    ddlRevMinorCat1.DataSource = dt;
+                    ddlRevMinorCat1.DataTextField = "strCategoryName";
+                    ddlRevMinorCat1.DataValueField = "intCategoryID";
+                    ddlRevMinorCat1.DataBind();
+
+                    try { ddlRevMinorCat1.SelectedValue = rt.Rows[0]["intCategory"].ToString(); } catch { }
+
+                    try { ddlRevMinorCat2.SelectedValue = rt.Rows[0]["intMinorCatagory2"].ToString(); } catch { }
+
+                    dt = objregister.RegCostCenter(int.Parse(ddlRevUnit.SelectedValue));
+                    ddlRevCostCenter.DataSource = dt;
+                    ddlRevCostCenter.DataTextField = "Name";
+                    ddlRevCostCenter.DataValueField = "Id";
+                    ddlRevCostCenter.DataBind();
+
+                    try
+                    {
+                        ddlRevCostCenter.SelectedValue = rt.Rows[0]["intCostCenter"].ToString();
+                    }
+                    catch { }
+                    txtRevAssetname.Text = rt.Rows[0]["strNameOfAsset"].ToString(); 
+                    txtRevAccDep.Text = rt.Rows[0]["totalDep"].ToString(); 
+                    txtRevTotalCost.Text = rt.Rows[0]["monTAccumulatedCost"].ToString(); 
+                    txtRevCarying.Text = rt.Rows[0]["monCarryAmount"].ToString(); 
+
                 }
-                catch { }
-                txtRevAssetname.Text = rt.Rows[0]["strNameOfAsset"].ToString();
-            }
             }
             catch (Exception ex)
             {
@@ -850,7 +823,7 @@ namespace UI.Asset
         }
         private void RevaluationXml()
         {
-            decimal increse;
+            
             string unit = ddlRevUnit.SelectedValue.ToString();
             string assetname = txtRevAssetname.Text.ToString();
             string jobstation = ddlRevJobstation.Text.ToString();
@@ -864,8 +837,12 @@ namespace UI.Asset
             string reff = txtRevReff.Text.ToString();
             string dtetransaction = txtRevDate.Text.ToString();
             string remarks = txtReVRemarks.Text.ToString();
-            try { increse =decimal.Parse(txtRevIncrease.Text.ToString()); } catch { increse = 0; }
-            string totalcost = txtRevTotalCost.Text.ToString();
+            string lossgain = txtRevLossGain.Text.ToString(); 
+            string acctualcost = txtRevTotalCost.Text.ToString();
+            string revalued = txtRevalued.Text.ToString();
+            string fairmarket = txtRevFairMarket.Text.ToString();
+            string carrying = txtRevCarying.Text.ToString();
+            string accdep = txtRevAccDep.Text.ToString();
 
             arrayKey = txtAssetID.Text.Split(delimiterChars);
             string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
@@ -874,17 +851,17 @@ namespace UI.Asset
 
 
             string totalRev = "0".ToString();
-            CreateXmlRevalutation(assetId, reff, dtetransaction, remarks, increse.ToString(), totalcost, totalRev);
+            CreateXmlRevalutation(assetId, reff, dtetransaction, remarks, lossgain, acctualcost, revalued,fairmarket,carrying,accdep);
         }
 
-        private void CreateXmlRevalutation(string assetid,string reff, string dtetransaction, string remarks, string increse, string totalcost,string totalRev)
+        private void CreateXmlRevalutation(string assetid,string reff, string dtetransaction, string remarks, string lossgain,string  acctualcost,string revalued,string fairmarket, string carrying,string accdep)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXMlAssetParking))
             {
                 doc.Load(filePathForXMlAssetParking);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNodeReValution(doc, assetid, reff, dtetransaction, remarks, increse, totalcost, totalRev);
+                XmlNode addItem = CreateItemNodeReValution(doc, assetid, reff, dtetransaction, remarks, lossgain, acctualcost, revalued, fairmarket, carrying, accdep);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -892,14 +869,14 @@ namespace UI.Asset
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNodeReValution(doc, assetid, reff, dtetransaction, remarks, increse, totalcost, totalRev);
+                XmlNode addItem = CreateItemNodeReValution(doc, assetid, reff, dtetransaction, remarks, lossgain, acctualcost, revalued, fairmarket, carrying, accdep);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXMlAssetParking);
         }
 
-        private XmlNode CreateItemNodeReValution(XmlDocument doc, string assetid, string reff, string dtetransaction, string remarks, string increse, string totalcost, string totalRev)
+        private XmlNode CreateItemNodeReValution(XmlDocument doc, string assetid, string reff, string dtetransaction, string remarks, string lossgain, string acctualcost, string revalued, string fairmarket, string carrying, string accdep)
         {
             XmlNode node = doc.CreateElement("voucherentry");
 
@@ -914,23 +891,35 @@ namespace UI.Asset
 
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
             Remarks.Value = remarks;
-            XmlAttribute Increse = doc.CreateAttribute("increse");
-            Increse.Value = increse;
+            XmlAttribute Lossgain = doc.CreateAttribute("lossgain");
+            Lossgain.Value = lossgain;
 
-            XmlAttribute Totalcost = doc.CreateAttribute("totalcost");
-            Totalcost.Value = totalcost;
-            XmlAttribute TotalRev = doc.CreateAttribute("totalRev");
-            TotalRev.Value = totalRev;         
+            XmlAttribute Acctualcost = doc.CreateAttribute("acctualcost");
+            Acctualcost.Value = acctualcost;
 
+            XmlAttribute Revalued = doc.CreateAttribute("revalued");
+            Revalued.Value = revalued;
 
+            XmlAttribute Fairmarket = doc.CreateAttribute("fairmarket");
+            Fairmarket.Value = fairmarket;
+
+            XmlAttribute Carrying = doc.CreateAttribute("carrying");
+            Carrying.Value = carrying;
+            XmlAttribute Accdep = doc.CreateAttribute("accdep");
+            Accdep.Value = accdep;
+
+            
             node.Attributes.Append(Assetid);
             node.Attributes.Append(Reff);
             node.Attributes.Append(Dtetransaction);
             node.Attributes.Append(Remarks);
-            node.Attributes.Append(Increse);
-            node.Attributes.Append(Totalcost);
-            node.Attributes.Append(TotalRev);
-          
+            node.Attributes.Append(Lossgain);
+            node.Attributes.Append(Acctualcost);
+            node.Attributes.Append(Revalued);
+            node.Attributes.Append(Fairmarket);
+            node.Attributes.Append(Carrying);
+            node.Attributes.Append(Accdep);
+
 
 
             return node;
@@ -1749,6 +1738,14 @@ namespace UI.Asset
         private void divClose()
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
+        }
+        private void sessionUnit(int intunit)
+        {
+            try
+            {
+                Session["UnitID"] = intunit;
+            }
+            catch { }
         }
 
         #region===============AutoSearch==============================
