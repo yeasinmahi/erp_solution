@@ -9,6 +9,9 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <style type="text/css"> 
+        .ajax__calendar_inactive  {color:#dddddd;}
+    </style>
     <script language="javascript" type="text/javascript">
 
         function onlyNumbers(evt) {
@@ -120,7 +123,7 @@
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Due Date:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtDueDate" runat="server" CssClass="txtBox" Width="100px" autocomplete="off" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" Format="yyyy-MM-dd" TargetControlID="txtDueDate">
+                                <cc1:CalendarExtender ID="CalendarExtender3" runat="server" SelectedDate="<%# DateTime.Today %>" StartDate="<%# DateTime.Today %>" EndDate="<%# DateTime.Now.AddYears(1) %>" Format="yyyy-MM-dd" TargetControlID="txtDueDate">
                                 </cc1:CalendarExtender>
                             </td>
                         </tr>
