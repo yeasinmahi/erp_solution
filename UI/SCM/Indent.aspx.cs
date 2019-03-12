@@ -483,6 +483,11 @@ namespace UI.SCM
                         try
                         {
                             dtedate = DateTime.Parse(txtDueDate.Text);
+                            if (dtedate.Date < DateTime.Now.Date)
+                            {
+                                Toaster("Due date can not be eralier of present date",Common.TosterType.Warning);
+                                return;
+                            }
                         }
                         catch
                         {
