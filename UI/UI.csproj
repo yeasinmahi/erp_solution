@@ -1449,6 +1449,7 @@
     <Content Include="SCM\FG_Receive.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\FixedAssetAudit.aspx" />
+    <Content Include="SCM\Get_Pass_Report.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -7680,6 +7681,13 @@
     </Compile>
     <Compile Include="SCM\FixedAssetAudit.aspx.designer.cs">
       <DependentUpon>FixedAssetAudit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Get_Pass_Report.aspx.cs">
+      <DependentUpon>Get_Pass_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Get_Pass_Report.aspx.designer.cs">
+      <DependentUpon>Get_Pass_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>
