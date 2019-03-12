@@ -427,6 +427,7 @@
     <Content Include="HR\Reports\Employee_Movement_History.aspx" />
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
+    <Content Include="HR\Reports\Lync_Bill_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -3231,6 +3232,13 @@
     </Compile>
     <Compile Include="HR\Reports\Family_Day_Report.aspx.designer.cs">
       <DependentUpon>Family_Day_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Lync_Bill_Report.aspx.cs">
+      <DependentUpon>Lync_Bill_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Lync_Bill_Report.aspx.designer.cs">
+      <DependentUpon>Lync_Bill_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>
