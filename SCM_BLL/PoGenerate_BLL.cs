@@ -19,13 +19,18 @@ namespace SCM_BLL
 
         public DataTable GetPoData(int type, string xml, int intWh, int indentId, DateTime dteDate, int enroll)
         {
+            string msg = "";
             try
             {
-                string msg = "";
+                
                 SprPoGenerateTableAdapter adp = new SprPoGenerateTableAdapter();
                 return adp.GetPoGenerateData(type, xml, intWh, indentId, dteDate, enroll, ref msg);
             }
-            catch { return new DataTable(); }
+            catch(Exception ex)
+            {
+                msg = ex.Message;
+                return new DataTable();
+            }
         }
 
         public string PoApprove(int type, string xml, int intWh, int indentId, DateTime dteDate, int enroll)

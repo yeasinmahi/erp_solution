@@ -47,11 +47,11 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
             unitid = int.Parse(drdlUnitName.SelectedValue.ToString());
             salesoffid = int.Parse(ddlSo.SelectedValue.ToString());
             rptytypeid = int.Parse(drdlSalesview.SelectedValue.ToString());
+         
 
-            dt = bll.CollectionbaseCommission(fdate, tdate, unitid, salesoffid, rptytypeid);
-            if (rptytypeid == 1)
+            if (rptytypeid == 0)
             {
-
+                dt = bll.CollectionbaseCommission(fdate, tdate, unitid, salesoffid, rptytypeid);
                 dgrdvRegionalManagerCommission.DataSource = null;
                 dgrdvRegionalManagerCommission.DataBind();
                 grdvCollectionmoneyCommission.DataSource = dt;
@@ -62,21 +62,25 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 decimal totalcollection = dt.AsEnumerable().Sum(row => row.Field<decimal>("monCollection"));
                 grdvCollectionmoneyCommission.FooterRow.Cells[4].Text = totalcollection.ToString("N2");
                 grdvCollectionmoneyCommission.FooterRow.Cells[5].Text = txtTotalCommission.ToString("N2");
-              
+
                 lblComamount.Text = Convert.ToString(txtTotalCommission);
 
-                
+
 
 
             }
 
             else if (rptytypeid == 2)
             {
+                dt = bll.CollectionbaseCommissionDET(fdate, tdate, unitid, salesoffid, rptytypeid);
+
+                
                 grdvCollectionmoneyCommission.DataSource = null;
                 grdvCollectionmoneyCommission.DataBind();
                 dgrdvRegionalManagerCommission.DataSource = dt;
                 dgrdvRegionalManagerCommission.DataBind();
-                
+
+
             }
 
         }

@@ -43,7 +43,7 @@ namespace Utility
             OrderLine,
             StrockUpdate
         }
-
+        
         public static string GetModulaFullPath(string path, Enum fileName)
         {
             return path + fileName.ToString("F") + ".txt";
@@ -143,7 +143,7 @@ namespace Utility
 
         public static bool Loads(this DropDownList ddl, DataTable dt, string value, string text)
         {
-            if (dt.Rows.Count <= 0) return false;
+            if (dt == null) return false;
             try
             {
                 ddl.DataSource = dt;
@@ -268,6 +268,25 @@ namespace Utility
                 "$1 $2"
             );
         }
+        public static string RemoveZero<T>(this T str)
+        {
+            Type type = typeof(T);
+            if (type == typeof(string) || type == typeof(object))
+            {
+                if (double.TryParse(str.ToString(), out double d))
+                {
+                    return d.ToString("G29");
+                }
+                return str.ToString();
+
+            }
+            if (type == typeof(double) || type == typeof(float) || type == typeof(decimal))
+            {
+                double.TryParse(str.ToString(), out double d);
+                return d.ToString("G29");
+            }
+            return str.ToString();
+        }
 
         public static bool Dublicate(this string xml, string parent, string attribute)
         {
@@ -282,5 +301,6 @@ namespace Utility
                 .Where(g => g.Count() > 1);
             return dublicates.Any();
         }
+        
     }
 }

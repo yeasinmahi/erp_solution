@@ -287,10 +287,12 @@
     <Content Include="Asset\Operator\OperatorAssign.aspx" />
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
+    <Content Include="Asset\Report\AssetAccountingReport.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummary.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummaryByUnit.aspx" />
     <Content Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx" />
+    <Content Include="Asset\Report\Vehicle_maintenance_data_store.aspx" />
     <Content Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx" />
     <Content Include="Asset\SAD_Vehicle_Asset_Config.aspx" />
     <Content Include="Asset\ServiceConfiguration.aspx" />
@@ -422,7 +424,10 @@
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
+    <Content Include="HR\Reports\Employee_Movement_History.aspx" />
+    <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
+    <Content Include="HR\Reports\Lync_Bill_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -1307,6 +1312,7 @@
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
+    <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_OC_Report.aspx" />
@@ -1434,6 +1440,7 @@
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
     <Content Include="SCM\BOM\WorkStationCreate.aspx" />
+    <Content Include="SCM\ComparativeStatement.aspx" />
     <Content Include="SCM\ConsumpReport.aspx" />
     <Content Include="SCM\CurrentAssetAudit.aspx" />
     <Content Include="SCM\DeliveryReturn.aspx" />
@@ -1530,6 +1537,7 @@
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
     <Content Include="Transport\AccidentRegisterEntry.aspx" />
+    <Content Include="Transport\InternalTRouteCostUpdate.aspx" />
     <Content Include="Transport\NewVehicleEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
     <Content Include="Transport\InternalTDriverLedgerBalance.aspx" />
@@ -2646,6 +2654,13 @@
     <Compile Include="Asset\PMScheduleServicePopUp.aspx.designer.cs">
       <DependentUpon>PMScheduleServicePopUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Asset\Report\AssetAccountingReport.aspx.cs">
+      <DependentUpon>AssetAccountingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\AssetAccountingReport.aspx.designer.cs">
+      <DependentUpon>AssetAccountingReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Asset\Report\JobCardInfo.aspx.cs">
       <DependentUpon>JobCardInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2673,6 +2688,13 @@
     </Compile>
     <Compile Include="Asset\Report\Vehicle_Maintenance_Bill_Unit.aspx.designer.cs">
       <DependentUpon>Vehicle_Maintenance_Bill_Unit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_maintenance_data_store.aspx.cs">
+      <DependentUpon>Vehicle_maintenance_data_store.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\Vehicle_maintenance_data_store.aspx.designer.cs">
+      <DependentUpon>Vehicle_maintenance_data_store.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\Vehicle_Renewal_Bill_Unit.aspx.cs">
       <DependentUpon>Vehicle_Renewal_Bill_Unit.aspx</DependentUpon>
@@ -3192,12 +3214,33 @@
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Reports\Employee_Movement_History.aspx.cs">
+      <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Movement_History.aspx.designer.cs">
+      <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Previous_History.aspx.cs">
+      <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Previous_History.aspx.designer.cs">
+      <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Reports\Family_Day_Report.aspx.cs">
       <DependentUpon>Family_Day_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HR\Reports\Family_Day_Report.aspx.designer.cs">
       <DependentUpon>Family_Day_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Lync_Bill_Report.aspx.cs">
+      <DependentUpon>Lync_Bill_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Lync_Bill_Report.aspx.designer.cs">
+      <DependentUpon>Lync_Bill_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>
@@ -6679,6 +6722,13 @@
     <Compile Include="SAD\Sales\Report\Free.aspx.designer.cs">
       <DependentUpon>Free.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.cs">
+      <DependentUpon>indent_statement_report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.designer.cs">
+      <DependentUpon>indent_statement_report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx.cs">
       <DependentUpon>Itemwise_Deptwise_DO_vs_OC_Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7568,6 +7618,13 @@
     <Compile Include="SCM\BOM\WorkStationCreate.aspx.designer.cs">
       <DependentUpon>WorkStationCreate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\ComparativeStatement.aspx.cs">
+      <DependentUpon>ComparativeStatement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ComparativeStatement.aspx.designer.cs">
+      <DependentUpon>ComparativeStatement.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ConsumpReport.aspx.cs">
       <DependentUpon>ConsumpReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8281,6 +8338,13 @@
     </Compile>
     <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\InternalTRouteCostUpdate.aspx.cs">
+      <DependentUpon>InternalTRouteCostUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\InternalTRouteCostUpdate.aspx.designer.cs">
+      <DependentUpon>InternalTRouteCostUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\NewVehicleEntry.aspx.cs">
       <DependentUpon>NewVehicleEntry.aspx</DependentUpon>

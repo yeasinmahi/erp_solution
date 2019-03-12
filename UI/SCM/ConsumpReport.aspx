@@ -141,6 +141,22 @@
                             </td>
                         </tr>
                         <tr>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Minor Category:"></asp:Label>
+                            </td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlMinorCategory" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
+                                <asp:Button ID="btnMinorCategory" runat="server" Text="Show" OnClick="btnMinorCategory_OnClick" OnClientClick="return validation()" />
+                            </td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Sub Category:"></asp:Label>
+                            </td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
+                                <asp:Button ID="btnSubCategory" runat="server" Text="Show" OnClick="btnSubCategory_OnClick" OnClientClick="return validation()" />
+                            </td>
+                        </tr>
+                        <tr>
 
                             <td colspan="4" style="text-align: right;"></td>
                         </tr>

@@ -13,6 +13,9 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+     <asp:PlaceHolder ID="PlaceHolder2" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/updatedCss" /> 
+
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>    
@@ -92,6 +95,134 @@
 
              $("#hdnBuildingDivision").fadeOut("slow");
          }
+         function sumValue() {
+            var invoiceValue = parseFloat(document.getElementById("txtInvoiceValue").value);
+            var landedCost = parseFloat(document.getElementById("txtLandedCost").value);
+            var erection = parseFloat(document.getElementById("txtErectionOtherCost").value);
+            document.getElementById("txtAcisitionCost").value = parseFloat(invoiceValue+landedCost+erection);
+
+          }
+         function RateCal() {
+             var recomyear = document.getElementById("txtRecommandLife").value;
+             document.getElementById("txtRateDep").value = parseFloat(100 / recomyear).toFixed(2)
+         }
+         
+
+        function Validation() { 
+            var Assetname = document.getElementById("txtAssetname").value;
+             
+            var e = document.getElementById("ddlUnit");
+            var unitid = e.options[e.selectedIndex].value;
+            var e = document.getElementById("dlJobstation");
+            var jobstation = e.options[e.selectedIndex].value;
+            var e = document.getElementById("ddlMajorCat");
+            var majorcat = e.options[e.selectedIndex].value;
+            var e = document.getElementById("ddlCostCenter");
+            var costcenter = e.options[e.selectedIndex].value;
+
+             var e = document.getElementById("ddlMinorCate1");
+            var minorcat1 = e.options[e.selectedIndex].value;
+            
+            var acisitionCost = document.getElementById("txtAcisitionCost").value;
+           
+            var recomyear = document.getElementById("txtRecommandLife").value;
+            var ratedep = document.getElementById("txtRateDep").value;
+             
+
+            if ($.trim(Assetname).length < 3 ||
+                $.trim(Assetname) == "" ||
+                $.trim(Assetname) == null ||
+                $.trim(Assetname) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up Asset Name');
+                return false
+            }
+            else if ($.trim(unitid).length ==0 ||
+                $.trim(unitid) == "" ||
+                $.trim(unitid) == null ||
+                $.trim(unitid) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Unit Name');
+                return false
+            }
+            else if ($.trim(jobstation) == 0 ||
+                $.trim(jobstation) == "" ||
+                $.trim(jobstation) == null ||
+                $.trim(jobstation) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Jobstation');
+                return false
+            }
+            else if ($.trim(majorcat) == 0 ||
+                $.trim(majorcat) == "" ||
+                $.trim(majorcat) == null ||
+                $.trim(majorcat) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Major Category');
+                return false
+            }
+            else if ($.trim(costcenter) == 0 ||
+                $.trim(costcenter) == "" ||
+                $.trim(costcenter) == null ||
+                $.trim(costcenter) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Cost Center');
+                return false
+            }
+            else if ($.trim(minorcat1) == 0 ||
+                $.trim(minorcat1) == "" ||
+                $.trim(minorcat1) == null ||
+                $.trim(minorcat1) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select Minor Category');
+                return false
+            }
+            
+            else if ($.trim(acisitionCost).length < 1 ||
+                $.trim(acisitionCost) == "" ||
+                $.trim(acisitionCost) == null ||
+                $.trim(acisitionCost) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Acusition Cost');
+                return false
+            }
+              else if ($.trim(recomyear).length < 1 ||
+                $.trim(recomyear) == "0" ||
+                 $.trim(recomyear) == "" ||
+                $.trim(recomyear) == null ||
+                $.trim(recomyear) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Recomanded Year');
+                return false
+            }
+                  else if ($.trim(ratedep).length < 1 ||
+                $.trim(ratedep) == "0" ||
+                 $.trim(ratedep) == "" ||
+                $.trim(ratedep) == null ||
+                $.trim(ratedep) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up  Rate of Depreciation');
+                return false
+            }
+            
+            else {
+                var confirmValue = document.createElement("INPUT");
+                confirmValue.type = "hidden";
+                confirmValue.name = "confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirmValue.value = "Yes";
+                    document.getElementById("hdnPreConfirm").value = "1";
+                } else {
+                    confirmValue.value = "No";
+                    document.getElementById("hdnPreConfirm").value = "0";
+                    return false
+                }
+                return true
+                
+            }
+
+
+        }
     </script>
         <style type="text/css"> 
         .rounds {
@@ -170,12 +301,14 @@
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
 <%--=========================================Start My Code From Here===============================================--%>
-     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnsearch" runat="server" />
+     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnPreConfirm" runat="server" />
     <asp:HiddenField ID="hdnEnrollUnit" runat="server" /><asp:HiddenField ID="hdnReceive" runat="server" /><asp:HiddenField ID="hdnBankID" runat="server" />
                 
            <table>
                <tr>
-                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="CWIP Asset Parking Registration: "></asp:Label></td>
+                <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Primary Asset Parking Registration: "></asp:Label>                    
+                <asp:Label ID="lblAssetId" CssClass="lbl" runat="server" ForeColor="Red" Font-Size="small" Font-Bold="true"></asp:Label> 
+                </td>
                 </tr>
                <tr>
 
@@ -185,19 +318,16 @@
                     <asp:TemplateField HeaderText="SL.N"> 
                      <ItemTemplate> <%# Container.DataItemIndex + 1 %>  </ItemTemplate></asp:TemplateField>
                            
-                      <asp:BoundField DataField="intAutoid" HeaderText="intAutoID" SortExpression="intAutoid"/>
-                       <asp:BoundField DataField="strAssetId" HeaderText="Asset ID" Visible="false" SortExpression="strAssetId" />
-                       <asp:BoundField DataField="MainType" HeaderText="Asset Type" SortExpression="MainType" />
+                        <asp:BoundField DataField="intAutoid" HeaderText="intAutoID" SortExpression="intAutoid"/>
+                        <asp:BoundField DataField="strlcoation" HeaderText="Location"  SortExpression="strlcoation" />
+                        <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
+                        <asp:BoundField DataField="strJobStationName" HeaderText="Jobstation"  SortExpression="strJobStationName" />    
+                        <asp:BoundField DataField="MainType" HeaderText="Asset Type" SortExpression="MainType" />
                         <asp:BoundField DataField="intAssetTypeID" HeaderText="MejorCategoryID" Visible="false" SortExpression="strAssetTypeName" />
-                         <asp:BoundField DataField="strAssetTypeName" HeaderText="MejorCategory"  SortExpression="strAssetTypeName" />
-
-                      <asp:BoundField DataField="strUnit" HeaderText="Unit" SortExpression="strUnit" />
-                      <asp:BoundField DataField="strJobStationName" HeaderText="Jobstation"  SortExpression="strJobStationName" />        
-                      <asp:BoundField DataField="strNameOfAsset" HeaderText="Asset Name" SortExpression="strNameOfAsset" />
-                      <asp:BoundField DataField="strDescription" HeaderText="Description"  SortExpression="strDescription" /> 
-                      <asp:BoundField DataField="monAccusitioncost" HeaderText="AccusitionValue"  SortExpression="monAccusitioncost" /> 
-                                                           
-                       
+                        <asp:BoundField DataField="strAssetTypeName" HeaderText="MejorCategory"  SortExpression="strAssetTypeName" /> 
+                        <asp:BoundField DataField="strNameOfAsset" HeaderText="Asset Name" SortExpression="strNameOfAsset" />
+                        <asp:BoundField DataField="strDescription" HeaderText="Description"  SortExpression="strDescription" /> 
+                        <asp:BoundField DataField="monAccusitioncost" HeaderText="AccusitionValue"  SortExpression="monAccusitioncost" />  
          
                        <asp:TemplateField HeaderText="Submit">
                            <ItemTemplate>
@@ -226,7 +356,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label51" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
+                <td><asp:DropDownList ID="ddlUnit" runat="server"  CssClass="dropdownList" Enabled="false"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"> </asp:DropDownList> </td>                    
                   
                <td style="text-align:right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetname" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -234,7 +364,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="lblBranch" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="dlJobstation" runat="server"  CssClass="dropdownList" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>   
+                <td><asp:DropDownList ID="dlJobstation" runat="server"  CssClass="dropdownList" Enabled="false" OnSelectedIndexChanged="ddlJobstation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>   
 
                 <td style="text-align:right;"><asp:Label ID="Label16" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescription" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -285,8 +415,8 @@
                 </cc1:CalendarExtender>   </td>
                 </tr>
                     <tr>
-                 <td style="text-align:right;"><asp:Label ID="Label180" CssClass="lbl" runat="server" Text="Project ID:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtProjectID" runat="server" CssClass="txtBox"></asp:TextBox></td>        
+                 <td style="text-align:right;"><asp:Label ID="Label180" CssClass="lbl" runat="server" Text="Asset Group: "></asp:Label></td>
+                <td><asp:TextBox ID="txtGroupName" runat="server"  CssClass="txtBox"  ></asp:TextBox></td>   
 
                 <td style="text-align:right;"><asp:Label ID="Label181" CssClass="lbl" runat="server" Text="Project Name: "></asp:Label></td>
                 <td><asp:TextBox ID="txtProjectName" runat="server" CssClass="txtBox"></asp:TextBox></td>
@@ -313,7 +443,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumber" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbers" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbers" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label52" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturer" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
@@ -354,63 +484,60 @@
                   <td style="text-align:right;"><asp:Label ID="Label4" CssClass="lbl" runat="server" Text="User Enrollment:"></asp:Label></td>
                 <td><asp:TextBox ID="txtEnrolment" runat="server" CssClass="txtBox"></asp:TextBox></td>  
                 <td style="text-align:right;"><asp:Label ID="Label5" CssClass="lbl" runat="server" Text="Rated Capacity:"></asp:Label></td>
-                <td><asp:TextBox ID="txtCapacity" runat="server" CssClass="txtBox"></asp:TextBox></td>     
-
+                <td><asp:TextBox ID="txtCapacity" runat="server" CssClass="txtBox"></asp:TextBox></td>  
                     </tr>
-                   
-            
-                     <tr>
-                <td style="text-align:left;" colspan="4"><asp:Label ID="Label6" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Accounts Part: "></asp:Label></td>
-                </tr>
+                   <tr>
+                    <td style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Depreciation Run Date:"></asp:Label></td>
+                    <td><asp:TextBox ID="txtDepRunDate" runat="server" CssClass="txtBox"></asp:TextBox>
+                    <cc1:CalendarExtender ID="CalendarExtender7" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepRunDate">
+                    </cc1:CalendarExtender>   </td>
+                     <td style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Recommand Life:"></asp:Label></td>
+                     <td><asp:TextBox ID="txtRecommandLife" runat="server" onkeyup="RateCal(this);"  TextMode="Number" CssClass="txtBox"></asp:TextBox></td>  
+                     
+                  </tr>
                     <tr>
-                   <td style="text-align:right;"><asp:Label ID="Label7" CssClass="lbl" runat="server" Text="Invoice Value BDT:"></asp:Label></td>
-                <td><asp:TextBox ID="txtInvoiceValue" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtInvoiceValue_TextChanged"></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Recommand Life:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRecommandLife" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                         <td style="text-align:right;"><asp:Label ID="Label6" CssClass="lbl" runat="server" Text="Rate of Depreciation:"></asp:Label></td>
+                    <td><asp:TextBox ID="txtRateDep" runat="server"  Enabled="false" CssClass="txtBox" ></asp:TextBox></td>  
 
                     </tr>
-                    <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="LandedCostt:"></asp:Label></td>
-                <td><asp:TextBox ID="txtLandedCost" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtLandedCost_TextChanged"></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label10" CssClass="lbl" runat="server" Text="Method of Depreciation:"></asp:Label></td>
-                 <td><asp:DropDownList ID="ddlMethodOfDep" runat="server"  CssClass="dropdownList" >  
-                     <asp:ListItem Value="1" Text="Straight line "></asp:ListItem>    <asp:ListItem Value="2" Text="Reducing Balance"></asp:ListItem>          
-                </asp:DropDownList> </td>
-                 
-
-                    </tr>
-                    <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtErectionOtherCost_TextChanged"></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label12" CssClass="lbl" runat="server" Text="Rate of Depreciation:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRateDep" runat="server" CssClass="txtBox"></asp:TextBox></td>     
-
-                    </tr>
-                    <tr>
-                         <td style="text-align:right;"><asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Total Acquisition Cost:"></asp:Label></td>
-                <td><asp:TextBox ID="txtAcisitionCost" runat="server" CssClass="txtBox"></asp:TextBox></td>  
-                <td style="text-align:right;"><asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Depreciation Run Date:"></asp:Label></td>
-                 <td><asp:TextBox ID="txtDepRunDate" runat="server" CssClass="txtBox"></asp:TextBox>
-                <cc1:CalendarExtender ID="CalendarExtender7" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDepRunDate">
-                </cc1:CalendarExtender>   </td>  
-
-                    </tr>
-                <tr>
                
-                <td style="text-align:right;"><asp:Label ID="lblGlCode" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td>      
-
-                </tr> 
-
+                     <tr>
+                <td style="text-align:left;" colspan="4"><asp:Label ID="Label7" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Accounts Part: "></asp:Label></td>
                 </tr>
+                    <tr>
+                   <td style="text-align:right;"><asp:Label ID="Label9" CssClass="lbl" runat="server" Text="Invoice Value BDT:"></asp:Label></td>
+                <td><asp:TextBox ID="txtInvoiceValue" runat="server" Text="0"  onkeyup="sumValue(this)"    CssClass="txtBox" ></asp:TextBox></td>  
+                        
+                         <td style="text-align:right;"><asp:Label ID="Label10" CssClass="lbl" runat="server" Text="Landed Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtLandedCost" runat="server" Text="0"  onkeyup="sumValue(this)"   CssClass="txtBox"   ></asp:TextBox></td>  
+                </tr>
+                <tr>
+                        <td style="text-align:right;"><asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Method of Depreciation:"></asp:Label></td>
+                 <td><asp:DropDownList ID="ddlMethodOfDep" runat="server"  CssClass="ddList"  >  
+                      <asp:ListItem Value="1" Text="Straight line "></asp:ListItem>    <asp:ListItem Value="2" Text="Reducing Balance"></asp:ListItem>   
+                </asp:DropDownList> </td> 
+ 
+                 <td style="text-align:right;"><asp:Label ID="Label12" CssClass="lbl" runat="server" Text="Erection & Other Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtErectionOtherCost" runat="server" Text="0" onkeyup="sumValue(this)" CssClass="txtBox" ></asp:TextBox></td>  
+                              
+                    </tr>
+                    <tr>
+                 <td style="text-align:right;"><asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Total Acquisition Cost:"></asp:Label></td>
+                <td><asp:TextBox ID="txtAcisitionCost" runat="server" Text="0" CssClass="txtBox"></asp:TextBox></td>  
+               <td style="text-align:right;"><asp:Label ID="lblAccdep" CssClass="lbl" runat="server" Text="Total Accumulated Dep:"></asp:Label></td>
+                <td><asp:TextBox ID="txtAccDep" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+               </tr>
+                 <tr>  
+               <td style="text-align:right;"><asp:Label ID="Label182" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
+                <td><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+
+                 </tr>
                        
                     <tr>
-                        <td colspan="2" style="text-align:right;">
-                            <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" Text="Save" />
-                        </td>
-
-                        <td colspan="2" style="text-align:right;">
-                        <asp:Button ID="btnClose" runat="server" OnClick="btnClose_Click" Text="Close" />
+                        <td colspan="4" style="text-align:right;">
+                        <asp:Button ID="btnSave" runat="server"  OnClientClick="return Validation();" class="btn btn-primary" OnClick="btnSave_Click" Text="Save" />
+                         
+                        <asp:Button ID="btnClose" runat="server" class="btn btn-warning" OnClick="btnClose_Click" Text="Close" />
                     </td>
                     </tr>
                        
@@ -429,7 +556,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label19" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnitV" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitV_SelectedIndexChanged"> </asp:DropDownList>                   
+                <td><asp:DropDownList ID="ddlUnitV" runat="server"  CssClass="dropdownList" Enabled="false" AutoPostBack="True" OnSelectedIndexChanged="ddlUnitV_SelectedIndexChanged"> </asp:DropDownList>                   
                   
                <td style="text-align:right;"><asp:Label ID="Label20" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetnameV" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -627,7 +754,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="lblPonumberV" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPonumbersV" runat="server" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPonumbersV" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label29" CssClass="lbl" runat="server" Text="Name of Manufacturer : "></asp:Label></td>
                 <td><asp:TextBox ID="txtManufacturerV" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>
@@ -738,7 +865,7 @@
                 
                 <tr>
                 <td style="text-align:right;"><asp:Label ID="Label70" CssClass="lbl" runat="server" Text="Unit Name: "></asp:Label></td>
-                <td><asp:DropDownList ID="ddlUnitLand" runat="server"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitLand_SelectedIndexChanged"> </asp:DropDownList>                   
+                <td><asp:DropDownList ID="ddlUnitLand" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="True" OnSelectedIndexChanged="ddlUnitLand_SelectedIndexChanged"> </asp:DropDownList>                   
                   
                <td style="text-align:right;"><asp:Label ID="Label71" CssClass="lbl" runat="server" Text="Asset Name:"></asp:Label></td>
                  <td><asp:TextBox ID="txtAssetNameL" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -746,7 +873,7 @@
                 </tr>
                      <tr>
                 <td style="text-align:right;"><asp:Label ID="Label72" CssClass="lbl" runat="server" Text="Branch:"></asp:Label></td>
-                <td><asp:DropDownList ID="ddlJobstationL" runat="server"  CssClass="dropdownList"  AutoPostBack="False"  ></asp:DropDownList> 
+                <td><asp:DropDownList ID="ddlJobstationL" runat="server" Enabled="false"  CssClass="dropdownList"  AutoPostBack="False"  ></asp:DropDownList> 
 
                 <td style="text-align:right;"><asp:Label ID="Label73" CssClass="lbl" runat="server" Text="Description:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDescriptionL" runat="server" CssClass="txtBox"></asp:TextBox></td>        
@@ -846,7 +973,7 @@
                 </tr>
                   <tr>
                 <td style="text-align:right;"><asp:Label ID="Label102" CssClass="lbl" runat="server" Text="Po Number:"></asp:Label></td>
-                <td><asp:TextBox ID="txtPoNumberL" runat="server" CssClass="txtBox"></asp:TextBox></td>     
+                <td><asp:TextBox ID="txtPoNumberL" runat="server" Enabled="false" CssClass="txtBox"></asp:TextBox></td>     
                  <td style="text-align:right;"><asp:Label ID="Label103" CssClass="lbl" runat="server" Text="Deed Receipt NO:"></asp:Label></td>
                 <td><asp:TextBox ID="txtDeedReceiptNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
                    </tr>

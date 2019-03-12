@@ -5,7 +5,7 @@
 
 <html>
 <head runat="server">
-    <title>.:  :.</title>
+    <title>.: Product Rate vs DO :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 

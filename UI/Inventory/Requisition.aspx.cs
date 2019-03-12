@@ -8,6 +8,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.DropDown;
 using SCM_BLL;
 using UI.ClassFiles;
 using Utility;
@@ -26,6 +27,8 @@ namespace UI.Inventory
         int intEnroll;
         int type, id; bool active;
         DateTime fdate, tdate;
+        private DataTable dt = new DataTable();
+        private readonly CostCenterBll _costCenterBll = new CostCenterBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             xmlpath = Server.MapPath("~/Inventory/Data/REQ_" + Enroll + ".xml");
@@ -45,27 +48,12 @@ namespace UI.Inventory
                 lblDept.Text = HttpContext.Current.Session[SessionParams.DEPT_NAME].ToString();
                 pnlUpperControl.DataBind();
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                //txtItem.Attributes.Add("onkeyUp", "SearchText();"); 
                 Clearcontrols();
                 try { File.Delete(xmlpath); } catch { }
-                intEnroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dtbl = bll.GetWarehouseList(intEnroll,Convert.ToInt32(hdntype.Value));
-                ddlWH.DataSource = dtbl;
-                ddlWH.DataTextField = "WH";
-                ddlWH.DataValueField = "intWHID";
-                ddlWH.DataBind();
+                dtbl = bll.GetWarehouseList(Enroll,Convert.ToInt32(hdntype.Value));
+                ddlWH.Loads(dtbl, "intWHID", "WH");
 
-                int whId = ddlWH.SelectedValue();
-                DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
-                DdlCostCenter.LoadWithSelect(dt, "Id", "strName");
-               
-
-                //dt = new DataTable();
-                //dt = bll.CostCetnterUnit(UnitId);
-                //DdlCostCenter.DataSource = dt;
-                //DdlCostCenter.DataTextField = "Name";
-                //DdlCostCenter.DataValueField = "ID";
-                //DdlCostCenter.DataBind();
+                LoadCostCenter();
 
                 if (Enroll == 1039 || Enroll == 1388 || Enroll == 11621)
                 {
@@ -85,8 +73,8 @@ namespace UI.Inventory
         public void LoadCostCenter()
         {
             int whId = ddlWH.SelectedValue();
-            DataTable dt = new StoreIssue_BLL().GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
-            DdlCostCenter.Loads(dt, "Id", "strName");
+            dt = _costCenterBll.GetCostCenter(whId);
+            DdlCostCenter.LoadWithSelect(dt, "Id", "strName");
         }
 
         //[WebMethod]
@@ -98,12 +86,13 @@ namespace UI.Inventory
         //    { result = objAutoSearch_BLL.GetItemLists(int.Parse(whid), searchKey); }
         //    return result;
         //}
+        private static readonly AutoSearch_BLL AutoSearchBll = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
-        public static string[] GetWearHouseRequesision(string prefixText, int count)
+        public static string[] GetWearHouseRequesision(string prefixText)
         {
             string whid =HttpContext.Current.Session["WareID"].ToString();
-            return new AutoSearch_BLL().GetItemLists(whid, prefixText);
+            return AutoSearchBll.GetItemLists(whid, prefixText);
 
         }
 
@@ -111,7 +100,7 @@ namespace UI.Inventory
         [ScriptMethod]
         public static string[] GetItemListsForStoreReq(string prefixText)
         {
-            return new AutoSearch_BLL().GetItemListsForStoreReq(prefixText);
+            return AutoSearchBll.GetItemListsForStoreReq(prefixText);
         }
 
         protected void txtSearchAssignedTo_TextChanged(object sender, EventArgs e)

@@ -337,10 +337,17 @@ namespace SCM_BLL
 
         public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate, int intType, int autoID, int itemID, DateTime transactionDate, decimal transactionQTY, int productID)
         {
-
-            sprFGReceiveTableAdapter adp = new sprFGReceiveTableAdapter();
-            return adp.GetFGReceiveData(whid, FromDate, ToDate, intType, autoID, itemID, transactionDate,
-                transactionQTY, productID);
+            try
+            {
+                sprFGReceiveTableAdapter adp = new sprFGReceiveTableAdapter();
+                return adp.GetFGReceiveData(whid, FromDate, ToDate, intType, autoID, itemID, transactionDate,
+                    transactionQTY, productID);
+            }
+            catch (Exception exception)
+            {
+                return new DataTable();
+            }
+            
 
 
         }

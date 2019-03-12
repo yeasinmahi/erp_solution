@@ -58,8 +58,8 @@ namespace UI.SCM.Transfer
                     ddlWh.LoadWithSelect(dt, "Id", "strName");
                     Session["WareID"] = ddlWh.SelectedValue();
 
-                    //dt = objWH.GetWH(Enroll,Common.GetDdlSelectedValue(ddlWh));
-                    ddlToWh.LoadWithSelect(new DataTable(), "Id", "strName");
+                    dt = objWH.GetAllWh();
+                    ddlToWh.LoadWithSelect(dt, "Id", "strName");
 
                     dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, Enroll);
                     ddlTransType.LoadWithSelect(dt, "Id", "strName");
@@ -95,7 +95,7 @@ namespace UI.SCM.Transfer
                 txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
 
                 ddlLcation.UnLoadWithSelect();
-                ddlToWh.UnLoadWithSelect();
+                
                 hdnStockQty.Value = "0";
             }
             catch (Exception ex)
@@ -127,12 +127,12 @@ namespace UI.SCM.Transfer
                 bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString();
-                    uom = arrayKey[3].ToString();
-                    itemid = arrayKey[1].ToString();
+                    item = arrayKey[0];
+                    uom = arrayKey[3];
+                    itemid = arrayKey[1];
                 }
-                Id = int.Parse(itemid.ToString());
-                intWh = int.Parse(ddlWh.SelectedValue.ToString());
+                Id = int.Parse(itemid);
+                intWh = int.Parse(ddlWh.SelectedValue);
 
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, Enroll);
                 if (dt.Rows.Count > 0)
@@ -140,12 +140,12 @@ namespace UI.SCM.Transfer
                     ddlLcation.LoadWithSelect(dt, "Id", "strName");
                     dt.Clear();
                 }
-                dt = objWH.GetWH(Enroll, ddlWh.SelectedValue());
-                if (dt.Rows.Count > 0)
-                {
-                    ddlToWh.LoadWithSelect(dt, "Id", "strName");
-                    dt.Clear();
-                }
+                //dt = objWH.GetWH(Enroll, ddlWh.SelectedValue());
+                //if (dt.Rows.Count > 0)
+                //{
+                //    ddlToWh.LoadWithSelect(dt, "Id", "strName");
+                //    dt.Clear();
+                //}
 
                 //else { lblDetalis.Text = ""; lblValue.Text = ""; ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Stock is not avaiable!');", true); }
             }
@@ -174,16 +174,16 @@ namespace UI.SCM.Transfer
                 bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString();
-                    uom = arrayKey[3].ToString();
-                    itemid = arrayKey[1].ToString();
+                    item = arrayKey[0];
+                    uom = arrayKey[3];
+                    itemid = arrayKey[1];
                 }
 
                 arrayKeyV = txtVehicle.Text.Split(delimiterChars);
                 string vehicle = "";
                 if (arrayKeyV.Length > 0)
                 {
-                    vehicle = arrayKeyV[1].ToString();
+                    vehicle = arrayKeyV[1];
                 }
 
                 if (int.Parse(vehicle) > 0)
@@ -193,19 +193,19 @@ namespace UI.SCM.Transfer
                 {
                     vehicle = "0";
                 }
-                string locationId = ddlLcation.SelectedValue.ToString();
-                string locationName = ddlLcation.SelectedValue.ToString();
+                string locationId = ddlLcation.SelectedValue;
+                string locationName = ddlLcation.SelectedText();
                 string transType = ddlTransType.SelectedItem.ToString();
-                string transTypeId = ddlTransType.SelectedValue.ToString();
-                uom = hdnUom.Value.ToString();
-                string qty = txTransferQty.Text.ToString();
-                string remarks = txtRemarks.Text.ToString();
+                string transTypeId = ddlTransType.SelectedValue;
+                uom = hdnUom.Value;
+                string qty = txTransferQty.Text;
+                string remarks = txtRemarks.Text;
 
                 try
                 {
-                    decimal values =
-                        (decimal.Parse(hdnValue.Value.ToString()) / decimal.Parse(hdnStockQty.Value.ToString())) *
-                        decimal.Parse(qty.ToString());
+                    values =
+                        (decimal.Parse(hdnValue.Value) / decimal.Parse(hdnStockQty.Value)) *
+                        decimal.Parse(qty);
                 }
                 catch
                 {
@@ -220,9 +220,7 @@ namespace UI.SCM.Transfer
                     txtItem.Text = "";
                     txTransferQty.Text = "";
                     lblValue.Text = "";
-                    ddlLcation.DataSource = "";
-                    ddlLcation.DataBind();
-                    ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+                    ddlLcation.UnLoadWithSelect();
                 }
                 else
                 {
@@ -380,11 +378,11 @@ namespace UI.SCM.Transfer
                 bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString();
-                    uom = arrayKey[3].ToString();
-                    itemid = arrayKey[1].ToString();
+                    item = arrayKey[0];
+                    uom = arrayKey[3];
+                    itemid = arrayKey[1];
                 }
-                Id = int.Parse(itemid.ToString());
+                Id = int.Parse(itemid);
                 intWh = int.Parse(ddlWh.SelectedValue);
                 int locationId = int.Parse(ddlLcation.SelectedValue);
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, locationId);
@@ -405,7 +403,7 @@ namespace UI.SCM.Transfer
                         hdnValue.Value = row["monValue"].ToString();
                         string detaliss = "  Stock: " + monStock + " " + strUom + " Id: " + intItem;
                         lblDetalis.Text = detaliss;
-                        lblValue.Text = "Value: " + monValues.ToString();
+                        lblValue.Text = "Value: " + monValues;
                     }
                     else
                     {
@@ -455,8 +453,8 @@ namespace UI.SCM.Transfer
                 lock (_locker)
                 {
                     XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWh.SelectedValue);
-                    int intToWh = int.Parse(ddlToWh.SelectedValue);
+                    intWh = ddlWh.SelectedValue();
+                    int intToWh = ddlToWh.SelectedValue();
 
                     doc.Load(filePathForXML);
                     XmlNode dSftTm = doc.SelectSingleNode("voucher");
@@ -545,7 +543,7 @@ namespace UI.SCM.Transfer
         {
             if (HttpContext.Current.Session["WareID"] != null && !HttpContext.Current.Session["WareID"].ToString().Equals("0"))
             {
-                return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+                return _ast.AutoSearchrawMeterial(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             }
             return new string[0];
 

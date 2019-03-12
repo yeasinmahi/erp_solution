@@ -1,6 +1,8 @@
 ﻿using SCM_DAL.IndentTDSTableAdapters;
 using System;
 using System.Data;
+using SCM_DAL.ItemTDSTableAdapters;
+using ServiceGateWay;
 
 namespace SCM_BLL
 {
@@ -18,7 +20,6 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
-
             
         }
 
@@ -67,6 +68,28 @@ namespace SCM_BLL
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;
         }
+        public string InsertIntoItem(int enroll, int Wh, int locationId,int  intItemMasterId, int intSubCAT, int intMinorCAT,int intCATID)
+        {
+            string strMsg = "";
+            try
+            {
+                sprAddItemFromItemMasterNewTableAdapter adp = new sprAddItemFromItemMasterNewTableAdapter();
+                DataTable dt = adp.InsertItem(enroll, Wh, locationId, intItemMasterId, intSubCAT, intMinorCAT, intCATID);
+                if (dt.Rows.Count > 0)
+                {
+                    strMsg = dt.Rows[0]["strMessage"] + "Your ItemId = " + dt.Rows[0]["intItem"];
+                }
+                else
+                {
+                    strMsg = "Something error in database";
+                }
+            }
+            catch (Exception ex)
+            {
+                return strMsg = ex.ToString();
+            }
+            return strMsg;
+        }
 
         public DataTable GetMasterItem(string strSearchKey)
         {
@@ -83,6 +106,15 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetAllWh()
+        {
+            try
+            {
+                tblWearHouseTableAdapter adpCOA = new tblWearHouseTableAdapter();
+                return adpCOA.GetData();
+            }
+            catch { return new DataTable(); }
+        }
 
         public DataTable GetDataByWhId(int intWhId)
         {
@@ -94,12 +126,21 @@ namespace SCM_BLL
             catch { return new DataTable(); }
         }
 
-        public DataTable GetWhByLocation(int Wh)
+        public DataTable GetLocationByWh(int wh)
         {
             try
             {
                 TblWearHouseTableAdapter adpCOA = new TblWearHouseTableAdapter();
-                return adpCOA.GetDataByWhLocation(Wh);
+                return adpCOA.GetDataByWhLocation(wh);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetItemDropDownData(int type, int whId)
+        {
+            try
+            {
+                sprItemDropDownTableAdapter adp = new sprItemDropDownTableAdapter();
+                return adp.GetItemDropDownData(type, whId);
             }
             catch { return new DataTable(); }
         }
@@ -124,6 +165,12 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
+        }
+
+        public void Test()
+        {
+            ItemDal dal = new ItemDal();
+            dal.GetItems();
         }
     }
 }

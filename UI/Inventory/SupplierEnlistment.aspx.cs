@@ -11,6 +11,7 @@ using Purchase_BLL.SupplyChain;
 using System.IO;
 using System.Net;
 using System.Xml;
+using Utility;
 
 namespace UI.Inventory
 {
@@ -359,31 +360,45 @@ namespace UI.Inventory
                     strRoutingNo = txtRouting.Text;
                     strACNO = txtACNo.Text;
                     int acclenth = strACNO.Length;
-                    strReprContactNo = txtContactNo.Text.ToString();
+                    strReprContactNo = txtPhone.Text.ToString();
+                    strOrgAddress = txtAddress.Text;
+                    strSuppMasterName = txtSuppliername.Text;
 
-                    if (strReprContactNo.Length != 11)
+                    if (string.IsNullOrWhiteSpace(strSuppMasterName))
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Contact No Must be 11 digit ??');", true);
+                        Toaster("Supplier name can not be blank", Common.TosterType.Warning);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
+                    }
+                    else if (string.IsNullOrWhiteSpace(strOrgAddress))
+                    {
+                        Toaster("Address can not be blank", Common.TosterType.Warning);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
+                    }
+                    else if (strReprContactNo.Length != 11)
+                    {
+                        Toaster("Contact No Must be 11 digit ??", Common.TosterType.Warning);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
                     }
                     else if (strPayToName.Length < 2)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Please mention Pay to Name');", true);
+                        Toaster("Please mention Pay to Name", Common.TosterType.Warning);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
                     }
                     else if (strRoutingNo.Length != 9)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Routing no Must be 9 digit ??');", true);
+                        Toaster("Routing no Must be 9 digit ??", Common.TosterType.Warning);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
                     }
                     else if (strACNO.Length != 13)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('Account number length must be 13 digit');", true);
+                        Toaster("Account number length must be 13 digit", Common.TosterType.Warning);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "OpenHdnDiv();", true);
+                        return;
                     }
                     else if (strPayToName != "" && strRoutingNo.Length == 9 && strACNO.Length == 13 &&
                              strReprContactNo.Length == 11)
@@ -392,8 +407,7 @@ namespace UI.Inventory
                         strRoutingNo = txtRouting.Text;
                         strACNO = txtACNo.Text;
 
-                        strSuppMasterName = txtSuppliername.Text;
-                        strOrgAddress = txtAddress.Text;
+                        
                         strOrgMail = txtemail.Text;
                         strOrgContactNo = txtContactNo.Text;
                         strOrgFAXNo = txtFax.Text;
@@ -407,8 +421,6 @@ namespace UI.Inventory
                         strReprContactNo = txtPhone.Text;
 
                         strSupplierType = ddlSupplierType.SelectedItem.ToString();
-
-                        strShortName = txtShortName.Text;
 
                         strBank = txtBank.Text;
                         strBranch = txtBranch.Text;
@@ -444,7 +456,7 @@ namespace UI.Inventory
                         {
                             for (int index = 0; index < dgvDocUp.Rows.Count; index++)
                             {
-                                docType = ((Label)dgvDocUp.Rows[index].FindControl("lbldoctypeid")).Text.ToString();
+                                docType = ((Label) dgvDocUp.Rows[index].FindControl("lbldoctypeid")).Text.ToString();
 
                                 if (docType == "1")
                                 {
@@ -459,7 +471,7 @@ namespace UI.Inventory
                             {
                                 for (int index = 0; index < dgvDocUp.Rows.Count; index++)
                                 {
-                                    fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text
+                                    fileName = ((Label) dgvDocUp.Rows[index].FindControl("lblFileName")).Text
                                         .ToString();
 
                                     FileUploadFTP(Server.MapPath("~/Inventory/Data/"), fileName,
@@ -517,6 +529,10 @@ namespace UI.Inventory
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                                 "alert('Please Upload Cheque Leave Or Bank Statement ??');", true);
                         }
+                    }
+                    else
+                    {
+                        Toaster("some information do not provide properly",Common.TosterType.Warning);
                     }
                 }
                 catch (Exception ex)

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using UserRole.DAL;
+﻿using UserRole.DAL;
 using UserRole.DAL.RoleTDSTableAdapters;
 using UserRole.DAL.RoleModifyTDSTableAdapters;
 using UserRole.DAL.RoleModifySubordinateTDSTableAdapters;

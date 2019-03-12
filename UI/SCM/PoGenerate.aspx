@@ -10,11 +10,7 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
 
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
     <script type="text/javascript">
 
         function ViewPriceListPopup(Id) {
@@ -486,9 +482,8 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <div id="loading"></div>
@@ -520,28 +515,27 @@
                                 <table style="width: 80%; border-width: 1px; background-color: white; border-color: #666; border-style: solid">
                                     <table>
                                         <tr>
-                                            <td colspan="3" style="text-align: right;">
+                                            <td style="text-align: right;">
                                                 <asp:Label ID="Label16" runat="server" CssClass="lbl" Text="Department:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:DropDownList ID="ddlDepts" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False"></asp:DropDownList></td>
-                                        </tr>
-                                        <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH-Name:"></asp:Label></td>
                                             <td style="text-align: left;">
                                                 <asp:DropDownList ID="ddlWH" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged">
                                                 </asp:DropDownList></td>
-
+                                        </tr>
+                                        <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="LblDtePO" runat="server" CssClass="lbl" Text="From-Date : "></asp:Label></td>
-                                            <td>
+                                            <td style="text-align: left;">
                                                 <asp:TextBox ID="txtDtefroms" autocomplete="off" runat="server" CssClass="txtBox"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDtefroms">
                                                 </cc1:CalendarExtender>
 
                                                 <td style="text-align: right;">
                                                     <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="To-Date : "></asp:Label>
-                                            <td>
+                                            <td style="text-align: left;">
                                                 <asp:TextBox ID="txtDteTo" runat="server" autocomplete="off" CssClass="txtBox"></asp:TextBox>
                                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDteTo">
                                                 </cc1:CalendarExtender>
@@ -560,12 +554,12 @@
                                             <td>
                                                 <asp:Button ID="btnSearchIndent" runat="server" ForeColor="blue" Text="Search Indent" OnClick="btnSearchIndent_Click" />
                                             </td>
-                                            <td colspan="3" style="text-align: right">
+                                            <td style="text-align: right">
                                                 <asp:Button ID="btnShow" runat="server" ForeColor="blue" OnClick="btnShow_Click" OnClientClick="showLoader()" Text="Show Indent" />
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="6">
+                                            <td colspan="4">
                                                 <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="5" Font-Size="10px" FooterStyle-BackColor="#999999" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" ForeColor="Black" GridLines="Vertical">
                                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                                     <Columns>
