@@ -2383,7 +2383,7 @@ namespace UI.Asset
                         txtErectionOtherCost.Text = pk.Rows[0]["monOtherCost"].ToString();
                         txtAcisitionCost.Text = pk.Rows[0]["monAccusitioncost"].ToString();
                         txtRemarks.Text = pk.Rows[0]["strRemarks"].ToString();
-                        txtGroupName.Text = pk.Rows[0]["strGroup"].ToString();
+                      
 
 
                         txtAssetname.Text = pk.Rows[0]["strNameOfAsset"].ToString();

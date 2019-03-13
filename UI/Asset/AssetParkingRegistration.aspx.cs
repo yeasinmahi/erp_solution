@@ -586,6 +586,9 @@ namespace UI.Asset
             node.Attributes.Append(DteDepRunDate);
             node.Attributes.Append(Totalaccdep);
 
+            node.Attributes.Append(Group);
+            node.Attributes.Append(ProjectName);
+
             return node;
 
 

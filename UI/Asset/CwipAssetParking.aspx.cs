@@ -2530,6 +2530,7 @@ namespace UI.Asset
                         ddlMethodOfDep.SelectedValue = pk.Rows[0]["intDepMethode"].ToString();
                         txtRateDep.Text = pk.Rows[0]["monDepRate"].ToString();
                         txtDepRunDate.Text = pk.Rows[0]["dteDepRun"].ToString();
+                        txtGroupName.Text = pk.Rows[0]["strGroup"].ToString();
                         try
                         {
                             

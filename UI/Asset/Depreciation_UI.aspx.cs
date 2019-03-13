@@ -147,7 +147,7 @@ namespace UI.Asset
                 }
                 else
                 {
-
+                    //Multipole Asset Depreciation Charge
                     dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), 0);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
@@ -180,6 +180,50 @@ namespace UI.Asset
 
             }
 
+        }
+
+        protected void btnImpairment_Click(object sender, EventArgs e)
+        {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Depreciation_UI Impairment btnDepSubmit_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string   xmlString;
+                string strSearchKey = txtAssetID.Text;
+                string[] searchKey = Regex.Split(strSearchKey, ";");
+                arrayKey = txtAssetID.Text.Split(delimiterChars);
+
+                string assetid = "0"; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
+                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString();
+                if (int.Parse(ddltype.SelectedValue) == 1)
+                {
+                    dt = objdep.DepreciationView(2, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0);
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
+
+                }
+                
+                dgvGridView.DataSource = "";
+                dgvGridView.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }
