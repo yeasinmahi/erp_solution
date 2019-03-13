@@ -478,7 +478,7 @@
                 $.trim(revdate) == null ||
                 $.trim(revdate) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
-                alert('Please  Set Disposal Date');
+                alert('Please  Set Transection Date');
                 return false
             } 
                 else if ($.trim(remarks) <3 ||
@@ -869,10 +869,10 @@
                  <td><asp:DropDownList ID="ddlTransactionType" runat="server" AutoPostBack="true" CssClass="txtBox" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged">
                      <asp:ListItem Value="0" Text="Select"></asp:ListItem>
                      <asp:ListItem Value="3" Text="Transfer"></asp:ListItem>
-                     <asp:ListItem Value="7" Text="Disposal/Retirment"></asp:ListItem>
+                     <%--<asp:ListItem Value="7" Text="Disposal/Retirment"></asp:ListItem>--%>
                      <asp:ListItem Value="6" Text="Revalution"></asp:ListItem>
                      <asp:ListItem Value="4" Text="Re-Clasification"></asp:ListItem>
-                     <asp:ListItem Value="5" Text="Sale"></asp:ListItem> 
+                     <asp:ListItem Value="5" Text="Sale/Disposal"></asp:ListItem> 
                      </asp:DropDownList>
                      <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
                      <asp:Label ID="lblMsg" runat="server" ForeColor="Red" ></asp:Label>
@@ -1193,7 +1193,7 @@
                     </tr>
                     <tr>
                   
-                  <td style="text-align:right;"><asp:Label ID="Label44" Enabled="false" CssClass="lbl" runat="server" Text="Revalued Loss/Gain:"></asp:Label></td>
+                  <td style="text-align:right;"><asp:Label ID="Label44" Enabled="false" CssClass="lbl" runat="server" Text="Loss/Gain:"></asp:Label></td>
                  <td><asp:TextBox ID="txtRevLossGain" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td> 
                    <td colspan="2" style="text-align:right;"><asp:Button ID="btnReValution" runat="server" OnClientClick="return Reviloation();" Text="Save" OnClick="btnReValution_Click" />   
                    <asp:Button ID="btnRevclose" runat="server" OnClick="btnClose_Click" Text="Close" /> </td>
@@ -1390,7 +1390,7 @@
                 </tr>
 
                     <tr>
-                <td style="text-align:right;"><asp:Label ID="Label81" CssClass="lbl" runat="server" Text="Capital Loss Gain :"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label81" CssClass="lbl" runat="server" Text="Loss Gain :"></asp:Label></td>
                 <td><asp:TextBox ID="txtSaCapitalLoss" runat="server" ReadOnly="false" CssClass="txtBox"></asp:TextBox></td>                       
                 <td style="text-align:right;"><asp:Label ID="Label82" CssClass="lbl" runat="server" Text="Receiveable Name:"></asp:Label></td>
                 <td><asp:TextBox ID="txtSaReceiveableName" runat="server" CssClass="txtBox"></asp:TextBox></td> 

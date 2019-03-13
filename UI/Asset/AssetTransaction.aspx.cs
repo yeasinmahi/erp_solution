@@ -324,7 +324,7 @@ namespace UI.Asset
 
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-
+                lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
             dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
