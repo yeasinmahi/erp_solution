@@ -47,6 +47,19 @@ namespace UI.Asset
                 //RevaluationXml();
                 //ReClasificationXml();
                 //SalePageXml();
+
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());  
+                dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Unit by User
+                ddlunit.DataSource = dt;
+                ddlunit.DataTextField = "strName";
+                ddlunit.DataValueField = "Id";
+                ddlunit.DataBind();
+                ddlunit.Items.Insert(0, new ListItem("Select", "0"));
+                try
+                {
+                    Session["unit"] = ddlunit.SelectedValue.ToString();
+                }
+                catch { }
             }
             else { }
 
@@ -324,9 +337,10 @@ namespace UI.Asset
 
             int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
             int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
+              
             dt = objTransction.DepreciationView(11, xmlString, DateTime.Now, DateTime.Now, int.Parse(ddlTransactionType.SelectedValue), 0);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
+                lblMsg.Text = dt.Rows[0]["Mesasge"].ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
             divClose();
             }
@@ -1524,6 +1538,15 @@ namespace UI.Asset
             CreateTransferXml(assetId, unit, jobstation,costcentrer, enroll, reffno, remarks, dteTransaction, trnType, mejorcat,minorcat1, minorcat2);
         }
 
+        protected void ddlunit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Session["unit"] = ddlunit.SelectedValue.ToString();
+            }
+            catch { }
+        }
+
         private void CreateTransferXml(string assetId,string unit, string jobstation, string costcentrer, string enroll, string reffno, string remarks,string dteTransaction,string trnType,string mejorcat, string minorcat1, string minorcat2)
         {
             XmlDocument doc = new XmlDocument();
@@ -1753,15 +1776,9 @@ namespace UI.Asset
         [ScriptMethod]
         public static string[] GetAssetTransaction(string prefixText, int count)
         {
-
-            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            int Active = int.Parse(1.ToString());
-            return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
-
-        }
-
-
-
+            AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL(); 
+            return objAutoSearch_BLL.GetAssetItemByUnit(HttpContext.Current.Session["unit"].ToString(), prefixText);
+        } 
         #endregion===============Close================================
 
     }

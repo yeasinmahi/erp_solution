@@ -858,6 +858,10 @@
         <div>
             <table>
                 <tr>
+                <td style="text-align:right;"> <asp:Label ID="Label99" runat="server" CssClass="lbl" font-size="small" Font-Bold="true" Text="Unit-:"></asp:Label></td>
+                <td style="text-align: left;"><asp:DropDownList ID="ddlunit" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true" OnSelectedIndexChanged="ddlunit_SelectedIndexChanged"  ></asp:DropDownList> </td>
+
+
                 <td style="text-align:right;"><asp:Label ID="Label84" CssClass="lbl" runat="server" Text="Asset ID: "></asp:Label></td>
                <td style="text-align:left;"> <asp:TextBox ID="txtAssetID" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true"  ></asp:TextBox>
                  <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAssetID"

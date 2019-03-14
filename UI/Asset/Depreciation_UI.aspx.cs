@@ -22,6 +22,7 @@ namespace UI.Asset
     public partial class Depreciation_UI : BasePage
     {
         AssetMaintenance objdep = new AssetMaintenance();
+        AssetParking_BLL parking = new AssetParking_BLL();
         DataTable dt = new DataTable();
         int intType;
         SeriLog log = new SeriLog();
@@ -34,14 +35,16 @@ namespace UI.Asset
             if(!IsPostBack)
             {
                 pnlUpperControl.DataBind();
-
-                dt = objdep.UnitName();
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Unit by User
                 ddlunit.DataSource = dt;
-                ddlunit.DataTextField = "Name";
-                ddlunit.DataValueField = "ID";
+                ddlunit.DataTextField = "strName";
+                ddlunit.DataValueField = "Id";
                 ddlunit.DataBind();
-                DateTime dtefrom = DateTime.Parse("1990-01-01".ToString());
-                DateTime dteenddate = DateTime.Parse("1990-01-01".ToString());
+                ddlunit.Items.Insert(0, new ListItem("Select", "0")); 
+              
+                DateTime dtefrom = DateTime.Parse("1900-01-01".ToString());
+                DateTime dteenddate = DateTime.Parse("1900-01-01".ToString());
             }
         }
 

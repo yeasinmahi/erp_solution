@@ -31,14 +31,9 @@ namespace UI.Asset
 
         DateTime? dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
-        SeriLog log = new SeriLog();
-
-       
-
+        SeriLog log = new SeriLog(); 
         string location = "Asset";
-
-     
-
+         
         string start = "starting Asset\\CWIPAssetAccountsPart";
         string stop = "stopping Asset\\CWIPAssetAccountsPart";
         protected void Page_Load(object sender, EventArgs e)

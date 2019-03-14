@@ -307,7 +307,10 @@
            <table>
                <tr>
                 <td style="text-align:left;"><asp:Label ID="Label47" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Primary Asset Parking Registration: "></asp:Label>                    
-                <asp:Label ID="lblAssetId" CssClass="lbl" runat="server" ForeColor="Red" Font-Size="small" Font-Bold="true"></asp:Label> 
+                  <asp:Label ID="Label183" runat="server" CssClass="lbl" font-size="small" Font-Bold="true" Text="Unit-:"></asp:Label>
+                  <asp:DropDownList ID="ddlUnitBy" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true" OnSelectedIndexChanged="ddlUnitBy_SelectedIndexChanged"></asp:DropDownList> 
+
+                 <asp:Label ID="lblAssetId" CssClass="lbl" runat="server" ForeColor="Red" Font-Size="small" Font-Bold="true"></asp:Label> 
                 </td>
                 </tr>
                <tr>

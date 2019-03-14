@@ -32,6 +32,8 @@ namespace UI.Asset
         DateTime? dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
 
+       
+
         SeriLog log = new SeriLog();
         string location = "Asset";
         string start = "starting Asset\\CwipAssetParking";
@@ -55,19 +57,15 @@ namespace UI.Asset
                 var tracker = new PerfTracker("Performance on Asset\\CwipAssetParking Show", "", fd.UserName, fd.Location,
                     fd.Product, fd.Layer);
                 try
-                {
-
-
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-
-                dt = parking.CwipAssetView(2, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
-                dgvGridView.DataSource = dt;
-                dgvGridView.DataBind();
-
+                { 
+                   int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString()); 
+                   
+                    dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Unit by User
+                    ddlUnitBy.DataSource = dt;
+                    ddlUnitBy.DataTextField = "strName";
+                    ddlUnitBy.DataValueField = "Id";
+                    ddlUnitBy.DataBind();
+                    ddlUnitBy.Items.Insert(0, new ListItem("Select", "0"));
                 }
                 catch (Exception ex)
                 {
@@ -87,7 +85,16 @@ namespace UI.Asset
             }
         }
 
-
+        protected void ddlUnitBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            { 
+                dt = parking.CwipAssetView(2, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, int.Parse(ddlUnitBy.SelectedValue));
+                dgvGridView.DataSource = dt;
+                dgvGridView.DataBind();
+            }
+            catch { }
+        }
 
         #region ==============================Vehicle Asset==========================
         private void VehicleAssetInfoLoad()
