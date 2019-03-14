@@ -282,5 +282,20 @@ namespace SCM_BLL
                 return false;
             }
         }
+
+        public DataTable GetChartOfAccount(int unit)
+        {
+            try
+            {
+                tblAccountsChartOfAccTableAdapter adp = new tblAccountsChartOfAccTableAdapter();
+                return adp.GetData(unit);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+        }
+
     }
 }

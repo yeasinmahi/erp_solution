@@ -31,14 +31,9 @@ namespace UI.Asset
 
         DateTime? dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
-        SeriLog log = new SeriLog();
-
-       
-
+        SeriLog log = new SeriLog(); 
         string location = "Asset";
-
-     
-
+         
         string start = "starting Asset\\CWIPAssetAccountsPart";
         string stop = "stopping Asset\\CWIPAssetAccountsPart";
         protected void Page_Load(object sender, EventArgs e)
@@ -2005,9 +2000,9 @@ namespace UI.Asset
 
                     suppliers = txtSuppliers.Text.ToString();
                     try { ponumber = int.Parse(txtPonumbers.Text.ToString()); } catch { ponumber = 0; }
-                    try { dtePo = DateTime.Parse(dtePoDate.Text); } catch { dtePo = DateTime.Parse("1990-01-01".ToString()); }
-                    try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty = DateTime.Parse("1990-01-01".ToString()); }
-                    try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation = DateTime.Parse("1990-01-01".ToString()); }
+                    try { dtePo = DateTime.Parse(dtePoDate.Text); } catch { dtePo = DateTime.Parse("1900-01-01".ToString()); }
+                    try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty = DateTime.Parse("1900-01-01".ToString()); }
+                    try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation = DateTime.Parse("1900-01-01".ToString()); }
 
                     string lcoation = txtAssetLocation.Text.ToString();
                     try { userenroll = int.Parse(txtEnrolment.Text); } catch { userenroll = 0; }
@@ -2022,9 +2017,9 @@ namespace UI.Asset
                     string assetname = txtAssetname.Text.ToString();
                     string description = txtDescription.Text.ToString();
                     string hscode = txtHsCode.Text;
-                    try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate = DateTime.Parse("1990-01-01".ToString()); }
-                    try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate = DateTime.Parse("1990-01-01".ToString()); }
-                    try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate = DateTime.Parse("1990-01-01".ToString()); }
+                    try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate = DateTime.Parse("1900-01-01".ToString()); }
+                    try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate = DateTime.Parse("1900-01-01".ToString()); }
+                    try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate = DateTime.Parse("1900-01-01".ToString()); }
 
                     string countryorigin = txtCountryOrigin.Text.ToString();
                     string manufacturer = txtManufacturer.Text.ToString();
@@ -2036,7 +2031,7 @@ namespace UI.Asset
                     try { recommandlife = decimal.Parse(txtRecommandLife.Text); } catch { recommandlife = 0; }
                     try { depMethode = int.Parse(ddlMethodOfDep.SelectedValue); } catch { depMethode = 0; }
                     try { depRate = decimal.Parse(txtRateDep.Text); } catch { depRate = 0; }
-                    try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1990-01-01".ToString()); }
+                    try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1900-01-01".ToString()); }
 
                     string reffid = hdnReceive.Value;
                     if (accusitioncost > 0 && invoicevalue > 0)
@@ -2383,7 +2378,7 @@ namespace UI.Asset
                         txtErectionOtherCost.Text = pk.Rows[0]["monOtherCost"].ToString();
                         txtAcisitionCost.Text = pk.Rows[0]["monAccusitioncost"].ToString();
                         txtRemarks.Text = pk.Rows[0]["strRemarks"].ToString();
-                        txtGroupName.Text = pk.Rows[0]["strGroup"].ToString();
+                      
 
 
                         txtAssetname.Text = pk.Rows[0]["strNameOfAsset"].ToString();

@@ -17,16 +17,22 @@ namespace Utility
             request.UsePassive = true;
             request.UseBinary = true;
             request.EnableSsl = false;
-
-            //Fetch the Response and read it into a MemoryStream object.
-            FtpWebResponse response = (FtpWebResponse)request.GetResponse();
-
-            using (MemoryStream stream = new MemoryStream())
+            try
             {
-                response.GetResponseStream()?.CopyTo(stream);
+                //Fetch the Response and read it into a MemoryStream object.
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
 
-                byte[] bytes = stream.ToArray();
-                return bytes;
+                using (MemoryStream stream = new MemoryStream())
+                {
+                    response.GetResponseStream()?.CopyTo(stream);
+
+                    byte[] bytes = stream.ToArray();
+                    return bytes;
+                }
+            }
+            catch
+            {
+                return new byte[0];
             }
 
         }

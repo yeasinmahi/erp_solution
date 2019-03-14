@@ -899,10 +899,7 @@ namespace Purchase_BLL.Asset
             }
         }
         public string[] GetAssetItemByUnit(string unit, string prefix)
-        {
-
-
-
+        { 
             tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(1)];
             TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
             tableCusts1[e] = adpCOA.GetAssetUnitByData(Convert.ToInt32(unit));

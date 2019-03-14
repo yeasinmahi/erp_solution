@@ -180,6 +180,7 @@
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
+    <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
@@ -1449,6 +1450,7 @@
     <Content Include="SCM\FG_Receive.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\FixedAssetAudit.aspx" />
+    <Content Include="SCM\Get_Pass_Report.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -1799,6 +1801,13 @@
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx.designer.cs">
       <DependentUpon>ChartOfAccountsNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx.cs">
+      <DependentUpon>ChartOfAccountUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx.designer.cs">
+      <DependentUpon>ChartOfAccountUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\GetInfo.aspx.cs">
       <DependentUpon>GetInfo.aspx</DependentUpon>
@@ -7680,6 +7689,13 @@
     </Compile>
     <Compile Include="SCM\FixedAssetAudit.aspx.designer.cs">
       <DependentUpon>FixedAssetAudit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Get_Pass_Report.aspx.cs">
+      <DependentUpon>Get_Pass_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Get_Pass_Report.aspx.designer.cs">
+      <DependentUpon>Get_Pass_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>

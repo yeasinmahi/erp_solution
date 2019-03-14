@@ -586,6 +586,9 @@ namespace UI.Asset
             node.Attributes.Append(DteDepRunDate);
             node.Attributes.Append(Totalaccdep);
 
+            node.Attributes.Append(Group);
+            node.Attributes.Append(ProjectName);
+
             return node;
 
 
@@ -707,7 +710,7 @@ namespace UI.Asset
                     try { txtAssetname.Text = pk.Rows[0]["strItem"].ToString(); } catch { }
                     try { txtDescription.Text = pk.Rows[0]["strItem"].ToString(); } catch { }
                     try { txtHsCode.Text = pk.Rows[0]["strHSCode"].ToString(); } catch { }
-                    try { txtIssueDate.Text = pk.Rows[0]["dteChallanDate"].ToString(); } catch { }
+                    //try { txtIssueDate.Text = pk.Rows[0]["dteChallanDate"].ToString(); } catch { }
                     try { txtAssetQty.Text = hdnReceive.Value; } catch { }
                     try { txtGrndDate.Text = pk.Rows[0]["MrrDate"].ToString(); } catch { } 
 

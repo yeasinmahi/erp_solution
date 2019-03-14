@@ -39,6 +39,54 @@
           }
 
       }
+
+        function Validation() {  
+            var dtefrom = document.getElementById("txtDteFrom").value; 
+            var dteTo = document.getElementById("txtdteTo").value; 
+
+            if ($.trim(dtefrom).length < 3 ||
+                $.trim(dtefrom) == "" ||
+                $.trim(dtefrom) == null ||
+                $.trim(dtefrom) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Fill-Up From Date');
+                return false
+            }
+            else if ($.trim(dteTo).length ==0 ||
+                $.trim(dteTo) == "" ||
+                $.trim(dteTo) == null ||
+                $.trim(dteTo) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select To Date');
+                return false
+            } 
+                else if ($.trim(dteTo)> $.trim(dteTo)||
+                $.trim(dteTo) == "" ||
+                $.trim(dteTo) == null ||
+                $.trim(dteTo) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please Select To Date');
+                return false
+            } 
+            else {
+                var confirmValue = document.createElement("INPUT");
+                confirmValue.type = "hidden";
+                confirmValue.name = "confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirmValue.value = "Yes";
+                    document.getElementById("hdnPreConfirm").value = "1";
+                } else {
+                    confirmValue.value = "No";
+                    document.getElementById("hdnPreConfirm").value = "0";
+                    return false
+                }
+                return true
+                
+            }
+
+
+      }
+
         </script>
 
 
@@ -91,7 +139,7 @@
                 <asp:ListItem Value="1">Single Asset</asp:ListItem> <asp:ListItem Value="2">Multiple Asset</asp:ListItem>  </asp:DropDownList> </td> 
                 </tr>
                 <tr>
-                        
+                       
                 <td style="text-align:right;"><asp:Label ID="LblAsset" runat="server" CssClass="lbl" Text="From Date"  Font-Bold="true"></asp:Label></td> 
                 <td> <asp:TextBox ID="txtDteFrom" runat="server" Font-Bold="true" CssClass="txtBox"></asp:TextBox>
                 <cc1:CalendarExtender ID="CalendarExtenderMonthly" runat="server" Format="yyyy-MMMM-dd" TargetControlID="txtDteFrom"></cc1:CalendarExtender> </td>
@@ -109,8 +157,9 @@
                  CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                  CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender></td>
                         
-                <td colspan="2" style="text-align: right;"><asp:Button ID="btnDepSubmit" runat="server" Text="Submit" OnClick="btnDepSubmit_Click"  />
-                <asp:Button ID="btnShow" runat="server" Text="View" OnClick="btnShow_Click" /></td>
+                <td colspan="2" style="text-align: right;"><asp:Button ID="btnDepSubmit" OnClientClick="return Validation(this);" runat="server" Text="Depreciation Charge" OnClick="btnDepSubmit_Click"  />
+                <asp:Button ID="btnImpairment" runat="server" Text="Impirment" OnClientClick="return Validation(this);" OnClick="btnImpairment_Click"  /> 
+                 <asp:Button ID="btnShow" runat="server" Text="View" OnClick="btnShow_Click" /></td>
                   
                 </tr>
                 </table>
