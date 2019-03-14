@@ -37,7 +37,7 @@ namespace UI.Accounts.ChartOfAccount
         public void LoadUnit()
         {
             _dt = _objBillReg.GetUnitListByUserID(Enroll);
-            ddlUnit.Loads(_dt, "intUnitID", "strUnit");
+            ddlUnit.LoadWithSelect(_dt, "intUnitID", "strUnit");
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
