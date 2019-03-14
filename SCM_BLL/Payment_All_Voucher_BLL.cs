@@ -297,5 +297,32 @@ namespace SCM_BLL
 
         }
 
+        public string UpdateChartOfAccount(string xml, int enroll)
+        {
+            string message = string.Empty;
+            try
+            {
+                UpdateChartOfAccountTableAdapter adp = new UpdateChartOfAccountTableAdapter();
+                adp.GetData(xml, enroll, ref message);
+            }
+            catch (Exception e)
+            {
+                message = e.Message;
+            }
+            return message;
+        }
+        public DataTable GetLedgerInfo()
+        {
+            try
+            {
+                tblAccountsGlobalCoaTemplateTableAdapter adp = new tblAccountsGlobalCoaTemplateTableAdapter();
+                return adp.GetData();
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+
+        }
     }
 }

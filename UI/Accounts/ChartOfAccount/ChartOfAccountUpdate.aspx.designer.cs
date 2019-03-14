@@ -58,6 +58,15 @@ namespace UI.Accounts.ChartOfAccount {
         protected global::System.Web.UI.UpdatePanel UpdatePanel0;
         
         /// <summary>
+        /// hdnGridRowIndex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnGridRowIndex;
+        
+        /// <summary>
         /// lblHeading control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace UI.Accounts.ChartOfAccount {
         protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
         
         /// <summary>
+        /// btnUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUpdate;
+        
+        /// <summary>
         /// dgvItemList control.
         /// </summary>
         /// <remarks>
@@ -92,5 +110,14 @@ namespace UI.Accounts.ChartOfAccount {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvItemList;
+        
+        /// <summary>
+        /// gridViewLedger control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridViewLedger;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI.WebControls;
@@ -26,6 +26,7 @@ namespace UI.Accounts.ChartOfAccount
 
                     LoadUnit();
                     LoadGrid();
+                    LoadLedgerGrid();
                 }
             }
             catch (Exception ex)
@@ -55,7 +56,7 @@ namespace UI.Accounts.ChartOfAccount
                 Toaster(ex.Message, Common.TosterType.Error);
             }
         }
-        
+
         #region Web Method
         [WebMethod]
         [ScriptMethod]
@@ -71,21 +72,19 @@ namespace UI.Accounts.ChartOfAccount
             LoadGrid();
         }
 
+        //protected void dgvItemList_DataBound(object sender, EventArgs e)
+        //{
+        //    foreach (GridViewRow gvRow in dgvItemList.Rows)
+        //    {
+        //        DropDownList ddlAccountName = gvRow.FindControl("ddlAccountName") as DropDownList;
+        //        HiddenField hdnCOAID = gvRow.FindControl("hdnCOAID") as HiddenField;
 
-
-        protected void dgvItemList_DataBound(object sender, EventArgs e)
-        {
-            foreach (GridViewRow gvRow in dgvItemList.Rows)
-            {
-                DropDownList ddlAccountName = gvRow.FindControl("ddlAccountName") as DropDownList;
-                HiddenField hdnCOAID = gvRow.FindControl("hdnCOAID") as HiddenField;
-
-                if (ddlAccountName != null && hdnCOAID != null)
-                {
-                    ddlAccountName.SelectedValue = hdnCOAID.Value;
-                }
-            }
-        }
+        //        if (ddlAccountName != null && hdnCOAID != null)
+        //        {
+        //            ddlAccountName.SelectedValue = hdnCOAID.Value;
+        //        }
+        //    }
+        //}
 
 
         //protected void btnUpdateBridge_Click(object sender, EventArgs e)
@@ -121,5 +120,85 @@ namespace UI.Accounts.ChartOfAccount
 
         //}
 
+        protected void btnUpdate_OnClick(object sender, EventArgs e)
+        {
+            List<object> objects = new List<object>();
+            foreach (GridViewRow row in dgvItemList.Rows)
+            {
+                string subLedger = ((TextBox)row.FindControl("txtSubLedger")).Text;
+                string accountId = ((Label)row.FindControl("lblAccountId")).Text;
+                if (string.IsNullOrWhiteSpace(subLedger))
+                {
+                    continue;
+                }
+                string[] array = subLedger.Split(Variables.GetInstance().DelimiterChars);
+                string globalCoaId = array[1];
+                dynamic obj = new
+                {
+                    globalCoaId,
+                    accountId
+                };
+                objects.Add(obj);
+            }
+            if (objects.Count > 0)
+            {
+                string xml = XmlParser.GetXml("COA", "Item", objects, out _);
+                string message = _objVoucher.UpdateChartOfAccount(xml, Enroll);
+                if (message.ToLower().Contains("success"))
+                {
+                    Toaster(message, Common.TosterType.Success);
+                    LoadGrid();
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                Toaster("You have to input at least 1 sub-leager name value properly ", Common.TosterType.Warning);
+            }
+
+        }
+
+        protected void btnView_OnClick(object sender, EventArgs e)
+        {
+            int rowIndex = ((GridViewRow)((Button)sender).NamingContainer).RowIndex;
+            hdnGridRowIndex.Value = rowIndex.ToString();
+            SetVisibilityModal(true);
+        }
+
+        public void LoadLedgerGrid()
+        {
+            DataTable dt = _objVoucher.GetLedgerInfo();
+            gridViewLedger.Loads(dt);
+        }
+
+        protected void gridViewLedger_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnSelect_OnClick(object sender, EventArgs e)
+        {
+            GridViewRow row = ((GridViewRow)((Button)sender).NamingContainer);
+            string globalCoaId = ((Label)row.FindControl("lblGlobalCoaId")).Text;
+            if (!string.IsNullOrWhiteSpace(globalCoaId))
+            {
+                List<string> ledgers = ChartOfAccStaticDataProvider.GetLedgerName(globalCoaId);
+                if (ledgers.Count > 0)
+                {
+                    string s = ledgers[0];
+
+                    ((TextBox)dgvItemList.Rows[Convert.ToInt32(hdnGridRowIndex.Value)].FindControl("txtSubLedger"))
+                        .Text = s;
+                }
+
+            }
+            else
+            {
+                Toaster("Problem Occured While Getting Global COA Id.", Common.TosterType.Error);
+            }
+        }
     }
 }
