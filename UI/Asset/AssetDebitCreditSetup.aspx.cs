@@ -19,6 +19,7 @@ namespace UI.Asset
     public partial class AssetDebitCreditSetup : BasePage
     {
         AssetMaintenance configure = new AssetMaintenance();
+        AssetParking_BLL parking = new AssetParking_BLL();
         AssetInOut objasset = new AssetInOut();
         DataTable dt = new DataTable();
         string filePathForXMLAssetAccoA;
@@ -41,8 +42,9 @@ namespace UI.Asset
                 catch { }
                 //Session["WareID"] = hdnwh.Value;
                 intunit = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-               int enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                dt = objasset.UnitByUser(enroll);
+                int enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Unit by User
                 ddlUnit.DataSource = dt;
                 ddlUnit.DataTextField = "Name";
                 ddlUnit.DataValueField = "ID";

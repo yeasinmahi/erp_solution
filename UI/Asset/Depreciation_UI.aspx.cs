@@ -41,8 +41,13 @@ namespace UI.Asset
                 ddlunit.DataTextField = "strName";
                 ddlunit.DataValueField = "Id";
                 ddlunit.DataBind();
-                ddlunit.Items.Insert(0, new ListItem("Select", "0")); 
-              
+                ddlunit.Items.Insert(0, new ListItem("Select", "0"));
+                try
+                {
+                    Session["unit"] = ddlunit.SelectedValue.ToString();
+                }
+                catch { }
+
                 DateTime dtefrom = DateTime.Parse("1900-01-01".ToString());
                 DateTime dteenddate = DateTime.Parse("1900-01-01".ToString());
             }
@@ -55,8 +60,7 @@ namespace UI.Asset
         {
 
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            int Active = int.Parse(1.ToString());
-            return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
+            return objAutoSearch_BLL.GetAssetItemByUnit(HttpContext.Current.Session["unit"].ToString(), prefixText);
 
         }
 
@@ -116,6 +120,11 @@ namespace UI.Asset
 
         protected void ddlunit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                Session["unit"] = ddlunit.SelectedValue.ToString();
+            }
+            catch { }
 
             dgvGridView.DataSource = ""; dgvGridView.DataBind();
             
