@@ -15,15 +15,17 @@ namespace GLOBAL_BLL
         {
             using (var image = System.Drawing.Image.FromStream(strm))
             {
-                int sngRatio = image.Width / image.Height;
-                int newWidth = 500; // New Width of Image in Pixel  
-                int newHeight = newWidth / sngRatio; // New Height of Image in Pixel  
-                var thumbImg = new Bitmap(newWidth, newHeight);
+                int height = image.Height;
+                int width = image.Width;
+                float sngRatio = ((float)width/height);
+                float newWidth = 600; // New Width of Image in Pixel  
+                float newHeight = newWidth / sngRatio; // New Height of Image in Pixel  
+                var thumbImg = new Bitmap((int) newWidth, (int) newHeight);
                 var thumbGraph = Graphics.FromImage(thumbImg);
                 thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
                 thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
                 thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                var imgRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                var imgRectangle = new Rectangle(0, 0, (int)newWidth, (int) newHeight);
                 thumbGraph.DrawImage(image, imgRectangle);
                 thumbImg.Save(targetPath, image.RawFormat);
             }
