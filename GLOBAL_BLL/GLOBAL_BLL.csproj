@@ -111,6 +111,7 @@
     <Compile Include="CheckDigit.cs" />
     <Compile Include="DateFormat.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DocumentUpload_BLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeriLog.cs" />
   </ItemGroup>
