@@ -18,9 +18,7 @@
     <script src="jquery.min.js"></script>
     <script src="jquery-ui.min.js"></script>
 
-    <script type="text/javascript">
-
-
+    <script type="text/javascript"> 
          function OpenHdnDiv() {
              $("#hdnDivision").fadeIn("slow");
              document.getElementById('hdnDivision').style.visibility = 'visible';
@@ -145,8 +143,7 @@
                 return true 
             } 
         }
-       
-
+        
         function Transfer() { 
             
             var e = document.getElementById("ddlTrnsUnit");
@@ -405,10 +402,12 @@
             var reff = document.getElementById("txtRevReff").value;  
             var revdate = document.getElementById("txtRevDate").value;  
             var remarks = document.getElementById("txtReVRemarks").value;  
-            var increse = document.getElementById("txtRevIncrease").value;  
+            var increse = document.getElementById("txtRevLossGain").value;  
             var totalcost = document.getElementById("txtRevTotalCost").value; 
-         
-
+            var fairmarket = document.getElementById("txtRevFairMarket").value; 
+            var revalued = document.getElementById("txtRevalued").value; 
+            var carying = document.getElementById("txtRevCarying").value; 
+            var accdep = document.getElementById("txtRevAccDep").value;  
 
             if ($.trim(unit).length < 1 ||
                 $.trim(unit) == "" ||
@@ -479,7 +478,7 @@
                 $.trim(revdate) == null ||
                 $.trim(revdate) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
-                alert('Please  Set Disposal Date');
+                alert('Please  Set Transection Date');
                 return false
             } 
                 else if ($.trim(remarks) <3 ||
@@ -490,7 +489,7 @@
                 alert('Please  Set Remarks');
                 return false
             } 
-                else if ($.trim(increse) <3 ||
+                else if ($.trim(increse)=="0" ||
                 $.trim(increse) == "" ||
                 $.trim(increse) == null ||
                 $.trim(increse) == undefined) {
@@ -498,12 +497,45 @@
                 alert('Please  Set increse cost');
                 return false
             } 
-                else if ($.trim(totalcost) <3 ||
+                else if ($.trim(totalcost)=="0" ||
                 $.trim(totalcost) == "" ||
                 $.trim(totalcost) == null ||
                 $.trim(totalcost) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please  Set Asset Total Cost');
+                return false
+            } 
+
+             else if ($.trim(fairmarket)=="0" ||
+                $.trim(fairmarket) == "" ||
+                $.trim(fairmarket) == null ||
+                $.trim(fairmarket) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please  Set Asset Fair Market Value');
+                return false
+            } 
+                else if ( 
+                $.trim(carying) == "" ||
+                $.trim(carying) == null ||
+                $.trim(carying) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please  Set Asset Carying Amount');
+                return false
+            } 
+               else if ( 
+                $.trim(accdep) == "" ||
+                $.trim(accdep) == null ||
+                $.trim(accdep) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please  Set Asset Acc Depreciation Value');
+                return false
+            } 
+                 else if ( 
+                $.trim(revalued) == "" ||
+                $.trim(revalued) == null ||
+                $.trim(revalued) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please  Set Asset Revalued Amount');
                 return false
             } 
                 
@@ -548,6 +580,7 @@
             var capital = document.getElementById("txtSaCapitalLoss").value;  
             var recieveName = document.getElementById("txtSaReceiveableName").value;  
             var coaReceuveId = document.getElementById("txtSaReceivealeID").value;  
+            var salesProced = document.getElementById("txtSalesProcess").value;  
 
 
             if ($.trim(unit).length < 1 ||
@@ -632,7 +665,7 @@
                 alert('Please  Set Remarks');
                 return false
             } 
-                else if ($.trim(dep)<2 ||
+                else if ( 
                 $.trim(dep) == "" ||
                 $.trim(dep) == null ||
                 $.trim(dep) == undefined) {
@@ -640,7 +673,7 @@
                 alert('Please  Set Total Depreciation Value');
                 return false
             } 
-                else if ($.trim(totalcost) <2 ||
+                else if ($.trim(totalcost) =="0" ||
                 $.trim(totalcost) == "" ||
                 $.trim(totalcost) == null ||
                 $.trim(totalcost) == undefined) {
@@ -648,7 +681,7 @@
                 alert('Please  Set Asset Total Cost');
                 return false
             }
-             else if ($.trim(capital) <2 ||
+             else if ($.trim(capital)=="0" ||
                 $.trim(capital) == "" ||
                 $.trim(capital) == null ||
                 $.trim(capital) == undefined) {
@@ -656,15 +689,23 @@
                 alert('Please  Set Asset Capital Loss Cost');
                 return false
             }
-             else if ($.trim(recieveName) <2 ||
+            else if ($.trim(recieveName).length <2 ||
                 $.trim(recieveName) == "" ||
                 $.trim(recieveName) == null ||
-                $.trim(totalrecieveNamecost) == undefined) {
+                $.trim(recieveName) == undefined) {
                 document.getElementById("hdnPreConfirm").value = "0";
                 alert('Please  Set Receive Name');
                 return false
             }
-            else if ($.trim(coaReceuveId) <2 ||
+            else if ($.trim(salesProced) < 2 ||
+                $.trim(salesProced) == "" ||
+                $.trim(salesProced) == null ||
+                $.trim(salesProced) == undefined) {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please  Set Sales Proceed Amount');
+                return false
+            }
+            else if ($.trim(coaReceuveId).length < 6 ||
                 $.trim(coaReceuveId) == "0" ||
                 $.trim(coaReceuveId) == null ||
                 $.trim(coaReceuveId) == undefined) {
@@ -697,15 +738,24 @@
 
         }
 
+        function LossGain() {
+            var fairmarket = parseFloat(document.getElementById("txtRevFairMarket").value);  
+            var carying = parseFloat(document.getElementById("txtRevCarying").value); 
+            var accdep = parseFloat(document.getElementById("txtRevAccDep").value);
+            document.getElementById("txtRevLossGain").value = parseFloat(fairmarket - carying).toFixed(2);
+            document.getElementById("txtRevalued").value = parseFloat(fairmarket - carying - accdep).toFixed(2);
+        }
+
+        function SaleLosgain() {
+            var totalcost = parseFloat(document.getElementById("txtSaTotalCost").value);  
+            var dep = document.getElementById("txtSaTotalDep").value; 
+            var salesProced = parseFloat(document.getElementById("txtSalesProcess").value);
+            document.getElementById("txtSaCapitalLoss").value = parseFloat(dep - totalcost + salesProced).toFixed(2);
+        }
 
     </script>
 
-     <script type="text/javascript">
      
-
-         
-
-    </script>
         <style type="text/css"> 
         .rounds {
         height: 80px;
@@ -808,6 +858,10 @@
         <div>
             <table>
                 <tr>
+                <td style="text-align:right;"> <asp:Label ID="Label99" runat="server" CssClass="lbl" font-size="small" Font-Bold="true" Text="Unit-:"></asp:Label></td>
+                <td style="text-align: left;"><asp:DropDownList ID="ddlunit" runat="server" AutoPostBack="True" CssClass="ddList" Font-Bold="true" OnSelectedIndexChanged="ddlunit_SelectedIndexChanged"  ></asp:DropDownList> </td>
+
+
                 <td style="text-align:right;"><asp:Label ID="Label84" CssClass="lbl" runat="server" Text="Asset ID: "></asp:Label></td>
                <td style="text-align:left;"> <asp:TextBox ID="txtAssetID" runat="server" CssClass="txtBox" Font-Bold="False" AutoPostBack="true"  ></asp:TextBox>
                  <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAssetID"
@@ -819,10 +873,10 @@
                  <td><asp:DropDownList ID="ddlTransactionType" runat="server" AutoPostBack="true" CssClass="txtBox" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged">
                      <asp:ListItem Value="0" Text="Select"></asp:ListItem>
                      <asp:ListItem Value="3" Text="Transfer"></asp:ListItem>
-                     <asp:ListItem Value="7" Text="Disposal/Retirment"></asp:ListItem>
+                     <%--<asp:ListItem Value="7" Text="Disposal/Retirment"></asp:ListItem>--%>
                      <asp:ListItem Value="6" Text="Revalution"></asp:ListItem>
                      <asp:ListItem Value="4" Text="Re-Clasification"></asp:ListItem>
-                     <asp:ListItem Value="5" Text="Sale"></asp:ListItem> 
+                     <asp:ListItem Value="5" Text="Sale/Disposal"></asp:ListItem> 
                      </asp:DropDownList>
                      <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" />
                      <asp:Label ID="lblMsg" runat="server" ForeColor="Red" ></asp:Label>
@@ -1037,7 +1091,7 @@
                         <td style="text-align:right;"><asp:Label ID="Label31" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDispoRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td> 
                         
-              <td style="text-align:right;"><asp:Label ID="Label35" CssClass="lbl" runat="server" Text="Total Depreciation:"></asp:Label></td>
+                 <td style="text-align:right;"><asp:Label ID="Label35" CssClass="lbl" runat="server" Text="Total Depreciation:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDispoTotalDep" runat="server" onkeyup="disDepCal(this);" CssClass="txtBox"></asp:TextBox></td> 
 
                     </tr>
@@ -1056,10 +1110,8 @@
                     </tr>      
                 </table>
                 </div>
-         <%--   General Asset Transaction Revulation        class="hdnDivisionRevalution" --%>
-        
-
-                <div id="hdnDivisionRevalution"   class="hdnDivisionRevalution"   style="width:auto;  height:500px;">
+         <%--   General Asset Transaction Revulation        class="hdnDivisionRevalution" --%> 
+                <div id="hdnDivisionRevalution"  class="hdnDivisionRevalution"  style="width:auto;  height:500px;">
                 <table style="width:auto;  float:left; " >   
                 <tr><td style="text-align:left;" colspan="4"><asp:Label ID="Label1" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Revaluation: "></asp:Label></td>
                 </tr>
@@ -1125,21 +1177,32 @@
                     </tr>
                      <tr>
                         <td style="text-align:right;"><asp:Label ID="Label43" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
-                        <td><asp:TextBox ID="txtReVRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td>   
-                    </tr>
-
-                     <tr>
-                  <td style="text-align:right;"><asp:Label ID="Label44" CssClass="lbl" runat="server" Text="Increase/(Decrease):"></asp:Label></td>
-                 <td><asp:TextBox ID="txtRevIncrease" runat="server" CssClass="txtBox"></asp:TextBox></td> 
-                 <td style="text-align:right;"><asp:Label ID="Label45" CssClass="lbl" runat="server" Text="Total Cost"></asp:Label></td>
-                 <td><asp:TextBox ID="txtRevTotalCost" runat="server" CssClass="txtBox"></asp:TextBox></td>                       
-                 </tr>  
+                        <td><asp:TextBox ID="txtReVRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td>
+                         <td style="text-align:right;"><asp:Label ID="Label45" CssClass="lbl" runat="server" Text="Total Cost"></asp:Label></td>
+                        <td><asp:TextBox ID="txtRevTotalCost" TextMode="Number" Enabled="false" runat="server" CssClass="txtBox"></asp:TextBox></td>
+                    </tr> 
                     <tr>
-                      <td colspan="2" style="text-align:right;"><asp:Button ID="btnReValution" runat="server" OnClientClick="return Reviloation();" Text="Save" OnClick="btnReValution_Click" /> </td>                          
-                       
-                      <td colspan="2" style="text-align:right;"><asp:Button ID="btnRevclose" runat="server" OnClick="btnClose_Click" Text="Close" /> </td>
-                      
-                    </tr>                   
+                 <td style="text-align:right;"><asp:Label ID="Label95" CssClass="lbl" runat="server" Text="Total Acc Dep:"></asp:Label></td>
+                 <td><asp:TextBox ID="txtRevAccDep" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td> 
+                 <td style="text-align:right;"><asp:Label ID="Label96" CssClass="lbl" runat="server" Text="Carying Amount"></asp:Label></td>
+                 <td><asp:TextBox ID="txtRevCarying" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td>                       
+
+                    </tr>
+                    <tr>
+                 <td style="text-align:right;"><asp:Label ID="Label97" CssClass="lbl" runat="server" Text="Revalued Amount:"></asp:Label></td>
+                 <td><asp:TextBox ID="txtRevalued" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td> 
+                 <td style="text-align:right;"><asp:Label ID="Label98" CssClass="lbl" runat="server" Text="Fair Market"></asp:Label></td>
+                 <td><asp:TextBox ID="txtRevFairMarket" runat="server" onkeyup="LossGain();" TextMode="Number" CssClass="txtBox"></asp:TextBox></td>                       
+
+                    </tr>
+                    <tr>
+                  
+                  <td style="text-align:right;"><asp:Label ID="Label44" Enabled="false" CssClass="lbl" runat="server" Text="Loss/Gain:"></asp:Label></td>
+                 <td><asp:TextBox ID="txtRevLossGain" runat="server" TextMode="Number" Enabled="false" CssClass="txtBox"></asp:TextBox></td> 
+                   <td colspan="2" style="text-align:right;"><asp:Button ID="btnReValution" runat="server" OnClientClick="return Reviloation();" Text="Save" OnClick="btnReValution_Click" />   
+                   <asp:Button ID="btnRevclose" runat="server" OnClick="btnClose_Click" Text="Close" /> </td>
+                
+                 </tr>
                 </table>
                 </div>
               
@@ -1253,7 +1316,7 @@
 
                 <div id="hdnDivisionSale"   class="hdnDivisionSale"   style="width:auto;  height:500px;">
                 <table style="width:auto;  float:left; " >   
-                <tr><td style="text-align:left;" colspan="4"><asp:Label ID="Label61" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Sale: "></asp:Label></td>
+                <tr><td style="text-align:left;" colspan="4"><asp:Label ID="Label61" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Sale/Disposal: "></asp:Label></td>
                 </tr>                
                 
                 <tr>
@@ -1321,17 +1384,17 @@
                 <tr>
                                    
                 <td style="text-align:right;"><asp:Label ID="Label78" CssClass="lbl" runat="server" Text="Total Depreciation:"></asp:Label></td>
-                <td><asp:TextBox ID="txtSaTotalDep" runat="server" ReadOnly="false" CssClass="txtBox"></asp:TextBox></td> 
+                <td><asp:TextBox ID="txtSaTotalDep" runat="server"  CssClass="txtBox"></asp:TextBox></td> 
                 </tr>
                  <tr>
                 <td style="text-align:right;"><asp:Label ID="Label79" CssClass="lbl" runat="server" Text="Total Cost:"></asp:Label></td>
                 <td><asp:TextBox ID="txtSaTotalCost" runat="server" ReadOnly="false" CssClass="txtBox"></asp:TextBox></td>                       
                 <td style="text-align:right;"><asp:Label ID="Label80" CssClass="lbl" runat="server" Text="Sales Proceed:"></asp:Label></td>
-                <td><asp:TextBox ID="txtSalesProcess" runat="server" TextMode="Number" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtSalesProcess_TextChanged"></asp:TextBox></td> 
+                <td><asp:TextBox ID="txtSalesProcess" runat="server" TextMode="Number"  onkeyup="SaleLosgain();" CssClass="txtBox"  ></asp:TextBox></td> 
                 </tr>
 
                     <tr>
-                <td style="text-align:right;"><asp:Label ID="Label81" CssClass="lbl" runat="server" Text="Capital Loss Gain :"></asp:Label></td>
+                <td style="text-align:right;"><asp:Label ID="Label81" CssClass="lbl" runat="server" Text="Loss Gain :"></asp:Label></td>
                 <td><asp:TextBox ID="txtSaCapitalLoss" runat="server" ReadOnly="false" CssClass="txtBox"></asp:TextBox></td>                       
                 <td style="text-align:right;"><asp:Label ID="Label82" CssClass="lbl" runat="server" Text="Receiveable Name:"></asp:Label></td>
                 <td><asp:TextBox ID="txtSaReceiveableName" runat="server" CssClass="txtBox"></asp:TextBox></td> 

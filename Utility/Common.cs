@@ -61,7 +61,7 @@ namespace Utility
             return textInfo.ToTitleCase(value.ToLower());
         }
 
-        public static List<string> CreateAutoSearch(DataTable dt, string prefix, string textField, int valueField)
+        public static List<string> AutoSearch(this DataTable dt, string prefix, string textField, string valueField)
         {
             if (dt.Rows.Count > 0)
             {

@@ -180,6 +180,7 @@
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
+    <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
@@ -1449,6 +1450,7 @@
     <Content Include="SCM\FG_Receive.aspx" />
     <Content Include="SCM\FinishedGoodsBridge.aspx" />
     <Content Include="SCM\FixedAssetAudit.aspx" />
+    <Content Include="SCM\Get_Pass_Report.aspx" />
     <Content Include="SCM\Indent.aspx">
       <BrowseToURL>~/SCM/Indent.aspx</BrowseToURL>
     </Content>
@@ -1570,6 +1572,7 @@
     <Content Include="Transport\Utility_ReportForSubmit.aspx" />
     <Content Include="Transport\Utility_ServiceProfile.aspx" />
     <Content Include="Transport\Utility_SubReportForSubmit.aspx" />
+    <Content Include="Transport\VehicleInfoUpdate.aspx" />
     <Content Include="Transport\Vehicle_info_update.aspx" />
     <Content Include="Transport\VendorTTripCompleteEntry.aspx" />
     <Content Include="UnderMaintanance.aspx" />
@@ -1798,6 +1801,13 @@
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx.designer.cs">
       <DependentUpon>ChartOfAccountsNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx.cs">
+      <DependentUpon>ChartOfAccountUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx.designer.cs">
+      <DependentUpon>ChartOfAccountUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\GetInfo.aspx.cs">
       <DependentUpon>GetInfo.aspx</DependentUpon>
@@ -7680,6 +7690,13 @@
     <Compile Include="SCM\FixedAssetAudit.aspx.designer.cs">
       <DependentUpon>FixedAssetAudit.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\Get_Pass_Report.aspx.cs">
+      <DependentUpon>Get_Pass_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Get_Pass_Report.aspx.designer.cs">
+      <DependentUpon>Get_Pass_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Indent.aspx.cs">
       <DependentUpon>Indent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8568,6 +8585,13 @@
     </Compile>
     <Compile Include="Transport\Utility_SubReportForSubmit.aspx.designer.cs">
       <DependentUpon>Utility_SubReportForSubmit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\VehicleInfoUpdate.aspx.cs">
+      <DependentUpon>VehicleInfoUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\VehicleInfoUpdate.aspx.designer.cs">
+      <DependentUpon>VehicleInfoUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\Vehicle_info_update.aspx.cs">
       <DependentUpon>Vehicle_info_update.aspx</DependentUpon>

@@ -22,6 +22,7 @@ namespace UI.Asset
     public partial class Depreciation_UI : BasePage
     {
         AssetMaintenance objdep = new AssetMaintenance();
+        AssetParking_BLL parking = new AssetParking_BLL();
         DataTable dt = new DataTable();
         int intType;
         SeriLog log = new SeriLog();
@@ -34,14 +35,21 @@ namespace UI.Asset
             if(!IsPostBack)
             {
                 pnlUpperControl.DataBind();
-
-                dt = objdep.UnitName();
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Unit by User
                 ddlunit.DataSource = dt;
-                ddlunit.DataTextField = "Name";
-                ddlunit.DataValueField = "ID";
+                ddlunit.DataTextField = "strName";
+                ddlunit.DataValueField = "Id";
                 ddlunit.DataBind();
-                DateTime dtefrom = DateTime.Parse("1990-01-01".ToString());
-                DateTime dteenddate = DateTime.Parse("1990-01-01".ToString());
+                ddlunit.Items.Insert(0, new ListItem("Select", "0"));
+                try
+                {
+                    Session["unit"] = ddlunit.SelectedValue.ToString();
+                }
+                catch { }
+
+                DateTime dtefrom = DateTime.Parse("1900-01-01".ToString());
+                DateTime dteenddate = DateTime.Parse("1900-01-01".ToString());
             }
         }
 
@@ -52,8 +60,7 @@ namespace UI.Asset
         {
 
             AutoSearch_BLL objAutoSearch_BLL = new AutoSearch_BLL();
-            int Active = int.Parse(1.ToString());
-            return objAutoSearch_BLL.GetAssetItem(Active, prefixText);
+            return objAutoSearch_BLL.GetAssetItemByUnit(HttpContext.Current.Session["unit"].ToString(), prefixText);
 
         }
 
@@ -113,6 +120,11 @@ namespace UI.Asset
 
         protected void ddlunit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                Session["unit"] = ddlunit.SelectedValue.ToString();
+            }
+            catch { }
 
             dgvGridView.DataSource = ""; dgvGridView.DataBind();
             
@@ -147,7 +159,7 @@ namespace UI.Asset
                 }
                 else
                 {
-
+                    //Multipole Asset Depreciation Charge
                     dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), 0);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
@@ -180,6 +192,50 @@ namespace UI.Asset
 
             }
 
+        }
+
+        protected void btnImpairment_Click(object sender, EventArgs e)
+        {
+            var fd = log.GetFlogDetail(start, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on Asset\\Depreciation_UI Impairment btnDepSubmit_Click", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                string   xmlString;
+                string strSearchKey = txtAssetID.Text;
+                string[] searchKey = Regex.Split(strSearchKey, ";");
+                arrayKey = txtAssetID.Text.Split(delimiterChars);
+
+                string assetid = "0"; string assetName = ""; string assetType = ""; int assetAutoId = 0;
+                if (arrayKey.Length > 0)
+                { assetName = arrayKey[0].ToString(); assetid = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+
+                xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString();
+                if (int.Parse(ddltype.SelectedValue) == 1)
+                {
+                    dt = objdep.DepreciationView(2, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0);
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
+
+                }
+                
+                dgvGridView.DataSource = "";
+                dgvGridView.DataBind();
+
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "Save", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "Save", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
     }
 }
