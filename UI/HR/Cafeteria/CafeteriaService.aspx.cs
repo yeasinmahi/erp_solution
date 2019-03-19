@@ -32,7 +32,7 @@ namespace UI.HR.Cafeteria
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-
+    
             // starting performance tracker
             var tracker = new PerfTracker("Performance on HR/Cafeteria/CafeteriaService.aspx Show", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
@@ -54,9 +54,9 @@ namespace UI.HR.Cafeteria
                 PB.Enabled = false; rdoOwn.Checked = true; rdoGuest.Enabled = false; btnMenu.Visible = false;
                 if (hdnEnroll.Value == "1059" || hdnEnroll.Value == "283833" || hdnEnroll.Value == "1052" || hdnEnroll.Value == "1053" || hdnEnroll.Value == "1054" 
                     || hdnEnroll.Value == "11621" || hdnEnroll.Value == "1056" || hdnEnroll.Value == "1058" || hdnEnroll.Value == "11595"
-                    || hdnEnroll.Value == "1062" || hdnEnroll.Value == "118506" || hdnEnroll.Value == "1447")
+                    || hdnEnroll.Value == "1062" || hdnEnroll.Value == "118506" || hdnEnroll.Value == "1447" || hdnEnroll.Value == "58569" || hdnEnroll.Value == "311309")
                 { PB.Enabled = true; rdoGuest.Enabled = true; }
-                if (hdnEnroll.Value == "283833" || hdnEnroll.Value == "1056" || hdnEnroll.Value == "11621" || hdnEnroll.Value == "11595" || hdnEnroll.Value == "118506") { btnMenu.Visible = true; }
+                if (hdnEnroll.Value == "283833" || hdnEnroll.Value == "1056" || hdnEnroll.Value == "11621" || hdnEnroll.Value == "11595" || hdnEnroll.Value == "118506" || hdnEnroll.Value == "58569" || hdnEnroll.Value == "311309") { btnMenu.Visible = true; }
                 LoadGrid();
                 intEnroll = int.Parse(hdnEnroll.Value.ToString());
                 LoadMealStatus();               
@@ -121,7 +121,7 @@ namespace UI.HR.Cafeteria
                 dgvMealAppr.DataBind();
   
                 dt = new DataTable();
-                dt = obj.GetMenuList();
+                dt = obj.GetMenuList(int.Parse(hdnEnroll.Value));
                 dgvMenuList.DataSource = dt;
                 dgvMenuList.DataBind();
                 

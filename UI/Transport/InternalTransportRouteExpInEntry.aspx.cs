@@ -24,6 +24,8 @@ namespace UI.Transport
         string start = "starting Transport/InternalTransportRouteExpInEntry.aspx";
         string stop = "stopping Transport/InternalTransportRouteExpInEntry.aspx";
 
+        char[] deli = { '.' }; string[] arrayKey; char[] delimiterChars = { '.' };
+
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
         DocumentUpload_BLL objDocUp = new DocumentUpload_BLL();
@@ -45,7 +47,7 @@ namespace UI.Transport
         string strCauseOfAdditionalMillage; string strCauseOfAdditionalFare;
         string strDocUploadPath; int intDocType; string strFilePath; string strDocName;
         string fileName; string doctypeid; string strFileName; string strFuelPurchaseDate;
-        int count;
+        int count; string filen;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -904,8 +906,7 @@ namespace UI.Transport
         
         //** Gridview Document Upload Start ******************************************************
         protected void FTPUpload()
-        {
-           
+        {           
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -926,8 +927,7 @@ namespace UI.Transport
                     {
                         foreach (HttpPostedFile uploadedFile in txtDocUpload.PostedFiles)
                         {
-                            Stream strm = uploadedFile.InputStream;                            
-                            Bitmap originalBMP = new Bitmap(uploadedFile.FileName);                            
+                            Stream strm = uploadedFile.InputStream;                           
                             strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
                             
                             strDocUploadPath = strDocName + "_" + intID.ToString() + "_" + strDocUploadPath;
@@ -937,20 +937,25 @@ namespace UI.Transport
                             fileName = strDocUploadPath.Replace(" ", "");
                             
                             strFileName = fileName.Trim();
-                                                       
+                            arrayKey = strFileName.Split(delimiterChars);
+                            if (arrayKey.Length > 0)
+                            {
+                                filen = arrayKey[0];
+                            }
+                            
                             intCount = intCount + 1;
-                            fileName = intCount.ToString() + "_" + fileName.Trim();
+                            fileName = intCount.ToString() + "_" + filen.Trim() + ".png";
                                      
                             string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+                            
                             if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
                             {
-                                objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + fileName.Trim());                                                       
+                                objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + fileName);                                                       
 
                             }
                             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This picture format not allow, Allow picture format is jpeg, jpg, png');", true); return; }
-
-                            strFileName = fileName;
-                            CreateVoucherXmlDocUpload(strFileName, doctypeid);
+                            
+                            CreateVoucherXmlDocUpload(fileName, doctypeid);
                         }                       
                     }
                 }

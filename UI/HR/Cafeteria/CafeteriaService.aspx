@@ -114,7 +114,7 @@
             <tr class="tblroweven">
             <td style="text-align:right;"><asp:Label ID="lblType" runat="server" CssClass="lbl" Text="Type :"></asp:Label></td>                
             <td><asp:DropDownList ID="ddlType" runat="server" AutoPostBack="false" CssClass="dropdownList">
-            <asp:ListItem Selected="True" Value="1">Regular</asp:ListItem><asp:ListItem Value="2">Irregular</asp:ListItem>
+            <asp:ListItem Selected="True" Value="2">Irregular</asp:ListItem><asp:ListItem Value="1">Regular</asp:ListItem>
             </asp:DropDownList></td> 
             <td style="text-align:left; color:red; font-weight:bold;" colspan="2" ><asp:Label ID="lblPresentStatus" runat="server"></asp:Label></td>
             </tr>
