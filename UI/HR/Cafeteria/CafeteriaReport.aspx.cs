@@ -168,7 +168,7 @@ namespace UI.HR.Cafeteria
                 else if(rdoPunch.Checked == true) {intRptType = 3;}
 
                 dt = new DataTable();
-                dt = obj.GetCafeteriaRAll(intPart, fdate, tdate, intRptType);
+                dt = obj.GetCafeteriaRAll(intPart, fdate, tdate, intRptType, int.Parse(hdnEnroll.Value));
                 if (dt.Rows.Count > 0) { dgvReport.DataSource = dt; dgvReport.DataBind(); }
                 else { dgvReport.DataSource = ""; dgvReport.DataBind(); }
             }

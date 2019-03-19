@@ -62,6 +62,7 @@
     </cc1:AlwaysVisibleControlExtender>--%>
     <%--=========================================Start My Code From Here===============================================--%>
     <%--<br /><br /><br /><br /><br /><br /><br />--%>
+    <asp:HiddenField ID="hdnEnroll" runat="server" />
     <table style="width:auto; float:left;">
     <tr><td>
         <div class="leaveApplication_container">        
