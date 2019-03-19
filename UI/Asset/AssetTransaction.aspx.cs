@@ -125,7 +125,7 @@ namespace UI.Asset
             arrayKey = txtAssetID.Text.Split(delimiterChars);
             string assetId = ""; string assetName = ""; string assetType = ""; int assetAutoId = 0;
             if (arrayKey.Length > 0)
-            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); assetType = arrayKey[5].ToString(); }
+            { assetName = arrayKey[0].ToString(); assetId = arrayKey[1].ToString(); assetAutoId = int.Parse(arrayKey[3].ToString()); }
              
             DataTable rt = new DataTable(); 
             rt = objregisterUpdate.AssetVehicleView(9, Mnumber, intenroll, intjobid, intdept, assetId);

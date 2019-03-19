@@ -23,9 +23,7 @@ namespace UI.Transport
         string location = "Transport";
         string start = "starting Transport/InternalTransportRouteExpInEntry.aspx";
         string stop = "stopping Transport/InternalTransportRouteExpInEntry.aspx";
-
         char[] deli = { '.' }; string[] arrayKey; char[] delimiterChars = { '.' };
-
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
         DocumentUpload_BLL objDocUp = new DocumentUpload_BLL();
@@ -906,14 +904,15 @@ namespace UI.Transport
         
         //** Gridview Document Upload Start ******************************************************
         protected void FTPUpload()
-        {           
+        {
+
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
             // starting performance tracker
             var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpInEntry.aspx Show", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
-            
+
             if (hdnconfirm.Value == "2")
             {
                 if (txtDocUpload.FileName.ToString() != "")
@@ -921,53 +920,55 @@ namespace UI.Transport
                     intDocType = int.Parse(ddlDocType.SelectedValue.ToString());
                     strDocName = ddlDocType.SelectedItem.ToString();
                     intID = int.Parse(HttpContext.Current.Session["intID"].ToString());
-                    
+
                     int intCount = 0;
                     if (txtDocUpload.HasFiles)
                     {
                         foreach (HttpPostedFile uploadedFile in txtDocUpload.PostedFiles)
                         {
-                            Stream strm = uploadedFile.InputStream;                           
+                            Stream strm = uploadedFile.InputStream;
                             strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
-                            
+
                             strDocUploadPath = strDocName + "_" + intID.ToString() + "_" + strDocUploadPath;
                             doctypeid = ddlDocType.SelectedValue.ToString();
-                                      
+
                             #region ------------- Way One For Upload In FTP  ---------(WOW It's A Best way)------------
                             fileName = strDocUploadPath.Replace(" ", "");
-                            
+
                             strFileName = fileName.Trim();
                             arrayKey = strFileName.Split(delimiterChars);
                             if (arrayKey.Length > 0)
                             {
                                 filen = arrayKey[0];
                             }
-                            
+
                             intCount = intCount + 1;
-                            fileName = intCount.ToString() + "_" + filen.Trim() + ".png";
-                                     
+                            fileName = intCount.ToString() + "_" + fileName.Trim();
+
                             string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
-                            
+
                             if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
                             {
-                                objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + fileName);                                                       
+                                objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + filen.Trim() + ".png");
 
                             }
                             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This picture format not allow, Allow picture format is jpeg, jpg, png');", true); return; }
-                            
-                            CreateVoucherXmlDocUpload(fileName, doctypeid);
-                        }                       
+
+                            strFileName = fileName;
+                            CreateVoucherXmlDocUpload(strFileName, doctypeid);
+                        }
                     }
                 }
-                hdnconfirm.Value = "0";                
-                #endregion                
+                hdnconfirm.Value = "0";
+                #endregion
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
             tracker.Stop();
+
         }
-           
+
 
         private void CreateVoucherXmlDocUpload(string strFileName, string doctypeid)
         {
