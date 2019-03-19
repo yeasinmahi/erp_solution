@@ -180,6 +180,7 @@
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccounts.aspx" />
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx" />
+    <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
@@ -1800,6 +1801,13 @@
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\ChartOfAccountsNew.aspx.designer.cs">
       <DependentUpon>ChartOfAccountsNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx.cs">
+      <DependentUpon>ChartOfAccountUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx.designer.cs">
+      <DependentUpon>ChartOfAccountUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\GetInfo.aspx.cs">
       <DependentUpon>GetInfo.aspx</DependentUpon>

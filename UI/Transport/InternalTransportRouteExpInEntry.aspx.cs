@@ -12,6 +12,8 @@ using System.Xml;
 using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace UI.Transport
 {
@@ -21,9 +23,10 @@ namespace UI.Transport
         string location = "Transport";
         string start = "starting Transport/InternalTransportRouteExpInEntry.aspx";
         string stop = "stopping Transport/InternalTransportRouteExpInEntry.aspx";
-
+        char[] deli = { '.' }; string[] arrayKey; char[] delimiterChars = { '.' };
         InternalTransportBLL obj = new InternalTransportBLL();
         DataTable dt;
+        DocumentUpload_BLL objDocUp = new DocumentUpload_BLL();
 
         string filePathForXML; string xmlString = ""; string xml;
         string filePathForXMLDTFare; string xmlStringDTFare = ""; string xmlDtFare;
@@ -42,7 +45,8 @@ namespace UI.Transport
         string strCauseOfAdditionalMillage; string strCauseOfAdditionalFare;
         string strDocUploadPath; int intDocType; string strFilePath; string strDocName;
         string fileName; string doctypeid; string strFileName; string strFuelPurchaseDate;
-             
+        int count; string filen;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -873,7 +877,6 @@ namespace UI.Transport
                     hdnconfirm.Value = "0";
 
                     //****Document Upload End
-
                     txtFuelCash.Text = "";
                     txtCauseOfAdditionalM.Text = "";
                     txtCauseOfAdditionalF.Text = "";
@@ -902,13 +905,13 @@ namespace UI.Transport
         //** Gridview Document Upload Start ******************************************************
         protected void FTPUpload()
         {
+
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
             // starting performance tracker
             var tracker = new PerfTracker("Performance on Transport/InternalTransportRouteExpInEntry.aspx Show", "", fd.UserName, fd.Location,
             fd.Product, fd.Layer);
-
 
             if (hdnconfirm.Value == "2")
             {
@@ -917,95 +920,56 @@ namespace UI.Transport
                     intDocType = int.Parse(ddlDocType.SelectedValue.ToString());
                     strDocName = ddlDocType.SelectedItem.ToString();
                     intID = int.Parse(HttpContext.Current.Session["intID"].ToString());
-                    /////strDocUploadPath = txtDocUpload.FileName.ToString();
 
-                    //string files1 = System.IO.Path.GetFullPath(txtDocUpload.PostedFile.FileName);
-                    //string files2 = Path.GetFileName(txtDocUpload.PostedFile.FileName);
-                    //string files3 = System.IO.Path.GetDirectoryName(txtDocUpload.PostedFile.FileName).ToString();
-                    //string files4 = Convert.ToString(System.IO.Directory.GetParent(txtDocUpload.PostedFile.FileName));
-                    //string files5 = Server.MapPath(txtDocUpload.FileName); 
                     int intCount = 0;
                     if (txtDocUpload.HasFiles)
                     {
                         foreach (HttpPostedFile uploadedFile in txtDocUpload.PostedFiles)
                         {
+                            Stream strm = uploadedFile.InputStream;
                             strDocUploadPath = Path.GetFileName(uploadedFile.FileName);
 
-                            ////strDocUploadPath = Path.GetFileName(txtDocUpload.PostedFile.FileName);
                             strDocUploadPath = strDocName + "_" + intID.ToString() + "_" + strDocUploadPath;
                             doctypeid = ddlDocType.SelectedValue.ToString();
-                                      
+
                             #region ------------- Way One For Upload In FTP  ---------(WOW It's A Best way)------------
-                            //string fileName = hdnID.Value + "_" + Path.GetFileName(txtDocUpload.PostedFile.FileName);
                             fileName = strDocUploadPath.Replace(" ", "");
 
-                            //fileName = "* A Short String. *";
-                            //Console.WriteLine(fileName);
-                            //Console.WriteLine(fileName.Trim(new Char[] { ' ', '_', '*', '.' }));
-
-                            //string txt = "                   i am a string                                    ";
-                            //char[] charsToTrim = { ' ' };
-                            //txt = txt.Trim(charsToTrim); // txt = "i am a string"
-
-                            //var myString = "    this    is my String ";
-                            //var newstring = myString.Trim(); // results in "this is my String"
-                            //var noSpaceString = myString.Replace(" ", ""); // results in "thisismyString";
-                    
-                            //////////////////////////txtDocUpload.PostedFile.SaveAs(Server.MapPath("~/Transport/Uploads/") + fileName.Trim());
-                            //////FileUploadFTP(Server.MapPath("~/Transport/Uploads/"), fileName, "ftp://ftp.akij.net/InternalTransportDocList/", "erp@akij.net", "erp123");
-                            ////File.Delete(Server.MapPath("~/Transport/Uploads/") + fileName);
-                            //lblMessage.Text += fileName + " Uploaded.<br />";
                             strFileName = fileName.Trim();
-                            //////strFilePath = fileName;\
-                                                       
+                            arrayKey = strFileName.Split(delimiterChars);
+                            if (arrayKey.Length > 0)
+                            {
+                                filen = arrayKey[0];
+                            }
+
                             intCount = intCount + 1;
                             fileName = intCount.ToString() + "_" + fileName.Trim();
 
-                    
-                            //string fileName = FileUpload1.FileName;
                             string FileExtension = fileName.Substring(fileName.LastIndexOf('.') + 1).ToLower();
+
                             if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
                             {
-                                //FileUpload1.SaveAs(Server.MapPath(fileName));
-                                ///txtDocUpload.PostedFile.SaveAs(Server.MapPath("~/Transport/Uploads/") + fileName.Trim());
-                                uploadedFile.SaveAs(Server.MapPath("~/Transport/Uploads/") + fileName.Trim());
-                                /////uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/Images/"),uploadedFile.FileName));
+                                objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + filen.Trim() + ".png");
+
                             }
                             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This picture format not allow, Allow picture format is jpeg, jpg, png');", true); return; }
 
                             strFileName = fileName;
                             CreateVoucherXmlDocUpload(strFileName, doctypeid);
-                            ////obj.InsertDocPath(intEnroll, strFilePath, intSeparationID);
-                            //txtAgentName.Text = "";
-                            //txtDTFCash.Text = "";
-                        }
-                       
-                            ////uploadedFile.SaveAs(System.IO.Path.Combine(Server.MapPath("~/Transport/Uploads/"), uploadedFile.FileName.ToString()));
-                            //listofuploadedfiles.Text += String.Format("{0}<br />", uploadedFile.FileName);
-                            //strDocUploadPath = txtDocUpload.FileName.ToString();
-                            //string checkf = String.Format("{0}", uploadedFile.FileName.ToString());
-                            //string checkf1 = uploadedFile.FileName.ToString();
-                            //listofuploadedfiles.Text += String.Format("{0}", uploadedFile.FileName.ToString());
-                            //string check2 = listofuploadedfiles.Text.ToString();
-                            
-                            
                         }
                     }
-                                    
+                }
                 hdnconfirm.Value = "0";
-
-                ///obj.InsertDocPath(intEnroll, strFilePath, intSeparationID);
-                ///ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Document Upload Successfully.');", true);
-
-                ///Response.Redirect(Request.Url.AbsoluteUri);
-                #endregion                
+                #endregion
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
-            // ends
             tracker.Stop();
+
         }
+
+
         private void CreateVoucherXmlDocUpload(string strFileName, string doctypeid)
         {
             XmlDocument doc = new XmlDocument();
@@ -1119,12 +1083,21 @@ namespace UI.Transport
                 uploadStream.Close();
                 fileStream.Close();
 
+                ////string filename = Path.GetFileName(fileupload1.PostedFile.FileName);
+                ////string storedb = "Images/" + filename + "";
+                //string targetPath = Server.MapPath("~/Transport/Uploads/") + fileName;
+                //Stream strm = fileupload1.PostedFile.InputStream;
+                //var targetFile = targetPath;
+
+
+
+
+
                 requestFTPUploader = null;
                 File.Delete(Server.MapPath("~/Transport/Uploads/") + fileName);
             }
             catch (Exception ex) { throw ex; }
         }
-
         protected void FinalUpload()
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -1254,7 +1227,7 @@ namespace UI.Transport
                     hdnconfirm.Value = "0";
 
                     //****Document Upload End
-
+                    
                     txtFuelCash.Text = "";
                     txtCauseOfAdditionalM.Text = "";
                     txtCauseOfAdditionalF.Text = "";
@@ -1284,33 +1257,7 @@ namespace UI.Transport
             tracker.Stop();
         }
 
-
-
-
-        //protected void FinalUpload()
-        //{
-        //    if (hdnconfirm.Value == "3")
-        //    {
-        //        if (dgvDocUp.Rows.Count > 0)
-        //        {
-        //            for (int index = 0; index < dgvDocUp.Rows.Count; index++)
-        //            {
-        //                fileName = ((Label)dgvDocUp.Rows[index].FindControl("lblFileName")).Text.ToString();
-        //                FileUploadFTP(Server.MapPath("~/Transport/Uploads/"), fileName, "ftp://ftp.akij.net/InternalTransportDocList/", "erp@akij.net", "erp123");
-
-        //                //CreateVoucherXmlCustWiseCost(reffid, custid, custname, millage, tripfare, tfopentruck, tfcoveredvan, tfpickup, tf10ton, tf7ton, tf5ton, tf3ton, tf1andhalfton, bridgetoll, bnrtoll20ton, bnrtoll10ton, bnrtoll7ton, bnrtoll5ton, bnrtoll3ton, bnrtoll2ton, bnrtoll1andhalfton, ferrytoll, ft20ton, ft7ton, ft5ton, ft3ton, ft1andhalfton);
-
-        //            }
-        //        }
-
-        //        dgvDocUp.DataSource = ""; dgvDocUp.DataBind();
-        //    }
-
-        //    hdnconfirm.Value = "0";
-        //}
-
-
-
+        
 
 
 
