@@ -46,8 +46,8 @@ namespace UI.Asset
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Unit by User
                 ddlUnit.DataSource = dt;
-                ddlUnit.DataTextField = "Name";
-                ddlUnit.DataValueField = "ID";
+                ddlUnit.DataTextField = "strName";
+                ddlUnit.DataValueField = "Id";
                 ddlUnit.DataBind();
                 intunit = int.Parse(ddlUnit.SelectedValue);
                 dt.Clear();

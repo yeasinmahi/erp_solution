@@ -13,10 +13,10 @@
     <Shape ID="DesignTable:TblProcessWorkstation" ZOrder="8" X="12" Y="105" Height="134" Width="278" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="64" />
     <Shape ID="DesignTable:qryItemList1" ZOrder="5" X="604" Y="197" Height="134" Width="217" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
     <Shape ID="DesignTable:qryRequisitionSummary" ZOrder="6" X="15" Y="290" Height="97" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignTable:qryFgWithBomItemList" ZOrder="4" X="947" Y="150" Height="153" Width="279" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:SprProductionOrderTransferItemDetails" ZOrder="3" X="13" Y="392" Height="305" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="235" SplitterPosition="254" />
-    <Shape ID="DesignTable:tblItemList" ZOrder="2" X="359" Y="293" Height="97" Width="275" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignTable:sprProductionTransferUpdate" ZOrder="1" X="362" Y="435" Height="96" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:qryFgWithBomItemList" ZOrder="1" X="947" Y="150" Height="153" Width="279" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:SprProductionOrderTransferItemDetails" ZOrder="4" X="13" Y="392" Height="305" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="24" OldDataTableHeight="235" SplitterPosition="254" />
+    <Shape ID="DesignTable:tblItemList" ZOrder="3" X="359" Y="293" Height="97" Width="275" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
+    <Shape ID="DesignTable:sprProductionTransferUpdate" ZOrder="2" X="362" Y="435" Height="96" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

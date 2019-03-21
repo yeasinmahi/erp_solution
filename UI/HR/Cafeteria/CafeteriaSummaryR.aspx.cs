@@ -39,6 +39,7 @@ namespace UI.HR.Cafeteria
             if (!IsPostBack)
             {
                 //pnlUpperControl.DataBind();
+                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
                 txtFDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtTDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
@@ -122,7 +123,7 @@ namespace UI.HR.Cafeteria
                 tdate = DateTime.Parse(txtTDate.Text);
                 intRptType = 1;
                 dt = new DataTable();
-                dt = obj.GetCafeteriaRAll(intPart, fdate, tdate, intRptType);
+                dt = obj.GetCafeteriaRAll(intPart, fdate, tdate, intRptType, int.Parse(hdnEnroll.Value));
                 if (dt.Rows.Count > 0) { dgvReport.DataSource = dt; dgvReport.DataBind(); }
                 else { dgvReport.DataSource = ""; dgvReport.DataBind(); }
             }
