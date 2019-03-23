@@ -61,7 +61,7 @@ namespace Utility
             return textInfo.ToTitleCase(value.ToLower());
         }
 
-        public static List<string> CreateAutoSearch(DataTable dt, string prefix, string textField, int valueField)
+        public static List<string> AutoSearch(this DataTable dt, string prefix, string textField, string valueField)
         {
             if (dt.Rows.Count > 0)
             {
@@ -268,6 +268,25 @@ namespace Utility
                 "$1 $2"
             );
         }
+        public static string RemoveZero<T>(this T str)
+        {
+            Type type = typeof(T);
+            if (type == typeof(string) || type == typeof(object))
+            {
+                if (double.TryParse(str.ToString(), out double d))
+                {
+                    return d.ToString("G29");
+                }
+                return str.ToString();
+
+            }
+            if (type == typeof(double) || type == typeof(float) || type == typeof(decimal))
+            {
+                double.TryParse(str.ToString(), out double d);
+                return d.ToString("G29");
+            }
+            return str.ToString();
+        }
 
         public static bool Dublicate(this string xml, string parent, string attribute)
         {
@@ -282,5 +301,6 @@ namespace Utility
                 .Where(g => g.Count() > 1);
             return dublicates.Any();
         }
+        
     }
 }

@@ -29,20 +29,18 @@ namespace UI.Asset
         decimal csdagno, tCsDag, sadDagNo, tSaDag, rsDagNo, tRsDag, brsDagno, tBrsDag, dpDagno, tDpDagno;
 
 
-        DateTime dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
+        DateTime? dtePo, dteWarranty, detInstalation, issudate, grnDate, servicedate, dteDepRunDate;
         string suppliers, lcoation, remarks, assetname, description, hscodecountryorigin, manufacturer, provideSlnumber, modelono, lcnumber, others, capacity;
-        SeriLog log = new SeriLog();
+        SeriLog log = new SeriLog(); 
         string location = "Asset";
+         
         string start = "starting Asset\\CWIPAssetAccountsPart";
         string stop = "stopping Asset\\CWIPAssetAccountsPart";
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXMlAssetParking = Server.MapPath("~/Asset/Data/cw_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             filePathXMlCwipLand = Server.MapPath("~/Asset/Data/cwl_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
-
-            // try { File.Delete(filePathForXMlAssetParking); }
-            // catch { }
-
+             
             if (!IsPostBack)
             {
                 var fd = log.GetFlogDetail(start, location, "Show", null);
@@ -53,15 +51,20 @@ namespace UI.Asset
                     fd.Product, fd.Layer);
                 try
                 {
-                    int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString()); 
+                 
+                dt = parking.CwipAssetView(19, "", "", "", "", 0, intenroll);//Parking List
+                ddlUnitby.DataSource = dt;
+                ddlUnitby.DataTextField = "strName";
+                ddlUnitby.DataValueField = "Id";
+                ddlUnitby.DataBind();
+                ddlUnitby.Items.Insert(0, new ListItem("Select", "0"));
 
-                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
-                dgvGridView.DataSource = dt;
-                dgvGridView.DataBind();
+                
                 }
                 catch (Exception ex)
                 {
@@ -71,7 +74,7 @@ namespace UI.Asset
 
                 fd = log.GetFlogDetail(stop, location, "Show", null);
                 Flogger.WriteDiagnostic(fd);
-                // ends
+                 
                 tracker.Stop();
             }
             else
@@ -80,6 +83,27 @@ namespace UI.Asset
             }
         }
 
+        protected void ddlUnitby_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                //dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, int.Parse(ddlUnitby.SelectedValue));
+                dgvGridView.DataSource = "";
+                dgvGridView.DataBind();
+            }
+            catch { }
+        }
+
+        protected void btnShow_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, int.Parse(ddlUnitby.SelectedValue));
+                dgvGridView.DataSource = dt;
+                dgvGridView.DataBind();
+            }
+            catch { }
+        }
 
         #region ==============================Vehicle Asset==========================
         private void VehicleAssetInfoLoad()
@@ -650,11 +674,11 @@ namespace UI.Asset
                 string message = parking.InsertParkingData(15, xmlString, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 divClose();
+
             }
             catch { }
         }
-        #endregion ===========================Close===================================
-         
+        #endregion ===========================Close=================================== 
 
         #region ==============================Land Asset============================
         private void LandAssetInfoLoad()
@@ -1863,35 +1887,9 @@ namespace UI.Asset
         #endregion ===========================Building Asset==========================
 
 
-        protected void txtErectionOtherCost_TextChanged(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-            try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-            try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-            txtAcisitionCost.Text = (landedcost + otherCost).ToString();
-            txtAcisitionCost.ReadOnly = true;
-        }
+        
 
-        protected void txtLandedCost_TextChanged(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-            try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-            try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-            txtAcisitionCost.Text = (landedcost + otherCost).ToString();
-            txtAcisitionCost.ReadOnly = true;
-        }
-
-        protected void txtInvoiceValue_TextChanged(object sender, EventArgs e)
-        {
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
-            try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-            try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-            try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-            txtAcisitionCost.Text = (landedcost + otherCost).ToString();
-            txtAcisitionCost.ReadOnly = true;
-        }
+       
         private void LoadView()
         {
             try
@@ -1914,12 +1912,14 @@ namespace UI.Asset
                 dlJobstation.DataTextField = "strJobStationName";
                 dlJobstation.DataValueField = "intEmployeeJobStationId";
                 dlJobstation.DataBind();
+                dlJobstation.Items.Insert(0, new ListItem("Select", "0"));
 
                 dt = objregister.AssetTypeName();
                 ddlMajorCat.DataSource = dt;
                 ddlMajorCat.DataTextField = "strAssetTypeName";
                 ddlMajorCat.DataValueField = "intAssetTypeID";
                 ddlMajorCat.DataBind();
+                ddlMajorCat.Items.Insert(0, new ListItem("Select", "0"));
 
                 //dt = objregister.DropdownCategoryView(int.Parse(dlJobstation.SelectedValue));              
 
@@ -1929,18 +1929,21 @@ namespace UI.Asset
                 ddlMinorCate1.DataTextField = "strCategoryName";
                 ddlMinorCate1.DataValueField = "intCategoryID";
                 ddlMinorCate1.DataBind();
+                ddlMinorCate1.Items.Insert(0, new ListItem("Select", "0"));
 
                 dt = parking.CwipAssetView(6, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, recieveqty, intenroll);//Parking List
                 ddlMinorCate2.DataSource = dt;
                 ddlMinorCate2.DataTextField = "Name";
                 ddlMinorCate2.DataValueField = "ID";
                 ddlMinorCate2.DataBind();
+                ddlMinorCate2.Items.Insert(0, new ListItem("Select", "0"));
 
                 dt = objregister.RegCostCenter(int.Parse(ddlUnit.SelectedValue));
                 ddlCostCenter.DataSource = dt;
                 ddlCostCenter.DataTextField = "Name";
                 ddlCostCenter.DataValueField = "Id";
                 ddlCostCenter.DataBind();
+                ddlCostCenter.Items.Insert(0, new ListItem("Select", "0"));
             }
             catch { }
 
@@ -1952,91 +1955,135 @@ namespace UI.Asset
 
         }
 
+        private void DataClear()
+        {
+            txtPonumbers.Text = "0".ToString();
+            txtSuppliers.Text = "0".ToString();
+            dtePoDate.Text = "0".ToString();
+            txtInvoiceValue.Text = "0".ToString();
+            txtLandedCost.Text = "0".ToString();
+            txtAssetname.Text = "0".ToString();
+            txtDescription.Text = "0".ToString();
+            txtHsCode.Text = "0".ToString();
+            txtIssueDate.Text = "0".ToString(); 
+            txtAcisitionCost.Text = "0".ToString();
+            
+            txtGroupName.Text = "0".ToString();
+            txtProjectName.Text = "0".ToString();
+            txtAssetLocation.Text = "0".ToString();
+            txtCountryOrigin.Text = "0".ToString(); ;
+            txtManufacturer.Text = "0".ToString();
+            txtModelNo.Text = "0".ToString();
+        }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "ClosehdnDivision();", true);
-            try
+            if (hdnPreConfirm.Value == "1")
             {
-                int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-                int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
+                try
+                {
+                    try { File.Delete(filePathForXMlAssetParking); }
+                    catch { }
+                    int intuntid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                    int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
 
-                txtAcisitionCost.ReadOnly = false;
-                try { unit = int.Parse(ddlUnit.SelectedValue); } catch { unit = 1; }
-                try { jobstation = int.Parse(dlJobstation.SelectedValue); } catch { jobstation = 1; }
-                try { asettype = int.Parse(ddlAssetType.SelectedValue); } catch { asettype = 1; }
-                try { mazorcategory = int.Parse(ddlMajorCat.SelectedValue); } catch { mazorcategory = 1; }
-                try { minorcatagory1 = int.Parse(ddlMinorCate1.SelectedValue); } catch { minorcatagory1 = 1; }
-                try { minorcatagory2 = int.Parse(ddlMinorCate2.SelectedValue); } catch { minorcatagory2 = 1; }
-                try { coscenter = int.Parse(ddlCostCenter.SelectedValue); } catch { coscenter = 1; }
-
-
-                suppliers = txtSuppliers.Text.ToString();
-                try { ponumber = int.Parse(txtPonumbers.Text.ToString()); } catch { ponumber = 0; }
-                try { dtePo = DateTime.Parse(dtePoDate.Text); } catch { dtePo = DateTime.Parse("1990-01-01".ToString()); }
-                try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty = DateTime.Parse("1990-01-01".ToString()); }
-                try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation = DateTime.Parse("1990-01-01".ToString()); }
-
-                string lcoation = txtAssetLocation.Text.ToString();
-                try { userenroll = int.Parse(txtEnrolment.Text); } catch { userenroll = 0; }
-                try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
-                try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
-                try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
-                try { accusitioncost = decimal.Parse(txtAcisitionCost.Text); } catch { accusitioncost = 0; }
-                string remarks = txtRemarks.Text.ToString();
+                    txtAcisitionCost.ReadOnly = false;
+                    try { unit = int.Parse(ddlUnit.SelectedValue); } catch { unit = 1; }
+                    try { jobstation = int.Parse(dlJobstation.SelectedValue); } catch { jobstation = 1; }
+                    try { asettype = int.Parse(ddlAssetType.SelectedValue); } catch { asettype = 1; }
+                    try { mazorcategory = int.Parse(ddlMajorCat.SelectedValue); } catch { mazorcategory = 1; }
+                    try { minorcatagory1 = int.Parse(ddlMinorCate1.SelectedValue); } catch { minorcatagory1 = 1; }
+                    try { minorcatagory2 = int.Parse(ddlMinorCate2.SelectedValue); } catch { minorcatagory2 = 1; }
+                    try { coscenter = int.Parse(ddlCostCenter.SelectedValue); } catch { coscenter = 1; }
 
 
-                string assetname = txtAssetname.Text.ToString();
-                string description = txtDescription.Text.ToString();
-                string hscode = txtHsCode.Text;
-                try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate = DateTime.Parse("1990-01-01".ToString()); }
-                try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate = DateTime.Parse("1990-01-01".ToString()); }
-                try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate = DateTime.Parse("1990-01-01".ToString()); }
+                    suppliers = txtSuppliers.Text.ToString();
+                    try { ponumber = int.Parse(txtPonumbers.Text.ToString()); } catch { ponumber = 0; }
+                    try { dtePo = DateTime.Parse(dtePoDate.Text); } catch { dtePo = DateTime.Parse("1900-01-01".ToString()); }
+                    try { dteWarranty = DateTime.Parse(dteWarintyExpire.Text); } catch { dteWarranty = DateTime.Parse("1900-01-01".ToString()); }
+                    try { detInstalation = DateTime.Parse(txtDateInstalation.Text); } catch { detInstalation = DateTime.Parse("1900-01-01".ToString()); }
 
-                string countryorigin = txtCountryOrigin.Text.ToString();
-                string manufacturer = txtManufacturer.Text.ToString();
-                string provideSlnumber = txtManuProviceSlNo.Text.ToString();
-                string modelono = txtModelNo.Text.ToString();
-                string lcnumber = txtLCnumber.Text.ToString();
-                string others = txtOthers.Text.ToString();
-                string capacity = txtCapacity.Text.ToString();
-                try { recommandlife = decimal.Parse(txtRecommandLife.Text); } catch { recommandlife = 0; }
-                try { depMethode = int.Parse(ddlMethodOfDep.SelectedValue); } catch { depMethode = 0; }
-                try { depRate = decimal.Parse(txtRateDep.Text); } catch { depRate = 0; }
-                try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1990-01-01".ToString()); }
+                    string lcoation = txtAssetLocation.Text.ToString();
+                    try { userenroll = int.Parse(txtEnrolment.Text); } catch { userenroll = 0; }
+                    try { invoicevalue = decimal.Parse(txtInvoiceValue.Text); } catch { invoicevalue = 0; }
+                    try { landedcost = decimal.Parse(txtLandedCost.Text); } catch { landedcost = 0; }
+                    try { otherCost = decimal.Parse(txtErectionOtherCost.Text); } catch { otherCost = 0; }
+                    try { accusitioncost = decimal.Parse(txtAcisitionCost.Text); } catch { accusitioncost = 0; }
+                    string remarks = txtRemarks.Text.ToString();
+                    string group = txtGroupName.Text.ToString();
+                    string projectName = txtProjectName.Text.ToString();
 
-                string reffid = hdnReceive.Value; 
+                    string assetname = txtAssetname.Text.ToString();
+                    string description = txtDescription.Text.ToString();
+                    string hscode = txtHsCode.Text;
+                    try { issudate = DateTime.Parse(txtIssueDate.Text); } catch { issudate = DateTime.Parse("1900-01-01".ToString()); }
+                    try { grnDate = DateTime.Parse(txtGrndDate.Text); } catch { grnDate = DateTime.Parse("1900-01-01".ToString()); }
+                    try { servicedate = DateTime.Parse(txtServiceDate.Text); } catch { servicedate = DateTime.Parse("1900-01-01".ToString()); }
+
+                    string countryorigin = txtCountryOrigin.Text.ToString();
+                    string manufacturer = txtManufacturer.Text.ToString();
+                    string provideSlnumber = txtManuProviceSlNo.Text.ToString();
+                    string modelono = txtModelNo.Text.ToString();
+                    string lcnumber = txtLCnumber.Text.ToString();
+                    string others = txtOthers.Text.ToString();
+                    string capacity = txtCapacity.Text.ToString();
+                    try { recommandlife = decimal.Parse(txtRecommandLife.Text); } catch { recommandlife = 0; }
+                    try { depMethode = int.Parse(ddlMethodOfDep.SelectedValue); } catch { depMethode = 0; }
+                    try { depRate = decimal.Parse(txtRateDep.Text); } catch { depRate = 0; }
+                    try { dteDepRunDate = DateTime.Parse(txtDepRunDate.Text); } catch { dteDepRunDate = DateTime.Parse("1900-01-01".ToString()); }
+
+                    string reffid = hdnReceive.Value;
+                    if (accusitioncost > 0 && invoicevalue > 0)
+                    {
+                        CreateParkingXML(reffid, unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
+                       ,userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
+                        manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString(), group, projectName);
+                        divClose();
+
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXMlAssetParking);
+                        XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                        string xmlStringG = dSftTm.InnerXml;
+                        xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
+                        int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
+                        
+                        try { File.Delete(filePathForXMlAssetParking); }
+                        catch { } 
+                        string message = parking.InsertParkingData(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
+                        lblVoucher.Text = "Voucher No: " + message.ToString();
+                        if(message=="Please Select COA")
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+                        }
+                        else
+                        {
+                            divClose();
+                            dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, int.Parse(ddlUnitby.SelectedValue));
+                            dgvGridView.DataSource = dt;
+                            dgvGridView.DataBind();
+                            DataClear();
+
+                        }
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                    }
 
 
-                CreateParkingXML(reffid, unit.ToString(), jobstation.ToString(), asettype.ToString(), mazorcategory.ToString(), minorcatagory1.ToString(), minorcatagory2.ToString(), coscenter.ToString(), suppliers, ponumber.ToString(), dtePo.ToString(), dteWarranty.ToString(), detInstalation.ToString(), lcoation
-                , userenroll.ToString(), invoicevalue.ToString(), landedcost.ToString(), otherCost.ToString(), accusitioncost.ToString(), remarks, assetname, description, hscode, issudate.ToString(), grnDate.ToString(), servicedate.ToString(), countryorigin,
-                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife.ToString(), depMethode.ToString(), depRate.ToString(), dteDepRunDate.ToString());
 
-
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXMlAssetParking);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                string xmlStringG = dSftTm.InnerXml;
-                xmlStringG = "<voucher>" + xmlStringG + "</voucher>";
-                int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-                //string= int.Parse(hdnReceive.Value);
-                try { File.Delete(filePathForXMlAssetParking); }
-                catch { }
-                dt = parking.CwipAssetView(14, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intuntid);
-                dgvGridView.DataSource = dt;
-                dgvGridView.DataBind();
-
-                string message = parking.InsertParkingData(13, xmlStringG, XMLVehicle, XMLBuilding, XMLLand, 0, intenroll);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                 
+                }
+                catch { ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true); }
             }
-            catch { }
+            else
+            {
+
+            }
+           
+      
 
         }
 
-        private void CreateParkingXML(string reffid, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost, string accusitioncost, string remarks, string assetname, string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode, string depRate, string dteDepRunDate)
+        private void CreateParkingXML(string reffid, string unit, string jobstation, string asettype, string mazorcategory, string minorcatagory1, string minorcatagory2, string coscenter, string suppliers, string ponumber, string dtePo, string dteWarranty, string detInstalation, string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost, string accusitioncost, string remarks, string assetname, string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer, string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode, string depRate, string dteDepRunDate,string group,string projectName)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXMlAssetParking))
@@ -2045,7 +2092,7 @@ namespace UI.Asset
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
                 XmlNode addItem = CreateItemNode(doc, reffid, unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, suppliers, ponumber, dtePo, dteWarranty, detInstalation, lcoation
                 , userenroll, invoicevalue, landedcost, otherCost, accusitioncost, remarks, assetname, description, hscode, issudate, grnDate, servicedate, countryorigin,
-                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate);
+                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate, group, projectName);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -2055,7 +2102,7 @@ namespace UI.Asset
                 XmlNode rootNode = doc.CreateElement("voucher");
                 XmlNode addItem = CreateItemNode(doc, reffid, unit, jobstation, asettype, mazorcategory, minorcatagory1, minorcatagory2, coscenter, suppliers, ponumber, dtePo, dteWarranty, detInstalation, lcoation
                 , userenroll, invoicevalue, landedcost, otherCost, accusitioncost, remarks, assetname, description, hscode, issudate, grnDate, servicedate, countryorigin,
-                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate);
+                manufacturer, provideSlnumber, modelono, lcnumber, others, capacity, recommandlife, depMethode, depRate, dteDepRunDate, group, projectName);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -2067,7 +2114,7 @@ namespace UI.Asset
             string lcoation, string userenroll, string invoicevalue, string landedcost, string otherCost, string accusitioncost, string remarks, string assetname,
             string description, string hscode, string issudate, string grnDate, string servicedate, string countryorigin, string manufacturer,
             string provideSlnumber, string modelono, string lcnumber, string others, string capacity, string recommandlife, string depMethode,
-            string depRate, string dteDepRunDate)
+            string depRate, string dteDepRunDate,string group,string projectName)
         {
             XmlNode node = doc.CreateElement("voucherentry");
             XmlAttribute Reffid = doc.CreateAttribute("reffid");
@@ -2167,7 +2214,10 @@ namespace UI.Asset
             XmlAttribute DteDepRunDate = doc.CreateAttribute("dteDepRunDate");
             DteDepRunDate.Value = dteDepRunDate;
 
-
+            XmlAttribute Group = doc.CreateAttribute("group");
+            Group.Value = group;
+            XmlAttribute ProjectName = doc.CreateAttribute("projectName");
+            ProjectName.Value = projectName;
 
 
 
@@ -2214,6 +2264,9 @@ namespace UI.Asset
             node.Attributes.Append(DepMethode);
             node.Attributes.Append(DepRate);
             node.Attributes.Append(DteDepRunDate);
+
+            node.Attributes.Append(Group);
+            node.Attributes.Append(ProjectName);
             return node;
 
 
@@ -2231,6 +2284,7 @@ namespace UI.Asset
         {
             try
             {
+              
                 LoadView();
                 char[] delimiterChars = { ',' };
                 string temp = ((Button)sender).CommandArgument.ToString();
@@ -2324,6 +2378,7 @@ namespace UI.Asset
                         txtErectionOtherCost.Text = pk.Rows[0]["monOtherCost"].ToString();
                         txtAcisitionCost.Text = pk.Rows[0]["monAccusitioncost"].ToString();
                         txtRemarks.Text = pk.Rows[0]["strRemarks"].ToString();
+                      
 
 
                         txtAssetname.Text = pk.Rows[0]["strNameOfAsset"].ToString();
@@ -2346,7 +2401,7 @@ namespace UI.Asset
                         txtDepRunDate.Text = pk.Rows[0]["dteDepRun"].ToString();
                         try
                         {
-                            txtProjectID.Text = pk.Rows[0]["projectid"].ToString();
+                            txtGroupName.Text = pk.Rows[0]["strGroup"].ToString();
                             txtProjectName.Text = pk.Rows[0]["projectName"].ToString();
                             txtAssetLocation.Text = pk.Rows[0]["location"].ToString();
                         }
@@ -2366,8 +2421,8 @@ namespace UI.Asset
 
         protected void btnClose_Click(object sender, EventArgs e)
         {
-
             divClose();
+           
         }
 
         private void divClose()
@@ -2390,12 +2445,15 @@ namespace UI.Asset
                 dlJobstation.DataTextField = "strJobStationName";
                 dlJobstation.DataValueField = "intEmployeeJobStationId";
                 dlJobstation.DataBind();
+                dlJobstation.Items.Insert(0, new ListItem("Select", "0"));
 
                 dt = objregister.RegCostCenter(int.Parse(ddlUnit.SelectedValue));
                 ddlCostCenter.DataSource = dt;
                 ddlCostCenter.DataTextField = "Name";
                 ddlCostCenter.DataValueField = "Id";
                 ddlCostCenter.DataBind();
+                ddlCostCenter.Items.Insert(0, new ListItem("Select", "0"));
+                 
             }
             catch { }
 
@@ -2409,11 +2467,14 @@ namespace UI.Asset
             ddlMinorCate1.DataTextField = "strCategoryName";
             ddlMinorCate1.DataValueField = "intCategoryID";
             ddlMinorCate1.DataBind();
+            ddlMinorCate1.Items.Insert(0, new ListItem("Select", "0"));
+            
         }
 
         protected void ddlMajorCat_SelectedIndexChanged(object sender, EventArgs e)
         {
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "OpenHdnDiv();", true);
+
         }
 
         protected void ddlMinorCate1_SelectedIndexChanged(object sender, EventArgs e)

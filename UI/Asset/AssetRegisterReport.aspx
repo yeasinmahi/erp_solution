@@ -92,8 +92,8 @@
             OnClick="Tab4_Click"  BackColor="#FFCC99" />
           <asp:MultiView ID="MainView"   runat="server">
             <asp:View ID="View1"  runat="server">
-              <table style="width: 100%; border-width: 1px; border-color: #666; border-style: solid">
-                  <iframe runat="server" oncontextmenu="return false;" id="frameGEneral" name="frame" style="width:100%;   border:0px solid red;"></iframe>
+              <table style="width: 1050px; border-width: 1px; border-color: #666; border-style: solid">
+                  <iframe runat="server" oncontextmenu="return false;" id="frameGEneral" name="frame" style="width:100%;height:500px;   border:0px solid red;"></iframe>
               </table>
                 </span> 
 

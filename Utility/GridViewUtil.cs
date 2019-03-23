@@ -206,6 +206,31 @@ namespace Utility
             EnumerableRowCollection<DataRow> query = dt.GetRows<T>(columnName, value);
             return query != null && query.ToList().Count > 0;
         }
+        public static string ToHtmlTable(this DataTable dt)
+        {
+            string html = "<table style='border:1px solid black;'>";
+            int countColumn = dt.Columns.Count;
+            int countRow = dt.Rows.Count;
+            //add header row
+            html += "<tr style='border:1px solid black; font-weight:bold; background-color:black; color:white'>";
+            html += "<td style='border:1px solid grey;'>SN</td>";
+            for (int i = 0; i < countColumn; i++)
+                html += "<td style='border:1px solid grey;'>" + dt.Columns[i].ColumnName + "</td>";
+            html += "</tr>";
+            //add rows
+            for (int i = 0; i < countRow; i++)
+            {
+                html += "<tr style='border:1px solid black;'> ";
+                html += "<td style='border:1px solid grey;'>" + (i + 1) + "</td>";
+                for (int j = 0; j < countColumn; j++)
+                    html += "<td style='border:1px solid black;'>" + dt.Rows[i][j] + "</td>";
+                html += "</tr>";
+            }
+            html += "</table>";
+            return html;
+        }
+       
+
     }
     public class CreateItemTemplate : ITemplate
     {
@@ -273,7 +298,9 @@ namespace Utility
                         break;
                 }
             }
+
         }
+
 
     }
 }

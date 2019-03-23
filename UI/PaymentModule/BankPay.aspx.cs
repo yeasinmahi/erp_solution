@@ -331,7 +331,7 @@ namespace UI.PaymentModule
                         strInstrument = ddlInstrument.SelectedItem.ToString();
 
                         dt = new DataTable();
-                        dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnUnit.Value), strInstrument);
+                        dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnBillUnitID.Value), strInstrument);
                         if (dt.Rows.Count > 0)
                         {
                             txtNo.Text = dt.Rows[0]["strCode"].ToString();
@@ -377,7 +377,7 @@ namespace UI.PaymentModule
             strInstrument = ddlInstrument.SelectedItem.ToString();
 
             dt = new DataTable();
-            dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnUnit.Value), strInstrument);
+            dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnBillUnitID.Value), strInstrument);
             if (dt.Rows.Count > 0)
             {
                 txtNo.Text = dt.Rows[0]["strCode"].ToString();

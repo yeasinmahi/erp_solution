@@ -20,7 +20,7 @@ namespace UI.Asset
 
         protected void Tab1_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frameGEneral', 'https://report.akij.net/reports/report/Asset_Module/Land_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frameGEneral', 'http://report.akij.net/reports/report/Asset_Module/Register_Report/General%20Asset%20Register?rs:Embed=true');", true);
 
             Tab1.CssClass = "Clicked";
             Tab2.CssClass = "Initial";

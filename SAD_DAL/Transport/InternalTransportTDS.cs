@@ -16,9 +16,19 @@ namespace SAD_DAL.Transport {
  
 }
 
-namespace SAD_DAL.Transport.InternalTransportTDSTableAdapters {
-    
-  
+namespace SAD_DAL.Transport.InternalTransportTDSTableAdapters
+{
+    partial class tblVehicleTableAdapter
+    {
+    }
+
+    partial class GetDataRouteCostUpdateTableAdapter
+    {
+    }
+
+    partial class DataTable2TableAdapter
+    {
+    }
 }
 namespace SAD_DAL.Transport
 {

@@ -764,15 +764,14 @@ namespace Purchase_BLL.Asset
         }
 
         public string[] GetAssetItem(Int32 Active, string prefix)
-        {
-
+        { 
             //Inatialize(intwh);
-            if (tableCusts1 == null)
-            {
+            //if (tableCusts1 == null)
+            //{
                 tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(Active)];
                 TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
                 tableCusts1[e] = adpCOA.AssetAutoSearchGetData(Convert.ToBoolean(Active));
-            }
+           // }
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
             {
@@ -900,10 +899,7 @@ namespace Purchase_BLL.Asset
             }
         }
         public string[] GetAssetItemByUnit(string unit, string prefix)
-        {
-
-
-
+        { 
             tableCusts1 = new SearchTDS.TblAutoSearchAssetRegisterDataTable[Convert.ToInt32(1)];
             TblAutoSearchAssetRegisterTableAdapter adpCOA = new TblAutoSearchAssetRegisterTableAdapter();
             tableCusts1[e] = adpCOA.GetAssetUnitByData(Convert.ToInt32(unit));
@@ -951,7 +947,7 @@ namespace Purchase_BLL.Asset
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["strAssetID"] + "]" + "[" + tbl.Rows[i]["intID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strNameOfAsset"] + "[" + tbl.Rows[i]["strAssetID"] + "]" + "[" + tbl.Rows[i]["intID"] + "]"+ "[" + tbl.Rows[i]["intAssetType"] + "]";
 
                 }
 

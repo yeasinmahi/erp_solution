@@ -379,6 +379,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AutoSearch\EmployeeTds.cs">
+      <DependentUpon>EmployeeTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AutoSearch\EmployeeTds.Designer.cs">
+      <DependentUpon>EmployeeTds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Currency.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DropDown\CostCenterTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -994,6 +1005,24 @@
     <None Include="Accounts\Bank\BankInfoTDS.xss">
       <DependentUpon>BankInfoTDS.xsd</DependentUpon>
     </None>
+    <None Include="AutoSearch\EmployeeTds.xsc">
+      <DependentUpon>EmployeeTds.xsd</DependentUpon>
+    </None>
+    <None Include="AutoSearch\EmployeeTds.xsd" />
+    <None Include="AutoSearch\EmployeeTds.xss">
+      <DependentUpon>EmployeeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Currency.xsc">
+      <DependentUpon>Currency.xsd</DependentUpon>
+    </None>
+    <None Include="Currency.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Currency.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Currency.xss">
+      <DependentUpon>Currency.xsd</DependentUpon>
+    </None>
     <None Include="DropDown\CostCenterTDS.xsc">
       <DependentUpon>CostCenterTDS.xsd</DependentUpon>
     </None>
@@ -1024,9 +1053,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AutoSearch\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>

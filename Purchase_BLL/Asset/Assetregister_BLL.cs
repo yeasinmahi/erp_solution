@@ -35,8 +35,12 @@ namespace Purchase_BLL.Asset
         public DataTable AssetTypeName()
         {
             DataTable2TableAdapter type = new DataTable2TableAdapter();
-            return type.AssetTypeGetData();
-           
+            return type.AssetTypeGetData(); 
+        }
+        public DataTable AssetTypeAll()
+        {
+            DataTable2TableAdapter type = new DataTable2TableAdapter();
+            return type.AllAssetType();
         }
 
       

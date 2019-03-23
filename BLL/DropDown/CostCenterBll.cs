@@ -2,7 +2,7 @@
 using System.Data;
 using DAL.DropDown.CostCenterTDSTableAdapters;
 
-namespace BLL.AutoSearch
+namespace BLL.DropDown
 {
     public class CostCenterBll
     {
