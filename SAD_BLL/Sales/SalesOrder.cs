@@ -413,6 +413,50 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
+        public void AddDelivaryQuation(string xmlStr, string userId, string unitId
+           , DateTime date, DateTime reqDOdate
+          ,  string customerId, string customerType, string narration, string address, string distributionPointId
+           , string priceVar, string logisticPriceVar, bool isLogistic
+           , string chargeId, decimal charge
+           , string incentiveId, decimal incentive
+           , string currencyId, decimal conversionRate, string salesTypeId
+           , decimal extAmount, string extCause
+           , string note, string contatcAt, string ContactPhone
+           , string salesOffice, string shippingPoint, bool sdv, ref string code, ref string entryId
+           )
+        {
+            long? id = null;
+            int? priceVar_ = null, logisticPriceVar_ = null;
+            int? distributionPointId_ = null, chargeId_ = null, incentiveId_ = null;
 
+            try { id = long.Parse(entryId); }
+            catch { }
+            try { priceVar_ = int.Parse(priceVar); }
+            catch { }
+
+            try { logisticPriceVar_ = int.Parse(logisticPriceVar); }
+            catch { }
+            try { distributionPointId_ = int.Parse(distributionPointId); }
+            catch { }
+
+            try { chargeId_ = int.Parse(chargeId); }
+            catch { }
+            try { incentiveId_ = int.Parse(incentiveId); }
+            catch { }
+
+            //SprSalesOrderTableAdapter ta = new SprSalesOrderTableAdapter();
+
+            SprSalesQuatationTableAdapter ta = new SprSalesQuatationTableAdapter();
+
+            ta.GetDataSalesQuatation(xmlStr, ref id, int.Parse(userId), int.Parse(unitId), date, reqDOdate
+                , int.Parse(customerType), int.Parse(customerId)
+                , distributionPointId_, narration, address
+
+                , int.Parse(currencyId), conversionRate, int.Parse(salesTypeId)
+                , note, contatcAt, ContactPhone, int.Parse(salesOffice)
+                , int.Parse(shippingPoint), true, sdv, ref code);
+
+            entryId = id.ToString();
+        }
     }
 }
