@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using GLOBAL_BLL;
+
 using HR_BLL.Attendance;
 using UI.ClassFiles;
 using GLOBAL_BLL;

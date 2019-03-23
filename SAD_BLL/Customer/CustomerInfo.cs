@@ -57,10 +57,10 @@ namespace SAD_BLL.Customer
             try { tp = int.Parse(custype); }
             catch { }
             try { so = int.Parse(salesOffice); }
-            catch { }               
+            catch { }
 
             bool ysnSuccess;
-            SprCustomerInsertTableAdapter cusAdp=new SprCustomerInsertTableAdapter();
+            SprCustomerInsertTableAdapter cusAdp = new SprCustomerInsertTableAdapter();
             try
             {
                 cusAdp.InsertCustomerData(cus, unitID, geo, name, address, phone, tp, so, creditLimit, int.Parse(userID), propitor, isPeriodicle, daysOfLimit, email, vatregs);
@@ -73,17 +73,17 @@ namespace SAD_BLL.Customer
 
             return ysnSuccess;
         }
-        public bool UpdateCustomer(string customerId, int unitID, string geoID, string name, string address, string phone, decimal creditLimit, string custype, string salesOffice, string userID, string propitor,bool isPeriodicle,int daysOfLimit,string email,string vatregs)
+        public bool UpdateCustomer(string customerId, int unitID, string geoID, string name, string address, string phone, decimal creditLimit, string custype, string salesOffice, string userID, string propitor, bool isPeriodicle, int daysOfLimit, string email, string vatregs)
         {
             int? geo = null, tp = null, cus = null, so = null;//,lm=null;
             try { geo = int.Parse(geoID); }
             catch { }
             try { tp = int.Parse(custype); }
-            catch { }            
+            catch { }
             try { cus = int.Parse(customerId); }
             catch { }
             try { so = int.Parse(salesOffice); }
-            catch { }    
+            catch { }
 
 
 
@@ -91,7 +91,7 @@ namespace SAD_BLL.Customer
             SprCustomerInsertTableAdapter cusAdp = new SprCustomerInsertTableAdapter();
             try
             {
-                cusAdp.InsertCustomerData(cus, unitID, geo, name, address, phone, tp, so, creditLimit, int.Parse(userID), propitor, isPeriodicle, daysOfLimit,email, vatregs);
+                cusAdp.InsertCustomerData(cus, unitID, geo, name, address, phone, tp, so, creditLimit, int.Parse(userID), propitor, isPeriodicle, daysOfLimit, email, vatregs);
                 ysnSuccess = true;
             }
             catch
@@ -104,9 +104,9 @@ namespace SAD_BLL.Customer
 
         public void UpdatePriceCatagory(string customerId, string priceCatId)
         {
-            int? pc=null;
+            int? pc = null;
             try { pc = int.Parse(priceCatId); }
-            catch{}
+            catch { }
 
             TblCustomerTableAdapter ta = new TblCustomerTableAdapter();
             ta.UpdatePriceCatagory(pc, int.Parse(customerId));
@@ -144,14 +144,14 @@ namespace SAD_BLL.Customer
             CustomerTDS.TblCustomerDDLDataTable table;
 
             table = ta.GetCustomers(int.Parse(unitId), int.Parse(type), int.Parse(salesOffice));
-            
+
 
             CustomerTDS.TblCustomerDDLRow row = table.NewTblCustomerDDLRow();
             row.intCusID = 0;
             row.intCusType = 0;
             row.intUnitID = int.Parse(unitId);
             row.strName = "All";
-                        
+
             table.Rows.Add(row);
 
             return table;
@@ -164,14 +164,30 @@ namespace SAD_BLL.Customer
             return ta.GetData(int.Parse(customerId), int.Parse(unitId), dte, int.Parse(userId));
         }
 
-        public DataTable getdataCustomerMonthlyTarget(int unit, int areaid, DateTime frm, DateTime dttodate, int reportoption, int customerCOAId, string xmlString,int insertby)
+        public DataTable getdataCustomerMonthlyTarget(int unit, int areaid, DateTime frm, DateTime dttodate, int reportoption, int customerCOAId, string xmlString, int insertby)
         {
             try
             {
                 SprAreaBaseTargetTableAdapter bll = new SprAreaBaseTargetTableAdapter();
-                return bll.GetDataAreaBaseTarget(unit, areaid, frm,dttodate, reportoption, customerCOAId, xmlString, insertby);
+                return bll.GetDataAreaBaseTarget(unit, areaid, frm, dttodate, reportoption, customerCOAId, xmlString, insertby);
             }
             catch { return new DataTable(); }
         }
+
+        //public CustomerTDS.SprGetCustomerInfoForQuatationDataTable GetCustomerInfoForQuatition(string customerId, string userId, string unitId, DateTime dte)
+        //{
+        //    if (customerId == "" || userId == "" || unitId == "") return null;
+        //    SprGetCustomerInfoForQuatationTableAdapter ta = new SprGetCustomerInfoForQuatationTableAdapter();
+        //    return ta.GetDataGetCustomerInfoForQuatation(int.Parse(customerId), int.Parse(unitId), dte, int.Parse(userId));
+        //}
+        public CustomerTDS.SprGetCustomerInfoForQuatationDataTable GetCustomerInfoForQuatition(string customerId)
+        {
+            if (customerId == "" ) return null;
+            SprGetCustomerInfoForQuatationTableAdapter ta = new SprGetCustomerInfoForQuatationTableAdapter();
+            return ta.GetDataGetCustomerInfoForQuatation(int.Parse(customerId));
+
+
+
+        }
     }
-}
+    }
