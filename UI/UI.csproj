@@ -115,6 +115,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libray\ScriptReferenceProfiler.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
