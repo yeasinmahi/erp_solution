@@ -139,7 +139,9 @@
                        <td >
                            Project/Operation-:</td>
                      
-                         <td ><asp:ListBox ID="ListBox1" runat="server" Width="308px" Height="58px" AutoPostBack="True" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged"></asp:ListBox></td>
+                         <td ><strong>
+                             <asp:ListBox ID="ListBox1" runat="server" AutoPostBack="True" Height="58px" OnSelectedIndexChanged="ListBox1_SelectedIndexChanged" Width="308px"></asp:ListBox>
+                             </strong></td>
                    
                     <td style="text-align:right;"><asp:Button ID="BtnAddParent"  Font-Bold="true" Font-Size="Small" AutoPostback="true"  runat="server" Text="Add" OnClick="BtnAddParent_Click" ToolTip="Add Project or Operation"  />
                      </td>

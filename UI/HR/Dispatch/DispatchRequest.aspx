@@ -96,7 +96,8 @@
                 <td><asp:DropDownList ID="ddlWH" runat="server" AutoPostBack="true" CssClass="ddList" DataSourceID="odswh" DataTextField="WH" DataValueField="intWHID" OnDataBound="ddlWH_DataBound" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList>
                 <asp:ObjectDataSource ID="odswh" runat="server" SelectMethod="GetWarehouseList" TypeName="HR_BLL.Global.DaysOfWeek">
                 <SelectParameters><asp:SessionParameter Name="enroll" SessionField="sesUserID" Type="Int32" /><asp:ControlParameter ControlID="hdntype" Name="type" PropertyName="Value" Type="Int32" />
-                </SelectParameters></asp:ObjectDataSource><asp:HiddenField ID="hdnwh" runat="server"/>
+                </SelectParameters></asp:ObjectDataSource>
+                    <asp:HiddenField ID="hdnwh" runat="server"/>
                 </td>
             </tr>
             

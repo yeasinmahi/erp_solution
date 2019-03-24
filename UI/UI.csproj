@@ -115,6 +115,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libray\ScriptReferenceProfiler.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -1253,6 +1254,10 @@
     <Content Include="SAD\Order\DOCreation2.aspx" />
     <Content Include="SAD\Order\DOTransfer.aspx" />
     <Content Include="SAD\Order\GhatTransferChallanReceive.aspx" />
+    <Content Include="SAD\Order\QuatationToDOCreate.aspx" />
+    <Content Include="SAD\Order\QuationEntry.aspx" />
+    <Content Include="SAD\Order\QuationView.aspx" />
+    <Content Include="SAD\Order\QuotationEditNSave.aspx" />
     <Content Include="SAD\Order\RemoteAttach.aspx" />
     <Content Include="SAD\Order\RemoteAttachDocChecking.aspx" />
     <Content Include="SAD\Order\RemoteCrBalance.aspx" />
@@ -1297,8 +1302,10 @@
     <Content Include="SAD\Order\UploadReceiveChallan.aspx" />
     <Content Include="SAD\Order\VehicleSelect.aspx" />
     <Content Include="SAD\Order\VehicleSelectCustomize.aspx" />
+    <Content Include="SAD\Order\VehicleSelectNChallan.aspx" />
     <Content Include="SAD\Order\VehicleSelectView.aspx" />
     <Content Include="SAD\Order\VehicleSelectViewCustomize.aspx" />
+    <Content Include="SAD\Order\VehicleSelectViewForQuation.aspx" />
     <Content Include="SAD\SADCOA\CusManageForCOA.aspx" />
     <Content Include="SAD\Sales\Data\PrintSVforAccounts.aspx" />
     <Content Include="SAD\Sales\DOEntry.aspx" />
@@ -6311,6 +6318,34 @@
       <DependentUpon>GhatTransferChallanReceive.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\OderByTrip.cs" />
+    <Compile Include="SAD\Order\QuatationToDOCreate.aspx.cs">
+      <DependentUpon>QuatationToDOCreate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\QuatationToDOCreate.aspx.designer.cs">
+      <DependentUpon>QuatationToDOCreate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\QuationEntry.aspx.cs">
+      <DependentUpon>QuationEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\QuationEntry.aspx.designer.cs">
+      <DependentUpon>QuationEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\QuationView.aspx.cs">
+      <DependentUpon>QuationView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\QuationView.aspx.designer.cs">
+      <DependentUpon>QuationView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\QuotationEditNSave.aspx.cs">
+      <DependentUpon>QuotationEditNSave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\QuotationEditNSave.aspx.designer.cs">
+      <DependentUpon>QuotationEditNSave.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\RemoteAttach.aspx.cs">
       <DependentUpon>RemoteAttach.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6619,6 +6654,13 @@
     <Compile Include="SAD\Order\VehicleSelectCustomize.aspx.designer.cs">
       <DependentUpon>VehicleSelectCustomize.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Order\VehicleSelectNChallan.aspx.cs">
+      <DependentUpon>VehicleSelectNChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\VehicleSelectNChallan.aspx.designer.cs">
+      <DependentUpon>VehicleSelectNChallan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\VehicleSelectView.aspx.cs">
       <DependentUpon>VehicleSelectView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6632,6 +6674,13 @@
     </Compile>
     <Compile Include="SAD\Order\VehicleSelectViewCustomize.aspx.designer.cs">
       <DependentUpon>VehicleSelectViewCustomize.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\VehicleSelectViewForQuation.aspx.cs">
+      <DependentUpon>VehicleSelectViewForQuation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\VehicleSelectViewForQuation.aspx.designer.cs">
+      <DependentUpon>VehicleSelectViewForQuation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\SADCOA\CusManageForCOA.aspx.cs">
       <DependentUpon>CusManageForCOA.aspx</DependentUpon>
