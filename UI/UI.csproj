@@ -115,6 +115,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libray\ScriptReferenceProfiler.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
@@ -429,6 +430,7 @@
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
     <Content Include="HR\Reports\Lync_Bill_Report.aspx" />
+    <Content Include="HR\Reports\Overall_Status_Report.aspx" />
     <Content Include="HR\Reports\PaySlipReport.aspx" />
     <Content Include="HR\Roster\RosterAdd.aspx" />
     <Content Include="HR\TourPlan\CustomerBankGuaranteeReport.aspx" />
@@ -3256,6 +3258,13 @@
     </Compile>
     <Compile Include="HR\Reports\Lync_Bill_Report.aspx.designer.cs">
       <DependentUpon>Lync_Bill_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Overall_Status_Report.aspx.cs">
+      <DependentUpon>Overall_Status_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Overall_Status_Report.aspx.designer.cs">
+      <DependentUpon>Overall_Status_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\PaySlipReport.aspx.cs">
       <DependentUpon>PaySlipReport.aspx</DependentUpon>

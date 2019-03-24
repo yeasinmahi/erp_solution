@@ -69,6 +69,16 @@
              $("#hdnDivisionSale").fadeOut("slow");
         }
 
+         function OpenHdnImPairmentDiv() {
+             $("#hdnDivisionSale").fadeIn("slow");
+             document.getElementById('hdnDivisionSale').style.visibility = 'visible';
+         }
+
+         function CloseHdnImPairmentDiv() {
+
+             $("#hdnDivisionSale").fadeOut("slow");
+        }
+
          function Clasification() { 
             
             var e = document.getElementById("ddlReAssetType");
@@ -873,7 +883,7 @@
                  <td><asp:DropDownList ID="ddlTransactionType" runat="server" AutoPostBack="true" CssClass="txtBox" OnSelectedIndexChanged="ddlTransactionType_SelectedIndexChanged">
                      <asp:ListItem Value="0" Text="Select"></asp:ListItem>
                      <asp:ListItem Value="3" Text="Transfer"></asp:ListItem>
-                     <%--<asp:ListItem Value="7" Text="Disposal/Retirment"></asp:ListItem>--%>
+                     <asp:ListItem Value="7" Text="Impairment"></asp:ListItem>
                      <asp:ListItem Value="6" Text="Revalution"></asp:ListItem>
                      <asp:ListItem Value="4" Text="Re-Clasification"></asp:ListItem>
                      <asp:ListItem Value="5" Text="Sale/Disposal"></asp:ListItem> 
@@ -1022,7 +1032,7 @@
 
                 <div id="hdnDivisionDisposal"     class="hdnDivisionDisposal"  style="width:auto;   height:500px;">
                 <table style="width:auto;  float:left; " >   
-                <tr><td style="text-align:left;" colspan="4"><asp:Label ID="Label18" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Disposal/Retirement: "></asp:Label></td>
+                <tr><td style="text-align:left;" colspan="4"><asp:Label ID="Label18" CssClass="lbl" runat="server" Font-Size="small" Font-Bold="true"  Text="Asset Impairment: "></asp:Label></td>
                 </tr>
                 
                 
@@ -1102,6 +1112,10 @@
                  <td style="text-align:right;"><asp:Label ID="Label37" CssClass="lbl" runat="server" Text="Capital Loss/Gain:"></asp:Label></td>
                  <td><asp:TextBox ID="txtDispoCapitalLoss" runat="server"   CssClass="txtBox"></asp:TextBox></td>                      
                  </tr>
+                    <tr>
+                         <td style="text-align:right;"><asp:Label ID="Label100" CssClass="lbl" runat="server" Text="Fair Market"></asp:Label></td>
+                         <td><asp:TextBox ID="txtDisFairMarket" runat="server" onkeyup="LossGain();" TextMode="Number" CssClass="txtBox"></asp:TextBox></td> 
+                    </tr>
                      <tr>
                       <td colspan="2" style="text-align:right;"><asp:Button ID="btnDisposal" runat="server" Text="Save" OnClientClick="return Disposal();" OnClick="btnDisposal_Click" /> </td>                          
                        
@@ -1110,6 +1124,9 @@
                     </tr>      
                 </table>
                 </div>
+
+
+
          <%--   General Asset Transaction Revulation        class="hdnDivisionRevalution" --%> 
                 <div id="hdnDivisionRevalution"  class="hdnDivisionRevalution"  style="width:auto;  height:500px;">
                 <table style="width:auto;  float:left; " >   
