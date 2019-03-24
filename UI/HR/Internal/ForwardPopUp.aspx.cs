@@ -24,9 +24,10 @@ namespace UI.HR.Internal
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-       
-           
+          
+
+
+
             if (!IsPostBack)
             {
 
@@ -93,19 +94,10 @@ namespace UI.HR.Internal
             List<string> result = new List<string>();
            
             result = objAutoSearch_BLL.AutoSearchEmpDataCC(strSearchKeyCC);
-            return result;
-
-
-
-
+            return result; 
 
         }
-
-       
-
-        
-
-       
+         
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
@@ -306,5 +298,6 @@ namespace UI.HR.Internal
 
           
         }
+
     }
 }

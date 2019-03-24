@@ -277,7 +277,7 @@ namespace UI.PaymentModule
         {
             try
             {
-                e.Row.Cells[16].Visible = new Billing_BLL().IsPermitedToRemoveMrr(Enroll);
+                e.Row.Cells[17].Visible = new Billing_BLL().IsPermitedToRemoveMrr(Enroll);
 
             }
             catch (Exception ex)

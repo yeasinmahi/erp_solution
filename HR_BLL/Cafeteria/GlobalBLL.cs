@@ -38,11 +38,13 @@ namespace HR_BLL.Cafeteria
             { return adp.GetMealApprReport(intEnroll); }
             catch { return new DataTable(); }
         }
-        public DataTable GetMenuList() 
+        public DataTable GetMenuList(int intLoginBy) 
         {
-            TblDayTableAdapter adp = new TblDayTableAdapter();
+            //TblDayTableAdapter adp = new TblDayTableAdapter();
+            SprMenuListTableAdapter adp = new SprMenuListTableAdapter();
+
             try
-            { return adp.GetMenuList(); }
+            { return adp.GetMenuList(intLoginBy); }
             catch { return new DataTable(); }
         }
         public string InsertEntryCafeteria(int intPart, DateTime tdate, int intEnroll, int intType, int intMealOption, int intMealFor, int intCountMeal, int isOwnGuest, int isPayable, string strNarration, int intActionBy)
@@ -63,11 +65,11 @@ namespace HR_BLL.Cafeteria
             { return adp.GetCateteriaR(intPart, intEnroll); }
             catch { return new DataTable(); }
         }
-        public DataTable GetCafeteriaRAll(int intPart, DateTime fdate, DateTime tdate, int intRptType)
+        public DataTable GetCafeteriaRAll(int intPart, DateTime fdate, DateTime tdate, int intRptType, int intLoginBy)
         {
             SprCafeteriaReportAllTableAdapter adp = new SprCafeteriaReportAllTableAdapter();
             try
-            { return adp.GetCafeteriaRAll(intPart, fdate, tdate, intRptType); }
+            { return adp.GetCafeteriaRAll(intPart, fdate, tdate, intRptType, intLoginBy); }
             catch { return new DataTable(); }
         }
         public DataTable GetMealStatus(int intEnroll)
