@@ -56,7 +56,8 @@
         </table> 
           <table>
               <tr>
-             <td><asp:GridView ID="dgvOrder" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
+             <td>
+                 <asp:GridView ID="dgvOrder" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"  
             BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical">
             <AlternatingRowStyle BackColor="#CCCCCC" />
             <Columns>
@@ -71,7 +72,9 @@
             <asp:TemplateField HeaderText="Order Qty"> <ItemTemplate> <asp:TextBox ID="txtQty" runat="server"></asp:TextBox></ItemTemplate>  </asp:TemplateField>
                                      
             </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-            </asp:GridView></td>
+            </asp:GridView>
+
+             </td>
               </tr>
           </table>
          

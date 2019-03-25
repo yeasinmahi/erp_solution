@@ -940,6 +940,24 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.TextBox txtDispoCapitalLoss;
         
         /// <summary>
+        /// Label100 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label100;
+        
+        /// <summary>
+        /// txtDisFairMarket control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDisFairMarket;
+        
+        /// <summary>
         /// btnDisposal control.
         /// </summary>
         /// <remarks>

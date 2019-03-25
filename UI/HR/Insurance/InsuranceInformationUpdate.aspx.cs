@@ -1,8 +1,6 @@
 ﻿using HR_BLL.Settlement;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -10,7 +8,7 @@ using UI.ClassFiles;
 
 namespace UI.HR.Insurance
 {
-    public partial class InsuranceInformationUpdate : System.Web.UI.Page
+    public partial class InsuranceInformationUpdate : BasePage
     {
         GlobalClass obj = new GlobalClass();
         DataTable dt;

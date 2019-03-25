@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Net;
 
@@ -53,6 +55,47 @@ namespace Utility
                 return false;
             }
             
+
+        }
+
+        public static void ImageCompress(this Stream stream, float newWidth,  string destinationPath)
+        {
+            using (var image = Image.FromStream(stream))
+            {
+                int height = image.Height;
+                int width = image.Width;
+                float sngRatio = ((float)width / height);
+                //float newWidth = 600; // New Width of Image in Pixel  
+                float newHeight = newWidth / sngRatio; // New Height of Image in Pixel  
+                var thumbImg = new Bitmap((int)newWidth, (int)newHeight);
+                var thumbGraph = Graphics.FromImage(thumbImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imgRectangle = new Rectangle(0, 0, (int)newWidth, (int)newHeight);
+                thumbGraph.DrawImage(image, imgRectangle);
+                thumbImg.Save(destinationPath, image.RawFormat);
+            }
+
+        }
+        public static void ImageCompress(this Stream stream, string destinationPath)
+        {
+            using (var image = Image.FromStream(stream))
+            {
+                int height = image.Height;
+                int width = image.Width;
+                float sngRatio = ((float)width / height);
+                float newWidth = 600; // New Width of Image in Pixel  
+                float newHeight = newWidth / sngRatio; // New Height of Image in Pixel  
+                var thumbImg = new Bitmap((int)newWidth, (int)newHeight);
+                var thumbGraph = Graphics.FromImage(thumbImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imgRectangle = new Rectangle(0, 0, (int)newWidth, (int)newHeight);
+                thumbGraph.DrawImage(image, imgRectangle);
+                thumbImg.Save(destinationPath, image.RawFormat);
+            }
 
         }
     }
