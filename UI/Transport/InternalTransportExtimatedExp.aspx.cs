@@ -60,6 +60,9 @@ namespace UI.Transport
             
             if (!IsPostBack)
             {
+                //=== As per Transport Department =============================================
+                btnUpdate.Visible = false;
+                               
                 try
                 {
                     File.Delete(filePathForXML); dgvFuelCost.DataSource = ""; dgvFuelCost.DataBind();
