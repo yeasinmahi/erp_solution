@@ -63,6 +63,8 @@ namespace UI.SAD.Order
             int AttachemtTypeid = int.Parse(drdlAttachType.SelectedValue.ToString());
             hdnJobstation.Value = HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString();
             int jobstation = Convert.ToInt32(hdnJobstation.Value);
+
+
           
             try
             {
@@ -72,14 +74,29 @@ namespace UI.SAD.Order
                 decimal length = dfile.Length;
                 path = dfile;
 
+                    string Dfiles = DUpload.PostedFile.FileName;
+                    string FileExtension = Dfiles.Substring(Dfiles.LastIndexOf('.') + 1).ToLower();
+                    if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
+                    {
 
-                DUpload.PostedFile.SaveAs(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
-                FileUploadFTP(Server.MapPath("~/SAD/Order/Data/OR/"), dfile, "ftp://ftp.akij.net/TADAPictures/", "erp@akij.net", "erp123");
-                File.Delete(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
-                int intPart = 1;
-                bll.getTADAAttachinsertion(dfile, length, path, enrol, unit, dteFromDate, AttachemtTypeid, jobstation, intPart);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Uploaded Bill docuement');", true);
-               
+
+
+                        DocumentUpload_BLL objDocUp = new DocumentUpload_BLL();
+                        Stream strm = DUpload.PostedFile.InputStream;
+                        objDocUp.ImageCompress(strm, Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
+
+
+                        //DUpload.PostedFile.SaveAs(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
+                        FileUploadFTP(Server.MapPath("~/SAD/Order/Data/OR/"), dfile, "ftp://ftp.akij.net/TADAPictures/", "erp@akij.net", "erp123");
+                        File.Delete(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
+                        int intPart = 1;
+                        bll.getTADAAttachinsertion(dfile, length, path, enrol, unit, dteFromDate, AttachemtTypeid, jobstation, intPart);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Uploaded Bill docuement');", true);
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please  save as jpeg OR jpg or png format image ');", true);
+                    }
                         
                 
             }
