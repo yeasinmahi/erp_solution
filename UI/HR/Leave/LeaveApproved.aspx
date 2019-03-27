@@ -15,7 +15,16 @@
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />  
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
     <script type="text/javascript" src="../../Content/JS/scriptLeaveProcess.js"></script>
-
+    <script>
+    function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
+        </script>
     
 </head>
 <body>
@@ -51,8 +60,9 @@
     </cc1:AlwaysVisibleControlExtender>
 <%--===========================Start My Code From Here======== DataFormatString="{0:yyyy-MM-dd}"=====================--%>
    
-    <div class="divs_content_container"> 
+    <div class="divs_content_container">
     <div class="tabs_container"> Employee Leave Application Process :<hr /></div>
+        <asp:HiddenField ID="hdnEmpCode" runat="server"/><asp:HiddenField ID="hdnLeaveType" runat="server"/>
         <table border="0px"; style="width:auto"; align="center" >
 
         <tr><td style="text-align:right;"><asp:Label ID="lblleavelist" CssClass="lbl" runat="server" Text="Select Application Type : ">
@@ -68,22 +78,81 @@
             
             <asp:GridView ID="dgvUPLeaveApplication" runat="server" AutoGenerateColumns="False" PageSize="25" AllowPaging="True" SkinID="sknGrid2" Font-Size="10px" DataSourceID="odsunapproved" BackColor="White">
               <Columns>
-                <asp:BoundField DataField="strEmployeeName" HeaderText="Name" ItemStyle-HorizontalAlign="Center" SortExpression="strEmployeeName" Visible="true">
-                <ItemStyle HorizontalAlign="Left" Width="325px" /></asp:BoundField>
-                <asp:BoundField DataField="dateAppliedFromDate" HeaderText="From-Date" ItemStyle-HorizontalAlign="Center" SortExpression="dateAppliedFromDate" DataFormatString="{0:yyyy-MM-dd}">
-                <ItemStyle Width="100px" /></asp:BoundField>
-                <asp:BoundField DataField="dateAppliedToDate" HeaderText="To-Date" ItemStyle-HorizontalAlign="Center" SortExpression="dateAppliedToDate" DataFormatString="{0:yyyy-MM-dd}">
-                <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:BoundField>
-                <asp:BoundField DataField="strLeaveType" HeaderText="Leave Type" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100px" SortExpression="strLeaveType">
-                <ItemStyle HorizontalAlign="Left" Width="150px" /></asp:BoundField>
-                <asp:BoundField DataField="TotalDays" HeaderText="Total Days" ReadOnly="True" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="35px" SortExpression="TotalDays">
-                <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:BoundField>                
-                <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Right">
+                <asp:TemplateField HeaderText="Code" SortExpression="strEmployeeCode" Visible="False">
+                    
                 <ItemTemplate>
-                <a class="nextclick" href="#" onclick="<%#  GetJSFunctionString(""+Eval("intApplicationId"),""+Eval("strEmployeeCode"),""+Eval("strEmployeeName"),""+
-                Eval("dateAppliedFromDate"),""+Eval("dateAppliedToDate"),""+Eval("intLeaveTypeID"),""+Eval("strLeaveType"),""+Eval("TotalDays"),""+Eval("strJobType"),""+Eval("intRemainingDays"))  %>">
-                Process</a></ItemTemplate>
+                    <asp:Label ID="lblCode" runat="server" Text='<%# Bind("strEmployeeCode") %>'></asp:Label>
+                </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Left" Width="325px" />
                </asp:TemplateField>                                 
+                  <asp:TemplateField HeaderText="Name" SortExpression="strEmployeeName">
+                      <ItemTemplate>
+                          <asp:Label ID="lblName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="325px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="From-Date" SortExpression="dateAppliedFromDate">
+                      <ItemTemplate>
+                          <asp:Label ID="lblFromDate" runat="server" Text='<%# Bind("dateAppliedFromDate", "{0:yyyy-MM-dd}") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Center" Width="100px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="To-Date" SortExpression="dateAppliedToDate">
+                      <ItemTemplate>
+                          <asp:Label ID="lblToDate" runat="server" Text='<%# Bind("dateAppliedToDate", "{0:yyyy-MM-dd}") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="100px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="Leave Type" SortExpression="strLeaveType">
+                      <ItemTemplate>
+                          <asp:Label ID="lblLeaveType" runat="server" Text='<%# Bind("strLeaveType") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="150px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="Leave Type ID" SortExpression="intLeaveTypeID" Visible="false">
+                      <ItemTemplate>
+                          <asp:Label ID="lblLeaveTypeID" runat="server" Text='<%# Bind("intLeaveTypeID") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="150px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="Total Days" SortExpression="TotalDays">
+                      <ItemTemplate>
+                          <asp:Label ID="lblTotalday" runat="server" Text='<%# Bind("TotalDays") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="100px" />
+                  </asp:TemplateField>
+
+                  <%-- ========  visible false ===========--%>
+
+                   <asp:TemplateField HeaderText="strJobType" SortExpression="strJobType" Visible="false">
+                      <ItemTemplate>
+                          <asp:Label ID="lblstrJobType" runat="server" Text='<%# Bind("strJobType") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="100px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="intRemainingDays" SortExpression="intRemainingDays" Visible="false">
+                      <ItemTemplate>
+                          <asp:Label ID="lblintRemainingDays" runat="server" Text='<%# Bind("intRemainingDays") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="100px" />
+                  </asp:TemplateField>
+                  <asp:TemplateField HeaderText="intApplicationId" SortExpression="TotaintApplicationIdlDays" Visible="false">
+                      <ItemTemplate>
+                          <asp:Label ID="lblintApplicationId" runat="server" Text='<%# Bind("intApplicationId") %>'></asp:Label>
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Left" Width="100px" />
+                  </asp:TemplateField>
+                  
+                  <%-- ======== end visible false ===========--%>
+                  <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Right">
+                      <ItemTemplate>
+                          <%--<a class="nextclick" href="#" onclick="<%#  GetJSFunctionString(""+Eval("intApplicationId"),""+Eval("strEmployeeCode"),""+Eval("strEmployeeName"),""+
+                Eval("dateAppliedFromDate"),""+Eval("dateAppliedToDate"),""+Eval("intLeaveTypeID"),""+Eval("strLeaveType"),""+Eval("TotalDays"),""+Eval("strJobType"),""+Eval("intRemainingDays"))  %>">
+                Process</a>--%>
+                          <asp:Button ID="btnProcess" runat="server" OnClick="btnProcess_Click" Text="Process" />
+                      </ItemTemplate>
+                      <ItemStyle HorizontalAlign="Right" />
+                  </asp:TemplateField>
               </Columns>
             </asp:GridView>
 
@@ -149,12 +218,14 @@
         </tr> 
               
     </table>
+        <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:500px; border:0px solid red;"></iframe>
     </div>
-
+    
 
 <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
     </asp:UpdatePanel>
     </form>
+    
 </body>
 </html>
