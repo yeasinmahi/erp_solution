@@ -28,8 +28,7 @@ namespace GLOBAL_BLL
                 var imgRectangle = new Rectangle(0, 0, (int)newWidth, (int) newHeight);
                 thumbGraph.DrawImage(image, imgRectangle);
                 thumbImg.Save(targetPath, image.RawFormat);
-            }
-            
+            }            
         }
 
         public void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
