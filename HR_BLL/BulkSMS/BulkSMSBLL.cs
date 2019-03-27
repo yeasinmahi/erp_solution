@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 using HR_DAL.BulkSMS.BulkSMSDALTableAdapters;
 using HR_DAL.NewProject.New_ProjectTDSTableAdapters;
 using HR_DAL.NewProject;
