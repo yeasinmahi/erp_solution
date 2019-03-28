@@ -28,10 +28,25 @@ namespace GLOBAL_BLL
                 var imgRectangle = new Rectangle(0, 0, (int)newWidth, (int) newHeight);
                 thumbGraph.DrawImage(image, imgRectangle);
                 thumbImg.Save(targetPath, image.RawFormat);
-            }
-            
+            }            
         }
 
+        public void ReduceImageSize(double scaleFactor, Stream sourcePath, string targetPath)
+        {
+            using (var image = System.Drawing.Image.FromStream(sourcePath))
+            {
+                var newWidth = (int)(image.Width * scaleFactor);
+                var newHeight = (int)(image.Height * scaleFactor);
+                var thumbnailImg = new Bitmap(newWidth, newHeight);
+                var thumbGraph = Graphics.FromImage(thumbnailImg);
+                thumbGraph.CompositingQuality = CompositingQuality.HighQuality;
+                thumbGraph.SmoothingMode = SmoothingMode.HighQuality;
+                thumbGraph.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                var imageRectangle = new Rectangle(0, 0, newWidth, newHeight);
+                thumbGraph.DrawImage(image, imageRectangle);
+                thumbnailImg.Save(targetPath, image.RawFormat);
+            }
+        }
 
 
 
