@@ -321,6 +321,7 @@
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\Cafeteria\NEW ERP.png" />
     <Content Include="Content\images\img\105.png" />
     <Content Include="Content\images\img\13.png" />
     <Content Include="Content\images\img\15.png" />

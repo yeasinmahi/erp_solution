@@ -15,6 +15,24 @@
   gtag('js', new Date());
   gtag('config', 'UA-125570863-1');
 </script> 
+    <style>
+        .newerp{
+            background:#4cff00;
+            border-radius:5px;
+            box-shadow: 2px 2px 2px 0px;
+            
+        }
+        .blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+    </style>
+
 </head>
 <body class="body">
     <form id="form2" runat="server">       
@@ -28,6 +46,15 @@
                 </td>
                 
                 <td align="right" style="vertical-align:top;">
+                    
+                    <asp:HyperLink ID="hplStandard"  CssClass="blink_me" NavigateUrl="http://deverp.akij.net/" runat="server"  ForeColor="Green"  
+                Font-Bold="True" ImageHeight="50px"  ImageUrl="~/Content/images/Cafeteria/NEW ERP.png" Target="_blank"><blink>Test </blink></asp:HyperLink>
+                  
+                    
+                </td>
+                <td align="right" style="vertical-align:top;">
+                    
+                    
                     <a class="signout" href="Logout.aspx" title="Sign Out" style="padding-right:20px; width:200px;">Sign Out</a>                     
                 </td>
                 
