@@ -205,23 +205,35 @@ namespace UI.SAD.Order
             decimal count = 0, promCount = 0;
             decimal wgt = 0, promWgt = 0;
             decimal? extAmount = 0;
-
+            //decimal? chamount  = 0;
 
             string challanNo = "", doNo = "", customerName = "", customerPhone = ""
                 , distributionPoint = "", contactAt = "", contactPhone = ""
                     , delevaryAddress = "", other = ""
                 , extra = "", charge = "", logistic = "", incentive = "";
             bool isLogBasedOnUOM = false, isCharBasedOnUOM = false, isIncenBasedOnUOM = false;
-            string dodate;
-
+            string dodate, chamount="";
             SAD_BLL.Sales.Report.Challan ch = new SAD_BLL.Sales.Report.Challan();
-            ChallanTDS.SprTripChallanInfoCustomizeDataTable table = ch.GetTripDataCustomize(id, Session[SessionParams.USER_ID].ToString(), separator.ToString()
-                , ref date, ref unitName, ref unitAddress, ref userName
-                , ref challanNo, ref doNo, ref customerName, ref customerPhone, ref distributionPoint
-                , ref contactAt, ref contactPhone, ref delevaryAddress, ref other
-                , ref vehicle, ref extra, ref extAmount
-                , ref driver, ref driverPh, ref charge, ref logistic, ref incentive
-                , ref isLogBasedOnUOM, ref isCharBasedOnUOM, ref isIncenBasedOnUOM);
+            DataTable dtamnt = new DataTable();
+            //SprTripChallanInfoWithTotalAmnt
+
+
+
+            //ChallanTDS.SprTripChallanInfoCustomizeDataTable table = ch.GetTripDataCustomize(id, Session[SessionParams.USER_ID].ToString(), separator.ToString()
+            //    , ref date, ref unitName, ref unitAddress, ref userName
+            //    , ref challanNo, ref doNo, ref customerName, ref customerPhone, ref distributionPoint
+            //    , ref contactAt, ref contactPhone, ref delevaryAddress, ref other
+            //    , ref vehicle, ref extra, ref extAmount
+            //    , ref driver, ref driverPh, ref charge, ref logistic, ref incentive
+            //    , ref isLogBasedOnUOM, ref isCharBasedOnUOM, ref isIncenBasedOnUOM);
+
+            ChallanTDS.SprTripChallanInfoWithTotalAmntDataTable table = ch.GetTripDataCustomize1(id, Session[SessionParams.USER_ID].ToString(), separator.ToString()
+               , ref date, ref unitName, ref unitAddress, ref userName
+               , ref challanNo, ref doNo, ref customerName, ref customerPhone, ref distributionPoint
+               , ref contactAt, ref contactPhone, ref delevaryAddress, ref other
+               , ref vehicle, ref extra, ref extAmount
+               , ref driver, ref driverPh, ref charge, ref logistic, ref incentive
+               , ref isLogBasedOnUOM, ref isCharBasedOnUOM, ref isIncenBasedOnUOM, ref chamount);
 
             if (table.Rows.Count > 0)
             {
@@ -237,7 +249,7 @@ namespace UI.SAD.Order
                 if (maxChallan)
                     tempD.Append(Banner("DELIVERY CHALLAN", challanNo, doNo, unitName, unitAddress, CommonClass.GetShortDateAtLocalDateFormat(date)
                     , customerName, CommonClass.GetTimeAtLocalDateFormat(date)
-                    , delevaryAddress, vehicle, contactAt, driver, contactPhone, driverPh).ToString());
+                    , delevaryAddress, vehicle, contactAt, driver, contactPhone, driverPh, chamount).ToString());
 
                 {
                    
@@ -347,9 +359,28 @@ namespace UI.SAD.Order
                 if (maxChallan)
                 {
 
-                   
+                    StringBuilder temp = new StringBuilder();
+                    dtamnt = ch.getcustomertripvschamount(int.Parse(tripId), customerId);
+                    for (int L = 0; L < dtamnt.Rows.Count; L++)
+                    {
+                        string totamnt = dtamnt.Rows[0]["monAmount"].ToString();
+                        Session["totamnt"] = totamnt;
+                        //sbtotaldelvparybase.Append("<td style=\"text-align:right\">" + totamnt + "</td>");
+                        lblamnt.Text = totamnt;
 
-                    chdt = bllsv.getcustomerbasetotalchallanqnt(int.Parse(tripId), customerId);
+
+                        temp.Append(@"<tr>
+                                  <td>Taka</td>
+                                   <td colspan=""2"">
+                    " + totamnt + @"
+                </td>
+                        </tr>");
+                    }
+
+
+
+
+                        chdt = bllsv.getcustomerbasetotalchallanqnt(int.Parse(tripId), customerId);
                     for (int K = 0; K < chdt.Rows.Count; K++)
                     {
                         string chProduct = chdt.Rows[K]["strProductName"].ToString();
@@ -508,7 +539,7 @@ namespace UI.SAD.Order
         private StringBuilder Banner(string heading, string challanNo, string doNo, string unitName, string unitAddr
             , string date, string customer, string time
             , string address, string vehicle, string contactPerson
-            , string driver, string phone, string driverPhone)
+            , string driver, string phone, string driverPhone,string chamount)
         {
             StringBuilder temp = new StringBuilder();
 
@@ -594,9 +625,10 @@ namespace UI.SAD.Order
                     " + phone + @"
                 </td>
                 <td>
-                                        Contact No</td>
+                                        Ref: Challan </td>
                 <td>
-                    " + driverPhone + @"</td>
+                    " + chamount + @"</td>
+
             </tr>
             <tr style=""height:10px;"">
                 <td colspan=""5"">

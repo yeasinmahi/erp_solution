@@ -155,7 +155,7 @@
        <table style="width:600px; outline-color:blue;table-layout:auto;vertical-align: top; background-color: #808080; height: 200px;"class="tblrowodd" >
            <tr  class="tblrowodd">
                   
-       <td style="text-align:right;" > <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="To Address:"></asp:Label></td>
+           <td style="text-align:right;" > <asp:Label ID="LblAsset" runat="server" CssClass="lbl" font-size="small" Text="To Address:"></asp:Label></td>
           <td style="text-align:left;"> <asp:TextBox ID="TxtEmpAddress" runat="server" CssClass="txtBox" Width="457px" AutoPostBack="false" onchange="javascript: Changed();"  Font-Bold="False"  ></asp:TextBox>
             <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" /></td>         
              
@@ -168,7 +168,7 @@
              
                     </tr>
            <tr><td></td>
-                <td style="text-align:left;"> <asp:Label ID="LblCCmail" font-size="small" ForeColor="YellowGreen" runat="server" CssClass="lbl"></asp:Label></td>
+                <td style="text-align:left;"><asp:Label ID="LblCCmail" font-size="small" ForeColor="YellowGreen" runat="server" CssClass="lbl"></asp:Label></td>
     
            </tr>
                 

@@ -135,7 +135,19 @@ namespace UI.Import
                 string localPath = Server.MapPath("~/Import/Data/") + filename;
                 try
                 {
-                    fileUpload.SaveAs(localPath);
+                    string extension = Path.GetExtension(fileUpload.FileName);
+                    if (extension != null && (extension.ToLower().Contains("jpeg") ||
+                                              extension.ToLower().Contains("jpg") ||
+                                              extension.ToLower().Contains("png")))
+                    {
+                        MemoryStream ms = new MemoryStream(fileUpload.FileBytes);
+                        ms.ImageCompress(600, localPath);
+                    }
+                    else
+                    {
+                        fileUpload.SaveAs(localPath);
+                    }
+                    
                     
                     string strFilePath = "Import_Doc/" + filename;
                     string ftpPath = ftp + strFilePath;

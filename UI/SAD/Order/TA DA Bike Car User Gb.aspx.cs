@@ -67,6 +67,15 @@ namespace UI.SAD.Order
                     txtDriverDA.Enabled = false;
                     txtDriverHotel.Enabled = false;
                     txtOtherCost.Enabled = false;
+
+                    txtPetrolQnt.Enabled = false;
+                    txtPetrolCost.Enabled = false;
+                    txtCNGQnt.Enabled = false;
+                    txtCNGCost.Enabled = false;
+                    txtMobilQnt.Enabled = false;
+                    txtMobilCost.Enabled = false;
+                    txtOtherVh.Enabled = false;
+                    txtCourier.Enabled = false;
                 }
                 else
                 {
@@ -737,7 +746,7 @@ namespace UI.SAD.Order
                                 gtotalphcopy = prstphcopy + prevphcopy;
 
 
-                                if (gttoLubricantcost > 501)
+                                if (gttoLubricantcost > 5501)
                                 { ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Limit Exceed for Lubricant bill !')", true); }
                                 if ( gtotalphcopy > 101)
                                 { ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Limit Exceed for Photocopy bill !')", true); }

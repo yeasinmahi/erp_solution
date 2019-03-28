@@ -1,4 +1,5 @@
-﻿using SAD_BLL.Customer.Report;
+﻿using GLOBAL_BLL;
+using SAD_BLL.Customer.Report;
 using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
@@ -77,19 +78,34 @@ namespace UI.SAD.Order
                 dfile = strchallan + subattach + "_" + Path.GetFileName(DUpload.PostedFile.FileName);
                 length = dfile.Length;
                 path = dfile;
-                DUpload.PostedFile.SaveAs(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
-                FileUploadFTP(Server.MapPath("~/SAD/Order/Data/OR/"), dfile, "ftp://ftp.akij.net/ChallanReceived/", "erp@akij.net", "erp123");
-                File.Delete(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
-                intPart = 1;
-                custid = 0;
-                dt = bll.GetReciveChallanDetInfo(dfile, length, path, enrol, unit, dteFromDate, AttachemtTypeid, strchallan, jobstation, intPart, dttodate, custid);
-                msg = dt.Rows[0]["Messages"].ToString();
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Messages"].ToString() + "');", true);
-
+                string Dfiles = DUpload.PostedFile.FileName;
+                string FileExtension = Dfiles.Substring(Dfiles.LastIndexOf('.') + 1).ToLower();
+                if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
+                {
+                    DocumentUpload_BLL objDocUp = new DocumentUpload_BLL();
+                    Stream strm = DUpload.PostedFile.InputStream;
+                    objDocUp.ImageCompress(strm, Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
 
 
 
+                    DUpload.PostedFile.SaveAs(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
+                    FileUploadFTP(Server.MapPath("~/SAD/Order/Data/OR/"), dfile, "ftp://ftp.akij.net/ChallanReceived/", "erp@akij.net", "erp123");
+                    File.Delete(Server.MapPath("~/SAD/Order/Data/OR/") + dfile);
+                    intPart = 1;
+                    custid = 0;
+                    dt = bll.GetReciveChallanDetInfo(dfile, length, path, enrol, unit, dteFromDate, AttachemtTypeid, strchallan, jobstation, intPart, dttodate, custid);
+                    msg = dt.Rows[0]["Messages"].ToString();
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Messages"].ToString() + "');", true);
+
+
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please  save as jpeg OR jpg or png format image ');", true);
+
+                }
             }
             catch
             {

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
+using HR_BLL.Employee;
 
 namespace UI.HR.Leave
 {
@@ -16,7 +17,7 @@ namespace UI.HR.Leave
         string location = "HR";
         string start = "starting HR/Leave/LeaveApproved.aspx";
         string stop = "stopping HR/Leave/LeaveApproved.aspx";
-
+        public static EmployeeBasicInfo bll = new EmployeeBasicInfo();
         string alertMessage = ""; int payStatus; string applicationStatus;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -41,11 +42,12 @@ namespace UI.HR.Leave
             }
         }
 
-        public string GetJSFunctionString(string appID, string empCode, string empName, string frmDate, string todate, string lvTypeID, string lvType, string totaldys, string empJobType, string remainingDays)
+        public void LoadReport(string enroll,string lvTypeID)
         {
-            return "ShowApprovedDiv('" + appID + "','" + empCode + "','" + empName + "','" + frmDate + "','" + todate + "','" + lvTypeID + "','" + lvType + "','" + totaldys + "','" + empJobType + "','" + remainingDays + "' )";
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/HR/Employee_Leave_Status" + "&enroll="+ enroll + "&leaveType=" +lvTypeID + "&rc:LinkTarget=_self";
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+            LoadIFrame(frame.ClientID, url);
         }
-
         public void Submit()
         {
             var fd = log.GetFlogDetail(start, location, "Submit", null);
@@ -90,6 +92,36 @@ namespace UI.HR.Leave
             // ends
             tracker.Stop();
         }
+      
+        protected void btnProcess_Click(object sender, EventArgs e)
+        {
+            SetVisibilityModal(true);
 
+            Button btn = (Button)sender;
+            GridViewRow row = (GridViewRow)btn.NamingContainer;
+            string code = Convert.ToString((row.FindControl("lblCode") as Label).Text); 
+            string LeaveTypeID = Convert.ToString((row.FindControl("lblLeaveTypeID") as Label).Text);
+            string enroll = bll.Get_EmpID_By_EmpCode(code);
+            LoadReport(enroll, LeaveTypeID);
+
+            string appID = Convert.ToString((row.FindControl("lblintApplicationId") as Label).Text);
+            string empName = Convert.ToString((row.FindControl("lblName") as Label).Text);
+            string frmDate = Convert.ToString((row.FindControl("lblFromDate") as Label).Text);
+            string todate = Convert.ToString((row.FindControl("lblToDate") as Label).Text);
+            string totaldys = Convert.ToString((row.FindControl("lblTotalday") as Label).Text);
+            string lvType = Convert.ToString((row.FindControl("lblLeaveType") as Label).Text);
+            string empJobType = Convert.ToString((row.FindControl("lblstrJobType") as Label).Text);
+            string remainingDays = Convert.ToString((row.FindControl("lblintRemainingDays") as Label).Text);
+
+
+            txtCode.Text = code;
+            txtEmployeeName.Text = empName;
+            txtDteFrom.Text = frmDate;
+            txtDteTo.Text = todate;
+            txtJobStatus.Text = empJobType;
+            txtRemainingDays.Text = remainingDays;
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "app", "ShowApprovedDiv('" + appID + "','" + code + "','" + empName + "','" + frmDate + "','" + todate + "','" + LeaveTypeID + "','" + lvType + "','" + totaldys + "','" + empJobType + "','" + remainingDays + "' )", true);
+            
+        }
     }
 }

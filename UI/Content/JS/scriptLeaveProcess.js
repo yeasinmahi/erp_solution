@@ -3,12 +3,12 @@
 //Employee Leave Application Approved
 
 $(document).ready(function () {
-    document.getElementById("approvedDiv").style.display = "none";
+    //document.getElementById("approvedDiv").style.display = "none";
 });
 
 
 function ShowApprovedDiv(appId, empCode, empName, fromDate, toDate, leaveId, leaveType, totalDays, jobType, remainingDays) {
-
+    debugger;
     var dd, mm, yyyy;
     var frmDate = new Date(fromDate);
     dd = frmDate.getDate(); mm = (frmDate.getMonth() + 1); yyyy = frmDate.getFullYear();
@@ -30,9 +30,11 @@ function ShowApprovedDiv(appId, empCode, empName, fromDate, toDate, leaveId, lea
     document.getElementById("hdnAppID").value = appId;
     document.getElementById("rdoWithpay").checked == false;
     document.getElementById("rdoLWP").checked == false;
-    $("#approvedDiv").fadeIn("slow");
+
+    //$("#approvedDiv").fadeIn("slow");
 
 }
+
 
 function HideReasonDiv() {
     $("#approvedDiv").fadeOut("slow");

@@ -49,6 +49,24 @@ namespace UI.HR.Leave {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
         
         /// <summary>
+        /// BundleReference4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference4;
+        
+        /// <summary>
+        /// PlaceHolder2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder2;
+        
+        /// <summary>
         /// frmLeaveApproveProcess control.
         /// </summary>
         /// <remarks>
@@ -92,6 +110,24 @@ namespace UI.HR.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
+        
+        /// <summary>
+        /// hdnEmpCode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnEmpCode;
+        
+        /// <summary>
+        /// hdnLeaveType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnLeaveType;
         
         /// <summary>
         /// lblleavelist control.
@@ -184,24 +220,6 @@ namespace UI.HR.Leave {
         protected global::System.Web.UI.WebControls.TextBox txtJobStatus;
         
         /// <summary>
-        /// lblleavetype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblleavetype;
-        
-        /// <summary>
-        /// txtLeaveType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLeaveType;
-        
-        /// <summary>
         /// lbldteFrom control.
         /// </summary>
         /// <remarks>
@@ -218,15 +236,6 @@ namespace UI.HR.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtDteFrom;
-        
-        /// <summary>
-        /// CEJ control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CEJ;
         
         /// <summary>
         /// lbldteto control.
@@ -247,15 +256,6 @@ namespace UI.HR.Leave {
         protected global::System.Web.UI.WebControls.TextBox txtDteTo;
         
         /// <summary>
-        /// CEA control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CEA;
-        
-        /// <summary>
         /// remaining control.
         /// </summary>
         /// <remarks>
@@ -274,13 +274,13 @@ namespace UI.HR.Leave {
         protected global::System.Web.UI.WebControls.TextBox txtRemainingDays;
         
         /// <summary>
-        /// lblappsts control.
+        /// rdoLWP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblappsts;
+        protected global::System.Web.UI.WebControls.RadioButton rdoLWP;
         
         /// <summary>
         /// rdoWithpay control.
@@ -290,15 +290,6 @@ namespace UI.HR.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton rdoWithpay;
-        
-        /// <summary>
-        /// rdoLWP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rdoLWP;
         
         /// <summary>
         /// hdnReject control.
@@ -335,5 +326,32 @@ namespace UI.HR.Leave {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnApproved;
+        
+        /// <summary>
+        /// btnApproved control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnApproved;
+        
+        /// <summary>
+        /// btnReject control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReject;
+        
+        /// <summary>
+        /// frame control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe frame;
     }
 }

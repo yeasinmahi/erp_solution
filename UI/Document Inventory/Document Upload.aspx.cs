@@ -12,6 +12,7 @@ using System.Data.SqlClient;
 using UI.ClassFiles;
 using HR_BLL.Global;
 using System.Text.RegularExpressions;
+using GLOBAL_BLL;
 
 
 namespace UI.Document_Inventory
@@ -21,12 +22,11 @@ namespace UI.Document_Inventory
     {
         documentupload bll = new documentupload();
         DataTable check = new DataTable();
-        DataTable data = new DataTable();      
-
-        //documentupload objupload = new documentupload();
+        DataTable data = new DataTable();  
         DataTable dt = new DataTable();
         DataTable employee = new DataTable();
-        
+        DocumentUpload_BLL objDocUp = new DocumentUpload_BLL();
+    
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -41,8 +41,8 @@ namespace UI.Document_Inventory
                 pnlUpperControl.DataBind();
                 hdnField.Value = "0";//lbldoc.Text = "";
                 HiddenField9.Value= "0";
-                Int32 intenroll = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                int depertmentid = Int32.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
+                int intenroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                int depertmentid = int.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
 
                 PolicyGrid();           
             
@@ -125,26 +125,22 @@ namespace UI.Document_Inventory
         private void btnSave_Click()
         {         
 
-            int intUnitId = Int32.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
-            int intEnroll = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            int intjobId = Int32.Parse("3".ToString());
-           Int32 enroll = Int32.Parse(txtEnroll.Text.ToString());
+            int intUnitId = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            int intEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            int intjobId = int.Parse("3".ToString());
+            int enroll = int.Parse(txtEnroll.Text.ToString());
             string documenttype = drdlAttachType.SelectedItem.Text.ToString();
-            Int32 docid = Int32.Parse(drdlAttachType.SelectedValue.ToString());
-            int depertmentid = Int32.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
-            int unitid = Int32.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
-            //int type =Int32.Parse(drdlAttachType.Text.ToString());
-            string deptname = TxtDepartment.Text.ToString();
-
-            //String ext = System.IO.Path.GetExtension(DUpload.FileName);
+            int docid = int.Parse(drdlAttachType.SelectedValue.ToString());
+            int depertmentid = int.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
+            int unitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
            
-              
+            string deptname = TxtDepartment.Text.ToString(); 
 
-
-               string Dfile = enroll + "-" + deptname + "-" + documenttype + "-" + Path.GetFileName(DUpload.PostedFile.FileName);
+                string Dfile = enroll + "-" + deptname + "-" + documenttype + "-" + Path.GetFileName(DUpload.PostedFile.FileName);
                 decimal length = Dfile.Length;
                 string path = "/HR & Admin/" + Dfile;
                 check = bll.checkpathdata(path);
+
                 if (check.Rows.Count > 0)
                 {
 
@@ -153,17 +149,27 @@ namespace UI.Document_Inventory
                 else
                 {
 
+                Stream strm = DUpload.PostedFile.InputStream;
+                string FileExtension = Dfile.Substring(Dfile.LastIndexOf('.') + 1).ToLower();
 
-                    string msg=bll.DocumnetUploadInsertData(enroll, documenttype, deptname, path, intEnroll, intUnitId, depertmentid,docid);
+                if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
+                {
+                    objDocUp.ImageCompress(strm, Server.MapPath("~/Document Inventory/Document Upload") + Dfile);
+
+                }
+                else
+                {
                     DUpload.PostedFile.SaveAs(Server.MapPath("~/Document Inventory/Document Upload") + Dfile);
-                    FileUploadFTP(Server.MapPath("~/Document Inventory/Document Upload"), Dfile, "ftp://ftp.akij.net/HR & Admin/", "erp@akij.net", "erp123");
-                    File.Delete(Server.MapPath("~/Document Inventory/Document Upload") + Dfile);
+                }
+                string msg=bll.DocumnetUploadInsertData(enroll, documenttype, deptname, path, intEnroll, intUnitId, depertmentid,docid); 
+           
+                FileUploadFTP(Server.MapPath("~/Document Inventory/Document Upload"), Dfile, "ftp://ftp.akij.net/HR & Admin/", "erp@akij.net", "erp123");
 
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + msg + "');", true);
+                File.Delete(Server.MapPath("~/Document Inventory/Document Upload") + Dfile);
 
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('" + msg + "');", true);
 
-                   
-
+                 
                 }
                
             }
@@ -172,9 +178,7 @@ namespace UI.Document_Inventory
 
         private void FileUploadFTP(string localPath, string fileName, string ftpurl, string user, string pass)
         {
-
-
-
+             
             
             FtpWebRequest requestFTPUploader = (FtpWebRequest)WebRequest.Create(ftpurl + fileName);
             requestFTPUploader.Credentials = new NetworkCredential(user, pass);

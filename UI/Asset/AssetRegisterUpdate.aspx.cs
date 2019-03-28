@@ -849,28 +849,28 @@ namespace UI.Asset
             try
             {
 
-                Int32 intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
-            Int32 intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            Int32 intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
+                int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
 
-            Int32 UnitLand = Int32.Parse(DdlUnitLand.SelectedValue.ToString());
-            Int32 Jobland = Int32.Parse(DdlJobland.SelectedValue.ToString());
+                int UnitLand = int.Parse(DdlUnitLand.SelectedValue.ToString());
+                int Jobland = int.Parse(DdlJobland.SelectedValue.ToString());
 
-            Int32 AssetTypeLand = Int32.Parse(DdlAssetLand.Text.ToString());
+            int AssetTypeLand = int.Parse(DdlAssetLand.Text.ToString());
 
-            String AssetLand = TxtAssetLand.Text.ToString();
+            string AssetLand = TxtAssetLand.Text.ToString();
             //Int32 category = Int32.Parse(DdlAssetCate.SelectedValue.ToString());
             string descriptionL = TxtDescriptionLand.Text.ToString();
             //string landpo = LandPo.Text.ToString();
             string landbayername = TxtBuyer.Text.ToString();
             string nameseller = TxtNameofSeller.Text.ToString();
             string landclass = DdlClass.SelectedItem.ToString();
-            Int32 district = Int32.Parse(Ddldistrict.SelectedValue.ToString());
-            Int32 Thana = Int32.Parse(DDlThana.SelectedValue.ToString());
+                int district = int.Parse(Ddldistrict.SelectedValue.ToString());
+                int Thana = int.Parse(DDlThana.SelectedValue.ToString());
             string mouja = TxtMouza.Text.ToString();
             string CSKatian = TxtCSKatian.Text.ToString();
-
+                
             string SaKatian = TxtSaKatian.Text.ToString();
             string RSKathin = TxtRSKathin.Text.ToString();
             string DSKathian = TxtDSKathian.Text.ToString();
@@ -886,41 +886,43 @@ namespace UI.Asset
             DateTime DeedDate = DateTime.Parse(DteDeedDate.Text);
             DateTime DeedCertifyreceivedate = DateTime.Parse(dteDeedCertifyreceivedate.Text);
             DateTime OrginalDeedReceiveDate = DateTime.Parse(TxtOrginalDeedReceiveDate.Text);
-            Decimal TotalArea = Decimal.Parse(TxtTotalArea.Text.ToString());
-            Decimal TotalArealandinDecimal = Decimal.Parse(TxtTotalArealandinDecimal.Text.ToString());
-            Decimal PricePerKatha = Decimal.Parse(TxtPricePerKatha.Text.ToString());
-            Decimal PriceperDecimal = Decimal.Parse(TxtPriceperDecimal.Text.ToString());
-            Decimal TotalValuelandTk = Decimal.Parse(TxtTotalValuelandTk.Text.ToString());
-            Decimal RegistryBainaAmount = Decimal.Parse(TxtRegistryBainaAmount.Text.ToString());
-            Decimal BalancelandValue = Decimal.Parse(TxtBalancelandValue.Text.ToString());
-            Decimal RegistrationExpance = Decimal.Parse(TxtRegistrationExpance.Text.ToString());
-            Decimal DeedValueLand = Decimal.Parse(TxtDeedValueLand.Text.ToString());
-            Decimal LandofficevolumeCheckingexp = Decimal.Parse(TxtLandofficevolumeCheckingexp.Text.ToString());
-            Decimal Nfees = Decimal.Parse(TxtNfees.Text.ToString());
-            Decimal LocalgovtTax = decimal.Parse(TxtLocalgovtTax.Text.ToString());
-            decimal Stamp = Decimal.Parse(TxtStamp.Text.ToString());
-            decimal IncomeTax = Decimal.Parse(TxtIncomeTax.Text.ToString());
-            Decimal GainTax = Decimal.Parse(TxtGainTax.Text.ToString());
-            Decimal PayOrderExpense = Decimal.Parse(TxtPayOrderExpense.Text.ToString());
-            Decimal SubRegisterCommission = Decimal.Parse(TxtSubRegisterCommission.Text.ToString());
-            decimal DeedCertifiescopyExpance = Decimal.Parse(TxtDeedCertifiescopyExpance.Text.ToString());
-            Decimal MutionExpanse = Decimal.Parse(TxtMutionExpanse.Text.ToString());
-            Decimal OtherExpanse = Decimal.Parse(TxtOtherExpanse.Text.ToString());
-            Decimal TotalArealandMuted = Decimal.Parse(TxtTotalArealandMuted.Text.ToString());
+            decimal TotalArea = decimal.Parse(TxtTotalArea.Text.ToString());
+            decimal TotalArealandinDecimal = decimal.Parse(TxtTotalArealandinDecimal.Text.ToString());
+            decimal PricePerKatha = decimal.Parse(TxtPricePerKatha.Text.ToString());
+            decimal PriceperDecimal = decimal.Parse(TxtPriceperDecimal.Text.ToString());
+            decimal TotalValuelandTk = decimal.Parse(TxtTotalValuelandTk.Text.ToString());
+            decimal RegistryBainaAmount = decimal.Parse(TxtRegistryBainaAmount.Text.ToString());
+            decimal BalancelandValue = decimal.Parse(TxtBalancelandValue.Text.ToString());
+            decimal RegistrationExpance = decimal.Parse(TxtRegistrationExpance.Text.ToString());
+            decimal DeedValueLand = decimal.Parse(TxtDeedValueLand.Text.ToString());
+            decimal LandofficevolumeCheckingexp = decimal.Parse(TxtLandofficevolumeCheckingexp.Text.ToString());
+            decimal Nfees = decimal.Parse(TxtNfees.Text.ToString());
+            decimal LocalgovtTax = decimal.Parse(TxtLocalgovtTax.Text.ToString());
+            decimal Stamp = decimal.Parse(TxtStamp.Text.ToString());
+            decimal IncomeTax = decimal.Parse(TxtIncomeTax.Text.ToString());
+            decimal GainTax = decimal.Parse(TxtGainTax.Text.ToString());
+            decimal PayOrderExpense = decimal.Parse(TxtPayOrderExpense.Text.ToString());
+            decimal SubRegisterCommission = decimal.Parse(TxtSubRegisterCommission.Text.ToString());
+            decimal DeedCertifiescopyExpance = decimal.Parse(TxtDeedCertifiescopyExpance.Text.ToString());
+            decimal MutionExpanse = decimal.Parse(TxtMutionExpanse.Text.ToString());
+            decimal OtherExpanse = decimal.Parse(TxtOtherExpanse.Text.ToString());
+            decimal TotalArealandMuted = decimal.Parse(TxtTotalArealandMuted.Text.ToString());
             string Jlno = Txtjlno.Text.ToString();
-            String HoldingNoJotNo = TxtHoldingNoJotNo.Text.ToString();
-            Decimal LandDevlopmentTaxExpance = Decimal.Parse(TxtLandDevlopmentTaxExpance.Text.ToString());
-            Decimal BrokrCommission = Decimal.Parse(TxtBrokrCommission.Text.ToString());
-            Decimal TotalLandAccusitionCost = Decimal.Parse(TxtTotalLandAccusitionCost.Text.ToString());
+            string HoldingNoJotNo = TxtHoldingNoJotNo.Text.ToString();
+            decimal LandDevlopmentTaxExpance = decimal.Parse(TxtLandDevlopmentTaxExpance.Text.ToString());
+            decimal BrokrCommission = decimal.Parse(TxtBrokrCommission.Text.ToString());
+            decimal TotalLandAccusitionCost = decimal.Parse(TxtTotalLandAccusitionCost.Text.ToString());
 
 
             string landpo = TxtALandCode.Text.ToString();
             //SpAssetRegister use for Update //
             intpart = 4;
             objregisterUpdate.AssetLandUpdate(intpart, UnitLand, Jobland, AssetTypeLand, AssetLand, descriptionL, landpo, landbayername, nameseller, landclass, district, Thana, mouja, CSKatian, SaKatian, RSKathin, DSKathian, DpKatian, CSDagNo, SADagNo, RSDagNo, DSDagNo, DPDagNo, DeedReceoiptNo, DeedNo, DeedDate, DeedCertifyreceivedate, OrginalDeedReceiveDate, TotalArea, TotalArealandinDecimal, PricePerKatha, PriceperDecimal, TotalValuelandTk, RegistryBainaAmount, BalancelandValue, RegistrationExpance, DeedValueLand, LandofficevolumeCheckingexp, Nfees, LocalgovtTax, Stamp, IncomeTax, GainTax, PayOrderExpense, SubRegisterCommission, DeedCertifiescopyExpance, MutionExpanse, OtherExpanse, TotalArealandMuted, Jlno, HoldingNoJotNo, LandDevlopmentTaxExpance, BrokrCommission, TotalLandAccusitionCost, intenrollid, intunitid, intjobid);
-
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sucessfully ');", true);
-            TxtALandCode.Text = "";
+                TxtAssetLand.Text = ""; TxtDescriptionLand.Text = ""; TxtDescriptionLand.Text = ""; TxtBuyer.Text = "";
+                TxtNameofSeller.Text = ""; TxtSaKatian.Text = ""; TxtRSKathin.Text = ""; TxtDSKathian.Text = "";
+                TxtDpKatian.Text = ""; TxtCSDagNo.Text = ""; TxtSADagNo.Text = "";
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sucessfully ');", true);
+                TxtALandCode.Text = "";
             }
             catch (Exception ex)
             {
@@ -1084,7 +1086,7 @@ namespace UI.Asset
         protected void DlJobStation_SelectedIndexChanged(object sender, EventArgs e)
         {
             dt = new DataTable();
-            Int32 jobstation = Int32.Parse(DlJobStation.SelectedValue.ToString());
+            int jobstation = int.Parse(DdlJobland.SelectedValue.ToString());
             dt= objregisterUpdate.DepertmentName(jobstation);
             DdlDept.DataSource = dt;
             DdlDept.DataTextField = "strDepatrment";
@@ -1110,7 +1112,7 @@ namespace UI.Asset
         protected void DdlUnitLand_SelectedIndexChanged(object sender, EventArgs e)
         {
             dt = new DataTable();
-            Int32 Unitland = Int32.Parse(DdlUnitLand.SelectedValue.ToString());
+            int Unitland = int.Parse(DdlUnitLand.SelectedValue.ToString());
             dt = objregisterUpdate.Ljobstation(Unitland);
             DdlJobland.DataSource = dt;
             DdlJobland.DataTextField = "strJobStationName";
@@ -1252,19 +1254,24 @@ namespace UI.Asset
             if (LandView.Rows.Count > 0)
             {
                 DdlUnitLand.SelectedItem.Text = LandView.Rows[0]["strUnit"].ToString();
-                DdlJobland.SelectedItem.Text = LandView.Rows[0]["strJobStationName"].ToString();
-                DdlAssetLand.SelectedItem.Text = LandView.Rows[0]["strAssetTypeName"].ToString();
+                try { DdlUnitLand.SelectedValue = LandView.Rows[0]["intUnitId"].ToString(); } catch { }
+                try { DdlJobland.SelectedValue = LandView.Rows[0]["intEmployeeJobstationId"].ToString(); } catch { }
+                try { DdlAssetLand.SelectedValue = LandView.Rows[0]["intAssetTypeId"].ToString(); } catch { }
+                // try { DdlJobland.SelectedItem = LandView.Rows[0]["intEmployeeJobstationId"].ToString(); } catch { }
 
-
+                //DdlAssetLand.SelectedItem.Text = LandView.Rows[0]["strAssetTypeName"].ToString();
+                 
                 TxtAssetLand.Text = LandView.Rows[0]["strNameOfAsset"].ToString();
                 LandPo.Text = LandView.Rows[0]["strPoNo"].ToString();
                 TxtDescriptionLand.Text = LandView.Rows[0]["strDescriptionAsset"].ToString();
                 TxtBuyer.Text = LandView.Rows[0]["strBuyerName"].ToString();
                 TxtNameofSeller.Text = LandView.Rows[0]["strNameofSeller"].ToString();
                 DdlClass.Text = LandView.Rows[0]["strClassofLand"].ToString();
+                try { Ddldistrict.SelectedValue = LandView.Rows[0]["intDistrict"].ToString(); } catch { }
+                try { DDlThana.SelectedValue = LandView.Rows[0]["intThanaID"].ToString(); } catch { }
 
-                Ddldistrict.SelectedItem.Text = LandView.Rows[0]["strDistrict"].ToString();
-                DDlThana.SelectedItem.Text = LandView.Rows[0]["Thana"].ToString();
+               // Ddldistrict.SelectedItem.Text = LandView.Rows[0]["strDistrict"].ToString();
+                //DDlThana.SelectedItem.Text = LandView.Rows[0]["Thana"].ToString();
 
                 TxtMouza.Text = LandView.Rows[0]["strMouza"].ToString();
                 TxtCSKatian.Text = LandView.Rows[0]["strCSkhatianNo"].ToString();
