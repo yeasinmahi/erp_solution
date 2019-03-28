@@ -14,17 +14,10 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />  
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <webopt:BundleReference ID="BundleReference4" runat="server" Path="~/Content/Bundle/updatedCss" />
+    <asp:PlaceHolder ID="PlaceHolder2" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <script type="text/javascript" src="../../Content/JS/scriptLeaveProcess.js"></script>
-    <script>
-    function loadIframe(iframeName, url) {
-            var $iframe = $('#' + iframeName);
-            if ($iframe.length) {
-                $iframe.attr('src', url); 
-                return false;
-            }
-            return true;
-        }
-        </script>
+  
     
 </head>
 <body>
@@ -146,10 +139,7 @@
                   <%-- ======== end visible false ===========--%>
                   <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Right">
                       <ItemTemplate>
-                          <%--<a class="nextclick" href="#" onclick="<%#  GetJSFunctionString(""+Eval("intApplicationId"),""+Eval("strEmployeeCode"),""+Eval("strEmployeeName"),""+
-                Eval("dateAppliedFromDate"),""+Eval("dateAppliedToDate"),""+Eval("intLeaveTypeID"),""+Eval("strLeaveType"),""+Eval("TotalDays"),""+Eval("strJobType"),""+Eval("intRemainingDays"))  %>">
-                Process</a>--%>
-                          <asp:Button ID="btnProcess" runat="server" OnClick="btnProcess_Click" Text="Process" />
+                          <asp:Button ID="btnProcess" runat="server" CssClass="btn btn-primary btn-xs" OnClick="btnProcess_Click" Text="Process" />
                       </ItemTemplate>
                       <ItemStyle HorizontalAlign="Right" />
                   </asp:TemplateField>
@@ -170,7 +160,7 @@
         </table>
     </div>
 
-    <div id="approvedDiv">
+    <%--<div id="approvedDiv">
        <table border="0px"; style="width:Auto"; align="center" >
 
         <tr>
@@ -219,7 +209,67 @@
               
     </table>
         <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:500px; border:0px solid red;"></iframe>
-    </div>
+    </div>--%>
+        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Leave Details</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:Label ID="lblcode" CssClass="lbl" runat="server" Text="Card-No : "></asp:Label>
+                                                <asp:TextBox ID="txtCode" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:Label ID="lblemployeename" CssClass="lbl" runat="server" Text="Employee-Name : "></asp:Label>
+                                                <asp:TextBox ID="txtEmployeeName" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:Label ID="lbljobstatus" CssClass="lbl" runat="server" Text="Job-Status : "></asp:Label>
+                                                <asp:TextBox ID="txtJobStatus" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:Label ID="lbldteFrom" CssClass="lbl" runat="server" Text="From-Date :  "></asp:Label>
+                                                <asp:TextBox ID="txtDteFrom" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:Label ID="lbldteto" CssClass="lbl" runat="server" Text="To-Date  :  "></asp:Label>
+                                                <asp:TextBox ID="txtDteTo" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:Label ID="remaining" CssClass="lbl" runat="server" Text="Remaining-Days :  "></asp:Label>
+                                                <asp:TextBox ID="txtRemainingDays" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                                <asp:RadioButton ID="rdoLWP" runat="server" Text="WithOut-Pay" GroupName="PaymentStatus" />
+                                                <asp:RadioButton ID="rdoWithpay" runat="server" Text="With-Pay" GroupName="PaymentStatus" />
+                                            </div>
+                                            <asp:HiddenField ID="hdnReject" runat="server" />
+                                            <asp:HiddenField ID="hdnAppID" runat="server" />
+                                            <asp:HiddenField ID="hdnAction" runat="server" />
+                                            <asp:HiddenField ID="hdnApproved" runat="server" />
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="col-md-12" style="padding-bottom: 10px;">
+                                            <asp:Button ID="btnApproved" CssClass="btn btn-success btn-sm" runat="server" Text="Approved" OnClientClick="Confirm()" />
+                                            <asp:Button ID="btnReject" CssClass="btn btn-danger btn-sm" runat="server" Text="Reject" OnClientClick="Reject()" />
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 300px; border: 0px solid red;"></iframe>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
     
 
 <%--=========================================End My Code From Here=================================================--%>

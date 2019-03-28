@@ -3,7 +3,7 @@
 //Employee Leave Application Approved
 
 $(document).ready(function () {
-    document.getElementById("approvedDiv").style.display = "none";
+    //document.getElementById("approvedDiv").style.display = "none";
 });
 
 
@@ -31,7 +31,7 @@ function ShowApprovedDiv(appId, empCode, empName, fromDate, toDate, leaveId, lea
     document.getElementById("rdoWithpay").checked == false;
     document.getElementById("rdoLWP").checked == false;
 
-    $("#approvedDiv").fadeIn("slow");
+    //$("#approvedDiv").fadeIn("slow");
 
 }
 

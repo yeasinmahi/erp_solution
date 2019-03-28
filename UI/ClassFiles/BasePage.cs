@@ -122,5 +122,9 @@ namespace UI.ClassFiles
             ScriptManager.RegisterStartupScript(this, GetType(), "Pop", isVisible ? "openModal();" : "closeModal();",
                 true);
         }
+        public void LoadIFrame(string iFrameId, string url)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('" + iFrameId + "', '" + url + "');", true);
+        }
     }
 }

@@ -45,7 +45,8 @@ namespace UI.HR.Leave
         public void LoadReport(string enroll,string lvTypeID)
         {
             string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/HR/Employee_Leave_Status" + "&enroll="+ enroll + "&leaveType=" +lvTypeID + "&rc:LinkTarget=_self";
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+            LoadIFrame(frame.ClientID, url);
         }
         public void Submit()
         {
@@ -94,6 +95,8 @@ namespace UI.HR.Leave
       
         protected void btnProcess_Click(object sender, EventArgs e)
         {
+            SetVisibilityModal(true);
+
             Button btn = (Button)sender;
             GridViewRow row = (GridViewRow)btn.NamingContainer;
             string code = Convert.ToString((row.FindControl("lblCode") as Label).Text); 
@@ -110,7 +113,14 @@ namespace UI.HR.Leave
             string empJobType = Convert.ToString((row.FindControl("lblstrJobType") as Label).Text);
             string remainingDays = Convert.ToString((row.FindControl("lblintRemainingDays") as Label).Text);
 
-            ScriptManager.RegisterStartupScript(this, this.GetType(), "app", "ShowApprovedDiv('" + appID + "','" + code + "','" + empName + "','" + frmDate + "','" + todate + "','" + LeaveTypeID + "','" + lvType + "','" + totaldys + "','" + empJobType + "','" + remainingDays + "' )", true);
+
+            txtCode.Text = code;
+            txtEmployeeName.Text = empName;
+            txtDteFrom.Text = frmDate;
+            txtDteTo.Text = todate;
+            txtJobStatus.Text = empJobType;
+            txtRemainingDays.Text = remainingDays;
+            //ScriptManager.RegisterStartupScript(this, this.GetType(), "app", "ShowApprovedDiv('" + appID + "','" + code + "','" + empName + "','" + frmDate + "','" + todate + "','" + LeaveTypeID + "','" + lvType + "','" + totaldys + "','" + empJobType + "','" + remainingDays + "' )", true);
             
         }
     }
