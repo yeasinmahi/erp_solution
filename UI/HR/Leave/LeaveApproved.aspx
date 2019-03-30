@@ -32,7 +32,8 @@
                 <%--===========================Start My Code From Here======== DataFormatString="{0:yyyy-MM-dd}"=====================--%>
 
                 <div class="divs_content_container">
-                    <div class="tabs_container">Employee Leave Application Process :<hr />
+                    <div class="tabs_container">
+                        Employee Leave Application Process :<hr />
                     </div>
                     <asp:HiddenField ID="hdnEmpCode" runat="server" />
                     <asp:HiddenField ID="hdnLeaveType" runat="server" />
@@ -132,7 +133,7 @@
                                 </asp:GridView>
 
 
-                               <%-- <asp:ObjectDataSource ID="odsunapproved" runat="server" SelectMethod="GetUnapprovedLeaveApplication" TypeName="HR_BLL.Leave.LeaveApplicationProcess">
+                                <%-- <asp:ObjectDataSource ID="odsunapproved" runat="server" SelectMethod="GetUnapprovedLeaveApplication" TypeName="HR_BLL.Leave.LeaveApplicationProcess">
                                     <SelectParameters>
                                         <asp:ControlParameter ControlID="ddlist" Name="appstatus" PropertyName="SelectedValue" Type="Int32" />
                                         <asp:SessionParameter Name="userid" SessionField="sesUserID" Type="Int32" />
@@ -221,11 +222,11 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <asp:Label ID="lbldteFrom" CssClass="lbl" runat="server" Text="From-Date :  "></asp:Label>
-                                        <asp:TextBox ID="txtDteFrom" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtDteFrom" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <asp:Label ID="lbldteto" CssClass="lbl" runat="server" Text="To-Date  :  "></asp:Label>
-                                        <asp:TextBox ID="txtDteTo" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
+                                        <asp:TextBox ID="txtDteTo" runat="server" CssClass="form-control"></asp:TextBox>
                                     </div>
                                     <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                         <asp:Label ID="remaining" CssClass="lbl" runat="server" Text="Remaining-Days :  "></asp:Label>
@@ -264,6 +265,19 @@
             </Triggers>
         </asp:UpdatePanel>
     </form>
+    <script>
+        $(function () {
 
+            Init();
+            //ShowHideGridviewPanels();
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
+            //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
+        });
+        function Init() {
+            $('#txtDteFrom').datepicker();
+            $('#txtDteTo').datepicker();
+        }
+
+    </script>
 </body>
 </html>
