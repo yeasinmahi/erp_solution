@@ -110,6 +110,7 @@ namespace UI.Transport
                     //HttpContext.Current.Session["intPiID"] = intPiID.ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Add();", true);
+                 
                 }
                 catch (Exception ex)
                 {
