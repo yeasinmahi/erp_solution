@@ -105,6 +105,7 @@ namespace UI.HR.Leave
             LoadReport(enroll, LeaveTypeID);
 
             string appID = Convert.ToString((row.FindControl("lblintApplicationId") as Label).Text);
+            hdnAppID.Value = appID;
             string empName = Convert.ToString((row.FindControl("lblName") as Label).Text);
             string frmDate = Convert.ToString((row.FindControl("lblFromDate") as Label).Text);
             string todate = Convert.ToString((row.FindControl("lblToDate") as Label).Text);

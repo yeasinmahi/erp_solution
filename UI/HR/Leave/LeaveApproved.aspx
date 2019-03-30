@@ -274,6 +274,9 @@
 
 <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>
+            <Triggers>
+                <asp:PostBackTrigger ControlID="btnApproved" />
+            </Triggers>
     </asp:UpdatePanel>
     </form>
     
