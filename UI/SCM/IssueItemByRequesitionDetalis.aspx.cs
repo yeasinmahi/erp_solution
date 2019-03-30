@@ -86,6 +86,7 @@ namespace UI.SCM
             dt = CostCenterBll.GetCostCenter(whId);
             ddlCost.LoadWithSelect(dt, "Id", "strName");
         }
+        private readonly object _obj  = new object();
         protected void btnIssue_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnIssue_Click", null);
@@ -107,53 +108,58 @@ namespace UI.SCM
                     string reqBy = lblReqBy.Text;
                     intwh = int.Parse(Request.QueryString["intwh"]);
                     int costCenterId = ddlCost.SelectedValue();
-                    for (int index = 0; index < dgvDetalis.Rows.Count; index++)
+                    lock (_obj)
                     {
-                        string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
-                        string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text;
-                        string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text;
-                        string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
-
-                        string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
-                        string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
-
-                        string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
-
-                        if (decimal.Parse(issueQty) > 0)
+                        for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                         {
-                            //CreateXmlIssue(itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
-                            dynamic obj = new
+                            string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
+                            string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text;
+                            string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text;
+                            string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
+
+                            string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
+                            string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
+
+                            string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
+
+                            if (decimal.Parse(issueQty) > 0)
                             {
-                                itemId,
-                                issueQty,
-                                stockVlaue,
-                                locationId,
-                                stockQty,
-                                reqId,
-                                reqCode,
-                                deptId,
-                                strSection,
-                                reqBy,
-                                receiveBy,
-                                costCenterId
-                            };
-                            xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string _);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
-                                Enroll);
-                            if (msg.ToLower().Contains("success"))
-                            {
-                                Toaster(msg, Common.TosterType.Success);
+                                //CreateXmlIssue(itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
+                                dynamic obj = new
+                                {
+                                    itemId,
+                                    issueQty,
+                                    stockVlaue,
+                                    locationId,
+                                    stockQty,
+                                    reqId,
+                                    reqCode,
+                                    deptId,
+                                    strSection,
+                                    reqBy,
+                                    receiveBy,
+                                    costCenterId
+                                };
+                                xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string _);
+                                string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                    Enroll);
+                                if (msg.ToLower().Contains("success"))
+                                {
+                                    Toaster(msg, Common.TosterType.Success);
+                                }
+                                else
+                                {
+                                    Toaster(msg, Common.TosterType.Error);
+                                }
+                                
                             }
                             else
                             {
-                                Toaster(msg, Common.TosterType.Error);
+                                Toaster("Please input issue quantity", Common.TosterType.Warning);
                             }
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                         }
-                        else
-                        {
-                            Toaster("Please input issue quantity",Common.TosterType.Warning);
-                        }
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
                     }
 
                     //XmlDocument doc = new XmlDocument();

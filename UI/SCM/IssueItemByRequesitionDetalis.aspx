@@ -11,7 +11,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
@@ -69,7 +69,13 @@
 
     <script type="text/javascript"> 
         function funConfirmAll() {
-            return confirm("Do you want to proceed?");
+            
+            if (confirm("Do you want to proceed?")) {
+                showLoader();
+                return true;
+            } else {
+                return false;
+            }
         }
 
     </script>
@@ -157,7 +163,7 @@
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtReceiveBy" CssClass="txtBox" AutoPostBack="false" runat="server"></asp:TextBox></td>
                             <td style="text-align: right">
-                                <asp:Button ID="btnIssue" Style="border-radius: 1px; height: 29px" ForeColor="blue" runat="server" Text="Store Issue" OnClientClick='return confirm("Do you want to proceed?");' OnClick="btnIssue_Click" />
+                                <asp:Button ID="btnIssue" Style="border-radius: 1px; height: 29px" ForeColor="blue" runat="server" Text="Store Issue" OnClientClick='return funConfirmAll();' OnClick="btnIssue_Click" />
                             </td>
                         </tr>
 
@@ -302,5 +308,6 @@
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
+    
 </body>
 </html>
