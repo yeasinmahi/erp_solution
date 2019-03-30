@@ -240,8 +240,8 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="col-md-12" style="padding-bottom: 10px;">
-                                    <asp:Button ID="btnApproved" CssClass="btn btn-success btn-sm" runat="server" Text="Approved" OnClientClick="return Confirm()" />
-                                    <asp:Button ID="btnReject" CssClass="btn btn-danger btn-sm" runat="server" Text="Reject" OnClientClick="return Reject()" />
+                                    <asp:Button ID="btnApproved" CssClass="btn btn-success btn-sm" runat="server" Text="Approved" OnClick="btnApproved_Click" OnClientClick="return Confirm()" />
+                                    <asp:Button ID="btnReject" CssClass="btn btn-danger btn-sm" runat="server" Text="Reject" OnClick="btnReject_Click" ="return Reject()" />
 
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

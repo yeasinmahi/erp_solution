@@ -54,7 +54,7 @@ namespace UI.HR.Leave
             
             LoadIFrame(frame.ClientID, url);
         }
-        public void Submit()
+        public void Submit(string applicationStatus)
         {
             var fd = log.GetFlogDetail(start, location, "Submit", null);
             Flogger.WriteDiagnostic(fd);
@@ -132,6 +132,16 @@ namespace UI.HR.Leave
         protected void dgvUPLeaveApplication_DataBinding(object sender, EventArgs e)
         {
 
+        }
+
+        protected void btnApproved_Click(object sender, EventArgs e)
+        {
+            Submit("Y");
+        }
+
+        protected void btnReject_Click(object sender, EventArgs e)
+        {
+            Submit("R");
         }
     }
 }
