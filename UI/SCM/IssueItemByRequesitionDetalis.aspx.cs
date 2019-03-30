@@ -39,15 +39,17 @@ namespace UI.SCM
                 try
                 {
                     File.Delete(filePathForXML);
-                } catch { }
-                int ReqId = int.Parse(Request.QueryString["ReqId"]);
+                }
+                catch
+                {
+                }
                 string ReqCode = Request.QueryString["ReqCode"];
                 DateTime dteReqDate = DateTime.Parse(Request.QueryString["dteReqDate"]);
                 string strDepartmentName = Request.QueryString["strDepartmentName"];
                 string strReqBy = Request.QueryString["strReqBy"];
                 string strApproveBy = Request.QueryString["strApproveBy"];
-                string DeptId = Request.QueryString["DeptId"];
-                string SectionID = Request.QueryString["SectionID"];
+                //string DeptId = Request.QueryString["DeptId"];
+                //string SectionID = Request.QueryString["SectionID"];
                 string SectionName = Request.QueryString["SectionName"];
                 intwh = int.Parse(Request.QueryString["intwh"]);
 
@@ -60,16 +62,22 @@ namespace UI.SCM
 
                 LoadCostCenter(intwh);
 
-                dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    dgvDetalis.DataSource = dt;
-                    dgvDetalis.DataBind();
-                }
-                else
-                {
-                    Alert(Message.NoFound.ToFriendlyString());
-                }
+                LoadGrid();
+            }
+        }
+
+        public void LoadGrid()
+        {
+            int ReqId = int.Parse(Request.QueryString["ReqId"]);
+            dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                dgvDetalis.DataSource = dt;
+                dgvDetalis.DataBind();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
         }
 
@@ -87,7 +95,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value == "1")
+                if (dgvDetalis.Rows.Count > 0)
                 {
                     try { File.Delete(filePathForXML); File.Delete(filePathForText); } catch { }
 
@@ -129,11 +137,9 @@ namespace UI.SCM
                                 receiveBy,
                                 costCenterId
                             };
-                            xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string message);
+                            xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string _);
                             string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                                "alert('" + msg + "');", true);
                             if (msg.ToLower().Contains("success"))
                             {
                                 Toaster(msg, Common.TosterType.Success);
