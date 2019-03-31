@@ -34,6 +34,7 @@ namespace UI.HR.Leave
 
         protected void ddlist_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadGrid();
             if (ddlist.SelectedValue == "0")
             {
                 dgvUPLeaveApplication.Columns[5].Visible = true;
@@ -42,6 +43,7 @@ namespace UI.HR.Leave
             {
                 dgvUPLeaveApplication.Columns[5].Visible = false;
             }
+
         }
         public void LoadGrid()
         {
