@@ -55,7 +55,7 @@
                         <tr>
                             <td colspan="2">
 
-                                <asp:GridView ID="dgvUPLeaveApplication" runat="server" AutoGenerateColumns="False" PageSize="25" AllowPaging="True" SkinID="sknGrid2" Font-Size="10px" BackColor="White" OnDataBinding="dgvUPLeaveApplication_DataBinding">
+                                <asp:GridView ID="dgvUPLeaveApplication" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" OnDataBinding="dgvUPLeaveApplication_DataBinding">
                                     <Columns>
                                         <asp:TemplateField HeaderText="Code" SortExpression="strEmployeeCode" Visible="False">
 
