@@ -486,7 +486,7 @@ namespace UI.SAD.Order
 
             //double decgrdvtotal = Convert.ToDouble(GetGrandTotal(10));
             double decgrdvtotal;
-            double deccompareprice;
+            decimal deccompareprice;
             decimal promQnty = 0;
             int promItemId = 0;
             int promItemCOAId = 0;
@@ -680,27 +680,27 @@ namespace UI.SAD.Order
             }
 
             
-            double undelvvalue = double.Parse(hdnUndeliverqntpricevalue.Value);
-            double actualprice = 0.00;
-            double ttdamageamount = Convert.ToDouble(tdamgeamnt);
-            double ttspecialamnt = Convert.ToDouble(tspecialamnt);
-            double ttsubsidyamnt = Convert.ToDouble(tsubsidyamnt);
-            double ttmoncomp = Convert.ToDouble(tmoncomp);
-            double ttmonsuplv = Convert.ToDouble(tmonsuplv);
-            double ttmoncusv = Convert.ToDouble(tmoncusv);
-            double ttcalculteddiscount = Convert.ToDouble(calculteddiscount);
-            actualprice =(double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value));
+            decimal undelvvalue = Convert.ToDecimal(hdnUndeliverqntpricevalue.Value);
+            decimal actualprice;
+            decimal ttdamageamount = Convert.ToDecimal(tdamgeamnt);
+            decimal ttspecialamnt = Convert.ToDecimal(tspecialamnt);
+            decimal ttsubsidyamnt = Convert.ToDecimal(tsubsidyamnt);
+            decimal ttmoncomp = Convert.ToDecimal(tmoncomp);
+            decimal ttmonsuplv = Convert.ToDecimal(tmonsuplv);
+            decimal ttmoncusv = Convert.ToDecimal(tmoncusv);
+            decimal ttcalculteddiscount = Convert.ToDecimal(calculteddiscount);
+            actualprice =(decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value));
             actualprice = actualprice - (ttdamageamount + ttspecialamnt + ttsubsidyamnt + ttmoncusv + ttmonsuplv+ ttcalculteddiscount - ttmoncomp);
             deccompareprice = actualprice;
             string actotal = actualprice.ToString();
             hdndiscount.Value = Convert.ToString(Convert.ToDouble(hdndiscount.Value));
-            double hdnvalue = Convert.ToDouble(hdndiscount.Value);
-            double ghdnvalue = hdnvalue + Convert.ToDouble(actotal);
+            decimal hdnvalue = Convert.ToDecimal(hdndiscount.Value);
+            decimal ghdnvalue = hdnvalue + Convert.ToDecimal(actotal);
 
             if (GridView1.Rows.Count == 0)
             {
 
-                actualprice = (double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value));
+                actualprice = (Convert.ToDecimal(txtQun.Text) * Convert.ToDecimal(hdnPrice.Value));
                 actualprice = actualprice - ttcalculteddiscount;
                 deccompareprice = actualprice;
             }
@@ -712,7 +712,7 @@ namespace UI.SAD.Order
             }
             //if (GridView1.Rows.Count == 0) { deccompareprice = Math.Round((double.Parse(txtQun.Text) * double.Parse(hdnPrice.Value))); }
             //else { deccompareprice = Convert.ToDouble(GetGrandTotal(10)); }
-            if (double.Parse(lblBl.Text)- undelvvalue <= deccompareprice) {
+            if (Convert.ToDecimal(lblBl.Text)- undelvvalue <= deccompareprice) {
                 btnAdd.Enabled = false;
                 lblError.Text = "Balance exceed";
 

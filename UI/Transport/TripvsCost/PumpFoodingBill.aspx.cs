@@ -287,10 +287,10 @@ namespace UI.Transport.TripvsCost
                     var now = DateTime.Now;
                     var startOfMonth = new DateTime(now.Year, now.Month, 1);
                     var DaysInMonth = DateTime.DaysInMonth(now.Year, now.Month);
-                    var lastDay = new DateTime(now.Year, now.Month, DaysInMonth).AddDays(16);
+                    var lastDay = new DateTime(now.Year, now.Month, DaysInMonth).AddDays(26);
                     string lastd = lastDay.ToString("yyyy-MM-dd");
                     DateTime today = Convert.ToDateTime(BillDate);
-                    DateTime endOfMonth = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)).AddDays(16);
+                    DateTime endOfMonth = new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month)).AddDays(26);
                     DateTime dt3 = Convert.ToDateTime(endOfMonth);
                     DateTime dt4 = Convert.ToDateTime(cureentdate);
                     int diffbEOMTODATE = (dt3 - dt4).Days;

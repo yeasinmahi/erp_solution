@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using SAD_DAL.Sales.Report;
@@ -93,6 +94,50 @@ namespace SAD_BLL.Sales.Report
 
             return table;
         }
+
+
+        public ChallanTDS.SprTripChallanInfoWithTotalAmntDataTable GetTripDataCustomize1(string id, string userId, string separator, ref DateTime date, ref string unitName
+         , ref string unitAddress, ref string userName, ref string challanNo, ref string doNo, ref string customerName
+         , ref string customerPhone, ref string distributionPoint, ref string contactAt, ref string contactPhone, ref string delevaryAddress, ref string otherInfo
+         , ref string vehicle, ref string extra, ref decimal? extAmount
+         , ref string driver, ref string driverPh, ref string charge, ref string logistic, ref string incentive
+         , ref bool isLogBasedOnUOM, ref bool isCharBasedOnUOM, ref bool isIncenBasedOnUOM, ref string totamnt)
+        {
+            SprTripChallanInfoWithTotalAmntTableAdapter ta = new SprTripChallanInfoWithTotalAmntTableAdapter();
+            DateTime? dt = null;
+            bool? isLogBasedOnUOM_ = null, isCharBasedOnUOM_ = null, isIncenBasedOnUOM_ = null;
+
+            ChallanTDS.SprTripChallanInfoWithTotalAmntDataTable table = ta.GetDataTripChallanInfoWithTotalAmnt(long.Parse(id), int.Parse(userId), separator, ref dt, ref unitName
+                , ref unitAddress, ref userName, ref challanNo, ref doNo
+                , ref customerName, ref customerPhone, ref distributionPoint, ref contactAt, ref contactPhone, ref delevaryAddress, ref otherInfo
+                , ref vehicle, ref extra, ref extAmount, ref driver, ref driverPh, ref charge, ref logistic, ref incentive
+                , ref isLogBasedOnUOM_, ref isCharBasedOnUOM_, ref isIncenBasedOnUOM_,ref totamnt);
+
+            date = dt.Value;
+            isLogBasedOnUOM = isLogBasedOnUOM_.Value;
+            isCharBasedOnUOM = isCharBasedOnUOM_.Value;
+            isIncenBasedOnUOM = isIncenBasedOnUOM_.Value;
+
+            return table;
+        }
+
+
+
+
+        public DataTable getcustomertripvschamount(int tripid,int custid )
+        {
+            try
+            {
+
+                SprChalanQntTripandCustomerBaseTotalTableAdapter obj = new SprChalanQntTripandCustomerBaseTotalTableAdapter();
+                return obj.GetDataChalanQntTripandCustomerBaseTotal(tripid, custid);
+            }
+            catch(Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
 
     }
 }

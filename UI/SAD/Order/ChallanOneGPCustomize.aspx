@@ -44,13 +44,13 @@
                 <input id="Checkbox1" type="checkbox" onclick="IsChallan()" checked="checked" />
                 Challan
             </td>
-            <%--<td>
+            <td>
                  <td align="center" style="color: Blue; font-weight: bold; width: 33%;">
-                <input id="chkbPendingqnt" type="checkbox" onclick="IsP()" checked="checked" />
-                Loading Slip
+               
+              <asp:Label ID="lblamnt" runat="server" Visible="false"></asp:Label>
             </td>
-            </td>--%>
-
+            </td>
+            
         </tr>
     </table>
     <div id="challan">
