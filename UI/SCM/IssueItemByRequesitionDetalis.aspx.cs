@@ -2,6 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Web;
@@ -110,21 +111,16 @@ namespace UI.SCM
                     int costCenterId = ddlCost.SelectedValue();
                     lock (_obj)
                     {
+                        List<object> objects = new List<object>();
                         for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                         {
-                            string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
-                            string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text;
-                            string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text;
                             string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
-
-                            string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
-                            string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
-
-                            string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
-
                             if (decimal.Parse(issueQty) > 0)
                             {
-                                //CreateXmlIssue(itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
+                                string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
+                                string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
+                                string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
+                                string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
                                 dynamic obj = new
                                 {
                                     itemId,
@@ -140,25 +136,36 @@ namespace UI.SCM
                                     receiveBy,
                                     costCenterId
                                 };
-                                xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string _);
-                                string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
-                                    Enroll);
-                                if (msg.ToLower().Contains("success"))
-                                {
-                                    Toaster(msg, Common.TosterType.Success);
-                                }
-                                else
-                                {
-                                    Toaster(msg, Common.TosterType.Error);
-                                }
-                                
+                                objects.Add(obj);
                             }
                             else
                             {
                                 Toaster("Please input issue quantity", Common.TosterType.Warning);
                             }
+
                         }
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                        if (objects.Count > 0)
+                        {
+                            xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                Enroll);
+
+                            if (msg.ToLower().Contains("success"))
+                            {
+                                Toaster(msg, Common.TosterType.Success);
+                            }
+                            else
+                            {
+                                Toaster(msg, Common.TosterType.Error);
+                            }
+                            dgvDetalis.UnLoad();
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                        }
+                        else
+                        {
+                            Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
+                        }
+                        
 
                     }
 
