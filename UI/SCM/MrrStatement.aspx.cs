@@ -76,7 +76,9 @@ namespace UI.SCM
 
         protected void btnMRRSDetail_Click(object sender, EventArgs e)
         {
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/MRR_Statement_Report?rs:Embed=true');", true);
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/MRR_Statement_Report" + "&Indent=" + txtMrrNo.Text + "&FDate=" + txtDteFrom.Text + "&TDate=" + txtdteTo.Text + "&Department=" + ddlDept.SelectedItem.Text + "&Unit=" + ddlWH.SelectedValue + "&Enroll=" + Enroll + "&intUnitID=" + ddlWH.SelectedValue + "&rc:LinkTarget=_self";
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '"+url+"');", true);
 
         }
 
