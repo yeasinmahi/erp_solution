@@ -322,6 +322,7 @@
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\Cafeteria\NEW ERP.png" />
     <Content Include="Content\images\img\105.png" />
     <Content Include="Content\images\img\13.png" />
     <Content Include="Content\images\img\15.png" />
@@ -1334,6 +1335,7 @@
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
     <Content Include="SAD\Sales\Report\ProductLoadingStatus.aspx" />
+    <Content Include="SAD\Sales\Report\Product_Details_Horizontal_Report.aspx" />
     <Content Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx" />
     <Content Include="SAD\Sales\Report\Region_Area_item_wise_sales.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\AllRetaillersDeliveryATAGlance.aspx" />
@@ -6878,6 +6880,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\ProductLoadingStatus.aspx.designer.cs">
       <DependentUpon>ProductLoadingStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Product_Details_Horizontal_Report.aspx.cs">
+      <DependentUpon>Product_Details_Horizontal_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Product_Details_Horizontal_Report.aspx.designer.cs">
+      <DependentUpon>Product_Details_Horizontal_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Product_Rate_vs_DO.aspx.cs">
       <DependentUpon>Product_Rate_vs_DO.aspx</DependentUpon>

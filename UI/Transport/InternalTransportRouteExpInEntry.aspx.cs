@@ -905,7 +905,6 @@ namespace UI.Transport
         //** Gridview Document Upload Start ******************************************************
         protected void FTPUpload()
         {
-
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -949,11 +948,11 @@ namespace UI.Transport
 
                             if (FileExtension == "jpeg" || FileExtension == "jpg" || FileExtension == "png")
                             {
-                                objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + fileName);
-
+                                //objDocUp.ImageCompress(strm, Server.MapPath("~/Transport/Uploads/") + filen.Trim() + ".png");
+                                objDocUp.ReduceImageSize(0.5, strm, Server.MapPath("~/Transport/Uploads/") + fileName.Trim());
                             }
                             else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This picture format not allow, Allow picture format is jpeg, jpg, png');", true); return; }
-
+                            
                             CreateVoucherXmlDocUpload(fileName, doctypeid);
                         }
                     }
@@ -1087,9 +1086,6 @@ namespace UI.Transport
                 //string targetPath = Server.MapPath("~/Transport/Uploads/") + fileName;
                 //Stream strm = fileupload1.PostedFile.InputStream;
                 //var targetFile = targetPath;
-
-
-
 
 
                 requestFTPUploader = null;

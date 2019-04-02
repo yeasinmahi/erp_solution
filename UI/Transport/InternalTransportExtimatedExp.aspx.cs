@@ -60,6 +60,9 @@ namespace UI.Transport
             
             if (!IsPostBack)
             {
+                //=== As per Transport Department =============================================
+                btnUpdate.Visible = false;
+                               
                 try
                 {
                     File.Delete(filePathForXML); dgvFuelCost.DataSource = ""; dgvFuelCost.DataBind();
@@ -107,6 +110,7 @@ namespace UI.Transport
                     //HttpContext.Current.Session["intPiID"] = intPiID.ToString();
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Add();", true);
+                 
                 }
                 catch (Exception ex)
                 {

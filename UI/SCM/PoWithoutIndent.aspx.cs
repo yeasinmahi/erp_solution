@@ -12,6 +12,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -84,7 +85,7 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetSupplierSearch(string prefixText)
         {
-            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untid"].ToString());
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untids"].ToString());
         }
 
         #endregion====================Close===============================
@@ -364,9 +365,9 @@ namespace UI.SCM
                 {
                      
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
-                    Session["untid"] = hdnUnit.Value.ToString();
+                    Session["untids"] = hdnUnit.Value.ToString();
                 }
-                else { Session["untid"] = "0"; }
+                else { Session["untids"] = "0"; }
 
                 try { File.Delete(filePathForXML); } catch { }
                 dgvIndentPrepare.DataSource = "";
@@ -374,9 +375,11 @@ namespace UI.SCM
                 txtSupplier.Text = "";
                 txtItem.Text = "";
 
+                LoadCostCenter();
+
                 // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
             }
-            catch { Session["untid"] = "0"; }
+            catch { Session["untids"] = "0"; }
         }
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
@@ -402,7 +405,7 @@ namespace UI.SCM
         public static string[] GetPoItemSerach(string prefixText, int count)
         {
             PoGenerate_BLL objs = new PoGenerate_BLL();
-            return objs.AutoSearchServiceItem(HttpContext.Current.Session["untid"].ToString(), prefixText);
+            return objs.AutoSearchServiceItem(HttpContext.Current.Session["untids"].ToString(), prefixText);
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -556,15 +559,13 @@ namespace UI.SCM
             {
                 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 dt = objPo.GetPoData(1, "", 0, 0, DateTime.Now, enroll);
-                ddlWHPrepare.DataSource = dt;
-                ddlWHPrepare.DataTextField = "strName";
-                ddlWHPrepare.DataValueField = "Id";
-                ddlWHPrepare.DataBind();
-                dt = objPo.GetUnitID(int.Parse(ddlWHPrepare.SelectedValue.ToString()));
+                ddlWHPrepare.LoadWithSelect(dt, "Id", "strName");
+
+                dt = objPo.GetUnitID(int.Parse(ddlWHPrepare.SelectedValue));
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
-                    Session["untid"] = hdnUnit.Value.ToString();
+                    Session["untids"] = hdnUnit.Value.ToString();
                 }
               
 
@@ -590,13 +591,20 @@ namespace UI.SCM
                 ddlDtePay.DataValueField = "dteDate";
                 ddlDtePay.DataBind();
 
-                dt = objPo.GetPoData(8, "", intWh, 0, DateTime.Now, enroll);// Get Costcenter
-                ddlCostCenter.DataSource = dt;
-                ddlCostCenter.DataTextField = "strName";
-                ddlCostCenter.DataValueField = "Id";
-                ddlCostCenter.DataBind();
+                LoadCostCenter();
+
+
             }
-            catch { Session["untid"] ="0".ToString(); }
+            catch { Session["untids"] ="0".ToString(); }
+        }
+
+        public void LoadCostCenter()
+        {
+            dt = objPo.GetPoData(8, "", ddlWHPrepare.SelectedValue(), 0, DateTime.Now, enroll);// Get Costcenter
+            ddlCostCenter.DataSource = dt;
+            ddlCostCenter.DataTextField = "strName";
+            ddlCostCenter.DataValueField = "Id";
+            ddlCostCenter.DataBind();
         }
     }
 }

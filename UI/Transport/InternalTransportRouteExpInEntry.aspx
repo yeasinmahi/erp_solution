@@ -536,10 +536,10 @@
             <td style="text-align:left;"><asp:TextBox ID="txtLabourExp" runat="server" CssClass="txtBox" Width="190px" onkeypress="return onlyNumbers();"  onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>                                                               
             
             <td style="text-align:right;"><asp:Label ID="lblBridge" runat="server" CssClass="lbl" Text="Bridge Toll :"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtBridgeToll" runat="server" CssClass="txtBox" BackColor="LightGray" BorderColor="Gray" Width="70px" onkeypress="return onlyNumbers();"  onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>              
+            <td style="text-align:left;"><asp:TextBox ID="txtBridgeToll" runat="server" CssClass="txtBox" ReadOnly="true" BackColor="LightGray" BorderColor="Gray" Width="70px" onkeypress="return onlyNumbers();"  onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>              
 
             <td style="text-align:right;"><asp:Label ID="lblFerry" runat="server" CssClass="lbl" Text="Ferry Toll:"></asp:Label></td>
-            <td style="text-align:left;"><asp:TextBox ID="txtFerryToll" runat="server" CssClass="txtBox" BackColor="LightGray" BorderColor="Gray" Width="70px" onkeypress="return onlyNumbers();"  onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>                                                                                       
+            <td style="text-align:left;"><asp:TextBox ID="txtFerryToll" runat="server" CssClass="txtBox" ReadOnly="true" BackColor="LightGray" BorderColor="Gray" Width="70px" onkeypress="return onlyNumbers();"  onKeyUp="javascript:Add();" MaxLength="10"></asp:TextBox></td>                                                                                       
         </tr> 
         <tr>
             <td style="text-align:right;"><asp:Label ID="lblPolice" runat="server" CssClass="lbl" Text="Police Tips. :"></asp:Label></td>
