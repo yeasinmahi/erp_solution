@@ -74,6 +74,12 @@ namespace UI.SCM
             tracker.Stop();
         }
 
+        protected void btnMRRSDetail_Click(object sender, EventArgs e)
+        {
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/MRR_Statement_Report?rs:Embed=true');", true);
+
+        }
+
         protected void btnStatement_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnStatement_Click", null);
