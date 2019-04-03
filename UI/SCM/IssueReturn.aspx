@@ -34,9 +34,9 @@
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
                     var isssueQty = parseFloat($("[id*=lblQty]", row).html());
-                    var prvQty = parseFloat($("[id*=lblPrvQty]", row).html());
+                    //var prvQty = parseFloat($("[id*=lblPrvQty]", row).html());
                     var returnQty = parseFloat($(this).val());
-                    if (returnQty+prvQty > isssueQty) {
+                    if (returnQty> isssueQty) {
                         $("[id*=txtReturnQty]", row).val('0');
                         alert('Return quantity can not be greater than available quantity');
                     }

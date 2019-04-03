@@ -85,6 +85,22 @@ namespace UI.ClassFiles
                 "alert('" + message + "');", true);
         }
 
+        public void Toaster(string message)
+        {
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster(message, GetPageName().SplitCamelCase(), Common.TosterType.Success);
+            }
+            else if (message.ToLower().Contains("exception"))
+            {
+                Toaster(message, GetPageName().SplitCamelCase(), Common.TosterType.Error);
+            }
+            else
+            {
+                Toaster(message, GetPageName().SplitCamelCase(), Common.TosterType.Warning);
+            }
+
+        }
         public void Toaster(string message, Common.TosterType type)
         {
             Toaster(message, GetPageName().SplitCamelCase(), type);
