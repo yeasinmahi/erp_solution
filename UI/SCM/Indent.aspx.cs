@@ -1,15 +1,13 @@
-﻿using Flogging.Core;
-using GLOBAL_BLL;
-using Purchase_BLL.Asset;
+﻿using Purchase_BLL.Asset;
 using SCM_BLL;
 using System;
 using System.Data;
+using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
@@ -20,143 +18,105 @@ namespace UI.SCM
     public partial class Indent : BasePage
     {
         private readonly Indents_BLL _objIndent = new Indents_BLL();
-        private DataTable dt = new DataTable();
+        private DataTable _dt = new DataTable();
         private readonly string xmlunit = "";
-        private int CheckItem = 1, intWh;
-        private string[] arrayKey;
-        private readonly char[] delimiterChars = { '[', ']' };
-        private string filePathForXML;
-        private string xmlString = "", indentQty;
-
-        private readonly SeriLog log = new SeriLog();
-        private readonly string location = "SCM";
-        private readonly string start = "starting SCM\\Indent";
-        private readonly string stop = "stopping SCM\\Indent";
-        private readonly string perform = "Performance on SCM\\Indent";
+        private int _checkItem = 1;
+        private string[] _arrayKey;
+        private string _filePathForXml, _xmlString = "", _indentQty;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + Enroll + ".xml");
-            
+            _filePathForXml = Server.MapPath("~/SCM/Data/Inden__" + Enroll + ".xml");
+
             if (!IsPostBack)
             {
                 _ast = new AutoSearch_BLL();
                 try
                 {
-                    File.Delete(filePathForXML);
-                    dgvIndent.DataSource = "";
-                    dgvIndent.DataBind();
+                    File.Delete(_filePathForXml);
+                    dgvIndent.UnLoad();
                 }
-                catch (Exception ex) { }
+                catch
+                {
+                    // ignored
+                }
                 DefaltLoad();
                 pnlUpperControl.DataBind();
             }
-            else { }
         }
 
         private void DefaltLoad()
         {
-            var fd = log.GetFlogDetail(start, location, "DefaltLoad", null);
-            Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "DefaltLoad", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
             try
             {
-                dt = _objIndent.DataView(1, xmlunit, 0, 0, DateTime.Now, Enroll);
-                ddlWH.DataSource = dt;
-                ddlWH.DataTextField = "strName";
-                ddlWH.DataValueField = "Id";
-                ddlWH.DataBind();
+                _dt = _objIndent.DataView(1, xmlunit, 0, 0, DateTime.Now, Enroll);
+                ddlWH.Loads(_dt, "Id", "strName");
 
-                dt = _objIndent.DataView(2, xmlunit, int.Parse(ddlWH.SelectedValue), 0, DateTime.Now, Enroll);
-                ddlQcPersonal.DataSource = dt;
-                ddlQcPersonal.DataTextField = "strName";
-                ddlQcPersonal.DataValueField = "Id";
-                ddlQcPersonal.DataBind();
+                _dt = _objIndent.DataView(2, xmlunit, int.Parse(ddlWH.SelectedValue), 0, DateTime.Now, Enroll);
+                ddlQcPersonal.Loads(_dt, "Id", "strName");
 
-                dt = _objIndent.GetDepartment();
-                ddlDepartment.LoadWithSelect(dt, "intdepartmentID", "strDepatrment");
+                _dt = _objIndent.GetDepartment();
+                ddlDepartment.LoadWithSelect(_dt, "intdepartmentID", "strDepatrment");
 
-                dt = _objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, Enroll);
-                ddlReqId.DataSource = dt;
-                ddlReqId.DataTextField = "strName";
-                ddlReqId.DataValueField = "Id";
-                ddlReqId.DataBind();
+                _dt = _objIndent.DataView(3, xmlunit, 0, 0, DateTime.Now, Enroll);
+                ddlReqId.Loads(_dt, "Id", "strName");
 
-                dt = _objIndent.DataView(11, "", 0, 0, DateTime.Now, Enroll);
-                ddlType.DataSource = dt;
-                ddlType.DataTextField = "strName";
-                ddlType.DataValueField = "Id";
-                ddlType.DataBind();
+                _dt = _objIndent.DataView(11, "", 0, 0, DateTime.Now, Enroll);
+                ddlType.Loads(_dt, "Id", "strName");
+
                 try
                 {
                     Session["WareID"] = ddlWH.SelectedValue;
                 }
                 catch (Exception ex)
                 {
-                    Alert(ex.Message);
+                    Toaster(ex.Message, Common.TosterType.Error);
                 }
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "DefaltLoad", ex);
-                Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
 
-            fd = log.GetFlogDetail(stop, location, "DefaltLoad", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
 
         #region========================Action==================================
 
         protected void btnReq_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "btnReq_Click Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
-            var tracker = new PerfTracker(perform + " " + "btnReq_Click Show", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
             try
             {
                 int reqId = int.Parse(ddlReqId.SelectedValue);
                 string indentType = ddlType.SelectedItem.ToString();
                 string purpose = txtPurpose.Text;
                 string qcby = ddlQcPersonal.SelectedValue;
-                dt = _objIndent.DataView(5, xmlunit, intWh, reqId, DateTime.Now, Enroll);
-                if (dt.Rows.Count > 0 && int.Parse(ddlType.SelectedValue) > 0)
+                _dt = _objIndent.DataView(5, xmlunit, ddlWH.SelectedValue(), reqId, DateTime.Now, Enroll);
+                if (_dt.Rows.Count > 0 && int.Parse(ddlType.SelectedValue) > 0)
                 {
-                    for (int i = 0; dt.Rows.Count > i; i++)
+                    for (int i = 0; _dt.Rows.Count > i; i++)
                     {
-                        string itemId = dt.Rows[i]["intItemID"].ToString();
-                        string itemName = dt.Rows[i]["strName"].ToString();
-                        indentQty = dt.Rows[i]["numApproveQty"].ToString();
-                        string reqCode = dt.Rows[i]["reqCode"].ToString();
+                        string itemId = _dt.Rows[i]["intItemID"].ToString();
+                        string itemName = _dt.Rows[i]["strName"].ToString();
+                        _indentQty = _dt.Rows[i]["numApproveQty"].ToString();
+                        string reqCode = _dt.Rows[i]["reqCode"].ToString();
                         CheckXmlItemReqData(itemId, reqCode);
-                        if (CheckItem == 1)
+                        if (_checkItem == 1)
                         {
-                            string uom = dt.Rows[i]["strUom"].ToString();
-                            string stock = dt.Rows[i]["stockQty"].ToString();
-                            string sftyStock = dt.Rows[i]["numSafetyStock"].ToString();
-                            string rate = dt.Rows[i]["rate"].ToString();
-                            indentQty = dt.Rows[i]["numApproveQty"].ToString();
+                            string uom = _dt.Rows[i]["strUom"].ToString();
+                            string stock = _dt.Rows[i]["stockQty"].ToString();
+                            string sftyStock = _dt.Rows[i]["numSafetyStock"].ToString();
+                            string rate = _dt.Rows[i]["rate"].ToString();
+                            _indentQty = _dt.Rows[i]["numApproveQty"].ToString();
                             int intDepartment = ddlDepartment.SelectedValue();
-                            CreateXml(itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby, intDepartment);
+                            CreateXml(itemId, itemName, uom, stock, sftyStock, rate, _indentQty, reqCode, reqId.ToString(), indentType, purpose, qcby, intDepartment);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnReq_Click Show", ex);
-                Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
-
-            fd = log.GetFlogDetail(stop, location, "btnReq_Click Show", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
 
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -166,11 +126,11 @@ namespace UI.SCM
                 LoadGridwithXml();
                 DataSet dsGrid = (DataSet)dgvIndent.DataSource;
                 dsGrid.Tables[0].Rows[dgvIndent.Rows[e.RowIndex].DataItemIndex].Delete();
-                dsGrid.WriteXml(filePathForXML);
+                dsGrid.WriteXml(_filePathForXml);
                 DataSet dsGridAfterDelete = (DataSet)dgvIndent.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 {
-                    File.Delete(filePathForXML);
+                    File.Delete(_filePathForXml);
                     dgvIndent.DataSource = "";
                     dgvIndent.DataBind();
                 }
@@ -179,57 +139,49 @@ namespace UI.SCM
                     LoadGridwithXml();
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "DefaltLoad", null);
-            Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "DefaltLoad", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
             try
             {
                 txtItem.Text = "";
-                try { File.Delete(filePathForXML); dgvIndent.DataSource = ""; dgvIndent.DataBind(); }
-                catch { }
+                try
+                {
+                    File.Delete(_filePathForXml);
+                    dgvIndent.UnLoad();
+                }
+                catch
+                {
+                    // ignored
+                }
                 Session["WareID"] = ddlWH.SelectedValue;
-                intWh = int.Parse(ddlWH.SelectedValue);
-                dt = _objIndent.DataView(2, xmlunit, intWh, 0, DateTime.Now, Enroll);
-                ddlQcPersonal.DataSource = dt;
-                ddlQcPersonal.DataTextField = "strName";
-                ddlQcPersonal.DataValueField = "Id";
-                ddlQcPersonal.DataBind();
+                _dt = _objIndent.DataView(2, xmlunit, ddlWH.SelectedValue(), 0, DateTime.Now, Enroll);
+                ddlQcPersonal.Loads(_dt, "Id", "strName");
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "DefaltLoad", ex);
-                Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
-
-            fd = log.GetFlogDetail(stop, location, "DefaltLoad", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
             {
-                arrayKey = txtItem.Text.Split(delimiterChars);
-                intWh = int.Parse(ddlWH.SelectedValue);
-                string item = "";
-                string itemid = "";
-                bool proceed = false;
-                if (arrayKey.Length > 1)
+                _arrayKey = txtItem.Text.Split(Variables.GetInstance().DelimiterChars);
+                string itemid;
+                if (_arrayKey.Length > 1)
                 {
-                    item = arrayKey[0];
-                    itemid = arrayKey[1];
+                    itemid = _arrayKey[1];
                 }
                 else
                 {
-                    Toaster("Please add Item name properly",Common.TosterType.Warning);
+                    Toaster("Please add Item name properly", Common.TosterType.Warning);
                     return;
                 }
                 string reqCode = "0";
@@ -238,11 +190,11 @@ namespace UI.SCM
                 string purpose = txtPurpose.Text;
                 string qcby = ddlQcPersonal.SelectedValue;
                 CheckXmlItemReqData(itemid, reqCode);
-                if (CheckItem == 1)
+                if (_checkItem == 1)
                 {
                     if (indentType.ToLower().Equals("select"))
                     {
-                        Toaster("Please select type",Common.TosterType.Warning);
+                        Toaster("Please select type", Common.TosterType.Warning);
                         return;
                     }
 
@@ -252,19 +204,19 @@ namespace UI.SCM
                     {
                         if (quantity > 0)
                         {
-                            dt = new DataTable();
-                            dt = _objIndent.GetItemStockAndPrice(4, int.Parse(itemid), intWh);
-                            if (dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
+                            _dt = new DataTable();
+                            _dt = _objIndent.GetItemStockAndPrice(4, int.Parse(itemid), ddlWH.SelectedValue());
+                            if (_dt.Rows.Count > 0 && decimal.Parse(txtQty.Text) > 0)
                             {
-                                string itemId = dt.Rows[0]["intItemID"].ToString();
-                                string itemName = dt.Rows[0]["strName"].ToString();
-                                string uom = dt.Rows[0]["strUom"].ToString();
-                                string stock = dt.Rows[0]["stockQty"].ToString();
-                                string sftyStock = dt.Rows[0]["numSafetyStock"].ToString();
-                                string rate = dt.Rows[0]["rate"].ToString();
+                                string itemId = _dt.Rows[0]["intItemID"].ToString();
+                                string itemName = _dt.Rows[0]["strName"].ToString();
+                                string uom = _dt.Rows[0]["strUom"].ToString();
+                                string stock = _dt.Rows[0]["stockQty"].ToString();
+                                string sftyStock = _dt.Rows[0]["numSafetyStock"].ToString();
+                                string rate = _dt.Rows[0]["rate"].ToString();
                                 int intDepartment = ddlDepartment.SelectedValue();
 
-                                CreateXml(itemId, itemName, uom, stock, sftyStock, rate, quantity.ToString(), reqCode, reqId, indentType,
+                                CreateXml(itemId, itemName, uom, stock, sftyStock, rate, quantity.ToString(CultureInfo.CurrentCulture), reqCode, reqId, indentType,
                                     purpose, qcby, intDepartment);
                             }
                             else
@@ -274,71 +226,55 @@ namespace UI.SCM
                         }
                         else
                         {
-                            Toaster("Quantity should be greater than 0",Common.TosterType.Warning);
+                            Toaster("Quantity should be greater than 0", Common.TosterType.Warning);
                         }
                     }
                     else
                     {
-                        Toaster("Input Quantity properly",Common.TosterType.Warning);
+                        Toaster("Input Quantity properly", Common.TosterType.Warning);
                     }
-                    
+
                 }
                 else
                 {
                     Toaster(Message.AlreadyAdded.ToFriendlyString(), Common.TosterType.Warning);
                 }
                 txtItem.Text = "";
-                txtQty.Text = "0";
+                txtQty.Text = @"0";
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
 
             // string xmlunit = "<voucher><voucherentry itemId=" + '"' + ItemId + '"' + " SalesPrice=" + '"' + SalesPrice + '"' + " IssueQty=" + '"' + IssueQty + '"' + " rackId=" + '"' + RackId + '"' + " MrrId=" + '"' + MrrId + '"' + "/></voucher>".ToString();
         }
-
-        private void CheckXmlItemData(string itemid)
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-                ds.ReadXml(filePathForXML);
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
-                {
-                    if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
-                    {
-                        CheckItem = 0;
-                        break;
-                    }
-                    else
-                    {
-                        CheckItem = 1;
-                    }
-                }
-            }
-            catch { }
-        }
-
         private void CheckXmlItemReqData(string itemid, string reqCode)
         {
             try
             {
                 DataSet ds = new DataSet();
-                ds.ReadXml(filePathForXML);
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                if (_filePathForXml.IsExist())
                 {
-                    if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()) && reqCode == (ds.Tables[0].Rows[i].ItemArray[7].ToString()))
+                    ds.ReadXml(_filePathForXml);
+                    int i;
+                    for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                     {
-                        CheckItem = 0;
-                        break;
+                        if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()) &&
+                            reqCode == (ds.Tables[0].Rows[i].ItemArray[7].ToString()))
+                        {
+                            _checkItem = 0;
+                            break;
+                        }
+                        _checkItem = 1;
                     }
-                    CheckItem = 1;
                 }
+                
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         #endregion======================Close==================================
@@ -350,7 +286,7 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            
+
             return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
@@ -362,12 +298,12 @@ namespace UI.SCM
         private void CreateXml(string itemId, string itemName, string uom, string stock, string sftyStock, string rate, string indentQty, string reqCode, string reqId, string indentType, string purpose, string qcby, int intDepartment)
         {
             XmlDocument doc = new XmlDocument();
-            if (File.Exists(filePathForXML))
+            if (File.Exists(_filePathForXml))
             {
-                doc.Load(filePathForXML);
+                doc.Load(_filePathForXml);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
                 XmlNode addItem = CreateItemNode(doc, itemId, itemName, uom, stock, sftyStock, rate, indentQty, reqCode, reqId, indentType, purpose, qcby, intDepartment);
-                rootNode.AppendChild(addItem);
+                rootNode?.AppendChild(addItem);
             }
             else
             {
@@ -378,7 +314,7 @@ namespace UI.SCM
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
-            doc.Save(filePathForXML);
+            doc.Save(_filePathForXml);
             LoadGridwithXml();
         }
 
@@ -435,19 +371,27 @@ namespace UI.SCM
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
+                doc.Load(_filePathForXml);
                 XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<voucher>" + xmlString + "</voucher>";
-                StringReader sr = new StringReader(xmlString);
+                _xmlString = dSftTm?.InnerXml;
+                _xmlString = "<voucher>" + _xmlString + "</voucher>";
+                StringReader sr = new StringReader(_xmlString);
                 DataSet ds = new DataSet();
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
-                { dgvIndent.DataSource = ds; }
-                else { dgvIndent.DataSource = ""; }
+                {
+                    dgvIndent.DataSource = ds;
+                }
+                else
+                {
+                    dgvIndent.DataSource = "";
+                }
                 dgvIndent.DataBind();
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         #endregion ===========================Close=======================
@@ -456,69 +400,73 @@ namespace UI.SCM
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "btnSubmit_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "btnSubmit_Click", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-
             try
             {
                 if (int.Parse(ddlType.SelectedValue) > 0)
                 {
                     if (ddlDepartment.SelectedValue() > 0)
                     {
-                        XmlDocument doc = new XmlDocument();
-                        intWh = int.Parse(ddlWH.SelectedValue);
-                        doc.Load(filePathForXML);
-                        XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                        xmlString = dSftTm.InnerXml;
-                        xmlString = "<voucher>" + xmlString + "</voucher>";
-                        string dueDate = txtDueDate.Text;
-                        if (string.IsNullOrWhiteSpace(dueDate))
+                        if (_filePathForXml.IsExist())
                         {
-                            Toaster("Due date can not be blank",Common.TosterType.Warning);
-                            return;
-                        }
-                        DateTime dtedate;
-                        try
-                        {
-                            dtedate = DateTime.Parse(txtDueDate.Text);
-                            if (dtedate.Date < DateTime.Now.Date)
+                            XmlDocument doc = new XmlDocument();
+                            doc.Load(_filePathForXml);
+                            XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                            _xmlString = dSftTm?.InnerXml;
+                            _xmlString = "<voucher>" + _xmlString + "</voucher>";
+                            string dueDate = txtDueDate.Text;
+                            if (string.IsNullOrWhiteSpace(dueDate))
                             {
-                                Toaster("Due date can not be eralier of present date",Common.TosterType.Warning);
+                                Toaster("Due date can not be blank", Common.TosterType.Warning);
                                 return;
                             }
+                            DateTime dtedate;
+                            try
+                            {
+                                dtedate = DateTime.Parse(txtDueDate.Text);
+                                if (dtedate.Date < DateTime.Now.Date)
+                                {
+                                    Toaster("Due date can not be eralier of present date", Common.TosterType.Warning);
+                                    return;
+                                }
+                            }
+                            catch
+                            {
+                                Toaster("Due " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                                return;
+                            }
+
+                            try
+                            {
+                                File.Delete(_filePathForXml);
+                            }
+                            catch
+                            {
+                                // ignored
+                            }
+                            if (_xmlString.Length > 5)
+                            {
+                                string mrtg = _objIndent.IndentEntry(6, _xmlString, ddlWH.SelectedValue(), 0, dtedate,
+                                    Enroll);
+                                string[] searchKey = Regex.Split(mrtg, ":");
+                                lblIndentNo.Text = @"Indent Number: " + searchKey[1];
+                                Toaster(mrtg,
+                                    mrtg.ToLower().Contains("sucessfully")
+                                        ? Common.TosterType.Success
+                                        : Common.TosterType.Error);
+                                dgvIndent.UnLoad();
+                            }
                         }
-                        catch
+                        else
                         {
-                            Toaster("Due "+Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
-                            return;
+                            Toaster("You have not enought item to input",Common.TosterType.Warning);
                         }
                         
-                        try
-                        {
-                            File.Delete(filePathForXML);
-                        }
-                        catch
-                        {
-                        }
-                        if (xmlString.Length > 5)
-                        {
-                            string mrtg = _objIndent.IndentEntry(6, xmlString, intWh, 0, dtedate, Enroll);
-                            string[] searchKey = Regex.Split(mrtg, ":");
-                            lblIndentNo.Text = "Indent Number: " + searchKey[1];
-                            Toaster(mrtg,
-                                mrtg.ToLower().Contains("sucessfully")
-                                    ? Common.TosterType.Success
-                                    : Common.TosterType.Error);
-                            dgvIndent.UnLoad();
-                        }
                     }
                     else
                     {
-                        Toaster("Please select Department",Common.TosterType.Warning);
+                        Toaster("Please select Department", Common.TosterType.Warning);
                     }
-                    
+
                 }
                 else
                 {
@@ -527,13 +475,8 @@ namespace UI.SCM
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnSubmit_Click", ex);
-                Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
-
-            fd = log.GetFlogDetail(stop, location, "btnSubmit_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            tracker.Stop();
         }
 
         #endregion======================Close=================================

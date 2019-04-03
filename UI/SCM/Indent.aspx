@@ -9,6 +9,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <style type="text/css"> 
         .ajax__calendar_inactive  {color:#dddddd;}
     </style>
@@ -148,7 +149,7 @@
 
                             <td colspan="2" style="text-align: right;">
                                 <asp:Button ID="btnAdd" runat="server" Text="Add" ForeColor="Blue" OnClick="btnAdd_Click" />
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" ForeColor="Blue" OnClick="btnSubmit_Click" />
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" ForeColor="Blue" OnClientClick="showLoader();" OnClick="btnSubmit_Click" />
                             </td>
                         </tr>
                         <tr>
