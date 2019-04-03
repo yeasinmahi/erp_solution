@@ -104,6 +104,7 @@
                 notify('input Quantity greater then Stock Quantity');
                 return false;
             }
+            showLoader();
             return true;
         }
 

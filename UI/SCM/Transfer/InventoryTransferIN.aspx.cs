@@ -72,6 +72,7 @@ namespace UI.SCM.Transfer
                     string strWareHoseName = _dt.Rows[0]["strWareHoseName"].ToString();
                     string monQty = _dt.Rows[0]["monQty"].ToString();
                     hdnInQty.Value = monQty;
+                    txtQty.Text = monQty;
                     string monValue = _dt.Rows[0]["monValue"].ToString();
                     string strUoM = _dt.Rows[0]["strUoM"].ToString();
                     DateTime dteTransactionDate = DateTime.Parse(_dt.Rows[0]["dteTransactionDate"].ToString());
@@ -81,7 +82,6 @@ namespace UI.SCM.Transfer
                     string detalis = "From: " + strWareHoseName + " Qty: " + monQty + strUoM + " Date: " +
                                      dteTransactionDate.ToString("dd-MM-yyyy");
                     lblFrom.Text = detalis;
-
                     if (intUnitOUT == InUnitID)
                     {
                         _dt = _bll.GetTtransferDatas(4, xmlString, intWh, Id, DateTime.Now, Enroll);
