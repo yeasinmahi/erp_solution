@@ -337,6 +337,11 @@ namespace UI.SCM.Transfer
                         string strLocation = row["strLocation"].ToString();
                         string monStock = row["monStock"].ToString();
                         string monValues = row["monValue"].ToString();
+                        if (double.TryParse(monStock, out double stock) && double.TryParse(monValues, out double value))
+                        {
+                            double rate = value / stock;
+                            txtRate.Text = rate.ToString();
+                        }
                         hdnStockQty.Value = row["monStock"].ToString();
                         hdnUom.Value = row["strUom"].ToString();
                         hdnValue.Value = row["monValue"].ToString();
