@@ -56,6 +56,7 @@
                 alert('To Date filed can not be blank');
                 return false;
             }
+            showLoader();
             return true;
         }
     </script>
