@@ -99,7 +99,7 @@ namespace UI.SCM
             }
         }
 
-        private readonly object locker =new object();
+        private readonly object locker = new object();
         protected void btnSaveMrr_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnSaveMrr_Click", null);
@@ -397,10 +397,18 @@ namespace UI.SCM
                 {
                     ddlInvoice.Enabled = true;
                     dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
-                    ddlInvoice.DataSource = dt;
-                    ddlInvoice.DataTextField = "strName";
-                    ddlInvoice.DataValueField = "Id";
-                    ddlInvoice.DataBind();
+                    if (dt.Rows.Count > 0)
+                    {
+                        ddlInvoice.DataSource = dt;
+                        ddlInvoice.DataTextField = "strName";
+                        ddlInvoice.DataValueField = "Id";
+                        ddlInvoice.DataBind();
+                    }
+                    else
+                    {
+                        Toaster("Shipment has not yet been created", Common.TosterType.Warning);
+                    }
+
                 }
             }
             catch { }
@@ -446,13 +454,20 @@ namespace UI.SCM
                             else if (dt.Rows[0]["strPoFor"].ToString() == "Import")
                             {
                                 ddlPoType.SelectedValue = "2";
-                                
+
                                 ddlInvoice.Enabled = true;
                                 dt = obj.DataView(5, xmlString, intWh, intPo, DateTime.Now, enroll);
-                                ddlInvoice.DataSource = dt;
-                                ddlInvoice.DataTextField = "strName";
-                                ddlInvoice.DataValueField = "Id";
-                                ddlInvoice.DataBind();
+                                if (dt.Rows.Count > 0)
+                                {
+                                    ddlInvoice.DataSource = dt;
+                                    ddlInvoice.DataTextField = "strName";
+                                    ddlInvoice.DataValueField = "Id";
+                                    ddlInvoice.DataBind();
+                                }
+                                else
+                                {
+                                    Toaster("Shipment has not yet been created", Common.TosterType.Warning);
+                                }
                             }
                             else if (dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
                             {
