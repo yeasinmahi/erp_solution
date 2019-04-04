@@ -53,7 +53,6 @@
 </head>
 
 <body>
-
     <form id="frmselfresign" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
