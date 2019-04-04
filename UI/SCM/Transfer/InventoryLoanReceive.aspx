@@ -12,11 +12,8 @@
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
     <script src="../../Content/JS/datepickr.min.js"></script> 
     <script src="../../Content/JS/JSSettlement.js"></script> 
-    <link href="jquery-ui.css" rel="stylesheet" /> 
      <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" /> 
-    <script src="jquery.min.js"></script> 
-    <script src="jquery-ui.min.js"></script> 
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%> 
   
     
@@ -44,7 +41,11 @@
                 else {
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnPreConfirm").value = "1"; }
+                if (confirm("Do you want to proceed?")) {
+                    confirm_value.value = "Yes";
+                    document.getElementById("hdnPreConfirm").value = "1";
+                    showLoader();
+                }
                 else { confirm_value.value = "No"; document.getElementById("hdnPreConfirm").value = "0"; } 
 
                // document.getElementById("hdnPreConfirm").value = "1";
