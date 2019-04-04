@@ -958,6 +958,15 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.TextBox txtRemarks;
         
         /// <summary>
+        /// chkGTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkGTax;
+        
+        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -2027,6 +2036,15 @@ namespace UI.Asset {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRemarksV;
+        
+        /// <summary>
+        /// chkVTax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkVTax;
         
         /// <summary>
         /// btnSaveVehicle control.

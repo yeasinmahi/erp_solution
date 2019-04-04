@@ -47,7 +47,7 @@ namespace UI.Document_Inventory
                 PolicyGrid();           
             
                 
-                if (depertmentid ==14)
+                if (depertmentid ==14 || depertmentid == 242)
                 {
 
 
