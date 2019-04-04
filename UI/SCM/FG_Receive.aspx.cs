@@ -27,7 +27,10 @@ namespace UI.SCM
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message,Common.TosterType.Error);
+                }
             }
         }
 
@@ -45,8 +48,12 @@ namespace UI.SCM
 
             if (_dt.Rows.Count > 0)
             {
-                FG_Grid.DataSource = _dt;
-                FG_Grid.DataBind();
+                FG_Grid.Loads(_dt);
+                SetVisibility("panel",true);
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
             }
         }
 
@@ -64,7 +71,7 @@ namespace UI.SCM
 
             _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 2, autoid, itemid, invDate, storeQty, productionId); //insert into inventory
 
-            if (true)
+            if (_dt.Rows.Count>0)
             {
                 GridBind();
                 Toaster("Successfully Updated",Common.TosterType.Success);
