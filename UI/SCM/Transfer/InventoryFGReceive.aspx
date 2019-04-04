@@ -13,11 +13,8 @@
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
 
     <script type="text/javascript">
@@ -42,8 +39,15 @@
             else {
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnPreConfirm").value = "1"; }
-                else { confirm_value.value = "No"; document.getElementById("hdnPreConfirm").value = "0"; }
+                if (confirm("Do you want to proceed?")) {
+                    confirm_value.value = "Yes";
+                    document.getElementById("hdnPreConfirm").value = "1";
+                    showLoader();
+                }
+                else {
+                    confirm_value.value = "No";
+                    document.getElementById("hdnPreConfirm").value = "0";
+                }
 
                 // document.getElementById("hdnPreConfirm").value = "1";
             }
@@ -61,9 +65,8 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
@@ -107,7 +110,7 @@
                             <td>
                                 <asp:TextBox ID="txtReceQty" CssClass="txtBox" Width="130px" TextMode="Number" runat="server"></asp:TextBox>
                                 <asp:Label ID="Label2" Text="UoM:" runat="server"></asp:Label>
-                            <asp:Label ID="lblUom" runat="server" ForeColor="Blue"></asp:Label>
+                                <asp:Label ID="lblUom" runat="server" ForeColor="Blue"></asp:Label>
                             </td>
                         </tr>
                         <tr>
@@ -126,7 +129,7 @@
                                 <asp:Label ID="lblProduct" Text="Production ID:" runat="server"></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtProductId" CssClass="txtBox" runat="server"></asp:TextBox></td>
-                            <td c>
+                            <td>
                                 <asp:Button ID="btnActive" runat="server" ForeColor="Green" Text="Active" OnClick="btnActive_Click" />
                                 <asp:Button ID="btnInActive" ForeColor="Red" runat="server" Text="In Active" OnClick="btnInActive_Click" /></td>
                         </tr>
