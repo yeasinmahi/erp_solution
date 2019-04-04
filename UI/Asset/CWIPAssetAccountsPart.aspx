@@ -408,7 +408,7 @@
            </table>
          </div>
 
-     <%--   General Asset Parking Registratiron         class="hdnDivision" --%> 
+     <%--   General Asset Parking Registratiron      class="hdnDivision"    class="hdnDivision" --%> 
                 <div id="hdnDivision"  class="hdnDivision"   style="width:auto; height:500px;">
                  <table  style="width:auto;  float:left; " >   
                 <tr>
@@ -587,8 +587,8 @@
                  <tr>  
                <td style="text-align:right;"><asp:Label ID="lblGlCode" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
                 <td><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox"></asp:TextBox></td> 
-
-                    </tr>
+                <td style="text-align:right;"><asp:CheckBox ID="chkGTax" AutoPostBack="true" Text="isTax Account" runat="server" /></td>
+               </tr>
                        
                   <tr>
                         <td colspan="4" style="text-align:right;">
@@ -622,7 +622,7 @@
           <%-- Close  --%>
 
       <%-- Vehicle Asset Parking class="hdnDivisionVehicle"   --%>
-            <div id="hdnDivisionVehicle" class="hdnDivisionVehicle" style="width:auto; height:700px;">
+            <div id="hdnDivisionVehicle"  class="hdnDivisionVehicle" style="width:auto; height:700px;">
                 <table style="width:auto;  float:left; " >    
                    
                <tr>
@@ -916,7 +916,8 @@
                 <tr>
                
                 <td style="text-align:right;"><asp:Label ID="lblGlCodeV" CssClass="lbl" runat="server" Text="Remarks:"></asp:Label></td>
-                <td><asp:TextBox ID="txtRemarksV" runat="server" CssClass="txtBox"></asp:TextBox></td>      
+                <td><asp:TextBox ID="txtRemarksV" runat="server" CssClass="txtBox"></asp:TextBox></td> 
+                     <td style="text-align:right;"><asp:CheckBox ID="chkVTax" AutoPostBack="true" Text="isTax Account" runat="server" /></td>
 
                 </tr>               
                                     
