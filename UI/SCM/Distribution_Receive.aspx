@@ -59,12 +59,12 @@
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                 </div>
                                 <div class="col-md-3 btn-toolbar" id="showbuttonDiv" style="padding-top: 20px;">
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClick="btnShow_Click" />
+                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClientClick="showLoader();" OnClick="btnShow_Click" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="panel panel-info">
+                    <div class="panel panel-info hidden" id="itemPanel">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Distribution Receive Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
@@ -128,7 +128,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField ShowHeader="true" HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" CssClass="btn btn-success btn-xs"></asp:Button>
+                                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" Text="Update" OnClientClick="showLoader();" CssClass="btn btn-success btn-xs"></asp:Button>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>

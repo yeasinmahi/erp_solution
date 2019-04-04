@@ -167,7 +167,7 @@
                             <td>Qty:
                             </td>
                             <td>
-                                <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox" Width="100px" TextMode="Number"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" runat="server" CssClass="txtBox" Width="100px" ReadOnly="True" TextMode="Number"></asp:TextBox>
                                 <asp:Button ID="btnSaveIn" runat="server" Style="float: right" OnClientClick="return Validation();" ForeColor="Blue" Text="Transfer IN"  OnClick="btnSaveIn_Click" />
                             </td>
                         </tr>

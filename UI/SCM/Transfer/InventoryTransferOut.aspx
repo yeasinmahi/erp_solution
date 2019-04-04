@@ -104,6 +104,7 @@
                 notify('input Quantity greater then Stock Quantity');
                 return false;
             }
+            showLoader();
             return true;
         }
 
@@ -223,7 +224,7 @@
                                 <asp:Label ID="lblDetalis" ForeColor="Blue" runat="server"></asp:Label></td>
                             <td>Rate:</td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtRate" CssClass="txtBox" Width="80px" Text="0" runat="server" TextMode="Number"></asp:TextBox>
+                                <asp:TextBox ID="txtRate" CssClass="txtBox" Width="80px" Text="0" runat="server" ReadOnly="True" TextMode="Number"></asp:TextBox>
                                 <asp:Label ID="lblValue" runat="server" ForeColor="Blue"></asp:Label></td>
                             <td colspan="2">
                                 <asp:Button ID="btnAdd" runat="server" ForeColor="blue" OnClientClick="return AddConfirm();" Text="Add" OnClick="btnAdd_Click" />
