@@ -92,6 +92,9 @@
      <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Market Setup" CssClass="lbl" Font-Size="16px"></asp:Label>                                                                                       
     <hr /> </td></tr><tr><td>
      <table  class="tbldecoration" style="width:auto; float:left;">  
+         <tr><td colspan="5">
+             <asp:RadioButton ID="rtnmarket" GroupName="group" Text="Market Setup" AutoPostBack="true" runat="server" OnCheckedChanged="rtnmarket_CheckedChanged" /><asp:RadioButton GroupName="group" ID="rtnemployee" Text="Employee Setup" runat="server" AutoPostBack="true" OnCheckedChanged="rtnemployee_CheckedChanged" />
+             </td></tr>
      <tr>
         <td>Unit:</td>
         <td> <asp:DropDownList ID="ddlunit" CssClass="ddllist" runat="server"  AutoPostBack="True" OnSelectedIndexChanged="ddlunit_SelectedIndexChanged" ></asp:DropDownList></td>
@@ -123,19 +126,33 @@
      <tr><td colspan="5"><hr /></td></tr> 
      <tr>
         <td>Email Address:</td>
-        <td><asp:TextBox ID="txtEmail" CssClass="txtBox"   MaxLength="10" runat="server" AutoPostBack="true" ></asp:TextBox></td>
+        <td><asp:TextBox ID="txtEmail" CssClass="txtBox"    runat="server" AutoPostBack="true" ></asp:TextBox></td>
         <td>Contact No:</td>
-        <td><asp:TextBox ID="txtContact" CssClass="txtBox"   MaxLength="10" runat="server"></asp:TextBox></td>
+        <td><asp:TextBox ID="txtContact" CssClass="txtBox"   MaxLength="11" runat="server"></asp:TextBox></td>
         <td>&nbsp;</td>         
     </tr>
    
     <tr><td>&nbsp;</td>
-        <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfoSave()" class="myButton" OnClick="btnSave_Click" Text="Save" /></td>
+        <td><asp:Button ID="btnSave" runat="server" OnClientClick="ValidationBasicInfoSave()" class="myButton" OnClick="btnSave_Click" Text="Save" />
+            <asp:Button ID="btnupdate" runat="server"  class="myButton" OnClick="btnupdate_Click" Text="Update" />
+            <asp:Button ID="btnshow" runat="server"  class="myButton" OnClick="btnshow_Click" Text="Show" />
+        </td>
     </tr>
     </table>
     </td></tr>
-    <tr><td>
-    
+    <tr><td colspan="5">
+         <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+                                SkinID="sknGrid1" CaptionAlign="Top" Caption="Market Setup Info" 
+                                
+                               >
+                                <Columns>
+                                    
+                                    <asp:BoundField DataField="strText" HeaderText="Location" SortExpression="strNarration" />
+                                    <asp:BoundField DataField="strEmailAddress" HeaderText="Email" SortExpression="strBankName" />
+                                     <asp:BoundField DataField="strContactNo" HeaderText="Contact No" SortExpression="strBankName" />
+                                  
+                                </Columns>
+                            </asp:GridView>
     </td></tr></table>
     </div>
 

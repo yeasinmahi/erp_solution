@@ -78,82 +78,150 @@
     <table class="" style="width:100%; height:2px ">  
     <tr style="width:100%" >       
     <td style="text-align:justify;font-size:12px; background-color:white;">
-    <p class="MsoNormal">
-    <asp:GridView ID="gvfnlsttl" runat="server"  BackColor="White" BorderColor="#999999" BorderStyle="Inset" ForeColor="Black" GridLines="Vertical" Font-Names="Calibri" Font-Size="Small" AutoGenerateColumns="False">
-    <AlternatingRowStyle BackColor="#DCDCDC" />
-    <Columns>
-    <asp:TemplateField HeaderText="SL." ><ItemTemplate><%# Container.DataItemIndex + 1 %>
-    </ItemTemplate><ItemStyle HorizontalAlign="Left"  Height="5px" Width="50px"/></asp:TemplateField>       
-    <asp:TemplateField HeaderText="Customer ID" SortExpression="intCustid" HeaderStyle-CssClass="hidden" FooterStyle-CssClass="hidden" ItemStyle-CssClass="hidden" ControlStyle-CssClass="hidden"><ItemTemplate>
-    <asp:Label ID="lblintCustid" runat="server" Text='<%# Bind("icustid") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="COA ID" SortExpression="intCOAid" HeaderStyle-CssClass="hidden" FooterStyle-CssClass="hidden" ItemStyle-CssClass="hidden" ControlStyle-CssClass="hidden"><ItemTemplate>
-    <asp:Label ID="lblintCOAid" runat="server" Text='<%# Bind("icustcoaid") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Acc Name" SortExpression="strAccName" HeaderStyle-CssClass="hidden" FooterStyle-CssClass="hidden" ItemStyle-CssClass="hidden" ControlStyle-CssClass="hidden"><ItemTemplate>
-    <asp:Label ID="lblstrAccName" runat="server" Text='<%# Bind("scustname") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Customer Loan Name" SortExpression="strvehiclename"><ItemTemplate>
-    <asp:Label ID="lblstrvehiclename" runat="server" Text='<%# Bind("scustnamel") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="300px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Delivery Date" SortExpression="dtdeliverydate"><ItemTemplate>
-    <asp:Label ID="lbldtdeliverydate" runat="server" Text='<%# Bind("dtdeliverydate","{0:d}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Price" SortExpression="monvehicleprice"><ItemTemplate>
-    <asp:Label ID="lblmonvehicleprice" runat="server" Text='<%# Bind("monvehicleprice","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Down Payment" SortExpression="downpayment"><ItemTemplate>
-    <asp:Label ID="lbldownpayment" runat="server" Text='<%# Bind("mondownpayment","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Useful Period" SortExpression="monusefullife"><ItemTemplate>
-    <asp:Label ID="lblmonusefullife" runat="server" Text='<%# Bind("monusefullife","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Depreciation Per Month" SortExpression="mondepreciation"><ItemTemplate>
-    <asp:Label ID="lblmondepreciation" runat="server" Text='<%# Bind("mondepreciation","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Loan Period" SortExpression="monloanperiod"><ItemTemplate>
-    <asp:Label ID="lblmonloanperiod" runat="server" Text='<%# Bind("monloanperiod","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Monthly Instalment" SortExpression="monemi"><ItemTemplate>
-    <asp:Label ID="lblmonemi" runat="server" Text='<%# Bind("monemi","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Used Period" SortExpression="usedperiod"><ItemTemplate>
-    <asp:Label ID="lblusedperiod" runat="server" Text='<%# Bind("usedperiod","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Cumulative Depreciation" SortExpression="cumdepreciation"><ItemTemplate>
-    <asp:Label ID="lblcumdepreciation" runat="server" Text='<%# Bind("cumdepreciation","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Total Paid" SortExpression="paid"><ItemTemplate>
-    <asp:Label ID="lblpaid" runat="server" Text='<%# Bind("paid","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>
-    <asp:TemplateField HeaderText="Total Payable" SortExpression="payable"><ItemTemplate>
-    <asp:Label ID="lblpayable" runat="server" Text='<%# Bind("payable","{0:n0}") %>'></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField> 
-    <asp:TemplateField HeaderText="Stop Getting EMI" SortExpression="payable"><ItemTemplate>
-    <asp:Button runat="server" ID="btnclose" Text="Stop" CommandArgument='<%#Eval("icustid") + "," +Eval("intvehiclepaymentid") + "," +Eval("payable")%>' OnClick="close_Click" /></ItemTemplate>
-    <ItemStyle HorizontalAlign="Left"  Height="5px" Width="100px"/><FooterTemplate>
-    </FooterTemplate></asp:TemplateField>            
-    </Columns>
-    <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
-    <HeaderStyle BackColor="#999999" ForeColor="White" Font-Size="Small" Font-Bold="false"  />
-    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-    <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
-    <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" /></asp:GridView></p>
+        <asp:GridView ID="gvfnlsttl" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Inset" Font-Names="Calibri" Font-Size="Small" ForeColor="Black" GridLines="Vertical">
+            <AlternatingRowStyle BackColor="#DCDCDC" />
+            <Columns>
+                <asp:TemplateField HeaderText="SL.">
+                    <ItemTemplate>
+                        <%# Container.DataItemIndex + 1 %>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="50px" />
+                </asp:TemplateField>
+                <asp:TemplateField ControlStyle-CssClass="hidden" FooterStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" HeaderText="Customer ID" ItemStyle-CssClass="hidden" SortExpression="intCustid">
+                    <ItemTemplate>
+                        <asp:Label ID="lblintCustid" runat="server" Text='<%# Bind("icustid") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ControlStyle-CssClass="hidden" FooterStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" HeaderText="COA ID" ItemStyle-CssClass="hidden" SortExpression="intCOAid">
+                    <ItemTemplate>
+                        <asp:Label ID="lblintCOAid" runat="server" Text='<%# Bind("icustcoaid") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField ControlStyle-CssClass="hidden" FooterStyle-CssClass="hidden" HeaderStyle-CssClass="hidden" HeaderText="Acc Name" ItemStyle-CssClass="hidden" SortExpression="strAccName">
+                    <ItemTemplate>
+                        <asp:Label ID="lblstrAccName" runat="server" Text='<%# Bind("scustname") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Customer Loan Name" SortExpression="strvehiclename">
+                    <ItemTemplate>
+                        <asp:Label ID="lblstrvehiclename" runat="server" Text='<%# Bind("scustnamel") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="300px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delivery Date" SortExpression="dtdeliverydate">
+                    <ItemTemplate>
+                        <asp:Label ID="lbldtdeliverydate" runat="server" Text='<%# Bind("dtdeliverydate","{0:d}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Price" SortExpression="monvehicleprice">
+                    <ItemTemplate>
+                        <asp:Label ID="lblmonvehicleprice" runat="server" Text='<%# Bind("monvehicleprice","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Down Payment" SortExpression="downpayment">
+                    <ItemTemplate>
+                        <asp:Label ID="lbldownpayment" runat="server" Text='<%# Bind("mondownpayment","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Useful Period" SortExpression="monusefullife">
+                    <ItemTemplate>
+                        <asp:Label ID="lblmonusefullife" runat="server" Text='<%# Bind("monusefullife","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Depreciation Per Month" SortExpression="mondepreciation">
+                    <ItemTemplate>
+                        <asp:Label ID="lblmondepreciation" runat="server" Text='<%# Bind("mondepreciation","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Loan Period" SortExpression="monloanperiod">
+                    <ItemTemplate>
+                        <asp:Label ID="lblmonloanperiod" runat="server" Text='<%# Bind("monloanperiod","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Monthly Instalment" SortExpression="monemi">
+                    <ItemTemplate>
+                        <asp:Label ID="lblmonemi" runat="server" Text='<%# Bind("monemi","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Used Period" SortExpression="usedperiod">
+                    <ItemTemplate>
+                        <asp:Label ID="lblusedperiod" runat="server" Text='<%# Bind("usedperiod","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Cumulative Depreciation" SortExpression="cumdepreciation">
+                    <ItemTemplate>
+                        <asp:Label ID="lblcumdepreciation" runat="server" Text='<%# Bind("cumdepreciation","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Total Paid" SortExpression="paid">
+                    <ItemTemplate>
+                        <asp:Label ID="lblpaid" runat="server" Text='<%# Bind("paid","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Total Payable" SortExpression="payable">
+                    <ItemTemplate>
+                        <asp:Label ID="lblpayable" runat="server" Text='<%# Bind("payable","{0:n0}") %>'></asp:Label>
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Stop Getting EMI" SortExpression="payable">
+                    <ItemTemplate>
+                        <asp:Button ID="btnclose" runat="server" CommandArgument='<%#Eval("icustid") + "," +Eval("intvehiclepaymentid") + "," +Eval("payable")%>' OnClick="close_Click" Text="Stop" />
+                    </ItemTemplate>
+                    <ItemStyle Height="5px" HorizontalAlign="Left" Width="100px" />
+                    <FooterTemplate>
+                    </FooterTemplate>
+                </asp:TemplateField>
+            </Columns>
+            <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+            <HeaderStyle BackColor="#999999" Font-Bold="false" Font-Size="Small" ForeColor="White" />
+            <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+            <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+            <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+        </asp:GridView>
     </td></tr> 
     <%--<tr style="text-align:justify">
     <td style="padding:0 0 0 500px">
