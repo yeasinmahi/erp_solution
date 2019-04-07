@@ -409,6 +409,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalesViewTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Sales\SearchSales_TDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SearchSales_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Sales\VehicleSelectTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1123,6 +1128,17 @@
     </None>
     <None Include="Sales\SalesViewTDS.xss">
       <DependentUpon>SalesViewTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\SearchSales_TDS.xsc">
+      <DependentUpon>SearchSales_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Sales\SearchSales_TDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SearchSales_TDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Sales\SearchSales_TDS.xss">
+      <DependentUpon>SearchSales_TDS.xsd</DependentUpon>
     </None>
     <None Include="Sales\VehicleSelectTDS.xsc">
       <DependentUpon>VehicleSelectTDS.xsd</DependentUpon>

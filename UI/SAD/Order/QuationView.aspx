@@ -254,7 +254,7 @@
             <asp:HiddenField ID="hdnFrom" runat="server" />
             <asp:HiddenField ID="hdnTo" runat="server" />
 
-                      <asp:GridView ID="dgvCustomerVSPendingQnt" runat="server" PageSize="11125" OnPageIndexChanging="dgvCustomerVSPendingQnt_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" ShowFooter="True" DataSourceID="odsSalesQutationv">
+                      <asp:GridView ID="dgvCustomerVSPendingQnt" runat="server" PageSize="11125" OnPageIndexChanging="dgvCustomerVSPendingQnt_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" ShowFooter="True" DataSourceID="odsSalesQTN" OnDataBound="dgvCustomerVSPendingQnt_DataBound" OnRowDataBound="dgvCustomerVSPendingQnt_RowDataBound">
                           
                     <Columns>
                        <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %>
@@ -284,7 +284,10 @@
                          
                           <ItemStyle HorizontalAlign="Center" />
                         </asp:BoundField>
+                           <asp:BoundField DataField="ysnCompleted" HeaderText="Status" SortExpression="intid" ItemStyle-HorizontalAlign="Center" >
                          
+                          <ItemStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
                           <asp:TemplateField HeaderText="D.O Creation">
             
                               <ItemTemplate>                                                                                                          
@@ -314,7 +317,12 @@
          
 
 
-            <asp:ObjectDataSource ID="odsSalesQutationv" runat="server" SelectMethod="GetSalesQuation" TypeName="SAD_BLL.Sales.SalesOrderView">
+    
+
+         
+
+
+            <asp:ObjectDataSource ID="odsSalesQTN" runat="server" SelectMethod="GetSalesQuation" TypeName="SAD_BLL.Sales.SalesOrderView">
                 <SelectParameters>
                     <asp:ControlParameter ControlID="hdnFrom" Name="fromDate" PropertyName="Value" Type="DateTime" />
                     <asp:ControlParameter ControlID="hdnTo" Name="toDate" PropertyName="Value" Type="DateTime" />
@@ -328,6 +336,11 @@
                     <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
                 </SelectParameters>
             </asp:ObjectDataSource>
+
+         
+
+
+    
 
          
 

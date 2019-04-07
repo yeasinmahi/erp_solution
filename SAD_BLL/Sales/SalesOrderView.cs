@@ -155,9 +155,28 @@ namespace SAD_BLL.Sales
             return msg;
 
         }
-        
 
-             public DataTable getcustomerinformations(int custid)
+        public string QuotationEditNSave(string xmlString,   int enroll, int unit, int entryid)
+        {
+            string msg = "";
+            long? id = null;
+
+            try
+            {
+                SprSalesQutationEditNSaveTableAdapter adpdo = new SprSalesQutationEditNSaveTableAdapter();
+                adpdo.GetDataSalesQutationEditNSave(xmlString, enroll, unit, entryid);
+                msg = "Updated Succesfully";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+
+        }
+
+
+
+
+        public DataTable getcustomerinformations(int custid)
         {
             try
             {

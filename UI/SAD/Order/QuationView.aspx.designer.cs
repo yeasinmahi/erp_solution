@@ -310,13 +310,13 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.GridView dgvCustomerVSPendingQnt;
         
         /// <summary>
-        /// odsSalesQutationv control.
+        /// odsSalesQTN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesQutationv;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesQTN;
         
         /// <summary>
         /// cvtCom control.

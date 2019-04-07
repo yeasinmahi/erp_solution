@@ -8,6 +8,8 @@ using HR_DAL.Global;
 using System.Data;
 using SAD_DAL.Item;
 using SAD_DAL.Item.ItemTDSTableAdapters;
+using SAD_DAL.Sales;
+using SAD_DAL.Sales.SearchSales_TDSTableAdapters;
 
 namespace SAD_BLL.Item
 {
@@ -15,8 +17,10 @@ namespace SAD_BLL.Item
     {
         private static ItemTDS.tblItemBridge1DataTable[] tableProductsAPL = null;
         private static ItemTDS.TblItemDataTable[] tableProducts = null;
+        private static SearchSales_TDS.SprSalesOrderDetaillsForTripDataTable[] tblPendingItem = null;
         private static Hashtable ht = new Hashtable();
-
+       
+        //SprSalesOrderDetaillsForTripAssign
         private static void Inatialize()
         {
             if (tableProductsAPL == null)
@@ -207,7 +211,8 @@ namespace SAD_BLL.Item
             tableProducts[Convert.ToInt32(ht[unitID])] = adpCOA.GetDataByUnit_Type(int.Parse(unitID), id, true);
         }
 
+         
 
-       
+
     }
 }

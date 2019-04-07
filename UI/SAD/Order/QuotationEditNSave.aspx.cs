@@ -411,6 +411,7 @@ namespace UI.SAD.Order
                 extCause = "Pcs";
                 Charge = 1;
                 ysnDelivaryOrder = true;
+                int sopkid = int.Parse(Session["IntOrderNumber"].ToString());
 
 
                 #endregion ------------ Insertion End ----------------
@@ -420,8 +421,7 @@ namespace UI.SAD.Order
                 XmlNode dSftTm = doc.SelectSingleNode("node");
                 string xmlString = dSftTm.InnerXml;
                 xmlString = "<node>" + xmlString + "</node>";
-                string message = bll.DoCreate(xmlString, ref id, enroll, unit, date, date, custtype, Custid, shopid, narration, addresss, Territoryid, Charge, logis, Charge, Charge, incentiveId, incentiveId, currencyId, conversionRate, intsalestype, Totalamount, extCause, note
-                , contatcAt, ContactPhone, intSalesOffId, Depotid, ysnDelivaryOrder, ysnsdv, ref code);
+                string message = bll.QuotationEditNSave(xmlString, enroll, unit, sopkid);
                 File.Delete(filePathForXML1);
 
                 //bll.getDoCompleteComplete(enroll, code, unit);

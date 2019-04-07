@@ -47,7 +47,7 @@
         }
        
             $(document).ready(function () {
-                $("#grdvQuationDetails").on("change", "[id*=Quantity1]", function () {
+                $("#grdvQuationDetails").on("change", "[id*=txtquantity]", function () {
                     if (!jQuery.trim($(this).val()) == '') {
 
                         if (!isNaN(parseFloat($(this).val()))) {
@@ -55,22 +55,25 @@
                         
                             var row = $(this).closest("tr");
                          
-                            var rate = parseFloat($("[id*=rate]", row).val());
-                            var bqty = parseFloat($("[id*=hdnQty]", row).val());
+                            var rate = parseFloat($("[id*=hdnnumprice]", row).val());
+                            var bqty = parseFloat($("[id*=hdnnumqnt]", row).val());
                             var nqty = parseFloat($(this).val());
                             var msg = "Orginal Order Qty Over";
-                            var Disamt = document.getElementById("hdnDiscountP").value;
+                           
                             if (nqty > bqty) {
-                                $("[id*=Quantity1]", row).val((bqty));
+                                $("[id*=txtquantity]", row).val((bqty));
                                 var msg = "Orginal Order Qty Over";
 
-                                alert(msg);
+                                //alert(msg);
 
                             }
                             else {
-
-                                $("[id*=lblAmounts]", row).html((rate * nqty).toFixed(2));
-                                $("[id*=lblDiscount]", row).html((((rate * nqty)) * Disamt).toFixed(2));
+                                if (rate != "NAN" && nqty!= "NAN")
+                                {
+                                    alert('Rate' + rate + 'Qty' + nqty)
+                                    $("[id*=lblAmounts]", row).html((rate * nqty).toFixed(2));
+                                }
+                               
                             }
                             //$("[id*=lblTotalqty]", row).html(((free / UOM) * qty) + qty);
 
@@ -79,7 +82,7 @@
                         $(this).val('');
                     }
                     var grandTotalqty = 0;
-                    var grandTotalDiscount = 0;
+                    var grndupdateqnt = 0;
 
 
 
@@ -87,22 +90,28 @@
                         grandTotalqty = grandTotalqty + parseFloat($(this).html());
                     });
 
-                    // $("[id*=lblAmounts]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
-                    $('#txtTotalAmount').val(grandTotalqty).html(parseFloat(grandTotalqty.toString()).toFixed(2));
-
-                    $("[id*=lblDiscount]").each(function () {
-                        grandTotalDiscount = grandTotalDiscount + parseFloat($(this).html());
+                     $("[id*=hdnnumqnt]").each(function () {
+                        grndupdateqnt = grndupdateqnt + parseFloat($(this).html());
                     });
 
-                    $('#lblTotalDiscount').val(grandTotalDiscount).html(parseFloat(grandTotalDiscount.toString()).toFixed(2));
+                    
+                    //alert(grandTotalqty)
+                    $("[id*=lblfinalamount]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
+                       $("[id*=lblupdateqnt]").html(parseFloat(grndupdateqnt.toString()).toFixed(2));
+                   // $('#txtTotalAmount').val(grandTotalqty).html(parseFloat(grandTotalqty.toString()).toFixed(2));
 
-                    $('#lblFinalOrderamount').val((grandTotalqty - grandTotalDiscount)).html(parseFloat((grandTotalqty - grandTotalDiscount).toString()).toFixed(2));
-
+                    
                 });
 
             });
         
     </script>
+
+    <style type="text/css">
+        .auto-style1 {
+            height: 23px;
+        }
+    </style>
 
 </head>
 <body>
@@ -120,95 +129,126 @@
             <div class="container">
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <asp:Label runat="server" Text="DO Create" Font-Bold="true" Font-Size="16px"></asp:Label>
-                        <asp:Label runat="server" ID="lblDo" Font-Bold="true" Font-Size="16px" CssClass="pull-right" ForeColor="blue"></asp:Label>
+                      
+                        
                     </div>
                   
 
 
                 </div>
                 <div>
-                    <table>
-                        <tr>
-                       
-
-                             <td>
-                                <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Order Number"></asp:Label>
-                            </td>
-                            <td>
-                               <asp:Label ID="lblordernumberval" runat="server"></asp:Label>
-                            </td>
-
-                        <td>
-                                 <asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Customer Name"></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lblcustval" runat="server"></asp:Label>
-                            </td>
-
-                        </tr>
-                     
-
-                        <tr>
-                     
-
-                             <td>
-                              <asp:Label ID="lblqotdate" CssClass="lbl" runat="server" Text="Date"></asp:Label>
-                            </td>
-                            <td>
-                              <asp:Label ID="lblqotdateval" CssClass="lbl" runat="server"></asp:Label>
-                            </td>
-
-                             <td>
-                                  <asp:Label ID="Label12" CssClass="lbl" runat="server" Text="Credit Limit"></asp:Label>
-                            </td>
-                            <td>
-                              <asp:Label ID="lblcreditlmval" runat="server"></asp:Label>
-                            </td>
-
-                        </tr>
-
-                           <tr>
-                            <td>
-                                <asp:Label ID="Label14" CssClass="lbl" runat="server" Text="Due Delevary Amount"></asp:Label>
-                            </td>
-                            <td>
-                                 <asp:Label ID="lblPendingamount" runat="server"></asp:Label>
-                            </td>
-
-                             <td>
-                           <asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Available Balance"></asp:Label>
-                            </td>
-                            <td>
-                                <asp:Label ID="lbloutstandingval" runat="server"></asp:Label>
-                            </td>
-
-                         
-
-                        </tr>
-
-                           <tr>
-                       
-
-                             <td>
-                          <asp:Label ID="Label16" CssClass="lbl" runat="server" Text="Remarks"></asp:Label>
-                            </td>
-                            <td>
-                              <asp:Label ID="lblspecificationval" runat="server"></asp:Label>
-                            </td>
-
-                           <td>
-                                 <asp:Label ID="lbltoatalamount" runat="server" Text="Total Amount"></asp:Label>
-                            </td>
-                            <td>
-                                 <asp:Label ID="lbltotamounval" runat="server"></asp:Label>
-                            </td>
-                    
-
-                        </tr>
-
-                    </table>
                    
+                   
+
+
+                    <table style="width:700px; text-align:left; height:100px" align="center">
+           
+           
+      
+            
+            <tr>
+                <td style="width:500px; font-size:17px;text-align:center; background-color:lightgrey; font-weight:bold;" colspan="7"> </td>
+            </tr>
+            <tr style="font-size:10px; background-color:#F0F0FF;">
+                <td style="width:120px; font-size:12px; font-weight:bold;">
+                                                                                Order Number:</td>
+                <td colspan="2" style="width:300px; font-size:12px; font-weight:bold;">
+                    <asp:Label ID="lblordernumberval" runat="server"></asp:Label>
+                </td>               
+                <td  style="text-align:center; font-size:11px;">
+                   <asp:Label ID="lblFaxnAME" runat="server" Text="Customer Name:" Visible="true" ></asp:Label>
+                </td>
+                <td  style="text-align:center; font-size:11px;">
+                  <asp:Label ID="lblcustval" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr style="font-size:10px; background-color:#E0E0E0;">
+                <td>
+                                        Date</td>
+                <td colspan="2">
+                       <asp:Label ID="lblqotdateval" CssClass="lbl" runat="server"></asp:Label>
+                </td>
+                
+                <td>
+                                      Credit Limit</td>
+                <td>
+                     <asp:Label ID="lblcreditlmval" runat="server"></asp:Label></td>
+            </tr>
+            <tr style="font-size:10px; background-color:#F0F0FF;">
+                <td>
+                                      Pending Amount</td>
+                <td colspan="2">
+                     <asp:Label ID="lblPendingamount" runat="server"></asp:Label>
+                </td>
+                
+                <td>
+                                      Available Balance</td>
+                <td>
+                    <asp:Label ID="lbloutstandingval" runat="server"></asp:Label>
+                </td>
+            </tr>
+            <tr style="font-size:10px; background-color:#E0E0E0;">
+                <td>
+                                        Remarks</td>
+                <td colspan="2">
+                   <asp:Label ID="lblspecificationval" runat="server"></asp:Label>
+                </td>                
+                <td>
+                                        Total Amount</td>
+                <td>
+                     <asp:Label ID="lbltotamounval" runat="server"></asp:Label>
+            </tr>
+           <tr style="font-size:10px; background-color:#E0E0E0;">
+                <td>
+                                        Created D.O </td>
+                <td colspan="2">
+                   <asp:Label ID="lblDo" runat="server"></asp:Label>
+                </td>                
+                <td>
+                                        Total Amount</td>
+                <td>
+                     <asp:Label ID="Label2" runat="server"></asp:Label>
+            </tr>
+           
+            <tr>
+               <td style="width:500px; font-size:15px;text-align:center; text font-weight:bold;" colspan="5">Pending Quotation Detaills </td>      
+            </tr>
+            <tr>
+                <td class="auto-style1">
+                    Updated Qnt</td>
+                <td class="auto-style1">
+                     <asp:Label ID="lblupdateqnt" runat="server"></asp:Label>
+                    </td>
+                <td class="auto-style1">
+                    </td>
+                <td class="auto-style1">
+                    Total Amount</td>
+                <td class="auto-style1">
+                    <asp:Label ID="lblfinalamount" runat="server"></asp:Label></td>
+            </tr>
+             <tr>
+                <td class="auto-style1">
+                   
+                    </td>
+                <td class="auto-style1">
+                   
+                    </td>
+                <td class="auto-style1">
+                    </td>
+                <td class="auto-style1">
+                    </td>
+                <td class="auto-style1">
+                    </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
                 </div>
 
 
@@ -267,7 +307,10 @@
                                 <asp:TemplateField HeaderText="Quantity" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
                                     <ItemTemplate>
                                      
-                                        <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numqnt", "{0:0.0}") %>'></asp:HiddenField>                                     
+                                        <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numqnt", "{0:0.0}") %>'></asp:HiddenField>  
+                                        
+                                        <%--<asp:Label ID="lblqnts" runat="server"  DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numqnt", "{0:0.00}"))) %>'></asp:Label>--%>
+
                                         <asp:TextBox ID="txtquantity"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
                                      </ItemTemplate>
                                 

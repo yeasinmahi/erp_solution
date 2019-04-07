@@ -1301,6 +1301,7 @@
     <Content Include="SAD\Order\TransferDelvOrderInactive.aspx" />
     <Content Include="SAD\Order\UploadedReceiveChallanDetaills.aspx" />
     <Content Include="SAD\Order\UploadReceiveChallan.aspx" />
+    <Content Include="SAD\Order\VehcileSelectCustomizeByItemAdd.aspx" />
     <Content Include="SAD\Order\VehicleSelect.aspx" />
     <Content Include="SAD\Order\VehicleSelectCustomize.aspx" />
     <Content Include="SAD\Order\VehicleSelectNChallan.aspx" />
@@ -6648,6 +6649,13 @@
     </Compile>
     <Compile Include="SAD\Order\UploadReceiveChallan.aspx.designer.cs">
       <DependentUpon>UploadReceiveChallan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Order\VehcileSelectCustomizeByItemAdd.aspx.cs">
+      <DependentUpon>VehcileSelectCustomizeByItemAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\VehcileSelectCustomizeByItemAdd.aspx.designer.cs">
+      <DependentUpon>VehcileSelectCustomizeByItemAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Order\VehicleSelect.aspx.cs">
       <DependentUpon>VehicleSelect.aspx</DependentUpon>

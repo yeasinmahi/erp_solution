@@ -1,5 +1,4 @@
 ﻿using Flogging.Core;
-using GLOBAL_BLL;
 using LOGIS_BLL;
 using LOGIS_BLL.Trip;
 using LOGIS_DAL.Trip;
@@ -19,156 +18,94 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SAD.Order
 {
-    public partial class VehicleSelectCustomize : System.Web.UI.Page
+    public partial class VehcileSelectCustomizeByItemAdd : BasePage
     {
         XmlManagerCH xm = new XmlManagerCH();
         decimal prdouctvalue, outstandingv;
-        SeriLog log = new SeriLog();
-        string location = "SAD";
-        string start = "starting SAD\\Order\\VehicleSelectCustomize";
-        string stop = "stopping SAD\\Order\\VehicleSelectCustomize";
-        private int  CheckItem = 1;
+        private string[] arrayKey;
+        private readonly char[] delimiterChars = { '[', ']' };
+        private int CheckItem = 1;
+        string filePathForXML;
+        string xmlStrings = "";
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
             {
-                //Session["sesUserID"] = "87";
-                var fd = log.GetFlogDetail(start, location, "Show", null);
-                Flogger.WriteDiagnostic(fd);
-
-                // starting performance tracker
-                var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectCustomize Vehicle Select Customize Show", "", fd.UserName, fd.Location,
-                    fd.Product, fd.Layer);
+               
+               
                 try
                 {
-
-                    if (Request.QueryString["id"] != null)
-                {
-                        btnSubmit.Enabled = true;
-                        try
+                     
+                        if (Request.QueryString["id"] != null)
                         {
-                            string path = GetXmlFilePath();
-                            File.Delete(path);
+                            btnSubmit.Enabled = true;
+                            try
+                            {
+                                string path = GetXmlFilePath();
+                                File.Delete(path);
+                            }
+                            catch { }
+
+                            Session[SessionParams.CURRENT_UNIT] = Request.QueryString["unit"];
+                            Session[SessionParams.CURRENT_SHIP] = Request.QueryString["ship"];
+                            //SprSalesOrderCustomerDOwithReturnDO
+                            //SalesOrderTDS.QrySalesOrderCustomerDataTable table;
+                            SalesOrderTDS.SprSalesOrderCustomerDOwithReturnDODataTable table;
+
+                            SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
+                            //table = se.GetSalesOrder(Request.QueryString["id"]);
+                            table = se.GetSalesOrderWithRetunDO(Request.QueryString["id"]);
+                            if (table.Rows.Count > 0)
+                            { 
+
+                                hdnUnit.Value = table[0].intUnitId.ToString();
+                                hdnCustomerText.Value = table[0].strName;
+                                hdnCustomer.Value = table[0].intCustomerId.ToString();
+                                hdnLogVar.Value = table[0].IsintVehicleVarIdNull() ? "" : table[0].intVehicleVarId.ToString();
+                                hdnSOid.Value = table[0].intId.ToString();
+                                hdnDate.Value = table[0].dteDate.ToString();
+                                hdnCurrency.Value = table[0].intCurrencyId.ToString();
+                                hdnShipPoint.Value = table[0].intShipPointId.ToString();
+                                hdnCharge.Value = table[0].intChargeId.ToString();
+                                hdnIncentive.Value = table[0].intIncentiveId.ToString();
+                                hdnDoCode.Value = table[0].strCode;
+                                hdnPriceVar.Value = table[0].IsintPriceVarIdNull() ? "" : table[0].intPriceVarId.ToString();
+                                hdnSalesType.Value = table[0].intSalesTypeId.ToString();
+
+                                if (table[0].ysnLogistic) rdoVhlCompany.SelectedIndex = 0;
+                                else rdoVhlCompany.SelectedIndex = 2; 
+
+                                GetVehicleList();
+                              
+                            }
+
                         }
-                        catch { }
-
-                        Session[SessionParams.CURRENT_UNIT] = Request.QueryString["unit"];
-                    Session[SessionParams.CURRENT_SHIP] = Request.QueryString["ship"];
-                    //SprSalesOrderCustomerDOwithReturnDO
-                    //SalesOrderTDS.QrySalesOrderCustomerDataTable table;
-                    SalesOrderTDS.SprSalesOrderCustomerDOwithReturnDODataTable table;
-
-                    SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
-                    //table = se.GetSalesOrder(Request.QueryString["id"]);
-                    table = se.GetSalesOrderWithRetunDO(Request.QueryString["id"]);
-                    if (table.Rows.Count > 0)
-                    {
-                        XmlDocument xmlDoc;
-                        XmlNode selectNode;
-
-                        hdnUnit.Value = table[0].intUnitId.ToString();
-                        hdnCustomerText.Value = table[0].strName;
-                        hdnCustomer.Value = table[0].intCustomerId.ToString();
-                        hdnLogVar.Value = table[0].IsintVehicleVarIdNull() ? "" : table[0].intVehicleVarId.ToString();
-                        hdnSOid.Value = table[0].intId.ToString();
-                        hdnDate.Value = table[0].dteDate.ToString();
-                        hdnCurrency.Value = table[0].intCurrencyId.ToString();
-                        hdnShipPoint.Value = table[0].intShipPointId.ToString();
-                        hdnCharge.Value = table[0].intChargeId.ToString();
-                        hdnIncentive.Value = table[0].intIncentiveId.ToString();
-                        hdnDoCode.Value = table[0].strCode;
-                        hdnPriceVar.Value = table[0].IsintPriceVarIdNull() ? "" : table[0].intPriceVarId.ToString();
-                        hdnSalesType.Value = table[0].intSalesTypeId.ToString();
-
-                        if (table[0].ysnLogistic) rdoVhlCompany.SelectedIndex = 0;
-                        else rdoVhlCompany.SelectedIndex = 2;
-
-                        if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
-
-                        SalesOrderTDS.SprSalesOrderDetaillsForTripAssignDataTable tbl = se.GetSalesOrderDetailsTrip(table[0].intId.ToString());
-
-                        decimal promQnty = 0;
-                        int promItemId = 0;
-                        int promItemCOAId = 0;
-                        int promItemUOM = 0;
-                        string promItem = "";
-                        string promUom = "";
-                        decimal promPrice = 0;
-
-                        for (int i = 0; i < tbl.Rows.Count; i++)
-                        {
-                            GetPromoNum(tbl[i].numApprQuantity.ToString()
-                                , tbl[i].numRestQuantity.ToString()
-                                , tbl[i].IsnumPromotionNull() ? "" : tbl[i].numPromotion.ToString()
-                                , tbl[i].intProductId.ToString()
-                                , tbl[i].intUom.ToString()
-                                , tbl[i].monPrice.ToString()
-                                , tbl[i].intCOAAccId.ToString()
-                                , hdnPriceVar.Value
-                                , hdnCurrency.Value
-                                , hdnSalesType.Value
-                                , ref promQnty
-                                , ref promItemId
-                                , ref promItemCOAId
-                                , ref promItemUOM
-                                , ref promItem
-                                , ref promUom
-                                , ref promPrice
-                                );
-
-                            string[][] items = xm.CreateItems(tbl[i].intProductId.ToString()
-                                , tbl[i].strProductName
-                                , tbl[i].numRestQuantity.ToString()
-                                , tbl[i].numApprQuantity.ToString()
-                                , tbl[i].intUom.ToString()
-                                , tbl[i].strUOM
-                                , tbl[i].IsstrNarrationNull() ? "" : tbl[i].strNarration
-                                , promQnty.ToString()
-                                , tbl[i].IsnumPromotionNull() ? "" : tbl[i].numPromotion.ToString()
-                                , promItemId.ToString()
-                                , promItem
-                                , promItemUOM.ToString()
-                                , promUom
-                                , promPrice.ToString()
-                                , promItemCOAId.ToString()
-                                , tbl[i].intId.ToString()
-                                , tbl[i].monPrice.ToString()
-                                , tbl[i].intCOAAccId.ToString()
-                                );
-
-                            xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
-                            selectNode = xmlDoc.SelectSingleNode(xm.MainNode);
-                            selectNode.AppendChild(xm.CreateNodeForItem(xmlDoc, items));
-                            xmlDoc.Save(GetXmlFilePath());
-                        }
-
-                        GetVehicleList();
-
-                    }
-                }
+                    
+                    
                 }
                 catch (Exception ex)
                 {
-                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
-                    Flogger.WriteError(efd);
-                     btnSubmit.Enabled = true;
+                  
+                    btnSubmit.Enabled = true;
                 }
 
-                fd = log.GetFlogDetail(stop, location, "Show", null);
-                Flogger.WriteDiagnostic(fd);
-                // ends
-                tracker.Stop();
+              
             }
 
         }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            //filePathForXML = Server.MapPath(HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "vehicleSelectNItemadd.xml");
+           // filePathForXML = Server.MapPath("") + "/Data/CH/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_"  + "vehicleSelectNItemadd.xml";
+
             if (!IsPostBack)
             {
-
+                if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
                 Session["sesCurType"] = rdoVhlCompany.SelectedValue;
                 btnSubmit.Enabled = true;
                 BindGrid(GetXmlFilePath());
@@ -183,9 +120,37 @@ namespace UI.SAD.Order
                         else if (!tbl[0].IsintForThisCustomerNull()) rdoVhlCompany.SelectedIndex = 2;
 
                         VehicleChange();
+                       
                     }
                 }
+                DefaultPageLoadBind();
             }
+        }
+
+        private void DefaultPageLoadBind()
+        {
+            try
+            {
+                if (Request.QueryString["id"] != null)
+                {
+                     
+                    SalesOrderTDS.SprSalesOrderCustomerDOwithReturnDODataTable table;
+
+                    SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
+                    //table = se.GetSalesOrder(Request.QueryString["id"]);
+                    table = se.GetSalesOrderWithRetunDO(Request.QueryString["id"]);
+                    if (table.Rows.Count > 0)
+                    { 
+
+                        SalesOrderTDS.SprSalesOrderDetaillsForTripAssignDataTable tbl = se.GetSalesOrderDetailsTrip(table[0].intId.ToString());
+                        Session["SalesDoId"] = table[0].intId.ToString();
+                        ddlPendingItem.LoadWithSelect(tbl, "intProductId", "strProductName"); 
+
+                    }
+                     
+                }
+            }
+            catch { }
         }
 
         [WebMethod]
@@ -204,6 +169,38 @@ namespace UI.SAD.Order
             {
                 return VehicleSt.GetVehicleDataForAutoFillCustomer(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SHIP].ToString(), prefixText, true, false);
             }
+        }
+
+
+        [WebMethod]
+        [ScriptMethod] 
+        public static string[] GetProductList(string prefixText, int count)
+        {
+            return SalesSearch_BLL.GetPendingProductAutoFill(HttpContext.Current.Session["SalesDoId"].ToString(), prefixText);
+        }
+        private void CheckXmlItemReqData(string itemids)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                if (File.Exists(GetXmlFilePath()))
+                {
+                    ds.ReadXml(GetXmlFilePath());
+                    int i = 0;
+                    for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                    {
+                        if (itemids == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
+                        {
+                            CheckItem = 0;
+                            break;
+                        }
+                        CheckItem = 1;
+                    }
+                }
+            }
+            catch { }
+            
+             
         }
 
         #region GridView
@@ -370,11 +367,15 @@ namespace UI.SAD.Order
             e.Cancel = true;
             DataSet ds = new DataSet();
             ds.ReadXml(GetXmlFilePath());
-
+            string Id = ((Label)GridView1.Rows[e.RowIndex].FindControl("lblProductID")).Text;
+            string ProductName = ((Label)GridView1.Rows[e.RowIndex].FindControl("lblProductName")).Text; 
             ds.Tables[0].Rows[e.RowIndex].Delete();
+           
+            ddlPendingItem.Items.Insert(0, new ListItem( ProductName, Id));
+
             ds.WriteXml(GetXmlFilePath());
-            BindGrid(GetXmlFilePath());
-            GetVehicleList();
+            BindGrid(GetXmlFilePath()); 
+
         }
         protected void GridView1_DataBound(object sender, EventArgs e)
         {
@@ -396,31 +397,9 @@ namespace UI.SAD.Order
 
             return Server.MapPath("") + "/Data/CH/" + Session["sesUserID"] + "_" + unit + "_item.xml";
         }
-        private void CheckXmlItemReqData(string itemids)
-        {
-            //try
-            //{
-            DataSet ds = new DataSet();
-            if (File.Exists(GetXmlFilePath()))
-            {
-                ds.ReadXml(GetXmlFilePath());
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
-                {
-                    if (itemids == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
-                    {
-                        CheckItem = 0;
-                        break;
-                    }
-                    CheckItem = 1;
-                }
-            }
-            //}
-            //catch (Exception ex) { }
-        }
+     
 
         #endregion
-
         protected void rdoVhlCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session["sesCurType"] = rdoVhlCompany.SelectedValue;
@@ -520,92 +499,27 @@ namespace UI.SAD.Order
             txtVehicle.Text = ((LinkButton)sender).CommandArgument;
             VehicleChange();
         }
-       
+
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            var fd = log.GetFlogDetail(start, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on  SAD\\Order\\VehicleSelectCustomize Vehicle Select Save", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
+        { 
+          
             try
-            {
+            { 
 
-
-
-              if (hdnconfirm.Value == "1")
-            {
-                    btnSubmit.Enabled = false;
+                if (hdnconfirm.Value == "1")
+                {
+                    btnSubmit.Visible = false;
                     StatementC bll = new StatementC();
 
-                StatementTDS.SprUnDelvQntBaseOutstandingAmountDataTable tabUndlvpv = bll.GetCustomerOutstandingbasedonUndelvQnt(hdnCustomer.Value);
-                StatementTDS.SprUndelvQntRateDataTable tabUndlvproductRate = bll.GetCustomerProductRate(hdnSOid.Value);
+                    StatementTDS.SprUnDelvQntBaseOutstandingAmountDataTable tabUndlvpv = bll.GetCustomerOutstandingbasedonUndelvQnt(hdnCustomer.Value);
+                    StatementTDS.SprUndelvQntRateDataTable tabUndlvproductRate = bll.GetCustomerProductRate(hdnSOid.Value);
 
-                decimal newqnt = Convert.ToDecimal(GetGrandTotal(2));
-                int soid = int.Parse(hdnSOid.Value);
-                int unitid = int.Parse(hdnUnit.Value);
-                if (unitid == 53)
-                {
-                    if (tabUndlvpv.Rows.Count > 0)
-                    {
-                        hdnoutstandingamount.Value = tabUndlvpv[0].monOutstanding.ToString();
-                        lblundelvvalue.Text = hdnoutstandingamount.Value;
-                    }
-
-                    if (tabUndlvproductRate.Rows.Count > 0)
-                    {
-                        hdnUndelvProductRate.Value = tabUndlvproductRate[0].rateofproduct.ToString();
-                        prdouctvalue = decimal.Parse(hdnUndelvProductRate.Value) * newqnt;
-                        outstandingv = Math.Abs(decimal.Parse(lblundelvvalue.Text));
-                    }
-
-
-
-                }
-                else
-                {
-                    lblundelvvalue.Text = "0.0";
-                }
-
-
-                if (unitid == 53 && prdouctvalue <= outstandingv)
-                {
-
-
-                    XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
-                    XmlNode node = xmlDoc.SelectSingleNode(xm.MainNode);
-                    string xml = ("<" + xm.MainNode + "> " + node.InnerXml + " </" + xm.MainNode + ">");
-
-                    string narrTop = "";
-                    for (int i = 0; i < GridView1.Rows.Count; i++)
-                    {
-                        if (GridView1.Rows[i].RowType == DataControlRowType.DataRow)
-                        {
-                            narrTop += "[" + ((Label)(GridView1.Rows[i].Cells[2].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[3].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[1].Controls[1])).Text + "] ";
-                        }
-                    }
-
-                    string id = "", code = "";
-                    SAD_BLL.Sales.VehicleSelect vs = new SAD_BLL.Sales.VehicleSelect();
-                    vs.VehicleAssign(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
-                        , hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
-                        , (rdoVhlCompany.SelectedIndex == 2 ? false : true)
-                        , (rdoVhlCompany.SelectedIndex == 0 ? true : false)
-                        , rdo3rdPartyCharge.SelectedIndex == 0 ? true : false
-                        , decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
-                        , hdnUom.Value, ddlExtra.SelectedValue
-                        , ddlIncentive.SelectedValue, narrTop
-                        , ref code, ref id);
-
-                    Response.Redirect("../../Accounts/Voucher/Exit.aspx");
-                }
-                else if (unitid != 53)
-                {
-
-                        if (CheckItem == 1)
-                        {
+                    decimal newqnt = Convert.ToDecimal(GetGrandTotal(2));
+                    int soid = int.Parse(hdnSOid.Value);
+                    int unitid = int.Parse(hdnUnit.Value);
+                     
+                    
                             XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
                             XmlNode node = xmlDoc.SelectSingleNode(xm.MainNode);
                             string xml = ("<" + xm.MainNode + "> " + node.InnerXml + " </" + xm.MainNode + ">");
@@ -619,7 +533,8 @@ namespace UI.SAD.Order
                                 }
                             }
 
-                            string id = "", code = "";
+                        try { File.Delete(GetXmlFilePath()); } catch { }
+                        string id = "", code = "";
                             SAD_BLL.Sales.VehicleSelect vs = new SAD_BLL.Sales.VehicleSelect();
                             vs.VehicleAssign(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
                                 , hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
@@ -630,17 +545,7 @@ namespace UI.SAD.Order
                                 , hdnUom.Value, ddlExtra.SelectedValue
                                 , ddlIncentive.SelectedValue, narrTop
                                 , ref code, ref id);
-                            //                vs.VehicleAssignTest(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
-                            //, hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
-                            //, (rdoVhlCompany.SelectedIndex == 2 ? false : true)
-                            //, (rdoVhlCompany.SelectedIndex == 0 ? true : false)
-                            //, rdo3rdPartyCharge.SelectedIndex == 0 ? true : false
-                            //, decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
-                            //, hdnUom.Value, ddlExtra.SelectedValue
-                            //, ddlIncentive.SelectedValue, narrTop
-                            //, ref code, ref id);
-
-                            //Response.Redirect("../../Accounts/Voucher/Exit.aspx");
+                               try { File.Delete(GetXmlFilePath()); } catch { }
 
                             string tripid = "";
                             string challannumber = "";
@@ -663,54 +568,27 @@ namespace UI.SAD.Order
 
                             //totalwgt = decimal.Parse("3") + decimal.Parse(calcuwgt);
 
-                            //t.SetLoadedWeight(tripid, Session[SessionParams.USER_ID].ToString(), totalwgt);
-
-
+                            //t.SetLoadedWeight(tripid, Session[SessionParams.USER_ID].ToString(), totalwgt); 
 
                             Response.Redirect("../../Accounts/Voucher/Exit.aspx");
-                        }
-                }
-                else
-                {
-                    lblmsg.Text = "Balance Exceed, Please contact with Credit Dept.";
-                    lblmsg.BackColor = System.Drawing.Color.FromArgb(255, 50, 50); // this should be pink-ish;
-                }
-                    btnSubmit.Enabled = true;
-                }
+                         
+                    }
+
+                btnSubmit.Visible = true;
+
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
-                Flogger.WriteError(efd);
-                btnSubmit.Enabled = true;
+                btnSubmit.Visible = true;
+
+                try { File.Delete(GetXmlFilePath()); } catch { }
+                BindGrid(GetXmlFilePath());
             }
 
-            fd = log.GetFlogDetail(stop, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-
+          
         }
 
-        //protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    try
-        //    {
-        //        GetXmlFilePath();
-        //        DataSet dsGrid = (DataSet)GridView1.DataSource;
-        //        dsGrid.Tables[0].Rows[GridView1.Rows[e.RowIndex].DataItemIndex].Delete();
-        //        dsGrid.WriteXml(xmlFilePath);
-        //        DataSet dsGridAfterDelete = (DataSet)GridView1.DataSource;
-        //        if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-        //        { File.Delete(filePathForXML); GridView1.DataSource = ""; GridView1.DataBind(); }
-        //        else { LoadGridwithXml(); }
-              
-                
-        //    }
-
-        //    catch { }
-        //}
-
+        
 
         protected void ddlExtra_DataBound(object sender, EventArgs e)
         {
@@ -734,6 +612,212 @@ namespace UI.SAD.Order
                 }
             }
         }
+
+        protected void ddlPendingItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                    txtItem.Text = "";
+                    lblItemDet.Text = "";
+                int itemId = int.Parse(ddlPendingItem.SelectedValue);
+                    lblItemDet.Text = ddlPendingItem.SelectedItem.ToString();
+                    DoItemInfo(itemId);
+               
+            }
+            catch { }
+
+        }
+
+        protected void txtItem_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                string item = "";
+                string itemid = "";
+                lblItemDet.Text = "";
+                if (arrayKey.Length > 1)
+                {
+                    
+                    item = arrayKey[0];
+                    itemid = arrayKey[3];
+                    lblItemDet.Text = item;
+                    DoItemInfo(int.Parse(itemid));
+
+                    //txtQnt.Text = hdnprdqnt.ToString();
+                }
+                else
+                {
+                   // Toaster("Please add Item name properly", Common.TosterType.Warning);
+                    //return;
+                }
+            }
+            catch { }
+
+            
+        }
+
+        private void DoItemInfo(int ItemId)
+        {
+            try
+            {
+               int intOrderID = int.Parse(HttpContext.Current.Session["SalesDoId"].ToString());
+                hdnprdctid.Value = "";
+                hdnprdname.Value = "";
+                hdnprdqnt.Value = "";
+
+                hdnprduom.Value = "";
+                hdnpromprdid.Value = "";
+                hdnpromuom.Value = "";
+                hdnpromPrdName.Value = "";
+
+               DataTable dt = new DataTable();
+                SalesSearch_BLL bll = new SalesSearch_BLL();
+                dt = bll.getSONPrdIDBaseDet(intOrderID, ItemId);
+                hdnprdctid.Value = dt.Rows[0]["intProductId"].ToString();
+                //Session["intProductId"] = dt.Rows[0]["intProductId"].ToString();
+                hdnprdname.Value = dt.Rows[0]["strProductName"].ToString();
+                hdnprdrate.Value = dt.Rows[0]["monPrice"].ToString();
+                //Session["strProductName"] = dt.Rows[0]["strProductName"].ToString();
+
+                hdnprdqnt.Value = dt.Rows[0]["numQuantity"].ToString();
+
+                txtQnt.Text = hdnprdqnt.Value.ToString();
+                hdnprduom.Value = dt.Rows[0]["strUOM"].ToString();
+                hdnpromPrdName.Value = dt.Rows[0]["strPromItemName"].ToString();
+                hdnpromprdid.Value = dt.Rows[0]["intPromItemId"].ToString();
+                hdnPromPrice.Value = dt.Rows[0]["monPromPrice"].ToString();
+                hdnpromqnt.Value = dt.Rows[0]["numPromotion"].ToString();
+                hdnpromuom.Value = dt.Rows[0]["intPromUOM"].ToString();
+                hdnpromcoa.Value= dt.Rows[0]["intPromItemCOAId"].ToString();
+            }
+            catch { }
+        }
+
+       
+      
+
+       
+
+        protected void btnAdds_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string Pid = hdnprdctid.Value.ToString();
+                string PName = hdnprdname.Value.ToString();
+
+
+                string Qnt = txtQnt.Text.ToString();
+                string prdrate = hdnprdrate.Value.ToString();
+
+                string Uom = hdnprduomid.Value.ToString();
+                string Narr = "";
+                string Prom = "0";
+                string UomTxt = hdnprduom.Value.ToString();
+                string PromItemId = hdnpromprdid.Value.ToString();
+                string PromItem = hdnprdname.Value.ToString();
+                string promprdqnt = hdnpromqnt.Value.ToString();
+                string promotionprdRate = hdnPromPrice.Value;
+                string PromUom = hdnpromuom.Value;
+                string PromUomText = hdnprduom.Value.ToString();
+
+
+                string PromPr = hdnPromPrice.Value;
+                string PromItemCOA = hdnpromcoa.Value;
+                string SoPkId = HttpContext.Current.Session["SalesDoId"].ToString();
+               // CreateVoucherXml(Pid, PName, Qnt, Uom, Narr, Prom, UomTxt, PromItemId, PromItem, PromUom, PromUomText, PromPr, PromItemCOA, SoPkId);
+
+
+          
+                SalesSearch_BLL bll = new SalesSearch_BLL();  
+             //   if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
+              
+                SearchSales_TDS.SprSalesOrderDetaillsBySOIdNItmIDDataTable tbl = bll.GetSalesOrderDetailsTrip(int.Parse(HttpContext.Current.Session["SalesDoId"].ToString()), int.Parse(Pid)); 
+                decimal promQnty = 0;
+                int promItemId = 0;
+                int promItemCOAId = 0;
+                int promItemUOM = 0;
+                string promItem = "";
+                string promUom = "";
+                decimal promPrice = 0;
+                
+                int i = 0;
+                    GetPromoNum(tbl[i].numApprQuantity.ToString()
+                        , tbl[i].numRestQuantity.ToString()
+                        , tbl[i].IsnumPromotionNull() ? "" : tbl[i].numPromotion.ToString()
+                        , tbl[i].intProductId.ToString()
+                        , tbl[i].intUom.ToString()
+                        , tbl[i].monPrice.ToString()
+                        , tbl[i].intCOAAccId.ToString()
+                        , hdnPriceVar.Value
+                        , hdnCurrency.Value
+                        , hdnSalesType.Value
+                        , ref promQnty
+                        , ref promItemId
+                        , ref promItemCOAId
+                        , ref promItemUOM
+                        , ref promItem
+                        , ref promUom
+                        , ref promPrice
+                        );
+                CheckXmlItemReqData(Pid);
+                if (int.Parse(txtQnt.Text.ToString())<=int.Parse(tbl[i].numApprQuantity.ToString()) && txtQnt.Text.Length>0)
+                {
+                    if(CheckItem == 1)
+                    {
+                        string[][] items = xm.CreateItems(tbl[i].intProductId.ToString()
+                       , tbl[i].strProductName
+                       , txtQnt.Text.ToString()// tbl[i].numRestQuantity.ToString()
+                       , tbl[i].numApprQuantity.ToString()
+                       , tbl[i].intUom.ToString()
+                       , tbl[i].strUOM
+                       , tbl[i].IsstrNarrationNull() ? "" : tbl[i].strNarration
+                       , promQnty.ToString()
+                       , tbl[i].IsnumPromotionNull() ? "" : tbl[i].numPromotion.ToString()
+                       , promItemId.ToString()
+                       , promItem
+                       , promItemUOM.ToString()
+                       , promUom
+                       , promPrice.ToString()
+                       , promItemCOAId.ToString()
+                       , tbl[i].intId.ToString()
+                       , tbl[i].monPrice.ToString()
+                       , tbl[i].intCOAAccId.ToString()
+                       );
+                        XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
+                        XmlNode selectNode = xmlDoc.SelectSingleNode(xm.MainNode);
+                        selectNode.AppendChild(xm.CreateNodeForItem(xmlDoc, items));
+                        xmlDoc.Save(GetXmlFilePath());
+
+                        BindGrid(GetXmlFilePath());
+                        lblItemDet.Text = "";txtQnt.Text = "0";txtItem.Text = "";
+
+                        ListItem removeItem = ddlPendingItem.Items.FindByValue(Pid);
+                        ddlPendingItem.Items.Remove(removeItem);
+
+                    }
+                    else
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('U can not add same item two times');", true);
+                    }
+                   
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry-- wrong format data. plz check');", true);
+                }
+                    
+
+            }
+            catch { }
+             
+           
+        }
+
+       
+
+
+
         protected void GridView2_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -756,6 +840,5 @@ namespace UI.SAD.Order
                 }
             }
         }
-
     }
 }

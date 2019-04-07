@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VehicleSelectCustomize.aspx.cs" Inherits="UI.SAD.Order.VehicleSelectCustomize" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VehcileSelectCustomizeByItemAdd.aspx.cs" Inherits="UI.SAD.Order.VehcileSelectCustomizeByItemAdd" %>
 <%@ Register Assembly="ScriptReferenceProfiler" Namespace="ScriptReferenceProfiler" TagPrefix="cc2" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -7,11 +6,12 @@
 <html >
 <head runat="server">
     <title></title>
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     
       <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
     <link href="~/Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <script type="text/javascript">
         function ValidateSet(sender, args) {
             if (document.getElementById("hdnVehicle").value == '') {
@@ -29,6 +29,16 @@
                 isProceed = false;
             }
         }
+
+         function GetTransQty(txt) {
+         
+            var quantity = parseFloat(document.getElementById("txtQnt").value); 
+            var stockQty = parseFloat(document.getElementById("hdnprdqnt").value); 
+            if (parseFloat(stockQty) < parseFloat(quantity)) {
+                document.getElementById("txtQnt").value = "0";
+                alert('Input Quantity greater then Approve quantity');
+            }
+        }
     </script>
      <script type="text/javascript">
          function ShowPopUpE(url) {
@@ -36,7 +46,9 @@
              url = url + '&rnd=' + rand_no;
              newwindow = window.open(url, 'chln', 'scrollbars=yes,toolbar=0,height=550,width=750,top=70,left=220,resizable=yes');
              if (window.focus) { newwindow.focus() }
-         }         
+         }       
+
+
     </script>
 
     <script type="text/javascript">
@@ -91,7 +103,7 @@
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
         <ContentTemplate>
             <asp:HiddenField ID="hdnUnit" Value="0" runat="server" />
             <asp:HiddenField ID="hdnCustomer" runat="server" />
@@ -113,6 +125,21 @@
              <asp:HiddenField ID="hdnoutstandingamount" runat="server" />
             <asp:HiddenField ID="hdnUndelvProductRate" runat="server" />
             <asp:HiddenField ID="hdnconfirm" runat="server" />
+
+            <asp:HiddenField ID="hdnprdctid" runat="server" />
+             <asp:HiddenField ID="hdnprdname" runat="server" />
+             <asp:HiddenField ID="hdnprdqnt" runat="server" />
+            <asp:HiddenField ID="hdnprdrate" runat="server" />
+             <asp:HiddenField ID="hdnprduom" runat="server" />
+             <asp:HiddenField ID="hdnprduomid" runat="server" />
+             
+             <asp:HiddenField ID="hdnpromPrdName" runat="server" />
+            <asp:HiddenField ID="hdnpromprdid" runat="server" />
+              <asp:HiddenField ID="hdnPromPrice" runat="server" />
+             <asp:HiddenField ID="hdnpromqnt" runat="server" />
+             <asp:HiddenField ID="hdnpromuom" runat="server" />
+            <asp:HiddenField ID="hdnpromcoa" runat="server" />
+             <div class="leaveApplication_container">
             <table width="100%">
                 <tr>
                     <td style="vertical-align: top;">
@@ -209,6 +236,7 @@
                                                             </asp:ObjectDataSource>
                                                         </td>
                                                     </tr>
+                                                     
                                                 </table>
                                             </td>
                                             <asp:Panel ID="pnlVehicle3rd" Visible="false" runat="server">
@@ -222,24 +250,98 @@
                                                     </asp:RadioButtonList>
                                                 </td>
                                             </asp:Panel>
+
+
+
                                         </tr>
+                                     
+
                                     </table>
+
+                                        <table>
+                                                    <tr>
+                                                        <td>
+                                                            <b style="color: Maroon"></b>
+                                                        </td>
+                                                        <td>
+                                                           
+                                                        </td>
+                                                        <td>
+                                                            <b style="color: Maroon"></b>
+                                                        </td>
+                                                        <td>
+                                                           
+                                                        </td>
+                                                    </tr>
+
+
+                                                </table>
+
+                                    
                                 </td>
+
+
+
                             </tr>
                         </table>
-                        <table style="width: 600px; vertical-align: top;">
+                     <table>
+                        <tr>
+                        <td>
+                        <b style="color: black">Item</b>
+                        </td>
+                        <td>
+                        <asp:TextBox ID="txtItem" runat="server" Placeholder="Search Item" AutoCompleteType="Search" AutoPostBack="true" Width="232px" OnTextChanged="txtItem_TextChanged"> </asp:TextBox>  
+                        <cc1:AutoCompleteExtender ID="AutoCompleteExtenderItem" runat="server" TargetControlID="txtItem"
+                        ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
+                        CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                        CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                        </cc1:AutoCompleteExtender>                                 
+                        </td>
+                        <td>
+                        <b style="color: black">Pending Item</b>
+                        </td>
+                        <td>
+                        <asp:DropDownList ID="ddlPendingItem" AutoPostBack="true" runat="server" Width="100px" OnSelectedIndexChanged="ddlPendingItem_SelectedIndexChanged"></asp:DropDownList>
+                                                            
+                        </td>
+                        </tr>
+
+                        <tr>
+                        <td>
+                        <b style="color: black">Detalis</b>
+                        </td>
+                        <td> 
+                        <asp:Label ID="lblItemDet" Width="300px" runat="server"></asp:Label>
+                        </td>
+                        <td>
+                        <b style="color: black">Quantity</b>
+                        </td>
+                        <td style="text-align:left">
+                        <asp:TextBox ID="txtQnt"  runat="server" TextMode="Number" onkeyup="GetTransQty(this);"   Width="55px"></asp:TextBox>
+                        <asp:Button ID="btnAdds" runat="server"   OnClick="btnAdds_Click" Text="Add" />
+                        </td>
+                        </tr>
+                     </table>
+                   <table style="width: 600px; vertical-align: top;">
+
                             <tr>
                                 <td>
                                     <asp:GridView SkinID="sknGrid1" ID="GridView1" runat="server" DataSourceID="XmlDataSource1"
                                         AutoGenerateColumns="False" CaptionAlign="Top" Caption="Delivery Order" ShowFooter="True"
                                         OnDataBound="GridView1_DataBound" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit"
-                                        OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
+                                         BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical">
                                         <AlternatingRowStyle BackColor="#CCCCCC" />
                                         <Columns>
-                                            <asp:BoundField DataField="Pid" HeaderText="Pid" Visible="false" SortExpression="Pid" />
+                                             
+                                            <asp:TemplateField HeaderText="Product Id" Visible="false"  SortExpression="PName">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("Pid") %>'></asp:Label>
+                                                </ItemTemplate>
+                                              </asp:TemplateField>
+
                                             <asp:TemplateField HeaderText="Product Name" SortExpression="PName">
                                                 <ItemTemplate>
-                                                    <asp:Label ID="Label1" runat="server" Text='<%# Bind("PName") %>'></asp:Label>
+                                                    <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("PName") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <FooterTemplate>
                                                     <asp:Label ID="Label2" runat="server" Text="Total"></asp:Label>
@@ -251,9 +353,7 @@
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label3" runat="server" Text='<%# Bind("Qnt") %>'></asp:Label>
                                                 </ItemTemplate>
-                                                <EditItemTemplate>
-                                                    <asp:TextBox ID="txtQnty" Width="50px" runat="server" Text='<%# Bind("Qnt") %>'></asp:TextBox>
-                                                </EditItemTemplate>
+                                               
                                                 <FooterTemplate>
                                                     <asp:Label ID="Label4" runat="server" Text="<%# GetGrandTotal(2) %>"></asp:Label>
                                                 </FooterTemplate>
@@ -292,31 +392,7 @@
                                                 <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
                                             
-                                            <asp:TemplateField ShowHeader="False">
-                                                <EditItemTemplate>
-                                                    <asp:LinkButton ID="LinkButton2" runat="server" CausesValidation="True" CommandName="Update"
-                                                        Text="">
-                                            <img alt=""  src="../../Content/images/icons/Save.png" style="border: 0px;"
-                                                                title="Update" />
-                                                    </asp:LinkButton>
-                                                    <asp:LinkButton ID="LinkButton3" runat="server" CausesValidation="False" CommandName="Cancel"
-                                                        Text="">
-                                            <img alt="" height="20px" width="20px" src="../../Content/images/icons/132.png" style="border: 0px;"
-                                                                title="Cancel" />
-                                                    </asp:LinkButton>
-                                                </EditItemTemplate>
-                                                <ItemTemplate>
-                                                    <asp:LinkButton ID="LinkButton1" runat="server" CausesValidation="False" CommandName="Delete"
-                                                        Text="">
-                                        <img alt=""  src="../../Content/images/icons/Delete.png" style="border: 0px;" title="Delete"/>
-                                                    </asp:LinkButton>
-                                                    <asp:LinkButton ID="LinkButton4" runat="server" CausesValidation="False" CommandName="Edit"
-                                                        Text="">
-                                            <img alt="" src="../../Content/images/icons/edit.gif" style="border: 0px;"
-                                                                title="Edit" />
-                                                    </asp:LinkButton>
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
+                                             
 
                                         <asp:TemplateField HeaderText="SL.N"><HeaderTemplate>                                                                       
                                         <asp:TextBox ID="TxtServiceConfg" runat="server"  width="70"  placeholder="Search" onkeyup="Search_GridView1(this, 'GridView1')"></asp:TextBox></HeaderTemplate>                                                      
@@ -344,7 +420,7 @@
                             </tr>
                             <tr>
                                 <td align="right">
-                                    <asp:Button ID="btnSubmit" ValidationGroup="valOut" runat="server" Text="Assign Vehicle"
+                                      <asp:Button ID="btnSubmit" ValidationGroup="valOut" runat="server" Text="Assign Vehicle"
                                         OnClick="btnSubmit_Click" OnClientClick = "Confirm()" />
                                 </td>
                             </tr>
@@ -424,6 +500,8 @@
                     </td>
                 </tr>
             </table>
+                </div>
+
         </ContentTemplate>
     </asp:UpdatePanel>
         <%--<cc2:ScriptReferenceProfiler ID="ScriptReferenceProfiler1" runat="server" />--%>

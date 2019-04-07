@@ -128,6 +128,7 @@
     <Compile Include="IHB\DistributorManpowerBll.cs" />
     <Compile Include="IHB\DistributorWithIhbBll.cs" />
     <Compile Include="Item\ItemStCommercial.cs" />
+    <Compile Include="Item\SalesSearch_BLL.cs" />
     <Compile Include="Item\XmlManagerCH.cs" />
     <Compile Include="Item\XmlManagerSO.cs" />
     <Compile Include="Item\Currency.cs" />
