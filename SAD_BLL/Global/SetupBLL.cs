@@ -78,12 +78,12 @@ namespace SAD_BLL.Global
             return msg;
         }
 
-        public DataTable getinfoShow(int lavelid, int unitid)
+        public DataTable getinfoShow( int unitid)
         {
             try
             {
                 tblItemPriceManager3TableAdapter adp = new tblItemPriceManager3TableAdapter();
-                return adp.Getinfo(lavelid, unitid);
+                return adp.Getinfo( unitid);
             }
             catch { return new DataTable(); }
         }

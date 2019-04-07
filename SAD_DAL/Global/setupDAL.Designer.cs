@@ -1396,13 +1396,29 @@ namespace SAD_DAL.Global {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblItemPriceManager3DataTable : global::System.Data.TypedTableBase<tblItemPriceManager3Row> {
             
-            private global::System.Data.DataColumn columnstrText;
+            private global::System.Data.DataColumn columnTid;
             
-            private global::System.Data.DataColumn columnstrEmailAddress;
+            private global::System.Data.DataColumn columnTerritory;
             
-            private global::System.Data.DataColumn columnstrContactNo;
+            private global::System.Data.DataColumn columnTemail;
             
-            private global::System.Data.DataColumn columnintID;
+            private global::System.Data.DataColumn columnTcontact;
+            
+            private global::System.Data.DataColumn columnAreaid;
+            
+            private global::System.Data.DataColumn columnArea;
+            
+            private global::System.Data.DataColumn columnAreaEmail;
+            
+            private global::System.Data.DataColumn columnAreaContact;
+            
+            private global::System.Data.DataColumn columnRid;
+            
+            private global::System.Data.DataColumn columnRegion;
+            
+            private global::System.Data.DataColumn columnREmail;
+            
+            private global::System.Data.DataColumn columnRcontact;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1439,33 +1455,97 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strTextColumn {
+            public global::System.Data.DataColumn TidColumn {
                 get {
-                    return this.columnstrText;
+                    return this.columnTid;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strEmailAddressColumn {
+            public global::System.Data.DataColumn TerritoryColumn {
                 get {
-                    return this.columnstrEmailAddress;
+                    return this.columnTerritory;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strContactNoColumn {
+            public global::System.Data.DataColumn TemailColumn {
                 get {
-                    return this.columnstrContactNo;
+                    return this.columnTemail;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intIDColumn {
+            public global::System.Data.DataColumn TcontactColumn {
                 get {
-                    return this.columnintID;
+                    return this.columnTcontact;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaidColumn {
+                get {
+                    return this.columnAreaid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaColumn {
+                get {
+                    return this.columnArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaEmailColumn {
+                get {
+                    return this.columnAreaEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn AreaContactColumn {
+                get {
+                    return this.columnAreaContact;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RidColumn {
+                get {
+                    return this.columnRid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RegionColumn {
+                get {
+                    return this.columnRegion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn REmailColumn {
+                get {
+                    return this.columnREmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RcontactColumn {
+                get {
+                    return this.columnRcontact;
                 }
             }
             
@@ -1506,13 +1586,21 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblItemPriceManager3Row AddtblItemPriceManager3Row(string strText, string strEmailAddress, string strContactNo) {
+            public tblItemPriceManager3Row AddtblItemPriceManager3Row(string Territory, string Temail, string Tcontact, string Area, string AreaEmail, string AreaContact, string Region, string REmail, string Rcontact) {
                 tblItemPriceManager3Row rowtblItemPriceManager3Row = ((tblItemPriceManager3Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        strText,
-                        strEmailAddress,
-                        strContactNo,
-                        null};
+                        null,
+                        Territory,
+                        Temail,
+                        Tcontact,
+                        null,
+                        Area,
+                        AreaEmail,
+                        AreaContact,
+                        null,
+                        Region,
+                        REmail,
+                        Rcontact};
                 rowtblItemPriceManager3Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblItemPriceManager3Row);
                 return rowtblItemPriceManager3Row;
@@ -1520,9 +1608,11 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblItemPriceManager3Row FindByintID(long intID) {
+            public tblItemPriceManager3Row FindByTidAreaidRid(long Tid, long Areaid, long Rid) {
                 return ((tblItemPriceManager3Row)(this.Rows.Find(new object[] {
-                            intID})));
+                            Tid,
+                            Areaid,
+                            Rid})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1542,35 +1632,78 @@ namespace SAD_DAL.Global {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnstrText = base.Columns["strText"];
-                this.columnstrEmailAddress = base.Columns["strEmailAddress"];
-                this.columnstrContactNo = base.Columns["strContactNo"];
-                this.columnintID = base.Columns["intID"];
+                this.columnTid = base.Columns["Tid"];
+                this.columnTerritory = base.Columns["Territory"];
+                this.columnTemail = base.Columns["Temail"];
+                this.columnTcontact = base.Columns["Tcontact"];
+                this.columnAreaid = base.Columns["Areaid"];
+                this.columnArea = base.Columns["Area"];
+                this.columnAreaEmail = base.Columns["AreaEmail"];
+                this.columnAreaContact = base.Columns["AreaContact"];
+                this.columnRid = base.Columns["Rid"];
+                this.columnRegion = base.Columns["Region"];
+                this.columnREmail = base.Columns["REmail"];
+                this.columnRcontact = base.Columns["Rcontact"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnstrText = new global::System.Data.DataColumn("strText", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrText);
-                this.columnstrEmailAddress = new global::System.Data.DataColumn("strEmailAddress", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrEmailAddress);
-                this.columnstrContactNo = new global::System.Data.DataColumn("strContactNo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrContactNo);
-                this.columnintID = new global::System.Data.DataColumn("intID", typeof(long), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintID);
+                this.columnTid = new global::System.Data.DataColumn("Tid", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTid);
+                this.columnTerritory = new global::System.Data.DataColumn("Territory", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTerritory);
+                this.columnTemail = new global::System.Data.DataColumn("Temail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTemail);
+                this.columnTcontact = new global::System.Data.DataColumn("Tcontact", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTcontact);
+                this.columnAreaid = new global::System.Data.DataColumn("Areaid", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaid);
+                this.columnArea = new global::System.Data.DataColumn("Area", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnArea);
+                this.columnAreaEmail = new global::System.Data.DataColumn("AreaEmail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaEmail);
+                this.columnAreaContact = new global::System.Data.DataColumn("AreaContact", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAreaContact);
+                this.columnRid = new global::System.Data.DataColumn("Rid", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRid);
+                this.columnRegion = new global::System.Data.DataColumn("Region", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRegion);
+                this.columnREmail = new global::System.Data.DataColumn("REmail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnREmail);
+                this.columnRcontact = new global::System.Data.DataColumn("Rcontact", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRcontact);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintID}, true));
-                this.columnstrText.AllowDBNull = false;
-                this.columnstrText.MaxLength = 200;
-                this.columnstrEmailAddress.MaxLength = 50;
-                this.columnstrContactNo.MaxLength = 50;
-                this.columnintID.AutoIncrement = true;
-                this.columnintID.AutoIncrementSeed = -1;
-                this.columnintID.AutoIncrementStep = -1;
-                this.columnintID.AllowDBNull = false;
-                this.columnintID.ReadOnly = true;
-                this.columnintID.Unique = true;
+                                this.columnTid,
+                                this.columnAreaid,
+                                this.columnRid}, true));
+                this.columnTid.AutoIncrement = true;
+                this.columnTid.AutoIncrementSeed = -1;
+                this.columnTid.AutoIncrementStep = -1;
+                this.columnTid.AllowDBNull = false;
+                this.columnTid.ReadOnly = true;
+                this.columnTerritory.AllowDBNull = false;
+                this.columnTerritory.MaxLength = 200;
+                this.columnTemail.MaxLength = 50;
+                this.columnTcontact.MaxLength = 50;
+                this.columnAreaid.AutoIncrement = true;
+                this.columnAreaid.AutoIncrementSeed = -1;
+                this.columnAreaid.AutoIncrementStep = -1;
+                this.columnAreaid.AllowDBNull = false;
+                this.columnAreaid.ReadOnly = true;
+                this.columnArea.AllowDBNull = false;
+                this.columnArea.MaxLength = 200;
+                this.columnAreaEmail.MaxLength = 50;
+                this.columnAreaContact.MaxLength = 50;
+                this.columnRid.AutoIncrement = true;
+                this.columnRid.AutoIncrementSeed = -1;
+                this.columnRid.AutoIncrementStep = -1;
+                this.columnRid.AllowDBNull = false;
+                this.columnRid.ReadOnly = true;
+                this.columnRegion.AllowDBNull = false;
+                this.columnRegion.MaxLength = 200;
+                this.columnREmail.MaxLength = 50;
+                this.columnRcontact.MaxLength = 50;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1795,81 +1928,236 @@ namespace SAD_DAL.Global {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strText {
+            public long Tid {
                 get {
-                    return ((string)(this[this.tabletblItemPriceManager3.strTextColumn]));
+                    return ((long)(this[this.tabletblItemPriceManager3.TidColumn]));
                 }
                 set {
-                    this[this.tabletblItemPriceManager3.strTextColumn] = value;
+                    this[this.tabletblItemPriceManager3.TidColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strEmailAddress {
+            public string Territory {
                 get {
-                    try {
-                        return ((string)(this[this.tabletblItemPriceManager3.strEmailAddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strEmailAddress\' in table \'tblItemPriceManager3\' is DBNull." +
-                                "", e);
-                    }
+                    return ((string)(this[this.tabletblItemPriceManager3.TerritoryColumn]));
                 }
                 set {
-                    this[this.tabletblItemPriceManager3.strEmailAddressColumn] = value;
+                    this[this.tabletblItemPriceManager3.TerritoryColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strContactNo {
+            public string Temail {
                 get {
                     try {
-                        return ((string)(this[this.tabletblItemPriceManager3.strContactNoColumn]));
+                        return ((string)(this[this.tabletblItemPriceManager3.TemailColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strContactNo\' in table \'tblItemPriceManager3\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Temail\' in table \'tblItemPriceManager3\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tabletblItemPriceManager3.strContactNoColumn] = value;
+                    this[this.tabletblItemPriceManager3.TemailColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public long intID {
+            public string Tcontact {
                 get {
-                    return ((long)(this[this.tabletblItemPriceManager3.intIDColumn]));
+                    try {
+                        return ((string)(this[this.tabletblItemPriceManager3.TcontactColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Tcontact\' in table \'tblItemPriceManager3\' is DBNull.", e);
+                    }
                 }
                 set {
-                    this[this.tabletblItemPriceManager3.intIDColumn] = value;
+                    this[this.tabletblItemPriceManager3.TcontactColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrEmailAddressNull() {
-                return this.IsNull(this.tabletblItemPriceManager3.strEmailAddressColumn);
+            public long Areaid {
+                get {
+                    return ((long)(this[this.tabletblItemPriceManager3.AreaidColumn]));
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.AreaidColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrEmailAddressNull() {
-                this[this.tabletblItemPriceManager3.strEmailAddressColumn] = global::System.Convert.DBNull;
+            public string Area {
+                get {
+                    return ((string)(this[this.tabletblItemPriceManager3.AreaColumn]));
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.AreaColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrContactNoNull() {
-                return this.IsNull(this.tabletblItemPriceManager3.strContactNoColumn);
+            public string AreaEmail {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblItemPriceManager3.AreaEmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AreaEmail\' in table \'tblItemPriceManager3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.AreaEmailColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrContactNoNull() {
-                this[this.tabletblItemPriceManager3.strContactNoColumn] = global::System.Convert.DBNull;
+            public string AreaContact {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblItemPriceManager3.AreaContactColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'AreaContact\' in table \'tblItemPriceManager3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.AreaContactColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long Rid {
+                get {
+                    return ((long)(this[this.tabletblItemPriceManager3.RidColumn]));
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.RidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Region {
+                get {
+                    return ((string)(this[this.tabletblItemPriceManager3.RegionColumn]));
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.RegionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string REmail {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblItemPriceManager3.REmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'REmail\' in table \'tblItemPriceManager3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.REmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string Rcontact {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblItemPriceManager3.RcontactColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Rcontact\' in table \'tblItemPriceManager3\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblItemPriceManager3.RcontactColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTemailNull() {
+                return this.IsNull(this.tabletblItemPriceManager3.TemailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTemailNull() {
+                this[this.tabletblItemPriceManager3.TemailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTcontactNull() {
+                return this.IsNull(this.tabletblItemPriceManager3.TcontactColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTcontactNull() {
+                this[this.tabletblItemPriceManager3.TcontactColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAreaEmailNull() {
+                return this.IsNull(this.tabletblItemPriceManager3.AreaEmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAreaEmailNull() {
+                this[this.tabletblItemPriceManager3.AreaEmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsAreaContactNull() {
+                return this.IsNull(this.tabletblItemPriceManager3.AreaContactColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetAreaContactNull() {
+                this[this.tabletblItemPriceManager3.AreaContactColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsREmailNull() {
+                return this.IsNull(this.tabletblItemPriceManager3.REmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetREmailNull() {
+                this[this.tabletblItemPriceManager3.REmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRcontactNull() {
+                return this.IsNull(this.tabletblItemPriceManager3.RcontactColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRcontactNull() {
+                this[this.tabletblItemPriceManager3.RcontactColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3050,36 +3338,93 @@ namespace SAD_DAL.Global.setupDALTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "tblItemPriceManager3";
-            tableMapping.ColumnMappings.Add("strText", "strText");
-            tableMapping.ColumnMappings.Add("strEmailAddress", "strEmailAddress");
-            tableMapping.ColumnMappings.Add("strContactNo", "strContactNo");
-            tableMapping.ColumnMappings.Add("intID", "intID");
+            tableMapping.ColumnMappings.Add("Tid", "Tid");
+            tableMapping.ColumnMappings.Add("Territory", "Territory");
+            tableMapping.ColumnMappings.Add("Temail", "Temail");
+            tableMapping.ColumnMappings.Add("Tcontact", "Tcontact");
+            tableMapping.ColumnMappings.Add("Areaid", "Areaid");
+            tableMapping.ColumnMappings.Add("Area", "Area");
+            tableMapping.ColumnMappings.Add("AreaEmail", "AreaEmail");
+            tableMapping.ColumnMappings.Add("AreaContact", "AreaContact");
+            tableMapping.ColumnMappings.Add("Rid", "Rid");
+            tableMapping.ColumnMappings.Add("Region", "Region");
+            tableMapping.ColumnMappings.Add("REmail", "REmail");
+            tableMapping.ColumnMappings.Add("Rcontact", "Rcontact");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [tblItemPriceManager] WHERE (([strText] = @Original_strText) AND ((@IsNull_strEmailAddress = 1 AND [strEmailAddress] IS NULL) OR ([strEmailAddress] = @Original_strEmailAddress)) AND ((@IsNull_strContactNo = 1 AND [strContactNo] IS NULL) OR ([strContactNo] = @Original_strContactNo)) AND ([intID] = @Original_intID))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [erp_sad].[dbo].[tblItemPriceManager] WHERE (([intID] = @Original_Tid) AND ([strText] = @Original_Territory) AND ((@IsNull_Temail = 1 AND [strEmailAddress] IS NULL) OR ([strEmailAddress] = @Original_Temail)) AND ((@IsNull_Tcontact = 1 AND [strContactNo] IS NULL) OR ([strContactNo] = @Original_Tcontact)) AND ([intID] = @Original_Areaid) AND ([strText] = @Original_Area) AND ((@IsNull_AreaEmail = 1 AND [strEmailAddress] IS NULL) OR ([strEmailAddress] = @Original_AreaEmail)) AND ((@IsNull_AreaContact = 1 AND [strContactNo] IS NULL) OR ([strContactNo] = @Original_AreaContact)) AND ([intID] = @Original_Rid) AND ([strText] = @Original_Region) AND ((@IsNull_REmail = 1 AND [strEmailAddress] IS NULL) OR ([strEmailAddress] = @Original_REmail)) AND ((@IsNull_Rcontact = 1 AND [strContactNo] IS NULL) OR ([strContactNo] = @Original_Rcontact)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strText", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmailAddress", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmailAddress", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmailAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmailAddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strContactNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strContactNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tid", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Territory", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Territory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Temail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Temail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Temail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Temail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Tcontact", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tcontact", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tcontact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tcontact", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Areaid", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Areaid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Area", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Area", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AreaEmail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaEmail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AreaEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AreaContact", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaContact", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AreaContact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaContact", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rid", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Region", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Region", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_REmail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REmail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_REmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Rcontact", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rcontact", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rcontact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rcontact", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tblItemPriceManager] SET [strText] = @strText, [strEmailAddress] = @strEmailAddress, [strContactNo] = @strContactNo WHERE (([strText] = @Original_strText) AND ((@IsNull_strEmailAddress = 1 AND [strEmailAddress] IS NULL) OR ([strEmailAddress] = @Original_strEmailAddress)) AND ((@IsNull_strContactNo = 1 AND [strContactNo] IS NULL) OR ([strContactNo] = @Original_strContactNo)) AND ([intID] = @Original_intID));
-SELECT strText, strEmailAddress, strContactNo, intID FROM tblItemPriceManager WHERE (intID = @intID)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [erp_sad].[dbo].[tblItemPriceManager] SET [strText] = @Territory, [strEmai" +
+                "lAddress] = @Temail, [strContactNo] = @Tcontact, [strText] = @Area, [strEmailAdd" +
+                "ress] = @AreaEmail, [strContactNo] = @AreaContact, [strText] = @Region, [strEmai" +
+                "lAddress] = @REmail, [strContactNo] = @Rcontact WHERE (([intID] = @Original_Tid)" +
+                " AND ([strText] = @Original_Territory) AND ((@IsNull_Temail = 1 AND [strEmailAdd" +
+                "ress] IS NULL) OR ([strEmailAddress] = @Original_Temail)) AND ((@IsNull_Tcontact" +
+                " = 1 AND [strContactNo] IS NULL) OR ([strContactNo] = @Original_Tcontact)) AND (" +
+                "[intID] = @Original_Areaid) AND ([strText] = @Original_Area) AND ((@IsNull_AreaE" +
+                "mail = 1 AND [strEmailAddress] IS NULL) OR ([strEmailAddress] = @Original_AreaEm" +
+                "ail)) AND ((@IsNull_AreaContact = 1 AND [strContactNo] IS NULL) OR ([strContactN" +
+                "o] = @Original_AreaContact)) AND ([intID] = @Original_Rid) AND ([strText] = @Ori" +
+                "ginal_Region) AND ((@IsNull_REmail = 1 AND [strEmailAddress] IS NULL) OR ([strEm" +
+                "ailAddress] = @Original_REmail)) AND ((@IsNull_Rcontact = 1 AND [strContactNo] I" +
+                "S NULL) OR ([strContactNo] = @Original_Rcontact)));\r\nSELECT pm.intID AS Tid, pm." +
+                "strText AS Territory, pm.strEmailAddress AS Temail, pm.strContactNo AS Tcontact," +
+                " pm1.intID AS Areaid, pm1.strText AS Area, pm1.strEmailAddress AS AreaEmail, pm1" +
+                ".strContactNo AS AreaContact, pm2.intID AS Rid, pm2.strText AS Region, pm2.strEm" +
+                "ailAddress AS REmail, pm2.strContactNo AS Rcontact FROM tblItemPriceManager AS p" +
+                "m INNER JOIN tblItemPriceManager AS pm1 ON pm1.intID = pm.intParentID INNER JOIN" +
+                " tblItemPriceManager AS pm2 ON pm2.intID = pm1.intParentID WHERE (pm.intID = @in" +
+                "tID) AND (pm.intID = @intID) AND (pm.intID = @intID) ORDER BY Rid";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strText", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strEmailAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmailAddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strContactNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strText", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strText", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strEmailAddress", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmailAddress", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strEmailAddress", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strEmailAddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strContactNo", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strContactNo", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strContactNo", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Territory", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Territory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Temail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Temail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Tcontact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tcontact", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Area", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Area", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AreaEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaEmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AreaContact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaContact", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Region", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Region", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@REmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REmail", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Rcontact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rcontact", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tid", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Territory", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Territory", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Temail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Temail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Temail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Temail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Tcontact", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tcontact", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Tcontact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Tcontact", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Areaid", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Areaid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Area", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Area", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AreaEmail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaEmail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AreaEmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaEmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AreaContact", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaContact", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AreaContact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AreaContact", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rid", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Region", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Region", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_REmail", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REmail", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_REmail", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "REmail", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Rcontact", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rcontact", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Rcontact", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Rcontact", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Tid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3095,21 +3440,24 @@ SELECT strText, strEmailAddress, strContactNo, intID FROM tblItemPriceManager WH
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT strText, strEmailAddress, strContactNo, intID FROM tblItemPriceManager WHE" +
-                "RE (intLevel = @Levelid) AND (intUnitID = @unitid)";
+            this._commandCollection[0].CommandText = @"select pm.intID as Tid,pm.strText as Territory,pm.strEmailAddress as Temail,pm.strContactNo Tcontact
+  ,pm1.intID Areaid,pm1.strText Area,pm1.strEmailAddress AreaEmail,pm1.strContactNo AreaContact
+  ,pm2.intID Rid,pm2.strText as Region,pm2.strEmailAddress REmail,pm2.strContactNo Rcontact
+   from erp_sad.dbo.tblItemPriceManager pm 
+ join erp_sad.dbo.tblItemPriceManager pm1 on pm1.intID=pm.intParentID
+join erp_sad.dbo.tblItemPriceManager pm2 on pm2.intID=pm1.intParentID
+  where pm.intUnitID=@unit  and pm.intLevel=3 order by pm2.intID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Levelid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intLevel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual setupDAL.tblItemPriceManager3DataTable Getinfo(int Levelid, int unitid) {
+        public virtual setupDAL.tblItemPriceManager3DataTable Getinfo(int unit) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Levelid));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(unitid));
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(unit));
             setupDAL.tblItemPriceManager3DataTable dataTable = new setupDAL.tblItemPriceManager3DataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

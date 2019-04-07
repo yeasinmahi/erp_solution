@@ -285,7 +285,7 @@ namespace UI.SAD.Setup
 
         protected void btnshow_Click(object sender, EventArgs e)
         {
-            dt = objsetup.getinfoShow(int.Parse(ddlType.SelectedValue.ToString()),int.Parse(ddlunit.SelectedValue.ToString()));
+            dt = objsetup.getinfoShow(int.Parse(ddlunit.SelectedValue.ToString()));
             GridView2.DataSource = dt;
             GridView2.DataBind();
 

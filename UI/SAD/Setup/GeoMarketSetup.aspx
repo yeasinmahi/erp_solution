@@ -146,11 +146,15 @@
                                 
                                >
                                 <Columns>
-                                    
-                                    <asp:BoundField DataField="strText" HeaderText="Location" SortExpression="strNarration" />
-                                    <asp:BoundField DataField="strEmailAddress" HeaderText="Email" SortExpression="strBankName" />
-                                     <asp:BoundField DataField="strContactNo" HeaderText="Contact No" SortExpression="strBankName" />
-                                  
+                                    <asp:BoundField DataField="Region" HeaderText="Region" SortExpression="Region" />
+                                    <asp:BoundField DataField="REmail" HeaderText="Email" SortExpression="Region" />
+                                    <asp:BoundField DataField="Rcontact" HeaderText="Contact No" SortExpression="Region" />
+                                    <asp:BoundField DataField="Area" HeaderText="Area" SortExpression="Area" />
+                                    <asp:BoundField DataField="AreaEmail" HeaderText="Email" SortExpression="Area" />
+                                    <asp:BoundField DataField="AreaContact" HeaderText="Contact No" SortExpression="Area" />
+                                      <asp:BoundField DataField="Territory" HeaderText="Territory" SortExpression="Territory" />
+                                  <asp:BoundField DataField="Temail" HeaderText="Email" SortExpression="Territory" />
+                                    <asp:BoundField DataField="Tcontact" HeaderText="Contact No" SortExpression="Territory" />
                                 </Columns>
                             </asp:GridView>
     </td></tr></table>
