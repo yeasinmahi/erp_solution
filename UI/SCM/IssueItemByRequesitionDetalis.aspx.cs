@@ -150,14 +150,7 @@ namespace UI.SCM
                             string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);
 
-                            if (msg.ToLower().Contains("success"))
-                            {
-                                Toaster(msg, Common.TosterType.Success);
-                            }
-                            else
-                            {
-                                Toaster(msg, Common.TosterType.Error);
-                            }
+                            Alert(msg);
                             dgvDetalis.UnLoad();
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                         }
