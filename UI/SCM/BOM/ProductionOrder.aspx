@@ -15,19 +15,23 @@
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
 
     <script type="text/javascript">
         function funConfirmAll() {
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-            if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
-            else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+            if (confirm("Do you want to proceed?")) {
+                confirm_value.value = "Yes";
+                document.getElementById("hdnConfirm").value = "1";
+                showLoader();
+            }
+            else {
+                confirm_value.value = "No";
+                document.getElementById("hdnConfirm").value = "0";
+            }
         }
 
         function AddConfirm() {
@@ -42,13 +46,13 @@
 
             else {
                 document.getElementById("hdnPreConfirm").value = "1";
+                showLoader();
             }
         }
     </script>
 </head>
 
 <body>
-
     <form id="frmselfresign" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
@@ -101,7 +105,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Quantity :"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtQty" Style="width: 150px" CssClass="txtBox" Font-Bold="False" TextMode="Number" autocomplete="off"  AutoPostBack="false" Text="0" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtQty" Style="width: 150px" CssClass="txtBox" Font-Bold="False" TextMode="Number" autocomplete="off" AutoPostBack="false" Text="0" runat="server"></asp:TextBox></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="BOM :"></asp:Label></td>
                             <td style="text-align: left;">
@@ -116,7 +120,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="  Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtdteDate" Style="width: 150px" runat="server" CssClass="txtBox" autocomplete="off" ></asp:TextBox>
+                                <asp:TextBox ID="txtdteDate" Style="width: 150px" runat="server" CssClass="txtBox" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtdteDate"></cc1:CalendarExtender>
 
                                 <td style="text-align: right;">

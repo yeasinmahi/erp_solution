@@ -2,6 +2,7 @@
 using GLOBAL_BLL;
 using SCM_BLL;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Web;
@@ -39,15 +40,17 @@ namespace UI.SCM
                 try
                 {
                     File.Delete(filePathForXML);
-                } catch { }
-                int ReqId = int.Parse(Request.QueryString["ReqId"]);
+                }
+                catch
+                {
+                }
                 string ReqCode = Request.QueryString["ReqCode"];
                 DateTime dteReqDate = DateTime.Parse(Request.QueryString["dteReqDate"]);
                 string strDepartmentName = Request.QueryString["strDepartmentName"];
                 string strReqBy = Request.QueryString["strReqBy"];
                 string strApproveBy = Request.QueryString["strApproveBy"];
-                string DeptId = Request.QueryString["DeptId"];
-                string SectionID = Request.QueryString["SectionID"];
+                //string DeptId = Request.QueryString["DeptId"];
+                //string SectionID = Request.QueryString["SectionID"];
                 string SectionName = Request.QueryString["SectionName"];
                 intwh = int.Parse(Request.QueryString["intwh"]);
 
@@ -60,16 +63,22 @@ namespace UI.SCM
 
                 LoadCostCenter(intwh);
 
-                dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
-                if (dt.Rows.Count > 0)
-                {
-                    dgvDetalis.DataSource = dt;
-                    dgvDetalis.DataBind();
-                }
-                else
-                {
-                    Alert(Message.NoFound.ToFriendlyString());
-                }
+                LoadGrid();
+            }
+        }
+
+        public void LoadGrid()
+        {
+            int ReqId = int.Parse(Request.QueryString["ReqId"]);
+            dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                dgvDetalis.DataSource = dt;
+                dgvDetalis.DataBind();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
         }
 
@@ -78,6 +87,7 @@ namespace UI.SCM
             dt = CostCenterBll.GetCostCenter(whId);
             ddlCost.LoadWithSelect(dt, "Id", "strName");
         }
+        private readonly object _obj  = new object();
         protected void btnIssue_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnIssue_Click", null);
@@ -87,7 +97,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
-                if (dgvDetalis.Rows.Count > 0 && hdnConfirm.Value == "1")
+                if (dgvDetalis.Rows.Count > 0)
                 {
                     try { File.Delete(filePathForXML); File.Delete(filePathForText); } catch { }
 
@@ -99,55 +109,57 @@ namespace UI.SCM
                     string reqBy = lblReqBy.Text;
                     intwh = int.Parse(Request.QueryString["intwh"]);
                     int costCenterId = ddlCost.SelectedValue();
-                    for (int index = 0; index < dgvDetalis.Rows.Count; index++)
+                    lock (_obj)
                     {
-                        string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
-                        string itemName = ((Label)dgvDetalis.Rows[index].FindControl("lblItem")).Text;
-                        string itemUnit = ((Label)dgvDetalis.Rows[index].FindControl("lblUom")).Text;
-                        string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
-
-                        string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
-                        string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
-
-                        string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
-
-                        if (decimal.Parse(issueQty) > 0)
+                        List<object> objects = new List<object>();
+                        for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                         {
-                            //CreateXmlIssue(itemId, issueQty, stockVlaue, locationId, stockQty, reqId, reqCode, deptId, strSection, reqBy, receiveBy);
-                            dynamic obj = new
+                            string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
+                            if (decimal.Parse(issueQty) > 0)
                             {
-                                itemId,
-                                issueQty,
-                                stockVlaue,
-                                locationId,
-                                stockQty,
-                                reqId,
-                                reqCode,
-                                deptId,
-                                strSection,
-                                reqBy,
-                                receiveBy,
-                                costCenterId
-                            };
-                            xmlString = XmlParser.GetXml("issue", "issueEntry", obj, out string message);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
-                                Enroll);
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                                "alert('" + msg + "');", true);
-                            if (msg.ToLower().Contains("success"))
-                            {
-                                Toaster(msg, Common.TosterType.Success);
+                                string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
+                                string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
+                                string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
+                                string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
+                                dynamic obj = new
+                                {
+                                    itemId,
+                                    issueQty,
+                                    stockVlaue,
+                                    locationId,
+                                    stockQty,
+                                    reqId,
+                                    reqCode,
+                                    deptId,
+                                    strSection,
+                                    reqBy,
+                                    receiveBy,
+                                    costCenterId
+                                };
+                                objects.Add(obj);
                             }
                             else
                             {
-                                Toaster(msg, Common.TosterType.Error);
+                                Toaster("Please input issue quantity", Common.TosterType.Warning);
                             }
+
+                        }
+                        if (objects.Count > 0)
+                        {
+                            xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                Enroll);
+
+                            Alert(msg);
+                            dgvDetalis.UnLoad();
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                         }
                         else
                         {
-                            Toaster("Please input issue quantity",Common.TosterType.Warning);
+                            Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
                         }
+                        
+
                     }
 
                     //XmlDocument doc = new XmlDocument();

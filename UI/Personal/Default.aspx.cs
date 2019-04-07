@@ -176,9 +176,5 @@ namespace UI.Personal
             
         }
 
-
-
-
-
     }
 }

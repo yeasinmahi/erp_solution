@@ -42,6 +42,16 @@
             //return false;
             //}
         }
+        
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
+    
     </script>
 
 
@@ -73,7 +83,7 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
-                    <div class="tabs_container" style="text-align: left">MRR Statement<hr />
+                    <div class="tabs_container" style="text-align: left">MRR STATEMENT<hr />
                     </div>
 
                     <table>
@@ -120,6 +130,14 @@
                             <td style="text-align: left"></td>
                             <td style="text-align: right">
                                 <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="return validation();" />
+                            </td>
+
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td style="text-align: right">
+                                <asp:Button ID="btnMRRSDetail" runat="server" Text="Statement" OnClick="btnMRRSDetail_Click" OnClientClick="return validation();" ForeColor="Blue" />
                             </td>
                         </tr>
                     </table>
@@ -217,6 +235,8 @@
 
 
                 </div>
+                <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
+
 
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>

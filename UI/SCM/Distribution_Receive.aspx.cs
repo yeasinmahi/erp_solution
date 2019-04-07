@@ -30,21 +30,29 @@ namespace UI.SCM
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message,Common.TosterType.Error);
+                }
             }
         }
 
         private void GridBind()
         {
             int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
-            DateTime FromDate = Convert.ToDateTime(txtFromDate.Text);
-            DateTime ToDate = Convert.ToDateTime(txtToDate.Text);
-            dt = _objbll.DistributionData(whid, FromDate, ToDate, 1, 0);
+            DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
+            DateTime toDate = Convert.ToDateTime(txtToDate.Text);
+            dt = _objbll.DistributionData(whid, fromDate, toDate, 1, 0);
 
             if (dt.Rows.Count > 0)
             {
+                SetVisibility("itemPanel",true);
                 Distribution_Grid.DataSource = dt;
                 Distribution_Grid.DataBind();
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(),Common.TosterType.Warning);
             }
         }
 
@@ -57,7 +65,6 @@ namespace UI.SCM
         {
             int location = 0;
             GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-            int Enroll = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
 
             int intTransferID = Convert.ToInt32(((Label)row.FindControl("lblintTransferID")).Text);
             int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
@@ -89,7 +96,7 @@ namespace UI.SCM
             }
             else
             {
-                ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Alert", "alert('Data Not Found')", true);
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
 
             GridBind();
@@ -97,8 +104,7 @@ namespace UI.SCM
 
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Distribution_Grid.DataSource = null;
-            Distribution_Grid.DataBind();
+            Distribution_Grid.UnLoad();
         }
     }
 }

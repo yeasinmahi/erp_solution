@@ -375,6 +375,8 @@ namespace UI.SCM
                 txtSupplier.Text = "";
                 txtItem.Text = "";
 
+                LoadCostCenter();
+
                 // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
             }
             catch { Session["untids"] = "0"; }
@@ -589,13 +591,20 @@ namespace UI.SCM
                 ddlDtePay.DataValueField = "dteDate";
                 ddlDtePay.DataBind();
 
-                dt = objPo.GetPoData(8, "", intWh, 0, DateTime.Now, enroll);// Get Costcenter
-                ddlCostCenter.DataSource = dt;
-                ddlCostCenter.DataTextField = "strName";
-                ddlCostCenter.DataValueField = "Id";
-                ddlCostCenter.DataBind();
+                LoadCostCenter();
+
+
             }
             catch { Session["untids"] ="0".ToString(); }
+        }
+
+        public void LoadCostCenter()
+        {
+            dt = objPo.GetPoData(8, "", ddlWHPrepare.SelectedValue(), 0, DateTime.Now, enroll);// Get Costcenter
+            ddlCostCenter.DataSource = dt;
+            ddlCostCenter.DataTextField = "strName";
+            ddlCostCenter.DataValueField = "Id";
+            ddlCostCenter.DataBind();
         }
     }
 }

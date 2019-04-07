@@ -85,24 +85,6 @@ namespace UI.SCM {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
-        /// hdnConfirm control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnConfirm;
-        
-        /// <summary>
-        /// hdnUnit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
-        
-        /// <summary>
         /// hdnMrrNo control.
         /// </summary>
         /// <remarks>
@@ -110,15 +92,6 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnMrrNo;
-        
-        /// <summary>
-        /// hdnIndentDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnIndentDate;
         
         /// <summary>
         /// Label1 control.

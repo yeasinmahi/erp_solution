@@ -217,7 +217,7 @@
                                 <asp:FileUpload ID="docUpload" Width="300px" runat="server" forecolor="blue"/></td>
 
                             <td style="text-align: right" colspan="2">
-                                <asp:Button ID="btnShow" Font-Bold="true" forecolor="#006600" runat="server" Text="Show" OnClick="btnShow_Click" />
+                                <asp:Button ID="btnShow" Font-Bold="true" forecolor="#006600" runat="server" Text="Show" OnClientClick="showLoader();" OnClick="btnShow_Click" />
                                 <asp:Button ID="btnSaveMrr" Text="Save MRR" Font-Bold="true" runat="server"  forecolor="blue" OnClientClick="return MrrGenerateCheck();" OnClick="btnSaveMrr_Click" /></td>
                         </tr>
                         <tr>

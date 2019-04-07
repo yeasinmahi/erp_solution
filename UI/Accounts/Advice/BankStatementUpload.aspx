@@ -37,10 +37,10 @@
         <table class="tbldecoration" style="width:auto; float:left;">
          <tr><td>
             <table class="tbldecoration" style="width:auto; float:left;">
-            <tr><td style="text-align:right"><asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit :"></asp:Label></td>
-            <td style="text-align:left"><asp:DropDownList ID="ddlUnit" runat="server" CssClass="ddList" Font-Bold="false" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged" ></asp:DropDownList></td>
-            <td style="text-align:right"><asp:Label ID="lblAccountNo" runat="server" CssClass="lbl" Text="Account No :"></asp:Label></td>
-            <td style="text-align:left"><asp:DropDownList ID="ddlAccountNo" runat="server" CssClass="ddList" Font-Bold="false" Width="225px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlAccountNo_SelectedIndexChanged"></asp:DropDownList></td>
+            <tr><td style="text-align:right" class="auto-style1"><asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit :"></asp:Label></td>
+            <td style="text-align:left" class="auto-style1"><asp:DropDownList ID="ddlUnit" runat="server" CssClass="ddList" Font-Bold="false" width="220px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged" ></asp:DropDownList></td>
+            <td style="text-align:right" class="auto-style1"><asp:Label ID="lblAccountNo" runat="server" CssClass="lbl" Text="Account No :"></asp:Label></td>
+            <td style="text-align:left" class="auto-style1"><asp:DropDownList ID="ddlAccountNo" runat="server" CssClass="ddList" Font-Bold="false" Width="225px" height="24px" BackColor="WhiteSmoke" AutoPostBack="true" OnSelectedIndexChanged="ddlAccountNo_SelectedIndexChanged"></asp:DropDownList></td>
             </tr>
             <tr>
                 <td style="text-align:right"><asp:Label ID="lblAGAccount" runat="server" CssClass="lbl" Text="AG Account No :"></asp:Label></td>

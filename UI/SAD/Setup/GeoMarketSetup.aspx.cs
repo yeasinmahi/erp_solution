@@ -28,7 +28,17 @@ namespace UI.SAD.Setup
                 ddlunit.DataBind();
 
                 GetBind(true,"");
-                
+                txtRegion.Enabled = true;
+                txtArea.Enabled = true;
+                txtTerritory.Enabled = true;
+                btnAddRegion.Enabled = true;
+                btnAddArea.Enabled = true;
+                btnAddTerritory.Enabled = true;
+                btnSave.Enabled = true;
+                btnupdate.Enabled = false;
+                rtnemployee.Checked = false;
+                rtnmarket.Checked = true;
+
             }
         }
 
@@ -193,6 +203,92 @@ namespace UI.SAD.Setup
         {
             GetBind(false, "T");
             hdnid.Value = ddlTerritory.SelectedValue.ToString();
+        }
+
+        protected void rtnmarket_CheckedChanged(object sender, EventArgs e)
+        {
+            txtRegion.Enabled = true;
+            txtArea.Enabled = true;
+            txtTerritory.Enabled = true;
+            btnAddRegion.Enabled = true;
+            btnAddArea.Enabled = true;
+            btnAddTerritory.Enabled = true;
+            btnSave.Enabled = true;
+            btnupdate.Enabled = false;
+        }
+
+        protected void rtnemployee_CheckedChanged(object sender, EventArgs e)
+        {
+            txtRegion.Enabled = false;
+            txtArea.Enabled = false;
+            txtTerritory.Enabled = false;
+            btnAddRegion.Enabled = false;
+            btnAddArea.Enabled = false;
+            btnAddTerritory.Enabled = false;
+            btnSave.Enabled = false;
+            btnupdate.Enabled = true;
+        }
+
+        protected void btnupdate_Click(object sender, EventArgs e)
+        {
+            int geoid;
+            string contact;
+           
+            if(ddlType.SelectedValue.ToString()=="1")
+            {
+                geoid =int.Parse(ddlRegion.SelectedValue.ToString());
+                if((txtContact.Text!="")||(txtContact.Text=="0"))
+                {
+                    msg= objsetup.getContact(txtContact.Text,int.Parse(ddlType.SelectedValue.ToString()),geoid,int.Parse(ddlunit.SelectedValue.ToString()), 1);
+
+                }
+                if ((txtEmail.Text != "") || (txtEmail.Text == "0"))
+                {
+                    msg = objsetup.getContact(txtEmail.Text, int.Parse(ddlType.SelectedValue.ToString()), geoid, int.Parse(ddlunit.SelectedValue.ToString()), 2);
+                }
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+            }
+            else if (ddlType.SelectedValue.ToString() == "2")
+            {
+                geoid = int.Parse(ddlArea.SelectedValue.ToString());
+                if ((txtContact.Text != "") || (txtContact.Text == "0"))
+                {
+                    msg = objsetup.getContact(txtContact.Text, int.Parse(ddlType.SelectedValue.ToString()), geoid, int.Parse(ddlunit.SelectedValue.ToString()), 1);
+
+                }
+                if ((txtEmail.Text != "") || (txtEmail.Text == "0"))
+                {
+                    msg = objsetup.getContact(txtEmail.Text, int.Parse(ddlType.SelectedValue.ToString()), geoid, int.Parse(ddlunit.SelectedValue.ToString()), 2);
+                }
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+
+            }
+            else if (ddlType.SelectedValue.ToString() == "3")
+            {
+                geoid = int.Parse(ddlTerritory.SelectedValue.ToString());
+                if ((txtContact.Text != "") || (txtContact.Text == "0"))
+                {
+                    msg = objsetup.getContact(txtContact.Text, int.Parse(ddlType.SelectedValue.ToString()), geoid, int.Parse(ddlunit.SelectedValue.ToString()), 1);
+
+                }
+                if ((txtEmail.Text != "") || (txtEmail.Text == "0"))
+                {
+                    msg = objsetup.getContact(txtEmail.Text, int.Parse(ddlType.SelectedValue.ToString()), geoid, int.Parse(ddlunit.SelectedValue.ToString()), 2);
+                }
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+            }
+            txtContact.Text = "";
+            txtEmail.Text = "";
+
+        }
+
+        protected void btnshow_Click(object sender, EventArgs e)
+        {
+            dt = objsetup.getinfoShow(int.Parse(ddlunit.SelectedValue.ToString()));
+            GridView2.DataSource = dt;
+            GridView2.DataBind();
+
         }
 
         protected void ddlunit_SelectedIndexChanged(object sender, EventArgs e)

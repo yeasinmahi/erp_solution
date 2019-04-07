@@ -13,11 +13,8 @@
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <script src="../../Content/JS/datepickr.min.js"></script>
     <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <link href="../Content/CSS/GridView.css" rel="stylesheet" />
+    <link href="../../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <%--<link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />--%>
 
     <style type="text/css">
@@ -34,11 +31,11 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                            <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
+                        </marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
@@ -101,8 +98,8 @@
                             <td class="auto-style1">
                                 <asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px" runat="server"></asp:TextBox>
                             <td colspan="2" style="text-align: right">
-                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" />
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="showLoader();" OnClick="btnAdd_Click" />
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit"  OnClientClick="showLoader();" OnClick="btnSubmit_Click" />
                             </td>
                         </tr>
                     </table>

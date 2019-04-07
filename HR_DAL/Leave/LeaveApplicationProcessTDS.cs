@@ -1,7 +1,9 @@
-﻿namespace HR_DAL.Leave {
-    
-    
-    public partial class LeaveApplicationProcessTDS {
+﻿namespace HR_DAL.Leave
+{
+
+
+    public partial class LeaveApplicationProcessTDS
+    {
     }
 }
 

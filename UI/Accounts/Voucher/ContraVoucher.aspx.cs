@@ -16,6 +16,7 @@ using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
 
+
 namespace UI.Accounts.Voucher
 {
     public partial class ContraVoucher : BasePage

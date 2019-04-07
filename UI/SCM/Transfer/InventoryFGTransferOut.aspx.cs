@@ -32,30 +32,13 @@ namespace UI.SCM.Transfer
             {
                 try
                 {
-                    File.Delete(filePathForXML); dgvStore.DataSource = "";
-                    dgvStore.DataBind();
+                    File.Delete(filePathForXML);
+                    dgvStore.UnLoad();
                 }
                 catch { }
-                //int UnitId = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
-
-                //dt = objTransfer.GetTtransferDatas(1, xmlString, intWh, Id, DateTime.Now, Enroll);
-                //ddlWh.DataSource = dt;
-                //ddlWh.DataTextField = "strName";
-                //ddlWh.DataValueField = "Id";
-                //ddlWh.DataBind();
-                //ddlWh.Items.Insert(0, new ListItem("Select", "0"));
                 LoadWh();
                 Session["WareID"] = ddlWh.SelectedValue();
-
                 LoadToWh();
-
-                //dt = objTransfer.GetTtransferDatas(7, xmlString, intWh, Id, DateTime.Now, Enroll);
-                //ddlTransType.DataSource = dt;
-                //ddlTransType.DataTextField = "strName";
-                //ddlTransType.DataValueField = "Id";
-                //ddlTransType.DataBind();
-                //ddlTransType.Items.Insert(0, new ListItem("Select", "0"));
-                //ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
 
                 LoadTransferType();
 
@@ -64,7 +47,7 @@ namespace UI.SCM.Transfer
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    Session["unit"] = hdnUnit.Value.ToString();
+                    Session["unit"] = hdnUnit.Value;
                 }
             }
         }
@@ -119,10 +102,13 @@ namespace UI.SCM.Transfer
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intunit"].ToString();
-                    Session["unit"] = hdnUnit.Value.ToString();
+                    Session["unit"] = hdnUnit.Value;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         protected void txtItem_TextChanged(object sender, EventArgs e)
@@ -130,17 +116,12 @@ namespace UI.SCM.Transfer
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
-                string item = "";
                 string itemid = "";
-                string uom = "";
-                bool proceed = false;
                 if (arrayKey.Length > 0)
                 {
-                    item = arrayKey[0].ToString();
-                    uom = arrayKey[3].ToString();
-                    itemid = arrayKey[1].ToString();
+                    itemid = arrayKey[1];
                 }
-                Id = int.Parse(itemid.ToString());
+                Id = int.Parse(itemid);
                 intWh = int.Parse(ddlWh.SelectedValue);
 
                 dt = objTransfer.GetTtransferDatas(5, xmlString, intWh, Id, DateTime.Now, Enroll);
@@ -158,7 +139,7 @@ namespace UI.SCM.Transfer
                     hdnValue.Value = dt.Rows[0]["monValue"].ToString();
                     string detaliss = "  Stock: " + monStock + " " + strUom + " Id: " + intItem;
                     lblDetalis.Text = detaliss;
-                    lblValue.Text = "Value: " + monValues.ToString();
+                    lblValue.Text = "Value: " + monValues;
                     LoadLocation(dt);
                     dt.Clear();
                 }
@@ -166,8 +147,7 @@ namespace UI.SCM.Transfer
                 {
                     lblDetalis.Text = "";
                     lblValue.Text = "";
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                        "alert('Stock is not avaiable!');", true);
+                    Toaster("Stock is not avaiable!",Common.TosterType.Warning);
                 }
             }
             catch (Exception ex)
@@ -184,48 +164,83 @@ namespace UI.SCM.Transfer
                 {
                     if (dgvStore.Rows.Count > 7)
                     {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('maximum limit is 7.');", true);
+                        Toaster("Maximum limit is 7.", Common.TosterType.Warning);
                     }
                     else
                     {
                         arrayKey = txtItem.Text.Split(delimiterChars);
-                        string item = ""; string itemid = ""; string uom = ""; bool proceed = false;
+                        string item = "";
+                        string itemid = "";
                         if (arrayKey.Length > 0)
-                        { item = arrayKey[0].ToString(); uom = arrayKey[3].ToString(); itemid = arrayKey[1].ToString(); }
+                        {
+                            item = arrayKey[0];
+                            itemid = arrayKey[1];
+                        }
 
                         arrayKeyV = txtItem.Text.Split(delimiterChars);
                         string vehicle = "0";
                         if (arrayKeyV.Length > 0)
-                        { vehicle = arrayKeyV[1].ToString(); }
+                        {
+                            vehicle = arrayKeyV[1];
+                        }
 
-                        try { if (int.Parse(vehicle) > 0) { } else { vehicle = "0"; } } catch { vehicle = "0"; }
+                        try
+                        {
+                            if (int.Parse(vehicle) > 0)
+                            {
+                            }
+                            else
+                            {
+                                vehicle = "0";
+                            }
+                        }
+                        catch
+                        {
+                            vehicle = "0";
+                        }
 
-                        string locationId = ddlLcation.SelectedValue.ToString();
-                        string locationName = ddlLcation.SelectedValue.ToString();
+                        string locationId = ddlLcation.SelectedValue;
+                        string locationName = ddlLcation.SelectedValue;
                         string transType = ddlTransType.SelectedItem.ToString();
-                        string transTypeId = ddlTransType.SelectedValue.ToString();
-                        uom = hdnUom.Value.ToString();
-                        string qty = txTransferQty.Text.ToString();
-                        string remarks = txtRemarks.Text.ToString();
+                        string transTypeId = ddlTransType.SelectedValue;
+                        var uom = hdnUom.Value;
+                        string qty = txTransferQty.Text;
+                        string remarks = txtRemarks.Text;
 
-                        try { decimal values = (decimal.Parse(hdnValue.Value.ToString()) / decimal.Parse(hdnStockQty.Value.ToString())) * decimal.Parse(qty.ToString()); } catch { values = 0; }
+                        try
+                        {
+                            decimal values = (decimal.Parse(hdnValue.Value) / decimal.Parse(hdnStockQty.Value)) *
+                                             decimal.Parse(qty);
+                        }
+                        catch
+                        {
+                            values = 0;
+                        }
                         string monValue = values.ToString();
                         CheckXmlItemData(itemid);
                         if (decimal.Parse(qty) > 0 && CheckItem == 1)
                         {
-                            CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom, monValue, remarks, vehicle);
+                            CreateXml(item, itemid, qty, locationId, locationName, transType, transTypeId, uom,
+                                monValue, remarks, vehicle);
                             txtItem.Text = "";
                             txTransferQty.Text = "";
                             lblValue.Text = "";
                             ddlLcation.UnLoad();
                         }
-                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+                        else
+                        {
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                "alert('Item already added');", true);
+                        }
 
                         // else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please set Vehicle No');", true); }
                     }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         private void CreateXml(string item, string itemid, string qty, string locationId, string locationName, string transType, string transTypeId, string uom, string monValue, string remarks, string vehicle)
@@ -344,7 +359,7 @@ namespace UI.SCM.Transfer
         {
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
+                if (hdnConfirm.Value == "1")
                 {
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(ddlWh.SelectedValue);

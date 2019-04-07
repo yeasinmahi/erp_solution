@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM.Transfer
 {
@@ -59,7 +60,9 @@ namespace UI.SCM.Transfer
                     string quantity = txtReceQty.Text.ToString();
                     if (decimal.Parse(quantity) > 0)
                     {
-                        xmlString = "<voucher><voucherentry locationId=" + '"' + locationId + '"' + " quantity=" + '"' + quantity + '"' + " intItemID=" + '"' + intItemID + '"' + " intAutoID=" + '"' + intAutoID + '"' + "/></voucher>".ToString();
+                        xmlString = "<voucher><voucherentry locationId=" + '"' + locationId + '"' + " quantity=" + '"' +
+                                    quantity + '"' + " intItemID=" + '"' + intItemID + '"' + " intAutoID=" + '"' +
+                                    intAutoID + '"' + "/></voucher>".ToString();
                         string msg = objTransfer.PostTransfer(12, xmlString, intWh, intProdID, DateTime.Now, enroll);
 
                         lblDetalis.Text = "";
@@ -75,12 +78,15 @@ namespace UI.SCM.Transfer
                         ddlProduct.DataBind();
                         ddlProduct.Items.Insert(0, new ListItem("Select", "0"));
 
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + msg + "');", true);
                     }
                 }
-                else { }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         protected void btnActive_Click(object sender, EventArgs e)
@@ -105,7 +111,10 @@ namespace UI.SCM.Transfer
                 lblUom.Text = "";
                 lblDate.Text = "";
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void ddlProduct_SelectedIndexChanged(object sender, EventArgs e)
@@ -132,7 +141,10 @@ namespace UI.SCM.Transfer
                     lblDate.Text = "Entry: " + EntryTime;
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         protected void btnInActive_Click(object sender, EventArgs e)
@@ -162,7 +174,10 @@ namespace UI.SCM.Transfer
                 ddlProduct.DataBind();
                 ddlProduct.Items.Insert(0, new ListItem("Select", "0"));
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
     }
 }

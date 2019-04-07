@@ -21,12 +21,6 @@ namespace UI.SCM
         private int intwh;
         private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
 
-        private SeriLog log = new SeriLog();
-        private string location = "SCM";
-        private string start = "starting SCM\\IssueReturn";
-        private string stop = "stopping SCM\\IssueReturn";
-        private string perform = "Performance on SCM\\IssueReturn";
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -59,7 +53,7 @@ namespace UI.SCM
                 }
                 if (itemid <= 0)
                 {
-                    Alert("Item Id "+Message.ParsingProblem.ToFriendlyString());
+                    Toaster("Item Id " + Message.ParsingProblem.ToFriendlyString(), Common.TosterType.Warning);
                     return;
                 }
                 intwh = ddlWH.SelectedValue();
@@ -71,7 +65,7 @@ namespace UI.SCM
                 }
                 catch (Exception e)
                 {
-                    Alert("From " + Message.DateFormatError.ToFriendlyString());
+                    Toaster("From " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
                 }
                 try
                 {
@@ -79,9 +73,9 @@ namespace UI.SCM
                 }
                 catch (Exception e)
                 {
-                    Alert("To "+Message.DateFormatError.ToFriendlyString());
+                    Toaster("To " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
                 }
-                dt = objIssue.GetIssueItem(itemid,intwh,dteFrom,dteTo);
+                dt = objIssue.GetIssueItem(itemid, intwh, dteFrom, dteTo);
 
                 if (dt.Rows.Count > 0)
                 {
@@ -90,12 +84,12 @@ namespace UI.SCM
                 }
                 else
                 {
-                    Alert(Message.NoFound.ToFriendlyString());
+                    Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
                 }
             }
             catch (Exception e)
             {
-                Alert(e.Message);
+                Toaster(e.Message, Common.TosterType.Error);
             }
         }
 
@@ -105,7 +99,7 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetItemSearch(string prefixText, int count)
         {
-            
+
             return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
@@ -120,23 +114,20 @@ namespace UI.SCM
             }
             catch (Exception ex)
             {
-                Alert(ex.Message);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
 
         protected void btnReturn_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "btnReturn_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            // starting performance tracker
-            var tracker = new PerfTracker(perform + " " + "btnReturn_Click", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
-                string item = ""; string itemid = "";
+                string itemid = "";
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0]; itemid = arrayKey[1]; }
+                {
+                    itemid = arrayKey[1];
+                }
 
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
@@ -158,13 +149,9 @@ namespace UI.SCM
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnReturn_Click", ex);
-                Flogger.WriteError(efd);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
 
-            fd = log.GetFlogDetail(stop, location, "btnReturn_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            tracker.Stop();
         }
     }
 }

@@ -74,12 +74,22 @@ namespace UI.SCM
             tracker.Stop();
         }
 
+        protected void btnMRRSDetail_Click(object sender, EventArgs e)
+        {
+            dgvIndent.Visible = false;
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/MRR_Statement_Report" + "&Indent=" + txtMrrNo.Text + "&FDate=" + txtDteFrom.Text + "&TDate=" + txtdteTo.Text + "&Department=" + ddlDept.SelectedItem.Text + "&Unit=" + ddlWH.SelectedValue + "&Enroll=" + Enroll + "&intUnitID=" + ddlWH.SelectedValue + "&rc:LinkTarget=_self";
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '"+url+"');", true);
+
+        }
+
         protected void btnStatement_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnStatement_Click", null);
             Flogger.WriteDiagnostic(fd);
             var tracker = new PerfTracker(perform + " " + "btnStatement_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
+            dgvIndent.Visible = true;
             try
             {
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());

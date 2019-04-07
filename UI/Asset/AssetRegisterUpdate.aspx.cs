@@ -847,8 +847,7 @@ namespace UI.Asset
             var tracker = new PerfTracker("Performance on Asset\\AssetRegisterUpdate BtnLand_Click", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
-            {
-
+            { 
                 int intenrollid = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                 int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
