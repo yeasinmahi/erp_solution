@@ -55,5 +55,37 @@ namespace SAD_BLL.Global
             catch (Exception e) { msg = e.ToString(); }
             return msg;
         }
+
+        public string getContact(string Contact,int lavelid, int geoid,int unitid,int intpart)
+        {
+            string msg = "";
+            try
+            {
+                if (intpart == 1)
+                {
+                    tblItemPriceManager2TableAdapter adp = new tblItemPriceManager2TableAdapter();
+                    adp.GetContactno(Contact, lavelid, unitid, geoid);
+                    msg = "Successfully Update";
+                }
+                else
+                {
+                    tblItemPriceManager2TableAdapter adp = new tblItemPriceManager2TableAdapter();
+                    adp.GetEmailupdate(Contact, lavelid, unitid, geoid);
+                    msg = "Successfully Update";
+                }
+            }
+            catch (Exception e) { msg = e.ToString(); }
+            return msg;
+        }
+
+        public DataTable getinfoShow(int lavelid, int unitid)
+        {
+            try
+            {
+                tblItemPriceManager3TableAdapter adp = new tblItemPriceManager3TableAdapter();
+                return adp.Getinfo(lavelid, unitid);
+            }
+            catch { return new DataTable(); }
+        }
     }
 }
