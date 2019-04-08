@@ -643,7 +643,7 @@ namespace UI.SAD.Order
                     itemid = arrayKey[3];
                     lblItemDet.Text = item;
                     DoItemInfo(int.Parse(itemid));
-
+                    txtItem.Focus(); 
                     //txtQnt.Text = hdnprdqnt.ToString();
                 }
                 else

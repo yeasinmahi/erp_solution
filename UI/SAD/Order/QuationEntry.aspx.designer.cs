@@ -220,6 +220,15 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.HiddenField hdnCredit;
         
         /// <summary>
+        /// hdnItemSpecification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnItemSpecification;
+        
+        /// <summary>
         /// ddlUnit control.
         /// </summary>
         /// <remarks>
@@ -598,6 +607,15 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Panel pnlVehicle;
         
         /// <summary>
+        /// btnitmspecification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnitmspecification;
+        
+        /// <summary>
         /// lbllogvariable control.
         /// </summary>
         /// <remarks>
@@ -677,6 +695,42 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox sdv;
+        
+        /// <summary>
+        /// grdvtexbox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView grdvtexbox;
+        
+        /// <summary>
+        /// gridView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridView;
+        
+        /// <summary>
+        /// ddlSide control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ddlSide;
+        
+        /// <summary>
+        /// ddldrop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddldrop;
         
         /// <summary>
         /// hdnProduct control.

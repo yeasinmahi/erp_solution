@@ -25,10 +25,12 @@ using UI.ClassFiles;
 
 namespace UI.SAD.Order
 {
-    public partial class QuationEntry : System.Web.UI.Page
+    public partial class QuationEntry :BasePage
     {
         decimal promPrice = 0;
         XmlManagerSO xm = new XmlManagerSO();
+        string filePathForXML;
+        string xmlString = "";
         SalesOrderTDS.QrySalesOrderCustomerDataTable table;
 
         private string nextParentID = "";
@@ -50,6 +52,10 @@ namespace UI.SAD.Order
         string location = "SAD";
         string start = "starting SAD\\Order\\Delivary";
         string stop = "stopping SAD\\Order\\Delivary";
+
+        DataTable dtspec = new DataTable();
+        DataTable dtDrpd = new DataTable();
+
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
@@ -62,6 +68,9 @@ namespace UI.SAD.Order
                 // starting performance tracker
                 var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary Delivery Show", "", fd.UserName, fd.Location,
                     fd.Product, fd.Layer);
+
+                filePathForXML = Server.MapPath(HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "qtnItemSpecification.xml");
+
                 try
                 {
                     if (Request.QueryString["id"] != null)
@@ -455,6 +464,52 @@ namespace UI.SAD.Order
         #endregion
 
         #region Button
+        private void LoadGridwithXml()
+        {
+            try
+            {
+                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+                doc.Load(filePathForXML);
+                System.Xml.XmlNode dSftTm = doc.SelectSingleNode("QtnItemSpecification");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<QtnItemSpecification>" + xmlString + "</QtnItemSpecification>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                { GridView1.DataSource = ds; }
+                else { GridView1.DataSource = ""; }
+
+                GridView1.DataBind();
+
+            }
+            catch { }
+        }
+        //private void CreateVoucherXml(string BillDate, string MovDuration, string fromAddress, string movementAddress, string toAddress, string busfair, string Rickfai, string cngfair, string trainfair, string boatfair, string othervhfair, string ownda, string otherpersonda, string hotelfair, string OtherCost, string remarks, string totalcost, string contactperson, string phone, string vistOrganization, string slNo)
+        //{
+        //    XmlDocument doc = new XmlDocument();
+        //    if (System.IO.File.Exists(filePathForXML))
+        //    {
+        //        doc.Load(filePathForXML);
+        //        XmlNode rootNode = doc.SelectSingleNode("Remotetadanobike");
+        //        XmlNode addItem = CreateItemNode(doc, BillDate, MovDuration, fromAddress, movementAddress, toAddress, busfair, Rickfai, cngfair, trainfair, boatfair, othervhfair, ownda, otherpersonda, hotelfair, OtherCost, remarks, totalcost, contactperson, phone, vistOrganization, slNo);
+        //        rootNode.AppendChild(addItem);
+        //    }
+        //    else
+        //    {
+        //        XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+        //        doc.AppendChild(xmldeclerationNode);
+        //        XmlNode rootNode = doc.CreateElement("Remotetadanobike");
+        //        XmlNode addItem = CreateItemNode(doc, BillDate, MovDuration, fromAddress, movementAddress, toAddress, busfair, Rickfai, cngfair, trainfair, boatfair, othervhfair, ownda, otherpersonda, hotelfair, OtherCost, remarks, totalcost, contactperson, phone, vistOrganization, slNo);
+        //        rootNode.AppendChild(addItem);
+        //        doc.AppendChild(rootNode);
+        //    }
+        //    doc.Save(filePathForXML);
+        //    LoadGridwithXml();
+        //    Clear();
+        //}
+
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
 
@@ -523,14 +578,7 @@ namespace UI.SAD.Order
                             promItemCOAId = int.Parse(coaId);
                         }
 
-                        //string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
-                        //    , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, ddlExtra.SelectedValue
-                        //    , ddlExtra.SelectedItem.Text, chrPr, ddlUOM.SelectedValue, ddlUOM.SelectedItem.Text
-                        //    , ddlCurrency.SelectedValue, narr, rdoSalesType.SelectedValue.ToString()
-                        //    , hdnDDLChangedSelectedIndexV.Value, promQnty.ToString(), lblComm.Text
-                        //    , ddlIncentive.SelectedValue, incPr, hdnSuppTax.Value, hdnVat.Value, hdnVatPrice.Value
-                        //    , promItemId.ToString(), promItem, promItemUOM.ToString(), promUom
-                        //    , promPrice.ToString(), promItemCOAId.ToString());
+                       
 
                         string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
                             , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, "0"
@@ -540,6 +588,9 @@ namespace UI.SAD.Order
                             , "0", "0", "0", "0","0"
                             , "0","1", "1", "0"
                             , "0", "0");
+
+
+
 
 
 
@@ -616,14 +667,6 @@ namespace UI.SAD.Order
                 SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
               
 
-                //se.AddUpdateDelivaryOrder(xml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
-                //     , CommonClass.GetDateAtSQLDateFormat(txtDate.Text), CommonClass.GetDateAtSQLDateFormat(txtDelDate.Text)
-                //     , hdnCustomer.Value, ddlCusType.SelectedValue, narrTop, txtAddress.Text.Trim(), hdnDis.Value, hdnPriceId.Value, hdnPriceIdV.Value
-                //     , bool.Parse(rdoNeedVehicle.SelectedValue)
-                //     , ddlExtra.SelectedValue, charge, ddlIncentive.SelectedValue, incentive
-                //     , ddlCurrency.SelectedValue, decimal.Parse(txtConvRate.Text), rdoSalesType.SelectedValue, ext, "", ""
-                //     , txtContact.Text.Trim(), txtPhone.Text.Trim(), ddlSo.SelectedValue
-                //     , ddlShip.SelectedValue, sdv.Checked, ref code, ref id);
 
                 se.AddDelivaryQuation(xml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
                      , CommonClass.GetDateAtSQLDateFormat(txtDate.Text), CommonClass.GetDateAtSQLDateFormat(txtDelDate.Text)
@@ -850,6 +893,9 @@ namespace UI.SAD.Order
         }
         protected void txtProduct_TextChanged(object sender, EventArgs e)
         {
+            SalesConfig sc = new SalesConfig();
+          
+
             if (txtProduct.Text.Trim() != "")
             {
                 char[] ch = { '[', ']' };
@@ -865,6 +911,34 @@ namespace UI.SAD.Order
             ddlUOM.DataBind();
 
             txtQun.Focus();
+
+            dtspec = sc.getItemSpecification(int.Parse(hdnProduct.Value));
+            dtDrpd = sc.getItemSpecificationFroDDL1(int.Parse(hdnProduct.Value));
+
+            bool specf = Convert.ToBoolean(Session["itmspecification"].ToString());
+            if (specf)
+            {
+
+
+                grdvtexbox.DataSource = dtspec;
+                grdvtexbox.DataBind();
+                
+                ddldrop.DataSource = dtDrpd;
+                ddldrop.DataBind();
+                ddldrop.DataTextField = "strattr";
+                ddldrop.DataValueField = "intattrid";
+            }
+            else
+            {
+                grdvtexbox.Visible = false;
+                grdvtexbox.Visible = false;
+                //grdvtexbox.DataSource = null;
+                //grdvtexbox.DataBind();
+                //ddldrop.DataSource = dtDrpd;
+                //grdvtexbox.DataBind();
+            }
+
+
         }
 
         #endregion
@@ -1192,6 +1266,10 @@ namespace UI.SAD.Order
                 hdnXFactoryVhl.Value = t[0].ysnXFactoryPriceFixedForLogis.ToString().ToLower();
                 hdnXFactoryChr.Value = t[0].ysnXFactoryPriceFixedForCharge.ToString().ToLower();
                 hdnChrgMerge.Value = t[0].ysnChargeAccountMerge.ToString().ToLower();
+                hdnItemSpecification.Value = t[0].ysnItemSpec.ToString().ToLower();
+                bool itmspecification= t[0].ysnItemSpec;
+                Session["itmspecification"] = itmspecification;
+
 
                 pnlDis.Visible = dis;
                 txtCus.Visible = !dis;
@@ -1212,13 +1290,7 @@ namespace UI.SAD.Order
                     txtIncPr.CssClass = "";
                     lblExtPr.CssClass = "";
 
-                    //GridView1.Columns[4].Visible = true;
-                    //GridView1.Columns[5].Visible = true;
-                    //GridView1.Columns[6].Visible = true;
-                    //GridView1.Columns[7].Visible = true;
-                    //GridView1.Columns[8].Visible = true;
-                    //GridView1.Columns[9].Visible = true;
-                    //GridView1.Columns[10].Visible = true;
+                  
                 }
                 else
                 {
@@ -1228,13 +1300,7 @@ namespace UI.SAD.Order
                     txtIncPr.CssClass = "hide";
                     lblExtPr.CssClass = "hide";
 
-                    //GridView1.Columns[4].Visible = false;
-                    //GridView1.Columns[5].Visible = false;
-                    //GridView1.Columns[6].Visible = false;
-                    //GridView1.Columns[7].Visible = false;
-                    //GridView1.Columns[8].Visible = false;
-                    //GridView1.Columns[9].Visible = false;
-                    //GridView1.Columns[10].Visible = false;
+                   
                 }
 
                 if (t[0].ysnDefaultLogis)
@@ -1245,6 +1311,17 @@ namespace UI.SAD.Order
                 {
                     rdoNeedVehicle.SelectedIndex = 1;
                 }
+
+                if (itmspecification)
+                {
+                    btnitmspecification.Visible = true;
+                }
+                else
+                {
+                    btnitmspecification.Visible = false;
+                }
+
+
 
                 pnlClCb.Visible = t[0].ysnCrInfoInDO2;
 
@@ -1468,5 +1545,10 @@ namespace UI.SAD.Order
             return htA;
         }
         #endregion
+
+        protected void btnitmspecification_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

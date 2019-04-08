@@ -70,7 +70,7 @@
                             else {
                                 if (rate != "NAN" && nqty!= "NAN")
                                 {
-                                    alert('Rate' + rate + 'Qty' + nqty)
+                                    //alert('Rate' + rate + 'Qty' + nqty)
                                     $("[id*=lblAmounts]", row).html((rate * nqty).toFixed(2));
                                 }
                                
@@ -97,7 +97,7 @@
                     
                     //alert(grandTotalqty)
                     $("[id*=lblfinalamount]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
-                       $("[id*=lblupdateqnt]").html(parseFloat(grndupdateqnt.toString()).toFixed(2));
+                       //$("[id*=lblupdateqnt]").html(parseFloat(grndupdateqnt.toString()).toFixed(2));
                    // $('#txtTotalAmount').val(grandTotalqty).html(parseFloat(grandTotalqty.toString()).toFixed(2));
 
                     
@@ -215,9 +215,9 @@
             </tr>
             <tr>
                 <td class="auto-style1">
-                    Updated Qnt</td>
+                    </td>
                 <td class="auto-style1">
-                     <asp:Label ID="lblupdateqnt" runat="server"></asp:Label>
+                     <asp:Label ID="lblupdateqnt" Visible="false" runat="server"></asp:Label>
                     </td>
                 <td class="auto-style1">
                     </td>
@@ -296,7 +296,8 @@
 
                                 <asp:TemplateField HeaderText="Rate" HeaderStyle-HorizontalAlign="Center" SortExpression="strProductName">
                                     <ItemTemplate>
-                                        <asp:HiddenField ID="hdnnumprice" runat="server" Value='<%# Eval("numprice", "{0:0.0}") %>' />
+                                        <%--<asp:HiddenField ID="hdnnumprice" runat="server" Value='<%# Eval("numprice", "{0:0.0}") %>' />--%>
+                                          <asp:HiddenField ID="hdnnumprice" runat="server" Value='<%# Bind("numprice", "{0:0.0}") %>'></asp:HiddenField>  
                                         <asp:Label ID="lblnumprice" runat="server" Text='<%# Bind("numprice", "{0:0.0}") %>'></asp:Label>
                                     </ItemTemplate>
                                   
@@ -308,8 +309,7 @@
                                     <ItemTemplate>
                                      
                                         <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numqnt", "{0:0.0}") %>'></asp:HiddenField>  
-                                        
-                                        <%--<asp:Label ID="lblqnts" runat="server"  DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numqnt", "{0:0.00}"))) %>'></asp:Label>--%>
+                                   <asp:Label ID="lbltotalqnt" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numqnt", "{0:0.00}"))) %>'></asp:Label>
 
                                         <asp:TextBox ID="txtquantity"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
                                      </ItemTemplate>

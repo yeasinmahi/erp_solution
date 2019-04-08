@@ -104,7 +104,30 @@ namespace SAD_BLL.Sales
         }
 #endregion
 
+        public DataTable getItemSpecification (int prdid)
+        {
+            try
+            {
+                SprItemSpecificationTextboxTableAdapter obj = new SprItemSpecificationTextboxTableAdapter();
+                return obj.GetDataItemSpecificationTextbox(prdid);
+            }
+            catch(Exception ex)
+            {
+                return new DataTable();          }
+        }
 
+        public DataTable getItemSpecificationFroDDL1(int prdid)
+        {
+            try
+            {
+                SprItemSpecificationDropDownTableAdapter obj = new SprItemSpecificationDropDownTableAdapter();
+                return obj.GetDataItemSpecificationDropDown(prdid);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
     }
 }
