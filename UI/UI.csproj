@@ -290,6 +290,7 @@
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\AssetAccountingReport.aspx" />
+    <Content Include="Asset\Report\AssetTaggingReport.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummary.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummaryByUnit.aspx" />
@@ -2680,6 +2681,13 @@
     </Compile>
     <Compile Include="Asset\Report\AssetAccountingReport.aspx.designer.cs">
       <DependentUpon>AssetAccountingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\AssetTaggingReport.aspx.cs">
+      <DependentUpon>AssetTaggingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\AssetTaggingReport.aspx.designer.cs">
+      <DependentUpon>AssetTaggingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\JobCardInfo.aspx.cs">
       <DependentUpon>JobCardInfo.aspx</DependentUpon>
