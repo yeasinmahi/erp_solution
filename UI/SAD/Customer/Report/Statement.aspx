@@ -18,6 +18,16 @@
 
      <link href="../../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css"/> 
 
+    <style type="text/css">
+        .auto-style1 {
+            height: 83px;
+        }
+        .auto-style2 {
+            width: 30px;
+            height: 83px;
+        }
+    </style>
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -59,10 +69,10 @@
                 <div id="divControl" class="divPopUp2" style="width: 100%; height: 100px; float: right;">
                     <table style="width: 800px;">
                         <tr>
-                            <td>
+                            <td class="auto-style1">
                                 From
                             </td>
-                            <td>
+                            <td class="auto-style1">
                                 <asp:HiddenField ID="hdnFrm" runat="server" />
                                 <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy"
@@ -71,7 +81,7 @@
                                 <img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
                                     width: 34px; height: 23px; vertical-align: bottom;" />
                             </td>
-                            <td style=" width:30px">
+                            <td class="auto-style2">
                                 <asp:DropDownList ID="ddlFHour" runat="server">                                                                        
                                     <%--<asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
@@ -106,10 +116,10 @@
                                     <asp:ListItem>12 AM</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td>
+                            <td class="auto-style1">
                                 To
                             </td>
-                            <td>
+                            <td class="auto-style1">
                                 <asp:HiddenField ID="hdnTo" runat="server" />
                                 <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy"
@@ -118,7 +128,7 @@
                                 <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
                                     width: 34px; height: 23px; vertical-align: bottom;" />
                             </td>
-                            <td style=" width:30px">
+                            <td class="auto-style2">
                                 <asp:DropDownList ID="ddlTHour" runat="server">                                                                        
                                     <%--<asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
@@ -153,7 +163,7 @@
                                     <asp:ListItem>12 AM</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td align="right">
+                            <td align="right" class="auto-style1">
                                 <asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="True" DataSourceID="odsUnit"
                                     DataTextField="strUnit" DataValueField="intUnitID" OnDataBound="ddlUnit_DataBound"
                                     OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged">
