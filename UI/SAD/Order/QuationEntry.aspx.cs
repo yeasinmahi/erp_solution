@@ -454,7 +454,9 @@ namespace UI.SAD.Order
                         ItemPromotion ip = new ItemPromotion();
          
 
-                        string specXml = GetValue(out string itemSpecification);
+                        string xml = GetValue(out string itemSpecification);
+                        Session["specXml"] = xml;
+
 
                         string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
                             , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, "0"
@@ -528,10 +530,18 @@ namespace UI.SAD.Order
                
 
                 SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
-              
 
 
-                se.AddDelivaryQuation(xml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
+                
+                if (Session["specXml"] == null)
+                {
+                    Toaster("Can not get Item specifications",Common.TosterType.Warning);
+                    return;
+                }
+                string specXml = Session["specXml"].ToString();
+                Session["objects"] = null;
+                Session["specXml"] = null;
+                se.AddDelivaryQuation(xml, specXml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
                      , CommonClass.GetDateAtSQLDateFormat(txtDate.Text), CommonClass.GetDateAtSQLDateFormat(txtDelDate.Text)
                      , custid, ddlCusType.SelectedValue, narrTop, txtAddress.Text.Trim(), hdnDis.Value, hdnPriceId.Value, hdnPriceIdV.Value
                      , bool.Parse(rdoNeedVehicle.SelectedValue)
@@ -848,7 +858,12 @@ namespace UI.SAD.Order
             if (int.TryParse(hdnProduct.Value, out int productId))
             {
                 itemSpecification = string.Empty;
+
                 List<object> objects = new List<object>();
+                if(Session["objects"] != null)
+                {
+                    objects = (List<object>)Session["objects"];
+                }
                  DataTable dt = sc.getItemSpecification(productId);
                 int counter = 1;
                 foreach (DataRow row in dt.Rows)
@@ -857,15 +872,15 @@ namespace UI.SAD.Order
                     string strAtt = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtlbl" + counter))?.Text;
                     string attrValue = panel.Controls.OfType<TextBox>().FirstOrDefault(control => control.ID.Equals("txt" + counter))?.Text;
                     string uom = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtUom" + counter))?.Text;
-                    string description = strAtt + " :" + attrValue+" "+ uom;
-                    itemSpecification += description+"_";
+                    string descriptions = strAtt + " :" + attrValue+" "+ uom;
+                    itemSpecification += descriptions+"_";
                     dynamic obj = new
                     {
                         productId,
                         attrId,
                         strAtt,
                         attrValue,
-                        description
+                        descriptions
                     };
                     objects.Add(obj);
                     counter++;
@@ -880,27 +895,27 @@ namespace UI.SAD.Order
                     string strAtt = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("ddllbl" + counter))?.Text;
                     string attrValue = panel.Controls.OfType<DropDownList>()
                         .FirstOrDefault(control => control.ID.Equals("ddl" + counter))?.SelectedItem.Text;
-                    string description = strAtt + " :" + attrValue;
-                    itemSpecification += description + "_";
+                    string descriptions = strAtt + " :" + attrValue;
+                    itemSpecification += descriptions + "_";
                     dynamic obj = new
                     {
                         productId,
                         attrId,
                         strAtt,
                         attrValue,
-                        description
+                        descriptions
                     };
                     objects.Add(obj);
                     counter++;
                 }
-
+                Session["objects"] = objects;
                 string xml = XmlParser.GetXml("Qutation","item", objects, out string _);
                 return xml;
+                
 
             }
             itemSpecification = string.Empty;
             return string.Empty;
-            
         }
         #endregion
      

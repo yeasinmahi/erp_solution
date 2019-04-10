@@ -31906,13 +31906,14 @@ FROM [dbo].[qrySalesOrderDetails]
             this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlString", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@specifictionxml", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intOrderID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.InputOutput, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUserID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteDODate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCustomerType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCustomerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCustomerType", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDisPointId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strNarration", global::System.Data.SqlDbType.VarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAddress", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -31935,13 +31936,14 @@ FROM [dbo].[qrySalesOrderDetails]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual SalesOrderTDS.SprSalesQuatationDataTable GetDataSalesQuatation(
                     string xmlString, 
+                    string specifictionxml, 
                     ref global::System.Nullable<long> intOrderID, 
                     global::System.Nullable<int> intUserID, 
                     global::System.Nullable<int> intUnitID, 
                     global::System.Nullable<global::System.DateTime> dteDate, 
                     global::System.Nullable<global::System.DateTime> dteDODate, 
-                    global::System.Nullable<int> intCustomerType, 
                     global::System.Nullable<int> intCustomerId, 
+                    global::System.Nullable<int> intCustomerType, 
                     global::System.Nullable<int> intDisPointId, 
                     string strNarration, 
                     string strAddress, 
@@ -31963,38 +31965,38 @@ FROM [dbo].[qrySalesOrderDetails]
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((string)(xmlString));
             }
-            if ((intOrderID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((long)(intOrderID.Value));
-            }
-            else {
+            if ((specifictionxml == null)) {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((intUserID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intUserID.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(specifictionxml));
+            }
+            if ((intOrderID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((long)(intOrderID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((intUnitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intUnitID.Value));
+            if ((intUserID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((int)(intUserID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((dteDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(dteDate.Value));
+            if ((intUnitID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(intUnitID.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((dteDODate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(dteDODate.Value));
+            if ((dteDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(dteDate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intCustomerType.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intCustomerType.Value));
+            if ((dteDODate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(dteDODate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
@@ -32005,105 +32007,111 @@ FROM [dbo].[qrySalesOrderDetails]
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((intDisPointId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intDisPointId.Value));
+            if ((intCustomerType.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intCustomerType.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((strNarration == null)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            if ((intDisPointId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intDisPointId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strNarration));
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            if ((strAddress == null)) {
+            if ((strNarration == null)) {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strAddress));
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strNarration));
             }
-            if ((intCurrencyId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(intCurrencyId.Value));
-            }
-            else {
+            if ((strAddress == null)) {
                 this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            if ((numConvRate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[13].Value = ((decimal)(numConvRate.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(strAddress));
+            }
+            if ((intCurrencyId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((int)(intCurrencyId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((intSalesTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[14].Value = ((int)(intSalesTypeId.Value));
+            if ((numConvRate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[14].Value = ((decimal)(numConvRate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((strOther == null)) {
-                this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
+            if ((intSalesTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[15].Value = ((int)(intSalesTypeId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[15].Value = ((string)(strOther));
+                this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((strContactAt == null)) {
+            if ((strOther == null)) {
                 this.Adapter.SelectCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[16].Value = ((string)(strContactAt));
+                this.Adapter.SelectCommand.Parameters[16].Value = ((string)(strOther));
             }
-            if ((strPhone == null)) {
+            if ((strContactAt == null)) {
                 this.Adapter.SelectCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[17].Value = ((string)(strPhone));
+                this.Adapter.SelectCommand.Parameters[17].Value = ((string)(strContactAt));
             }
-            if ((intSalesOffId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[18].Value = ((int)(intSalesOffId.Value));
-            }
-            else {
+            if ((strPhone == null)) {
                 this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((intShipPointId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[19].Value = ((int)(intShipPointId.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[18].Value = ((string)(strPhone));
+            }
+            if ((intSalesOffId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[19].Value = ((int)(intSalesOffId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
-            if ((ysnDelivaryOrder.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[20].Value = ((bool)(ysnDelivaryOrder.Value));
+            if ((intShipPointId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[20].Value = ((int)(intShipPointId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            if ((ysnSiteDelivery.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[21].Value = ((bool)(ysnSiteDelivery.Value));
+            if ((ysnDelivaryOrder.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[21].Value = ((bool)(ysnDelivaryOrder.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
-            if ((strCode == null)) {
-                this.Adapter.SelectCommand.Parameters[22].Value = global::System.DBNull.Value;
+            if ((ysnSiteDelivery.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[22].Value = ((bool)(ysnSiteDelivery.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[22].Value = ((string)(strCode));
+                this.Adapter.SelectCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((strCode == null)) {
+                this.Adapter.SelectCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[23].Value = ((string)(strCode));
             }
             SalesOrderTDS.SprSalesQuatationDataTable dataTable = new SalesOrderTDS.SprSalesQuatationDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[2].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[2].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[3].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[3].Value.GetType() == typeof(global::System.DBNull)))) {
                 intOrderID = new global::System.Nullable<long>();
             }
             else {
-                intOrderID = new global::System.Nullable<long>(((long)(this.Adapter.SelectCommand.Parameters[2].Value)));
+                intOrderID = new global::System.Nullable<long>(((long)(this.Adapter.SelectCommand.Parameters[3].Value)));
             }
-            if (((this.Adapter.SelectCommand.Parameters[22].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[22].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[23].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[23].Value.GetType() == typeof(global::System.DBNull)))) {
                 strCode = null;
             }
             else {
-                strCode = ((string)(this.Adapter.SelectCommand.Parameters[22].Value));
+                strCode = ((string)(this.Adapter.SelectCommand.Parameters[23].Value));
             }
             return dataTable;
         }
