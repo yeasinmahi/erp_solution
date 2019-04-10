@@ -18,12 +18,13 @@ using System.Web.Services;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml;
+using System.Xml.Linq;
 using UI.ClassFiles;
 using Utility;
 
 namespace UI.SAD.Order
 {
-    public partial class QuationEntry :BasePage
+    public partial class QuationEntry : BasePage
     {
         SalesConfig sc = new SalesConfig();
         XmlManagerSO xm = new XmlManagerSO();
@@ -45,7 +46,7 @@ namespace UI.SAD.Order
         TableCell tdLblV = new TableCell();
         TableCell tdConV = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevelV;
-        
+
         protected override void OnLoadComplete(EventArgs e)
         {
             base.OnLoadComplete(e);
@@ -107,7 +108,7 @@ namespace UI.SAD.Order
 
                 if (hdnCustomer.Value != "") BuildTree();
 
-                
+
             }
             else
             {
@@ -333,11 +334,28 @@ namespace UI.SAD.Order
             lblError.Text = "";
             DataSet ds = new DataSet();
             ds.ReadXml(GetXmlFilePath());
-
+            GridViewRow row = (GridViewRow)GridView1.Rows[e.RowIndex];
+            string productId = ((Label)row.FindControl("lblPid")).Text;
             ds.Tables[0].Rows[e.RowIndex].Delete();
             ds.WriteXml(GetXmlFilePath());
             BindGrid(GetXmlFilePath());
+            
+            
 
+            if (Session["objects"] != null)
+            {
+                List<object> objects = (List<object>)Session["objects"];
+                foreach(object obj in objects.ToList()){
+                    string s = Common.GetPropertyValue(obj, "productId").ToString();
+                    if(s!=null && s.Equals(productId))
+                    {
+                        objects.Remove(obj);
+                    }
+                }
+                string xml = XmlParser.GetXml("Qutation", "item", objects, out string _);
+                Session["strSpec"] = xml;
+
+            }
 
 
 
@@ -452,7 +470,7 @@ namespace UI.SAD.Order
                         string promUom = "";
 
                         ItemPromotion ip = new ItemPromotion();
-         
+
 
                         string xml = GetValue(out string itemSpecification);
                         Session["specXml"] = xml;
@@ -463,8 +481,8 @@ namespace UI.SAD.Order
                             , itemSpecification, "0", "0", "1"
                             , ddlCurrency.SelectedValue, narr, rdoSalesType.SelectedValue.ToString()
                             , hdnDDLChangedSelectedIndexV.Value, promQnty.ToString(), "0"
-                            , "0", "0", "0", "0","0"
-                            , "0","1", "1", "0"
+                            , "0", "0", "0", "0", "0"
+                            , "0", "1", "1", "0"
                             , "0", "0");
 
 
@@ -520,22 +538,22 @@ namespace UI.SAD.Order
                 catch { }
                 try { incentive = decimal.Parse(txtIncPr.Text); }
                 catch { }
-               string searchkey= txtCus.Text.ToString();
+                string searchkey = txtCus.Text.ToString();
                 arrayKey = searchkey.Split(delimiterChars);
                 string custid = arrayKey[1].ToString();
                 //int custmid = int.Parse(custid);
 
 
                 string narrTop = "";
-               
+
 
                 SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
 
 
-                
+
                 if (Session["specXml"] == null)
                 {
-                    Toaster("Can not get Item specifications",Common.TosterType.Warning);
+                    Toaster("Can not get Item specifications", Common.TosterType.Warning);
                     return;
                 }
                 string specXml = Session["specXml"].ToString();
@@ -797,7 +815,7 @@ namespace UI.SAD.Order
                 dt = sc.GetQutationsSpec(ddlUnit.SelectedValue(), productId);
                 CreateDropDown(dt);
                 panel.DataBind();
-                
+
             }
         }
 
@@ -818,7 +836,7 @@ namespace UI.SAD.Order
 
                 HiddenField hiddenField = panel.Controls.OfType<HiddenField>().FirstOrDefault(control => control.ID.Equals("hdn" + counter));
                 hiddenField.Value = attributeId;
-                
+
                 TextBox textBox = panel.Controls.OfType<TextBox>().FirstOrDefault(control => control.ID.Equals("txt" + counter));
                 textBox.Text = attrQty;
                 textBox.Visible = true;
@@ -860,11 +878,11 @@ namespace UI.SAD.Order
                 itemSpecification = string.Empty;
 
                 List<object> objects = new List<object>();
-                if(Session["objects"] != null)
+                if (Session["objects"] != null)
                 {
                     objects = (List<object>)Session["objects"];
                 }
-                 DataTable dt = sc.getItemSpecification(productId);
+                DataTable dt = sc.getItemSpecification(productId);
                 int counter = 1;
                 foreach (DataRow row in dt.Rows)
                 {
@@ -872,8 +890,8 @@ namespace UI.SAD.Order
                     string strAtt = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtlbl" + counter))?.Text;
                     string attrValue = panel.Controls.OfType<TextBox>().FirstOrDefault(control => control.ID.Equals("txt" + counter))?.Text;
                     string uom = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtUom" + counter))?.Text;
-                    string descriptions = strAtt + " :" + attrValue+" "+ uom;
-                    itemSpecification += descriptions+"_";
+                    string descriptions = strAtt + " :" + attrValue + " " + uom;
+                    itemSpecification += descriptions + "_";
                     dynamic obj = new
                     {
                         productId,
@@ -909,16 +927,16 @@ namespace UI.SAD.Order
                     counter++;
                 }
                 Session["objects"] = objects;
-                string xml = XmlParser.GetXml("Qutation","item", objects, out string _);
+                string xml = XmlParser.GetXml("Qutation", "item", objects, out string _);
                 return xml;
-                
+
 
             }
             itemSpecification = string.Empty;
             return string.Empty;
         }
         #endregion
-     
+
         #region EventHandler RadioButton
 
         protected void rdoSalesType_DataBound(object sender, EventArgs e)
@@ -1243,7 +1261,7 @@ namespace UI.SAD.Order
                 hdnXFactoryChr.Value = t[0].ysnXFactoryPriceFixedForCharge.ToString().ToLower();
                 hdnChrgMerge.Value = t[0].ysnChargeAccountMerge.ToString().ToLower();
                 hdnItemSpecification.Value = t[0].ysnItemSpec.ToString().ToLower();
-                bool itmspecification= t[0].ysnItemSpec;
+                bool itmspecification = t[0].ysnItemSpec;
                 Session["itmspecification"] = itmspecification;
 
 
@@ -1266,7 +1284,7 @@ namespace UI.SAD.Order
                     txtIncPr.CssClass = "";
                     lblExtPr.CssClass = "";
 
-                  
+
                 }
                 else
                 {
@@ -1276,7 +1294,7 @@ namespace UI.SAD.Order
                     txtIncPr.CssClass = "hide";
                     lblExtPr.CssClass = "hide";
 
-                   
+
                 }
 
                 if (t[0].ysnDefaultLogis)

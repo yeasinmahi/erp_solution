@@ -506,49 +506,6 @@
                                 </td>
                             </tr>
                         </table>
-                        <asp:Panel runat="server" ID="panel">
-                            <asp:Label runat="server" ID="txtlbl1" Visible="False"></asp:Label>
-                            <asp:HiddenField runat="server" ID="hdn1"/>
-                            <asp:TextBox runat="server" ID="txt1" Visible="False"></asp:TextBox>
-                            <asp:Label runat="server" ID="txtUom1" Visible="False"></asp:Label>
-
-                            <asp:Label runat="server" ID="txtlbl2" Visible="False"></asp:Label>
-                            <asp:HiddenField runat="server" ID="hdn2"/>
-                            <asp:TextBox runat="server" ID="txt2" Visible="False"></asp:TextBox>
-                            <asp:Label runat="server" ID="txtUom2" Visible="False"></asp:Label>
-
-                            <asp:Label runat="server" ID="txtlbl3" Visible="False"></asp:Label>
-                            <asp:HiddenField runat="server" ID="hdn3"/>
-                            <asp:TextBox runat="server" ID="txt3" Visible="False"></asp:TextBox>
-                            <asp:Label runat="server" ID="txtUom3" Visible="False"></asp:Label>
-
-                            <asp:Label runat="server" ID="txtlbl4" Visible="False"></asp:Label>
-                            <asp:HiddenField runat="server" ID="hdn4"/>
-                            <asp:TextBox runat="server" ID="txt4" Visible="False"></asp:TextBox>
-                            <asp:Label runat="server" ID="txtUom4" Visible="False"></asp:Label>
-
-                            <asp:Label runat="server" ID="txtlbl5" Visible="False"></asp:Label>
-                            <asp:HiddenField runat="server" ID="hdn5"/>
-                            <asp:TextBox runat="server" ID="txt5" Visible="False"></asp:TextBox>
-                            <asp:Label runat="server" ID="txtUom5" Visible="False"></asp:Label>
-
-                            <br/>
-
-                            <asp:Label runat="server" ID="ddllbl1" Visible="False"></asp:Label>
-                            <asp:DropDownList runat="server" ID="ddl1" Visible="False"/>
-
-                            <asp:Label runat="server" ID="ddllbl2" Visible="False"></asp:Label>
-                            <asp:DropDownList runat="server" ID="ddl2" Visible="False"/>
-
-                            <asp:Label runat="server" ID="ddllbl3" Visible="False"></asp:Label>
-                            <asp:DropDownList runat="server" ID="ddl3" Visible="False"/>
-
-                            <asp:Label runat="server" ID="ddllbl4" Visible="False"></asp:Label>
-                            <asp:DropDownList runat="server" ID="ddl4" Visible="False"/>
-
-                            <asp:Label runat="server" ID="ddllbl5" Visible="False"></asp:Label>
-                            <asp:DropDownList runat="server" ID="ddl5" Visible="False"/>
-                        </asp:Panel>
 
 
                         <table style="width: 850px; background-color: #C0C0C0;">
@@ -664,6 +621,70 @@
                                     <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" ValidationGroup="valComAdd" />
                                 </td>
                             </tr>
+                            <tr  style="background-color: #B0B0B0;">
+                                <td colspan="6">
+                                    <asp:Panel runat="server" ID="panel">
+                                        <table border="1">
+                                            <tr>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl1" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn1" />
+                                                    <asp:TextBox runat="server" ID="txt1" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom1" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl2" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn2" />
+                                                    <asp:TextBox runat="server" ID="txt2" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom2" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl3" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn3" />
+                                                    <asp:TextBox runat="server" ID="txt3" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom3" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl4" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn4" />
+                                                    <asp:TextBox runat="server" ID="txt4" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom4" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl5" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn5" />
+                                                    <asp:TextBox runat="server" ID="txt5" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom5" Visible="False"></asp:Label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl1" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl1" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl2" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl2" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl3" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl3" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl4" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl4" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl5" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl5" Visible="False" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </asp:Panel>
+                                </td>
+
+                            </tr>
+
                         </table>
                     </div>
                 </asp:Panel>
@@ -676,12 +697,16 @@
                     <tr>
                         <td colspan="3">
                             <asp:GridView SkinID="sknGrid1" ID="GridView1" runat="server" DataSourceID="XmlDataSource1"
-                                AutoGenerateColumns="False" CaptionAlign="Top" Caption="" ShowFooter="True"
+                                AutoGenerateColumns="False" CaptionAlign="Top" ShowFooter="True"
                                 OnDataBound="GridView1_DataBound" OnRowDeleting="GridView1_RowDeleting"
                                 OnRowCancelingEdit="GridView1_RowCancelingEdit"
                                 OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
                                 <Columns>
-                                    <asp:BoundField DataField="Pid" HeaderText="Pid" Visible="false" SortExpression="Pid" />
+                                    <asp:TemplateField HeaderText="Pid" SortExpression="Pid" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblPid" runat="server" Text='<%# Bind("Pid") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Product Name" SortExpression="PName">
                                         <ItemTemplate>
                                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("PName") %>'></asp:Label>
@@ -718,7 +743,7 @@
 
 
 
-                                    <asp:BoundField DataField="ExtName" HeaderText="Specification" > </asp:BoundField>
+                                    <asp:BoundField DataField="ExtName" HeaderText="Specification" />
 
 
                                     <asp:BoundField DataField="UomTxt" HeaderText="UomTxt" ItemStyle-CssClass="hide"
