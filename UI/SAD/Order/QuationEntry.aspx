@@ -506,47 +506,49 @@
                                 </td>
                             </tr>
                         </table>
+                        <asp:Panel runat="server" ID="panel">
+                            <asp:Label runat="server" ID="txtlbl1" Visible="False"></asp:Label>
+                            <asp:HiddenField runat="server" ID="hdn1"/>
+                            <asp:TextBox runat="server" ID="txt1" Visible="False"></asp:TextBox>
+                            <asp:Label runat="server" ID="txtUom1" Visible="False"></asp:Label>
 
-                        <table style="width: 850px; background-color: #F0F0F0;">
-                            <tr>
-                                <td style="width: 80px;"></td>
-                                <td style="width: 100px;">
-                                    <asp:GridView ID="grdvtexbox" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="100%" ForeColor="#333333" GridLines="Both" Font-Size="12px">
-                                        <Columns>
-                                            <asp:BoundField DataField="strattr" HeaderText="Attribute" SortExpression="strName" ItemStyle-HorizontalAlign="Center">
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:BoundField>
+                            <asp:Label runat="server" ID="txtlbl2" Visible="False"></asp:Label>
+                            <asp:HiddenField runat="server" ID="hdn2"/>
+                            <asp:TextBox runat="server" ID="txt2" Visible="False"></asp:TextBox>
+                            <asp:Label runat="server" ID="txtUom2" Visible="False"></asp:Label>
 
-                                            <asp:TemplateField HeaderText="Value" HeaderStyle-HorizontalAlign="Center" SortExpression="Quantity">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtquantity" runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
-                                                </ItemTemplate>
+                            <asp:Label runat="server" ID="txtlbl3" Visible="False"></asp:Label>
+                            <asp:HiddenField runat="server" ID="hdn3"/>
+                            <asp:TextBox runat="server" ID="txt3" Visible="False"></asp:TextBox>
+                            <asp:Label runat="server" ID="txtUom3" Visible="False"></asp:Label>
 
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="intattrid" HeaderText="ID" SortExpression="strName" ItemStyle-HorizontalAlign="Center">
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:BoundField>
+                            <asp:Label runat="server" ID="txtlbl4" Visible="False"></asp:Label>
+                            <asp:HiddenField runat="server" ID="hdn4"/>
+                            <asp:TextBox runat="server" ID="txt4" Visible="False"></asp:TextBox>
+                            <asp:Label runat="server" ID="txtUom4" Visible="False"></asp:Label>
 
-                                        </Columns>
+                            <asp:Label runat="server" ID="txtlbl5" Visible="False"></asp:Label>
+                            <asp:HiddenField runat="server" ID="hdn5"/>
+                            <asp:TextBox runat="server" ID="txt5" Visible="False"></asp:TextBox>
+                            <asp:Label runat="server" ID="txtUom5" Visible="False"></asp:Label>
 
-                                    </asp:GridView>
-                                    <asp:GridView ID="gridView" runat="server">
+                            <br/>
 
-                                    </asp:GridView>
-                                </td>
-                                <td align="right" style="color: Blue;"></td>
-                                <td style="width: 20px;">
-                                    <asp:Label ID="ddlSide" runat="server" Text="Side"></asp:Label>
+                            <asp:Label runat="server" ID="ddllbl1" Visible="False"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddl1" Visible="False"/>
 
-                                </td>
-                                <td style="width: 30px;">
-                                    <asp:DropDownList ID="ddldrop" runat="server" DataTextField="strattr" DataValueField="intattrid"></asp:DropDownList>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
+                            <asp:Label runat="server" ID="ddllbl2" Visible="False"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddl2" Visible="False"/>
 
+                            <asp:Label runat="server" ID="ddllbl3" Visible="False"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddl3" Visible="False"/>
 
+                            <asp:Label runat="server" ID="ddllbl4" Visible="False"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddl4" Visible="False"/>
+
+                            <asp:Label runat="server" ID="ddllbl5" Visible="False"></asp:Label>
+                            <asp:DropDownList runat="server" ID="ddl5" Visible="False"/>
+                        </asp:Panel>
 
 
                         <table style="width: 850px; background-color: #C0C0C0;">
@@ -716,7 +718,7 @@
 
 
 
-
+                                    <asp:BoundField DataField="ExtName" HeaderText="Specification" > </asp:BoundField>
 
 
                                     <asp:BoundField DataField="UomTxt" HeaderText="UomTxt" ItemStyle-CssClass="hide"
