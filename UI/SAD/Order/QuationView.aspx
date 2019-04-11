@@ -222,7 +222,7 @@
                                     width: 34px; height: 23px; vertical-align: bottom;" />
                             </td>
                             <td>
-                                DO No
+                                Quot. No
                                 <asp:TextBox ID="txtCode" runat="server"></asp:TextBox>
                                 <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
                             </td>
@@ -235,8 +235,8 @@
                             <td colspan="3">
                                 <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" 
                                     RepeatDirection="Horizontal">
-                                     <asp:ListItem Value="true" Selected="True">Not Confirmed</asp:ListItem>
-                                    <asp:ListItem  Value="false">Confirmed</asp:ListItem>
+                                     <asp:ListItem Value="true" >Confirmed</asp:ListItem>
+                                    <asp:ListItem  Value="false" Selected="True">Not  Confirmed</asp:ListItem>
                                    
                                 </asp:RadioButtonList>
                             </td>

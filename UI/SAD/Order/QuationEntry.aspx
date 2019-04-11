@@ -447,7 +447,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:Button ID="btnitmspecification" runat="server" Text="Speci." OnClick="btnitmspecification_Click" BackColor="#ffff99" />
+                                    <asp:Button ID="btnitmspecification" runat="server" Text="Speci." Visible="false" OnClick="btnitmspecification_Click" BackColor="#ffff99" />
                                 </td>
 
                             </tr>
@@ -797,7 +797,7 @@
                                 Text="Cancel" />
                         </td>
                         <td align="left">
-                            <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
+                            <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Quotation"
                                 OnClick="btnSubmit_Click" />
                             <asp:Label ID="lblError" runat="server" ForeColor="Maroon"></asp:Label>
                         </td>
