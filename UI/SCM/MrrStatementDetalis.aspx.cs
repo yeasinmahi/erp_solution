@@ -3,7 +3,9 @@ using GLOBAL_BLL;
 using SCM_BLL;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Web;
+using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
 namespace UI.SCM
@@ -66,6 +68,24 @@ namespace UI.SCM
             }
             else
             { }
+        }
+
+        private double _totalAmount;
+        protected void dgvMrrDetlais_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                string amountText = ((Label) e.Row.FindControl("lblAmount")).Text;
+
+                if (double.TryParse(amountText, out double amount))
+                {
+                    _totalAmount += amount;
+                }
+            }else if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                ((Label) e.Row.FindControl("lblTotalAmount")).Text = _totalAmount.ToString(CultureInfo.InvariantCulture);
+            }
         }
     }
 }
