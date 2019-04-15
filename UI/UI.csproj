@@ -1333,6 +1333,7 @@
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\NBR_Sales.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
@@ -6868,6 +6869,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.designer.cs">
       <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.cs">
+      <DependentUpon>NBR_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.designer.cs">
+      <DependentUpon>NBR_Sales.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>
