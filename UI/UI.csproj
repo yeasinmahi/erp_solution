@@ -200,6 +200,7 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
@@ -2025,6 +2026,13 @@
     </Compile>
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.cs">
+      <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.designer.cs">
+      <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\SubledgerDetalis.aspx.cs">
       <DependentUpon>SubledgerDetalis.aspx</DependentUpon>

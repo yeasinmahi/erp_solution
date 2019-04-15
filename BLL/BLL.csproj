@@ -126,6 +126,7 @@
     <Compile Include="Accounts\ChartOfAccount\Template.cs" />
     <Compile Include="Accounts\IncomeStatement\IncomeStatementC.cs" />
     <Compile Include="Accounts\Ledger\LedgerC.cs" />
+    <Compile Include="Accounts\Ledger\RptLedger_BLL.cs" />
     <Compile Include="Accounts\MDSlip\MDSlipC.cs" />
     <Compile Include="Accounts\MDSlip\MDSlipLog.cs" />
     <Compile Include="Accounts\MDSlip\MDSlipRequst.cs" />
