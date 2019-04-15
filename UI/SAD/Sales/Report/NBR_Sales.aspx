@@ -8,7 +8,18 @@
 
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
+    <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <link href="~/Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <script>
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
+    </script> 
 </head>
 <body>
     <form id="form1" runat="server">
@@ -212,10 +223,12 @@
                 </cc1:AlwaysVisibleControlExtender>
                 <div style="height: 150px;">
                 </div>
-
+                
             </ContentTemplate>
+            
         </asp:UpdatePanel>
-
+        <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
     </form>
+
 </body>
 </html>

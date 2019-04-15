@@ -40,6 +40,15 @@ namespace UI.SAD.Sales.Report {
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference1;
         
         /// <summary>
+        /// PlaceHolder0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder0;
+        
+        /// <summary>
         /// form1 control.
         /// </summary>
         /// <remarks>
@@ -317,5 +326,14 @@ namespace UI.SAD.Sales.Report {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
+        
+        /// <summary>
+        /// frame control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlIframe frame;
     }
 }

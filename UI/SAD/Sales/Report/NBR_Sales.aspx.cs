@@ -85,22 +85,22 @@ namespace UI.SAD.Sales.Report
                 string url;
                 DataTable oDTReportData = new DataTable();
                 string path = "", unitName = "", unitAddress = "", cus = "", pro = "", frm = "", to = "", dateVal = "", dataSource = "";
-                if (rdoType.SelectedIndex == 0)
-                {
-                    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/Sales.rdlc");
-                }
-                else if (rdoType.SelectedIndex == 1)
-                {
-                    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/SalesP.rdlc");
-                }
-                else if (rdoType.SelectedIndex == 2)
-                {
-                    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/SalesS.rdlc");
-                }
-                else
-                {
-                    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/SalesG.rdlc");
-                }
+                //if (rdoType.SelectedIndex == 0)
+                //{
+                //    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/Sales.rdlc");
+                //}
+                //else if (rdoType.SelectedIndex == 1)
+                //{
+                //    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/SalesP.rdlc");
+                //}
+                //else if (rdoType.SelectedIndex == 2)
+                //{
+                //    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/SalesS.rdlc");
+                //}
+                //else
+                //{
+                //    path = HttpContext.Current.Server.MapPath("~/SAD/Sales/Report/ReportTemplete/SalesG.rdlc");
+                //}
 
                 char[] ch = { '[', ']' };
                 string[] temp = txtCus.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
@@ -123,30 +123,39 @@ namespace UI.SAD.Sales.Report
                 SalesByCusPro st = new SalesByCusPro();
                 if (rdoType.SelectedIndex == 0 || rdoType.SelectedIndex == 1 || rdoType.SelectedIndex == 2)
                 {
-                    oDTReportData = st.GetStatementByCustomerProduct(frm, to, cus, pro
+                 oDTReportData = st.GetStatementByCustomerProduct(frm, to, cus, pro
                         , Session[SessionParams.UNIT_ID].ToString(), ddlUnit.SelectedValue, ddlCusType.SelectedValue
                         , ddlSo.SelectedValue, bool.Parse(rdoPromo.SelectedValue), ref unitName, ref unitAddress);
                     if(oDTReportData.Rows.Count>0)
                     {
+                        if (cus == "")
+                        {
+                            cus = "0";
+                        }
+                        if (pro == "")
+                        {
+                            pro = "0";
+                        }
                         if (rdoType.SelectedIndex == 0)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/Sales" + "&unitName=" + unitName.ToUpper() + "&unitAddress=" + unitAddress.ToUpper() + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/Sales" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                         else if (rdoType.SelectedIndex == 1)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesP" + "&unitName=" + unitName.ToUpper() + "&unitAddress=" + unitAddress.ToUpper() + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesP" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                         else if (rdoType.SelectedIndex == 2)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesS" + "&unitName=" + unitName.ToUpper() + "&unitAddress=" + unitAddress.ToUpper() + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesS" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                     }
                     else
                     {
-                        Toaster("Sorry! There is no data against your query.", "Customer Statement", Utility.Common.TosterType.Warning);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.')", true);
+                        //Toaster("Sorry! There is no data against your query.", "Customer Statement", Utility.Common.TosterType.Warning);
                     }
                     
 
@@ -158,12 +167,22 @@ namespace UI.SAD.Sales.Report
                         , ddlSo.SelectedValue, bool.Parse(rdoPromo.SelectedValue), ref unitName, ref unitAddress);
                     if (oDTReportData.Rows.Count > 0)
                     {
-                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&unitName=" + unitName.ToUpper() + "&unitAddress=" + unitAddress.ToUpper() + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                        if (cus == "")
+                        {
+                            cus = "0";
+                        }
+                        if (pro == "")
+                        {
+                            pro = "0";
+                        }
+
+                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                     }
                     else
                     {
-                        Toaster("Sorry! There is no data against your query.", "Customer Statement", Utility.Common.TosterType.Warning);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.')", true);
+                        //Toaster("Sorry! There is no data against your query.", "Customer Statement", Utility.Common.TosterType.Warning);
                     }
                         
                 }
