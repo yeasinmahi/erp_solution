@@ -121,6 +121,7 @@ namespace UI.SCM
                                 string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
                                 string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
                                 string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
+                                string remarks = ((Label)dgvDetalis.Rows[index].FindControl("lblRemarks")).Text;
                                 dynamic obj = new
                                 {
                                     itemId,
@@ -134,6 +135,7 @@ namespace UI.SCM
                                     strSection,
                                     reqBy,
                                     receiveBy,
+                                    remarks,
                                     costCenterId
                                 };
                                 objects.Add(obj);
