@@ -132,6 +132,7 @@
     <Compile Include="Global\DutyCategory.cs" />
     <Compile Include="Global\EmployeeGroup.cs" />
     <Compile Include="Global\Expance_BLL.cs" />
+    <Compile Include="Global\GatePassbll.cs" />
     <Compile Include="Global\Holiday.cs" />
     <Compile Include="Global\JobStation.cs" />
     <Compile Include="Global\JobType.cs" />
