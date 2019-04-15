@@ -18,6 +18,7 @@ namespace UI.SCM
     public partial class IssueItemByRequesitionDetalisOOP : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private StoreIssue_BLL_OOP objIssueOOP = new StoreIssue_BLL_OOP();
         private CostCenterBll CostCenterBll = new CostCenterBll();
         private Location_BLL objOperation = new Location_BLL();
         private DataTable dt = new DataTable();
@@ -147,7 +148,7 @@ namespace UI.SCM
                         if (objects.Count > 0)
                         {
                             xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                            string msg = objIssueOOP.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);
 
                             Alert(msg);
@@ -158,8 +159,6 @@ namespace UI.SCM
                         {
                             Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
                         }
-
-
                     }
 
                     //XmlDocument doc = new XmlDocument();
