@@ -22,7 +22,7 @@ namespace UI.SAD.Order
         DataTable dtpend = new DataTable();
         string code, narration, extCause, note, contatcAt = "NA", ContactPhone = "0", id = "";
         char[] delimiterChars = { '[', ']' };
-        int Custid, islog, unitid, shopid, intSalesOffId, Depotid, incentiveId = 0, currencyId = 1, custtype, Charge, Territoryid, intsalestype = 88;
+        int Custid, islog, unitid, shopid, intSalesOffId, Depotid, incentiveId , currencyId = 1, custtype, Charge, Territoryid, intsalestype = 88;
         decimal Totalamount;
 
 
@@ -353,7 +353,8 @@ namespace UI.SAD.Order
                             string pUOm = "";
                             int proitemUOMID = int.Parse(dt.Rows[0]["intID"].ToString());
                             int uomid = int.Parse(dt.Rows[0]["intID"].ToString());
-                            string code = "";
+                            int incentiveId =  int.Parse(Session["IntOrderNumber"].ToString());
+                        string code = "";
                             if (quantity != "0")
                             {
                                 if (quantity != "0")
@@ -412,16 +413,16 @@ namespace UI.SAD.Order
                     extCause = "Pcs";
                     Charge = 1;
                     ysnDelivaryOrder = true;
-
+               
 
                     #endregion ------------ Insertion End ----------------
-                    DateTime date = DateTime.Parse(DateTime.Now.ToString());
+                DateTime date = DateTime.Parse(DateTime.Now.ToString());
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXML1);
                     XmlNode dSftTm = doc.SelectSingleNode("node");
                     string xmlString = dSftTm.InnerXml;
                     xmlString = "<node>" + xmlString + "</node>";
-                    string message = bll.DoCreate(xmlString, ref id, enroll, unit, date, date, custtype, Custid, shopid, narration, addresss, Territoryid, Charge, logis, Charge, Charge, incentiveId, incentiveId, currencyId, conversionRate, intsalestype, Totalamount, extCause, note
+                    string message = bll.DoCreateFromQuotaion(xmlString, ref id, enroll, unit, date, date, custtype, Custid, shopid, narration, addresss, Territoryid, Charge, logis, Charge, Charge, incentiveId, incentiveId, currencyId, conversionRate, intsalestype, Totalamount, extCause, note
                     , contatcAt, ContactPhone, intSalesOffId, Depotid, ysnDelivaryOrder, ysnsdv, ref code);
                     File.Delete(filePathForXML1);
               

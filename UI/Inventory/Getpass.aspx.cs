@@ -1,9 +1,7 @@
 ﻿using HR_BLL.Global;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -11,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.Inventory
 {
@@ -98,7 +97,10 @@ namespace UI.Inventory
                     txtUom.Text = string.Empty;
                 }
             }
-            catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         private void CreateXml(string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber)
         {
@@ -195,7 +197,10 @@ namespace UI.Inventory
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0) { File.Delete(xmlpath); dgv.DataSource = ""; dgv.DataBind(); }
                 else { Xml(); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         protected void Dtls_Click(object sender, EventArgs e)
         {
@@ -207,13 +212,17 @@ namespace UI.Inventory
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + datas[0].ToString() + "','" + datas[1].ToString() + "');", true);
                 Loadgrid();
             }
-            catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         private void Loadgrid()
         {
             try
             {
-                dtbl = bll.GetGetpassListByUser(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()));
+                dtbl = bll.GetGetpassListByUser(
+                    int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()));
                 if (dtbl.Rows.Count > 0)
                 {
                     dgvlist.DataSource = dtbl;
@@ -221,12 +230,16 @@ namespace UI.Inventory
                 }
                 else
                 {
-                    dgvlist.DataSource = ""; dgvlist.DataBind();
+                    dgvlist.DataSource = "";
+                    dgvlist.DataBind();
                 }
-               
-               
+
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         #endregion =================== Get Pass Details Add ==================

@@ -83,7 +83,7 @@
                 <tr>
                     <td>
                         <asp:GridView ID="dgvMrrDetlais" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="800px" ShowFooter="true" BackColor="White" BorderColor="#999999"
-                            BorderWidth="1px" CellPadding="5" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right">
+                            BorderWidth="1px" CellPadding="5" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right" OnRowDataBound="dgvMrrDetlais_OnRowDataBound">
 
                             <Columns>
                                 <asp:TemplateField HeaderText="SL No.">
@@ -131,13 +131,20 @@
                                         <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monFCRate","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="left" />
+                                    <FooterTemplate>
+                                        <asp:Label runat="server" Text="Total:"></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Amount(BDT)" ItemStyle-HorizontalAlign="right" SortExpression="monBDTTotal">
                                     <ItemTemplate>
                                         <asp:Label ID="lblAmount" runat="server" Text='<%# Bind("monBDTTotal","{0:n2}") %>'></asp:Label>
                                     </ItemTemplate>
+
                                     <ItemStyle HorizontalAlign="left" />
+                                    <FooterTemplate>
+                                        <asp:Label runat="server" ID="lblTotalAmount" ></asp:Label>
+                                    </FooterTemplate>
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strReceiveRemarks">
