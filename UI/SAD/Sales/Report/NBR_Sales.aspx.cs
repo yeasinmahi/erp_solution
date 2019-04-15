@@ -172,7 +172,7 @@ namespace UI.SAD.Sales.Report
             }
             catch (Exception ex)
             {
-                
+                ex.ToString();
             }
         }
     }

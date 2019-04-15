@@ -1315,6 +1315,8 @@
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
+    <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
+    <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
@@ -6743,6 +6745,20 @@
     </Compile>
     <Compile Include="SAD\Sales\Farmer_Setup.aspx.designer.cs">
       <DependentUpon>Farmer_Setup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_DOEntry.aspx.cs">
+      <DependentUpon>NBR_DOEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_DOEntry.aspx.designer.cs">
+      <DependentUpon>NBR_DOEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.cs">
+      <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.designer.cs">
+      <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.cs">
       <DependentUpon>Area_vs_Item.aspx</DependentUpon>
