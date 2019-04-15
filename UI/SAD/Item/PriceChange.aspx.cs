@@ -46,7 +46,15 @@ namespace UI.SAD.Item
         {
             if (IsPostBack)
             {
+
+                //int unitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+                int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
+
                 BuildTree();
+                if (unitid == 90)
+                {
+                    rdoPrType.Visible = false;
+                }
             }
             else
             {

@@ -15,9 +15,10 @@ using Utility;
 
 namespace UI.SCM
 {
-    public partial class IssueItemByRequesitionDetalis : BasePage
+    public partial class IssueItemByRequesitionDetalisOOP : BasePage
     {
         private StoreIssue_BLL objIssue = new StoreIssue_BLL();
+        private StoreIssue_BLL_OOP objIssueOOP = new StoreIssue_BLL_OOP();
         private CostCenterBll CostCenterBll = new CostCenterBll();
         private Location_BLL objOperation = new Location_BLL();
         private DataTable dt = new DataTable();
@@ -87,7 +88,7 @@ namespace UI.SCM
             dt = CostCenterBll.GetCostCenter(whId);
             ddlCost.LoadWithSelect(dt, "Id", "strName");
         }
-        private readonly object _obj  = new object();
+        private readonly object _obj = new object();
         protected void btnIssue_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnIssue_Click", null);
@@ -147,7 +148,7 @@ namespace UI.SCM
                         if (objects.Count > 0)
                         {
                             xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                            string msg = objIssueOOP.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);
 
                             Alert(msg);
@@ -223,7 +224,7 @@ namespace UI.SCM
         //    };
         //}
 
-        private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string costCenterId,string receiveBy)
+        private void CreateXmlIssue(string itemId, string issueQty, string stockVlaue, string locationId, string stockQty, string reqId, string reqCode, string deptId, string strSection, string reqBy, string costCenterId, string receiveBy)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
@@ -259,14 +260,14 @@ namespace UI.SCM
                 TextBox txtIsueQty = row.FindControl("txtIssue") as TextBox;
 
                 int itemid = int.Parse(lblItemId.Text);
-               
+
                 intwh = int.Parse(Request.QueryString["intwh"]);
                 txtIsueQty.Text = "0";
                 dt = objIssue.GetViewData(18, "", intwh, locationId, DateTime.Now, itemid);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
-                   lblstock.Text =dt.Rows[0]["monStock"].ToString();
-                   lblvalue.Text = dt.Rows[0]["monValue"].ToString();
+                    lblstock.Text = dt.Rows[0]["monStock"].ToString();
+                    lblvalue.Text = dt.Rows[0]["monValue"].ToString();
 
                 }
 
@@ -327,13 +328,13 @@ namespace UI.SCM
 
                 Label lblItem = (Label)e.Row.FindControl("lblItemId");
                 int Item = int.Parse(lblItem.Text.ToString());
-                
+
                 intwh = int.Parse(Request.QueryString["intwh"]);
                 //dt = objOperation.WhDataView(8, "", intwh, Item, 1);
 
                 dt = objIssue.GetViewData(19, "", intwh, 0, DateTime.Now, Item);
                 if (dt.Rows.Count > 0)
-                { 
+                {
                     DropDownList ddlLocation = (e.Row.FindControl("ddlStoreLocation") as DropDownList);
                     ddlLocation.DataSource = dt;
                     ddlLocation.DataValueField = "Id";
@@ -342,7 +343,7 @@ namespace UI.SCM
 
                     try
                     {
-                        
+
                         Label lblstock = (Label)e.Row.FindControl("lblstock");
                         Label lblvalue = (Label)e.Row.FindControl("lblvalue");
 
@@ -363,7 +364,7 @@ namespace UI.SCM
                     catch { }
                 }
 
-              
+
             }
         }
     }

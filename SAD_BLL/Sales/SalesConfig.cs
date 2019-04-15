@@ -115,6 +115,18 @@ namespace SAD_BLL.Sales
             {
                 return new DataTable();          }
         }
+        public DataTable GetQutationsSpec(int unitId,int itemId)
+        {
+            try
+            {
+                DataTable1TableAdapter obj = new DataTable1TableAdapter();
+                return obj.GetData(unitId,itemId);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
         public DataTable getItemSpecificationFroDDL1(int prdid)
         {

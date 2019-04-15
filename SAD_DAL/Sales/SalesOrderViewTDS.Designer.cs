@@ -28,8 +28,6 @@ namespace SAD_DAL.Sales {
         
         private SprSalesQuationByCustomerDataTable tableSprSalesQuationByCustomer;
         
-        private SprSalesQuationByCustomerDetDataTable tableSprSalesQuationByCustomerDet;
-        
         private SprSalesQuationByCustomerDetsDataTable tableSprSalesQuationByCustomerDets;
         
         private SprGetDealerInfoForSalesOrderDataTable tableSprGetDealerInfoForSalesOrder;
@@ -41,6 +39,8 @@ namespace SAD_DAL.Sales {
         private SprGetCustomerInfoForQuatationDataTable tableSprGetCustomerInfoForQuatation;
         
         private TblSalesOrderUpdateDataTable tableTblSalesOrderUpdate;
+        
+        private SprSalesQuationByCustomerDetDataTable tableSprSalesQuationByCustomerDet;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -76,9 +76,6 @@ namespace SAD_DAL.Sales {
                 if ((ds.Tables["SprSalesQuationByCustomer"] != null)) {
                     base.Tables.Add(new SprSalesQuationByCustomerDataTable(ds.Tables["SprSalesQuationByCustomer"]));
                 }
-                if ((ds.Tables["SprSalesQuationByCustomerDet"] != null)) {
-                    base.Tables.Add(new SprSalesQuationByCustomerDetDataTable(ds.Tables["SprSalesQuationByCustomerDet"]));
-                }
                 if ((ds.Tables["SprSalesQuationByCustomerDets"] != null)) {
                     base.Tables.Add(new SprSalesQuationByCustomerDetsDataTable(ds.Tables["SprSalesQuationByCustomerDets"]));
                 }
@@ -96,6 +93,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["TblSalesOrderUpdate"] != null)) {
                     base.Tables.Add(new TblSalesOrderUpdateDataTable(ds.Tables["TblSalesOrderUpdate"]));
+                }
+                if ((ds.Tables["SprSalesQuationByCustomerDet"] != null)) {
+                    base.Tables.Add(new SprSalesQuationByCustomerDetDataTable(ds.Tables["SprSalesQuationByCustomerDet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -132,16 +132,6 @@ namespace SAD_DAL.Sales {
         public SprSalesQuationByCustomerDataTable SprSalesQuationByCustomer {
             get {
                 return this.tableSprSalesQuationByCustomer;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprSalesQuationByCustomerDetDataTable SprSalesQuationByCustomerDet {
-            get {
-                return this.tableSprSalesQuationByCustomerDet;
             }
         }
         
@@ -202,6 +192,16 @@ namespace SAD_DAL.Sales {
         public TblSalesOrderUpdateDataTable TblSalesOrderUpdate {
             get {
                 return this.tableTblSalesOrderUpdate;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprSalesQuationByCustomerDetDataTable SprSalesQuationByCustomerDet {
+            get {
+                return this.tableSprSalesQuationByCustomerDet;
             }
         }
         
@@ -278,9 +278,6 @@ namespace SAD_DAL.Sales {
                 if ((ds.Tables["SprSalesQuationByCustomer"] != null)) {
                     base.Tables.Add(new SprSalesQuationByCustomerDataTable(ds.Tables["SprSalesQuationByCustomer"]));
                 }
-                if ((ds.Tables["SprSalesQuationByCustomerDet"] != null)) {
-                    base.Tables.Add(new SprSalesQuationByCustomerDetDataTable(ds.Tables["SprSalesQuationByCustomerDet"]));
-                }
                 if ((ds.Tables["SprSalesQuationByCustomerDets"] != null)) {
                     base.Tables.Add(new SprSalesQuationByCustomerDetsDataTable(ds.Tables["SprSalesQuationByCustomerDets"]));
                 }
@@ -298,6 +295,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["TblSalesOrderUpdate"] != null)) {
                     base.Tables.Add(new TblSalesOrderUpdateDataTable(ds.Tables["TblSalesOrderUpdate"]));
+                }
+                if ((ds.Tables["SprSalesQuationByCustomerDet"] != null)) {
+                    base.Tables.Add(new SprSalesQuationByCustomerDetDataTable(ds.Tables["SprSalesQuationByCustomerDet"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -344,12 +344,6 @@ namespace SAD_DAL.Sales {
                     this.tableSprSalesQuationByCustomer.InitVars();
                 }
             }
-            this.tableSprSalesQuationByCustomerDet = ((SprSalesQuationByCustomerDetDataTable)(base.Tables["SprSalesQuationByCustomerDet"]));
-            if ((initTable == true)) {
-                if ((this.tableSprSalesQuationByCustomerDet != null)) {
-                    this.tableSprSalesQuationByCustomerDet.InitVars();
-                }
-            }
             this.tableSprSalesQuationByCustomerDets = ((SprSalesQuationByCustomerDetsDataTable)(base.Tables["SprSalesQuationByCustomerDets"]));
             if ((initTable == true)) {
                 if ((this.tableSprSalesQuationByCustomerDets != null)) {
@@ -386,6 +380,12 @@ namespace SAD_DAL.Sales {
                     this.tableTblSalesOrderUpdate.InitVars();
                 }
             }
+            this.tableSprSalesQuationByCustomerDet = ((SprSalesQuationByCustomerDetDataTable)(base.Tables["SprSalesQuationByCustomerDet"]));
+            if ((initTable == true)) {
+                if ((this.tableSprSalesQuationByCustomerDet != null)) {
+                    this.tableSprSalesQuationByCustomerDet.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -400,8 +400,6 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprSalesOrderByCustomer);
             this.tableSprSalesQuationByCustomer = new SprSalesQuationByCustomerDataTable();
             base.Tables.Add(this.tableSprSalesQuationByCustomer);
-            this.tableSprSalesQuationByCustomerDet = new SprSalesQuationByCustomerDetDataTable();
-            base.Tables.Add(this.tableSprSalesQuationByCustomerDet);
             this.tableSprSalesQuationByCustomerDets = new SprSalesQuationByCustomerDetsDataTable();
             base.Tables.Add(this.tableSprSalesQuationByCustomerDets);
             this.tableSprGetDealerInfoForSalesOrder = new SprGetDealerInfoForSalesOrderDataTable();
@@ -414,6 +412,8 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprGetCustomerInfoForQuatation);
             this.tableTblSalesOrderUpdate = new TblSalesOrderUpdateDataTable();
             base.Tables.Add(this.tableTblSalesOrderUpdate);
+            this.tableSprSalesQuationByCustomerDet = new SprSalesQuationByCustomerDetDataTable();
+            base.Tables.Add(this.tableSprSalesQuationByCustomerDet);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -425,12 +425,6 @@ namespace SAD_DAL.Sales {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprSalesQuationByCustomer() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprSalesQuationByCustomerDet() {
             return false;
         }
         
@@ -467,6 +461,12 @@ namespace SAD_DAL.Sales {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeTblSalesOrderUpdate() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprSalesQuationByCustomerDet() {
             return false;
         }
         
@@ -532,9 +532,6 @@ namespace SAD_DAL.Sales {
         public delegate void SprSalesQuationByCustomerRowChangeEventHandler(object sender, SprSalesQuationByCustomerRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprSalesQuationByCustomerDetRowChangeEventHandler(object sender, SprSalesQuationByCustomerDetRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprSalesQuationByCustomerDetsRowChangeEventHandler(object sender, SprSalesQuationByCustomerDetsRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -551,6 +548,9 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblSalesOrderUpdateRowChangeEventHandler(object sender, TblSalesOrderUpdateRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprSalesQuationByCustomerDetRowChangeEventHandler(object sender, SprSalesQuationByCustomerDetRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1747,636 +1747,6 @@ namespace SAD_DAL.Sales {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "SprSalesQuationByCustomerDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprSalesQuationByCustomerDetDataTable : global::System.Data.TypedTableBase<SprSalesQuationByCustomerDetRow> {
-            
-            private global::System.Data.DataColumn columnintid;
-            
-            private global::System.Data.DataColumn columnstrCode;
-            
-            private global::System.Data.DataColumn columndteDate;
-            
-            private global::System.Data.DataColumn columnintCustomerId;
-            
-            private global::System.Data.DataColumn columnintSalesOffId;
-            
-            private global::System.Data.DataColumn columnintShipPointId;
-            
-            private global::System.Data.DataColumn columnintUnitId;
-            
-            private global::System.Data.DataColumn columnnumprice;
-            
-            private global::System.Data.DataColumn columnnumqnt;
-            
-            private global::System.Data.DataColumn columnmontotal;
-            
-            private global::System.Data.DataColumn columnintprdid;
-            
-            private global::System.Data.DataColumn columnprduom;
-            
-            private global::System.Data.DataColumn columnprdname;
-            
-            private global::System.Data.DataColumn columnstrName;
-            
-            private global::System.Data.DataColumn columnintCOAid;
-            
-            private global::System.Data.DataColumn columnintCurrencyId;
-            
-            private global::System.Data.DataColumn columnintCustomerType;
-            
-            private global::System.Data.DataColumn columnstrAddress;
-            
-            private global::System.Data.DataColumn columnstrPhone;
-            
-            private global::System.Data.DataColumn columnysnEnable;
-            
-            private global::System.Data.DataColumn columnysnCompleted;
-            
-            private global::System.Data.DataColumn columnysnActiveForRestQnt;
-            
-            private global::System.Data.DataColumn columnstrOtherInfo;
-            
-            private global::System.Data.DataColumn columnstrTermsNCondition;
-            
-            private global::System.Data.DataColumn columndteInsertionTime;
-            
-            private global::System.Data.DataColumn columnintInsertBy;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesQuationByCustomerDetDataTable() {
-                this.TableName = "SprSalesQuationByCustomerDet";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprSalesQuationByCustomerDetDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprSalesQuationByCustomerDetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intidColumn {
-                get {
-                    return this.columnintid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strCodeColumn {
-                get {
-                    return this.columnstrCode;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteDateColumn {
-                get {
-                    return this.columndteDate;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCustomerIdColumn {
-                get {
-                    return this.columnintCustomerId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intSalesOffIdColumn {
-                get {
-                    return this.columnintSalesOffId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intShipPointIdColumn {
-                get {
-                    return this.columnintShipPointId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intUnitIdColumn {
-                get {
-                    return this.columnintUnitId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numpriceColumn {
-                get {
-                    return this.columnnumprice;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn numqntColumn {
-                get {
-                    return this.columnnumqnt;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn montotalColumn {
-                get {
-                    return this.columnmontotal;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intprdidColumn {
-                get {
-                    return this.columnintprdid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn prduomColumn {
-                get {
-                    return this.columnprduom;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn prdnameColumn {
-                get {
-                    return this.columnprdname;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNameColumn {
-                get {
-                    return this.columnstrName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCOAidColumn {
-                get {
-                    return this.columnintCOAid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCurrencyIdColumn {
-                get {
-                    return this.columnintCurrencyId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCustomerTypeColumn {
-                get {
-                    return this.columnintCustomerType;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAddressColumn {
-                get {
-                    return this.columnstrAddress;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strPhoneColumn {
-                get {
-                    return this.columnstrPhone;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnEnableColumn {
-                get {
-                    return this.columnysnEnable;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnCompletedColumn {
-                get {
-                    return this.columnysnCompleted;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn ysnActiveForRestQntColumn {
-                get {
-                    return this.columnysnActiveForRestQnt;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strOtherInfoColumn {
-                get {
-                    return this.columnstrOtherInfo;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strTermsNConditionColumn {
-                get {
-                    return this.columnstrTermsNCondition;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn dteInsertionTimeColumn {
-                get {
-                    return this.columndteInsertionTime;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intInsertByColumn {
-                get {
-                    return this.columnintInsertBy;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesQuationByCustomerDetRow this[int index] {
-                get {
-                    return ((SprSalesQuationByCustomerDetRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprSalesQuationByCustomerDetRow(SprSalesQuationByCustomerDetRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesQuationByCustomerDetRow AddSprSalesQuationByCustomerDetRow(
-                        int intid, 
-                        string strCode, 
-                        System.DateTime dteDate, 
-                        int intCustomerId, 
-                        int intSalesOffId, 
-                        int intShipPointId, 
-                        int intUnitId, 
-                        decimal numprice, 
-                        decimal numqnt, 
-                        decimal montotal, 
-                        int intprdid, 
-                        int prduom, 
-                        string prdname, 
-                        string strName, 
-                        int intCOAid, 
-                        int intCurrencyId, 
-                        int intCustomerType, 
-                        string strAddress, 
-                        string strPhone, 
-                        bool ysnEnable, 
-                        bool ysnCompleted, 
-                        bool ysnActiveForRestQnt, 
-                        string strOtherInfo, 
-                        string strTermsNCondition, 
-                        System.DateTime dteInsertionTime, 
-                        int intInsertBy) {
-                SprSalesQuationByCustomerDetRow rowSprSalesQuationByCustomerDetRow = ((SprSalesQuationByCustomerDetRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        intid,
-                        strCode,
-                        dteDate,
-                        intCustomerId,
-                        intSalesOffId,
-                        intShipPointId,
-                        intUnitId,
-                        numprice,
-                        numqnt,
-                        montotal,
-                        intprdid,
-                        prduom,
-                        prdname,
-                        strName,
-                        intCOAid,
-                        intCurrencyId,
-                        intCustomerType,
-                        strAddress,
-                        strPhone,
-                        ysnEnable,
-                        ysnCompleted,
-                        ysnActiveForRestQnt,
-                        strOtherInfo,
-                        strTermsNCondition,
-                        dteInsertionTime,
-                        intInsertBy};
-                rowSprSalesQuationByCustomerDetRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprSalesQuationByCustomerDetRow);
-                return rowSprSalesQuationByCustomerDetRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SprSalesQuationByCustomerDetDataTable cln = ((SprSalesQuationByCustomerDetDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SprSalesQuationByCustomerDetDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnintid = base.Columns["intid"];
-                this.columnstrCode = base.Columns["strCode"];
-                this.columndteDate = base.Columns["dteDate"];
-                this.columnintCustomerId = base.Columns["intCustomerId"];
-                this.columnintSalesOffId = base.Columns["intSalesOffId"];
-                this.columnintShipPointId = base.Columns["intShipPointId"];
-                this.columnintUnitId = base.Columns["intUnitId"];
-                this.columnnumprice = base.Columns["numprice"];
-                this.columnnumqnt = base.Columns["numqnt"];
-                this.columnmontotal = base.Columns["montotal"];
-                this.columnintprdid = base.Columns["intprdid"];
-                this.columnprduom = base.Columns["prduom"];
-                this.columnprdname = base.Columns["prdname"];
-                this.columnstrName = base.Columns["strName"];
-                this.columnintCOAid = base.Columns["intCOAid"];
-                this.columnintCurrencyId = base.Columns["intCurrencyId"];
-                this.columnintCustomerType = base.Columns["intCustomerType"];
-                this.columnstrAddress = base.Columns["strAddress"];
-                this.columnstrPhone = base.Columns["strPhone"];
-                this.columnysnEnable = base.Columns["ysnEnable"];
-                this.columnysnCompleted = base.Columns["ysnCompleted"];
-                this.columnysnActiveForRestQnt = base.Columns["ysnActiveForRestQnt"];
-                this.columnstrOtherInfo = base.Columns["strOtherInfo"];
-                this.columnstrTermsNCondition = base.Columns["strTermsNCondition"];
-                this.columndteInsertionTime = base.Columns["dteInsertionTime"];
-                this.columnintInsertBy = base.Columns["intInsertBy"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnintid = new global::System.Data.DataColumn("intid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintid);
-                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrCode);
-                this.columndteDate = new global::System.Data.DataColumn("dteDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteDate);
-                this.columnintCustomerId = new global::System.Data.DataColumn("intCustomerId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCustomerId);
-                this.columnintSalesOffId = new global::System.Data.DataColumn("intSalesOffId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintSalesOffId);
-                this.columnintShipPointId = new global::System.Data.DataColumn("intShipPointId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintShipPointId);
-                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintUnitId);
-                this.columnnumprice = new global::System.Data.DataColumn("numprice", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumprice);
-                this.columnnumqnt = new global::System.Data.DataColumn("numqnt", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnnumqnt);
-                this.columnmontotal = new global::System.Data.DataColumn("montotal", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmontotal);
-                this.columnintprdid = new global::System.Data.DataColumn("intprdid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintprdid);
-                this.columnprduom = new global::System.Data.DataColumn("prduom", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnprduom);
-                this.columnprdname = new global::System.Data.DataColumn("prdname", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnprdname);
-                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrName);
-                this.columnintCOAid = new global::System.Data.DataColumn("intCOAid", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCOAid);
-                this.columnintCurrencyId = new global::System.Data.DataColumn("intCurrencyId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCurrencyId);
-                this.columnintCustomerType = new global::System.Data.DataColumn("intCustomerType", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCustomerType);
-                this.columnstrAddress = new global::System.Data.DataColumn("strAddress", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrAddress);
-                this.columnstrPhone = new global::System.Data.DataColumn("strPhone", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrPhone);
-                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnEnable);
-                this.columnysnCompleted = new global::System.Data.DataColumn("ysnCompleted", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnCompleted);
-                this.columnysnActiveForRestQnt = new global::System.Data.DataColumn("ysnActiveForRestQnt", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnysnActiveForRestQnt);
-                this.columnstrOtherInfo = new global::System.Data.DataColumn("strOtherInfo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrOtherInfo);
-                this.columnstrTermsNCondition = new global::System.Data.DataColumn("strTermsNCondition", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrTermsNCondition);
-                this.columndteInsertionTime = new global::System.Data.DataColumn("dteInsertionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columndteInsertionTime);
-                this.columnintInsertBy = new global::System.Data.DataColumn("intInsertBy", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintInsertBy);
-                this.columnstrCode.MaxLength = 500;
-                this.columnprdname.MaxLength = 500;
-                this.columnstrName.MaxLength = 500;
-                this.columnstrAddress.MaxLength = 500;
-                this.columnstrPhone.MaxLength = 50;
-                this.columnstrOtherInfo.MaxLength = 500;
-                this.columnstrTermsNCondition.MaxLength = 500;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesQuationByCustomerDetRow NewSprSalesQuationByCustomerDetRow() {
-                return ((SprSalesQuationByCustomerDetRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprSalesQuationByCustomerDetRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SprSalesQuationByCustomerDetRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SprSalesQuationByCustomerDetRowChanged != null)) {
-                    this.SprSalesQuationByCustomerDetRowChanged(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SprSalesQuationByCustomerDetRowChanging != null)) {
-                    this.SprSalesQuationByCustomerDetRowChanging(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SprSalesQuationByCustomerDetRowDeleted != null)) {
-                    this.SprSalesQuationByCustomerDetRowDeleted(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SprSalesQuationByCustomerDetRowDeleting != null)) {
-                    this.SprSalesQuationByCustomerDetRowDeleting(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprSalesQuationByCustomerDetRow(SprSalesQuationByCustomerDetRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOrderViewTDS ds = new SalesOrderViewTDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprSalesQuationByCustomerDetDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -4629,6 +3999,636 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprSalesQuationByCustomerDetDataTable : global::System.Data.TypedTableBase<SprSalesQuationByCustomerDetRow> {
+            
+            private global::System.Data.DataColumn columnintid;
+            
+            private global::System.Data.DataColumn columnstrCode;
+            
+            private global::System.Data.DataColumn columndteDate;
+            
+            private global::System.Data.DataColumn columnintCustomerId;
+            
+            private global::System.Data.DataColumn columnintSalesOffId;
+            
+            private global::System.Data.DataColumn columnintShipPointId;
+            
+            private global::System.Data.DataColumn columnintUnitId;
+            
+            private global::System.Data.DataColumn columnnumprice;
+            
+            private global::System.Data.DataColumn columnnumqnt;
+            
+            private global::System.Data.DataColumn columnmontotal;
+            
+            private global::System.Data.DataColumn columnintprdid;
+            
+            private global::System.Data.DataColumn columnprduom;
+            
+            private global::System.Data.DataColumn columnprdname;
+            
+            private global::System.Data.DataColumn columnstrName;
+            
+            private global::System.Data.DataColumn columnintCOAid;
+            
+            private global::System.Data.DataColumn columnintCurrencyId;
+            
+            private global::System.Data.DataColumn columnintCustomerType;
+            
+            private global::System.Data.DataColumn columnstrAddress;
+            
+            private global::System.Data.DataColumn columnstrPhone;
+            
+            private global::System.Data.DataColumn columnysnEnable;
+            
+            private global::System.Data.DataColumn columnysnCompleted;
+            
+            private global::System.Data.DataColumn columnysnActiveForRestQnt;
+            
+            private global::System.Data.DataColumn columnstrOtherInfo;
+            
+            private global::System.Data.DataColumn columnstrTermsNCondition;
+            
+            private global::System.Data.DataColumn columndteInsertionTime;
+            
+            private global::System.Data.DataColumn columnintInsertBy;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesQuationByCustomerDetDataTable() {
+                this.TableName = "SprSalesQuationByCustomerDet";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprSalesQuationByCustomerDetDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprSalesQuationByCustomerDetDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intidColumn {
+                get {
+                    return this.columnintid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strCodeColumn {
+                get {
+                    return this.columnstrCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteDateColumn {
+                get {
+                    return this.columndteDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCustomerIdColumn {
+                get {
+                    return this.columnintCustomerId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intSalesOffIdColumn {
+                get {
+                    return this.columnintSalesOffId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intShipPointIdColumn {
+                get {
+                    return this.columnintShipPointId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intUnitIdColumn {
+                get {
+                    return this.columnintUnitId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numpriceColumn {
+                get {
+                    return this.columnnumprice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numqntColumn {
+                get {
+                    return this.columnnumqnt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn montotalColumn {
+                get {
+                    return this.columnmontotal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intprdidColumn {
+                get {
+                    return this.columnintprdid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn prduomColumn {
+                get {
+                    return this.columnprduom;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn prdnameColumn {
+                get {
+                    return this.columnprdname;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strNameColumn {
+                get {
+                    return this.columnstrName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCOAidColumn {
+                get {
+                    return this.columnintCOAid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCurrencyIdColumn {
+                get {
+                    return this.columnintCurrencyId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intCustomerTypeColumn {
+                get {
+                    return this.columnintCustomerType;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strAddressColumn {
+                get {
+                    return this.columnstrAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPhoneColumn {
+                get {
+                    return this.columnstrPhone;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnEnableColumn {
+                get {
+                    return this.columnysnEnable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnCompletedColumn {
+                get {
+                    return this.columnysnCompleted;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnActiveForRestQntColumn {
+                get {
+                    return this.columnysnActiveForRestQnt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strOtherInfoColumn {
+                get {
+                    return this.columnstrOtherInfo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strTermsNConditionColumn {
+                get {
+                    return this.columnstrTermsNCondition;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteInsertionTimeColumn {
+                get {
+                    return this.columndteInsertionTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intInsertByColumn {
+                get {
+                    return this.columnintInsertBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesQuationByCustomerDetRow this[int index] {
+                get {
+                    return ((SprSalesQuationByCustomerDetRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesQuationByCustomerDetRowChangeEventHandler SprSalesQuationByCustomerDetRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprSalesQuationByCustomerDetRow(SprSalesQuationByCustomerDetRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesQuationByCustomerDetRow AddSprSalesQuationByCustomerDetRow(
+                        int intid, 
+                        string strCode, 
+                        System.DateTime dteDate, 
+                        int intCustomerId, 
+                        int intSalesOffId, 
+                        int intShipPointId, 
+                        int intUnitId, 
+                        decimal numprice, 
+                        decimal numqnt, 
+                        decimal montotal, 
+                        int intprdid, 
+                        int prduom, 
+                        string prdname, 
+                        string strName, 
+                        int intCOAid, 
+                        int intCurrencyId, 
+                        int intCustomerType, 
+                        string strAddress, 
+                        string strPhone, 
+                        bool ysnEnable, 
+                        bool ysnCompleted, 
+                        bool ysnActiveForRestQnt, 
+                        string strOtherInfo, 
+                        string strTermsNCondition, 
+                        System.DateTime dteInsertionTime, 
+                        int intInsertBy) {
+                SprSalesQuationByCustomerDetRow rowSprSalesQuationByCustomerDetRow = ((SprSalesQuationByCustomerDetRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intid,
+                        strCode,
+                        dteDate,
+                        intCustomerId,
+                        intSalesOffId,
+                        intShipPointId,
+                        intUnitId,
+                        numprice,
+                        numqnt,
+                        montotal,
+                        intprdid,
+                        prduom,
+                        prdname,
+                        strName,
+                        intCOAid,
+                        intCurrencyId,
+                        intCustomerType,
+                        strAddress,
+                        strPhone,
+                        ysnEnable,
+                        ysnCompleted,
+                        ysnActiveForRestQnt,
+                        strOtherInfo,
+                        strTermsNCondition,
+                        dteInsertionTime,
+                        intInsertBy};
+                rowSprSalesQuationByCustomerDetRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprSalesQuationByCustomerDetRow);
+                return rowSprSalesQuationByCustomerDetRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprSalesQuationByCustomerDetDataTable cln = ((SprSalesQuationByCustomerDetDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprSalesQuationByCustomerDetDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintid = base.Columns["intid"];
+                this.columnstrCode = base.Columns["strCode"];
+                this.columndteDate = base.Columns["dteDate"];
+                this.columnintCustomerId = base.Columns["intCustomerId"];
+                this.columnintSalesOffId = base.Columns["intSalesOffId"];
+                this.columnintShipPointId = base.Columns["intShipPointId"];
+                this.columnintUnitId = base.Columns["intUnitId"];
+                this.columnnumprice = base.Columns["numprice"];
+                this.columnnumqnt = base.Columns["numqnt"];
+                this.columnmontotal = base.Columns["montotal"];
+                this.columnintprdid = base.Columns["intprdid"];
+                this.columnprduom = base.Columns["prduom"];
+                this.columnprdname = base.Columns["prdname"];
+                this.columnstrName = base.Columns["strName"];
+                this.columnintCOAid = base.Columns["intCOAid"];
+                this.columnintCurrencyId = base.Columns["intCurrencyId"];
+                this.columnintCustomerType = base.Columns["intCustomerType"];
+                this.columnstrAddress = base.Columns["strAddress"];
+                this.columnstrPhone = base.Columns["strPhone"];
+                this.columnysnEnable = base.Columns["ysnEnable"];
+                this.columnysnCompleted = base.Columns["ysnCompleted"];
+                this.columnysnActiveForRestQnt = base.Columns["ysnActiveForRestQnt"];
+                this.columnstrOtherInfo = base.Columns["strOtherInfo"];
+                this.columnstrTermsNCondition = base.Columns["strTermsNCondition"];
+                this.columndteInsertionTime = base.Columns["dteInsertionTime"];
+                this.columnintInsertBy = base.Columns["intInsertBy"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintid = new global::System.Data.DataColumn("intid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintid);
+                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCode);
+                this.columndteDate = new global::System.Data.DataColumn("dteDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteDate);
+                this.columnintCustomerId = new global::System.Data.DataColumn("intCustomerId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCustomerId);
+                this.columnintSalesOffId = new global::System.Data.DataColumn("intSalesOffId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintSalesOffId);
+                this.columnintShipPointId = new global::System.Data.DataColumn("intShipPointId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintShipPointId);
+                this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintUnitId);
+                this.columnnumprice = new global::System.Data.DataColumn("numprice", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumprice);
+                this.columnnumqnt = new global::System.Data.DataColumn("numqnt", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumqnt);
+                this.columnmontotal = new global::System.Data.DataColumn("montotal", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmontotal);
+                this.columnintprdid = new global::System.Data.DataColumn("intprdid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintprdid);
+                this.columnprduom = new global::System.Data.DataColumn("prduom", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprduom);
+                this.columnprdname = new global::System.Data.DataColumn("prdname", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnprdname);
+                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrName);
+                this.columnintCOAid = new global::System.Data.DataColumn("intCOAid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCOAid);
+                this.columnintCurrencyId = new global::System.Data.DataColumn("intCurrencyId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCurrencyId);
+                this.columnintCustomerType = new global::System.Data.DataColumn("intCustomerType", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintCustomerType);
+                this.columnstrAddress = new global::System.Data.DataColumn("strAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrAddress);
+                this.columnstrPhone = new global::System.Data.DataColumn("strPhone", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPhone);
+                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnEnable);
+                this.columnysnCompleted = new global::System.Data.DataColumn("ysnCompleted", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnCompleted);
+                this.columnysnActiveForRestQnt = new global::System.Data.DataColumn("ysnActiveForRestQnt", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnActiveForRestQnt);
+                this.columnstrOtherInfo = new global::System.Data.DataColumn("strOtherInfo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrOtherInfo);
+                this.columnstrTermsNCondition = new global::System.Data.DataColumn("strTermsNCondition", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTermsNCondition);
+                this.columndteInsertionTime = new global::System.Data.DataColumn("dteInsertionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteInsertionTime);
+                this.columnintInsertBy = new global::System.Data.DataColumn("intInsertBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintInsertBy);
+                this.columnstrCode.MaxLength = 500;
+                this.columnprdname.MaxLength = 2147483647;
+                this.columnstrName.MaxLength = 2147483647;
+                this.columnstrAddress.MaxLength = 2147483647;
+                this.columnstrPhone.MaxLength = 50;
+                this.columnstrOtherInfo.MaxLength = 500;
+                this.columnstrTermsNCondition.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesQuationByCustomerDetRow NewSprSalesQuationByCustomerDetRow() {
+                return ((SprSalesQuationByCustomerDetRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprSalesQuationByCustomerDetRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprSalesQuationByCustomerDetRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprSalesQuationByCustomerDetRowChanged != null)) {
+                    this.SprSalesQuationByCustomerDetRowChanged(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprSalesQuationByCustomerDetRowChanging != null)) {
+                    this.SprSalesQuationByCustomerDetRowChanging(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprSalesQuationByCustomerDetRowDeleted != null)) {
+                    this.SprSalesQuationByCustomerDetRowDeleted(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprSalesQuationByCustomerDetRowDeleting != null)) {
+                    this.SprSalesQuationByCustomerDetRowDeleting(this, new SprSalesQuationByCustomerDetRowChangeEvent(((SprSalesQuationByCustomerDetRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprSalesQuationByCustomerDetRow(SprSalesQuationByCustomerDetRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesOrderViewTDS ds = new SalesOrderViewTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprSalesQuationByCustomerDetDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class SprSalesOrderByCustomerRow : global::System.Data.DataRow {
@@ -5849,772 +5849,6 @@ namespace SAD_DAL.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintInsertByNull() {
                 this[this.tableSprSalesQuationByCustomer.intInsertByColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class SprSalesQuationByCustomerDetRow : global::System.Data.DataRow {
-            
-            private SprSalesQuationByCustomerDetDataTable tableSprSalesQuationByCustomerDet;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprSalesQuationByCustomerDetRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSprSalesQuationByCustomerDet = ((SprSalesQuationByCustomerDetDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intid {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intid\' in table \'SprSalesQuationByCustomerDet\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strCode {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strCodeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strCode\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.strCodeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dteDate {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableSprSalesQuationByCustomerDet.dteDateColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'dteDate\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.dteDateColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCustomerId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCustomerId\' in table \'SprSalesQuationByCustomerDet\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intSalesOffId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intSalesOffId\' in table \'SprSalesQuationByCustomerDet\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intShipPointId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intShipPointId\' in table \'SprSalesQuationByCustomerDet\' is " +
-                                "DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intUnitId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intUnitIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitId\' in table \'SprSalesQuationByCustomerDet\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intUnitIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numprice {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDet.numpriceColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numprice\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.numpriceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal numqnt {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDet.numqntColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numqnt\' in table \'SprSalesQuationByCustomerDet\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.numqntColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal montotal {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDet.montotalColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'montotal\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.montotalColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intprdid {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intprdidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intprdid\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intprdidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int prduom {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.prduomColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'prduom\' in table \'SprSalesQuationByCustomerDet\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.prduomColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string prdname {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.prdnameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'prdname\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.prdnameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.strNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCOAid {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCOAidColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCOAid\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intCOAidColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCurrencyId {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCurrencyId\' in table \'SprSalesQuationByCustomerDet\' is D" +
-                                "BNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCustomerType {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCustomerType\' in table \'SprSalesQuationByCustomerDet\' is" +
-                                " DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strAddress {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strAddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strAddress\' in table \'SprSalesQuationByCustomerDet\' is DBNu" +
-                                "ll.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.strAddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strPhone {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strPhoneColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strPhone\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
-                                ".", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.strPhoneColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnEnable {
-                get {
-                    try {
-                        return ((bool)(this[this.tableSprSalesQuationByCustomerDet.ysnEnableColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ysnEnable\' in table \'SprSalesQuationByCustomerDet\' is DBNul" +
-                                "l.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.ysnEnableColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnCompleted {
-                get {
-                    try {
-                        return ((bool)(this[this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ysnCompleted\' in table \'SprSalesQuationByCustomerDet\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool ysnActiveForRestQnt {
-                get {
-                    try {
-                        return ((bool)(this[this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ysnActiveForRestQnt\' in table \'SprSalesQuationByCustomerDet" +
-                                "\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strOtherInfo {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strOtherInfo\' in table \'SprSalesQuationByCustomerDet\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strTermsNCondition {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strTermsNCondition\' in table \'SprSalesQuationByCustomerDet\'" +
-                                " is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public System.DateTime dteInsertionTime {
-                get {
-                    try {
-                        return ((global::System.DateTime)(this[this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertionTime\' in table \'SprSalesQuationByCustomerDet\' i" +
-                                "s DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intInsertBy {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intInsertByColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intInsertBy\' in table \'SprSalesQuationByCustomerDet\' is DBN" +
-                                "ull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesQuationByCustomerDet.intInsertByColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintidNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintidNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intidColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrCodeNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strCodeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrCodeNull() {
-                this[this.tableSprSalesQuationByCustomerDet.strCodeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdteDateNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.dteDateColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdteDateNull() {
-                this[this.tableSprSalesQuationByCustomerDet.dteDateColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCustomerIdNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCustomerIdNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintSalesOffIdNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintSalesOffIdNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintShipPointIdNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintShipPointIdNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintUnitIdNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intUnitIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintUnitIdNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intUnitIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumpriceNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.numpriceColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumpriceNull() {
-                this[this.tableSprSalesQuationByCustomerDet.numpriceColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsnumqntNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.numqntColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetnumqntNull() {
-                this[this.tableSprSalesQuationByCustomerDet.numqntColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmontotalNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.montotalColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmontotalNull() {
-                this[this.tableSprSalesQuationByCustomerDet.montotalColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintprdidNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intprdidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintprdidNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intprdidColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsprduomNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.prduomColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetprduomNull() {
-                this[this.tableSprSalesQuationByCustomerDet.prduomColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsprdnameNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.prdnameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetprdnameNull() {
-                this[this.tableSprSalesQuationByCustomerDet.prdnameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrNameNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrNameNull() {
-                this[this.tableSprSalesQuationByCustomerDet.strNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCOAidNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCOAidColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCOAidNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intCOAidColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCurrencyIdNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCurrencyIdNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCustomerTypeNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCustomerTypeNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrAddressNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strAddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrAddressNull() {
-                this[this.tableSprSalesQuationByCustomerDet.strAddressColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrPhoneNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strPhoneColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrPhoneNull() {
-                this[this.tableSprSalesQuationByCustomerDet.strPhoneColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsysnEnableNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.ysnEnableColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetysnEnableNull() {
-                this[this.tableSprSalesQuationByCustomerDet.ysnEnableColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsysnCompletedNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetysnCompletedNull() {
-                this[this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsysnActiveForRestQntNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetysnActiveForRestQntNull() {
-                this[this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrOtherInfoNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrOtherInfoNull() {
-                this[this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrTermsNConditionNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrTermsNConditionNull() {
-                this[this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsdteInsertionTimeNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetdteInsertionTimeNull() {
-                this[this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintInsertByNull() {
-                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intInsertByColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintInsertByNull() {
-                this[this.tableSprSalesQuationByCustomerDet.intInsertByColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8224,6 +7458,772 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprSalesQuationByCustomerDetRow : global::System.Data.DataRow {
+            
+            private SprSalesQuationByCustomerDetDataTable tableSprSalesQuationByCustomerDet;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprSalesQuationByCustomerDetRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprSalesQuationByCustomerDet = ((SprSalesQuationByCustomerDetDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intid\' in table \'SprSalesQuationByCustomerDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strCode {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strCodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strCode\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.strCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteDate {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprSalesQuationByCustomerDet.dteDateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteDate\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.dteDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCustomerId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intCustomerId\' in table \'SprSalesQuationByCustomerDet\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intSalesOffId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intSalesOffId\' in table \'SprSalesQuationByCustomerDet\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intShipPointId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intShipPointId\' in table \'SprSalesQuationByCustomerDet\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intUnitId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intUnitIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intUnitId\' in table \'SprSalesQuationByCustomerDet\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intUnitIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numprice {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDet.numpriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numprice\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.numpriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numqnt {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDet.numqntColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numqnt\' in table \'SprSalesQuationByCustomerDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.numqntColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal montotal {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDet.montotalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'montotal\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.montotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intprdid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intprdidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intprdid\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intprdidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int prduom {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.prduomColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'prduom\' in table \'SprSalesQuationByCustomerDet\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.prduomColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string prdname {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.prdnameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'prdname\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.prdnameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'SprSalesQuationByCustomerDet\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.strNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCOAid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCOAidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intCOAid\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intCOAidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCurrencyId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intCurrencyId\' in table \'SprSalesQuationByCustomerDet\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intCustomerType {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intCustomerType\' in table \'SprSalesQuationByCustomerDet\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strAddress\' in table \'SprSalesQuationByCustomerDet\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.strAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPhone {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strPhoneColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPhone\' in table \'SprSalesQuationByCustomerDet\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.strPhoneColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnEnable {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprSalesQuationByCustomerDet.ysnEnableColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnEnable\' in table \'SprSalesQuationByCustomerDet\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.ysnEnableColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnCompleted {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnCompleted\' in table \'SprSalesQuationByCustomerDet\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnActiveForRestQnt {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnActiveForRestQnt\' in table \'SprSalesQuationByCustomerDet" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strOtherInfo {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strOtherInfo\' in table \'SprSalesQuationByCustomerDet\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strTermsNCondition {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTermsNCondition\' in table \'SprSalesQuationByCustomerDet\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteInsertionTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertionTime\' in table \'SprSalesQuationByCustomerDet\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intInsertBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesQuationByCustomerDet.intInsertByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intInsertBy\' in table \'SprSalesQuationByCustomerDet\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDet.intInsertByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintidNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintidNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrCodeNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strCodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrCodeNull() {
+                this[this.tableSprSalesQuationByCustomerDet.strCodeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteDateNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.dteDateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteDateNull() {
+                this[this.tableSprSalesQuationByCustomerDet.dteDateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintCustomerIdNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintCustomerIdNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intCustomerIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintSalesOffIdNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintSalesOffIdNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intSalesOffIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintShipPointIdNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintShipPointIdNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intShipPointIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintUnitIdNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intUnitIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintUnitIdNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intUnitIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumpriceNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.numpriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumpriceNull() {
+                this[this.tableSprSalesQuationByCustomerDet.numpriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumqntNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.numqntColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumqntNull() {
+                this[this.tableSprSalesQuationByCustomerDet.numqntColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmontotalNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.montotalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmontotalNull() {
+                this[this.tableSprSalesQuationByCustomerDet.montotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintprdidNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intprdidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintprdidNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intprdidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsprduomNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.prduomColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetprduomNull() {
+                this[this.tableSprSalesQuationByCustomerDet.prduomColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsprdnameNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.prdnameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetprdnameNull() {
+                this[this.tableSprSalesQuationByCustomerDet.prdnameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrNameNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrNameNull() {
+                this[this.tableSprSalesQuationByCustomerDet.strNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintCOAidNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCOAidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintCOAidNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intCOAidColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintCurrencyIdNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintCurrencyIdNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intCurrencyIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintCustomerTypeNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintCustomerTypeNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intCustomerTypeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrAddressNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrAddressNull() {
+                this[this.tableSprSalesQuationByCustomerDet.strAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrPhoneNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strPhoneColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrPhoneNull() {
+                this[this.tableSprSalesQuationByCustomerDet.strPhoneColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnEnableNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.ysnEnableColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnEnableNull() {
+                this[this.tableSprSalesQuationByCustomerDet.ysnEnableColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnCompletedNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnCompletedNull() {
+                this[this.tableSprSalesQuationByCustomerDet.ysnCompletedColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnActiveForRestQntNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnActiveForRestQntNull() {
+                this[this.tableSprSalesQuationByCustomerDet.ysnActiveForRestQntColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrOtherInfoNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrOtherInfoNull() {
+                this[this.tableSprSalesQuationByCustomerDet.strOtherInfoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrTermsNConditionNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrTermsNConditionNull() {
+                this[this.tableSprSalesQuationByCustomerDet.strTermsNConditionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteInsertionTimeNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteInsertionTimeNull() {
+                this[this.tableSprSalesQuationByCustomerDet.dteInsertionTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintInsertByNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDet.intInsertByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintInsertByNull() {
+                this[this.tableSprSalesQuationByCustomerDet.intInsertByColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -8277,40 +8277,6 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprSalesQuationByCustomerRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprSalesQuationByCustomerDetRowChangeEvent : global::System.EventArgs {
-            
-            private SprSalesQuationByCustomerDetRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesQuationByCustomerDetRowChangeEvent(SprSalesQuationByCustomerDetRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesQuationByCustomerDetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -8515,6 +8481,40 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblSalesOrderUpdateRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprSalesQuationByCustomerDetRowChangeEvent : global::System.EventArgs {
+            
+            private SprSalesQuationByCustomerDetRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesQuationByCustomerDetRowChangeEvent(SprSalesQuationByCustomerDetRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesQuationByCustomerDetRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -9085,193 +9085,6 @@ namespace SAD_DAL.Sales.SalesOrderViewTDSTableAdapters {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             SalesOrderViewTDS.SprSalesQuationByCustomerDataTable dataTable = new SalesOrderViewTDS.SprSalesQuationByCustomerDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprSalesQuationByCustomerDetTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprSalesQuationByCustomerDetTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprSalesQuationByCustomerDet";
-            tableMapping.ColumnMappings.Add("intid", "intid");
-            tableMapping.ColumnMappings.Add("strCode", "strCode");
-            tableMapping.ColumnMappings.Add("dteDate", "dteDate");
-            tableMapping.ColumnMappings.Add("intCustomerId", "intCustomerId");
-            tableMapping.ColumnMappings.Add("intSalesOffId", "intSalesOffId");
-            tableMapping.ColumnMappings.Add("intShipPointId", "intShipPointId");
-            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
-            tableMapping.ColumnMappings.Add("numprice", "numprice");
-            tableMapping.ColumnMappings.Add("numqnt", "numqnt");
-            tableMapping.ColumnMappings.Add("montotal", "montotal");
-            tableMapping.ColumnMappings.Add("intprdid", "intprdid");
-            tableMapping.ColumnMappings.Add("prduom", "prduom");
-            tableMapping.ColumnMappings.Add("prdname", "prdname");
-            tableMapping.ColumnMappings.Add("strName", "strName");
-            tableMapping.ColumnMappings.Add("intCOAid", "intCOAid");
-            tableMapping.ColumnMappings.Add("intCurrencyId", "intCurrencyId");
-            tableMapping.ColumnMappings.Add("intCustomerType", "intCustomerType");
-            tableMapping.ColumnMappings.Add("strAddress", "strAddress");
-            tableMapping.ColumnMappings.Add("strPhone", "strPhone");
-            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
-            tableMapping.ColumnMappings.Add("ysnCompleted", "ysnCompleted");
-            tableMapping.ColumnMappings.Add("ysnActiveForRestQnt", "ysnActiveForRestQnt");
-            tableMapping.ColumnMappings.Add("strOtherInfo", "strOtherInfo");
-            tableMapping.ColumnMappings.Add("strTermsNCondition", "strTermsNCondition");
-            tableMapping.ColumnMappings.Add("dteInsertionTime", "dteInsertionTime");
-            tableMapping.ColumnMappings.Add("intInsertBy", "intInsertBy");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprSalesQuationByCustomerDet";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inquatationID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesOrderViewTDS.SprSalesQuationByCustomerDetDataTable GetDataSalesQuationByCustomerDet(global::System.Nullable<int> inquatationID) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((inquatationID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(inquatationID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            SalesOrderViewTDS.SprSalesQuationByCustomerDetDataTable dataTable = new SalesOrderViewTDS.SprSalesQuationByCustomerDetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -10300,6 +10113,193 @@ namespace SAD_DAL.Sales.SalesOrderViewTDSTableAdapters {
             }
             this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUnitID));
             SalesOrderViewTDS.TblSalesOrderUpdateDataTable dataTable = new SalesOrderViewTDS.TblSalesOrderUpdateDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprSalesQuationByCustomerDetTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprSalesQuationByCustomerDetTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprSalesQuationByCustomerDet";
+            tableMapping.ColumnMappings.Add("intid", "intid");
+            tableMapping.ColumnMappings.Add("strCode", "strCode");
+            tableMapping.ColumnMappings.Add("dteDate", "dteDate");
+            tableMapping.ColumnMappings.Add("intCustomerId", "intCustomerId");
+            tableMapping.ColumnMappings.Add("intSalesOffId", "intSalesOffId");
+            tableMapping.ColumnMappings.Add("intShipPointId", "intShipPointId");
+            tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
+            tableMapping.ColumnMappings.Add("numprice", "numprice");
+            tableMapping.ColumnMappings.Add("numqnt", "numqnt");
+            tableMapping.ColumnMappings.Add("montotal", "montotal");
+            tableMapping.ColumnMappings.Add("intprdid", "intprdid");
+            tableMapping.ColumnMappings.Add("prduom", "prduom");
+            tableMapping.ColumnMappings.Add("prdname", "prdname");
+            tableMapping.ColumnMappings.Add("strName", "strName");
+            tableMapping.ColumnMappings.Add("intCOAid", "intCOAid");
+            tableMapping.ColumnMappings.Add("intCurrencyId", "intCurrencyId");
+            tableMapping.ColumnMappings.Add("intCustomerType", "intCustomerType");
+            tableMapping.ColumnMappings.Add("strAddress", "strAddress");
+            tableMapping.ColumnMappings.Add("strPhone", "strPhone");
+            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
+            tableMapping.ColumnMappings.Add("ysnCompleted", "ysnCompleted");
+            tableMapping.ColumnMappings.Add("ysnActiveForRestQnt", "ysnActiveForRestQnt");
+            tableMapping.ColumnMappings.Add("strOtherInfo", "strOtherInfo");
+            tableMapping.ColumnMappings.Add("strTermsNCondition", "strTermsNCondition");
+            tableMapping.ColumnMappings.Add("dteInsertionTime", "dteInsertionTime");
+            tableMapping.ColumnMappings.Add("intInsertBy", "intInsertBy");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprSalesQuationByCustomerDet";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inquatationID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesOrderViewTDS.SprSalesQuationByCustomerDetDataTable GetDataSalesQuationByCustomerDet(global::System.Nullable<int> inquatationID) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((inquatationID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(inquatationID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            SalesOrderViewTDS.SprSalesQuationByCustomerDetDataTable dataTable = new SalesOrderViewTDS.SprSalesQuationByCustomerDetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

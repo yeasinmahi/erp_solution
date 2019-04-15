@@ -9,6 +9,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
 
@@ -323,14 +324,28 @@ namespace UI.SCM.Transfer
                     int intLocation = Convert.ToInt32(((Label)row.FindControl("lblLocationId")).Text);
                     string remarks = ((Label)row.FindControl("lblRemarks")).Text;
 
-                    dt = objTransfer.InventoryAdjustment(0, intWh, enroll, intItemId, quantity, rate, intLocation, remarks);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0][0] + "');", true);
-                    dgvStore.UnLoad();
-                    try
+                    DataTable unitDatatable = new WareHouseBll().GetUnitIdByWhId(intWh);
+                    if (unitDatatable.Rows.Count > 0)
                     {
-                        File.Delete(filePathForXML);
+                        int unitId = Convert.ToInt32(unitDatatable.Rows[0]["intUnitID"].ToString());
+                        dt = objTransfer.InventoryAdjustment(unitId, intWh, enroll, intItemId, quantity, rate, intLocation,
+                            remarks);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + dt.Rows[0][0] + "');", true);
+                        dgvStore.UnLoad();
+                        try
+                        {
+                            File.Delete(filePathForXML);
+                        }
+                        catch
+                        {
+                        }
                     }
-                    catch { }
+                    else
+                    {
+                        Toaster("Something error in getting unit Id",Common.TosterType.Error);
+                    }
+                    
                 }
                 txtItem.Text = String.Empty;
                 txtRemarks.Text = String.Empty;

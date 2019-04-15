@@ -447,7 +447,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:Button ID="btnitmspecification" runat="server" Text="Speci." OnClick="btnitmspecification_Click" BackColor="#ffff99" />
+                                    <asp:Button ID="btnitmspecification" runat="server" Text="Speci." Visible="false" OnClick="btnitmspecification_Click" BackColor="#ffff99" />
                                 </td>
 
                             </tr>
@@ -506,47 +506,6 @@
                                 </td>
                             </tr>
                         </table>
-
-                        <table style="width: 850px; background-color: #F0F0F0;">
-                            <tr>
-                                <td style="width: 80px;"></td>
-                                <td style="width: 100px;">
-                                    <asp:GridView ID="grdvtexbox" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="100%" ForeColor="#333333" GridLines="Both" Font-Size="12px">
-                                        <Columns>
-                                            <asp:BoundField DataField="strattr" HeaderText="Attribute" SortExpression="strName" ItemStyle-HorizontalAlign="Center">
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:BoundField>
-
-                                            <asp:TemplateField HeaderText="Value" HeaderStyle-HorizontalAlign="Center" SortExpression="Quantity">
-                                                <ItemTemplate>
-                                                    <asp:TextBox ID="txtquantity" runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
-                                                </ItemTemplate>
-
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="intattrid" HeaderText="ID" SortExpression="strName" ItemStyle-HorizontalAlign="Center">
-                                                <ItemStyle HorizontalAlign="Center" />
-                                            </asp:BoundField>
-
-                                        </Columns>
-
-                                    </asp:GridView>
-                                    <asp:GridView ID="gridView" runat="server">
-
-                                    </asp:GridView>
-                                </td>
-                                <td align="right" style="color: Blue;"></td>
-                                <td style="width: 20px;">
-                                    <asp:Label ID="ddlSide" runat="server" Text="Side"></asp:Label>
-
-                                </td>
-                                <td style="width: 30px;">
-                                    <asp:DropDownList ID="ddldrop" runat="server" DataTextField="strattr" DataValueField="intattrid"></asp:DropDownList>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-
-
 
 
                         <table style="width: 850px; background-color: #C0C0C0;">
@@ -662,6 +621,70 @@
                                     <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" ValidationGroup="valComAdd" />
                                 </td>
                             </tr>
+                            <tr  style="background-color: #B0B0B0;">
+                                <td colspan="6">
+                                    <asp:Panel runat="server" ID="panel">
+                                        <table border="1">
+                                            <tr>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl1" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn1" />
+                                                    <asp:TextBox runat="server" ID="txt1" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom1" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl2" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn2" />
+                                                    <asp:TextBox runat="server" ID="txt2" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom2" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl3" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn3" />
+                                                    <asp:TextBox runat="server" ID="txt3" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom3" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl4" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn4" />
+                                                    <asp:TextBox runat="server" ID="txt4" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom4" Visible="False"></asp:Label>
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="txtlbl5" Visible="False"></asp:Label>
+                                                    <asp:HiddenField runat="server" ID="hdn5" />
+                                                    <asp:TextBox runat="server" ID="txt5" Visible="False"></asp:TextBox>
+                                                    <asp:Label runat="server" ID="txtUom5" Visible="False"></asp:Label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl1" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl1" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl2" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl2" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl3" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl3" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl4" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl4" Visible="False" />
+                                                </td>
+                                                <td>
+                                                    <asp:Label runat="server" ID="ddllbl5" Visible="False"></asp:Label>
+                                                    <asp:DropDownList runat="server" ID="ddl5" Visible="False" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </asp:Panel>
+                                </td>
+
+                            </tr>
+
                         </table>
                     </div>
                 </asp:Panel>
@@ -674,12 +697,16 @@
                     <tr>
                         <td colspan="3">
                             <asp:GridView SkinID="sknGrid1" ID="GridView1" runat="server" DataSourceID="XmlDataSource1"
-                                AutoGenerateColumns="False" CaptionAlign="Top" Caption="" ShowFooter="True"
+                                AutoGenerateColumns="False" CaptionAlign="Top" ShowFooter="True"
                                 OnDataBound="GridView1_DataBound" OnRowDeleting="GridView1_RowDeleting"
                                 OnRowCancelingEdit="GridView1_RowCancelingEdit"
                                 OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
                                 <Columns>
-                                    <asp:BoundField DataField="Pid" HeaderText="Pid" Visible="false" SortExpression="Pid" />
+                                    <asp:TemplateField HeaderText="Pid" SortExpression="Pid" Visible="False">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblPid" runat="server" Text='<%# Bind("Pid") %>'></asp:Label>
+                                        </ItemTemplate>
+                                    </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Product Name" SortExpression="PName">
                                         <ItemTemplate>
                                             <asp:Label ID="Label1" runat="server" Text='<%# Bind("PName") %>'></asp:Label>
@@ -716,7 +743,7 @@
 
 
 
-
+                                    <asp:BoundField DataField="ExtName" HeaderText="Specification" />
 
 
                                     <asp:BoundField DataField="UomTxt" HeaderText="UomTxt" ItemStyle-CssClass="hide"
@@ -770,7 +797,7 @@
                                 Text="Cancel" />
                         </td>
                         <td align="left">
-                            <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
+                            <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Quotation"
                                 OnClick="btnSubmit_Click" />
                             <asp:Label ID="lblError" runat="server" ForeColor="Maroon"></asp:Label>
                         </td>

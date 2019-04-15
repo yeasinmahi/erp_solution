@@ -413,7 +413,7 @@ namespace SAD_BLL.Sales
             }
             catch { return new DataTable(); }
         }
-        public void AddDelivaryQuation(string xmlStr, string userId, string unitId
+        public void AddDelivaryQuation(string xmlStr, string xmlspecification, string userId, string unitId
            , DateTime date, DateTime reqDOdate
           ,  string customerId, string customerType, string narration, string address, string distributionPointId
            , string priceVar, string logisticPriceVar, bool isLogistic
@@ -448,7 +448,7 @@ namespace SAD_BLL.Sales
 
             SprSalesQuatationTableAdapter ta = new SprSalesQuatationTableAdapter();
 
-            ta.GetDataSalesQuatation(xmlStr, ref id, int.Parse(userId), int.Parse(unitId), date, reqDOdate
+            ta.GetDataSalesQuatation(xmlStr, xmlspecification, ref id, int.Parse(userId), int.Parse(unitId), date, reqDOdate
                 , int.Parse(customerType), int.Parse(customerId)
                 , distributionPointId_, narration, address
 
