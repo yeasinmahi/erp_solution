@@ -101,7 +101,7 @@ namespace UI.SCM
                 {
                     try { File.Delete(filePathForXML); File.Delete(filePathForText); } catch { }
 
-                    string receiveBy = txtReceiveBy.Text;
+                    string receiveBy = txtReceiveBy.Text.Trim();
                     string reqId = Request.QueryString["ReqId"];
                     string reqCode = lblReqCode.Text;
                     string deptId = Request.QueryString["DeptId"];
