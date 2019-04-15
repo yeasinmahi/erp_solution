@@ -541,10 +541,13 @@ namespace HR_BLL.Global
 
         public string[] GetItemLists(string whid, string prefix)
         {
-            tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[Convert.ToInt32(whid)];
-            SprRequesitionAutosearchTableAdapter adpCOA = new SprRequesitionAutosearchTableAdapter();
-            tableCusts[e] = adpCOA.WHAutoSearchGetData(Convert.ToInt32(whid));
-
+            if (tableCusts == null || tableCusts.Length < 1)
+            {
+                tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[Convert.ToInt32(whid)];
+                SprRequesitionAutosearchTableAdapter adpCOA = new SprRequesitionAutosearchTableAdapter();
+                tableCusts[e] = adpCOA.WHAutoSearchGetData(Convert.ToInt32(whid));
+            }
+            
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >=3)
 

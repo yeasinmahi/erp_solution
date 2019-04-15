@@ -1479,6 +1479,8 @@
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
+    <Content Include="SCM\IssueItemByRequesitionDetalisOOP.aspx" />
+    <Content Include="SCM\IssueItemByRequesitionOOP.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
@@ -7876,6 +7878,20 @@
     </Compile>
     <Compile Include="SCM\IssueItemByRequesitionDetalis.aspx.designer.cs">
       <DependentUpon>IssueItemByRequesitionDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisOOP.aspx.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisOOP.aspx.designer.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisOOP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionOOP.aspx.cs">
+      <DependentUpon>IssueItemByRequesitionOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionOOP.aspx.designer.cs">
+      <DependentUpon>IssueItemByRequesitionOOP.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\IssueReturn.aspx.cs">
       <DependentUpon>IssueReturn.aspx</DependentUpon>
