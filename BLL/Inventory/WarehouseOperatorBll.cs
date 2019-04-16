@@ -21,17 +21,22 @@ namespace BLL.Inventory
                 return new DataTable();
             }
         }
-        //public bool IsSuperUser(int enroll)
-        //{
-        //    try
-        //    {
-        //        _dt = GetWarehouseByEnroll(enroll);
-        //        DataRow row = _dt.GetRow("", 0);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return false;
-        //    }
-        //}
+        public bool IsSuperUser(int enroll)
+        {
+            try
+            {
+                _dt = GetWarehouseByEnroll(enroll);
+                DataRow row = _dt.GetRow("ysnSU", true);
+                if (row != null)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
     }
 }

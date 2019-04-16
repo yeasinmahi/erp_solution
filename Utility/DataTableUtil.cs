@@ -41,6 +41,16 @@ namespace Utility
                 var strValue = Convert.ToString(value);
                 query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
             }
+            else if (typeof(T) == typeof(bool))
+            {
+                var strValue = Convert.ToString(value);
+                query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
+            }
+            else if (typeof(T) == typeof(DateTime))
+            {
+                var strValue = DateTime.Parse(value.ToString());
+                query = dt.AsEnumerable().Where(r => r.Field<DateTime>(columnName) == strValue);
+            }
             return query;
         }
         public static DataRow GetRow<T>(this DataTable dt, string columnName, T value)
@@ -49,16 +59,31 @@ namespace Utility
             if (typeof(T) == typeof(int))
             {
                 var intValue = Convert.ToInt32(value);
-                row = (from DataRow dr in dt.Rows
-                    where (int)dr[columnName] == intValue
-                       select dr).FirstOrDefault();
+                row = dt.AsEnumerable().SingleOrDefault(x=>x.Field<int>(columnName) == intValue);
+                //row =  (from DataRow dr in dt.Rows
+                //    where dr[columnName]!=null && (int)dr[columnName] == intValue
+                //       select dr).FirstOrDefault();
             }
             else if (typeof(T) == typeof(string))
             {
                 var strValue = Convert.ToString(value);
                 row  = (from DataRow dr in dt.Rows
-                    where (string)dr[columnName] == strValue
+                    where dr[columnName] != null && (string)dr[columnName] == strValue
                              select dr).FirstOrDefault();
+            }
+            else if (typeof(T) == typeof(bool))
+            {
+                var strValue = Convert.ToBoolean(value);
+                row = (from DataRow dr in dt.Rows
+                    where dr[columnName] != null && (bool)dr[columnName] == strValue
+                       select dr).FirstOrDefault();
+            }
+            else if (typeof(T) == typeof(DateTime))
+            {
+                var strValue = DateTime.Parse(value.ToString());
+                row = (from DataRow dr in dt.Rows
+                    where dr[columnName] != null && (DateTime)dr[columnName] == strValue
+                    select dr).FirstOrDefault();
             }
             return row;
         }
