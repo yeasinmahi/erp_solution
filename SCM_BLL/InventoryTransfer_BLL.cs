@@ -340,7 +340,7 @@ namespace SCM_BLL
             try
             {
                 sprFGReceiveTableAdapter adp = new sprFGReceiveTableAdapter();
-                return adp.GetFGReceiveData(whid, FromDate, ToDate, intType, autoID, itemID, transactionDate,
+                return adp.GetData(whid, FromDate, ToDate, intType, autoID, itemID, transactionDate,
                     transactionQTY, productID);
             }
             catch (Exception exception)

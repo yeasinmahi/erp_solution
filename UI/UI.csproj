@@ -200,6 +200,7 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
@@ -1315,6 +1316,8 @@
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
+    <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
+    <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
@@ -1333,6 +1336,7 @@
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\NBR_Sales.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
@@ -2022,6 +2026,13 @@
     </Compile>
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.cs">
+      <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.designer.cs">
+      <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\SubledgerDetalis.aspx.cs">
       <DependentUpon>SubledgerDetalis.aspx</DependentUpon>
@@ -6745,6 +6756,20 @@
     <Compile Include="SAD\Sales\Farmer_Setup.aspx.designer.cs">
       <DependentUpon>Farmer_Setup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\NBR_DOEntry.aspx.cs">
+      <DependentUpon>NBR_DOEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_DOEntry.aspx.designer.cs">
+      <DependentUpon>NBR_DOEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.cs">
+      <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.designer.cs">
+      <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.cs">
       <DependentUpon>Area_vs_Item.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6870,6 +6895,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.designer.cs">
       <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.cs">
+      <DependentUpon>NBR_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.designer.cs">
+      <DependentUpon>NBR_Sales.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>

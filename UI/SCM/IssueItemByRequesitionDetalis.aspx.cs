@@ -160,8 +160,6 @@ namespace UI.SCM
                         {
                             Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
                         }
-                        
-
                     }
 
                     //XmlDocument doc = new XmlDocument();

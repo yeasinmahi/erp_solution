@@ -251,6 +251,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LedgerTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Ledger\ReportBuild.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportBuild.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipLogTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -687,6 +692,17 @@
     </None>
     <None Include="Accounts\Ledger\LedgerTDS.xss">
       <DependentUpon>LedgerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Ledger\ReportBuild.xsc">
+      <DependentUpon>ReportBuild.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Ledger\ReportBuild.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportBuild.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Ledger\ReportBuild.xss">
+      <DependentUpon>ReportBuild.xsd</DependentUpon>
     </None>
     <None Include="Accounts\MDSlip\MDSlipLogTDS.xsc">
       <DependentUpon>MDSlipLogTDS.xsd</DependentUpon>
