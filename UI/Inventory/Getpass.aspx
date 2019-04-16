@@ -67,7 +67,8 @@
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"></cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
                 <div class="leaveApplication_container">
-                    <div class="tabs_container">Get Pass Entry :
+                    <div class="tabs_container">
+                        Get Pass Entry :
                         <hr />
                     </div>
                     <table border="0" style="width: Auto">
@@ -116,7 +117,7 @@
                             <td colspan="3">
                                 <asp:TextBox ID="txtItem" runat="server" Width="477px" CssClass="txtBox"></asp:TextBox></td>
                         </tr>
-                        
+
                         <tr>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Driver/Receiver Name:"></asp:Label>
@@ -146,8 +147,11 @@
                                 <asp:Label ID="lblremarks" CssClass="lbl" runat="server" Text="Remarks :"></asp:Label>
                                 <span style="color: red; font-size: 14px; text-align: left">*</span>
                             </td>
-                            <td colspan="3">
-                                <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox" TextMode="MultiLine" Width="477px"></asp:TextBox></td>
+                            <td>
+                                <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox" TextMode="MultiLine" Width="235px"></asp:TextBox></td>
+                             <td style="text-align: right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Reason:"></asp:Label></td>
+                            <td><asp:DropDownList ID="ddlReason" runat="server" CssClass="txtBox"></asp:DropDownList></td>
+
                         </tr>
 
                         <tr>
@@ -162,7 +166,7 @@
                                 <asp:TextBox ID="txtUom" runat="server" CssClass="txtBox" Width="50px"></asp:TextBox>
                                 <asp:CheckBox ID="chkRtn" runat="server" Text="Returnable" AutoPostBack="false" />
                             </td>
-                            <td style="text-align: right;" >
+                            <td style="text-align: right;">
                                 <asp:Button ID="btnAdd" runat="server" Text="ADD" Font-Bold="true"
                                     OnClientClick="ConfirmAll()" OnClick="btnAdd_Click"></asp:Button><asp:HiddenField ID="hdnconfirm" runat="server" />
                             </td>
@@ -179,45 +183,53 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Date" SortExpression="dt">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldt" runat="server" Text='<%# Bind("dt") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lbldt" runat="server" Text='<%# Bind("dt") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="60px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Description" SortExpression="item">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldesc" runat="server" Text='<%# Bind("item") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lbldesc" runat="server" Text='<%# Bind("item") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="150px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Quantity" SortExpression="quantity">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblquantity" runat="server" Text='<%# Eval("quantity","{0:n}") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center"/>
+                                                <asp:Label ID="lblquantity" runat="server" Text='<%# Eval("quantity","{0:n}") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Uom" SortExpression="uom">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblUom" runat="server" Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblUom" runat="server" Text='<%# Bind("uom") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Driver Name" SortExpression="uom">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDriverName" runat="server" Text='<%# Bind("driverName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblDriverName" runat="server" Text='<%# Bind("driverName") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Contact" SortExpression="contactNumber">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblContact" runat="server" Text='<%# Bind("contactNumber") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center"/>
+                                                <asp:Label ID="lblContact" runat="server" Text='<%# Bind("contactNumber") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Vehicle NO." SortExpression="vehicleNumber">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblVehicle" runat="server" Text='<%# Bind("vehicleNumber") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblVehicle" runat="server" Text='<%# Bind("vehicleNumber") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Remarks" SortExpression="remarks">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblremarks" runat="server" Text='<%# Bind("remarks") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblremarks" runat="server" Text='<%# Bind("remarks") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" />
                                         </asp:TemplateField>
 
@@ -235,7 +247,8 @@
                     </table>
                 </div>
                 <div class="leaveSummary_container">
-                    <div class="tabs_container">Gatepass Summary :<hr />
+                    <div class="tabs_container">
+                        Gatepass Summary :<hr />
                     </div>
                     <asp:GridView ID="dgvlist" runat="server" AutoGenerateColumns="False" Font-Size="11px" BackColor="White" BorderStyle="Solid"
                         BorderWidth="0px" CellPadding="1" ForeColor="Black" GridLines="Vertical" AllowPaging="false">
