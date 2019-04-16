@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using DAL.Inventory.WarehouseOperatorTdsTableAdapters;
+using Utility;
 
 namespace BLL.Inventory
 {
@@ -24,10 +25,8 @@ namespace BLL.Inventory
         //{
         //    try
         //    {
-        //        _dt= GetWarehouseByEnroll(enroll);
-        //        DataRow row = (from DataRow dr in _dt.Rows
-        //            where (string)dr["CountryName"] == countryName
-        //            select dr).FirstOrDefault();
+        //        _dt = GetWarehouseByEnroll(enroll);
+        //        DataRow row = _dt.GetRow("", 0);
         //    }
         //    catch (Exception ex)
         //    {

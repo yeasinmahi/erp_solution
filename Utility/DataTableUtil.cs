@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Reflection;
+#pragma warning disable 168
 
 namespace Utility
 {
@@ -41,6 +42,25 @@ namespace Utility
                 query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
             }
             return query;
+        }
+        public static DataRow GetRow<T>(this DataTable dt, string columnName, T value)
+        {
+            DataRow row = null;
+            if (typeof(T) == typeof(int))
+            {
+                var intValue = Convert.ToInt32(value);
+                row = (from DataRow dr in dt.Rows
+                    where (int)dr[columnName] == intValue
+                       select dr).FirstOrDefault();
+            }
+            else if (typeof(T) == typeof(string))
+            {
+                var strValue = Convert.ToString(value);
+                row  = (from DataRow dr in dt.Rows
+                    where (string)dr[columnName] == strValue
+                             select dr).FirstOrDefault();
+            }
+            return row;
         }
         public static bool RemoveRow<T>(this DataTable dt, string columnName, T value)
         {
