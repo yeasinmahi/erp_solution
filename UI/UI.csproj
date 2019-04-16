@@ -1522,6 +1522,7 @@
     <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\Received_against_Production.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
+    <Content Include="SCM\ReceiveMrrOOP.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
     <Content Include="SCM\SupplierAccountInfoChange.aspx" />
@@ -8183,6 +8184,13 @@
     </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.designer.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ReceiveMrrOOP.aspx.cs">
+      <DependentUpon>ReceiveMrrOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ReceiveMrrOOP.aspx.designer.cs">
+      <DependentUpon>ReceiveMrrOOP.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ReceiveWithoutPO.aspx.cs">
       <DependentUpon>ReceiveWithoutPO.aspx</DependentUpon>
