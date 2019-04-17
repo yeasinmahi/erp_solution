@@ -26,12 +26,12 @@ namespace UI.Inventory
                 txtFromAddress.Text = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString(); txtAddress.Enabled = true;
                 try { File.Delete(xmlpath); btnSubmit.Visible = false; }
                 catch { }
-                loadReason();
+                LoadReason();
 
             }
         }
 
-        public void loadReason()
+        public void LoadReason()
         {
             DataTable dt = new GatePassbll().GatepassReasonTable();
             ddlReason.LoadWithSelect(dt, "intID", "strGatePassReason");

@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="DataTableUtil.cs" />
     <Compile Include="DateTimeConverter.cs" />
     <Compile Include="Downloader.cs" />
     <Compile Include="FileHelper.cs" />

@@ -405,6 +405,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Supplier.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\WarehouseOperatorTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\WarehouseTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1065,6 +1070,17 @@
     </None>
     <None Include="DropDown\Supplier.xss">
       <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\WarehouseOperatorTds.xsc">
+      <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\WarehouseOperatorTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WarehouseOperatorTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\WarehouseOperatorTds.xss">
+      <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\WarehouseTds.xsc">
       <DependentUpon>WarehouseTds.xsd</DependentUpon>
