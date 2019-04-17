@@ -16,6 +16,10 @@ namespace UI.SAD.Sales.Report
 {
     public partial class NBR_Sales : BasePage
     {
+
+        string strKey;
+        char[] delimiterChars = { '/', ']', ';', '-', '_', '.' }; string[] arrayKey;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -120,10 +124,22 @@ namespace UI.SAD.Sales.Report
                 frm = txtFrom.Text + " " + ddlFHour.SelectedValue;
                 to = txtTo.Text + " " + ddlTHour.SelectedValue;
 
+                //string fromDate = txtFrom.Text;
+
+
+
+                //DateTime fd = DateTime.Parse(fromDate);
+                //string toDate = Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
+                //DateTime fDate, tDate;
+
+
+
                 SalesByCusPro st = new SalesByCusPro();
                 if (rdoType.SelectedIndex == 0 || rdoType.SelectedIndex == 1 || rdoType.SelectedIndex == 2)
                 {
-                 oDTReportData = st.GetStatementByCustomerProduct(frm, to, cus, pro
+                    
+
+                    oDTReportData = st.GetStatementByCustomerProduct(frm, to, cus, pro
                         , Session[SessionParams.UNIT_ID].ToString(), ddlUnit.SelectedValue, ddlCusType.SelectedValue
                         , ddlSo.SelectedValue, bool.Parse(rdoPromo.SelectedValue), ref unitName, ref unitAddress);
                     if(oDTReportData.Rows.Count>0)
@@ -138,17 +154,19 @@ namespace UI.SAD.Sales.Report
                         }
                         if (rdoType.SelectedIndex == 0)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/Sales" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                            // fromDate.ToString("YYYY-MM-dd") + "&toDate=" + toDate.ToString("YYYY-MM-dd")
+
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/Sales" + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                         else if (rdoType.SelectedIndex == 1)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesP" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesP" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                         else if (rdoType.SelectedIndex == 2)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesS" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesS" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                     }
@@ -176,7 +194,7 @@ namespace UI.SAD.Sales.Report
                             pro = "0";
                         }
 
-                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + DateTime.Parse(txtFrom.Text) + "&toDate=" + DateTime.Parse(txtTo.Text) + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                     }
                     else

@@ -5,6 +5,7 @@ using HR_DAL.Global.AutoSearch_TDSTableAdapters;
 using System.Data;
 using HR_DAL.Global.InventoryTDSTableAdapters;
 using HR_DAL.Global;
+using System.Collections;
 
 namespace HR_BLL.Global
 {
@@ -18,7 +19,7 @@ namespace HR_BLL.Global
         private static InventoryTDS.EmpListDataTable[] tblEmpListForStroreReq = null;
         private static AutoSearch_TDS.TblEmployeeByJobstationDataTable[] tblempbyJob = null;
         private static InventoryTDS.QryItemListDataTable[] qryItemLists = null;
-
+        private static Hashtable ht = new Hashtable();
         int e;
         private static AutoSearch_TDS.TblEmployeeSearchDataTable[] tblEmpListForGlobal = null;
 
@@ -530,26 +531,54 @@ namespace HR_BLL.Global
 
             }
 
+
             else
             {
                 return null;
             }
 
+
         }
+        private void Inatialize(int intwh)
+        {
+
+            if (tableCusts == null)
+            {
+                DataWearHouse unt = new DataWearHouse();
+                InventoryTDS.TblWearHouseDataTable tblUnit = unt.GetUnits();
+                ht = new Hashtable();
+                tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[tblUnit.Rows.Count];
+                SprRequesitionAutosearchTableAdapter adpCOA = new SprRequesitionAutosearchTableAdapter();
+
+                for (int i = 0; i < tblUnit.Rows.Count; i++)
+                {
+
+                    int untid = tblUnit[i].intWHID;
+                    {
+                        ht.Add(tblUnit[i].intWHID.ToString(), i);
+                        tableCusts[i] = adpCOA.WHAutoSearchGetData(tblUnit[i].intWHID);
+                    }
+                }
+            }
+        }
+
 
         public string[] GetItemLists(string whid, string prefix)
         {
-            tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[Convert.ToInt32(whid)];
-            SprRequesitionAutosearchTableAdapter adpCOA = new SprRequesitionAutosearchTableAdapter();
-            tableCusts[e] = adpCOA.WHAutoSearchGetData(Convert.ToInt32(whid));
-           
+            //if (tableCusts == null || tableCusts.Length < 1)
+            //{
+            //    tableCusts = new InventoryTDS.SprRequesitionAutosearchDataTable[Convert.ToInt32(whid)];
+            //    SprRequesitionAutosearchTableAdapter adpCOA = new SprRequesitionAutosearchTableAdapter();
+            //    tableCusts[e] = adpCOA.WHAutoSearchGetData(Convert.ToInt32(whid));
+            //}
+            Inatialize(Convert.ToInt32(whid));
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >=3)
 
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableCusts[e]//Convert.ToInt32(ht[unitID])                           
+                    var rows = from tmp in tableCusts[Convert.ToInt32(ht[whid])]                           
                                orderby tmp.strItem
                                select tmp;
                     if (rows.Any())
@@ -561,7 +590,7 @@ namespace HR_BLL.Global
                 {
                     try
                     {
-                        var rows = from tmp in tableCusts[e]  //[Convert.ToInt32(ht[WHID])]
+                        var rows = from tmp in tableCusts[Convert.ToInt32(ht[whid])]  //[Convert.ToInt32(ht[WHID])]
                                    where tmp.strItem.ToLower().Contains(prefix) || tmp.ItemNumber.ToLower().Contains(prefix)
                                    orderby tmp.strItem
                                    select tmp;
@@ -742,5 +771,13 @@ namespace HR_BLL.Global
 
         }
 
+    }
+}
+class DataWearHouse
+{
+    public InventoryTDS.TblWearHouseDataTable GetUnits()
+    {
+        TblWearHouseTableAdapter ta = new TblWearHouseTableAdapter();
+        return ta.GetWHData();
     }
 }

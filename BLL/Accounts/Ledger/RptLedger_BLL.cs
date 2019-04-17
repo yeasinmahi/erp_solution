@@ -11,6 +11,8 @@ namespace BLL.Accounts.Ledger
 {
   public  class RptLedger_BLL
     {
+        
+
         public ReportBuild.SprAccountsLedgerByAccountDataTable GetLedgerByID(string fromDate, string toDate, string coaID, string userID, string unitID, ref string accountName, ref string accountCode, ref string unitName, ref string unitAddress, ref bool? isAssetOrLiabilities)
         {
             DateTime? frm = null, to = null;
