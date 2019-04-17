@@ -120,7 +120,7 @@
                         </tr>
                     </table>
                     <table style="border-color: black; width: 700px; -ms-border-radius: 10px; border-radius: 10px; border: 1px solid black; border-collapse: unset; padding: 10px;">
-                        <tr>
+                        <tr style="padding-left:10px;" >
                             <td style="text-align: left; width: 10px">Supplier:</td>
                             <td style="text-align: left">Ship TO</td>
                             <td style="text-align: left;">Bill To</td>
@@ -163,7 +163,7 @@
                             <td style="text-align: center"> <asp:Label ID="Label3" forecolor="#bbbbbb" Width="200px" text="PR No." runat="server"></asp:Label> </td>
 
                             <td style="text-align: left">
-                                <asp:Label ID="lblIndentNo" Font-Size="Small" forecolor="#bbbbbb" Width="270px" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblIndentNo" Font-Size="Small" forecolor="#bbbbbb" Width="200px" runat="server"></asp:Label></td>
                         </tr>
                     </table>
                     <table style="width: 770px">
@@ -291,7 +291,7 @@
                                 <asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >Payment days after MRR (days)</td>
+                            <td >Payment days after MRR</td>
                             <td >
                                 <asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
                             <td >Grand Total</td>
