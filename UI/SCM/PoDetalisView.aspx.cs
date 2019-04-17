@@ -1,6 +1,7 @@
 ﻿using EmailService;
 using Flogging.Core;
 using GLOBAL_BLL;
+using SCM_BLL;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -20,6 +21,8 @@ namespace UI.SCM
         private int PoNo, enroll, intunit;
         private DataTable dt = new DataTable(); private string filePathForXML;
 
+        PoGenerate_BLL obj = new PoGenerate_BLL();
+
         private SeriLog log = new SeriLog();
         private string location = "SCM";
         private string start = "starting SCM\\PoDetalisView";
@@ -37,6 +40,12 @@ namespace UI.SCM
                 PoNo = int.Parse(Session["pono"].ToString());
 
                 PoViewDataBind(PoNo);
+
+                dt = obj.GetIndentbyPO(PoNo);
+                if (dt.Rows.Count > 0)
+                {
+                    lblIndentNo.Text = dt.Rows[0]["intIndentID"].ToString();
+                }
             }
         }
 
@@ -81,7 +90,7 @@ namespace UI.SCM
                     lblOthersCharge.Text = dt.Rows[0]["monPacking"].ToString();
                     lblGrossDis.Text = dt.Rows[0]["monDiscount"].ToString();
                     lblComission.Text = dt.Rows[0]["monCommission"].ToString();
-                    lblPrepareBy.Text = "Prepared By: " + dt.Rows[0]["strEmployeeName"] + "," + dt.Rows[0]["strIssuerDesign"] + "," + dt.Rows[0]["strIssuerDept"];
+                    lblPrepareBy.Text = "e-Prepared By: " + dt.Rows[0]["strEmployeeName"] + "," + dt.Rows[0]["strIssuerDesign"] + "," + dt.Rows[0]["strIssuerDept"];
                     lblApprovedBy.Text = "e-Approved By: " + dt.Rows[0]["strApproveBy"] + "," + dt.Rows[0]["strApprDesign"] + "," + dt.Rows[0]["strApprDept"];
 
                     //decimal grandtotal = decimal.Parse(dt.Rows[0]["monTotal"].ToString())
@@ -165,6 +174,8 @@ namespace UI.SCM
             tracker.Stop();
         }
 
+       
+
         protected void btnDownload_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnDownload_Click", null);
@@ -203,6 +214,9 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+
+
+        
 
         protected void btnEmail_OnClick(object sender, EventArgs e)
         {

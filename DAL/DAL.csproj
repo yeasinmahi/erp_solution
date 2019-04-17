@@ -410,6 +410,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\WarehouseTds.cs">
+      <DependentUpon>WarehouseTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\WarehouseTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
