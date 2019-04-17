@@ -100,8 +100,8 @@ namespace DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql3;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID" +
-            "=sqlrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=" +
+            "sqlrw;Password=RWsql@123")]
         public string ERP_AccountsConnectionStringEsql3 {
             get {
                 return ((string)(this["ERP_AccountsConnectionStringEsql3"]));
