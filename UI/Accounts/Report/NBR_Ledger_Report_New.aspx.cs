@@ -200,7 +200,7 @@ namespace UI.Accounts.Report
 
                 if (rdoCodeRange.SelectedValue == "one" && txtCOA.Text.Trim() != "")
                 {
-                    LedgerC sl = new LedgerC();
+                    RptLedger_BLL sl = new RptLedger_BLL();
                     oDTReportData = sl.GetLedgerByCode(txtFrom.Text, txtTo.Text, temp[temp.Length - 1], Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue, ref accountName, ref accountCode, ref unitName, ref unitAddress, ref isAssetOrLiabilities);
                     PrepareTableLegSub(oDTReportData, accountName, accountCode, unitName, unitAddress, isAssetOrLiabilities);
                 }

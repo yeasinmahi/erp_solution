@@ -151,6 +151,7 @@
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
+    <Compile Include="Inventory\WarehouseOperatorBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

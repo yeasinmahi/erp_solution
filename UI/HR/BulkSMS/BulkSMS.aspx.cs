@@ -65,7 +65,7 @@ namespace UI.HR.BulkSMS
 
             string smstxt = txtSMS.Text.ToString();
             string strUserName = Convert.ToString("Akijadmin".ToString());
-            string strPassword = Convert.ToString("AkijFood@786".ToString());
+            string strPassword = Convert.ToString("AkijFood@123".ToString());
             string strMaskingCli = Convert.ToString("AKIJ GROUP".ToString());
             string sms = Convert.ToString(txtSMS.Text.ToString());
             if (smstxt == "")
