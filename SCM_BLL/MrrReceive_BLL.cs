@@ -1,4 +1,5 @@
-﻿using SCM_DAL.MrrReceiveTDSTableAdapters;
+﻿using SCM_DAL.ItemTDSTableAdapters;
+using SCM_DAL.MrrReceiveTDSTableAdapters;
 using System;
 using System.Data;
 
@@ -77,6 +78,19 @@ namespace SCM_BLL
             try
             { return adp.GetPO(intPO); }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
+        public DataTable GetItemList(int intWH)
+        {
+            qryItemListNewTableAdapter adp = new qryItemListNewTableAdapter();
+            try
+            {
+                return adp.GetItemList(intWH);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
         }
     }
 }
