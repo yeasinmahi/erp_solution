@@ -92,10 +92,6 @@
             height: 5px;
         }
 
-        .auto-style3 {
-            width: 86px;
-        }
-
         .auto-style4 {
             width: 138px;
         }
@@ -136,37 +132,50 @@
                         </tr>
                         <tr>
                             <td class="" style="text-align: right;">
-                                <asp:Label ID="Label8" CssClass="lbl" runat="server" Text="Job Station : "></asp:Label></td>
-                            <td class="">
-                                <asp:DropDownList ID="ddlJobStation" CssClass="ddList" Height="24px" Font-Bold="False" ForeColor="Black" Font-Size="11px" runat="server"></asp:DropDownList>
+                                <asp:Label ID="lblD" runat="server" Text="Download Excel Format:" CssClass="lbl"></asp:Label>
+                                <asp:Button ID="btnDownload" runat="server" class="myButton" Text="Download Excel Format" Width="100px"/>
                             </td>
+                            <td class="">
+                                &nbsp;</td>
 
 
                             <td class="auto-style4" style="text-align: right;">
-                                <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Employee ID: "></asp:Label></td>
+                                <%--<asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Employee ID: " Visible="false"></asp:Label>--%>
+                            </td>
                             <td class="tdheight">
-                                <asp:TextBox ID="txtEmp" runat="server" CssClass="txtBox1"></asp:TextBox></td>
+                                <%--<asp:TextBox ID="txtEmp" runat="server" CssClass="txtBox1" Visible="false"></asp:TextBox>--%>
+                            </td>
                             <td class="" style="text-align: right;">
-                                <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Width="100px" OnClientClick="" OnClick="btnShow_Click" /></td>
+                                <%--<asp:Button ID="btnShow" runat="server" Visible="false" class="myButton" Text="Show" Width="100px" OnClientClick="" OnClick="btnShow_Click" />--%></td>
                         </tr>
-                        <tr>
+                       <%-- <tr>
                             <td colspan="4" style="height: 5px;"></td>
-                        </tr>
+                        </tr>--%>
                         <tr>
 
                             <td class="" style="text-align: right;">
-                                <asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Date : "></asp:Label></td>
+                                <%--<asp:Label ID="Label11" CssClass="lbl" runat="server" Text="Date : "></asp:Label>--%>
+                                <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Job Station : "></asp:Label>
+                            </td>
                             <td class="">
-                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1"></asp:TextBox>
-                                <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
+                                <%--<asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1"></asp:TextBox>
+                                <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>--%>
+                                <asp:DropDownList ID="ddlJobStation" runat="server" CssClass="ddList" Font-Bold="False" Font-Size="11px" ForeColor="Black" Height="24px">
+                                </asp:DropDownList>
                             </td>
 
                             <td style="text-align: right;" class="auto-style4">
-                                <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Amount : "></asp:Label></td>
+                                <%--<asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Amount : "></asp:Label>--%>
+                                <asp:Label ID="Label11" runat="server" CssClass="lbl" Text="Date : "></asp:Label>
+                            </td>
                             <td class="tdheight">
-                                <asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1"></asp:TextBox></td>
+                                <%--<asp:TextBox ID="txtAmount" runat="server" CssClass="txtBox1" Visible="false"></asp:TextBox>--%>
+                                <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox1"></asp:TextBox>
+                                <cc1:CalendarExtender ID="reqDate" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate">
+                                </cc1:CalendarExtender>
+                            </td>
                             <td class="auto-style1">
-                                <asp:Button ID="btnSubmit" runat="server" class="myButton" Text="Submit" Width="100px" OnClientClick="check()" OnClick="btnSubmit_Click" /></td>
+                                <%--<asp:Button ID="btnSubmit" runat="server" class="myButton" Visible="false" Text="Submit" Width="100px" OnClientClick="check()" OnClick="btnSubmit_Click" />--%></td>
 
                         </tr>
                         <tr>
