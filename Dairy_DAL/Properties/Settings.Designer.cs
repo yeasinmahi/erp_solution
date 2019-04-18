@@ -12,7 +12,7 @@ namespace Dairy_DAL.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,8 @@ namespace Dairy_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=sq" +
-            "lrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=ap" +
+            "srw;Password=SalAg@3221#")]
         public string ERP_GlobalConnectionString {
             get {
                 return ((string)(this["ERP_GlobalConnectionString"]));
@@ -37,8 +37,8 @@ namespace Dairy_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;Persist Security Info=True;User ID=sql" +
-            "rw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;Persist Security Info=True;User ID=aps" +
+            "rw;Password=SalAg@3221#")]
         public string AG_GlobalConnectionString {
             get {
                 return ((string)(this["AG_GlobalConnectionString"]));
@@ -49,7 +49,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_DairyMilk;Persist Security Info=True;User ID=" +
-            "sqlrw;Password=RWsql@123")]
+            "aprw;Password=SalAg@3221#")]
         public string AG_DairyMilkConnectionString {
             get {
                 return ((string)(this["AG_DairyMilkConnectionString"]));
@@ -59,7 +59,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_HR;User ID=sqlrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_HR;User ID=apsrw;Password=SalAg@3221#")]
         public string ERP_HRConnectionString {
             get {
                 return ((string)(this["ERP_HRConnectionString"]));
