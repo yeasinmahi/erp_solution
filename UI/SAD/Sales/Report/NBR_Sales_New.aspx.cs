@@ -191,7 +191,7 @@ namespace UI.SAD.Sales.Report
                             pro = "0";
                         }
 
-                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&rc:LinkTarget=_self";
+                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + 1 + "&rc:LinkTarget=_self";
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                     }
                     else
