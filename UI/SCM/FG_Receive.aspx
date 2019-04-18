@@ -51,6 +51,13 @@
                                     <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                 </div>
+
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label4" runat="server" Text="Update Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:TextBox ID="txtUpdateDate" Visible="false" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="ud" runat="server" Format="yyyy-MM-dd" TargetControlID="txtUpdateDate"></cc1:CalendarExtender>
+                                </div>
+                               
                                 <div class="col-md-3" id="showbuttonDiv" style="padding-top: 20px;">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClientClick="showLoader()" OnClick="btnShow_Click" />
                                 </div>
@@ -131,6 +138,7 @@
             function Init() {
                 $("#txtFormTime").timepicker();
                 $("#txtToTime").timepicker();
+                
             }
             function Validation() {
                 var txtFromDate = document.getElementById("txtFromDate").value;

@@ -1337,6 +1337,7 @@
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NBR_Sales.aspx" />
+    <Content Include="SAD\Sales\Report\NBR_Sales_New.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
@@ -1487,6 +1488,7 @@
     <Content Include="SCM\IssueItemByRequesitionOOP.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
+    <Content Include="SCM\ItemCategoryUpdate.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
     <Content Include="SCM\ItemManagerAccounts.aspx" />
     <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
@@ -6904,6 +6906,13 @@
     <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.designer.cs">
       <DependentUpon>NBR_Sales.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales_New.aspx.cs">
+      <DependentUpon>NBR_Sales_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales_New.aspx.designer.cs">
+      <DependentUpon>NBR_Sales_New.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7939,6 +7948,13 @@
     </Compile>
     <Compile Include="SCM\IssueStatement.aspx.designer.cs">
       <DependentUpon>IssueStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemCategoryUpdate.aspx.cs">
+      <DependentUpon>ItemCategoryUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemCategoryUpdate.aspx.designer.cs">
+      <DependentUpon>ItemCategoryUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>

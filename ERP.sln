@@ -74,6 +74,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Global_DAL", "Global_DAL\Gl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceGateWay", "ServiceGateWay\ServiceGateWay.csproj", "{DBF3E407-6F42-4BF3-9FB1-5DA88BA65D22}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DALOOP", "DALOOP\DALOOP.csproj", "{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -346,6 +348,14 @@ Global
 		{DBF3E407-6F42-4BF3-9FB1-5DA88BA65D22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DBF3E407-6F42-4BF3-9FB1-5DA88BA65D22}.Release|x86.ActiveCfg = Release|Any CPU
 		{DBF3E407-6F42-4BF3-9FB1-5DA88BA65D22}.Release|x86.Build.0 = Release|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Debug|x86.Build.0 = Debug|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Release|x86.ActiveCfg = Release|Any CPU
+		{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

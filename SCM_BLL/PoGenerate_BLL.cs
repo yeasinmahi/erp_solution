@@ -65,6 +65,18 @@ namespace SCM_BLL
             catch { return new DataTable(); }
         }
 
+
+
+        public DataTable GetIndentbyPO(int intpoid)
+        {
+            try
+            {
+                GetIndentByPOTableAdapter unit = new GetIndentByPOTableAdapter();
+                return unit.GetIndentByPO(intpoid);
+            }
+            catch { return new DataTable(); }
+        }
+
         public string[] AutoSearchPoUser(string prefix)
         {
             tablePoUser = new PoGenerateTDS.DataTableSearchPOUserDataTable[Convert.ToInt32(1)];
