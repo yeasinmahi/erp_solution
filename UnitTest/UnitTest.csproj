@@ -66,6 +66,10 @@
       <Project>{A577C019-22C6-4F46-B515-00F664D8455C}</Project>
       <Name>BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DALOOP\DALOOP.csproj">
+      <Project>{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}</Project>
+      <Name>DALOOP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
