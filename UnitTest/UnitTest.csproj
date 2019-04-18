@@ -51,11 +51,12 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTestSample.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WarehouseOperatorTdd.cs" />
+    <Compile Include="WarehouseTdd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
