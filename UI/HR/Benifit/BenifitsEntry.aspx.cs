@@ -13,6 +13,7 @@ using HR_BLL.Benifit;
 using System.Globalization;
 using System.IO;
 using System.Data.OleDb;
+using Utility;
 
 namespace UI.HR.Benifit
 {
@@ -23,7 +24,7 @@ namespace UI.HR.Benifit
         EmployeeBasicInfo objEmp = new EmployeeBasicInfo();
         EmpBenifit objBenifit = new EmpBenifit();
         string filePathForXML, path, msg;
-
+        private readonly string ftp = "ftp://ftp.akij.net/ExcelUpload/Benifit.xlsx";
         protected void Page_Load(object sender, EventArgs e)
         {
             path = Server.MapPath("~/HR/Benifit/Data/" + FileUpload1.FileName);
@@ -45,115 +46,115 @@ namespace UI.HR.Benifit
             }
         }
 
-        protected void btnShow_Click(object sender, EventArgs e)
-        {
+        //protected void btnShow_Click(object sender, EventArgs e)
+        //{
 
-            int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
-            //dt = objEmp.GetEmpInfoByJobStation(intjobid);
+        //    int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
+        //    //dt = objEmp.GetEmpInfoByJobStation(intjobid);
 
-            if (string.IsNullOrWhiteSpace(txtEmp.Text))
-            {
-                dt = objBenifit.InsertBenifitInfo(2, intjobid, 0, "");
-            }
-            else
-            {
-                int empid = 0;
-                if (int.TryParse(txtEmp.Text, out empid))
-                {
-                    dt = objBenifit.InsertBenifitInfo(3, intjobid, empid, "");
-                }
-                else
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Check your enroll properly.');", true);
-                }
+        //    if (string.IsNullOrWhiteSpace(txtEmp.Text))
+        //    {
+        //        dt = objBenifit.InsertBenifitInfo(2, intjobid, 0, "");
+        //    }
+        //    else
+        //    {
+        //        int empid = 0;
+        //        if (int.TryParse(txtEmp.Text, out empid))
+        //        {
+        //            dt = objBenifit.InsertBenifitInfo(3, intjobid, empid, "");
+        //        }
+        //        else
+        //        {
+        //            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Check your enroll properly.');", true);
+        //        }
 
-            }
+        //    }
 
-            if (dt.Rows.Count > 0)
-            {
-                //divItemInfo.Visible = true;
-                dgvEmployeeInfo.DataSource = dt;
-                dgvEmployeeInfo.DataBind();
-            }
-            else
-            {
-                //divItemInfo.Visible = false;
-                dgvEmployeeInfo.DataSource = "";
-                dgvEmployeeInfo.DataBind();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
-            }
+        //    if (dt.Rows.Count > 0)
+        //    {
+        //        //divItemInfo.Visible = true;
+        //        dgvEmployeeInfo.DataSource = dt;
+        //        dgvEmployeeInfo.DataBind();
+        //    }
+        //    else
+        //    {
+        //        //divItemInfo.Visible = false;
+        //        dgvEmployeeInfo.DataSource = "";
+        //        dgvEmployeeInfo.DataBind();
+        //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found');", true);
+        //    }
 
-        }
+        //}
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string insertBy = Session[SessionParams.USER_ID].ToString();
-                DateTime Date = DateTime.ParseExact(txtDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                string toDate = Date.ToString("yyyy/MM/dd");
-                DateTime insertdate = DateTime.Now;
-                string insertDate = insertdate.ToString();
-                string intJobstationId = ddlJobStation.SelectedItem.Value;
-                string amount = txtAmount.Text;
-                if (dgvEmployeeInfo.Rows.Count > 0)
-                {
+        //protected void btnSubmit_Click(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        string insertBy = Session[SessionParams.USER_ID].ToString();
+        //        DateTime Date = DateTime.ParseExact(txtDate.Text, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+        //        string toDate = Date.ToString("yyyy/MM/dd");
+        //        DateTime insertdate = DateTime.Now;
+        //        string insertDate = insertdate.ToString();
+        //        string intJobstationId = ddlJobStation.SelectedItem.Value;
+        //        string amount = txtAmount.Text;
+        //        if (dgvEmployeeInfo.Rows.Count > 0)
+        //        {
 
-                    for (int index = 0; index < dgvEmployeeInfo.Rows.Count; index++)
-                    {
-                        CheckBox check = (CheckBox)dgvEmployeeInfo.Rows[index].FindControl("chkRow");
-                        if (check.Checked == true)
-                        {
-                            string enrollid = dgvEmployeeInfo.Rows[index].Cells[1].Text;
-                            CreateXml(enrollid, amount, insertBy, insertDate, intJobstationId, toDate);
-                            check.Checked = false;
-                        }
+        //            for (int index = 0; index < dgvEmployeeInfo.Rows.Count; index++)
+        //            {
+        //                CheckBox check = (CheckBox)dgvEmployeeInfo.Rows[index].FindControl("chkRow");
+        //                if (check.Checked == true)
+        //                {
+        //                    string enrollid = dgvEmployeeInfo.Rows[index].Cells[1].Text;
+        //                    CreateXml(enrollid, amount, insertBy, insertDate, intJobstationId, toDate);
+        //                    check.Checked = false;
+        //                }
 
-                    }
+        //            }
 
 
-                    if (hdnConfirm.Value == "1")
-                    {
+        //            if (hdnConfirm.Value == "1")
+        //            {
 
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(filePathForXML);
-                        XmlNode node = doc.SelectSingleNode("BenifitEntry");
-                        string xmlString = node.InnerXml;
-                        xmlString = "<BenifitEntry>" + xmlString + "</BenifitEntry>";
+        //                XmlDocument doc = new XmlDocument();
+        //                doc.Load(filePathForXML);
+        //                XmlNode node = doc.SelectSingleNode("BenifitEntry");
+        //                string xmlString = node.InnerXml;
+        //                xmlString = "<BenifitEntry>" + xmlString + "</BenifitEntry>";
 
-                        dt = objBenifit.InsertBenifitInfo(1, 0, 0, xmlString);
+        //                dt = objBenifit.InsertBenifitInfo(1, 0, 0, xmlString);
 
-                        //int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
-                        //dt = objEmp.GetEmpInfoByJobStation(intjobid);
-                        //if (dt.Rows.Count > 0)
-                        //{
-                        //    //divItemInfo.Visible = true;
-                        //    dgvEmployeeInfo.DataSource = dt;
-                        //    dgvEmployeeInfo.DataBind();
-                        //}
-                        txtDate.Text = "";
-                        txtAmount.Text = "";
-                        // ddlJobStation.Text = "";
+        //                //int intjobid = Convert.ToInt32(ddlJobStation.SelectedItem.Value);
+        //                //dt = objEmp.GetEmpInfoByJobStation(intjobid);
+        //                //if (dt.Rows.Count > 0)
+        //                //{
+        //                //    //divItemInfo.Visible = true;
+        //                //    dgvEmployeeInfo.DataSource = dt;
+        //                //    dgvEmployeeInfo.DataBind();
+        //                //}
+        //                txtDate.Text = "";
+        //                //txtAmount.Text = "";
+        //                // ddlJobStation.Text = "";
 
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Submitted Successfully');", true);
-                        try
-                        {
-                            File.Delete(filePathForXML);
-                        }
+        //                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Submitted Successfully');", true);
+        //                try
+        //                {
+        //                    File.Delete(filePathForXML);
+        //                }
 
-                        catch (Exception ex)
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
-                        }
-                    }
+        //                catch (Exception ex)
+        //                {
+        //                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
+        //                }
+        //            }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
-            }
-        }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true);
+        //    }
+        //}
 
         protected void btnUpload_Click(object sender, EventArgs e)
         {
@@ -221,6 +222,20 @@ namespace UI.HR.Benifit
             doc.Save(filePathForXML);
         }
 
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            string fileName = Path.GetFileName(ftp);
+            byte[] bytes = (ftp).DownloadFromFtp();
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + fileName);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
+        }
+
         protected void btnSubmitExcel_Click(object sender, EventArgs e)
         {
             string insertBy = Session[SessionParams.USER_ID].ToString();
@@ -250,8 +265,6 @@ namespace UI.HR.Benifit
                 xmlString = "<BenifitEntry>" + xmlString + "</BenifitEntry>";
 
                 dt = objBenifit.InsertBenifitInfo(1, 0, 0, xmlString);
-               
-                txtAmount.Text = "";
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Submitted Successfully');", true);
                 try
