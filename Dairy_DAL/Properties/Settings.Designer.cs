@@ -49,7 +49,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_DairyMilk;Persist Security Info=True;User ID=" +
-            "aprw;Password=SalAg@3221#")]
+            "apsrw;Password=SalAg@3221#")]
         public string AG_DairyMilkConnectionString {
             get {
                 return ((string)(this["AG_DairyMilkConnectionString"]));
