@@ -131,7 +131,7 @@ namespace UI.SAD.Sales.Report
                 //string toDate = Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
                 //DateTime fDate, tDate;
 
-                bool ysn = true;
+                bool ysn = false;
 
                 SalesByCusPro st = new SalesByCusPro();
                 if (rdoType.SelectedIndex == 0 || rdoType.SelectedIndex == 1 || rdoType.SelectedIndex == 2)
