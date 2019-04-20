@@ -34,6 +34,8 @@ namespace UI.Inventory
                 dtbl = bll.CreateStoreRequisition(3, int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), "", int.Parse(senderdata), DateTime.Parse(txtFDate.Text), DateTime.Parse(txtTDate.Text), intInsertBy);
                 if (dtbl.Rows.Count > 0) { dgv.DataSource = dtbl; dgv.DataBind();
                     lblRN.Text = dtbl.Rows[0]["Code"].ToString();
+                    lblpoint.Text= dtbl.Rows[0]["unit"].ToString();
+                    img.ImageUrl = "~/Content/images/img/" + dtbl.Rows[0]["intUnitID"].ToString()+".png";
                     lbldt.Text = "Date: " + DateTime.Parse(dtbl.Rows[0]["DDate"].ToString()).ToString("yyyy-MM-dd");
                     issby.Text = "Requisition By : " + dtbl.Rows[0]["Messages"].ToString();
                 }
@@ -162,7 +164,7 @@ namespace UI.Inventory
                 dtbl = bll.CreateStoreRequisition(2, int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), "", 0, DateTime.Parse(txtFDate.Text), DateTime.Parse(txtTDate.Text), intInsertBy);
                 if (dtbl.Rows.Count > 0) { dgvlist.DataSource = dtbl; dgvlist.DataBind();
                     lblwh.Text = dtbl.Rows[0]["WHouse"].ToString();
-                    lblpoint.Text = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString();
+                    //lblpoint.Text = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString();
                 }
                 else { dgvlist.DataSource = ""; dgvlist.DataBind(); }
             }
