@@ -52,28 +52,28 @@
         }
         function checkAllRow(objRef) {
         }
-       
+
         function check() {
             var date = document.getElementById("txtDate").value;
             if (date == null || date == "") {
-                 alert("Date cannot be blank.");               
+                alert("Date cannot be blank.");
             }
             else {
                 var confirm_value = document.createElement("input");
-            
-            confirm_value.type = "hidden";
-            confirm_value.name = "Confirm_value";
-            if (confirm("Do you want to proceed?")) {
-                confirm.value = "Yes";
-                document.getElementById("hdnConfirm").value = "1";
-            }
-            else {
-                confirm.value = "No";
-                document.getElementById("hdnConfirm").value = "0";
-            }
+
+                confirm_value.type = "hidden";
+                confirm_value.name = "Confirm_value";
+                if (confirm("Do you want to proceed?")) {
+                    confirm.value = "Yes";
+                    document.getElementById("hdnConfirm").value = "1";
+                }
+                else {
+                    confirm.value = "No";
+                    document.getElementById("hdnConfirm").value = "0";
+                }
             }
 
-            
+
 
 
         }
@@ -131,12 +131,12 @@
                             <td colspan="4" class="auto-style2"></td>
                         </tr>
                         <tr>
-                            <td class="" style="text-align: right;">
+                            <%--<td class="" style="text-align: right;">
                                 <asp:Label ID="lblD" runat="server" Text="Download Excel Format:" CssClass="lbl"></asp:Label>
-                                <asp:Button ID="btnDownload" runat="server" class="myButton" Text="Download Excel Format" Width="100px"/>
-                            </td>
-                            <td class="">
-                                &nbsp;</td>
+                                
+                            </td>--%>
+                            <td colspan="2">
+                                <asp:Button ID="btnDownload" runat="server" class="myButton" Text="Download Excel Format" OnClick="btnDownload_Click" /></td>
 
 
                             <td class="auto-style4" style="text-align: right;">
@@ -148,7 +148,7 @@
                             <td class="" style="text-align: right;">
                                 <%--<asp:Button ID="btnShow" runat="server" Visible="false" class="myButton" Text="Show" Width="100px" OnClientClick="" OnClick="btnShow_Click" />--%></td>
                         </tr>
-                       <%-- <tr>
+                        <%-- <tr>
                             <td colspan="4" style="height: 5px;"></td>
                         </tr>--%>
                         <tr>
@@ -184,9 +184,9 @@
                             <td class="tdheight">
                                 <asp:FileUpload ID="FileUpload1" runat="server"></asp:FileUpload></td>
                             <td class="auto-style1">
-                                <asp:Button ID="btnUpload" runat="server" class="myButton" Text="Upload" Width="100px" OnClick="btnUpload_Click"/></td>
+                                <asp:Button ID="btnUpload" runat="server" class="myButton" Text="Upload" Width="100px" OnClick="btnUpload_Click" /></td>
                             <td class="auto-style1">
-                                <asp:Button ID="btnSubmitExcel" runat="server" class="myButton" Text="Submit" Width="100px" OnClientClick="check()" OnClick="btnSubmitExcel_Click"/></td>
+                                <asp:Button ID="btnSubmitExcel" runat="server" class="myButton" Text="Submit" Width="100px" OnClientClick="check()" OnClick="btnSubmitExcel_Click" /></td>
                         </tr>
 
                     </table>
@@ -242,18 +242,18 @@
                                     <SortedDescendingCellStyle BackColor="#D6DFDF" />
                                     <SortedDescendingHeaderStyle BackColor="#002876" />
                                 </asp:GridView>
-                                <asp:GridView ID="gvExcelFile" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">  
-                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />  
-                                    <EditRowStyle BackColor="#999999" />  
-                                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />  
-                                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />  
-                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />  
-                                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />  
-                                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />  
-                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />  
-                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />  
-                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />  
-                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />  
+                                <asp:GridView ID="gvExcelFile" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                    <EditRowStyle BackColor="#999999" />
+                                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                 </asp:GridView>
                             </td>
                         </tr>
@@ -263,7 +263,8 @@
                 <%--=========== End Code =====================================================================--%>
             </ContentTemplate>
             <Triggers>
-                <asp:PostBackTrigger ControlID = "btnUpload" />
+                <asp:PostBackTrigger ControlID="btnUpload" />
+                <asp:PostBackTrigger ControlID="btnDownload" />
             </Triggers>
         </asp:UpdatePanel>
     </form>

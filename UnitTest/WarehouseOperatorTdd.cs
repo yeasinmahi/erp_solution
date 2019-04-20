@@ -1,5 +1,6 @@
 ﻿
 using BLL.Inventory;
+using DALOOP.Inventory;
 using NUnit.Framework;
 
 namespace UnitTest
@@ -8,7 +9,7 @@ namespace UnitTest
     [TestFixture]
     public class WarehouseOperatorTdd
     {
-        private readonly WarehouseOperatorBll _bll = new WarehouseOperatorBll();
+        private readonly WarehouseOperatorDal _bll = new WarehouseOperatorDal();
         [TestCase(369116,true)]
         [TestCase(373605,true)]
         public void Get_IsSuperUser_Bool(int enroll,bool result)

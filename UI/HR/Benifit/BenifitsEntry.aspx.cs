@@ -13,6 +13,7 @@ using HR_BLL.Benifit;
 using System.Globalization;
 using System.IO;
 using System.Data.OleDb;
+using Utility;
 
 namespace UI.HR.Benifit
 {
@@ -23,7 +24,7 @@ namespace UI.HR.Benifit
         EmployeeBasicInfo objEmp = new EmployeeBasicInfo();
         EmpBenifit objBenifit = new EmpBenifit();
         string filePathForXML, path, msg;
-
+        private readonly string ftp = "ftp://ftp.akij.net/ExcelUpload/Benifit.xlsx";
         protected void Page_Load(object sender, EventArgs e)
         {
             path = Server.MapPath("~/HR/Benifit/Data/" + FileUpload1.FileName);
@@ -219,6 +220,20 @@ namespace UI.HR.Benifit
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
+        }
+
+        protected void btnDownload_Click(object sender, EventArgs e)
+        {
+            string fileName = Path.GetFileName(ftp);
+            byte[] bytes = (ftp).DownloadFromFtp();
+            Response.Clear();
+            Response.Buffer = true;
+            Response.Charset = "";
+            Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            Response.AppendHeader("Content-Disposition", "attachment; filename=" + fileName);
+            Response.BinaryWrite(bytes);
+            Response.Flush();
+            Response.End();
         }
 
         protected void btnSubmitExcel_Click(object sender, EventArgs e)
