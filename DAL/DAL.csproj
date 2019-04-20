@@ -405,6 +405,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Supplier.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\PoTypeTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\WarehouseOperatorTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1073,6 +1078,17 @@
     </None>
     <None Include="DropDown\Supplier.xss">
       <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\PoTypeTds.xsc">
+      <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\PoTypeTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PoTypeTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\PoTypeTds.xss">
+      <DependentUpon>PoTypeTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\WarehouseOperatorTds.xsc">
       <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>

@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
 
@@ -15,6 +16,8 @@ namespace UI.SCM
     public partial class ReceiveMrrOop : BasePage
     {
         private readonly MrrReceiveBllOOP _obj = new MrrReceiveBllOOP();
+        private readonly WareHouseBll _wareHouse = new WareHouseBll();
+        private readonly PoTypeBll _poType = new PoTypeBll();
         private readonly object _locker = new object();
         private DataTable _dt = new DataTable();
         private string xmlString = "", filePathForXML, strMssingCost, challanNo, strVatChallan, poIssueBy, expireDate, manufactureDate;
@@ -580,14 +583,14 @@ namespace UI.SCM
 
         private void LoadWh()
         {
-            _dt = _obj.DataView(1, xmlString, ddlWH.SelectedValue(), 0, DateTime.Now, Enroll);
-            ddlWH.Loads(_dt, "Id", "strName");
+            _dt = _wareHouse.GetGetAllWarehouseByEnroll(Enroll);
+            ddlWH.Loads(_dt, "intWHID", "strWareHoseName");
         }
-
+        PoTypeBll poType = new PoTypeBll();
         private void LoadPoType()
         {
-            _dt = _obj.DataView(2, xmlString, ddlWH.SelectedValue(), 0, DateTime.Now, Enroll);
-            ddlPoType.Loads(_dt, "Id", "strName");
+            _dt = poType.GetAllPoType();
+            ddlPoType.Loads(_dt, "intID", "strPOType");
         }
 
         private void DataClear()
