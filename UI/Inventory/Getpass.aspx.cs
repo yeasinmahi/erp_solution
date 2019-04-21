@@ -1,9 +1,7 @@
 ﻿using HR_BLL.Global;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -11,6 +9,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.Inventory
 {
@@ -24,15 +23,19 @@ namespace UI.Inventory
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind(); txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); txtToOther.Visible = false; Loadgrid();
-                txtFromAddress.Text = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString(); txtAddress.Enabled = true; 
-                try { File.Delete(xmlpath); btnSubmit.Visible = false; } 
+                txtFromAddress.Text = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString(); txtAddress.Enabled = true;
+                try { File.Delete(xmlpath); btnSubmit.Visible = false; }
                 catch { }
-              
-             
+                LoadReason();
+
             }
         }
 
-        
+        public void LoadReason()
+        {
+            DataTable dt = new GatePassbll().GatepassReasonTable();
+            ddlReason.LoadWithSelect(dt, "intID", "strGatePassReason");
+        }
         #region=========================Employee AutoSearch==================
         [WebMethod]
         [ScriptMethod]
@@ -82,12 +85,13 @@ namespace UI.Inventory
                     string driverName = txtDriverName.Text;
                     string contactNumber = txtContact.Text;
                     string vehicleNumber = txtVehicle.Text;
+                    string Reason = ddlReason.SelectedText();
                     string isrtn = "0";
                     if (chkRtn.Checked)
                     {
                         isrtn = "1";
                     }
-                    CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber);
+                    CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber, Reason);
                     txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                     txtItem.Text = string.Empty;
                     txtDriverName.Text = string.Empty;
@@ -96,18 +100,22 @@ namespace UI.Inventory
                     txtQuantity.Text = @"0.00"; 
                     txtRemarks.Text = string.Empty;
                     txtUom.Text = string.Empty;
+                    ddlReason.SetSelectedValue("0");
                 }
             }
-            catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
-        private void CreateXml(string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber)
+        private void CreateXml(string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber,string Reason)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(xmlpath))
             {
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("Getpass");
-                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber);
+                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber,Reason);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -115,13 +123,13 @@ namespace UI.Inventory
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("Getpass");
-                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName,contactNumber,vehicleNumber);
+                XmlNode addItem = CreateNode(doc, dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName,contactNumber,vehicleNumber, Reason);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(xmlpath); Xml();
         }
-        private XmlNode CreateNode(XmlDocument doc, string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber)
+        private XmlNode CreateNode(XmlDocument doc, string dt, string fadd, string tadd, string taddid, string item, string quantity, string uom, string remarks, string isrtn, string driverName, string contactNumber, string vehicleNumber,string Reason)
         {
             XmlNode node = doc.CreateElement("gpdtls");
             XmlAttribute Dt = doc.CreateAttribute("dt");
@@ -148,6 +156,8 @@ namespace UI.Inventory
             ContactNumber.Value = contactNumber;
             XmlAttribute VehicleNumber = doc.CreateAttribute("vehicleNumber");
             VehicleNumber.Value = vehicleNumber;
+            XmlAttribute Reasson = doc.CreateAttribute("Reason");
+            Reasson.Value = Reason;
 
             node.Attributes?.Append(Dt);
             node.Attributes?.Append(Fadd);
@@ -161,6 +171,7 @@ namespace UI.Inventory
             node.Attributes?.Append(DriverName);
             node.Attributes?.Append(ContactNumber);
             node.Attributes?.Append(VehicleNumber);
+            node.Attributes?.Append(Reasson);
             return node;
         }
         private void Xml()
@@ -195,7 +206,10 @@ namespace UI.Inventory
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0) { File.Delete(xmlpath); dgv.DataSource = ""; dgv.DataBind(); }
                 else { Xml(); }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         protected void Dtls_Click(object sender, EventArgs e)
         {
@@ -207,13 +221,17 @@ namespace UI.Inventory
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Viewdetails('" + datas[0].ToString() + "','" + datas[1].ToString() + "');", true);
                 Loadgrid();
             }
-            catch (Exception ex) { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.ToString() + "');", true); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
         private void Loadgrid()
         {
             try
             {
-                dtbl = bll.GetGetpassListByUser(int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()));
+                dtbl = bll.GetGetpassListByUser(
+                    int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()));
                 if (dtbl.Rows.Count > 0)
                 {
                     dgvlist.DataSource = dtbl;
@@ -221,12 +239,16 @@ namespace UI.Inventory
                 }
                 else
                 {
-                    dgvlist.DataSource = ""; dgvlist.DataBind();
+                    dgvlist.DataSource = "";
+                    dgvlist.DataBind();
                 }
-               
-               
+
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         #endregion =================== Get Pass Details Add ==================
@@ -256,6 +278,7 @@ namespace UI.Inventory
                         btnSubmit.Visible = false;
                         txtAddress.Text = "";
                         txtToOther.Text = "";
+                        ddlReason.Text = "Select";
                         chkOther.Checked = false;
                         txtToOther.Visible = false;
                         dgv.DataBind();

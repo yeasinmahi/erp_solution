@@ -55,7 +55,7 @@
         <table class="tbldecoration" style="width:auto; float:left;">
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label14" runat="server" Text="Search Employee" CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td style="text-align:left;"><asp:TextBox ID="txtSearchEmp" runat="server" AutoPostBack="true"  CssClass="txtBox1" OnTextChanged="txtSearchEmp_TextChanged"></asp:TextBox>
+                <td style="text-align:left;"><asp:TextBox ID="txtSearchEmp" runat="server" AutoPostBack="true"  CssClass="txtBox1"></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtSearchEmp"
                 ServiceMethod="AutoSearchEmpListGlobal" MinimumPrefixLength="1" CompletionSetCount="1"
                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
@@ -80,6 +80,9 @@
                 <td colspan="4"><asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox1" TextMode="MultiLine" Height="35px" Width="550px"></asp:TextBox></td>
                 
             </tr> 
+             <tr>
+                <td colspan="5" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnshow" runat="server" class="myButtonGrey" Text="Show" Width="100px"  OnClick="btnshow_Click"/></td>        
+            </tr> 
             <tr><td colspan="5"><hr /></td></tr> 
             <tr>
                 <td style="text-align:right;"><asp:Label ID="lblEName" runat="server" Text="Name :" CssClass="lbl"></asp:Label></td>
@@ -101,7 +104,12 @@
                 <td style="text-align:right; "><asp:Label ID="Label7" runat="server" Text=""></asp:Label></td>
                 <td style="text-align:right;"><asp:Label ID="Label3" runat="server" Text="Job Status :" CssClass="lbl"></asp:Label></td>
                 <td><asp:TextBox ID="txtJobStatus" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>                
-            </tr>            
+            </tr>
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="Label9" runat="server" Text="Total Balance :" CssClass="lbl"></asp:Label></td>
+                <td><asp:TextBox ID="txtbalance" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
+                           
+            </tr>
             <tr><td colspan="5"><hr /></td></tr> 
             <tr>
                 <td colspan="5" style="text-align:right; padding: 0px 0px 0px 0px"><asp:Button ID="btnSubmit" runat="server" class="myButtonGrey" Text="Submit" Width="100px" OnClientClick = "ConfirmAll()" OnClick="btnSubmit_Click"/></td>        

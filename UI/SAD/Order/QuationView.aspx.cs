@@ -39,7 +39,11 @@ namespace UI.SAD.Order
 
         protected void btnGo_Click(object sender, EventArgs e)
         {
-            //loadgrid();
+            DateTime fromDate = txtFrom.Text == "" ? DateTime.Now.AddDays(-365) : CommonClass.GetDateAtSQLDateFormat(txtFrom.Text);
+            DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
+            hdnFrom.Value = fromDate.ToString();
+            hdnTo.Value = toDate.ToString();
+            dgvCustomerVSPendingQnt.DataBind();
         }
 
         //private void loadgrid()
@@ -171,6 +175,61 @@ namespace UI.SAD.Order
             Session["intid"] = intid;
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "EditPageQuotation('QuotationEditNSave.aspx');", true);
 
+        }
+
+        protected void dgvCustomerVSPendingQnt_DataBound(object sender, EventArgs e)
+        {
+            //totAmount = 0;
+            //totPieces = 0;
+            //aprPieces = 0;
+            //EnableDisable();
+        }
+        //private void EnableDisable()
+        //{
+        //    if (dgvCustomerVSPendingQnt.Rows.Count > 0)
+        //    {
+        //        if (dgvCustomerVSPendingQnt.Rows.Count == 1 && txtCode.Text.Length > 0)
+        //        {
+        //            if (dgvCustomerVSPendingQnt.Rows[0].RowType == DataControlRowType.DataRow)
+        //            {
+        //                try
+        //                {
+        //                    if (((CheckBox)dgvCustomerVSPendingQnt.Rows[0].Cells[8].Controls[0]).Checked)
+        //                    {
+        //                        rdoComplete.SelectedIndex = 1;
+        //                    }
+        //                    else
+        //                    {
+        //                        rdoComplete.SelectedIndex = 0;
+        //                    }
+        //                }
+        //                catch { }
+        //            }
+        //        }
+        //    }
+
+        //    //if (rdoComplete.SelectedIndex == 0)
+        //    //{
+        //    //    //dgvCustomerVSPendingQnt.Columns[9].Visible = true;
+        //    //    //dgvCustomerVSPendingQnt.Columns[10].Visible = true;
+        //    //    //dgvCustomerVSPendingQnt.Columns[12].Visible = true;
+        //    //}
+        //    //else
+        //    //{
+        //    //    //dgvCustomerVSPendingQnt.Columns[9].Visible = false;
+        //    //    //dgvCustomerVSPendingQnt.Columns[10].Visible = false;
+        //    //    //dgvCustomerVSPendingQnt.Columns[12].Visible = false;
+        //    //}
+        //}
+
+        protected void dgvCustomerVSPendingQnt_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            //if (e.Row.RowType == DataControlRowType.DataRow)
+            //{
+            //    totPieces += decimal.Parse(((Label)e.Row.Cells[6].Controls[1]).Text);
+            //    //aprPieces += decimal.Parse(((Label)e.Row.Cells[8].Controls[1]).Text);
+            //    totAmount += decimal.Parse(((Label)e.Row.Cells[7].Controls[1]).Text);
+            //}
         }
 
         protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)

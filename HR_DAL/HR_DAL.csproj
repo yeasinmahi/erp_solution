@@ -325,6 +325,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Expance_TDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\Gatepass.cs">
+      <DependentUpon>Gatepass.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global\Gatepass.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Gatepass.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\HolidayTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1089,6 +1097,17 @@
     </None>
     <None Include="Global\Expance_TDS.xss">
       <DependentUpon>Expance_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\Gatepass.xsc">
+      <DependentUpon>Gatepass.xsd</DependentUpon>
+    </None>
+    <None Include="Global\Gatepass.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Gatepass.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\Gatepass.xss">
+      <DependentUpon>Gatepass.xsd</DependentUpon>
     </None>
     <None Include="Global\HolidayTDS.xsc">
       <DependentUpon>HolidayTDS.xsd</DependentUpon>

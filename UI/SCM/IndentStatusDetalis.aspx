@@ -62,6 +62,9 @@
                 bottom: 0;
             }
         }
+        .auto-style1 {
+            width: 28px;
+        }
     </style>
 </head>
 <body>
@@ -81,23 +84,22 @@
 
                 <tr>
 
-                    <td>
+                    <td rowspan="3" class="auto-style1">
                         <asp:Image ID="imgUnit" runat="server" /></td>
                     <td style="text-align: center; font-size: medium; font-weight: bold;">
                         <asp:Label ID="lblUnitName" runat="server" Text="Akij Group" Font-Underline="true"></asp:Label></td>
                 </tr>
                 <tr>
-                    <td></td>
                     <td style="text-align: center">
                         <asp:Label ID="lblWH" Font-Size="Small" Font-Bold="true" runat="server"></asp:Label></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    
                     <td style="text-align: center;">
-                        <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Small" Text="Purchase Requisition"></asp:Label></td>
+                        <asp:Label ID="lblDetalis" runat="server" Font-Bold="true" Font-Underline="true" Font-Size="Medium" Text="Purchase Requisition"></asp:Label></td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td class="auto-style1"></td>
                 </tr>
             </table>
             <table>
@@ -126,8 +128,8 @@
                             BorderWidth="1px" CellPadding="5" GridLines="Both" FooterStyle-Font-Bold="true" FooterStyle-HorizontalAlign="Right">
 
                             <Columns>
-                                <asp:TemplateField HeaderText="SL No.">
-                                    <ItemStyle HorizontalAlign="center" Width="10px" />
+                                <asp:TemplateField HeaderText="SL">
+                                    <ItemStyle HorizontalAlign="center" Width="25px" />
                                     <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                 </asp:TemplateField>
 
@@ -135,7 +137,7 @@
                                     <ItemTemplate>
                                         <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Left" Width="35px" />
+                                    <ItemStyle HorizontalAlign="center" Width="50px" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Item Name" SortExpression="strName">
@@ -145,11 +147,11 @@
                                     <ItemStyle HorizontalAlign="Left" Width="220px" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="UOM" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strUoM">
+                                <asp:TemplateField HeaderText="UoM" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strUoM">
                                     <ItemTemplate>
                                         <asp:Label ID="lblUOM" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label>
                                     </ItemTemplate>
-                                    <ItemStyle HorizontalAlign="Center" Width="50px" />
+                                    <ItemStyle HorizontalAlign="Center" Width="40px" />
                                 </asp:TemplateField>
 
                                 <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numQty">
@@ -191,7 +193,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>Indent By:</td>
+                    <td>e-Indent By:</td>
                     <td>
                         <asp:Label ID="lblIndentBY" Font-Bold="true" runat="server"></asp:Label>
                     </td>

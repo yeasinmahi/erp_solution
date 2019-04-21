@@ -161,7 +161,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Receive By"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtReceiveBy" CssClass="txtBox" AutoPostBack="false" runat="server"></asp:TextBox></td>
+                                <asp:TextBox ID="txtReceiveBy" CssClass="txtBox" AutoPostBack="false"  runat="server"></asp:TextBox></td>
                             <td style="text-align: right">
                                 <asp:Button ID="btnIssue" Style="border-radius: 1px; height: 29px" ForeColor="blue" runat="server" Text="Store Issue" OnClientClick='return funConfirmAll();' OnClick="btnIssue_Click" />
                             </td>

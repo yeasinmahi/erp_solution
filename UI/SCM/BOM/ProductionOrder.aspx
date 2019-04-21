@@ -21,16 +21,12 @@
 
     <script type="text/javascript">
         function funConfirmAll() {
-            var confirm_value = document.createElement("INPUT");
-            confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
             if (confirm("Do you want to proceed?")) {
-                confirm_value.value = "Yes";
-                document.getElementById("hdnConfirm").value = "1";
+                return true;
                 showLoader();
             }
             else {
-                confirm_value.value = "No";
-                document.getElementById("hdnConfirm").value = "0";
+                return false;
             }
         }
 
@@ -39,14 +35,27 @@
             var bomtype = e.options[e.selectedIndex].value;
             var inItem = document.getElementById("txtItem").value;
             var quantity = parseFloat(document.getElementById("txtQty").value);
+            var date = document.getElementById("txtdteDate").value;
 
-            if ($.trim(bomtype) == 0 || $.trim(bomtype) == "" || $.trim(bomtype) == null || $.trim(bomtype) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select BOM '); }
-            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select   Item'); }
-            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-
+            if ($.trim(bomtype) == 0 || $.trim(bomtype) == "" || $.trim(bomtype) == null || $.trim(bomtype) == undefined) {
+                alert('Please select BOM ');
+                return false;
+            }
+            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) {
+                alert('Please select   Item');
+                return false;
+            }
+            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) {
+                alert('Please input Quantity');
+                return false;
+            }
+            else if ($.trim(date) == 0 || $.trim(date) == "" || $.trim(date) == null || $.trim(date) == undefined) {
+                alert('Please input date');
+                return false;
+            }
             else {
-                document.getElementById("hdnPreConfirm").value = "1";
                 showLoader();
+                return true;
             }
         }
     </script>
@@ -71,10 +80,8 @@
                 <%--=========================================Start My Code From Here===============================================--%>
 
                 <div class="leaveApplication_container">
-                    <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
                     <asp:HiddenField ID="hdnIndentNo" runat="server" />
-                    <asp:HiddenField ID="hdnPreConfirm" runat="server" />
 
                     <div class="tabs_container" style="text-align: left">
                         Production Order<hr />
@@ -193,7 +200,8 @@
                                 <%--<asp:DropDownList Style="width: 150px" ID="ddlStation" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>--%>
 
                             <td style="text-align: right" colspan="6">
-                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="AddConfirm();" OnClick="btnAdd_Click" /><asp:Button ID="btnSubmit" runat="server" OnClientClick="funConfirmAll();" Text="Submit" OnClick="btnSubmit_Click" /></td>
+                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="return AddConfirm();" OnClick="btnAdd_Click" />
+                                <asp:Button ID="btnSubmit" runat="server" OnClientClick="return funConfirmAll();" Text="Submit" OnClick="btnSubmit_Click" /></td>
                         </tr>
                     </table>
                     <table>

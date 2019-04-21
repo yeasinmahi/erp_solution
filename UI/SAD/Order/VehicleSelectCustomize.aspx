@@ -34,7 +34,7 @@
          function ShowPopUpE(url) {
              var rand_no = Math.floor(11 * Math.random());
              url = url + '&rnd=' + rand_no;
-             newwindow = window.open(url, 'chln', 'scrollbars=yes,toolbar=0,height=550,width=750,top=70,left=220');
+             newwindow = window.open(url, 'chln', 'scrollbars=yes,toolbar=0,height=550,width=750,top=70,left=220,resizable=yes');
              if (window.focus) { newwindow.focus() }
          }         
     </script>
@@ -426,7 +426,7 @@
             </table>
         </ContentTemplate>
     </asp:UpdatePanel>
-        <cc2:ScriptReferenceProfiler ID="ScriptReferenceProfiler1" runat="server" />
+        <%--<cc2:ScriptReferenceProfiler ID="ScriptReferenceProfiler1" runat="server" />--%>
     </form>
 </body>
 </html>

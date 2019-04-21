@@ -113,7 +113,11 @@ namespace UI.SAD.Order
             switch (("" + completed).ToLower())
             {
                 case "false":
+                    //str = "<a href=\"#\" onclick=\"ShowPopUpE('VehicleSelectCustomize.aspx?id=" + voucherID + "&unit=" + ddlUnit.SelectedValue + "&ship=" + ddlShip.SelectedValue.ToString().ToLower() + "')\"class=\"link\">Assign Vehicle</a>";
                     str = "<a href=\"#\" onclick=\"ShowPopUpE('VehicleSelectCustomize.aspx?id=" + voucherID + "&unit=" + ddlUnit.SelectedValue + "&ship=" + ddlShip.SelectedValue.ToString().ToLower() + "')\"class=\"link\">Assign Vehicle</a>";
+
+
+
                     //str = "";
                     break;
                 case "true":
@@ -123,6 +127,29 @@ namespace UI.SAD.Order
 
             return str;
         }
+
+        protected string GetEditNewAddLink(object voucherID, object completed)
+        {
+            string str = "";
+
+            switch (("" + completed).ToLower())
+            {
+                case "false":
+                   
+                    str = "<a href=\"#\" onclick=\"ShowPopUpE('VehcileSelectCustomizeByItemAdd.aspx?id=" + voucherID + "&unit=" + ddlUnit.SelectedValue + "&ship=" + ddlShip.SelectedValue.ToString().ToLower() + "')\"class=\"link\">New Assign</a>";
+
+
+
+                    //str = "";
+                    break;
+                case "true":
+                    str = "";
+                    break;
+            }
+
+            return str;
+        }
+
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)

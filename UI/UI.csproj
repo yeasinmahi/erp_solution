@@ -200,6 +200,7 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
@@ -290,6 +291,7 @@
     <Content Include="Asset\PMSchedule.aspx" />
     <Content Include="Asset\PMScheduleServicePopUp.aspx" />
     <Content Include="Asset\Report\AssetAccountingReport.aspx" />
+    <Content Include="Asset\Report\AssetTaggingReport.aspx" />
     <Content Include="Asset\Report\JobCardInfo.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummary.aspx" />
     <Content Include="Asset\Report\VehicleMaintenanceSummaryByUnit.aspx" />
@@ -1302,6 +1304,7 @@
     <Content Include="SAD\Order\TransferDelvOrderInactive.aspx" />
     <Content Include="SAD\Order\UploadedReceiveChallanDetaills.aspx" />
     <Content Include="SAD\Order\UploadReceiveChallan.aspx" />
+    <Content Include="SAD\Order\VehcileSelectCustomizeByItemAdd.aspx" />
     <Content Include="SAD\Order\VehicleSelect.aspx" />
     <Content Include="SAD\Order\VehicleSelectCustomize.aspx" />
     <Content Include="SAD\Order\VehicleSelectNChallan.aspx" />
@@ -1314,6 +1317,8 @@
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
+    <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
+    <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
@@ -1332,6 +1337,8 @@
     <Content Include="SAD\Sales\Report\Masson_Program_Bill_Report.aspx" />
     <Content Include="SAD\Sales\Report\NationalBrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\NationalDepotStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\NBR_Sales.aspx" />
+    <Content Include="SAD\Sales\Report\NBR_Sales_New.aspx" />
     <Content Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx" />
     <Content Include="SAD\Sales\Report\PrintAccountsSV.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Month_Sales.aspx" />
@@ -1376,6 +1383,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
+    <Content Include="SAD\Sales\Report\Sales2.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\Target_vs_ADS.aspx" />
@@ -1479,8 +1487,11 @@
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalis.aspx" />
+    <Content Include="SCM\IssueItemByRequesitionDetalisOOP.aspx" />
+    <Content Include="SCM\IssueItemByRequesitionOOP.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
+    <Content Include="SCM\ItemCategoryUpdate.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
     <Content Include="SCM\ItemManagerAccounts.aspx" />
     <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
@@ -1516,6 +1527,7 @@
     <Content Include="SCM\PurchaserPermormance.aspx" />
     <Content Include="SCM\Received_against_Production.aspx" />
     <Content Include="SCM\ReceiveMrr.aspx" />
+    <Content Include="SCM\ReceiveMrrOOP.aspx" />
     <Content Include="SCM\ReceiveWithoutPO.aspx" />
     <Content Include="SCM\ServiceReceive.aspx" />
     <Content Include="SCM\SupplierAccountInfoChange.aspx" />
@@ -2020,6 +2032,13 @@
     </Compile>
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.cs">
+      <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.designer.cs">
+      <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\SubledgerDetalis.aspx.cs">
       <DependentUpon>SubledgerDetalis.aspx</DependentUpon>
@@ -2681,6 +2700,13 @@
     </Compile>
     <Compile Include="Asset\Report\AssetAccountingReport.aspx.designer.cs">
       <DependentUpon>AssetAccountingReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Asset\Report\AssetTaggingReport.aspx.cs">
+      <DependentUpon>AssetTaggingReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Asset\Report\AssetTaggingReport.aspx.designer.cs">
+      <DependentUpon>AssetTaggingReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Asset\Report\JobCardInfo.aspx.cs">
       <DependentUpon>JobCardInfo.aspx</DependentUpon>
@@ -6652,6 +6678,13 @@
     <Compile Include="SAD\Order\UploadReceiveChallan.aspx.designer.cs">
       <DependentUpon>UploadReceiveChallan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Order\VehcileSelectCustomizeByItemAdd.aspx.cs">
+      <DependentUpon>VehcileSelectCustomizeByItemAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Order\VehcileSelectCustomizeByItemAdd.aspx.designer.cs">
+      <DependentUpon>VehcileSelectCustomizeByItemAdd.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Order\VehicleSelect.aspx.cs">
       <DependentUpon>VehicleSelect.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6735,6 +6768,20 @@
     </Compile>
     <Compile Include="SAD\Sales\Farmer_Setup.aspx.designer.cs">
       <DependentUpon>Farmer_Setup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_DOEntry.aspx.cs">
+      <DependentUpon>NBR_DOEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_DOEntry.aspx.designer.cs">
+      <DependentUpon>NBR_DOEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.cs">
+      <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.designer.cs">
+      <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.cs">
       <DependentUpon>Area_vs_Item.aspx</DependentUpon>
@@ -6861,6 +6908,20 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\NationalDepotStockReport.aspx.designer.cs">
       <DependentUpon>NationalDepotStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.cs">
+      <DependentUpon>NBR_Sales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales.aspx.designer.cs">
+      <DependentUpon>NBR_Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales_New.aspx.cs">
+      <DependentUpon>NBR_Sales_New.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\NBR_Sales_New.aspx.designer.cs">
+      <DependentUpon>NBR_Sales_New.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\OperationalSetupBaseStatus.aspx.cs">
       <DependentUpon>OperationalSetupBaseStatus.aspx</DependentUpon>
@@ -7169,6 +7230,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales2.aspx.cs">
+      <DependentUpon>Sales2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales2.aspx.designer.cs">
+      <DependentUpon>Sales2.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx.cs">
       <DependentUpon>Setup_vs_Challan_Info_Report.aspx</DependentUpon>
@@ -7877,6 +7945,20 @@
     <Compile Include="SCM\IssueItemByRequesitionDetalis.aspx.designer.cs">
       <DependentUpon>IssueItemByRequesitionDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisOOP.aspx.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionDetalisOOP.aspx.designer.cs">
+      <DependentUpon>IssueItemByRequesitionDetalisOOP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionOOP.aspx.cs">
+      <DependentUpon>IssueItemByRequesitionOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\IssueItemByRequesitionOOP.aspx.designer.cs">
+      <DependentUpon>IssueItemByRequesitionOOP.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\IssueReturn.aspx.cs">
       <DependentUpon>IssueReturn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7890,6 +7972,13 @@
     </Compile>
     <Compile Include="SCM\IssueStatement.aspx.designer.cs">
       <DependentUpon>IssueStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemCategoryUpdate.aspx.cs">
+      <DependentUpon>ItemCategoryUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemCategoryUpdate.aspx.designer.cs">
+      <DependentUpon>ItemCategoryUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
@@ -8135,6 +8224,13 @@
     </Compile>
     <Compile Include="SCM\ReceiveMrr.aspx.designer.cs">
       <DependentUpon>ReceiveMrr.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ReceiveMrrOOP.aspx.cs">
+      <DependentUpon>ReceiveMrrOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ReceiveMrrOOP.aspx.designer.cs">
+      <DependentUpon>ReceiveMrrOOP.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ReceiveWithoutPO.aspx.cs">
       <DependentUpon>ReceiveWithoutPO.aspx</DependentUpon>

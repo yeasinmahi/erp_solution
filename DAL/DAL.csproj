@@ -251,6 +251,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LedgerTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Ledger\ReportBuild.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportBuild.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipLogTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -399,6 +404,24 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Supplier.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\PoTypeTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\WarehouseOperatorTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\WarehouseTds.cs">
+      <DependentUpon>WarehouseTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\WarehouseTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WarehouseTds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -682,6 +705,17 @@
     </None>
     <None Include="Accounts\Ledger\LedgerTDS.xss">
       <DependentUpon>LedgerTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Ledger\ReportBuild.xsc">
+      <DependentUpon>ReportBuild.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Ledger\ReportBuild.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportBuild.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Ledger\ReportBuild.xss">
+      <DependentUpon>ReportBuild.xsd</DependentUpon>
     </None>
     <None Include="Accounts\MDSlip\MDSlipLogTDS.xsc">
       <DependentUpon>MDSlipLogTDS.xsd</DependentUpon>
@@ -1044,6 +1078,39 @@
     </None>
     <None Include="DropDown\Supplier.xss">
       <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\PoTypeTds.xsc">
+      <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\PoTypeTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PoTypeTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\PoTypeTds.xss">
+      <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\WarehouseOperatorTds.xsc">
+      <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\WarehouseOperatorTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WarehouseOperatorTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\WarehouseOperatorTds.xss">
+      <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\WarehouseTds.xsc">
+      <DependentUpon>WarehouseTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\WarehouseTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WarehouseTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\WarehouseTds.xss">
+      <DependentUpon>WarehouseTds.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

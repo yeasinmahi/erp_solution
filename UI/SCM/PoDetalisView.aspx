@@ -79,42 +79,49 @@
 
                         <tr>
 
-                            <td>
+                            <td rowspan="3">
                                 <asp:Image ID="imgUnit" runat="server" /></td>
                             <td style="text-align: center; font-size: medium; font-weight: bold;">
-                                <asp:Label ID="lblUnitName" runat="server" Text="Akij Food & Beverage" Font-Underline="true"></asp:Label></td>
+                                <asp:Label ID="lblUnitName" Font-Size="18px" runat="server" Text="Akij Food & Beverage" Font-Underline="true"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td style="text-align: center">Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208</td>
                         </tr>
                         <tr>
-                            <td></td>
                             <td style="text-align: center">
-                                <asp:Label ID="lblDetaliss" runat="server" Font-Size="Small" Font-Underline="true" Font-Bold="true" Text="Purchase Order"></asp:Label></td>
+                                <asp:Label ID="lblDetaliss" runat="server" Font-Size="14px" Font-Underline="true" Font-Bold="true" Text="Purchase Order"></asp:Label></td>
                         </tr>
-                        <tr>
+                        <%--<tr>
                             <td></td>
-                        </tr>
+                        </tr>--%>
                     </table>
                     <table style="width: 700px">
                         <tr>
                             <td></td>
+                             <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                             <td></td>
+                             <td><asp:Button ID="btnEmail" Text="e-mail" runat="server" Font-Size="Small" OnClick="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
+                             <td><asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" Font-Size="Small" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="lblPurchaseOrderNo" runat="server" Text="Purchase Order No:"></asp:Label><asp:Label ID="lblpoNo" Font-Bold="true" Font-Size="Small" runat="server"></asp:Label><asp:Label ID="lblspace" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="true" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblPurchaseOrderNo" runat="server" Text="Purchase Order No:"></asp:Label><asp:Label ID="lblpoNo" Font-Bold="true" Font-Size="Medium" runat="server"></asp:Label>
+                                <td>
+                                    <asp:Label ID="lblspace" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="false" runat="server"></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtPoNumbers" runat="server" CssClass="txtBox" Visible="false" PlaceHolder="PO" Width="50px" /></td>
                             <td>
-                                <asp:Button ID="btnEmail" Text="E-mail" runat="server" OnClick="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
+                               
                             <td>
-                                <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
+                                </td>
                         </tr>
                     </table>
                     <table style="border-color: black; width: 700px; -ms-border-radius: 10px; border-radius: 10px; border: 1px solid black; border-collapse: unset; padding: 10px;">
-                        <tr>
-                            <td style="text-align: left; width: 10px">Supplier</td>
+                        <tr style="padding-left:10px;" >
+                            <td style="text-align: left; width: 10px">Supplier:</td>
                             <td style="text-align: left">Ship TO</td>
                             <td style="text-align: left;">Bill To</td>
                         </tr>
@@ -131,9 +138,13 @@
                             <td style="text-align: left">
                                 <asp:Label ID="lblSupEmail" Width="200px" runat="server"></asp:Label></td>
                             <td></td>
-                            <td style="text-align: left;">
+                            <td rowspan="3" style="text-align: left;">
                                 <asp:Label ID="Label1" Width="200px" Text="Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208" runat="server"></asp:Label></td>
                         </tr>
+
+
+
+                        
 
                         <tr>
                             <td style="text-align: left">
@@ -148,6 +159,11 @@
                         <tr>
                             <td style="text-align: left">
                                 <asp:Label ID="lblSuppAddress" Width="300px" runat="server"></asp:Label></td>
+
+                            <td style="text-align: center"> <asp:Label ID="Label3" forecolor="#bbbbbb" Width="200px" text="PR No." runat="server"></asp:Label> </td>
+
+                            <td style="text-align: left">
+                                <asp:Label ID="lblIndentNo" Font-Size="Small" forecolor="#bbbbbb" Width="200px" runat="server"></asp:Label></td>
                         </tr>
                     </table>
                     <table style="width: 770px">
@@ -155,7 +171,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="11px" Width="770px" ShowFooter="true"
-                                    BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical" HeaderStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Right">
+                                    BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical"  HeaderStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Right">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL">
@@ -239,6 +255,7 @@
                         <tr>
                             <td></td>
                         </tr>
+
                     </table>
                     <table class="detailstable">
                         <tr>
@@ -261,7 +278,7 @@
                             <td >Last Shipment Date</td>
                             <td >
                                 <asp:Label ID="lbllastShipmentDate" Width="100px" runat="server"></asp:Label></td>
-                            <td >Gross Disscount</td>
+                            <td >Gross Discount</td>
                             <td style="text-align: left; border: 1px  inset gray">
                                 <asp:Label ID="lblGrossDis" runat="server" Width="100px"></asp:Label></td>
                         </tr>
@@ -269,12 +286,12 @@
                             <td >Payment terms</td>
                             <td >
                                 <asp:Label ID="lblPaymentTrems" runat="server"></asp:Label></td>
-                            <td >Comission</td>
+                            <td >Commission</td>
                             <td >
                                 <asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >Payment days after MRR (days)</td>
+                            <td >Payment days after MRR</td>
                             <td >
                                 <asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
                             <td >Grand Total</td>
@@ -307,12 +324,11 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="lblOthersterms" runat="server"></asp:Label></td>
                         </tr>
+                        
                         <tr>
-                            <td></td>
+                            <td style="height:10px"><br></td>
                         </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
+                             
                         <tr>
                             <td>
                                 <asp:Label ID="lblPrepareBy" Font-Bold="true" runat="server"></asp:Label></td>

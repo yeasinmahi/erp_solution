@@ -1,6 +1,4 @@
-﻿using Flogging.Core;
-using GLOBAL_BLL;
-using LOGIS_BLL;
+﻿using LOGIS_BLL;
 using LOGIS_DAL;
 using SAD_BLL.Customer;
 using SAD_BLL.Global;
@@ -17,21 +15,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using System.Xml;
+using System.Xml.Linq;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SAD.Order
 {
-    public partial class QuationEntry : System.Web.UI.Page
+    public partial class QuationEntry : BasePage
     {
-        decimal promPrice = 0;
+        SalesConfig sc = new SalesConfig();
         XmlManagerSO xm = new XmlManagerSO();
+        string filePathForXML;
+        string xmlString = "";
         SalesOrderTDS.QrySalesOrderCustomerDataTable table;
 
-        private string nextParentID = "";
         Table tbl = new Table();
         TableRow tr = new TableRow();
         TableCell td = new TableCell();
@@ -46,98 +46,7 @@ namespace UI.SAD.Order
         TableCell tdLblV = new TableCell();
         TableCell tdConV = new TableCell();
         VehicleManagerTDS.SprVehiclePriceManagerGetAllUpperLevelDataTable tblUpperLevelV;
-        SeriLog log = new SeriLog();
-        string location = "SAD";
-        string start = "starting SAD\\Order\\Delivary";
-        string stop = "stopping SAD\\Order\\Delivary";
-        protected override void OnPreInit(EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                // Session["sesUserID"] = "53";
 
-                var fd = log.GetFlogDetail(start, location, "Show", null);
-                Flogger.WriteDiagnostic(fd);
-
-                // starting performance tracker
-                var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary Delivery Show", "", fd.UserName, fd.Location,
-                    fd.Product, fd.Layer);
-                try
-                {
-                    if (Request.QueryString["id"] != null)
-                    {
-                        SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
-                        table = se.GetSalesOrder(Request.QueryString["id"]);
-
-                        if (table.Rows.Count > 0)
-                        {
-                            hdnUnit.Value = table[0].intUnitId.ToString();
-                            txtConvRate.Text = table[0].numConversionRate.ToString();
-                            if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
-
-                            SalesOrderTDS.QrySalesOrderDetailsDataTable tbl = se.GetSalesOrderDetails(table[0].intId.ToString());
-
-                            for (int i = 0; i < tbl.Rows.Count; i++)
-                            {
-                                string[][] items = xm.CreateItems(tbl[i].intProductId.ToString()
-                                    , tbl[i].strProductName
-                                    , tbl[i].numQuantity.ToString()
-                                    , tbl[i].numApprQuantity.ToString()
-                                    , tbl[i].monPrice.ToString()
-                                    , tbl[i].intCOAAccId.ToString()
-                                    , tbl[i].strCOAAccName
-                                    , tbl[i].IsintExtraIdNull() ? "" : tbl[i].intExtraId.ToString()
-                                    , tbl[i].IsstrExtraChargeNull() ? "" : tbl[i].strExtraCharge
-                                    , tbl[i].IsmonExtraPriceNull() ? "" : tbl[i].monExtraPrice.ToString()
-                                    , tbl[i].intUom.ToString()
-                                    , tbl[i].strUOM
-                                    , tbl[i].intCurrencyID.ToString()
-                                    , tbl[i].IsstrNarrationNull() ? "" : tbl[i].strNarration
-                                    , tbl[i].intSalesType.ToString()
-                                    , tbl[i].IsintVehicleVarIdNull() ? "" : tbl[i].intVehicleVarId.ToString()
-                                    , tbl[i].IsnumPromotionNull() ? "" : tbl[i].numPromotion.ToString()
-                                    , tbl[i].IsmonCommissionNull() ? "" : tbl[i].monCommission.ToString()
-                                    , tbl[i].IsintIncentiveIdNull() ? "" : tbl[i].intIncentiveId.ToString()
-                                    , tbl[i].IsnumIncentiveNull() ? "" : tbl[i].numIncentive.ToString()
-                                    , tbl[i].IsmonSuppTaxNull() ? "" : tbl[i].monSuppTax.ToString()
-                                    , tbl[i].IsmonVATNull() ? "" : tbl[i].monVAT.ToString()
-                                    , tbl[i].IsmonVatPriceNull() ? "" : tbl[i].monVatPrice.ToString()
-                                    , tbl[i].IsintPromItemIdNull() ? "" : tbl[i].intPromItemId.ToString()
-                                    , tbl[i].IsstrPromItemNameNull() ? "" : tbl[i].strPromItemName
-                                    , tbl[i].IsintPromUOMNull() ? "" : tbl[i].intPromUOM.ToString()
-                                    , tbl[i].IsstrPromUomNull() ? "" : tbl[i].strPromUom
-                                    , tbl[i].IsmonPromPriceNull() ? "0" : tbl[i].monPromPrice.ToString()
-                                    , tbl[i].IsintPromItemCOAIdNull() ? "0" : tbl[i].intPromItemCOAId.ToString()
-                                    , tbl[i].intId.ToString()
-                                    );
-
-                                XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
-                                XmlNode selectNode = xmlDoc.SelectSingleNode(xm.MainNode);
-                                selectNode.AppendChild(xm.CreateNodeForItem(xmlDoc, items));
-                                xmlDoc.Save(GetXmlFilePath());
-                            }
-                        }
-                    }
-                    else
-                    {
-                        txtDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
-                        txtDelDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(1));
-                    }
-                }
-                catch (Exception ex)
-                {
-                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
-                    Flogger.WriteError(efd);
-
-                }
-
-                fd = log.GetFlogDetail(stop, location, "Show", null);
-                Flogger.WriteDiagnostic(fd);
-                // ends
-                tracker.Stop();
-            }
-
-        }
         protected override void OnLoadComplete(EventArgs e)
         {
             base.OnLoadComplete(e);
@@ -198,6 +107,8 @@ namespace UI.SAD.Order
                 hdnPrice.Value = lblPrice.Text;
 
                 if (hdnCustomer.Value != "") BuildTree();
+
+
             }
             else
             {
@@ -423,11 +334,28 @@ namespace UI.SAD.Order
             lblError.Text = "";
             DataSet ds = new DataSet();
             ds.ReadXml(GetXmlFilePath());
-
+            GridViewRow row = (GridViewRow)GridView1.Rows[e.RowIndex];
+            string productId = ((Label)row.FindControl("lblPid")).Text;
             ds.Tables[0].Rows[e.RowIndex].Delete();
             ds.WriteXml(GetXmlFilePath());
             BindGrid(GetXmlFilePath());
+            
+            
 
+            if (Session["objects"] != null)
+            {
+                List<object> objects = (List<object>)Session["objects"];
+                foreach(object obj in objects.ToList()){
+                    string s = Common.GetPropertyValue(obj, "productId").ToString();
+                    if(s!=null && s.Equals(productId))
+                    {
+                        objects.Remove(obj);
+                    }
+                }
+                string xml = XmlParser.GetXml("Qutation", "item", objects, out string _);
+                Session["strSpec"] = xml;
+
+            }
 
 
 
@@ -455,15 +383,54 @@ namespace UI.SAD.Order
         #endregion
 
         #region Button
+        private void LoadGridwithXml()
+        {
+            try
+            {
+                System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
+                doc.Load(filePathForXML);
+                System.Xml.XmlNode dSftTm = doc.SelectSingleNode("QtnItemSpecification");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<QtnItemSpecification>" + xmlString + "</QtnItemSpecification>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                { GridView1.DataSource = ds; }
+                else { GridView1.DataSource = ""; }
+
+                GridView1.DataBind();
+
+            }
+            catch { }
+        }
+        //private void CreateVoucherXml(string BillDate, string MovDuration, string fromAddress, string movementAddress, string toAddress, string busfair, string Rickfai, string cngfair, string trainfair, string boatfair, string othervhfair, string ownda, string otherpersonda, string hotelfair, string OtherCost, string remarks, string totalcost, string contactperson, string phone, string vistOrganization, string slNo)
+        //{
+        //    XmlDocument doc = new XmlDocument();
+        //    if (System.IO.File.Exists(filePathForXML))
+        //    {
+        //        doc.Load(filePathForXML);
+        //        XmlNode rootNode = doc.SelectSingleNode("Remotetadanobike");
+        //        XmlNode addItem = CreateItemNode(doc, BillDate, MovDuration, fromAddress, movementAddress, toAddress, busfair, Rickfai, cngfair, trainfair, boatfair, othervhfair, ownda, otherpersonda, hotelfair, OtherCost, remarks, totalcost, contactperson, phone, vistOrganization, slNo);
+        //        rootNode.AppendChild(addItem);
+        //    }
+        //    else
+        //    {
+        //        XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+        //        doc.AppendChild(xmldeclerationNode);
+        //        XmlNode rootNode = doc.CreateElement("Remotetadanobike");
+        //        XmlNode addItem = CreateItemNode(doc, BillDate, MovDuration, fromAddress, movementAddress, toAddress, busfair, Rickfai, cngfair, trainfair, boatfair, othervhfair, ownda, otherpersonda, hotelfair, OtherCost, remarks, totalcost, contactperson, phone, vistOrganization, slNo);
+        //        rootNode.AppendChild(addItem);
+        //        doc.AppendChild(rootNode);
+        //    }
+        //    doc.Save(filePathForXML);
+        //    LoadGridwithXml();
+        //    Clear();
+        //}
+
+
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-
-            var fd = log.GetFlogDetail(start, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary add product", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
             try
             {
 
@@ -503,43 +470,23 @@ namespace UI.SAD.Order
                         string promUom = "";
 
                         ItemPromotion ip = new ItemPromotion();
-                        //promPrice = ip.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue
-                        //    , ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                        //    , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
-                        promPrice = 0;
 
-                        if (promItemId.ToString() == hdnProduct.Value)
-                        {
-                            /*28,23,29,24*/
-                            if (sdv.Checked == true && ("23" != ddlSo.SelectedValue.ToString() || "24" != ddlSo.SelectedValue.ToString()
-                            || "28" != ddlSo.SelectedValue.ToString() || "29" != ddlSo.SelectedValue.ToString()))
-                            {
-                                decimal tempprc = Math.Round((decimal.Parse(txtQun.Text) * decimal.Parse(hdnPrice.Value)) /
-                                                  (decimal.Parse(txtQun.Text) + promQnty)); //+ 1
-                                hdnPrice.Value = tempprc.ToString("0.00");
-                                promQnty = 0;
-                            }
-                            promPrice = decimal.Parse(hdnPrice.Value);
-                            promItemCOAId = int.Parse(coaId);
-                        }
 
-                        //string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
-                        //    , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, ddlExtra.SelectedValue
-                        //    , ddlExtra.SelectedItem.Text, chrPr, ddlUOM.SelectedValue, ddlUOM.SelectedItem.Text
-                        //    , ddlCurrency.SelectedValue, narr, rdoSalesType.SelectedValue.ToString()
-                        //    , hdnDDLChangedSelectedIndexV.Value, promQnty.ToString(), lblComm.Text
-                        //    , ddlIncentive.SelectedValue, incPr, hdnSuppTax.Value, hdnVat.Value, hdnVatPrice.Value
-                        //    , promItemId.ToString(), promItem, promItemUOM.ToString(), promUom
-                        //    , promPrice.ToString(), promItemCOAId.ToString());
+                        string xml = GetValue(out string itemSpecification);
+                        Session["specXml"] = xml;
+
 
                         string[][] items = xm.CreateNewItems(hdnProduct.Value, hdnProductText.Value
                             , txtQun.Text, txtQun.Text, hdnPrice.Value, coaId, coaName, "0"
-                            , "1", "0", "0", "1"
+                            , itemSpecification, "0", "0", "1"
                             , ddlCurrency.SelectedValue, narr, rdoSalesType.SelectedValue.ToString()
                             , hdnDDLChangedSelectedIndexV.Value, promQnty.ToString(), "0"
-                            , "0", "0", "0", "0","0"
-                            , "0","1", "1", "0"
+                            , "0", "0", "0", "0", "0"
+                            , "0", "1", "1", "0"
                             , "0", "0");
+
+
+
 
 
 
@@ -560,15 +507,8 @@ namespace UI.SAD.Order
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
-                Flogger.WriteError(efd);
-
+                Toaster(ex.Message);
             }
-
-            fd = log.GetFlogDetail(stop, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -576,12 +516,6 @@ namespace UI.SAD.Order
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on  SAD\\Order\\Delivary Save product", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
             try
             {
                 string id = "", code = "";
@@ -604,28 +538,28 @@ namespace UI.SAD.Order
                 catch { }
                 try { incentive = decimal.Parse(txtIncPr.Text); }
                 catch { }
-               string searchkey= txtCus.Text.ToString();
+                string searchkey = txtCus.Text.ToString();
                 arrayKey = searchkey.Split(delimiterChars);
                 string custid = arrayKey[1].ToString();
                 //int custmid = int.Parse(custid);
 
 
                 string narrTop = "";
-               
+
 
                 SAD_BLL.Sales.SalesOrder se = new SAD_BLL.Sales.SalesOrder();
-              
 
-                //se.AddUpdateDelivaryOrder(xml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
-                //     , CommonClass.GetDateAtSQLDateFormat(txtDate.Text), CommonClass.GetDateAtSQLDateFormat(txtDelDate.Text)
-                //     , hdnCustomer.Value, ddlCusType.SelectedValue, narrTop, txtAddress.Text.Trim(), hdnDis.Value, hdnPriceId.Value, hdnPriceIdV.Value
-                //     , bool.Parse(rdoNeedVehicle.SelectedValue)
-                //     , ddlExtra.SelectedValue, charge, ddlIncentive.SelectedValue, incentive
-                //     , ddlCurrency.SelectedValue, decimal.Parse(txtConvRate.Text), rdoSalesType.SelectedValue, ext, "", ""
-                //     , txtContact.Text.Trim(), txtPhone.Text.Trim(), ddlSo.SelectedValue
-                //     , ddlShip.SelectedValue, sdv.Checked, ref code, ref id);
 
-                se.AddDelivaryQuation(xml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
+
+                if (Session["specXml"] == null)
+                {
+                    Toaster("Can not get Item specifications", Common.TosterType.Warning);
+                    return;
+                }
+                string specXml = Session["specXml"].ToString();
+                Session["objects"] = null;
+                Session["specXml"] = null;
+                se.AddDelivaryQuation(xml, specXml, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue
                      , CommonClass.GetDateAtSQLDateFormat(txtDate.Text), CommonClass.GetDateAtSQLDateFormat(txtDelDate.Text)
                      , custid, ddlCusType.SelectedValue, narrTop, txtAddress.Text.Trim(), hdnDis.Value, hdnPriceId.Value, hdnPriceIdV.Value
                      , bool.Parse(rdoNeedVehicle.SelectedValue)
@@ -647,15 +581,8 @@ namespace UI.SAD.Order
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "Submit", ex);
-                Flogger.WriteError(efd);
-
+                Toaster(ex.Message);
             }
-
-            fd = log.GetFlogDetail(stop, location, "Submit", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
         #endregion
 
@@ -850,6 +777,7 @@ namespace UI.SAD.Order
         }
         protected void txtProduct_TextChanged(object sender, EventArgs e)
         {
+            SalesConfig sc = new SalesConfig();
             if (txtProduct.Text.Trim() != "")
             {
                 char[] ch = { '[', ']' };
@@ -865,8 +793,148 @@ namespace UI.SAD.Order
             ddlUOM.DataBind();
 
             txtQun.Focus();
+
+            bool specf = Convert.ToBoolean(Session["itmspecification"].ToString());
+            if (specf)
+            {
+                CreateSpec();
+            }
+            else
+            {
+            }
+
+
         }
 
+        public void CreateSpec()
+        {
+            if (int.TryParse(hdnProduct.Value, out int productId))
+            {
+                DataTable dt = sc.getItemSpecification(productId);
+                CreateTextBox(dt);
+                dt = sc.GetQutationsSpec(ddlUnit.SelectedValue(), productId);
+                CreateDropDown(dt);
+                panel.DataBind();
+
+            }
+        }
+
+        public void CreateTextBox(DataTable dt)
+        {
+            int counter = 1;
+            foreach (DataRow row in dt.Rows)
+            {
+                string attributeId = row["intattrid"].ToString();
+                string attribute = row["strattr"].ToString();
+                string attrQty = row["numqnt"].ToString();
+                string uom = row["strUOM"].ToString();
+
+
+                Label label = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtlbl" + counter));
+                label.Text = attribute;
+                label.Visible = true;
+
+                HiddenField hiddenField = panel.Controls.OfType<HiddenField>().FirstOrDefault(control => control.ID.Equals("hdn" + counter));
+                hiddenField.Value = attributeId;
+
+                TextBox textBox = panel.Controls.OfType<TextBox>().FirstOrDefault(control => control.ID.Equals("txt" + counter));
+                textBox.Text = attrQty;
+                textBox.Visible = true;
+
+                Label labelUom = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtUom" + counter));
+                labelUom.Text = uom;
+                labelUom.Visible = true;
+
+                counter++;
+            }
+        }
+
+        public void CreateDropDown(DataTable dt)
+        {
+            int counter = 1;
+            DataTable distingRow = dt.DefaultView.ToTable(true, "intAttributeID", "strAttributeLebel");
+            foreach (DataRow row in distingRow.Rows)
+            {
+                string attributelabel = row["strAttributeLebel"].ToString();
+                string attributeId = row["intAttributeID"].ToString();
+
+                DataTable ddlData = dt.AsEnumerable().Where(r => r.Field<int>("intAttributeID") == int.Parse(attributeId)).CopyToDataTable();
+
+                Label label = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("ddllbl" + counter));
+                label.Text = attributelabel;
+                label.Visible = true;
+                DropDownList ddl = panel.Controls.OfType<DropDownList>().FirstOrDefault(control => control.ID.Equals("ddl" + counter));
+                ddl.Visible = true;
+                ddl.Loads(ddlData, "intAutoID", "strAttributeMemberList");
+                counter++;
+            }
+        }
+
+
+        public string GetValue(out string itemSpecification)
+        {
+            if (int.TryParse(hdnProduct.Value, out int productId))
+            {
+                itemSpecification = string.Empty;
+
+                List<object> objects = new List<object>();
+                if (Session["objects"] != null)
+                {
+                    objects = (List<object>)Session["objects"];
+                }
+                DataTable dt = sc.getItemSpecification(productId);
+                int counter = 1;
+                foreach (DataRow row in dt.Rows)
+                {
+                    string attrId = panel.Controls.OfType<HiddenField>().FirstOrDefault(control => control.ID.Equals("hdn" + counter))?.Value;
+                    string strAtt = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtlbl" + counter))?.Text;
+                    string attrValue = panel.Controls.OfType<TextBox>().FirstOrDefault(control => control.ID.Equals("txt" + counter))?.Text;
+                    string uom = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("txtUom" + counter))?.Text;
+                    string descriptions = strAtt + " :" + attrValue + " " + uom;
+                    itemSpecification += descriptions + "_";
+                    dynamic obj = new
+                    {
+                        productId,
+                        attrId,
+                        strAtt,
+                        attrValue,
+                        descriptions
+                    };
+                    objects.Add(obj);
+                    counter++;
+                }
+                counter = 1;
+                dt = sc.GetQutationsSpec(ddlUnit.SelectedValue(), productId);
+                DataTable distingRow = dt.DefaultView.ToTable(true, "intAttributeID", "strAttributeLebel");
+                foreach (DataRow row in distingRow.Rows)
+                {
+                    string attrId = panel.Controls.OfType<DropDownList>()
+                        .FirstOrDefault(control => control.ID.Equals("ddl" + counter))?.SelectedItem.Value;
+                    string strAtt = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("ddllbl" + counter))?.Text;
+                    string attrValue = panel.Controls.OfType<DropDownList>()
+                        .FirstOrDefault(control => control.ID.Equals("ddl" + counter))?.SelectedItem.Text;
+                    string descriptions = strAtt + " :" + attrValue;
+                    itemSpecification += descriptions + "_";
+                    dynamic obj = new
+                    {
+                        productId,
+                        attrId,
+                        strAtt,
+                        attrValue,
+                        descriptions
+                    };
+                    objects.Add(obj);
+                    counter++;
+                }
+                Session["objects"] = objects;
+                string xml = XmlParser.GetXml("Qutation", "item", objects, out string _);
+                return xml;
+
+
+            }
+            itemSpecification = string.Empty;
+            return string.Empty;
+        }
         #endregion
 
         #region EventHandler RadioButton
@@ -1192,6 +1260,10 @@ namespace UI.SAD.Order
                 hdnXFactoryVhl.Value = t[0].ysnXFactoryPriceFixedForLogis.ToString().ToLower();
                 hdnXFactoryChr.Value = t[0].ysnXFactoryPriceFixedForCharge.ToString().ToLower();
                 hdnChrgMerge.Value = t[0].ysnChargeAccountMerge.ToString().ToLower();
+                hdnItemSpecification.Value = t[0].ysnItemSpec.ToString().ToLower();
+                bool itmspecification = t[0].ysnItemSpec;
+                Session["itmspecification"] = itmspecification;
+
 
                 pnlDis.Visible = dis;
                 txtCus.Visible = !dis;
@@ -1212,13 +1284,7 @@ namespace UI.SAD.Order
                     txtIncPr.CssClass = "";
                     lblExtPr.CssClass = "";
 
-                    //GridView1.Columns[4].Visible = true;
-                    //GridView1.Columns[5].Visible = true;
-                    //GridView1.Columns[6].Visible = true;
-                    //GridView1.Columns[7].Visible = true;
-                    //GridView1.Columns[8].Visible = true;
-                    //GridView1.Columns[9].Visible = true;
-                    //GridView1.Columns[10].Visible = true;
+
                 }
                 else
                 {
@@ -1228,13 +1294,7 @@ namespace UI.SAD.Order
                     txtIncPr.CssClass = "hide";
                     lblExtPr.CssClass = "hide";
 
-                    //GridView1.Columns[4].Visible = false;
-                    //GridView1.Columns[5].Visible = false;
-                    //GridView1.Columns[6].Visible = false;
-                    //GridView1.Columns[7].Visible = false;
-                    //GridView1.Columns[8].Visible = false;
-                    //GridView1.Columns[9].Visible = false;
-                    //GridView1.Columns[10].Visible = false;
+
                 }
 
                 if (t[0].ysnDefaultLogis)
@@ -1245,6 +1305,17 @@ namespace UI.SAD.Order
                 {
                     rdoNeedVehicle.SelectedIndex = 1;
                 }
+
+                if (itmspecification)
+                {
+                    btnitmspecification.Visible = true;
+                }
+                else
+                {
+                    btnitmspecification.Visible = false;
+                }
+
+
 
                 pnlClCb.Visible = t[0].ysnCrInfoInDO2;
 
@@ -1346,8 +1417,6 @@ namespace UI.SAD.Order
 
                 ddl.AutoPostBack = true;
                 ddl.Attributes.Add("onChange", "DDLChange('" + ddl.ID + "');");
-
-                nextParentID = ddl.SelectedValue;
 
                 //just only have not any child
                 if (item.GetChildCount(ddl.SelectedValue) <= 0)
@@ -1468,5 +1537,10 @@ namespace UI.SAD.Order
             return htA;
         }
         #endregion
+
+        protected void btnitmspecification_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

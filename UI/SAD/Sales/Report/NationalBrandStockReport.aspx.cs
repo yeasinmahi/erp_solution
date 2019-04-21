@@ -16,7 +16,7 @@ namespace UI.SAD.Sales.Report
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Ruhul/Binti/National%20Brand%20Sales%20Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Sales%20And%20Distribution/National%20Brand%20Sales%20Report?rs:Embed=true');", true);
 
         }
     }

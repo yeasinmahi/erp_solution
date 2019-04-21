@@ -479,14 +479,5 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ObjectDataSource ObjectDataSource2;
-        
-        /// <summary>
-        /// ScriptReferenceProfiler1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::ScriptReferenceProfiler.ScriptReferenceProfiler ScriptReferenceProfiler1;
     }
 }

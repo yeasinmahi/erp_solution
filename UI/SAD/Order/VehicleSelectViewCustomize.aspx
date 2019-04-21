@@ -16,13 +16,13 @@
         function ShowPopUpC(url) {
             var rand_no = Math.floor(11 * Math.random());
             url = url + '&rnd=' + rand_no;
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,scroll=1,height=1000,width=1000,top=70,left=220');
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,scroll=1,height=1000,width=1000,top=70,left=220,resizable=yes');
             if (window.focus) { newwindow.focus() }
         }
         function ShowPopUpE(url) {
             var rand_no = Math.floor(11 * Math.random());
             url = url + '&rnd=' + rand_no;
-            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=550,width=1000,top=70,left=220');
+            newwindow = window.open(url, 'sub', 'scrollbars=yes,toolbar=0,height=550,width=1000,top=70,left=220,resizable=yes');
             if (window.focus) { newwindow.focus() }
         }
         function ValidateComplete(sender, args) {
@@ -317,6 +317,13 @@
                         </ItemTemplate>
                         <ItemStyle HorizontalAlign="Center"></ItemStyle>
                     </asp:TemplateField>
+                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <%# GetEditNewAddLink(Eval("intId"), Eval("ysnChallanCompleted"))%>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:TemplateField>
+
                     <%--<asp:TemplateField ItemStyle-HorizontalAlign="Center">
                         <ItemTemplate>
                             <asp:Button ID="btnCompleted" ValidationGroup="valCom" runat="server" Text="Delivered"

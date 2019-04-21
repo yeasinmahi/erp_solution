@@ -139,24 +139,6 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.HiddenField hdnDiscountP;
         
         /// <summary>
-        /// lblDo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDo;
-        
-        /// <summary>
-        /// Label4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
         /// lblordernumberval control.
         /// </summary>
         /// <remarks>
@@ -166,13 +148,13 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lblordernumberval;
         
         /// <summary>
-        /// Label8 control.
+        /// lblFaxnAME control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
+        protected global::System.Web.UI.WebControls.Label lblFaxnAME;
         
         /// <summary>
         /// lblcustval control.
@@ -184,15 +166,6 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lblcustval;
         
         /// <summary>
-        /// lblqotdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblqotdate;
-        
-        /// <summary>
         /// lblqotdateval control.
         /// </summary>
         /// <remarks>
@@ -200,15 +173,6 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblqotdateval;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
         /// lblcreditlmval control.
@@ -220,15 +184,6 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lblcreditlmval;
         
         /// <summary>
-        /// Label14 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label14;
-        
-        /// <summary>
         /// lblPendingamount control.
         /// </summary>
         /// <remarks>
@@ -236,15 +191,6 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblPendingamount;
-        
-        /// <summary>
-        /// Label15 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
         /// lbloutstandingval control.
@@ -256,15 +202,6 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lbloutstandingval;
         
         /// <summary>
-        /// Label16 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
-        
-        /// <summary>
         /// lblspecificationval control.
         /// </summary>
         /// <remarks>
@@ -274,15 +211,6 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.Label lblspecificationval;
         
         /// <summary>
-        /// lbltoatalamount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbltoatalamount;
-        
-        /// <summary>
         /// lbltotamounval control.
         /// </summary>
         /// <remarks>
@@ -290,6 +218,42 @@ namespace UI.SAD.Order {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbltotamounval;
+        
+        /// <summary>
+        /// lblDo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDo;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// lblupdateqnt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblupdateqnt;
+        
+        /// <summary>
+        /// lblfinalamount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblfinalamount;
         
         /// <summary>
         /// grdvQuationDetails control.
