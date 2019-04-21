@@ -107,6 +107,15 @@
         
     </script>
 
+    <script>
+           function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
+           function RefreshParent() {
+               if (window.opener != null && !window.opener.closed) {
+                   window.opener.location.reload();
+               }
+           }
+        </script>
+
     <style type="text/css">
         .auto-style1 {
             height: 23px;
@@ -222,7 +231,7 @@
                 <td class="auto-style1">
                     </td>
                 <td class="auto-style1">
-                    Total Amount</td>
+                    Grand Total Amount</td>
                 <td class="auto-style1">
                     <asp:Label ID="lblfinalamount" runat="server"></asp:Label></td>
             </tr>

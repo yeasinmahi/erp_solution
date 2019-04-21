@@ -113,6 +113,7 @@ namespace UI.SAD.Order
             else
             {
                 pnlMarque.DataBind();
+               
                 txtQun.Attributes.Add("onkeyup", "SetPrice()");
                 BindGrid(GetXmlFilePath());
             }

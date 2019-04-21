@@ -308,8 +308,8 @@ namespace UI.SAD.Order
             if (decimal.Parse(restQnt) >= decimal.Parse(newQnt))
             {
 
-                string narr = newQnt + " " + uomTxt + " " + pName + " Sold To " + hdnCustomerText.Value;
-
+                //string narr = newQnt + " " + uomTxt + " " + pName + " Sold To " + hdnCustomerText.Value;
+                string narr = ((Label)(GridView1.Rows[index].Cells[4].FindControl("lblSpecifications"))).Text;
                 decimal promQnty = 0;
                 int promItemId = 0;
                 int promItemCOAId = 0;
@@ -533,13 +533,16 @@ namespace UI.SAD.Order
                     string xml = ("<" + xm.MainNode + "> " + node.InnerXml + " </" + xm.MainNode + ">");
 
                     string narrTop = "";
+                    string specification = "";
                     for (int i = 0; i < GridView1.Rows.Count; i++)
                     {
                         if (GridView1.Rows[i].RowType == DataControlRowType.DataRow)
                         {
                             narrTop += "[" + ((Label)(GridView1.Rows[i].Cells[2].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[3].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[1].Controls[1])).Text + "] ";
+                         
                         }
                     }
+            //specification = ((HiddenField)GridView1.Rows[i].FindControl("hdnstrTermsNCondition")).Value.ToString();
             char[] ch = { '[', ']' };
             string[] array;
             string searchkey = txtVehicle.Text;
@@ -564,7 +567,7 @@ namespace UI.SAD.Order
                     , decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
                     , hdnUom.Value, "0"
                     , "0", narrTop
-                    , txtDriver.Text, txtDriverContact.Text, hdnVehicleText.Value, suppliercoaid, strsupplier, ""
+                    , txtDriver.Text, txtDriverContact.Text, hdnVehicleText.Value, suppliercoaid, strsupplier, hdnCustomerText.Value
                     , ref code, ref id);
                 lblchallanval.Text = code;
 
