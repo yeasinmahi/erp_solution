@@ -48,7 +48,7 @@
         </script>
 
 
-
+    
     <style type="text/css">
         .hide
         {
@@ -263,7 +263,7 @@
                                         OnDataBound="GridView1_DataBound" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit"
                                         OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
                                         <Columns>
-                                            <asp:BoundField DataField="Pid" HeaderText="Pid" Visible="false" SortExpression="Pid" />
+                                            <asp:BoundField DataField="Pid" HeaderText="Pid" Visible="true" SortExpression="Pid" />
                                              
 
 
@@ -299,12 +299,24 @@
                                             </asp:TemplateField>
                                               
                                      
-                                            <asp:TemplateField HeaderText="Promotion Product" Visible="false">
+                                     <%--       <asp:TemplateField HeaderText="Promotion Product" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label6" runat="server" Text='<%# decimal.Parse(""+Eval("Prom"))==0?"":""+Eval("PromItem") %>'></asp:Label>
                                                 </ItemTemplate>
                                                 <ItemStyle HorizontalAlign="Right" />
+                                            </asp:TemplateField>--%>
+
+                                            
+                                            <asp:TemplateField HeaderText="Specifications">
+                                                <ItemTemplate>
+                                                    <asp:HiddenField ID="hdnstrTermsNCondition" runat="server" Value='<%# Eval("Narr") %>' />
+                                                    <asp:Label ID="lblSpecifications" runat="server" Text='<%# Bind("Narr") %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <ItemStyle HorizontalAlign="Right" />
                                             </asp:TemplateField>
+
+
+
                                             <asp:TemplateField HeaderText="P. Qnt" Visible="false">
                                                 <ItemTemplate>
                                                     <asp:Label ID="Label7" runat="server" Text='<%# decimal.Parse(""+Eval("Prom"))==0?"":""+Eval("Prom") %>'></asp:Label>

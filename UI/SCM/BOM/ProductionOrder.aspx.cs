@@ -46,7 +46,7 @@ namespace UI.SCM.BOM
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
 
@@ -119,51 +119,49 @@ namespace UI.SCM.BOM
         {
             try
             {
-                if (hdnPreConfirm.Value == "1")
+                arrayKey = txtItem.Text.Split(delimiterChars);
+                intWh = int.Parse(ddlWH.SelectedValue);
+                string item = ""; string itemid = ""; string uom = "";
+                if (arrayKey.Length > 0)
+                { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                string fromtime = ddlFromTime.SelectedItem.ToString();
+
+                string toTime = ddlFromToTime.SelectedItem.ToString();
+
+                DateTime dteFrom = DateTime.Parse(txtdteDate.Text);
+                string a = dteFrom.ToString("yyyy-MM-dd") + " " + fromtime;
+                DateTime startTime = DateTime.Parse(a.ToString());
+
+                DateTime dteTo = DateTime.Parse(txtdteDate.Text);
+                string b = dteFrom.ToString("yyyy-MM-dd") + " " + toTime;
+                DateTime endTime = DateTime.Parse(b.ToString());
+                var hours = (endTime - startTime).TotalHours;
+                if (hours <= 0)
                 {
-                    arrayKey = txtItem.Text.Split(delimiterChars);
-                    intWh = int.Parse(ddlWH.SelectedValue);
-                    string item = ""; string itemid = ""; string uom = "";
-                    if (arrayKey.Length > 0)
-                    { item = arrayKey[0].ToString(); uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
-                    string fromtime = ddlFromTime.SelectedItem.ToString();
-
-                    string toTime = ddlFromToTime.SelectedItem.ToString();
-
-                    DateTime dteFrom = DateTime.Parse(txtdteDate.Text);
-                    string a = dteFrom.ToString("yyyy-MM-dd") + " " + fromtime;
-                    DateTime startTime = DateTime.Parse(a.ToString());
-
-                    DateTime dteTo = DateTime.Parse(txtdteDate.Text);
-                    string b = dteFrom.ToString("yyyy-MM-dd") + " " + toTime;
-                    DateTime endTime = DateTime.Parse(b.ToString());
-                    var hours = (endTime - startTime).TotalHours;
-                    if (hours <= 0)
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('End time cannot be equal to or less than start time.');", true);
-                    }
-                    else if (hours > 24)
-                    {
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Production time cannot be greater than 24 hours.');", true);
-                    }
-                    else
-                    {
-                        checkXmlItemData(itemid);
-                        if (CheckItem == 1)
-                        {
-                            string bomid = ddlBom.SelectedValue.ToString();
-                            string bomName = ddlBom.SelectedItem.ToString();
-                            string quantity = txtQty.Text.ToString();
-                            string lineprocess = ddlLine.SelectedValue.ToString();
-                            string invoice = txtInvoice.Text.ToString();
-                            string batch = txtBatchNo.Text.ToString();
-                            fromtime = startTime.ToString();
-                            toTime = endTime.ToString();
-                            CreateXml(item, itemid, fromtime, toTime, bomid, bomName, quantity, lineprocess, invoice, batch);
-                        }
-                        else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
-                    }
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('End time cannot be equal to or less than start time.');", true);
                 }
+                else if (hours > 24)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Production time cannot be greater than 24 hours.');", true);
+                }
+                else
+                {
+                    checkXmlItemData(itemid);
+                    if (CheckItem == 1)
+                    {
+                        string bomid = ddlBom.SelectedValue.ToString();
+                        string bomName = ddlBom.SelectedItem.ToString();
+                        string quantity = txtQty.Text.ToString();
+                        string lineprocess = ddlLine.SelectedValue.ToString();
+                        string invoice = txtInvoice.Text.ToString();
+                        string batch = txtBatchNo.Text.ToString();
+                        fromtime = startTime.ToString();
+                        toTime = endTime.ToString();
+                        CreateXml(item, itemid, fromtime, toTime, bomid, bomName, quantity, lineprocess, invoice, batch);
+                    }
+                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
+                }
+
             }
             catch { }
         }
@@ -210,7 +208,7 @@ namespace UI.SCM.BOM
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
 
@@ -225,8 +223,10 @@ namespace UI.SCM.BOM
                 string uom = "";
                 bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString();
-                    uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString(); }
+                {
+                    item = arrayKey[0].ToString();
+                    uom = arrayKey[2].ToString(); itemid = arrayKey[3].ToString();
+                }
                 dt = objBom.GetBomData(2, xmlData, intwh, int.Parse(itemid), DateTime.Now, Enroll);
                 ddlBom.DataSource = dt;
                 ddlBom.DataTextField = "strName";
@@ -246,28 +246,30 @@ namespace UI.SCM.BOM
         {
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
-                {
-                    XmlDocument doc = new XmlDocument();
-                    intWh = int.Parse(ddlWH.SelectedValue);
-                    doc.Load(filePathForXML);
-                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<voucher>" + xmlString + "</voucher>";
-                    DateTime dteDate = DateTime.Parse(txtdteDate.Text.ToString());
+                XmlDocument doc = new XmlDocument();
+                intWh = int.Parse(ddlWH.SelectedValue);
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<voucher>" + xmlString + "</voucher>";
+                DateTime dteDate = DateTime.Parse(txtdteDate.Text.ToString());
 
-                    try { File.Delete(filePathForXML); } catch { }
-                    if (xmlString.Length > 5)
-                    {
-                        string msg = objBom.BomPostData(5, xmlString, intWh, BomId, dteDate, Enroll);
-                        dgvBom.DataSource = "";
-                        dgvBom.DataBind();
-                        txtBatchNo.Text = ""; txtQty.Text = "0"; txtItem.Text = ""; txtInvoice.Text = "";
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    }
+                try { File.Delete(filePathForXML); } catch { }
+                if (xmlString.Length > 5)
+                {
+                    string msg = objBom.BomPostData(5, xmlString, intWh, BomId, dteDate, Enroll);
+                    dgvBom.DataSource = "";
+                    dgvBom.DataBind();
+                    txtBatchNo.Text = ""; txtQty.Text = "0"; txtItem.Text = ""; txtInvoice.Text = "";
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 }
+
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+                try { File.Delete(filePathForXML); } catch { }
+            }
         }
 
         private void CreateXml(string item, string itemid, string fromtime, string toTime, string bomid, string bomName, string quantity, string lineprocess, string invoice, string batch)

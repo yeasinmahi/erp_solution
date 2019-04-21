@@ -131,7 +131,7 @@ namespace UI.SAD.Sales.Report
                 //string toDate = Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
                 //DateTime fDate, tDate;
 
-                bool ysn = true;
+                int ysnVAT = 0;
 
                 SalesByCusPro st = new SalesByCusPro();
                 if (rdoType.SelectedIndex == 0 || rdoType.SelectedIndex == 1 || rdoType.SelectedIndex == 2)
@@ -151,29 +151,30 @@ namespace UI.SAD.Sales.Report
                         {
                             pro = "0";
                         }
-                       
                         if (rdoType.SelectedIndex == 0)
                         {
                             // fromDate.ToString("YYYY-MM-dd") + "&toDate=" + toDate.ToString("YYYY-MM-dd")
 
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/Sales" + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport="+ ysn + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/Sales" + "&fromDate=" + txtFrom.Text + "&toDate=" + txtTo.Text + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysnVAT + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                         else if (rdoType.SelectedIndex == 1)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesP" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysn + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesP" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysnVAT + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                         else if (rdoType.SelectedIndex == 2)
                         {
-                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesS" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysn + "&rc:LinkTarget=_self";
+                            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesS" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysnVAT + "&rc:LinkTarget=_self";
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                         }
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.')", true);
+                        //Toaster("Sorry! There is no data against your query.", "Customer Statement", Utility.Common.TosterType.Warning);
                     }
+
 
                 }
                 else
@@ -192,14 +193,17 @@ namespace UI.SAD.Sales.Report
                             pro = "0";
                         }
 
-                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysn + "&rc:LinkTarget=_self";
+                        url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Sales%20And%20Distribution/SalesG" + "&fromDate=" + txtFrom.Text.ToString() + "&toDate=" + txtTo.Text.ToString() + "&customerId=" + cus + "&productId=" + pro + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&intCusType=" + ddlCusType.SelectedValue + "&intSOid=" + ddlSo.SelectedValue + "&ysnIncludePromo=" + rdoPromo.SelectedValue + "&ysnVatReport=" + ysnVAT + "&rc:LinkTarget=_self";
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.')", true);
+                        //Toaster("Sorry! There is no data against your query.", "Customer Statement", Utility.Common.TosterType.Warning);
                     }
+
                 }
+
 
             }
             catch (Exception ex)

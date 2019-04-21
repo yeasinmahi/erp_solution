@@ -40,8 +40,8 @@ namespace UI.SAD.Sales.Report
                 // starting performance tracker
                 var tracker = new PerfTracker("Performance on SAD\\Sales\\Report\\DOPrint Challan Print", "", fd.UserName, fd.Location,
                     fd.Product, fd.Layer);
-                try
-                {
+                //try
+                //{
 
                     string promItem = "";
                 decimal count = 0, promCount = 0, total = 0, gross = 0;
@@ -203,12 +203,12 @@ namespace UI.SAD.Sales.Report
                     Panel11.DataBind();
                 }
 
-                }
-                catch (Exception ex)
-                {
-                    var efd = log.GetFlogDetail(stop, location, "Show", ex);
-                    Flogger.WriteError(efd);
-                }
+                //}
+                //catch (Exception ex)
+                //{
+                //    var efd = log.GetFlogDetail(stop, location, "Show", ex);
+                //    Flogger.WriteError(efd);
+                //}
 
                 fd = log.GetFlogDetail(stop, location, "Show", null);
                 Flogger.WriteDiagnostic(fd);

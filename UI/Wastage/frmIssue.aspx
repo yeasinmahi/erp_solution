@@ -75,7 +75,7 @@
         <tr>
             <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td style="text-align:left;">
-            <asp:DropDownList ID="ddlWHName" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="false" OnSelectedIndexChanged="ddlWHName_SelectedIndexChanged"></asp:DropDownList></td>
+            <asp:DropDownList ID="ddlWHName" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="True" OnSelectedIndexChanged="ddlWHName_SelectedIndexChanged"></asp:DropDownList></td>
             <td style="text-align:right; width:15px;"><asp:Label ID="Label13" runat="server" Text=""></asp:Label></td>
             <td style="text-align:right;"><asp:Label ID="lblWH" runat="server" CssClass="lbl" Text="Sales Order NO"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
             <td style="text-align:left;"><asp:DropDownList ID="ddlSO" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="23px" AutoPostBack="True" OnSelectedIndexChanged="ddlSO_SelectedIndexChanged"></asp:DropDownList></td>

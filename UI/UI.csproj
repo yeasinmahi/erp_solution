@@ -1313,6 +1313,7 @@
     <Content Include="SAD\Order\VehicleSelectViewForQuation.aspx" />
     <Content Include="SAD\SADCOA\CusManageForCOA.aspx" />
     <Content Include="SAD\Sales\Data\PrintSVforAccounts.aspx" />
+    <Content Include="SAD\Sales\DOEntryOOP.aspx" />
     <Content Include="SAD\Sales\DOEntry.aspx" />
     <Content Include="SAD\Sales\DOEntry2.aspx" />
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
@@ -1382,6 +1383,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
+    <Content Include="SAD\Sales\Report\Sales2.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\Target_vs_ADS.aspx" />
@@ -1412,6 +1414,7 @@
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
+    <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
     <Content Include="SAD\Transfer\FGTransferView.aspx" />
@@ -6738,6 +6741,13 @@
     <Compile Include="SAD\Sales\Data\PrintSVforAccounts.aspx.designer.cs">
       <DependentUpon>PrintSVforAccounts.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\DOEntryOOP.aspx.cs">
+      <DependentUpon>DOEntryOOP.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\DOEntryOOP.aspx.designer.cs">
+      <DependentUpon>DOEntryOOP.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\DOEntry.aspx.cs">
       <DependentUpon>DOEntry.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7221,6 +7231,13 @@
     <Compile Include="SAD\Sales\Report\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Sales2.aspx.cs">
+      <DependentUpon>Sales2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales2.aspx.designer.cs">
+      <DependentUpon>Sales2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx.cs">
       <DependentUpon>Setup_vs_Challan_Info_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7430,6 +7447,13 @@
     </Compile>
     <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
       <DependentUpon>SalesPosting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\UnitTest.aspx.cs">
+      <DependentUpon>UnitTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\UnitTest.aspx.designer.cs">
+      <DependentUpon>UnitTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoMarketSetup.aspx.cs">
       <DependentUpon>GeoMarketSetup.aspx</DependentUpon>

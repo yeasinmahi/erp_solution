@@ -51,10 +51,10 @@ namespace UI.SAD.Item
                 int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
 
                 BuildTree();
-                if (unitid == 90)
-                {
-                    rdoPrType.Visible = false;
-                }
+                //if (unitid == 90)
+                //{
+                //    rdoPrType.Visible = false;
+                //}
             }
             else
             {

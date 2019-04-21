@@ -67,5 +67,10 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
+
+        public void GetWarehouseByPermission(int enroll)
+        {
+            
+        }
     }
 }

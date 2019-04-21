@@ -5,29 +5,28 @@ namespace BLL.Inventory
 {
     public class WareHouseBll
     {
-        private readonly WareHouseDal _bll = new WareHouseDal();
-        private readonly WarehouseOperatorDal _bllOp = new WarehouseOperatorDal();
-        DataTable dt = new DataTable();
+        private readonly WareHouseDal _dal = new WareHouseDal();
+        private readonly WarehouseOperatorDal _dalOp = new WarehouseOperatorDal();
         public DataTable GetUnitIdByWhId(int whId)
         {
-            return _bll.GetUnitIdByWhId(whId);
+            return _dal.GetUnitIdByWhId(whId);
         }
 
         public DataTable GetGetAllWarehouseByEnroll(int enroll)
         {
-            if (_bllOp.IsSuperUser(enroll) || _bllOp.IsAllPoAccess(enroll))
+            if (_dalOp.IsSuperUser(enroll) || _dalOp.IsAllPoAccess(enroll))
             {
-                return _bll.GetAllWarehouse();
+                return _dal.GetAllWarehouse();
             }
-            if (_bllOp.IsStoreUser(enroll))
+            if (_dalOp.IsStoreUser(enroll))
             {
-                return _bll.GetAllWarehouseByEnroll(enroll);
+                return _dal.GetAllWarehouseByEnroll(enroll);
             }
-            if (_bllOp.IsIndentUser(enroll))
+            if (_dalOp.IsIndentUser(enroll))
             {
-                return _bll.GetIndentWarehouse(enroll);
+                return _dal.GetIndentWarehouse(enroll);
             }
-            return _bll.GetAllWarehouse();
+            return _dal.GetAllWarehouse();
         }
 
     }
