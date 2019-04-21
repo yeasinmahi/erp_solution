@@ -1382,6 +1382,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\VehicleLogisticCharge.aspx" />
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
+    <Content Include="SAD\Sales\Report\Sales2.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
     <Content Include="SAD\Sales\Report\Target_vs_ADS.aspx" />
@@ -7220,6 +7221,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Sales.aspx.designer.cs">
       <DependentUpon>Sales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales2.aspx.cs">
+      <DependentUpon>Sales2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales2.aspx.designer.cs">
+      <DependentUpon>Sales2.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx.cs">
       <DependentUpon>Setup_vs_Challan_Info_Report.aspx</DependentUpon>
