@@ -124,6 +124,7 @@
     <Compile Include="Global\Operator.cs" />
     <Compile Include="Global\SalesOffice.cs" />
     <Compile Include="Global\SetupBLL.cs" />
+    <Compile Include="Global\ShipPointOOP.cs" />
     <Compile Include="Global\ShipPoint.cs" />
     <Compile Include="IHB\DistributorManpowerBll.cs" />
     <Compile Include="IHB\DistributorWithIhbBll.cs" />
@@ -204,6 +205,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="SADBLLOOP\" />
     <Folder Include="SAD\AutoChallan\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

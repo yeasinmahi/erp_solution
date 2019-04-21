@@ -363,10 +363,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShiftTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\UnitOOPTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitOOPTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\UnitTDS.Designer.cs">
       <DependentUpon>UnitTDS.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Global\UserInfoTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserInfoTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="HolidayCalendar\HolidayGroupPermissionTDS1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1157,6 +1167,17 @@
     <None Include="Global\ShiftTDS.xss">
       <DependentUpon>ShiftTDS.xsd</DependentUpon>
     </None>
+    <None Include="Global\UnitOOPTDS.xsc">
+      <DependentUpon>UnitOOPTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\UnitOOPTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UnitOOPTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\UnitOOPTDS.xss">
+      <DependentUpon>UnitOOPTDS.xsd</DependentUpon>
+    </None>
     <None Include="Global\UnitTDS.xsc">
       <DependentUpon>UnitTDS.xsd</DependentUpon>
     </None>
@@ -1167,6 +1188,17 @@
     </None>
     <None Include="Global\UnitTDS.xss">
       <DependentUpon>UnitTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\UserInfoTDS.xsc">
+      <DependentUpon>UserInfoTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\UserInfoTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UserInfoTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\UserInfoTDS.xss">
+      <DependentUpon>UserInfoTDS.xsd</DependentUpon>
     </None>
     <None Include="HolidayCalendar\HolidayGroupPermissionTDS.xsc">
       <DependentUpon>HolidayGroupPermissionTDS.xsd</DependentUpon>

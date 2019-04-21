@@ -264,6 +264,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>setupDAL.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\ShipingPointOOP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShipingPointOOP.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\ShipPointTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -833,6 +838,17 @@
     </None>
     <None Include="Global\setupDAL.xss">
       <DependentUpon>setupDAL.xsd</DependentUpon>
+    </None>
+    <None Include="Global\ShipingPointOOP.xsc">
+      <DependentUpon>ShipingPointOOP.xsd</DependentUpon>
+    </None>
+    <None Include="Global\ShipingPointOOP.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ShipingPointOOP.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\ShipingPointOOP.xss">
+      <DependentUpon>ShipingPointOOP.xsd</DependentUpon>
     </None>
     <None Include="Global\ShipPointTDS.xsc">
       <DependentUpon>ShipPointTDS.xsd</DependentUpon>
