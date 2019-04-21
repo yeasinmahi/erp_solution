@@ -176,7 +176,7 @@ namespace UI.Wastage
                 {
                     intItemid = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblItemID")).Text.ToString());
                     intOutQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("txtIssue")).Text.ToString());
-                    intIssuedQty = int.Parse(((TextBox)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
+                    intIssuedQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblIssued")).Text.ToString());
                     intSalesOrderQty = int.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblQty")).Text.ToString());
                     monOutRate = decimal.Parse(((Label)dgvSOItem.Rows[index].FindControl("lblRate")).Text.ToString());
                     monOutValue = decimal.Parse(monOutRate.ToString()) * decimal.Parse(intOutQty.ToString());

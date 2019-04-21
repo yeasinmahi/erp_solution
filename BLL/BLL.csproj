@@ -126,6 +126,7 @@
     <Compile Include="Accounts\ChartOfAccount\Template.cs" />
     <Compile Include="Accounts\IncomeStatement\IncomeStatementC.cs" />
     <Compile Include="Accounts\Ledger\LedgerC.cs" />
+    <Compile Include="Accounts\Ledger\RptLedger_BLL.cs" />
     <Compile Include="Accounts\MDSlip\MDSlipC.cs" />
     <Compile Include="Accounts\MDSlip\MDSlipLog.cs" />
     <Compile Include="Accounts\MDSlip\MDSlipRequst.cs" />
@@ -149,10 +150,16 @@
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />
+    <Compile Include="Inventory\PoTypeBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
+    <Compile Include="Inventory\WarehouseOperatorBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DALOOP\DALOOP.csproj">
+      <Project>{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}</Project>
+      <Name>DALOOP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{348d5741-b8ae-4247-b0bc-4ef3d5680901}</Project>
       <Name>DAL</Name>

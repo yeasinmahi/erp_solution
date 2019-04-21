@@ -207,7 +207,7 @@
 
                                         <asp:TemplateField HeaderText="Detalis">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
+                                             <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
