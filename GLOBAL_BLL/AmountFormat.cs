@@ -190,7 +190,7 @@ namespace GLOBAL_BLL
             tmpVal = Convert.ToInt32(Math.Floor((value / dividedBy)));
             if (tmpVal > 0)
             {
-                sb.Append(LessHundred(tmpVal) + " Lakh ");
+                sb.Append(LessHundred(tmpVal) + " Lac ");
                 value = value % dividedBy;
                 CalculatrBelowCrore(value);
             }

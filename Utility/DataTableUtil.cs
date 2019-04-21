@@ -28,7 +28,7 @@ namespace Utility
             }
 
         }
-        private static EnumerableRowCollection<DataRow> GetRows<T>(this DataTable dt, string columnName, T value)
+        private static EnumerableRowCollection<DataRow> GetRowCollection<T>(this DataTable dt, string columnName, T value)
         {
             EnumerableRowCollection<DataRow> query = null;
             if (typeof(T) == typeof(int))
@@ -43,23 +43,30 @@ namespace Utility
             }
             else if (typeof(T) == typeof(bool))
             {
-                var strValue = Convert.ToString(value);
-                query = dt.AsEnumerable().Where(r => r.Field<string>(columnName) == strValue);
+                var strValue = Convert.ToBoolean(value);
+                query = dt.AsEnumerable().Where(r => r.Field<bool?>(columnName) == strValue);
             }
             else if (typeof(T) == typeof(DateTime))
             {
                 var strValue = DateTime.Parse(value.ToString());
-                query = dt.AsEnumerable().Where(r => r.Field<DateTime>(columnName) == strValue);
+                query = dt.AsEnumerable().Where(r => r.Field<DateTime?>(columnName) == strValue);
             }
             return query;
         }
+
+        public static DataTable GetRows<T>(this DataTable dt, string columnName, T value)
+        {
+            EnumerableRowCollection<DataRow> rows = GetRowCollection(dt, columnName, value);
+            return rows.CopyToDataTable();
+        }
+
         public static DataRow GetRow<T>(this DataTable dt, string columnName, T value)
         {
             DataRow row = null;
             if (typeof(T) == typeof(int))
             {
                 var intValue = Convert.ToInt32(value);
-                row = dt.AsEnumerable().SingleOrDefault(x=>x.Field<int>(columnName) == intValue);
+                row = dt.AsEnumerable().FirstOrDefault(x=>x.Field<int?>(columnName) == intValue);
                 //row =  (from DataRow dr in dt.Rows
                 //    where dr[columnName]!=null && (int)dr[columnName] == intValue
                 //       select dr).FirstOrDefault();
@@ -67,23 +74,17 @@ namespace Utility
             else if (typeof(T) == typeof(string))
             {
                 var strValue = Convert.ToString(value);
-                row  = (from DataRow dr in dt.Rows
-                    where dr[columnName] != null && (string)dr[columnName] == strValue
-                             select dr).FirstOrDefault();
+                row  = dt.AsEnumerable().FirstOrDefault(x => x.Field<string>(columnName) == strValue);
             }
             else if (typeof(T) == typeof(bool))
             {
-                var strValue = Convert.ToBoolean(value);
-                row = (from DataRow dr in dt.Rows
-                    where dr[columnName] != null && (bool)dr[columnName] == strValue
-                       select dr).FirstOrDefault();
+                var ysnValue = Convert.ToBoolean(value);
+                row = dt.AsEnumerable().FirstOrDefault(x => x.Field<bool?>(columnName) == ysnValue);
             }
             else if (typeof(T) == typeof(DateTime))
             {
-                var strValue = DateTime.Parse(value.ToString());
-                row = (from DataRow dr in dt.Rows
-                    where dr[columnName] != null && (DateTime)dr[columnName] == strValue
-                    select dr).FirstOrDefault();
+                var dteValue = DateTime.Parse(value.ToString());
+                row = dt.AsEnumerable().FirstOrDefault(x => x.Field<DateTime?>(columnName) == dteValue);
             }
             return row;
         }
@@ -93,7 +94,7 @@ namespace Utility
             {
                 return false;
             }
-            EnumerableRowCollection<DataRow> query = dt.GetRows<T>(columnName, value);
+            EnumerableRowCollection<DataRow> query = dt.GetRowCollection<T>(columnName, value);
 
             if (query != null)
             {
@@ -111,7 +112,7 @@ namespace Utility
             {
                 return false;
             }
-            EnumerableRowCollection<DataRow> query = dt.GetRows<T>(columnName, value);
+            EnumerableRowCollection<DataRow> query = dt.GetRowCollection<T>(columnName, value);
             return query != null && query.ToList().Count > 0;
         }
         public static string ToHtmlTable(this DataTable dt)

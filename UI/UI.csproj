@@ -1488,6 +1488,7 @@
     <Content Include="SCM\IssueItemByRequesitionOOP.aspx" />
     <Content Include="SCM\IssueReturn.aspx" />
     <Content Include="SCM\IssueStatement.aspx" />
+    <Content Include="SCM\ItemCategoryUpdate.aspx" />
     <Content Include="SCM\ItemManager.aspx" />
     <Content Include="SCM\ItemManagerAccounts.aspx" />
     <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
@@ -7947,6 +7948,13 @@
     </Compile>
     <Compile Include="SCM\IssueStatement.aspx.designer.cs">
       <DependentUpon>IssueStatement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemCategoryUpdate.aspx.cs">
+      <DependentUpon>ItemCategoryUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemCategoryUpdate.aspx.designer.cs">
+      <DependentUpon>ItemCategoryUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\ItemManager.aspx.cs">
       <DependentUpon>ItemManager.aspx</DependentUpon>
