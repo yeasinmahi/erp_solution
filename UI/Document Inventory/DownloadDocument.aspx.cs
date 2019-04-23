@@ -31,7 +31,7 @@ namespace UI.Document_Inventory
                 int depertmentid = Int32.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
                 int unit = Int32.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
 
-                if (depertmentid ==14)
+                if (depertmentid ==14 || depertmentid == 242)
                 {
                    
                     GridView1.Visible = false;

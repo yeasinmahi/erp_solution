@@ -27,7 +27,7 @@ namespace HR_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID" +
-            "=sqlrw;Password=RWsql@123")]
+            "=apsrw;Password=SalAg@3221#")]
         public string ERP_InventoryConnectionString1 {
             get {
                 return ((string)(this["ERP_InventoryConnectionString1"]));
@@ -37,8 +37,8 @@ namespace HR_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=sqlrw;" +
-            "Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=apsrw;" +
+            "Password=SalAg@3221#")]
         public string ERP_HRConnectionString {
             get {
                 return ((string)(this["ERP_HRConnectionString"]));
@@ -48,8 +48,7 @@ namespace HR_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=sq" +
-            "lrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=apsrw;Password=SalAg@3221#")]
         public string ERP_GlobalConnectionString {
             get {
                 return ((string)(this["ERP_GlobalConnectionString"]));
@@ -60,7 +59,7 @@ namespace HR_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID" +
-            "=sqlrw;Password=RWsql@123")]
+            "=apsrw;Password=SalAg@3221#")]
         public string ERP_InventoryConnectionString {
             get {
                 return ((string)(this["ERP_InventoryConnectionString"]));
@@ -101,7 +100,7 @@ namespace HR_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=" +
-            "sqlrw;Password=RWsql@123")]
+            "apsrw;Password=SalAg@3221#")]
         public string ERP_AccountsConnectionString {
             get {
                 return ((string)(this["ERP_AccountsConnectionString"]));
@@ -131,8 +130,8 @@ namespace HR_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=sqlrw" +
-            ";Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=apsrw" +
+            ";Password=SalAg@3221#")]
         public string ERP_VATConnectionString {
             get {
                 return ((string)(this["ERP_VATConnectionString"]));
