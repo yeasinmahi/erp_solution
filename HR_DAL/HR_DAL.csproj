@@ -566,6 +566,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SalaryInfoTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Settlement\GlobalTDS.cs">
       <DependentUpon>GlobalTDS.xsd</DependentUpon>
     </Compile>
