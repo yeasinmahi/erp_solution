@@ -94,7 +94,7 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetSupplierSearch(string prefixText)
         {
-            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untids"].ToString());
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untidservice"].ToString());
         }
 
         #endregion====================Close===============================

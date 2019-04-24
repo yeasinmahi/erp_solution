@@ -295,8 +295,7 @@ namespace UI.SCM
 
                     lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     lblIndentDate.Text = DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
-                    lblindentApproveDate.Text =
-                        DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
+                    lblindentApproveDate.Text =DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
                     lblInDueDate.Text = DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
                 else
