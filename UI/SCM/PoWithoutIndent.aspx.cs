@@ -347,6 +347,7 @@ namespace UI.SCM
             if (txtPONo.Text.Length > 2)
             {
                 Session["pono"] = txtPONo.Text.ToString();
+                txtSupplier.Text = "";
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
             }
             else
@@ -388,7 +389,7 @@ namespace UI.SCM
 
                 // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
             }
-            catch { Session["untids"] = "0"; }
+            catch { Session["untidservice"] = "0"; }
         }
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
