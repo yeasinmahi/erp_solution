@@ -350,8 +350,9 @@ namespace UI.SCM.Transfer
                 txtItem.Text = String.Empty;
                 txtRemarks.Text = String.Empty;
             }
-            catch
+            catch(Exception ex)
             {
+                Toaster(ex.Message, Common.TosterType.Error);
                 try { File.Delete(filePathForXML); } catch { }
             }
         }
