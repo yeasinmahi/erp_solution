@@ -475,6 +475,8 @@ namespace UI.SCM
             dgvIndentDet.DataBind();
             dgvIndentPrepare.DataSource = dt;
             dgvIndentPrepare.DataBind();
+            txtIndentNoDet.Text = "";
+            txtIndentNo.Text = "";
             txtIndentNoDet.Enabled = false;
             dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
             if (dt.Rows.Count > 0)
@@ -652,6 +654,9 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
+                txtIndentNoDet.Text = "";
+                txtIndentNo.Text = "";
+                ddlItem.Items.Clear();
                 try { File.Delete(filePathForXMLPrepare); } catch { }
 
                 if (dgvIndentDet.Rows.Count > 0)
@@ -972,7 +977,8 @@ namespace UI.SCM
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     txtIndentNoDet.Enabled = false;
                     txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
-                    txtSupplier.Text = "";
+                    txtSupplier.Text = ""; txtIndentNoDet.Text = "";
+                    txtIndentNo.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
                        
