@@ -55,7 +55,7 @@ namespace UI.Inventory
 
                 LoadCostCenter();
 
-                if (Enroll == 1039 || Enroll == 1388 || Enroll == 11621)
+                if (Enroll == 1039 || Enroll == 365737 || Enroll == 11621)
                 {
                     txtSearchAssignedTo.Visible = true;
                     lblReqBy.Visible = true;

@@ -70,17 +70,17 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnMrrNo" runat="server" />
-                    <div class="tabs_container" style="text-align: left">Return From<hr />
+                    <div class="tabs_container" style="text-align: left">Purchase Return:<hr />
                     </div>
                     <table>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList></td>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="MRR ID"></asp:Label></td>
+                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="MRR No:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtMrrNo" runat="server" CssClass="txtBox"></asp:TextBox>
                                 <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClientClick="showLoader();" OnClick="btnDetalis_Click" /></td>
