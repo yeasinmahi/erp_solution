@@ -546,9 +546,9 @@ namespace UI.SCM
                     ddlItem.Items.Clear();                  
                     Toaster(Message.NoFound.ToFriendlyString(), "This is not valid againest."+ hdnWHName.Value.ToString(), Common.TosterType.Warning);
 
-                   // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value.ToString()+"'');", true);
+                    
                 }
-               // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input valid rate');", true);
+               
             }
             catch (Exception ex)
             {
