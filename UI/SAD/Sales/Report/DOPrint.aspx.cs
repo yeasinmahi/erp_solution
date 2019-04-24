@@ -110,7 +110,7 @@ namespace UI.SAD.Sales.Report
                                 SL</th>
                             <th style=""text-align:center"">
                                 PRODUCT DESCRIPTION</th>
-                            <th style=""width:100px;text-align:center"">
+                            <th style=""width:200px;text-align:center"">
                                 UOM</th>
                             <th style=""width:100px;text-align:center"">
                                 QNT.</th>
@@ -125,7 +125,7 @@ namespace UI.SAD.Sales.Report
                                 SL</th>
                             <th style=""text-align:center"">
                                 PRODUCT DESCRIPTION</th>
-                            <th style=""width:100px;text-align:center"">
+                            <th style=""width:200px;text-align:center"">
                                 UOM</th>
                             <th style=""width:100px;text-align:center"">
                                 QNT.</th>

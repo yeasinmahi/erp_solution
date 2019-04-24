@@ -64,7 +64,7 @@
                                 $("[id*=txtquantity]", row).val((bqty));
                                 var msg = "Orginal Order Qty Over";
 
-                                alert(msg);
+                                //alert(msg);
 
                             }
                             else {
