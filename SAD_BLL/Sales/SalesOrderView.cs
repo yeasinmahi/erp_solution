@@ -177,7 +177,7 @@ namespace SAD_BLL.Sales
         }
 
 
-        public string QuotationEditNSave(string xmlString,   int enroll, int unit, int entryid)
+        public string QuotationEditNSave(string xmlString,   int enroll, int unit, int entryid,ref string code)
         {
             string msg = "";
             long? id = null;
@@ -185,7 +185,7 @@ namespace SAD_BLL.Sales
             try
             {
                 SprSalesQutationEditNSaveTableAdapter adpdo = new SprSalesQutationEditNSaveTableAdapter();
-                adpdo.GetDataSalesQutationEditNSave(xmlString, enroll, unit, entryid);
+                adpdo.GetDataSalesQutationEditNSave(xmlString, enroll, unit, entryid,ref code);
                 msg = "Updated Succesfully";
             }
             catch (Exception e) { msg = e.ToString(); }

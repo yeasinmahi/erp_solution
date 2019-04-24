@@ -161,8 +161,8 @@
                                 Cheque Bearer
                             </td>
                             <td align="left">
-                                <asp:TextBox ID="txtCOA" runat="server" AutoCompleteType="Search" Width="255px" AutoPostBack="True"
-                                    OnTextChanged="txtCOA_TextChanged"></asp:TextBox>
+                                    <asp:TextBox ID="txtCOA" runat="server" AutoCompleteType="Search" Width="255px" AutoPostBack="True"
+                                        OnTextChanged="txtCOA_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCOA"
                                     ServiceMethod="GetCOAList" MinimumPrefixLength="3" CompletionSetCount="1" CompletionInterval="1"
                                     FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"

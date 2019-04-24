@@ -1,4 +1,5 @@
 <?xml version="1.0" standalone="yes"?>
 <node>
-  <item Pid="179190" PName="BOPP Film-Non Heat Sealable Plain-30µ-NF100 (A)" Qnt="1.00" ApprQnt="1.00" Uom="23" Narr="1.00 KG BOPP Film-Non Heat Sealable Plain-30µ-NF100 (A) Sold To Akij Food &amp; Beverage Limited" Prom="0.00" PromMain="0.00" UomTxt="KG" PromItemId="0" PromItem="" PromUom="0" PromUomText="" PromPr="0.0000" PromItemCOA="0" SoPkId="2667504" Price="1.0000" PrCoaId="194602" />
+  <item Pid="179103" PName="BOPP Film-Non Heat Sealable Plain-25µ-NF100 (A)" Qnt="1" ApprQnt="2.00" Uom="23" Narr="Thikness :0.00 Micron_Width :0.00 MM_Length :0.00 Meter_Corona Treatment :Inside_" Prom="0.00" PromMain="0.00" UomTxt="KG" PromItemId="0" PromItem="" PromUom="0" PromUomText="" PromPr="0.0000" PromItemCOA="0" SoPkId="2776663" Price="6.0000" PrCoaId="194602" />
+  <item Pid="179105" PName="BOPP Film-Heat Sealable-18µ-HF100 (A)" Qnt="3" ApprQnt="5.00" Uom="23" Narr="Thikness :0.00 Micron_Width :0.00 MM_Length :0.00 Meter_Corona Treatment :Inside_" Prom="0.00" PromMain="0.00" UomTxt="KG" PromItemId="0" PromItem="" PromUom="0" PromUomText="" PromPr="0.0000" PromItemCOA="0" SoPkId="2776664" Price="4.0000" PrCoaId="194602" />
 </node>

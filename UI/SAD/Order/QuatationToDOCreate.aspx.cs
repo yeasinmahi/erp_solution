@@ -324,7 +324,7 @@ namespace UI.SAD.Order
                             string coaName = (dt.Rows[0]["AccName"].ToString());
 
                             int extrap = 1;
-                            string extname = "";
+                            string extname = remarks;
                             int incentive = 0;
                             int chrPr = 1;
                             decimal promotionqty = 0;
@@ -359,7 +359,7 @@ namespace UI.SAD.Order
                             {
                                 if (quantity != "0")
                                 {
-                                    narration = narration + " [" + quantity + "] " + uom + " " + strItemName;
+                                    narration = narration+ " [" + quantity + "] " + uom + " " + strItemName + " "+ remarks;
 
                                 }
 
@@ -397,7 +397,7 @@ namespace UI.SAD.Order
                     string addresss = dtpend.Rows[0]["strAddress"].ToString();
                     intSalesOffId = int.Parse(dtpend.Rows[0]["intSalesOffId"].ToString());
                     ContactPhone = dtpend.Rows[0]["strContactNo"].ToString();
-                    narration = dtpend.Rows[0]["strCusName"].ToString() + narration;
+                    //narration = dtpend.Rows[0]["strCusName"].ToString() + narration;
                 Int32 unit = int.Parse(dtpend.Rows[0]["intunitid"].ToString());
                 string monLim = "", monBalance = "";
 
@@ -429,10 +429,25 @@ namespace UI.SAD.Order
                 //bll.getDoCompleteComplete(enroll, code, unit);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + "Your Do Number : " + code + "');", true);
                     lblDo.Text = "DO No: " + code.ToString();
-
                     grdvQuationDetails.DataBind();
-                    //Int32 ONumber = Convert.ToInt32(Session["ordernumber1"].ToString());
-                    //objDo.getorderInactive(ONumber);
+
+                if (code.Length > 0)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + code + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
+
+                }
+                else
+                {
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Fail.....');", true);
+
+                }
+                //Int32 ONumber = Convert.ToInt32(Session["ordernumber1"].ToString());
+                //objDo.getorderInactive(ONumber);
 
                 //}
             }

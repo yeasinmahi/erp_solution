@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using SAD_DAL.Global.ShipPointTDSTableAdapters;
 using SAD_DAL.Global;
+using System.Data;
 
 namespace SAD_BLL.Global
 {
@@ -20,9 +21,19 @@ namespace SAD_BLL.Global
             if (userId == "" || unitId == "" || unitId == null) return new ShipPointTDS.SprShipPointByUserDataTable();
             SprShipPointByUserTableAdapter ta = new SprShipPointByUserTableAdapter();
             return ta.GetData(int.Parse(userId), int.Parse(unitId),true);
+             
+
+        }
+        public DataTable GetShipingPoint(int userID,int Unitid)
+        {
+
+
+
+            return new DataTable();
         }
 
-        public string GetPrefix(string shipPoint)
+
+            public string GetPrefix(string shipPoint)
         {
             if (shipPoint == "") return "";
             TblShippingPointBySOTableAdapter ta = new TblShippingPointBySOTableAdapter();

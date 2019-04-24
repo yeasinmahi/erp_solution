@@ -139,7 +139,9 @@
     <Compile Include="Global\LetterType.cs" />
     <Compile Include="Global\Religion.cs" />
     <Compile Include="Global\Shift.cs" />
+    <Compile Include="Global\UnitOOP.cs" />
     <Compile Include="Global\Unit.cs" />
+    <Compile Include="Global\UserInfoOOP.cs" />
     <Compile Include="HolidayCalendar\HolidayGroupPermission.cs" />
     <Compile Include="HolidayCalendar\HolidaySetup.cs" />
     <Compile Include="Internal\InternalAutoSearch_BLL.cs" />
