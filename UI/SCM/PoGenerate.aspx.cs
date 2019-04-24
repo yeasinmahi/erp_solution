@@ -473,25 +473,27 @@ namespace UI.SCM
             dgvIndent.DataBind();
             dgvIndentDet.DataSource = "";
             dgvIndentDet.DataBind();
-            dgvIndentPrepare.DataSource = dt;
+            dgvIndentPrepare.DataSource = "";
             dgvIndentPrepare.DataBind();
             txtIndentNoDet.Text = "";
             txtIndentNo.Text = "";
             txtIndentNoDet.Enabled = false;
+            try { File.Delete(filePathForXML); } catch { }
+            try { File.Delete(filePathForXMLPo); } catch { } 
+            
             dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
             if (dt.Rows.Count > 0)
             {
                 hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
-                Session["unitId"] = hdnUnitId.Value.ToString(); 
+               
             }
             else
-            {
-
+            { 
                 hdnUnitId.Value = "0"; 
             }
+            Session["unitId"] = hdnUnitId.Value.ToString();
             hdnWHId.Value = ddlWH.SelectedValue.ToString();
-            hdnWHName.Value = ddlWH.SelectedItem.ToString();
-
+            hdnWHName.Value = ddlWH.SelectedItem.ToString();  
             hdnUnitName.Value = "0";
         }
 
