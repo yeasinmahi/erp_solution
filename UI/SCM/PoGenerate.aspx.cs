@@ -45,7 +45,7 @@ namespace UI.SCM
                 DateTime dte = DateTime.Now;
                 txtdtePo.Text = dte.ToString("yyyy-MM-dd");
                 dte = DateTime.Parse(txtdtePo.Text);
-
+                txtIndentNoDet.Enabled = false;
                 DefaltPageLoad();
             }
             else
@@ -269,20 +269,12 @@ namespace UI.SCM
         {
             try
             {
-                try
-                {
-                    File.Delete(filePathForXML);
-                    File.Delete(filePathForXMLPo);
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
-                }
-                catch
-                {
-                    File.Delete(filePathForXML);
-                    File.Delete(filePathForXMLPo);
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
-                }
+                try { File.Delete(filePathForXML); } catch { }
+                try { File.Delete(filePathForXMLPo); } catch { }
+
+                dgvIndentPrepare.UnLoad(); 
+                 
+                ddlItem.Items.Clear();
 
                 GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
@@ -293,8 +285,11 @@ namespace UI.SCM
 
                 if (dt.Rows.Count > 0)
                 {
+                    txtIndentNoDet.Enabled = true;
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
                     hdnUnitId.Value = dt.Rows[0]["intUnitID"].ToString();
+                    hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
+                    hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
 
                     Session["unitId"] = hdnUnitId.Value.ToString();
 
@@ -481,12 +476,12 @@ namespace UI.SCM
             dgvIndentDet.DataBind();
             dgvIndentPrepare.DataSource = dt;
             dgvIndentPrepare.DataBind();
-
+            txtIndentNoDet.Enabled = false;
             dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
             if (dt.Rows.Count > 0)
             {
                 hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
-                Session["untid"] = hdnUnitId.Value.ToString();
+                Session["unitId"] = hdnUnitId.Value.ToString(); 
             }
             else
             {
@@ -545,9 +540,12 @@ namespace UI.SCM
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value.ToString()+"'');", true);
+                    ddlItem.Items.Clear();                  
+                    Toaster(Message.NoFound.ToFriendlyString(), "This is not valid againest."+ hdnWHName.Value.ToString(), Common.TosterType.Warning);
+
+                   // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value.ToString()+"'');", true);
                 }
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input valid rate');", true);
+               // ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input valid rate');", true);
             }
             catch (Exception ex)
             {
@@ -971,9 +969,9 @@ namespace UI.SCM
                     string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
-
+                  
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-
+                    txtIndentNoDet.Enabled = false;
                     txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
                     txtSupplier.Text = "";
                     if (searchKey[1].ToString().Length > 2)
