@@ -586,10 +586,9 @@ namespace UI.SCM
             _dt = _wareHouse.GetGetAllWarehouseByEnroll(Enroll);
             ddlWH.Loads(_dt, "intWHID", "strWareHoseName");
         }
-        PoTypeBll poType = new PoTypeBll();
         private void LoadPoType()
         {
-            _dt = poType.GetAllPoType();
+            _dt = _poType.GetAllPoType();
             ddlPoType.Loads(_dt, "intID", "strPOType");
         }
 

@@ -10,20 +10,18 @@ using Utility;
 
 namespace UI.BudgetPlan
 {
-    public partial class CostCenterCorrection : Page
+    public partial class CostCenterCorrection : BasePage
     {
-        private int _enroll;
         private string _filePathForXml;
         private Budget_Entry_BLL _bll = new Budget_Entry_BLL();
         protected void Page_Load(object sender, EventArgs e)
         {
-            _enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            //_enroll = 32897;
-            _filePathForXml = Server.MapPath("~/BudgetPlan/Data/CostCenterCorrection_" + _enroll + ".xml");
+            //Enroll = 32897;
+            _filePathForXml = Server.MapPath("~/BudgetPlan/Data/CostCenterCorrection_" + Enroll + ".xml");
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
-                LoadUnit(_enroll);
+                LoadUnit(Enroll);
                 ddlUnit_OnSelectedIndexChanged(null, null);
             }
 
@@ -34,7 +32,6 @@ namespace UI.BudgetPlan
         {
             try
             {
-                _enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
 
                 if (row.FindControl("hdnSubledgerId") is HiddenField hdnSubledgerId)
@@ -104,7 +101,7 @@ namespace UI.BudgetPlan
             try
             {
                 int unitId = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-                LoadCostCenter(_enroll, unitId);
+                LoadCostCenter(Enroll, unitId);
                 gridView.DataSource = "";
                 gridView.DataBind();
 
@@ -168,18 +165,12 @@ namespace UI.BudgetPlan
         private void LoadUnit(int enroll)
         {
             DataTable dt = _bll.GetUnitforCostCenter(enroll);
-            ddlUnit.DataSource = dt;
-            ddlUnit.DataValueField = "intUnitID";
-            ddlUnit.DataTextField = "strUnit";
-            ddlUnit.DataBind();
+            ddlUnit.Loads(dt, "intUnitID", "strUnit");
         }
         private void LoadCostCenter(int enroll, int unitId)
         {
             DataTable dt = _bll.GetCostCenter(unitId, enroll);
-            ddlCostCenter.DataSource = dt;
-            ddlCostCenter.DataValueField = "intCostCenterID";
-            ddlCostCenter.DataTextField = "strCCName";
-            ddlCostCenter.DataBind();
+            ddlCostCenter.Loads(dt, "intCostCenterID", "strCCName");
         }
 
 
