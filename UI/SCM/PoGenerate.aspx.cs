@@ -272,8 +272,8 @@ namespace UI.SCM
                 try { File.Delete(filePathForXML); } catch { }
                 try { File.Delete(filePathForXMLPo); } catch { }
 
-                dgvIndentPrepare.UnLoad(); 
-                 
+                dgvIndentPrepare.UnLoad();
+                txtIndentNoDet.Text = "";
                 ddlItem.Items.Clear();
 
                 GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
