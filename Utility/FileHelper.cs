@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Utility
@@ -35,6 +36,24 @@ namespace Utility
                 return false;
             }
 
+        }
+        public static bool CreateFolder(this string path)
+        {
+            string dir = Path.GetFullPath(path);
+            bool exists = Directory.Exists(Path.GetFullPath(path));
+            if (!exists)
+            {
+                Directory.CreateDirectory(dir);
+                return true;
+            }
+            return false;
+        }
+        public static void CreateFolder(this List<string> paths)
+        {
+            foreach (string path in paths)
+            {
+                CreateFolder(path);
+            }
         }
     }
 }
