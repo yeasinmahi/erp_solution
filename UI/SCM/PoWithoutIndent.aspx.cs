@@ -75,6 +75,15 @@ namespace UI.SCM
             try { File.Delete(filePathForXML); } catch { }
             dgvIndentPrepare.DataSource = "";
             dgvIndentPrepare.DataBind();
+            dt = objPo.GetUnitID(int.Parse(ddlWHPrepare.SelectedValue.ToString()));
+            if (dt.Rows.Count > 0)
+            {
+
+                hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
+                Session["untidservice"] = hdnUnit.Value.ToString();
+            }
+            else { Session["untidservice"] = "0"; }
+
             txtSupplier.Text = "";
             txtItem.Text = "";
         }
@@ -85,7 +94,7 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetSupplierSearch(string prefixText)
         {
-            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untids"].ToString());
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, "", HttpContext.Current.Session["untidservice"].ToString());
         }
 
         #endregion====================Close===============================
@@ -338,6 +347,7 @@ namespace UI.SCM
             if (txtPONo.Text.Length > 2)
             {
                 Session["pono"] = txtPONo.Text.ToString();
+                txtSupplier.Text = "";
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('PoDetalisView.aspx');", true);
             }
             else
@@ -365,9 +375,9 @@ namespace UI.SCM
                 {
                      
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
-                    Session["untids"] = hdnUnit.Value.ToString();
+                    Session["untidservice"] = hdnUnit.Value.ToString();
                 }
-                else { Session["untids"] = "0"; }
+                else { Session["untidservice"] = "0"; }
 
                 try { File.Delete(filePathForXML); } catch { }
                 dgvIndentPrepare.DataSource = "";
@@ -379,7 +389,7 @@ namespace UI.SCM
 
                 // dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, enroll);//get Currency Name
             }
-            catch { Session["untids"] = "0"; }
+            catch { Session["untidservice"] = "0"; }
         }
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
@@ -405,7 +415,7 @@ namespace UI.SCM
         public static string[] GetPoItemSerach(string prefixText, int count)
         {
             PoGenerate_BLL objs = new PoGenerate_BLL();
-            return objs.AutoSearchServiceItem(HttpContext.Current.Session["untids"].ToString(), prefixText);
+            return objs.AutoSearchServiceItem(HttpContext.Current.Session["untidservice"].ToString(), prefixText);
         }
 
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -565,8 +575,9 @@ namespace UI.SCM
                 if (dt.Rows.Count > 0)
                 {
                     hdnUnit.Value = dt.Rows[0]["intUnitId"].ToString();
-                    Session["untids"] = hdnUnit.Value.ToString();
+                    Session["untidservice"] = hdnUnit.Value.ToString();
                 }
+                else { Session["untidservice"] = "0".ToString(); }
               
 
                 dt.Clear();
@@ -595,7 +606,7 @@ namespace UI.SCM
 
 
             }
-            catch { Session["untids"] ="0".ToString(); }
+            catch { Session["untidservice"] = "0"; }
         }
 
         public void LoadCostCenter()
