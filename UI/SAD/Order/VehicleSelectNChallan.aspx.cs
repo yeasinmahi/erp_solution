@@ -33,6 +33,7 @@ namespace UI.SAD.Order
         string start = "starting SAD\\Order\\VehicleSelectNChallan";
         string stop = "stopping SAD\\Order\\VehicleSelectNChallan";
         VehicleSelect bllsup = new VehicleSelect();
+        int unitid; string narr;
         protected override void OnPreInit(EventArgs e)
         {
             if (!IsPostBack)
@@ -80,8 +81,10 @@ namespace UI.SAD.Order
                             //else rdoVhlCompany.SelectedIndex = 2;
 
                             if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
+                            //QrySalesOrderDetailsCustomize
+                            //SalesOrderTDS.QrySalesOrderDetailsDataTable tbl = se.GetSalesOrderDetails(table[0].intId.ToString());
+                            SalesOrderTDS.QrySalesOrderDetailsCustomizeDataTable tbl = se.GetSalesOrderDetailsCustomize(table[0].intId.ToString());
 
-                            SalesOrderTDS.QrySalesOrderDetailsDataTable tbl = se.GetSalesOrderDetails(table[0].intId.ToString());
 
                             decimal promQnty = 0;
                             int promItemId = 0;
@@ -164,6 +167,9 @@ namespace UI.SAD.Order
             {
 
                 Session["sesCurType"] = rdoVhlCompany.SelectedValue;
+
+            
+
 
                 BindGrid(GetXmlFilePath());
 
@@ -304,12 +310,15 @@ namespace UI.SAD.Order
             uomTxt = s.Tables[0].Rows[index][8].ToString();
             promotion = s.Tables[0].Rows[index][6].ToString();
             promotionMain = s.Tables[0].Rows[index][7].ToString();
+            int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
 
             if (decimal.Parse(restQnt) >= decimal.Parse(newQnt))
             {
 
                 //string narr = newQnt + " " + uomTxt + " " + pName + " Sold To " + hdnCustomerText.Value;
-                string narr = ((Label)(GridView1.Rows[index].Cells[4].FindControl("lblSpecifications"))).Text;
+
+                if (unitid == 91) {  narr = ((Label)(GridView1.Rows[index].Cells[4].FindControl("lblSpecifications"))).Text; }
+                else { narr = ""; }
                 decimal promQnty = 0;
                 int promItemId = 0;
                 int promItemCOAId = 0;
