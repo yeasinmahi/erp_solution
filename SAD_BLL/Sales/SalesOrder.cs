@@ -107,6 +107,13 @@ namespace SAD_BLL.Sales
             return ta.GetDataBySOid(long.Parse(SOid));
         }
 
+
+        public SalesOrderTDS.QrySalesOrderDetailsCustomizeDataTable GetSalesOrderDetailsCustomize(string SOid)
+        {
+            QrySalesOrderDetailsCustomizeTableAdapter ta = new QrySalesOrderDetailsCustomizeTableAdapter();
+            return ta.GetDataBySOid(long.Parse(SOid));
+        }
+
         public SalesOrderTDS.QrySalesOrderDetailsDataTable GetSalesOrderDetailsById(string id)
         {
             QrySalesOrderDetailsTableAdapter ta = new QrySalesOrderDetailsTableAdapter();

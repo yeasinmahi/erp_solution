@@ -1826,6 +1826,8 @@ namespace SAD_DAL.Sales {
             
             private global::System.Data.DataColumn columnstrTermsNCondition;
             
+            private global::System.Data.DataColumn columnnumrestqnt;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprSalesQuationByCustomerDetsDataTable() {
@@ -1989,6 +1991,14 @@ namespace SAD_DAL.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numrestqntColumn {
+                get {
+                    return this.columnnumrestqnt;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2040,7 +2050,8 @@ namespace SAD_DAL.Sales {
                         string prdname, 
                         string strName, 
                         string strAddress, 
-                        string strTermsNCondition) {
+                        string strTermsNCondition, 
+                        decimal numrestqnt) {
                 SprSalesQuationByCustomerDetsRow rowSprSalesQuationByCustomerDetsRow = ((SprSalesQuationByCustomerDetsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intid,
@@ -2058,7 +2069,8 @@ namespace SAD_DAL.Sales {
                         prdname,
                         strName,
                         strAddress,
-                        strTermsNCondition};
+                        strTermsNCondition,
+                        numrestqnt};
                 rowSprSalesQuationByCustomerDetsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSprSalesQuationByCustomerDetsRow);
                 return rowSprSalesQuationByCustomerDetsRow;
@@ -2097,6 +2109,7 @@ namespace SAD_DAL.Sales {
                 this.columnstrName = base.Columns["strName"];
                 this.columnstrAddress = base.Columns["strAddress"];
                 this.columnstrTermsNCondition = base.Columns["strTermsNCondition"];
+                this.columnnumrestqnt = base.Columns["numrestqnt"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2134,6 +2147,8 @@ namespace SAD_DAL.Sales {
                 base.Columns.Add(this.columnstrAddress);
                 this.columnstrTermsNCondition = new global::System.Data.DataColumn("strTermsNCondition", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrTermsNCondition);
+                this.columnnumrestqnt = new global::System.Data.DataColumn("numrestqnt", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumrestqnt);
                 this.columnstrCode.MaxLength = 500;
                 this.columnprdname.MaxLength = 2147483647;
                 this.columnstrName.MaxLength = 2147483647;
@@ -6139,6 +6154,23 @@ namespace SAD_DAL.Sales {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numrestqnt {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesQuationByCustomerDets.numrestqntColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numrestqnt\' in table \'SprSalesQuationByCustomerDets\' is DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesQuationByCustomerDets.numrestqntColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintidNull() {
                 return this.IsNull(this.tableSprSalesQuationByCustomerDets.intidColumn);
             }
@@ -6327,6 +6359,18 @@ namespace SAD_DAL.Sales {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrTermsNConditionNull() {
                 this[this.tableSprSalesQuationByCustomerDets.strTermsNConditionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumrestqntNull() {
+                return this.IsNull(this.tableSprSalesQuationByCustomerDets.numrestqntColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumrestqntNull() {
+                this[this.tableSprSalesQuationByCustomerDets.numrestqntColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -9227,6 +9271,7 @@ namespace SAD_DAL.Sales.SalesOrderViewTDSTableAdapters {
             tableMapping.ColumnMappings.Add("strName", "strName");
             tableMapping.ColumnMappings.Add("strAddress", "strAddress");
             tableMapping.ColumnMappings.Add("strTermsNCondition", "strTermsNCondition");
+            tableMapping.ColumnMappings.Add("numrestqnt", "numrestqnt");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

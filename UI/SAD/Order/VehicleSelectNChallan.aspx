@@ -263,8 +263,12 @@
                                         OnDataBound="GridView1_DataBound" OnRowDeleting="GridView1_RowDeleting" OnRowCancelingEdit="GridView1_RowCancelingEdit"
                                         OnRowEditing="GridView1_RowEditing" OnRowUpdating="GridView1_RowUpdating">
                                         <Columns>
-                                            <asp:BoundField DataField="Pid" HeaderText="Pid" Visible="true" SortExpression="Pid" />
-                                             
+                                            <%--<asp:BoundField DataField="Pid" HeaderText="Pid" Visible="true" SortExpression="Pid" />--%>
+                                             <asp:TemplateField HeaderText="Pid">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="lblPid" runat="server" Text='<%# Eval("Pid") %>'></asp:Label>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
 
 
 
