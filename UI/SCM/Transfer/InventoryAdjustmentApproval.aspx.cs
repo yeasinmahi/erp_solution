@@ -8,7 +8,7 @@ using HR_BLL.Global;
 using Unit = HR_BLL.Global.Unit;
 
 using BLL.Accounts.Bank;
-
+using BLL.Inventory;
 
 namespace UI.SCM.Transfer
 {
@@ -16,7 +16,7 @@ namespace UI.SCM.Transfer
     {
         private DataTable _dt = new DataTable();
         private readonly InventoryTransfer_BLL _objbll = new InventoryTransfer_BLL();
-        private  Unit unit = new Unit();
+        private WareHouseBll wareHouse = new WareHouseBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,7 +24,7 @@ namespace UI.SCM.Transfer
                 pnlUpperControl.DataBind();
                 try
                 {
-                    LoadUnit();
+                    LoadWareHouse();
                     //dt = objbll.GetWH(Enroll);
                     _dt = new InventoryTransfer_BLL().GetTtransferDatas(1, "", 0, 0, DateTime.Now, Enroll);
                     //ddlWH.Loads(_dt, "Id", "strName");
@@ -43,10 +43,10 @@ namespace UI.SCM.Transfer
         {
             GridBind();
         }
-        public void LoadUnit()
+        public void LoadWareHouse()
         {
-            DataTable dt = unit.GetUnits();
-            ddlUnit.Loads(dt, "intUnitID", "strUnit");
+            _dt = wareHouse.GetAllWarehouseByEnroll(Enroll);
+            ddlUnit.Loads(_dt, "intWHID", "strWareHoseName");
         }
 
         private void GridBind()
