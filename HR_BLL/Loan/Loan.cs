@@ -7,7 +7,7 @@ using System.Data;
 
 namespace HR_BLL.Loan
 {
-   public class Loan
+    public class Loan
     {
         #region Object Declare
         SprInsertLoanApplicationTableAdapter objSprInsertLoanApplicationTableAdapter = new SprInsertLoanApplicationTableAdapter();
@@ -20,68 +20,68 @@ namespace HR_BLL.Loan
         #endregion
         #region Method
         public string SprInsertLoanApplication(int? intUserID, string empCode, int? intLoanAmount, int? intNumberOfInstallment)
-       {
-           //Summary    :   This function will use to Insert data into Loan Application by Checking Existing active loan have or not
-           //Created    :   Md. Yeasir Arafat / FEB-23-2012
-           //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
-           //Parameters :   return insertStatus
-           try
-           {
-               string insertStatus = "";
-               objSprInsertLoanApplicationTableAdapter.SprInsertLoanApplication(intUserID, empCode, intLoanAmount, intNumberOfInstallment, ref insertStatus);
-               return insertStatus;
-           }
-           catch (Exception ex)
-           { return ex.Message.ToString(); }
-       }
+        {
+            //Summary    :   This function will use to Insert data into Loan Application by Checking Existing active loan have or not
+            //Created    :   Md. Yeasir Arafat / FEB-23-2012
+            //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
+            //Parameters :   return insertStatus
+            try
+            {
+                string insertStatus = "";
+                objSprInsertLoanApplicationTableAdapter.SprInsertLoanApplication(intUserID, empCode, intLoanAmount, intNumberOfInstallment, ref insertStatus);
+                return insertStatus;
+            }
+            catch (Exception ex)
+            { return ex.Message.ToString(); }
+        }
         public string SprUpdateLoanApplication(int? intLoanApplicationId, int? intUserID, string empCode, int? intLoanAmount, int? intNumberOfInstallment)
-       {
-           //Summary    :   This function will use to Update loan Application by Application
-           //Created    :   Md. Yeasir Arafat / FEB-23-2012
-           //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
-           //Parameters :   return updateStatus
-           try
-           {
-               string updateStatus = "";
-               objSprUpdateLoanApplicationTableAdapter.SprUpdateLoanApplication(intLoanApplicationId, intUserID,empCode ,intLoanAmount, intNumberOfInstallment, ref updateStatus);
-               return updateStatus;
-           }
-           catch (Exception ex)
-           { return ex.Message.ToString(); }
-       }
+        {
+            //Summary    :   This function will use to Update loan Application by Application
+            //Created    :   Md. Yeasir Arafat / FEB-23-2012
+            //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
+            //Parameters :   return updateStatus
+            try
+            {
+                string updateStatus = "";
+                objSprUpdateLoanApplicationTableAdapter.SprUpdateLoanApplication(intLoanApplicationId, intUserID, empCode, intLoanAmount, intNumberOfInstallment, ref updateStatus);
+                return updateStatus;
+            }
+            catch (Exception ex)
+            { return ex.Message.ToString(); }
+        }
         public string SprDeleteLoanApplication(int? intLoanApplicationId, int? intUserID, string empCode)
-       {
-           //Summary    :   This function will use to delete Application by Application And EmployeeID
-           //Created    :   Md. Yeasir Arafat / FEB-23-2012
-           //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
-           //Parameters :   return deleteStatus 
-           try
-           {
-               string deleteStatus = "";
-               objSprDeleteLoanApplicationTableAdapter.SprDeleteLoanApplication(intLoanApplicationId, intUserID,empCode,ref deleteStatus);
-               return deleteStatus;
-           }
-           catch (Exception ex)
-           { return ex.Message.ToString(); }
-       }
+        {
+            //Summary    :   This function will use to delete Application by Application And EmployeeID
+            //Created    :   Md. Yeasir Arafat / FEB-23-2012
+            //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
+            //Parameters :   return deleteStatus 
+            try
+            {
+                string deleteStatus = "";
+                objSprDeleteLoanApplicationTableAdapter.SprDeleteLoanApplication(intLoanApplicationId, intUserID, empCode, ref deleteStatus);
+                return deleteStatus;
+            }
+            catch (Exception ex)
+            { return ex.Message.ToString(); }
+        }
         public DataTable GetAllLoanApplicationByUserID(int? intUserID, string empCode)
-       {
-           //Summary    :   This function will use to Get All Loan Application  By  EmployeeID
-           //Created    :   Md. Yeasir Arafat / FEB-23-2012
-           //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
-           //Parameters :   return Unapprove Official movement Application As DataTable 
+        {
+            //Summary    :   This function will use to Get All Loan Application  By  EmployeeID
+            //Created    :   Md. Yeasir Arafat / FEB-23-2012
+            //Modified   :   BY YEASIR;DATE:03/06/2012;ADD EMPCODE FOR PUBLIC LOAN APPLICATION
+            //Parameters :   return Unapprove Official movement Application As DataTable 
 
-           return objSprGetAllLoanApplicationByUserIDTableAdapter.SprGetAllLoanApplicationByUserID(intUserID,empCode);
-       }
-       // public DataTable SprGetAllUnapproveLoanApplicationForApprove()
-       //{
-       //    //Summary    :   This function will use to Get All UnApproved loan Application  for approve
-       //    //Created    :   Md. Yeasir Arafat / FEB-23-2012
-       //    //Modified   :   
-       //    //Parameters :   return Unapprove Official movement Application As DataTable 
+            return objSprGetAllLoanApplicationByUserIDTableAdapter.SprGetAllLoanApplicationByUserID(intUserID, empCode);
+        }
+        // public DataTable SprGetAllUnapproveLoanApplicationForApprove()
+        //{
+        //    //Summary    :   This function will use to Get All UnApproved loan Application  for approve
+        //    //Created    :   Md. Yeasir Arafat / FEB-23-2012
+        //    //Modified   :   
+        //    //Parameters :   return Unapprove Official movement Application As DataTable 
 
-       //    return objSprGetAllUnapproveLoanApplicationForApproveTableAdapter.SprGetAllUnapproveLoanApplicationForApprove();
-       //}
+        //    return objSprGetAllUnapproveLoanApplicationForApproveTableAdapter.SprGetAllUnapproveLoanApplicationForApprove();
+        //}
         public DataTable GetAllUnApprovedLoanApplicationByUserID(int? intUserID)
         {
             //Summary    :   This function will use to Get All UnApproved loan Application  for approve By UserID
@@ -93,20 +93,20 @@ namespace HR_BLL.Loan
             return objSprLoanGetAllUnapproveLoanApplicationForApproveByUserIDTableAdapter.SprLoanGetAllUnapproveLoanApplicationForApproveByUserID(intUserID);
         }
         public string ApproveLoanApplicationData(string strEmployeeName, int intEmployeeID, int intLoanApplicationId, int intLoanAmount, int intNumberOfInstallment, DateTime dteEffectiveDate, int userID)
-       {
-           //Summary    :   This function will use to Approve loan Application by ApplicationID
-           //Created    :   Md. Yeasir Arafat / FEB-23-2012
-           //Modified   :   
-           //Parameters :   return appproveStatus
-           try
-           {
-               string appproveStatus = "";
-               objSprApproveLoanApplicationTableAdapter.SprApproveLoanApplication(intLoanApplicationId, 1, true, intLoanAmount, intNumberOfInstallment, dteEffectiveDate, ref appproveStatus);
-               return appproveStatus;
-           }
-           catch (Exception ex)
-           { return ex.Message.ToString(); }
-       }
+        {
+            //Summary    :   This function will use to Approve loan Application by ApplicationID
+            //Created    :   Md. Yeasir Arafat / FEB-23-2012
+            //Modified   :   
+            //Parameters :   return appproveStatus
+            try
+            {
+                string appproveStatus = "";
+                objSprApproveLoanApplicationTableAdapter.SprApproveLoanApplication(intLoanApplicationId, 1, true, intLoanAmount, intNumberOfInstallment, dteEffectiveDate, ref appproveStatus);
+                return appproveStatus;
+            }
+            catch (Exception ex)
+            { return ex.Message.ToString(); }
+        }
         public DataTable GetLoanScheduleDetailsByLoanApplicationID(int? intLoanApplicationId)
         {
             //Summary    :   This function will use to Get Loan Schedule Details By Loan ApplicationID
@@ -126,7 +126,7 @@ namespace HR_BLL.Loan
             try
             {
                 SprLoan_GetLoanScheduleDetailsByEmployeeCodeTableAdapter tbl = new SprLoan_GetLoanScheduleDetailsByEmployeeCodeTableAdapter();
-                return tbl.GetLoanScheduleDetailsByEmployeeCode(strEmployeeCode, ref intLoanApplicationID,ref monTotalLoanScheduleAmount);
+                return tbl.GetLoanScheduleDetailsByEmployeeCode(strEmployeeCode, ref intLoanApplicationID, ref monTotalLoanScheduleAmount);
             }
             catch
             {
@@ -234,16 +234,16 @@ namespace HR_BLL.Loan
             }
             catch (Exception ex) { return ex.ToString(); }
         }
-        public string InsertReward(int intPart, int intRType, int intEnroll, DateTime dteDate, decimal monAmount, string strRemarks, int intInsertBy)
+        public DataTable InsertReward(int intPart, int intRType, int intEnroll, DateTime dteDate, decimal monAmount, string strRemarks, int intInsertBy)
         {
             try
             {
-                string msg = "";
-                SprRewardTableAdapter adp = new SprRewardTableAdapter();
-                adp.InsertReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy, ref msg);
-                return msg;
+                //string msg = "";
+                sprRewardTableAdapter adp = new sprRewardTableAdapter();
+                return adp.GetData(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
+                //return msg;
             }
-            catch (Exception ex) { return ex.ToString(); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
 
@@ -251,7 +251,7 @@ namespace HR_BLL.Loan
 
         #endregion========================================================================
 
-        
+
 
     }
 }
