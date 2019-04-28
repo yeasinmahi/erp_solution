@@ -527,6 +527,7 @@
     <Content Include="PaymentModule\TreasuryDepositeForecast.aspx" />
     <Content Include="PaymentModule\VAT_Rebate.aspx" />
     <Content Include="PaymentModule\VoucherForAdvice.aspx" />
+    <Content Include="Personal\Test.aspx" />
     <Content Include="ReceiveChallanUpload.aspx" />
     <Content Include="ReceiveChallanUploadDetaills.aspx" />
     <Content Include="Revenue\frmBudEntry.aspx" />
@@ -1185,6 +1186,7 @@
     <Content Include="SAD\Corporate_sales\MonthlySaels.aspx" />
     <Content Include="SAD\Corporate_sales\OrderDetalis_UI.aspx" />
     <Content Include="SAD\Corporate_sales\OrderInput_UI.aspx" />
+    <Content Include="SAD\Corporate_sales\OrderInput_UI_test.aspx" />
     <Content Include="SAD\Corporate_sales\SalesAnalysis.aspx" />
     <Content Include="SAD\Corporate_sales\SalesOrderReport.aspx" />
     <Content Include="SAD\Corporate_sales\UnfoundView.aspx" />
@@ -1524,6 +1526,7 @@
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
+    <Content Include="SCM\Transfer\InventoryAdjustmentApproval.aspx" />
     <Content Include="SCM\Transfer\ProductionTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
     <Content Include="SCM\Transfer\frmTransferIn.aspx" />
@@ -3809,6 +3812,13 @@
     <Compile Include="PaymentModule\VoucherForAdvice.aspx.designer.cs">
       <DependentUpon>VoucherForAdvice.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Personal\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Personal\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ReceiveChallanUpload.aspx.cs">
       <DependentUpon>ReceiveChallanUpload.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -5831,6 +5841,13 @@
     </Compile>
     <Compile Include="SAD\Corporate_sales\OrderInput_UI.aspx.designer.cs">
       <DependentUpon>OrderInput_UI.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Corporate_sales\OrderInput_UI_test.aspx.cs">
+      <DependentUpon>OrderInput_UI_test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Corporate_sales\OrderInput_UI_test.aspx.designer.cs">
+      <DependentUpon>OrderInput_UI_test.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Corporate_sales\SalesAnalysis.aspx.cs">
       <DependentUpon>SalesAnalysis.aspx</DependentUpon>
@@ -8191,6 +8208,13 @@
     </Compile>
     <Compile Include="SCM\SupplierStatementReport.aspx.designer.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryAdjustmentApproval.aspx.cs">
+      <DependentUpon>InventoryAdjustmentApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\InventoryAdjustmentApproval.aspx.designer.cs">
+      <DependentUpon>InventoryAdjustmentApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\ProductionTransferReport.aspx.cs">
       <DependentUpon>ProductionTransferReport.aspx</DependentUpon>
