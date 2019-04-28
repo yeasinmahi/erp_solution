@@ -535,17 +535,34 @@ namespace UI.SAD.Order
 
                         try { File.Delete(GetXmlFilePath()); } catch { }
                         string id = "", code = "";
-                            SAD_BLL.Sales.VehicleSelect vs = new SAD_BLL.Sales.VehicleSelect();
-                            vs.VehicleAssign(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
-                                , hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
-                                , (rdoVhlCompany.SelectedIndex == 2 ? false : true)
-                                , (rdoVhlCompany.SelectedIndex == 0 ? true : false)
-                                , rdo3rdPartyCharge.SelectedIndex == 0 ? true : false
-                                , decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
-                                , hdnUom.Value, ddlExtra.SelectedValue
-                                , ddlIncentive.SelectedValue, narrTop
-                                , ref code, ref id);
-                               try { File.Delete(GetXmlFilePath()); } catch { }
+                    SAD_BLL.Sales.VehicleSelect vs = new SAD_BLL.Sales.VehicleSelect();
+                    vs.VehicleAssign(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
+                        , hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
+                        , (rdoVhlCompany.SelectedIndex == 2 ? false : true)
+                        , (rdoVhlCompany.SelectedIndex == 0 ? true : false)
+                        , rdo3rdPartyCharge.SelectedIndex == 0 ? true : false
+                        , decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
+                        , hdnUom.Value, ddlExtra.SelectedValue
+                        , ddlIncentive.SelectedValue, narrTop
+                        , ref code, ref id);
+
+
+                    //SAD_BLL.Sales.VehicleSelect vs = new SAD_BLL.Sales.VehicleSelect();
+                    //vs.VehicleAssignNChallan(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
+                    //    , hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
+                    //    , (rdoVhlCompany.SelectedIndex == 2 ? false : true)
+                    //    , (rdoVhlCompany.SelectedIndex == 0 ? true : false)
+                    //    , false
+                    //    , decimal.Parse(hdnAmount.Value), decimal.Parse(hdnGain.Value)
+                    //    , hdnUom.Value, "0"
+                    //    , "0", narrTop
+                    //    , txtDriver.Text, txtDriverContact.Text, hdnVehicleText.Value, suppliercoaid, strsupplier, hdnCustomerText.Value
+                    //    , ref code, ref id);
+                    //lblchallanval.Text = code;
+
+
+
+                    try { File.Delete(GetXmlFilePath()); } catch { }
 
                             string tripid = "";
                             string challannumber = "";
@@ -563,12 +580,7 @@ namespace UI.SAD.Order
                             bllso.tripcodenumber(tripid, ref tripcodenumber);
                             t.SetEmptyWeight(tripid, Session[SessionParams.USER_ID].ToString(), decimal.Parse("3"), "1049");
 
-                            // For Loaded Weight
-                            //bllso.tripidvscalculatedweight(tripid, ref calcuwgt);
-
-                            //totalwgt = decimal.Parse("3") + decimal.Parse(calcuwgt);
-
-                            //t.SetLoadedWeight(tripid, Session[SessionParams.USER_ID].ToString(), totalwgt); 
+                           
 
                             Response.Redirect("../../Accounts/Voucher/Exit.aspx");
                          

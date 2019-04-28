@@ -64,7 +64,7 @@
                                 $("[id*=txtquantity]", row).val((bqty));
                                 var msg = "Orginal Order Qty Over";
 
-                                //alert(msg);
+                                alert(msg);
 
                             }
                             else {
@@ -106,6 +106,15 @@
             });
         
     </script>
+
+    <script>
+           function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
+           function RefreshParent() {
+               if (window.opener != null && !window.opener.closed) {
+                   window.opener.location.reload();
+               }
+           }
+        </script>
 
     <style type="text/css">
         .auto-style1 {
@@ -205,7 +214,7 @@
                    <asp:Label ID="lblDo" runat="server"></asp:Label>
                 </td>                
                 <td>
-                                        Total Amount</td>
+                                       </td>
                 <td>
                      <asp:Label ID="Label2" runat="server"></asp:Label>
             </tr>
@@ -222,7 +231,7 @@
                 <td class="auto-style1">
                     </td>
                 <td class="auto-style1">
-                    Total Amount</td>
+                    Grand Total Amount</td>
                 <td class="auto-style1">
                     <asp:Label ID="lblfinalamount" runat="server"></asp:Label></td>
             </tr>
@@ -257,18 +266,27 @@
                         <asp:GridView ID="grdvQuationDetails" runat="server" AutoGenerateColumns="False" CellPadding="4" Width="100%"  ForeColor="#333333" GridLines="Both"  Font-Size="12px" OnRowDataBound="grdvQuationDetails_RowDataBound">
                             <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                             <Columns>
-                                <asp:TemplateField HeaderText="Quatation Number" HeaderStyle-HorizontalAlign="Center" SortExpression="IntOrderNumber">
+                                  <asp:TemplateField HeaderText="Product ID" HeaderStyle-HorizontalAlign="Center"  SortExpression="IntOrderNumber">
                                     <ItemTemplate>
                                        
-                                        <asp:Label ID="IntOrderNumber" runat="server" Text='<%# Bind("intid") %>'></asp:Label>
+                                        <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("intprdid") %>'></asp:Label>
                                     </ItemTemplate>
                                    
                                 </asp:TemplateField>
 
+                               
+                                 <asp:TemplateField HeaderText="Product Name"  HeaderStyle-HorizontalAlign="Center" SortExpression="strProductName">
+                                    <ItemTemplate>
+                                        <asp:HiddenField ID="hdnprdname" runat="server" Value='<%# Eval("prdname") %>' />
+                                       
+                                        <asp:Label ID="lblprdname" runat="server" Text='<%# Bind("prdname") %>'></asp:Label>
+                                    </ItemTemplate>
+                                    
+                                </asp:TemplateField>
                        
 
 
-                                <asp:TemplateField HeaderText="Customer Name" HeaderStyle-HorizontalAlign="Center" SortExpression="intCustid">
+                               <%-- <asp:TemplateField HeaderText="Customer Name" HeaderStyle-HorizontalAlign="Center" SortExpression="intCustid">
                                     <ItemTemplate>
                                         <asp:HiddenField ID="hdnstrName" runat="server" Value='<%# Eval("strName") %>' />
                                        <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustomerId") %>' />
@@ -282,17 +300,27 @@
                                         <asp:Label ID="lblstrName" runat="server" Text='<%# Bind("strName") %>'></asp:Label>
                                     </ItemTemplate>
                                   
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
-
-                                <asp:TemplateField HeaderText="Product Name"  HeaderStyle-HorizontalAlign="Center" SortExpression="strProductName">
+                                 <asp:TemplateField HeaderText="Specifiation" HeaderStyle-HorizontalAlign="Center" SortExpression="intCustid">
                                     <ItemTemplate>
-                                        <asp:HiddenField ID="hdnprdname" runat="server" Value='<%# Eval("prdname") %>' />
+                                        <asp:HiddenField ID="hdnstrName" runat="server" Value='<%# Eval("strName") %>' />
+                                       <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustomerId") %>' />
+                                         <asp:HiddenField ID="hdnitemid" runat="server" Value='<%# Eval("intprdid") %>' />
+                                          <asp:HiddenField ID="hdnpkid" runat="server" Value='<%# Eval("intid") %>' />
+                                         <asp:HiddenField ID="hdnstrTermsNCondition" runat="server" Value='<%# Eval("strTermsNCondition") %>' />
+                                        <asp:HiddenField ID="hdnintShipPointId" runat="server" Value='<%# Eval("intShipPointId") %>' />
+                                         <asp:HiddenField ID="hdnintSalesOffId" runat="server" Value='<%# Eval("intSalesOffId") %>' />
                                        
-                                        <asp:Label ID="lblprdname" runat="server" Text='<%# Bind("prdname") %>'></asp:Label>
+
+                                        <asp:Label ID="lbllblstrName" runat="server" Text='<%# Bind("strTermsNCondition") %>'></asp:Label>
                                     </ItemTemplate>
-                                    
+                                  
                                 </asp:TemplateField>
+
+
+
+                               
 
                                 <asp:TemplateField HeaderText="Rate" HeaderStyle-HorizontalAlign="Center" SortExpression="strProductName">
                                     <ItemTemplate>
@@ -308,10 +336,10 @@
                                 <asp:TemplateField HeaderText="Quantity" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
                                     <ItemTemplate>
                                      
-                                        <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numqnt", "{0:0.0}") %>'></asp:HiddenField>  
-                                   <asp:Label ID="lbltotalqnt" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numqnt", "{0:0.00}"))) %>'></asp:Label>
+                                        <asp:HiddenField ID="hdnnumqnt" runat="server" Value='<%# Bind("numrestqnt", "{0:0.0}") %>'></asp:HiddenField>  
+                                   <asp:Label ID="lbltotalqnt" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numrestqnt", "{0:0.00}"))) %>'></asp:Label>
 
-                                        <asp:TextBox ID="txtquantity"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
+                                        <asp:TextBox ID="txtquantity"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("numrestqnt", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
                                      </ItemTemplate>
                                 
                                 </asp:TemplateField>
@@ -323,7 +351,13 @@
                                 </asp:TemplateField>
 
                                 
-
+                                 <asp:TemplateField HeaderText="Quatation Number" HeaderStyle-HorizontalAlign="Center" Visible="false" SortExpression="IntOrderNumber">
+                                    <ItemTemplate>
+                                       
+                                        <asp:Label ID="IntOrderNumber" runat="server" Text='<%# Bind("intid") %>'></asp:Label>
+                                    </ItemTemplate>
+                                   
+                                </asp:TemplateField>
 
                        
 

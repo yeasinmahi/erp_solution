@@ -26,6 +26,7 @@ namespace UI.SCM
                     var dte = new DateTime(now.Year, now.Month, 1);
                     txtFromDate.Text = dte.ToString("yyyy-MM-dd");
                     txtToDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                    txtUpdateDate.Text = DateTime.Today.ToString("yyyy-MM-dd");
                 }
                 catch (Exception ex)
                 {
@@ -44,6 +45,7 @@ namespace UI.SCM
             int whid = ddlWH.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
+            DateTime uDate = Convert.ToDateTime(txtUpdateDate.Text);
             _dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 1, 0, 0, DateTime.Now, 0, 0);
 
             if (_dt.Rows.Count > 0)
@@ -62,9 +64,12 @@ namespace UI.SCM
             GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
+            DateTime Udate = Convert.ToDateTime(txtUpdateDate.Text);
             int autoid = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
             int itemid = Convert.ToInt32(((Label)row.FindControl("lblintItemID")).Text);
             DateTime invDate = Convert.ToDateTime(((Label)row.FindControl("lblLastActionTime")).Text);
+
+           // DateTime invDate = Convert.ToDateTime(((Label)row.FindControl("txtUpdateDate")).Text);
             decimal storeQty = Convert.ToDecimal(((TextBox)row.FindControl("txtSendStoreQty")).Text);
             int productionId = Convert.ToInt32(((Label)row.FindControl("lblintproductionid")).Text);
             int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);

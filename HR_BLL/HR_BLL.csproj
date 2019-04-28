@@ -132,13 +132,16 @@
     <Compile Include="Global\DutyCategory.cs" />
     <Compile Include="Global\EmployeeGroup.cs" />
     <Compile Include="Global\Expance_BLL.cs" />
+    <Compile Include="Global\GatePassbll.cs" />
     <Compile Include="Global\Holiday.cs" />
     <Compile Include="Global\JobStation.cs" />
     <Compile Include="Global\JobType.cs" />
     <Compile Include="Global\LetterType.cs" />
     <Compile Include="Global\Religion.cs" />
     <Compile Include="Global\Shift.cs" />
+    <Compile Include="Global\UnitOOP.cs" />
     <Compile Include="Global\Unit.cs" />
+    <Compile Include="Global\UserInfoOOP.cs" />
     <Compile Include="HolidayCalendar\HolidayGroupPermission.cs" />
     <Compile Include="HolidayCalendar\HolidaySetup.cs" />
     <Compile Include="Internal\InternalAutoSearch_BLL.cs" />

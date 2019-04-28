@@ -81,7 +81,7 @@ namespace ServiceGateWay.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Payment;User ID=sqlrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Payment;User ID=apsrw;Password=SalAg@3221#")]
         public string ERP_PaymentConnectionString {
             get {
                 return ((string)(this["ERP_PaymentConnectionString"]));
@@ -91,7 +91,7 @@ namespace ServiceGateWay.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_FTP;User ID=sqlrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_FTP;User ID=apsrw;Password=SalAg@3221#")]
         public string ERP_FTPConnectionString {
             get {
                 return ((string)(this["ERP_FTPConnectionString"]));
@@ -101,7 +101,7 @@ namespace ServiceGateWay.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;User ID=sqlrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;User ID=apsrw;Password=SalAg@3221#")]
         public string AG_GlobalConnectionString {
             get {
                 return ((string)(this["AG_GlobalConnectionString"]));
@@ -112,7 +112,7 @@ namespace ServiceGateWay.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_WastageMaterial;Persist Security Info=True;Us" +
-            "er ID=sqlrw;Password=RWsql@123")]
+            "er ID=apsrw;Password=SalAg@3221#")]
         public string AG_WastageMaterialConnectionString {
             get {
                 return ((string)(this["AG_WastageMaterialConnectionString"]));
@@ -144,7 +144,7 @@ namespace ServiceGateWay.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=SUPPORT;User ID=sqlrw;Password=RWsql@123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=SUPPORT;User ID=apsrw;Password=SalAg@3221#")]
         public string SUPPORTConnectionString {
             get {
                 return ((string)(this["SUPPORTConnectionString"]));

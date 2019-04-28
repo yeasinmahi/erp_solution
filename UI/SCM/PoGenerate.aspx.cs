@@ -45,7 +45,7 @@ namespace UI.SCM
                 DateTime dte = DateTime.Now;
                 txtdtePo.Text = dte.ToString("yyyy-MM-dd");
                 dte = DateTime.Parse(txtdtePo.Text);
-
+                txtIndentNoDet.Enabled = false;
                 DefaltPageLoad();
             }
             else
@@ -269,20 +269,12 @@ namespace UI.SCM
         {
             try
             {
-                try
-                {
-                    File.Delete(filePathForXML);
-                    File.Delete(filePathForXMLPo);
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
-                }
-                catch
-                {
-                    File.Delete(filePathForXML);
-                    File.Delete(filePathForXMLPo);
-                    dgvIndentPrepare.DataSource = "";
-                    dgvIndentPrepare.DataBind();
-                }
+                try { File.Delete(filePathForXML); } catch { }
+                try { File.Delete(filePathForXMLPo); } catch { }
+
+                dgvIndentPrepare.UnLoad();
+                txtIndentNoDet.Text = "";
+                ddlItem.Items.Clear();
 
                 GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
@@ -293,15 +285,17 @@ namespace UI.SCM
 
                 if (dt.Rows.Count > 0)
                 {
+                    txtIndentNoDet.Enabled = true;
                     lblIndentDetUnit.Text = dt.Rows[0]["strDescription"].ToString();
                     hdnUnitId.Value = dt.Rows[0]["intUnitID"].ToString();
+                    hdnWHId.Value = dt.Rows[0]["intWHID"].ToString();
+                    hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString();
 
                     Session["unitId"] = hdnUnitId.Value.ToString();
 
                     lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     lblIndentDate.Text = DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
-                    lblindentApproveDate.Text =
-                        DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
+                    lblindentApproveDate.Text =DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
                     lblInDueDate.Text = DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
                 else
@@ -479,23 +473,27 @@ namespace UI.SCM
             dgvIndent.DataBind();
             dgvIndentDet.DataSource = "";
             dgvIndentDet.DataBind();
-            dgvIndentPrepare.DataSource = dt;
+            dgvIndentPrepare.DataSource = "";
             dgvIndentPrepare.DataBind();
-
+            txtIndentNoDet.Text = "";
+            txtIndentNo.Text = "";
+            txtIndentNoDet.Enabled = false;
+            try { File.Delete(filePathForXML); } catch { }
+            try { File.Delete(filePathForXMLPo); } catch { } 
+            
             dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
             if (dt.Rows.Count > 0)
             {
                 hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
-                Session["untid"] = hdnUnitId.Value.ToString();
+               
             }
             else
-            {
-
+            { 
                 hdnUnitId.Value = "0"; 
             }
+            Session["unitId"] = hdnUnitId.Value.ToString();
             hdnWHId.Value = ddlWH.SelectedValue.ToString();
-            hdnWHName.Value = ddlWH.SelectedItem.ToString();
-
+            hdnWHName.Value = ddlWH.SelectedItem.ToString();  
             hdnUnitName.Value = "0";
         }
 
@@ -543,7 +541,13 @@ namespace UI.SCM
                     ddlItem.DataBind();
                     dt.Clear();
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This is not valid againest.'" + hdnWHName.Value.ToString()+"'');", true); }
+                else
+                {
+                    ddlItem.Items.Clear();                  
+                    Toaster(Message.NoFound.ToFriendlyString(), "This is not valid againest."+ hdnWHName.Value.ToString(), Common.TosterType.Warning);
+
+                    
+                }
                
             }
             catch (Exception ex)
@@ -652,6 +656,9 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
+                txtIndentNoDet.Text = "";
+                txtIndentNo.Text = "";
+                ddlItem.Items.Clear();
                 try { File.Delete(filePathForXMLPrepare); } catch { }
 
                 if (dgvIndentDet.Rows.Count > 0)
@@ -968,11 +975,12 @@ namespace UI.SCM
                     string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
-
+                  
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-
+                    txtIndentNoDet.Enabled = false;
                     txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
-                    txtSupplier.Text = "";
+                    txtSupplier.Text = ""; txtIndentNoDet.Text = "";
+                    txtIndentNo.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
                        

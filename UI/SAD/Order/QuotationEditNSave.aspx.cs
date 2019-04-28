@@ -353,6 +353,8 @@ namespace UI.SAD.Order
                         int proitemUOMID = int.Parse(dt.Rows[0]["intID"].ToString());
                         int uomid = int.Parse(dt.Rows[0]["intID"].ToString());
                         string code = "";
+                        int incentiveId = int.Parse(Session["IntOrderNumber"].ToString());
+
                         if (quantity != "0")
                         {
                             if (quantity != "0")
@@ -421,16 +423,15 @@ namespace UI.SAD.Order
                 XmlNode dSftTm = doc.SelectSingleNode("node");
                 string xmlString = dSftTm.InnerXml;
                 xmlString = "<node>" + xmlString + "</node>";
-                string message = bll.QuotationEditNSave(xmlString, enroll, unit, sopkid);
+                string message = bll.QuotationEditNSave(xmlString, enroll, unit, sopkid,ref code);
                 File.Delete(filePathForXML1);
 
-                //bll.getDoCompleteComplete(enroll, code, unit);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + "Your Do Number : " + code + "');", true);
-                lblDo.Text = "DO No: " + code.ToString();
+                
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + "Your Quotation Number : " + code + "');", true);
+                lblDo.Text =  code.ToString();
 
                 grdvQuationDetails.DataBind();
-                //Int32 ONumber = Convert.ToInt32(Session["ordernumber1"].ToString());
-                //objDo.getorderInactive(ONumber);
+               
 
                 //}
             }

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Gatepass" targetNamespace="http://tempuri.org/Gatepass.xsd" xmlns:mstns="http://tempuri.org/Gatepass.xsd" xmlns="http://tempuri.org/Gatepass.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.HR_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="GatepassReasonTable" GeneratorDataComponentClassName="GatepassReasonTable" Name="GatepassReason" UserDataComponentName="GatepassReasonTable">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_HRConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetGatepassReason" GetMethodModifier="Public" GetMethodName="GetGatepassReason" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetGatepassReason" UserSourceName="GetGatepassReason">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select intID,strGatePassReason from ERP_Global.dbo.tblGatePassReason where ysnActive=1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+              <Mapping SourceColumn="strGatePassReason" DataSetColumn="strGatePassReason" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Gatepass" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Gatepass" msprop:Generator_UserDSName="Gatepass">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GatepassReason" msprop:Generator_TableClassName="GatepassReasonDataTable" msprop:Generator_TableVarName="tableGatepassReason" msprop:Generator_TablePropName="GatepassReason" msprop:Generator_RowDeletingName="GatepassReasonRowDeleting" msprop:Generator_RowChangingName="GatepassReasonRowChanging" msprop:Generator_RowEvHandlerName="GatepassReasonRowChangeEventHandler" msprop:Generator_RowDeletedName="GatepassReasonRowDeleted" msprop:Generator_UserTableName="GatepassReason" msprop:Generator_RowChangedName="GatepassReasonRowChanged" msprop:Generator_RowEvArgName="GatepassReasonRowChangeEvent" msprop:Generator_RowClassName="GatepassReasonRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+              <xs:element name="strGatePassReason" msprop:Generator_ColumnVarNameInTable="columnstrGatePassReason" msprop:Generator_ColumnPropNameInRow="strGatePassReason" msprop:Generator_ColumnPropNameInTable="strGatePassReasonColumn" msprop:Generator_UserColumnName="strGatePassReason" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -29,6 +29,7 @@ namespace UI.HR.Loan
         DataTable dt;
 
         int intPart, intRType, intInsertBy, intEnroll, intApplicationId, intLType, intUserID, intLoanAmount, intNumberOfInstallment, intApproveLoanAmount, intApproveNumberOfInstallment;
+
         DateTime dteEffectiveDate, dteDate; string strStatus, xml, strRemarks;
         decimal monAmount;
         
@@ -50,6 +51,7 @@ namespace UI.HR.Loan
                     ddlRewardType.DataValueField = "intRewardTypeID";
                     ddlRewardType.DataSource = dt;
                     ddlRewardType.DataBind();
+                    txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 }
             }
             catch { }
@@ -68,7 +70,7 @@ namespace UI.HR.Loan
         #endregion======================================================================================
 
         #region===== Text Box Change Event =============================================================
-        protected void txtSearchEmp_TextChanged(object sender, EventArgs e)
+        protected void btnshow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "txtSearchEmp_TextChanged", null);
             Flogger.WriteDiagnostic(fd);
@@ -98,6 +100,11 @@ namespace UI.HR.Loan
                     txtDesignation.Text = dt.Rows[0]["strDesignation"].ToString();
                     txtJobStatus.Text = dt.Rows[0]["strJobType"].ToString();
                     txtJobStation.Text = dt.Rows[0]["strJobStationName"].ToString();
+                    try { dteDate = DateTime.Parse(txtDate.Text); }
+                    catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Input Effective Date.');", true); return; }
+                    intInsertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+                    string message = objLoan.InsertReward(2, 0, intEnroll, dteDate, 0, "", intInsertBy);
+                    txtbalance.Text = message;
                 }
                 else
                 {
@@ -116,6 +123,12 @@ namespace UI.HR.Loan
             // ends
             tracker.Stop();
         }
+       
+
+        //protected void btnshow_Click(object sender, EventArgs e)
+        //{
+
+        //}
         #endregion======================================================================================
 
         #region ===== Submit Action =====================================================================

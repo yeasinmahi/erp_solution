@@ -11,15 +11,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-
-    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <link href="../Content/CSS/GridView.css" rel="stylesheet" />
 
     <script>
@@ -68,9 +60,8 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%"> 
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
 
@@ -129,7 +120,7 @@
                                 <asp:TextBox ID="txtMrrNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
                             <td style="text-align: left"></td>
                             <td style="text-align: right">
-                                <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="return validation();" />
+                                <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="showLoader()" />
                             </td>
 
                             <td> </td>
@@ -216,7 +207,7 @@
 
                                         <asp:TemplateField HeaderText="Detalis">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
+                                             <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Optimization;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI
 {
@@ -12,7 +14,9 @@ namespace UI
         {           
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             BundleTable.EnableOptimizations = BundleConfig.BundlingActive;
-           // AuthConfig.RegisterOpenAuth();
+            // AuthConfig.RegisterOpenAuth();
+            List<string> paths = ProjectConfig.Instance.GetFolderList(Server.MapPath("/"));
+            paths.CreateFolder();
         }
 
         protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)

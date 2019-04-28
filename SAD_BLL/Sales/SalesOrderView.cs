@@ -156,7 +156,28 @@ namespace SAD_BLL.Sales
 
         }
 
-        public string QuotationEditNSave(string xmlString,   int enroll, int unit, int entryid)
+
+        public string DoCreateFromQuotaion(string xmlString, ref string entryid, int enroll, int unit, DateTime date1, DateTime date2, int custtype, int Customerid, int shopid, string narration, string addresss, int territoryid, int charge1, bool islog, int charge2, int charge3, int incentiveId1, int incentiveId2, int currencyId, decimal conversionRate, int salestype, decimal totalamount, string extCause, string note, string contatcAt, string contactPhone, int intSalesOffId, int depotid, bool ysnDelivaryOrder, bool ysnsdv, ref string code)
+        {
+            string msg = "";
+            long? id = null;
+
+            try
+            {
+                SprSalesOrderFromQuotationTableAdapter adpdo = new SprSalesOrderFromQuotationTableAdapter();
+                adpdo.GetDataSalesOrderFromQuotation(xmlString, ref id, enroll, unit, date1, date2, custtype, Customerid,
+                    shopid, narration, addresss, territoryid, charge1, islog, charge2, charge3, incentiveId1, incentiveId2, currencyId, conversionRate, salestype, totalamount, extCause, note
+                            , contatcAt, contactPhone, intSalesOffId, depotid, ysnDelivaryOrder, ysnsdv, ref code);
+                msg = "Successfully";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+
+        }
+
+
+        public string QuotationEditNSave(string xmlString,   int enroll, int unit, int entryid,ref string code)
         {
             string msg = "";
             long? id = null;
@@ -164,7 +185,7 @@ namespace SAD_BLL.Sales
             try
             {
                 SprSalesQutationEditNSaveTableAdapter adpdo = new SprSalesQutationEditNSaveTableAdapter();
-                adpdo.GetDataSalesQutationEditNSave(xmlString, enroll, unit, entryid);
+                adpdo.GetDataSalesQutationEditNSave(xmlString, enroll, unit, entryid,ref code);
                 msg = "Updated Succesfully";
             }
             catch (Exception e) { msg = e.ToString(); }

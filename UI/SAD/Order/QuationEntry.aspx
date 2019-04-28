@@ -447,7 +447,7 @@
                                 </td>
 
                                 <td>
-                                    <asp:Button ID="btnitmspecification" runat="server" Text="Speci." OnClick="btnitmspecification_Click" BackColor="#ffff99" />
+                                    <asp:Button ID="btnitmspecification" runat="server" Text="Speci." Visible="false" OnClick="btnitmspecification_Click" BackColor="#ffff99" />
                                 </td>
 
                             </tr>
@@ -508,7 +508,7 @@
                         </table>
 
 
-                        <table style="width: 850px; background-color: #C0C0C0;">
+                        <table style="width: 1000px; background-color: #C0C0C0;">
                             <tr>
                                 <td>
                                     <b style="">Product</b>
@@ -562,7 +562,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <table style="width: 850px;">
+                        <table style="width: 1000px;">
                             <tr style="background-color: #B0B0B0; text-align: center;">
                                 <td>UOM
                                 </td>
@@ -656,8 +656,6 @@
                                                     <asp:TextBox runat="server" ID="txt5" Visible="False"></asp:TextBox>
                                                     <asp:Label runat="server" ID="txtUom5" Visible="False"></asp:Label>
                                                 </td>
-                                            </tr>
-                                            <tr>
                                                 <td>
                                                     <asp:Label runat="server" ID="ddllbl1" Visible="False"></asp:Label>
                                                     <asp:DropDownList runat="server" ID="ddl1" Visible="False" />
@@ -797,7 +795,7 @@
                                 Text="Cancel" />
                         </td>
                         <td align="left">
-                            <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
+                            <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Quotation"
                                 OnClick="btnSubmit_Click" />
                             <asp:Label ID="lblError" runat="server" ForeColor="Maroon"></asp:Label>
                         </td>
