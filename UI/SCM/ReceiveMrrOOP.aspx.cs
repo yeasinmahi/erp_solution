@@ -583,7 +583,7 @@ namespace UI.SCM
 
         private void LoadWh()
         {
-            _dt = _wareHouse.GetGetAllWarehouseByEnroll(Enroll);
+            _dt = _wareHouse.GetAllWarehouseByEnroll(Enroll);
             ddlWH.Loads(_dt, "intWHID", "strWareHoseName");
         }
         private void LoadPoType()

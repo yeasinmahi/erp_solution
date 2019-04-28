@@ -1,5 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OrderInput_UI.aspx.cs" Inherits="UI.SAD.Corporate_sales.OrderInput_UI" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="OrderInput_UI_test.aspx.cs" Inherits="UI.SAD.Corporate_sales.OrderInput_UI_test" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -9,8 +8,9 @@
 <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
 <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
 <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-<link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+ <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
 <script src="../Content/JS/datepickr.min.js"></script>
+
 <script type="text/javascript">
     //function Changed() {
     //    document.getElementById('hdfSearchBoxTextChange').value = 'true';
@@ -72,9 +72,9 @@
 <body>
     <form id="frmreq" runat="server">
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel0" runat="server">
-    <ContentTemplate>
-    <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
+        <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+         <ContentTemplate>
+     <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
     <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
@@ -82,13 +82,12 @@
     <div style="height: 100px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
-<%--=========================================Start My Code From Here===============================================--%>
     <div class="leaveApplication_container"><table border="0"; style="width:500PX"; >
     <tr><td colspan="2" class="tblheader">Order Input From:<asp:HiddenField ID="hdnsearch" runat="server"/><asp:HiddenField ID="hdnUom" runat="server" /><asp:HiddenField ID="hdnprice" runat="server" />
      <asp:HiddenField ID="hdnBlance" runat="server" /> <asp:HiddenField ID="hdncredit" runat="server" /> 
          <asp:HiddenField ID="hdnTotal" runat="server" />
         </td></tr>
-    <tr class="tblrowodd"><td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Customer Name : "></asp:Label></td>
+        <tr class="tblrowodd"><td style="text-align:right;"><asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Customer Name : "></asp:Label></td>
     <td><asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" OnTextChanged="txtItem_TextChanged"  ></asp:TextBox>
     <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
     ServiceMethod="GetCustomerName" MinimumPrefixLength="1" CompletionSetCount="1"
@@ -96,8 +95,7 @@
     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"> </cc1:AutoCompleteExtender>
     <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
     </td></tr>
-
-    <tr class='tblroweven'><td style="text-align:right;"><asp:Label ID="lbldudt" CssClass="lbl" runat="server" Text="Blance : "></asp:Label></td>
+        <tr class='tblroweven'><td style="text-align:right;"><asp:Label ID="lbldudt" CssClass="lbl" runat="server" Text="Blance : "></asp:Label></td>
     <td><asp:TextBox ID="txtBlance"  runat="server" CssClass="txtBox"></asp:TextBox></td>
     </tr>
     <tr class='tblroweven'><td style="text-align:right;"><asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Credit Limit : "></asp:Label></td>
@@ -184,9 +182,10 @@
        
     </div>
 
-<%--=========================================End My Code From Here=================================================--%>
-    </ContentTemplate>
-    </asp:UpdatePanel>
+
+         </ContentTemplate>
+        </asp:UpdatePanel>
     </form>
 </body>
 </html>
+

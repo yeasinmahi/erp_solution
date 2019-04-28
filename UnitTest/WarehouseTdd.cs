@@ -40,7 +40,7 @@ namespace UnitTest
         [TestCase(373605)]
         public void Bll_GetGetAllWarehouseByEnroll_DataTable(int enroll)
         {
-            DataTable dt = _bll.GetGetAllWarehouseByEnroll(enroll);
+            DataTable dt = _bll.GetAllWarehouseByEnroll(enroll);
             Assert.That(dt.Rows.Count > 0);
         }
         

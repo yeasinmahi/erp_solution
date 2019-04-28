@@ -12,7 +12,7 @@ namespace BLL.Inventory
             return _dal.GetUnitIdByWhId(whId);
         }
 
-        public DataTable GetGetAllWarehouseByEnroll(int enroll)
+        public DataTable GetAllWarehouseByEnroll(int enroll)
         {
             if (_dalOp.IsSuperUser(enroll) || _dalOp.IsAllPoAccess(enroll))
             {
