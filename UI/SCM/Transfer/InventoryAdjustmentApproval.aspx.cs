@@ -6,10 +6,8 @@ using System.Data;
 using Utility;
 using HR_BLL.Global;
 using Unit = HR_BLL.Global.Unit;
-
 using BLL.Accounts.Bank;
 using BLL.Inventory;
-
 namespace UI.SCM.Transfer
 {
     public partial class InventoryAdjustmentApproval : BasePage

@@ -37,12 +37,25 @@ namespace DALOOP.Inventory
                 return new DataTable();
             }
         }
-        public DataTable GetPendingInventoryAdjustmentByWh(int whId)
+        public DataTable GetLabel1PendingInventoryAdjustmentByWh(int whId)
         {
             try
             {
                 _dt = GetInventoryAdjustmentByWh(whId);
                 return _dt.GetRows("ysnCompleteL1", false);
+
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetLabel2PendingInventoryAdjustmentByWh(int whId)
+        {
+            try
+            {
+                _dt = GetInventoryAdjustmentByWh(whId);
+                return _dt.GetRows("ysnCompleteL2", false);
 
             }
             catch (Exception e)
