@@ -94,13 +94,13 @@ namespace UI.SCM.Transfer {
         protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// ddlUnit control.
+        /// ddlWh control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUnit;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWh;
         
         /// <summary>
         /// Label1 control.
@@ -166,12 +166,12 @@ namespace UI.SCM.Transfer {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
-        /// FG_Grid control.
+        /// grid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView FG_Grid;
+        protected global::System.Web.UI.WebControls.GridView grid;
     }
 }

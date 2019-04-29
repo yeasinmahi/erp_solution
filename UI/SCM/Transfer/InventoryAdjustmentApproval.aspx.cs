@@ -15,6 +15,7 @@ namespace UI.SCM.Transfer
         private DataTable _dt = new DataTable();
         private readonly InventoryTransfer_BLL _objbll = new InventoryTransfer_BLL();
         private WareHouseBll wareHouse = new WareHouseBll();
+        private readonly InventoryAdjustmentBll _bll = new InventoryAdjustmentBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,19 +45,21 @@ namespace UI.SCM.Transfer
         public void LoadWareHouse()
         {
             _dt = wareHouse.GetAllWarehouseByEnroll(Enroll);
-            ddlUnit.Loads(_dt, "intWHID", "strWareHoseName");
+            ddlWh.Loads(_dt, "intWHID", "strWareHoseName");
         }
 
         private void GridBind()
         {
-            //int whid = ddlWH.SelectedValue();
+            int whid = ddlWh.SelectedValue();
             DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             DateTime toDate = Convert.ToDateTime(txtToDate.Text);
+            _dt = _bll.GetLabel1PendingInventoryAdjustmentByWh(whid);
             //_dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 1, 0, 0, DateTime.Now, 0, 0);
+
 
             if (_dt.Rows.Count > 0)
             {
-                FG_Grid.Loads(_dt);
+                grid.Loads(_dt);
                 SetVisibility("panel", true);
             }
             else
