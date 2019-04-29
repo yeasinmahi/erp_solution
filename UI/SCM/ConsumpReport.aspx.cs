@@ -4,6 +4,7 @@ using SCM_BLL;
 using System;
 using System.Data;
 using System.IO;
+using System.Web.UI;
 using UI.ClassFiles;
 using Utility;
 
@@ -119,7 +120,7 @@ namespace UI.SCM
         {
             int whId = ddlWh.SelectedValue();
             _dt = _bll.GetViewData(4, "", whId, 0, DateTime.Now, Enroll);
-            ddlCostCenter.Loads(_dt, "Id", "strName");
+            ddlCostCenter.LoadWithAll(_dt, "Id", "strName");
         }
         public void LoadDepartment()
         {
@@ -165,7 +166,10 @@ namespace UI.SCM
                 Toaster("Please select department first", Common.TosterType.Warning);
                 return;
             }
-            LoadGridView(2, id);
+
+
+            LoadReport(2, id);
+            //LoadGridView(2, id);
         }
 
         protected void btnSection_OnClick(object sender, EventArgs e)
@@ -176,20 +180,17 @@ namespace UI.SCM
                 Toaster("Please select section first", Common.TosterType.Warning);
                 return;
             }
-            LoadGridView(1, id);
+            LoadReport(1, id);
+            //LoadGridView(1, id);
         }
 
         protected void btnCostCenter_OnClick(object sender, EventArgs e)
         {
             int id = ddlCostCenter.SelectedValue();
-            if (id == 0)
-            {
-                Toaster("Please select Cost Center first", Common.TosterType.Warning);
-                return;
-            }
-            LoadGridView(3, id);
+            LoadReport(3, id);
+            //LoadGridView(3, id);
         }
-
+        
         protected void btnMasterCategory_OnClick(object sender, EventArgs e)
         {
             int id = ddlMasterCategory.SelectedValue();
@@ -198,7 +199,13 @@ namespace UI.SCM
                 Toaster("Please select master category first", Common.TosterType.Warning);
                 return;
             }
-            LoadGridView(4, id);
+            LoadReport(4, id);
+            //LoadGridView(4, id);
+        }
+        public void LoadReport(int part, int id)
+        {
+            string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/SCM/Consumption_Report&part=" + part + "&whId=" + ddlWh.SelectedValue + "&fromDate=" + txtDteFrom.Text + "&toDate=" + txtdteTo.Text + "&id=" + id + "&rc:LinkTarget=_self";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }
         protected void btnMinorCategory_OnClick(object sender, EventArgs e)
         {

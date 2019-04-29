@@ -169,7 +169,7 @@
                                     <%# Container.DataItemIndex + 1 %>
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Reward ID">
+                            <asp:TemplateField HeaderText="Reward ID" Visible="false">
                                 <ItemTemplate>
                                     <asp:Label ID="lblReward" runat="server" Text='<%# Bind("intRewardID") %>'></asp:Label>
                                 </ItemTemplate>
@@ -191,7 +191,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Insert Date">
                                 <ItemTemplate>
-                                    <asp:Label ID="lbldate" runat="server" Text='<%# Bind("InsertDate") %>'></asp:Label>
+                                    <%--<asp:Label ID="lbldate" runat="server" Text='<%# Bind("InsertDate").ToString("yyyy-MM-dd") %>'></asp:Label>--%>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ShowHeader="true" HeaderText="Action">
@@ -202,12 +202,12 @@
                         </Columns>
                     </asp:GridView>
                 </div>
-
+              
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
-            <%-- <Triggers>
-                <asp:PostBackTrigger ControlID="btnDelete" />
-            </Triggers>--%>
+               <%--<Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
+              </Triggers>--%>
         </asp:UpdatePanel>
     </form>
 </body>
