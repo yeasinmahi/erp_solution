@@ -14,6 +14,7 @@ using HR_BLL.Global;
 using UI.ClassFiles;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.HR.Loan
 {
@@ -29,6 +30,8 @@ namespace UI.HR.Loan
         DataTable dt;
 
         int intPart, intRType, intInsertBy, intEnroll, intApplicationId, intLType, intUserID, intLoanAmount, intNumberOfInstallment, intApproveLoanAmount, intApproveNumberOfInstallment;
+
+       
 
         DateTime dteEffectiveDate, dteDate; string strStatus, xml, strRemarks;
         decimal monAmount;
@@ -103,8 +106,11 @@ namespace UI.HR.Loan
                     try { dteDate = DateTime.Parse(txtDate.Text); }
                     catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Input Effective Date.');", true); return; }
                     intInsertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
-                    string message = objLoan.InsertReward(2, 0, intEnroll, dteDate, 0, "", intInsertBy);
-                    txtbalance.Text = message;
+                    dt=objLoan.InsertReward(2, 0, intEnroll, dteDate, 0, "", intInsertBy);
+                    txtbalance.Text = dt.Rows[0]["totalBalance"].ToString();
+
+                    intPart = 3;
+                    LoadGridView(intPart, 0,intEnroll,dteDate,0,"",intInsertBy);
                 }
                 else
                 {
@@ -160,18 +166,9 @@ namespace UI.HR.Loan
                     intInsertBy = int.Parse(hdnEnroll.Value);
 
                     //*** Final Insert 
-                    string message = objLoan.InsertReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
+                    objLoan.InsertReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
+                    string message = "Submited Successfully";
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                    txtSearchEmp.Text = "";
-                    txtDate.Text = "";
-                    txtAmount.Text = "";
-                    txtRemarks.Text = "";
-                    txtName.Text = "";
-                    txtUnit.Text = "";
-                    txtDepartment.Text = "";
-                    txtDesignation.Text = "";
-                    txtJobStatus.Text = "";
-                    txtJobStation.Text = "";
                 }
                 catch (Exception ex)
                 {
@@ -186,6 +183,31 @@ namespace UI.HR.Loan
             // ends
             tracker.Stop();
         }
+
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName != "Delete") return;
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = GridView1.Rows[index];
+            int rewardId = int.Parse((row.FindControl("lblReward") as Label).Text);
+            intEnroll = int.Parse((row.FindControl("lblEnroll") as Label).Text);
+            dteDate = DateTime.Parse(txtDate.Text);
+            dt = objLoan.InsertReward(4, 0, intEnroll, dteDate, 0, "", rewardId);
+
+            LoadGridView(3, 0, intEnroll, dteDate, 0, "", 0);
+
+            intInsertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
+            dt = objLoan.InsertReward(2, 0, intEnroll, dteDate, 0, "", intInsertBy);
+            txtbalance.Text = dt.Rows[0]["totalBalance"].ToString();
+
+        }
+        public void LoadGridView(int intPart,int intRType,int intEnroll,DateTime dteDate, decimal monAmount,string strRemarks,int intInsertBy)
+        {
+            dt= objLoan.InsertReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+       
         #endregion=======================================================================================
 
 
