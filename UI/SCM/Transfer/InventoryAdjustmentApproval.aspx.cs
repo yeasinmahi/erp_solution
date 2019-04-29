@@ -4,18 +4,13 @@ using UI.ClassFiles;
 using SCM_BLL;
 using System.Data;
 using Utility;
-using HR_BLL.Global;
-using Unit = HR_BLL.Global.Unit;
-using BLL.Accounts.Bank;
 using BLL.Inventory;
 namespace UI.SCM.Transfer
 {
     public partial class InventoryAdjustmentApproval : BasePage
     {
         private DataTable _dt = new DataTable();
-        private readonly InventoryTransfer_BLL _objbll = new InventoryTransfer_BLL();
-        private WareHouseBll wareHouse = new WareHouseBll();
-        private readonly InventoryAdjustmentBll _bll = new InventoryAdjustmentBll();
+        private readonly WareHouseBll _wareHouse = new WareHouseBll();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -44,8 +39,8 @@ namespace UI.SCM.Transfer
         }
         public void LoadWareHouse()
         {
-            _dt = wareHouse.GetAllWarehouseByEnroll(Enroll);
-            ddlWh.Loads(_dt, "intWHID", "strWareHoseName");
+            _dt = _wareHouse.GetAllWarehouseByEnroll(Enroll);
+            ddlUnit.Loads(_dt, "intWHID", "strWareHoseName");
         }
 
         private void GridBind()

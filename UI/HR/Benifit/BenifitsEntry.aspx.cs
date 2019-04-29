@@ -31,7 +31,7 @@ namespace UI.HR.Benifit
             filePathForXML = Server.MapPath("~/HR/Benifit/Data/Benifit_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {
-                pnlUpperControl.DataBind();
+               // pnlUpperControl.DataBind();
                 //divItemInfo.Visible = false;
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 try
