@@ -39,11 +39,11 @@
                                 <div class="col-md-3">
                                     <asp:Label ID="Label3" runat="server" Text="Unit:" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                    <%-- <asp:DropDownList ID="ddlWH" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>--%>
-                                    <asp:DropDownList ID="ddlWh" runat="server"  CssClass="form-control"
+                                    <asp:DropDownList ID="ddlWh" runat="server"  CssClass="form-control" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged"
                                      AutoPostBack="True">
                                 </asp:DropDownList>
                                 </div>
-                                <div class="col-md-3">
+                                <%--<div class="col-md-3">
                                     <asp:Label ID="Label1" runat="server" Text="From Date:" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
@@ -53,6 +53,14 @@
                                     <asp:Label ID="Label2" runat="server" Text="To Date:" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
+                                </div>--%>
+                                 <div class="col-md-3 hidden" id="levelPanel">
+                                    <asp:Label ID="Label2" runat="server" Text="Select lavel:" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:DropDownList ID="ddlLevel" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" >
+                                        <asp:ListItem Text="Level1" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="Level2" Value="2"></asp:ListItem>
+                                    </asp:DropDownList>
+                                    
                                 </div>
                                 <div class="col-md-3" id="showbuttonDiv" style="padding-top: 20px;">
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" Text="Show" OnClientClick="showLoader()" OnClick="btnShow_Click" />
@@ -76,19 +84,19 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Item ID" SortExpression="intproductionid">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblintproductionid" runat="server" CssClass="lbl" Text='<%# Bind("intItemID") %>'></asp:Label>
+                                            <asp:Label ID="lblItmId" runat="server" CssClass="lbl" Text='<%# Bind("intItemID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Quantity" SortExpression="strItem">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblstrItem" runat="server" CssClass="lbl" Text='<%# Bind("numQty") %>'></asp:Label>
+                                            <asp:Label ID="lblNumQty" runat="server" CssClass="lbl" Text='<%# Bind("numQty") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Rate" SortExpression="intItemID">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblintItemID" runat="server" CssClass="lbl" Text='<%# Bind("monRate") %>'></asp:Label>
+                                            <asp:Label ID="lblMonRate" runat="server" CssClass="lbl" Text='<%# Bind("monRate") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -100,19 +108,28 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Location" SortExpression="strUoM">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblstrUoM" runat="server" CssClass="lbl" Text='<%# Bind("intLocationID") %>'></asp:Label>
+                                            <asp:Label ID="lblIntLocationID" runat="server" CssClass="lbl" Text='<%# Bind("intLocationID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Ware House" SortExpression="strUoM">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblstrUoM" runat="server" CssClass="lbl" Text='<%# Bind("intWHID") %>'></asp:Label>
+                                            <asp:Label ID="lblIntWHID" runat="server" CssClass="lbl" Text='<%# Bind("intWHID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
+
+                                    <%-- <asp:TemplateField HeaderText="Quantity" SortExpression="strUoM">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblNumQty" runat="server" CssClass="lbl" Text='<%# Bind("numQty") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>--%>
+                                   
+
                                     <asp:TemplateField HeaderText="Unit" SortExpression="strUoM">
                                         <ItemTemplate>
-                                            <asp:Label ID="lblstrUoM" runat="server" CssClass="lbl" Text='<%# Bind("intUnitID") %>'></asp:Label>
+                                            <asp:Label ID="lblUnitId" runat="server" CssClass="lbl" Text='<%# Bind("intUnitID") %>'></asp:Label>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>
@@ -128,9 +145,16 @@
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>--%>
+                                 
+                                    <asp:TemplateField HeaderText="Unit" SortExpression="strUoM">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblstrReceiveRemarks" runat="server" CssClass="lbl" Text='<%# Bind("strReceiveRemarks") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="center" />
+                                    </asp:TemplateField>
                                     <asp:TemplateField ShowHeader="true" HeaderText="Action">
                                         <ItemTemplate>
-                                            <asp:Button ID="btnUpdate" runat="server" OnClick="btnUpdate_Click" OnClientClick="showLoader();" Text="Approve" CssClass="btn btn-success btn-xs"></asp:Button>
+                                            <asp:Button ID="btnApprove" runat="server" OnClick="btnApprove_Click" OnClientClick="showLoader();" Text="Approve" CssClass="btn btn-success btn-xs"></asp:Button>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" />
                                     </asp:TemplateField>

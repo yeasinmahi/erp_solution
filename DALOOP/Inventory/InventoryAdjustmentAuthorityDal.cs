@@ -52,6 +52,7 @@ namespace DALOOP.Inventory
                 _dt = _dt.GetRows("intWHID", whId).GetRows("intEnrollment", enroll);
                 if (_dt.Rows.Count > 0)
                 {
+                    if (_dt.GetRow("intLavel", 1) != null && _dt.GetRow("intLavel", 2) != null) return 3;
                     if (_dt.GetRow("intLavel", 1) != null) return 1;
                     if (_dt.GetRow("intLavel", 2) != null) return 2;
                     return 0;

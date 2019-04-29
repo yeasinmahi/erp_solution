@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Utility
+﻿namespace Utility
 {
     public class AccessPermission
     {
@@ -12,7 +6,8 @@ namespace Utility
         {
             NoPermit,
             Lavel1,
-            Lavel2
+            Lavel2,
+            Lavel1AndLavel2
         }
     }
 }

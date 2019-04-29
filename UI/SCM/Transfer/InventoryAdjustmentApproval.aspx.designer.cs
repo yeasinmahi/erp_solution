@@ -103,33 +103,6 @@ namespace UI.SCM.Transfer {
         protected global::System.Web.UI.WebControls.DropDownList ddlWh;
         
         /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-        
-        /// <summary>
-        /// txtFromDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFromDate;
-        
-        /// <summary>
-        /// fd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender fd;
-        
-        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -139,22 +112,13 @@ namespace UI.SCM.Transfer {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtToDate control.
+        /// ddlLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtToDate;
-        
-        /// <summary>
-        /// td control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender td;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLevel;
         
         /// <summary>
         /// btnShow control.
