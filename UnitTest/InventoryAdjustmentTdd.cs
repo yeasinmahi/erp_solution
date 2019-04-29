@@ -26,18 +26,32 @@ namespace UnitTest
             Assert.That(result==expectedReselt);
         }
         [TestCase(2, false)]
-        public void Dal_GetPendingInventoryAdjustmentByWh_DataTable(int whId, bool expectedReselt)
+        public void Dal_GetLabel1PendingInventoryAdjustmentByWh_DataTable(int whId, bool expectedReselt)
         {
-            DataTable dt = _dal.GetPendingInventoryAdjustmentByWh(whId);
+            DataTable dt = _dal.GetLabel1PendingInventoryAdjustmentByWh(whId);
             bool result = dt.Rows.Count > 0;
             Assert.That(result==expectedReselt);
         }
         [TestCase(2, false)]
-        public void Bll_GetPendingInventoryAdjustmentByWh_DataTable(int whId, bool expectedReselt)
+        public void Dal_GetLabel2PendingInventoryAdjustmentByWh_DataTable(int whId, bool expectedReselt)
         {
-            DataTable dt = _bll.GetPendingInventoryAdjustmentByWh(whId);
+            DataTable dt = _dal.GetLabel2PendingInventoryAdjustmentByWh(whId);
+            bool result = dt.Rows.Count > 0;
+            Assert.That(result == expectedReselt);
+        }
+        [TestCase(2, false)]
+        public void Bll_GetLabel1PendingInventoryAdjustmentByWh_DataTable(int whId, bool expectedReselt)
+        {
+            DataTable dt = _bll.GetLabel1PendingInventoryAdjustmentByWh(whId);
             bool result = dt.Rows.Count > 0;
             Assert.That(result==expectedReselt);
+        }
+        [TestCase(2, false)]
+        public void Bll_GetLabel2PendingInventoryAdjustmentByWh_DataTable(int whId, bool expectedReselt)
+        {
+            DataTable dt = _bll.GetLabel2PendingInventoryAdjustmentByWh(whId);
+            bool result = dt.Rows.Count > 0;
+            Assert.That(result == expectedReselt);
         }
     }
 }
