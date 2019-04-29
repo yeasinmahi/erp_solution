@@ -442,6 +442,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LeaveTypeTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Loan\LoanTDS.cs">
+      <DependentUpon>LoanTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Loan\LoanTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

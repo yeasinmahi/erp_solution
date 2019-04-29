@@ -32,6 +32,14 @@
             }
             return true;
         }
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
     </script>
 </head>
 
@@ -149,11 +157,11 @@
                                 <asp:Button ID="btnMinorCategory" runat="server" Text="Show" OnClick="btnMinorCategory_OnClick" OnClientClick="return validation()" />
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Sub Category:"></asp:Label>
+                                <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Sub Category:" Visible="false"></asp:Label>
                             </td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server"></asp:DropDownList>
-                                <asp:Button ID="btnSubCategory" runat="server" Text="Show" OnClick="btnSubCategory_OnClick" OnClientClick="return validation()" />
+                                <asp:DropDownList ID="ddlSubCategory" CssClass="ddList" Font-Bold="False" runat="server" Visible="false"></asp:DropDownList>
+                                <asp:Button ID="btnSubCategory" runat="server" Text="Show" OnClick="btnSubCategory_OnClick" OnClientClick="return validation()" Visible="false"/>
                             </td>
                         </tr>
                         <tr>
@@ -164,7 +172,7 @@
                     <table>
                         <tr>
                             <td>
-                                <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  CssClass="GridViewStyle">
+                                <asp:GridView ID="gridView" runat="server" Visible="false" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true"  CssClass="GridViewStyle">
                                     <HeaderStyle CssClass="HeaderStyle" />
                                     <FooterStyle CssClass="FooterStyle" />
                                     <RowStyle CssClass="RowStyle" />
@@ -242,6 +250,9 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+                <div>
+                    <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>

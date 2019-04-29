@@ -56,6 +56,10 @@ namespace UI.HR.Loan
                     ddlRewardType.DataBind();
                     txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 }
+                else
+                {
+
+                }
             }
             catch { }
         }
@@ -108,9 +112,7 @@ namespace UI.HR.Loan
                     intInsertBy = Convert.ToInt32(Session[SessionParams.USER_ID].ToString());
                     dt=objLoan.InsertReward(2, 0, intEnroll, dteDate, 0, "", intInsertBy);
                     txtbalance.Text = dt.Rows[0]["totalBalance"].ToString();
-
-                    intPart = 3;
-                    LoadGridView(intPart, 0,intEnroll,dteDate,0,"",intInsertBy);
+                    LoadGridView(3, 0,intEnroll,dteDate,0,"",intInsertBy);
                 }
                 else
                 {
@@ -165,7 +167,9 @@ namespace UI.HR.Loan
                     strRemarks = txtRemarks.Text;
                     intInsertBy = int.Parse(hdnEnroll.Value);
 
+                    LoadGridView(3, 0, intEnroll, dteDate, 0, "", 0);
                     //*** Final Insert 
+
                     objLoan.InsertReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
                     string message = "Submited Successfully";
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
@@ -192,7 +196,7 @@ namespace UI.HR.Loan
             int rewardId = int.Parse((row.FindControl("lblReward") as Label).Text);
             intEnroll = int.Parse((row.FindControl("lblEnroll") as Label).Text);
             dteDate = DateTime.Parse(txtDate.Text);
-            dt = objLoan.InsertReward(4, 0, intEnroll, dteDate, 0, "", rewardId);
+            dt = objLoan.GetAllReward(4, 0, intEnroll, dteDate, 0, "", rewardId);
 
             LoadGridView(3, 0, intEnroll, dteDate, 0, "", 0);
 
@@ -203,9 +207,19 @@ namespace UI.HR.Loan
         }
         public void LoadGridView(int intPart,int intRType,int intEnroll,DateTime dteDate, decimal monAmount,string strRemarks,int intInsertBy)
         {
-            dt= objLoan.InsertReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
+            dt= objLoan.GetAllReward(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
+            if(dt.Rows.Count>0)
+            {
+                GridView1.DataSource = dt;
+                GridView1.DataBind();
+            }
+            else
+            {
+                Toaster("Reward", "Data Not Found", Common.TosterType.Warning);
+                GridView1.DataSource = null;
+                GridView1.DataBind();
+            }
+            
         }
        
         #endregion=======================================================================================

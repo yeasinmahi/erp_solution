@@ -245,7 +245,19 @@ namespace HR_BLL.Loan
             }
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
+        
 
+         public DataTable GetAllReward(int intPart, int intRType, int intEnroll, DateTime dteDate, decimal monAmount, string strRemarks, int intInsertBy)
+        {
+            try
+            {
+                //string msg = "";
+                sprRewardDeleteUpdateTableAdapter adp = new sprRewardDeleteUpdateTableAdapter();
+                return adp.GetRewardData(intPart, intRType, intEnroll, dteDate, monAmount, strRemarks, intInsertBy);
+                //return msg;
+            }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
 
 
 
