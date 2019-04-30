@@ -307,6 +307,20 @@ namespace DAL.Inventory {
             
             private global::System.Data.DataColumn columnysnActive;
             
+            private global::System.Data.DataColumn columnysnCompleteL1;
+            
+            private global::System.Data.DataColumn columnysnCompleteL2;
+            
+            private global::System.Data.DataColumn columnintInsertByL1;
+            
+            private global::System.Data.DataColumn columndteInsertDateL1;
+            
+            private global::System.Data.DataColumn columnintInsertByL2;
+            
+            private global::System.Data.DataColumn columndteInsertDateL2;
+            
+            private global::System.Data.DataColumn columnstrLocationName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tblInventoryAdjustmentDataTable() {
@@ -454,6 +468,62 @@ namespace DAL.Inventory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnCompleteL1Column {
+                get {
+                    return this.columnysnCompleteL1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnCompleteL2Column {
+                get {
+                    return this.columnysnCompleteL2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intInsertByL1Column {
+                get {
+                    return this.columnintInsertByL1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteInsertDateL1Column {
+                get {
+                    return this.columndteInsertDateL1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intInsertByL2Column {
+                get {
+                    return this.columnintInsertByL2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteInsertDateL2Column {
+                get {
+                    return this.columndteInsertDateL2;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strLocationNameColumn {
+                get {
+                    return this.columnstrLocationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,7 +559,27 @@ namespace DAL.Inventory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblInventoryAdjustmentRow AddtblInventoryAdjustmentRow(int intItemID, decimal numQty, decimal monRate, decimal monTotal, int intLocationID, int intWHID, int intUnitID, System.DateTime dteTransDate, System.DateTime dteLastActinTime, int intLastActionBy, string strReceiveRemarks, bool ysnComplete, bool ysnActive) {
+            public tblInventoryAdjustmentRow AddtblInventoryAdjustmentRow(
+                        int intItemID, 
+                        decimal numQty, 
+                        decimal monRate, 
+                        decimal monTotal, 
+                        int intLocationID, 
+                        int intWHID, 
+                        int intUnitID, 
+                        System.DateTime dteTransDate, 
+                        System.DateTime dteLastActinTime, 
+                        int intLastActionBy, 
+                        string strReceiveRemarks, 
+                        bool ysnComplete, 
+                        bool ysnActive, 
+                        bool ysnCompleteL1, 
+                        bool ysnCompleteL2, 
+                        int intInsertByL1, 
+                        System.DateTime dteInsertDateL1, 
+                        int intInsertByL2, 
+                        string dteInsertDateL2, 
+                        string strLocationName) {
                 tblInventoryAdjustmentRow rowtblInventoryAdjustmentRow = ((tblInventoryAdjustmentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -505,7 +595,14 @@ namespace DAL.Inventory {
                         intLastActionBy,
                         strReceiveRemarks,
                         ysnComplete,
-                        ysnActive};
+                        ysnActive,
+                        ysnCompleteL1,
+                        ysnCompleteL2,
+                        intInsertByL1,
+                        dteInsertDateL1,
+                        intInsertByL2,
+                        dteInsertDateL2,
+                        strLocationName};
                 rowtblInventoryAdjustmentRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblInventoryAdjustmentRow);
                 return rowtblInventoryAdjustmentRow;
@@ -549,6 +646,13 @@ namespace DAL.Inventory {
                 this.columnstrReceiveRemarks = base.Columns["strReceiveRemarks"];
                 this.columnysnComplete = base.Columns["ysnComplete"];
                 this.columnysnActive = base.Columns["ysnActive"];
+                this.columnysnCompleteL1 = base.Columns["ysnCompleteL1"];
+                this.columnysnCompleteL2 = base.Columns["ysnCompleteL2"];
+                this.columnintInsertByL1 = base.Columns["intInsertByL1"];
+                this.columndteInsertDateL1 = base.Columns["dteInsertDateL1"];
+                this.columnintInsertByL2 = base.Columns["intInsertByL2"];
+                this.columndteInsertDateL2 = base.Columns["dteInsertDateL2"];
+                this.columnstrLocationName = base.Columns["strLocationName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -582,6 +686,20 @@ namespace DAL.Inventory {
                 base.Columns.Add(this.columnysnComplete);
                 this.columnysnActive = new global::System.Data.DataColumn("ysnActive", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnysnActive);
+                this.columnysnCompleteL1 = new global::System.Data.DataColumn("ysnCompleteL1", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnCompleteL1);
+                this.columnysnCompleteL2 = new global::System.Data.DataColumn("ysnCompleteL2", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnCompleteL2);
+                this.columnintInsertByL1 = new global::System.Data.DataColumn("intInsertByL1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintInsertByL1);
+                this.columndteInsertDateL1 = new global::System.Data.DataColumn("dteInsertDateL1", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteInsertDateL1);
+                this.columnintInsertByL2 = new global::System.Data.DataColumn("intInsertByL2", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintInsertByL2);
+                this.columndteInsertDateL2 = new global::System.Data.DataColumn("dteInsertDateL2", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteInsertDateL2);
+                this.columnstrLocationName = new global::System.Data.DataColumn("strLocationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrLocationName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintID}, true));
                 this.columnintID.AutoIncrement = true;
@@ -591,6 +709,8 @@ namespace DAL.Inventory {
                 this.columnintID.ReadOnly = true;
                 this.columnintID.Unique = true;
                 this.columnstrReceiveRemarks.MaxLength = 2000;
+                this.columndteInsertDateL2.MaxLength = 10;
+                this.columnstrLocationName.MaxLength = 200;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -956,6 +1076,125 @@ namespace DAL.Inventory {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnCompleteL1 {
+                get {
+                    try {
+                        return ((bool)(this[this.tabletblInventoryAdjustment.ysnCompleteL1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnCompleteL1\' in table \'tblInventoryAdjustment\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.ysnCompleteL1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnCompleteL2 {
+                get {
+                    try {
+                        return ((bool)(this[this.tabletblInventoryAdjustment.ysnCompleteL2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnCompleteL2\' in table \'tblInventoryAdjustment\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.ysnCompleteL2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intInsertByL1 {
+                get {
+                    try {
+                        return ((int)(this[this.tabletblInventoryAdjustment.intInsertByL1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intInsertByL1\' in table \'tblInventoryAdjustment\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.intInsertByL1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteInsertDateL1 {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabletblInventoryAdjustment.dteInsertDateL1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertDateL1\' in table \'tblInventoryAdjustment\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.dteInsertDateL1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intInsertByL2 {
+                get {
+                    try {
+                        return ((int)(this[this.tabletblInventoryAdjustment.intInsertByL2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intInsertByL2\' in table \'tblInventoryAdjustment\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.intInsertByL2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string dteInsertDateL2 {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblInventoryAdjustment.dteInsertDateL2Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertDateL2\' in table \'tblInventoryAdjustment\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.dteInsertDateL2Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strLocationName {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblInventoryAdjustment.strLocationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strLocationName\' in table \'tblInventoryAdjustment\' is DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblInventoryAdjustment.strLocationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintItemIDNull() {
                 return this.IsNull(this.tabletblInventoryAdjustment.intItemIDColumn);
             }
@@ -1108,6 +1347,90 @@ namespace DAL.Inventory {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetysnActiveNull() {
                 this[this.tabletblInventoryAdjustment.ysnActiveColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnCompleteL1Null() {
+                return this.IsNull(this.tabletblInventoryAdjustment.ysnCompleteL1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnCompleteL1Null() {
+                this[this.tabletblInventoryAdjustment.ysnCompleteL1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnCompleteL2Null() {
+                return this.IsNull(this.tabletblInventoryAdjustment.ysnCompleteL2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnCompleteL2Null() {
+                this[this.tabletblInventoryAdjustment.ysnCompleteL2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintInsertByL1Null() {
+                return this.IsNull(this.tabletblInventoryAdjustment.intInsertByL1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintInsertByL1Null() {
+                this[this.tabletblInventoryAdjustment.intInsertByL1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteInsertDateL1Null() {
+                return this.IsNull(this.tabletblInventoryAdjustment.dteInsertDateL1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteInsertDateL1Null() {
+                this[this.tabletblInventoryAdjustment.dteInsertDateL1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintInsertByL2Null() {
+                return this.IsNull(this.tabletblInventoryAdjustment.intInsertByL2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintInsertByL2Null() {
+                this[this.tabletblInventoryAdjustment.intInsertByL2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteInsertDateL2Null() {
+                return this.IsNull(this.tabletblInventoryAdjustment.dteInsertDateL2Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteInsertDateL2Null() {
+                this[this.tabletblInventoryAdjustment.dteInsertDateL2Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrLocationNameNull() {
+                return this.IsNull(this.tabletblInventoryAdjustment.strLocationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrLocationNameNull() {
+                this[this.tabletblInventoryAdjustment.strLocationNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1284,126 +1607,14 @@ namespace DAL.Inventory.InventoryAdjustmentTableAdapters {
             tableMapping.ColumnMappings.Add("strReceiveRemarks", "strReceiveRemarks");
             tableMapping.ColumnMappings.Add("ysnComplete", "ysnComplete");
             tableMapping.ColumnMappings.Add("ysnActive", "ysnActive");
+            tableMapping.ColumnMappings.Add("ysnCompleteL1", "ysnCompleteL1");
+            tableMapping.ColumnMappings.Add("ysnCompleteL2", "ysnCompleteL2");
+            tableMapping.ColumnMappings.Add("intInsertByL1", "intInsertByL1");
+            tableMapping.ColumnMappings.Add("dteInsertDateL1", "dteInsertDateL1");
+            tableMapping.ColumnMappings.Add("intInsertByL2", "intInsertByL2");
+            tableMapping.ColumnMappings.Add("dteInsertDateL2", "dteInsertDateL2");
+            tableMapping.ColumnMappings.Add("strLocationName", "strLocationName");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ERP_Inventory].[dbo].[tblInventoryAdjustment] WHERE (([intID] = @Original_intID) AND ((@IsNull_intItemID = 1 AND [intItemID] IS NULL) OR ([intItemID] = @Original_intItemID)) AND ((@IsNull_numQty = 1 AND [numQty] IS NULL) OR ([numQty] = @Original_numQty)) AND ((@IsNull_monRate = 1 AND [monRate] IS NULL) OR ([monRate] = @Original_monRate)) AND ((@IsNull_monTotal = 1 AND [monTotal] IS NULL) OR ([monTotal] = @Original_monTotal)) AND ((@IsNull_intLocationID = 1 AND [intLocationID] IS NULL) OR ([intLocationID] = @Original_intLocationID)) AND ((@IsNull_intWHID = 1 AND [intWHID] IS NULL) OR ([intWHID] = @Original_intWHID)) AND ((@IsNull_intUnitID = 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNull_dteTransDate = 1 AND [dteTransDate] IS NULL) OR ([dteTransDate] = @Original_dteTransDate)) AND ((@IsNull_dteLastActinTime = 1 AND [dteLastActinTime] IS NULL) OR ([dteLastActinTime] = @Original_dteLastActinTime)) AND ((@IsNull_intLastActionBy = 1 AND [intLastActionBy] IS NULL) OR ([intLastActionBy] = @Original_intLastActionBy)) AND ((@IsNull_strReceiveRemarks = 1 AND [strReceiveRemarks] IS NULL) OR ([strReceiveRemarks] = @Original_strReceiveRemarks)) AND ((@IsNull_ysnComplete = 1 AND [ysnComplete] IS NULL) OR ([ysnComplete] = @Original_ysnComplete)) AND ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ysnActive)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_numQty", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "numQty", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_numQty", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 4, "numQty", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_monRate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monRate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_monRate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_monTotal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monTotal", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_monTotal", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monTotal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLocationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLocationID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLocationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLocationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intWHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intWHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dteTransDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteTransDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteTransDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteTransDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dteLastActinTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActinTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteLastActinTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActinTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLastActionBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLastActionBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strReceiveRemarks", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strReceiveRemarks", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strReceiveRemarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strReceiveRemarks", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ysnComplete", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnComplete", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnComplete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnComplete", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ysnActive", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [ERP_Inventory].[dbo].[tblInventoryAdjustment] ([intItemID], [numQty], [monRate], [monTotal], [intLocationID], [intWHID], [intUnitID], [dteTransDate], [dteLastActinTime], [intLastActionBy], [strReceiveRemarks], [ysnComplete], [ysnActive]) VALUES (@intItemID, @numQty, @monRate, @monTotal, @intLocationID, @intWHID, @intUnitID, @dteTransDate, @dteLastActinTime, @intLastActionBy, @strReceiveRemarks, @ysnComplete, @ysnActive);
-SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intUnitID, dteTransDate, dteLastActinTime, intLastActionBy, strReceiveRemarks, ysnComplete, ysnActive FROM tblInventoryAdjustment WHERE (intID = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numQty", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 4, "numQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monRate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monTotal", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monTotal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLocationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLocationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteTransDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteTransDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLastActinTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActinTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLastActionBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strReceiveRemarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strReceiveRemarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnComplete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnComplete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [ERP_Inventory].[dbo].[tblInventoryAdjustment] SET [intItemID] = @intItemI" +
-                "D, [numQty] = @numQty, [monRate] = @monRate, [monTotal] = @monTotal, [intLocatio" +
-                "nID] = @intLocationID, [intWHID] = @intWHID, [intUnitID] = @intUnitID, [dteTrans" +
-                "Date] = @dteTransDate, [dteLastActinTime] = @dteLastActinTime, [intLastActionBy]" +
-                " = @intLastActionBy, [strReceiveRemarks] = @strReceiveRemarks, [ysnComplete] = @" +
-                "ysnComplete, [ysnActive] = @ysnActive WHERE (([intID] = @Original_intID) AND ((@" +
-                "IsNull_intItemID = 1 AND [intItemID] IS NULL) OR ([intItemID] = @Original_intIte" +
-                "mID)) AND ((@IsNull_numQty = 1 AND [numQty] IS NULL) OR ([numQty] = @Original_nu" +
-                "mQty)) AND ((@IsNull_monRate = 1 AND [monRate] IS NULL) OR ([monRate] = @Origina" +
-                "l_monRate)) AND ((@IsNull_monTotal = 1 AND [monTotal] IS NULL) OR ([monTotal] = " +
-                "@Original_monTotal)) AND ((@IsNull_intLocationID = 1 AND [intLocationID] IS NULL" +
-                ") OR ([intLocationID] = @Original_intLocationID)) AND ((@IsNull_intWHID = 1 AND " +
-                "[intWHID] IS NULL) OR ([intWHID] = @Original_intWHID)) AND ((@IsNull_intUnitID =" +
-                " 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNul" +
-                "l_dteTransDate = 1 AND [dteTransDate] IS NULL) OR ([dteTransDate] = @Original_dt" +
-                "eTransDate)) AND ((@IsNull_dteLastActinTime = 1 AND [dteLastActinTime] IS NULL) " +
-                "OR ([dteLastActinTime] = @Original_dteLastActinTime)) AND ((@IsNull_intLastActio" +
-                "nBy = 1 AND [intLastActionBy] IS NULL) OR ([intLastActionBy] = @Original_intLast" +
-                "ActionBy)) AND ((@IsNull_strReceiveRemarks = 1 AND [strReceiveRemarks] IS NULL) " +
-                "OR ([strReceiveRemarks] = @Original_strReceiveRemarks)) AND ((@IsNull_ysnComplet" +
-                "e = 1 AND [ysnComplete] IS NULL) OR ([ysnComplete] = @Original_ysnComplete)) AND" +
-                " ((@IsNull_ysnActive = 1 AND [ysnActive] IS NULL) OR ([ysnActive] = @Original_ys" +
-                "nActive)));\r\nSELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, " +
-                "intWHID, intUnitID, dteTransDate, dteLastActinTime, intLastActionBy, strReceiveR" +
-                "emarks, ysnComplete, ysnActive FROM tblInventoryAdjustment WHERE (intID = @intID" +
-                ")";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numQty", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 4, "numQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monRate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monTotal", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monTotal", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLocationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLocationID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteTransDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteTransDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLastActinTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActinTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLastActionBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strReceiveRemarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strReceiveRemarks", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnComplete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnComplete", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intItemID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_numQty", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "numQty", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_numQty", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 4, "numQty", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_monRate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monRate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_monRate", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_monTotal", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monTotal", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_monTotal", global::System.Data.SqlDbType.Money, 0, global::System.Data.ParameterDirection.Input, 0, 0, "monTotal", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLocationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLocationID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLocationID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLocationID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intWHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intWHID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dteTransDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteTransDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteTransDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteTransDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_dteLastActinTime", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActinTime", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_dteLastActinTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActinTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLastActionBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLastActionBy", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strReceiveRemarks", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strReceiveRemarks", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strReceiveRemarks", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strReceiveRemarks", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ysnComplete", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnComplete", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnComplete", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnComplete", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ysnActive", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ysnActive", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ysnActive", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1419,7 +1630,9 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from ERP_Inventory.dbo.tblInventoryAdjustment where ysnActive = 1";
+            this._commandCollection[0].CommandText = "select ia.*,sl.strLocationName from ERP_Inventory.dbo.tblInventoryAdjustment ia \r" +
+                "\njoin ERP_Inventory.dbo.tblWearHouseStoreLocation sl on ia.intLocationID = sl.in" +
+                "tStoreLocationID\r\nwhere ia.ysnActive = 1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1432,528 +1645,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
             InventoryAdjustment.tblInventoryAdjustmentDataTable dataTable = new InventoryAdjustment.tblInventoryAdjustmentDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(InventoryAdjustment.tblInventoryAdjustmentDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(InventoryAdjustment dataSet) {
-            return this.Adapter.Update(dataSet, "tblInventoryAdjustment");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_intID, global::System.Nullable<int> Original_intItemID, global::System.Nullable<decimal> Original_numQty, global::System.Nullable<decimal> Original_monRate, global::System.Nullable<decimal> Original_monTotal, global::System.Nullable<int> Original_intLocationID, global::System.Nullable<int> Original_intWHID, global::System.Nullable<int> Original_intUnitID, global::System.Nullable<global::System.DateTime> Original_dteTransDate, global::System.Nullable<global::System.DateTime> Original_dteLastActinTime, global::System.Nullable<int> Original_intLastActionBy, string Original_strReceiveRemarks, global::System.Nullable<bool> Original_ysnComplete, global::System.Nullable<bool> Original_ysnActive) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_intID));
-            if ((Original_intItemID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_intItemID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Original_numQty.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((decimal)(Original_numQty.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((Original_monRate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((decimal)(Original_monRate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_monTotal.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((decimal)(Original_monTotal.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intLocationID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_intLocationID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intWHID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((int)(Original_intWHID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intUnitID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_intUnitID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((Original_dteTransDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((System.DateTime)(Original_dteTransDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            if ((Original_dteLastActinTime.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((System.DateTime)(Original_dteLastActinTime.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intLastActionBy.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((int)(Original_intLastActionBy.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
-            if ((Original_strReceiveRemarks == null)) {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((string)(Original_strReceiveRemarks));
-            }
-            if ((Original_ysnComplete.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[24].Value = ((bool)(Original_ysnComplete.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ysnActive.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[26].Value = ((bool)(Original_ysnActive.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[26].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> intItemID, global::System.Nullable<decimal> numQty, global::System.Nullable<decimal> monRate, global::System.Nullable<decimal> monTotal, global::System.Nullable<int> intLocationID, global::System.Nullable<int> intWHID, global::System.Nullable<int> intUnitID, global::System.Nullable<global::System.DateTime> dteTransDate, global::System.Nullable<global::System.DateTime> dteLastActinTime, global::System.Nullable<int> intLastActionBy, string strReceiveRemarks, global::System.Nullable<bool> ysnComplete, global::System.Nullable<bool> ysnActive) {
-            if ((intItemID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(intItemID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((numQty.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((decimal)(numQty.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((monRate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((decimal)(monRate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((monTotal.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((decimal)(monTotal.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((intLocationID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(intLocationID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((intWHID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(intWHID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((intUnitID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(intUnitID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((dteTransDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(dteTransDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((dteLastActinTime.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((System.DateTime)(dteLastActinTime.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((intLastActionBy.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((int)(intLastActionBy.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((strReceiveRemarks == null)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(strReceiveRemarks));
-            }
-            if ((ysnComplete.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(ysnComplete.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((ysnActive.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(ysnActive.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    global::System.Nullable<int> intItemID, 
-                    global::System.Nullable<decimal> numQty, 
-                    global::System.Nullable<decimal> monRate, 
-                    global::System.Nullable<decimal> monTotal, 
-                    global::System.Nullable<int> intLocationID, 
-                    global::System.Nullable<int> intWHID, 
-                    global::System.Nullable<int> intUnitID, 
-                    global::System.Nullable<global::System.DateTime> dteTransDate, 
-                    global::System.Nullable<global::System.DateTime> dteLastActinTime, 
-                    global::System.Nullable<int> intLastActionBy, 
-                    string strReceiveRemarks, 
-                    global::System.Nullable<bool> ysnComplete, 
-                    global::System.Nullable<bool> ysnActive, 
-                    int Original_intID, 
-                    global::System.Nullable<int> Original_intItemID, 
-                    global::System.Nullable<decimal> Original_numQty, 
-                    global::System.Nullable<decimal> Original_monRate, 
-                    global::System.Nullable<decimal> Original_monTotal, 
-                    global::System.Nullable<int> Original_intLocationID, 
-                    global::System.Nullable<int> Original_intWHID, 
-                    global::System.Nullable<int> Original_intUnitID, 
-                    global::System.Nullable<global::System.DateTime> Original_dteTransDate, 
-                    global::System.Nullable<global::System.DateTime> Original_dteLastActinTime, 
-                    global::System.Nullable<int> Original_intLastActionBy, 
-                    string Original_strReceiveRemarks, 
-                    global::System.Nullable<bool> Original_ysnComplete, 
-                    global::System.Nullable<bool> Original_ysnActive, 
-                    int intID) {
-            if ((intItemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(intItemID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((numQty.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((decimal)(numQty.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((monRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(monRate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((monTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((decimal)(monTotal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((intLocationID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(intLocationID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((intWHID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(intWHID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((intUnitID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(intUnitID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((dteTransDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(dteTransDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((dteLastActinTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((System.DateTime)(dteLastActinTime.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((intLastActionBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(intLastActionBy.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            if ((strReceiveRemarks == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(strReceiveRemarks));
-            }
-            if ((ysnComplete.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(ysnComplete.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            if ((ysnActive.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(ysnActive.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_intID));
-            if ((Original_intItemID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_intItemID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((Original_numQty.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((decimal)(Original_numQty.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((Original_monRate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((decimal)(Original_monRate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            if ((Original_monTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(Original_monTotal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intLocationID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(Original_intLocationID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intWHID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(Original_intWHID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intUnitID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(Original_intUnitID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
-            }
-            if ((Original_dteTransDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((System.DateTime)(Original_dteTransDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
-            }
-            if ((Original_dteLastActinTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((System.DateTime)(Original_dteLastActinTime.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            if ((Original_intLastActionBy.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Original_intLastActionBy.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
-            }
-            if ((Original_strReceiveRemarks == null)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((string)(Original_strReceiveRemarks));
-            }
-            if ((Original_ysnComplete.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((bool)(Original_ysnComplete.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ysnActive.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((bool)(Original_ysnActive.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(intID));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    global::System.Nullable<int> intItemID, 
-                    global::System.Nullable<decimal> numQty, 
-                    global::System.Nullable<decimal> monRate, 
-                    global::System.Nullable<decimal> monTotal, 
-                    global::System.Nullable<int> intLocationID, 
-                    global::System.Nullable<int> intWHID, 
-                    global::System.Nullable<int> intUnitID, 
-                    global::System.Nullable<global::System.DateTime> dteTransDate, 
-                    global::System.Nullable<global::System.DateTime> dteLastActinTime, 
-                    global::System.Nullable<int> intLastActionBy, 
-                    string strReceiveRemarks, 
-                    global::System.Nullable<bool> ysnComplete, 
-                    global::System.Nullable<bool> ysnActive, 
-                    int Original_intID, 
-                    global::System.Nullable<int> Original_intItemID, 
-                    global::System.Nullable<decimal> Original_numQty, 
-                    global::System.Nullable<decimal> Original_monRate, 
-                    global::System.Nullable<decimal> Original_monTotal, 
-                    global::System.Nullable<int> Original_intLocationID, 
-                    global::System.Nullable<int> Original_intWHID, 
-                    global::System.Nullable<int> Original_intUnitID, 
-                    global::System.Nullable<global::System.DateTime> Original_dteTransDate, 
-                    global::System.Nullable<global::System.DateTime> Original_dteLastActinTime, 
-                    global::System.Nullable<int> Original_intLastActionBy, 
-                    string Original_strReceiveRemarks, 
-                    global::System.Nullable<bool> Original_ysnComplete, 
-                    global::System.Nullable<bool> Original_ysnActive) {
-            return this.Update(intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intUnitID, dteTransDate, dteLastActinTime, intLastActionBy, strReceiveRemarks, ysnComplete, ysnActive, Original_intID, Original_intItemID, Original_numQty, Original_monRate, Original_monTotal, Original_intLocationID, Original_intWHID, Original_intUnitID, Original_dteTransDate, Original_dteLastActinTime, Original_intLastActionBy, Original_strReceiveRemarks, Original_ysnComplete, Original_ysnActive, Original_intID);
         }
     }
     
@@ -1969,8 +1660,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
         
         private UpdateOrderOption _updateOrder;
         
-        private tblInventoryAdjustmentTableAdapter _tblInventoryAdjustmentTableAdapter;
-        
         private bool _backupDataSetBeforeUpdate;
         
         private global::System.Data.IDbConnection _connection;
@@ -1983,20 +1672,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public tblInventoryAdjustmentTableAdapter tblInventoryAdjustmentTableAdapter {
-            get {
-                return this._tblInventoryAdjustmentTableAdapter;
-            }
-            set {
-                this._tblInventoryAdjustmentTableAdapter = value;
             }
         }
         
@@ -2019,10 +1694,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._tblInventoryAdjustmentTableAdapter != null) 
-                            && (this._tblInventoryAdjustmentTableAdapter.Connection != null))) {
-                    return this._tblInventoryAdjustmentTableAdapter.Connection;
-                }
                 return null;
             }
             set {
@@ -2036,9 +1707,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._tblInventoryAdjustmentTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 return count;
             }
         }
@@ -2050,15 +1718,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(InventoryAdjustment dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblInventoryAdjustmentTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.tblInventoryAdjustment.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._tblInventoryAdjustmentTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             return result;
         }
         
@@ -2069,14 +1728,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(InventoryAdjustment dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._tblInventoryAdjustmentTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.tblInventoryAdjustment.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._tblInventoryAdjustmentTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             return result;
         }
         
@@ -2087,14 +1738,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(InventoryAdjustment dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._tblInventoryAdjustmentTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.tblInventoryAdjustment.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._tblInventoryAdjustmentTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             return result;
         }
         
@@ -2134,11 +1777,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._tblInventoryAdjustmentTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._tblInventoryAdjustmentTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -2171,15 +1809,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._tblInventoryAdjustmentTableAdapter != null)) {
-                    revertConnections.Add(this._tblInventoryAdjustmentTableAdapter, this._tblInventoryAdjustmentTableAdapter.Connection);
-                    this._tblInventoryAdjustmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._tblInventoryAdjustmentTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._tblInventoryAdjustmentTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._tblInventoryAdjustmentTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblInventoryAdjustmentTableAdapter.Adapter);
-                    }
-                }
                 // 
                 //---- Perform updates -----------
                 //
@@ -2237,10 +1866,6 @@ SELECT intID, intItemID, numQty, monRate, monTotal, intLocationID, intWHID, intU
             finally {
                 if (workConnOpened) {
                     workConnection.Close();
-                }
-                if ((this._tblInventoryAdjustmentTableAdapter != null)) {
-                    this._tblInventoryAdjustmentTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblInventoryAdjustmentTableAdapter]));
-                    this._tblInventoryAdjustmentTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

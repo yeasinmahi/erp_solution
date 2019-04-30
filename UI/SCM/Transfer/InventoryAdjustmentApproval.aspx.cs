@@ -40,41 +40,49 @@ namespace UI.SCM.Transfer
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            
+
             GridBind();
         }
         public void LoadWareHouse()
         {
             _dt = _wareHouse.GetAllWarehouseByEnroll(Enroll);
             ddlWh.Loads(_dt, "intWHID", "strWareHoseName");
-            
+
         }
 
         private void GridBind()
         {
+            string header = "Inventory Adjustment Approval";
             int whid = ddlWh.SelectedValue();
             //DateTime fromDate = Convert.ToDateTime(txtFromDate.Text);
             //DateTime toDate = Convert.ToDateTime(txtToDate.Text);
             //permission = _bllApproval.GetInventoryAdjustmentApprovalLabel(Enroll, ddlWh.SelectedValue());
-            if (permission==1)
+            if (permission == 1)
             {
                 _dt = _bll.GetLabel1PendingInventoryAdjustmentByWh(whid);
+                lblHeader.Text = header + @"(Level 1)";
             }
-            else if (permission==2)
+            else if (permission == 2)
             {
                 _dt = _bll.GetLabel2PendingInventoryAdjustmentByWh(whid);
+                lblHeader.Text = header + @"(Level 2)";
             }
-            else if (permission==3)
+            else if (permission == 3)
             {
                 int level = ddlLevel.SelectedValue();
                 if (level == 1)
                 {
                     _dt = _bll.GetLabel1PendingInventoryAdjustmentByWh(whid);
+                    lblHeader.Text = header + @"(Level 1)";
                 }
                 else if (level == 2)
                 {
                     _dt = _bll.GetLabel2PendingInventoryAdjustmentByWh(whid);
+                    lblHeader.Text = header + @"(Level 2)";
                 }
+
+                SetVisibility("levelPanel", true);
+
             }
 
             //_dt = _objbll.FGReceive_Data(whid, fromDate, toDate, 1, 0, 0, DateTime.Now, 0, 0);
@@ -149,7 +157,7 @@ namespace UI.SCM.Transfer
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
             permission = _bllApproval.GetInventoryAdjustmentApprovalLabel(Enroll, ddlWh.SelectedValue());
-            if (permission==3)
+            if (permission == 3)
             {
                 SetVisibility("levelPanel", true);
             }
@@ -168,11 +176,11 @@ namespace UI.SCM.Transfer
             //int whid = Convert.ToInt32(ddlWH.SelectedItem.Value);
 
             //int unit = Convert.ToInt32();
-            
+
             int id = Convert.ToInt32(((Label)row.FindControl("lblAutoID")).Text);
-            int itemid  = Convert.ToInt32(((Label)row.FindControl("lblItmId")).Text);
-            int  unitId = Convert.ToInt32(((Label)row.FindControl("lblUnitId")).Text);
-            int  whid = Convert.ToInt32(((Label)row.FindControl("lblIntWHID")).Text);
+            int itemid = Convert.ToInt32(((Label)row.FindControl("lblItmId")).Text);
+            int unitId = Convert.ToInt32(((Label)row.FindControl("lblUnitId")).Text);
+            int whid = Convert.ToInt32(((Label)row.FindControl("lblIntWHID")).Text);
             Decimal rcvQty = Convert.ToDecimal(((Label)row.FindControl("lblNumQty")).Text);
             Decimal monRate = Convert.ToDecimal(((Label)row.FindControl("lblMonRate")).Text);
             int location = Convert.ToInt32(((Label)row.FindControl("lblIntLocationID")).Text);
