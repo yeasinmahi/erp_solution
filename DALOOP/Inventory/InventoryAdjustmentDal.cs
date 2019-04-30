@@ -55,7 +55,7 @@ namespace DALOOP.Inventory
             try
             {
                 _dt = GetInventoryAdjustmentByWh(whId);
-                return _dt.GetRows("ysnCompleteL2", false);
+                return _dt.GetRows("ysnCompleteL1", true).GetRows("ysnCompleteL2", false);
 
             }
             catch (Exception e)

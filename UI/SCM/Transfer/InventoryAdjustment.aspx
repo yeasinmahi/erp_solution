@@ -66,7 +66,7 @@
                     <table style="border-radius: 10px; width: 800px; border-style: groove">
                         <caption style="text-align: left">Inventory Adjustment</caption>
                         <tr>
-                            <td style='text-align: left;'>Item</td>
+                            <td style='text-align: left;'>Item:</td>
                             <td>
                                 <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="400px" OnTextChanged="txtItem_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
@@ -75,7 +75,7 @@
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
                             </td>
-                            <td style='text-align: left;'>Type</td>
+                            <td style='text-align: left;'>Type:</td>
                             <td style='text-align: left;'>
                                 <asp:DropDownList ID="ddlType" runat="server" CssClass="ddList">
                                     <asp:ListItem Text="Increase Inventory" Value="1"></asp:ListItem>
@@ -83,18 +83,18 @@
                                 </asp:DropDownList></td>
                         </tr>
                         <tr>
-                            <td style='text-align: left;'>Location</td>
+                            <td style='text-align: left;'>Location:</td>
                             <td style='text-align: left;' colspan="3">
                                 <asp:DropDownList ID="ddlLcation" Width="320px" runat="server" CssClass="ddList"></asp:DropDownList>
-                                <asp:Label ID="Label3" Text="Quantity" runat="server"></asp:Label>
+                                <asp:Label ID="Label3" Text="Quantity:" runat="server"></asp:Label>
                                 <asp:TextBox ID="txtQty" CssClass="txtBox" Width="130px" Text="0" runat="server"></asp:TextBox>
-                                <asp:Label ID="Label4" Text="Rate" runat="server"></asp:Label>
+                                <asp:Label ID="Label4" Text="Rate:" runat="server"></asp:Label>
                                 <asp:TextBox ID="txtRate" CssClass="txtBox" Width="130px" Text="0" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td class="auto-style1">
-                                <asp:Label ID="Label2" Text="Remarks" runat="server"></asp:Label></td>
+                                <asp:Label ID="Label2" Text="Remarks:" runat="server"></asp:Label></td>
                             <td class="auto-style1">
                                 <asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px" runat="server"></asp:TextBox>
                             <td colspan="2" style="text-align: right">
