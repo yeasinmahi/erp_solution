@@ -9,7 +9,7 @@ namespace DALOOP.AFBLSMSServer
     public class ApiSmsDal
     {
         #region INIT
-        private readonly DBUtility _db = new DBUtility();
+        DBUtility _db = new DBUtility();
         #endregion
 
         public bool InsertApIsms(ApiSmsModel model)
@@ -29,12 +29,12 @@ namespace DALOOP.AFBLSMSServer
 
                 SqlCommand cmd = new SqlCommand();
                 cmd.Parameters.AddWithValue("@strPhoneNo", model.PhoneNo);
-                cmd.Parameters.AddWithValue("@strSMS", model.Sms);
+                cmd.Parameters.AddWithValue("@strSMS", model.Message);
                 cmd.Parameters.AddWithValue("@strUserName", model.UserName);
                 cmd.Parameters.AddWithValue("@strPassword", model.Password);
                 cmd.Parameters.AddWithValue("@strMaskingCli", model.MaskingClient);
                 cmd.Parameters.AddWithValue("@strPhoneNo2", model.PhoneNo);
-                cmd.Parameters.AddWithValue("@strSMS2", model.Sms);
+                cmd.Parameters.AddWithValue("@strSMS2", model.Message);
                 cmd.Parameters.AddWithValue("@dteInsertDateTime", model.InsertDate);
                 if (model.UnitId > 0)
                     cmd.Parameters.AddWithValue("@intUnitID", model.UnitId);
@@ -55,6 +55,7 @@ namespace DALOOP.AFBLSMSServer
                 //cmd.Parameters.AddWithValue("@intUnitID", _model.UnitID);
 
                 result = _db.ExecuteParamDML(cmd, sql);
+                
             }
             catch (Exception ex)
             {

@@ -12,9 +12,21 @@ namespace BLL.AFBLSMSServer
         private readonly ApiSmsDal _apiSmsDal = new ApiSmsDal();
         #endregion
 
-        public bool InsertApiSms(ApiSmsModel model)
+        public bool InsertApiSms(int poId, string chalanNo, string unitName,string customerPhnNumber,int unitId)
         {
             bool result;
+            string sms = "Dear Valued Supplier,Your Supplied Mattrials/Service has been Reached Against PO No "+poId+" and Challan No "+chalanNo +"Payment will be made against actual receiving in to Akij Group ("+unitName+")";
+
+            ApiSmsModel model = new ApiSmsModel
+            {
+                UnitId = unitId,
+                UserName = "Akijadmin",
+                Password = "AkijFood@786",
+                InsertDate = DateTime.Now,
+                PhoneNo = customerPhnNumber,
+                Message = sms,
+                MaskingClient = "AKIJ GROUP",
+            };
             try
             {
                 if (model.InsertDate == DateTime.MinValue || model.InsertDate == null)

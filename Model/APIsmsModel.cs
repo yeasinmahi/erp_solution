@@ -10,7 +10,6 @@ namespace Model
         public string MaskingClient { get; set; }
         public string PhoneNo { get; set; }
         public string Message { get; set; }
-        public string Sms { get; set; }
         public DateTime InsertDate { get; set; }
     }
 }
