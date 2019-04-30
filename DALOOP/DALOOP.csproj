@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Database">
+      <HintPath>..\..\DevERP\UI\Libray\Database.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AFBLSMSServer\APIsmsDAL.cs" />
     <Compile Include="Inventory\InventoryAdjustmentAuthorityDal.cs" />
     <Compile Include="Inventory\InventoryAdjustmentDal.cs" />
     <Compile Include="Inventory\PoTypeDal.cs" />
@@ -52,6 +56,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{348d5741-b8ae-4247-b0bc-4ef3d5680901}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3e7d37dd-f3e6-4932-b05c-821f021a92ee}</Project>
