@@ -10,10 +10,19 @@
 <html >
 <head id="Head1" runat="server">
     <title>Welcome to Akij Group</title>
-
+    <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
      <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
     <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" /> 
-
+    <script>
+         function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -106,12 +115,13 @@
         runat="server">
     </cc1:AlwaysVisibleControlExtender>
   
-    <div id="divReportViewer" runat="server" style="width: 800px">
-        <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
+    <%--<div id="divReportViewer">--%>
+       <%-- <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
             InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt"
             Width="900px" Height="750px" BackColor="#EEF1FB" EnableTheming="true">
-        </rsweb:ReportViewer>
-    </div>
+        </rsweb:ReportViewer>--%>
+         <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
+    <%--</div>--%>
     </form>
 </body>
 </html>
