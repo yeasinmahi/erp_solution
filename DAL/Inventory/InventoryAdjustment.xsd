@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="InventoryAdjustment" targetNamespace="http://tempuri.org/InventoryAdjustment.xsd" xmlns:mstns="http://tempuri.org/InventoryAdjustment.xsd" xmlns="http://tempuri.org/InventoryAdjustment.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DAL.Properties.Settings.GlobalReference.Default.ERP_InventoryConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblInventoryAdjustmentTableAdapter" GeneratorDataComponentClassName="tblInventoryAdjustmentTableAdapter" Name="tblInventoryAdjustment" UserDataComponentName="tblInventoryAdjustmentTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select ia.*,sl.strLocationName from ERP_Inventory.dbo.tblInventoryAdjustment ia 
+join ERP_Inventory.dbo.tblWearHouseStoreLocation sl on ia.intLocationID = sl.intStoreLocationID
+where ia.ysnActive = 1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intID" DataSetColumn="intID" />
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="numQty" DataSetColumn="numQty" />
+              <Mapping SourceColumn="monRate" DataSetColumn="monRate" />
+              <Mapping SourceColumn="monTotal" DataSetColumn="monTotal" />
+              <Mapping SourceColumn="intLocationID" DataSetColumn="intLocationID" />
+              <Mapping SourceColumn="intWHID" DataSetColumn="intWHID" />
+              <Mapping SourceColumn="intUnitID" DataSetColumn="intUnitID" />
+              <Mapping SourceColumn="dteTransDate" DataSetColumn="dteTransDate" />
+              <Mapping SourceColumn="dteLastActinTime" DataSetColumn="dteLastActinTime" />
+              <Mapping SourceColumn="intLastActionBy" DataSetColumn="intLastActionBy" />
+              <Mapping SourceColumn="strReceiveRemarks" DataSetColumn="strReceiveRemarks" />
+              <Mapping SourceColumn="ysnComplete" DataSetColumn="ysnComplete" />
+              <Mapping SourceColumn="ysnActive" DataSetColumn="ysnActive" />
+              <Mapping SourceColumn="ysnCompleteL1" DataSetColumn="ysnCompleteL1" />
+              <Mapping SourceColumn="ysnCompleteL2" DataSetColumn="ysnCompleteL2" />
+              <Mapping SourceColumn="intInsertByL1" DataSetColumn="intInsertByL1" />
+              <Mapping SourceColumn="dteInsertDateL1" DataSetColumn="dteInsertDateL1" />
+              <Mapping SourceColumn="intInsertByL2" DataSetColumn="intInsertByL2" />
+              <Mapping SourceColumn="dteInsertDateL2" DataSetColumn="dteInsertDateL2" />
+              <Mapping SourceColumn="strLocationName" DataSetColumn="strLocationName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="InventoryAdjustment" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="InventoryAdjustment" msprop:Generator_UserDSName="InventoryAdjustment">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblInventoryAdjustment" msprop:Generator_TableClassName="tblInventoryAdjustmentDataTable" msprop:Generator_TableVarName="tabletblInventoryAdjustment" msprop:Generator_RowChangedName="tblInventoryAdjustmentRowChanged" msprop:Generator_TablePropName="tblInventoryAdjustment" msprop:Generator_RowDeletingName="tblInventoryAdjustmentRowDeleting" msprop:Generator_RowChangingName="tblInventoryAdjustmentRowChanging" msprop:Generator_RowEvHandlerName="tblInventoryAdjustmentRowChangeEventHandler" msprop:Generator_RowDeletedName="tblInventoryAdjustmentRowDeleted" msprop:Generator_RowClassName="tblInventoryAdjustmentRow" msprop:Generator_UserTableName="tblInventoryAdjustment" msprop:Generator_RowEvArgName="tblInventoryAdjustmentRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" minOccurs="0" />
+              <xs:element name="numQty" msprop:Generator_ColumnVarNameInTable="columnnumQty" msprop:Generator_ColumnPropNameInRow="numQty" msprop:Generator_ColumnPropNameInTable="numQtyColumn" msprop:Generator_UserColumnName="numQty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monRate" msprop:Generator_ColumnVarNameInTable="columnmonRate" msprop:Generator_ColumnPropNameInRow="monRate" msprop:Generator_ColumnPropNameInTable="monRateColumn" msprop:Generator_UserColumnName="monRate" type="xs:decimal" minOccurs="0" />
+              <xs:element name="monTotal" msprop:Generator_ColumnVarNameInTable="columnmonTotal" msprop:Generator_ColumnPropNameInRow="monTotal" msprop:Generator_ColumnPropNameInTable="monTotalColumn" msprop:Generator_UserColumnName="monTotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intLocationID" msprop:Generator_ColumnVarNameInTable="columnintLocationID" msprop:Generator_ColumnPropNameInRow="intLocationID" msprop:Generator_ColumnPropNameInTable="intLocationIDColumn" msprop:Generator_UserColumnName="intLocationID" type="xs:int" minOccurs="0" />
+              <xs:element name="intWHID" msprop:Generator_ColumnVarNameInTable="columnintWHID" msprop:Generator_ColumnPropNameInRow="intWHID" msprop:Generator_ColumnPropNameInTable="intWHIDColumn" msprop:Generator_UserColumnName="intWHID" type="xs:int" minOccurs="0" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="dteTransDate" msprop:Generator_ColumnVarNameInTable="columndteTransDate" msprop:Generator_ColumnPropNameInRow="dteTransDate" msprop:Generator_ColumnPropNameInTable="dteTransDateColumn" msprop:Generator_UserColumnName="dteTransDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dteLastActinTime" msprop:Generator_ColumnVarNameInTable="columndteLastActinTime" msprop:Generator_ColumnPropNameInRow="dteLastActinTime" msprop:Generator_ColumnPropNameInTable="dteLastActinTimeColumn" msprop:Generator_UserColumnName="dteLastActinTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastActionBy" msprop:Generator_ColumnVarNameInTable="columnintLastActionBy" msprop:Generator_ColumnPropNameInRow="intLastActionBy" msprop:Generator_ColumnPropNameInTable="intLastActionByColumn" msprop:Generator_UserColumnName="intLastActionBy" type="xs:int" minOccurs="0" />
+              <xs:element name="strReceiveRemarks" msprop:Generator_ColumnVarNameInTable="columnstrReceiveRemarks" msprop:Generator_ColumnPropNameInRow="strReceiveRemarks" msprop:Generator_ColumnPropNameInTable="strReceiveRemarksColumn" msprop:Generator_UserColumnName="strReceiveRemarks" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ysnComplete" msprop:Generator_ColumnVarNameInTable="columnysnComplete" msprop:Generator_ColumnPropNameInRow="ysnComplete" msprop:Generator_ColumnPropNameInTable="ysnCompleteColumn" msprop:Generator_UserColumnName="ysnComplete" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" msprop:Generator_UserColumnName="ysnActive" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnCompleteL1" msprop:Generator_ColumnVarNameInTable="columnysnCompleteL1" msprop:Generator_ColumnPropNameInRow="ysnCompleteL1" msprop:Generator_ColumnPropNameInTable="ysnCompleteL1Column" msprop:Generator_UserColumnName="ysnCompleteL1" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ysnCompleteL2" msprop:Generator_ColumnVarNameInTable="columnysnCompleteL2" msprop:Generator_ColumnPropNameInRow="ysnCompleteL2" msprop:Generator_ColumnPropNameInTable="ysnCompleteL2Column" msprop:Generator_UserColumnName="ysnCompleteL2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="intInsertByL1" msprop:Generator_ColumnVarNameInTable="columnintInsertByL1" msprop:Generator_ColumnPropNameInRow="intInsertByL1" msprop:Generator_ColumnPropNameInTable="intInsertByL1Column" msprop:Generator_UserColumnName="intInsertByL1" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertDateL1" msprop:Generator_ColumnVarNameInTable="columndteInsertDateL1" msprop:Generator_ColumnPropNameInRow="dteInsertDateL1" msprop:Generator_ColumnPropNameInTable="dteInsertDateL1Column" msprop:Generator_UserColumnName="dteInsertDateL1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intInsertByL2" msprop:Generator_ColumnVarNameInTable="columnintInsertByL2" msprop:Generator_ColumnPropNameInRow="intInsertByL2" msprop:Generator_ColumnPropNameInTable="intInsertByL2Column" msprop:Generator_UserColumnName="intInsertByL2" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertDateL2" msprop:Generator_ColumnVarNameInTable="columndteInsertDateL2" msprop:Generator_ColumnPropNameInRow="dteInsertDateL2" msprop:Generator_ColumnPropNameInTable="dteInsertDateL2Column" msprop:Generator_UserColumnName="dteInsertDateL2" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strLocationName" msprop:Generator_ColumnVarNameInTable="columnstrLocationName" msprop:Generator_ColumnPropNameInRow="strLocationName" msprop:Generator_ColumnPropNameInTable="strLocationNameColumn" msprop:Generator_UserColumnName="strLocationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblInventoryAdjustment" />
+      <xs:field xpath="mstns:intID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

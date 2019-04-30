@@ -44,7 +44,7 @@ namespace UI.Accounts.Banking.Report
         protected void ddlBranch_DataBound(object sender, EventArgs e)
         {
             ddlAccount.DataBind();
-            ReportViewer1.Reset(); //CrystalReportViewer1.ReportSource = null;
+            //ReportViewer1.Reset(); //CrystalReportViewer1.ReportSource = null;
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -52,12 +52,12 @@ namespace UI.Accounts.Banking.Report
         }
         protected void ddlBank_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ReportViewer1.Reset(); //CrystalReportViewer1.ReportSource = null;
+            //ReportViewer1.Reset(); //CrystalReportViewer1.ReportSource = null;
         }
         protected void ddlBranch_SelectedIndexChanged(object sender, EventArgs e)
         {
             ddlAccount.DataBind();
-            ReportViewer1.Reset(); //CrystalReportViewer1.ReportSource = null;
+            //ReportViewer1.Reset(); //CrystalReportViewer1.ReportSource = null;
         }
         private void GetReport()
         {
@@ -80,53 +80,67 @@ namespace UI.Accounts.Banking.Report
             decimal bankStatementBalance = 0;
             decimal bankActualStatementBalance = 0;
             DateTime lastDay = DateTime.Now;
-
+            string Date ="As On " + CommonClass.GetShortDateAtLocalDateFormat(lastDay);
             Reconcile rc = new Reconcile();
 
             oDTReportData = rc.GetAccountStatementData(ddlAccount.SelectedValue, txtFrom.Text, Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue, ref bankName, ref branchName, ref unitName, ref unitAddress, ref bankBookBalance, ref bankStatementBalance, ref bankActualStatementBalance, ref lastDay);
+                DateTime? frm = null, to = null, ld = null; int? bnkid;
+                
+                try
+                {
+                    bnkid = int.Parse(ddlAccount.SelectedValue);
+                }
+                catch { bnkid = 0; }
+                try
+                {
+                    to = DateFormat.GetDateAtSQLDateFormat(txtFrom.Text).Value.Date;
+                }
+                catch { to = DateTime.Now.Date; }
+                unitName = "";
+                string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Accounts/AccountReconcile" + "&dteLastDate=" + "" + "&monBankStatementClosing=" + "" + "&monBankTotal=" + "" + "&monBankBookBalance=" + "" + "&unitName=" + unitName + "&bankAccountId=" + bnkid + "&fromDate=" + frm + "&toDate=" + to + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&unitAddress=" + unitAddress + "&bankBookBal=" + bankBookBalance + "&bankName=" + bankName + "&branchName=" + branchName + "&Date=" + Date + "&bankStatementBal=" + bankStatementBalance + "&actualBankStBal=" + bankActualStatementBalance + "&AccountNo=" + ddlAccount.SelectedItem.Text + "&rc:LinkTarget=_self";
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+                //ReportViewer1.Reset(); //important/
+                //if (oDTReportData.Rows.Count > 0)
+                //{
+                //    ReportViewer1.Reset(); //important
+                //    ReportViewer1.ProcessingMode = ProcessingMode.Local;
+                //    ReportViewer1.LocalReport.EnableHyperlinks = true;
 
-            ReportViewer1.Reset(); //important
-            if (oDTReportData.Rows.Count > 0)
-            {
-                ReportViewer1.Reset(); //important
-                ReportViewer1.ProcessingMode = ProcessingMode.Local;
-                ReportViewer1.LocalReport.EnableHyperlinks = true;
-
-                LocalReport objReport = ReportViewer1.LocalReport;
-                objReport.DataSources.Clear();
-                objReport.ReportPath = path;
+                //    LocalReport objReport = ReportViewer1.LocalReport;
+                //    objReport.DataSources.Clear();
+                //    objReport.ReportPath = path;
 
 
-                // Add Parameter 
-                List<ReportParameter> parameters = new List<ReportParameter>();
-                //parameters.Add(new ReportParameter("bankBookBal", bankBookBalance.ToString()));
-                parameters.Add(new ReportParameter("Date", "As On " + CommonClass.GetShortDateAtLocalDateFormat(lastDay)));
-                parameters.Add(new ReportParameter("Title", "Account Reconcile"));
-                parameters.Add(new ReportParameter("UnitAddress", unitAddress.ToUpper()));
-                parameters.Add(new ReportParameter("UnitName", unitName.ToUpper()));
-                parameters.Add(new ReportParameter("Bank", "Bank: " + bankName));
-                parameters.Add(new ReportParameter("Branch", "Branch: " + branchName));
-                parameters.Add(new ReportParameter("AccountNo", "Acc. No: " + ddlAccount.SelectedItem.Text));
-                parameters.Add(new ReportParameter("bankStatementBal", bankStatementBalance.ToString()));
-                parameters.Add(new ReportParameter("actualBankStBal", bankActualStatementBalance.ToString()));
-                ReportViewer1.LocalReport.SetParameters(parameters);
-                ReportViewer1.ShowParameterPrompts = false;
-                ReportViewer1.ShowPromptAreaButton = false;
-                ReportViewer1.LocalReport.Refresh();
+                //    // Add Parameter 
+                //    List<ReportParameter> parameters = new List<ReportParameter>();
+                //    //parameters.Add(new ReportParameter("bankBookBal", bankBookBalance.ToString()));
+                //    parameters.Add(new ReportParameter("Date", "As On " + CommonClass.GetShortDateAtLocalDateFormat(lastDay)));
+                //    parameters.Add(new ReportParameter("Title", "Account Reconcile"));
+                //    parameters.Add(new ReportParameter("UnitAddress", unitAddress.ToUpper()));
+                //    parameters.Add(new ReportParameter("UnitName", unitName.ToUpper()));
+                //    parameters.Add(new ReportParameter("Bank", "Bank: " + bankName));
+                //    parameters.Add(new ReportParameter("Branch", "Branch: " + branchName));
+                //    parameters.Add(new ReportParameter("AccountNo", "Acc. No: " + ddlAccount.SelectedItem.Text));
+                //    parameters.Add(new ReportParameter("bankStatementBal", bankStatementBalance.ToString()));
+                //    parameters.Add(new ReportParameter("actualBankStBal", bankActualStatementBalance.ToString()));
+                //    ReportViewer1.LocalReport.SetParameters(parameters);
+                //    ReportViewer1.ShowParameterPrompts = false;
+                //    ReportViewer1.ShowPromptAreaButton = false;
+                //    ReportViewer1.LocalReport.Refresh();
 
-                //Add Datasourdce
-                ReportDataSource reportDataSource = new ReportDataSource();
-                reportDataSource.Name = "odsAccountReconcile";
-                reportDataSource.Value = oDTReportData;
-                objReport.DataSources.Add(reportDataSource);
-                objReport.Refresh();
+                //    //Add Datasourdce
+                //    ReportDataSource reportDataSource = new ReportDataSource();
+                //    reportDataSource.Name = "odsAccountReconcile";
+                //    reportDataSource.Value = oDTReportData;
+                //    objReport.DataSources.Add(reportDataSource);
+                //    objReport.Refresh();
 
-            }
-            else
-            {
-                ReportViewer1.Reset(); // CrystalReportViewer1.ReportSource = null;
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
-            }
+                //}
+                //else
+                //{
+                //    ReportViewer1.Reset(); // CrystalReportViewer1.ReportSource = null;
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
+                //}
             }
             catch (Exception ex)
             {

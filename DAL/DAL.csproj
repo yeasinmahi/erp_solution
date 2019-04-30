@@ -405,6 +405,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Supplier.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\InventoryAdjustment.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryAdjustment.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryAdjustmentAuthority.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\PoTypeTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1078,6 +1088,28 @@
     </None>
     <None Include="DropDown\Supplier.xss">
       <DependentUpon>Supplier.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryAdjustment.xsc">
+      <DependentUpon>InventoryAdjustment.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryAdjustment.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryAdjustment.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\InventoryAdjustment.xss">
+      <DependentUpon>InventoryAdjustment.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryAdjustmentAuthority.xsc">
+      <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryAdjustmentAuthority.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryAdjustmentAuthority.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\InventoryAdjustmentAuthority.xss">
+      <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
     </None>
     <None Include="Inventory\PoTypeTds.xsc">
       <DependentUpon>PoTypeTds.xsd</DependentUpon>

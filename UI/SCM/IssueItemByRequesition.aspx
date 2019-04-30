@@ -139,10 +139,7 @@
 
             <asp:TemplateField HeaderText="SectionID" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="intSectionID" >
             <ItemTemplate><asp:Label ID="lblSectionId" runat="server"  Text='<%# Bind("intSectionID") %>'></asp:Label></ItemTemplate>
-            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>  
-
-          
-            
+            <ItemStyle HorizontalAlign="Right" />  </asp:TemplateField>                     
             <asp:TemplateField HeaderText="Approve By" ItemStyle-HorizontalAlign="right" SortExpression="strApproveBy" >
             <ItemTemplate><asp:Label ID="lblIndentType" width="100px" runat="server"   Text='<%# Bind("strApproveBy") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Right" /> </asp:TemplateField>

@@ -17,6 +17,8 @@
         AlreadyAdded,
         SomethingError,
         SessionOut
+        
+        
 
     }
 
@@ -57,6 +59,7 @@
                     return "Somethings Error";
                 case Message.SessionOut:
                     return "Session timeout. please try again.";
+                
                 default:
                     return "UnKnown Message";
             }
