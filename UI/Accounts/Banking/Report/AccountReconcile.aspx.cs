@@ -99,7 +99,7 @@ namespace UI.Accounts.Banking.Report
                 unitName = "";
                 string url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Accounts/AccountReconcile" + "&dteLastDate=" + "" + "&monBankStatementClosing=" + "" + "&monBankTotal=" + "" + "&monBankBookBalance=" + "" + "&unitName=" + unitName + "&bankAccountId=" + bnkid + "&fromDate=" + frm + "&toDate=" + to + "&userID=" + Session[SessionParams.USER_ID].ToString() + "&unitID=" + ddlUnit.SelectedValue + "&unitAddress=" + unitAddress + "&bankBookBal=" + bankBookBalance + "&bankName=" + bankName + "&branchName=" + branchName + "&Date=" + Date + "&bankStatementBal=" + bankStatementBalance + "&actualBankStBal=" + bankActualStatementBalance + "&AccountNo=" + ddlAccount.SelectedItem.Text + "&rc:LinkTarget=_self";
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
-                //ReportViewer1.Reset(); //important
+                //ReportViewer1.Reset(); //important/
                 //if (oDTReportData.Rows.Count > 0)
                 //{
                 //    ReportViewer1.Reset(); //important
