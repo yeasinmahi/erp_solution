@@ -331,8 +331,11 @@ namespace SCM_BLL
 
         public DataTable InventoryAdjustment(int unit, int wh, int user, int intItem, decimal rcvQty, decimal monRate, int location, string remarks)
         {
-            sprInventoryAdjsutmentTableAdapter adp = new sprInventoryAdjsutmentTableAdapter();
-            return adp.GetData(1,0,unit, wh, user, intItem, rcvQty, monRate, location, remarks,0);
+            sprInsertMrrItemDetailWithoutPOTableAdapter adp = new sprInsertMrrItemDetailWithoutPOTableAdapter();
+            return adp.InventoryAdjustment(unit, wh, user, intItem, rcvQty, monRate, location, remarks);
+
+            //sprInventoryAdjsutmentTableAdapter adp = new sprInventoryAdjsutmentTableAdapter();
+            //return adp.GetData(1,0,unit, wh, user, intItem, rcvQty, monRate, location, remarks,0);
         }
         public DataTable InventoryAdjustmentApproval(int id, int unit, int wh, int user, int intItem, decimal rcvQty, decimal monRate, int location, string remarks, int prmission)
         {
