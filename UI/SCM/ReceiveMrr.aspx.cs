@@ -1,4 +1,5 @@
 ﻿using SCM_BLL;
+using SCM_DAL.MrrReceiveTDSTableAdapters;
 using System;
 using System.Data;
 using System.IO;
@@ -168,7 +169,7 @@ namespace UI.SCM
                             }
                             else
                             {
-                                Toaster("input Receive Quantity properly", Common.TosterType.Warning);
+                                Toaster("Input Receive Quantity Properly", Common.TosterType.Warning);
                                 return;
                             }
                         }
@@ -452,7 +453,14 @@ namespace UI.SCM
                                 {
                                     Toaster("Shipment has not yet been created", Common.TosterType.Warning);
                                 }
+
+
+                                int intpoo = !string.IsNullOrEmpty(ddlPo.SelectedItem.ToString())? Convert.ToInt32(ddlPo.SelectedValue) : 0;
+                                int intShipment = !string.IsNullOrEmpty(ddlInvoice.SelectedItem.ToString()) ? Convert.ToInt32(ddlInvoice.SelectedValue) : 0;
+                                string sms = ImportMissingCost(intpoo, intShipment);
+                                Toaster(sms, Common.TosterType.Warning);
                             }
+                            
                             else if (_dt.Rows[0]["strPoFor"].ToString() == "Fabrication")
                             {
                                 ddlPoType.SelectedValue = "3";
@@ -563,6 +571,35 @@ namespace UI.SCM
             {
                 Toaster(ex.Message, Common.TosterType.Error);
             }
+        }
+
+        private string ImportMissingCost( int intpo, int intShipment)
+        {
+            string sms = string.Empty;
+            try
+            {
+                sprInventoryGetMissingCostTableAdapter cost = new sprInventoryGetMissingCostTableAdapter();
+                DataTable dt = new DataTable();
+                dt = cost.GetImportMissingCost(intpo, intShipment);
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        sms = dt.Rows[0]["strMissingCost"].ToString();
+                    }
+                    else
+                    {
+                        sms = "Import Missing Cost Not Found!";
+                    }
+                }
+               
+            }
+            catch (Exception ex)
+            {
+            }
+            return sms;
+
+
         }
 
         private void DefaltBind()

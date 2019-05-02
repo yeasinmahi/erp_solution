@@ -9545,6 +9545,10 @@
       <Project>{ebe464da-6c54-4f40-a82c-debcebe09ed1}</Project>
       <Name>Flogging.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SCM_DAL\SCM_DAL.csproj">
+      <Project>{43E9D794-020B-425F-857C-D313068C4BD5}</Project>
+      <Name>SCM_DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
       <Name>Utility</Name>
