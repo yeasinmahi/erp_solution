@@ -467,6 +467,7 @@
     <Content Include="Inventory\SalesDamageEntry.aspx" />
     <Content Include="Inventory\SupplierDocView.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
+    <Content Include="Libray\Database.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.DataVisualization.dll" />
@@ -1508,6 +1509,7 @@
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
+    <Content Include="SCM\PendingMRR.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
     <Content Include="SCM\POCorrection.aspx" />
@@ -8095,6 +8097,13 @@
     </Compile>
     <Compile Include="SCM\MrrStatementDetalis.aspx.designer.cs">
       <DependentUpon>MrrStatementDetalis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\PendingMRR.aspx.cs">
+      <DependentUpon>PendingMRR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PendingMRR.aspx.designer.cs">
+      <DependentUpon>PendingMRR.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PO.aspx.cs">
       <DependentUpon>PO.aspx</DependentUpon>
