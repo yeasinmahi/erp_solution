@@ -146,6 +146,7 @@
     <Compile Include="Accounts\Voucher\JournalVoucher.cs" />
     <Compile Include="Accounts\Voucher\VoucherRollback.cs" />
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
+    <Compile Include="AFBLSMSServer\APIsmsBLL.cs" />
     <Compile Include="AutoSearch\EmployeeBll.cs" />
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
@@ -177,6 +178,10 @@
     <ProjectReference Include="..\HR_DAL\HR_DAL.csproj">
       <Project>{4FD02F54-1308-4787-896D-842A38C0DE30}</Project>
       <Name>HR_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>

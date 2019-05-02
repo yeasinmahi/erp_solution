@@ -11,7 +11,7 @@ namespace DALOOP.Inventory
 {
     public class InventoryAdjustmentDal
     {
-        private DataTable _dt = new DataTable();
+        private DataTable _dt;
         public DataTable GetAllInventoryAdjustments()
         {
             try

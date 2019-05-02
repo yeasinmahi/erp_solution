@@ -10,13 +10,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <script src="../../Content/JS/datepickr.min.js"></script>
-    <script src="../../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
     <link href="../../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <script src="../Content/JS/CustomizeScript.js"></script>
     <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
     <link href="../../Content/CSS/Gridstyle.css" rel="stylesheet" />
 
@@ -42,7 +36,7 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                        <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
                     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
@@ -55,7 +49,8 @@
                 <asp:HiddenField ID="hdnUnit" runat="server" />
                 <asp:HiddenField ID="hdnLoanID" runat="server" />
                 <div class="divbody" style="padding-right: 10px;">
-                    <div class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">REWARD ENTRY FORM<hr />
+                    <div class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
+                        REWARD ENTRY FORM<hr />
                     </div>
                     <table class="tbldecoration" style="width: auto; float: left;">
                         <tr>
@@ -148,7 +143,6 @@
                                 <asp:Label ID="Label9" runat="server" Text="Total Balance :" CssClass="lbl"></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtbalance" runat="server" CssClass="txtBox1" Enabled="false" BackColor="WhiteSmoke"></asp:TextBox></td>
-
                         </tr>
                         <tr>
                             <td colspan="5">
@@ -162,7 +156,7 @@
                     </table>
                 </div>
                 <div id="grid">
-                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="intRewardID" OnRowCommand="GridView1_RowCommand">
+                    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" DataKeyNames="intRewardID">
                         <Columns>
                             <asp:TemplateField HeaderText="SL">
                                 <ItemTemplate>
@@ -191,23 +185,19 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="Insert Date">
                                 <ItemTemplate>
-                                    <%--<asp:Label ID="lbldate" runat="server" Text='<%# Bind("InsertDate").ToString("yyyy-MM-dd") %>'></asp:Label>--%>
+                                    <asp:Label ID="lbldate" runat="server" Text='<%# Bind("InsertDate","{0:yyyy-MM-dd}") %>'></asp:Label>
                                 </ItemTemplate>
                             </asp:TemplateField>
                             <asp:TemplateField ShowHeader="true" HeaderText="Action">
                                 <ItemTemplate>
-                                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-xs" CommandName="Delete" CommandArgument="<%# Container.DataItemIndex %>"/>
+                                    <asp:Button ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-danger btn-xs" OnClick="btnDelete_Click" />
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
                 </div>
-              
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
-               <%--<Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
-              </Triggers>--%>
         </asp:UpdatePanel>
     </form>
 </body>

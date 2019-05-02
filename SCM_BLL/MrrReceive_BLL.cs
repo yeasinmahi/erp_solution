@@ -28,6 +28,7 @@ namespace SCM_BLL
             {
                 SprMrrReceiveTableAdapter adp = new SprMrrReceiveTableAdapter();
                 adp.GetMrrReceiveData(part, xmlString, intWh, intPoid, dteDate, enroll, ref strMsg);
+
             }
             catch (Exception ex) { return strMsg = ex.ToString(); }
             return strMsg;

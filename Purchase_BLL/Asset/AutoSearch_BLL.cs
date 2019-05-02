@@ -16,7 +16,7 @@ namespace Purchase_BLL.Asset
     public class AutoSearch_BLL
     {
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableCusts = null;
-        private SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
+        private static SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
         private SearchTDS.sprAutosearchRawMeterialDataTable[] tableItem1 = null;
         private SearchTDS.sprAutosearchFinishGoodsDataTable[] tableItem2 = null;
 
@@ -428,13 +428,14 @@ namespace Purchase_BLL.Asset
 
         public string[] AutoSearchrawMeterial(string whid, string prefix)
         {
-            if (tableItem1 == null || tableItem1.Length < 1 || !_whId.Equals(whid))
-            {
-                tableItem1 = new SearchTDS.sprAutosearchRawMeterialDataTable[Convert.ToInt32(whid)];
-                sprAutosearchRawMeterialTableAdapter adpCoa = new sprAutosearchRawMeterialTableAdapter();
-                tableItem1[e] = adpCoa.GetData(Convert.ToInt32(whid));
-                _whId = whid;
-            }
+            //if (tableItem1 == null || tableItem1.Length < 1 || !_whId.Equals(whid))
+            //{
+            //    tableItem1 = new SearchTDS.sprAutosearchRawMeterialDataTable[Convert.ToInt32(whid)];
+            //    sprAutosearchRawMeterialTableAdapter adpCoa = new sprAutosearchRawMeterialTableAdapter();
+            //    tableItem1[e] = adpCoa.GetData(Convert.ToInt32(whid));
+            //    _whId = whid;
+            //}
+            Inatialize(int.Parse(whid));
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -442,7 +443,7 @@ namespace Purchase_BLL.Asset
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableItem1[Convert.ToInt32(ht[whid])]
+                    var rows = from tmp in tableItem[Convert.ToInt32(ht[whid])]
                                orderby tmp.strItem
                                select tmp;
                     if (rows.Any())
@@ -454,7 +455,7 @@ namespace Purchase_BLL.Asset
                 {
                     try
                     {
-                        var rows = from tmp in tableItem1[Convert.ToInt32(ht[whid])]
+                        var rows = from tmp in tableItem[Convert.ToInt32(ht[whid])]
                                    where tmp.strItem.ToLower().Contains(prefix) ||
                                          tmp.ItemNumber.ToLower().Contains(prefix)
                                    orderby tmp.strItem
