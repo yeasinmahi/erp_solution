@@ -100,7 +100,7 @@ namespace UI.SCM
         public static string[] GetItemSearch(string prefixText, int count)
         {
 
-            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
