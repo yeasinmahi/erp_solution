@@ -1,4 +1,5 @@
 ﻿using SCM_BLL;
+using BLL.Inventory;
 using SCM_DAL.MrrReceiveTDSTableAdapters;
 using System;
 using System.Data;
@@ -8,8 +9,11 @@ using System.Text.RegularExpressions;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.AFBLSMSServer;
+using BLL.HR;
 using UI.ClassFiles;
 using Utility;
+using SupplierBll = BLL.Inventory.SupplierBll;
 
 namespace UI.SCM
 {
@@ -197,7 +201,17 @@ namespace UI.SCM
                         {
                             string message = msg;
                             string[] searchKey = Regex.Split(msg, ":");
-                            lblMrrNo.Text = searchKey[1].ToString();
+                            lblMrrNo.Text = searchKey[1];
+                            int whId = ddlWH.SelectedValue();
+                            
+                            string unitName = new UnitBll().GetUnitNameByWhId(whId);
+                            if (!string.IsNullOrWhiteSpace(unitName))
+                            {
+                                string supplierContact = new SupplierBll().GetSupplierPhone(intSupplierID);
+                                ApiSmsBll smsBll = new ApiSmsBll();
+                                smsBll.InsertApiSms(intPOID, challanNo, unitName, supplierContact, intUnitID);
+                            }
+                            
 
                             #region====================Mrr Document Attachment===========================
 

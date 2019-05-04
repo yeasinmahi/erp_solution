@@ -7,10 +7,6 @@ namespace BLL.Inventory
     {
         private readonly WareHouseDal _dal = new WareHouseDal();
         private readonly WarehouseOperatorDal _dalOp = new WarehouseOperatorDal();
-        public DataTable GetUnitIdByWhId(int whId)
-        {
-            return _dal.GetUnitIdByWhId(whId);
-        }
 
         public DataTable GetAllWarehouseByEnroll(int enroll)
         {

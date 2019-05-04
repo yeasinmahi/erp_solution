@@ -29,16 +29,16 @@ namespace UnitTest
             DataTable dt = _dal.GetIndentWarehouse(enroll);
             Assert.That(dt.Rows.Count > 0);
         }
-        [TestCase(2)]
-        [TestCase(3)]
-        public void Dal_GetUnitIdByWhId_DataTable(int whid)
-        {
-            DataTable dt = _dal.GetUnitIdByWhId(whid);
-            Assert.That(dt.Rows.Count > 0);
-        }
+        //[TestCase(2)]
+        //[TestCase(3)]
+        //public void Dal_GetUnitIdByWhId_DataTable(int whid)
+        //{
+        //    DataTable dt = _dal.GetUnitIdByWhId(whid);
+        //    Assert.That(dt.Rows.Count > 0);
+        //}
         [TestCase(369116)]
         [TestCase(373605)]
-        public void Bll_GetGetAllWarehouseByEnroll_DataTable(int enroll)
+        public void Bll_GetAllWarehouseByEnroll_DataTable(int enroll)
         {
             DataTable dt = _bll.GetAllWarehouseByEnroll(enroll);
             Assert.That(dt.Rows.Count > 0);

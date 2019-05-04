@@ -154,6 +154,8 @@
     <Compile Include="Inventory\InventoryAdjustmentAuthorityBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
     <Compile Include="Inventory\PoTypeBll.cs" />
+    <Compile Include="HR\UnitBll.cs" />
+    <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
     <Compile Include="Inventory\WarehouseOperatorBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
