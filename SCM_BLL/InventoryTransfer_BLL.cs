@@ -1,11 +1,8 @@
 ﻿using SCM_DAL;
 using SCM_DAL.InventoryTransferTDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SCM_DAL.DmageTDSTableAdapters;
 
 namespace SCM_BLL
