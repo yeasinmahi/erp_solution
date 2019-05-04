@@ -16,7 +16,7 @@ namespace Purchase_BLL.Asset
     public class AutoSearch_BLL
     {
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableCusts = null;
-        private SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
+        private static SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
         private SearchTDS.sprAutosearchRawMeterialDataTable[] tableItem1 = null;
         private SearchTDS.sprAutosearchFinishGoodsDataTable[] tableItem2 = null;
 

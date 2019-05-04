@@ -122,6 +122,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MrrCorrection.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MrrReceiveTDS.cs">
+      <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="MrrReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
