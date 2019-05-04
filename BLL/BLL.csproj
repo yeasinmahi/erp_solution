@@ -160,7 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DALOOP\DALOOP.csproj">
-      <Project>{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}</Project>
+      <Project>{f1ffa03d-ed65-4159-a8fc-4e39df84226b}</Project>
       <Name>DALOOP</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">

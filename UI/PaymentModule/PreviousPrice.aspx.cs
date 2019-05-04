@@ -185,7 +185,7 @@ namespace UI.PaymentModule
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return _ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
 
         }
