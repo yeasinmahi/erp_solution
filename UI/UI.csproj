@@ -467,6 +467,7 @@
     <Content Include="Inventory\SalesDamageEntry.aspx" />
     <Content Include="Inventory\SupplierDocView.aspx" />
     <Content Include="Libray\AjaxControlToolkit.dll" />
+    <Content Include="Libray\Database.dll" />
     <Content Include="Libray\MessagingToolkit.QRCode.dll" />
     <Content Include="Libray\Microsoft.AspNet.Web.Optimization.WebForms.dll" />
     <Content Include="Libray\Microsoft.ReportViewer.DataVisualization.dll" />
@@ -1508,6 +1509,7 @@
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
     <Content Include="SCM\MrrStatementDetalis.aspx" />
+    <Content Include="SCM\PendingMRR.aspx" />
     <Content Include="SCM\PO.aspx" />
     <Content Include="SCM\PoApproval.aspx" />
     <Content Include="SCM\POCorrection.aspx" />
@@ -8096,6 +8098,13 @@
     <Compile Include="SCM\MrrStatementDetalis.aspx.designer.cs">
       <DependentUpon>MrrStatementDetalis.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\PendingMRR.aspx.cs">
+      <DependentUpon>PendingMRR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\PendingMRR.aspx.designer.cs">
+      <DependentUpon>PendingMRR.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\PO.aspx.cs">
       <DependentUpon>PO.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9544,6 +9553,10 @@
     <ProjectReference Include="..\Flogging.Core\Flogging.Core.csproj">
       <Project>{ebe464da-6c54-4f40-a82c-debcebe09ed1}</Project>
       <Name>Flogging.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCM_DAL\SCM_DAL.csproj">
+      <Project>{43E9D794-020B-425F-857C-D313068C4BD5}</Project>
+      <Name>SCM_DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>

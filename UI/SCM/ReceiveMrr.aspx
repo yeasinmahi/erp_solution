@@ -50,6 +50,7 @@
         });
 
         function MrrGenerateCheck() {
+            var pot =  document.getElementById("hfddlPoType");
             var e = document.getElementById("ddlPo");
             var po = e.options[e.selectedIndex].value;
             var challanDate = document.getElementById("txtdteChallan").value;
@@ -76,11 +77,20 @@
                 document.getElementById("hdnConfirm").value = "0"; alert('Please set  Challan  Date');
             }
             else {
-                var confirm_value = document.createElement("INPUT");
-                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
-                if (confirm("Do you want to proceed?")) { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
-                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
                 showLoader();
+                if (pot.value === "2")
+                {
+                    Confirm();
+                }
+                else
+                {
+                    var confirm_value = document.createElement("INPUT");
+                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
+                    if (confirm("Do you want to proceed?"))
+                    { confirm_value.value = "Yes"; document.getElementById("hdnConfirm").value = "1"; }
+                else { confirm_value.value = "No"; document.getElementById("hdnConfirm").value = "0"; }
+                }
+                
                 return true;
                 
             }
@@ -107,6 +117,20 @@
             else {
                 document.getElementById("hdnConfirm").value = "1";
             }
+        }
+        function Confirm() {
+            let sms = document.getElementById("hfImportMissingCost").value;
+            var confirm_value = document.createElement("INPUT");
+            confirm_value.type = "hidden";
+            confirm_value.name = "confirm_value";
+            if (confirm(sms+"\n"+"Do You Want to Save MRR Data?")) {
+                confirm_value.value = "Yes";
+                document.getElementById("hfConfirm").value = "1"; 
+            } else {
+                confirm_value.value = "No";
+                document.getElementById("hfConfirm").value = "0"; 
+            }
+            document.forms[0].appendChild(confirm_value);
         }
     </script>
 
@@ -184,7 +208,11 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="PO Type:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlPoType" CssClass="ddList" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlPoType_SelectedIndexChanged"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlPoType" CssClass="ddList" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlPoType_SelectedIndexChanged"></asp:DropDownList>
+                                <asp:HiddenField runat="server" ID="hfImportMissingCost" />
+                                <asp:HiddenField runat="server" ID="hfConfirm" />
+                               <asp:HiddenField runat="server" ID="hfddlPoType" />
+                            </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="lblItem" CssClass="lbl" runat="server" Text="Select-PO: "></asp:Label></td>
                             <td>
