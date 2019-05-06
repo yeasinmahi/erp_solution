@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using static SCM_DAL.MrrReceiveTDS;
 
 namespace UI.SCM
 {
@@ -18,7 +19,8 @@ namespace UI.SCM
         private DataTable dt = new DataTable();
         private int enroll, intWh, Mrrid;
         PendingMRRTableAdapter adapter = new PendingMRRTableAdapter();
-
+        sprInventoryGetMissingCostTableAdapter mcAdapter = new sprInventoryGetMissingCostTableAdapter();
+        ImportInventoryTableAdapter iitAdapter = new ImportInventoryTableAdapter();
         private SeriLog log = new SeriLog();
         private string location = "SCM";
         private string start = "starting SCM\\MrrStatement";
@@ -41,11 +43,13 @@ namespace UI.SCM
                 ddlWH.DataValueField = "Id";
                 ddlWH.DataBind();
 
-                dt = obj.DataView(2, "", intWh, 0, DateTime.Now, enroll);
-                ddlDept.DataSource = dt;
-                ddlDept.DataTextField = "strName";
-                ddlDept.DataValueField = "Id";
-                ddlDept.DataBind();
+                //dt = obj.DataView(2, "", intWh, 0, DateTime.Now, enroll);
+                //ddlDept.DataSource = dt;
+                //ddlDept.DataTextField = "strName";
+                //ddlDept.DataValueField = "Id";
+                //ddlDept.DataBind();
+                ddlDept.Items.Clear();
+                ddlDept.Items.Insert(0, new ListItem("Import", "2"));
             }
             else { }
         }
@@ -80,7 +84,6 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
-
         protected void btnMRRSDetail_Click(object sender, EventArgs e)
         {
             dgvIndent.Visible = false;
@@ -89,12 +92,57 @@ namespace UI.SCM
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
 
         }
-
         protected void btnComplete_Click(object sender, EventArgs e)
         {
+            try
+            {
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Button btnComplete = row.FindControl("btnComplete") as Button;
+                btnComplete.Enabled = false;
+                Label lblPo = row.FindControl("lblPo") as Label;
+                Label lblMrrId = row.FindControl("lblMrrId") as Label;
+                HiddenField hfShipmentID = row.FindControl("hfShipmentID") as HiddenField;
+                HiddenField hfUnitID = row.FindControl("hfUnitID") as HiddenField;
+                HiddenField hfLocationID = row.FindControl("hfLocationID") as HiddenField;
+                HiddenField hfItemID = row.FindControl("hfItemID") as HiddenField;
+                HiddenField hfReceiveQnt = row.FindControl("hfReceiveQnt") as HiddenField;
+                int PoId = Convert.ToInt32(lblPo.Text);
+                int MrrId = Convert.ToInt32(lblMrrId.Text);
+                int ShipmentId = !string.IsNullOrEmpty(hfShipmentID.Value) ? Convert.ToInt32(hfShipmentID.Value) : 0;
+                int UnitId = !string.IsNullOrEmpty(hfUnitID.Value) ? Convert.ToInt32(hfUnitID.Value) : 0;
+                int LocationId = !string.IsNullOrEmpty(hfLocationID.Value) ? Convert.ToInt32(hfLocationID.Value) : 0;
+                int ItemId = !string.IsNullOrEmpty(hfItemID.Value) ? Convert.ToInt32(hfItemID.Value) : 0;
+                decimal ReceiveQnt = !string.IsNullOrEmpty(hfReceiveQnt.Value) ? Convert.ToDecimal(hfReceiveQnt.Value) : 0;
+                int wh = Convert.ToInt32(ddlWH.SelectedValue);
+                decimal ImportCostingItemRate = GetImportCostingItemRate(PoId, ShipmentId, ItemId);
+                decimal monBDT = ReceiveQnt * ImportCostingItemRate;
 
+                string sms = ImportMissingCost(PoId, ShipmentId);
+                if (string.IsNullOrEmpty(sms))
+                {
+                   iitAdapter.InsertImportInventory(UnitId, wh, LocationId, ItemId, ReceiveQnt, monBDT, MrrId, 1);
+                   int msg1 = iitAdapter.UpdateFactoryReceiveMRRItemDetail(monBDT, MrrId, ItemId);
+                   int msg2 = iitAdapter.UpdateYSNInventory(MrrId, wh);
+                    if(msg1>0 && msg2 > 0)
+                    {
+                        Toaster("MRR Complete Successfully!", Utility.Common.TosterType.Success);
+                        btnStatement_Click(null, null);
+                    }
+                }
+                else
+                {
+                    Toaster("MRR Not Possible for Missing Cost!", Utility.Common.TosterType.Error);
+                }
+                btnComplete.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                string sms = "Complete Button : " + ex.Message.ToString();
+                Toaster(sms, Utility.Common.TosterType.Error);
+            }
+
+            
         }
-
         protected void btnStatement_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnStatement_Click", null);
@@ -127,6 +175,21 @@ namespace UI.SCM
                 //}
                 //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
                 dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
+                dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
+
+                if(dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        for(int i = 0; i<dt.Rows.Count; i++)
+                        {
+                            int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
+                            int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
+                            dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
+                        }
+                    }
+                }
+
                 dgvIndent.DataSource = dt;
                 dgvIndent.DataBind();
             }
@@ -140,6 +203,13 @@ namespace UI.SCM
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        
+
+        protected void dgvIndent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         protected void btnDetalis_Click(object sender, EventArgs e)
@@ -174,6 +244,72 @@ namespace UI.SCM
         #endregion
 
         #region Method
+        private string ImportMissingCost(int intpo, int intShipment)
+        {
+            string sms = string.Empty;
+            try
+            {
+                sprInventoryGetMissingCostTableAdapter cost = new sprInventoryGetMissingCostTableAdapter();
+                DataTable dt = new DataTable();
+                dt = cost.GetImportMissingCost(intpo, intShipment);
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                        sms = dt.Rows[0]["strMissingCost"].ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+            }
+            return sms;
+
+
+        }
+
+        protected void dgvIndent_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            e.Row.Cells[10].Visible = false;
+            e.Row.Cells[11].Visible = false;
+            e.Row.Cells[12].Visible = false;
+            e.Row.Cells[13].Visible = false;
+            e.Row.Cells[14].Visible = false;
+        }
+
+        private string GetMRRMissingCost(int poId, int shipmentId)
+        {
+            string missingCost = string.Empty;
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = mcAdapter.GetImportMissingCost(poId, shipmentId);
+                if (dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        missingCost = dt.Rows[0]["strMissingCost"].ToString();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return missingCost;
+        }
+        private decimal GetImportCostingItemRate(int poId, int shipmentId, int itemId)
+        {
+            decimal ImportCostingRate = 1;
+            try
+            {
+                object _obj = iitAdapter.GetImportCostingItemRate(poId, shipmentId, itemId);
+                if (_obj != null)
+                    ImportCostingRate = Convert.ToDecimal(_obj);
+            }
+            catch (Exception ex)
+            {
+            }
+            return ImportCostingRate;
+        }
         #endregion
     }
 }

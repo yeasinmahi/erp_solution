@@ -24,7 +24,7 @@ namespace UI.SCM
         private readonly object _locker = new object();
         private DataTable _dt = new DataTable();
         private string xmlString = "", filePathForXML, strMssingCost, challanNo, strVatChallan, poIssueBy, expireDate, manufactureDate;
-        private int intPo, intShipment, intPOID, intSupplierID, intUnitID;
+        private int intPo, intShipment, intPOID, intSupplierID, intUnitID, intShipmentID, ysnInventory;
         private decimal monConverRate, monVatAmount, monProductCost, monOther, monDiscount, monBDTConversion, monRate, monTransport, monOtherTotal;
         private DateTime dteChallan;
         #endregion
@@ -127,6 +127,22 @@ namespace UI.SCM
                         try { monOther = decimal.Parse(lblOtherCost.Text); } catch { monOther = 0; }
                         try { monDiscount = decimal.Parse(lblDiscount.Text); } catch { }
                         try { monBDTConversion = decimal.Parse(hdnConversion.Value); } catch { }
+                        try
+                        {
+                            intShipmentID = !string.IsNullOrEmpty(ddlInvoice.SelectedItem.ToString()) ? Convert.ToInt32(ddlInvoice.SelectedValue) : 0;
+                        }
+                        catch
+                        {
+                        }
+                        if (!string.IsNullOrEmpty(hfImportMissingCost.Value))
+                        {
+                            ysnInventory = 0;
+                        }
+                        else
+                        {
+                            ysnInventory = 1;
+                        }
+                              
                         poIssueBy = lblPoIssueBy.Text;
                         monOtherTotal = monOther + monTransport;
                         for (int index = 0; index < dgvMrr.Rows.Count; index++)
@@ -162,7 +178,7 @@ namespace UI.SCM
                                             monProductCost.ToString(), monOtherTotal.ToString(), monDiscount.ToString(),
                                             monBDTConversion.ToString(), intItemID, numPOQty, numPreRcvQty, numRcvQty,
                                             numRcvValue, numRcvVatValue, location, remarks, monRate.ToString(), poIssueBy,
-                                            batchNo, expireDate, manufactureDate);
+                                            batchNo, expireDate, manufactureDate, ysnInventory, intShipmentID);
                                     }
                                     else
                                     {
@@ -316,7 +332,7 @@ namespace UI.SCM
             lblSuppliuerID.Text = "";
             lblSuppliyer.Text = "";
             int intpoo = 0;
-            int intShipment = 0;
+            int intShipmentID = 0;
 
             if (txtPO.Text.Length > 3)
             {
@@ -407,8 +423,8 @@ namespace UI.SCM
             if(ddlPoType.SelectedValue == "2")
             {
                 intpoo = !string.IsNullOrEmpty(ddlPo.SelectedItem.ToString()) ? Convert.ToInt32(ddlPo.SelectedValue) : 0;
-                intShipment = !string.IsNullOrEmpty(ddlInvoice.SelectedItem.ToString()) ? Convert.ToInt32(ddlInvoice.SelectedValue) : 0;
-                string sms = ImportMissingCost(intpoo, intShipment);
+                intShipmentID = !string.IsNullOrEmpty(ddlInvoice.SelectedItem.ToString()) ? Convert.ToInt32(ddlInvoice.SelectedValue) : 0;
+                string sms = ImportMissingCost(intpoo, intShipmentID);
                 hfImportMissingCost.Value = sms;
             }
         }
@@ -428,14 +444,14 @@ namespace UI.SCM
             ddlPo.Loads(_dt, "Id", "strName");
 
         }
-        private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate)
+        private void CreateXml(string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate,int ysnInventory, int intShipmentID)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate, ysnInventory, intShipmentID);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -443,13 +459,13 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("mrr");
-                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate);
+                XmlNode addItem = CreateItemNode(doc, intPOID, intSupplierID, intShipment, dteChallan, monVatAmount, challanNo, strVatChallan, monProductCost, monOther, monDiscount, monBDTConversion, intItemID, numPOQty, numPreRcvQty, numRcvQty, numRcvValue, numRcvVatValue, location, remarks, monRate, poIssueBy, batchNo, expireDate, manufactureDate, ysnInventory, intShipmentID);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate)
+        private XmlNode CreateItemNode(XmlDocument doc, string intPOID, string intSupplierID, string intShipment, string dteChallan, string monVatAmount, string challanNo, string strVatChallan, string monProductCost, string monOther, string monDiscount, string monBDTConversion, string intItemID, string numPOQty, string numPreRcvQty, string numRcvQty, string numRcvValue, string numRcvVatValue, string location, string remarks, string monRate, string poIssueBy, string batchNo, string expireDate, string manufactureDate,int ysnInventory, int intShipmentId)
         {
             XmlNode node = doc.CreateElement("mrrEntry");
 
@@ -507,6 +523,12 @@ namespace UI.SCM
             ExpireDate.Value = expireDate;
             XmlAttribute ManufactureDate = doc.CreateAttribute("manufactureDate");
             ManufactureDate.Value = manufactureDate;
+            
+            XmlAttribute YsnInventory = doc.CreateAttribute("ysnInventory");
+            YsnInventory.Value = ysnInventory.ToString();
+
+            XmlAttribute intShipmentID = doc.CreateAttribute("intShipmentId");
+            intShipmentID.Value = intShipmentId.ToString();
 
             node.Attributes.Append(IntPOID);
             node.Attributes.Append(IntSupplierID);
@@ -536,7 +558,10 @@ namespace UI.SCM
 
             node.Attributes.Append(BatchNo);
             node.Attributes.Append(ExpireDate);
+
             node.Attributes.Append(ManufactureDate);
+            node.Attributes.Append(YsnInventory);
+            node.Attributes.Append(intShipmentID);
 
             return node;
         }
