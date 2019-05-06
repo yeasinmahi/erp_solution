@@ -2,7 +2,7 @@
 using BLL.Inventory;
 using NUnit.Framework;
 
-namespace UnitTest
+namespace UnitTest.Inventory
 {
     [TestFixture]
     public class PoTypeTdd

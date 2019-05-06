@@ -384,6 +384,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AFBLSMSServer\ApiSms.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApiSms.xsd</DependentUpon>
+    </Compile>
     <Compile Include="AutoSearch\EmployeeTds.cs">
       <DependentUpon>EmployeeTds.xsd</DependentUpon>
     </Compile>
@@ -405,6 +410,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Supplier.xsd</DependentUpon>
     </Compile>
+    <Compile Include="HR\UnitTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UnitTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InventoryAdjustment.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -419,6 +429,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\RfqMainTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\SupplierTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SupplierTds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inventory\WarehouseOperatorTds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1002,6 +1022,17 @@
     <None Include="Accounts\Voucher\VoucherUploadTDS.xss">
       <DependentUpon>VoucherUploadTDS.xsd</DependentUpon>
     </None>
+    <None Include="AFBLSMSServer\ApiSms.xsc">
+      <DependentUpon>ApiSms.xsd</DependentUpon>
+    </None>
+    <None Include="AFBLSMSServer\ApiSms.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ApiSms.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AFBLSMSServer\ApiSms.xss">
+      <DependentUpon>ApiSms.xsd</DependentUpon>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -1089,6 +1120,17 @@
     <None Include="DropDown\Supplier.xss">
       <DependentUpon>Supplier.xsd</DependentUpon>
     </None>
+    <None Include="HR\UnitTds.xsc">
+      <DependentUpon>UnitTds.xsd</DependentUpon>
+    </None>
+    <None Include="HR\UnitTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>UnitTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="HR\UnitTds.xss">
+      <DependentUpon>UnitTds.xsd</DependentUpon>
+    </None>
     <None Include="Inventory\InventoryAdjustment.xsc">
       <DependentUpon>InventoryAdjustment.xsd</DependentUpon>
     </None>
@@ -1121,6 +1163,28 @@
     </None>
     <None Include="Inventory\PoTypeTds.xss">
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\RfqMainTds.xsc">
+      <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\RfqMainTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RfqMainTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\RfqMainTds.xss">
+      <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\SupplierTds.xsc">
+      <DependentUpon>SupplierTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\SupplierTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SupplierTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\SupplierTds.xss">
+      <DependentUpon>SupplierTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\WarehouseOperatorTds.xsc">
       <DependentUpon>WarehouseOperatorTds.xsd</DependentUpon>

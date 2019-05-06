@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PendingMRR.aspx.cs" Inherits="UI.SCM.PendingMRR" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
@@ -24,16 +25,16 @@
 
         function validation() {
         }
-        
+
         function loadIframe(iframeName, url) {
             var $iframe = $('#' + iframeName);
             if ($iframe.length) {
-                $iframe.attr('src', url); 
+                $iframe.attr('src', url);
                 return false;
             }
             return true;
         }
-    
+
     </script>
 
 
@@ -64,7 +65,8 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
-                    <div class="tabs_container" style="text-align: left">Pending MRR<hr />
+                    <div class="tabs_container" style="text-align: center">
+                        Pending MRR<hr />
                     </div>
 
                     <table>
@@ -110,13 +112,13 @@
                                 <asp:TextBox ID="txtMrrNo" runat="server" CssClass="txtBox"></asp:TextBox></td>
                             <td style="text-align: left"></td>
                             <td style="text-align: right">
-                                <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="showLoader()"  />
+                                <asp:Button ID="btnStatement" runat="server" Text="Show" OnClick="btnStatement_Click" OnClientClick="showLoader()" />
                             </td>
 
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td style="text-align: right">
                                 <asp:Button ID="btnMRRSDetail" runat="server" Text="Statement" OnClick="btnMRRSDetail_Click" OnClientClick="return validation();" ForeColor="Blue" Visible="false" />
                             </td>
@@ -126,7 +128,8 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvIndent" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"
-                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnSelectedIndexChanged="dgvIndent_SelectedIndexChanged"
+                                    OnRowDataBound="dgvIndent_RowDataBound">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
@@ -143,35 +146,46 @@
 
                                         <asp:TemplateField HeaderText="MRR Date" ItemStyle-HorizontalAlign="right" SortExpression="dteMrr">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldteMrr" Width="60px" runat="server" Text='<%# Bind("dteLastActionTime","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lbldteMrr" Width="60px" runat="server" Text='<%# Bind("dteLastActionTime","{0:yyyy-MM-dd}") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO ID" ItemStyle-HorizontalAlign="right" SortExpression="intPo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPo" runat="server" Text='<%# Bind("intpoid") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPo" runat="server" Text='<%# Bind("intpoid") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                         <asp:TemplateField HeaderText="Challan" ItemStyle-HorizontalAlign="right" SortExpression="strExtnlReff">
+                                        <asp:TemplateField HeaderText="Challan" ItemStyle-HorizontalAlign="right" SortExpression="strExtnlReff">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblChallan" runat="server" Width="" Text='<%# Bind("strExtnlReff") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblChallan" runat="server" Width="" Text='<%# Bind("strExtnlReff") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Challan Date" ItemStyle-HorizontalAlign="Center" SortExpression="dteChallanDate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblChallanDate" runat="server" Text='<%# Bind("dteChallanDate","{0:dd/MM/yyyy}" ) %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblChallanDate" runat="server" Text='<%# Bind("dteChallanDate","{0:dd/MM/yyyy}" ) %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Supplier" ItemStyle-HorizontalAlign="right" SortExpression="strSupp">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSupp" runat="server" Width="150px" Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblSupp" runat="server" Width="150px" Text='<%# Bind("strSupplierName") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Missing Cost" ItemStyle-HorizontalAlign="right" SortExpression="missingCost">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblMissingCost" runat="server" Width="150px" Text='<%# Bind("missingCost") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        
+
                                         <%--<asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="strRemarks">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblRemarks" Width="60px" runat="server" Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
@@ -184,15 +198,42 @@
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
 
+
                                         <asp:TemplateField HeaderText="Detalis">
                                             <ItemTemplate>
-                                             <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
+                                                <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Complete">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnComplete" runat="server" Text="Complete" OnClick="btnComplete_Click" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfShipmentID" runat="server" Value='<%# Eval("intShipmentID") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfUnitID" runat="server" Value='<%# Eval("intUnitID") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfLocationID" runat="server" Value='<%# Eval("intLocationID") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfItemID" runat="server" Value='<%# Eval("intItemID") %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
+                                                <asp:HiddenField ID="hfReceiveQnt" runat="server" Value='<%# Eval("numReceiveQty") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -211,7 +252,7 @@
 
 
                 </div>
-                <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>
+                <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
 
 
                 <%--=========================================End My Code From Here=================================================--%>

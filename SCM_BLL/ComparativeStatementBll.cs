@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using DALOOP.Inventory;
 using SCM_DAL.ComparativeStatementTDSTableAdapters;
 
 namespace SCM_BLL
@@ -94,6 +95,18 @@ namespace SCM_BLL
                 return new DataTable();
             }
 
+        }
+
+        public int GetUnitIdByRfq(int rfq)
+        {
+            try
+            {
+                return new RfqMainDal().GetUnitIdByRfqId(rfq);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
     }
 }

@@ -3,13 +3,13 @@ using BLL.Inventory;
 using DALOOP.Inventory;
 using NUnit.Framework;
 
-namespace UnitTest
+namespace UnitTest.Inventory
 {
     [TestFixture]
     public class InventoryAdjustmentTdd
     {
-        private InventoryAdjustmentDal _dal = new InventoryAdjustmentDal();
-        private InventoryAdjustmentBll _bll = new InventoryAdjustmentBll();
+        private readonly InventoryAdjustmentDal _dal = new InventoryAdjustmentDal();
+        private readonly InventoryAdjustmentBll _bll = new InventoryAdjustmentBll();
         [Test]
         public void Dal_GetAllInventoryAdjustments_DataTable()
         {

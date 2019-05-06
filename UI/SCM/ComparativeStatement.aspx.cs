@@ -489,20 +489,7 @@ namespace UI.SCM
             }
 
         }
-        public void LoadSupplier(int rfq)
-        {
-            //int unitId = _bll.GetUnitIdBy
-            _dt = _supplier.GetSupplierInfo(1, Convert.ToInt32(hdnUnitId.Value), out string message);
-            if (_dt.Rows.Count > 0)
-            {
-                ddlSupplier.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
-            }
-            else
-            {
-                Toaster(message, Common.TosterType.Error);
-            }
-
-        }
+        
 
         #endregion
 
@@ -626,6 +613,28 @@ namespace UI.SCM
             {
                 Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
             }
+        }
+        public void LoadSupplier(int rfq)
+        {
+            int unitId = _bll.GetUnitIdByRfq(rfq);
+            if (unitId > 0)
+            {
+                _dt = _supplier.GetSupplierInfo(1, unitId, out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    ddlSupplier.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                Toaster("Problem occured in getting unit id of RFQ.", Common.TosterType.Error);
+            }
+            
+
         }
         #endregion
 

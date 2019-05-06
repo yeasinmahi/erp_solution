@@ -146,7 +146,7 @@
     <Compile Include="Accounts\Voucher\JournalVoucher.cs" />
     <Compile Include="Accounts\Voucher\VoucherRollback.cs" />
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
-    <Compile Include="AFBLSMSServer\APIsmsBLL.cs" />
+    <Compile Include="AFBLSMSServer\ApiSmsBll.cs" />
     <Compile Include="AutoSearch\EmployeeBll.cs" />
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
@@ -154,6 +154,8 @@
     <Compile Include="Inventory\InventoryAdjustmentAuthorityBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
     <Compile Include="Inventory\PoTypeBll.cs" />
+    <Compile Include="HR\UnitBll.cs" />
+    <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
     <Compile Include="Inventory\WarehouseOperatorBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
