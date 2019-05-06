@@ -391,6 +391,24 @@ namespace UI.SCM.BOM {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtenderExp;
         
         /// <summary>
+        /// lblOrder control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblOrder;
+        
+        /// <summary>
+        /// ddlOrderId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOrderId;
+        
+        /// <summary>
         /// dgvStore control.
         /// </summary>
         /// <remarks>

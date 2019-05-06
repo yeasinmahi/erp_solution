@@ -1,4 +1,4 @@
-﻿using Database;
+﻿//using Database;
 using Model;
 using System;
 using System.Data.SqlClient;
@@ -9,7 +9,7 @@ namespace DALOOP.AFBLSMSServer
     public class ApiSmsDal
     {
         #region INIT
-        DBUtility _db = new DBUtility();
+      //  DBUtility _db = new DBUtility();
         #endregion
 
         public bool InsertApIsms(ApiSmsModel model)
@@ -54,7 +54,7 @@ namespace DALOOP.AFBLSMSServer
                 //cmd.Parameters.AddWithValue("@dteInsertDateTime", _model.InsertDate);
                 //cmd.Parameters.AddWithValue("@intUnitID", _model.UnitID);
 
-                result = _db.ExecuteParamDML(cmd, sql);
+               // result = _db.ExecuteParamDML(cmd, sql);
                 
             }
             catch (Exception ex)
@@ -63,7 +63,7 @@ namespace DALOOP.AFBLSMSServer
                 //throw new Exception(ex.ToString());
             }
 
-            return result;
+            return true;//result;
         }
     }
 }
