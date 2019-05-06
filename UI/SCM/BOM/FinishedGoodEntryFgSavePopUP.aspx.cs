@@ -20,7 +20,7 @@ namespace UI.SCM.BOM
         private DataTable dt = new DataTable();
         private int intwh, BomId, intBomStandard; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "";
+        private string filePathForXML; private string xmlString = "",orderId="0";
         decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore;
         private string productionID,  productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
@@ -161,7 +161,12 @@ namespace UI.SCM.BOM
         {
             try
             {
-                string orderId = ddlOrderId.SelectedValue().ToString();
+                try
+                {
+                    orderId = ddlOrderId.SelectedValue().ToString();
+                }
+                catch {orderId = "0";}
+               
 
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
@@ -215,7 +220,7 @@ namespace UI.SCM.BOM
                         string jobno = txtJob.Text.ToString();
                         string times = txtTime.Text.ToString();
                         string expDate = txtExpDate.Text.ToString();
-                        //string orderId = ddlOrderId.SelectedValue().ToString();
+                       
 
                         CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times,
                             actualQty.ToString(), qcHoldQty.ToString(), expDate, orderId);

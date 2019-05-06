@@ -354,7 +354,7 @@
 
           <td style="text-align:right;"> <asp:Label ID="LblUnitW" runat="server" CssClass="lbl" font-size="small" Text="Unit :"></asp:Label></td>
          <td style="text-align: left;" class="auto-style3">
-          <asp:DropDownList ID="DdlUnitName" runat="server" backColor="WhiteSmoke" CssClass="ddList" Font-Bold="False" AutoPostBack="True" > 
+          <asp:DropDownList ID="DdlUnitName" runat="server" backColor="WhiteSmoke"   CssClass="ddList" Font-Bold="False" AutoPostBack="True" > 
          </asp:DropDownList>
                      
              </tr>
@@ -371,7 +371,7 @@
 
            <td style="text-align:right;"> <asp:Label ID="LblIType" runat="server" CssClass="lbl" font-size="small" Text="Type :"></asp:Label></td>
            <td style="text-align: left;" class="auto-style3">
-             <asp:DropDownList ID="DdlIType" runat="server" CssClass="ddList" backColor="WhiteSmoke" Font-Bold="False" AutoPostBack="True">
+             <asp:DropDownList ID="DdlIType" runat="server" CssClass="ddList"  backColor="WhiteSmoke" Font-Bold="False" AutoPostBack="True">
              <asp:ListItem>Fabrication</asp:ListItem></asp:DropDownList>
                       
                      
@@ -498,7 +498,7 @@
                               </asp:TemplateField>
                               
                               <asp:BoundField DataField="strIndentType" HeaderText="Type" SortExpression="strIndentType" />
-                              <asp:BoundField DataField="strstatus" HeaderText="Status" SortExpression="strstatus" />
+                              <asp:BoundField DataField="strstatus" Visible="False" HeaderText="Status" SortExpression="strstatus" />
                               
                           </Columns>
                         
