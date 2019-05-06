@@ -69,6 +69,7 @@ namespace UI.SCM
 
         public void LoadGrid()
         {
+            intwh = int.Parse(Request.QueryString["intwh"]);
             int ReqId = int.Parse(Request.QueryString["ReqId"]);
             dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
             if (dt.Rows.Count > 0)

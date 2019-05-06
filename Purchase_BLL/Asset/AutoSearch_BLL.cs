@@ -18,7 +18,7 @@ namespace Purchase_BLL.Asset
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableCusts = null;
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
         private SearchTDS.sprAutosearchRawMeterialDataTable[] tableItem1 = null;
-        private   SearchTDS.sprAutosearchFinishGoodsDataTable[] tblFgItem = null;
+        private static  SearchTDS.sprAutosearchFinishGoodsDataTable[] tblFgItem = null;
 
         private static SearchTDS.TblAutoSearchAssetRegisterDataTable[] tableCusts1 = null;
         private static SearchTDS.TblVehicleAutoSearchAssetRegisterDataTable[] tableCusts2 = null;
@@ -513,7 +513,7 @@ namespace Purchase_BLL.Asset
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tblFgItem[Convert.ToInt32(ht[whid])]
+                    var rows = from tmp in tblFgItem[e]
                                orderby tmp.strItem
                                select tmp;
                     if (rows.Any())
@@ -525,7 +525,7 @@ namespace Purchase_BLL.Asset
                 {
                     try
                     {
-                        var rows = from tmp in tblFgItem[Convert.ToInt32(ht[whid])]
+                        var rows = from tmp in tblFgItem[e]
                                    where tmp.strItem.ToLower().Contains(prefix) ||
                                          tmp.ItemNumber.ToLower().Contains(prefix)
                                    orderby tmp.strItem
