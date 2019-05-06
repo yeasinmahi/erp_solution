@@ -1,7 +1,6 @@
 ﻿//using Database;
 using Model;
 using System;
-using System.Data.SqlClient;
 using DAL.AFBLSMSServer.ApiSmsTableAdapters;
 
 #pragma warning disable 168

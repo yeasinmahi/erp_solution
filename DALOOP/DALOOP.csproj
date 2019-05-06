@@ -45,11 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AFBLSMSServer\APIsmsDAL.cs" />
+    <Compile Include="AFBLSMSServer\ApiSmsDal.cs" />
     <Compile Include="HR\UnitDal.cs" />
     <Compile Include="Inventory\InventoryAdjustmentAuthorityDal.cs" />
     <Compile Include="Inventory\InventoryAdjustmentDal.cs" />
     <Compile Include="Inventory\PoTypeDal.cs" />
+    <Compile Include="Inventory\RfqMainDal.cs" />
     <Compile Include="Inventory\SupplierDal.cs" />
     <Compile Include="Inventory\WareHouseDal.cs" />
     <Compile Include="Inventory\WarehouseOperatorDal.cs" />

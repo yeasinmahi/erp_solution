@@ -430,6 +430,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\RfqMainTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\SupplierTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1158,6 +1163,17 @@
     </None>
     <None Include="Inventory\PoTypeTds.xss">
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\RfqMainTds.xsc">
+      <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\RfqMainTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RfqMainTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\RfqMainTds.xss">
+      <DependentUpon>RfqMainTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\SupplierTds.xsc">
       <DependentUpon>SupplierTds.xsd</DependentUpon>
