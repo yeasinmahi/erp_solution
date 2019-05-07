@@ -19,6 +19,7 @@ namespace UI.SCM
         private DataTable dt = new DataTable();
         private int enroll, intWh, Mrrid;
         PendingMRRTableAdapter adapter = new PendingMRRTableAdapter();
+        FactoryReceiveMRRItemDetailTableAdapter fmrridtAdapter = new FactoryReceiveMRRItemDetailTableAdapter();
         sprInventoryGetMissingCostTableAdapter mcAdapter = new sprInventoryGetMissingCostTableAdapter();
         ImportInventoryTableAdapter iitAdapter = new ImportInventoryTableAdapter();
         private SeriLog log = new SeriLog();
@@ -94,6 +95,8 @@ namespace UI.SCM
         }
         protected void btnComplete_Click(object sender, EventArgs e)
         {
+            DataTable dtid = new DataTable();
+            int count = 0;
             try
             {
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
@@ -103,27 +106,36 @@ namespace UI.SCM
                 Label lblMrrId = row.FindControl("lblMrrId") as Label;
                 HiddenField hfShipmentID = row.FindControl("hfShipmentID") as HiddenField;
                 HiddenField hfUnitID = row.FindControl("hfUnitID") as HiddenField;
-                HiddenField hfLocationID = row.FindControl("hfLocationID") as HiddenField;
-                HiddenField hfItemID = row.FindControl("hfItemID") as HiddenField;
-                HiddenField hfReceiveQnt = row.FindControl("hfReceiveQnt") as HiddenField;
                 int PoId = Convert.ToInt32(lblPo.Text);
                 int MrrId = Convert.ToInt32(lblMrrId.Text);
                 int ShipmentId = !string.IsNullOrEmpty(hfShipmentID.Value) ? Convert.ToInt32(hfShipmentID.Value) : 0;
                 int UnitId = !string.IsNullOrEmpty(hfUnitID.Value) ? Convert.ToInt32(hfUnitID.Value) : 0;
-                int LocationId = !string.IsNullOrEmpty(hfLocationID.Value) ? Convert.ToInt32(hfLocationID.Value) : 0;
-                int ItemId = !string.IsNullOrEmpty(hfItemID.Value) ? Convert.ToInt32(hfItemID.Value) : 0;
-                decimal ReceiveQnt = !string.IsNullOrEmpty(hfReceiveQnt.Value) ? Convert.ToDecimal(hfReceiveQnt.Value) : 0;
                 int wh = Convert.ToInt32(ddlWH.SelectedValue);
-                decimal ImportCostingItemRate = GetImportCostingItemRate(PoId, ShipmentId, ItemId);
-                decimal monBDT = ReceiveQnt * ImportCostingItemRate;
 
                 string sms = ImportMissingCost(PoId, ShipmentId);
                 if (string.IsNullOrEmpty(sms))
                 {
-                   iitAdapter.InsertImportInventory(UnitId, wh, LocationId, ItemId, ReceiveQnt, monBDT, MrrId, 1);
-                   int msg1 = iitAdapter.UpdateFactoryReceiveMRRItemDetail(monBDT, MrrId, ItemId);
-                   int msg2 = iitAdapter.UpdateYSNInventory(MrrId, wh);
-                    if(msg1>0 && msg2 > 0)
+                    
+                    dtid = fmrridtAdapter.GetMRRItemDetailsData(MrrId);
+                    if(dtid != null)
+                    {
+                        if (dtid.Rows.Count > 0)
+                        {
+                            for(int i = 0; i < dtid.Rows.Count; i++)
+                            {
+                                int LocationId = !string.IsNullOrEmpty(dtid.Rows[i]["intLocationID"].ToString()) ? Convert.ToInt32(dtid.Rows[i]["intLocationID"]) : 0;
+                                int ItemId = !string.IsNullOrEmpty(dtid.Rows[i]["intItemID"].ToString()) ? Convert.ToInt32(dtid.Rows[i]["intItemID"]) : 0;
+                                decimal ReceiveQnt = !string.IsNullOrEmpty(dtid.Rows[i]["numReceiveQty"].ToString()) ? Convert.ToDecimal(dtid.Rows[i]["numReceiveQty"]) : 0;
+                                decimal ImportCostingItemRate = GetImportCostingItemRate(PoId, ShipmentId, ItemId);
+                                decimal monBDT = ReceiveQnt * ImportCostingItemRate;
+                                iitAdapter.InsertImportInventory(UnitId, wh, LocationId, ItemId, ReceiveQnt, monBDT, MrrId, 1);
+                                iitAdapter.UpdateFactoryReceiveMRRItemDetail(monBDT, MrrId, ItemId);
+                                iitAdapter.UpdateYSNInventory(MrrId, wh);
+                                count += 1;
+                            }
+                        }
+                    }
+                    if(count > 0)
                     {
                         Toaster("MRR Complete Successfully!", Utility.Common.TosterType.Success);
                         btnStatement_Click(null, null);
@@ -177,11 +189,11 @@ namespace UI.SCM
                 dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
                 dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
 
-                if(dt != null)
+                if (dt != null)
                 {
                     if (dt.Rows.Count > 0)
                     {
-                        for(int i = 0; i<dt.Rows.Count; i++)
+                        for (int i = 0; i < dt.Rows.Count; i++)
                         {
                             int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
                             int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
@@ -271,9 +283,7 @@ namespace UI.SCM
         {
             e.Row.Cells[10].Visible = false;
             e.Row.Cells[11].Visible = false;
-            e.Row.Cells[12].Visible = false;
-            e.Row.Cells[13].Visible = false;
-            e.Row.Cells[14].Visible = false;
+            
         }
 
         private string GetMRRMissingCost(int poId, int shipmentId)

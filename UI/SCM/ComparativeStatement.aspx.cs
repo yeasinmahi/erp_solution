@@ -608,10 +608,35 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 LoadSupplier(rfqId);
+                LoadRfq(rfqId);
             }
             else
             {
                 Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
+        }
+        public void LoadRfq(int rfqId)
+        {
+            DataTable dt = _bll.GetRfq(rfqId);
+            if (dt.Rows.Count > 0)
+            {
+                gvRfq.Loads(dt);
+                lblRfqNo.Text = dt.Rows[0]["intRfqId"].ToString();
+                lblRfqDate.Text = dt.Rows[0]["dteRfqDate"].ToString();
+                lblRfqBy.Text = dt.Rows[0]["strInsertBy"].ToString();
+                string unitId = dt.Rows[0]["intUnitId"].ToString();
+                if (JobStationId == 28)
+                {
+                    imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png";
+                }
+                else
+                {
+                    imgUnit.ImageUrl = "/Content/images/img/" + unitId + ".png";
+                }
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
             }
         }
         public void LoadSupplier(int rfq)
@@ -821,10 +846,25 @@ namespace UI.SCM
                 DataTable dt = _bll.GetComperativeStatement(rfqId);
                 string table = ToHtmlTable(dt);
                 csTd.InnerHtml = table;
+                LoadSupplierCs(rfqId);
             }
             else
             {
                 Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
+        }
+
+        private void LoadSupplierCs(int rfqId)
+        {
+            _dt = _supplier.GetSupplierInfo(3, rfqId, out string message);
+            if (_dt.Rows.Count > 0)
+            {
+                ddlSupplierCs.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                SetVisibility("panel", true);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
             }
         }
         public string ToHtmlTable(DataTable dt)
@@ -870,7 +910,21 @@ namespace UI.SCM
             return html;
         }
 
+        protected void btnSubmitCs_OnClick(object sender, EventArgs e)
+        {
+            int supplierId = ddlSupplierCs.SelectedValue();
+            if (supplierId > 0)
+            {
+                string remaks = remaksCs.Text;
+            }
+            else
+            {
+                Toaster("Please Select Supplier",Common.TosterType.Warning);
+            }
+            SetVisibility("panel", true);
+        }
         #endregion
+
 
     }
 }

@@ -219,8 +219,9 @@ namespace UI.SCM
                             string[] searchKey = Regex.Split(msg, ":");
                             lblMrrNo.Text = searchKey[1];
                             int whId = ddlWH.SelectedValue();
-                            
-                            string unitName = new UnitBll().GetUnitNameByWhId(whId);
+                            UnitBll unitBll = new UnitBll();
+                            string unitName = unitBll.GetUnitFullNameByWhId(whId);
+                            intUnitID = unitBll.GetUnitIdByWhId(whId);
                             if (!string.IsNullOrWhiteSpace(unitName))
                             {
                                 string supplierContact = new SupplierBll().GetSupplierPhone(intSupplierID);

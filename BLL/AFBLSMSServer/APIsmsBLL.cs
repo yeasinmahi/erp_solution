@@ -14,6 +14,9 @@ namespace BLL.AFBLSMSServer
 
         public bool InsertApiSms(int poId, string chalanNo, string unitName,string customerPhnNumber,int unitId)
         {
+            customerPhnNumber = customerPhnNumber.Replace("-", "");
+            if (customerPhnNumber.Length != 11)
+                return false;
             bool result;
             string sms = "Dear Valued Supplier,Your Supplied Mattrials/Service has been Reached Against PO No "+poId+" and Challan No "+chalanNo +"Payment will be made against actual receiving in to Akij Group ("+unitName+")";
 
