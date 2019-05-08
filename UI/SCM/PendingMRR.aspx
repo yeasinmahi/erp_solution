@@ -221,7 +221,7 @@
                                                 <asp:HiddenField ID="hfUnitID" runat="server" Value='<%# Eval("intUnitID") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:TemplateField>
+                                        <%--<asp:TemplateField>
                                             <ItemTemplate>
                                                 <asp:HiddenField ID="hfLocationID" runat="server" Value='<%# Eval("intLocationID") %>' />
                                             </ItemTemplate>
@@ -235,7 +235,7 @@
                                             <ItemTemplate>
                                                 <asp:HiddenField ID="hfReceiveQnt" runat="server" Value='<%# Eval("numReceiveQty") %>' />
                                             </ItemTemplate>
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
 
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

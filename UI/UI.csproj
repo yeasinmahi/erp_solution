@@ -1208,6 +1208,8 @@
     <Content Include="SAD\Customer\Report\StatementWithUndelvAmount.aspx" />
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
+    <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
+    <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
     <Content Include="SAD\DisPoint\DisPointEdit.aspx" />
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
@@ -6004,6 +6006,20 @@
     <Compile Include="SAD\Customer\SetPriceVar.aspx.designer.cs">
       <DependentUpon>SetPriceVar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Delivery\DeliveryEntry.aspx.cs">
+      <DependentUpon>DeliveryEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DeliveryEntry.aspx.designer.cs">
+      <DependentUpon>DeliveryEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\DeliverySales.aspx.cs">
+      <DependentUpon>DeliverySales.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DeliverySales.aspx.designer.cs">
+      <DependentUpon>DeliverySales.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\DisPoint\DisPoint.aspx.cs">
       <DependentUpon>DisPoint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9515,6 +9531,7 @@
     <Folder Include="Projects\Data\" />
     <Folder Include="SAD\Consumer\Data\" />
     <Folder Include="SAD\Corporate_sales\Data\" />
+    <Folder Include="SAD\Delivery\Data\" />
     <Folder Include="SAD\ExcelChallan\Data\" />
     <Folder Include="SAD\IHB\Data\" />
     <Folder Include="SAD\Order\Data\CH\" />
