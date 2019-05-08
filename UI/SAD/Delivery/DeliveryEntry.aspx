@@ -78,27 +78,30 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="lblUnitName" runat="server" CssClass="lbl" Text="Unit Name:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"></asp:DropDownList>
+                                <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"  > 
+                                </asp:DropDownList> 
+                                
+                                 
 
                             </td>
                             <td style="text-align: left;">
                                 <asp:Label ID="lblShipPoint" runat="server" CssClass="lbl" Text="Ship Point:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlShipPoint" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" ></asp:DropDownList>
-
+                                <asp:DropDownList ID="ddlShipPoint" CssClass="ddList" Font-Bold="False" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlShipPoint_SelectedIndexChanged" 
+                                                  ></asp:DropDownList>
                             </td>
                             <td style="text-align: left;">
                                 <asp:Label ID="lblSalesOffice" runat="server" CssClass="lbl" Text="Sales Office:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlSalesOffice" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"  ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlSalesOffice" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlSalesOffice_SelectedIndexChanged"  ></asp:DropDownList>
 
                             </td>
                             </tr>
                              <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Type:"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Customer Type:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server"  ></asp:DropDownList>
+                                <asp:DropDownList ID="ddlCustomerType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlCustomerType_SelectedIndexChanged"   ></asp:DropDownList>
 
                             </td>
                                  <td style="text-align: left;">
@@ -120,11 +123,13 @@
                         <table>
                                 <tr> 
                             <td style="text-align: left;">
-                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List: "></asp:Label></td>
+                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Customer: "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"></asp:TextBox>
-                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem" OnClientItemSelected="autoCompleteEx_ItemSelected"
-                                    ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+                                <asp:HiddenField ID="hdnCustomer" runat="server" />
+                                <asp:HiddenField ID="hdnCustomerText" runat="server" />
+                                <asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtCustomer_TextChanged" ></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCustomer" OnClientItemSelected="autoCompleteEx_ItemSelected"
+                                    ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
@@ -133,9 +138,11 @@
                                     <td style="text-align: right;">
                                         <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Ship To Party: "></asp:Label></td>
                                     <td style="text-align: left;">
-                                        <asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px"></asp:TextBox>
-                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtItem" OnClientItemSelected="autoCompleteEx_ItemSelected"
-                                                                  ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
+                                        <asp:HiddenField ID="hdnShipToPartyId" runat="server" />
+                                        <asp:HiddenField ID="hdnShipToPartyText" runat="server" />
+                                        <asp:TextBox ID="txtShipToParty" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtShipToParty_TextChanged"></asp:TextBox>
+                                        <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtShipToParty" OnClientItemSelected="autoCompleteEx_ItemSelected"
+                                                                  ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
                                                                   CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                                                   CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                         </cc1:AutoCompleteExtender>
@@ -153,13 +160,13 @@
                               <asp:Label ID="Label2" CssClass="lbl" runat="server" Text="Address: "></asp:Label> 
                           </td>
                           <td style="text-align: left;" colspan="1">
-                              <asp:TextBox ID="txtCustomerAddress" runat="server" EnableCaching="false"  CssClass="txtBox" Width="300px"   ></asp:TextBox>
+                              <asp:TextBox ID="txtCustomerAddress" runat="server" TextMode="MultiLine" EnableCaching="false"  CssClass="txtBox" Width="300px"   ></asp:TextBox>
                           </td>
                           <td style="text-align: right;">
                               <asp:Label ID="Label4" CssClass="lbl" runat="server" Text="Address: "></asp:Label> 
                           </td>
                           <td style="text-align: left;">
-                              <asp:TextBox ID="txtShipToPartyAddress" runat="server" EnableCaching="false" CssClass="txtBox" Width="300px"  ></asp:TextBox>
+                              <asp:TextBox ID="txtShipToPartyAddress" TextMode="MultiLine" runat="server" EnableCaching="false" CssClass="txtBox" Width="300px"  ></asp:TextBox>
                           </td>
                       </tr>
                             <tr><td></td></tr>
@@ -171,7 +178,7 @@
                         </td>
                         <td>
                             <asp:RadioButtonList ID="rdoNeedVehicle" runat="server" Width="120px" AutoPostBack="True" 
-                                                 RepeatDirection="Horizontal">
+                                                 RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoNeedVehicle_SelectedIndexChanged">
                                 <asp:ListItem Selected="True" Value="true">Yes</asp:ListItem>
                                 <asp:ListItem Value="false">No</asp:ListItem>
                             </asp:RadioButtonList>
@@ -180,7 +187,7 @@
                             <b>Charge</b>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlExtra" runat="server" AutoPostBack="True"> 
+                            <asp:DropDownList ID="ddlVehicleCharge" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleCharge_SelectedIndexChanged" > 
                             </asp:DropDownList>
                              
                         </td>
@@ -188,7 +195,7 @@
                             <b>Incentive</b>
                         </td>
                         <td>
-                            <asp:DropDownList ID="ddlIncentive" runat="server" AutoPostBack="True">
+                            <asp:DropDownList ID="ddlVehicleIncentive" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleIncentive_SelectedIndexChanged">
                                                
                             </asp:DropDownList>
                             
@@ -197,104 +204,159 @@
                     </tr>
                 </table>
                     <table>
-                         <td style="width: 300px; vertical-align: top;">
-                                
-                                <asp:Panel ID="pnlVehicleMain" Visible="True" runat="server">
-                                    <table style="width: 300px;">
-                                        <tr>
-                                            <td colspan="2">
-                                                <asp:RadioButtonList ID="rdoVhlCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
-                                                    
-                                                    <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
-                                                    <asp:ListItem Value="2">3rd Party</asp:ListItem>
-                                                    <asp:ListItem Value="3">Customer</asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">
-                                                Vehicle
-                                            </td>
-                                            <td>
-                                                <asp:HiddenField ID="hdnVehicle" runat="server" />
-                                                <asp:HiddenField ID="hdnVehicleText" runat="server" />
-                                                <asp:TextBox ID="txtVehicle" runat="server" AutoCompleteType="Search"   CssClass="txtBox"
-                                                    AutoPostBack="true" ></asp:TextBox>
-                                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender3" runat="server" TargetControlID="txtVehicle"
-                                                    ServiceMethod="GetVehicleList" MinimumPrefixLength="1" CompletionSetCount="1"
-                                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                                                </cc1:AutoCompleteExtender>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">
-                                                Driver
-                                            </td>
-                        
-                                            <td style="text-align: left">
-                                                <asp:TextBox ID="txtDriver" runat="server"  CssClass="txtBox" Visible="true"></asp:TextBox>
-                                            </td>
-                                            
-                                        </tr>
-                                        <tr>
-                                            <td style="text-align: right">
-                                                ContactNo
-                                            </td>
-                                            <td style="text-align: left">
-                                                <asp:TextBox ID="txtDriverContact"  CssClass="txtBox" runat="server"  ></asp:TextBox>
-                                            </td>  
-                                        </tr>
-                                    </table>
-                                </asp:Panel>
-                                
-                            </td>
-                        
-                        <td style="width: 300px;">
-                                <asp:Panel ID="pnlVehicle3rd" Visible="True" runat="server">
-                                    <table style="width: 300px;">
-                                        <tr>
-                                            <td>
-                                                Supplier
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" Width="200px"
-                                                    AutoPostBack="true"></asp:TextBox>
-                                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" TargetControlID="txtSupplier"
-                                                    ServiceMethod="GetSupplierList" MinimumPrefixLength="1" CompletionSetCount="1"
-                                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
-                                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-                                                </cc1:AutoCompleteExtender>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Charge To
-                                            </td>
-                                            <td>
-                                                <asp:RadioButtonList ID="rdo3rdPartyCharge" runat="server" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Selected="True" Value="true">3rd Party</asp:ListItem>
-                                                    <asp:ListItem Value="false">Company</asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                Type
-                                            </td>
-                                            <td>
-                                                <asp:DropDownList ID="ddlVhlType" runat="server" AutoPostBack="True" > 
-                                                </asp:DropDownList>
-                                                 
-                                                    
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </asp:Panel>
-                            </td>
+                         <tr>
+                             <td style="width: 300px; vertical-align: top;">
+                                 <asp:Panel ID="pnlVehicleMain" runat="server" Visible="True">
+                                     <table style="width: 300px;">
+                                         <tr>
+                                             <td colspan="2">
+                                                 <asp:RadioButtonList ID="rdoVehicleCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoVehicleCompany_SelectedIndexChanged"  >
+                                                     <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
+                                                     <asp:ListItem Value="2">3rd Party</asp:ListItem>
+                                                     <asp:ListItem Value="3">Customer</asp:ListItem>
+                                                 </asp:RadioButtonList>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: right">Vehicle </td>
+                                             <td>
+                                                 <asp:HiddenField ID="hdnVehicle" runat="server" />
+                                                 <asp:HiddenField ID="hdnVehicleText" runat="server" />
+                                                 <asp:TextBox ID="txtVehicle" runat="server" AutoCompleteType="Search" AutoPostBack="true" CssClass="txtBox" OnTextChanged="txtVehicle_TextChanged"></asp:TextBox>
+                                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender3" runat="server" CompletionInterval="1" CompletionListCssClass="autocomplete_completionListElementBig" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" CompletionListItemCssClass="autocomplete_listItem" CompletionSetCount="1" EnableCaching="false" FirstRowSelected="true" MinimumPrefixLength="1" ServiceMethod="GetVehicleList" TargetControlID="txtVehicle">
+                                                 </cc1:AutoCompleteExtender>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: right">Driver </td>
+                                             <td style="text-align: left">
+                                                 <asp:TextBox ID="txtDriver" runat="server" CssClass="txtBox" Visible="true"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td style="text-align: right">ContactNo </td>
+                                             <td style="text-align: left">
+                                                 <asp:TextBox ID="txtDriverContact" runat="server" CssClass="txtBox"></asp:TextBox>
+                                             </td>
+                                         </tr>
+                                     </table>
+                                 </asp:Panel>
+                             </td>
+                             <td>
+                                 <asp:Panel ID="pnlVehicle3rd" runat="server" Visible="False">
+                                     <table style="width: 300px;">
+                                         <tr>
+                                             <td>Supplier </td>
+                                             <td>
+                                                 <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px"></asp:TextBox>
+                                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" CompletionInterval="1" CompletionListCssClass="autocomplete_completionListElementBig" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" CompletionListItemCssClass="autocomplete_listItem" CompletionSetCount="1" EnableCaching="false" FirstRowSelected="true" MinimumPrefixLength="1" ServiceMethod="GetSupplierList" TargetControlID="txtSupplier">
+                                                 </cc1:AutoCompleteExtender>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>Charge To </td>
+                                             <td>
+                                                 <asp:RadioButtonList ID="rdo3rdPartyCharge" runat="server" RepeatDirection="Horizontal">
+                                                     <asp:ListItem Selected="True" Value="true">3rd Party</asp:ListItem>
+                                                     <asp:ListItem Value="false">Company</asp:ListItem>
+                                                 </asp:RadioButtonList>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>Type </td>
+                                             <td>
+                                                 <asp:DropDownList ID="ddlVehicleType" runat="server" AutoPostBack="True">
+                                                 </asp:DropDownList>
+                                             </td>
+                                         </tr>
+                                     </table>
+                                 </asp:Panel>
+                             </td>
+                             
+                             <td >
+                                 <asp:Panel ID="pnlVehicleCustomer" runat="server" Visible="True">
+                                     <table style="width: 300px;">
+                                         <tr>
+                                             <td>Supplier </td>
+                                             <td>
+                                                 <asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px"></asp:TextBox>
+                                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender6" runat="server" CompletionInterval="1" CompletionListCssClass="autocomplete_completionListElementBig" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" CompletionListItemCssClass="autocomplete_listItem" CompletionSetCount="1" EnableCaching="false" FirstRowSelected="true" MinimumPrefixLength="1" ServiceMethod="GetSupplierList" TargetControlID="txtSupplier">
+                                                 </cc1:AutoCompleteExtender>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>Charge To </td>
+                                             <td>
+                                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal">
+                                                     <asp:ListItem Selected="True" Value="true">3rd Party</asp:ListItem>
+                                                     <asp:ListItem Value="false">Company</asp:ListItem>
+                                                 </asp:RadioButtonList>
+                                             </td>
+                                         </tr>
+                                         <tr>
+                                             <td>Type </td>
+                                             <td>
+                                                 <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
+                                                 </asp:DropDownList>
+                                             </td>
+                                         </tr>
+                                     </table>
+                                 </asp:Panel>
+                             </td>
+
+                         </tr>
                     </table>
                     <table>
-                        
+                        <tr><td></td></tr>
+                        <tr style="background-color: #B0B0B0; text-align: center;">
+                            <td style="color: Green;">Product</td>
+                            <td>UOM</td>
+                            <td>Price</td> 
+                            <td> Commission</td>
+                            <td style="color: Red;"> Quantity</td>
+                            <td>Total</td>
+                            <td style="color: Green;"> Action</td> 
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:HiddenField ID="hdnProduct" runat="server" />
+                                <asp:HiddenField ID="hdnProductText" runat="server" />
+                                <asp:TextBox ID="txtProduct" runat="server" AutoCompleteType="Search" Width="250px"
+                                             AutoPostBack="true" OnTextChanged="txtProduct_TextChanged"  ></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender5" runat="server" TargetControlID="txtProduct"
+                                                          ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                                          CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                                          CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>
+                            </td>
+                            <td>
+                                <asp:HiddenField ID="hdnUOM" runat="server" />
+                                <asp:DropDownList ID="ddlUOM" runat="server" >
+                                  
+                                </asp:DropDownList>
+                                 
+                            </td>
+                            <td  align="center">
+                                <asp:TextBox ID="lblPrice" runat="server" Width="50px"></asp:TextBox>
+                            </td>
+                          
+                            <td align="center">
+                                <asp:Label ID="lblComm" runat="server"></asp:Label>
+                            </td>
+                            <td align="center" style="vertical-align: middle;">
+                                <asp:TextBox ID="txtQun" runat="server" Width="60px"></asp:TextBox>
+                                &nbsp;
+                            </td>
+                            <td align="center" style="text-align: right;">
+                                <asp:Label ID="lblTotal" Text="0" runat="server"></asp:Label>
+                            </td>
+                            
+                            <td align="right">
+                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" ValidationGroup="valComAdd" OnClick="btnProductAdd_Click" />
+                                <asp:Button ID="btnProductAddAll" runat="server"  Text="Add-All" ValidationGroup="valComAdd" OnClick="btnProductAddAll_Click" />
+                            </td>
+
+                        </tr>
                     </table>
                 </div>
 

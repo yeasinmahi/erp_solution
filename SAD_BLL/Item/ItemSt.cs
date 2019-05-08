@@ -23,7 +23,7 @@ namespace SAD_BLL.Item
         //SprSalesOrderDetaillsForTripAssign
         private static void Inatialize()
         {
-            if (tableProductsAPL == null)
+            if (tableProducts == null)
             {
                 Unit unt = new Unit();
                 UnitTDS.TblUnitDataTable tblUnit = unt.GetUnits();
