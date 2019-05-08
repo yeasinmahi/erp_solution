@@ -37,5 +37,19 @@ namespace DALOOP.Inventory
                 return 0;
             }
         }
+        public bool WinRfq(int supplierId, string winCause, int rfqId)
+        {
+            try
+            {
+                tblRFQMain1TableAdapter adp = new tblRFQMain1TableAdapter();
+                adp.GetData(supplierId, winCause, rfqId);
+                return true;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }
