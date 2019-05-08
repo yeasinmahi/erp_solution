@@ -15,19 +15,23 @@ using System.Web.UI.WebControls;
 using SAD_DAL.Customer;
 using UI.ClassFiles;
 using Utility;
+using SAD_BLL.Sales;
 
 namespace UI.SAD.Delivery
 {
     public partial class DeliveryEntry : BasePage
     {
-        HR_BLL.Global.Unit objUnit = new HR_BLL.Global.Unit();
-        ShipPoint objShipPoint = new ShipPoint();
-        SalesOffice objSalesOffice = new SalesOffice();
-        CustomerType objCustomerType = new CustomerType();
-        ExtraCharge objExtraCharge = new ExtraCharge();
-        Incentive objIncentive = new Incentive();
+        HR_BLL.Global.Unit unt = new HR_BLL.Global.Unit();
+        ShipPoint shipPoint = new ShipPoint();
+        SalesOffice salesOffice = new SalesOffice();
+        CustomerType customerType = new CustomerType();
+        ExtraCharge extraCharge = new ExtraCharge();
+        Incentive incentive = new Incentive();
         CustomerInfo customerInfo = new CustomerInfo();
-        DataTable dt = new DataTable();
+        ItemUnitOfMeasurement objUom = new ItemUnitOfMeasurement();
+        SalesConfig salesConfig=new SalesConfig();
+        Currency currency = new Currency(); 
+         DataTable dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -37,15 +41,13 @@ namespace UI.SAD.Delivery
             }
 
         }
-
+        
         private void DefaultPageLoad()
         {
             try
             {
-                dt = objUnit.GetUnits(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                ddlUnit.Loads(dt, "intUnitID", "strUnit");
-                
-
+                dt = unt.GetUnits(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                ddlUnit.Loads(dt, "intUnitID", "strUnit"); 
                 UnitSelectionChange();
             }
             catch { }
@@ -55,20 +57,28 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                dt = objShipPoint.GetShipPoint(HttpContext.Current.Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue().ToString());
+                dt = shipPoint.GetShipPoint(HttpContext.Current.Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue().ToString());
                 ddlShipPoint.Loads(dt, "intShipPointId", "strName");
-                dt = objSalesOffice.GetSalesOfficeByShipPoint(ddlShipPoint.SelectedValue().ToString());
+                dt = salesOffice.GetSalesOfficeByShipPoint(ddlShipPoint.SelectedValue().ToString());
                 ddlSalesOffice.Loads(dt, "intSalesOfficeId", "strName");
 
-                dt = objCustomerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
+                dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
                 ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
 
-                dt = objExtraCharge.GetExtraChargeList(ddlUnit.SelectedValue().ToString());
+                dt = extraCharge.GetExtraChargeList(ddlUnit.SelectedValue().ToString());
                 ddlVehicleCharge.Loads(dt, "intID", "strText");
 
-                dt = objIncentive.GetIncentiveList(ddlUnit.SelectedValue().ToString());
+                dt = incentive.GetIncentiveList(ddlUnit.SelectedValue().ToString());
                 ddlVehicleIncentive.Loads(dt, "intID", "strText");
+
+                dt = salesConfig.GetSalesTypeForDO(ddlUnit.SelectedValue().ToString());
+                rdoSalesType.RadioLoad(dt, "intTypeID", "strTypeName");
                 
+                rdoSalesType.SelectedIndex= 0;
+ 
+               dt = currency.GetCurrencyInfo();
+                ddlCurrency.Loads(dt, "intID", "strCurrency");
+
                 SessionDataSet();
             }
             catch { }
@@ -152,10 +162,10 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                dt = objSalesOffice.GetSalesOfficeByShipPoint(ddlShipPoint.SelectedValue().ToString());
+                dt = salesOffice.GetSalesOfficeByShipPoint(ddlShipPoint.SelectedValue().ToString());
                 ddlSalesOffice.Loads(dt, "intSalesOfficeId", "strName");
 
-                dt = objCustomerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
+                dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
                 ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
                 SessionDataSet();
             }
@@ -166,7 +176,7 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                dt = objCustomerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
+                dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
                 ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
                 SessionDataSet();
 
@@ -233,7 +243,21 @@ namespace UI.SAD.Delivery
 
         protected void rdoNeedVehicle_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            try
+            {
+                if (rdoNeedVehicle.SelectedValue.ToString() == "1")
+                {
+                    pnlVehicle3rd.Visible = false;
+                    pnlVehicleCustomer.Visible = false;
+                    pnlVehicle3rd.Visible = true;
+                }
+                else if (rdoNeedVehicle.SelectedValue.ToString() == "2")
+                {
+                    pnlVehicle3rd.Visible = true;
+                    pnlVehicleCustomer.Visible = false;
+                }
+            }
+            catch { }
         }
 
         protected void rdoVehicleCompany_SelectedIndexChanged(object sender, EventArgs e)
@@ -271,8 +295,24 @@ namespace UI.SAD.Delivery
         }
 
         protected void txtProduct_TextChanged(object sender, EventArgs e)
-        {
-
+        { 
+            try
+            {
+                if (txtProduct.Text.Trim() != "")
+                {
+                    char[] ch = { '[', ']' };
+                    string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                    hdnProduct.Value = temp[temp.Length - 1];
+                    hdnProductText.Value = temp[0];
+                    //dt = objUom.GetUOMRelationByPrice(hdnProduct.Value,hdnCustomer.Value,'',)
+                    txtQun.Focus();
+                }
+                else
+                {
+                    hdnProduct.Value = "";
+                } 
+            }
+            catch{ }
         }
 
         protected void btnProductAdd_Click(object sender, EventArgs e)

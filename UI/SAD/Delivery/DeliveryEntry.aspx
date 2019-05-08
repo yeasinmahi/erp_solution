@@ -171,6 +171,7 @@
                       </tr>
                             <tr><td></td></tr>
                     </table>
+                <hr />
                      <table style="width: 530px; vertical-align: top;">
                     <tr>
                         <td>
@@ -179,8 +180,8 @@
                         <td>
                             <asp:RadioButtonList ID="rdoNeedVehicle" runat="server" Width="120px" AutoPostBack="True" 
                                                  RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoNeedVehicle_SelectedIndexChanged">
-                                <asp:ListItem Selected="True" Value="true">Yes</asp:ListItem>
-                                <asp:ListItem Value="false">No</asp:ListItem>
+                                <asp:ListItem Selected="True" Value="1">Yes</asp:ListItem>
+                                <asp:ListItem Value="2" >No</asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                         <td  style="color: Maroon;">
@@ -203,6 +204,7 @@
                                          
                     </tr>
                 </table>
+             
                     <table>
                          <tr>
                              <td style="width: 300px; vertical-align: top;">
@@ -306,8 +308,28 @@
 
                          </tr>
                     </table>
+                <hr />
                     <table>
-                        <tr><td></td></tr>
+                        <tr><td></td></tr> 
+                        <tr>
+                            <td style="color: maroon">
+                                CUR
+                            </td>
+                            <td style="color: green;">
+                                <asp:DropDownList ID="ddlCurrency" runat="server" AutoPostBack="True">
+                                </asp:DropDownList>
+                                
+                                <asp:TextBox ID="txtConvRate" runat="server" Width="70px"></asp:TextBox>
+                            </td>
+                            <td style="color: Olive;">
+                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" >
+                                                   
+                                </asp:RadioButtonList>
+                                
+                            </td>
+                        </tr>
+                    </table>
+                    <table> 
                         <tr style="background-color: #B0B0B0; text-align: center;">
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
@@ -331,7 +353,7 @@
                             </td>
                             <td>
                                 <asp:HiddenField ID="hdnUOM" runat="server" />
-                                <asp:DropDownList ID="ddlUOM" runat="server" >
+                                <asp:DropDownList ID="ddlUOM" runat="server"  >
                                   
                                 </asp:DropDownList>
                                  
