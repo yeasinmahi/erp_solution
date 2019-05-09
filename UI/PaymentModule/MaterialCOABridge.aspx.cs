@@ -258,7 +258,8 @@ namespace UI.PaymentModule
                     if (xml == "") { return; }
                 }
 
-                string message = objVoucher.InsertAndUpdateSupplierCOA(intPart, intSupplierID, intUnitID, strSupplier, int.Parse(hdnEnroll.Value), intCOAID);
+                // string message = objVoucher.InsertAndUpdateSupplierCOA(intPart, intSupplierID, intUnitID, strSupplier, int.Parse(hdnEnroll.Value), intCOAID);
+                string message = objVoucher.UpdateItemCOABridge(xml);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
             }
 
