@@ -8,7 +8,6 @@ namespace BLL.AFBLSMSServer
     public class ApiSmsBll
     {
         #region INIT
-
         private readonly ApiSmsDal _apiSmsDal = new ApiSmsDal();
         #endregion
 

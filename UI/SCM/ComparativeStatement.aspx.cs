@@ -912,16 +912,39 @@ namespace UI.SCM
 
         protected void btnSubmitCs_OnClick(object sender, EventArgs e)
         {
-            int supplierId = ddlSupplierCs.SelectedValue();
-            if (supplierId > 0)
+            string rfq = txtRfqCs.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
             {
-                string remaks = remaksCs.Text;
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                int supplierId = ddlSupplierCs.SelectedValue();
+                if (supplierId > 0)
+                {
+                    string winCause = remaksCs.Text;
+                    if (_bll.WinRfq(supplierId, winCause, rfqId))
+                    {
+                        Toaster("Successfully win the supplier "+ddlSupplier.SelectedText(), Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster("Something error while wining supplier",Common.TosterType.Warning);
+                    }
+                        
+                }
+                else
+                {
+                    Toaster("Please Select Supplier", Common.TosterType.Warning);
+                }
+                SetVisibility("panel", true);
             }
             else
             {
-                Toaster("Please Select Supplier",Common.TosterType.Warning);
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
             }
-            SetVisibility("panel", true);
+            
         }
         #endregion
 
