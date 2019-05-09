@@ -8845,8 +8845,8 @@ where intCusID = @intCusID";
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        strAddress\r\nFROM            tblCustomer\r\nWHERE        (intCusID = @" +
-                "intCusID)";
+            this._commandCollection[1].CommandText = "SELECT        strAddress,intPriceCatagory\r\nFROM            tblCustomer\r\nWHERE    " +
+                "    (intCusID = @intCusID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();

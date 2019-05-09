@@ -70,6 +70,26 @@
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
                     <asp:HiddenField ID="hdnDA" runat="server" />
+                <asp:HiddenField ID="hdnsalestype" runat="server" />
+                <asp:HiddenField ID="hdnvisibility" runat="server" />
+                <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
+                <asp:HiddenField ID="hdnCharBasedOnUom" runat="server" />
+                <asp:HiddenField ID="hdnIncenBasedOnUom" runat="server" />
+                <asp:HiddenField ID="hdnCreditSales" runat="server" />
+                <asp:HiddenField ID="hdnLm" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
+                <asp:HiddenField ID="HiddenField1" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnXFactoryVhl" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnXFactoryChr" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnChrgPrice" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVhlMerge" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnChrgMerge" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVatPrice" Value="0" runat="server" />
                     <div class="tabs_container">
                      <span style="color: red">Delivery Challan</span><hr />
                     </div>
@@ -208,6 +228,7 @@
                     <table>
                          <tr>
                              <td style="width: 300px; vertical-align: top;">
+                                 <asp:HiddenField ID="hdnPriceId" runat="server" />
                                  <asp:Panel ID="pnlVehicleMain" runat="server" Visible="True">
                                      <table style="width: 300px;">
                                          <tr>
@@ -322,10 +343,14 @@
                                 <asp:TextBox ID="txtConvRate" runat="server" Width="70px"></asp:TextBox>
                             </td>
                             <td style="color: Olive;">
-                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" >
-                                                   
-                                </asp:RadioButtonList>
-                                
+                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" > 
+                                </asp:RadioButtonList> 
+                            </td>
+                            <td>
+                                Reff No
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
                             </td>
                         </tr>
                     </table>
@@ -353,7 +378,7 @@
                             </td>
                             <td>
                                 <asp:HiddenField ID="hdnUOM" runat="server" />
-                                <asp:DropDownList ID="ddlUOM" runat="server"  >
+                                <asp:DropDownList ID="ddlUOM" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged"  >
                                   
                                 </asp:DropDownList>
                                  
@@ -376,10 +401,12 @@
                             <td align="right">
                                 <asp:Button ID="btnProductAdd" runat="server"  Text="Add" ValidationGroup="valComAdd" OnClick="btnProductAdd_Click" />
                                 <asp:Button ID="btnProductAddAll" runat="server"  Text="Add-All" ValidationGroup="valComAdd" OnClick="btnProductAddAll_Click" />
-                            </td>
-
+                            </td> 
                         </tr>
                     </table>
+                 
+                         
+         
                 </div>
 
                 <%--=========================================End My Code From Here=================================================--%>
