@@ -140,7 +140,22 @@ namespace Utility
             }
             return string.Empty;
         }
-
+        public static bool RadioLoad(this RadioButtonList rdo, DataTable dt, string value, string text)
+        {
+            if (dt == null) return false;
+            try
+            {
+                rdo.DataSource = dt;
+                rdo.DataValueField = value;
+                rdo.DataTextField = text;
+                rdo.DataBind();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static bool Loads(this DropDownList ddl, DataTable dt, string value, string text)
         {
             if (dt == null) return false;

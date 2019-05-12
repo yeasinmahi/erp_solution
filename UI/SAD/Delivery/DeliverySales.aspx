@@ -750,7 +750,7 @@
                                 <asp:Label ID="lblGT" runat="server" Text="0.0"></asp:Label>
                             </td>--%>
                             <td align="right">
-                                <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" ValidationGroup="valComAdd" />
+                                <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add"  />
                             </td>
                         </tr>
                         
@@ -761,6 +761,29 @@
             <div style="height: 470px;">
             </div>
             <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1"
+                runat="server">
+            </cc1:AlwaysVisibleControlExtender>
+            <table style="width: 850px;">
+                <tr>
+                    <td>
+                        ddlExtra</td>
+                </tr>
+                <tr style="height: 50px; vertical-align: bottom;">
+                    <td>
+                        <asp:Button ID="btnCancel" runat="server" ValidationGroup="valComCan" OnClick="btnCancel_Click"
+                            Text="Cancel" />
+                    </td>
+                    <td align="right">
+                    </td>
+                    <td align="right">
+                        <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
+                            OnClick="btnSubmit_Click" />
+                        <asp:Label ID="lblError" runat="server" ForeColor="Maroon"></asp:Label>
+                    </td>
+                </tr>
+            </table>
+            </div>
+             <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2"
                 runat="server">
             </cc1:AlwaysVisibleControlExtender>
             <table style="width: 850px;">
@@ -822,7 +845,7 @@
                                 <asp:TemplateField HeaderText="Total">
                                     <FooterStyle HorizontalAlign="Right" />
                                     <ItemTemplate>
-                                        <asp:Label Visible="false" ID="Label8" runat="server" Text='<%# GetTotal(""+Eval("ExtPr"),""+Eval("Logis"), ""+Eval("Qnt"), ""+Eval("IncPr")) %>'></asp:Label>
+                                        <asp:Label Visible="true" ID="Label8" runat="server" Text='<%# GetTotal(""+Eval("ExtPr"),""+Eval("Logis"), ""+Eval("Qnt"), ""+Eval("IncPr")) %>'></asp:Label>
                                     </ItemTemplate>
                                     <FooterTemplate>
                                         <asp:Label Visible="false" ID="Label9" runat="server" Text='<%# GetGrandTotal(9) %>'></asp:Label>
@@ -884,19 +907,18 @@
                 </tr>
                 <tr style="height: 50px; vertical-align: bottom;">
                     <td>
-                        <asp:Button ID="btnCancel" runat="server" ValidationGroup="valComCan" OnClick="btnCancel_Click"
+                        <asp:Button ID="Button1" runat="server" ValidationGroup="valComCan" OnClick="btnCancel_Click"
                             Text="Cancel" />
                     </td>
                     <td align="right">
                     </td>
                     <td align="right">
-                        <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
+                        <asp:Button ID="Button2" ValidationGroup="valCom" runat="server" Text="Save Sales"
                             OnClick="btnSubmit_Click" />
-                        <asp:Label ID="lblError" runat="server" ForeColor="Maroon"></asp:Label>
+                        <asp:Label ID="Label14" runat="server" ForeColor="Maroon"></asp:Label>
                     </td>
                 </tr>
             </table>
-            </div>
             <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
                 ValidationGroup="valCom"></asp:CustomValidator>
             <asp:CustomValidator ID="cvtVal" runat="server" ClientValidationFunction="Val" ValidationGroup="valNP"></asp:CustomValidator>
