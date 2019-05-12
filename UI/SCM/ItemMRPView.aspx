@@ -1,6 +1,19 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemManagerAccountsPopUp.aspx.cs" Inherits="UI.SCM.ItemManagerAccountsPopUp" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ItemMRPView.aspx.cs" Inherits="UI.SCM.ItemMRPView" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+
+<%--<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+        </div>
+    </form>
+</body>
+</html>--%>
 <!DOCTYPE html>
 
 <html>
@@ -346,9 +359,10 @@
         </tr>--%>
             <tr><td colspan="4"><hr /></td></tr>
             <tr>
-                <td style="text-align:right;"><asp:Label ID="Label22" runat="server" Text="HML Classification " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
-                <td><asp:DropDownList ID="ddlHML" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text="Select HML Classification"></asp:ListItem>
-                <asp:ListItem Value="1" Text="High Cost"></asp:ListItem><asp:ListItem Value="2" Text="Medium Cost"></asp:ListItem><asp:ListItem Value="3" Text="Low Cost"></asp:ListItem></asp:DropDownList></td>
+                <td style="text-align:right;"><asp:Label ID="Label22" runat="server" Text="Is MRP " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
+                <td><asp:TextBox ID="TextIsMrp" runat="server" CssClass="txtBox1" BackColor="WhiteSmoke" Enabled="false"></asp:TextBox></td>
+                <%--<td><asp:DropDownList ID="ddlHML" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="0" Text="Select HML Classification"></asp:ListItem>
+                <asp:ListItem Value="1" Text="High Cost"></asp:ListItem><asp:ListItem Value="2" Text="Medium Cost"></asp:ListItem><asp:ListItem Value="3" Text="Low Cost"></asp:ListItem></asp:DropDownList></td>--%>
                 <td style="text-align:right;"><asp:Label ID="Label23" runat="server" Text="VAT Applicable " CssClass="lbl"></asp:Label><span style="color:red; font-size:14px;">*</span><span> :</span></td>
                 <td><asp:DropDownList ID="ddlVAT" CssClass="ddList" Font-Bold="False" runat="server" width="220px" height="24px" BackColor="White"><asp:ListItem Selected="True" Value="3" Text="Select VAT Applicable or not"></asp:ListItem>
                 <asp:ListItem Value="0" Text="No"></asp:ListItem><asp:ListItem Value="1" Text="Yes"></asp:ListItem></asp:DropDownList></td>

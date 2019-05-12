@@ -10,7 +10,7 @@
 namespace UI.SCM {
     
     
-    public partial class ItemManagerPurchasePopUp {
+    public partial class ItemMRPView {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -220,13 +220,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtOriginn;
         
         /// <summary>
-        /// Label22 control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label22;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// txtPartNo control.
@@ -238,13 +238,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtPartNo;
         
         /// <summary>
-        /// Label23 control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label23;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// txtOtherSpec control.
@@ -256,13 +256,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtOtherSpec;
         
         /// <summary>
-        /// Label10 control.
+        /// Label5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
+        protected global::System.Web.UI.WebControls.Label Label5;
         
         /// <summary>
         /// txtModelNo control.
@@ -382,13 +382,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtHight;
         
         /// <summary>
-        /// Label17 control.
+        /// Label7 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
+        protected global::System.Web.UI.WebControls.Label Label7;
         
         /// <summary>
         /// ddlHightUom control.
@@ -454,13 +454,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox TextOuterDia;
         
         /// <summary>
-        /// Label1 control.
+        /// Label8 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label8;
         
         /// <summary>
         /// ddlOdUom control.
@@ -472,13 +472,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlOdUom;
         
         /// <summary>
-        /// Label3 control.
+        /// Label11 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
         /// TextGrossWt control.
@@ -490,13 +490,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox TextGrossWt;
         
         /// <summary>
-        /// Label5 control.
+        /// Label26 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label Label26;
         
         /// <summary>
         /// TextNetWt control.
@@ -596,6 +596,60 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPurchaseDescription;
+        
+        /// <summary>
+        /// Label22 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label22;
+        
+        /// <summary>
+        /// TextIsMrp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextIsMrp;
+        
+        /// <summary>
+        /// Label23 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label23;
+        
+        /// <summary>
+        /// ddlVAT control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlVAT;
+        
+        /// <summary>
+        /// lblCOA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCOA;
+        
+        /// <summary>
+        /// ddlCOA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCOA;
         
         /// <summary>
         /// btnApprove control.
