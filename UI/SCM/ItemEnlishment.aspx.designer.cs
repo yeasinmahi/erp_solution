@@ -166,22 +166,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlWH;
         
         /// <summary>
-        /// lblBaseName control.
+        /// lblItemName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblBaseName;
+        protected global::System.Web.UI.WebControls.Label lblItemName;
         
         /// <summary>
-        /// txtBaseName control.
+        /// txtItemName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBaseName;
+        protected global::System.Web.UI.WebControls.TextBox txtItemName;
         
         /// <summary>
         /// lblDescription control.
@@ -193,13 +193,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label lblDescription;
         
         /// <summary>
-        /// txtDescription control.
+        /// txtColour control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDescription;
+        protected global::System.Web.UI.WebControls.TextBox txtColour;
         
         /// <summary>
         /// lblSearch control.
@@ -238,31 +238,31 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// txtPart control.
+        /// ddlUoMN control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPart;
+        protected global::System.Web.UI.WebControls.DropDownList ddlUoMN;
         
         /// <summary>
-        /// Label18 control.
+        /// Label22 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label18;
+        protected global::System.Web.UI.WebControls.Label Label22;
         
         /// <summary>
-        /// txtModel control.
+        /// txtOrigin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtModel;
+        protected global::System.Web.UI.WebControls.TextBox txtOrigin;
         
         /// <summary>
         /// ListBox1 control.
@@ -283,31 +283,31 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label19;
         
         /// <summary>
-        /// txtSerial control.
+        /// txtpartNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSerial;
+        protected global::System.Web.UI.WebControls.TextBox txtpartNo;
         
         /// <summary>
-        /// Label4 control.
+        /// Label18 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label Label18;
         
         /// <summary>
-        /// txtBrand control.
+        /// txtOtherSpec control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtBrand;
+        protected global::System.Web.UI.WebControls.TextBox txtOtherSpec;
         
         /// <summary>
         /// Label20 control.
@@ -319,31 +319,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label20;
         
         /// <summary>
-        /// txtSpecification control.
+        /// txtModelNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSpecification;
-        
-        /// <summary>
-        /// Label22 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label22;
-        
-        /// <summary>
-        /// txtReOrder control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReOrder;
+        protected global::System.Web.UI.WebControls.TextBox txtModelNo;
         
         /// <summary>
         /// Label11 control.
@@ -355,31 +337,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label11;
         
         /// <summary>
-        /// txtReOrderQty control.
+        /// txtBrandn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReOrderQty;
-        
-        /// <summary>
-        /// Label12 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label12;
-        
-        /// <summary>
-        /// txtMinimum control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMinimum;
+        protected global::System.Web.UI.WebControls.TextBox txtBrandn;
         
         /// <summary>
         /// Label13 control.
@@ -391,13 +355,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label13;
         
         /// <summary>
-        /// txtMaximum control.
+        /// txtLength control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaximum;
+        protected global::System.Web.UI.WebControls.TextBox txtLength;
         
         /// <summary>
         /// Label15 control.
@@ -409,13 +373,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label15;
         
         /// <summary>
-        /// txtSafety control.
+        /// ddlLengthUom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSafety;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLengthUom;
         
         /// <summary>
         /// Label24 control.
@@ -427,13 +391,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label24;
         
         /// <summary>
-        /// txtMaxConsum control.
+        /// txtWidth control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaxConsum;
+        protected global::System.Web.UI.WebControls.TextBox txtWidth;
         
         /// <summary>
         /// Label25 control.
@@ -445,13 +409,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label25;
         
         /// <summary>
-        /// txtMinConsum control.
+        /// ddlWidthUom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMinConsum;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWidthUom;
         
         /// <summary>
         /// Label23 control.
@@ -463,13 +427,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label23;
         
         /// <summary>
-        /// txtSelfTime control.
+        /// txtHight control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSelfTime;
+        protected global::System.Web.UI.WebControls.TextBox txtHight;
         
         /// <summary>
         /// Label21 control.
@@ -481,211 +445,121 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label21;
         
         /// <summary>
-        /// txtOrigin control.
+        /// ddlHightUom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtOrigin;
+        protected global::System.Web.UI.WebControls.DropDownList ddlHightUom;
         
         /// <summary>
-        /// Label5 control.
+        /// Label27 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
+        protected global::System.Web.UI.WebControls.Label Label27;
         
         /// <summary>
-        /// ddlUOM control.
+        /// TextInnerDia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUOM;
+        protected global::System.Web.UI.WebControls.TextBox TextInnerDia;
         
         /// <summary>
-        /// Label17 control.
+        /// Label28 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label17;
+        protected global::System.Web.UI.WebControls.Label Label28;
         
         /// <summary>
-        /// ddlLocation control.
+        /// ddlIdUom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
+        protected global::System.Web.UI.WebControls.DropDownList ddlIdUom;
         
         /// <summary>
-        /// Label1 control.
+        /// Label29 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Label29;
         
         /// <summary>
-        /// ddlGroup control.
+        /// TextOuterDia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGroup;
+        protected global::System.Web.UI.WebControls.TextBox TextOuterDia;
         
         /// <summary>
-        /// Label3 control.
+        /// Label30 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label Label30;
         
         /// <summary>
-        /// ddlCategory control.
+        /// ddlOdUom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        protected global::System.Web.UI.WebControls.DropDownList ddlOdUom;
         
         /// <summary>
-        /// Label6 control.
+        /// Label4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label6;
+        protected global::System.Web.UI.WebControls.Label Label4;
         
         /// <summary>
-        /// ddlSubCategory control.
+        /// TextGrossWt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlSubCategory;
+        protected global::System.Web.UI.WebControls.TextBox TextGrossWt;
         
         /// <summary>
-        /// Label7 control.
+        /// Label12 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label7;
+        protected global::System.Web.UI.WebControls.Label Label12;
         
         /// <summary>
-        /// ddlMinorCategory control.
+        /// TextNetWt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMinorCategory;
-        
-        /// <summary>
-        /// Label8 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label8;
-        
-        /// <summary>
-        /// ddlPlant control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPlant;
-        
-        /// <summary>
-        /// Label9 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label9;
-        
-        /// <summary>
-        /// ddlABC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlABC;
-        
-        /// <summary>
-        /// Label10 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label10;
-        
-        /// <summary>
-        /// ddlFSN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFSN;
-        
-        /// <summary>
-        /// Label16 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label16;
-        
-        /// <summary>
-        /// ddlVDE control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVDE;
-        
-        /// <summary>
-        /// Label26 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label26;
-        
-        /// <summary>
-        /// ddlProcurementType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlProcurementType;
+        protected global::System.Web.UI.WebControls.TextBox TextNetWt;
         
         /// <summary>
         /// btnSubmit control.
@@ -695,14 +569,5 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
-        /// btnReset control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReset;
     }
 }
