@@ -76,7 +76,7 @@ namespace UI.SAD.Delivery
             try
             {
                 dt = vehicle.GetVhlType(ddlUnit.SelectedValue().ToString());
-                ddlVehicleType.Loads(dt, "intTypeId", "strType");
+                //ddlVehicleType.Loads(dt, "intTypeId", "strType");
 
                 dt = shipPoint.GetShipPoint(HttpContext.Current.Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue().ToString());
                 ddlShipPoint.Loads(dt, "intShipPointId", "strName");
