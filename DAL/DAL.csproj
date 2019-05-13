@@ -251,6 +251,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\CodeInfoTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeInfoTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\IncomeSatement\IncomestatementTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -763,6 +768,17 @@
     </None>
     <None Include="Accounts\ChartOfAccount\TemplateTDS.xss">
       <DependentUpon>TemplateTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\CodeInfoTds.xsc">
+      <DependentUpon>CodeInfoTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\CodeInfoTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CodeInfoTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\CodeInfoTds.xss">
+      <DependentUpon>CodeInfoTds.xsd</DependentUpon>
     </None>
     <None Include="Accounts\IncomeSatement\IncomestatementTDS.xsc">
       <DependentUpon>IncomestatementTDS.xsd</DependentUpon>

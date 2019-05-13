@@ -104,6 +104,8 @@ namespace UI.HR.Overtime
             if (Session["obj"] != null)
             {
                 List<object> objects = (List<object>)Session["obj"];
+                //object obj = objects.GetDynamicObject("remarks", "Test");
+                //obj.UpdateObject("reason", "Test2");
                 objects.RemoveAt(e.RowIndex);
                 if (objects.Count > 0)
                 {
