@@ -178,6 +178,7 @@ namespace UI.HR.Overtime
             }
         }
 
+
         private void LoadPurpose()
         {
             ddlPurpose.Loads(_bll.getOvertimePurpouse(), "intID", "strPurpouse");
@@ -274,6 +275,7 @@ namespace UI.HR.Overtime
                 SetVisibility("panel", true);
             }
         }
+
 
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {
