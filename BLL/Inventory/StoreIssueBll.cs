@@ -1,4 +1,5 @@
 ﻿using System;
+using BLL.Accounts;
 
 namespace BLL.Inventory
 {
@@ -15,7 +16,8 @@ namespace BLL.Inventory
                 if (itemList.GetItemCoaId(itemId) > 0)
                 {
                     //TODO: insert
-
+                    AccountsVoucherJournalBll accountsVoucherJournalBll = new AccountsVoucherJournalBll();
+                    accountsVoucherJournalBll.GetJurnalVoucher(jvId);
                 }
                 else
                 {
