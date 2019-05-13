@@ -18,6 +18,7 @@ using Utility;
 using SAD_BLL.Sales;
 using System.Xml;
 using System.IO;
+using System.Reflection;
 
 namespace UI.SAD.Delivery
 {
@@ -35,6 +36,7 @@ namespace UI.SAD.Delivery
         Currency currency = new Currency();
         ItemPrice itemPrice= new ItemPrice();
         ItemPromotion itemPromotion = new ItemPromotion();
+        
         SAD_BLL.Item.Item item = new SAD_BLL.Item.Item();
      
 
@@ -150,11 +152,11 @@ namespace UI.SAD.Delivery
             }
             else if (HttpContext.Current.Session["sesLogisticType"].ToString() == "Rent")
             {
-                return VehicleSt.GetVehicleDataForAutoFillParty(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+                return SalesSearch_BLL.GetRentVehicleList(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
             else if (HttpContext.Current.Session["sesLogisticType"].ToString() == "Customer")
             {
-                return VehicleSt.GetVehicleDataForAutoFillParty(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+                return SalesSearch_BLL.GetCustomerVehicleList(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
             else return null;
         }
@@ -257,15 +259,7 @@ namespace UI.SAD.Delivery
             catch { }
         }
 
-        protected void ddlVehicleCharge_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void ddlVehicleIncentive_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void rdoNeedVehicle_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -296,7 +290,11 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                if (rdoVehicleCompany.SelectedValue.ToString() == "1")
+                txtVehicle.Text = "";
+                txtSupplier.Text = "";
+                txtDriver.Text = "";
+                txtDriverContact.Text = "";
+;               if (rdoVehicleCompany.SelectedValue.ToString() == "1")
                 {
                     pnlVehicle3rd.Visible = false;
                     Session["sesLogisticType"] = "Company";
@@ -327,7 +325,7 @@ namespace UI.SAD.Delivery
 
         protected void txtVehicle_TextChanged(object sender, EventArgs e)
         {
-
+            VehicleChange();
         }
 
         protected void txtProduct_TextChanged(object sender, EventArgs e)
@@ -344,6 +342,7 @@ namespace UI.SAD.Delivery
                          hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(), txtDate.Text.ToString());
                     ddlUOM.Loads(dt, "intID", "strUOM");
                     txtQun.Text ="0";
+                    txtPrice.Text = "0";
 
                     SetPrice();
                     txtQun.Focus();
@@ -358,96 +357,102 @@ namespace UI.SAD.Delivery
 
         protected void btnProductAdd_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.Budget bdg = new BLL.Accounts.Voucher.Budget(); DataTable strtdt = new DataTable();
-            DateTime gdt = CommonClass.GetDateAtSQLDateFormat(txtDate.Text);
-            strtdt = bdg.GetAccountsStartDate(int.Parse(ddlUnit.SelectedValue.ToString()));
-            DateTime pdt = DateTime.Parse(strtdt.Rows[0]["StartDate"].ToString());
-            int rest = DateTime.Compare(gdt, pdt);
-
-            if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" &&
-            decimal.Parse(txtPrice.Text) > 0 && txtQun.Text.Trim() != "" && rest >= 0) 
-            {
-
-                string coaId = "";
-                string coaName = "";
-                decimal lm = 0, bl = 0;
-                customerInfo.GetCustomerCreditLimitCreditBalance(hdnCustomer.Value, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), ref lm, ref bl);
-
-                item.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, rdoSalesType.SelectedValue, ref coaId, ref coaName);
-
-                if (int.Parse(coaId)>0)
-                {
-                    string narr = txtQun.Text.Trim() + " " + ddlUOM.SelectedItem.Text + " " + hdnProductText.Value + " Sold";
-
-                    if (txtReffNo.Text.Trim() != "")
-                    {
-                        narr += " as per challan no " + txtReffNo.Text.Trim();
-                    } 
-                    narr += " To " + hdnCustomerText.Value;
-                   
-
-                    decimal promQnty = 0;
-                    int promItemId = 0;
-                    int promItemCOAId = 0;
-                    int promItemUOM = 0;
-                    string promItem = "";
-                    string promUom = ""; 
-
-                    decimal promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                        , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
-
-                  
-                    string productId = hdnProduct.Value;
-                    string productName = hdnProductText.Value;
-                    string quantity = txtQun.Text.ToString();
-                    string rate = txtPrice.Text;
-                    string uomId = ddlUOM.SelectedValue().ToString();
-                    string uomName = ddlUOM.SelectedItem.ToString();
-                    string naration = "";
-                    string currency = ddlCurrency.SelectedValue().ToString();
-                    string commision = lblComm.Text.ToString();
-                    string commisionTotal = lblComm.Text.ToString();
-                    string discount = "0";
-                    string discountTotal = "0";
-                    string priceTotal = "0";
-                    string supplierTax = hdnSuppTax.Value;
-                    string vat = hdnVat.Value;
-                    string vatPrice = hdnVatPrice.Value;
-                    string promtionItemId = promItemId.ToString();
-                    string promtionItem = promItem.ToString();
-                    string promtionUom = promUom;
-                    string promPrices = promPrice.ToString();
-                    string promtionItemCoaId = promItemCOAId.ToString();
-                    string promtionQnty = promQnty.ToString();
-                    string promtionItemUom = promUom.ToString();
-
-                    foreach (GridViewRow row in dgvSales.Rows)
-                    {
-                        if (((Label)row.FindControl("lblProdutId")).Text == productId)
-                        {
-                            Toaster("Can not add same product Name " + productName + " dublicate.", "", Common.TosterType.Error);
-
-                            return;
-                        }
-
-                    }
-
-                    RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
-                        naration, currency, commision, commisionTotal, discount, discountTotal,
-                        priceTotal, supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
-                        promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom);
-                         
-                    txtQun.Text = ""; 
-                    hdnProduct.Value = "";
-                    txtPrice.Visible = true;
-                    txtProduct.Text = "";
-                    txtProduct.Focus(); 
-                }
-            }
-
-
+            SessionXmlCreate(); 
         }
 
+        private void SessionXmlCreate()
+        {
+            try
+            {
+                BLL.Accounts.Voucher.Budget bdg = new BLL.Accounts.Voucher.Budget(); DataTable strtdt = new DataTable();
+                DateTime gdt = CommonClass.GetDateAtSQLDateFormat(txtDate.Text);
+                strtdt = bdg.GetAccountsStartDate(int.Parse(ddlUnit.SelectedValue.ToString()));
+                DateTime pdt = DateTime.Parse(strtdt.Rows[0]["StartDate"].ToString());
+                int rest = DateTime.Compare(gdt, pdt);
+
+                if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" &&
+                decimal.Parse(txtPrice.Text) > 0 && txtQun.Text.Trim() != "" && rest >= 0)
+                {
+
+                    string coaId = "";
+                    string coaName = "";
+                    decimal lm = 0, bl = 0;
+                    customerInfo.GetCustomerCreditLimitCreditBalance(hdnCustomer.Value, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), ref lm, ref bl);
+
+                    item.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, rdoSalesType.SelectedValue, ref coaId, ref coaName);
+
+                    if (int.Parse(coaId) > 0)
+                    {
+                        string narr = txtQun.Text.Trim() + " " + ddlUOM.SelectedItem.Text + " " + hdnProductText.Value + " Sold";
+
+                        if (txtReffNo.Text.Trim() != "")
+                        {
+                            narr += " as per challan no " + txtReffNo.Text.Trim();
+                        }
+                        narr += " To " + hdnCustomerText.Value;
+
+
+                        decimal promQnty = 0;
+                        int promItemId = 0;
+                        int promItemCOAId = 0;
+                        int promItemUOM = 0;
+                        string promItem = "";
+                        string promUom = "";
+
+                        decimal promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+                            , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+
+                        string productId = hdnProduct.Value;
+                        string productName = hdnProductText.Value;
+                        string quantity = txtQun.Text.ToString();
+                        string rate = txtPrice.Text;
+                        string uomId = ddlUOM.SelectedValue().ToString();
+                        string uomName = ddlUOM.SelectedItem.ToString();
+                        string naration = "";
+                        string currency = ddlCurrency.SelectedValue().ToString();
+                        string commision = lblComm.Text.ToString();
+                        string commisionTotal = lblComm.Text.ToString();
+                        string discount = "0";
+                        string discountTotal = "0";
+                        string priceTotal = "0";
+                        string supplierTax = hdnSuppTax.Value;
+                        string vat = hdnVat.Value;
+                        string vatPrice = hdnVatPrice.Value;
+                        string promtionItemId = promItemId.ToString();
+                        string promtionItem = promItem.ToString();
+                        string promtionUom = promUom;
+                        string promPrices = promPrice.ToString();
+                        string promtionItemCoaId = promItemCOAId.ToString();
+                        string promtionQnty = promQnty.ToString();
+                        string promtionItemUom = promUom.ToString();
+
+                        foreach (GridViewRow row in dgvSales.Rows)
+                        {
+                            if (((Label)row.FindControl("lblProdutId")).Text == productId)
+                            {
+                                Toaster("Can not add same product Name " + productName + " dublicate.", "", Common.TosterType.Error);
+
+                                return;
+                            }
+
+                        }
+
+                        RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                            naration, currency, commision, commisionTotal, discount, discountTotal,
+                            priceTotal, supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
+                            promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom);
+
+                        txtQun.Text = "";
+                        hdnProduct.Value = "";
+                        txtPrice.Visible = true;
+                        txtProduct.Text = "";
+                        txtProduct.Focus();
+                    }
+                }
+            }
+            catch { }
+        }
         private void RowLavelXmlCreate(string productId, string productName, string quantity, string rate, string uomId,
             string uomName,string naration, string currency, string commision, string commisionTotal, string discount,
             string discountTotal,string priceTotal, string supplierTax, string vat, string vatPrice, string narr, string promtionItemId,
@@ -498,10 +503,14 @@ namespace UI.SAD.Delivery
         {
             try
             {
+               
+
+
                 if (Session["rowObj"] != null)
                 {
                     List<object> objects = (List<object>)Session["rowObj"];
-                    objects.RemoveAt(e.RowIndex);
+                    
+                    objects.RemoveAt(e.RowIndex); 
                     if (objects.Count > 0)
                     {
                         string xmlString = XmlParser.GetXml("Entry", "items", objects, out string message);
@@ -663,6 +672,42 @@ namespace UI.SAD.Delivery
             }
             catch
             {
+            }
+        }
+
+        protected void txtQun_TextChanged(object sender, EventArgs e)
+        {
+            SessionXmlCreate();
+        }
+
+        private void VehicleChange()
+        {
+          
+            if (txtVehicle.Text.Trim() != "")
+            {
+                char[] ch = { '[', ']' };
+                string[] temp = txtVehicle.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                try
+                {
+                    string dName = "";
+                    string dContact = "";
+                    hdnVehicle.Value = temp[temp.Length - 1]; 
+                    vehicle.GetVehicleInfoById(hdnVehicle.Value, ref dName, ref dContact);
+                    txtDriver.Text = dName;
+                    txtDriverContact.Text = dContact;
+                    hdnVehicleText.Value = temp[0];
+                }
+                catch
+                {
+                    hdnVehicle.Value = "";
+                }
+
+               
+            }
+            else
+            {
+                hdnVehicleText.Value = ""; //txtVehicle.Text.Trim();
+                hdnVehicle.Value = "";
             }
         }
     }
