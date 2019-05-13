@@ -85,20 +85,20 @@ namespace UI.SCM
                 intPart = 9;
                 intAutoID = int.Parse(hdnItemID.Value.ToString());
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
-                strHSCode = txtHSCode.Text;
-                try { numMaxLeadTime = int.Parse(txtMaxLeadTime.Text); } catch { numMaxLeadTime = 0; }
-                try { numMinLeadTime = int.Parse(txtMinLeadTime.Text); } catch { numMinLeadTime = 0; }
-                strOrderingLotSize = txtLotSize.Text;
-                try { numEOQ = decimal.Parse(txtEOQ.Text); } catch { numEOQ = 0; }
-                try { numMOQ = decimal.Parse(txtMOQ.Text); } catch { numMOQ = 0; }
-                intSDE = int.Parse(ddlSDE.SelectedValue.ToString());
-                strSDE = ddlSDE.SelectedItem.ToString();
+                //strHSCode = txtHSCode.Text;
+                //try { numMaxLeadTime = int.Parse(txtMaxLeadTime.Text); } catch { numMaxLeadTime = 0; }
+                //try { numMinLeadTime = int.Parse(txtMinLeadTime.Text); } catch { numMinLeadTime = 0; }
+                //strOrderingLotSize = txtLotSize.Text;
+                //try { numEOQ = decimal.Parse(txtEOQ.Text); } catch { numEOQ = 0; }
+                //try { numMOQ = decimal.Parse(txtMOQ.Text); } catch { numMOQ = 0; }
+                //intSDE = int.Parse(ddlSDE.SelectedValue.ToString());
+                //strSDE = ddlSDE.SelectedItem.ToString();
 
-                if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtMaxLeadTime.Text == "" || txtMinLeadTime.Text == "")
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
-                    return;
-                }
+                //if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtMaxLeadTime.Text == "" || txtMinLeadTime.Text == "")
+                //{
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
+                //    return;
+                //}
                 //if (txtProcumentType.Text == "Import")
                 //{
                 //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Must be fill HS Code for Import Items.....');", true);
