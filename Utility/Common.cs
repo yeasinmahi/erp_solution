@@ -23,7 +23,7 @@ namespace Utility
         {
             return obj.GetType().GetProperty(name)?.GetValue(obj, null);
         }
-        public static object GetDynamicObject(List<object> objs, string name, string value)
+        public static object GetDynamicObject(this List<object> objs, string name, string value)
         {
             foreach (object o in objs)
             {
@@ -33,6 +33,15 @@ namespace Utility
                 }
             }
             return null;
+        }
+        public static object UpdateObject(this object obj, string name, string newValue)
+        {
+            PropertyInfo propertyInfo = obj.GetType().GetProperty(name, BindingFlags.Instance | BindingFlags.NonPublic);
+            if (propertyInfo != null)
+            {
+                propertyInfo.SetValue(obj, newValue, null);
+            }
+            return obj;
         }
 
         public static StreamWriter GetStreamWriter(string path)
