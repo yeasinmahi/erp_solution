@@ -372,7 +372,7 @@
                                 <asp:Label ID="lblComm" runat="server"></asp:Label>
                             </td>
                             <td align="center" style="vertical-align: middle;">
-                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="False" onkeyup="SetPrice(this);" Width="60px"></asp:TextBox>
+                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="False" onkeyup="SetPrice(this);" Width="60px" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
                                 &nbsp;
                             </td>
                             <td align="center" style="text-align: right;">
@@ -380,7 +380,7 @@
                             </td>
                             
                             <td align="right">
-                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" ValidationGroup="valComAdd" OnClick="btnProductAdd_Click" />
+                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" AutoPostBack="true"  OnClick="btnProductAdd_Click" />
                             </td> 
                         </tr>
                     </table>
