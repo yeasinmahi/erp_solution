@@ -36,5 +36,17 @@ namespace DALOOP.Accounts
                 return new DataTable();
             }
         }
+        public DataTable GetJurnalVoucher(int voucherId,DateTime voucherDate)
+        {
+            try
+            {
+                tblAccountsVoucherJournal2TableAdapter adp = new tblAccountsVoucherJournal2TableAdapter();
+                return adp.GetData(voucherId,voucherDate);
+            }
+            catch (Exception e)
+            {
+                return new DataTable();
+            }
+        }
     }
 }

@@ -23,6 +23,17 @@ namespace Utility
         {
             return obj.GetType().GetProperty(name)?.GetValue(obj, null);
         }
+        public static object GetDynamicObject(List<object> objs, string name, string value)
+        {
+            foreach (object o in objs)
+            {
+                if (o.GetType().GetProperty(name)?.GetValue(o, null).ToString()==(value))
+                {
+                    return o;
+                }
+            }
+            return null;
+        }
 
         public static StreamWriter GetStreamWriter(string path)
         {

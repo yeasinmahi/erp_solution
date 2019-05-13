@@ -18,5 +18,9 @@ namespace BLL.Accounts
         {
             return _dal.GetJurnalVoucher(voucherId);
         }
+        public DataTable GetJurnalVoucher(int voucherId,DateTime voucherDate)
+        {
+            return _dal.GetJurnalVoucher(voucherId,voucherDate);
+        }
     }
 }

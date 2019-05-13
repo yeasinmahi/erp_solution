@@ -97,6 +97,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsVoucherJournalBll.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalDetailsBll.cs" />
     <Compile Include="Accounts\Advice\AdviceBLL.cs" />
     <Compile Include="Accounts\Approval\IndentApproval_BLL.cs" />
     <Compile Include="Accounts\BalanceSheet\BalanceSheetC.cs" />
@@ -148,6 +150,7 @@
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
     <Compile Include="AFBLSMSServer\ApiSmsBll.cs" />
     <Compile Include="AutoSearch\EmployeeBll.cs" />
+    <Compile Include="Accounts\CodeInfoBll.cs" />
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />

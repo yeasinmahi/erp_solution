@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Accounts\AccountsVoucherJournalDal.cs" />
     <Compile Include="Accounts\AccountsVoucherJournalDetailsDal.cs" />
+    <Compile Include="Accounts\CodeInfoDal.cs" />
     <Compile Include="AFBLSMSServer\ApiSmsDal.cs" />
     <Compile Include="HR\UnitDal.cs" />
     <Compile Include="Inventory\InconsistanceItemDal.cs" />
