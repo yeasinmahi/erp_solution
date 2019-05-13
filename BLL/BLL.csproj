@@ -97,6 +97,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccBll.cs" />
     <Compile Include="Accounts\AccountsVoucherJournalBll.cs" />
     <Compile Include="Accounts\AccountsVoucherJournalDetailsBll.cs" />
     <Compile Include="Accounts\Advice\AdviceBLL.cs" />

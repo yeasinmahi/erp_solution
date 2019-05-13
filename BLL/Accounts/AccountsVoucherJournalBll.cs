@@ -7,11 +7,9 @@ namespace BLL.Accounts
     public class AccountsVoucherJournalBll
     {
         private readonly AccountsVoucherJournalDal _dal = new AccountsVoucherJournalDal();
-        public int Insert(string strCode, int intUnitId, string strNarration, decimal amount, int intLastActionBy,
-            string strSecurityCode, DateTime dtePostingSubledger)
+        public int Insert(string strCode, int intUnitId, string strNarration, decimal amount, int intLastActionBy)
         {
-            return _dal.Insert(strCode, intUnitId, strNarration, amount, intLastActionBy,
-                null, null);
+            return _dal.Insert(strCode, intUnitId, strNarration, amount, intLastActionBy,null, null);
         }
 
         public DataTable GetJurnalVoucher(int voucherId)
