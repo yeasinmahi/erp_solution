@@ -3408,25 +3408,25 @@ SELECT intJournalVoucherID, strCode, intUnitID, strNarration, monAmountDr, monAm
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "select * from [ERP_Accounts].[dbo].[tblAccountsVoucherJournal] where intJournalVo" +
-                "ucherID = @voucherId and dteVoucherDate = @voucherDate and ysnEnable = 1 and ysn" +
-                "Completed = 0";
+                "ucherID = @voucherId and CAST(dteVoucherDate  as date) = CAST(@voucherDate as da" +
+                "te) and ysnEnable = 1 and ysnCompleted = 0";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@voucherId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intJournalVoucherID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@voucherDate", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "dteVoucherDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@voucherDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AccountsVoucherJournalTds.tblAccountsVoucherJournal2DataTable GetData(long voucherId, global::System.Nullable<global::System.DateTime> voucherDate) {
+        public virtual AccountsVoucherJournalTds.tblAccountsVoucherJournal2DataTable GetData(long voucherId, string voucherDate) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((long)(voucherId));
-            if ((voucherDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(voucherDate.Value));
+            if ((voucherDate == null)) {
+                throw new global::System.ArgumentNullException("voucherDate");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(voucherDate));
             }
             AccountsVoucherJournalTds.tblAccountsVoucherJournal2DataTable dataTable = new AccountsVoucherJournalTds.tblAccountsVoucherJournal2DataTable();
             this.Adapter.Fill(dataTable);
