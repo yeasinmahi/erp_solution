@@ -292,6 +292,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnVatPrice;
         
         /// <summary>
+        /// rdoDeliveryType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdoDeliveryType;
+        
+        /// <summary>
         /// lblUnitName control.
         /// </summary>
         /// <remarks>
@@ -551,24 +560,6 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rdoNeedVehicle;
-        
-        /// <summary>
-        /// ddlVehicleCharge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVehicleCharge;
-        
-        /// <summary>
-        /// ddlVehicleIncentive control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVehicleIncentive;
         
         /// <summary>
         /// hdnPriceId control.
