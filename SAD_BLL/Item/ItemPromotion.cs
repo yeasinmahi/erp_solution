@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using SAD_DAL.Item.ItemPromotionTDSTableAdapters;
 using SAD_DAL.Item;
+using SAD_DAL.Item.DiscountTDSTableAdapters;
 namespace SAD_BLL.Item
 {
     public class ItemPromotion
@@ -147,6 +148,84 @@ namespace SAD_BLL.Item
             }
             catch (Exception e) { msg = e.ToString();  }
             return msg;
+        }
+
+        public string GetDiscount(int calculationid,int part, int intUnitId, int custid, string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty1, int intUomid, decimal salesQty2, int v2, DateTime dteFdate, DateTime dteTdate, int enroll)
+        {
+            string msg = "";
+            try
+            {
+                if (part == 1)
+                {
+                    tblAdjustmentByCustomerAndProductTableAdapter adp = new tblAdjustmentByCustomerAndProductTableAdapter();
+                    adp.GetAdjustmentByCustomerAndProduct(calculationid,intUnitId, custid, promotionName, itemidSales, monAdjustmentAmount,int.Parse(salesQty1.ToString()), intUnitId, v2, dteFdate.ToString(), dteTdate.ToString(), enroll);
+                    msg = "Successfully";
+                }else
+                {
+                    tblAdjustmentByCustomerAndProductTableAdapter adp = new tblAdjustmentByCustomerAndProductTableAdapter();
+                    adp.GetCustomizeinserbyEndDate(calculationid,intUnitId, custid, promotionName, itemidSales, monAdjustmentAmount, int.Parse(salesQty1.ToString()), intUnitId, v2, dteTdate.ToString(), enroll);
+                    msg = "Successfully";
+                }
+               
+
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+
+        }
+
+        public string GetDiscountbyOffice(int calculationid,int partid, int intUnitId, int officeid, string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty, int intUomid, int v3, DateTime dteFdate, DateTime dteTdate, int enroll)
+        {
+            string msg = "";
+            try
+            {
+                if (partid == 1)
+                {
+                    tblAdjustmentBySalesOfficeAndProductTableAdapter adp = new tblAdjustmentBySalesOfficeAndProductTableAdapter();
+                    adp.GetAdjustmentBySalesOfficeAndProduct(calculationid,intUnitId, officeid, promotionName, itemidSales,monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), dteTdate.ToString(), enroll);
+                    msg = "Successfully";
+                }
+                else
+                {
+                    tblAdjustmentBySalesOfficeAndProductTableAdapter adp = new tblAdjustmentBySalesOfficeAndProductTableAdapter();
+                    adp.GetCustomizeInsertbyEndDate(calculationid,intUnitId, officeid, promotionName, itemidSales, monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), enroll);
+                    msg = "Successfully";
+                }
+
+
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+        }
+        public string GetDiscountbyNational(int calculationid,int partid, int intUnitId,  string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty, int intUomid, int v3, DateTime dteFdate, DateTime dteTdate, int enroll)
+        {
+            string msg = "";
+            try
+            {
+                if (partid == 1)
+                {
+                    tblAdjustmentByUnitAndProductTableAdapter adp = new tblAdjustmentByUnitAndProductTableAdapter();
+                    adp.GetAdjustmentByUnitAndProduct(calculationid,intUnitId, promotionName, itemidSales, monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), dteTdate.ToString(), enroll);
+                    msg = "Successfully";
+                }
+                else
+                {
+                    tblAdjustmentByUnitAndProductTableAdapter adp = new tblAdjustmentByUnitAndProductTableAdapter();
+                    adp.GetCustomizeinsertEndate(calculationid,intUnitId, promotionName, itemidSales,  monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), enroll);
+                    msg = "Successfully";
+                }
+
+
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+        }
+        public string getPromotionEntryAllUnit(int v1, int intUnitId, int custid, string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty1, int intUomid, decimal salesQty2, int v2, DateTime dteFdate, DateTime dteTdate, int enroll)
+        {
+            throw new NotImplementedException();
         }
 
         public string getPromotionEntryAllUnit(int part, int custid, string promotionName, int itemidSales, int intUomid, decimal salesQty, int itemidPromotion, int pUomId, decimal promotionQty, int Enroll, DateTime dteFdate, DateTime dteTDate, int rid, int aid, int intLineid)

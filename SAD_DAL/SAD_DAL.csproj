@@ -289,6 +289,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CurrencyTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Item\DiscountTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Item\ItemCOATDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -898,6 +903,17 @@
     </None>
     <None Include="Item\CurrencyTDS.xss">
       <DependentUpon>CurrencyTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Item\DiscountTDS.xsc">
+      <DependentUpon>DiscountTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Item\DiscountTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DiscountTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Item\DiscountTDS.xss">
+      <DependentUpon>DiscountTDS.xsd</DependentUpon>
     </None>
     <None Include="Item\ItemCOATDS.xsc">
       <DependentUpon>ItemCOATDS.xsd</DependentUpon>
