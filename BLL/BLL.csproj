@@ -97,6 +97,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccBll.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalBll.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalDetailsBll.cs" />
     <Compile Include="Accounts\Advice\AdviceBLL.cs" />
     <Compile Include="Accounts\Approval\IndentApproval_BLL.cs" />
     <Compile Include="Accounts\BalanceSheet\BalanceSheetC.cs" />
@@ -148,13 +151,18 @@
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
     <Compile Include="AFBLSMSServer\ApiSmsBll.cs" />
     <Compile Include="AutoSearch\EmployeeBll.cs" />
+    <Compile Include="Accounts\CodeInfoBll.cs" />
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />
+    <Compile Include="Inventory\InconsistanceItemBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentAuthorityBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
+    <Compile Include="Inventory\InventoryBll.cs" />
+    <Compile Include="Inventory\ItemListBll.cs" />
     <Compile Include="Inventory\PoTypeBll.cs" />
     <Compile Include="HR\UnitBll.cs" />
+    <Compile Include="Inventory\StoreIssueBll.cs" />
     <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
     <Compile Include="Inventory\WarehouseOperatorBll.cs" />
@@ -184,6 +192,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCM_BLL\SCM_BLL.csproj">
+      <Project>{A4F011C0-9E28-4F3F-932F-69A994FCE403}</Project>
+      <Name>SCM_BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>

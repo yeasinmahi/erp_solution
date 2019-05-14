@@ -147,6 +147,7 @@ namespace UI.SCM
                             }
 
                         }
+                        
                         if (objects.Count > 0)
                         {
                             xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);

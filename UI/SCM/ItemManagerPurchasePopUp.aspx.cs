@@ -40,29 +40,29 @@ namespace UI.SCM
                 dt = new DataTable();
                 dt = bll.GetItemInfoForPurchase(intAutoID);
 
-                txtBaseName.Text = dt.Rows[0]["strItemName"].ToString();
-                txtDescription.Text = dt.Rows[0]["strDescription"].ToString();
-                txtPart.Text = dt.Rows[0]["strPart"].ToString();
-                txtModel.Text = dt.Rows[0]["strModel"].ToString();
-                txtSerial.Text = dt.Rows[0]["strSerial"].ToString();
-                txtBrand.Text = dt.Rows[0]["strBrand"].ToString();
-                txtSpecification.Text = dt.Rows[0]["strSpecifiaction"].ToString();
-                txtOrigin.Text = dt.Rows[0]["strOrigin"].ToString();
-                txtReorderQty.Text = dt.Rows[0]["numReOrderQty"].ToString();
-                txtReOrder.Text = dt.Rows[0]["numReOrderLevel"].ToString();
-                txtMinimum.Text = dt.Rows[0]["numMinimumStock"].ToString();
-                txtMaximum.Text = dt.Rows[0]["numMaximumStock"].ToString();
-                txtMaxDailyConsum.Text = dt.Rows[0]["numMaxDailyConsump"].ToString();
-                txtMinDailyConsum.Text = dt.Rows[0]["numMinDailyConsump"].ToString();
-                txtSafety.Text = dt.Rows[0]["numSafetyStock"].ToString();
-                txtSelfTime.Text = dt.Rows[0]["intSelfTime"].ToString();
-                txtUOM.Text = dt.Rows[0]["strUOM"].ToString();
-                txtGroup.Text = dt.Rows[0]["strGroupName"].ToString();
-                txtCategory.Text = dt.Rows[0]["strCategoryName"].ToString();
-                txtSubCategory.Text = dt.Rows[0]["strSubCategoryName"].ToString();
-                txtMinorCategory.Text = dt.Rows[0]["strMinorCategory"].ToString();
-                txtPlant.Text = dt.Rows[0]["strPlantName"].ToString();
-                txtProcumentType.Text = dt.Rows[0]["strPurchaseType"].ToString();
+                //txtBaseName.Text = dt.Rows[0]["strItemName"].ToString();
+                //txtDescription.Text = dt.Rows[0]["strDescription"].ToString();
+                //txtPart.Text = dt.Rows[0]["strPart"].ToString();
+                //txtModel.Text = dt.Rows[0]["strModel"].ToString();
+                //txtSerial.Text = dt.Rows[0]["strSerial"].ToString();
+                //txtBrand.Text = dt.Rows[0]["strBrand"].ToString();
+                //txtSpecification.Text = dt.Rows[0]["strSpecifiaction"].ToString();
+                //txtOrigin.Text = dt.Rows[0]["strOrigin"].ToString();
+                //txtReorderQty.Text = dt.Rows[0]["numReOrderQty"].ToString();
+                //txtReOrder.Text = dt.Rows[0]["numReOrderLevel"].ToString();
+                //txtMinimum.Text = dt.Rows[0]["numMinimumStock"].ToString();
+                //txtMaximum.Text = dt.Rows[0]["numMaximumStock"].ToString();
+                //txtMaxDailyConsum.Text = dt.Rows[0]["numMaxDailyConsump"].ToString();
+                //txtMinDailyConsum.Text = dt.Rows[0]["numMinDailyConsump"].ToString();
+                //txtSafety.Text = dt.Rows[0]["numSafetyStock"].ToString();
+                //txtSelfTime.Text = dt.Rows[0]["intSelfTime"].ToString();
+                //txtUOM.Text = dt.Rows[0]["strUOM"].ToString();
+                //txtGroup.Text = dt.Rows[0]["strGroupName"].ToString();
+                //txtCategory.Text = dt.Rows[0]["strCategoryName"].ToString();
+                //txtSubCategory.Text = dt.Rows[0]["strSubCategoryName"].ToString();
+                //txtMinorCategory.Text = dt.Rows[0]["strMinorCategory"].ToString();
+                //txtPlant.Text = dt.Rows[0]["strPlantName"].ToString();
+                //txtProcumentType.Text = dt.Rows[0]["strPurchaseType"].ToString();
 
                 //if (dt.Rows[0]["strPurchaseType"].ToString() == "Import")
                 //{
@@ -85,20 +85,20 @@ namespace UI.SCM
                 intPart = 9;
                 intAutoID = int.Parse(hdnItemID.Value.ToString());
                 intInsertBy = int.Parse(hdnEnroll.Value.ToString());
-                strHSCode = txtHSCode.Text;
-                try { numMaxLeadTime = int.Parse(txtMaxLeadTime.Text); } catch { numMaxLeadTime = 0; }
-                try { numMinLeadTime = int.Parse(txtMinLeadTime.Text); } catch { numMinLeadTime = 0; }
-                strOrderingLotSize = txtLotSize.Text;
-                try { numEOQ = decimal.Parse(txtEOQ.Text); } catch { numEOQ = 0; }
-                try { numMOQ = decimal.Parse(txtMOQ.Text); } catch { numMOQ = 0; }
-                intSDE = int.Parse(ddlSDE.SelectedValue.ToString());
-                strSDE = ddlSDE.SelectedItem.ToString();
+                //strHSCode = txtHSCode.Text;
+                //try { numMaxLeadTime = int.Parse(txtMaxLeadTime.Text); } catch { numMaxLeadTime = 0; }
+                //try { numMinLeadTime = int.Parse(txtMinLeadTime.Text); } catch { numMinLeadTime = 0; }
+                //strOrderingLotSize = txtLotSize.Text;
+                //try { numEOQ = decimal.Parse(txtEOQ.Text); } catch { numEOQ = 0; }
+                //try { numMOQ = decimal.Parse(txtMOQ.Text); } catch { numMOQ = 0; }
+                //intSDE = int.Parse(ddlSDE.SelectedValue.ToString());
+                //strSDE = ddlSDE.SelectedItem.ToString();
 
-                if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtMaxLeadTime.Text == "" || txtMinLeadTime.Text == "")
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
-                    return;
-                }
+                //if (hdnItemID.Value == "" || hdnItemID.Value == "0" || txtMaxLeadTime.Text == "" || txtMinLeadTime.Text == "")
+                //{
+                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Invalid Information.....');", true);
+                //    return;
+                //}
                 //if (txtProcumentType.Text == "Import")
                 //{
                 //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Must be fill HS Code for Import Items.....');", true);

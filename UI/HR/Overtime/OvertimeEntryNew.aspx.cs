@@ -104,6 +104,8 @@ namespace UI.HR.Overtime
             if (Session["obj"] != null)
             {
                 List<object> objects = (List<object>)Session["obj"];
+                //object obj = objects.GetDynamicObject("remarks", "Test");
+                //obj.UpdateObject("reason", "Test2");
                 objects.RemoveAt(e.RowIndex);
                 if (objects.Count > 0)
                 {
@@ -177,6 +179,7 @@ namespace UI.HR.Overtime
                 Toaster("No Data Found to Insert", "OverTime", Common.TosterType.Warning);
             }
         }
+
 
         private void LoadPurpose()
         {
@@ -274,6 +277,7 @@ namespace UI.HR.Overtime
                 SetVisibility("panel", true);
             }
         }
+
 
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {

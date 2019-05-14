@@ -17,7 +17,7 @@ namespace Purchase_BLL.Asset
     {
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableCusts = null;
         private static SearchTDS.SprAutosearchRequesitionDataTable[] tableItem = null;
-        private SearchTDS.sprAutosearchRawMeterialDataTable[] tableItem1 = null;
+        private  static SearchTDS.sprAutosearchRawMeterialDataTable[] tableItem1 = null;
         private static  SearchTDS.sprAutosearchFinishGoodsDataTable[] tblFgItem = null;
 
         private static SearchTDS.TblAutoSearchAssetRegisterDataTable[] tableCusts1 = null;
@@ -437,6 +437,10 @@ namespace Purchase_BLL.Asset
             //}
             Inatialize(int.Parse(whid));
 
+            //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
+            //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(whid)); 
+
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
             if (prefix.Trim().Length >= 3)
@@ -482,8 +486,7 @@ namespace Purchase_BLL.Asset
             {
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
-                {
-                    //retStr[i] = tbl.Rows[i]["strItem"] + "[" + "Stock" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" + "[" + tbl.Rows[i]["intItem"]+"]";
+                { 
                     retStr[i] = tbl.Rows[i]["strItem"] + "[" + tbl.Rows[i]["intItem"] + "]" + "[" + "Stock:" + " " +
                                 tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]";
                 }

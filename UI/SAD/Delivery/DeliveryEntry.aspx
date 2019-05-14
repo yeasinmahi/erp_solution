@@ -13,6 +13,12 @@
     <style type="text/css"> 
         .ajax__calendar_inactive  {color:#dddddd;}
         .txtBox {}
+        .auto-style1 {
+            width: 814px;
+        }
+        .auto-style2 {
+            width: 820px;
+        }
     </style>
     <script language="javascript" type="text/javascript">
 
@@ -24,7 +30,17 @@
             return true;
         }
     </script>
-
+    <script type="text/javascript">
+        function SetPrice(txt) { 
+            var price = parseFloat(document.getElementById('txtPrice').value);
+           
+            var qnt = parseFloat(document.getElementById('txtQun').value);
+            var tot=0;
+         
+            if(!isNaN((price)*qnt)){ tot = ((price)*qnt); }        
+            document.getElementById('lblTotal').innerText = tot;    
+        }
+    </script>
     <script type="text/javascript">
         function funConfirmAll() {
             var confirm_value = document.createElement("INPUT");
@@ -70,6 +86,26 @@
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
                     <asp:HiddenField ID="hdnDA" runat="server" />
+                <asp:HiddenField ID="hdnsalestype" runat="server" />
+                <asp:HiddenField ID="hdnvisibility" runat="server" />
+                <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
+                <asp:HiddenField ID="hdnCharBasedOnUom" runat="server" />
+                <asp:HiddenField ID="hdnIncenBasedOnUom" runat="server" />
+                <asp:HiddenField ID="hdnCreditSales" runat="server" />
+                <asp:HiddenField ID="hdnLm" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
+                <asp:HiddenField ID="HiddenField1" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnXFactoryVhl" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnXFactoryChr" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnChrgPrice" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVhlMerge" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnChrgMerge" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnVatPrice" Value="0" runat="server" />
                     <div class="tabs_container">
                      <span style="color: red">Delivery Challan</span><hr />
                     </div>
@@ -208,13 +244,14 @@
                     <table>
                          <tr>
                              <td style="width: 300px; vertical-align: top;">
+                                 <asp:HiddenField ID="hdnPriceId" runat="server" />
                                  <asp:Panel ID="pnlVehicleMain" runat="server" Visible="True">
                                      <table style="width: 300px;">
                                          <tr>
                                              <td colspan="2">
                                                  <asp:RadioButtonList ID="rdoVehicleCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoVehicleCompany_SelectedIndexChanged"  >
                                                      <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
-                                                     <asp:ListItem Value="2">3rd Party</asp:ListItem>
+                                                     <asp:ListItem Value="2">Rent</asp:ListItem>
                                                      <asp:ListItem Value="3">Customer</asp:ListItem>
                                                  </asp:RadioButtonList>
                                              </td>
@@ -255,56 +292,13 @@
                                                  </cc1:AutoCompleteExtender>
                                              </td>
                                          </tr>
-                                         <tr>
-                                             <td>Charge To </td>
-                                             <td>
-                                                 <asp:RadioButtonList ID="rdo3rdPartyCharge" runat="server" RepeatDirection="Horizontal">
-                                                     <asp:ListItem Selected="True" Value="true">3rd Party</asp:ListItem>
-                                                     <asp:ListItem Value="false">Company</asp:ListItem>
-                                                 </asp:RadioButtonList>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td>Type </td>
-                                             <td>
-                                                 <asp:DropDownList ID="ddlVehicleType" runat="server" AutoPostBack="True">
-                                                 </asp:DropDownList>
-                                             </td>
-                                         </tr>
+                                         
+                                          
                                      </table>
                                  </asp:Panel>
                              </td>
                              
-                             <td >
-                                 <asp:Panel ID="pnlVehicleCustomer" runat="server" Visible="True">
-                                     <table style="width: 300px;">
-                                         <tr>
-                                             <td>Supplier </td>
-                                             <td>
-                                                 <asp:TextBox ID="TextBox1" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px"></asp:TextBox>
-                                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender6" runat="server" CompletionInterval="1" CompletionListCssClass="autocomplete_completionListElementBig" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" CompletionListItemCssClass="autocomplete_listItem" CompletionSetCount="1" EnableCaching="false" FirstRowSelected="true" MinimumPrefixLength="1" ServiceMethod="GetSupplierList" TargetControlID="txtSupplier">
-                                                 </cc1:AutoCompleteExtender>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td>Charge To </td>
-                                             <td>
-                                                 <asp:RadioButtonList ID="RadioButtonList1" runat="server" RepeatDirection="Horizontal">
-                                                     <asp:ListItem Selected="True" Value="true">3rd Party</asp:ListItem>
-                                                     <asp:ListItem Value="false">Company</asp:ListItem>
-                                                 </asp:RadioButtonList>
-                                             </td>
-                                         </tr>
-                                         <tr>
-                                             <td>Type </td>
-                                             <td>
-                                                 <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True">
-                                                 </asp:DropDownList>
-                                             </td>
-                                         </tr>
-                                     </table>
-                                 </asp:Panel>
-                             </td>
+                              
 
                          </tr>
                     </table>
@@ -322,10 +316,22 @@
                                 <asp:TextBox ID="txtConvRate" runat="server" Width="70px"></asp:TextBox>
                             </td>
                             <td style="color: Olive;">
-                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" >
-                                                   
-                                </asp:RadioButtonList>
-                                
+                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" > 
+                                </asp:RadioButtonList> 
+                            </td>
+                            <td>
+                                Reff No
+                            </td>
+                            <td>
+                                <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
+                            </td>
+                            <td>
+                                <asp:Button ID="btnProductAddAll" runat="server"  Text="Add-All" ValidationGroup="valComAdd" OnClick="btnProductAddAll_Click" />
+                            
+                            </td>
+                            <td>
+                                <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
+                                            OnClick="btnSubmit_Click" />
                             </td>
                         </tr>
                     </table>
@@ -353,20 +359,20 @@
                             </td>
                             <td>
                                 <asp:HiddenField ID="hdnUOM" runat="server" />
-                                <asp:DropDownList ID="ddlUOM" runat="server"  >
+                                <asp:DropDownList ID="ddlUOM" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged"  >
                                   
                                 </asp:DropDownList>
                                  
                             </td>
                             <td  align="center">
-                                <asp:TextBox ID="lblPrice" runat="server" Width="50px"></asp:TextBox>
+                                <asp:TextBox ID="txtPrice" runat="server" Width="50px"></asp:TextBox>
                             </td>
                           
                             <td align="center">
                                 <asp:Label ID="lblComm" runat="server"></asp:Label>
                             </td>
                             <td align="center" style="vertical-align: middle;">
-                                <asp:TextBox ID="txtQun" runat="server" Width="60px"></asp:TextBox>
+                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="False" onkeyup="SetPrice(this);" Width="60px" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
                                 &nbsp;
                             </td>
                             <td align="center" style="text-align: right;">
@@ -374,12 +380,90 @@
                             </td>
                             
                             <td align="right">
-                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" ValidationGroup="valComAdd" OnClick="btnProductAdd_Click" />
-                                <asp:Button ID="btnProductAddAll" runat="server"  Text="Add-All" ValidationGroup="valComAdd" OnClick="btnProductAddAll_Click" />
-                            </td>
-
+                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" AutoPostBack="true"  OnClick="btnProductAdd_Click" />
+                            </td> 
                         </tr>
                     </table>
+                 <table class="auto-style2">
+                      <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"  OnRowDeleting="dgvGridView_RowDeleting"  
+                                    BorderWidth="1px" CellPadding="5"  ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+
+                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="SL">
+                                            <ItemStyle HorizontalAlign="center" Width="25px" />
+                                            <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Product ID" SortExpression="productId">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblProdutId" runat="server" Text='<%# Bind("productId") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Item Name" SortExpression="productName">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("productName") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="250px" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="uomName">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("uomName") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Price" ItemStyle-HorizontalAlign="right" SortExpression="rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblPrice" runat="server" Text='<%# Bind("rate") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Quantity"   ItemStyle-HorizontalAlign="right" SortExpression="quantity">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblqty" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Commision" ItemStyle-HorizontalAlign="right" SortExpression="commision">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCommision" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("commision","{0:n2}") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Discount" ItemStyle-HorizontalAlign="right" SortExpression="discount">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("discount") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Discount Total" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDiscountTotal" runat="server" Text='<%# Bind("discountTotal") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Total." ItemStyle-HorizontalAlign="right" SortExpression="priceTotal">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblIndentQty" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("priceTotal","{0:n2}") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField> 
+                                        <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
+                                    </Columns>
+                                    <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
+                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                </asp:GridView>
+                 </table>
+                         
                 </div>
 
                 <%--=========================================End My Code From Here=================================================--%>

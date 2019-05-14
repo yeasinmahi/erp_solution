@@ -94,6 +94,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsChartOfAccTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\AccountsVoucherJournalDetailsTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsVoucherJournalDetailsTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\AccountsVoucherJournalTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsVoucherJournalTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Advice\Advice.cs">
       <DependentUpon>Advice.xsd</DependentUpon>
     </Compile>
@@ -240,6 +255,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TemplateTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\CodeInfoTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CodeInfoTds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Accounts\IncomeSatement\IncomestatementTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -415,6 +435,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UnitTds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\InConsistanceItemTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryTds.cs">
+      <DependentUpon>InventoryTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InventoryAdjustment.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -424,6 +457,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\ItemList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemList.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inventory\PoTypeTds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -461,6 +499,39 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Accounts\AccountsChartOfAccTds.xsc">
+      <DependentUpon>AccountsChartOfAccTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\AccountsChartOfAccTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountsChartOfAccTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\AccountsChartOfAccTds.xss">
+      <DependentUpon>AccountsChartOfAccTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\AccountsVoucherJournalDetailsTds.xsc">
+      <DependentUpon>AccountsVoucherJournalDetailsTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\AccountsVoucherJournalDetailsTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountsVoucherJournalDetailsTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\AccountsVoucherJournalDetailsTds.xss">
+      <DependentUpon>AccountsVoucherJournalDetailsTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\AccountsVoucherJournalTds.xsc">
+      <DependentUpon>AccountsVoucherJournalTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\AccountsVoucherJournalTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountsVoucherJournalTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\AccountsVoucherJournalTds.xss">
+      <DependentUpon>AccountsVoucherJournalTds.xsd</DependentUpon>
+    </None>
     <None Include="Accounts\Advice\Advice.xsc">
       <DependentUpon>Advice.xsd</DependentUpon>
     </None>
@@ -713,6 +784,17 @@
     </None>
     <None Include="Accounts\ChartOfAccount\TemplateTDS.xss">
       <DependentUpon>TemplateTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\CodeInfoTds.xsc">
+      <DependentUpon>CodeInfoTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\CodeInfoTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CodeInfoTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\CodeInfoTds.xss">
+      <DependentUpon>CodeInfoTds.xsd</DependentUpon>
     </None>
     <None Include="Accounts\IncomeSatement\IncomestatementTDS.xsc">
       <DependentUpon>IncomestatementTDS.xsd</DependentUpon>
@@ -1131,6 +1213,28 @@
     <None Include="HR\UnitTds.xss">
       <DependentUpon>UnitTds.xsd</DependentUpon>
     </None>
+    <None Include="Inventory\InConsistanceItemTds.xsc">
+      <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InConsistanceItemTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InConsistanceItemTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\InConsistanceItemTds.xss">
+      <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryTds.xsc">
+      <DependentUpon>InventoryTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\InventoryTds.xss">
+      <DependentUpon>InventoryTds.xsd</DependentUpon>
+    </None>
     <None Include="Inventory\InventoryAdjustment.xsc">
       <DependentUpon>InventoryAdjustment.xsd</DependentUpon>
     </None>
@@ -1152,6 +1256,17 @@
     </None>
     <None Include="Inventory\InventoryAdjustmentAuthority.xss">
       <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\ItemList.xsc">
+      <DependentUpon>ItemList.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\ItemList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemList.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\ItemList.xss">
+      <DependentUpon>ItemList.xsd</DependentUpon>
     </None>
     <None Include="Inventory\PoTypeTds.xsc">
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
