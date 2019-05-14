@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccDal.cs" />
     <Compile Include="Accounts\AccountsVoucherJournalDal.cs" />
     <Compile Include="Accounts\AccountsVoucherJournalDetailsDal.cs" />
     <Compile Include="Accounts\CodeInfoDal.cs" />

@@ -48,5 +48,18 @@ namespace DALOOP.Accounts
                 return new DataTable();
             }
         }
+        public bool UpdateAmount(decimal amount, int enroll, int jvId)
+        {
+            try
+            {
+                tblAccountsVoucherJournal3TableAdapter adp = new tblAccountsVoucherJournal3TableAdapter();
+                adp.Update1(amount,enroll,jvId);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }

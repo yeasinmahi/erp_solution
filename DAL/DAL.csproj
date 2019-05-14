@@ -94,6 +94,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsChartOfAccTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\AccountsVoucherJournalDetailsTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -494,6 +499,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Accounts\AccountsChartOfAccTds.xsc">
+      <DependentUpon>AccountsChartOfAccTds.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\AccountsChartOfAccTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountsChartOfAccTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\AccountsChartOfAccTds.xss">
+      <DependentUpon>AccountsChartOfAccTds.xsd</DependentUpon>
+    </None>
     <None Include="Accounts\AccountsVoucherJournalDetailsTds.xsc">
       <DependentUpon>AccountsVoucherJournalDetailsTds.xsd</DependentUpon>
     </None>

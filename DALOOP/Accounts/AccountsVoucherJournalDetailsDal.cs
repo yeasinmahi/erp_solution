@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using DAL.Accounts.AccountsVoucherJournalDetailsTdsTableAdapters;
-using DAL.Accounts.AccountsVoucherJournalTdsTableAdapters;
 
 namespace DALOOP.Accounts
 {
@@ -47,6 +46,19 @@ namespace DALOOP.Accounts
             catch (Exception e)
             {
                 return new DataTable();
+            }
+        }
+        public bool UpdateAmount(decimal amount, int jvId, int accId)
+        {
+            try
+            {
+                tblAccountsVoucherJournalDetails3TableAdapter adp = new tblAccountsVoucherJournalDetails3TableAdapter();
+                adp.Update1(amount, jvId, accId);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

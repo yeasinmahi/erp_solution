@@ -19,5 +19,9 @@ namespace BLL.Accounts
         {
             return _dal.GetJurnalVoucherDetails(voucherId,accId);
         }
+        public bool UpdateAmount(decimal amount, int jvId, int accId)
+        {
+            return _dal.UpdateAmount(amount, jvId, accId);
+        }
     }
 }
