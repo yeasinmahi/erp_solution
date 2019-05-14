@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DiscountTDS" targetNamespace="http://tempuri.org/DiscountTDS.xsd" xmlns:mstns="http://tempuri.org/DiscountTDS.xsd" xmlns="http://tempuri.org/DiscountTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_ProductionConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_ProductionConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_ProductionConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRegionAFBLTableAdapter" GeneratorDataComponentClassName="tblRegionAFBLTableAdapter" Name="tblRegionAFBL" UserDataComponentName="tblRegionAFBLTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_ProductionConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetRegion" GetMethodModifier="Public" GetMethodName="GetRegion" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetRegion" UserSourceName="GetRegion">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select strRegion+'-'+strLine as Region from ERP_Production.dbo.qryAFBLNewSetup where intFGGroupID not in (4,5,6,7,8) group by strRegion,strLine </CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Region" DataSetColumn="Region" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblAdjustmentByUnitAndProductTableAdapter" GeneratorDataComponentClassName="tblAdjustmentByUnitAndProductTableAdapter" Name="tblAdjustmentByUnitAndProduct" UserDataComponentName="tblAdjustmentByUnitAndProductTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAdjustmentByUnitAndProduct" GetMethodModifier="Public" GetMethodName="GetAdjustmentByUnitAndProduct" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetAdjustmentByUnitAndProduct" UserSourceName="GetAdjustmentByUnitAndProduct">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[tblAdjustmentByUnitAndProduct]
+           (intCalculationType,
+[intUnitId]
+           ,[strAdjustmentName]
+           ,[intProductId]
+           ,[monAdjustmentAmount]
+           ,[monSalesQty]
+           ,[intUOMId]
+           ,[intAdjustmentTypeId]
+           ,[dteStartDate]
+           ,[dteEndDate]
+           ,[dteInsertDate]
+           ,[intInsertBy]
+           ,[ysnActive])
+     VALUES
+           (@intCalculationType,
+@intUnitId
+           ,@strAdjustmentName
+           ,@intProductId
+           ,@monAdjustmentAmount
+           ,@monSalesQty
+           ,@intUOMId
+           ,@intAdjustmentTypeId
+           ,@dteStartDate
+           ,@dteEndDate
+           ,getdate()
+           ,@intInsertBy
+           ,1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCalculationType" ColumnName="intCalculationType" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCalculationType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCalculationType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnitId" ColumnName="intUnitId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAdjustmentName" ColumnName="strAdjustmentName" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="varchar(300)" DbType="AnsiString" Direction="Input" ParameterName="@strAdjustmentName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumn="strAdjustmentName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductId" ColumnName="intProductId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intProductId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monAdjustmentAmount" ColumnName="monAdjustmentAmount" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@monAdjustmentAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="monAdjustmentAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSalesQty" ColumnName="monSalesQty" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@monSalesQty" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="monSalesQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUOMId" ColumnName="intUOMId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUOMId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intAdjustmentTypeId" ColumnName="intAdjustmentTypeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAdjustmentTypeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAdjustmentTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteStartDate" ColumnName="dteStartDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteStartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteEndDate" ColumnName="dteEndDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteEndDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intInsertBy" ColumnName="intInsertBy" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCustomizeinsertEndate" GetMethodModifier="Public" GetMethodName="GetCustomizeinsertEndate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCustomizeinsertEndate" UserSourceName="GetCustomizeinsertEndate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[tblAdjustmentByUnitAndProduct]
+           (intCalculationType,[intUnitId]
+           ,[strAdjustmentName]
+           ,[intProductId]
+           ,[monAdjustmentAmount]
+           ,[monSalesQty]
+           ,[intUOMId]
+           ,[intAdjustmentTypeId]
+           ,[dteStartDate]
+           
+           ,[dteInsertDate]
+           ,[intInsertBy]
+           ,[ysnActive])
+     VALUES
+           (@intCalculationType,@intUnitId
+           ,@strAdjustmentName
+           ,@intProductId
+           ,@monAdjustmentAmount
+           ,@monSalesQty
+           ,@intUOMId
+           ,@intAdjustmentTypeId
+           ,@dteStartDate
+          
+           ,getdate()
+           ,@intInsertBy
+           ,1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCalculationType" ColumnName="intCalculationType" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCalculationType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCalculationType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnitId" ColumnName="intUnitId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAdjustmentName" ColumnName="strAdjustmentName" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="varchar(300)" DbType="AnsiString" Direction="Input" ParameterName="@strAdjustmentName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumn="strAdjustmentName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductId" ColumnName="intProductId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intProductId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monAdjustmentAmount" ColumnName="monAdjustmentAmount" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@monAdjustmentAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="monAdjustmentAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSalesQty" ColumnName="monSalesQty" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@monSalesQty" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="monSalesQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUOMId" ColumnName="intUOMId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUOMId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intAdjustmentTypeId" ColumnName="intAdjustmentTypeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAdjustmentTypeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAdjustmentTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteStartDate" ColumnName="dteStartDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteStartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intInsertBy" ColumnName="intInsertBy" DataSourceName="ERP_SAD.dbo.tblAdjustmentByUnitAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblAdjustmentBySalesOfficeAndProductTableAdapter" GeneratorDataComponentClassName="tblAdjustmentBySalesOfficeAndProductTableAdapter" Name="tblAdjustmentBySalesOfficeAndProduct" UserDataComponentName="tblAdjustmentBySalesOfficeAndProductTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAdjustmentBySalesOfficeAndProduct" GetMethodModifier="Public" GetMethodName="GetAdjustmentBySalesOfficeAndProduct" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetAdjustmentBySalesOfficeAndProduct" UserSourceName="GetAdjustmentBySalesOfficeAndProduct">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[tblAdjustmentBySalesOfficeAndProduct]
+           (intCalculationType,
+[intUnitid]
+           ,[intSalesOfficeId]
+           ,[strAdjustmentName]
+           ,[intProductId]
+           ,[monAdjustmentAmount]
+           ,[monSalesQty]
+           ,[intUOMId]
+           ,[intAdjustmentTypeId]
+           ,[dteStartDate]
+           ,[dteEndDate]
+           ,[dteInsertDate]
+           ,[intInsertBy]
+           ,[ysnActive])
+     VALUES
+           (@intCalculationType,@intUnitid
+           ,@intSalesOfficeId
+           ,@strAdjustmentName
+           ,@intProductId
+           ,@monAdjustmentAmount
+           ,@monSalesQty
+           ,@intUOMId
+           ,@intAdjustmentTypeId
+           ,@dteStartDate
+           ,@dteEndDate
+           ,getdate()
+           ,@intInsertBy
+           ,1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCalculationType" ColumnName="intCalculationType" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCalculationType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCalculationType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnitid" ColumnName="intUnitid" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intSalesOfficeId" ColumnName="intSalesOfficeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intSalesOfficeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intSalesOfficeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAdjustmentName" ColumnName="strAdjustmentName" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="varchar(300)" DbType="AnsiString" Direction="Input" ParameterName="@strAdjustmentName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumn="strAdjustmentName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductId" ColumnName="intProductId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intProductId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monAdjustmentAmount" ColumnName="monAdjustmentAmount" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@monAdjustmentAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="monAdjustmentAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSalesQty" ColumnName="monSalesQty" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@monSalesQty" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="monSalesQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUOMId" ColumnName="intUOMId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUOMId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intAdjustmentTypeId" ColumnName="intAdjustmentTypeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAdjustmentTypeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAdjustmentTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteStartDate" ColumnName="dteStartDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteStartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteEndDate" ColumnName="dteEndDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteEndDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intInsertBy" ColumnName="intInsertBy" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCustomizeInsertbyEndDate" GetMethodModifier="Public" GetMethodName="GetCustomizeInsertbyEndDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCustomizeInsertbyEndDate" UserSourceName="GetCustomizeInsertbyEndDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO [dbo].[tblAdjustmentBySalesOfficeAndProduct]
+           (intCalculationType,[intUnitid]
+           ,[intSalesOfficeId]
+           ,[strAdjustmentName]
+           ,[intProductId]
+           ,[monAdjustmentAmount]
+           ,[monSalesQty]
+           ,[intUOMId]
+           ,[intAdjustmentTypeId]
+           ,[dteStartDate]
+           
+           ,[dteInsertDate]
+           ,[intInsertBy]
+           ,[ysnActive])
+     VALUES
+           (@intCalculationType,@intUnitid
+           ,@intSalesOfficeId
+           ,@strAdjustmentName
+           ,@intProductId
+           ,@monAdjustmentAmount
+           ,@monSalesQty
+           ,@intUOMId
+           ,@intAdjustmentTypeId
+           ,@dteStartDate
+          
+           ,getdate()
+           ,@intInsertBy
+           ,1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCalculationType" ColumnName="intCalculationType" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCalculationType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCalculationType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnitid" ColumnName="intUnitid" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intSalesOfficeId" ColumnName="intSalesOfficeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intSalesOfficeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intSalesOfficeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAdjustmentName" ColumnName="strAdjustmentName" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="varchar(300)" DbType="AnsiString" Direction="Input" ParameterName="@strAdjustmentName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumn="strAdjustmentName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductId" ColumnName="intProductId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intProductId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monAdjustmentAmount" ColumnName="monAdjustmentAmount" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@monAdjustmentAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="monAdjustmentAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSalesQty" ColumnName="monSalesQty" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@monSalesQty" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="monSalesQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUOMId" ColumnName="intUOMId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUOMId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intAdjustmentTypeId" ColumnName="intAdjustmentTypeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAdjustmentTypeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAdjustmentTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteStartDate" ColumnName="dteStartDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteStartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intInsertBy" ColumnName="intInsertBy" DataSourceName="ERP_SAD.dbo.tblAdjustmentBySalesOfficeAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblAdjustmentByCustomerAndProductTableAdapter" GeneratorDataComponentClassName="tblAdjustmentByCustomerAndProductTableAdapter" Name="tblAdjustmentByCustomerAndProduct" UserDataComponentName="tblAdjustmentByCustomerAndProductTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAdjustmentByCustomerAndProduct" GetMethodModifier="Public" GetMethodName="GetAdjustmentByCustomerAndProduct" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetAdjustmentByCustomerAndProduct" UserSourceName="GetAdjustmentByCustomerAndProduct">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
+           (intCalculationType,
+[intUnitid]
+           ,[intCustId]
+           ,[strAdjustmentName]
+           ,[intProductId]
+           ,[monAdjustmentAmount]
+           ,[monSalesQty]
+           ,[intUOMId]
+           ,[intAdjustmentTypeId]
+           ,[dteStartDate]
+           ,[dteEndDate]
+           ,[dteInsertDate]
+           ,[intInsertBy]
+           ,[ysnActive])
+     VALUES
+           (@intCalculationType,
+@intUnitid
+           ,@intCustId
+           ,@strAdjustmentName
+           ,@intProductId
+           ,@monAdjustmentAmount
+           ,@monSalesQty
+           ,@intUOMId
+           ,@intAdjustmentTypeId
+           ,@dteStartDate
+           ,@dteEndDate
+           ,Getdate()
+           ,@intInsertBy
+           ,1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCalculationType" ColumnName="intCalculationType" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCalculationType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCalculationType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnitid" ColumnName="intUnitid" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCustId" ColumnName="intCustId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCustId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCustId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAdjustmentName" ColumnName="strAdjustmentName" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="varchar(300)" DbType="AnsiString" Direction="Input" ParameterName="@strAdjustmentName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumn="strAdjustmentName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductId" ColumnName="intProductId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intProductId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monAdjustmentAmount" ColumnName="monAdjustmentAmount" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@monAdjustmentAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="monAdjustmentAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSalesQty" ColumnName="monSalesQty" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@monSalesQty" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="monSalesQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUOMId" ColumnName="intUOMId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUOMId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intAdjustmentTypeId" ColumnName="intAdjustmentTypeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAdjustmentTypeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAdjustmentTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteStartDate" ColumnName="dteStartDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteStartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteEndDate" ColumnName="dteEndDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteEndDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteEndDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intInsertBy" ColumnName="intInsertBy" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetCustomizeinserbyEndDate" GetMethodModifier="Public" GetMethodName="GetCustomizeinserbyEndDate" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetCustomizeinserbyEndDate" UserSourceName="GetCustomizeinserbyEndDate">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>
+INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
+           (intCalculationType,
+[intUnitid]
+           ,[intCustId]
+           ,[strAdjustmentName]
+           ,[intProductId]
+           ,[monAdjustmentAmount]
+           ,[monSalesQty]
+           ,[intUOMId]
+           ,[intAdjustmentTypeId]
+           ,[dteStartDate]
+           
+           ,[dteInsertDate]
+           ,[intInsertBy]
+           ,[ysnActive])
+     VALUES
+           (@intCalculationType,
+@intUnitid
+           ,@intCustId
+           ,@strAdjustmentName
+           ,@intProductId
+           ,@monAdjustmentAmount
+           ,@monSalesQty
+           ,@intUOMId
+           ,@intAdjustmentTypeId
+           ,@dteStartDate
+          
+           ,Getdate()
+           ,@intInsertBy
+           ,1)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCalculationType" ColumnName="intCalculationType" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCalculationType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCalculationType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUnitid" ColumnName="intUnitid" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitid" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCustId" ColumnName="intCustId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCustId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCustId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="strAdjustmentName" ColumnName="strAdjustmentName" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="varchar(300)" DbType="AnsiString" Direction="Input" ParameterName="@strAdjustmentName" Precision="0" ProviderType="VarChar" Scale="0" Size="300" SourceColumn="strAdjustmentName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intProductId" ColumnName="intProductId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intProductId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monAdjustmentAmount" ColumnName="monAdjustmentAmount" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="numeric(18, 2)" DbType="Decimal" Direction="Input" ParameterName="@monAdjustmentAmount" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumn="monAdjustmentAmount" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="monSalesQty" ColumnName="monSalesQty" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@monSalesQty" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="monSalesQty" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intUOMId" ColumnName="intUOMId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUOMId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUOMId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intAdjustmentTypeId" ColumnName="intAdjustmentTypeId" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intAdjustmentTypeId" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intAdjustmentTypeId" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="dteStartDate" ColumnName="dteStartDate" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="date" DbType="AnsiString" Direction="Input" ParameterName="@dteStartDate" Precision="0" ProviderType="Date" Scale="0" Size="3" SourceColumn="dteStartDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intInsertBy" ColumnName="intInsertBy" DataSourceName="ERP_SAD.dbo.tblAdjustmentByCustomerAndProduct" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intInsertBy" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intInsertBy" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DiscountTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DiscountTDS" msprop:Generator_UserDSName="DiscountTDS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="tblRegionAFBL" msprop:Generator_TableClassName="tblRegionAFBLDataTable" msprop:Generator_TableVarName="tabletblRegionAFBL" msprop:Generator_RowChangedName="tblRegionAFBLRowChanged" msprop:Generator_TablePropName="tblRegionAFBL" msprop:Generator_RowDeletingName="tblRegionAFBLRowDeleting" msprop:Generator_RowChangingName="tblRegionAFBLRowChanging" msprop:Generator_RowEvHandlerName="tblRegionAFBLRowChangeEventHandler" msprop:Generator_RowDeletedName="tblRegionAFBLRowDeleted" msprop:Generator_RowClassName="tblRegionAFBLRow" msprop:Generator_UserTableName="tblRegionAFBL" msprop:Generator_RowEvArgName="tblRegionAFBLRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Region" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnRegion" msprop:Generator_ColumnPropNameInRow="Region" msprop:Generator_ColumnPropNameInTable="RegionColumn" msprop:Generator_UserColumnName="Region" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="252" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblAdjustmentByUnitAndProduct" msprop:Generator_TableClassName="tblAdjustmentByUnitAndProductDataTable" msprop:Generator_TableVarName="tabletblAdjustmentByUnitAndProduct" msprop:Generator_TablePropName="tblAdjustmentByUnitAndProduct" msprop:Generator_RowDeletingName="tblAdjustmentByUnitAndProductRowDeleting" msprop:Generator_RowChangingName="tblAdjustmentByUnitAndProductRowChanging" msprop:Generator_RowEvHandlerName="tblAdjustmentByUnitAndProductRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAdjustmentByUnitAndProductRowDeleted" msprop:Generator_UserTableName="tblAdjustmentByUnitAndProduct" msprop:Generator_RowChangedName="tblAdjustmentByUnitAndProductRowChanged" msprop:Generator_RowEvArgName="tblAdjustmentByUnitAndProductRowChangeEvent" msprop:Generator_RowClassName="tblAdjustmentByUnitAndProductRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblAdjustmentBySalesOfficeAndProduct" msprop:Generator_TableClassName="tblAdjustmentBySalesOfficeAndProductDataTable" msprop:Generator_TableVarName="tabletblAdjustmentBySalesOfficeAndProduct" msprop:Generator_TablePropName="tblAdjustmentBySalesOfficeAndProduct" msprop:Generator_RowDeletingName="tblAdjustmentBySalesOfficeAndProductRowDeleting" msprop:Generator_RowChangingName="tblAdjustmentBySalesOfficeAndProductRowChanging" msprop:Generator_RowEvHandlerName="tblAdjustmentBySalesOfficeAndProductRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAdjustmentBySalesOfficeAndProductRowDeleted" msprop:Generator_UserTableName="tblAdjustmentBySalesOfficeAndProduct" msprop:Generator_RowChangedName="tblAdjustmentBySalesOfficeAndProductRowChanged" msprop:Generator_RowEvArgName="tblAdjustmentBySalesOfficeAndProductRowChangeEvent" msprop:Generator_RowClassName="tblAdjustmentBySalesOfficeAndProductRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblAdjustmentByCustomerAndProduct" msprop:Generator_TableClassName="tblAdjustmentByCustomerAndProductDataTable" msprop:Generator_TableVarName="tabletblAdjustmentByCustomerAndProduct" msprop:Generator_TablePropName="tblAdjustmentByCustomerAndProduct" msprop:Generator_RowDeletingName="tblAdjustmentByCustomerAndProductRowDeleting" msprop:Generator_RowChangingName="tblAdjustmentByCustomerAndProductRowChanging" msprop:Generator_RowEvHandlerName="tblAdjustmentByCustomerAndProductRowChangeEventHandler" msprop:Generator_RowDeletedName="tblAdjustmentByCustomerAndProductRowDeleted" msprop:Generator_UserTableName="tblAdjustmentByCustomerAndProduct" msprop:Generator_RowChangedName="tblAdjustmentByCustomerAndProductRowChanged" msprop:Generator_RowEvArgName="tblAdjustmentByCustomerAndProductRowChangeEvent" msprop:Generator_RowClassName="tblAdjustmentByCustomerAndProductRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
