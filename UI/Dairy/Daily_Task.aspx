@@ -171,7 +171,7 @@
             </asp:GridView></td>
         </tr>                                        
         <tr>
-            <td colspan="4"><asp:Button ID="btnSubmit" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick" Text="Submit" OnClientClick="FTPUpload1()"/></td>                        
+            <td colspan="4"><asp:Button ID="btnSubmit" runat="server" ForeColor="Green" Font-Bold="true" class="nextclick" Text="Submit" OnClientClick="FTPUpload1()" OnClick="btnSubmit_Click"/></td>                        
         </tr>
  </table>
  </div>
