@@ -112,12 +112,12 @@ namespace UI.SAD.Order
                         mainG.Append("<tr style=\" font-size:10px;\"><td>" + count + @"</td>");
                         mainG.Append("<td>" + row.strProductName + "</td>");
                         mainG.Append("<td>" + row.strUOM + "</td>");
-                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.numQnt) + "</td>");
-                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.numWeight) + "</td>");
+                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberFour(row.numQnt) + "</td>");
+                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberFour(row.numWeight) + "</td>");
                         mainG.Append("</tr>");
 
                         count++;
-                        total += row.numQnt;
+                        total +=decimal.Parse(CommonClass.GetFormettingNumberFour(row.numQnt));
                         totalWeight += row.numWeight;
                     }
 
@@ -253,8 +253,8 @@ namespace UI.SAD.Order
 
                     sb.Append("<td>" + table[i].strProductFullName + "</td>");
                     sb.Append("<td>" + table[i].strUOMShow + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numQuantity) + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numWeight) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberFour(table[i].numQuantity) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberFour(table[i].numWeight) + "</td>");
                     sb.Append("</tr>");
 
                     dr = tblGP.NewTblGatePassRow();
@@ -289,7 +289,7 @@ namespace UI.SAD.Order
                         tblGP.Rows.Add(dr);
                     }
 
-                    count += table[i].numQuantity;
+                    count +=decimal.Parse(CommonClass.GetFormettingNumberFour(table[i].numQuantity));
                     wgt += table[i].numWeight;
 
                     // promItem = "";
