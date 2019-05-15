@@ -3267,7 +3267,7 @@ SELECT intAccID, intAccTemplateID, intUnitID, strAccName, intParentID, strCode, 
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = @"INSERT INTO [ERP_Accounts].[dbo].[tblAccountsChartOfAcc] ([intAccTemplateID], [intUnitID], [strAccName], [intParentID], [strCode], [intModulesAutoID], [ysnSubLedger], [ysnLedger], [ysnTrBalance], [ysnIncomeSt], [ysnBalanceSh], [ysnHasChild], [ysnEnable], [intLastActionBy], [dteLastActionTime], [monCurrentBalance], [intChildCount], [ysnCommandButton], [intChildCodeLength], [intModulesDetailsAutoID], [monOpeningBalance], [intGlobalCOAID], [ysnSelectedforAdjustment]) VALUES (@intAccTemplateID, @intUnitID, @strAccName, @intParentID, @strCode, @intModulesAutoID, @ysnSubLedger, @ysnLedger, @ysnTrBalance, @ysnIncomeSt, @ysnBalanceSh, @ysnHasChild, @ysnEnable, @intLastActionBy, @dteLastActionTime, @monCurrentBalance, @intChildCount, @ysnCommandButton, @intChildCodeLength, @intModulesDetailsAutoID, @monOpeningBalance, @intGlobalCOAID, @ysnSelectedforAdjustment);
-SELECT intAccID, intAccTemplateID, intUnitID, strAccName, intParentID, strCode, intModulesAutoID, ysnSubLedger, ysnLedger, ysnTrBalance, ysnIncomeSt, ysnBalanceSh, ysnHasChild, ysnEnable, intLastActionBy, dteLastActionTime, monCurrentBalance, intChildCount, ysnCommandButton, intChildCodeLength, intModulesDetailsAutoID, monOpeningBalance, intGlobalCOAID, ysnSelectedforAdjustment FROM tblAccountsChartOfAcc WHERE (intAccID = SCOPE_IDENTITY())";
+SELECT intAccID, intAccTemplateID, intUnitID, strAccName, intParentID, strCode, intModulesAutoID, ysnSubLedger, ysnLedger, ysnTrBalance, ysnIncomeSt, ysnBalanceSh, ysnHasChild, ysnEnable, intLastActionBy, dteLastActionTime, monCurrentBalance, intChildCount, ysnCommandButton, intChildCodeLength, intModulesDetailsAutoID, monOpeningBalance, intGlobalCOAID, ysnSelectedforAdjustment FROM tblAccountsChartOfAcc WHERE (intAccID = SCOPE_IDENTITY()) ORDER BY intAccID DESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAccTemplateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAccTemplateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3336,7 +3336,7 @@ SELECT intAccID, intAccTemplateID, intUnitID, strAccName, intParentID, strCode, 
                 ", ysnEnable, intLastActionBy, dteLastActionTime, monCurrentBalance, intChildCoun" +
                 "t, ysnCommandButton, intChildCodeLength, intModulesDetailsAutoID, monOpeningBala" +
                 "nce, intGlobalCOAID, ysnSelectedforAdjustment FROM tblAccountsChartOfAcc WHERE (" +
-                "intAccID = @intAccID)";
+                "intAccID = @intAccID) ORDER BY intAccID DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAccTemplateID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intAccTemplateID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3415,7 +3415,7 @@ SELECT intAccID, intAccTemplateID, intUnitID, strAccName, intParentID, strCode, 
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "select * from ERP_Accounts.dbo.tblAccountsChartOfAcc where intGlobalCOAID= @Globa" +
-                "lCoaId and ysnEnable = 1\r\n";
+                "lCoaId and ysnEnable = 1 order by intAccID desc\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@GlobalCoaId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intGlobalCOAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
