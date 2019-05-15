@@ -107,7 +107,13 @@
                 <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
                 <asp:HiddenField ID="hdnVatPrice" Value="0" runat="server" />
                     <div class="tabs_container">
-                     <span style="color: red">Delivery Challan</span><hr />
+                      <td> <asp:RadioButtonList ID="rdoDeliveryType" runat="server" Width="200px" AutoPostBack="True" 
+                                                RepeatDirection="Horizontal" >
+                          <asp:ListItem Selected="True" Value="1">Delivery</asp:ListItem>
+                          <asp:ListItem Value="2" >Return</asp:ListItem>
+                      </asp:RadioButtonList></td>
+                       
+                        <hr />
                     </div>
                     <table style="width: 850px">
                         <tr>
@@ -208,7 +214,7 @@
                             <tr><td></td></tr>
                     </table>
                 <hr />
-                     <table style="width: 530px; vertical-align: top;">
+                     <table style="width: 400px; vertical-align: top;">
                     <tr>
                         <td>
                             <b style="color: Green;">LOGISTIC</b>
@@ -220,7 +226,7 @@
                                 <asp:ListItem Value="2" >No</asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
-                        <td  style="color: Maroon;">
+                        <%--<td  style="color: Maroon;">
                             <b>Charge</b>
                         </td>
                         <td>
@@ -236,7 +242,7 @@
                                                
                             </asp:DropDownList>
                             
-                        </td>           
+                        </td>   --%>        
                                          
                     </tr>
                 </table>
@@ -383,9 +389,10 @@
                                 <asp:Button ID="btnProductAdd" runat="server"  Text="Add" AutoPostBack="true"  OnClick="btnProductAdd_Click" />
                             </td> 
                         </tr>
-                    </table>
-                 <table class="auto-style2">
-                      <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"  OnRowDeleting="dgvGridView_RowDeleting"  
+                   </table>
+                <table >
+                      <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"  OnRowDeleting="dgvGridView_RowDeleting" 
+                                    OnRowCancelingEdit="dgvSales_RowCancelingEdit" DataSourceID="XmlDataSource1" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
                                     BorderWidth="1px" CellPadding="5"  ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -427,41 +434,60 @@
                                                 <asp:Label ID="lblqty" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <EditItemTemplate>
+                                                <asp:TextBox ID="txtQtyEdit" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
+                                            </EditItemTemplate>   
                                         </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Commision" ItemStyle-HorizontalAlign="right" SortExpression="commision">
+                                        
+                                        <asp:TemplateField HeaderText="Total"   ItemStyle-HorizontalAlign="right" SortExpression="priceTotal">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblCommision" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("commision","{0:n2}") %>'></asp:Label>
+                                                <asp:Label ID="lblTotal" runat="server" Text='<%# GetPriceTotal(""+Eval("rate"), ""+Eval("quantity")) %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Discount" ItemStyle-HorizontalAlign="right" SortExpression="discount">
+
+                                        <asp:TemplateField HeaderText="Total Discount" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("discount") %>'></asp:Label>
+                                                <asp:Label ID="lblDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("discountTotal","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Discount Total" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
+                                        <asp:TemplateField HeaderText="Grand Total" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDiscountTotal" runat="server" Text='<%# Bind("discountTotal") %>'></asp:Label>
+                                                <asp:Label ID="lblGrandtoal" runat="server" DataFormatString="{0:0.00}" Text='<%# GetTotal(""+Eval("priceTotal"), ""+Eval("discountTotal")) %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" />
+                                            <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-
-                                        <asp:TemplateField HeaderText="Total." ItemStyle-HorizontalAlign="right" SortExpression="priceTotal">
+                                        <asp:TemplateField ShowHeader="False">
+                                            <EditItemTemplate>
+                                                <asp:LinkButton ID="LinkButton2" runat="server"  CommandName="Update"
+                                                                Text="">
+                                                    <img alt=""  src="../../Content/images/icons/Save.png" style="border: 0px;"
+                                                         title="Update" />
+                                                </asp:LinkButton>
+                                                <asp:LinkButton ID="LinkButton3" runat="server"  CommandName="Cancel"
+                                                                Text="">
+                                                    <img alt="" height="20px" width="20px" src="../../Content/images/icons/132.png" style="border: 0px;"
+                                                         title="Cancel" />
+                                                </asp:LinkButton>
+                                            </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:Label ID="lblIndentQty" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("priceTotal","{0:n2}") %>'></asp:Label>
+                                                <asp:LinkButton ID="LinkButton4" runat="server"  CommandName="Edit"
+                                                                Text="">
+                                                    <img alt="" src="../../Content/images/icons/edit.gif" style="border: 0px;"
+                                                         title="Edit" />
+                                                </asp:LinkButton>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField> 
+                                        </asp:TemplateField>
                                         <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                                </asp:GridView>
+                                </asp:GridView> 
+                   <%--  <asp:XmlDataSource ID="XmlDataSource1" EnableCaching="False" EnableViewState="False"
+                      runat="server"></asp:XmlDataSource>--%>
                  </table>
                          
                 </div>

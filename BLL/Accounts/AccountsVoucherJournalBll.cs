@@ -18,7 +18,11 @@ namespace BLL.Accounts
         }
         public DataTable GetJurnalVoucher(int voucherId,DateTime voucherDate)
         {
-            return _dal.GetJurnalVoucher(voucherId,voucherDate);
+            return _dal.GetJurnalVoucher(voucherId,voucherDate.ToString("yyyy/MM/dd"));
+        }
+        public bool UpdateAmount(decimal amount, int enroll, int jvId)
+        {
+            return _dal.UpdateAmount(amount,enroll,jvId);
         }
     }
 }

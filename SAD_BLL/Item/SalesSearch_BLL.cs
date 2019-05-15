@@ -87,7 +87,7 @@ namespace SAD_BLL.Item
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
-
+             
             if (prefix == "" || prefix == "*")
             {
                 var rows = from tmp in tblVehicleRent[e]//Convert.ToInt32(ht[unitID])                           
@@ -98,7 +98,7 @@ namespace SAD_BLL.Item
                     tbl = rows.CopyToDataTable();
                 }
             }
-            else
+            else if(prefix.Trim().Length >= 3)
             {
                 try
                 {
@@ -133,6 +133,8 @@ namespace SAD_BLL.Item
             {
                 return null;
             }
+
+
         }
 
         public static string[] GetCustomerVehicleList(string unitid, string prefix)
@@ -155,7 +157,7 @@ namespace SAD_BLL.Item
                     tbl = rows.CopyToDataTable();
                 }
             }
-            else
+            else if (prefix.Trim().Length >= 3)
             {
                 try
                 {
