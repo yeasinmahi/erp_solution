@@ -1210,6 +1210,7 @@
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
+    <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
     <Content Include="SAD\DisPoint\DisPointEdit.aspx" />
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
@@ -1235,6 +1236,7 @@
     <Content Include="SAD\Item\PriceByDate.aspx" />
     <Content Include="SAD\Item\PriceChange.aspx" />
     <Content Include="SAD\Item\PriceManager.aspx" />
+    <Content Include="SAD\Item\WebForm1.aspx" />
     <Content Include="SAD\Logistic\LogisGainGroupByCust.aspx" />
     <Content Include="SAD\Logistic\MaintainInOut.aspx" />
     <Content Include="SAD\Logistic\UpdateTrip.aspx" />
@@ -6022,6 +6024,13 @@
     <Compile Include="SAD\Delivery\DeliverySales.aspx.designer.cs">
       <DependentUpon>DeliverySales.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Delivery\DOView.aspx.cs">
+      <DependentUpon>DOView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DOView.aspx.designer.cs">
+      <DependentUpon>DOView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\DisPoint\DisPoint.aspx.cs">
       <DependentUpon>DisPoint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6196,6 +6205,13 @@
     </Compile>
     <Compile Include="SAD\Item\PriceManager.aspx.designer.cs">
       <DependentUpon>PriceManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Item\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Logistic\LogisGainGroupByCust.aspx.cs">
       <DependentUpon>LogisGainGroupByCust.aspx</DependentUpon>
