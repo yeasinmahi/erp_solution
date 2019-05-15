@@ -13997,8 +13997,8 @@ select strEmployeeName,strEmployeeCode,intEmployeeID from ERP_HR.dbo.tblEmplo
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "select strEmployeeName,strEmployeeCode,intEmployeeID,strdesignation,strDepatrment" +
-                ",strUnit,monSalary from erp_hr.dbo.QRYEMPLOYEEPROFILEALL where intemployeeid=@em" +
-                "pid";
+                ",strUnit,(monSalary*.30) monSalary from erp_hr.dbo.QRYEMPLOYEEPROFILEALL where i" +
+                "ntemployeeid=@empid";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@empid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }

@@ -27,25 +27,34 @@
     <div class="leaveApplication_container"> <asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
        <div class="tabs_container">Sales Item Discount Setup <hr /></div>
         <table  class="tbldecoration" style="width:auto; float:left;">                           
-        <tr><td colspan="5"><hr /></td></tr>                              
+        <tr><td>Discount Product Type </td>
+            <td colspan="5"><asp:DropDownList ID="ddlGroupOrProduct" runat="server" OnSelectedIndexChanged="ddlGroupProduct_SelectedIndexChanged" AutoPostBack="True">
+                <asp:ListItem Value="1">By Product</asp:ListItem>
+                <asp:ListItem Value="2">By Group</asp:ListItem>
+                </asp:DropDownList></td>
+        </tr>   
+            
         <tr class="tblrowodd">           
             <td style="text-align:left;">Discount Name:</td>
             <td style="text-align:left;"><asp:TextBox ID="txtPromotionName" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="10"></asp:TextBox></td>
             <td style='text-align: left; width:120px;'>Discount Group</td>
-            <td colspan="2" style='text-align: left;'> <asp:DropDownList ID="ddlPGroup" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlPGroup_SelectedIndexChanged">
+            <td colspan="2" style='text-align: left;'> <asp:DropDownList ID="ddlDGroup" CssClass="ddllist" runat="server" OnSelectedIndexChanged="ddlPGroup_SelectedIndexChanged">
             <asp:ListItem Value="2">By Office</asp:ListItem>
             <asp:ListItem Value="1">Single Customer</asp:ListItem>
 
             <asp:ListItem Value="3">National</asp:ListItem>
             </asp:DropDownList></td>              
         </tr>    
-        <tr><td>Sales Product Name </td>
+        <tr><td><asp:Label ID="lblproductGroup" runat="server"></asp:Label> </td>
             <td><asp:TextBox ID="txtSalesItem" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSalesItem"
             ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
             CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
-            </cc1:AutoCompleteExtender></td>
+            </cc1:AutoCompleteExtender>
+
+            <asp:DropDownList ID="ddlPGroupList" runat="server" ></asp:DropDownList>
+            </td>
             <td>Sales Office Name</td>
             <td colspan="2"> <asp:DropDownList ID="ddloffice" runat="server" CssClass="ddllist"> </asp:DropDownList></td>            
         </tr> 
@@ -90,8 +99,13 @@
              <asp:ListItem Value="1">Qty Base</asp:ListItem>
              <asp:ListItem Value="2">Slab Discount</asp:ListItem>
              </asp:DropDownList> </td>
-             <td style="text-align:right" ><asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" /></td></tr>
-         <tr><td colspan="4">Report<hr /></td></tr>
+             <td style="text-align:right" ><asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" style="height: 26px" /></td></tr>
+         <tr><td>Group Offcer</td>
+
+             <td></td>
+
+         </tr>
+            <tr><td colspan="6"><hr /></td></tr>
         <tr><td>Report Tyep</td>
 
            <td><asp:Label ID="lblnaes" runat="server"></asp:Label></td>
@@ -103,23 +117,24 @@
             </asp:DropDownList> </td>
             <td style="text-align:right">Report By</td>
             <td style="text-align:left"><asp:DropDownList ID="ddlReportBy" CssClass="ddllist" runat="server">
-            <asp:ListItem Value="1">National</asp:ListItem>
-            <asp:ListItem Value="2">Customer Wise</asp:ListItem>          
+            <asp:ListItem Value="3">National</asp:ListItem>
+            <asp:ListItem Value="1">Customer Wise</asp:ListItem>          
+                <asp:ListItem Value="2">By Office</asp:ListItem>
             </asp:DropDownList></td>
             
         </tr> 
             <tr>
             <td>Cancel Type</td>
             <td><asp:DropDownList ID="ddlCancelType" CssClass="ddllist" runat="server">
-            <asp:ListItem Value="1">National  Inactive</asp:ListItem>
-                <asp:ListItem Value="2">National End Date</asp:ListItem>
-            <asp:ListItem Value="3">Single Customer Inactive</asp:ListItem>          
-                <asp:ListItem Value="4">Single Customer End Date</asp:ListItem>
+            <asp:ListItem Value="3">National</asp:ListItem>
+                <asp:ListItem Value="1">Single Customer</asp:ListItem>
+            <asp:ListItem Value="2">Office</asp:ListItem>          
             </asp:DropDownList></td>
             <td colspan="3" style="text-align:left">
-            
-            &nbsp; &nbsp; &nbsp;<asp:Button ID="btnReport" runat="server" Font-Bold="true" OnClick="btnReport_Click" Text="Report" />
+
             &nbsp;&nbsp;&nbsp;&nbsp; <asp:Button ID="btnCancel" runat="server" Font-Bold="true" OnClick="btnCancel_Click" Text="Cancel" />
+                           
+            &nbsp; &nbsp; &nbsp; <asp:Button ID="btnReport" runat="server" Font-Bold="true" OnClick="btnReport_Click" Text="Report" />
             </td>
         </tr>                      
         <tr><td colspan="5"><hr />

@@ -36,7 +36,7 @@ namespace DALOOP.Accounts
                 return new DataTable();
             }
         }
-        public DataTable GetJurnalVoucher(int voucherId,DateTime voucherDate)
+        public DataTable GetJurnalVoucher(int voucherId,string voucherDate)
         {
             try
             {
