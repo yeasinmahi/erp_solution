@@ -262,7 +262,7 @@ namespace Purchase_BLL.Asset
             }
             return result;
         }
-        private void Inatialize(int intwh)
+        public void Inatialize()
         {
 
             if (tableItem == null)
@@ -437,9 +437,9 @@ namespace Purchase_BLL.Asset
             //}
             //Inatialize(int.Parse(whid));
 
-            tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
-            SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
-            tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(whid));
+            //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
+            //SprAutosearchRequesitionTableAdapter adpCOA = new SprAutosearchRequesitionTableAdapter();
+            //tableItem[e] = adpCOA.AutosearchGetData(Convert.ToInt32(whid));
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -447,7 +447,7 @@ namespace Purchase_BLL.Asset
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableItem[e]//Convert.ToInt32(ht[whid])
+                    var rows = from tmp in tableItem[Convert.ToInt32(ht[whid])]//Convert.ToInt32(ht[whid])
                                orderby tmp.strItem
                                select tmp;
                     if (rows.Any())
@@ -459,7 +459,7 @@ namespace Purchase_BLL.Asset
                 {
                     try
                     {
-                        var rows = from tmp in tableItem[e]//Convert.ToInt32(ht[whid])
+                        var rows = from tmp in tableItem[Convert.ToInt32(ht[whid])]//Convert.ToInt32(ht[whid])
                                    where tmp.strItem.ToLower().Contains(prefix) ||
                                          tmp.ItemNumber.ToLower().Contains(prefix)
                                    orderby tmp.strItem
