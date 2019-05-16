@@ -35,6 +35,7 @@ namespace UI.SCM
                 {
                     File.Delete(_filePathForXml);
                     dgvIndent.UnLoad();
+                    _ast.Inatialize();
                 }
                 catch
                 {

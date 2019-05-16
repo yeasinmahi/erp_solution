@@ -301,6 +301,24 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.RadioButtonList rdoDeliveryType;
         
         /// <summary>
+        /// lblDoCustId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDoCustId;
+        
+        /// <summary>
+        /// txtDoNumber control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDoNumber;
+        
+        /// <summary>
         /// lblUnitName control.
         /// </summary>
         /// <remarks>
@@ -551,6 +569,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtShipToPartyAddress;
+        
+        /// <summary>
+        /// pnlLogistic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlLogistic;
         
         /// <summary>
         /// rdoNeedVehicle control.

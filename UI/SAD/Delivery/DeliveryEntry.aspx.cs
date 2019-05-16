@@ -44,7 +44,7 @@ namespace UI.SAD.Delivery
         XmlManager xm = new XmlManager();
 
         private string message;
-        private string _filePathForXml, _xmlString = "", _indentQty;
+        private string _filePathForXml, _xmlString = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
@@ -68,14 +68,54 @@ namespace UI.SAD.Delivery
                     Session[SessionParams.SalesProcess] = "ChallanBase";
                 }
 
-                
-                
-
+                WorkType(rdoDeliveryType.SelectedItem.Text.ToString());
                 Session["RowObj"] = null;
                 Session["HeadObj"] = null;
 
             }
 
+        }
+
+        private void WorkType(string Type)
+        {
+            try
+            {
+                if (Type =="DO")
+                {
+                    pnlLogistic.Visible = false;
+                    txtPrice.Visible = true;
+                    btnSubmit.Text = "DO";
+                    lblDoCustId.Visible = true;
+                    txtDoNumber.Visible = true;
+                    lblDoCustId.Text = "DO/Customer Id";
+                } 
+                else if (Type == "Picking")
+                {
+                    pnlLogistic.Visible = true;
+                    btnSubmit.Text = "Picking";
+                    lblDoCustId.Visible = true;
+                    txtDoNumber.Visible = true;
+                    lblDoCustId.Text = "DO/Customer";
+
+                }
+                else if (Type == "Delivery")
+                {
+                    pnlLogistic.Visible = true;
+                    btnSubmit.Text = "Delivery";
+                    lblDoCustId.Visible = true;
+                    txtDoNumber.Visible = true;
+                    lblDoCustId.Text = "DO/Customer/Picking Id";
+                }
+                else if (Type == "Return")
+                {
+                    pnlLogistic.Visible = false;
+                    btnSubmit.Text = "Return";
+                    lblDoCustId.Visible = false;
+                    txtDoNumber.Visible = false;
+                }
+            }
+            catch { }
+            
         }
         
         private void DefaultPageLoad()
@@ -301,10 +341,37 @@ namespace UI.SAD.Delivery
         
         private void BindGrid(string xmlFilePath)
         {
-            if (!File.Exists(xmlFilePath)) xm.LoadXmlFile(xmlFilePath); 
-            //XmlDataSource1.Dispose();
-            //XmlDataSource1.DataFile = xmlFilePath;
-            //GridView1.DataBind();
+            
+                if (!File.Exists(xmlFilePath)) xm.LoadXmlFile(xmlFilePath);
+
+                try
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlFilePath);
+                    XmlNode dSftTm = doc.SelectSingleNode("Entry");
+                    _xmlString = dSftTm?.InnerXml;
+                    _xmlString = "<Entry>" + _xmlString + "</Entry>";
+                    StringReader sr = new StringReader(_xmlString);
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(sr);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        dgvSales.DataSource = ds;
+                    }
+                    else
+                    {
+                        dgvSales.DataSource = "";
+                    }
+                    dgvSales.DataBind();
+
+
+
+                }
+                catch
+                {
+                }
+            
+
         }
         protected void dgvSales_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
         {
@@ -554,18 +621,17 @@ namespace UI.SAD.Delivery
             };
 
             List<object> objects = new List<object>();
-            if (Session["RowObj"] != null)
-            {
-                objects = (List<object>)Session["rowObj"];
-            }
+            //if (Session["RowObj"] != null)
+            //{
+            //    objects = (List<object>)Session["rowObj"];
+           // }
             objects.Add(obj);
-            Session["rowObj"] = objects;
+            //Session["rowObj"] = objects;
 
             string xmlString = XmlParser.GetXml("Entry", "items", objects, out message);
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlString);
-            doc.Save(xmlString);
- 
+            doc.Save(GetXmlFilePath()); 
             LoadGridwithXml(xmlString, dgvSales);
         }
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -599,60 +665,13 @@ namespace UI.SAD.Delivery
             catch { }
         }
 
-        private void ListObjectUpdate(object data ,decimal newValue)
-        {
-            List<object> objects = (List<object>)Session["rowObj"];
-            
-          
-        }
+      
         private void LoadGridwithXml(string xmlString, GridView gridView)
         {
             GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message);
         }
 
-        private void GetChallanNo()
-        {
-            string startNo, endNo = "", leftPart = "", tmp = "";
-            int lastUsedNum;
-
-            if (txtReffNo.Text != "")
-            {
-                if ("" + Session["sesChlnNo"] == "" && txtReffNo.Text != "")
-                {
-                    Session["sesChlnNo"] = txtReffNo.Text;
-                }
-
-                startNo = Session["sesChlnNo"].ToString();
-
-                for (int i = startNo.Length - 1; i >= 0; i--)
-                {
-                    if (startNo[i] >= 48 && startNo[i] <= 57)
-                    {
-                        tmp += startNo[i].ToString();
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                if (tmp.Length > 0)
-                {
-                    for (int i = tmp.Length - 1; i >= 0; i--)
-                    {
-                        endNo += tmp[i].ToString();
-                    }
-
-
-                    leftPart = startNo.Substring(0, startNo.IndexOf(endNo));
-
-                    lastUsedNum = int.Parse(endNo) + 1;
-
-                    Session["sesChlnNo"] = leftPart + lastUsedNum.ToString();
-                    txtReffNo.Text = Session["sesChlnNo"].ToString();
-                }
-            }
-        }
+      
          
         protected void btnProductAddAll_Click(object sender, EventArgs e)
         {
@@ -747,6 +766,11 @@ namespace UI.SAD.Delivery
         protected void txtQun_TextChanged(object sender, EventArgs e)
         {
             SessionXmlCreate();
+        }
+
+        protected void rdoDeliveryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WorkType(rdoDeliveryType.SelectedItem.ToString());
         }
 
         private void VehicleChange()
