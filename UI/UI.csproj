@@ -1630,6 +1630,7 @@
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
+    <Content Include="VAT_Management\frmRawmaterialCountUpdate.aspx" />
     <Content Include="VAT_Management\frmDestroy.aspx" />
     <Content Include="VAT_Management\frmCreditNote.aspx" />
     <Content Include="VAT_Management\Mushak11.aspx" />
@@ -9006,6 +9007,13 @@
     </Compile>
     <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.designer.cs">
       <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\frmRawmaterialCountUpdate.aspx.cs">
+      <DependentUpon>frmRawmaterialCountUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\frmRawmaterialCountUpdate.aspx.designer.cs">
+      <DependentUpon>frmRawmaterialCountUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\frmDestroy.aspx.cs">
       <DependentUpon>frmDestroy.aspx</DependentUpon>

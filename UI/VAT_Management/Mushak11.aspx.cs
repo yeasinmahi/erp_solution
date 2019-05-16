@@ -69,6 +69,9 @@ namespace UI.VAT_Management
             }
             catch { }
         }
+
+        
+
         protected void ddlVatAccount_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
