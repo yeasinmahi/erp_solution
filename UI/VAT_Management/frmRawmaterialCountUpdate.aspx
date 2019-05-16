@@ -129,7 +129,7 @@
     
     <table>
      <tr><td style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Rawmaterial Update" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td class="auto-style1">
+     <tr><td style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Material Update" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr><tr><td class="auto-style1">
      <table  class="tbldecoration" style="width:auto; float:left;">                              
      <tr><td>Material Name</td>
         <td><asp:TextBox ID="txtVatItemList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" OnTextChanged="txtVatItemList_TextChanged" ></asp:TextBox>
