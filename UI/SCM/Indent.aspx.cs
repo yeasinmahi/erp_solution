@@ -53,6 +53,7 @@ namespace UI.SCM
         {
             _ast = new AutoSearch_BLL();
             _ast.Inatialize();
+            
         }
 
         private void DefaltLoad()
