@@ -264,7 +264,7 @@ namespace Purchase_BLL.Asset
         }
         public void Inatialize()
         {
-
+            tableItem = null;
             if (tableItem == null)
             {
                 WearHouseID unt = new WearHouseID();
