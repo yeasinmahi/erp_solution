@@ -50,15 +50,8 @@ namespace UI.SAD.Delivery
             _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
             if (!IsPostBack)
             {
-                string type = Request.QueryString["type"];
-                if (type == "1")
-                {
-                    
-                }
-                else
-                {
-                    
-                }
+
+                GetURLMenu();
                 if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
                 DefaultPageLoad();
                
@@ -83,6 +76,23 @@ namespace UI.SAD.Delivery
 
             }
 
+        }
+
+        private void GetURLMenu()
+        {
+            string type = Request.QueryString["type"];
+
+            foreach (ListItem item in rdoDeliveryType.Items)
+            {
+                rdoDeliveryType.Enabled = false;
+               
+                if (item.Value.Contains(type.ToString()))
+                {
+                    item.Selected = true;
+
+                    break;
+                }
+            }
         }
 
         private void WorkType(string Type)
