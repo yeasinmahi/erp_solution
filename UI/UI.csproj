@@ -1336,6 +1336,7 @@
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
+    <Content Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
@@ -6907,6 +6908,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx.designer.cs">
       <DependentUpon>DOQntVsChallaQnt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.cs">
+      <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.designer.cs">
+      <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.cs">
       <DependentUpon>Free.aspx</DependentUpon>
