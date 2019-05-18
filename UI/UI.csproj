@@ -1270,6 +1270,7 @@
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
+    <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
     <Content Include="SAD\DisPoint\DisPointEdit.aspx" />
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
@@ -1295,6 +1296,7 @@
     <Content Include="SAD\Item\PriceByDate.aspx" />
     <Content Include="SAD\Item\PriceChange.aspx" />
     <Content Include="SAD\Item\PriceManager.aspx" />
+    <Content Include="SAD\Item\WebForm1.aspx" />
     <Content Include="SAD\Logistic\LogisGainGroupByCust.aspx" />
     <Content Include="SAD\Logistic\MaintainInOut.aspx" />
     <Content Include="SAD\Logistic\UpdateTrip.aspx" />
@@ -1394,6 +1396,7 @@
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
+    <Content Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
@@ -1691,6 +1694,7 @@
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
     <Content Include="VAT_Management\CreateItemAndMaterial.aspx" />
+    <Content Include="VAT_Management\frmRawmaterialCountUpdate.aspx" />
     <Content Include="VAT_Management\frmDestroy.aspx" />
     <Content Include="VAT_Management\frmCreditNote.aspx" />
     <Content Include="VAT_Management\Mushak11.aspx" />
@@ -6085,6 +6089,13 @@
     <Compile Include="SAD\Delivery\DeliverySales.aspx.designer.cs">
       <DependentUpon>DeliverySales.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Delivery\DOView.aspx.cs">
+      <DependentUpon>DOView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DOView.aspx.designer.cs">
+      <DependentUpon>DOView.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\DisPoint\DisPoint.aspx.cs">
       <DependentUpon>DisPoint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6259,6 +6270,13 @@
     </Compile>
     <Compile Include="SAD\Item\PriceManager.aspx.designer.cs">
       <DependentUpon>PriceManager.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Item\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Logistic\LogisGainGroupByCust.aspx.cs">
       <DependentUpon>LogisGainGroupByCust.aspx</DependentUpon>
@@ -6953,6 +6971,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx.designer.cs">
       <DependentUpon>DOQntVsChallaQnt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.cs">
+      <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.designer.cs">
+      <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.cs">
       <DependentUpon>Free.aspx</DependentUpon>
@@ -9074,6 +9099,13 @@
     </Compile>
     <Compile Include="VAT_Management\CreateItemAndMaterial.aspx.designer.cs">
       <DependentUpon>CreateItemAndMaterial.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VAT_Management\frmRawmaterialCountUpdate.aspx.cs">
+      <DependentUpon>frmRawmaterialCountUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VAT_Management\frmRawmaterialCountUpdate.aspx.designer.cs">
+      <DependentUpon>frmRawmaterialCountUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\frmDestroy.aspx.cs">
       <DependentUpon>frmDestroy.aspx</DependentUpon>

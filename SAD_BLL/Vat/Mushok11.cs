@@ -74,6 +74,17 @@ namespace SAD_BLL.Vat
             catch { return new DataTable(); }
         }
 
+        public void getmaterialupdate(int intitemid, int v)
+        {
+            try
+            {
+                tblConfigMaterialVAT1TableAdapter adp = new tblConfigMaterialVAT1TableAdapter();
+                 adp.GetData(intitemid, v);
+
+            }
+            catch { }
+        }
+
         public DataTable getM19Summary(int accid, DateTime dtedate)
         {
             try
@@ -1057,6 +1068,7 @@ namespace SAD_BLL.Vat
                 return null;
             }
         }
+      
         public string[] getSadItem(string prefix, int Unitid)
         {
             tableSADItem = new Mushok11TDS.tblItemDataTable[Convert.ToInt32(Unitid)];

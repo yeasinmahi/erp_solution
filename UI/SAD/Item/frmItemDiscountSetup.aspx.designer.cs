@@ -103,6 +103,15 @@ namespace UI.SAD.Item {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
+        /// ddlGroupOrProduct control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlGroupOrProduct;
+        
+        /// <summary>
         /// txtPromotionName control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,22 @@ namespace UI.SAD.Item {
         protected global::System.Web.UI.WebControls.TextBox txtPromotionName;
         
         /// <summary>
-        /// ddlPGroup control.
+        /// ddlDGroup control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPGroup;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDGroup;
+        
+        /// <summary>
+        /// lblproductGroup control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblproductGroup;
         
         /// <summary>
         /// txtSalesItem control.
@@ -137,6 +155,15 @@ namespace UI.SAD.Item {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
+        
+        /// <summary>
+        /// ddlPGroupList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPGroupList;
         
         /// <summary>
         /// ddloffice control.
@@ -292,15 +319,6 @@ namespace UI.SAD.Item {
         protected global::System.Web.UI.WebControls.DropDownList ddlCancelType;
         
         /// <summary>
-        /// btnReport control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnReport;
-        
-        /// <summary>
         /// btnCancel control.
         /// </summary>
         /// <remarks>
@@ -308,6 +326,15 @@ namespace UI.SAD.Item {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCancel;
+        
+        /// <summary>
+        /// btnReport control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnReport;
         
         /// <summary>
         /// dgvPromotionReport control.

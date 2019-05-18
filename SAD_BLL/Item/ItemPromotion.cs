@@ -43,7 +43,16 @@ namespace SAD_BLL.Item
             return price.Value;
         }
 
-       
+        public DataTable getGroupProductList(string unitid)
+        {
+
+            try
+            {
+                tblItemManagerTableAdapter adp = new tblItemManagerTableAdapter();
+               return adp.GetData(int.Parse(unitid));
+            }
+            catch { return new DataTable(); }
+        }
 
         public DataTable getPromotionReport(int intActive, int customertype, int custid, int itemidSales)
         {
@@ -228,6 +237,19 @@ namespace SAD_BLL.Item
             throw new NotImplementedException();
         }
 
+        public string GetDiscountGroup(int Discountgroup, int intCalculationType, int intUnitId, int custid, string promotionName, decimal monAdjustmentAmount, decimal salesQty, int intUomid, int intAdjustmentTypeId, DateTime dteFdate, DateTime dteTdate, int enroll, int intSalesOfficeId, int productGroupid)
+        { string msg = "";
+
+            try
+            {
+                sprDiscountInsertByProductGroupTableAdapter adp = new sprDiscountInsertByProductGroupTableAdapter();
+                adp.GetData(Discountgroup, intCalculationType, intUnitId, custid, promotionName, monAdjustmentAmount, salesQty, intUomid, intAdjustmentTypeId, dteFdate, dteTdate, enroll, intSalesOfficeId, productGroupid);
+                msg = "Successfully";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+            return msg;
+        }
+
         public string getPromotionEntryAllUnit(int part, int custid, string promotionName, int itemidSales, int intUomid, decimal salesQty, int itemidPromotion, int pUomId, decimal promotionQty, int Enroll, DateTime dteFdate, DateTime dteTDate, int rid, int aid, int intLineid)
         {
             string msg = "";
@@ -297,6 +319,16 @@ namespace SAD_BLL.Item
             {
                 return null;
             }
+        }
+
+        public DataTable getDiscountList(int intActive, int v1, int v2, int itemidSales)
+        {
+            try
+            {
+                sprDiscountReportTableAdapter adp = new sprDiscountReportTableAdapter();
+                return adp.GetData(intActive, v1, v2, itemidSales);
+            }
+            catch { return new DataTable(); }
         }
 
         public DataTable getCustomerdetails(string cusId)

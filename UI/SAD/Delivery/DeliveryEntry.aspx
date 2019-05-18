@@ -107,12 +107,20 @@
                 <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
                 <asp:HiddenField ID="hdnVatPrice" Value="0" runat="server" />
                     <div class="tabs_container">
-                      <td> <asp:RadioButtonList ID="rdoDeliveryType" runat="server" Width="200px" AutoPostBack="True" 
-                                                RepeatDirection="Horizontal" >
-                          <asp:ListItem Selected="True" Value="1">Delivery</asp:ListItem>
-                          <asp:ListItem Value="2" >Return</asp:ListItem>
-                      </asp:RadioButtonList></td>
-                       
+                        <table>
+                            <tr>
+                                <td> <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" Width="200px" AutoPostBack="True" 
+                                                          RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged" >
+                                    <asp:ListItem Selected="True"  Value="1">DO</asp:ListItem>
+                                    <asp:ListItem Value="2" >Picking</asp:ListItem>
+                                    <asp:ListItem  Value="3">Delivery</asp:ListItem>
+                                    <asp:ListItem  Value="4" >Return</asp:ListItem>
+                                </asp:RadioButtonList></td>
+                                <td><asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
+                                <td><asp:TextBox runat="server" ForeColor="Red" Visible="False" ID="txtDoNumber"></asp:TextBox></td>
+                            </tr>
+                        </table>
+                     
                         <hr />
                     </div>
                     <table style="width: 850px">
@@ -214,8 +222,11 @@
                             <tr><td></td></tr>
                     </table>
                 <hr />
+                <asp:Panel ID="pnlLogistic" runat="server" Visible="True">
+                    
                      <table style="width: 400px; vertical-align: top;">
                     <tr>
+                        
                         <td>
                             <b style="color: Green;">LOGISTIC</b>
                         </td>
@@ -226,24 +237,7 @@
                                 <asp:ListItem Value="2" >No</asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
-                        <%--<td  style="color: Maroon;">
-                            <b>Charge</b>
-                        </td>
-                        <td>
-                            <asp:DropDownList ID="ddlVehicleCharge" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleCharge_SelectedIndexChanged" > 
-                            </asp:DropDownList>
-                             
-                        </td>
-                        <td style="color: Blue;">
-                            <b>Incentive</b>
-                        </td>
-                        <td>
-                            <asp:DropDownList ID="ddlVehicleIncentive" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlVehicleIncentive_SelectedIndexChanged">
-                                               
-                            </asp:DropDownList>
-                            
-                        </td>   --%>        
-                                         
+                      
                     </tr>
                 </table>
              
@@ -308,6 +302,9 @@
 
                          </tr>
                     </table>
+
+                    </asp:Panel>
+                    
                 <hr />
                     <table>
                         <tr><td></td></tr> 
@@ -391,8 +388,9 @@
                         </tr>
                    </table>
                 <table >
+                    <tr><td> 
                       <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999"  OnRowDeleting="dgvGridView_RowDeleting" 
-                                    OnRowCancelingEdit="dgvSales_RowCancelingEdit" DataSourceID="XmlDataSource1" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
+                                    OnRowCancelingEdit="dgvSales_RowCancelingEdit"  OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
                                     BorderWidth="1px" CellPadding="5"  ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -480,14 +478,20 @@
                                                 </asp:LinkButton>
                                             </ItemTemplate>
                                         </asp:TemplateField>
-                                        <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
+                                        <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" >
+                                        <ControlStyle Font-Bold="True" ForeColor="Red" />
+                                        </asp:CommandField>
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                 </asp:GridView> 
+                        
                    <%--  <asp:XmlDataSource ID="XmlDataSource1" EnableCaching="False" EnableViewState="False"
                       runat="server"></asp:XmlDataSource>--%>
+                      </td>
+                    </tr>
+
                  </table>
                          
                 </div>

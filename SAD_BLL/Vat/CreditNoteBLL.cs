@@ -82,5 +82,10 @@ namespace SAD_BLL.Vat
             }
             catch { return new DataTable(); }
         }
+
+        public void getmaterialupdate(int intitemid, int v)
+        {
+            
+        }
     }
 }
