@@ -70,8 +70,8 @@
     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
     <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee></div>
-    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div></asp:Panel>
-    <div style="height: 100px;"></div>
+    <div id="divControl" class="divPopUp2" style="width: 100%; height: 0px; float: right;">&nbsp;</div></asp:Panel>
+    <div style="height: 10px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
     </cc1:AlwaysVisibleControlExtender>
     <%--=========================================Start My Code From Here===============================================--%>
@@ -135,10 +135,10 @@
                                 <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Serial" SortExpression="strSerial">
+                                <%--<asp:TemplateField HeaderText="Serial" SortExpression="strSerial">
                                 <ItemTemplate><asp:Label ID="lblSerial" runat="server" Text='<%# Bind("strSerial") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
                                 <asp:TemplateField HeaderText="Brand" SortExpression="strBrand">
                                 <ItemTemplate><asp:Label ID="lblBrand" runat="server" Text='<%# Bind("strBrand") %>'></asp:Label></ItemTemplate>
@@ -180,7 +180,7 @@
                                 <ItemStyle HorizontalAlign="center" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Group Name" SortExpression="strGroupName">
+                                <%--<asp:TemplateField HeaderText="Group Name" SortExpression="strGroupName">
                                 <ItemTemplate><asp:Label ID="lblGroupName" runat="server" Text='<%# Bind("strGroupName") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
@@ -198,14 +198,14 @@
                                 <asp:TemplateField HeaderText="Minor Category" SortExpression="strMinorCategory">
                                 <ItemTemplate><asp:Label ID="lblMinorCategory" runat="server" Text='<%# Bind("strMinorCategory") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
                                 <asp:TemplateField HeaderText="Plant Name" SortExpression="strPlantName">
                                 <ItemTemplate><asp:Label ID="lblPlant" runat="server" Text='<%# Bind("strPlantName") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Procurement Type" SortExpression="strPurchaseType">
+                                <%--<asp:TemplateField HeaderText="Procurement Type" SortExpression="strPurchaseType">
                                 <ItemTemplate><asp:Label ID="lblPurchase" runat="server" Text='<%# Bind("strPurchaseType") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
                                 </asp:TemplateField>
@@ -228,7 +228,7 @@
                                 <asp:TemplateField HeaderText="SDE Classification" SortExpression="strSDEClassification">
                                 <ItemTemplate><asp:Label ID="lblSDE" runat="server" Text='<%# Bind("strSDEClassification") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="left" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
                                 <asp:TemplateField HeaderText="" ItemStyle-HorizontalAlign="Center" SortExpression="">
                                 <ItemTemplate><asp:Button ID="btnApprove" runat="server" class="myButton" CommandArgument="<%# Container.DataItemIndex %>" CommandName="Y" Font-Size="9px" Text="Select" /></ItemTemplate>

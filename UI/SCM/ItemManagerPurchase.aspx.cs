@@ -1,6 +1,7 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
 using SCM_BLL;
+using SCM_DAL.ItemManagerStoreTDSTableAdapters;
 using System;
 using System.Data;
 using System.Web.UI;
@@ -11,13 +12,20 @@ namespace UI.SCM
 {
     public partial class ItemMangerPurchase : BasePage
     {
-        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
-        private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
+        #region INIT
+        private MasterMaterialBLL bll = new MasterMaterialBLL();
+        private ItemAddtoMasterFromTempTableAdapter itemAddtoMasterFromTempTableAdapter = new ItemAddtoMasterFromTempTableAdapter();
+        private DataTable dt;
+        private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, 
+            intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, 
+            intInsertBy, intCOAID, intMasterID;
 
-        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
+        private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, 
+            strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
             strPlantName, strProcureType, strABC, strFSN, strVDE, strOrderingLotSize, strSDE, strHML;
 
-        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
+        private decimal numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, 
+            numReOrderQty, numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump;
         private bool ysnVATApplicable;
 
         private SeriLog log = new SeriLog();
@@ -25,7 +33,9 @@ namespace UI.SCM
         private string start = "starting SCM\\ItemMangerPurchase";
         private string stop = "stopping SCM\\ItemMangerPurchase";
         private string perform = "Performance on SCM\\ItemMangerPurchase";
+        #endregion
 
+        #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -34,47 +44,26 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
+                LoadWareHouse();
                 try //WH List for Purchase
                 {
-                    intPart = 15;
-                    intInsertBy = int.Parse(hdnEnroll.Value);
-                    dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
-                        intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
-                        numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
-                    ddlWH.DataTextField = "strWareHoseName";
-                    ddlWH.DataValueField = "intWHID";
-                    ddlWH.DataSource = dt;
-                    ddlWH.DataBind();
+                    //intPart = 15;
+                    //intInsertBy = int.Parse(hdnEnroll.Value);
+                    //dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                    //    intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                    //    numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                    //    numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
+                    //ddlWH.DataTextField = "strWareHoseName";
+                    //ddlWH.DataValueField = "intWHID";
+                    //ddlWH.DataSource = dt;
+                    //ddlWH.DataBind();
                 }
                 catch { }
             }
         }
+        #endregion
 
-        private void LoadGrid()
-        {
-            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
-            Flogger.WriteDiagnostic(fd);
-            var tracker = new PerfTracker(perform + " " + "LoadGrid", "", fd.UserName, fd.Location,
-                fd.Product, fd.Layer);
-            try
-            {
-                dt = new DataTable();
-                dt = bll.GetItemListForPurchase(intWHID);
-                dgvItem.DataSource = dt; dgvItem.DataBind();
-            }
-            catch (Exception ex)
-            {
-                var efd = log.GetFlogDetail(stop, location, "LoadGrid", ex);
-                Flogger.WriteError(efd);
-            }
-
-            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
-        }
-
+        #region Event
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Y")
@@ -111,11 +100,10 @@ namespace UI.SCM
                         intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
                         numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
                         numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
-                    LoadGrid();
+                   // LoadGrid();
                 }
             }
         }
-
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -125,15 +113,94 @@ namespace UI.SCM
             }
             catch { }
         }
-
         protected void btnShow_Click(object sender, EventArgs e)
         {
             try
             {
-                intWHID = int.Parse(ddlWH.SelectedValue.ToString());
-                LoadGrid();
+                //intWHID = int.Parse(ddlWH.SelectedValue.ToString());
+                if (Convert.ToInt32(ddlWH.SelectedValue) > 0)
+                {
+                    intWHID = Convert.ToInt32(ddlWH.SelectedValue);
+                    LoadGrid(intWHID);
+                }
+                else
+                {
+                    Toaster("Please Select a Ware House", "Warning Message", Utility.Common.TosterType.Warning);
+                }
+                
             }
             catch { }
         }
+        #endregion
+
+        #region Method
+        private void LoadWareHouse()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = itemAddtoMasterFromTempTableAdapter.GetWHFromItemTempTable(Convert.ToInt32(hdnEnroll.Value));
+                ddlWH.DataSource = dt;
+                ddlWH.DataTextField = "strWareHoseName";
+                ddlWH.DataValueField = "intWHID";
+                ddlWH.DataBind();
+
+                ddlWH.Items.Insert(0, new ListItem("---Select Ware House---", "-1"));
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        private void LoadGrid_old()
+        {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "LoadGrid", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
+                dt = bll.GetItemListForPurchase(intWHID);
+                dgvItem.DataSource = dt; dgvItem.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "LoadGrid", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
+        private void LoadGrid(int wh)
+        {
+            var fd = log.GetFlogDetail(start, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            var tracker = new PerfTracker(perform + " " + "LoadGrid", "", fd.UserName, fd.Location,
+                fd.Product, fd.Layer);
+            try
+            {
+                dt = new DataTable();
+                dt = itemAddtoMasterFromTempTableAdapter.GetAllItemTempDataForPurchase(wh);
+                dgvItem.DataSource = dt;
+                dgvItem.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "LoadGrid", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "LoadGrid", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
+        #endregion
+
+
+
     }
 }
