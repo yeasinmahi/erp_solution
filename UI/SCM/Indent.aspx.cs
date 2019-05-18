@@ -293,13 +293,13 @@ namespace UI.SCM
 
         #region========================Auto Search============================
 
-        private static AutoSearch_BLL _ast = new AutoSearch_BLL();
+        private static readonly AutoSearch_BLL Ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
 
-            return _ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return Ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
@@ -492,5 +492,10 @@ namespace UI.SCM
         }
 
         #endregion======================Close=================================
+
+        protected void btnRefresh_OnClick(object sender, EventArgs e)
+        {
+            Ast.WhId = string.Empty;
+        }
     }
 }

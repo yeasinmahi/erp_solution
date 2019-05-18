@@ -353,7 +353,7 @@ namespace Purchase_BLL.Asset
 
         }
 
-       private string _whId = String.Empty;
+       public string WhId = String.Empty;
         //public string[] AutoSearchLocationItem(string whid, string prefix)
         //{
         //    if (tableItem == null || tableItem.Length < 1 || !_whId.Equals(whid))
@@ -428,12 +428,12 @@ namespace Purchase_BLL.Asset
 
         public string[] AutoSearchItem(string whid, string prefix)
         {
-            if (tableItem == null || tableItem.Length < 1 || !_whId.Equals(whid))
+            if (tableItem == null || tableItem.Length < 1 || !WhId.Equals(whid))
             {
                 tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
                 SprAutosearchRequesitionTableAdapter adpCoa = new SprAutosearchRequesitionTableAdapter();
                 tableItem[e] = adpCoa.AutosearchGetData(Convert.ToInt32(whid));
-                _whId = whid;
+                WhId = whid;
             }
             //Inatialize(int.Parse(whid));
 
