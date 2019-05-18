@@ -31,14 +31,15 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
-                
+                _ast = new AutoSearch_BLL();
                 try
                 {
                     File.Delete(_filePathForXml);
                     dgvIndent.UnLoad();
-                    Thread th = new Thread(LoadItem);
-                    th.Start();
-                    
+                    _ast.Inatialize();
+                    //Thread th = new Thread(LoadItem);
+                    //th.Start();
+
                 }
                 catch
                 {
@@ -49,12 +50,12 @@ namespace UI.SCM
             }
         }
 
-        public void LoadItem()
-        {
-            _ast = new AutoSearch_BLL();
-            _ast.Inatialize();
+        //public void LoadItem()
+        //{
+        //    _ast = new AutoSearch_BLL();
+        //    _ast.Inatialize();
             
-        }
+        //}
 
         private void DefaltLoad()
         {
