@@ -50,6 +50,15 @@ namespace UI.SAD.Delivery
             _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
             if (!IsPostBack)
             {
+                string type = Request.QueryString["type"];
+                if (type == "1")
+                {
+                    
+                }
+                else
+                {
+                    
+                }
                 if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
                 DefaultPageLoad();
                
