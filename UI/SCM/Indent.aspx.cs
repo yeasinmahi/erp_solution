@@ -31,12 +31,12 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
-                _ast = new AutoSearch_BLL();
+                //_ast = new AutoSearch_BLL();
                 try
                 {
                     File.Delete(_filePathForXml);
                     dgvIndent.UnLoad();
-                    _ast.Inatialize();
+                   // _ast.Inatialize();
                     //Thread th = new Thread(LoadItem);
                     //th.Start();
 

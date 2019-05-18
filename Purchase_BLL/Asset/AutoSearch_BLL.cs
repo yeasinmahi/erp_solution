@@ -428,13 +428,13 @@ namespace Purchase_BLL.Asset
 
         public string[] AutoSearchItem(string whid, string prefix)
         {
-            //if (tableItem1 == null || tableItem1.Length < 1 || !_whId.Equals(whid))
-            //{
-            //    tableItem1 = new SearchTDS.sprAutosearchRawMeterialDataTable[Convert.ToInt32(whid)];
-            //    sprAutosearchRawMeterialTableAdapter adpCoa = new sprAutosearchRawMeterialTableAdapter();
-            //    tableItem1[e] = adpCoa.GetData(Convert.ToInt32(whid));
-            //    _whId = whid;
-            //}
+            if (tableItem == null || tableItem.Length < 1 || !_whId.Equals(whid))
+            {
+                tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
+                SprAutosearchRequesitionTableAdapter adpCoa = new SprAutosearchRequesitionTableAdapter();
+                tableItem[e] = adpCoa.AutosearchGetData(Convert.ToInt32(whid));
+                _whId = whid;
+            }
             //Inatialize(int.Parse(whid));
 
             //tableItem = new SearchTDS.SprAutosearchRequesitionDataTable[Convert.ToInt32(whid)];
@@ -447,7 +447,7 @@ namespace Purchase_BLL.Asset
             {
                 if (prefix == "" || prefix == "*")
                 {
-                    var rows = from tmp in tableItem[Convert.ToInt32(ht[whid])]//Convert.ToInt32(ht[whid])
+                    var rows = from tmp in tableItem[e]//Convert.ToInt32(ht[whid])
                                orderby tmp.strItem
                                select tmp;
                     if (rows.Any())
@@ -459,7 +459,7 @@ namespace Purchase_BLL.Asset
                 {
                     try
                     {
-                        var rows = from tmp in tableItem[Convert.ToInt32(ht[whid])]//Convert.ToInt32(ht[whid])
+                        var rows = from tmp in tableItem[e]//Convert.ToInt32(ht[whid])
                                    where tmp.strItem.ToLower().Contains(prefix) ||
                                          tmp.ItemNumber.ToLower().Contains(prefix)
                                    orderby tmp.strItem
