@@ -235,7 +235,7 @@ namespace Utility
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
-            return doc.InnerXml;
+            return ConvertXmlToString(doc);
         }
     }
 }
