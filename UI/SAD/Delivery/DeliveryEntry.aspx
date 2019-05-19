@@ -117,7 +117,11 @@
                                     <asp:ListItem  Value="4" >Return</asp:ListItem>
                                 </asp:RadioButtonList></td>
                                 <td><asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
-                                <td><asp:TextBox runat="server" ForeColor="Red" Visible="False" ID="txtDoNumber"></asp:TextBox></td>
+                                <td><asp:TextBox runat="server" ForeColor="Red" Visible="False" ID="txtDoNumber" AutoPostBack="true" OnTextChanged="txtDoNumber_TextChanged"></asp:TextBox></td>
+                                <td><asp:Label runat="server" ID="lblCodeText" Visible="False" Text="Code: "></asp:Label></td>
+                                <td><asp:Label runat="server" ID="lblCode"  ></asp:Label></td>
+                                <td><asp:Label runat="server" ID="lblOrderIDText" Visible="False" Text="Order ID: "></asp:Label></td>
+                                <td><asp:Label runat="server" ID="lblOrderId"  ></asp:Label></td>
                             </tr>
                         </table>
                      
