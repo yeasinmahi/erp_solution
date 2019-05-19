@@ -19,7 +19,7 @@ namespace SAD_BLL.Sales
             }
             catch (Exception ex)
             {
-                return new DataTable();
+                throw ex;
             }
            
         }
@@ -32,9 +32,25 @@ namespace SAD_BLL.Sales
             }
             catch (Exception ex)
             {
-                return new DataTable();
+                 throw ex;
             }
 
+        }
+
+        public void DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
+        {
+            try
+            {
+                long? orderNo = null;
+                SprDOCreateTableAdapter adp = new SprDOCreateTableAdapter();
+                adp.DeliveryOrderCreate(xmlRow, xmlHeader, ref orderNo, ref strCode);
+                orderId = orderNo.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
         }
     }
 }

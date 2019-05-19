@@ -23,8 +23,9 @@ namespace SAD_BLL.Item
 
         private static Delivery_TDS.QryDOProfileDataTable[] tblDoProfile = null;
         private static Delivery_TDS.QryDOPendingItemDataTable[] tblDoPendintItem = null;
+        private static Delivery_TDS.QryShipToPartyDataTable[] tblShipParty = null;
 
-        
+
         private static Hashtable ht = new Hashtable();
         public static int e;
 
@@ -188,6 +189,62 @@ namespace SAD_BLL.Item
                 {
 
                     retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string[] GetShipToParty(string unitId, string salesOffice,string customerType, string prefix)
+        {
+            // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
+            QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
+            tblShipParty[e] = adp.GetShipToParty(int.Parse(unitId), int.Parse(customerType), int.Parse(salesOffice));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tblShipParty[e]//Convert.ToInt32(ht[unitID])                           
+                           orderby tmp.strName
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    var rows = from tmp in tblShipParty[e]
+                               where tmp.strName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               orderby tmp.strName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strName"] + " [" + tbl.Rows[i]["intDisPointId"] + "]";
+                  //  retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
                 }
 
                 return retStr;
