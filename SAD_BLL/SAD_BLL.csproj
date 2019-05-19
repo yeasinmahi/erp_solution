@@ -145,6 +145,7 @@
     <Compile Include="RevenueBLL\RevenueClsBLL.cs" />
     <Compile Include="Sales\AppsSalesOrder_BLL.cs" />
     <Compile Include="Sales\DelivaryView.cs" />
+    <Compile Include="Sales\Delivery_BLL.cs" />
     <Compile Include="Sales\OrderByTrip.cs" />
     <Compile Include="Sales\RemoteSales.cs" />
     <Compile Include="Sales\Report\Challan.cs" />
