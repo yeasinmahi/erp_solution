@@ -44,10 +44,11 @@ namespace UI.SAD.Delivery
         XmlManager xm = new XmlManager();
 
         private string message;
-        private string _filePathForXml, _xmlString = "";
+        private string _filePathForXml, _xmlString = "", _filePathForDOXml;
         protected void Page_Load(object sender, EventArgs e)
         {
             _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
+            //_filePathForDOXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
             if (!IsPostBack)
             {
 
@@ -326,7 +327,7 @@ namespace UI.SAD.Delivery
                 
 
             }
-            catch
+             catch
             {
             }
         }
@@ -400,7 +401,6 @@ namespace UI.SAD.Delivery
 
         protected void dgvSales_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
- 
         }
 
         protected void rdoNeedVehicle_SelectedIndexChanged(object sender, EventArgs e)
@@ -774,12 +774,50 @@ namespace UI.SAD.Delivery
         {
             try
             {
+                string unit = ddlUnit.SelectedItem.Value;
+                string shipPoint = ddlShipPoint.SelectedItem.Value;
+                string salesOffice = ddlSalesOffice.SelectedItem.Value;
+                string customerType = ddlCustomerType.SelectedItem.Text;
+                string date = txtDate.Text;
+                string dueDate = txtDueDate.Text;
+                string customerId = hdnCustomer.Value;
+                string shipPartyId = hdnShipToPartyId.Value;
+
+                BindXML(unit,shipPoint,salesOffice,customerType,date,dueDate,customerId,shipPartyId);
+
+
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(GetXmlFilePath());
+                string itemXML= doc.InnerXml;
+                xmlString
 
                 // ddlUnit.SelectedValue,ddlShipPoint.SelectedValue,ddlSalesOffice.SelectedValue,ddlCustomerType.SelectedValue(),hdnCustomer,hdnShipToPartyId,hdnVehicle.Value,rdoVehicleCompany,rd
             }
             catch
             {
             }
+        }
+        private void BindXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId)
+        {
+            dynamic obj = new
+            {
+                unit,
+                shipPoint,
+                salesOffice,
+                customerType,
+                date,
+                dueDate,
+                customerId,
+                shipPartyId,
+            };
+            List<object> objects = new List<object>();
+          
+            objects.Add(obj);
+
+            string xmlString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
+            
+           //doc.LoadXML();
+           //doc.innerXML;
         }
 
         protected void txtQun_TextChanged(object sender, EventArgs e)
@@ -790,6 +828,18 @@ namespace UI.SAD.Delivery
         protected void rdoDeliveryType_SelectedIndexChanged(object sender, EventArgs e)
         {
             WorkType(rdoDeliveryType.SelectedItem.ToString());
+        }
+
+        protected void rdoSalesType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtQun.Text = "0";
+            hdnProduct.Value = "";
+            txtPrice.Text = "0.00";
+            txtProduct.Text = "";
+            txtProduct.Focus();
+            ddlUOM.Items.Insert(0, "");
+            dgvSales.DataSource = null;
+            dgvSales.DataBind();
         }
 
         private void VehicleChange()

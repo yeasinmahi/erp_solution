@@ -319,7 +319,7 @@
                                 <asp:TextBox ID="txtConvRate" runat="server" Width="70px"></asp:TextBox>
                             </td>
                             <td style="color: Olive;">
-                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" > 
+                                <asp:RadioButtonList ID="rdoSalesType" runat="server"  RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="rdoSalesType_SelectedIndexChanged"> 
                                 </asp:RadioButtonList> 
                             </td>
                             <td>
@@ -383,7 +383,7 @@
                             </td>
                             
                             <td align="right">
-                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" AutoPostBack="true"  OnClick="btnProductAdd_Click" />
+                                <asp:Button ID="btnProductAdd" runat="server"  Text="Add" AutoPostBack="false"  OnClick="btnProductAdd_Click" OnClientClick="return ProductValidation()"/>
                             </td> 
                         </tr>
                    </table>
@@ -498,7 +498,52 @@
 
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
+             <Triggers>
+                <asp:AsyncPostBackTrigger ControlID="btnProductAdd" EventName="Click" />
+                <%--<asp:PostBackTrigger ControlID="btnSubmit" />
+                <asp:PostBackTrigger ControlID="btnUpdateFinal" />--%>
+            </Triggers>
         </asp:UpdatePanel>
     </form>
+
+
+    <script>
+
+        function ProductValidation() {
+            debugger;
+            var customer = document.getElementById("txtCustomer").value;
+            var currency = document.getElementById('<%=ddlCurrency.ClientID%>');
+            var currencyRate = document.getElementById("txtProduct").value;
+            var product = document.getElementById("txtProduct").value;
+            var price = document.getElementById("txtPrice").value;
+            var quantity = document.getElementById("txtQun").value;
+            if (customer === null || customer === "") {
+                ShowNotification('Enter Customer', 'DeliveryEntry', 'warning');
+                return false;
+            }
+            else if (product === null || product === "") {
+                ShowNotification('Enter Product', 'DeliveryEntry', 'warning');
+                return false;
+            }
+            else if (price === null || price === "") {
+                ShowNotification('Enter Price', 'DeliveryEntry', 'warning');
+                return false;
+            }
+            else if (quantity === null || quantity === "") {
+                ShowNotification('Enter quantity', 'DeliveryEntry', 'warning');
+                return false;
+            }
+            else if (currency === null || currency === "") {
+                ShowNotification('Enter Price', 'DeliveryEntry', 'warning');
+                return false;
+            }
+            else if (currencyRate === null || currencyRate === "") {
+                 ShowNotification('Enter Currency Rate', 'DeliveryEntry', 'warning');
+                return false;
+            }
+            return true;
+        }
+
+    </script>
 </body>
 </html>
