@@ -229,10 +229,13 @@ namespace Utility
 
         public static string ConvertXmlToString(XmlDocument doc)
         {
-            XmlNode dSftTm = doc.SelectSingleNode("OvertimeEntry");
-            string xmlString = dSftTm?.InnerXml;
-            xmlString = "<OvertimeEntry>" + xmlString + "</OvertimeEntry>";
-            return xmlString;
+            return doc.InnerXml;
+        }
+        public static string GetXml(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+            return doc.InnerXml;
         }
     }
 }
