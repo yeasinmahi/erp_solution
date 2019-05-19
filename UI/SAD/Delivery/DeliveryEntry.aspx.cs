@@ -761,8 +761,8 @@ namespace UI.SAD.Delivery
             string unit = "";
             unit = "" + hdnUnit.Value;
             if (unit == "") unit = ddlUnit.SelectedValue;
-
-            return Server.MapPath("") + "/Data/" + Session[SessionParams.USER_ID] + "_" + unit + "_item.xml";
+            _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
+            return _filePathForXml;
         }
         protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
         {
