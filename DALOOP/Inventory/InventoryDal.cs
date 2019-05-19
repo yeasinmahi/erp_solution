@@ -33,5 +33,18 @@ namespace DALOOP.Inventory
                 return 0;
             }
         }
+        public int InsertBySpInventoryTransection(int intUnitId, int intWhid, int intLocationId, int intItemId, decimal numTransactionQty, decimal monTransactionValue, int intInOutReffId, int intTransactionTypeId)
+        {
+            try
+            {
+                sprInventoryTransactionTableAdapter adp = new sprInventoryTransactionTableAdapter();
+                _dt = adp.InsertBySpInventoryTransection(intUnitId, intWhid, intLocationId, intItemId, numTransactionQty, monTransactionValue,intInOutReffId, intTransactionTypeId);
+                return _dt.GetAutoId("intAutoID");
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
     }
 }
