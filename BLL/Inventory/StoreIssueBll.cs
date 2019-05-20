@@ -13,13 +13,13 @@ namespace BLL.Inventory
         private readonly StoreIssueDal _dal = new StoreIssueDal();
         private readonly StoreIssueByItemDal _issueByItemDal = new StoreIssueByItemDal();
         private readonly InventoryBll _inventoryBll = new InventoryBll();
+        StoreIssueToFloreTransectionStatusBll StoreIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
         public bool StoreIssue(int whId, int itemId, decimal itemQuantity, decimal itemValue, int locationId, int enroll)
         {
-            InventoryBll inventoryBll = new InventoryBll();
-            int jvId = inventoryBll.GetInventoryJvByDateType(DateTime.Now, 3);
+            int jvId = _inventoryBll.GetInventoryJvByDateType(DateTime.Now, 3);
             ItemListBll itemList = new ItemListBll();
             int coaId = itemList.GetItemCoaId(itemId);
             if (coaId > 0)
@@ -294,6 +294,7 @@ namespace BLL.Inventory
                             if (inventoryId > 0)
                             {
                                 // TODO: Implement;
+                                
                             }
                             else
                             {
