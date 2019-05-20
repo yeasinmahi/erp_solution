@@ -186,7 +186,7 @@ where s.intId=@ship</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
-          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InventoryItemBlanceTableAdapter" GeneratorDataComponentClassName="InventoryItemBlanceTableAdapter" Name="InventoryItemBlance" UserDataComponentName="InventoryItemBlanceTableAdapter">
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InventoryFgItemBlanceTableAdapter" GeneratorDataComponentClassName="InventoryFgItemBlanceTableAdapter" Name="InventoryFgItemBlance" UserDataComponentName="InventoryFgItemBlanceTableAdapter">
             <MainSource>
               <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetInventoryItemBlance" GetMethodModifier="Public" GetMethodName="GetInventoryItemBlance" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetInventoryItemBlance" UserSourceName="GetInventoryItemBlance">
                 <SelectCommand>
@@ -401,7 +401,7 @@ where s.intId=@ship</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="InventoryItemBlance" msprop:Generator_TableClassName="InventoryItemBlanceDataTable" msprop:Generator_TableVarName="tableInventoryItemBlance" msprop:Generator_TablePropName="InventoryItemBlance" msprop:Generator_RowDeletingName="InventoryItemBlanceRowDeleting" msprop:Generator_RowChangingName="InventoryItemBlanceRowChanging" msprop:Generator_RowEvHandlerName="InventoryItemBlanceRowChangeEventHandler" msprop:Generator_RowDeletedName="InventoryItemBlanceRowDeleted" msprop:Generator_UserTableName="InventoryItemBlance" msprop:Generator_RowChangedName="InventoryItemBlanceRowChanged" msprop:Generator_RowEvArgName="InventoryItemBlanceRowChangeEvent" msprop:Generator_RowClassName="InventoryItemBlanceRow">
+        <xs:element name="InventoryFgItemBlance" msprop:Generator_TableClassName="InventoryFgItemBlanceDataTable" msprop:Generator_TableVarName="tableInventoryFgItemBlance" msprop:Generator_TablePropName="InventoryFgItemBlance" msprop:Generator_RowDeletingName="InventoryFgItemBlanceRowDeleting" msprop:Generator_RowChangingName="InventoryFgItemBlanceRowChanging" msprop:Generator_RowEvHandlerName="InventoryFgItemBlanceRowChangeEventHandler" msprop:Generator_RowDeletedName="InventoryFgItemBlanceRowDeleted" msprop:Generator_UserTableName="InventoryFgItemBlance" msprop:Generator_RowChangedName="InventoryFgItemBlanceRowChanged" msprop:Generator_RowEvArgName="InventoryFgItemBlanceRowChangeEvent" msprop:Generator_RowClassName="InventoryFgItemBlanceRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="numQuantity" msprop:Generator_ColumnVarNameInTable="columnnumQuantity" msprop:Generator_ColumnPropNameInRow="numQuantity" msprop:Generator_ColumnPropNameInTable="numQuantityColumn" msprop:Generator_UserColumnName="numQuantity" type="xs:decimal" minOccurs="0" />

@@ -36,7 +36,7 @@ namespace SAD_DAL.Delivery {
         
         private ShipPointWHDataTable tableShipPointWH;
         
-        private InventoryItemBlanceDataTable tableInventoryItemBlance;
+        private InventoryFgItemBlanceDataTable tableInventoryFgItemBlance;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -84,8 +84,8 @@ namespace SAD_DAL.Delivery {
                 if ((ds.Tables["ShipPointWH"] != null)) {
                     base.Tables.Add(new ShipPointWHDataTable(ds.Tables["ShipPointWH"]));
                 }
-                if ((ds.Tables["InventoryItemBlance"] != null)) {
-                    base.Tables.Add(new InventoryItemBlanceDataTable(ds.Tables["InventoryItemBlance"]));
+                if ((ds.Tables["InventoryFgItemBlance"] != null)) {
+                    base.Tables.Add(new InventoryFgItemBlanceDataTable(ds.Tables["InventoryFgItemBlance"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -169,9 +169,9 @@ namespace SAD_DAL.Delivery {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public InventoryItemBlanceDataTable InventoryItemBlance {
+        public InventoryFgItemBlanceDataTable InventoryFgItemBlance {
             get {
-                return this.tableInventoryItemBlance;
+                return this.tableInventoryFgItemBlance;
             }
         }
         
@@ -260,8 +260,8 @@ namespace SAD_DAL.Delivery {
                 if ((ds.Tables["ShipPointWH"] != null)) {
                     base.Tables.Add(new ShipPointWHDataTable(ds.Tables["ShipPointWH"]));
                 }
-                if ((ds.Tables["InventoryItemBlance"] != null)) {
-                    base.Tables.Add(new InventoryItemBlanceDataTable(ds.Tables["InventoryItemBlance"]));
+                if ((ds.Tables["InventoryFgItemBlance"] != null)) {
+                    base.Tables.Add(new InventoryFgItemBlanceDataTable(ds.Tables["InventoryFgItemBlance"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -332,10 +332,10 @@ namespace SAD_DAL.Delivery {
                     this.tableShipPointWH.InitVars();
                 }
             }
-            this.tableInventoryItemBlance = ((InventoryItemBlanceDataTable)(base.Tables["InventoryItemBlance"]));
+            this.tableInventoryFgItemBlance = ((InventoryFgItemBlanceDataTable)(base.Tables["InventoryFgItemBlance"]));
             if ((initTable == true)) {
-                if ((this.tableInventoryItemBlance != null)) {
-                    this.tableInventoryItemBlance.InitVars();
+                if ((this.tableInventoryFgItemBlance != null)) {
+                    this.tableInventoryFgItemBlance.InitVars();
                 }
             }
         }
@@ -360,8 +360,8 @@ namespace SAD_DAL.Delivery {
             base.Tables.Add(this.tableFGLocationData);
             this.tableShipPointWH = new ShipPointWHDataTable();
             base.Tables.Add(this.tableShipPointWH);
-            this.tableInventoryItemBlance = new InventoryItemBlanceDataTable();
-            base.Tables.Add(this.tableInventoryItemBlance);
+            this.tableInventoryFgItemBlance = new InventoryFgItemBlanceDataTable();
+            base.Tables.Add(this.tableInventoryFgItemBlance);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -402,7 +402,7 @@ namespace SAD_DAL.Delivery {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeInventoryItemBlance() {
+        private bool ShouldSerializeInventoryFgItemBlance() {
             return false;
         }
         
@@ -480,7 +480,7 @@ namespace SAD_DAL.Delivery {
         public delegate void ShipPointWHRowChangeEventHandler(object sender, ShipPointWHRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void InventoryItemBlanceRowChangeEventHandler(object sender, InventoryItemBlanceRowChangeEvent e);
+        public delegate void InventoryFgItemBlanceRowChangeEventHandler(object sender, InventoryFgItemBlanceRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2543,7 +2543,7 @@ namespace SAD_DAL.Delivery {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class InventoryItemBlanceDataTable : global::System.Data.TypedTableBase<InventoryItemBlanceRow> {
+        public partial class InventoryFgItemBlanceDataTable : global::System.Data.TypedTableBase<InventoryFgItemBlanceRow> {
             
             private global::System.Data.DataColumn columnnumQuantity;
             
@@ -2557,8 +2557,8 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryItemBlanceDataTable() {
-                this.TableName = "InventoryItemBlance";
+            public InventoryFgItemBlanceDataTable() {
+                this.TableName = "InventoryFgItemBlance";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -2566,7 +2566,7 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal InventoryItemBlanceDataTable(global::System.Data.DataTable table) {
+            internal InventoryFgItemBlanceDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -2583,7 +2583,7 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected InventoryItemBlanceDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected InventoryFgItemBlanceDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -2639,49 +2639,49 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryItemBlanceRow this[int index] {
+            public InventoryFgItemBlanceRow this[int index] {
                 get {
-                    return ((InventoryItemBlanceRow)(this.Rows[index]));
+                    return ((InventoryFgItemBlanceRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event InventoryItemBlanceRowChangeEventHandler InventoryItemBlanceRowChanging;
+            public event InventoryFgItemBlanceRowChangeEventHandler InventoryFgItemBlanceRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event InventoryItemBlanceRowChangeEventHandler InventoryItemBlanceRowChanged;
+            public event InventoryFgItemBlanceRowChangeEventHandler InventoryFgItemBlanceRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event InventoryItemBlanceRowChangeEventHandler InventoryItemBlanceRowDeleting;
+            public event InventoryFgItemBlanceRowChangeEventHandler InventoryFgItemBlanceRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event InventoryItemBlanceRowChangeEventHandler InventoryItemBlanceRowDeleted;
+            public event InventoryFgItemBlanceRowChangeEventHandler InventoryFgItemBlanceRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddInventoryItemBlanceRow(InventoryItemBlanceRow row) {
+            public void AddInventoryFgItemBlanceRow(InventoryFgItemBlanceRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryItemBlanceRow AddInventoryItemBlanceRow(decimal numQuantity, decimal monValue, decimal monRate, decimal monUpdateRate, decimal numPickQty) {
-                InventoryItemBlanceRow rowInventoryItemBlanceRow = ((InventoryItemBlanceRow)(this.NewRow()));
+            public InventoryFgItemBlanceRow AddInventoryFgItemBlanceRow(decimal numQuantity, decimal monValue, decimal monRate, decimal monUpdateRate, decimal numPickQty) {
+                InventoryFgItemBlanceRow rowInventoryFgItemBlanceRow = ((InventoryFgItemBlanceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         numQuantity,
                         monValue,
                         monRate,
                         monUpdateRate,
                         numPickQty};
-                rowInventoryItemBlanceRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowInventoryItemBlanceRow);
-                return rowInventoryItemBlanceRow;
+                rowInventoryFgItemBlanceRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowInventoryFgItemBlanceRow);
+                return rowInventoryFgItemBlanceRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                InventoryItemBlanceDataTable cln = ((InventoryItemBlanceDataTable)(base.Clone()));
+                InventoryFgItemBlanceDataTable cln = ((InventoryFgItemBlanceDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -2689,7 +2689,7 @@ namespace SAD_DAL.Delivery {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new InventoryItemBlanceDataTable();
+                return new InventoryFgItemBlanceDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2720,28 +2720,28 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryItemBlanceRow NewInventoryItemBlanceRow() {
-                return ((InventoryItemBlanceRow)(this.NewRow()));
+            public InventoryFgItemBlanceRow NewInventoryFgItemBlanceRow() {
+                return ((InventoryFgItemBlanceRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new InventoryItemBlanceRow(builder);
+                return new InventoryFgItemBlanceRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(InventoryItemBlanceRow);
+                return typeof(InventoryFgItemBlanceRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.InventoryItemBlanceRowChanged != null)) {
-                    this.InventoryItemBlanceRowChanged(this, new InventoryItemBlanceRowChangeEvent(((InventoryItemBlanceRow)(e.Row)), e.Action));
+                if ((this.InventoryFgItemBlanceRowChanged != null)) {
+                    this.InventoryFgItemBlanceRowChanged(this, new InventoryFgItemBlanceRowChangeEvent(((InventoryFgItemBlanceRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2749,8 +2749,8 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.InventoryItemBlanceRowChanging != null)) {
-                    this.InventoryItemBlanceRowChanging(this, new InventoryItemBlanceRowChangeEvent(((InventoryItemBlanceRow)(e.Row)), e.Action));
+                if ((this.InventoryFgItemBlanceRowChanging != null)) {
+                    this.InventoryFgItemBlanceRowChanging(this, new InventoryFgItemBlanceRowChangeEvent(((InventoryFgItemBlanceRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2758,8 +2758,8 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.InventoryItemBlanceRowDeleted != null)) {
-                    this.InventoryItemBlanceRowDeleted(this, new InventoryItemBlanceRowChangeEvent(((InventoryItemBlanceRow)(e.Row)), e.Action));
+                if ((this.InventoryFgItemBlanceRowDeleted != null)) {
+                    this.InventoryFgItemBlanceRowDeleted(this, new InventoryFgItemBlanceRowChangeEvent(((InventoryFgItemBlanceRow)(e.Row)), e.Action));
                 }
             }
             
@@ -2767,14 +2767,14 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.InventoryItemBlanceRowDeleting != null)) {
-                    this.InventoryItemBlanceRowDeleting(this, new InventoryItemBlanceRowChangeEvent(((InventoryItemBlanceRow)(e.Row)), e.Action));
+                if ((this.InventoryFgItemBlanceRowDeleting != null)) {
+                    this.InventoryFgItemBlanceRowDeleting(this, new InventoryFgItemBlanceRowChangeEvent(((InventoryFgItemBlanceRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveInventoryItemBlanceRow(InventoryItemBlanceRow row) {
+            public void RemoveInventoryFgItemBlanceRow(InventoryFgItemBlanceRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -2801,7 +2801,7 @@ namespace SAD_DAL.Delivery {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "InventoryItemBlanceDataTable";
+                attribute2.FixedValue = "InventoryFgItemBlanceDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -3743,15 +3743,15 @@ namespace SAD_DAL.Delivery {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class InventoryItemBlanceRow : global::System.Data.DataRow {
+        public partial class InventoryFgItemBlanceRow : global::System.Data.DataRow {
             
-            private InventoryItemBlanceDataTable tableInventoryItemBlance;
+            private InventoryFgItemBlanceDataTable tableInventoryFgItemBlance;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal InventoryItemBlanceRow(global::System.Data.DataRowBuilder rb) : 
+            internal InventoryFgItemBlanceRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableInventoryItemBlance = ((InventoryItemBlanceDataTable)(this.Table));
+                this.tableInventoryFgItemBlance = ((InventoryFgItemBlanceDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3759,14 +3759,14 @@ namespace SAD_DAL.Delivery {
             public decimal numQuantity {
                 get {
                     try {
-                        return ((decimal)(this[this.tableInventoryItemBlance.numQuantityColumn]));
+                        return ((decimal)(this[this.tableInventoryFgItemBlance.numQuantityColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numQuantity\' in table \'InventoryItemBlance\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'numQuantity\' in table \'InventoryFgItemBlance\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInventoryItemBlance.numQuantityColumn] = value;
+                    this[this.tableInventoryFgItemBlance.numQuantityColumn] = value;
                 }
             }
             
@@ -3775,14 +3775,14 @@ namespace SAD_DAL.Delivery {
             public decimal monValue {
                 get {
                     try {
-                        return ((decimal)(this[this.tableInventoryItemBlance.monValueColumn]));
+                        return ((decimal)(this[this.tableInventoryFgItemBlance.monValueColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monValue\' in table \'InventoryItemBlance\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'monValue\' in table \'InventoryFgItemBlance\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInventoryItemBlance.monValueColumn] = value;
+                    this[this.tableInventoryFgItemBlance.monValueColumn] = value;
                 }
             }
             
@@ -3791,14 +3791,14 @@ namespace SAD_DAL.Delivery {
             public decimal monRate {
                 get {
                     try {
-                        return ((decimal)(this[this.tableInventoryItemBlance.monRateColumn]));
+                        return ((decimal)(this[this.tableInventoryFgItemBlance.monRateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monRate\' in table \'InventoryItemBlance\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'monRate\' in table \'InventoryFgItemBlance\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInventoryItemBlance.monRateColumn] = value;
+                    this[this.tableInventoryFgItemBlance.monRateColumn] = value;
                 }
             }
             
@@ -3807,14 +3807,14 @@ namespace SAD_DAL.Delivery {
             public decimal monUpdateRate {
                 get {
                     try {
-                        return ((decimal)(this[this.tableInventoryItemBlance.monUpdateRateColumn]));
+                        return ((decimal)(this[this.tableInventoryFgItemBlance.monUpdateRateColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monUpdateRate\' in table \'InventoryItemBlance\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'monUpdateRate\' in table \'InventoryFgItemBlance\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInventoryItemBlance.monUpdateRateColumn] = value;
+                    this[this.tableInventoryFgItemBlance.monUpdateRateColumn] = value;
                 }
             }
             
@@ -3823,75 +3823,75 @@ namespace SAD_DAL.Delivery {
             public decimal numPickQty {
                 get {
                     try {
-                        return ((decimal)(this[this.tableInventoryItemBlance.numPickQtyColumn]));
+                        return ((decimal)(this[this.tableInventoryFgItemBlance.numPickQtyColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'numPickQty\' in table \'InventoryItemBlance\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'numPickQty\' in table \'InventoryFgItemBlance\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableInventoryItemBlance.numPickQtyColumn] = value;
+                    this[this.tableInventoryFgItemBlance.numPickQtyColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnumQuantityNull() {
-                return this.IsNull(this.tableInventoryItemBlance.numQuantityColumn);
+                return this.IsNull(this.tableInventoryFgItemBlance.numQuantityColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetnumQuantityNull() {
-                this[this.tableInventoryItemBlance.numQuantityColumn] = global::System.Convert.DBNull;
+                this[this.tableInventoryFgItemBlance.numQuantityColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonValueNull() {
-                return this.IsNull(this.tableInventoryItemBlance.monValueColumn);
+                return this.IsNull(this.tableInventoryFgItemBlance.monValueColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonValueNull() {
-                this[this.tableInventoryItemBlance.monValueColumn] = global::System.Convert.DBNull;
+                this[this.tableInventoryFgItemBlance.monValueColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonRateNull() {
-                return this.IsNull(this.tableInventoryItemBlance.monRateColumn);
+                return this.IsNull(this.tableInventoryFgItemBlance.monRateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonRateNull() {
-                this[this.tableInventoryItemBlance.monRateColumn] = global::System.Convert.DBNull;
+                this[this.tableInventoryFgItemBlance.monRateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonUpdateRateNull() {
-                return this.IsNull(this.tableInventoryItemBlance.monUpdateRateColumn);
+                return this.IsNull(this.tableInventoryFgItemBlance.monUpdateRateColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonUpdateRateNull() {
-                this[this.tableInventoryItemBlance.monUpdateRateColumn] = global::System.Convert.DBNull;
+                this[this.tableInventoryFgItemBlance.monUpdateRateColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnumPickQtyNull() {
-                return this.IsNull(this.tableInventoryItemBlance.numPickQtyColumn);
+                return this.IsNull(this.tableInventoryFgItemBlance.numPickQtyColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetnumPickQtyNull() {
-                this[this.tableInventoryItemBlance.numPickQtyColumn] = global::System.Convert.DBNull;
+                this[this.tableInventoryFgItemBlance.numPickQtyColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4103,22 +4103,22 @@ namespace SAD_DAL.Delivery {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class InventoryItemBlanceRowChangeEvent : global::System.EventArgs {
+        public class InventoryFgItemBlanceRowChangeEvent : global::System.EventArgs {
             
-            private InventoryItemBlanceRow eventRow;
+            private InventoryFgItemBlanceRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryItemBlanceRowChangeEvent(InventoryItemBlanceRow row, global::System.Data.DataRowAction action) {
+            public InventoryFgItemBlanceRowChangeEvent(InventoryFgItemBlanceRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryItemBlanceRow Row {
+            public InventoryFgItemBlanceRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5228,7 +5228,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class InventoryItemBlanceTableAdapter : global::System.ComponentModel.Component {
+    public partial class InventoryFgItemBlanceTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -5242,7 +5242,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public InventoryItemBlanceTableAdapter() {
+        public InventoryFgItemBlanceTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -5339,7 +5339,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "InventoryItemBlance";
+            tableMapping.DataSetTable = "InventoryFgItemBlance";
             tableMapping.ColumnMappings.Add("numQuantity", "numQuantity");
             tableMapping.ColumnMappings.Add("monValue", "monValue");
             tableMapping.ColumnMappings.Add("monRate", "monRate");
@@ -5372,7 +5372,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Delivery_TDS.InventoryItemBlanceDataTable GetInventoryItemBlance(global::System.Nullable<int> Item, global::System.Nullable<int> wh) {
+        public virtual Delivery_TDS.InventoryFgItemBlanceDataTable GetInventoryItemBlance(global::System.Nullable<int> Item, global::System.Nullable<int> wh) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((Item.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(Item.Value));
@@ -5386,7 +5386,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            Delivery_TDS.InventoryItemBlanceDataTable dataTable = new Delivery_TDS.InventoryItemBlanceDataTable();
+            Delivery_TDS.InventoryFgItemBlanceDataTable dataTable = new Delivery_TDS.InventoryFgItemBlanceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

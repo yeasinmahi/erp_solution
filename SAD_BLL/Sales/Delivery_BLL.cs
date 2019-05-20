@@ -66,7 +66,7 @@ namespace SAD_BLL.Sales
         { 
             try
             {
-                InventoryItemBlanceTableAdapter adp = new InventoryItemBlanceTableAdapter();
+                InventoryFgItemBlanceTableAdapter adp = new InventoryFgItemBlanceTableAdapter();
                 return adp.GetInventoryItemBlance(FgId, wh);
             }
             catch (Exception ex)
