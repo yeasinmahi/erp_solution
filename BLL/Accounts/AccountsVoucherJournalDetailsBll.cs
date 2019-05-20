@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using BLL.Inventory;
 using DALOOP.Accounts;
 
 namespace BLL.Accounts
@@ -8,6 +9,7 @@ namespace BLL.Accounts
     {
         private readonly AccountsVoucherJournalDetailsDal _dal = new AccountsVoucherJournalDetailsDal();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
+        private readonly StoreIssueToFloreTransectionStatusBll _storeIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
         private DataTable _dt;
         public int Insert(int intJournalVoucherId, int intAccId, string strNarration, decimal monAmount, string strAccName)
         {
@@ -54,7 +56,7 @@ namespace BLL.Accounts
             }
             return false;
         }
-        public int InsertJournalVoucherDetails(int voucherId, int coaId, string narration, decimal issueValue)
+        public int InsertJournalVoucherDetails(int voucherId, int coaId, string narration, decimal issueValue, int inventoryStatusId)
         {
             string accName = _accountsChartOfAccBll.GetAccountName(coaId);
             if (!string.IsNullOrWhiteSpace(accName))
@@ -62,10 +64,16 @@ namespace BLL.Accounts
                 int intId = Insert(voucherId, coaId, narration, issueValue, accName);
                 if (intId > 0)
                 {
+                    _storeIssueToFloreTransectionStatusBll.UpdateCoaId1(coaId, inventoryStatusId);
                     if (GetAltJvDetails(coaId, out int coaId2, out string accName2,
                         out string strNarration))
                     {
-                        return Insert(voucherId, coaId2, strNarration, issueValue * -1, accName2);
+                        intId = Insert(voucherId, coaId2, strNarration, issueValue * -1, accName2);
+                        if (intId > 0)
+                        {
+                            _storeIssueToFloreTransectionStatusBll.UpdateCoaId2(coaId2, inventoryStatusId);
+                            return intId;
+                        }
                     }
                     else
                     {

@@ -9,6 +9,7 @@ namespace BLL.Accounts
     {
         private readonly AccountsVoucherJournalDal _dal = new AccountsVoucherJournalDal();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
+        private readonly StoreIssueToFloreTransectionStatusBll _storeIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
         private DataTable _dt;
         public int Insert(string strCode, int intUnitId, string strNarration, decimal amount, int intLastActionBy)
         {
@@ -65,12 +66,13 @@ namespace BLL.Accounts
             return false;
         }
 
-        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId, string storeIssueNarration, string meterialNarration, int enroll)
+        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId, string storeIssueNarration, string meterialNarration,int inventoryStatusId, int enroll)
         {
             int voucherId = InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
             if (voucherId > 0)
             {
-                if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
+                _storeIssueToFloreTransectionStatusBll.UpdateJv(voucherId, inventoryStatusId);
+                if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue, inventoryStatusId) > 0)
                 {
                     return true;
                 }
@@ -79,7 +81,7 @@ namespace BLL.Accounts
                     //TODO: RollBack
                     return false;
                 }
-
+               
             }
             else
             {
