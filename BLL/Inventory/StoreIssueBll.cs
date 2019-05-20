@@ -17,7 +17,8 @@ namespace BLL.Inventory
         private readonly StoreIssueToFloreTransectionStatusBll _storeIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
-        private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
+        private string storeIssueNarration = "Store Issue";
+        private string meterialNarration = "Meterial Issue";
         public bool StoreIssue(int whId, int itemId, decimal itemQuantity, decimal issueValue, int locationId, int enroll)
         {
             int jvId = _inventoryBll.GetInventoryJvByDateType(DateTime.Now, 3);
@@ -33,17 +34,17 @@ namespace BLL.Inventory
                         _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId);
                         if (_dt.Rows.Count > 0)
                         {
-                            if (UpdateJournalVoucherDetails(jvId, coaId, issueValue))
+                            if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId, issueValue))
                             {
-                                if (GetAltJvDetails(coaId, out int coaId2, out string accName2,
+                                if (_accountsVoucherJournalDetailsBll.GetAltJvDetails(coaId, out int coaId2, out string accName2,
                                     out string strNarration))
                                 {
                                     _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId2);
                                     if (_dt.Rows.Count > 0)
                                     {
-                                        if (UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
+                                        if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
                                         {
-                                            if (UpdateJournalVoucher(jvId, issueValue, enroll))
+                                            if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                             {
                                                 return true;
                                             }
@@ -62,7 +63,7 @@ namespace BLL.Inventory
                                         if (_accountsVoucherJournalDetailsBll.Insert(jvId, coaId2, strNarration,
                                                 issueValue * -1, accName2) > 0)
                                         {
-                                            if (UpdateJournalVoucher(jvId, issueValue, enroll))
+                                            if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                             {
                                                 return true;
                                             }
@@ -89,10 +90,10 @@ namespace BLL.Inventory
                         }
                         else
                         {
-                            int intId = InsertJournalVoucherDetails(jvId, coaId, issueValue);
+                            int intId = _accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(jvId, coaId, meterialNarration, issueValue);
                             if (intId > 0)
                             {
-                                if (UpdateJournalVoucher(jvId, issueValue, enroll))
+                                if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                 {
                                     return true;
                                 }
@@ -109,10 +110,10 @@ namespace BLL.Inventory
                     }
                     else
                     {
-                        int voucherId = InsertJournalVoucher(whId, issueValue, enroll);
+                        int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
                         if (voucherId > 0)
                         {
-                            if (InsertJournalVoucherDetails(voucherId, coaId, issueValue) > 0)
+                            if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
                             {
                                 return true;
                             }
@@ -130,10 +131,10 @@ namespace BLL.Inventory
                 }
                 else
                 {
-                    int voucherId = InsertJournalVoucher(whId, issueValue, enroll);
+                    int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
                     if (voucherId > 0)
                     {
-                        if (InsertJournalVoucherDetails(voucherId, coaId, issueValue) > 0)
+                        if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
                         {
                             return true;
                         }
@@ -161,107 +162,6 @@ namespace BLL.Inventory
 
             return false;
         }
-
-        private bool GetAltJvDetails(int coaId, out int coaId2, out string accName2, out string strNarration2)
-        {
-            int globalCoaId = _accountsChartOfAccBll.GetGlobalCoaId(coaId);
-            coaId2 = 0;
-            accName2 = String.Empty;
-            strNarration2 = String.Empty;
-            if (globalCoaId > 0)
-            {
-                if (globalCoaId == 31)
-                {
-                    coaId2 = _accountsChartOfAccBll.GetCoaIdByGlobalCoaId(32);
-                    accName2 = _accountsChartOfAccBll.GetAccountNameByGlobalCoaId(32);
-                    strNarration2 = "Transfer To WIP";
-                }
-                else if (globalCoaId == 349)
-                {
-                    coaId2 = _accountsChartOfAccBll.GetCoaIdByGlobalCoaId(199);
-                    accName2 = _accountsChartOfAccBll.GetAccountNameByGlobalCoaId(199);
-                    strNarration2 = "Transfer To MRO";
-                }
-                else
-                {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-        private int InsertJournalVoucher(int whId, decimal amount, int enroll)
-        {
-            if (GetUnitId(whId,out int unitId))
-            {
-                CodeInfoBll codeInfoBll = new CodeInfoBll();
-                string voucherCode = codeInfoBll.GetJurnalVoucherCode(unitId);
-                return _accountsVoucherJournalBll.Insert(voucherCode, unitId, "Store Issue", amount, enroll);
-
-            }
-            return 0;
-        }
-
-        private int InsertJournalVoucherDetails(int voucherId, int coaId, decimal issueValue)
-        {
-            string accName = _accountsChartOfAccBll.GetAccountName(coaId);
-            if (!string.IsNullOrWhiteSpace(accName))
-            {
-                int intId = _accountsVoucherJournalDetailsBll.Insert(voucherId, coaId, "Meterial Issue", issueValue, accName);
-                if (intId > 0)
-                {
-                    if (GetAltJvDetails(coaId, out int coaId2, out string accName2,
-                        out string strNarration))
-                    {
-                        return _accountsVoucherJournalDetailsBll.Insert(voucherId, coaId2, strNarration, issueValue * -1, accName2);
-                    }
-                    else
-                    {
-                        //TODO: RollBack
-                    }
-                }
-                else
-                {
-                    //TODO: RollBack
-                }
-            }
-            else
-            {
-                //TODO: RollBack
-            }
-            return 0;
-        }
-        private bool UpdateJournalVoucher(int jvId, decimal jvAmount, int enroll)
-        {
-            _dt = _accountsVoucherJournalBll.GetJurnalVoucher(jvId, DateTime.Now);
-            if (_dt.Rows.Count > 0)
-            {
-                decimal amount = Convert.ToDecimal(_dt.Rows[0]["monAmountDr"].ToString());
-                amount += jvAmount;
-                if (_accountsVoucherJournalBll.UpdateAmount(amount, enroll, jvId))
-                {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        private bool UpdateJournalVoucherDetails(int jvId, int accId, decimal jvAmount)
-        {
-            _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, accId);
-            if (_dt.Rows.Count > 0)
-            {
-                decimal amount = Convert.ToDecimal(_dt.Rows[0]["monAmount"].ToString());
-                amount += jvAmount;
-                if (_accountsVoucherJournalDetailsBll.UpdateAmount(amount, jvId, accId))
-                {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-
         private bool GetUnitId(int whId,out int unitId)
         {
             WareHouseBll wareHouseBll = new WareHouseBll();
@@ -272,6 +172,8 @@ namespace BLL.Inventory
             }
             return false;
         }
+
+        
         public int StoreIssue(StoreIssue storeIssue, List<StoreIssueByItem> storeIssueByItems)
         {
             int whId = storeIssue.WhId;
@@ -321,18 +223,21 @@ namespace BLL.Inventory
                                                     _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId);
                                                     if (_dt.Rows.Count > 0)
                                                     {
-                                                        if (UpdateJournalVoucherDetails(jvId, coaId, issueValue))
+                                                        if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId, issueValue))
                                                         {
-                                                            if (GetAltJvDetails(coaId, out int coaId2, out string accName2,
+                                                            if (_accountsVoucherJournalDetailsBll.GetAltJvDetails(coaId, out int coaId2, out string accName2,
                                                                 out string strNarration))
                                                             {
                                                                 _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId2);
                                                                 if (_dt.Rows.Count > 0)
                                                                 {
-                                                                    if (UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
+                                                                    if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
                                                                     {
-                                                                        if (UpdateJournalVoucher(jvId, issueValue, enroll))
+                                                                        if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                                                         {
+                                                                            _storeIssueToFloreTransectionStatusBll
+                                                                                .UpdateIsProcessed(true,
+                                                                                    inventoryStatusId);
                                                                             // TODO: succes
                                                                         }
                                                                         else
@@ -350,9 +255,12 @@ namespace BLL.Inventory
                                                                     if (_accountsVoucherJournalDetailsBll.Insert(jvId, coaId2, strNarration,
                                                                             issueValue * -1, accName2) > 0)
                                                                     {
-                                                                        if (UpdateJournalVoucher(jvId, issueValue, enroll))
+                                                                        if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                                                         {
                                                                             // TODO: succes
+                                                                            _storeIssueToFloreTransectionStatusBll
+                                                                                .UpdateIsProcessed(true,
+                                                                                    inventoryStatusId);
                                                                         }
                                                                         else
                                                                         {
@@ -377,12 +285,15 @@ namespace BLL.Inventory
                                                     }
                                                     else
                                                     {
-                                                        int intId = InsertJournalVoucherDetails(jvId, coaId, issueValue);
+                                                        int intId = _accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(jvId, coaId, meterialNarration, issueValue);
                                                         if (intId > 0)
                                                         {
-                                                            if (UpdateJournalVoucher(jvId, issueValue, enroll))
+                                                            if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                                             {
                                                                 // TODO: succes
+                                                                _storeIssueToFloreTransectionStatusBll
+                                                                    .UpdateIsProcessed(true,
+                                                                        inventoryStatusId);
                                                             }
                                                             else
                                                             {
@@ -397,12 +308,15 @@ namespace BLL.Inventory
                                                 }
                                                 else
                                                 {
-                                                    int voucherId = InsertJournalVoucher(whId, issueValue, enroll);
+                                                    int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
                                                     if (voucherId > 0)
                                                     {
-                                                        if (InsertJournalVoucherDetails(voucherId, coaId, issueValue) > 0)
+                                                        if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
                                                         {
                                                             // TODO: succes
+                                                            _storeIssueToFloreTransectionStatusBll
+                                                                .UpdateIsProcessed(true,
+                                                                    inventoryStatusId);
                                                         }
                                                         else
                                                         {
@@ -418,12 +332,15 @@ namespace BLL.Inventory
                                             }
                                             else
                                             {
-                                                int voucherId = InsertJournalVoucher(whId, issueValue, enroll);
+                                                int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
                                                 if (voucherId > 0)
                                                 {
-                                                    if (InsertJournalVoucherDetails(voucherId, coaId, issueValue) > 0)
+                                                    if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
                                                     {
                                                         // TODO: succes
+                                                        _storeIssueToFloreTransectionStatusBll
+                                                            .UpdateIsProcessed(true,
+                                                                inventoryStatusId);
                                                     }
 
                                                 }
@@ -436,10 +353,10 @@ namespace BLL.Inventory
                                         }
                                         else
                                         {
-                                            int voucherId = InsertJournalVoucher(whId, issueValue, enroll);
+                                            int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
                                             if (voucherId > 0)
                                             {
-                                                if (InsertJournalVoucherDetails(voucherId, coaId, issueValue) > 0)
+                                                if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
                                                 {
                                                     //TODO: success
                                                 }

@@ -61,5 +61,57 @@ namespace DALOOP.Inventory
             }
             return new DataTable();
         }
+        public bool UpdateIsProcessed(bool isProcessed,int autoId)
+        {
+            try
+            {
+                tblStoreIssueToFloreTransectionStatus3TableAdapter adp = new tblStoreIssueToFloreTransectionStatus3TableAdapter();
+                _dt = adp.UpdateIsProcessed(isProcessed,autoId);
+                return _dt.Rows.Count > 0;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool UpdateJv(int jvId, int autoId)
+        {
+            try
+            {
+                tblStoreIssueToFloreTransectionStatus4TableAdapter adp = new tblStoreIssueToFloreTransectionStatus4TableAdapter();
+                _dt = adp.UpdateJv(jvId, autoId);
+                return _dt.Rows.Count > 0;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool UpdateCoaId1(int coaId1, int autoId)
+        {
+            try
+            {
+                tblStoreIssueToFloreTransectionStatus5TableAdapter adp = new tblStoreIssueToFloreTransectionStatus5TableAdapter();
+                _dt = adp.UpdateCoaId(coaId1, autoId);
+                return _dt.Rows.Count > 0;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool UpdateCoaId2(int coaId2, int autoId)
+        {
+            try
+            {
+                tblStoreIssueToFloreTransectionStatus6TableAdapter adp = new tblStoreIssueToFloreTransectionStatus6TableAdapter();
+                _dt = adp.UpdateCoaId2(coaId2, autoId);
+                return _dt.Rows.Count > 0;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
     }
 }
