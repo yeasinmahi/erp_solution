@@ -93,7 +93,7 @@ namespace UI.SAD.Delivery
 
             foreach (ListItem item in rdoDeliveryType.Items)
             {
-                rdoDeliveryType.Enabled = false;
+                rdoDeliveryType.Enabled = true;
                
                 if (item.Value.Contains(type.ToString()))
                 {
@@ -101,6 +101,7 @@ namespace UI.SAD.Delivery
 
                     break;
                 }
+               
             }
         }
 
@@ -116,6 +117,11 @@ namespace UI.SAD.Delivery
                     lblDoCustId.Visible = true;
                     txtDoNumber.Visible = true;
                     lblDoCustId.Text = "DO/Customer Id";
+                    dgvSales.Visible = true;
+                    dgvSalesPicking.Visible = false;
+                    ddlLocation.Visible = false;
+                    location.Visible = false;
+                    
                 } 
                 else if (Type == "Picking")
                 {
@@ -124,6 +130,10 @@ namespace UI.SAD.Delivery
                     lblDoCustId.Visible = true;
                     txtDoNumber.Visible = true;
                     lblDoCustId.Text = "DO/Customer";
+                    dgvSales.Visible = false;
+                    dgvSalesPicking.Visible = true;
+                    ddlLocation.Visible = true;
+                    location.Visible = true;
 
                 }
                 else if (Type == "Delivery")
@@ -587,32 +597,65 @@ namespace UI.SAD.Delivery
                         string promtionItemCoaId = promItemCOAId.ToString();
                         string promtionQnty = promQnty.ToString();
                         string promtionItemUom = promUom.ToString();
+                        string location = "";
+                        try { location = ddlLocation.SelectedItem.Value; }
+                        catch { location = ""; }
 
-                        for(var i =0;i<dgvSales.Rows.Count;i++)
+
+                        
+
+                       if(rdoDeliveryType.SelectedItem.ToString()=="Picking")
                         {
-                            Label lblproductID = dgvSales.Rows[i].FindControl("lblProdutId") as Label;
-                             if (lblproductID.Text == productId)
+                            for (var i = 0; i < dgvSalesPicking.Rows.Count; i++)
                             {
-                                Toaster("Can not add same product Name " + productName + " dublicate.", "", Common.TosterType.Error);
+                                Label lblproductID = dgvSalesPicking.Rows[i].FindControl("lblProdutId") as Label;
+                                if (lblproductID.Text == productId)
+                                {
+                                    Toaster("Can not add same product Name " + productName + " duplicate.", "", Common.TosterType.Error);
 
-                                return;
+                                    return;
+                                }
                             }
+                            RowLavelNewXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                               naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
+                               priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
+                               promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom, location);
                         }
+                       else if(rdoDeliveryType.SelectedItem.ToString() == "DO")
+                        {
+                            for (var i = 0; i < dgvSales.Rows.Count; i++)
+                            {
+                                Label lblproductID = dgvSales.Rows[i].FindControl("lblProdutId") as Label;
+                                if (lblproductID.Text == productId)
+                                {
+                                    Toaster("Can not add same product Name " + productName + " duplicate.", "", Common.TosterType.Error);
 
-                        RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
-                            naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
-                            priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
-                            promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom);
+                                    return;
+                                }
+                            }
+                            RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                           naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
+                           priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
+                           promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom);
+                        }
+                       
+
+
+                        
 
                         txtQun.Text = "";
                         hdnProduct.Value = "";
                         txtPrice.Visible = true;
                         txtProduct.Text = "";
+                        txtPrice.Text = "0";
+                        ddlUOM.SelectedItem.Text = "";
                         txtProduct.Focus();
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) {
+                 ex.ToString();
+            }
         }
         private void RowLavelXmlCreate(string productId, string productName, string quantity, string rate, string uomId,
             string uomName,string naration, string currency, string commision, string commisionTotal, string discount,
@@ -660,8 +703,59 @@ namespace UI.SAD.Delivery
             string xmlString = XmlParser.GetXml("Entry", "items", objects, out message);
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlString);
-            doc.Save(_filePathForXml); 
+            doc.Save(GetXmlFilePath()); 
             LoadGridwithXml(xmlString, dgvSales);
+        }
+
+        private void RowLavelNewXmlCreate(string productId, string productName, string quantity, string rate, string uomId,
+            string uomName, string naration, string currency, string commision, string commisionTotal, string discount,
+            string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice, string narr, string promtionItemId,
+            string promtionItem, string promtionUom, string promtionItemCoaId, string promtionQnty, string promtionItemUom,string location)
+        {
+
+
+            dynamic obj = new
+            {
+                productId,
+                productName,
+                quantity,
+                rate,
+                uomId,
+                uomName,
+                naration,
+                currency,
+                commision,
+                commisionTotal,
+                discount,
+                discountTotal,
+                priceTotal,
+                supplierTax,
+                vat,
+                vatPrice,
+                narr,
+                promtionItemId,
+                promtionItem,
+                promtionUom,
+                promtionItemCoaId,
+                promtionQnty,
+                promtionItemUom,
+                location,
+
+            };
+
+            List<object> objects = new List<object>();
+            if (Session["RowObj"] != null)
+            {
+                objects = (List<object>)Session["RowObj"];
+            }
+            objects.Add(obj);
+            Session["RowObj"] = objects;
+
+            string xmlString = XmlParser.GetXml("Entry", "items", objects, out message);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xmlString);
+            doc.Save(GetXmlFilePath());
+            LoadGridwithXml(xmlString, dgvSalesPicking);
         }
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -795,9 +889,12 @@ namespace UI.SAD.Delivery
                 string salesType = rdoSalesType.SelectedItem.Text;
                 string reffNo = txtReffNo.Text;
                 string customerAddress = txtCustomerAddress.Text;
-                string shipToPartyAddress = txtShipToPartyAddress.Text; 
+                string shipToPartyAddress = txtShipToPartyAddress.Text;
+                string currency = ddlCurrency.SelectedItem.Value;
+                string currencyConversionRate = txtConvRate.Text;
+               
 
-                BindXML(unit,shipPoint,salesOffice,customerType,date,dueDate,customerId,shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress);
+                BindXML(unit,shipPoint,salesOffice,customerType,date,dueDate,customerId,shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, currency, currencyConversionRate);
 
                 string itemXML = XmlParser.GetXml(_filePathForXml);
                 string orderID = "", Code = "";
@@ -820,7 +917,7 @@ namespace UI.SAD.Delivery
             {
             }
         }
-        private string BindXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId,string salesType, string reffNo, string customerAddress, string shipToPartyAddress)
+        private string BindXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId,string salesType, string reffNo, string customerAddress, string shipToPartyAddress, string currency, string currencyConversionRate)
         {
             dynamic obj = new
             {
@@ -836,6 +933,8 @@ namespace UI.SAD.Delivery
                 reffNo,
                 customerAddress,
                 shipToPartyAddress,
+                currency,
+                currencyConversionRate,
             };
             List<object> objects = new List<object>();
           
