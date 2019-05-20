@@ -1210,6 +1210,8 @@
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
+    <Content Include="SAD\Delivery\ViewDOTest.aspx" />
+    <Content Include="SAD\Delivery\ViewQuotationTest.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
     <Content Include="SAD\DisPoint\DisPointEdit.aspx" />
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
@@ -6019,6 +6021,20 @@
     </Compile>
     <Compile Include="SAD\Delivery\DeliverySales.aspx.designer.cs">
       <DependentUpon>DeliverySales.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewDOTest.aspx.cs">
+      <DependentUpon>ViewDOTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewDOTest.aspx.designer.cs">
+      <DependentUpon>ViewDOTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewQuotationTest.aspx.cs">
+      <DependentUpon>ViewQuotationTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewQuotationTest.aspx.designer.cs">
+      <DependentUpon>ViewQuotationTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\DisPoint\DisPoint.aspx.cs">
       <DependentUpon>DisPoint.aspx</DependentUpon>
