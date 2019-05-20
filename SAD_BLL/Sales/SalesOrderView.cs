@@ -86,6 +86,37 @@ namespace SAD_BLL.Sales
 
         }
 
+        public SalesOrderViewTDS.SprSalesOrderViewDataTable GetSalesOrderView(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
+            , string customerId, string customerType, int intCompleted, string shippingPoint, string salesOffice)
+        {
+            SprSalesOrderViewTableAdapter adp = new SprSalesOrderViewTableAdapter();
+
+            int? cId = null;
+            if ("" + customerId != "")
+            {
+                cId = int.Parse(customerId);
+            }
+
+            if ("" + code == "")
+            {
+                code = "";
+            }
+
+            if (fromDate == null)
+            {
+                fromDate = DateTime.Now.AddDays(-7);
+            }
+
+            if (toDate == null)
+            {
+                toDate = DateTime.Now.AddDays(7);
+            }
+
+            if ("" + customerType == "") return null;
+            return adp.GetSalesOrderViewData(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), intCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+
+        }
+
         public DataTable getQuationDet(int quatationid)
         {
             SprSalesQuationByCustomerDetTableAdapter ta = new SprSalesQuationByCustomerDetTableAdapter();
