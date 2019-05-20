@@ -88,8 +88,8 @@ namespace SAD_BLL.Item
 
 
         public static string[] GetDoPendingItemByCustomer(string customerId,string shipPointId, string prefix)
-        { 
-             
+        {
+            tblDoPendintItem = new Delivery_TDS.QryDOPendingItemDataTable[Convert.ToInt32(customerId)];
             QryDOPendingItemTableAdapter adp = new QryDOPendingItemTableAdapter();
             tblDoPendintItem[e] = adp.GetDoPendingByCustomer(int.Parse(customerId), int.Parse(shipPointId));
 
