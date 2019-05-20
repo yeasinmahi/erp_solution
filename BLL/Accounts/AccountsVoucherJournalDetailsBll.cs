@@ -14,11 +14,11 @@ namespace BLL.Accounts
             return _dal.Insert(intJournalVoucherId, intAccId, strNarration, monAmount, strAccName);
         }
 
-        public DataTable GetJurnalVoucher(int voucherId)
+        public DataTable GetJurnalVoucherDetails(int voucherId)
         {
             return _dal.GetJurnalVoucherDetails(voucherId);
         }
-        public DataTable GetJurnalVoucher(int voucherId,int accId)
+        public DataTable GetJurnalVoucherDetails(int voucherId,int accId)
         {
             return _dal.GetJurnalVoucherDetails(voucherId,accId);
         }
@@ -85,7 +85,7 @@ namespace BLL.Accounts
         }
         public bool UpdateJournalVoucherDetails(int jvId, int accId, decimal jvAmount)
         {
-            _dt = GetJurnalVoucher(jvId, accId);
+            _dt = GetJurnalVoucherDetails(jvId, accId);
             if (_dt.Rows.Count > 0)
             {
                 decimal amount = Convert.ToDecimal(_dt.Rows[0]["monAmount"].ToString());

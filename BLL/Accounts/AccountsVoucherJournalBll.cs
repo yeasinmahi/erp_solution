@@ -8,6 +8,7 @@ namespace BLL.Accounts
     public class AccountsVoucherJournalBll
     {
         private readonly AccountsVoucherJournalDal _dal = new AccountsVoucherJournalDal();
+        private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private DataTable _dt;
         public int Insert(string strCode, int intUnitId, string strNarration, decimal amount, int intLastActionBy)
         {
@@ -62,6 +63,29 @@ namespace BLL.Accounts
                 return false;
             }
             return false;
+        }
+
+        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId, string storeIssueNarration, string meterialNarration, int enroll)
+        {
+            int voucherId = InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
+            if (voucherId > 0)
+            {
+                if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    //TODO: RollBack
+                    return false;
+                }
+
+            }
+            else
+            {
+                //TODO: RollBack
+                return false;
+            }
         }
 
     }

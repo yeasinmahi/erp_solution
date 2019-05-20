@@ -31,7 +31,7 @@ namespace BLL.Inventory
                     _dt = _accountsVoucherJournalBll.GetJurnalVoucher(jvId, DateTime.Now);
                     if (_dt.Rows.Count > 0)
                     {
-                        _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId);
+                        _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucherDetails(jvId, coaId);
                         if (_dt.Rows.Count > 0)
                         {
                             if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId, issueValue))
@@ -39,7 +39,7 @@ namespace BLL.Inventory
                                 if (_accountsVoucherJournalDetailsBll.GetAltJvDetails(coaId, out int coaId2, out string accName2,
                                     out string strNarration))
                                 {
-                                    _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId2);
+                                    _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucherDetails(jvId, coaId2);
                                     if (_dt.Rows.Count > 0)
                                     {
                                         if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
@@ -110,18 +110,10 @@ namespace BLL.Inventory
                     }
                     else
                     {
-                        int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
-                        if (voucherId > 0)
+                        if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
+                            storeIssueNarration, meterialNarration, enroll))
                         {
-                            if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                //TODO: RollBack
-                            }
-
+                            //TODO: Success
                         }
                         else
                         {
@@ -131,14 +123,10 @@ namespace BLL.Inventory
                 }
                 else
                 {
-                    int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
-                    if (voucherId > 0)
+                    if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
+                        storeIssueNarration, meterialNarration, enroll))
                     {
-                        if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
-                        {
-                            return true;
-                        }
-
+                        //TODO: Success
                     }
                     else
                     {
@@ -220,7 +208,7 @@ namespace BLL.Inventory
                                                 _dt = _accountsVoucherJournalBll.GetJurnalVoucher(jvId, DateTime.Now);
                                                 if (_dt.Rows.Count > 0)
                                                 {
-                                                    _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId);
+                                                    _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucherDetails(jvId, coaId);
                                                     if (_dt.Rows.Count > 0)
                                                     {
                                                         if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId, issueValue))
@@ -228,16 +216,14 @@ namespace BLL.Inventory
                                                             if (_accountsVoucherJournalDetailsBll.GetAltJvDetails(coaId, out int coaId2, out string accName2,
                                                                 out string strNarration))
                                                             {
-                                                                _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucher(jvId, coaId2);
+                                                                _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucherDetails(jvId, coaId2);
                                                                 if (_dt.Rows.Count > 0)
                                                                 {
                                                                     if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
                                                                     {
                                                                         if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                                                         {
-                                                                            _storeIssueToFloreTransectionStatusBll
-                                                                                .UpdateIsProcessed(true,
-                                                                                    inventoryStatusId);
+                                                                            _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true,inventoryStatusId);
                                                                             // TODO: succes
                                                                         }
                                                                         else
@@ -308,64 +294,19 @@ namespace BLL.Inventory
                                                 }
                                                 else
                                                 {
-                                                    int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
-                                                    if (voucherId > 0)
-                                                    {
-                                                        if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
-                                                        {
-                                                            // TODO: succes
-                                                            _storeIssueToFloreTransectionStatusBll
-                                                                .UpdateIsProcessed(true,
-                                                                    inventoryStatusId);
-                                                        }
-                                                        else
-                                                        {
-                                                            //TODO: RollBack
-                                                        }
-
-                                                    }
-                                                    else
-                                                    {
-                                                        //TODO: RollBack
-                                                    }
+                                                    InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId, storeIssueNarration, meterialNarration, inventoryStatusId, enroll);
                                                 }
                                             }
                                             else
                                             {
-                                                int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
-                                                if (voucherId > 0)
-                                                {
-                                                    if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
-                                                    {
-                                                        // TODO: succes
-                                                        _storeIssueToFloreTransectionStatusBll
-                                                            .UpdateIsProcessed(true,
-                                                                inventoryStatusId);
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    //TODO: RollBack
-                                                }
+                                                InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId, storeIssueNarration, meterialNarration, inventoryStatusId, enroll);
 
                                             }
                                         }
                                         else
                                         {
-                                            int voucherId = _accountsVoucherJournalBll.InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
-                                            if (voucherId > 0)
-                                            {
-                                                if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue) > 0)
-                                                {
-                                                    //TODO: success
-                                                }
-
-                                            }
-                                            else
-                                            {
-                                                //TODO: RollBack
-                                            }
+                                            InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId, storeIssueNarration, meterialNarration, inventoryStatusId, enroll);
+                                            
                                         }
                                     }
                                     else
@@ -411,6 +352,23 @@ namespace BLL.Inventory
             }
 
             return 0;
+        }
+
+        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
+            string storeIssueNarration, string meterialNarration, int inventoryStatusId, int enroll)
+        {
+            if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
+                storeIssueNarration, meterialNarration, enroll))
+            {
+                //TODO: Success
+                _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true,inventoryStatusId);
+                return true;
+            }
+            else
+            {
+                //TODO: RollBack
+                return false;
+            }
         }
 
     }
