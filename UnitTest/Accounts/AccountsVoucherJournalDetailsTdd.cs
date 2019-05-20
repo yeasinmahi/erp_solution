@@ -10,7 +10,7 @@ namespace UnitTest.Accounts
         [TestCase(3436797)]
         public void Bll_GetJurnalVoucher_DataTable(int voucherId)
         {
-            DataTable dt = _bll.GetJurnalVoucher(voucherId);
+            DataTable dt = _bll.GetJurnalVoucherDetails(voucherId);
             Assert.That(dt.Rows.Count > 0);
         }
         [TestCase(3436797, 10000001, "TestVoucher", 0.1, "Test1Account")]
