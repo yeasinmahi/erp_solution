@@ -38,7 +38,7 @@ namespace UI.SAD.Delivery
         ItemPromotion itemPromotion = new ItemPromotion(); 
         SAD_BLL.Item.Item item = new SAD_BLL.Item.Item();
         Delivery_BLL deliveryBLL = new Delivery_BLL();
-
+        SalesSearch_BLL salesSearch_obj = new SalesSearch_BLL();
         DataTable dt = new DataTable();
         Vehicle vehicle=new Vehicle();
         XmlManager xm = new XmlManager();
@@ -47,7 +47,7 @@ namespace UI.SAD.Delivery
         private string _filePathForXml, _xmlString = "", xmlNewString="";
         protected void Page_Load(object sender, EventArgs e)
         {
-            _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
+            //_filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
             if (!IsPostBack)
             {
 
@@ -57,18 +57,27 @@ namespace UI.SAD.Delivery
                
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                Session["CustomerId"] = null;
+                Session["DoId"] = null;
+                
                 if (Request.QueryString["type"] == "DoBased")
                 {
                     Session[SessionParams.SalesProcess] = "DoBase";
+                    Session["DoId"] = "2590152";
                 }
                 else if((Request.QueryString["type"])== "CustomerBase")
                 {
                     Session[SessionParams.SalesProcess] = "CustomerBase";
+                    Session["CustomerId"] = "351197";
                 }
                 else
                 {
-                    Session[SessionParams.SalesProcess] = "ChallanBase";
+                    //Session[SessionParams.SalesProcess] = "ChallanBase";
+                    Session[SessionParams.SalesProcess] = "DoBase";
+                    Session["DoId"] = "2590152";
                 }
+
+                
 
                 WorkType(rdoDeliveryType.SelectedItem.Text.ToString());
                 Session["RowObj"] = null;
@@ -157,6 +166,7 @@ namespace UI.SAD.Delivery
 
                 dt = shipPoint.GetShipPoint(HttpContext.Current.Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue().ToString());
                 ddlShipPoint.Loads(dt, "intShipPointId", "strName");
+                
                 dt = salesOffice.GetSalesOfficeByShipPoint(ddlShipPoint.SelectedValue().ToString());
                 ddlSalesOffice.Loads(dt, "intSalesOfficeId", "strName");
 
@@ -216,18 +226,15 @@ namespace UI.SAD.Delivery
         {
             if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "DoBase")
             {
-                return ItemSt.GetProductDataForAutoFill(
-                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+                return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
             else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "CustomerBase")
             {
-                return ItemSt.GetProductDataForAutoFill(
-                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+                return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
             else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "ChallanBase")
             {
-                return ItemSt.GetProductDataForAutoFill(
-                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+                return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
             else
             {
@@ -761,7 +768,7 @@ namespace UI.SAD.Delivery
             string unit = "";
             unit = "" + hdnUnit.Value;
             if (unit == "") unit = ddlUnit.SelectedValue;
-            _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
+            _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__"+unit+"__"+ Enroll + ".xml");
             return _filePathForXml;
         }
         protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
@@ -795,10 +802,6 @@ namespace UI.SAD.Delivery
                 lblOrderIDText.Visible = true;
                 lblOrderId.Text = orderID;
 
-                if (File.Exists(GetXmlFilePath()))
-                {
-                    File.Delete(GetXmlFilePath());
-                }
                 if(File.Exists(_filePathForXml))
                 {
                     File.Delete(_filePathForXml);
@@ -844,18 +847,22 @@ namespace UI.SAD.Delivery
         protected void txtDoNumber_TextChanged(object sender, EventArgs e)
         {
             int Id = Convert.ToInt32(txtDoNumber.Text);
-            int userUnit = Convert.ToInt32( Session[SessionParams.UNIT_ID]);
-
+            int userUnit = 53; //Convert.ToInt32( Session[SessionParams.UNIT_ID]);
+           
             LoadDOProfile(Id, userUnit);
 
         }
 
         private void LoadDOProfile(int id,int unit)
         {
-            dt = deliveryBLL.DeliveryHeaderDataByCustomer(id, unit);
-            if(dt.Rows.Count==0)
+            
+            if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "DoBase")
             {
                 dt = deliveryBLL.DeliveryHeaderDataByDo(id, unit);
+            }
+            else if (Session[SessionParams.SalesProcess].ToString() == "CustomerBase")
+            {
+                dt = deliveryBLL.DeliveryHeaderDataByCustomer(id, unit);
             }
 
             if (dt.Rows.Count > 0)
@@ -879,6 +886,12 @@ namespace UI.SAD.Delivery
                     txtShipToParty.Text = "";
                     txtShipToPartyAddress.Text = "";
                 }
+
+                Session[SessionParams.CURRENT_SHIP] = ddlShipPoint.SelectedItem.Value;
+            }
+            else
+            {
+                Toaster("There is no data against your query", "Delivery Entry", Common.TosterType.Warning);
             }
 
         }
@@ -895,7 +908,7 @@ namespace UI.SAD.Delivery
             txtPrice.Text = "0.00";
             txtProduct.Text = "";
             txtProduct.Focus();
-            ddlUOM.Items.Insert(0, "");
+            ddlUOM.SelectedItem.Text="";
             dgvSales.DataSource = null;
             dgvSales.DataBind();
         }

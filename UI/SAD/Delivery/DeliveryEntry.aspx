@@ -346,7 +346,8 @@
                         <tr style="background-color: #B0B0B0; text-align: center;">
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
-                            <td>Price</td> 
+                            <td>Price</td>
+                            <td> Location</td>
                             <td> Commission</td>
                             <td style="color: Red;"> Quantity</td>
                             <td>Total</td>
@@ -374,7 +375,10 @@
                             <td  align="center">
                                 <asp:TextBox ID="txtPrice" runat="server" Width="50px"></asp:TextBox>
                             </td>
-                          
+                             <td  align="center">
+                                <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True">                                 
+                                </asp:DropDownList>
+                            </td>
                             <td align="center">
                                 <asp:Label ID="lblComm" runat="server"></asp:Label>
                             </td>
@@ -516,8 +520,8 @@
         function ProductValidation() {
             debugger;
             var customer = document.getElementById("txtCustomer").value;
-            var currency = document.getElementById('<%=ddlCurrency.ClientID%>');
-            var currencyRate = document.getElementById("txtProduct").value;
+            var currency = document.getElementById("ddlCurrency").value;
+            var currencyRate = document.getElementById("txtConvRate").value;
             var product = document.getElementById("txtProduct").value;
             var price = document.getElementById("txtPrice").value;
             var quantity = document.getElementById("txtQun").value;
@@ -538,7 +542,7 @@
                 return false;
             }
             else if (currency === null || currency === "") {
-                ShowNotification('Enter Price', 'DeliveryEntry', 'warning');
+                ShowNotification('Enter Currency', 'DeliveryEntry', 'warning');
                 return false;
             }
             else if (currencyRate === null || currencyRate === "") {
