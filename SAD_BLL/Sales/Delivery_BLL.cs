@@ -74,6 +74,20 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        public DataTable DeliveryOrderItemPriceByDo(int item, int shipPoint, int doId)
+        {
+            try
+            {
+                qryDOPendingPriceByItemTableAdapter adp = new qryDOPendingPriceByItemTableAdapter();
+                return adp.GetDoItemPriceByDo(item, shipPoint, doId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+      
         public void DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
         {
             try
