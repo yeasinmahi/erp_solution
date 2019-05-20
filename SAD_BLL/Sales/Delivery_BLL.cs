@@ -37,6 +37,20 @@ namespace SAD_BLL.Sales
 
         }
 
+        public DataTable FgWarehouseLocation(int jobstation)
+        {
+            try
+            {
+                FgLocationDataTableAdapter adp = new FgLocationDataTableAdapter();
+                return adp.GetFgLocationData(jobstation);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         public void DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
         {
             try
