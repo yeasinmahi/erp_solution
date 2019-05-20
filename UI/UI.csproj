@@ -348,6 +348,66 @@
     <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
+    <Content Include="Content\JS\dist\css\select2.css" />
+    <Content Include="Content\JS\dist\css\select2.min.css" />
+    <Content Include="Content\JS\dist\js\i18n\af.js" />
+    <Content Include="Content\JS\dist\js\i18n\ar.js" />
+    <Content Include="Content\JS\dist\js\i18n\az.js" />
+    <Content Include="Content\JS\dist\js\i18n\bg.js" />
+    <Content Include="Content\JS\dist\js\i18n\bs.js" />
+    <Content Include="Content\JS\dist\js\i18n\ca.js" />
+    <Content Include="Content\JS\dist\js\i18n\cs.js" />
+    <Content Include="Content\JS\dist\js\i18n\da.js" />
+    <Content Include="Content\JS\dist\js\i18n\de.js" />
+    <Content Include="Content\JS\dist\js\i18n\dsb.js" />
+    <Content Include="Content\JS\dist\js\i18n\el.js" />
+    <Content Include="Content\JS\dist\js\i18n\en.js" />
+    <Content Include="Content\JS\dist\js\i18n\es.js" />
+    <Content Include="Content\JS\dist\js\i18n\et.js" />
+    <Content Include="Content\JS\dist\js\i18n\eu.js" />
+    <Content Include="Content\JS\dist\js\i18n\fa.js" />
+    <Content Include="Content\JS\dist\js\i18n\fi.js" />
+    <Content Include="Content\JS\dist\js\i18n\fr.js" />
+    <Content Include="Content\JS\dist\js\i18n\gl.js" />
+    <Content Include="Content\JS\dist\js\i18n\he.js" />
+    <Content Include="Content\JS\dist\js\i18n\hi.js" />
+    <Content Include="Content\JS\dist\js\i18n\hr.js" />
+    <Content Include="Content\JS\dist\js\i18n\hsb.js" />
+    <Content Include="Content\JS\dist\js\i18n\hu.js" />
+    <Content Include="Content\JS\dist\js\i18n\hy.js" />
+    <Content Include="Content\JS\dist\js\i18n\id.js" />
+    <Content Include="Content\JS\dist\js\i18n\is.js" />
+    <Content Include="Content\JS\dist\js\i18n\it.js" />
+    <Content Include="Content\JS\dist\js\i18n\ja.js" />
+    <Content Include="Content\JS\dist\js\i18n\km.js" />
+    <Content Include="Content\JS\dist\js\i18n\ko.js" />
+    <Content Include="Content\JS\dist\js\i18n\lt.js" />
+    <Content Include="Content\JS\dist\js\i18n\lv.js" />
+    <Content Include="Content\JS\dist\js\i18n\mk.js" />
+    <Content Include="Content\JS\dist\js\i18n\ms.js" />
+    <Content Include="Content\JS\dist\js\i18n\nb.js" />
+    <Content Include="Content\JS\dist\js\i18n\nl.js" />
+    <Content Include="Content\JS\dist\js\i18n\pl.js" />
+    <Content Include="Content\JS\dist\js\i18n\ps.js" />
+    <Content Include="Content\JS\dist\js\i18n\pt-BR.js" />
+    <Content Include="Content\JS\dist\js\i18n\pt.js" />
+    <Content Include="Content\JS\dist\js\i18n\ro.js" />
+    <Content Include="Content\JS\dist\js\i18n\ru.js" />
+    <Content Include="Content\JS\dist\js\i18n\sk.js" />
+    <Content Include="Content\JS\dist\js\i18n\sl.js" />
+    <Content Include="Content\JS\dist\js\i18n\sr-Cyrl.js" />
+    <Content Include="Content\JS\dist\js\i18n\sr.js" />
+    <Content Include="Content\JS\dist\js\i18n\sv.js" />
+    <Content Include="Content\JS\dist\js\i18n\th.js" />
+    <Content Include="Content\JS\dist\js\i18n\tr.js" />
+    <Content Include="Content\JS\dist\js\i18n\uk.js" />
+    <Content Include="Content\JS\dist\js\i18n\vi.js" />
+    <Content Include="Content\JS\dist\js\i18n\zh-CN.js" />
+    <Content Include="Content\JS\dist\js\i18n\zh-TW.js" />
+    <Content Include="Content\JS\dist\js\select2.full.js" />
+    <Content Include="Content\JS\dist\js\select2.full.min.js" />
+    <Content Include="Content\JS\dist\js\select2.js" />
+    <Content Include="Content\JS\dist\js\select2.min.js" />
     <Content Include="Content\JS\EmpPersonalInformationUpdate.js" />
     <Content Include="Content\JS\gridviewscroll.min.js" />
     <Content Include="Content\JS\html2canvas.js" />
@@ -1339,6 +1399,7 @@
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
+    <Content Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
@@ -1508,9 +1569,12 @@
     <Content Include="SCM\ItemManager.aspx" />
     <Content Include="SCM\ItemManagerAccounts.aspx" />
     <Content Include="SCM\ItemManagerAccountsPopUp.aspx" />
+    <Content Include="SCM\ItemManagerGlobal.aspx" />
     <Content Include="SCM\ItemManagerPurchasePopUp.aspx" />
     <Content Include="SCM\ItemManagerStore.aspx" />
     <Content Include="SCM\ItemManagerPurchase.aspx" />
+    <Content Include="SCM\ItemManagerStoreNew.aspx" />
+    <Content Include="SCM\ItemMRPView.aspx" />
     <Content Include="SCM\Item_View.aspx" />
     <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
@@ -6932,6 +6996,13 @@
     <Compile Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx.designer.cs">
       <DependentUpon>DOQntVsChallaQnt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.cs">
+      <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.designer.cs">
+      <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.cs">
       <DependentUpon>Free.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8101,6 +8172,13 @@
     <Compile Include="SCM\ItemManagerAccountsPopUp.aspx.designer.cs">
       <DependentUpon>ItemManagerAccountsPopUp.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\ItemManagerGlobal.aspx.cs">
+      <DependentUpon>ItemManagerGlobal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerGlobal.aspx.designer.cs">
+      <DependentUpon>ItemManagerGlobal.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\ItemManagerPurchasePopUp.aspx.cs">
       <DependentUpon>ItemManagerPurchasePopUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8121,6 +8199,20 @@
     </Compile>
     <Compile Include="SCM\ItemManagerPurchase.aspx.designer.cs">
       <DependentUpon>ItemManagerPurchase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStoreNew.aspx.cs">
+      <DependentUpon>ItemManagerStoreNew.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemManagerStoreNew.aspx.designer.cs">
+      <DependentUpon>ItemManagerStoreNew.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\ItemMRPView.aspx.cs">
+      <DependentUpon>ItemMRPView.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\ItemMRPView.aspx.designer.cs">
+      <DependentUpon>ItemMRPView.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Item_View.aspx.cs">
       <DependentUpon>Item_View.aspx</DependentUpon>

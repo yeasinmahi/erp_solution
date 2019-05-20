@@ -1,12 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using BLL.Accounts;
+using DALOOP.Inventory;
+using Model;
 
 namespace BLL.Inventory
 {
     public class StoreIssueBll
     {
         private DataTable _dt;
+        private readonly StoreIssueDal _dal = new StoreIssueDal();
+        private readonly StoreIssueByItemDal _issueByItemDal = new StoreIssueByItemDal();
+        private readonly InventoryBll _inventoryBll = new InventoryBll();
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
@@ -185,9 +191,7 @@ namespace BLL.Inventory
         }
         private int InsertJournalVoucher(int whId, decimal amount, int enroll)
         {
-            WareHouseBll wareHouseBll = new WareHouseBll();
-            int unitId = wareHouseBll.GetUnitIdByWhId(whId);
-            if (unitId > 0)
+            if (GetUnitId(whId,out int unitId))
             {
                 CodeInfoBll codeInfoBll = new CodeInfoBll();
                 string voucherCode = codeInfoBll.GetJurnalVoucherCode(unitId);
@@ -257,6 +261,64 @@ namespace BLL.Inventory
             return false;
         }
 
+        private bool GetUnitId(int whId,out int unitId)
+        {
+            WareHouseBll wareHouseBll = new WareHouseBll();
+            unitId = wareHouseBll.GetUnitIdByWhId(whId);
+            if (unitId > 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        public int StoreIssue(StoreIssue storeIssue, List<StoreIssueByItem> storeIssueByItems)
+        {
+            int whId = storeIssue.WhId;
+            if (GetUnitId(whId, out int unitId))
+            {
+                int issueId = _dal.Insert(unitId, whId, storeIssue.RequsitionId, storeIssue.RequsitionCode,
+                    storeIssue.RequsitionDate, storeIssue.ReceiveBy, storeIssue.InsertBy, storeIssue.CostCenterId);
+                if (issueId > 0)
+                {
+                    foreach (StoreIssueByItem issueByItem in storeIssueByItems)
+                    {
+                        int issueItemByItemId = _issueByItemDal.Insert(issueId, issueByItem.ItemId, unitId,
+                            whId, storeIssue.DepartmentId, 0, storeIssue.ReceiveBy, issueByItem.LocationId,
+                            issueByItem.IssueQuantity, issueByItem.IssueValue, storeIssue.Section,
+                            storeIssue.CostCenterId, issueByItem.Remarks);
+                        if (issueItemByItemId > 0)
+                        {
+                            int inventoryId = _inventoryBll.InsertBySpInventoryTransection(unitId, whId, issueByItem.LocationId,
+                                issueByItem.ItemId, issueByItem.IssueQuantity * -1, issueByItem.IssueValue * -1,
+                                issueId, 3);
+                            if (inventoryId > 0)
+                            {
+                                // TODO: Implement;
+                            }
+                            else
+                            {
+                                // TODO: Inventory insert Failed;
+                            }
+                        }
+                        else
+                        {
+                            // TODO: Issue by item insert Failed;
+                        }
+                    }
+                    
+                }
+                else
+                {
+                    // TODO: Issue insert Failed;
+                }
+            }
+            else
+            {
+                // TODO: Issue Failed;
+            }
+
+            return 0;
+        }
 
     }
 }

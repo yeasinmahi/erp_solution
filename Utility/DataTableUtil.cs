@@ -138,5 +138,15 @@ namespace Utility
             html += "</table>";
             return html;
         }
+
+        public static int GetAutoId(this DataTable dt, string columnName)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][columnName].ToString());
+            }
+            return 0;
+            
+        }
     }
 }
