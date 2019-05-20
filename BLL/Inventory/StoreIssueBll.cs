@@ -13,7 +13,7 @@ namespace BLL.Inventory
         private readonly StoreIssueDal _dal = new StoreIssueDal();
         private readonly StoreIssueByItemDal _issueByItemDal = new StoreIssueByItemDal();
         private readonly InventoryBll _inventoryBll = new InventoryBll();
-        StoreIssueToFloreTransectionStatusBll StoreIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
+        private readonly StoreIssueToFloreTransectionStatusBll _storeIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
@@ -294,7 +294,9 @@ namespace BLL.Inventory
                             if (inventoryId > 0)
                             {
                                 // TODO: Implement;
-                                
+                                _storeIssueToFloreTransectionStatusBll.Insert(issueByItem.ItemId, inventoryId);
+
+
                             }
                             else
                             {

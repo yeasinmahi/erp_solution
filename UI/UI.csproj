@@ -1271,9 +1271,6 @@
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
-    <Content Include="SAD\Delivery\ViewOrder.aspx" />
-    <Content Include="SAD\Delivery\ViewPicking.aspx" />
-    <Content Include="SAD\Delivery\ViewQuotation.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
     <Content Include="SAD\DisPoint\DisPointEdit.aspx" />
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
@@ -6099,27 +6096,6 @@
     <Compile Include="SAD\Delivery\DOView.aspx.designer.cs">
       <DependentUpon>DOView.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\Delivery\ViewOrder.aspx.cs">
-      <DependentUpon>ViewOrder.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewOrder.aspx.designer.cs">
-      <DependentUpon>ViewOrder.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewPicking.aspx.cs">
-      <DependentUpon>ViewPicking.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewPicking.aspx.designer.cs">
-      <DependentUpon>ViewPicking.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewQuotation.aspx.cs">
-      <DependentUpon>ViewQuotation.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewQuotation.aspx.designer.cs">
-      <DependentUpon>ViewQuotation.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SAD\DisPoint\DisPoint.aspx.cs">
       <DependentUpon>DisPoint.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9726,6 +9702,10 @@
     <ProjectReference Include="..\Flogging.Core\Flogging.Core.csproj">
       <Project>{ebe464da-6c54-4f40-a82c-debcebe09ed1}</Project>
       <Name>Flogging.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8f40c256-179d-48a3-84b2-5dadbaa00068}</Project>
+      <Name>Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\SCM_DAL\SCM_DAL.csproj">
       <Project>{43E9D794-020B-425F-857C-D313068C4BD5}</Project>

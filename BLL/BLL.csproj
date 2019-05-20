@@ -163,6 +163,7 @@
     <Compile Include="Inventory\PoTypeBll.cs" />
     <Compile Include="HR\UnitBll.cs" />
     <Compile Include="Inventory\StoreIssueBll.cs" />
+    <Compile Include="Inventory\StoreIssueByItemBll.cs" />
     <Compile Include="Inventory\StoreIssueToFloreTransectionStatusBll.cs" />
     <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />

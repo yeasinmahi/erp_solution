@@ -58,6 +58,8 @@
     <Compile Include="Inventory\ItemListDal.cs" />
     <Compile Include="Inventory\PoTypeDal.cs" />
     <Compile Include="Inventory\RfqMainDal.cs" />
+    <Compile Include="Inventory\StoreIssueByItemDal.cs" />
+    <Compile Include="Inventory\StoreIssueDal.cs" />
     <Compile Include="Inventory\StoreIssueToFloreTransectionStatusDal.cs" />
     <Compile Include="Inventory\SupplierDal.cs" />
     <Compile Include="Inventory\WareHouseDal.cs" />
