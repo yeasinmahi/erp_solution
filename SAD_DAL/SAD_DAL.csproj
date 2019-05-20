@@ -229,6 +229,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TerriotoryTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Delivery\Delivery_TDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Delivery_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DisPoint\DisPointTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -288,6 +293,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>CurrencyTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Item\DiscountTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiscountTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Item\ItemCOATDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -767,6 +777,17 @@
     <None Include="Customer\TerriotoryTDS.xss">
       <DependentUpon>TerriotoryTDS.xsd</DependentUpon>
     </None>
+    <None Include="Delivery\Delivery_TDS.xsc">
+      <DependentUpon>Delivery_TDS.xsd</DependentUpon>
+    </None>
+    <None Include="Delivery\Delivery_TDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Delivery_TDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Delivery\Delivery_TDS.xss">
+      <DependentUpon>Delivery_TDS.xsd</DependentUpon>
+    </None>
     <None Include="DisPoint\DisPointTDS.xsc">
       <DependentUpon>DisPointTDS.xsd</DependentUpon>
     </None>
@@ -898,6 +919,17 @@
     </None>
     <None Include="Item\CurrencyTDS.xss">
       <DependentUpon>CurrencyTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Item\DiscountTDS.xsc">
+      <DependentUpon>DiscountTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Item\DiscountTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DiscountTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Item\DiscountTDS.xss">
+      <DependentUpon>DiscountTDS.xsd</DependentUpon>
     </None>
     <None Include="Item\ItemCOATDS.xsc">
       <DependentUpon>ItemCOATDS.xsd</DependentUpon>

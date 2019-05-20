@@ -2107,13 +2107,14 @@ namespace SCM_DAL.ItemTDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSubCAT", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intMinorCAT", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCATID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSubCategory", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual ItemTDS.sprAddItemFromItemMasterNewDataTable InsertItem(global::System.Nullable<int> intUser, global::System.Nullable<int> intWH, global::System.Nullable<int> intLocation, global::System.Nullable<int> intItemMaster, global::System.Nullable<int> intSubCAT, global::System.Nullable<int> intMinorCAT, global::System.Nullable<int> intCATID) {
+        public virtual ItemTDS.sprAddItemFromItemMasterNewDataTable InsertItem(global::System.Nullable<int> intUser, global::System.Nullable<int> intWH, global::System.Nullable<int> intLocation, global::System.Nullable<int> intItemMaster, global::System.Nullable<int> intSubCAT, global::System.Nullable<int> intMinorCAT, global::System.Nullable<int> intCATID, string strSubCategory) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intUser.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intUser.Value));
@@ -2156,6 +2157,12 @@ namespace SCM_DAL.ItemTDSTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((strSubCategory == null)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(strSubCategory));
             }
             ItemTDS.sprAddItemFromItemMasterNewDataTable dataTable = new ItemTDS.sprAddItemFromItemMasterNewDataTable();
             this.Adapter.Fill(dataTable);

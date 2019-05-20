@@ -4,14 +4,13 @@ using HR_BLL.TourPlan;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Services;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
+#pragma warning disable 168
 
 namespace UI.HR.Overtime
 {
@@ -94,7 +93,7 @@ namespace UI.HR.Overtime
 
             Session["obj"] = objects;
             
-            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
+            string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string _);
 
             LoadGridwithXml(xmlString, OvertimeEntryGridView);
         }
@@ -104,10 +103,12 @@ namespace UI.HR.Overtime
             if (Session["obj"] != null)
             {
                 List<object> objects = (List<object>)Session["obj"];
+                //object obj = objects.GetDynamicObject("remarks", "Test");
+                //obj.UpdateObject("reason", "Test2");
                 objects.RemoveAt(e.RowIndex);
                 if (objects.Count > 0)
                 {
-                    string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string message);
+                    string xmlString = XmlParser.GetXml("OvertimeEntry", "items", objects, out string _);
                     LoadGridwithXml(xmlString, OvertimeEntryGridView);
                 }
                 else
@@ -178,6 +179,7 @@ namespace UI.HR.Overtime
             }
         }
 
+
         private void LoadPurpose()
         {
             ddlPurpose.Loads(_bll.getOvertimePurpouse(), "intID", "strPurpouse");
@@ -190,12 +192,30 @@ namespace UI.HR.Overtime
 
         public void LoadJobStationDropDown(int unitId, int enroll)
         {
-            ddlJobStation.Loads(_bll.GetJobStationByPermission(unitId, Enroll), "intEmployeeJobStationId", "strJobStationName");
+            DataTable dt = _bll.GetJobStationByPermission(unitId, Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                ddlJobStation.Loads(dt, "intEmployeeJobStationId", "strJobStationName");
+            }
+            else
+            {
+                Toaster("You have not job station permission of this unit", Common.TosterType.Warning);
+            }
+            
         }
 
         public void LoadUnitDropDown(int enrol)
         {
-            ddlUnit.Loads(_bll.GetUnitName(enrol), "intUnitID", "strUnit");
+            DataTable dt = _bll.GetUnitName(enrol);
+            if (dt.Rows.Count > 0)
+            {
+                ddlUnit.Loads(dt, "intUnitID", "strUnit");
+            }
+            else
+            {
+                Toaster("You have not any Unit permission",Common.TosterType.Warning);
+            }
+            
         }
 
         public int GetUnitId()
@@ -214,6 +234,7 @@ namespace UI.HR.Overtime
             }
             catch (Exception e)
             {
+                // ignored
             }
             AutoSearch_BLL objAutoSearchBll = new AutoSearch_BLL();
             var result = objAutoSearchBll.AutoSearchEmployeesData(//1399, 12, strSearchKey);
@@ -274,6 +295,7 @@ namespace UI.HR.Overtime
                 SetVisibility("panel", true);
             }
         }
+
 
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {

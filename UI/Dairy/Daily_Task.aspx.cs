@@ -54,6 +54,7 @@ namespace UI.Dairy
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
@@ -89,12 +90,14 @@ namespace UI.Dairy
 
                     Unitid = Session[SessionParams.UNIT_ID].ToString();
                     HttpContext.Current.Session["Unitid"] = Session[SessionParams.UNIT_ID].ToString();
+
+                    
                 }
                 catch
                 { }
             }
             else if (hdnconfirm.Value == "2") { FTPUpload(); }
-            else if (hdnconfirm.Value == "3") { FinalUpload(); }
+           
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
@@ -503,6 +506,12 @@ namespace UI.Dairy
             LoadGrid(); 
         }
 
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "3") { FinalUpload(); }
+        }
+
+
 
         //** Gridview Document Upload End   
 
@@ -613,7 +622,7 @@ namespace UI.Dairy
         //        catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Try Again.');", true); }
         //    }
         //}
-        
+
 
         //protected void btnAssignedToAdd_Click(object sender, EventArgs e)
         //{
@@ -707,7 +716,7 @@ namespace UI.Dairy
         //    }
         //    catch { }
         //}
-        
+
 
 
 

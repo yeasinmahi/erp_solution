@@ -1,6 +1,7 @@
 ﻿using Flogging.Core;
 using GLOBAL_BLL;
 using SCM_BLL;
+using SCM_DAL.ItemManagerStoreTDSTableAdapters;
 using System;
 using System.Data;
 using System.Web.UI;
@@ -11,7 +12,10 @@ namespace UI.SCM
 {
     public partial class ItemManagerAccounts : BasePage
     {
-        private MasterMaterialBLL bll = new MasterMaterialBLL(); private DataTable dt;
+        #region INIT
+        private ItemAddtoMasterFromTempTableAdapter itemAddtoMasterFromTempTableAdapter = new ItemAddtoMasterFromTempTableAdapter();
+        private MasterMaterialBLL bll = new MasterMaterialBLL();
+        private DataTable dt;
         private int intPart, intUOM, intLocationID, intGroupID, intCategoryID, intSubCategoryID, intMinorCategory, intPlantID, intProcureType, intABC, intFSN, intVDE, intSelfLife, intSDE, intHML, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID;
 
         private string strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, strUOM, strOrigin, strHSCode, strGroupName, strCategoryName, strSubCategoryName, strMinorCategory,
@@ -25,7 +29,9 @@ namespace UI.SCM
         private string start = "starting SCM\\ItemManagerAccounts";
         private string stop = "stopping SCM\\ItemManagerAccounts";
         private string perform = "Performance on SCM\\ItemManagerAccounts";
+        #endregion
 
+        #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -34,30 +40,26 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
+                LoadWareHouse();
                 try //WH List for Accounts
                 {
-                    intPart = 16;
-                    intInsertBy = int.Parse(hdnEnroll.Value);
-                    dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
-                        intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
-                        numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
-                        numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
-                    ddlWH.DataTextField = "strWareHoseName";
-                    ddlWH.DataValueField = "intWHID";
-                    ddlWH.DataSource = dt;
-                    ddlWH.DataBind();
+                    //intPart = 16;
+                    //intInsertBy = int.Parse(hdnEnroll.Value);
+                    //dt = bll.InsertUpdateSelectForItem(intPart, strMaterialName, strDescription, strPart, strModel, strSerial, strBrand, strSpecification, intUOM, strUOM, strOrigin, intLocationID, strHSCode,
+                    //    intGroupID, strGroupName, intCategoryID, strCategoryName, intSubCategoryID, strSubCategoryName, intMinorCategory, strMinorCategory, intPlantID, strPlantName, intProcureType, strProcureType,
+                    //    numMaxLeadTime, numMinLeadTime, numMinimumStock, numMaximumStock, numSafetyStock, numReOrderPoint, numReOrderQty, intABC, strABC, intFSN, strFSN, intVDE, strVDE, intSelfLife, strOrderingLotSize,
+                    //    numEOQ, numMOQ, numMaxDailyConsump, numMinDailyConsump, intSDE, strSDE, intHML, strHML, ysnVATApplicable, intWHID, intAutoID, intInsertBy, intCOAID, intMasterID);
+                    //ddlWH.DataTextField = "strWareHoseName";
+                    //ddlWH.DataValueField = "intWHID";
+                    //ddlWH.DataSource = dt;
+                    //ddlWH.DataBind();
                 }
                 catch { }
             }
         }
+        #endregion
 
-        private void LoadGrid()
-        {
-            dt = new DataTable();
-            dt = bll.GetItemListForAccounts(intWHID);
-            dgvItem.DataSource = dt; dgvItem.DataBind();
-        }
-
+        #region Event
         protected void dgvItem_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "Y")
@@ -98,7 +100,6 @@ namespace UI.SCM
                 }
             }
         }
-
         protected void ddlWH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -108,7 +109,6 @@ namespace UI.SCM
             }
             catch { }
         }
-
         protected void btnShow_Click(object sender, EventArgs e)
         {
             var fd = log.GetFlogDetail(start, location, "btnAdd_Click", null);
@@ -132,5 +132,43 @@ namespace UI.SCM
             // ends
             tracker.Stop();
         }
+        #endregion
+
+        #region Method
+        private void LoadWareHouse()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = itemAddtoMasterFromTempTableAdapter.GetWHFromItemTempTable(Convert.ToInt32(hdnEnroll.Value));
+                ddlWH.DataSource = dt;
+                ddlWH.DataTextField = "strWareHoseName";
+                ddlWH.DataValueField = "intWHID";
+                ddlWH.DataBind();
+
+                ddlWH.Items.Insert(0, new ListItem("---Select Ware House---", "-1"));
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+        private void LoadGrid()
+        {
+            dt = new DataTable();
+            dt = itemAddtoMasterFromTempTableAdapter.GetAllItemTempDataForAccounts(intWHID);
+            dgvItem.DataSource = dt;
+            dgvItem.DataBind();
+        }
+        private void LoadGrid_old()
+        {
+            dt = new DataTable();
+            dt = bll.GetItemListForAccounts(intWHID);
+            dgvItem.DataSource = dt; dgvItem.DataBind();
+        }
+        #endregion
+
+
+
+
     }
 }

@@ -18,6 +18,7 @@ using Utility;
 using SAD_BLL.Sales;
 using System.Xml;
 using System.IO;
+using System.Reflection;
 
 namespace UI.SAD.Delivery
 {
@@ -34,20 +35,106 @@ namespace UI.SAD.Delivery
         SalesConfig salesConfig=new SalesConfig();
         Currency currency = new Currency();
         ItemPrice itemPrice= new ItemPrice();
+        ItemPromotion itemPromotion = new ItemPromotion(); 
+        SAD_BLL.Item.Item item = new SAD_BLL.Item.Item();
+        Delivery_BLL deliveryBLL = new Delivery_BLL();
+
         DataTable dt = new DataTable();
+        Vehicle vehicle=new Vehicle();
         XmlManager xm = new XmlManager();
+
+        private string message;
+        private string _filePathForXml, _xmlString = "", xmlNewString="";
         protected void Page_Load(object sender, EventArgs e)
         {
+            _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
             if (!IsPostBack)
             {
+
+                GetURLMenu();
                 if (File.Exists(GetXmlFilePath())) File.Delete(GetXmlFilePath());
                 DefaultPageLoad();
                
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                if (Request.QueryString["type"] == "DoBased")
+                {
+                    Session[SessionParams.SalesProcess] = "DoBase";
+                }
+                else if((Request.QueryString["type"])== "CustomerBase")
+                {
+                    Session[SessionParams.SalesProcess] = "CustomerBase";
+                }
+                else
+                {
+                    Session[SessionParams.SalesProcess] = "ChallanBase";
+                }
+
+                WorkType(rdoDeliveryType.SelectedItem.Text.ToString());
+                Session["RowObj"] = null;
+                Session["HeadObj"] = null;
 
             }
 
+        }
+
+        private void GetURLMenu()
+        {
+            string type = Request.QueryString["type"];
+
+            foreach (ListItem item in rdoDeliveryType.Items)
+            {
+                rdoDeliveryType.Enabled = false;
+               
+                if (item.Value.Contains(type.ToString()))
+                {
+                    item.Selected = true;
+
+                    break;
+                }
+            }
+        }
+
+        private void WorkType(string Type)
+        {
+            try
+            {
+                if (Type =="DO")
+                {
+                    pnlLogistic.Visible = false;
+                    txtPrice.Visible = true;
+                    btnSubmit.Text = "DO";
+                    lblDoCustId.Visible = true;
+                    txtDoNumber.Visible = true;
+                    lblDoCustId.Text = "DO/Customer Id";
+                } 
+                else if (Type == "Picking")
+                {
+                    pnlLogistic.Visible = true;
+                    btnSubmit.Text = "Picking";
+                    lblDoCustId.Visible = true;
+                    txtDoNumber.Visible = true;
+                    lblDoCustId.Text = "DO/Customer";
+
+                }
+                else if (Type == "Delivery")
+                {
+                    pnlLogistic.Visible = true;
+                    btnSubmit.Text = "Delivery";
+                    lblDoCustId.Visible = true;
+                    txtDoNumber.Visible = true;
+                    lblDoCustId.Text = "DO/Customer/Picking Id";
+                }
+                else if (Type == "Return")
+                {
+                    pnlLogistic.Visible = false;
+                    btnSubmit.Text = "Return";
+                    lblDoCustId.Visible = false;
+                    txtDoNumber.Visible = false;
+                }
+            }
+            catch { }
+            
         }
         
         private void DefaultPageLoad()
@@ -65,6 +152,9 @@ namespace UI.SAD.Delivery
         {
             try
             {
+                dt = vehicle.GetVhlType(ddlUnit.SelectedValue().ToString());
+                //ddlVehicleType.Loads(dt, "intTypeId", "strType");
+
                 dt = shipPoint.GetShipPoint(HttpContext.Current.Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue().ToString());
                 ddlShipPoint.Loads(dt, "intShipPointId", "strName");
                 dt = salesOffice.GetSalesOfficeByShipPoint(ddlShipPoint.SelectedValue().ToString());
@@ -73,11 +163,11 @@ namespace UI.SAD.Delivery
                 dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
                 ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
 
-                dt = extraCharge.GetExtraChargeList(ddlUnit.SelectedValue().ToString());
-                ddlVehicleCharge.Loads(dt, "intID", "strText");
+                //dt = extraCharge.GetExtraChargeList(ddlUnit.SelectedValue().ToString());
+                //ddlVehicleCharge.Loads(dt, "intID", "strText");
 
-                dt = incentive.GetIncentiveList(ddlUnit.SelectedValue().ToString());
-                ddlVehicleIncentive.Loads(dt, "intID", "strText");
+                //dt = incentive.GetIncentiveList(ddlUnit.SelectedValue().ToString());
+                //ddlVehicleIncentive.Loads(dt, "intID", "strText");
 
                 dt = salesConfig.GetSalesTypeForDO(ddlUnit.SelectedValue().ToString());
                 rdoSalesType.RadioLoad(dt, "intTypeID", "strTypeName");
@@ -124,20 +214,42 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetProductList(string prefixText, int count)
         {
-            return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+            if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "DoBase")
+            {
+                return ItemSt.GetProductDataForAutoFill(
+                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+            }
+            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "CustomerBase")
+            {
+                return ItemSt.GetProductDataForAutoFill(
+                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+            }
+            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "ChallanBase")
+            {
+                return ItemSt.GetProductDataForAutoFill(
+                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         [WebMethod]
         [ScriptMethod]
         public static string[] GetVehicleList(string prefixText, int count)
         {
-            if (("" + HttpContext.Current.Session["sesCurVhlCom"]).ToLower() == "true" || HttpContext.Current.Session["sesCurVhlCom"] == null)
+            if (HttpContext.Current.Session["sesLogisticType"].ToString() =="Company")
             {
                 return VehicleSt.GetVehicleDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
-            else if (("" + HttpContext.Current.Session["sesCurVhlCom"]).ToLower() == "false")
+            else if (HttpContext.Current.Session["sesLogisticType"].ToString() == "Rent")
             {
-                return VehicleSt.GetVehicleDataForAutoFillParty(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+                return SalesSearch_BLL.GetRentVehicleList(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
+            }
+            else if (HttpContext.Current.Session["sesLogisticType"].ToString() == "Customer")
+            {
+                return SalesSearch_BLL.GetCustomerVehicleList(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
             else return null;
         }
@@ -214,7 +326,7 @@ namespace UI.SAD.Delivery
                 
 
             }
-            catch
+             catch
             {
             }
         }
@@ -240,14 +352,54 @@ namespace UI.SAD.Delivery
             catch { }
         }
 
-        protected void ddlVehicleCharge_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvSales_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            BindGrid(GetXmlFilePath());
 
         }
-
-        protected void ddlVehicleIncentive_SelectedIndexChanged(object sender, EventArgs e)
+        
+        private void BindGrid(string xmlFilePath)
         {
+            
+                if (!File.Exists(xmlFilePath)) xm.LoadXmlFile(xmlFilePath);
 
+                try
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(xmlFilePath);
+                    XmlNode dSftTm = doc.SelectSingleNode("Entry");
+                    _xmlString = dSftTm?.InnerXml;
+                    _xmlString = "<Entry>" + _xmlString + "</Entry>";
+                    StringReader sr = new StringReader(_xmlString);
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(sr);
+                    if (ds.Tables[0].Rows.Count > 0)
+                    {
+                        dgvSales.DataSource = ds;
+                    }
+                    else
+                    {
+                        dgvSales.DataSource = "";
+                    }
+                    dgvSales.DataBind();
+
+
+
+                }
+                catch
+                {
+                }
+            
+
+        }
+        protected void dgvSales_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            dgvSales.EditIndex = -1;
+            
+        }
+
+        protected void dgvSales_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
         }
 
         protected void rdoNeedVehicle_SelectedIndexChanged(object sender, EventArgs e)
@@ -257,13 +409,19 @@ namespace UI.SAD.Delivery
                 if (rdoNeedVehicle.SelectedValue.ToString() == "1")
                 {
                     pnlVehicle3rd.Visible = false;
-                    pnlVehicleCustomer.Visible = false;
-                    pnlVehicle3rd.Visible = true;
+                    pnlVehicleMain.Visible = true;
+
+
                 }
                 else if (rdoNeedVehicle.SelectedValue.ToString() == "2")
                 {
-                    pnlVehicle3rd.Visible = true;
-                    pnlVehicleCustomer.Visible = false;
+                    pnlVehicle3rd.Visible = false;
+                    pnlVehicleMain.Visible = false;
+
+                }
+                else
+                {
+                    pnlVehicle3rd.Visible = false;
                 }
             }
             catch { }
@@ -273,20 +431,28 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                if (rdoVehicleCompany.SelectedValue.ToString() == "1")
+                txtVehicle.Text = "";
+                txtSupplier.Text = "";
+                txtDriver.Text = "";
+                txtDriverContact.Text = "";
+;               if (rdoVehicleCompany.SelectedValue.ToString() == "1")
                 {
                     pnlVehicle3rd.Visible = false;
-                    pnlVehicleCustomer.Visible = false;
+                    Session["sesLogisticType"] = "Company";
+
+
                 }
                 else if (rdoVehicleCompany.SelectedValue.ToString() == "2")
                 {
                     pnlVehicle3rd.Visible = true;
-                    pnlVehicleCustomer.Visible = false;
+                    Session["sesLogisticType"] = "Rent";
+
                 }
-                else if (rdoVehicleCompany.SelectedValue.ToString() == "3")
+                else
                 {
+                    Session["sesLogisticType"] = "Company";
                     pnlVehicle3rd.Visible = false;
-                    pnlVehicleCustomer.Visible = true;
+                    
                 }
 
 
@@ -300,7 +466,7 @@ namespace UI.SAD.Delivery
 
         protected void txtVehicle_TextChanged(object sender, EventArgs e)
         {
-
+            VehicleChange();
         }
 
         protected void txtProduct_TextChanged(object sender, EventArgs e)
@@ -316,6 +482,9 @@ namespace UI.SAD.Delivery
                     dt = objUom.GetUOMRelationByPrice(hdnProduct.Value, hdnCustomer.Value,
                          hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(), txtDate.Text.ToString());
                     ddlUOM.Loads(dt, "intID", "strUOM");
+                    txtQun.Text ="0";
+                    txtPrice.Text = "0";
+
                     SetPrice();
                     txtQun.Focus();
                 }
@@ -329,261 +498,199 @@ namespace UI.SAD.Delivery
 
         protected void btnProductAdd_Click(object sender, EventArgs e)
         {
-            BLL.Accounts.Voucher.Budget bdg = new BLL.Accounts.Voucher.Budget(); DataTable strtdt = new DataTable();
-            DateTime gdt = CommonClass.GetDateAtSQLDateFormat(txtDate.Text);
-            strtdt = bdg.GetAccountsStartDate(int.Parse(ddlUnit.SelectedValue.ToString()));
-            DateTime pdt = DateTime.Parse(strtdt.Rows[0]["StartDate"].ToString());
-            int rest = DateTime.Compare(gdt, pdt);
-
-            if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" &&
-            decimal.Parse(hdnPrice.Value) > 0 && txtQun.Text.Trim() != "" && rest >= 0) // Change By konock @ 14052016
+            SessionXmlCreate(); 
+        }
+        protected string GetTotal(string priceTotal, string discountTotal)
+        {
+            decimal tot = (decimal.Parse(priceTotal) - decimal.Parse(discountTotal));
+            return CommonClass.GetFormettingNumber(tot);
+        }
+        protected string GetPriceTotal(string priceTotal, string discountTotal)
+        {
+            decimal tot = (decimal.Parse(priceTotal) * decimal.Parse(discountTotal));
+            return CommonClass.GetFormettingNumber(tot);
+        }
+        private void SessionXmlCreate()
+        {
+            try
             {
-                string coaId = "", coaName = "";
-                SAD_BLL.Item.Item it = new SAD_BLL.Item.Item();
-                CustomerInfo ci = new CustomerInfo();
-                decimal lm = 0, bl = 0;
-                ci.GetCustomerCreditLimitCreditBalance(hdnCustomer.Value, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), ref lm, ref bl);
+                BLL.Accounts.Voucher.Budget bdg = new BLL.Accounts.Voucher.Budget(); DataTable strtdt = new DataTable();
+                DateTime gdt = CommonClass.GetDateAtSQLDateFormat(txtDate.Text);
+                strtdt = bdg.GetAccountsStartDate(int.Parse(ddlUnit.SelectedValue.ToString()));
+                DateTime pdt = DateTime.Parse(strtdt.Rows[0]["StartDate"].ToString());
+                int rest = DateTime.Compare(gdt, pdt);
 
-                it.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, RadioButtonList1.SelectedValue, ref coaId, ref coaName);
-
-                if (coaId != "" && coaId != "0" && coaName != "")
+                if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" &&
+                decimal.Parse(txtPrice.Text) > 0 && decimal.Parse(txtQun.Text.ToString()) > 0 && rest >= 0)
                 {
-                    string narr = txtQun.Text.Trim() + " " + ddlUOM.SelectedItem.Text + " " + hdnProductText.Value + " Sold";
 
-                    if (txtReffNo.Text.Trim() != "")
+                    string coaId = "";
+                    string coaName = "";
+                    decimal lm = 0, bl = 0;
+                    customerInfo.GetCustomerCreditLimitCreditBalance(hdnCustomer.Value, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), ref lm, ref bl);
+
+                    item.GetCOAByItemId(hdnProduct.Value, ddlUnit.SelectedValue, rdoSalesType.SelectedValue, ref coaId, ref coaName);
+
+                    if (int.Parse(coaId) > 0)
                     {
-                        narr += " as per challan no " + txtReffNo.Text.Trim();
+                        string narr = txtQun.Text.Trim() + " " + ddlUOM.SelectedItem.Text + " " + hdnProductText.Value + " Sold";
+
+                        if (txtReffNo.Text.Trim() != "")
+                        {
+                            narr += " as per challan no " + txtReffNo.Text.Trim();
+                        }
+                        narr += " To " + hdnCustomerText.Value;
+
+
+                        decimal promQnty = 0;
+                        int promItemId = 0;
+                        int promItemCOAId = 0;
+                        int promItemUOM = 0;
+                        string promItem = "";
+                        string promUom = "";
+
+                        decimal promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+                            ,txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+
+                        string productId = hdnProduct.Value;
+                        string productName = hdnProductText.Value;
+                        string quantity = txtQun.Text.ToString();
+                        string rate = txtPrice.Text;
+                        string uomId = ddlUOM.SelectedValue().ToString();
+                        string uomName = ddlUOM.SelectedItem.ToString();
+                        string naration = "";
+                        string currency = ddlCurrency.SelectedValue().ToString();
+                        string commision = lblComm.Text.ToString();
+                        string commisionTotal = lblComm.Text.ToString();
+                        string discount = "0";
+                        decimal discountTotal = decimal.Parse(lblComm.Text.ToString()) * decimal.Parse(txtQun.Text.ToString()); 
+                        decimal priceTotal =decimal.Parse(txtPrice.Text.ToString())*decimal.Parse(txtQun.Text.ToString()); 
+                        string supplierTax = hdnSuppTax.Value;
+                        string vat = hdnVat.Value;
+                        string vatPrice = hdnVatPrice.Value;
+                        string promtionItemId = promItemId.ToString();
+                        string promtionItem = promItem.ToString();
+                        string promtionUom = promUom;
+                        string promPrices = promPrice.ToString();
+                        string promtionItemCoaId = promItemCOAId.ToString();
+                        string promtionQnty = promQnty.ToString();
+                        string promtionItemUom = promUom.ToString();
+
+                        for(var i =0;i<dgvSales.Rows.Count;i++)
+                        {
+                            Label lblproductID = dgvSales.Rows[i].FindControl("lblProdutId") as Label;
+                             if (lblproductID.Text == productId)
+                            {
+                                Toaster("Can not add same product Name " + productName + " dublicate.", "", Common.TosterType.Error);
+
+                                return;
+                            }
+                        }
+
+                        RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                            naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
+                            priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
+                            promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom);
+
+                        txtQun.Text = "";
+                        hdnProduct.Value = "";
+                        txtPrice.Visible = true;
+                        txtProduct.Text = "";
+                        txtProduct.Focus();
                     }
-
-                    narr += " To " + hdnCustomerText.Value;
-
-                    string vhlPr = "0.0", chrPr = "0.0", incPr = "0.0";
-
-                    if (rdoNeedVehicle.SelectedIndex == 0)
-                    {
-                        if (hdnLogisBasedOnUom.Value == "true") vhlPr = hdnVhlPrice.Value;
-                    }
-
-                    if (hdnXFactoryChr.Value == "true" && rdoNeedVehicle.SelectedIndex == 0)
-                    {
-                        if (hdnCharBasedOnUom.Value == "true") chrPr = hdnChrgPrice.Value;
-                    }
-                    else if (hdnXFactoryChr.Value != "true")
-                    {
-                        if (hdnCharBasedOnUom.Value == "true") chrPr = hdnChrgPrice.Value;
-                    }
-
-                 
-
-                    decimal promQnty = 0;
-                    int promItemId = 0;
-                    int promItemCOAId = 0;
-                    int promItemUOM = 0;
-                    string promItem = "";
-                    string promUom = "";
-
-                    ItemPromotion ip = new ItemPromotion();
-                    decimal promPrice = ip.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, RadioButtonList1.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                        , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
-
-                    if (promItemId.ToString() == hdnProduct.Value)
-                    {
-                        promPrice = decimal.Parse(hdnPrice.Value);
-                        promItemCOAId = int.Parse(coaId);
-                    }
-
-                    string[][] items = xm.CreateItems(hdnProduct.Value, hdnProductText.Value
-                        , txtQun.Text, hdnPrice.Value, coaId, coaName, ddlVehicleCharge.SelectedValue
-                        , ddlVehicleCharge.SelectedItem.Text, chrPr, ddlUOM.SelectedValue, ddlUOM.SelectedItem.Text
-                        , ddlCurrency.SelectedValue, narr, RadioButtonList1.SelectedValue.ToString()
-                        , hdnVehicle.Value, vhlPr, promQnty.ToString(), lblComm.Text
-                        , ddlVehicleIncentive.SelectedValue, incPr, hdnSuppTax.Value, hdnVat.Value, hdnVatPrice.Value
-                        , promItemId.ToString(), promItem, promItemUOM.ToString(), promUom
-                        , hdnLogisGain.Value, promPrice.ToString(), promItemCOAId.ToString());
-
-
-                    XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
-                    XmlNode selectNode = xmlDoc.SelectSingleNode(xm.MainNode);
-                    selectNode.AppendChild(xm.CreateNodeForItem(xmlDoc, items));
-                    xmlDoc.Save(GetXmlFilePath());
-
-                    txtQun.Text = "";
-
-                     
-
-                    hdnProduct.Value = "";
-                    lblPrice.Visible = true;
-                    txtProduct.Text = "";
-                    txtProduct.Focus(); 
                 }
             }
+            catch { }
         }
-
-       
-        private void GetChallanNo()
+        private void RowLavelXmlCreate(string productId, string productName, string quantity, string rate, string uomId,
+            string uomName,string naration, string currency, string commision, string commisionTotal, string discount,
+            string discountTotal,string priceTotal, string supplierTax, string vat, string vatPrice, string narr, string promtionItemId,
+            string promtionItem,  string promtionUom, string promtionItemCoaId,     string promtionQnty, string promtionItemUom)
         {
-            string startNo, endNo = "", leftPart = "", tmp = "";
-            int lastUsedNum;
+           
 
-            if (txtReffNo.Text != "")
+            dynamic obj = new
             {
-                if ("" + Session["sesChlnNo"] == "" && txtReffNo.Text != "")
-                {
-                    Session["sesChlnNo"] = txtReffNo.Text;
-                }
+                productId,
+                productName,
+                quantity,
+                rate,
+                uomId,
+                uomName,
+                naration,
+                currency,
+                commision,
+                commisionTotal,
+                discount,
+                discountTotal,
+                priceTotal,
+                supplierTax,
+                vat,
+                vatPrice,
+                narr,
+                promtionItemId,
+                promtionItem,
+                promtionUom,
+                promtionItemCoaId,
+                promtionQnty,
+                promtionItemUom,
 
-                startNo = Session["sesChlnNo"].ToString();
+            };
 
-                for (int i = startNo.Length - 1; i >= 0; i--)
+            List<object> objects = new List<object>();
+            if (Session["RowObj"] != null)
+            {
+                objects = (List<object>)Session["RowObj"];
+            }
+            objects.Add(obj);
+            Session["RowObj"] = objects;
+
+            string xmlString = XmlParser.GetXml("Entry", "items", objects, out message);
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(xmlString);
+            doc.Save(_filePathForXml); 
+            LoadGridwithXml(xmlString, dgvSales);
+        }
+        protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+               
+
+
+                if (Session["rowObj"] != null)
                 {
-                    if (startNo[i] >= 48 && startNo[i] <= 57)
+                    List<object> objects = (List<object>)Session["rowObj"];
+                    
+                    objects.RemoveAt(e.RowIndex); 
+                    if (objects.Count > 0)
                     {
-                        tmp += startNo[i].ToString();
+                        string xmlString = XmlParser.GetXml("Entry", "items", objects, out string message);
+                        LoadGridwithXml(xmlString, dgvSales);
                     }
                     else
                     {
-                        break;
+                        dgvSales.UnLoad();
                     }
                 }
-
-                if (tmp.Length > 0)
+                else
                 {
-                    for (int i = tmp.Length - 1; i >= 0; i--)
-                    {
-                        endNo += tmp[i].ToString();
-                    }
-
-
-                    leftPart = startNo.Substring(0, startNo.IndexOf(endNo));
-
-                    lastUsedNum = int.Parse(endNo) + 1;
-
-                    Session["sesChlnNo"] = leftPart + lastUsedNum.ToString();
-                    txtReffNo.Text = Session["sesChlnNo"].ToString();
+                    dgvSales.UnLoad();
                 }
+
             }
+            catch { }
         }
-        
-       
+
+      
+        private void LoadGridwithXml(string xmlString, GridView gridView)
+        {
+            GridViewUtil.LoadGridwithXml(xmlString, gridView, out string message);
+        }
+
+      
          
-        //#region GridView
-
-        //protected string GetTotal(string pr, string qnt)
-        //{
-        //    decimal tot = (decimal.Parse(pr) * decimal.Parse(qnt));
-        //    return CommonClass.GetFormettingNumber(tot);
-        //}
-        //protected string GetTotal(string pr, string logisGain, string qnt)
-        //{
-        //    decimal tot = ((decimal.Parse(pr) + decimal.Parse(logisGain)) * decimal.Parse(qnt));
-        //    return CommonClass.GetFormettingNumber(tot);
-        //}
-        //protected string GetTotal(string pr, string pr2, string qnt, string inc)
-        //{
-        //    decimal log = decimal.Parse(pr2);
-        //    decimal tot = (decimal.Parse(pr) + log - decimal.Parse(inc));
-        //    tot = tot * decimal.Parse(qnt);
-        //    return CommonClass.GetFormettingNumber(tot);
-        //}
-        //protected string GetFullTotal(string pr, string logisGain, string qnt, string ext, string log, string inc)
-        //{
-        //    decimal log_ = decimal.Parse(log);
-        //    decimal tot = (decimal.Parse(pr) + decimal.Parse(logisGain) + decimal.Parse(ext) + log_ - decimal.Parse(inc));
-        //    tot = tot * decimal.Parse(qnt);
-        //    return CommonClass.GetFormettingNumber(tot);
-        //}
-        //protected string GetGrandTotal(int col)
-        //{
-        //    decimal tot = 0;
-
-        //    for (int i = 0; i < GridView1.Rows.Count; i++)
-        //    {
-        //        if (GridView1.Rows[i].RowType == DataControlRowType.DataRow)
-        //        {
-        //            tot += decimal.Parse(((Label)GridView1.Rows[i].Cells[col].Controls[1]).Text);
-        //        }
-        //    }
-
-        //    if (col == 8 || col == 11)
-        //    {
-        //        if (hdnLogisBasedOnUom.Value != "true")
-        //        {
-        //            if (rdoNeedVehicle.SelectedIndex == 0) tot += decimal.Parse(hdnVhlPrice.Value);
-        //        }
-        //        if (hdnCharBasedOnUom.Value != "true")
-        //        {
-        //            tot += decimal.Parse(hdnChrgPrice.Value);
-        //        }
-
-        //        if (col == 11)
-        //        {
-
-        //            if (!btnSubmit.Enabled)
-        //            {
-        //                lblError.Text = "Balance Exceed";
-        //            }
-        //        }
-        //    }
-
-        //    if (col == 12)
-        //    {
-
-        //        if (!btnSubmit.Enabled)
-        //        {
-        //            lblError.Text = "Balance Exceed";
-        //        }
-        //    }
-        //    return CommonClass.GetFormettingNumber(tot);
-        //}
-        //protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    e.Cancel = true;
-        //    lblError.Text = "";
-        //    DataSet ds = new DataSet();
-        //    ds.ReadXml(GetXmlFilePath());
-
-        //    ds.Tables[0].Rows[e.RowIndex].Delete();
-        //    ds.WriteXml(GetXmlFilePath());
-        //    BindGrid(GetXmlFilePath());
-        //}
-        //protected void GridView1_DataBound(object sender, EventArgs e)
-        //{
-        //    if (GridView1.Rows.Count <= 0)
-        //    {
-        //        btnCancel.Visible = false;
-        //        btnSubmit.Visible = false;
-
-        //        ddlCurrency.Enabled = true;
-        //        txtDate.Enabled = true;
-
-        //        ddlUnit.Enabled = true;
-
-        //        pnlVehicleMain.Enabled = true;
-        //        pnlVehicle3rd.Enabled = true;
-        //        rdoNeedVehicle.Enabled = true;
-        //        RadioButtonList1.Enabled = true;
-
-        //    }
-        //    else
-        //    {
-        //        btnCancel.Visible = true;
-        //        btnSubmit.Visible = true;
-
-        //        ddlCurrency.Enabled = false;
-        //        txtDate.Enabled = false;
-
-        //        ddlUnit.Enabled = false;
-        //        txtCustomer.Enabled = false;
-
-        //        pnlVehicleMain.Enabled = false;
-        //        pnlVehicle3rd.Enabled = false;
-        //        rdoNeedVehicle.Enabled = false;
-        //        RadioButtonList1.Enabled = false;
-        //        ddlVehicleCharge.Enabled = false;
-        //        ddlVehicleCharge.Enabled = false;
-        //    }
-        //}
-        //#endregion
         protected void btnProductAddAll_Click(object sender, EventArgs e)
         {
 
@@ -631,7 +738,7 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                lblPrice.Text = CommonClass.GetFormettingNumber(productRate);
+                txtPrice.Text = CommonClass.GetFormettingNumber(productRate);
                 lblComm.Text = CommonClass.GetFormettingNumber(commission);
                 hdnSuppTax.Value = CommonClass.GetFormettingNumber(suppTax);
                 hdnVat.Value = CommonClass.GetFormettingNumber(vat);
@@ -643,7 +750,7 @@ namespace UI.SAD.Delivery
 
         private void PriceInitialize()
         {
-            lblPrice.Text = "0.0";
+            txtPrice.Text = "0.0";
             lblComm.Text = "0.0";
             hdnSuppTax.Value = "0.0";
             hdnVat.Value = "0.0";
@@ -654,12 +761,174 @@ namespace UI.SAD.Delivery
             string unit = "";
             unit = "" + hdnUnit.Value;
             if (unit == "") unit = ddlUnit.SelectedValue;
-
-            return Server.MapPath("") + "/Data/" + Session[SessionParams.USER_ID] + "_" + unit + "_item.xml";
+            _filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
+            return _filePathForXml;
         }
         protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetPrice();
+        }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string unit = ddlUnit.SelectedItem.Value;
+                string shipPoint = ddlShipPoint.SelectedItem.Value;
+                string salesOffice = ddlSalesOffice.SelectedItem.Value;
+                string customerType = ddlCustomerType.SelectedItem.Text;
+                string date = txtDate.Text;
+                string dueDate = txtDueDate.Text;
+                string customerId = hdnCustomer.Value;
+                string shipPartyId = hdnShipToPartyId.Value;
+                string salesType = rdoSalesType.SelectedItem.Text;
+                string reffNo = txtReffNo.Text;
+
+                BindXML(unit,shipPoint,salesOffice,customerType,date,dueDate,customerId,shipPartyId, salesType, reffNo);
+
+                string itemXML = XmlParser.GetXml(_filePathForXml);
+                string orderID = "", Code = "";
+                deliveryBLL.DeliveryOrderCreate(xmlNewString, itemXML,ref orderID,ref Code);
+
+                lblCodeText.Visible = true;
+                lblCode.Text = Code;
+                lblOrderIDText.Visible = true;
+                lblOrderId.Text = orderID;
+
+                if (File.Exists(GetXmlFilePath()))
+                {
+                    File.Delete(GetXmlFilePath());
+                }
+                if(File.Exists(_filePathForXml))
+                {
+                    File.Delete(_filePathForXml);
+                }
+                    
+
+
+            }
+            catch
+            {
+            }
+        }
+        private string BindXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId,string salesType, string reffNo)
+        {
+            dynamic obj = new
+            {
+                unit,
+                shipPoint,
+                salesOffice,
+                customerType,
+                date,
+                dueDate,
+                customerId,
+                shipPartyId,
+                salesType,
+                reffNo,
+            };
+            List<object> objects = new List<object>();
+          
+            objects.Add(obj);
+
+            xmlNewString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
+
+            return xmlNewString;
+           
+        }
+
+        protected void txtQun_TextChanged(object sender, EventArgs e)
+        {
+            SessionXmlCreate();
+        }
+
+        protected void txtDoNumber_TextChanged(object sender, EventArgs e)
+        {
+            int Id = Convert.ToInt32(txtDoNumber.Text);
+            int userUnit = Convert.ToInt32( Session[SessionParams.UNIT_ID]);
+
+            LoadDOProfile(Id, userUnit);
+
+        }
+
+        private void LoadDOProfile(int id,int unit)
+        {
+            dt = deliveryBLL.DeliveryHeaderDataByCustomer(id, unit);
+            if(dt.Rows.Count==0)
+            {
+                dt = deliveryBLL.DeliveryHeaderDataByDo(id, unit);
+            }
+
+            if (dt.Rows.Count > 0)
+            {
+                ddlUnit.SelectedItem.Text = dt.Rows[0]["strUnit"].ToString();
+                ddlShipPoint.SelectedItem.Text = dt.Rows[0]["strShipPointName"].ToString();
+                ddlSalesOffice.SelectedItem.Text = dt.Rows[0]["strName"].ToString();
+                ddlCustomerType.SelectedItem.Text = dt.Rows[0]["strCustType"].ToString();
+                txtDate.Text = dt.Rows[0]["dteDate"].ToString();
+                txtDueDate.Text = dt.Rows[0]["dteReqDelivaryDate"].ToString();
+                txtCustomer.Text = dt.Rows[0]["strCustNameId"].ToString();
+                txtCustomerAddress.Text = dt.Rows[0]["strAddress"].ToString();
+                rdoSalesType.SelectedItem.Text = dt.Rows[0]["strSalesType"].ToString();
+                try
+                {
+                    txtShipToParty.Text = dt.Rows[0]["strShipToPartyNameId"].ToString();
+                    txtShipToPartyAddress.Text = dt.Rows[0]["strShipAddress"].ToString();
+                }
+                catch
+                {
+                    txtShipToParty.Text = "";
+                    txtShipToPartyAddress.Text = "";
+                }
+            }
+
+        }
+
+        protected void rdoDeliveryType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            WorkType(rdoDeliveryType.SelectedItem.ToString());
+        }
+
+        protected void rdoSalesType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtQun.Text = "0";
+            hdnProduct.Value = "";
+            txtPrice.Text = "0.00";
+            txtProduct.Text = "";
+            txtProduct.Focus();
+            ddlUOM.Items.Insert(0, "");
+            dgvSales.DataSource = null;
+            dgvSales.DataBind();
+        }
+
+        private void VehicleChange()
+        {
+          
+            if (txtVehicle.Text.Trim() != "")
+            {
+                char[] ch = { '[', ']' };
+                string[] temp = txtVehicle.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                try
+                {
+                    string dName = "";
+                    string dContact = "";
+                    hdnVehicle.Value = temp[temp.Length - 1]; 
+                    vehicle.GetVehicleInfoById(hdnVehicle.Value, ref dName, ref dContact);
+                    txtDriver.Text = dName;
+                    txtDriverContact.Text = dContact;
+                    hdnVehicleText.Value = temp[0];
+                }
+                catch
+                {
+                    hdnVehicle.Value = "";
+                }
+
+               
+            }
+            else
+            {
+                hdnVehicleText.Value = ""; //txtVehicle.Text.Trim();
+                hdnVehicle.Value = "";
+            }
         }
     }
 }

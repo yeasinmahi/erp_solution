@@ -194,70 +194,78 @@ namespace UI.AEFPS
                 {
                     if ((txtEmployee.Text != "") || (txtEnroll.Text != "") || (txtEnroll.Text != "") || (txtReturn.Text != ""))
                     {
-                        if ((txtCashReceiveAmount.Text == "") && (ddlpaymenttype.SelectedValue == "1"))
+                        if ((txtCreditStatus.Text == "Not Elizable") && (ddlpaymenttype.SelectedValue.ToString() == "2"))
                         {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Receive Amount !');", true);
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Available Credit Balance !');", true);
                         }
                         else
-                        {
-                            if (decimal.Parse(txtCashReceiveAmount.Text) < decimal.Parse(hdnActualSales.Value) && (ddlpaymenttype.SelectedValue == "1"))
+                        { 
+
+                            if ((txtCashReceiveAmount.Text == "") && (ddlpaymenttype.SelectedValue == "1"))
                             {
-                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Receive Amount Wrong !');", true);
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Entry Receive Amount !');", true);
                             }
                             else
                             {
-                                if (dgvRptTemp.Rows.Count > 0)
+                                if (decimal.Parse(txtCashReceiveAmount.Text) < decimal.Parse(hdnActualSales.Value) && (ddlpaymenttype.SelectedValue == "1"))
                                 {
-                                    dtedate = DateTime.Parse(DateTime.Now.ToString());
-                                    empid = int.Parse(txtEnroll.Text.ToString());
-                                    intWID = int.Parse(ddlWH.SelectedValue.ToString());
-                                    intpaymenttype = int.Parse(ddlpaymenttype.SelectedValue.ToString());
-                                    if (txtCashReceiveAmount.Text != "")
-                                    {
-                                        monCashReceive = decimal.Parse(txtCashReceiveAmount.Text.ToString());
-                                    }
-                                    else { monCashReceive = decimal.Parse("0"); }
-                                    monCashReturn = decimal.Parse("0");
-                                    intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
-                                    msg = objAEFPS.getSalesEntry(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby);
-                                    dgvRptTemp.DataBind();
-                                    char[] delimiterCharss = { ':', ']' };
-                                    arrayKeyItem = msg.Split(delimiterCharss);
-
-                                    svno = (arrayKeyItem[1].ToString());
-                                    HttpContext.Current.Session["empid"] = empid.ToString();
-                                    lblchallanno.Text = "Challan No-" + svno.ToString();
-
-                                    #region ===== Start Print =====================================================
-
-                                    strWHName = ddlWH.SelectedItem.ToString();
-                                    string strSearchKey = txtEmployee.Text;
-                                    string[] searchKey = Regex.Split(strSearchKey, ",");
-                                    string strCustomerName = searchKey[0];
-                                    string strDate = DateTime.Now.ToString("yyyy-MM-dd");
-                                    string strPayType = ddlpaymenttype.SelectedItem.ToString();
-
-                                    txtDeg.Text = "";
-
-                                    txtEnroll.Text = "";
-                                    txtCashReceiveAmount.Text = "";
-
-                                    #endregion ===== Start Print =====================================================
-
-                                    lblsalesAmount.Text = "";
-
-                                    txtEnroll.Text = "";
-                                    txtCashReceiveAmount.Text = "";
-                                    txtEmployee.Text = "";
-                                    txtEmpname.Text = "";
-                                    txtReturn.Text = "";
-                                    txtDeg.Text = "";
-                                    txtDept.Text = "";
-
-                                    txtCard.Text = "";
-                                    txtCreditStatus.Text = "";
+                                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Receive Amount Wrong !');", true);
                                 }
-                                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Available Sales Information !');", true); }
+                                else
+                                {
+                                    if (dgvRptTemp.Rows.Count > 0)
+                                    {
+                                        dtedate = DateTime.Parse(DateTime.Now.ToString());
+                                        empid = int.Parse(txtEnroll.Text.ToString());
+                                        intWID = int.Parse(ddlWH.SelectedValue.ToString());
+                                        intpaymenttype = int.Parse(ddlpaymenttype.SelectedValue.ToString());
+                                        if (txtCashReceiveAmount.Text != "")
+                                        {
+                                            monCashReceive = decimal.Parse(txtCashReceiveAmount.Text.ToString());
+                                        }
+                                        else { monCashReceive = decimal.Parse("0"); }
+                                        monCashReturn = decimal.Parse("0");
+                                        intInsertby = int.Parse(Session[SessionParams.USER_ID].ToString());
+                                        msg = objAEFPS.getSalesEntry(dtedate, empid, intWID, intpaymenttype, monCashReceive, monCashReturn, intInsertby);
+                                        dgvRptTemp.DataBind();
+                                        char[] delimiterCharss = { ':', ']' };
+                                        arrayKeyItem = msg.Split(delimiterCharss);
+
+                                        svno = (arrayKeyItem[1].ToString());
+                                        HttpContext.Current.Session["empid"] = empid.ToString();
+                                        lblchallanno.Text = "Challan No-" + svno.ToString();
+
+                                        #region ===== Start Print =====================================================
+
+                                        strWHName = ddlWH.SelectedItem.ToString();
+                                        string strSearchKey = txtEmployee.Text;
+                                        string[] searchKey = Regex.Split(strSearchKey, ",");
+                                        string strCustomerName = searchKey[0];
+                                        string strDate = DateTime.Now.ToString("yyyy-MM-dd");
+                                        string strPayType = ddlpaymenttype.SelectedItem.ToString();
+
+                                        txtDeg.Text = "";
+
+                                        txtEnroll.Text = "";
+                                        txtCashReceiveAmount.Text = "";
+
+                                        #endregion ===== Start Print =====================================================
+
+                                        lblsalesAmount.Text = "";
+
+                                        txtEnroll.Text = "";
+                                        txtCashReceiveAmount.Text = "";
+                                        txtEmployee.Text = "";
+                                        txtEmpname.Text = "";
+                                        txtReturn.Text = "";
+                                        txtDeg.Text = "";
+                                        txtDept.Text = "";
+
+                                        txtCard.Text = "";
+                                        txtCreditStatus.Text = "";
+                                    }
+                                    else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Available Sales Information !');", true); }
+                                }
                             }
                         }
                     }
