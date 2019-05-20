@@ -50,7 +50,30 @@ namespace SAD_BLL.Sales
             }
 
         }
-
+        public DataTable ShipPointByWH(int wh)
+        {
+            try
+            {
+                ShipPointWHTableAdapter adp = new ShipPointWHTableAdapter();
+                return adp.GetWhByShipPoint(wh);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            } 
+        }
+        public DataTable InvenotoryStockByItem(int FgId,int wh)
+        { 
+            try
+            {
+                InventoryItemBlanceTableAdapter adp = new InventoryItemBlanceTableAdapter();
+                return adp.GetInventoryItemBlance(FgId, wh);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public void DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
         {
             try
