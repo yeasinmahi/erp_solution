@@ -990,6 +990,8 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnstrItemIdNameDo;
             
+            private global::System.Data.DataColumn columnmonPrice;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryDOPendingItemDataTable() {
@@ -1081,6 +1083,14 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monPriceColumn {
+                get {
+                    return this.columnmonPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1116,7 +1126,7 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QryDOPendingItemRow AddQryDOPendingItemRow(long intDoId, int intCustomerId, long intProductId, string strProductName, decimal monRemainQty, int intShipPointId, string strItemIdNameDo) {
+            public QryDOPendingItemRow AddQryDOPendingItemRow(long intDoId, int intCustomerId, long intProductId, string strProductName, decimal monRemainQty, int intShipPointId, string strItemIdNameDo, decimal monPrice) {
                 QryDOPendingItemRow rowQryDOPendingItemRow = ((QryDOPendingItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intDoId,
@@ -1125,7 +1135,8 @@ namespace SAD_DAL.Delivery {
                         strProductName,
                         monRemainQty,
                         intShipPointId,
-                        strItemIdNameDo};
+                        strItemIdNameDo,
+                        monPrice};
                 rowQryDOPendingItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryDOPendingItemRow);
                 return rowQryDOPendingItemRow;
@@ -1155,6 +1166,7 @@ namespace SAD_DAL.Delivery {
                 this.columnmonRemainQty = base.Columns["monRemainQty"];
                 this.columnintShipPointId = base.Columns["intShipPointId"];
                 this.columnstrItemIdNameDo = base.Columns["strItemIdNameDo"];
+                this.columnmonPrice = base.Columns["monPrice"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1174,6 +1186,8 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintShipPointId);
                 this.columnstrItemIdNameDo = new global::System.Data.DataColumn("strItemIdNameDo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrItemIdNameDo);
+                this.columnmonPrice = new global::System.Data.DataColumn("monPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonPrice);
                 this.columnintDoId.AllowDBNull = false;
                 this.columnintCustomerId.AllowDBNull = false;
                 this.columnintProductId.AllowDBNull = false;
@@ -2643,6 +2657,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monPrice {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableQryDOPendingItem.monPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monPrice\' in table \'QryDOPendingItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryDOPendingItem.monPriceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonRemainQtyNull() {
                 return this.IsNull(this.tableQryDOPendingItem.monRemainQtyColumn);
             }
@@ -2663,6 +2693,18 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrItemIdNameDoNull() {
                 this[this.tableQryDOPendingItem.strItemIdNameDoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonPriceNull() {
+                return this.IsNull(this.tableQryDOPendingItem.monPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonPriceNull() {
+                this[this.tableQryDOPendingItem.monPriceColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3446,6 +3488,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             tableMapping.ColumnMappings.Add("monRemainQty", "monRemainQty");
             tableMapping.ColumnMappings.Add("intShipPointId", "intShipPointId");
             tableMapping.ColumnMappings.Add("strItemIdNameDo", "strItemIdNameDo");
+            tableMapping.ColumnMappings.Add("monPrice", "monPrice");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -3469,8 +3512,9 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "   select * from erp_sad.dbo.qryDoPendingItem where intDoId=@intDo and intShipPoi" +
-                "ntId=@intShipPoint";
+            this._commandCollection[1].CommandText = "SELECT intCustomerId, intDoId, intProductId, intShipPointId, monPrice, monRemainQ" +
+                "ty, strItemIdNameDo, strProductName FROM qryDOPendingItem WHERE (intDoId = @intD" +
+                "o) AND (intShipPointId = @intShipPoint)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDo", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intDoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
