@@ -50,7 +50,44 @@ namespace SAD_BLL.Sales
             }
 
         }
+        public DataTable ShipPointByWH(int wh)
+        {
+            try
+            {
+                ShipPointWHTableAdapter adp = new ShipPointWHTableAdapter();
+                return adp.GetWhByShipPoint(wh);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            } 
+        }
+        public DataTable InvenotoryStockByItem(int FgId,int wh)
+        { 
+            try
+            {
+                InventoryFgItemBlanceTableAdapter adp = new InventoryFgItemBlanceTableAdapter();
+                return adp.GetInventoryItemBlance(FgId, wh);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable DeliveryOrderItemPriceByDo(int item, int shipPoint, int doId)
+        {
+            try
+            {
+                qryDOPendingPriceByItemTableAdapter adp = new qryDOPendingPriceByItemTableAdapter();
+                return adp.GetDoItemPriceByDo(item, shipPoint, doId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
+        }
+      
         public void DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
         {
             try
@@ -65,6 +102,22 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
            
+        }
+
+        public void PickingCreate(string xmlHeader, string xmlRow, ref string orderId, ref string strCode)
+        {
+            try
+            {
+               
+                SprPickingCreateTableAdapter adp = new SprPickingCreateTableAdapter();
+                adp.PickingInsertData( xmlRow, xmlHeader, ref strCode);
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
         }
     }
 }
