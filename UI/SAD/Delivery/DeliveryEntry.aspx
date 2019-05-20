@@ -516,8 +516,8 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvSalesPicking" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
-                                    OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
+                                <asp:GridView ID="dgvSalesPicking" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvSalesPicking_RowDeleting"
+                                    OnRowCancelingEdit="dgvSalesPicking_RowCancelingEdit" OnRowEditing="dgvSalesPicking_RowEditing" OnRowUpdating="dgvSalesPicking_RowUpdating"
                                     BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -541,7 +541,7 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="250px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Narration" SortExpression="naration">
+                                        <asp:TemplateField HeaderText="Narration" SortExpression="naration" Visible="false">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblnaration" runat="server" Text='<%# Bind("naration") %>'></asp:Label>
                                             </ItemTemplate>
@@ -697,6 +697,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="Center" >
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnPickingUpdate" runat="server" Text="Update" CommandName="update" OnClick="btnPickingUpdate_Click" AutoPostBack="true"></asp:Button>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField ShowHeader="False">
                                             <EditItemTemplate>
                                                 <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Update"
@@ -711,7 +717,7 @@
                                                 </asp:LinkButton>
                                             </EditItemTemplate>
                                             <ItemTemplate>
-                                                <asp:LinkButton ID="LinkButton4" runat="server" CommandName="Edit"
+                                                <asp:LinkButton ID="btnEdit" runat="server" CommandName="Edit"
                                                     Text="">
                                                     <img alt="" src="../../Content/images/icons/edit.gif" style="border: 0px;"
                                                          title="Edit" />
@@ -740,8 +746,8 @@
             </ContentTemplate>
             <Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnProductAdd" EventName="Click" />
-                <%--<asp:PostBackTrigger ControlID="btnSubmit" />
-                <asp:PostBackTrigger ControlID="btnUpdateFinal" />--%>
+                <%--<asp:PostBackTrigger ControlID="btnEdit" />--%>
+                 <%--<asp:PostBackTrigger ControlID="btnUpdateFinal" />--%>
             </Triggers>
         </asp:UpdatePanel>
     </form>
