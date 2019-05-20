@@ -229,7 +229,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TerriotoryTDS.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Delivery\Delivery_TDS.Designer.cs">
+    <Compile Include="Delivery\Delivery_TDS1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Delivery_TDS.xsd</DependentUpon>
@@ -783,10 +783,7 @@
     <None Include="Delivery\Delivery_TDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Delivery_TDS.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Delivery\Delivery_TDS.xss">
-      <DependentUpon>Delivery_TDS.xsd</DependentUpon>
+      <LastGenOutput>Delivery_TDS1.Designer.cs</LastGenOutput>
     </None>
     <None Include="DisPoint\DisPointTDS.xsc">
       <DependentUpon>DisPointTDS.xsd</DependentUpon>

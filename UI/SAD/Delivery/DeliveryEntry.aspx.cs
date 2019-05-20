@@ -489,6 +489,10 @@ namespace UI.SAD.Delivery
                     dt = objUom.GetUOMRelationByPrice(hdnProduct.Value, hdnCustomer.Value,
                          hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(), txtDate.Text.ToString());
                     ddlUOM.Loads(dt, "intID", "strUOM");
+
+                    //dt = deliveryBLL.FgWarehouseLocation(Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID]));
+                    //ddlLocation.Loads(dt, "intStoreLocationID", "strLocationName");
+                    
                     txtQun.Text ="0";
                     txtPrice.Text = "0";
 
@@ -790,8 +794,10 @@ namespace UI.SAD.Delivery
                 string shipPartyId = hdnShipToPartyId.Value;
                 string salesType = rdoSalesType.SelectedItem.Text;
                 string reffNo = txtReffNo.Text;
+                string customerAddress = txtCustomerAddress.Text;
+                string shipToPartyAddress = txtShipToPartyAddress.Text; 
 
-                BindXML(unit,shipPoint,salesOffice,customerType,date,dueDate,customerId,shipPartyId, salesType, reffNo);
+                BindXML(unit,shipPoint,salesOffice,customerType,date,dueDate,customerId,shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress);
 
                 string itemXML = XmlParser.GetXml(_filePathForXml);
                 string orderID = "", Code = "";
@@ -814,7 +820,7 @@ namespace UI.SAD.Delivery
             {
             }
         }
-        private string BindXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId,string salesType, string reffNo)
+        private string BindXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId,string salesType, string reffNo, string customerAddress, string shipToPartyAddress)
         {
             dynamic obj = new
             {
@@ -828,6 +834,8 @@ namespace UI.SAD.Delivery
                 shipPartyId,
                 salesType,
                 reffNo,
+                customerAddress,
+                shipToPartyAddress,
             };
             List<object> objects = new List<object>();
           
