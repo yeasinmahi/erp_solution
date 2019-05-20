@@ -729,36 +729,30 @@ namespace DAL.Inventory.StoreIssueTdsTableAdapters {
             this._commandCollection[0].CommandText = @"INSERT INTO [dbo].[tblStoreIssue]
            ([intUnitID]
            ,[intWHID]
-           ,[dteIssueDate]
            ,[intSRID]
            ,[strSrNo]
            ,[dteSrDate]
            ,[strReceivedBy]
            ,[intLastActionBy]
-           ,[dteLastActionTime]
            ,[intCostCenter])
 		   output Inserted.intIssueID
      VALUES
            (@intUnitID
            ,@intWHID
-           ,@dteIssueDate
            ,@intSRID
            ,@strSrNo
            ,@dteSrDate
            ,@strReceivedBy
            ,@intLastActionBy
-           ,@dteLastActionTime
            ,@intCostCenter)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteIssueDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteIssueDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSRID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSRID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strSrNo", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strSrNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteSrDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "dteSrDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strReceivedBy", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, "strReceivedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLastActionBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intLastActionBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLastActionTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "dteLastActionTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCostCenter", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCostCenter", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -766,7 +760,7 @@ namespace DAL.Inventory.StoreIssueTdsTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StoreIssueTds.tblStoreIssueDataTable Insert1(global::System.Nullable<int> intUnitID, global::System.Nullable<int> intWHID, string dteIssueDate, global::System.Nullable<int> intSRID, string strSrNo, string dteSrDate, string strReceivedBy, global::System.Nullable<int> intLastActionBy, global::System.Nullable<global::System.DateTime> dteLastActionTime, global::System.Nullable<int> intCostCenter) {
+        public virtual StoreIssueTds.tblStoreIssueDataTable Insert1(global::System.Nullable<int> intUnitID, global::System.Nullable<int> intWHID, global::System.Nullable<int> intSRID, string strSrNo, string dteSrDate, string strReceivedBy, global::System.Nullable<int> intLastActionBy, global::System.Nullable<int> intCostCenter) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intUnitID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitID.Value));
@@ -780,53 +774,41 @@ namespace DAL.Inventory.StoreIssueTdsTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((dteIssueDate == null)) {
+            if ((intSRID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intSRID.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(dteIssueDate));
-            }
-            if ((intSRID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(intSRID.Value));
-            }
-            else {
+            if ((strSrNo == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((strSrNo == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strSrNo));
+            }
+            if ((dteSrDate == null)) {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strSrNo));
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(dteSrDate));
             }
-            if ((dteSrDate == null)) {
+            if ((strReceivedBy == null)) {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(dteSrDate));
-            }
-            if ((strReceivedBy == null)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(strReceivedBy));
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(strReceivedBy));
             }
             if ((intLastActionBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intLastActionBy.Value));
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intLastActionBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((intCostCenter.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intCostCenter.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((dteLastActionTime.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((System.DateTime)(dteLastActionTime.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((intCostCenter.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intCostCenter.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             StoreIssueTds.tblStoreIssueDataTable dataTable = new StoreIssueTds.tblStoreIssueDataTable();
             this.Adapter.Fill(dataTable);

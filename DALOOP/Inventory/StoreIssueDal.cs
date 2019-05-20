@@ -8,14 +8,14 @@ namespace DALOOP.Inventory
     public class StoreIssueDal
     {
         private DataTable _dt;
-        public int Insert(int intUnitId, int intWhid, string dteIssueDate, int intSrid, string strSrNo,string dteSrDate,string strReceivedBy,
-           int intLastActionBy, DateTime dteLastActionTime, int intCostCenter)
+        public int Insert(int intUnitId, int intWhid, int intSrid, string strSrNo,string dteSrDate,string strReceivedBy,
+           int intLastActionBy, int intCostCenter)
         {
             try
             {
                 tblStoreIssueTableAdapter adp = new tblStoreIssueTableAdapter();
-                _dt = adp.Insert1(intUnitId, intWhid, dteIssueDate, intSrid, strSrNo, dteSrDate, strReceivedBy,
-                    intLastActionBy, dteLastActionTime, intCostCenter);
+                _dt = adp.Insert1(intUnitId, intWhid, intSrid, strSrNo, dteSrDate, strReceivedBy,
+                    intLastActionBy, intCostCenter);
                 if (_dt.Rows.Count > 0)
                 {
                     return _dt.GetAutoId("intIssueID");
