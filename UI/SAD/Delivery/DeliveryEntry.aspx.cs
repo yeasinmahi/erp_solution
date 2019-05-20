@@ -910,63 +910,72 @@ namespace UI.SAD.Delivery
                 string currency = ddlCurrency.SelectedItem.Value;
                 string currencyConversionRate = txtConvRate.Text;
                 string vehicleCompany = "", vehicleId = "", vehicleText = "", driver = "", driverContact = "", supplierId = "",supplierText="";
-                if (rdoDeliveryType.SelectedItem.Text.ToString()=="DO")
+                if(hdnConfirm.Value=="1")
                 {
-                    BindDOHeaderXML(unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, currency, currencyConversionRate);
-
-                }
-                else if(rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
-                {
-                    if(rdoNeedVehicle.SelectedItem.Text.ToString()=="Yes")
+                    if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
                     {
-                        driver = txtDriver.Text;
-                        driverContact = txtDriverContact.Text;
-                        vehicleCompany = rdoVehicleCompany.SelectedItem.Text;
+                        BindDOHeaderXML(unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, currency, currencyConversionRate);
 
-                        if (txtVehicle.Text.Trim() != "")
+                    }
+                    else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
+                    {
+                        if (rdoNeedVehicle.SelectedItem.Text.ToString() == "Yes")
                         {
-                            char[] ch = { '[', ']' };
-                            string[] temp = txtVehicle.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                            vehicleId = temp[temp.Length - 1];
-                            vehicleText = temp[0];
-                        }
-                           
-                        if(rdoVehicleCompany.SelectedItem.Text.ToString()=="Rent")
-                        {
-                            
-                            if (txtSupplier.Text.Trim() != "")
+                            driver = txtDriver.Text;
+                            driverContact = txtDriverContact.Text;
+                            vehicleCompany = rdoVehicleCompany.SelectedItem.Text;
+
+                            if (txtVehicle.Text.Trim() != "")
                             {
                                 char[] ch = { '[', ']' };
                                 string[] temp = txtVehicle.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                                supplierId = temp[temp.Length - 1];
-                                supplierText = temp[0];
+                                vehicleId = temp[temp.Length - 1];
+                                vehicleText = temp[0];
+                            }
+
+                            if (rdoVehicleCompany.SelectedItem.Text.ToString() == "Rent")
+                            {
+
+                                if (txtSupplier.Text.Trim() != "")
+                                {
+                                    char[] ch = { '[', ']' };
+                                    string[] temp = txtSupplier.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                                    supplierId = temp[temp.Length - 1];
+                                    supplierText = temp[0];
+                                }
                             }
                         }
+                        else
+                        {
+
+                        }
+                        BindPickingHeaderXML(unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress,
+                            shipToPartyAddress, currency, currencyConversionRate, vehicleCompany, vehicleId, vehicleText, driver, driverContact, supplierId, supplierText);
+
                     }
-                    else
+
+                    string itemXML = XmlParser.GetXml(GetXmlFilePath());
+                    string orderID = "", Code = "", msg = "";
+                    lblCodeText.Visible = true;
+                    lblCode.Text = Code;
+                    lblOrderIDText.Visible = true;
+                    lblOrderId.Text = orderID;
+
+                    msg=deliveryBLL.PickingCreate(xmlNewString, itemXML, customerAddress, ref orderID, ref Code);
+
+                    if (File.Exists(GetXmlFilePath()))
                     {
-
+                        File.Delete(GetXmlFilePath());
                     }
-                    BindPickingHeaderXML(unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, 
-                        shipToPartyAddress, currency, currencyConversionRate, vehicleCompany, vehicleId,vehicleText, driver, driverContact,supplierId,supplierText);
 
+                    Toaster(msg, Common.TosterType.Success);
                 }
-
-                string itemXML = XmlParser.GetXml(GetXmlFilePath());
-                string orderID = "", Code = "";
-                deliveryBLL.DeliveryOrderCreate(xmlNewString, itemXML, ref orderID, ref Code);
-
-                lblCodeText.Visible = true;
-                lblCode.Text = Code;
-                lblOrderIDText.Visible = true;
-                lblOrderId.Text = orderID;
-
-                if (File.Exists(GetXmlFilePath()))
+                else
                 {
-                    File.Delete(GetXmlFilePath());
+                   
+                    Toaster("Data not submitted", Common.TosterType.Warning);
                 }
-
-
+              
 
             }
             catch

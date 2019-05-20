@@ -104,13 +104,16 @@ namespace SAD_BLL.Sales
            
         }
 
-        public void PickingCreate(string xmlHeader, string xmlRow, ref string orderId, ref string strCode)
+        public string PickingCreate(string xmlHeader, string xmlRow,string customerAddress, ref string orderId, ref string strCode)
         {
+            string msg = "";
             try
             {
                
                 SprPickingCreateTableAdapter adp = new SprPickingCreateTableAdapter();
                 adp.PickingInsertData( xmlRow, xmlHeader, ref strCode);
+                msg = "Submitted Successfully";
+                return msg;
                 
             }
             catch (Exception ex)

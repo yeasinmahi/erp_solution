@@ -353,7 +353,7 @@
                             </td>
                             <td>
                                 <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
-                                    OnClick="btnSubmit_Click" />
+                                    OnClick="btnSubmit_Click" OnClientClick="return funConfirmAll()"/>
                             </td>
                         </tr>
                     </table>
