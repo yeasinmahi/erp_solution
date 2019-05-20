@@ -118,8 +118,10 @@ namespace UI.SAD.Delivery
                     txtDoNumber.Visible = true;
                     lblDoCustId.Text = "DO/Customer Id";
                     dgvSales.Visible = true;
-                    dgvSalesNew.Visible = false;
+                    dgvSalesPicking.Visible = false;
                     ddlLocation.Visible = false;
+                    location.Visible = false;
+                    
                 } 
                 else if (Type == "Picking")
                 {
@@ -129,8 +131,9 @@ namespace UI.SAD.Delivery
                     txtDoNumber.Visible = true;
                     lblDoCustId.Text = "DO/Customer";
                     dgvSales.Visible = false;
-                    dgvSalesNew.Visible = true;
+                    dgvSalesPicking.Visible = true;
                     ddlLocation.Visible = true;
+                    location.Visible = true;
 
                 }
                 else if (Type == "Delivery")
@@ -603,9 +606,9 @@ namespace UI.SAD.Delivery
 
                        if(rdoDeliveryType.SelectedItem.ToString()=="Picking")
                         {
-                            for (var i = 0; i < dgvSalesNew.Rows.Count; i++)
+                            for (var i = 0; i < dgvSalesPicking.Rows.Count; i++)
                             {
-                                Label lblproductID = dgvSalesNew.Rows[i].FindControl("lblProdutId") as Label;
+                                Label lblproductID = dgvSalesPicking.Rows[i].FindControl("lblProdutId") as Label;
                                 if (lblproductID.Text == productId)
                                 {
                                     Toaster("Can not add same product Name " + productName + " duplicate.", "", Common.TosterType.Error);
@@ -752,7 +755,7 @@ namespace UI.SAD.Delivery
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xmlString);
             doc.Save(GetXmlFilePath());
-            LoadGridwithXml(xmlString, dgvSalesNew);
+            LoadGridwithXml(xmlString, dgvSalesPicking);
         }
         protected void dgvGridView_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

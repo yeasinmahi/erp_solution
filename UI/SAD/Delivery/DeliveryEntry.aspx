@@ -362,7 +362,7 @@
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
                             <td>Price</td>
-                            <td id="location">Location</td>
+                            <td id="location" runat="server">Location</td>
                             <td>Commission</td>
                             <td style="color: Red;">Quantity</td>
                             <td>Total</td>
@@ -516,7 +516,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvSalesNew" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
+                                <asp:GridView ID="dgvSalesPicking" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
                                     OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
                                     BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
@@ -541,7 +541,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="250px" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Narration" SortExpression="naration">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblnaration" runat="server" Text='<%# Bind("naration") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="200px" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="uomName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("uomName") %>'></asp:Label>
@@ -554,6 +559,105 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Currency" SortExpression="currency" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblcurrency" runat="server" Text='<%# Bind("currency") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Commision" SortExpression="commision" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblcommision" runat="server" Text='<%# Bind("commision") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Commision Total" SortExpression="commisionTotal" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblcommisionTotal" runat="server" Text='<%# Bind("commisionTotal") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                         <asp:TemplateField HeaderText="Discount" SortExpression="discount" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbldiscount" runat="server" Text='<%# Bind("discount") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+
+                                          <asp:TemplateField HeaderText="DiscountTotal" SortExpression="discountTotal" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbldiscountTotal" runat="server" Text='<%# Bind("discountTotal") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Price Total" SortExpression="priceTotal" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpriceTotal" runat="server" Text='<%# Bind("priceTotal") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Supplier Tax" SortExpression="supplierTax" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblsupplierTax" runat="server" Text='<%# Bind("supplierTax") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Vat" SortExpression="vat" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblvat" runat="server" Text='<%# Bind("vat") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Vat Price" SortExpression="vatPrice" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblvatPrice" runat="server" Text='<%# Bind("vatPrice") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Promtion ItemId" SortExpression="promtionItemId" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpromtionItemId" runat="server" Text='<%# Bind("promtionItemId") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Promtion Item" SortExpression="promtionItem" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpromtionItem" runat="server" Text='<%# Bind("promtionItem") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Promtion Uom" SortExpression="promtionUom" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpromtionUom" runat="server" Text='<%# Bind("promtionUom") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Promtion ItemCoaId" SortExpression="promtionItemCoaId" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpromtionItemCoaId" runat="server" Text='<%# Bind("promtionItemCoaId") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Promtion Qnty" SortExpression="promtionQnty" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpromtionQnty" runat="server" Text='<%# Bind("promtionQnty") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                          <asp:TemplateField HeaderText="Promtion ItemUom" SortExpression="promtionItemUom" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblpromtionItemUom" runat="server" Text='<%# Bind("promtionItemUom") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="narr" SortExpression="narr" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narr") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center" SortExpression="Location">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("location") %>'></asp:Label>
