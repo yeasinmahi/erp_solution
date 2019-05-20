@@ -103,5 +103,21 @@ namespace SAD_BLL.Sales
             }
            
         }
+
+        public void PickingCreate(string xmlHeader, string xmlRow, ref string orderId, ref string strCode)
+        {
+            try
+            {
+               
+                SprPickingCreateTableAdapter adp = new SprPickingCreateTableAdapter();
+                adp.PickingInsertData( xmlRow, xmlHeader, ref strCode);
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
