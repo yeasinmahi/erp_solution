@@ -6593,6 +6593,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlRow", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlHeader", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@straddres", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6600,7 +6601,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Delivery_TDS.SprPickingCreateDataTable PickingInsertData(object xmlRow, object xmlHeader, ref string strCode) {
+        public virtual Delivery_TDS.SprPickingCreateDataTable PickingInsertData(object xmlRow, object xmlHeader, string straddres, ref string strCode) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((xmlRow == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -6614,20 +6615,26 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((object)(xmlHeader));
             }
-            if ((strCode == null)) {
+            if ((straddres == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strCode));
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(straddres));
+            }
+            if ((strCode == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strCode));
             }
             Delivery_TDS.SprPickingCreateDataTable dataTable = new Delivery_TDS.SprPickingCreateDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[3].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[3].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[4].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[4].Value.GetType() == typeof(global::System.DBNull)))) {
                 strCode = null;
             }
             else {
-                strCode = ((string)(this.Adapter.SelectCommand.Parameters[3].Value));
+                strCode = ((string)(this.Adapter.SelectCommand.Parameters[4].Value));
             }
             return dataTable;
         }

@@ -111,7 +111,7 @@ namespace SAD_BLL.Sales
             {
                
                 SprPickingCreateTableAdapter adp = new SprPickingCreateTableAdapter();
-                adp.PickingInsertData( xmlRow, xmlHeader, ref strCode);
+                adp.PickingInsertData( xmlRow, xmlHeader,customerAddress, ref strCode);
                 msg = "Submitted Successfully";
                 return msg;
                 

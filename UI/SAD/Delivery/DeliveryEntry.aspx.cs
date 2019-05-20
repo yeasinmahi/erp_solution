@@ -466,7 +466,7 @@ namespace UI.SAD.Delivery
                 txtSupplier.Text = "";
                 txtDriver.Text = "";
                 txtDriverContact.Text = "";
-                ; if (rdoVehicleCompany.SelectedValue.ToString() == "1")
+                if (rdoVehicleCompany.SelectedValue.ToString() == "1")
                 {
                     pnlVehicle3rd.Visible = false;
                     Session["sesLogisticType"] = "Company";
@@ -514,8 +514,8 @@ namespace UI.SAD.Delivery
                          hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(), txtDate.Text.ToString());
                     ddlUOM.Loads(dt, "intID", "strUOM");
 
-                    //dt = deliveryBLL.FgWarehouseLocation(Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID]));
-                    //ddlLocation.Loads(dt, "intStoreLocationID", "strLocationName");
+                    dt = deliveryBLL.FgWarehouseLocation(Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID]));
+                    ddlLocation.Loads(dt, "intStoreLocationID", "strLocationName");
 
                     txtQun.Text = "0";
                     txtPrice.Text = "0";
@@ -898,12 +898,12 @@ namespace UI.SAD.Delivery
                 string unit = ddlUnit.SelectedItem.Value;
                 string shipPoint = ddlShipPoint.SelectedItem.Value;
                 string salesOffice = ddlSalesOffice.SelectedItem.Value;
-                string customerType = ddlCustomerType.SelectedItem.Text;
+                string customerType = ddlCustomerType.SelectedItem.Value;
                 string date = txtDate.Text;
                 string dueDate = txtDueDate.Text;
                 string customerId = hdnCustomer.Value;
                 string shipPartyId = hdnShipToPartyId.Value;
-                string salesType = rdoSalesType.SelectedItem.Text;
+                string salesType = rdoSalesType.SelectedItem.Value;
                 string reffNo = txtReffNo.Text;
                 string customerAddress = txtCustomerAddress.Text;
                 string shipToPartyAddress = txtShipToPartyAddress.Text;
@@ -967,7 +967,7 @@ namespace UI.SAD.Delivery
                     {
                         File.Delete(GetXmlFilePath());
                     }
-
+                    Session["RowObj"] = null;
                     Toaster(msg, Common.TosterType.Success);
                 }
                 else
