@@ -255,7 +255,7 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                dt = vehicle.GetVhlType(ddlUnit.SelectedValue().ToString());
+                //dt = vehicle.GetVhlType(ddlUnit.SelectedValue().ToString());
                 //ddlVehicleType.Loads(dt, "intTypeId", "strType");
 
                 dt = shipPoint.GetShipPoint(HttpContext.Current.Session[SessionParams.USER_ID].ToString(), ddlUnit.SelectedValue().ToString());
@@ -265,13 +265,7 @@ namespace UI.SAD.Delivery
                 ddlSalesOffice.Loads(dt, "intSalesOfficeId", "strName");
 
                 dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
-                ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
-
-                //dt = extraCharge.GetExtraChargeList(ddlUnit.SelectedValue().ToString());
-                //ddlVehicleCharge.Loads(dt, "intID", "strText");
-
-                //dt = incentive.GetIncentiveList(ddlUnit.SelectedValue().ToString());
-                //ddlVehicleIncentive.Loads(dt, "intID", "strText");
+                ddlCustomerType.Loads(dt, "intTypeID", "strTypeName"); 
 
                 dt = salesConfig.GetSalesTypeForDO(ddlUnit.SelectedValue().ToString());
                 rdoSalesType.RadioLoad(dt, "intTypeID", "strTypeName");
@@ -294,6 +288,7 @@ namespace UI.SAD.Delivery
                 Session[SessionParams.CURRENT_SO] = ddlSalesOffice.SelectedValue().ToString();
                 Session[SessionParams.CURRENT_CUS_TYPE] = ddlCustomerType.SelectedValue().ToString();
                 Session[SessionParams.CURRENT_SHIP] = ddlShipPoint.SelectedValue().ToString();
+               
             }
             catch { }
         }
@@ -504,9 +499,8 @@ namespace UI.SAD.Delivery
             TextBox txtQtyEdit = dgvSales.Rows[e.RowIndex].FindControl("txtQtyEdit") as TextBox;
             Label lblUoM = dgvSales.Rows[e.RowIndex].FindControl("lblUoM") as Label;
             Label lblUomId = dgvSales.Rows[e.RowIndex].FindControl("lblUomId") as Label;
-            Label lblCommision = dgvSales.Rows[e.RowIndex].FindControl("lblCommision") as Label;
+            Label lblCommision = dgvSales.Rows[e.RowIndex].FindControl("lblCommision") as Label; 
 
-            
             dgvSales.EditIndex = -1;
 
             LoadGridwithXml();
@@ -573,14 +567,20 @@ namespace UI.SAD.Delivery
             try
             {
                 WorkType(rdoDeliveryType.SelectedItem.Text.ToString());
-                if (rdoNeedVehicle.SelectedValue.ToString() == "1")
-                {
-
-                    pnlVehicleMain.Visible = true;
+                if (rdoNeedVehicle.SelectedValue.ToString() == "1" && rdoDeliveryType.SelectedItem.Text=="DO")
+                { 
+                    pnlVehicleMain.Visible = false;
                     rdoVehicleCompany.Visible = true;
 
                 }
-                else
+                else if (rdoNeedVehicle.SelectedValue.ToString() == "1")
+                {
+                    pnlVehicleMain.Visible = true;
+                    rdoVehicleCompany.Visible = true;
+
+                    
+                }
+                else 
                 {
                     pnlVehicleMain.Visible = false;
                     rdoVehicleCompany.Visible = false;
@@ -715,6 +715,7 @@ namespace UI.SAD.Delivery
                         string productId = hdnProduct.Value;
                         string productName = hdnProductText.Value;
                         string quantity = txtQun.Text.ToString();
+
                         string rate = txtPrice.Text;
                         string uomId = ddlUOM.SelectedValue().ToString();
                         string uomName = ddlUOM.SelectedItem.ToString();

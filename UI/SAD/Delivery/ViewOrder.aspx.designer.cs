@@ -112,6 +112,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.Panel pnlMarque;
         
         /// <summary>
+        /// hdnShipPointid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnShipPointid;
+        
+        /// <summary>
         /// ddlUnit control.
         /// </summary>
         /// <remarks>
@@ -220,6 +229,15 @@ namespace UI.SAD.Delivery {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
         
         /// <summary>
+        /// btnGo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGo;
+        
+        /// <summary>
         /// txtCode control.
         /// </summary>
         /// <remarks>
@@ -254,15 +272,6 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
-        
-        /// <summary>
-        /// btnGo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGo;
         
         /// <summary>
         /// rdoComplete control.
@@ -310,13 +319,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.GridView dgvViewOrder;
         
         /// <summary>
-        /// odsSalesOrderView control.
+        /// odsSOView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesOrderView;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsSOView;
         
         /// <summary>
         /// cvtCom control.

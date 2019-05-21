@@ -191,6 +191,11 @@
             <td style="text-align:left;"><asp:DropDownList ID="DdlCostCenter" runat="server" CssClass="ddList" Font-Bold="False">
             </asp:DropDownList> 
             </tr> 
+             <tr>
+                 <td style="text-align:right;"><asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Loss Reason:"></asp:Label> </td>
+                 <td style="text-align:left;"><asp:DropDownList ID="ddlLossReason" runat="server" CssClass="ddList" Font-Bold="False">
+                 </asp:DropDownList> 
+             </tr>
              </table>
          <table  border="1px" width="900" class="tblroweven">
             

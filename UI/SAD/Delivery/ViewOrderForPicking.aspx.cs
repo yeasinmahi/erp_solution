@@ -12,17 +12,19 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
-
-
 namespace UI.SAD.Delivery
 {
-    public partial class ViewQuotationTest : System.Web.UI.Page
+    public partial class ViewOrderForPicking : BasePage
     {
         protected decimal totAmount = 0, totPieces = 0, aprPieces = 0;
         SeriLog log = new SeriLog();
         string location = "SAD";
         string start = "starting SAD\\Order\\DeliveryViewForPendingOrder";
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
+
+        SalesOrderView obj = new SalesOrderView();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,13 +45,9 @@ namespace UI.SAD.Delivery
             DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
             hdnFrom.Value = fromDate.ToString();
             hdnTo.Value = toDate.ToString();
-            dgvCustomerVSPendingQnt.DataBind();
+            //dgvViewOrder.DataBind();
         }
-        
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
 
-        }
 
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
@@ -78,7 +76,6 @@ namespace UI.SAD.Delivery
             Session[SessionParams.CURRENT_CUS_TYPE] = ddlCusType.SelectedValue;
         }
 
-
         protected void txtCus_TextChanged(object sender, EventArgs e)
         {
             char[] ch = { '[', ']' };
@@ -86,32 +83,25 @@ namespace UI.SAD.Delivery
             if (temp.Length > 1) hdnCustomer.Value = temp[temp.Length - 1];
             else hdnCustomer.Value = "";
         }
-        
+
 
         protected void Complete_Click(object sender, EventArgs e)
         {
-
             char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
-            string intCustomerId = searchKey[0].ToString();
-
-            Session["intCustomerId"] = intCustomerId;
+            string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
+            string strReportType = "Picking";
+            string ShipPointID = ddlShip.SelectedValue;
 
-            Session["intid"] = intid;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('QuatationToDOCreate.aspx');", true);
-
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
         }
 
-        protected void dgvCustomerVSPendingQnt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void dgvViewOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-            dgvCustomerVSPendingQnt.PageIndex = e.NewPageIndex;            
+            //dgvViewOrder.PageIndex = e.NewPageIndex;
         }
-
-    
-
-
 
 
 

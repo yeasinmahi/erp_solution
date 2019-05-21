@@ -1271,6 +1271,12 @@
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
+    <Content Include="SAD\Delivery\Test.aspx" />
+    <Content Include="SAD\Delivery\ViewDOTest.aspx" />
+    <Content Include="SAD\Delivery\ViewOrder.aspx" />
+    <Content Include="SAD\Delivery\ViewOrderForPicking.aspx" />
+    <Content Include="SAD\Delivery\ViewPicking.aspx" />
+    <Content Include="SAD\Delivery\ViewQuotation.aspx" />
     <Content Include="SAD\DisPoint\DisPoint.aspx" />
     <Content Include="SAD\DisPoint\DisPointEdit.aspx" />
     <Content Include="SAD\DisPoint\SetLogisVar.aspx" />
@@ -6098,6 +6104,48 @@
     </Compile>
     <Compile Include="SAD\Delivery\DOView.aspx.designer.cs">
       <DependentUpon>DOView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\Test.aspx.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\Test.aspx.designer.cs">
+      <DependentUpon>Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewDOTest.aspx.cs">
+      <DependentUpon>ViewDOTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewDOTest.aspx.designer.cs">
+      <DependentUpon>ViewDOTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewOrder.aspx.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewOrder.aspx.designer.cs">
+      <DependentUpon>ViewOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewOrderForPicking.aspx.cs">
+      <DependentUpon>ViewOrderForPicking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewOrderForPicking.aspx.designer.cs">
+      <DependentUpon>ViewOrderForPicking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewPicking.aspx.cs">
+      <DependentUpon>ViewPicking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewPicking.aspx.designer.cs">
+      <DependentUpon>ViewPicking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewQuotation.aspx.cs">
+      <DependentUpon>ViewQuotation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\ViewQuotation.aspx.designer.cs">
+      <DependentUpon>ViewQuotation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\DisPoint\DisPoint.aspx.cs">
       <DependentUpon>DisPoint.aspx</DependentUpon>
