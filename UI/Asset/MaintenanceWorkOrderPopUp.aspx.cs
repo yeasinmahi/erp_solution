@@ -139,7 +139,12 @@ namespace UI.Asset
                 txtContactNo.Text = IssueDate.Rows[0]["strContactNo"].ToString();
                 txtUser.Text = IssueDate.Rows[0]["strUserName"].ToString(); 
                 lblunit.Text = IssueDate.Rows[0]["strUnitName"].ToString();
-
+                    try
+                    {
+                        
+                        ddlLossReason.SelectedValue= IssueDate.Rows[0]["intBreakDownReason"].ToString();
+                    }
+                    catch { }
                     vehicleNumber = HdnAssetid.Value.ToString();  
                 dt = new DataTable();
                 dt = objMaintenance.MilegeViewTextbox(vehicleNumber);
