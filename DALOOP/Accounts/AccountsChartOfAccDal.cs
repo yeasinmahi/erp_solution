@@ -6,7 +6,7 @@ namespace DALOOP.Accounts
 {
     public class AccountsChartOfAccDal
     {
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public DataTable GetChartOfAccount(int accId)
         {
             try

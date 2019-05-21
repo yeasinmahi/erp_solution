@@ -7,7 +7,7 @@ namespace DALOOP.Inventory
 {
     public class InventoryDal
     {
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public DataTable GetInventoryJvByDateType(DateTime transectionDate, int transectionTypeId)
         {
             try
@@ -39,7 +39,7 @@ namespace DALOOP.Inventory
             {
                 sprInventoryTransactionTableAdapter adp = new sprInventoryTransactionTableAdapter();
                 _dt = adp.InsertBySpInventoryTransection(intUnitId, intWhid, intLocationId, intItemId, numTransactionQty, monTransactionValue,intInOutReffId, intTransactionTypeId);
-                return _dt.GetAutoId("intAutoID");
+                return _dt.GetAutoId("autoId");
             }
             catch (Exception e)
             {

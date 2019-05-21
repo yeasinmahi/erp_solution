@@ -358,11 +358,11 @@ namespace BLL.Inventory
             return 0;
         }
 
-        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
+        private bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
             string storeIssueNarration, string meterialNarration, int inventoryStatusId, int enroll)
         {
             if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
-                storeIssueNarration, meterialNarration, enroll, inventoryStatusId))
+                storeIssueNarration, meterialNarration, inventoryStatusId, enroll))
             {
                 //TODO: Success
                 _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true,inventoryStatusId);

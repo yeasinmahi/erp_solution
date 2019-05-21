@@ -6,7 +6,7 @@ namespace DALOOP.Accounts
 {
     public class AccountsVoucherJournalDetailsDal
     {
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public int Insert(int intJournalVoucherId, int intAccId, string strNarration, decimal monAmount, string strAccName)
         {
             try
