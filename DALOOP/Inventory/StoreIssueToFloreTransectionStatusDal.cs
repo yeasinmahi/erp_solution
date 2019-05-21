@@ -7,7 +7,7 @@ namespace DALOOP.Inventory
 {
     public class StoreIssueToFloreTransectionStatusDal
     {
-        private DataTable _dt;
+        private DataTable _dt= new DataTable();
         public int Insert(int itemId,int inventoryId)
         {
             try

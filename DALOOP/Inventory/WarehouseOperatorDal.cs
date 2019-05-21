@@ -8,7 +8,7 @@ namespace DALOOP.Inventory
     public class WarehouseOperatorDal
     {
         private readonly tblWearHouseOperatorTableAdapter _adp = new tblWearHouseOperatorTableAdapter();
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public DataTable GetWarehouseByEnroll(int enroll)
         {
             try

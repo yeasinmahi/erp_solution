@@ -358,7 +358,7 @@ namespace BLL.Inventory
             return 0;
         }
 
-        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
+        private bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
             string storeIssueNarration, string meterialNarration, int inventoryStatusId, int enroll)
         {
             if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
