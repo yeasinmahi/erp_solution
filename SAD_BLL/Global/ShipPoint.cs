@@ -53,5 +53,18 @@ namespace SAD_BLL.Global
             TblShippingPointTableAdapter ta = new TblShippingPointTableAdapter();
             return ta.GetDataById(int.Parse(shipPointId));
         }
+
+        public DataTable GetShippointByUnit(int unitId)
+        {
+            try
+            {
+                DepotTableAdapter adp = new DepotTableAdapter();
+                return adp.GetShippingPointByUnitId(unitId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
     }
 }

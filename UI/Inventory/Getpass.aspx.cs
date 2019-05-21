@@ -27,6 +27,7 @@ namespace UI.Inventory
                 try { File.Delete(xmlpath); btnSubmit.Visible = false; }
                 catch { }
                 LoadReason();
+                
 
             }
         }
@@ -34,7 +35,7 @@ namespace UI.Inventory
         public void LoadReason()
         {
             DataTable dt = new GatePassbll().GatepassReasonTable();
-            ddlReason.LoadWithSelect(dt, "intID", "strGatePassReason");
+            ddlReason.Loads(dt, "intID", "strGatePassReason");
         }
         #region=========================Employee AutoSearch==================
         [WebMethod]
@@ -55,53 +56,72 @@ namespace UI.Inventory
         {
             try
             {
-                if (hdnconfirm.Value == "1")
+                if (ddlReason.SelectedItem.Text == "Others" && String.IsNullOrWhiteSpace(txtOtherReason.Text))
                 {
-                    string dt = DateTime.Parse(txtDate.Text).ToString("yyyy-MM-dd");
-                    string fadd = txtFromAddress.Text;
-                    string tadd = "";
-                    string taddid = "";
-                   
-                    if (chkOther.Checked == false)
+                    Toaster("Please enter other reason.", Common.TosterType.Warning);
+                }
+                else
+                {
+                    if (hdnconfirm.Value == "1")
                     {
-                        //string item = ""; string itemid = "";
-                        //bool proceed = false;
-                        arrayKey = txtAddress.Text.Split(delimiterChars);
-                     
-                        if (arrayKey.Length > 0)
+                        string dt = DateTime.Parse(txtDate.Text).ToString("yyyy-MM-dd");
+                        string fadd = txtFromAddress.Text;
+                        string tadd = "";
+                        string taddid = "";
+
+                        if (chkOther.Checked == false)
                         {
-                            tadd = arrayKey[0].ToString(); taddid = arrayKey[1].ToString();
-                           
+                            //string item = ""; string itemid = "";
+                            //bool proceed = false;
+                            arrayKey = txtAddress.Text.Split(delimiterChars);
+
+                            if (arrayKey.Length > 0)
+                            {
+                                tadd = arrayKey[0].ToString(); taddid = arrayKey[1].ToString();
+
+                            }
+
+                            // tadd = ddlTo.SelectedItem.ToString();
+                            //taddid = ddlTo.SelectedValue.ToString();
+                        }
+                        else { tadd = txtToOther.Text; taddid = "-1"; }
+                        string item = txtItem.Text;
+                        string quantity = txtQuantity.Text;
+                        string uom = txtUom.Text;
+                        string remarks = txtRemarks.Text;
+                        string driverName = txtDriverName.Text;
+                        string contactNumber = txtContact.Text;
+                        string vehicleNumber = txtVehicle.Text;
+                        string Reason = ddlReason.SelectedText();
+
+                        if (Reason == "Others")
+                        {
+                            if (!String.IsNullOrWhiteSpace(txtOtherReason.Text))
+                            {
+                                Reason = txtOtherReason.Text;
+                            }
+
                         }
 
-                       // tadd = ddlTo.SelectedItem.ToString();
-                        //taddid = ddlTo.SelectedValue.ToString();
+                        string isrtn = "0";
+                        if (chkRtn.Checked)
+                        {
+                            isrtn = "1";
+                        }
+                        CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber, Reason);
+                        txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
+                        txtItem.Text = string.Empty;
+                        txtDriverName.Text = string.Empty;
+                        txtContact.Text = string.Empty;
+                        txtVehicle.Text = string.Empty;
+                        txtQuantity.Text = @"0.00";
+                        txtRemarks.Text = string.Empty;
+                        txtUom.Text = string.Empty;
+                        ddlReason.SetSelectedValue("0");
+
                     }
-                    else { tadd = txtToOther.Text; taddid = "-1"; }
-                    string item = txtItem.Text;
-                    string quantity = txtQuantity.Text;
-                    string uom = txtUom.Text;
-                    string remarks = txtRemarks.Text;
-                    string driverName = txtDriverName.Text;
-                    string contactNumber = txtContact.Text;
-                    string vehicleNumber = txtVehicle.Text;
-                    string Reason = ddlReason.SelectedText();
-                    string isrtn = "0";
-                    if (chkRtn.Checked)
-                    {
-                        isrtn = "1";
-                    }
-                    CreateXml(dt, fadd, tadd, taddid, item, quantity, uom, remarks, isrtn, driverName, contactNumber, vehicleNumber, Reason);
-                    txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                    txtItem.Text = string.Empty;
-                    txtDriverName.Text = string.Empty;
-                    txtContact.Text = string.Empty;
-                    txtVehicle.Text = string.Empty;
-                    txtQuantity.Text = @"0.00"; 
-                    txtRemarks.Text = string.Empty;
-                    txtUom.Text = string.Empty;
-                    ddlReason.SetSelectedValue("0");
                 }
+                   
             }
             catch (Exception ex)
             {
@@ -158,7 +178,8 @@ namespace UI.Inventory
             VehicleNumber.Value = vehicleNumber;
             XmlAttribute Reasson = doc.CreateAttribute("Reason");
             Reasson.Value = Reason;
-
+           
+            
             node.Attributes?.Append(Dt);
             node.Attributes?.Append(Fadd);
             node.Attributes?.Append(Tadd);
@@ -298,6 +319,16 @@ namespace UI.Inventory
             else { txtToOther.Visible = false; txtAddress.Enabled = true; }
         }
 
-
+        protected void ddlReason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlReason.SelectedItem.Text=="Others")
+            {
+                txtOtherReason.Visible = true;
+            }
+            else
+            {
+                txtOtherReason.Visible = false;
+            }
+        }
     }
 }
