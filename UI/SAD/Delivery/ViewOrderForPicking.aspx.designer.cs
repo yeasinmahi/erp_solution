@@ -10,7 +10,7 @@
 namespace UI.SAD.Delivery {
     
     
-    public partial class ViewQuotationTest {
+    public partial class ViewOrderForPicking {
         
         /// <summary>
         /// Head1 control.
@@ -220,6 +220,15 @@ namespace UI.SAD.Delivery {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
         
         /// <summary>
+        /// btnGo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGo;
+        
+        /// <summary>
         /// txtCode control.
         /// </summary>
         /// <remarks>
@@ -254,15 +263,6 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
-        
-        /// <summary>
-        /// btnGo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnGo;
         
         /// <summary>
         /// rdoComplete control.
@@ -301,22 +301,22 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnTo;
         
         /// <summary>
-        /// dgvCustomerVSPendingQnt control.
+        /// dgvViewOrder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvCustomerVSPendingQnt;
+        protected global::System.Web.UI.WebControls.GridView dgvViewOrder;
         
         /// <summary>
-        /// odsSalesQTN control.
+        /// odsSOViewForPicking control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ObjectDataSource odsSalesQTN;
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsSOViewForPicking;
         
         /// <summary>
         /// cvtCom control.

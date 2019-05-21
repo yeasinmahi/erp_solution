@@ -41,15 +41,41 @@
         }
     </script>
      <script type="text/javascript">
-         function Registration(url) {
-             window.open('QuatationToDOCreate.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
-                  }
+         function CreateDO(intid, intCusID, strReportType, ShipPointID) {
+            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+        }
+         
 </script>
-         <script type="text/javascript">
-         function EditPageQuotation(url) {
-             window.open('QuotationEditNSave.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
-                  }
+ 
+<script language="javascript" type="text/javascript">
+   
+    function Search_dgvservice(strKey, strGV) {
+
+        var strData = strKey.value.toLowerCase().split(" ");
+        var tblData = document.getElementById(strGV);
+        var rowData;
+        for (var i = 1; i < tblData.rows.length; i++) {
+            rowData = tblData.rows[i].innerHTML;
+            var styleDisplay = 'none';
+            for (var j = 0; j < strData.length; j++) {
+                if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                    styleDisplay = '';
+                else {
+                    styleDisplay = 'none';
+                    break;
+                }
+            }
+            tblData.rows[i].style.display = styleDisplay;
+        }
+
+    }
+
 </script>
+    <style>
+.header-ta{
+    z-index:-1;
+}
+</style>
 
 </head>
 <body>
@@ -129,20 +155,21 @@
                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy" PopupButtonID="imgCal_2"
                 ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                 <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
+                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
             </td>
-            <td align="right">Quotation No.</td>
+            <td align="right"></td>
             <td>
-                <asp:TextBox ID="txtCode" runat="server" Width="160px"></asp:TextBox>                        
+                <asp:TextBox ID="txtCode" runat="server" Width="160px" Visible="false"></asp:TextBox>                        
             </td>   
-            <td align="right">Customer</td>
+            <td align="right"></td>
             <td>
                 <asp:HiddenField ID="hdnCustomer" runat="server" />
-                <asp:TextBox ID="txtCus" runat="server" AutoCompleteType="Search" Width="255px" OnTextChanged="txtCus_TextChanged" AutoPostBack="true"></asp:TextBox>
+                <asp:TextBox ID="txtCus" runat="server" AutoCompleteType="Search" Width="255px" OnTextChanged="txtCus_TextChanged" AutoPostBack="true" Visible="false"></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCus"
                 ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender> 
-                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
+                
             </td>
                                      
             </tr>
@@ -168,9 +195,15 @@
     <Columns>
     <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
     
-    <asp:BoundField DataField="strCode" HeaderText=" Number" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" >
-    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-    
+    <%--<asp:BoundField DataField="strCode" HeaderText=" Number" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" >
+    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
+
+    <asp:TemplateField HeaderText="Number" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strTaskTitle" HeaderStyle-Height="30px" HeaderStyle-CssClass="header-ta" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
+    <HeaderTemplate>
+    <asp:Label ID="lblNumberHeader" runat="server" CssClass="lbl" Text="Number"></asp:Label>
+    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200" TextMode="MultiLine"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvCustomerVSPendingQnt')"></asp:TextBox></HeaderTemplate>
+    <ItemTemplate><asp:Label ID="lblNumber" runat="server" Width="100px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strCode")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+                
     <asp:BoundField DataField="dteDate" HeaderText="Quation Date" SortExpression="dteDate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField> 
 
@@ -195,7 +228,7 @@
         
     </Columns>
     <FooterStyle BackColor="#CCCCCC" />
-    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle  Font-Bold="True" ForeColor="White" />
     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
     <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
     <SortedAscendingCellStyle BackColor="#F1F1F1" />
