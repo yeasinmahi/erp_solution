@@ -174,7 +174,7 @@
                     <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInventoryStock" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnXFactoryChr" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />

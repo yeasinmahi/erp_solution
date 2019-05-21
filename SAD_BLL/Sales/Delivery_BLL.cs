@@ -10,6 +10,7 @@ namespace SAD_BLL.Sales
 {
   public  class Delivery_BLL
     {
+        string msg = "";
         public DataTable DeliveryHeaderDataByCustomer(int intCustId,int intUnitId)
         {
             try
@@ -88,7 +89,7 @@ namespace SAD_BLL.Sales
 
         }
       
-        public void DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
+        public string DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
         {
             try
             {
@@ -96,6 +97,8 @@ namespace SAD_BLL.Sales
                 SprDOCreateTableAdapter adp = new SprDOCreateTableAdapter();
                 adp.DeliveryOrderCreate(xmlRow, xmlHeader, ref orderNo, ref strCode);
                 orderId = orderNo.ToString();
+                msg = "Submitted Successfully";
+                return msg;
             }
             catch (Exception ex)
             {
@@ -106,7 +109,7 @@ namespace SAD_BLL.Sales
 
         public string PickingCreate(string xmlHeader, string xmlRow,string customerAddress, ref string orderId, ref string strCode)
         {
-            string msg = "";
+            
             try
             {
                

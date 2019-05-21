@@ -202,13 +202,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnInvItemId;
         
         /// <summary>
-        /// hdnXFactoryChr control.
+        /// hdnnarration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnXFactoryChr;
+        protected global::System.Web.UI.WebControls.HiddenField hdnnarration;
         
         /// <summary>
         /// hdnPrice control.
