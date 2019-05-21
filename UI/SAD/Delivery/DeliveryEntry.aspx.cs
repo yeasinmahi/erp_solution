@@ -715,6 +715,7 @@ namespace UI.SAD.Delivery
                         string productId = hdnProduct.Value;
                         string productName = hdnProductText.Value;
                         string quantity = txtQun.Text.ToString();
+
                         string rate = txtPrice.Text;
                         string uomId = ddlUOM.SelectedValue().ToString();
                         string uomName = ddlUOM.SelectedItem.ToString();
