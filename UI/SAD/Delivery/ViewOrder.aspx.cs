@@ -94,20 +94,20 @@ namespace UI.SAD.Delivery
 
         protected void Complete_Click(object sender, EventArgs e)
         {
+            if (hdnconfirm.Value == "1")
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intCustomerId = searchKey[0].ToString();
+                string intid = searchKey[1].ToString();
 
-            char[] delimiterChars = { ',' };
-            string temp = ((Button)sender).CommandArgument.ToString();
-            string[] searchKey = temp.Split(delimiterChars);
-            string intCustomerId = searchKey[0].ToString();          
-            string intid = searchKey[1].ToString();
-            
-            string message = obj.DOApprove(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-            dgvViewOrder.DataBind();
+                string message = obj.DOApprove(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                dgvViewOrder.DataBind();
+            }
             
         }
-
-       
 
         protected void DO_Edit_Click(object sender, EventArgs e)
         {
@@ -120,7 +120,23 @@ namespace UI.SAD.Delivery
             string ShipPointID = ddlShip.SelectedValue;
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
-            
+            dgvViewOrder.DataBind();
+        }
+
+        protected void DO_Cancel_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "1")
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intCustomerId = searchKey[0].ToString();
+                string intid = searchKey[1].ToString();
+
+                string message = obj.DOCancel(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                dgvViewOrder.DataBind();
+            }
         }
 
         protected void dgvViewOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)
