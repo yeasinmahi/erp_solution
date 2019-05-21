@@ -564,7 +564,7 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField ShowHeader="False">
+                                        <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                             <EditItemTemplate>
                                                 <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Update"
                                                     Text="">
