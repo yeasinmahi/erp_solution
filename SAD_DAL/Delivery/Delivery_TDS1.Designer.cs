@@ -2131,13 +2131,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public FGLocationDataRow FindByintStoreLocationID(int intStoreLocationID) {
-                return ((FGLocationDataRow)(this.Rows.Find(new object[] {
-                            intStoreLocationID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 FGLocationDataDataTable cln = ((FGLocationDataDataTable)(base.Clone()));
                 cln.InitVars();
@@ -2170,8 +2163,6 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnstrWareHoseName);
                 this.columnintStoreLocationID = new global::System.Data.DataColumn("intStoreLocationID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintStoreLocationID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintStoreLocationID}, true));
                 this.columnstrLocationName.MaxLength = 200;
                 this.columnstrWareHoseName.MaxLength = 250;
                 this.columnintStoreLocationID.AutoIncrement = true;
@@ -2179,7 +2170,6 @@ namespace SAD_DAL.Delivery {
                 this.columnintStoreLocationID.AutoIncrementStep = -1;
                 this.columnintStoreLocationID.AllowDBNull = false;
                 this.columnintStoreLocationID.ReadOnly = true;
-                this.columnintStoreLocationID.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2625,6 +2615,8 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnnumPickQty;
             
+            private global::System.Data.DataColumn columnintItemID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public InventoryFgItemBlanceDataTable() {
@@ -2700,6 +2692,14 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intItemIDColumn {
+                get {
+                    return this.columnintItemID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2735,14 +2735,15 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public InventoryFgItemBlanceRow AddInventoryFgItemBlanceRow(decimal numQuantity, decimal monValue, decimal monRate, decimal monUpdateRate, decimal numPickQty) {
+            public InventoryFgItemBlanceRow AddInventoryFgItemBlanceRow(decimal numQuantity, decimal monValue, decimal monRate, decimal monUpdateRate, decimal numPickQty, int intItemID) {
                 InventoryFgItemBlanceRow rowInventoryFgItemBlanceRow = ((InventoryFgItemBlanceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         numQuantity,
                         monValue,
                         monRate,
                         monUpdateRate,
-                        numPickQty};
+                        numPickQty,
+                        intItemID};
                 rowInventoryFgItemBlanceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowInventoryFgItemBlanceRow);
                 return rowInventoryFgItemBlanceRow;
@@ -2770,6 +2771,7 @@ namespace SAD_DAL.Delivery {
                 this.columnmonRate = base.Columns["monRate"];
                 this.columnmonUpdateRate = base.Columns["monUpdateRate"];
                 this.columnnumPickQty = base.Columns["numPickQty"];
+                this.columnintItemID = base.Columns["intItemID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2785,6 +2787,8 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnmonUpdateRate);
                 this.columnnumPickQty = new global::System.Data.DataColumn("numPickQty", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumPickQty);
+                this.columnintItemID = new global::System.Data.DataColumn("intItemID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintItemID);
                 this.columnmonRate.ReadOnly = true;
             }
             
@@ -2927,13 +2931,17 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnstrProductName;
             
-            private global::System.Data.DataColumn columnmonRemainQty;
-            
             private global::System.Data.DataColumn columnmonPrice;
             
-            private global::System.Data.DataColumn columnintShipPointId;
+            private global::System.Data.DataColumn columnmonVAT;
             
-            private global::System.Data.DataColumn columnstrItemIdNameDo;
+            private global::System.Data.DataColumn columnmonVatPrice;
+            
+            private global::System.Data.DataColumn columnmonCommission;
+            
+            private global::System.Data.DataColumn columnmonConversionRate;
+            
+            private global::System.Data.DataColumn columnmonSuppTax;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3002,14 +3010,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monRemainQtyColumn {
-                get {
-                    return this.columnmonRemainQty;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn monPriceColumn {
                 get {
                     return this.columnmonPrice;
@@ -3018,17 +3018,41 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intShipPointIdColumn {
+            public global::System.Data.DataColumn monVATColumn {
                 get {
-                    return this.columnintShipPointId;
+                    return this.columnmonVAT;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strItemIdNameDoColumn {
+            public global::System.Data.DataColumn monVatPriceColumn {
                 get {
-                    return this.columnstrItemIdNameDo;
+                    return this.columnmonVatPrice;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monCommissionColumn {
+                get {
+                    return this.columnmonCommission;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monConversionRateColumn {
+                get {
+                    return this.columnmonConversionRate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monSuppTaxColumn {
+                get {
+                    return this.columnmonSuppTax;
                 }
             }
             
@@ -3069,20 +3093,29 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public qryDOPendingPriceByItemRow AddqryDOPendingPriceByItemRow(long intDoId, int intCustomerId, long intProductId, string strProductName, decimal monRemainQty, decimal monPrice, int intShipPointId, string strItemIdNameDo) {
+            public qryDOPendingPriceByItemRow AddqryDOPendingPriceByItemRow(long intDoId, int intCustomerId, long intProductId, string strProductName, decimal monPrice, decimal monVAT, decimal monVatPrice, decimal monCommission, decimal monConversionRate, decimal monSuppTax) {
                 qryDOPendingPriceByItemRow rowqryDOPendingPriceByItemRow = ((qryDOPendingPriceByItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intDoId,
                         intCustomerId,
                         intProductId,
                         strProductName,
-                        monRemainQty,
                         monPrice,
-                        intShipPointId,
-                        strItemIdNameDo};
+                        monVAT,
+                        monVatPrice,
+                        monCommission,
+                        monConversionRate,
+                        monSuppTax};
                 rowqryDOPendingPriceByItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowqryDOPendingPriceByItemRow);
                 return rowqryDOPendingPriceByItemRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public qryDOPendingPriceByItemRow FindByintDoId(long intDoId) {
+                return ((qryDOPendingPriceByItemRow)(this.Rows.Find(new object[] {
+                            intDoId})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3106,10 +3139,12 @@ namespace SAD_DAL.Delivery {
                 this.columnintCustomerId = base.Columns["intCustomerId"];
                 this.columnintProductId = base.Columns["intProductId"];
                 this.columnstrProductName = base.Columns["strProductName"];
-                this.columnmonRemainQty = base.Columns["monRemainQty"];
                 this.columnmonPrice = base.Columns["monPrice"];
-                this.columnintShipPointId = base.Columns["intShipPointId"];
-                this.columnstrItemIdNameDo = base.Columns["strItemIdNameDo"];
+                this.columnmonVAT = base.Columns["monVAT"];
+                this.columnmonVatPrice = base.Columns["monVatPrice"];
+                this.columnmonCommission = base.Columns["monCommission"];
+                this.columnmonConversionRate = base.Columns["monConversionRate"];
+                this.columnmonSuppTax = base.Columns["monSuppTax"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3123,22 +3158,27 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintProductId);
                 this.columnstrProductName = new global::System.Data.DataColumn("strProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrProductName);
-                this.columnmonRemainQty = new global::System.Data.DataColumn("monRemainQty", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonRemainQty);
                 this.columnmonPrice = new global::System.Data.DataColumn("monPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonPrice);
-                this.columnintShipPointId = new global::System.Data.DataColumn("intShipPointId", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintShipPointId);
-                this.columnstrItemIdNameDo = new global::System.Data.DataColumn("strItemIdNameDo", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrItemIdNameDo);
+                this.columnmonVAT = new global::System.Data.DataColumn("monVAT", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonVAT);
+                this.columnmonVatPrice = new global::System.Data.DataColumn("monVatPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonVatPrice);
+                this.columnmonCommission = new global::System.Data.DataColumn("monCommission", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonCommission);
+                this.columnmonConversionRate = new global::System.Data.DataColumn("monConversionRate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonConversionRate);
+                this.columnmonSuppTax = new global::System.Data.DataColumn("monSuppTax", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonSuppTax);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintDoId}, true));
                 this.columnintDoId.AllowDBNull = false;
+                this.columnintDoId.Unique = true;
                 this.columnintCustomerId.AllowDBNull = false;
                 this.columnintProductId.AllowDBNull = false;
                 this.columnstrProductName.AllowDBNull = false;
                 this.columnstrProductName.MaxLength = 200;
-                this.columnintShipPointId.AllowDBNull = false;
-                this.columnstrItemIdNameDo.ReadOnly = true;
-                this.columnstrItemIdNameDo.MaxLength = 244;
+                this.columnmonPrice.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4492,6 +4532,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intItemID {
+                get {
+                    try {
+                        return ((int)(this[this.tableInventoryFgItemBlance.intItemIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intItemID\' in table \'InventoryFgItemBlance\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableInventoryFgItemBlance.intItemIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnumQuantityNull() {
                 return this.IsNull(this.tableInventoryFgItemBlance.numQuantityColumn);
             }
@@ -4548,6 +4604,18 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetnumPickQtyNull() {
                 this[this.tableInventoryFgItemBlance.numPickQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintItemIDNull() {
+                return this.IsNull(this.tableInventoryFgItemBlance.intItemIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintItemIDNull() {
+                this[this.tableInventoryFgItemBlance.intItemIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -4611,31 +4679,9 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monRemainQty {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monRemainQtyColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monRemainQty\' in table \'qryDOPendingPriceByItem\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableqryDOPendingPriceByItem.monRemainQtyColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal monPrice {
                 get {
-                    try {
-                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monPriceColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monPrice\' in table \'qryDOPendingPriceByItem\' is DBNull.", e);
-                    }
+                    return ((decimal)(this[this.tableqryDOPendingPriceByItem.monPriceColumn]));
                 }
                 set {
                     this[this.tableqryDOPendingPriceByItem.monPriceColumn] = value;
@@ -4644,66 +4690,144 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intShipPointId {
-                get {
-                    return ((int)(this[this.tableqryDOPendingPriceByItem.intShipPointIdColumn]));
-                }
-                set {
-                    this[this.tableqryDOPendingPriceByItem.intShipPointIdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strItemIdNameDo {
+            public decimal monVAT {
                 get {
                     try {
-                        return ((string)(this[this.tableqryDOPendingPriceByItem.strItemIdNameDoColumn]));
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monVATColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strItemIdNameDo\' in table \'qryDOPendingPriceByItem\' is DBNu" +
-                                "ll.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'monVAT\' in table \'qryDOPendingPriceByItem\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableqryDOPendingPriceByItem.strItemIdNameDoColumn] = value;
+                    this[this.tableqryDOPendingPriceByItem.monVATColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonRemainQtyNull() {
-                return this.IsNull(this.tableqryDOPendingPriceByItem.monRemainQtyColumn);
+            public decimal monVatPrice {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monVatPriceColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monVatPrice\' in table \'qryDOPendingPriceByItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableqryDOPendingPriceByItem.monVatPriceColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonRemainQtyNull() {
-                this[this.tableqryDOPendingPriceByItem.monRemainQtyColumn] = global::System.Convert.DBNull;
+            public decimal monCommission {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monCommissionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monCommission\' in table \'qryDOPendingPriceByItem\' is DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableqryDOPendingPriceByItem.monCommissionColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonPriceNull() {
-                return this.IsNull(this.tableqryDOPendingPriceByItem.monPriceColumn);
+            public decimal monConversionRate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monConversionRateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monConversionRate\' in table \'qryDOPendingPriceByItem\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableqryDOPendingPriceByItem.monConversionRateColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonPriceNull() {
-                this[this.tableqryDOPendingPriceByItem.monPriceColumn] = global::System.Convert.DBNull;
+            public decimal monSuppTax {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.monSuppTaxColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monSuppTax\' in table \'qryDOPendingPriceByItem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableqryDOPendingPriceByItem.monSuppTaxColumn] = value;
+                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrItemIdNameDoNull() {
-                return this.IsNull(this.tableqryDOPendingPriceByItem.strItemIdNameDoColumn);
+            public bool IsmonVATNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.monVATColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrItemIdNameDoNull() {
-                this[this.tableqryDOPendingPriceByItem.strItemIdNameDoColumn] = global::System.Convert.DBNull;
+            public void SetmonVATNull() {
+                this[this.tableqryDOPendingPriceByItem.monVATColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonVatPriceNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.monVatPriceColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonVatPriceNull() {
+                this[this.tableqryDOPendingPriceByItem.monVatPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonCommissionNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.monCommissionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonCommissionNull() {
+                this[this.tableqryDOPendingPriceByItem.monCommissionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonConversionRateNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.monConversionRateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonConversionRateNull() {
+                this[this.tableqryDOPendingPriceByItem.monConversionRateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonSuppTaxNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.monSuppTaxColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonSuppTaxNull() {
+                this[this.tableqryDOPendingPriceByItem.monSuppTaxColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5929,24 +6053,21 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"select l.strLocationName,l.intWHID,wh.strWareHoseName,l.intStoreLocationID from ERP_Inventory.dbo.tblWearHouse wh inner join ERP_Inventory.dbo.tblWearHouseStoreLocation l on wh.intWHID=l.intWHID 
-  where wh.intJobStationId=@intjobId and l.intLocationType=1 ";
+            this._commandCollection[0].CommandText = "select l.strLocationName,l.intWHID,wh.strWareHoseName,l.intStoreLocationID from E" +
+                "RP_Inventory.dbo.tblWearHouse wh inner join ERP_Inventory.dbo.tblWearHouseStoreL" +
+                "ocation l on wh.intWHID=l.intWHID \r\n  where wh.intWHID=@intWH and l.intLocationT" +
+                "ype=1 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intjobId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intJobStationId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intWH", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Delivery_TDS.FGLocationDataDataTable fgLOCATIONData(global::System.Nullable<int> intjobId) {
+        public virtual Delivery_TDS.FGLocationDataDataTable GetFGLocation(int intWH) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intjobId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intjobId.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intWH));
             Delivery_TDS.FGLocationDataDataTable dataTable = new Delivery_TDS.FGLocationDataDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -6240,6 +6361,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             tableMapping.ColumnMappings.Add("monRate", "monRate");
             tableMapping.ColumnMappings.Add("monUpdateRate", "monUpdateRate");
             tableMapping.ColumnMappings.Add("numPickQty", "numPickQty");
+            tableMapping.ColumnMappings.Add("intItemID", "intItemID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6256,7 +6378,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @" select top(1) numQuantity,monValue,monRate,monUpdateRate,numPickQty from ERP_Inventory.dbo.tblInventoryRunningBalance inv inner join [ERP_Inventory].dbo.[tblBillOfMaterialItemNsadItemBridge] b on inv.intItemID=b.intItemID
+            this._commandCollection[0].CommandText = @" select top(1) inv.intItemID,numQuantity,monValue,monRate,monUpdateRate,numPickQty from ERP_Inventory.dbo.tblInventoryRunningBalance inv inner join [ERP_Inventory].dbo.[tblBillOfMaterialItemNsadItemBridge] b on inv.intItemID=b.intItemID
  where b.intSADItemID=@Item and inv.intWHID=@wh";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Item", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSADItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -6412,10 +6534,12 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             tableMapping.ColumnMappings.Add("intCustomerId", "intCustomerId");
             tableMapping.ColumnMappings.Add("intProductId", "intProductId");
             tableMapping.ColumnMappings.Add("strProductName", "strProductName");
-            tableMapping.ColumnMappings.Add("monRemainQty", "monRemainQty");
             tableMapping.ColumnMappings.Add("monPrice", "monPrice");
-            tableMapping.ColumnMappings.Add("intShipPointId", "intShipPointId");
-            tableMapping.ColumnMappings.Add("strItemIdNameDo", "strItemIdNameDo");
+            tableMapping.ColumnMappings.Add("monVAT", "monVAT");
+            tableMapping.ColumnMappings.Add("monVatPrice", "monVatPrice");
+            tableMapping.ColumnMappings.Add("monCommission", "monCommission");
+            tableMapping.ColumnMappings.Add("monConversionRate", "monConversionRate");
+            tableMapping.ColumnMappings.Add("monSuppTax", "monSuppTax");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -6432,23 +6556,21 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from erp_sad.dbo.qryDoPendingItem where intProductId=@itemId and intDoId" +
-                "=@intDoId and intShipPointId=@intShipPoint";
+            this._commandCollection[0].CommandText = "select * from qryDoPendingItemDetalis where intDoId=@intDoId and     intProductId" +
+                "=@intProductId \r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDoId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intDoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Delivery_TDS.qryDOPendingPriceByItemDataTable GetDoItemPriceByDo(long itemId, long intDoId, int intShipPoint) {
+        public virtual Delivery_TDS.qryDOPendingPriceByItemDataTable GetDoItemPriceByDo(long intDoId, long intProductId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(itemId));
-            this.Adapter.SelectCommand.Parameters[1].Value = ((long)(intDoId));
-            this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intShipPoint));
+            this.Adapter.SelectCommand.Parameters[0].Value = ((long)(intDoId));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((long)(intProductId));
             Delivery_TDS.qryDOPendingPriceByItemDataTable dataTable = new Delivery_TDS.qryDOPendingPriceByItemDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -6593,6 +6715,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlRow", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@xmlHeader", global::System.Data.SqlDbType.Xml, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@straddres", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6600,7 +6723,7 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Delivery_TDS.SprPickingCreateDataTable PickingInsertData(object xmlRow, object xmlHeader, ref string strCode) {
+        public virtual Delivery_TDS.SprPickingCreateDataTable PickingInsertData(object xmlRow, object xmlHeader, string straddres, ref string strCode) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((xmlRow == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -6614,20 +6737,26 @@ strShipToPartyNameId  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCus
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((object)(xmlHeader));
             }
-            if ((strCode == null)) {
+            if ((straddres == null)) {
                 this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strCode));
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(straddres));
+            }
+            if ((strCode == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strCode));
             }
             Delivery_TDS.SprPickingCreateDataTable dataTable = new Delivery_TDS.SprPickingCreateDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[3].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[3].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[4].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[4].Value.GetType() == typeof(global::System.DBNull)))) {
                 strCode = null;
             }
             else {
-                strCode = ((string)(this.Adapter.SelectCommand.Parameters[3].Value));
+                strCode = ((string)(this.Adapter.SelectCommand.Parameters[4].Value));
             }
             return dataTable;
         }

@@ -13,5 +13,6 @@ namespace UnitTest.Inventory
         //    bool result = _bll.StoreIssue(whId,itemId,itemQuantity,itemValue,locationId,enroll);
         //    Assert.That(result);
         //}
+
     }
 }

@@ -37,12 +37,12 @@ namespace SAD_BLL.Sales
 
         }
 
-        public DataTable FgWarehouseLocation(int jobstation)
+        public DataTable FgWarehouseLocation(int WH)
         {
             try
             {
                 FGLocationDataTableAdapter adp = new FGLocationDataTableAdapter();
-                return adp.fgLOCATIONData(jobstation);
+                return adp.GetFGLocation(WH);
             }
             catch (Exception ex)
             {
@@ -50,36 +50,36 @@ namespace SAD_BLL.Sales
             }
 
         }
-        public DataTable ShipPointByWH(int wh)
+        public DataTable WareHouseByShipPoint(int intShipPointId)
         {
             try
             {
                 ShipPointWHTableAdapter adp = new ShipPointWHTableAdapter();
-                return adp.GetWhByShipPoint(wh);
+                return adp.GetWhByShipPoint(intShipPointId);
             }
             catch (Exception ex)
             {
                 throw ex;
             } 
         }
-        public DataTable InvenotoryStockByItem(int FgId,int wh)
+        public DataTable InvenotoryStockByItem(string FgId,string wh)
         { 
             try
             {
                 InventoryFgItemBlanceTableAdapter adp = new InventoryFgItemBlanceTableAdapter();
-                return adp.GetInventoryItemBlance(FgId, wh);
+                return adp.GetInventoryItemBlance(int.Parse(FgId), int.Parse(wh));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public DataTable DeliveryOrderItemPriceByDo(int item, int shipPoint, int doId)
+        public DataTable DeliveryOrderItemPriceByDo(int item, int doId)
         {
             try
             {
                 qryDOPendingPriceByItemTableAdapter adp = new qryDOPendingPriceByItemTableAdapter();
-                return adp.GetDoItemPriceByDo(item, shipPoint, doId);
+                return adp.GetDoItemPriceByDo(doId,item );
             }
             catch (Exception ex)
             {
@@ -104,13 +104,16 @@ namespace SAD_BLL.Sales
            
         }
 
-        public void PickingCreate(string xmlHeader, string xmlRow, ref string orderId, ref string strCode)
+        public string PickingCreate(string xmlHeader, string xmlRow,string customerAddress, ref string orderId, ref string strCode)
         {
+            string msg = "";
             try
             {
                
                 SprPickingCreateTableAdapter adp = new SprPickingCreateTableAdapter();
-                adp.PickingInsertData( xmlRow, xmlHeader, ref strCode);
+                adp.PickingInsertData( xmlRow, xmlHeader,customerAddress, ref strCode);
+                msg = "Submitted Successfully";
+                return msg;
                 
             }
             catch (Exception ex)
