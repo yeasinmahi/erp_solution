@@ -362,7 +362,7 @@ namespace BLL.Inventory
             string storeIssueNarration, string meterialNarration, int inventoryStatusId, int enroll)
         {
             if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
-                storeIssueNarration, meterialNarration, enroll, inventoryStatusId))
+                storeIssueNarration, meterialNarration, inventoryStatusId, enroll))
             {
                 //TODO: Success
                 _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true,inventoryStatusId);
