@@ -20,6 +20,9 @@
     <script src="../../../../Content/JS/JQUERY/GridviewScroll.min.js"></script>
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/JSSettlement.js"></script>
+    <script src="../../Content/JS/datepickr.min.js"></script>
+
+
     <script type="text/javascript">
         function ShowPopUpC(url) {
             var rand_no = Math.floor(11 * Math.random());
@@ -106,7 +109,7 @@
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
     </marquee></div></asp:Panel>
                 
-     <asp:HiddenField ID="hdnShipPointid" runat="server" />   
+     <asp:HiddenField ID="hdnShipPointid" runat="server" /><asp:HiddenField ID="hdnconfirm" runat="server" />  
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
@@ -176,9 +179,8 @@
                 <td align="right">Report Type </td>
                 <td colspan="3">
                     <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
-                    <asp:ListItem Selected="True" Value="1"> Full </asp:ListItem>
-                    <asp:ListItem Value="2"> Partial</asp:ListItem>
-                    <asp:ListItem Value="3"> None</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="1"> Delivered </asp:ListItem>
+                    <asp:ListItem Value="2"> Undelivered</asp:ListItem>
                     </asp:RadioButtonList>
                 </td>
             </tr>                
@@ -220,13 +222,17 @@
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
     <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete" runat="server" Text="Approve" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    <asp:Button ID="Complete1" runat="server" Text="DO Edit" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="DO_Edit_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
     </asp:TemplateField> 
 
     <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete1" runat="server" Text="DO Edit" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="DO_Edit_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    <asp:Button ID="Complete" runat="server" Text="Approve" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClientClick="ConfirmAll()" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
     </asp:TemplateField> 
-        
+
+    <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete2" runat="server" Text="Cancel" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClientClick="ConfirmAll()" OnClick="DO_Cancel_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField> 
+                
     </Columns>
     <FooterStyle BackColor="#CCCCCC" />
     <HeaderStyle Font-Bold="True" ForeColor="White" />

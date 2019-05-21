@@ -100,6 +100,20 @@ namespace UI.SAD.Delivery
 
         }
 
+        protected void Edit_Quotation_Click(object sender, EventArgs e)
+        {
+            char[] delimiterChars = { ',' };
+            string temp = ((Button)sender).CommandArgument.ToString();
+            string[] searchKey = temp.Split(delimiterChars);
+            string intCusID = searchKey[0].ToString();
+            string intid = searchKey[1].ToString();
+            string strReportType = "Edit_Quotation";
+            string ShipPointID = ddlShip.SelectedValue;
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Edit_Quotation('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
+
+        }
+
 
         protected void dgvCustomerVSPendingQnt_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
