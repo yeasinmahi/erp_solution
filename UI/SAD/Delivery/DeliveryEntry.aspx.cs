@@ -76,39 +76,25 @@ namespace UI.SAD.Delivery
             try
             {
                 Session[SessionParams.SalesProcess] = "Picking";
-                Session["DoId"] = "2590152";
-                if (Request.QueryString["PopupType"] == "Picking")
-                {
-                    Session[SessionParams.SalesProcess] = "Picking";
-                     
-                }
+                Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
+                Session["DoId"] = Request.QueryString["DoId"];
+                Session["CustomerId"] = Request.QueryString["CustomerId"];
+                Session["ShipId"] = Request.QueryString["ShipId"];
+                Session["PickingId"] = Request.QueryString["PickingId"];
+                Session["ReportType"] = Request.QueryString["ReportType"];
+
                 
-                else if (Request.QueryString["PopupType"] == "Delivery")
-                {
-                    Session[SessionParams.SalesProcess] = "Delivery";
-                }
-                else
+                if (Request.QueryString["PopupType"] == null)
                 {
                     Session[SessionParams.SalesProcess] = "DO";
                 }
-
-
-                if ((Request.QueryString["ReportType"]) == "CustomerBase")
-                {
-                    Session["CustomerId"] = "351197";
-                    Session["ReportType"] = "CustomerBase";
-                    Session["DoId"] = "0";
-                }
-                else if ((Request.QueryString["ReportType"]) == "DoBase")
-                {
-                    Session["DoId"] = "2590152";
-                    Session["ReportType"] = "DoBase";
-                    Session["CustomerId"] = "0";
-                }
                 else
                 {
-
+                    PickingPageloadDataBind(55, 55);
                 }
+
+              
+                
 
             }
             catch { }
@@ -124,7 +110,10 @@ namespace UI.SAD.Delivery
             {
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(id, unit);
             }
-
+            if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking_Edit")
+            {
+                PickingGridDataBind();
+            }
             if (dt.Rows.Count > 0)
             {
                 ddlUnit.SelectedItem.Text = dt.Rows[0]["strUnit"].ToString();
@@ -166,6 +155,11 @@ namespace UI.SAD.Delivery
             }
 
             
+        }
+
+        private void PickingGridDataBind()
+        {
+            throw new NotImplementedException();
         }
 
         private void GetURLMenu()
@@ -736,6 +730,8 @@ namespace UI.SAD.Delivery
                         string location = "0";
                         string intInvItemId = hdnInvItemId.Value;
                         string editStatus ="0";
+                        string vehicleProvider = rdoVehicleCompany.SelectedItem.Text;
+                        string vehicleProviderId = rdoVehicleCompany.SelectedValue;
                         try { location = ddlLocation.SelectedItem.Value; }
                         catch { location = "0"; }
                          
@@ -773,8 +769,8 @@ namespace UI.SAD.Delivery
                          
                         RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                           naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
-                          priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem, promPrices,
-                          promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location, intInvItemId, editStatus);
+                          priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
+                          promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, vehicleProvider, vehicleProviderId, location, intInvItemId, editStatus);
 
                         txtQun.Text = "";
                         hdnProduct.Value = "";
@@ -805,8 +801,9 @@ namespace UI.SAD.Delivery
         
         private void RowLavelXmlCreate(string productId, string productName, string quantity, string rate, string uomId,
             string uomName, string naration, string currency, string commision, string commisionTotal, string discount,
-            string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice, string narr, string promtionItemId,
-            string promtionItem, string promPrices,string promtionUom,string coaId,string coaName, string promtionItemCoaId, string promtionQnty, string promtionItemUom,string location ,string intInvItemId,string editStatus)
+            string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice,  string promtionItemId,
+            string promtionItem, string promPrices,string promtionUom,string coaId,string coaName, string promtionItemCoaId, string promtionQnty, string promtionItemUom,
+            string vehicleProvider, string vehicleProviderId, string location ,string intInvItemId,string editStatus)
         {
 
 
@@ -828,7 +825,6 @@ namespace UI.SAD.Delivery
                 supplierTax,
                 vat,
                 vatPrice,
-                narr,
                 promtionItemId,
                 promtionItem,
                 promPrices,
@@ -838,6 +834,8 @@ namespace UI.SAD.Delivery
                 promtionItemCoaId,
                 promtionQnty,
                 promtionItemUom,
+                vehicleProvider,
+                vehicleProviderId,
                 location,
                 intInvItemId,
                 editStatus
