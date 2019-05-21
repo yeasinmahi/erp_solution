@@ -20,6 +20,9 @@
     <script src="../../../../Content/JS/JQUERY/GridviewScroll.min.js"></script>
     <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
     <script src="../../Content/JS/JSSettlement.js"></script>
+    <script src="../../Content/JS/datepickr.min.js"></script>
+
+
     <script type="text/javascript">
         function ShowPopUpC(url) {
             var rand_no = Math.floor(11 * Math.random());
@@ -41,15 +44,40 @@
         }
     </script>
      <script type="text/javascript">
-         function Registration(url) {
-             window.open('QuatationToDOCreate.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
-                  }
+        function DO_Edit(intid, intCusID, strReportType, ShipPointID) {
+            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+        }
 </script>
-         <script type="text/javascript">
-         function EditPageQuotation(url) {
-             window.open('QuotationEditNSave.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
-                  }
+
+<script language="javascript" type="text/javascript">
+   
+    function Search_dgvservice(strKey, strGV) {
+
+        var strData = strKey.value.toLowerCase().split(" ");
+        var tblData = document.getElementById(strGV);
+        var rowData;
+        for (var i = 1; i < tblData.rows.length; i++) {
+            rowData = tblData.rows[i].innerHTML;
+            var styleDisplay = 'none';
+            for (var j = 0; j < strData.length; j++) {
+                if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                    styleDisplay = '';
+                else {
+                    styleDisplay = 'none';
+                    break;
+                }
+            }
+            tblData.rows[i].style.display = styleDisplay;
+        }
+
+    }
+
 </script>
+<style>
+.header-ta{
+    z-index:-1;
+}
+</style>
 
 </head>
 <body>
@@ -81,7 +109,7 @@
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
     </marquee></div></asp:Panel>
                 
-        
+     <asp:HiddenField ID="hdnShipPointid" runat="server" /><asp:HiddenField ID="hdnconfirm" runat="server" />  
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
@@ -95,7 +123,7 @@
                 </td>
                 <td style="text-align:right;">Ship Point</td>
                 <td>
-                    <asp:DropDownList ID="ddlShip" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource4" DataTextField="strName" DataValueField="intShipPointId"></asp:DropDownList>
+                    <asp:DropDownList ID="ddlShip" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource4" DataTextField="strName" DataValueField="intShipPointId" OnSelectedIndexChanged="ddlShip_SelectedIndexChanged"></asp:DropDownList>
                     <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetShipPoint" TypeName="SAD_BLL.Global.ShipPoint" OldValuesParameterFormatString="original_{0}">
                     <SelectParameters><asp:SessionParameter Name="userId" SessionField="sesUserID" Type="String" /><asp:ControlParameter ControlID="ddlUnit" Name="unitId" PropertyName="SelectedValue" Type="String" />
                     </SelectParameters></asp:ObjectDataSource>
@@ -129,20 +157,21 @@
                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy" PopupButtonID="imgCal_2"
                 ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                 <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
+                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
             </td>
-            <td align="right">Quotation No.</td>
+            <td align="right"></td>
             <td>
-                <asp:TextBox ID="txtCode" runat="server" Width="160px"></asp:TextBox>                        
+                <asp:TextBox ID="txtCode" runat="server" Width="160px" Visible="false"></asp:TextBox>                        
             </td>   
-            <td align="right">Customer</td>
+            <td align="right"></td>
             <td>
                 <asp:HiddenField ID="hdnCustomer" runat="server" />
-                <asp:TextBox ID="txtCus" runat="server" AutoCompleteType="Search" Width="255px" OnTextChanged="txtCus_TextChanged" AutoPostBack="true"></asp:TextBox>
+                <asp:TextBox ID="txtCus" runat="server" AutoCompleteType="Search" Width="255px" OnTextChanged="txtCus_TextChanged" AutoPostBack="true" Visible="false"></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCus"
                 ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender> 
-                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
+                
             </td>
                                      
             </tr>
@@ -150,9 +179,8 @@
                 <td align="right">Report Type </td>
                 <td colspan="3">
                     <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
-                    <asp:ListItem Selected="True" Value="1"> Full </asp:ListItem>
-                    <asp:ListItem Value="2"> Partial</asp:ListItem>
-                    <asp:ListItem Value="3"> None</asp:ListItem>
+                    <asp:ListItem Selected="True" Value="1"> Delivered </asp:ListItem>
+                    <asp:ListItem Value="2"> Undelivered</asp:ListItem>
                     </asp:RadioButtonList>
                 </td>
             </tr>                
@@ -164,7 +192,7 @@
     <div style="height: 170px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"></cc1:AlwaysVisibleControlExtender>
     <asp:HiddenField ID="hdnFrom" runat="server" /><asp:HiddenField ID="hdnTo" runat="server" />
-    <asp:GridView ID="dgvViewOrder" runat="server" PageSize="11125" OnPageIndexChanging="dgvViewOrder_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" DataSourceID="OdsSalesOrderView">
+    <asp:GridView ID="dgvViewOrder" runat="server" PageSize="11125" OnPageIndexChanging="dgvViewOrder_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" DataSourceID="odsSOView">
                           
     <Columns>
     <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
@@ -172,11 +200,20 @@
     <asp:BoundField DataField="intId" HeaderText="id" SortExpression="intId" ItemStyle-HorizontalAlign="Center" Visible="false" >
     <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
 
-    <asp:BoundField DataField="strCode" HeaderText=" Number" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" >
-    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-    
+    <%--<asp:BoundField DataField="strCode" HeaderText=" Number" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" >
+    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
+
+    <asp:TemplateField HeaderText="Number" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strTaskTitle" HeaderStyle-CssClass="header-ta" HeaderStyle-Height="30px" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
+    <HeaderTemplate>
+    <asp:Label ID="lblNumberHeader" runat="server" CssClass="lbl" Text="Number" Font-Bold="true"></asp:Label>
+    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200" TextMode="MultiLine"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvViewOrder')"></asp:TextBox></HeaderTemplate>
+    <ItemTemplate><asp:Label ID="lblNumber" runat="server" Width="100px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strCode")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+            
     <asp:BoundField DataField="dteDate" HeaderText="Quation Date" SortExpression="dteDate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField> 
+
+    <asp:BoundField DataField="intCusID" HeaderText="CustID" SortExpression="intCusID" ItemStyle-HorizontalAlign="Center" Visible="false" >
+    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
 
     <asp:BoundField DataField="strName" HeaderText="Sold To Party" SortExpression="strCustName" ItemStyle-HorizontalAlign="left" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField>    
@@ -184,13 +221,21 @@
     <asp:BoundField DataField="monTotalAmount" HeaderText="Order Total" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
-    <asp:TemplateField HeaderText="Delivery Creation"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete" runat="server" Text="Create Delivery" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Complete_Click"  CommandArgument='<%# Eval("intId")%>' /></ItemTemplate>
+    <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete1" runat="server" Text="DO Edit" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="DO_Edit_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
     </asp:TemplateField> 
-        
+
+    <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete" runat="server" Text="Approve" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClientClick="ConfirmAll()" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField> 
+
+    <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete2" runat="server" Text="Cancel" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClientClick="ConfirmAll()" OnClick="DO_Cancel_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField> 
+                
     </Columns>
     <FooterStyle BackColor="#CCCCCC" />
-    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle Font-Bold="True" ForeColor="White" />
     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
     <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
     <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -200,7 +245,7 @@
 
     </asp:GridView>
         
-    <asp:ObjectDataSource ID="odsSalesOrderView" runat="server" SelectMethod="GetSalesOrderView" TypeName="SAD_BLL.Sales.SalesOrderView">
+    <asp:ObjectDataSource ID="odsSOView" runat="server" SelectMethod="GetSalesOrderView" TypeName="SAD_BLL.Sales.SalesOrderView">
     <SelectParameters>
     <asp:ControlParameter ControlID="hdnFrom" Name="fromDate" PropertyName="Value" Type="DateTime" />
     <asp:ControlParameter ControlID="hdnTo" Name="toDate" PropertyName="Value" Type="DateTime" />
@@ -209,7 +254,7 @@
     <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" />
     <asp:ControlParameter ControlID="hdnCustomer" Name="customerId" PropertyName="Value" Type="String" />
     <asp:ControlParameter ControlID="ddlCusType" Name="customerType" PropertyName="SelectedValue" Type="String" />
-    <asp:ControlParameter ControlID="rdoComplete" Name="intCompleted" PropertyName="SelectedValue" Type="Int32" />
+    <asp:ControlParameter ControlID="rdoComplete" Name="intReportType" PropertyName="SelectedValue" Type="Int32" />
     <asp:ControlParameter ControlID="ddlShip" Name="shippingPoint" PropertyName="SelectedValue" Type="String" />
     <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
     </SelectParameters></asp:ObjectDataSource>

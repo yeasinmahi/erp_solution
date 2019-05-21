@@ -1,5 +1,4 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ViewPicking.aspx.cs" Inherits="UI.SAD.Delivery.ViewPicking" %>
-
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html >
 
@@ -42,15 +41,44 @@
         }
     </script>
      <script type="text/javascript">
-         function Registration(url) {
-             window.open('QuatationToDOCreate.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
-                  }
+         function Delivery(intid, intCusID, strReportType, ShipPointID) {
+            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         }
+
+         function Picking_Edit(intid, intCusID, strReportType, ShipPointID) {
+            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+        }
 </script>
-         <script type="text/javascript">
-         function EditPageQuotation(url) {
-             window.open('QuotationEditNSave.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
-                  }
+
+    <script language="javascript" type="text/javascript">
+   
+    function Search_dgvservice(strKey, strGV) {
+
+        var strData = strKey.value.toLowerCase().split(" ");
+        var tblData = document.getElementById(strGV);
+        var rowData;
+        for (var i = 1; i < tblData.rows.length; i++) {
+            rowData = tblData.rows[i].innerHTML;
+            var styleDisplay = 'none';
+            for (var j = 0; j < strData.length; j++) {
+                if (rowData.toLowerCase().indexOf(strData[j]) >= 0)
+                    styleDisplay = '';
+                else {
+                    styleDisplay = 'none';
+                    break;
+                }
+            }
+            tblData.rows[i].style.display = styleDisplay;
+        }
+
+    }
+
 </script>
+<style>
+    .header-ta{
+        z-index:-1;
+    }
+</style>
 
 </head>
 <body>
@@ -130,20 +158,21 @@
                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy" PopupButtonID="imgCal_2"
                 ID="CalendarExtender2" runat="server" EnableViewState="true"></cc1:CalendarExtender>
                 <img id="imgCal_2" src="../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
+                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
             </td>
-            <td align="right">Quotation No.</td>
+            <td align="right"></td>
             <td>
-                <asp:TextBox ID="txtCode" runat="server" Width="160px"></asp:TextBox>                        
+                <asp:TextBox ID="txtCode" runat="server" Width="160px" Visible="false"></asp:TextBox>                        
             </td>   
-            <td align="right">Customer</td>
+            <td align="right"></td>
             <td>
                 <asp:HiddenField ID="hdnCustomer" runat="server" />
-                <asp:TextBox ID="txtCus" runat="server" AutoCompleteType="Search" Width="255px" OnTextChanged="txtCus_TextChanged" AutoPostBack="true"></asp:TextBox>
+                <asp:TextBox ID="txtCus" runat="server" AutoCompleteType="Search" Width="255px" OnTextChanged="txtCus_TextChanged" AutoPostBack="true" Visible="false"></asp:TextBox>
                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCus"
                 ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
                 CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                 CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"></cc1:AutoCompleteExtender> 
-                <asp:Button ID="btnGo" runat="server" Text="Go" OnClick="btnGo_Click" Style="height: 26px" />
+                
             </td>
                                      
             </tr>
@@ -151,8 +180,8 @@
                 <td align="right">Report Type </td>
                 <td colspan="3">
                     <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
-                    <asp:ListItem Value="true"> Confirmed </asp:ListItem>
-                    <asp:ListItem Selected="True" Value="false"> Unconfirmed</asp:ListItem>
+                    <asp:ListItem Value="true"> Delivered </asp:ListItem>
+                    <asp:ListItem Selected="True" Value="false"> Undelivered</asp:ListItem>
                     </asp:RadioButtonList>
                 </td>
             </tr>                
@@ -164,39 +193,47 @@
     <div style="height: 170px;"></div>
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"></cc1:AlwaysVisibleControlExtender>
     <asp:HiddenField ID="hdnFrom" runat="server" /><asp:HiddenField ID="hdnTo" runat="server" />
-    <%--<asp:GridView ID="dgvCustomerVSPendingQnt" runat="server" PageSize="11125" OnPageIndexChanging="dgvCustomerVSPendingQnt_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" DataSourceID="odsSalesQTN">
+    <asp:GridView ID="dgvViewPicking" runat="server" PageSize="11125" OnPageIndexChanging="dgvViewPicking_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" DataSourceID="odsViewPicking">
                           
     <Columns>
     <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
     
-    <asp:BoundField DataField="strCode" HeaderText=" Number" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" >
-    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-    
-    <asp:BoundField DataField="dteDate" HeaderText="Quation Date" SortExpression="dteDate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
-    <ItemStyle HorizontalAlign="left" /></asp:BoundField> 
-
-    <asp:BoundField DataField="intCustomerId" HeaderText="CustomerId" SortExpression="intCustomerId" ItemStyle-HorizontalAlign="left" Visible="false" >
-    <ItemStyle HorizontalAlign="left" /></asp:BoundField>
-
-    <asp:BoundField DataField="strName" HeaderText="Sold To Party" SortExpression="strCustName" ItemStyle-HorizontalAlign="left" >
-    <ItemStyle HorizontalAlign="left" /></asp:BoundField>    
-
-    <asp:BoundField DataField="numTotalPice" HeaderText="Quatation Qnt" SortExpression="numPieces" ItemStyle-HorizontalAlign="Center" Visible="false" >
-    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Quatition Total" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
-    <ItemStyle HorizontalAlign="right" /></asp:BoundField>
-
     <asp:BoundField DataField="intid" HeaderText="id" SortExpression="intid" ItemStyle-HorizontalAlign="Center" Visible="false" >
     <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
 
-    <asp:TemplateField HeaderText="D.O Creation"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete" runat="server" Text="Create D.O" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCustomerId")+","+Eval("intid")%>' /></ItemTemplate>
-    </asp:TemplateField> 
+    <%--<asp:BoundField DataField="strLoadingSlipno" HeaderText=" Number" SortExpression="strLoadingSlipno" ItemStyle-HorizontalAlign="Center" >
+    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
+
+    <asp:TemplateField HeaderText="Number" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strTaskTitle" HeaderStyle-Height="30px" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
+    <HeaderTemplate>
+    <asp:Label ID="lblNumberHeader" runat="server" CssClass="lbl" Text="Number"></asp:Label>
+    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200" TextMode="MultiLine"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvViewPicking')"></asp:TextBox></HeaderTemplate>
+    <ItemTemplate><asp:Label ID="lblNumber" runat="server" Width="100px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strLoadingSlipno")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
+            
+    
+    <asp:BoundField DataField="dtedate" HeaderText="Quation Date" SortExpression="dtedate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
+    <ItemStyle HorizontalAlign="left" /></asp:BoundField> 
+
+    <asp:BoundField DataField="intCusID" HeaderText="CustID" SortExpression="intCusID" ItemStyle-HorizontalAlign="Center" Visible="false" >
+    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+    <asp:BoundField DataField="strName" HeaderText="Sold To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
+    <ItemStyle HorizontalAlign="left" /></asp:BoundField>    
+
+    <asp:BoundField DataField="numTotalQty" HeaderText="Order Total" SortExpression="numTotalQty" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
+    <ItemStyle HorizontalAlign="right" /></asp:BoundField>
+        
+    <asp:TemplateField HeaderText="Create Delivery"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete" runat="server" Text="Create Delivery" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Create_Delivery_Click"  CommandArgument='<%# Eval("intId")%>' /></ItemTemplate>
+    </asp:TemplateField>
+        
+    <asp:TemplateField HeaderText="Picking Edit"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete1" runat="server" Text="Picking_Edit" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Picking_Edit_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField>
         
     </Columns>
     <FooterStyle BackColor="#CCCCCC" />
-    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+    <HeaderStyle Font-Bold="True" ForeColor="White" />
     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
     <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
     <SortedAscendingCellStyle BackColor="#F1F1F1" />
@@ -204,8 +241,9 @@
     <SortedDescendingCellStyle BackColor="#CAC9C9" />
     <SortedDescendingHeaderStyle BackColor="#383838" />
 
-    </asp:GridView>--%>
-    <asp:ObjectDataSource ID="odsSalesQTN" runat="server" SelectMethod="GetSalesQuation" TypeName="SAD_BLL.Sales.SalesOrderView">
+    </asp:GridView>
+        
+    <asp:ObjectDataSource ID="odsViewPicking" runat="server" SelectMethod="GetViewPickingData" TypeName="SAD_BLL.Sales.SalesOrderView">
     <SelectParameters>
     <asp:ControlParameter ControlID="hdnFrom" Name="fromDate" PropertyName="Value" Type="DateTime" />
     <asp:ControlParameter ControlID="hdnTo" Name="toDate" PropertyName="Value" Type="DateTime" />

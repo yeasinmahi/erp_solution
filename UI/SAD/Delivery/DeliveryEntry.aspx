@@ -174,7 +174,7 @@
                     <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInventoryStock" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnXFactoryChr" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
@@ -280,7 +280,7 @@
                                 <asp:HiddenField ID="hdnShipToPartyText" runat="server" />
                                 <asp:TextBox ID="txtShipToParty" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtShipToParty_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtShipToParty" OnClientItemSelected="autoCompleteEx_ItemSelected"
-                                    ServiceMethod="GetDisPointList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>

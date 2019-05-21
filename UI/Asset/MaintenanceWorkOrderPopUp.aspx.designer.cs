@@ -274,6 +274,24 @@ namespace UI.Asset {
         protected global::System.Web.UI.WebControls.DropDownList DdlCostCenter;
         
         /// <summary>
+        /// Label9 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label9;
+        
+        /// <summary>
+        /// ddlLossReason control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLossReason;
+        
+        /// <summary>
         /// TxtAssign control.
         /// </summary>
         /// <remarks>

@@ -87,7 +87,7 @@ namespace SAD_BLL.Sales
         }
 
         public SalesOrderViewTDS.SprSalesOrderViewDataTable GetSalesOrderView(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
-            , string customerId, string customerType, int intCompleted, string shippingPoint, string salesOffice)
+            , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
         {
             SprSalesOrderViewTableAdapter adp = new SprSalesOrderViewTableAdapter();
 
@@ -97,9 +97,11 @@ namespace SAD_BLL.Sales
                 cId = int.Parse(customerId);
             }
 
+            cId = 0;
+
             if ("" + code == "")
             {
-                code = "";
+                code = null;
             }
 
             if (fromDate == null)
@@ -113,8 +115,106 @@ namespace SAD_BLL.Sales
             }
 
             if ("" + customerType == "") return null;
-            return adp.GetSalesOrderViewData(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), intCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+            return adp.GetSalesOrderViewData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
 
+        }
+
+        public SalesOrderViewTDS.SprSalesOrderViewForPickingDataTable GetSalesOrderViewForPicking(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
+            , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
+        {
+            SprSalesOrderViewForPickingTableAdapter adp = new SprSalesOrderViewForPickingTableAdapter();
+
+            int? cId = null;
+            if ("" + customerId != "")
+            {
+                cId = int.Parse(customerId);
+            }
+
+            cId = 0;
+
+            if ("" + code == "")
+            {
+                code = null;
+            }
+
+            if (fromDate == null)
+            {
+                fromDate = DateTime.Now.AddDays(-7);
+            }
+
+            if (toDate == null)
+            {
+                toDate = DateTime.Now.AddDays(7);
+            }
+
+            if ("" + customerType == "") return null;
+            return adp.GetSalesOrderViewForPickingData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+
+        }
+
+        
+
+        public SalesOrderViewTDS.SprPickingViewDataTable GetViewPickingData(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
+           , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
+        {
+            SprPickingViewTableAdapter adp = new SprPickingViewTableAdapter();
+
+            int? cId = null;
+            if ("" + customerId != "")
+            {
+                cId = int.Parse(customerId);
+            }
+
+            if ("" + code == "")
+            {
+                code = null;
+            }
+
+            if (fromDate == null)
+            {
+                fromDate = DateTime.Now.AddDays(-7);
+            }
+
+            if (toDate == null)
+            {
+                toDate = DateTime.Now.AddDays(7);
+            }
+
+            if ("" + customerType == "") return null;
+            return adp.GetViewPickingData(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), isCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+
+        }
+
+        
+
+        public string DOApprove(int intInsertBy, int intDOId)
+        {
+            string msg = "";
+          
+            try
+            {
+                TblSalesOrderTableAdapter adpdo = new TblSalesOrderTableAdapter();
+                adpdo.ApproveDO(intInsertBy, intDOId);
+                msg = "Successfully";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+        }
+
+        public string DOCancel(int intInsertBy, int intDOId)
+        {
+            string msg = "";
+
+            try
+            {
+                TblSalesOrder_DOCancelTableAdapter adpdo = new TblSalesOrder_DOCancelTableAdapter();
+                adpdo.DOCancel(intInsertBy, intDOId);
+                msg = "Successfully";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
         }
 
         public DataTable getQuationDet(int quatationid)
