@@ -178,8 +178,8 @@ namespace UI.SCM
                         
                         if (objects.Count > 0)
                         {
-                            StoreIssueBll _bll = new StoreIssueBll();
-                            _bll.StoreIssue(storeIssue, storeIssueByItems);
+                            //StoreIssueBll _bll = new StoreIssueBll();
+                            //_bll.StoreIssue(storeIssue, storeIssueByItems);
                             xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
                             string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);
