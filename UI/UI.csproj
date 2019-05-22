@@ -1492,7 +1492,7 @@
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
-    <Content Include="SAD\Sales\Sales_Info_Report.aspx" />
+    <Content Include="SAD\Sales\Report\Sales_Info_Report.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
@@ -7653,11 +7653,11 @@
     <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
       <DependentUpon>SalesPosting.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\Sales\Sales_Info_Report.aspx.cs">
+    <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.cs">
       <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SAD\Sales\Sales_Info_Report.aspx.designer.cs">
+    <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.designer.cs">
       <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\UnitTest.aspx.cs">
