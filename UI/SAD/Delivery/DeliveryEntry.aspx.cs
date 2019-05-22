@@ -45,6 +45,7 @@ namespace UI.SAD.Delivery
 
         private string message;
         private string _filePathForXml, _xmlString = "", xmlHeaderString = "";
+        private bool _isProcess = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             //_filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
@@ -1045,92 +1046,94 @@ namespace UI.SAD.Delivery
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+            if (_isProcess) return;
+            _isProcess = true;
+              
             try
-            {
-                string unit = ddlUnit.SelectedItem.Value;
-                string shipPoint = ddlShipPoint.SelectedItem.Value;
-                string salesOffice = ddlSalesOffice.SelectedItem.Value;
-                string customerType = ddlCustomerType.SelectedItem.Value;
-                string date = txtDate.Text;
-                string dueDate = txtDueDate.Text;
-                string customerId = hdnCustomer.Value;
-                string shipPartyId = hdnShipToPartyId.Value;
-                string salesType = rdoSalesType.SelectedItem.Value;
-                string reffNo = txtReffNo.Text;
-                string customerAddress = txtCustomerAddress.Text;
-                string shipToPartyAddress = txtShipToPartyAddress.Text;
-                string currency = ddlCurrency.SelectedItem.Value;
-                string conversionRate = txtConvRate.Text;
-                string vehicleCompany = "", vehicleId = "", vehicleText = "", driver = "", driverContact = "", supplierId = "",supplierText="";
-                string rowXml = XmlParser.GetXml(GetXmlFilePath());
-                string orderID = "", Code = "", msg = "";
-                if (hdnConfirm.Value=="1")
                 {
-                    if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
+
+                    string unit = ddlUnit.SelectedItem.Value;
+                    string shipPoint = ddlShipPoint.SelectedItem.Value;
+                    string salesOffice = ddlSalesOffice.SelectedItem.Value;
+                    string customerType = ddlCustomerType.SelectedItem.Value;
+                    string date = txtDate.Text;
+                    string dueDate = txtDueDate.Text;
+                    string customerId = hdnCustomer.Value;
+                    string shipPartyId = hdnShipToPartyId.Value;
+                    string salesType = rdoSalesType.SelectedItem.Value;
+                    string reffNo = txtReffNo.Text;
+                    string customerAddress = txtCustomerAddress.Text;
+                    string shipToPartyAddress = txtShipToPartyAddress.Text;
+                    string currency = ddlCurrency.SelectedItem.Value;
+                    string conversionRate = txtConvRate.Text;
+                    string vehicleCompany = "", vehicleId = "", vehicleText = "", driver = "", driverContact = "", supplierId = "", supplierText = "";
+                    string rowXml = XmlParser.GetXml(GetXmlFilePath());
+                    string orderID = "", Code = "", msg = "";
+                    if (hdnConfirm.Value == "1")
                     {
-                        BindDOHeaderXML(Enroll.ToString(),unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, hdnnarration.Value, currency, conversionRate);
-                        msg = deliveryBLL.DeliveryOrderCreate(xmlHeaderString, rowXml, ref orderID, ref Code);
-                    }
-                    else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
-                    {
-                        if (rdoNeedVehicle.SelectedItem.Text.ToString() == "Yes")
+                        if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
                         {
-                            driver = txtDriver.Text;
-                            driverContact = txtDriverContact.Text;
-                            vehicleCompany = rdoVehicleCompany.SelectedItem.Text;
-
-                            if (txtVehicle.Text.Trim() != "")
+                            BindDOHeaderXML(Enroll.ToString(), unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, hdnnarration.Value, currency, conversionRate);
+                            msg = deliveryBLL.DeliveryOrderCreate(xmlHeaderString, rowXml, ref orderID, ref Code);
+                        }
+                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
+                        {
+                            if (rdoNeedVehicle.SelectedItem.Text.ToString() == "Yes")
                             {
-                                char[] ch = { '[', ']' };
-                                string[] temp = txtVehicle.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                                vehicleId = temp[temp.Length - 1];
-                                vehicleText = temp[0];
-                            }
+                                driver = txtDriver.Text;
+                                driverContact = txtDriverContact.Text;
+                                vehicleCompany = rdoVehicleCompany.SelectedItem.Text;
 
-                            if (rdoVehicleCompany.SelectedItem.Text.ToString() == "Rent")
-                            {
-
-                                if (txtSupplier.Text.Trim() != "")
+                                if (txtVehicle.Text.Trim() != "")
                                 {
                                     char[] ch = { '[', ']' };
-                                    string[] temp = txtSupplier.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                                    supplierId = temp[temp.Length - 1];
-                                    supplierText = temp[0];
+                                    string[] temp = txtVehicle.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                                    vehicleId = temp[temp.Length - 1];
+                                    vehicleText = temp[0];
+                                }
+
+                                if (rdoVehicleCompany.SelectedItem.Text.ToString() == "Rent")
+                                {
+
+                                    if (txtSupplier.Text.Trim() != "")
+                                    {
+                                        char[] ch = { '[', ']' };
+                                        string[] temp = txtSupplier.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
+                                        supplierId = temp[temp.Length - 1];
+                                        supplierText = temp[0];
+                                    }
                                 }
                             }
-                        }
-                        else { }
-                        BindPickingHeaderXML(Enroll.ToString(),unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress,
+                            else { }
+                            BindPickingHeaderXML(Enroll.ToString(), unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress,
                             shipToPartyAddress, currency, conversionRate, vehicleCompany, vehicleId, vehicleText, driver, driverContact, supplierId, supplierText);
 
-                    }
+                        } 
 
-                   
-                    
+                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, customerAddress, ref orderID, ref Code);
+                        lblCodeText.Visible = true;
+                        lblCode.Text = Code;
+                        lblOrderIDText.Visible = true;
+                        lblOrderId.Text = orderID;
+                        if (File.Exists(GetXmlFilePath()))
+                        {
+                            File.Delete(GetXmlFilePath());
+                        }
 
-                    msg=deliveryBLL.PickingCreate(xmlHeaderString, rowXml, customerAddress, ref orderID, ref Code);
-                    lblCodeText.Visible = true;
-                    lblCode.Text = Code;
-                    lblOrderIDText.Visible = true;
-                    lblOrderId.Text = orderID;
-                    if (File.Exists(GetXmlFilePath()))
-                    {
-                        File.Delete(GetXmlFilePath());
+                        Toaster(msg, Common.TosterType.Success);
                     }
-                    
-                    Toaster(msg, Common.TosterType.Success);
+                    else
+                    { 
+                        Toaster("Data not submitted", Common.TosterType.Warning);
+                    }
+                    _isProcess = false; 
                 }
-                else
+                catch
                 {
-                   
-                    Toaster("Data not submitted", Common.TosterType.Warning);
+                    _isProcess = false;
                 }
-              
-
-            }
-            catch
-            {
-            }
+            
+            
         }
 
        
