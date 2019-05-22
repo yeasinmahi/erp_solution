@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<Delivery>
-  <items productId="760" productName="OPC " quantity="5000.00" rate="511.00" uomId="12" uomName="Bag" narration="5000.00 Bag OPC  Sold To M/s. Brothers Traders, (Cash), Chuadanga" currency="1" commision="0.00" commisionTotal="0.00" discount="0" discountTotal="0.0000" priceTotal="2555000.0000" supplierTax="0.00" vat="15.00" vatPrice="261.47" promtionItemId="760" promtionItem="OPC" promPrices="0.0000" promtionUom="Bag" coaId="38142" coaName="Portland Cement L" promtionItemCoaId="0" promtionQnty="0.00" promtionItemUom="Bag" location="22046" intInvItemId="0" editStatus="0" invProductId="0" productCogs="0" invPromoProductId="" promoProductCogs="" conversionRate="System.Web.UI.WebControls.TextBox" />
-</Delivery>

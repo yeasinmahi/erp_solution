@@ -116,7 +116,7 @@ namespace UI.SAD.Delivery
             {
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(HttpContext.Current.Session["CustomerId"].ToString(), HttpContext.Current.Session["ShipId"].ToString());
             }
-            if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking_Edit" || HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking_Edit")
+            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" || HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking_Edit")
             {
                 dt = deliveryBLL.PickingSummary(HttpContext.Current.Session["PickingId"].ToString());
                
@@ -151,7 +151,7 @@ namespace UI.SAD.Delivery
             rdoSalesType.Items.Add(new ListItem(dt.Rows[0]["strSalesType"].ToString(), dt.Rows[0]["intSalesTypeId"].ToString()));
             rdoSalesType.SelectedValue = dt.Rows[0]["intSalesTypeId"].ToString();
 
-            rdoVehicleCompany.SelectedValue= dt.Rows[0]["intLogisticProvider"].ToString();
+            try { rdoVehicleCompany.SelectedValue = dt.Rows[0]["intLogisticProvider"].ToString(); } catch { }
         }
 
         private void DropDownDataBindFromDoCustomer(DataTable dt)

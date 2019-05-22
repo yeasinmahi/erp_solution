@@ -651,8 +651,6 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnintCustomerId;
             
-            private global::System.Data.DataColumn columnstrAddress;
-            
             private global::System.Data.DataColumn columnstrShipToParty;
             
             private global::System.Data.DataColumn columnstrShipAddress;
@@ -670,6 +668,8 @@ namespace SAD_DAL.Delivery {
             private global::System.Data.DataColumn columnstrSalesOfficeName;
             
             private global::System.Data.DataColumn columnintCustTypeId;
+            
+            private global::System.Data.DataColumn columnstrCustAddress;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -794,14 +794,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAddressColumn {
-                get {
-                    return this.columnstrAddress;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn strShipToPartyColumn {
                 get {
                     return this.columnstrShipToParty;
@@ -874,6 +866,14 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strCustAddressColumn {
+                get {
+                    return this.columnstrCustAddress;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -921,7 +921,6 @@ namespace SAD_DAL.Delivery {
                         string strCustType, 
                         string strCustName, 
                         int intCustomerId, 
-                        string strAddress, 
                         string strShipToParty, 
                         string strShipAddress, 
                         int intShipToPartyId, 
@@ -930,7 +929,8 @@ namespace SAD_DAL.Delivery {
                         string strCustNameId, 
                         string strShipToPartyNameId, 
                         string strSalesOfficeName, 
-                        int intCustTypeId) {
+                        int intCustTypeId, 
+                        string strCustAddress) {
                 QryDOProfileRow rowQryDOProfileRow = ((QryDOProfileRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intDoId,
@@ -944,7 +944,6 @@ namespace SAD_DAL.Delivery {
                         strCustType,
                         strCustName,
                         intCustomerId,
-                        strAddress,
                         strShipToParty,
                         strShipAddress,
                         intShipToPartyId,
@@ -953,7 +952,8 @@ namespace SAD_DAL.Delivery {
                         strCustNameId,
                         strShipToPartyNameId,
                         strSalesOfficeName,
-                        intCustTypeId};
+                        intCustTypeId,
+                        strCustAddress};
                 rowQryDOProfileRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryDOProfileRow);
                 return rowQryDOProfileRow;
@@ -987,7 +987,6 @@ namespace SAD_DAL.Delivery {
                 this.columnstrCustType = base.Columns["strCustType"];
                 this.columnstrCustName = base.Columns["strCustName"];
                 this.columnintCustomerId = base.Columns["intCustomerId"];
-                this.columnstrAddress = base.Columns["strAddress"];
                 this.columnstrShipToParty = base.Columns["strShipToParty"];
                 this.columnstrShipAddress = base.Columns["strShipAddress"];
                 this.columnintShipToPartyId = base.Columns["intShipToPartyId"];
@@ -997,6 +996,7 @@ namespace SAD_DAL.Delivery {
                 this.columnstrShipToPartyNameId = base.Columns["strShipToPartyNameId"];
                 this.columnstrSalesOfficeName = base.Columns["strSalesOfficeName"];
                 this.columnintCustTypeId = base.Columns["intCustTypeId"];
+                this.columnstrCustAddress = base.Columns["strCustAddress"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1024,8 +1024,6 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnstrCustName);
                 this.columnintCustomerId = new global::System.Data.DataColumn("intCustomerId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintCustomerId);
-                this.columnstrAddress = new global::System.Data.DataColumn("strAddress", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrAddress);
                 this.columnstrShipToParty = new global::System.Data.DataColumn("strShipToParty", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrShipToParty);
                 this.columnstrShipAddress = new global::System.Data.DataColumn("strShipAddress", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1044,6 +1042,8 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnstrSalesOfficeName);
                 this.columnintCustTypeId = new global::System.Data.DataColumn("intCustTypeId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintCustTypeId);
+                this.columnstrCustAddress = new global::System.Data.DataColumn("strCustAddress", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCustAddress);
                 this.columnintDoId.AllowDBNull = false;
                 this.columndteDate.AllowDBNull = false;
                 this.columnstrUnit.AllowDBNull = false;
@@ -1057,7 +1057,6 @@ namespace SAD_DAL.Delivery {
                 this.columnstrCustType.MaxLength = 50;
                 this.columnstrCustName.MaxLength = 100;
                 this.columnintCustomerId.AllowDBNull = false;
-                this.columnstrAddress.MaxLength = 2000;
                 this.columnstrShipToParty.MaxLength = 100;
                 this.columnstrShipAddress.MaxLength = 2000;
                 this.columnstrSalesType.AllowDBNull = false;
@@ -1069,6 +1068,7 @@ namespace SAD_DAL.Delivery {
                 this.columnstrSalesOfficeName.AllowDBNull = false;
                 this.columnstrSalesOfficeName.MaxLength = 100;
                 this.columnintCustTypeId.AllowDBNull = false;
+                this.columnstrCustAddress.MaxLength = 2000;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1370,6 +1370,13 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public QryDOPendingItemRow FindByintDoId(long intDoId) {
+                return ((QryDOPendingItemRow)(this.Rows.Find(new object[] {
+                            intDoId})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 QryDOPendingItemDataTable cln = ((QryDOPendingItemDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1414,7 +1421,10 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnstrItemIdNameDo);
                 this.columnmonPrice = new global::System.Data.DataColumn("monPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonPrice);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintDoId}, true));
                 this.columnintDoId.AllowDBNull = false;
+                this.columnintDoId.Unique = true;
                 this.columnintCustomerId.AllowDBNull = false;
                 this.columnintProductId.AllowDBNull = false;
                 this.columnstrProductName.AllowDBNull = false;
@@ -5228,22 +5238,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strAddress {
-                get {
-                    try {
-                        return ((string)(this[this.tableQryDOProfile.strAddressColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strAddress\' in table \'QryDOProfile\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryDOProfile.strAddressColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string strShipToParty {
                 get {
                     try {
@@ -5373,6 +5367,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strCustAddress {
+                get {
+                    try {
+                        return ((string)(this[this.tableQryDOProfile.strCustAddressColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strCustAddress\' in table \'QryDOProfile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryDOProfile.strCustAddressColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsdteReqDelivaryDateNull() {
                 return this.IsNull(this.tableQryDOProfile.dteReqDelivaryDateColumn);
             }
@@ -5393,18 +5403,6 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrCustNameNull() {
                 this[this.tableQryDOProfile.strCustNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrAddressNull() {
-                return this.IsNull(this.tableQryDOProfile.strAddressColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrAddressNull() {
-                this[this.tableQryDOProfile.strAddressColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5477,6 +5475,18 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrShipToPartyNameIdNull() {
                 this[this.tableQryDOProfile.strShipToPartyNameIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrCustAddressNull() {
+                return this.IsNull(this.tableQryDOProfile.strCustAddressColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrCustAddressNull() {
+                this[this.tableQryDOProfile.strCustAddressColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -8464,7 +8474,6 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("strCustType", "strCustType");
             tableMapping.ColumnMappings.Add("strCustName", "strCustName");
             tableMapping.ColumnMappings.Add("intCustomerId", "intCustomerId");
-            tableMapping.ColumnMappings.Add("strAddress", "strAddress");
             tableMapping.ColumnMappings.Add("strShipToParty", "strShipToParty");
             tableMapping.ColumnMappings.Add("strShipAddress", "strShipAddress");
             tableMapping.ColumnMappings.Add("intShipToPartyId", "intShipToPartyId");
@@ -8474,6 +8483,7 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("strShipToPartyNameId", "strShipToPartyNameId");
             tableMapping.ColumnMappings.Add("strSalesOfficeName", "strSalesOfficeName");
             tableMapping.ColumnMappings.Add("intCustTypeId", "intCustTypeId");
+            tableMapping.ColumnMappings.Add("strCustAddress", "strCustAddress");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -8490,14 +8500,13 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = " select top(1)   *  from erp_sad.dbo.qryDoProfile  where intCustomerId=@intCustId" +
-                "  and intShipPointId=@shipId";
+            this._commandCollection[0].CommandText = @"SELECT TOP (1) intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId FROM qryDOProfile WHERE (intCustomerId = @intCustId) AND (intShipPointId = @shipId)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCustId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT dteDate, dteReqDelivaryDate, intCustTypeId, intCustomerId, intDoId, intSalesOffId, intSalesTypeId, intShipPointId, intShipToPartyId, intUnitId, strAddress, strCustName, strCustNameId, strCustType, strSalesOfficeName, strSalesType, strShipAddress, strShipPointName, strShipToParty, strShipToPartyNameId, strUnit FROM qryDOProfile WHERE (intDoId = @intDoId) AND (intShipPointId = @shipId)";
+            this._commandCollection[1].CommandText = @"SELECT intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId FROM qryDOProfile WHERE (intDoId = @intDoId) AND (intShipPointId = @shipId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDoId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intDoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -8682,8 +8691,8 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT * FROM qryDOPendingItem WHERE (intDoId = @intDo) AND (intShipPointId = @in" +
-                "tShipPoint)";
+            this._commandCollection[1].CommandText = "SELECT *  FROM qryDOPendingItem WHERE (intDoId = @intDo) AND (intShipPointId = @i" +
+                "ntShipPoint)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDo", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intDoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPoint", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
