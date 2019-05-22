@@ -210,6 +210,7 @@
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
     <Content Include="AEFPS\Benificiary_Report.aspx" />
+    <Content Include="AEFPS\ItemBridgeToInventoryMaster.aspx" />
     <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
@@ -2214,6 +2215,13 @@
     </Compile>
     <Compile Include="AEFPS\Benificiary_Report.aspx.designer.cs">
       <DependentUpon>Benificiary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\ItemBridgeToInventoryMaster.aspx.cs">
+      <DependentUpon>ItemBridgeToInventoryMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\ItemBridgeToInventoryMaster.aspx.designer.cs">
+      <DependentUpon>ItemBridgeToInventoryMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\BlockItem.aspx.cs">
       <DependentUpon>BlockItem.aspx</DependentUpon>

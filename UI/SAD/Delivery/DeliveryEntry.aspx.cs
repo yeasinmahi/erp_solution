@@ -81,15 +81,12 @@ namespace UI.SAD.Delivery
         private void GetURLMenu()
         {
             string type = Request.QueryString["type"];
-
             foreach (ListItem item in rdoDeliveryType.Items)
             {
-                rdoDeliveryType.Enabled = false;
-               
+                rdoDeliveryType.Enabled = false;               
                 if (item.Value.Contains(type.ToString()))
                 {
                     item.Selected = true;
-
                     break;
                 }
             }
