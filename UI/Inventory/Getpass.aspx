@@ -150,7 +150,7 @@
                             <td>
                                 <asp:TextBox ID="txtRemarks" runat="server" CssClass="txtBox" TextMode="MultiLine" Width="235px"></asp:TextBox></td>
                              <td style="text-align: right;"><asp:Label ID="Label15" CssClass="lbl" runat="server" Text="Reason:"></asp:Label></td>
-                            <td><asp:DropDownList ID="ddlReason" runat="server" CssClass="txtBox"></asp:DropDownList></td>
+                            <td><asp:DropDownList ID="ddlReason" runat="server" CssClass="txtBox" AutoPostBack="true" OnSelectedIndexChanged="ddlReason_SelectedIndexChanged"></asp:DropDownList></td>
 
                         </tr>
 
@@ -166,6 +166,7 @@
                                 <asp:TextBox ID="txtUom" runat="server" CssClass="txtBox" Width="50px"></asp:TextBox>
                                 <asp:CheckBox ID="chkRtn" runat="server" Text="Returnable" AutoPostBack="false" />
                             </td>
+                            <td><asp:TextBox ID="txtOtherReason" runat="server" CssClass="txtBox" Visible="false" placeholder="Enter other reason"></asp:TextBox></td>
                             <td style="text-align: right;">
                                 <asp:Button ID="btnAdd" runat="server" Text="ADD" Font-Bold="true"
                                     OnClientClick="ConfirmAll()" OnClick="btnAdd_Click"></asp:Button><asp:HiddenField ID="hdnconfirm" runat="server" />

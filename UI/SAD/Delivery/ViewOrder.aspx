@@ -44,8 +44,8 @@
         }
     </script>
      <script type="text/javascript">
-        function DO_Edit(intid, intCusID, strReportType, ShipPointID) {
-            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+        function DO_Edit(intDOID, intCusID, strReportType, ShipPointID, PopupType) {
+            window.open('DeliveryEntry.aspx?intDOID=' + intDOID + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
         }
 </script>
 
