@@ -112,8 +112,8 @@ namespace UI.SAD.Order
                         mainG.Append("<tr style=\" font-size:10px;\"><td>" + count + @"</td>");
                         mainG.Append("<td>" + row.strProductName + "</td>");
                         mainG.Append("<td>" + row.strUOM + "</td>");
-                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.numQnt) + "</td>");
-                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(row.numWeight) + "</td>");
+                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(row.numQnt) + "</td>");
+                        mainG.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(row.numWeight) + "</td>");
                         mainG.Append("</tr>");
 
                         count++;
@@ -253,8 +253,8 @@ namespace UI.SAD.Order
 
                     sb.Append("<td>" + table[i].strProductFullName + "</td>");
                     sb.Append("<td>" + table[i].strUOMShow + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numQuantity) + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumber(table[i].numWeight) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
+                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
                     sb.Append("</tr>");
 
                     dr = tblGP.NewTblGatePassRow();
@@ -274,8 +274,8 @@ namespace UI.SAD.Order
 
                         sbP.Append("<td>" + (table[i].IsstrPromItemNameNull() ? "" : table[i].strPromItemName) + "</td>");
                         sbP.Append("<td>" + (table[i].IsstrPromUomNull() ? "" : table[i].strPromUom) + "</td>");
-                        sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromotion))) + "</td>");
-                        sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromWeight))) + "</td>");
+                        sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumberfourdigit(table[i].numPromotion))) + "</td>");
+                        sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumberfourdigit(table[i].numPromWeight))) + "</td>");
                         sbP.Append("</tr>");
                         promCount += table[i].numPromotion;
                         promWgt += table[i].numPromWeight;

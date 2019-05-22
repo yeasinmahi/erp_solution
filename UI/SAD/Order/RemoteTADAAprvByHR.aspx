@@ -821,7 +821,7 @@
                             <ItemTemplate>
 
                             <asp:HiddenField  ID="hdQpetr"  runat="server" Value='<%# Bind("decQntPetrolT", "{0:0.0}") %>'></asp:HiddenField>
-                            <asp:TextBox ID="txtdecQntPetrolTBikeCar"   CssClass="txtBox" runat="server"  TextMode="Number" Text='<%# Bind("decQntPetrolT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                            <asp:TextBox ID="txtdecQntPetrolTBikeCar"   CssClass="txtBox" runat="server"   Text='<%# Bind("decQntPetrolT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
                             <ItemStyle HorizontalAlign="Center" />
                             </asp:TemplateField>
                       
@@ -836,14 +836,14 @@
                             <asp:TemplateField HeaderText="QntOct"  SortExpression="decQntOcten" HeaderStyle-HorizontalAlign="Center">
                             <ItemTemplate>
                             <asp:HiddenField  ID="hdQntOcten" runat="server" Value='<%# Bind("decQntOctenT", "{0:0.0}") %>'></asp:HiddenField>
-                            <asp:TextBox ID="txtdecQntOctenTBikeCar"   CssClass="txtBox" runat="server"  TextMode="Number" Text='<%# Bind("decQntOctenT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                            <asp:TextBox ID="txtdecQntOctenTBikeCar"   CssClass="txtBox" runat="server"   Text='<%# Bind("decQntOctenT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
                             <ItemStyle HorizontalAlign="Center"  />
                             </asp:TemplateField>
 
                             <asp:TemplateField HeaderText="CostOct"  SortExpression="decCostOcten" HeaderStyle-HorizontalAlign="Center">
                             <ItemTemplate>
                             <asp:HiddenField  ID="hdCostocte" runat="server" Value='<%# Bind("decCostOctenT", "{0:0.0}") %>'></asp:HiddenField>
-                            <asp:TextBox ID="txtdecCostOctenTBikeCar" OnTextChanged="txtdecCostOctenTBikeCar_TextChanged"  CssClass="txtBox" runat="server"  TextMode="Number" Text='<%# Bind("decCostOctenT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+                            <asp:TextBox ID="txtdecCostOctenTBikeCar" OnTextChanged="txtdecCostOctenTBikeCar_TextChanged"  CssClass="txtBox" runat="server"  Text='<%# Bind("decCostOctenT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
                             <ItemStyle HorizontalAlign="Center"  />
                             </asp:TemplateField>
 
@@ -852,7 +852,7 @@
 
                             <ItemTemplate>
                             <asp:HiddenField  ID="hdQCNG" runat="server" Value='<%# Bind("decQntCarbonNitGasT", "{0:0.0}") %>'></asp:HiddenField>
-                            <asp:TextBox ID="txtdecQntCarbonNitGasTBikeCar"  CssClass="txtBox" runat="server"  TextMode="Number" Text='<%# Bind("decQntCarbonNitGasT") %>' AutoPostBack="true" ></asp:TextBox></ItemTemplate>
+                            <asp:TextBox ID="txtdecQntCarbonNitGasTBikeCar"  CssClass="txtBox" runat="server"   Text='<%# Bind("decQntCarbonNitGasT") %>' AutoPostBack="true" ></asp:TextBox></ItemTemplate>
                             <ItemStyle HorizontalAlign="Center"  />
                             </asp:TemplateField>
 
