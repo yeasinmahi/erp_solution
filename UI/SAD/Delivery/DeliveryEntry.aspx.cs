@@ -62,7 +62,7 @@ namespace UI.SAD.Delivery
                 Session["DoId"] = null;
                 RequestPopUp(); 
 
-                WorkType(rdoDeliveryType.SelectedItem.Text.ToString());
+                
 
                 //int Id = Convert.ToInt32(txtDoNumber.Text);
                // int userUnit = 53; //Convert.ToInt32( Session[SessionParams.UNIT_ID]); 
@@ -77,12 +77,12 @@ namespace UI.SAD.Delivery
             try
             {
                 Session[SessionParams.SalesProcess] = "Picking";
-                Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
+               // Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
                 Session["DoId"] = Request.QueryString["DoId"];
-                Session["CustomerId"] = Request.QueryString["CustomerId"];
-                Session["ShipId"] = Request.QueryString["ShipId"];
+                Session["CustomerId"] = Request.QueryString["intCusID"];
+                Session["ShipId"] = Request.QueryString["ShipPointID"];
                 Session["PickingId"] = Request.QueryString["PickingId"];
-                Session["ReportType"] = Request.QueryString["ReportType"];
+                Session["ReportType"] = Request.QueryString["strReportType"];
 
                 
                 if (Request.QueryString["PopupType"] == null)
@@ -91,25 +91,30 @@ namespace UI.SAD.Delivery
                 }
                 else
                 {
-                    PickingPageloadDataBind(55, 55);
+                    //PickingPageloadDataBind(55, 55);
                 }
 
-              
-                
+                Session["ReportType"] = "DoBase";
+                Session[SessionParams.SalesProcess] = "Picking";
+                Session["DoId"] = 2620642; 
+                Session["CustomerId"] = 305479;
+                Session["ShipId"] = 15;
+                PickingPageloadDataBind();
+
 
             }
             catch { }
         }
-        private void PickingPageloadDataBind(int id, int unit)
+        private void PickingPageloadDataBind()
         {
 
             if (HttpContext.Current.Session["ReportType"].ToString() == "DoBase")
             {
-                dt = deliveryBLL.DeliveryHeaderDataByDo(id, unit);
+                dt = deliveryBLL.DeliveryHeaderDataByDo(HttpContext.Current.Session["DoId"].ToString(), HttpContext.Current.Session["ShipId"].ToString());
             }
             else if (HttpContext.Current.Session["ReportType"].ToString() == "CustomerBase")
             {
-                dt = deliveryBLL.DeliveryHeaderDataByCustomer(id, unit);
+                dt = deliveryBLL.DeliveryHeaderDataByCustomer(HttpContext.Current.Session["CustomerId"].ToString(), HttpContext.Current.Session["ShipId"].ToString());
             }
             if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking_Edit")
             {
@@ -117,26 +122,44 @@ namespace UI.SAD.Delivery
             }
             if (dt.Rows.Count > 0)
             {
-                ddlUnit.SelectedItem.Text = dt.Rows[0]["strUnit"].ToString();
-                ddlUnit.SelectedValue= dt.Rows[0]["intUnitId"].ToString();
+                
+                ddlUnit.UnLoad();
+                ddlShipPoint.UnLoad();
+                ddlSalesOffice.UnLoad();
+                ddlCustomerType.UnLoad();
 
-                ShipPointSelectionChange(); 
-                ddlShipPoint.SelectedItem.Text = dt.Rows[0]["strShipPointName"].ToString();
-                ddlShipPoint.SelectedValue = dt.Rows[0]["intShipPointId"].ToString();
+                ddlUnit.Items.Add(new ListItem(dt.Rows[0]["strUnit"].ToString(), dt.Rows[0]["intUnitId"].ToString()));
+                ddlShipPoint.Items.Add(new ListItem(dt.Rows[0]["strShipPointName"].ToString(), dt.Rows[0]["intShipPointId"].ToString()));
+                ddlSalesOffice.Items.Add(new ListItem(dt.Rows[0]["strSalesOfficeName"].ToString(), dt.Rows[0]["intSalesOffId"].ToString()));
+                ddlCustomerType.Items.Add(new ListItem(dt.Rows[0]["strCustType"].ToString(), dt.Rows[0]["intCustTypeId"].ToString()));
 
-                SalesOfficeSelectionChange();
+                 
 
-                ddlSalesOffice.SelectedItem.Text = dt.Rows[0]["strSalesOfficeName"].ToString();
-                ddlSalesOffice.SelectedValue = dt.Rows[0]["intSalesOffId"].ToString();
+                //ddlUnit.SelectedItem.Text = dt.Rows[0]["strUnit"].ToString();
+                //ddlUnit.SelectedValue= dt.Rows[0]["intUnitId"].ToString();  
 
-                ddlCustomerType.SelectedValue = dt.Rows[0]["intCustTypeId"].ToString();
-                ddlCustomerType.SelectedItem.Text = dt.Rows[0]["strCustType"].ToString();
+                //ddlShipPoint.SelectedItem.Text = dt.Rows[0]["strShipPointName"].ToString();
+                //ddlShipPoint.SelectedValue = dt.Rows[0]["intShipPointId"].ToString(); 
 
-                txtDate.Text = dt.Rows[0]["dteDate"].ToString();
-                txtDueDate.Text = dt.Rows[0]["dteReqDelivaryDate"].ToString();
+                //ddlSalesOffice.SelectedItem.Text = dt.Rows[0]["strSalesOfficeName"].ToString();
+                //ddlSalesOffice.SelectedValue = dt.Rows[0]["intSalesOffId"].ToString();
+
+
+                //ddlCustomerType.SelectedValue = dt.Rows[0]["intCustTypeId"].ToString();
+                //ddlCustomerType.SelectedItem.Text = dt.Rows[0]["strCustType"].ToString();
+                CalendarDate.SelectedDate= DateTime.Parse(dt.Rows[0]["dteDate"].ToString());
+                CalendarDueDate.SelectedDate =DateTime.Parse(dt.Rows[0]["dteReqDelivaryDate"].ToString());
+
                 txtCustomer.Text = dt.Rows[0]["strCustNameId"].ToString();
-                txtCustomerAddress.Text = dt.Rows[0]["strAddress"].ToString();
-                rdoSalesType.SelectedItem.Text = dt.Rows[0]["strSalesType"].ToString();
+                txtCustomerAddress.Text = dt.Rows[0]["strAddress"].ToString(); 
+                hdnCustomer.Value = dt.Rows[0]["intCustomerId"].ToString(); ;
+                
+                rdoSalesType.Items.Clear();
+                rdoSalesType.Items.Add(new ListItem(dt.Rows[0]["strSalesType"].ToString(), dt.Rows[0]["intSalesTypeId"].ToString()));
+                rdoSalesType.SelectedValue = dt.Rows[0]["intSalesTypeId"].ToString();
+
+                txtCustomer.Enabled = true;
+                txtCustomerAddress.Enabled = true;
                 try
                 {
                     txtShipToParty.Text = dt.Rows[0]["strShipToPartyNameId"].ToString();
@@ -155,7 +178,12 @@ namespace UI.SAD.Delivery
                 Toaster("There is no data against your query", "Delivery Entry", Common.TosterType.Warning);
             }
 
-            
+            rdoDeliveryType.Items.Clear();
+            rdoDeliveryType.Items.Add(new ListItem(HttpContext.Current.Session[SessionParams.SalesProcess].ToString(), "1"));
+            rdoDeliveryType.SelectedValue = "1";
+            SessionDataSet();
+            WorkType(rdoDeliveryType.SelectedItem.Text.ToString());
+            CustometChange();
         }
 
         private void PickingGridDataBind()
@@ -418,6 +446,11 @@ namespace UI.SAD.Delivery
 
         protected void txtCustomer_TextChanged(object sender, EventArgs e)
         {
+            CustometChange();
+        }
+
+        private void CustometChange()
+        {
             try
             {
                 if (txtCustomer.Text.Trim() != "")
@@ -435,7 +468,7 @@ namespace UI.SAD.Delivery
                     }
                 }
 
-
+               
             }
             catch
             {
@@ -637,7 +670,7 @@ namespace UI.SAD.Delivery
                     GetProduct(rdoDeliveryType.SelectedItem.Text);
 
                     dt = objUom.GetUOMRelationByPrice(hdnProduct.Value, hdnCustomer.Value,
-                        hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(), txtDate.Text.ToString());
+                        hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(),  txtDate.Text.ToString());
                     ddlUOM.Loads(dt, "intID", "strUOM");
                     dt = deliveryBLL.InvenotoryStockByItem(hdnProduct.Value, hdnWHId.Value);
                     if (dt.Rows.Count > 0)
@@ -933,17 +966,17 @@ namespace UI.SAD.Delivery
             {
                 char[] ch = { '[', ']' };
                 string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                hdnDoId.Value = temp[temp.Length - 1];
-                hdnProductText.Value = temp[1];
-                hdnProduct.Value = temp[1];
+                hdnDoId.Value = temp[1];
+                hdnProductText.Value = temp[0];
+                hdnProduct.Value = temp[3];
             }
             else if (type == "Delivery")
             {
                 char[] ch = { '[', ']' };
                 string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                hdnCustomer.Value = temp[temp.Length - 1];
-                hdnCustomerText.Value = temp[1];
-                hdnDoId.Value = temp[0];
+                hdnDoId.Value = temp[1];
+                hdnProductText.Value = temp[0];
+                hdnProduct.Value = temp[3];
             }
 
         }
@@ -983,8 +1016,9 @@ namespace UI.SAD.Delivery
                         vat = decimal.Parse(dt.Rows[0]["monVAT"].ToString());
                         vatPrice = decimal.Parse(dt.Rows[0]["monVatPrice"].ToString());
                         suppTax = decimal.Parse(dt.Rows[0]["monSuppTax"].ToString());
-                       
-                       
+                        txtQun.Text=dt.Rows[0]["numQuantity"].ToString();
+
+
                     }
                 }
               
