@@ -65,6 +65,11 @@
                             <td style="text-align: left;" class="">
                                 <asp:DropDownList ID="ddlshippoint" CssClass="ddList" Font-Bold="true" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlshippoint_SelectedIndexChanged"></asp:DropDownList>
                             </td>
+                             <td style="text-align: left;">
+                                <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Sales Office:"></asp:Label></td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlSalesOffice" CssClass="ddList" Font-Bold="true" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlSalesOffice_SelectedIndexChanged"></asp:DropDownList>
+                            </td>
                            <td style="text-align: left;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Customer Type:"></asp:Label></td>
                             <td style="text-align: left;">
@@ -89,9 +94,6 @@
                             </td>
                             <td style="text-align: left;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Code:"></asp:Label></td>
                             <td style="text-align: left;"><asp:TextBox ID="txtCode" CssClass="txtBox" runat="server"></asp:TextBox></td>
-                        </tr>
-                        <tr>
-                            
                             <td style="text-align: left;"><asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Enable:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:RadioButtonList ID="rdoEnable" runat="server" RepeatDirection="Horizontal"
@@ -99,6 +101,10 @@
                                     <asp:ListItem Selected="True" Value="True">Yes</asp:ListItem>
                                     <asp:ListItem Value="False">No</asp:ListItem>
                                 </asp:RadioButtonList></td>
+                        </tr>
+                        <tr>
+                            
+                            
                             <td style="text-align: left;"><asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Challan Completed:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:RadioButtonList ID="rdoComplete" runat="server" RepeatDirection="Horizontal"
@@ -115,12 +121,10 @@
                                     <asp:ListItem Value="False">No</asp:ListItem>
                                 </asp:RadioButtonList></td>
                             </td>
-
-                        </tr>
-                        <tr>
-                            <td colspan="6">
-                            <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-sm pull-right" Text="Show" OnClick="btnShow_Click" OnClientClick="return validation();" />
+                            <td colspan="4">
+                                <asp:Button ID="btnShow" runat="server" class="btn btn-primary btn-sm pull-right" Text="Show" OnClick="btnShow_Click" OnClientClick="return validation();" />
                              </td>  
+
                         </tr>
 
                     </table>
@@ -129,7 +133,7 @@
 
 
 
-                <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 600px; border: 0px solid red;"></iframe>
+                <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
                 <%--sandbox="allow-same-origin allow-scripts allow-popups allow-forms"--%>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>

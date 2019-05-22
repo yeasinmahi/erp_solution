@@ -17,9 +17,10 @@ namespace UI.SAD.Sales
         SAD_BLL.Global.SalesOffice salesOffice = new SAD_BLL.Global.SalesOffice();
         SAD_BLL.Global.ShipPoint shipPointObj = new SAD_BLL.Global.ShipPoint();
         SAD_BLL.Customer.CustomerType customerTypeObj = new SAD_BLL.Customer.CustomerType();
-        string unitid,userid, shipPointId, CustomerTypeId, fromDate, toDate, code;
+        string unitid,userid, shipPointId,salesOfficeId, CustomerTypeId, fromDate, toDate, code;
         bool ysnEnable, ysnDo, ysnChallanCompleted;
 
+        
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,8 +31,10 @@ namespace UI.SAD.Sales
                 unitid = ddlUnit.SelectedItem.Value;
                 userid= HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                 LoadShipPoint(unitid,userid);
-                shipPointId = ddlshippoint.SelectedItem.Value;              
-                LoadCustomerType();
+                shipPointId = ddlshippoint.SelectedItem.Value;
+                LoadSalesOffice(shipPointId);
+                salesOfficeId = ddlSalesOffice.SelectedItem.Value;
+                LoadCustomerType(salesOfficeId);
             }
         }
         private void LoadUnit()
@@ -45,18 +48,29 @@ namespace UI.SAD.Sales
             ddlshippoint.Loads(dt, "intShipPointId", "strName");
 
         }
-        private void LoadCustomerType()
+        private void LoadSalesOffice(string shipid)
         {
-            dt = customerTypeObj.GetCustomerType(); 
+            dt = salesOffice.GetSalesOfficeByShipPoint(shipid);
+            ddlSalesOffice.Loads(dt, "intSalesOfficeId", "strName");
+
+        }
+        private void LoadCustomerType( string salesOfficeId)
+        {
+            dt = customerTypeObj.GetCustomerTypeBySO(salesOfficeId); 
             ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
            
         }
         protected void ddlshippoint_SelectedIndexChanged(object sender, EventArgs e)
         {
             shipPointId = ddlshippoint.SelectedItem.Value;
+            LoadSalesOffice(shipPointId);
             
         }
-        
+        protected void ddlSalesOffice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            salesOfficeId = ddlSalesOffice.SelectedItem.Value;
+            LoadCustomerType(salesOfficeId);
+        }
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
