@@ -90,10 +90,11 @@ namespace UI.SAD.Delivery
             string[] searchKey = temp.Split(delimiterChars);
             string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
-            string strReportType = "Delivery";
+            string PopupType = "Delivery";
+            string strReportType = "Picking";
             string ShipPointID = ddlShip.SelectedValue;
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Delivery('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Delivery('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
 
         }
 
@@ -104,10 +105,11 @@ namespace UI.SAD.Delivery
             string[] searchKey = temp.Split(delimiterChars);
             string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
-            string strReportType = "Picking_Edit";
+            string PopupType = "Picking_Edit";
+            string strReportType = "Picking";
             string ShipPointID = ddlShip.SelectedValue;
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
 
         }
 
