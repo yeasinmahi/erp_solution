@@ -90,8 +90,7 @@ namespace UI.SAD.Delivery
             if (temp.Length > 1) hdnCustomer.Value = temp[temp.Length - 1];
             else hdnCustomer.Value = "";
         }
-
-
+        
         protected void Complete_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
