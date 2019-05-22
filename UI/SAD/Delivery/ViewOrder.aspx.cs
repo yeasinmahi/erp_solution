@@ -114,11 +114,12 @@ namespace UI.SAD.Delivery
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
             string intCusID = searchKey[0].ToString();
-            string intid = searchKey[1].ToString();
-            string strReportType = "DO_Edit";
+            string intDOID = searchKey[1].ToString();
+            string PopupType = "DO_Edit";
+            string strReportType = "DO_Base";
             string ShipPointID = ddlShip.SelectedValue;
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intDOID + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
             dgvViewOrder.DataBind();
         }
 

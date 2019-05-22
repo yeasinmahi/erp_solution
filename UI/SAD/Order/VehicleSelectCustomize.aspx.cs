@@ -599,7 +599,7 @@ namespace UI.SAD.Order
                         , ddlIncentive.SelectedValue, narrTop
                         , ref code, ref id);
 
-                    Response.Redirect("../../Accounts/Voucher/Exit.aspx");
+                   // Response.Redirect("../../Accounts/Voucher/Exit.aspx");
                 }
                 else if (unitid != 53)
                 {
@@ -667,7 +667,7 @@ namespace UI.SAD.Order
 
 
 
-                            Response.Redirect("../../Accounts/Voucher/Exit.aspx");
+                            //Response.Redirect("../../Accounts/Voucher/Exit.aspx");
                         }
                 }
                 else
