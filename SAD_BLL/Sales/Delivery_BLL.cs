@@ -63,12 +63,12 @@ namespace SAD_BLL.Sales
                 throw ex;
             } 
         }
-        public DataTable InvenotoryStockByItem(string FgId,string wh)
+        public DataTable InvenotoryStockByItem(int productId,int promItemId, string wh)
         { 
             try
             {
                 InventoryFgItemBlanceTableAdapter adp = new InventoryFgItemBlanceTableAdapter();
-                return adp.GetInventoryItemBlance(int.Parse(FgId), int.Parse(wh));
+                return adp.GetInventoryItemBlance(productId, promItemId, int.Parse(wh));
             }
             catch (Exception ex)
             {

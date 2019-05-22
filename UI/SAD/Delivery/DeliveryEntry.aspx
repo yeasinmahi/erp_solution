@@ -163,7 +163,9 @@
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <asp:HiddenField ID="hdnDA" runat="server" />
+                    <asp:HiddenField ID="hdnPromoCogs" runat="server" />
+                     <asp:HiddenField ID="hdnPromoInvItemId" runat="server" />
+                    <asp:HiddenField ID="hdnPromoInvStock" runat="server" />
                     <asp:HiddenField ID="hdnsalestype" runat="server" />
                     <asp:HiddenField ID="hdnvisibility" runat="server" />
                     <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
@@ -171,7 +173,7 @@
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
                     <asp:HiddenField ID="hdnCreditSales" runat="server" />
                     <asp:HiddenField ID="hdnWHName" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnProductCOGS" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInventoryStock" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
@@ -451,7 +453,7 @@
                             </td>
                             <td>
                                 <asp:HiddenField ID="hdnUOM" runat="server" />
-                                <asp:DropDownList ID="ddlUOM" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlUOM" runat="server" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged">
                                 </asp:DropDownList>
 
                             </td>
@@ -627,7 +629,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Narration" SortExpression="naration" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnaration" runat="server" Text='<%# Bind("naration") %>'></asp:Label>
+                                                <asp:Label ID="lblnaration" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="200px" />
                                         </asp:TemplateField>
@@ -663,7 +665,7 @@
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Discount" SortExpression="discount" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldiscount" runat="server" Text='<%# Bind("discount") %>'></asp:Label>
+                                                <asp:Label ID="lbldiscounts" runat="server" Text='<%# Bind("discount") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -737,7 +739,7 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="narr" SortExpression="narr" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narr") %>'></asp:Label>
+                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
@@ -784,12 +786,12 @@
                                          
                                         <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                             <EditItemTemplate>
-                                                <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Update"
+                                                <asp:LinkButton ID="LinkButton20" runat="server" CommandName="Update"
                                                     Text="">
                                                     <img alt=""  src="../../Content/images/icons/Save.png" style="border: 0px;"
                                                          title="Update" />
                                                 </asp:LinkButton>
-                                                <asp:LinkButton ID="LinkButton3" runat="server" CommandName="Cancel"
+                                                <asp:LinkButton ID="LinkButton30" runat="server" CommandName="Cancel"
                                                     Text="">
                                                     <img alt="" height="20px" width="20px" src="../../Content/images/icons/132.png" style="border: 0px;"
                                                          title="Cancel" />

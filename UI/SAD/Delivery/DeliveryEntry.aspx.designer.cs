@@ -103,13 +103,31 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnDA control.
+        /// hdnPromoCogs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnDA;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoCogs;
+        
+        /// <summary>
+        /// hdnPromoInvItemId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoInvItemId;
+        
+        /// <summary>
+        /// hdnPromoInvStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoInvStock;
         
         /// <summary>
         /// hdnsalestype control.
@@ -175,13 +193,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnWHName;
         
         /// <summary>
-        /// hdnBl control.
+        /// hdnProductCOGS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBl;
+        protected global::System.Web.UI.WebControls.HiddenField hdnProductCOGS;
         
         /// <summary>
         /// hdnInventoryStock control.
