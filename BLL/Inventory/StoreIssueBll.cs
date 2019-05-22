@@ -205,6 +205,7 @@ namespace BLL.Inventory
                                             int jvId = Convert.ToInt32(_dt.Rows[0]["jvId"].ToString());
                                             if (jvId > 0)
                                             {
+                                                _storeIssueToFloreTransectionStatusBll.UpdateJv(jvId,inventoryStatusId);
                                                 _dt = _accountsVoucherJournalBll.GetJurnalVoucher(jvId, DateTime.Now);
                                                 if (_dt.Rows.Count > 0)
                                                 {
@@ -223,7 +224,7 @@ namespace BLL.Inventory
                                                                 {
                                                                     if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
                                                                     {
-                                                                        _storeIssueToFloreTransectionStatusBll.UpdateCoaId1(coaId2,
+                                                                        _storeIssueToFloreTransectionStatusBll.UpdateCoaId2(coaId2,
                                                                             inventoryStatusId);
                                                                         if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                                                         {
