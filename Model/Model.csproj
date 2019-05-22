@@ -47,6 +47,8 @@
     <Compile Include="ModularOrderLine.cs" />
     <Compile Include="ModularStockUpdate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoreIssue.cs" />
+    <Compile Include="StoreIssueByItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -473,6 +473,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>RfqMainTds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\StoreIssueByItem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreIssueByItem.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\StoreIssueTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreIssueTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\StoreIssueToFloreTransectionStatusTds.Designer.cs">
+      <DependentUpon>StoreIssueToFloreTransectionStatusTds.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Inventory\SupplierTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1289,6 +1304,39 @@
     </None>
     <None Include="Inventory\RfqMainTds.xss">
       <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueByItem.xsc">
+      <DependentUpon>StoreIssueByItem.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueByItem.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreIssueByItem.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\StoreIssueByItem.xss">
+      <DependentUpon>StoreIssueByItem.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueTds.xsc">
+      <DependentUpon>StoreIssueTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreIssueTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\StoreIssueTds.xss">
+      <DependentUpon>StoreIssueTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueToFloreTransectionStatusTds.xsc">
+      <DependentUpon>StoreIssueToFloreTransectionStatusTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueToFloreTransectionStatusTds.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreIssueToFloreTransectionStatusTds.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Inventory\StoreIssueToFloreTransectionStatusTds.xss">
+      <DependentUpon>StoreIssueToFloreTransectionStatusTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\SupplierTds.xsc">
       <DependentUpon>SupplierTds.xsd</DependentUpon>

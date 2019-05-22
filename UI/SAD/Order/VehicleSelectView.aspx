@@ -368,6 +368,8 @@
                         <HeaderStyle CssClass="hide" />
                         <ItemStyle CssClass="hide" />
                     </asp:BoundField>
+                    <asp:BoundField DataField="strHallogramNumber" HeaderText="Hallogram"></asp:BoundField>
+
                     
                 </Columns>
                 <PagerStyle BackColor="#CCCCCC" HorizontalAlign="Center" />

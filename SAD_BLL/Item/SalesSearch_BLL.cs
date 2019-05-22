@@ -5,6 +5,8 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SAD_DAL.Delivery;
+using SAD_DAL.Delivery.Delivery_TDSTableAdapters;
 using SAD_DAL.Item.ItemTDSTableAdapters;
 using SAD_DAL.Sales;
 using SAD_DAL.Sales.SearchSales_TDSTableAdapters;
@@ -18,6 +20,12 @@ namespace SAD_BLL.Item
         private static SearchSales_TDS.SprSalesOrderDetaillsForTripDataTable[] tblPendingItem = null;
         private static SearchSales_TDS.TblVehicleRentDataDataTable[] tblVehicleRent = null;
         private static SearchSales_TDS.TblVehicleCustomerDataDataTable[] tblVehicleCustomer = null;
+
+        private static Delivery_TDS.QryDOProfileDataTable[] tblDoProfile = null;
+        private static Delivery_TDS.QryDOPendingItemDataTable[] tblDoPendintItem = null;
+        private static Delivery_TDS.QryShipToPartyDataTable[] tblShipParty = null;
+
+
         private static Hashtable ht = new Hashtable();
         public static int e;
 
@@ -77,6 +85,176 @@ namespace SAD_BLL.Item
                 return null;
             }
         }
+
+
+        public static string[] GetDoPendingItemByCustomer(string customerId,string shipPointId, string prefix)
+        {
+            tblDoPendintItem = new Delivery_TDS.QryDOPendingItemDataTable[Convert.ToInt32(customerId)];
+            QryDOPendingItemTableAdapter adp = new QryDOPendingItemTableAdapter();
+            tblDoPendintItem[e] = adp.GetDoPendingByCustomer(int.Parse(customerId), int.Parse(shipPointId));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tblDoPendintItem[e]//Convert.ToInt32(ht[unitID])                           
+                    orderby tmp.strProductName
+                    select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    var rows = from tmp in tblDoPendintItem[e]
+                        where tmp.strProductName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                        orderby tmp.strProductName
+                        select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string[] GetDoPendingItemByDo(string doId,string shipPointId, string prefix)
+        { 
+            // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
+            QryDOPendingItemTableAdapter adp = new QryDOPendingItemTableAdapter();
+            tblDoPendintItem[e] = adp.GetPendingByDo(int.Parse(doId),int.Parse(shipPointId));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tblDoPendintItem[e]//Convert.ToInt32(ht[unitID])                           
+                           orderby tmp.strProductName
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    var rows = from tmp in tblDoPendintItem[e]
+                               where tmp.strProductName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               orderby tmp.strProductName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static string[] GetShipToParty(string unitId, string salesOffice,string customerType, string prefix)
+        {
+            // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
+            QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
+            tblShipParty[e] = adp.GetShipToParty(int.Parse(unitId), int.Parse(customerType), int.Parse(salesOffice));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tblShipParty[e]//Convert.ToInt32(ht[unitID])                           
+                           orderby tmp.strName
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    var rows = from tmp in tblShipParty[e]
+                               where tmp.strName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               orderby tmp.strName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strName"] + " [" + tbl.Rows[i]["intDisPointId"] + "]";
+                  //  retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
 
         public static string[] GetRentVehicleList(string unitid, string prefix)
         {

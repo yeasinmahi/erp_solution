@@ -57,7 +57,11 @@ namespace Utility
         public static DataTable GetRows<T>(this DataTable dt, string columnName, T value)
         {
             EnumerableRowCollection<DataRow> rows = GetRowCollection(dt, columnName, value);
-            return rows.CopyToDataTable();
+            if (rows != null && rows.Any())
+            {
+                return rows.CopyToDataTable();
+            }
+            return new DataTable();
         }
 
         public static DataRow GetRow<T>(this DataTable dt, string columnName, T value)
@@ -137,6 +141,16 @@ namespace Utility
             }
             html += "</table>";
             return html;
+        }
+
+        public static int GetAutoId(this DataTable dt, string columnName)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(dt.Rows[0][columnName].ToString());
+            }
+            return 0;
+            
         }
     }
 }

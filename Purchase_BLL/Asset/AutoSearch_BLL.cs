@@ -1,5 +1,4 @@
-﻿
-using HR_DAL.Global;
+﻿using HR_DAL.Global;
 using HR_DAL.Global.AutoSearch_TDSTableAdapters;
 using Purchase_DAL.Asset;
 using Purchase_DAL.Asset.AssetMaintenanceTDSTableAdapters;
@@ -9,7 +8,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace Purchase_BLL.Asset
 {
