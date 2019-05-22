@@ -23,6 +23,26 @@ namespace Utility
         {
             return obj.GetType().GetProperty(name)?.GetValue(obj, null);
         }
+        public static object GetDynamicObject(this List<object> objs, string name, string value)
+        {
+            foreach (object o in objs)
+            {
+                if (o.GetType().GetProperty(name)?.GetValue(o, null).ToString()==(value))
+                {
+                    return o;
+                }
+            }
+            return null;
+        }
+        public static object UpdateObject(this object obj, string name, string newValue)
+        {
+            PropertyInfo propertyInfo = obj.GetType().GetProperty(name, BindingFlags.Instance | BindingFlags.NonPublic);
+            if (propertyInfo != null)
+            {
+                propertyInfo.SetValue(obj, newValue, null);
+            }
+            return obj;
+        }
 
         public static StreamWriter GetStreamWriter(string path)
         {
@@ -140,7 +160,22 @@ namespace Utility
             }
             return string.Empty;
         }
-
+        public static bool RadioLoad(this RadioButtonList rdo, DataTable dt, string value, string text)
+        {
+            if (dt == null) return false;
+            try
+            {
+                rdo.DataSource = dt;
+                rdo.DataValueField = value;
+                rdo.DataTextField = text;
+                rdo.DataBind();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static bool Loads(this DropDownList ddl, DataTable dt, string value, string text)
         {
             if (dt == null) return false;

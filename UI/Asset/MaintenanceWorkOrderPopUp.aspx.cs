@@ -13,6 +13,7 @@ using System.Xml;
 using System.IO;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.Asset
 {
@@ -62,10 +63,11 @@ namespace UI.Asset
 
                 RadioPreventive.Visible = false;
                 TxtCost.ReadOnly = true;
-               
 
-               
-                
+
+                dt = objMaintenance.LossReason();
+                ddlLossReason.LoadWithSelect(dt, "intId", "strName");
+
                 TxtOrder.Text = data.ToString();
                 if (Po == "1")
                 {
@@ -75,11 +77,9 @@ namespace UI.Asset
                     dt = new DataTable();
                     Int32 intEnroll = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     dt = objMaintenance.IndentWareHouse(intEnroll);
-                    DdlUnitName.DataSource = dt;
-                    DdlUnitName.DataTextField = "WHName";
-                    DdlUnitName.DataValueField = "ID";
-                    DdlUnitName.DataBind();
-                    Int32 IntUnitID = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    DdlUnitName.LoadWithSelect(dt, "ID", "WHName"); 
+                   
+                    int IntUnitID = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                     //Int32 IntUnitID = Int32.Parse(DdlUnitName.SelectedValue.ToString());
                     HdnUnit.Value = IntUnitID.ToString();
 
@@ -100,30 +100,30 @@ namespace UI.Asset
                
               
                 pnlUpperControl.DataBind();
-                showdata();
+                Showdata();
 
             }
            
 
         }
 
-        private void showdata()
+        private void Showdata()
         {
             var fd = log.GetFlogDetail(start, location, "Show", null);
             Flogger.WriteDiagnostic(fd);
 
             // starting performance tracker
-            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp showdata", "", fd.UserName, fd.Location,
+            var tracker = new PerfTracker("Performance on Asset\\MaintenanceWorkOrderPopUp Showdata", "", fd.UserName, fd.Location,
                 fd.Product, fd.Layer);
             try
             {
-                int Mnumber =int.Parse(Session["intMaintenanceNo"].ToString()); 
+                int mNumber =int.Parse(Session["intMaintenanceNo"].ToString()); 
            
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                 int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
-                int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+                int intJobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
 
-                IssueDate = objMaintenance.issuedateshow(7, Mnumber, intenroll, intjobid, intdept);
+                IssueDate = objMaintenance.issuedateshow(7, mNumber, intenroll, intJobid, intdept);
                 if (IssueDate.Rows.Count > 0)
                 {
                 //TxtdteIssue.Text = IssueDate.Rows[0]["issue"].ToString();
@@ -139,7 +139,12 @@ namespace UI.Asset
                 txtContactNo.Text = IssueDate.Rows[0]["strContactNo"].ToString();
                 txtUser.Text = IssueDate.Rows[0]["strUserName"].ToString(); 
                 lblunit.Text = IssueDate.Rows[0]["strUnitName"].ToString();
-
+                    try
+                    {
+                        
+                        ddlLossReason.SelectedValue= IssueDate.Rows[0]["intBreakDownReason"].ToString();
+                    }
+                    catch { }
                     vehicleNumber = HdnAssetid.Value.ToString();  
                 dt = new DataTable();
                 dt = objMaintenance.MilegeViewTextbox(vehicleNumber);
@@ -159,20 +164,20 @@ namespace UI.Asset
                         lblunit.Visible = true;
                     } 
 
-                taskshow = objMaintenance.dtashgridview(1, Mnumber);
+                taskshow = objMaintenance.dtashgridview(1, mNumber);
                 dgvTask.DataSource = taskshow;
                 dgvTask.DataBind();
                
                 
                 intjobid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-                center = objMaintenance.CostcenterShow(27, Mnumber, intenroll, intjobid, intdept);
+                center = objMaintenance.CostcenterShow(27, mNumber, intenroll, intjobid, intdept);
                 DdlCostCenter.DataSource = center;
                 DdlCostCenter.DataTextField = "strCCName";
                 DdlCostCenter.DataValueField = "intCostCenterID";
                 DdlCostCenter.DataBind(); 
               
                 
-                dt = objMaintenance.Indentview(54, Mnumber, intenroll, intjobid, intdept);
+                dt = objMaintenance.Indentview(54, mNumber, intenroll, intjobid, intdept);
                 dgvSrviceIndentView.DataSource = dt; 
                 dgvSrviceIndentView.DataBind(); 
 
@@ -279,7 +284,7 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
-                decimal cost;
+                    decimal cost;
                     int service = int.Parse(DdlService.SelectedValue.ToString());
                     string serviceName = DdlService.SelectedItem.ToString();
                     string type = DdlType.SelectedItem.ToString();
@@ -289,14 +294,12 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-
-
+                 
                     objMaintenance.RepairMaintenenceTaskInsert(Mnumber, service,serviceName,cost, type, intenroll, intjobid, intdept);
 
                     
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save');", true);
-                    showdata();
+                    Showdata();
             }
             catch (Exception ex)
             {
@@ -332,8 +335,7 @@ namespace UI.Asset
 
                         int Mnumber = int.Parse(TxtOrder.Text.ToString());
                         string status = DdlStatus.SelectedItem.ToString();
-                        //string ReparingType = DdlReType.SelectedItem.ToString();
-                        // DateTime dteIssue = DateTime.Parse(TxtdteIssue.Text);
+                       
                         DateTime dteStart = DateTime.Parse(TxtdteStarted.Text);
                         //DateTime dteEnd = DateTime.Parse(TxtdteEnd.Text);
                         String priority = DdlPriority.SelectedItem.ToString();
@@ -348,7 +350,8 @@ namespace UI.Asset
                         int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                         vehicleNumber = HdnAssetid.Value.ToString();
                         int Heavy = int.Parse(DdlHevvyVehicle.SelectedValue.ToString());
-                        objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM, Heavy, txtDriverName.Text.ToString(), txtContactNo.Text.ToString(), txtUser.Text.ToString(), Mnumber);
+                        
+                        objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM, Heavy, txtDriverName.Text.ToString(), txtContactNo.Text.ToString(), txtUser.Text.ToString(), Mnumber,ddlLossReason.SelectedValue());
 
                         if (DdlStatus.SelectedItem.ToString() == "Close")
                         {
@@ -645,11 +648,11 @@ namespace UI.Asset
             {
                 int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
             int intunitid = int.Parse(Session[SessionParams.UNIT_ID].ToString());
-            int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
+              intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
             int dept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
             //string Indenttype = DdlIType.SelectedItem.ToString();
             int whid = Int32.Parse(DdlUnitName.SelectedValue.ToString());
-            int Mnumber = Int32.Parse(TxtOrder.Text.ToString());
+             int Mnumber = int.Parse(TxtOrder.Text.ToString());
             if (dgvservice.Rows.Count > 0)
             {
                 dt = new DataTable();
@@ -663,7 +666,7 @@ namespace UI.Asset
 
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 dgvSrviceIndentView.Visible = true;
-                showdata();
+                Showdata();
 
             }
             }

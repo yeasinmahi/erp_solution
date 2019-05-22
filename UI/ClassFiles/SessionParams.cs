@@ -142,6 +142,7 @@ namespace UI.ClassFiles
         private static string currentSO = "sesCurrentSO";
         private static string currentCusType = "sesCurrentCusType";
         private static string currentShip = "sesCurrentShip";
+        private static string salesProcess = "sesSalesProcess";
 
 
 
@@ -165,6 +166,11 @@ namespace UI.ClassFiles
             {
                 return currentShip;
             }
+        }
+
+        public static string SalesProcess
+        {
+            get { return salesProcess; }
         }
         #endregion
 

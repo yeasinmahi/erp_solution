@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Data;
+using DALOOP.Inventory;
 using SCM_DAL.ComparativeStatementTDSTableAdapters;
 
 namespace SCM_BLL
 {
     public class ComparativeStatementBll
     {
+        private readonly RfqMainDal rfqMainDal = new RfqMainDal();
         public DataTable InsertRfq(int intUnitId, int intWhid,string xmlString,int enroll, out string msg)
         {
             msg = string.Empty;
@@ -94,6 +96,29 @@ namespace SCM_BLL
                 return new DataTable();
             }
 
+        }
+
+        public int GetUnitIdByRfq(int rfq)
+        {
+            try
+            {
+                return new RfqMainDal().GetUnitIdByRfqId(rfq);
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+        public bool WinRfq(int supplierId, string winCause, int rfqId)
+        {
+            try
+            {
+                return rfqMainDal.WinRfq(supplierId, winCause, rfqId);
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
     }
 }

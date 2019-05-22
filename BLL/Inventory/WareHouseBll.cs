@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using DALOOP.Inventory;
 
 namespace BLL.Inventory
@@ -7,12 +8,8 @@ namespace BLL.Inventory
     {
         private readonly WareHouseDal _dal = new WareHouseDal();
         private readonly WarehouseOperatorDal _dalOp = new WarehouseOperatorDal();
-        public DataTable GetUnitIdByWhId(int whId)
-        {
-            return _dal.GetUnitIdByWhId(whId);
-        }
-
-        public DataTable GetGetAllWarehouseByEnroll(int enroll)
+        private DataTable _dt;
+        public DataTable GetAllWarehouseByEnroll(int enroll)
         {
             if (_dalOp.IsSuperUser(enroll) || _dalOp.IsAllPoAccess(enroll))
             {
@@ -28,6 +25,17 @@ namespace BLL.Inventory
             }
             return _dal.GetAllWarehouse();
         }
+        public int GetUnitIdByWhId(int whId)
+        {
+           // intUnitID
+            _dt = _dal.GetUnitIdByWhId(whId);
+            if (_dt.Rows.Count > 0)
+            {
+                return Convert.ToInt32(_dt.Rows[0]["intUnitID"].ToString());
+            }
+            return 0;
+        }
+        
 
     }
 }

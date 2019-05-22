@@ -97,6 +97,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccBll.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalBll.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalDetailsBll.cs" />
     <Compile Include="Accounts\Advice\AdviceBLL.cs" />
     <Compile Include="Accounts\Approval\IndentApproval_BLL.cs" />
     <Compile Include="Accounts\BalanceSheet\BalanceSheetC.cs" />
@@ -146,18 +149,30 @@
     <Compile Include="Accounts\Voucher\JournalVoucher.cs" />
     <Compile Include="Accounts\Voucher\VoucherRollback.cs" />
     <Compile Include="Accounts\Voucher\XmlManager.cs" />
+    <Compile Include="AFBLSMSServer\ApiSmsBll.cs" />
     <Compile Include="AutoSearch\EmployeeBll.cs" />
+    <Compile Include="Accounts\CodeInfoBll.cs" />
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />
+    <Compile Include="Inventory\InconsistanceItemBll.cs" />
+    <Compile Include="Inventory\InventoryAdjustmentAuthorityBll.cs" />
+    <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
+    <Compile Include="Inventory\InventoryBll.cs" />
+    <Compile Include="Inventory\ItemListBll.cs" />
     <Compile Include="Inventory\PoTypeBll.cs" />
+    <Compile Include="HR\UnitBll.cs" />
+    <Compile Include="Inventory\StoreIssueBll.cs" />
+    <Compile Include="Inventory\StoreIssueByItemBll.cs" />
+    <Compile Include="Inventory\StoreIssueToFloreTransectionStatusBll.cs" />
+    <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
     <Compile Include="Inventory\WarehouseOperatorBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DALOOP\DALOOP.csproj">
-      <Project>{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}</Project>
+      <Project>{f1ffa03d-ed65-4159-a8fc-4e39df84226b}</Project>
       <Name>DALOOP</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
@@ -175,6 +190,14 @@
     <ProjectReference Include="..\HR_DAL\HR_DAL.csproj">
       <Project>{4FD02F54-1308-4787-896D-842A38C0DE30}</Project>
       <Name>HR_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCM_BLL\SCM_BLL.csproj">
+      <Project>{A4F011C0-9E28-4F3F-932F-69A994FCE403}</Project>
+      <Name>SCM_BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>

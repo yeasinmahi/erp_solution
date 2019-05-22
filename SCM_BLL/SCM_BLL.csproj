@@ -84,6 +84,10 @@
     <Compile Include="TransferBLLNew.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DALOOP\DALOOP.csproj">
+      <Project>{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}</Project>
+      <Name>DALOOP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SAD_DAL\SAD_DAL.csproj">
       <Project>{16E00442-31FA-416F-AF68-BE5AD09F4D2A}</Project>
       <Name>SAD_DAL</Name>

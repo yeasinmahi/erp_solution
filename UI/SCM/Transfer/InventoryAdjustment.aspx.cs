@@ -9,6 +9,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.HR;
 using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
@@ -324,10 +325,9 @@ namespace UI.SCM.Transfer
                     int intLocation = Convert.ToInt32(((Label)row.FindControl("lblLocationId")).Text);
                     string remarks = ((Label)row.FindControl("lblRemarks")).Text;
 
-                    DataTable unitDatatable = new WareHouseBll().GetUnitIdByWhId(intWh);
-                    if (unitDatatable.Rows.Count > 0)
+                    int unitId = new UnitBll().GetUnitIdByWhId(intWh);
+                    if (unitId> 0)
                     {
-                        int unitId = Convert.ToInt32(unitDatatable.Rows[0]["intUnitID"].ToString());
                         dt = objTransfer.InventoryAdjustment(unitId, intWh, enroll, intItemId, quantity, rate, intLocation,
                             remarks);
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
@@ -364,7 +364,7 @@ namespace UI.SCM.Transfer
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
             
-            return ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 

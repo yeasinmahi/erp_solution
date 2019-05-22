@@ -42,7 +42,7 @@ namespace UI.Asset
 			// ends
 			tracker.Stop();
 
-			int a = 30;
+			//int a = 30;
 		}
 
         protected void BtnShow_Click(object sender, EventArgs e)

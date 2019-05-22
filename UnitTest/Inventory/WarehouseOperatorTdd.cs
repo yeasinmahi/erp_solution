@@ -1,12 +1,9 @@
-﻿
-using System.Data;
-using BLL.Inventory;
+﻿using System.Data;
 using DALOOP.Inventory;
 using NUnit.Framework;
 
-namespace UnitTest
+namespace UnitTest.Inventory
 {
-
     [TestFixture]
     public class WarehouseOperatorTdd
     {

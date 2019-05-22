@@ -9,9 +9,8 @@
 <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
 <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />     
 <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
- <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+<link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
 <script src="../Content/JS/datepickr.min.js"></script>
-
 <script type="text/javascript">
     //function Changed() {
     //    document.getElementById('hdfSearchBoxTextChange').value = 'true';
@@ -97,6 +96,7 @@
     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem"> </cc1:AutoCompleteExtender>
     <asp:HiddenField ID="hdfEmpCode" runat="server" /><asp:HiddenField ID="hdfSearchBoxTextChange" runat="server" />
     </td></tr>
+
     <tr class='tblroweven'><td style="text-align:right;"><asp:Label ID="lbldudt" CssClass="lbl" runat="server" Text="Blance : "></asp:Label></td>
     <td><asp:TextBox ID="txtBlance"  runat="server" CssClass="txtBox"></asp:TextBox></td>
     </tr>
@@ -183,14 +183,6 @@
         </asp:GridView>
        
     </div>
-  
-
-
-
-
-
-
-
 
 <%--=========================================End My Code From Here=================================================--%>
     </ContentTemplate>

@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Database, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\UI\Libray\Database.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,7 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\AccountsChartOfAccDal.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalDal.cs" />
+    <Compile Include="Accounts\AccountsVoucherJournalDetailsDal.cs" />
+    <Compile Include="Accounts\CodeInfoDal.cs" />
+    <Compile Include="AFBLSMSServer\ApiSmsDal.cs" />
+    <Compile Include="HR\UnitDal.cs" />
+    <Compile Include="Inventory\InconsistanceItemDal.cs" />
+    <Compile Include="Inventory\InventoryAdjustmentAuthorityDal.cs" />
+    <Compile Include="Inventory\InventoryAdjustmentDal.cs" />
+    <Compile Include="Inventory\InventoryDal.cs" />
+    <Compile Include="Inventory\ItemListDal.cs" />
     <Compile Include="Inventory\PoTypeDal.cs" />
+    <Compile Include="Inventory\RfqMainDal.cs" />
+    <Compile Include="Inventory\StoreIssueByItemDal.cs" />
+    <Compile Include="Inventory\StoreIssueDal.cs" />
+    <Compile Include="Inventory\StoreIssueToFloreTransectionStatusDal.cs" />
+    <Compile Include="Inventory\SupplierDal.cs" />
     <Compile Include="Inventory\WareHouseDal.cs" />
     <Compile Include="Inventory\WarehouseOperatorDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,10 +71,17 @@
       <Project>{348d5741-b8ae-4247-b0bc-4ef3d5680901}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Utility\Utility.csproj">
       <Project>{3e7d37dd-f3e6-4932-b05c-821f021a92ee}</Project>
       <Name>Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

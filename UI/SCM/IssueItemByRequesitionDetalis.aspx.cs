@@ -10,8 +10,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using BLL.DropDown;
+using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
+using Model;
 
 namespace UI.SCM
 {
@@ -69,6 +71,7 @@ namespace UI.SCM
 
         public void LoadGrid()
         {
+            intwh = int.Parse(Request.QueryString["intwh"]);
             int ReqId = int.Parse(Request.QueryString["ReqId"]);
             dt = objIssue.GetViewData(3, "", intwh, ReqId, DateTime.Now, Enroll);
             if (dt.Rows.Count > 0)
@@ -109,9 +112,23 @@ namespace UI.SCM
                     string reqBy = lblReqBy.Text;
                     intwh = int.Parse(Request.QueryString["intwh"]);
                     int costCenterId = ddlCost.SelectedValue();
+                    StoreIssue storeIssue = new StoreIssue
+                    {
+                        ReceiveBy = receiveBy,
+                        RequsitionId = Convert.ToInt32(reqId),
+                        RequsitionCode = reqCode,
+                        DepartmentId = Convert.ToInt32(deptId),
+                        CostCenterId = costCenterId,
+                        Section = strSection,
+                        WhId = intwh,
+                        InsertBy = Enroll,
+                        RequsitionDate = DateTime.Parse(Request.QueryString["dteReqDate"]).ToString("yyyy/MM/dd")
+                    };
+
                     lock (_obj)
                     {
                         List<object> objects = new List<object>();
+                        List<StoreIssueByItem> storeIssueByItems = new List<StoreIssueByItem>();
                         for (int index = 0; index < dgvDetalis.Rows.Count; index++)
                         {
                             string issueQty = ((TextBox)dgvDetalis.Rows[index].FindControl("txtIssue")).Text;
@@ -122,6 +139,18 @@ namespace UI.SCM
                                 string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
                                 string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
                                 string remarks = ((Label)dgvDetalis.Rows[index].FindControl("lblRemarks")).Text.Trim();
+                                StoreIssueByItem storeIssueByItem = new StoreIssueByItem()
+                                {
+                                    IssueQuantity = Convert.ToDecimal(issueQty),
+                                    StockQuantity = Convert.ToDecimal(stockQty),
+                                    IssueValue = (Convert.ToDecimal(stockVlaue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
+                                    ItemId = Convert.ToInt32(itemId),
+                                    LocationId = Convert.ToInt32(locationId),
+                                    
+                                    Remarks = remarks
+                                };
+                                storeIssueByItems.Add(storeIssueByItem);
+
                                 dynamic obj = new
                                 {
                                     itemId,
@@ -146,8 +175,11 @@ namespace UI.SCM
                             }
 
                         }
+                        
                         if (objects.Count > 0)
                         {
+                            //StoreIssueBll _bll = new StoreIssueBll();
+                            //_bll.StoreIssue(storeIssue, storeIssueByItems);
                             xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
                             string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);

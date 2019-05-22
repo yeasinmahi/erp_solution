@@ -93,7 +93,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Rate"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtRate" CssClass="txtBox" Font-Bold="False" TextMode="Number" Text="0" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtRate" CssClass="txtBox" Font-Bold="False"  Text="0" runat="server"></asp:TextBox>
 
                                 <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="showLoader();" OnClick="btnAdd_Click" />
                                 <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click" /></td>

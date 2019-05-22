@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ComparativeStatement.aspx.cs" Inherits="UI.SCM.ComparativeStatement" EnableEventValidation="false" %>
+
 <%@ Import Namespace="Utility" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
@@ -62,8 +63,9 @@
         .auto-style1 {
             width: 819px;
         }
+
         .border {
-            border:1px solid black
+            border: 1px solid black
         }
     </style>
     <style type="text/css">
@@ -446,7 +448,7 @@
                                             <td style="text-align: left;">
                                                 <asp:DropDownList ID="ddlSupplier" runat="server" AutoPostBack="true" CssClass="ddList" Font-Bold="False" OnSelectedIndexChanged="ddlSupplier_OnSelectedIndexChanged"></asp:DropDownList>
                                             </td>
-                                            </tr>
+                                        </tr>
                                         <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Supplier Name:"></asp:Label></td>
@@ -470,7 +472,7 @@
                                             <td colspan="3" style="text-align: left;">
                                                 <asp:Label ID="lblSupplierAddress" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
-                                            </tr>
+                                        </tr>
                                         <tr>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label9" runat="server" CssClass="lbl" Text="Supplier Email:"></asp:Label></td>
@@ -478,7 +480,7 @@
                                                 <asp:Label ID="lblSupplierEmail" runat="server" Font-Bold="true"></asp:Label>
                                             </td>
 
-                                            <td colspan="2" style="text-align: right;" >
+                                            <td colspan="2" style="text-align: right;">
                                                 <asp:Button ID="btnEmail" runat="server" Text="Email" OnClick="btnEmail_OnClick" />
                                             </td>
                                             <%--<td>2
@@ -706,7 +708,7 @@
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label17" runat="server" CssClass="lbl" Text="Currency:"></asp:Label></td>
                                             <td style="text-align: left;">
-                                                <asp:DropDownList ID="ddlCurrencyQ" runat="server" Font-Bold="true" CssClass="ddList" ></asp:DropDownList>
+                                                <asp:DropDownList ID="ddlCurrencyQ" runat="server" Font-Bold="true" CssClass="ddList"></asp:DropDownList>
                                             </td>
                                         </tr>
                                     </table>
@@ -799,7 +801,7 @@
                                                         </asp:TemplateField>
                                                         <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right">
                                                             <ItemTemplate>
-                                                                <asp:TextBox runat="server"  id="total" Width="80px"></asp:TextBox>
+                                                                <asp:TextBox runat="server" ID="total" Width="80px"></asp:TextBox>
                                                             </ItemTemplate>
                                                             <ItemStyle HorizontalAlign="Center" Width="80px" />
                                                         </asp:TemplateField>
@@ -841,13 +843,31 @@
                                                 <asp:TextBox ID="txtRfqCs" runat="server"></asp:TextBox>
                                                 <asp:Button runat="server" Text="Show" ID="btnShowCs" OnClick="btnShowCs_OnClick" />
                                             </td>
-                                            
+
                                         </tr>
                                     </table>
                                     <%--<span id="cs" runat="server"></span>--%>
                                     <table>
                                         <tr>
-                                            <td runat="server" id="csTd"></td>
+                                            <td colspan="3" runat="server" id="csTd"></td>
+                                        </tr>
+                                        <%--<tr>
+                                            <td colspan="3">
+                                                <h3>Win Supplier</h3>
+                                            </td>
+                                        </tr>--%>
+                                        <tr class="hidden" id="panel">
+                                            <td>
+                                                <asp:Label runat="server" Text="Supplier"></asp:Label>
+                                                <asp:DropDownList runat="server" ID="ddlSupplierCs" />
+                                            </td>
+                                            <td>
+                                                <asp:Label runat="server" Text="Remarks"></asp:Label>
+                                                <asp:TextBox runat="server" ID="remaksCs"></asp:TextBox>
+                                            </td>
+                                            <td runat="server" style="text-align: left;">
+                                                <asp:Button runat="server" ID="btnSubmitCs" Text="Submit" OnClick="btnSubmitCs_OnClick" />
+                                            </td>
                                         </tr>
                                         <%--<tr>
                                             <td style="text-align: right">

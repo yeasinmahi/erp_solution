@@ -138,10 +138,10 @@
                                 <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Serial" SortExpression="strSerial">
+                               <%-- <asp:TemplateField HeaderText="Serial" SortExpression="strSerial">
                                 <ItemTemplate><asp:Label ID="lblSerial" runat="server" Text='<%# Bind("strSerial") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
                                 <asp:TemplateField HeaderText="Brand" SortExpression="strBrand">
                                 <ItemTemplate><asp:Label ID="lblBrand" runat="server" Text='<%# Bind("strBrand") %>'></asp:Label></ItemTemplate>
@@ -173,7 +173,7 @@
                                 <ItemStyle HorizontalAlign="center" />
                                 </asp:TemplateField>
 
-                                <asp:TemplateField HeaderText="Group Name" SortExpression="strGroupName">
+                               <%-- <asp:TemplateField HeaderText="Group Name" SortExpression="strGroupName">
                                 <ItemTemplate><asp:Label ID="lblGroupName" runat="server" Text='<%# Bind("strGroupName") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
                                 </asp:TemplateField>
@@ -191,7 +191,7 @@
                                 <asp:TemplateField HeaderText="Minor Category" SortExpression="strMinorCategory">
                                 <ItemTemplate><asp:Label ID="lblMinorCategory" runat="server" Text='<%# Bind("strMinorCategory") %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
-                                </asp:TemplateField>
+                                </asp:TemplateField>--%>
 
                                 <asp:TemplateField HeaderText="Plant Name" SortExpression="strPlantName">
                                 <ItemTemplate><asp:Label ID="lblPlant" runat="server" Text='<%# Bind("strPlantName") %>'></asp:Label></ItemTemplate>

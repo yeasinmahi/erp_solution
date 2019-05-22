@@ -5,6 +5,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 using System.Web.Script.Services;
 using System.Web.Services;
@@ -30,11 +31,15 @@ namespace UI.SCM
 
             if (!IsPostBack)
             {
-                _ast = new AutoSearch_BLL();
+                //_ast = new AutoSearch_BLL();
                 try
                 {
                     File.Delete(_filePathForXml);
                     dgvIndent.UnLoad();
+                   // _ast.Inatialize();
+                    //Thread th = new Thread(LoadItem);
+                    //th.Start();
+
                 }
                 catch
                 {
@@ -44,6 +49,13 @@ namespace UI.SCM
                 pnlUpperControl.DataBind();
             }
         }
+
+        //public void LoadItem()
+        //{
+        //    _ast = new AutoSearch_BLL();
+        //    _ast.Inatialize();
+            
+        //}
 
         private void DefaltLoad()
         {
@@ -281,13 +293,13 @@ namespace UI.SCM
 
         #region========================Auto Search============================
 
-        private static AutoSearch_BLL _ast = new AutoSearch_BLL();
+        private static readonly AutoSearch_BLL Ast = new AutoSearch_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
 
-            return _ast.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+            return Ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             // return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
 
@@ -480,5 +492,10 @@ namespace UI.SCM
         }
 
         #endregion======================Close=================================
+
+        protected void btnRefresh_OnClick(object sender, EventArgs e)
+        {
+            Ast.WhId = string.Empty;
+        }
     }
 }

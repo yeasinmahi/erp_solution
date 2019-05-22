@@ -20,7 +20,7 @@ namespace UI.SCM.BOM
         private DataTable dt = new DataTable();
         private int intwh, BomId, intBomStandard; private string xmlData;
         private int CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "";
+        private string filePathForXML; private string xmlString = "",orderId="0";
         decimal qty, actualQty, qcHoldQty, storeQty, totalSentToStore;
         private string productionID,  productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid;
 
@@ -65,7 +65,27 @@ namespace UI.SCM.BOM
 
                 txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
-                dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(productionID));
+                // dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(productionID));
+
+                intWh = int.Parse(Request.QueryString["whid"].ToString());
+                dt = objBom.GetBomData(18, xmlString, intWh, int.Parse(lblItemId.Text.ToString()), DateTime.Now, Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    string ast=dt.Rows[0]["ysnStandardCost"].ToString();
+                    if (bool.Parse(dt.Rows[0]["ysnStandardCost"].ToString()))
+                    {
+                        lblOrder.Visible = false;
+                        ddlOrderId.Visible = false;
+                    }
+                    else
+                    {
+                        lblOrder.Visible = true;
+                        ddlOrderId.Visible = true;
+                    }
+                }
+                ddlOrderId.LoadWithSelect(dt, "intSalesOrderID", "intSalesOrderID");
+
+
                 LoadGrid();
 
 
@@ -129,6 +149,7 @@ namespace UI.SCM.BOM
                 lblUom2.Text = searchKey[1].ToString();
                 lblItemId.Text = itemid;
                 lblItemName.Text = item;
+              
             }
             catch (Exception ex)
             {
@@ -140,6 +161,12 @@ namespace UI.SCM.BOM
         {
             try
             {
+                try
+                {
+                    orderId = ddlOrderId.SelectedValue().ToString();
+                }
+                catch {orderId = "0";}
+               
 
                 arrayKey = txtItem.Text.Split(delimiterChars);
 
@@ -193,8 +220,10 @@ namespace UI.SCM.BOM
                         string jobno = txtJob.Text.ToString();
                         string times = txtTime.Text.ToString();
                         string expDate = txtExpDate.Text.ToString();
+                       
+
                         CreateXml(item, itemid, struom, qty.ToString(), storeQty.ToString(), jobno, times,
-                            actualQty.ToString(), qcHoldQty.ToString(), expDate);
+                            actualQty.ToString(), qcHoldQty.ToString(), expDate, orderId);
                     }
                     else
                     {
@@ -212,14 +241,14 @@ namespace UI.SCM.BOM
             }
         }
 
-        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate)
+        private void CreateXml(string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate,string orderId)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate);
+                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate, orderId);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -227,7 +256,7 @@ namespace UI.SCM.BOM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate);
+                XmlNode addItem = CreateItemNode(doc, item, itemid, struom, qty, storeQty, jobno, times, actualQty, qcHoldQty, expDate, orderId);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -235,7 +264,7 @@ namespace UI.SCM.BOM
             LoadGridwithXml();
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate)
+        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times, string actualQty, string qcHoldQty, string expDate,string orderId)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -263,7 +292,10 @@ namespace UI.SCM.BOM
             XmlAttribute ExpDate = doc.CreateAttribute("expDate");
             ExpDate.Value = expDate;
 
+            XmlAttribute OrderId = doc.CreateAttribute("orderId");
+            OrderId.Value = orderId;
 
+            
 
             node.Attributes.Append(Item);
             node.Attributes.Append(Itemid);
@@ -279,6 +311,7 @@ namespace UI.SCM.BOM
             node.Attributes.Append(QcHoldQty);
 
             node.Attributes.Append(ExpDate);
+            node.Attributes.Append(OrderId);
 
             return node;
         }

@@ -102,6 +102,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ItemManagerStoreTDS.cs">
+      <DependentUpon>ItemManagerStoreTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ItemManagerStoreTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemManagerStoreTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ItemTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -121,6 +129,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MrrCorrection.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MrrReceiveTDS.cs">
+      <DependentUpon>MrrReceiveTDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="MrrReceiveTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -252,6 +263,17 @@
     </None>
     <None Include="InventoryTransferTDS.xss">
       <DependentUpon>InventoryTransferTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ItemManagerStoreTDS.xsc">
+      <DependentUpon>ItemManagerStoreTDS.xsd</DependentUpon>
+    </None>
+    <None Include="ItemManagerStoreTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemManagerStoreTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ItemManagerStoreTDS.xss">
+      <DependentUpon>ItemManagerStoreTDS.xsd</DependentUpon>
     </None>
     <None Include="ItemTDS.xsc">
       <DependentUpon>ItemTDS.xsd</DependentUpon>

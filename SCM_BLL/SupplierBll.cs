@@ -8,7 +8,7 @@ namespace SCM_BLL
     {
         public DataTable GetSupplierInfo(int type, int unitId, out string message)
         {
-            message = string.Empty;
+            message = "No supplier found";
             try
             {
                 sprSupplierInfoTableAdapter adp = new sprSupplierInfoTableAdapter();

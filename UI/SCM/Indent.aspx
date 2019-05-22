@@ -94,12 +94,13 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Item List: "></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="400px"></asp:TextBox>
+                                <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="340px"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem" OnClientItemSelected="autoCompleteEx_ItemSelected"
                                     ServiceMethod="GetIndentItemSerach" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
+                                <asp:Button runat="server" ID="btnRefresh" Text="Refresh" OnClick="btnRefresh_OnClick"/>
                             </td>
 
                             <td style="text-align: right;">

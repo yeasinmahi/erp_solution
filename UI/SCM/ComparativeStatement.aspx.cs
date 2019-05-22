@@ -489,20 +489,7 @@ namespace UI.SCM
             }
 
         }
-        public void LoadSupplier(int rfq)
-        {
-            //int unitId = _bll.GetUnitIdBy
-            _dt = _supplier.GetSupplierInfo(1, Convert.ToInt32(hdnUnitId.Value), out string message);
-            if (_dt.Rows.Count > 0)
-            {
-                ddlSupplier.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
-            }
-            else
-            {
-                Toaster(message, Common.TosterType.Error);
-            }
-
-        }
+        
 
         #endregion
 
@@ -621,11 +608,58 @@ namespace UI.SCM
             if (int.TryParse(rfq, out int rfqId))
             {
                 LoadSupplier(rfqId);
+                LoadRfq(rfqId);
             }
             else
             {
                 Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
             }
+        }
+        public void LoadRfq(int rfqId)
+        {
+            DataTable dt = _bll.GetRfq(rfqId);
+            if (dt.Rows.Count > 0)
+            {
+                gvRfq.Loads(dt);
+                lblRfqNo.Text = dt.Rows[0]["intRfqId"].ToString();
+                lblRfqDate.Text = dt.Rows[0]["dteRfqDate"].ToString();
+                lblRfqBy.Text = dt.Rows[0]["strInsertBy"].ToString();
+                string unitId = dt.Rows[0]["intUnitId"].ToString();
+                if (JobStationId == 28)
+                {
+                    imgUnit.ImageUrl = "/Content/images/img/" + "ag" + ".png";
+                }
+                else
+                {
+                    imgUnit.ImageUrl = "/Content/images/img/" + unitId + ".png";
+                }
+            }
+            else
+            {
+                Toaster(Message.NoFound.ToFriendlyString(), Common.TosterType.Warning);
+            }
+        }
+        public void LoadSupplier(int rfq)
+        {
+            int unitId = _bll.GetUnitIdByRfq(rfq);
+            if (unitId > 0)
+            {
+                _dt = _supplier.GetSupplierInfo(1, unitId, out string message);
+                if (_dt.Rows.Count > 0)
+                {
+                    ddlSupplier.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                }
+                else
+                {
+                    Toaster(message, Common.TosterType.Error);
+                }
+            }
+            else
+            {
+                Toaster("Problem occured in getting unit id of RFQ.", Common.TosterType.Error);
+            }
+            
+
         }
         #endregion
 
@@ -812,10 +846,25 @@ namespace UI.SCM
                 DataTable dt = _bll.GetComperativeStatement(rfqId);
                 string table = ToHtmlTable(dt);
                 csTd.InnerHtml = table;
+                LoadSupplierCs(rfqId);
             }
             else
             {
                 Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
+        }
+
+        private void LoadSupplierCs(int rfqId)
+        {
+            _dt = _supplier.GetSupplierInfo(3, rfqId, out string message);
+            if (_dt.Rows.Count > 0)
+            {
+                ddlSupplierCs.LoadWithSelect(_dt, "intSupplierID", "strSupplierName");
+                SetVisibility("panel", true);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
             }
         }
         public string ToHtmlTable(DataTable dt)
@@ -861,7 +910,44 @@ namespace UI.SCM
             return html;
         }
 
+        protected void btnSubmitCs_OnClick(object sender, EventArgs e)
+        {
+            string rfq = txtRfqCs.Text;
+            if (string.IsNullOrWhiteSpace(rfq))
+            {
+                Toaster("RFQ id can not be blank", Common.TosterType.Warning);
+                return;
+            }
+            if (int.TryParse(rfq, out int rfqId))
+            {
+                int supplierId = ddlSupplierCs.SelectedValue();
+                if (supplierId > 0)
+                {
+                    string winCause = remaksCs.Text;
+                    if (_bll.WinRfq(supplierId, winCause, rfqId))
+                    {
+                        Toaster("Successfully win the supplier "+ddlSupplier.SelectedText(), Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster("Something error while wining supplier",Common.TosterType.Warning);
+                    }
+                        
+                }
+                else
+                {
+                    Toaster("Please Select Supplier", Common.TosterType.Warning);
+                }
+                SetVisibility("panel", true);
+            }
+            else
+            {
+                Toaster("Enter Rfq Id properly", Common.TosterType.Warning);
+            }
+            
+        }
         #endregion
+
 
     }
 }

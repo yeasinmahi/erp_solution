@@ -253,10 +253,19 @@
                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Font-Bold="true" Text="Expire Date :"></asp:Label>
 
                             </td>
-                            <td style="text-align: left" colspan="3">
+                            <td style="text-align: left" colspan="1">
                                 <asp:TextBox ID="txtExpDate" runat="server" CssClass="txtBox" Width="80px" autocomplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtenderExp" runat="server" Format="yyyy-MM-dd" TargetControlID="txtExpDate"></cc1:CalendarExtender>
                             </td>
+                            <td style="text-align: left;">
+                                <asp:Label ID="lblOrder" runat="server" CssClass="lbl" Font-Bold="true" Text="Order Id:"></asp:Label>
+
+                            </td>
+                            <td style="text-align: left" colspan="3">
+                                <asp:dropdownlist ID="ddlOrderId" runat="server" CssClass="ddList" Width="80px" autocomplete="off"></asp:dropdownlist>
+                                 
+                            </td>
+
                         </tr>
                     </table>
                     <table>

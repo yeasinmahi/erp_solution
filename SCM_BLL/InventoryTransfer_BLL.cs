@@ -1,11 +1,8 @@
 ﻿using SCM_DAL;
 using SCM_DAL.InventoryTransferTDSTableAdapters;
 using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SCM_DAL.DmageTDSTableAdapters;
 
 namespace SCM_BLL
@@ -333,6 +330,14 @@ namespace SCM_BLL
         {
             sprInsertMrrItemDetailWithoutPOTableAdapter adp = new sprInsertMrrItemDetailWithoutPOTableAdapter();
             return adp.InventoryAdjustment(unit, wh, user, intItem, rcvQty, monRate, location, remarks);
+
+            //sprInventoryAdjsutmentTableAdapter adp = new sprInventoryAdjsutmentTableAdapter();
+            //return adp.GetData(1,0,unit, wh, user, intItem, rcvQty, monRate, location, remarks,0);
+        }
+        public DataTable InventoryAdjustmentApproval(int id, int unit, int wh, int user, int intItem, decimal rcvQty, decimal monRate, int location, string remarks, int prmission)
+        {
+            sprInventoryAdjsutmentTableAdapter adp = new sprInventoryAdjsutmentTableAdapter();
+            return adp.GetData(2, id, unit, wh, user, intItem, rcvQty, monRate, location, remarks, prmission);
         }
 
         public DataTable FGReceive_Data(int whid, DateTime FromDate, DateTime ToDate, int intType, int autoID, int itemID, DateTime transactionDate, decimal transactionQTY, int productID)
