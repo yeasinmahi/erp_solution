@@ -75,6 +75,31 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+
+        public DataTable PickingSummary(string pickingId)
+        {
+            try
+            {
+                PickingSummaryTableAdapter adp = new PickingSummaryTableAdapter();
+                return adp.GetPickingSummaryData(int.Parse(pickingId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable PickingDetalis(string pickingId)
+        {
+            try
+            {
+                QryPickingDetalisTableAdapter adp = new QryPickingDetalisTableAdapter();
+                return adp.GetPickingDetalisData(int.Parse(pickingId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable DeliveryOrderItemPriceByDo(int doId, int item)
         {
             try

@@ -117,7 +117,8 @@
             NotExec(args);
             flag=false;
         }
-    }
+        }
+        var ready_for_submit = true;
     </script>
     <script type="text/javascript">
         function funConfirmAll() {
@@ -169,7 +170,8 @@
                     <asp:HiddenField ID="hdnsalestype" runat="server" />
                     <asp:HiddenField ID="hdnvisibility" runat="server" />
                     <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
-                    <asp:HiddenField ID="hdnCharBasedOnUom" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" runat="server" />
+                     <asp:HiddenField ID="hdnSupplierName" runat="server" />
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
                     <asp:HiddenField ID="hdnCreditSales" runat="server" />
                     <asp:HiddenField ID="hdnWHName" Value="0" runat="server" />
@@ -359,7 +361,7 @@
                                                 </td>
                                                   <td>Supplier </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
                                                     <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" CompletionInterval="1" CompletionListCssClass="autocomplete_completionListElementBig" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" CompletionListItemCssClass="autocomplete_listItem" CompletionSetCount="1" EnableCaching="false" FirstRowSelected="true" MinimumPrefixLength="1" ServiceMethod="GetSupplierList" TargetControlID="txtSupplier">
                                                     </cc1:AutoCompleteExtender>
                                                 </td>
@@ -443,7 +445,8 @@
                             <td>
                                 <asp:HiddenField ID="hdnProduct" runat="server" />
                                 <asp:HiddenField ID="hdnProductText" runat="server" />
-                                <asp:TextBox ID="txtProduct" runat="server" AutoCompleteType="Search" Width="250px"
+                              
+                                <asp:TextBox ID="txtProduct" runat="server"      AutoCompleteType="Search" Width="250px"
                                     AutoPostBack="true" OnTextChanged="txtProduct_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender5" runat="server" TargetControlID="txtProduct"
                                     ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
@@ -627,12 +630,7 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="250px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Narration" SortExpression="naration" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblnaration" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" Width="200px" />
-                                        </asp:TemplateField>
+                                         
                                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="uomName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("uomName") %>'></asp:Label>
@@ -744,13 +742,10 @@
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center" SortExpression="Location">
+                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center" Visible="false" SortExpression="Location">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("location") %>'></asp:Label>
-                                            </ItemTemplate>
-                                            <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlLocations" runat="server" AutoPostBack="True"></asp:DropDownList>
-                                            </EditItemTemplate>
+                                            </ItemTemplate> 
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
@@ -780,6 +775,12 @@
                                         <asp:TemplateField HeaderText="Grand Total" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGrandtoal" runat="server" DataFormatString="{0:0.00}" Text='<%# GetTotal(""+Eval("priceTotal"), ""+Eval("discountTotal")) %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="UomId" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="uomId">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblUomId" runat="server" Text='<%# Bind("uomId") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
