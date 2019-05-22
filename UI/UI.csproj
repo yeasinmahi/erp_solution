@@ -210,6 +210,7 @@
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
     <Content Include="AEFPS\Benificiary_Report.aspx" />
+    <Content Include="AEFPS\ItemBridgeToInventoryMaster.aspx" />
     <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
@@ -1272,7 +1273,6 @@
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\Delivery\Test.aspx" />
-    <Content Include="SAD\Delivery\ViewDOTest.aspx" />
     <Content Include="SAD\Delivery\ViewOrder.aspx" />
     <Content Include="SAD\Delivery\ViewOrderForPicking.aspx" />
     <Content Include="SAD\Delivery\ViewPicking.aspx" />
@@ -2223,6 +2223,13 @@
     </Compile>
     <Compile Include="AEFPS\Benificiary_Report.aspx.designer.cs">
       <DependentUpon>Benificiary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\ItemBridgeToInventoryMaster.aspx.cs">
+      <DependentUpon>ItemBridgeToInventoryMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\ItemBridgeToInventoryMaster.aspx.designer.cs">
+      <DependentUpon>ItemBridgeToInventoryMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\BlockItem.aspx.cs">
       <DependentUpon>BlockItem.aspx</DependentUpon>
@@ -6111,13 +6118,6 @@
     </Compile>
     <Compile Include="SAD\Delivery\Test.aspx.designer.cs">
       <DependentUpon>Test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewDOTest.aspx.cs">
-      <DependentUpon>ViewDOTest.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\ViewDOTest.aspx.designer.cs">
-      <DependentUpon>ViewDOTest.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\ViewOrder.aspx.cs">
       <DependentUpon>ViewOrder.aspx</DependentUpon>

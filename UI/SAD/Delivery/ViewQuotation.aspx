@@ -43,6 +43,10 @@
      <script type="text/javascript">
          function CreateDO(intid, intCusID, strReportType, ShipPointID) {
             window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         }
+
+         function Edit_Quotation(intid, intCusID, strReportType, ShipPointID) {
+            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
         }
          
 </script>
@@ -221,6 +225,10 @@
 
     <asp:BoundField DataField="intid" HeaderText="id" SortExpression="intid" ItemStyle-HorizontalAlign="Center" Visible="false" >
     <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+
+    <asp:TemplateField HeaderText="Edit Quotation"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete1" runat="server" Text="Edit Quotation" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Edit_Quotation_Click"  CommandArgument='<%# Eval("intCustomerId")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField> 
 
     <asp:TemplateField HeaderText="D.O Creation"><ItemTemplate>                                                                                                          
     <asp:Button ID="Complete" runat="server" Text="Create D.O" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCustomerId")+","+Eval("intid")%>' /></ItemTemplate>

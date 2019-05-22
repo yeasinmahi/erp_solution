@@ -202,6 +202,21 @@ namespace SAD_BLL.Sales
             return msg;
         }
 
+        public string DOCancel(int intInsertBy, int intDOId)
+        {
+            string msg = "";
+
+            try
+            {
+                TblSalesOrder_DOCancelTableAdapter adpdo = new TblSalesOrder_DOCancelTableAdapter();
+                adpdo.DOCancel(intInsertBy, intDOId);
+                msg = "Successfully";
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+        }
+
         public DataTable getQuationDet(int quatationid)
         {
             SprSalesQuationByCustomerDetTableAdapter ta = new SprSalesQuationByCustomerDetTableAdapter();

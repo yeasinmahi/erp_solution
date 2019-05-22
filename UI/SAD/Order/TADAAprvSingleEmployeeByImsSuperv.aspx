@@ -1527,7 +1527,7 @@
     <ItemTemplate>
 
     <asp:HiddenField  ID="hdQpetr"  runat="server" Value='<%# Bind("decQntPetrolT", "{0:0.0}") %>'></asp:HiddenField>
-    <asp:TextBox ID="txtdecQntPetrolT"   CssClass="txtBox" runat="server" Width="50px" TextMode="Number" Text='<%# Bind("decQntPetrolT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+    <asp:TextBox ID="txtdecQntPetrolT"   CssClass="txtBox" runat="server" Width="50px"  Text='<%# Bind("decQntPetrolT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" Width="50px" />
      <FooterTemplate><asp:Label ID="lblqntpetr" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
     </asp:TemplateField>
@@ -1535,7 +1535,7 @@
     <asp:TemplateField HeaderText="CostPet" SortExpression="costpet" HeaderStyle-Wrap="true" HeaderStyle-Width="75px">
     <ItemTemplate>
     <asp:HiddenField  ID="hdnCostpetr" runat="server" Value='<%# Bind("decCostPetrolT", "{0:0.0}") %>'></asp:HiddenField>
-    <asp:TextBox ID="txtdecCostPetrolT"    CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("decCostPetrolT") %>'></asp:TextBox></ItemTemplate>
+    <asp:TextBox ID="txtdecCostPetrolT"    CssClass="txtBox" runat="server" Width="75px" Text='<%# Bind("decCostPetrolT") %>'></asp:TextBox></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" Width="75px" />
     <FooterTemplate><asp:Label ID="lblGTCostpetr" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
     </asp:TemplateField>
@@ -1544,7 +1544,7 @@
     <asp:TemplateField HeaderText="QntOct" SortExpression="decQntOcten" HeaderStyle-Wrap="true" HeaderStyle-Width="75px">
     <ItemTemplate>
     <asp:HiddenField  ID="hdQntOcten" runat="server" Value='<%# Bind("decQntOctenT", "{0:0.0}") %>'></asp:HiddenField>
-    <asp:TextBox ID="txtdecQntOctenT"   CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("decQntOctenT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
+    <asp:TextBox ID="txtdecQntOctenT"   CssClass="txtBox" runat="server" Width="75px" Text='<%# Bind("decQntOctenT") %>' AutoPostBack="true"></asp:TextBox></ItemTemplate>
     <ItemStyle HorizontalAlign="Left" Width="75px" />
     <FooterTemplate><asp:Label ID="lbloctq" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
     </asp:TemplateField>
@@ -1552,7 +1552,7 @@
                      <asp:TemplateField HeaderText="CostOct" SortExpression="decCostOcten" HeaderStyle-Wrap="true" HeaderStyle-Width="75px">
                      <ItemTemplate>
                      <asp:HiddenField  ID="hdCostocte" runat="server" Value='<%# Bind("decCostOctenT", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="txtdecCostOctenT"  CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("decCostOctenT") %>'></asp:TextBox></ItemTemplate>
+                    <asp:TextBox ID="txtdecCostOctenT"  CssClass="txtBox" runat="server" Width="75px"  Text='<%# Bind("decCostOctenT") %>'></asp:TextBox></ItemTemplate>
                     <ItemStyle HorizontalAlign="Left" Width="75px" />
                          <FooterTemplate><asp:Label ID="lbloctc" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
                      </asp:TemplateField>
@@ -1562,7 +1562,7 @@
 
                               <ItemTemplate>
                      <asp:HiddenField  ID="hdQCNG" runat="server" Value='<%# Bind("decQntCarbonNitGasT", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="txtdecQntCarbonNitGasT"  CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("decQntCarbonNitGasT") %>' AutoPostBack="true" ></asp:TextBox></ItemTemplate>
+                    <asp:TextBox ID="txtdecQntCarbonNitGasT"  CssClass="txtBox" runat="server" Width="75px"  Text='<%# Bind("decQntCarbonNitGasT") %>' AutoPostBack="true" ></asp:TextBox></ItemTemplate>
                     <ItemStyle HorizontalAlign="Left" Width="75px" />
                           <FooterTemplate><asp:Label ID="lblcngq" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
                      </asp:TemplateField>
@@ -1571,7 +1571,7 @@
 
                               <ItemTemplate>
                      <asp:HiddenField  ID="hdCostcng" runat="server" Value='<%# Bind("decCostCarbonNitGasT", "{0:0.0}") %>'></asp:HiddenField>
-                    <asp:TextBox ID="txtdecCostCarbonNitGasT"   CssClass="txtBox" runat="server" Width="75px" TextMode="Number" Text='<%# Bind("decCostCarbonNitGasT") %>' ></asp:TextBox></ItemTemplate>
+                    <asp:TextBox ID="txtdecCostCarbonNitGasT"   CssClass="txtBox" runat="server" Width="75px"  Text='<%# Bind("decCostCarbonNitGasT") %>' ></asp:TextBox></ItemTemplate>
                     <ItemStyle HorizontalAlign="Left" Width="75px" />
                             <FooterTemplate><asp:Label ID="lblcngc" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate>
                      </asp:TemplateField>

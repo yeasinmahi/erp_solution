@@ -690,7 +690,7 @@ namespace UI.SAD.Order
             int areaid = int.Parse(drdlArea.SelectedValue.ToString());
             int deptid =int.Parse ( HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
             bool ysnChecked;
-            if (deptid == 11)
+            if (deptid == 11  || deptid == 270)
             {
                 if (rptTypeid == 1)
                 {

@@ -42,7 +42,7 @@ namespace BLL.Accounts
                     accName2 = _accountsChartOfAccBll.GetAccountNameByGlobalCoaId(32);
                     strNarration2 = "Transfer To WIP";
                 }
-                else if (globalCoaId == 349)
+                else if (globalCoaId == 249)
                 {
                     coaId2 = _accountsChartOfAccBll.GetCoaIdByGlobalCoaId(199);
                     accName2 = _accountsChartOfAccBll.GetAccountNameByGlobalCoaId(199);

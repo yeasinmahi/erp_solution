@@ -41,8 +41,12 @@
         }
     </script>
      <script type="text/javascript">
-         function Picking(intid, intCusID, strReportType, ShipPointID) {
-            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         function Picking(intid, intCusID, strReportType, ShipPointID, PopupType) {
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         }
+
+         function PickingCustBase(intid, intCusID, strReportType, ShipPointID, PopupType) {
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
         }
 </script>
 <script language="javascript" type="text/javascript">
@@ -220,8 +224,12 @@
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
     <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete" runat="server" Text="Picking" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
-    </asp:TemplateField> 
+    <asp:Button ID="Complete" runat="server" Text="DO Base Picking" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Complete_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField>
+        
+    <asp:TemplateField HeaderText="DO"><ItemTemplate>                                                                                                          
+    <asp:Button ID="Complete1" runat="server" Text="Customer Base Picking" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Picking_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
+    </asp:TemplateField>
         
     </Columns>
     <FooterStyle BackColor="#CCCCCC" />

@@ -6,7 +6,7 @@ namespace DALOOP.Inventory
 {
     public class RfqMainDal
     {
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public DataTable GetRfq(int rfqId)
         {
             try

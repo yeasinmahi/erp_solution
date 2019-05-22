@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL.Inventory.InventoryAdjustmentTableAdapters;
 using Utility;
 
@@ -11,7 +7,7 @@ namespace DALOOP.Inventory
 {
     public class InventoryAdjustmentDal
     {
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public DataTable GetAllInventoryAdjustments()
         {
             try

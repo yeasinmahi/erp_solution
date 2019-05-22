@@ -205,6 +205,7 @@ namespace BLL.Inventory
                                             int jvId = Convert.ToInt32(_dt.Rows[0]["jvId"].ToString());
                                             if (jvId > 0)
                                             {
+                                                _storeIssueToFloreTransectionStatusBll.UpdateJv(jvId,inventoryStatusId);
                                                 _dt = _accountsVoucherJournalBll.GetJurnalVoucher(jvId, DateTime.Now);
                                                 if (_dt.Rows.Count > 0)
                                                 {
@@ -223,7 +224,7 @@ namespace BLL.Inventory
                                                                 {
                                                                     if (_accountsVoucherJournalDetailsBll.UpdateJournalVoucherDetails(jvId, coaId2, issueValue * -1))
                                                                     {
-                                                                        _storeIssueToFloreTransectionStatusBll.UpdateCoaId1(coaId2,
+                                                                        _storeIssueToFloreTransectionStatusBll.UpdateCoaId2(coaId2,
                                                                             inventoryStatusId);
                                                                         if (_accountsVoucherJournalBll.UpdateJournalVoucher(jvId, issueValue, enroll))
                                                                         {
@@ -358,11 +359,11 @@ namespace BLL.Inventory
             return 0;
         }
 
-        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
+        private bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
             string storeIssueNarration, string meterialNarration, int inventoryStatusId, int enroll)
         {
             if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
-                storeIssueNarration, meterialNarration, enroll, inventoryStatusId))
+                storeIssueNarration, meterialNarration, inventoryStatusId, enroll))
             {
                 //TODO: Success
                 _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true,inventoryStatusId);

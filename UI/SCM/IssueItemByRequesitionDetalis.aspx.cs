@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using BLL.DropDown;
+using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
 using Model;
@@ -140,11 +141,12 @@ namespace UI.SCM
                                 string remarks = ((Label)dgvDetalis.Rows[index].FindControl("lblRemarks")).Text.Trim();
                                 StoreIssueByItem storeIssueByItem = new StoreIssueByItem()
                                 {
-                                    IssueQuantity = Convert.ToDecimal(stockQty),
-                                    IssueValue = Convert.ToDecimal(stockVlaue),
+                                    IssueQuantity = Convert.ToDecimal(issueQty),
+                                    StockQuantity = Convert.ToDecimal(stockQty),
+                                    IssueValue = (Convert.ToDecimal(stockVlaue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
                                     ItemId = Convert.ToInt32(itemId),
                                     LocationId = Convert.ToInt32(locationId),
-                                    StockQuantity = Convert.ToDecimal(stockQty),
+                                    
                                     Remarks = remarks
                                 };
                                 storeIssueByItems.Add(storeIssueByItem);
@@ -176,6 +178,8 @@ namespace UI.SCM
                         
                         if (objects.Count > 0)
                         {
+                            //StoreIssueBll _bll = new StoreIssueBll();
+                            //_bll.StoreIssue(storeIssue, storeIssueByItems);
                             xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
                             string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
                                 Enroll);

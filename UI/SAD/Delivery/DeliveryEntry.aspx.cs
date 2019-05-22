@@ -44,7 +44,7 @@ namespace UI.SAD.Delivery
         XmlManager xm = new XmlManager();
 
         private string message;
-        private string _filePathForXml, _xmlString = "", xmlNewString = "";
+        private string _filePathForXml, _xmlString = "", xmlHeaderString = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             //_filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
@@ -67,9 +67,6 @@ namespace UI.SAD.Delivery
                // int userUnit = 53; //Convert.ToInt32( Session[SessionParams.UNIT_ID]); 
                 //PickingPageloadDataBind(Id, userUnit);
 
-                Session["RowObj"] = null;
-                Session["HeadObj"] = null;
-
             }
 
         }
@@ -79,39 +76,25 @@ namespace UI.SAD.Delivery
             try
             {
                 Session[SessionParams.SalesProcess] = "Picking";
-                Session["DoId"] = "2590152";
-                if (Request.QueryString["PopupType"] == "Picking")
-                {
-                    Session[SessionParams.SalesProcess] = "Picking";
-                     
-                }
+                Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
+                Session["DoId"] = Request.QueryString["DoId"];
+                Session["CustomerId"] = Request.QueryString["CustomerId"];
+                Session["ShipId"] = Request.QueryString["ShipId"];
+                Session["PickingId"] = Request.QueryString["PickingId"];
+                Session["ReportType"] = Request.QueryString["ReportType"];
+
                 
-                else if (Request.QueryString["PopupType"] == "Delivery")
-                {
-                    Session[SessionParams.SalesProcess] = "Delivery";
-                }
-                else
+                if (Request.QueryString["PopupType"] == null)
                 {
                     Session[SessionParams.SalesProcess] = "DO";
                 }
-
-
-                if ((Request.QueryString["ReportType"]) == "CustomerBase")
-                {
-                    Session["CustomerId"] = "351197";
-                    Session["ReportType"] = "CustomerBase";
-                    Session["DoId"] = "0";
-                }
-                else if ((Request.QueryString["ReportType"]) == "DoBase")
-                {
-                    Session["DoId"] = "2590152";
-                    Session["ReportType"] = "DoBase";
-                    Session["CustomerId"] = "0";
-                }
                 else
                 {
-
+                    PickingPageloadDataBind(55, 55);
                 }
+
+              
+                
 
             }
             catch { }
@@ -127,7 +110,10 @@ namespace UI.SAD.Delivery
             {
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(id, unit);
             }
-
+            if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking_Edit")
+            {
+                PickingGridDataBind();
+            }
             if (dt.Rows.Count > 0)
             {
                 ddlUnit.SelectedItem.Text = dt.Rows[0]["strUnit"].ToString();
@@ -169,6 +155,11 @@ namespace UI.SAD.Delivery
             }
 
             
+        }
+
+        private void PickingGridDataBind()
+        {
+            throw new NotImplementedException();
         }
 
         private void GetURLMenu()
@@ -739,11 +730,11 @@ namespace UI.SAD.Delivery
                         string location = "0";
                         string intInvItemId = hdnInvItemId.Value;
                         string editStatus ="0";
+                        string vehicleProvider = rdoVehicleCompany.SelectedItem.Text;
+                        string vehicleProviderId = rdoVehicleCompany.SelectedValue;
                         try { location = ddlLocation.SelectedItem.Value; }
                         catch { location = "0"; }
-
-
-
+                         
 
                         if (rdoDeliveryType.SelectedItem.ToString() == "Picking")
                         {
@@ -758,11 +749,7 @@ namespace UI.SAD.Delivery
                                 }
                             }
                         
-                            //RowLavelNewXmlCreate(productId, productName, quantity, rate, uomId, uomName,
-                            //   naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
-                            //   priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem,
-                            //   promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom, location);
-
+                           
 
                         }
                         else if (rdoDeliveryType.SelectedItem.ToString() == "DO")
@@ -779,10 +766,11 @@ namespace UI.SAD.Delivery
                             }
                           
                         }
-                          RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                         
+                        RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                           naration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
-                          priceTotal.ToString(), supplierTax, vat, vatPrice, narr, promtionItemId, promtionItem, promPrices,
-                          promtionUom, promtionItemCoaId, promtionQnty, promtionItemUom, location, intInvItemId, editStatus);
+                          priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
+                          promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, vehicleProvider, vehicleProviderId, location, intInvItemId, editStatus);
 
                         txtQun.Text = "";
                         hdnProduct.Value = "";
@@ -813,8 +801,9 @@ namespace UI.SAD.Delivery
         
         private void RowLavelXmlCreate(string productId, string productName, string quantity, string rate, string uomId,
             string uomName, string naration, string currency, string commision, string commisionTotal, string discount,
-            string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice, string narr, string promtionItemId,
-            string promtionItem, string promPrices,string promtionUom, string promtionItemCoaId, string promtionQnty, string promtionItemUom,string location ,string intInvItemId,string editStatus)
+            string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice,  string promtionItemId,
+            string promtionItem, string promPrices,string promtionUom,string coaId,string coaName, string promtionItemCoaId, string promtionQnty, string promtionItemUom,
+            string vehicleProvider, string vehicleProviderId, string location ,string intInvItemId,string editStatus)
         {
 
 
@@ -836,20 +825,23 @@ namespace UI.SAD.Delivery
                 supplierTax,
                 vat,
                 vatPrice,
-                narr,
                 promtionItemId,
                 promtionItem,
                 promPrices,
                 promtionUom,
+                coaId,
+                coaName,
                 promtionItemCoaId,
                 promtionQnty,
                 promtionItemUom,
+                vehicleProvider,
+                vehicleProviderId,
                 location,
                 intInvItemId,
                 editStatus
             };
              
-            XmlParser.CreateXml("Entry", "items", obj, GetXmlFilePath(), out message);
+            XmlParser.CreateXml("Delivery", "items", obj, GetXmlFilePath(), out message);
           //  string xmlString = XmlParser.GetXml(GetXmlFilePath()); //"Entry", "items", objects, out message
           
             LoadGridwithXml();
@@ -1068,14 +1060,16 @@ namespace UI.SAD.Delivery
                 string customerAddress = txtCustomerAddress.Text;
                 string shipToPartyAddress = txtShipToPartyAddress.Text;
                 string currency = ddlCurrency.SelectedItem.Value;
-                string currencyConversionRate = txtConvRate.Text;
+                string conversionRate = txtConvRate.Text;
                 string vehicleCompany = "", vehicleId = "", vehicleText = "", driver = "", driverContact = "", supplierId = "",supplierText="";
-                if(hdnConfirm.Value=="1")
+                string rowXml = XmlParser.GetXml(GetXmlFilePath());
+                string orderID = "", Code = "", msg = "";
+                if (hdnConfirm.Value=="1")
                 {
                     if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
                     {
-                        BindDOHeaderXML(unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, currency, currencyConversionRate);
-
+                        BindDOHeaderXML(Enroll.ToString(),unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, hdnnarration.Value, currency, conversionRate);
+                        msg = deliveryBLL.DeliveryOrderCreate(xmlHeaderString, rowXml, ref orderID, ref Code);
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
                     {
@@ -1105,29 +1099,25 @@ namespace UI.SAD.Delivery
                                 }
                             }
                         }
-                        else
-                        {
-
-                        }
-                        BindPickingHeaderXML(unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress,
-                            shipToPartyAddress, currency, currencyConversionRate, vehicleCompany, vehicleId, vehicleText, driver, driverContact, supplierId, supplierText);
+                        else { }
+                        BindPickingHeaderXML(Enroll.ToString(),unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress,
+                            shipToPartyAddress, currency, conversionRate, vehicleCompany, vehicleId, vehicleText, driver, driverContact, supplierId, supplierText);
 
                     }
 
-                    string itemXML = XmlParser.GetXml(GetXmlFilePath());
-                    string orderID = "", Code = "", msg = "";
+                   
+                    
+
+                    msg=deliveryBLL.PickingCreate(xmlHeaderString, rowXml, customerAddress, ref orderID, ref Code);
                     lblCodeText.Visible = true;
                     lblCode.Text = Code;
                     lblOrderIDText.Visible = true;
                     lblOrderId.Text = orderID;
-
-                    msg=deliveryBLL.PickingCreate(xmlNewString, itemXML, customerAddress, ref orderID, ref Code);
-
                     if (File.Exists(GetXmlFilePath()))
                     {
                         File.Delete(GetXmlFilePath());
                     }
-                    Session["RowObj"] = null;
+                    
                     Toaster(msg, Common.TosterType.Success);
                 }
                 else
@@ -1144,12 +1134,13 @@ namespace UI.SAD.Delivery
         }
 
        
-        private string BindPickingHeaderXML(string unitId, string shipPointId, string salesOfficeId, string customerType, string date, string dueDate, string customerId, string shipPartyId, string salesType, 
-            string reffNo, string customerAddress, string shipToPartyAddress, string currencyId, string currencyConversionRate, string vehicleCompany, string vehicleId,string vehicleName, string driver,
+        private string BindPickingHeaderXML(string userId,string unitId, string shipPointId, string salesOfficeId, string customerType, string date, string dueDate, string customerId, string shipPartyId, string salesType, 
+            string reffNo, string customerAddress, string shipToPartyAddress, string currencyId, string conversionRate, string vehicleCompany, string vehicleId,string vehicleName, string driver,
             string driverContact, string supplierId,string supplierName)
         {
             dynamic obj = new
             {
+                userId,
                 unitId,
                 shipPointId,
                 salesOfficeId,
@@ -1163,7 +1154,7 @@ namespace UI.SAD.Delivery
                 customerAddress,
                 shipToPartyAddress,
                 currencyId,
-                currencyConversionRate,
+                conversionRate,
                 vehicleCompany,
                 vehicleId,
                 vehicleName,
@@ -1177,15 +1168,16 @@ namespace UI.SAD.Delivery
 
             objects.Add(obj);
 
-            xmlNewString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
+            xmlHeaderString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
 
-            return xmlNewString;
+            return xmlHeaderString;
 
         }
-        private string BindDOHeaderXML(string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId, string salesType, string reffNo, string customerAddress, string shipToPartyAddress, string currency, string currencyConversionRate)
+        private string BindDOHeaderXML(string userId,string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId, string salesType, string reffNo, string customerAddress, string shipToPartyAddress,string narration, string currency, string conversionRate)
         {
             dynamic obj = new
             {
+                userId,
                 unit,
                 shipPoint,
                 salesOffice,
@@ -1198,16 +1190,16 @@ namespace UI.SAD.Delivery
                 reffNo,
                 customerAddress,
                 shipToPartyAddress,
+                narration,
                 currency,
-                currencyConversionRate,
+                conversionRate,
             };
-            List<object> objects = new List<object>();
-
+            List<object> objects = new List<object>(); 
             objects.Add(obj);
 
-            xmlNewString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
+            xmlHeaderString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
 
-            return xmlNewString;
+            return xmlHeaderString;
 
         }
 
