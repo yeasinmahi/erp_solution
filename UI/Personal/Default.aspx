@@ -89,10 +89,16 @@
                     <td>
                         <asp:Panel ID="pnlpersonalinformation" runat="server"><%# strinformation %></asp:Panel>
                     </td>
+                    
                 </tr>
                 <tr>
                     <td style="text-align:right"> 
                         &nbsp;</td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="../HR/HolidayCalendar/HolidayCalenderImage.aspx">Holiday Calender</a>
+                    </td>
                 </tr>
                 <tr>
                     <td>

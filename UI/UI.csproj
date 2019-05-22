@@ -468,6 +468,8 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
+    <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
+    <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
@@ -3195,6 +3197,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.cs">
+      <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.designer.cs">
+      <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Insurance\InsuranceDateRangeReport.aspx.cs">
       <DependentUpon>InsuranceDateRangeReport.aspx</DependentUpon>
@@ -9678,7 +9687,6 @@
     <Folder Include="HR\DocumentTracking\Data\" />
     <Folder Include="HR\DocumentTracking\Uploads\" />
     <Folder Include="HR\Employee\Upload\" />
-    <Folder Include="HR\HolidayCalendar\Holiday\" />
     <Folder Include="HR\Internal\Uploads\" />
     <Folder Include="HR\IssuedLetter\Data\" />
     <Folder Include="HR\KPI\Data\" />
