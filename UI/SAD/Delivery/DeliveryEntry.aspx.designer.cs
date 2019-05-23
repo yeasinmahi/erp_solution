@@ -247,13 +247,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnPrice;
         
         /// <summary>
-        /// hdnLogisGain control.
+        /// hdnPickingId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLogisGain;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPickingId;
         
         /// <summary>
         /// hdnVhlPrice control.

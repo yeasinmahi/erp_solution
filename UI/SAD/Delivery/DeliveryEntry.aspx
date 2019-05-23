@@ -163,15 +163,15 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
-                    <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <asp:HiddenField ID="hdnPromoCogs" runat="server" />
-                     <asp:HiddenField ID="hdnPromoInvItemId" runat="server" />
+                    <asp:HiddenField ID="hdnUnit" runat="server" Value="0" />
+                    <asp:HiddenField ID="hdnPromoCogs" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnPromoInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPromoInvStock" runat="server" />
-                    <asp:HiddenField ID="hdnsalestype" runat="server" />
-                    <asp:HiddenField ID="hdnvisibility" runat="server" />
-                    <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
-                    <asp:HiddenField ID="hdnSupplierId" runat="server" />
-                     <asp:HiddenField ID="hdnSupplierName" runat="server" />
+                    <asp:HiddenField ID="hdnsalestype" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnvisibility" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnLogisBasedOnUom" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnSupplierName" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
                     <asp:HiddenField ID="hdnCreditSales" runat="server" />
                     <asp:HiddenField ID="hdnWHName" Value="0" runat="server" />
@@ -180,7 +180,7 @@
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnPickingId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnDoId" Value="0" runat="server" />
                      
