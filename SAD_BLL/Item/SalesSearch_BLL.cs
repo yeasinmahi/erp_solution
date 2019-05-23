@@ -145,7 +145,7 @@ namespace SAD_BLL.Item
 
         public static string[] GetDoPendingItemByDo(string doId,string shipPointId, string prefix)
         {
-            tblDoPendintItem = new Delivery_TDS.QryDOPendingItemDataTable[Convert.ToInt32(doId)];
+            tblDoPendintItem = new Delivery_TDS.QryDOPendingItemDataTable[Convert.ToInt32(shipPointId)];
             // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
             QryDOPendingItemTableAdapter adp = new QryDOPendingItemTableAdapter();
             tblDoPendintItem[e] = adp.GetPendingByDo(int.Parse(doId),int.Parse(shipPointId));
