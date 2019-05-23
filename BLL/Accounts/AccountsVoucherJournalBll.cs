@@ -10,6 +10,7 @@ namespace BLL.Accounts
         private readonly AccountsVoucherJournalDal _dal = new AccountsVoucherJournalDal();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private readonly StoreIssueToFloreTransectionStatusBll _storeIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
+        private readonly InventoryBll _inventoryBll = new InventoryBll();
         private DataTable _dt;
         public int Insert(string strCode, int intUnitId, string strNarration, decimal amount, int intLastActionBy)
         {
@@ -66,22 +67,27 @@ namespace BLL.Accounts
             return false;
         }
 
-        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId, string storeIssueNarration, string meterialNarration,int inventoryStatusId, int enroll)
+        public bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId, string storeIssueNarration, string meterialNarration,int inventoryStatusId, int inventoryId, int enroll)
         {
             int voucherId = InsertJournalVoucher(whId, issueValue, storeIssueNarration, enroll);
             if (voucherId > 0)
             {
-                _storeIssueToFloreTransectionStatusBll.UpdateJv(voucherId, inventoryStatusId);
-                if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue, inventoryStatusId) > 0)
+                
+                if (_inventoryBll.UpdateDailyJv(voucherId, inventoryId))
                 {
-                    return true;
+                    _storeIssueToFloreTransectionStatusBll.UpdateJv(voucherId, inventoryStatusId);
+                    if (_accountsVoucherJournalDetailsBll.InsertJournalVoucherDetails(voucherId, coaId, meterialNarration, issueValue, inventoryStatusId) > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        //TODO: RollBack
+                        return false;
+                    }
                 }
-                else
-                {
-                    //TODO: RollBack
-                    return false;
-                }
-               
+                return false;
+
             }
             else
             {
