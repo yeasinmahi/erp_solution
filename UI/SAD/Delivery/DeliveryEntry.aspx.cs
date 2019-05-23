@@ -75,7 +75,7 @@ namespace UI.SAD.Delivery
                 Session["DoId"] = Request.QueryString["intid"];
                 Session["CustomerId"] = Request.QueryString["intCusID"];
                 Session["ShipId"] = Request.QueryString["ShipPointID"];
-                Session["PickingId"] = Request.QueryString["PickingId"];
+                Session["PickingId"] = Request.QueryString["intid"];
                 Session["ReportType"] = Request.QueryString["strReportType"];
 
                string DO = Request.QueryString["intid"];
@@ -428,11 +428,11 @@ namespace UI.SAD.Delivery
             {
                 return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
-            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && int.Parse(HttpContext.Current.Session["DoId"].ToString())>0)
+            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && HttpContext.Current.Session["ReportType"].ToString() == "DO_Base")
             {
                 return SalesSearch_BLL.GetDoPendingItemByDo(HttpContext.Current.Session["DoId"].ToString(),HttpContext.Current.Session[SessionParams.CURRENT_SHIP].ToString(), prefixText);
             }
-            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && int.Parse(HttpContext.Current.Session["CustomerId"].ToString()) > 0)
+            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && HttpContext.Current.Session["ReportType"].ToString() == "Customer_Base")
             {
                 return SalesSearch_BLL.GetDoPendingItemByCustomer(HttpContext.Current.Session["CustomerId"].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SHIP].ToString(), prefixText);
             }
