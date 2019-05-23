@@ -103,13 +103,31 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnDA control.
+        /// hdnPromoCogs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnDA;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoCogs;
+        
+        /// <summary>
+        /// hdnPromoInvItemId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoInvItemId;
+        
+        /// <summary>
+        /// hdnPromoInvStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoInvStock;
         
         /// <summary>
         /// hdnsalestype control.
@@ -139,13 +157,22 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnLogisBasedOnUom;
         
         /// <summary>
-        /// hdnCharBasedOnUom control.
+        /// hdnSupplierId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCharBasedOnUom;
+        protected global::System.Web.UI.WebControls.HiddenField hdnSupplierId;
+        
+        /// <summary>
+        /// hdnSupplierName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnSupplierName;
         
         /// <summary>
         /// hdnWHId control.
@@ -175,13 +202,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnWHName;
         
         /// <summary>
-        /// hdnBl control.
+        /// hdnProductCOGS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBl;
+        protected global::System.Web.UI.WebControls.HiddenField hdnProductCOGS;
         
         /// <summary>
         /// hdnInventoryStock control.
@@ -427,13 +454,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// CalendarDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarDate;
         
         /// <summary>
         /// Label7 control.
@@ -454,13 +481,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtDueDate;
         
         /// <summary>
-        /// CalendarExtender2 control.
+        /// CalendarDueDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarDueDate;
         
         /// <summary>
         /// lblitm control.

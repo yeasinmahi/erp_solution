@@ -11,12 +11,12 @@ namespace SAD_BLL.Sales
   public  class Delivery_BLL
     {
         string msg = "";
-        public DataTable DeliveryHeaderDataByCustomer(int intCustId,int intUnitId)
+        public DataTable DeliveryHeaderDataByCustomer(string intCustId,string intUnitId)
         {
             try
             {
                 QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByCustomer(intCustId, intUnitId);
+                return adp.GetDoProfileByCustomer(int.Parse(intCustId), int.Parse(intUnitId));
             }
             catch (Exception ex)
             {
@@ -24,12 +24,12 @@ namespace SAD_BLL.Sales
             }
            
         }
-        public DataTable DeliveryHeaderDataByDo(int intDo, int intUnitId)
+        public DataTable DeliveryHeaderDataByDo(string intDo, string intUnitId)
         {
             try
             {
                 QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByDo(intDo, intUnitId);
+                return adp.GetDoProfileByDo(int.Parse(intDo), int.Parse(intUnitId));
             }
             catch (Exception ex)
             {
@@ -63,19 +63,44 @@ namespace SAD_BLL.Sales
                 throw ex;
             } 
         }
-        public DataTable InvenotoryStockByItem(string FgId,string wh)
+        public DataTable InvenotoryStockByItem(int productId,int promItemId, string wh)
         { 
             try
             {
                 InventoryFgItemBlanceTableAdapter adp = new InventoryFgItemBlanceTableAdapter();
-                return adp.GetInventoryItemBlance(int.Parse(FgId), int.Parse(wh));
+                return adp.GetInventoryItemBlance(productId, promItemId, int.Parse(wh));
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public DataTable DeliveryOrderItemPriceByDo(int item, int doId)
+
+        public DataTable PickingSummary(string pickingId)
+        {
+            try
+            {
+                PickingSummaryTableAdapter adp = new PickingSummaryTableAdapter();
+                return adp.GetPickingSummaryData(int.Parse(pickingId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable PickingDetalis(string pickingId)
+        {
+            try
+            {
+                QryPickingDetalisTableAdapter adp = new QryPickingDetalisTableAdapter();
+                return adp.GetPickingDetalisData(int.Parse(pickingId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable DeliveryOrderItemPriceByDo(int doId, int item)
         {
             try
             {
