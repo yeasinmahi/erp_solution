@@ -1370,13 +1370,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public QryDOPendingItemRow FindByintDoId(long intDoId) {
-                return ((QryDOPendingItemRow)(this.Rows.Find(new object[] {
-                            intDoId})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 QryDOPendingItemDataTable cln = ((QryDOPendingItemDataTable)(base.Clone()));
                 cln.InitVars();
@@ -1421,10 +1414,7 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnstrItemIdNameDo);
                 this.columnmonPrice = new global::System.Data.DataColumn("monPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonPrice);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintDoId}, true));
                 this.columnintDoId.AllowDBNull = false;
-                this.columnintDoId.Unique = true;
                 this.columnintCustomerId.AllowDBNull = false;
                 this.columnintProductId.AllowDBNull = false;
                 this.columnstrProductName.AllowDBNull = false;
