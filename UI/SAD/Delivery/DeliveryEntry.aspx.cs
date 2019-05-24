@@ -57,7 +57,7 @@ namespace UI.SAD.Delivery
                 
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
-              //  RequestPopUp(); 
+              // RequestPopUp(); 
                   
             }
 
@@ -109,7 +109,7 @@ namespace UI.SAD.Delivery
                 Session["ShipId"] = "0";
             }
             
-            if (!IsNullOrEmpty(hdnRequistId.Value))
+            if (hdnRequistId.Value=="0")
             {
                 DefaultPageLoad();
             }
@@ -118,6 +118,7 @@ namespace UI.SAD.Delivery
 
                 PickingPageloadDataBind();
             }
+            ControlHide(type);
         }
         public static bool IsNullOrEmpty(String str)
         {
@@ -223,13 +224,13 @@ namespace UI.SAD.Delivery
                 hdnPickingId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text = Request.QueryString["intid"];
                 dt = deliveryBLL.PickingSummary(hdnPickingId.Value);
-               
+                PickingGridDataBind();
             }
             if (dt.Rows.Count > 0)
             { 
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
-                PickingGridDataBind();
+               
                 SessionDataSet();
                 ControlHide(rdoDeliveryType.SelectedItem.Text.ToString());
                 CustometChange();
@@ -376,7 +377,7 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                if (Type == "DO")
+                if (Type == "DO" || Type == "DO_Edit")
                 { 
                     pnlVehicleMain.Visible = false;  
                     txtPrice.Visible = true;
@@ -387,10 +388,10 @@ namespace UI.SAD.Delivery
                     dgvSales.Visible = true;
                     dgvSalesPicking.Visible = false;
                     ddlLocation.Visible = false;
-                    location.Visible = false;
+                   // lblFgLocation.Visible = false;
 
                 }
-                else if (Type == "Picking")
+                else if (Type == "Picking" || Type == "Picking_Edit")
                 {
                     pnlVehicleMain.Visible = true;
                     btnSubmit.Text = "Picking";
@@ -400,7 +401,7 @@ namespace UI.SAD.Delivery
                     dgvSales.Visible = false;
                     dgvSalesPicking.Visible = true;
                     ddlLocation.Visible = true;
-                    location.Visible = true;
+                   // lblFgLocation.Visible = true;
                     txtCustomer.Enabled = true;
                     txtCustomerAddress.Enabled = true;
 
@@ -416,6 +417,8 @@ namespace UI.SAD.Delivery
                     txtProduct.Enabled = false;
                     txtVehicle.Enabled = false;
                     pnlLogistic.Enabled = false;
+                    ddlLocation.Visible = true;
+                   // lblFgLocation.Visible = true;
                 }
                 else if (Type == "Return")
                 {
@@ -423,6 +426,8 @@ namespace UI.SAD.Delivery
                     btnSubmit.Text = "Return";
                     lblDoCustId.Visible = false;
                     txtDoNumber.Visible = false;
+                    ddlLocation.Visible = true;
+                   // lblFgLocation.Visible = true;
                 }
             }
             catch { }
@@ -1246,14 +1251,14 @@ namespace UI.SAD.Delivery
 
         private void GetProduct(string type)
         {
-            if (type == "DO")
+            if (hdnRequistId.Value=="0")
             {
                 char[] ch = { '[', ']' };
                 string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
                 hdnProduct.Value = temp[temp.Length - 1];
                 hdnProductText.Value = temp[0];
             }
-            else if (type == "Picking")
+            else if (type == "Picking" || type == "Picking_Edit")
             {
                 char[] ch = { '[', ']' };
                 string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
@@ -1261,14 +1266,7 @@ namespace UI.SAD.Delivery
                 hdnProductText.Value = temp[0];
                 hdnProduct.Value = temp[3];
             }
-            else if (type == "Delivery")
-            {
-                char[] ch = { '[', ']' };
-                string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
-                hdnDoId.Value = temp[1];
-                hdnProductText.Value = temp[0];
-                hdnProduct.Value = temp[3];
-            }
+           
 
         }
         protected void btnProductAddAll_Click(object sender, EventArgs e)
@@ -1291,12 +1289,12 @@ namespace UI.SAD.Delivery
                 decimal vatPrice = 0;
                 decimal convRate = 0;
                 decimal productRate = 0;
-                if (type == "DO")
+                if (hdnRequistId.Value=="0")
                 {
                     productRate = itemPrice.GetPrice(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
                   , ref commission, ref suppTax, ref vat, ref vatPrice, ref convRate);
                 }
-                else if (type=="Picking")
+                else if (type=="Picking" || type == "Picking_Edit")
                 {
                     dt=deliveryBLL.DeliveryOrderItemPriceByDo(int.Parse(hdnDoId.Value), int.Parse(hdnProduct.Value));
                     if (dt.Rows.Count > 0)

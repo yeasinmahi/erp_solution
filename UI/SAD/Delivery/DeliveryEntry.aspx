@@ -432,7 +432,7 @@
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
                             <td>Price</td>
-                            <td id="location" runat="server">Location</td>
+                            <td>Location</td>
                             <td>Commission</td>
                             <td style="color: Red;">Quantity</td>
                             <td>Total</td>
@@ -461,7 +461,7 @@
                                 <asp:TextBox ID="txtPrice" runat="server" Width="50px"></asp:TextBox>
                             </td>
                             <td align="center">
-                                <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlLocation"  runat="server">
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
