@@ -52,26 +52,121 @@ namespace UI.SAD.Delivery
             if (!IsPostBack)
             {
 
-                //GetURLMenu();
+                GetUrlData(Request.QueryString["PopupType"]);
                 try { File.Delete(GetXmlFilePath()); } catch { }
-              
-
+                
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
-                Session["CustomerId"] = null;
-                Session["DoId"] = null;
-                RequestPopUp(); 
+                txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
+              //  RequestPopUp(); 
                   
             }
 
         }
+        private void GetUrlData(string type)
+        {
+            Session[SessionParams.SalesProcess] = type;
+            rdoDeliveryType.Items.Clear();
+            rdoDeliveryType.Items.Add(new ListItem(type, "1"));
+            rdoDeliveryType.SelectedValue = "1";
+            Session[SessionParams.SalesProcess] = type;
 
+            Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
+            if (!IsNullOrEmpty(Request.QueryString["intid"]))
+            {
+                Session["DoId"] = Request.QueryString["intid"];
+                Session["PickingId"] = Request.QueryString["intid"];
+                hdnRequistId.Value = Request.QueryString["intid"];
+            }
+            else
+            {
+                Session["DoId"] = "0";
+                
+            }
+            if (!IsNullOrEmpty(Request.QueryString["intCusID"]))
+            {
+                Session["CustomerId"] = Request.QueryString["intCusID"];
+                hdnRequistId.Value = Request.QueryString["intCusID"];
+            }
+            else
+            {
+                Session["CustomerId"] = "0";
+               // hdnRequistId.Value = "0";
+            }
+            if (!IsNullOrEmpty(Request.QueryString["strReportType"]))
+            {
+                Session["ReportType"] = Request.QueryString["strReportType"];
+            }
+            else
+            {
+                Session["ReportType"] = "0";
+            }
+            if (!IsNullOrEmpty(Request.QueryString["ShipPointID"]))
+            {
+                Session["ShipId"] = Request.QueryString["ShipPointID"];
+            }
+            else
+            {
+                Session["ShipId"] = "0";
+            }
+            
+            if (!IsNullOrEmpty(hdnRequistId.Value))
+            {
+                DefaultPageLoad();
+            }
+            else
+            {
+
+                PickingPageloadDataBind();
+            }
+        }
+        public static bool IsNullOrEmpty(String str)
+        {
+            return(str == null || str == String.Empty) ? true : false;
+        }
         private void RequestPopUp()
         {
             try
             {
                // Session[SessionParams.SalesProcess] = "Picking";
                 Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
+                if (IsNullOrEmpty(Request.QueryString["intid"]))
+                {
+                    Session["DoId"] = Request.QueryString["intid"];
+                    Session["PickingId"] = Request.QueryString["intid"];
+                    hdnRequistId.Value = Request.QueryString["intid"];
+                }
+                else
+                {
+                    Session["DoId"] ="0";
+                    hdnRequistId.Value = "0";
+                }
+                if (IsNullOrEmpty(Request.QueryString["intCusID"]))
+                {
+                    Session["CustomerId"] = Request.QueryString["intCusID"];
+                    hdnRequistId.Value= Request.QueryString["intCusID"];
+                }
+                else
+                {
+                    Session["CustomerId"] = "0";
+                    hdnRequistId.Value = "0";
+                }
+                if (IsNullOrEmpty(Request.QueryString["strReportType"]))
+                {
+                    Session["strReportType"] = Request.QueryString["strReportType"];
+                }
+                else
+                {
+                    Session["strReportType"] = "0";
+                }
+                if (IsNullOrEmpty(Request.QueryString["ShipPointID"]))
+                {
+                    Session["ShipId"] = Request.QueryString["ShipPointID"]; 
+                }
+                else
+                {
+                    Session["ShipId"] = "0";
+                }
+
                 Session["DoId"] = Request.QueryString["intid"];
                 Session["CustomerId"] = Request.QueryString["intCusID"];
                 Session["ShipId"] = Request.QueryString["ShipPointID"];
@@ -86,14 +181,13 @@ namespace UI.SAD.Delivery
                 string popuptype = Request.QueryString["PopupType"];
 
                 
-                if (Request.QueryString["PopupType"] == null)
-                {
-                    Session[SessionParams.SalesProcess] = "DO_Base";
+                if (IsNullOrEmpty(hdnRequistId.Value))
+                { 
                     DefaultPageLoad();
                 }
                 else
                 {
-                    //PickingPageloadDataBind(55, 55);
+                    
                     PickingPageloadDataBind();
                 }
                   
@@ -276,23 +370,7 @@ namespace UI.SAD.Delivery
                 intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
         }
 
-        private void GetURLMenu()
-        {
-            string type = Request.QueryString["type"];
-
-            foreach (ListItem item in rdoDeliveryType.Items)
-            {
-                rdoDeliveryType.Enabled = true;
-
-                if (item.Value.Contains(type.ToString()))
-                {
-                    item.Selected = true;
-
-                    break;
-                }
-
-            }
-        }
+       
 
         private void ControlHide(string Type)
         {
@@ -424,13 +502,17 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetProductList(string prefixText, int count)
         {
-           if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "DO_Base")
+           if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "DO")
             {
                 return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText);
             }
+            else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && HttpContext.Current.Session["ReportType"].ToString() == "0")
+            {
+                return ItemSt.GetProductDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText); 
+            }
             else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && HttpContext.Current.Session["ReportType"].ToString() == "DO_Base")
             {
-                return SalesSearch_BLL.GetDoPendingItemByDo(HttpContext.Current.Session["DoId"].ToString(),HttpContext.Current.Session[SessionParams.CURRENT_SHIP].ToString(), prefixText);
+                return SalesSearch_BLL.GetDoPendingItemByDo(HttpContext.Current.Session["DoId"].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SHIP].ToString(), prefixText);
             }
             else if (HttpContext.Current.Session[SessionParams.SalesProcess].ToString() == "Picking" && HttpContext.Current.Session["ReportType"].ToString() == "Customer_Base")
             {

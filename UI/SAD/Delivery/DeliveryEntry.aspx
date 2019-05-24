@@ -183,6 +183,7 @@
                     <asp:HiddenField ID="hdnPickingId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnDoId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnRequistId" Value="0" runat="server" />
                      
                     <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
@@ -192,11 +193,7 @@
                             <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" Width="200px" AutoPostBack="True"
-                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged">
-                                        <asp:ListItem Selected="True" Value="1">DO</asp:ListItem>
-                                        <asp:ListItem Value="2">Picking</asp:ListItem>
-                                        <asp:ListItem Value="3">Delivery</asp:ListItem>
-                                        <asp:ListItem Value="4">Return</asp:ListItem>
+                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged"> 
                                     </asp:RadioButtonList></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
