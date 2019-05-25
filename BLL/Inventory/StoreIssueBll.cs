@@ -17,10 +17,11 @@ namespace BLL.Inventory
         private readonly StoreIssueToFloreTransectionStatusBll _storeIssueToFloreTransectionStatusBll = new StoreIssueToFloreTransectionStatusBll();
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
+        private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
         private string storeIssueNarration = "Store Issue";
         private string meterialNarration = "Meterial Issue";
-       
-        private bool GetUnitId(int whId,out int unitId)
+
+        private bool GetUnitId(int whId, out int unitId)
         {
             WareHouseBll wareHouseBll = new WareHouseBll();
             unitId = wareHouseBll.GetUnitIdByWhId(whId);
@@ -31,13 +32,13 @@ namespace BLL.Inventory
             return false;
         }
 
-        
+
         public int StoreIssue(StoreIssue storeIssue, List<StoreIssueByItem> storeIssueByItems)
         {
             int whId = storeIssue.WhId;
             int requsitionId = storeIssue.RequsitionId;
             int enroll = storeIssue.InsertBy;
-            
+
             if (GetUnitId(whId, out int unitId))
             {
                 int issueId = _dal.Insert(unitId, whId, requsitionId, storeIssue.RequsitionCode,
@@ -50,7 +51,7 @@ namespace BLL.Inventory
                         decimal issueQuantity = issueByItem.IssueQuantity;
                         decimal issueValue = issueByItem.IssueValue;
                         int locationId = issueByItem.LocationId;
-                        
+
 
                         int issueItemByItemId = _issueByItemDal.Insert(issueId, issueByItem.ItemId, unitId,
                             whId, storeIssue.DepartmentId, 0, storeIssue.ReceiveBy, issueByItem.LocationId,
@@ -69,6 +70,11 @@ namespace BLL.Inventory
                                     int coaId = _itemList.GetItemCoaId(itemId);
                                     if (coaId > 0)
                                     {
+                                        int globalCoaId = _accountsChartOfAccBll.GetGlobalCoaId(coaId);
+                                        if (globalCoaId < 1)
+                                        {
+                                            continue;
+                                        }
                                         _dt = _storeIssueToFloreTransectionStatusBll.GetTodaysComplete();
                                         if (_dt.Rows.Count > 0)
                                         {
@@ -83,6 +89,7 @@ namespace BLL.Inventory
                                                         DateTime.Now);
                                                     if (_dt.Rows.Count > 0)
                                                     {
+
                                                         _dt = _accountsVoucherJournalDetailsBll.GetJurnalVoucherDetails(
                                                             jvId, coaId);
                                                         if (_dt.Rows.Count > 0)
@@ -93,8 +100,9 @@ namespace BLL.Inventory
                                                                 _storeIssueToFloreTransectionStatusBll.UpdateCoaId1(
                                                                     coaId,
                                                                     inventoryStatusId);
+
                                                                 if (_accountsVoucherJournalDetailsBll.GetAltJvDetails(
-                                                                    coaId, out int coaId2, out string accName2,
+                                                                    globalCoaId, coaId, out int coaId2, out string accName2,
                                                                     out string strNarration))
                                                                 {
                                                                     _dt = _accountsVoucherJournalDetailsBll
@@ -171,7 +179,7 @@ namespace BLL.Inventory
                                                         else
                                                         {
                                                             int intId = _accountsVoucherJournalDetailsBll
-                                                                .InsertJournalVoucherDetails(jvId, coaId,
+                                                                .InsertJournalVoucherDetails(jvId, globalCoaId, coaId,
                                                                     meterialNarration, issueValue, inventoryStatusId);
                                                             if (intId > 0)
                                                             {
@@ -196,7 +204,7 @@ namespace BLL.Inventory
                                                     }
                                                     else
                                                     {
-                                                        if (InsertJournalVoucherWithVoucherDetails(whId, issueValue,
+                                                        if (InsertJournalVoucherWithVoucherDetails(whId, issueValue, globalCoaId,
                                                             coaId,
                                                             storeIssueNarration, meterialNarration, inventoryStatusId, inventoryId,
                                                             enroll))
@@ -214,7 +222,7 @@ namespace BLL.Inventory
                                             }
                                             else
                                             {
-                                                if (InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
+                                                if (InsertJournalVoucherWithVoucherDetails(whId, issueValue, globalCoaId, coaId,
                                                     storeIssueNarration, meterialNarration, inventoryStatusId, inventoryId,
                                                     enroll))
                                                 {
@@ -225,7 +233,7 @@ namespace BLL.Inventory
                                         }
                                         else
                                         {
-                                            if (InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
+                                            if (InsertJournalVoucherWithVoucherDetails(whId, issueValue, globalCoaId, coaId,
                                                 storeIssueNarration, meterialNarration, inventoryStatusId, inventoryId,
                                                 enroll))
                                             {
@@ -265,7 +273,7 @@ namespace BLL.Inventory
                             // TODO: Issue by item insert Failed;
                         }
                     }
-                    
+
                 }
                 else
                 {
@@ -280,14 +288,15 @@ namespace BLL.Inventory
             return 0;
         }
 
-        private bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int coaId,
+        private bool InsertJournalVoucherWithVoucherDetails(int whId, decimal issueValue, int globalCoaId, int coaId,
             string storeIssueNarration, string meterialNarration, int inventoryStatusId, int intventoryId, int enroll)
         {
-            if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, coaId,
+
+            if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, globalCoaId, coaId,
                 storeIssueNarration, meterialNarration, inventoryStatusId, intventoryId, enroll))
             {
                 //TODO: Success
-                _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true,inventoryStatusId);
+                _storeIssueToFloreTransectionStatusBll.UpdateIsProcessed(true, inventoryStatusId);
                 return true;
             }
             else
