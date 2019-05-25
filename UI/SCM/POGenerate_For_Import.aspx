@@ -592,19 +592,25 @@
                                         <asp:Label ID="Label35" runat="server" CssClass="lbl" Text="PI Date:"></asp:Label>
                                     </td>
                                     <td style="text-align: left;">
-                                        <asp:TextBox ID="txtPIDate" Enabled="false" runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False"> 
+                                        <asp:TextBox ID="txtPIDate" runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False" placeholder="click here"> 
                                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtPIDate"></cc1:CalendarExtender>
                                     </td>
                                     <td style="text-align: right;">
                                         <asp:Label ID="Label37" runat="server" CssClass="lbl" Text="LC Exp Date:"></asp:Label>
                                     </td>
                                     <td style="text-align: left;">
-                                        <asp:TextBox ID="txtLCExpDate" Enabled="false" runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False"> 
+                                        <asp:TextBox ID="txtLCExpDate"  runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False" placeholder="click here"> 
                                         </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLCExpDate"></cc1:CalendarExtender>
                                     </td>
 
                                 </tr>
                                 <tr>
+                                    <td style="text-align: right;">
+                                        <asp:Label ID="Label38" runat="server" CssClass="lbl" Text="Packing"></asp:Label>
+                                    </td>
+                                    <td style="text-align: left;">
+                                        <asp:TextBox ID="txtPacking" runat="server"  CssClass="txtBox" Font-Bold="False" Text="0"></asp:TextBox>
+                                    </td>
                                     <td style="text-align: right;">
                                         <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="PO Date"></asp:Label>
                                     </td>
@@ -617,7 +623,7 @@
                                     <td style="text-align: left;">
                                         <asp:TextBox ID="txtAit" runat="server" onkeyup="GetAIT(this);" Text="0" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
                                         </asp:TextBox></td>
-                                    <td></td>
+                                    
                                     <td style="text-align: left;">
                                         <asp:Button ID="btnGeneratePO" Style="border-radius: 1px; height: 29px" runat="server" Text="Generate PO" ForeColor="blue" OnClientClick="PoGenerateCheck();" OnClick="btnGeneratePO_Click" AutoPostBack="false" />
 
@@ -783,7 +789,7 @@
                                     <td style="text-align: right;">
                                         <asp:Label ID="Label17" runat="server" Text="Last Shipment Date:" /></td>
                                     <td style="text-align: left;">
-                                        <asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox" runat="server"></asp:TextBox>
+                                        <asp:TextBox ID="txtLastShipmentDate" CssClass="txtBox" runat="server" placeholder="click here"></asp:TextBox>
                                         <cc1:CalendarExtender ID="CalendarExtender4" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLastShipmentDate">
                                         </cc1:CalendarExtender>
                                     </td>

@@ -464,6 +464,11 @@
             width: 819px;
         }
     </style>
+    <style>
+        .TextAlign {
+            text-align: left;
+        }
+    </style>
     <style type="text/css">
         .leaveApplication_container {
             margin-top: 0px;
@@ -919,8 +924,35 @@
                                                 </asp:TextBox><asp:Button ID="btnCommision" runat="server" Text="Set commission" Visible="false" />
                                             </td>
                                         </tr>
-
                                         <tr>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label40" runat="server" CssClass="lbl" Text="PI NO: "></asp:Label></td>
+                                            <td style="text-align: left;">
+                                                <asp:TextBox ID="txtPINo" runat="server" AutoPostBack="false" CssClass="txtBox" Font-Bold="False"> 
+                                                </asp:TextBox></td>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label41" runat="server" CssClass="lbl" Text="PI Date:"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <asp:TextBox ID="txtPIDate" runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False" placeholder="click here"> 
+                                                </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender5" runat="server" Format="yyyy-MM-dd" TargetControlID="txtPIDate"></cc1:CalendarExtender>
+                                            </td>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label42" runat="server" CssClass="lbl" Text="LC Exp Date:"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <asp:TextBox ID="txtLCExpDate" runat="server" autocomplete="off" CssClass="txtBox" Font-Bold="False" placeholder="click here"> 
+                                                </asp:TextBox><cc1:CalendarExtender ID="CalendarExtender6" runat="server" Format="yyyy-MM-dd" TargetControlID="txtLCExpDate"></cc1:CalendarExtender>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: right;">
+                                                <asp:Label ID="Label43" runat="server" CssClass="lbl" Text="Packing"></asp:Label>
+                                            </td>
+                                            <td style="text-align: left;">
+                                                <asp:TextBox ID="txtPacking" runat="server" CssClass="txtBox" Font-Bold="False" Text="0"></asp:TextBox>
+                                            </td>
                                             <td style="text-align: right;">
                                                 <asp:Label ID="Label14" runat="server" CssClass="lbl" Text="Po Date"></asp:Label>
                                             </td>
@@ -1141,7 +1173,85 @@
                                             <td>
                                                 <asp:TextBox ID="txtOthersTerms" runat="server" Width="300px" TextMode="MultiLine" CssClass="txtBox" /></td>
 
+
                                         </tr>
+                                        <tr id="import" runat="server" visible="false">
+                                            <td colspan="4">
+                                                <table>
+                                                    <tr>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label27" runat="server" Text="LC Type:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:DropDownList ID="ddlLCType" AutoPostBack="True" CssClass="ddList" runat="server">
+                                                            </asp:DropDownList>
+
+                                                        </td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label28" runat="server" Text="Material Type:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:DropDownList ID="ddlMaterialType" AutoPostBack="True" CssClass="ddList" runat="server"></asp:DropDownList></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label29" runat="server" Text="Inco Term:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:DropDownList ID="ddlIncoTerm" AutoPostBack="True" CssClass="ddList" runat="server"></asp:DropDownList></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label30" runat="server" Text="Origin:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtOrigin" runat="server" CssClass="txtBox" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label31" runat="server" Text="Load Port:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtLoadPort" runat="server" CssClass="txtBox" /></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label32" runat="server" Text="Dest. Port:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtDestPort" runat="server" CssClass="txtBox" /></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label33" runat="server" Text="Bank:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:DropDownList ID="ddlBank" AutoPostBack="True" CssClass="ddList" runat="server"></asp:DropDownList></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label34" runat="server" Text="Present(Days):" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtPresentDay" runat="server" CssClass="txtBox" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label35" runat="server" Text="Tenor(month):" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtTenor" runat="server" CssClass="txtBox" Width="70px" /></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label36" runat="server" Text="Tolerance(LCAF):" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtTolerance" runat="server" CssClass="txtBox" Width="70px" /></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label37" runat="server" Text="Tolerance(Qty):" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="txtToleranceQty" runat="server" CssClass="txtBox" Width="70px" /></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label38" runat="server" Text="Item Description:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:TextBox ID="TextBox12" runat="server" Width="200px" Height="70px" TextMode="MultiLine" CssClass="txtBox" /></td>
+                                                        <td style="text-align: right;">
+                                                            <asp:Label ID="Label39" runat="server" Text="Others Trems:" /></td>
+                                                        <td style="text-align: left;">
+                                                            <asp:CheckBoxList ID="CheckBoxList1" runat="server" AutoPostBack="True" CssClass="TextAlign">
+                                                                <asp:ListItem Value="">SRO Benifit</asp:ListItem>
+                                                                <asp:ListItem Value="">Local LC</asp:ListItem>
+                                                                <asp:ListItem Value="">LC Confirmation</asp:ListItem>
+                                                            </asp:CheckBoxList>
+                                                        </td>
+                                                    </tr>
+
+
+                                                </table>
+                                            </td>
+                                        </tr>
+
                                     </table>
                                 </table>
                             </asp:View>

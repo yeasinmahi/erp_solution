@@ -511,5 +511,59 @@ namespace SCM_BLL
             }
             return msg;
         }
+        public DataTable ImportLCType()
+        {
+            TblImportLcTypeTableAdapter adp = new TblImportLcTypeTableAdapter();
+            try
+            {
+                return adp.GetImportLCType();
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable MaterialType()
+        {
+            TblItemCategoryTableAdapter adp = new TblItemCategoryTableAdapter();
+            try
+            {
+                return adp.GetMaterialType();
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+
+        
+        public DataTable ImportLcIncoTerms()
+        {
+            TblImportLcIncoTermsTableAdapter adp = new TblImportLcIncoTermsTableAdapter();
+            try
+            {
+                return adp.GetImportLcIncoTerms();
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable BankInfoForImportPayment()
+        {
+            TblBankInfoForImportPaymenTableAdapter adp = new TblBankInfoForImportPaymenTableAdapter();
+            try
+            {
+                return adp.GetBank();
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+
+
+
+
     }
 }

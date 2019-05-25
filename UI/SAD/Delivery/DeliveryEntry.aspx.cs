@@ -222,9 +222,9 @@ namespace UI.SAD.Delivery
             else if ( Request.QueryString["PopupType"] == "Picking_Edit" || Request.QueryString["PopupType"] == "Delivery")
             {
                 hdnPickingId.Value = Request.QueryString["intid"];
-                txtDoNumber.Text = Request.QueryString["intid"];
+                txtDoNumber.Text = Request.QueryString["intid"]; 
+                PickingGridDataBind(hdnPickingId.Value);
                 dt = deliveryBLL.PickingSummary(hdnPickingId.Value);
-                PickingGridDataBind();
             }
             if (dt.Rows.Count > 0)
             { 
@@ -316,10 +316,10 @@ namespace UI.SAD.Delivery
            
         }
 
-        private void PickingGridDataBind()
+        private void PickingGridDataBind(string pickingId)
         {
-            dt = deliveryBLL.PickingDetalis(Request.QueryString["PickingId"]);
-            hdnPickingId.Value = dt.Rows[0]["intPickingId"].ToString(); 
+            dt = deliveryBLL.PickingDetalis(pickingId);
+            hdnPickingId.Value = pickingId; 
             string productId = dt.Rows[0]["intProductId"].ToString();
             string productName = dt.Rows[0]["strProductName"].ToString();
             string quantity = dt.Rows[0]["numQty"].ToString();
@@ -468,7 +468,7 @@ namespace UI.SAD.Delivery
 
                 dt = currency.GetCurrencyInfo();
                 ddlCurrency.Loads(dt, "intID", "strCurrency");
-
+                WareHouseLocation();
                 SessionDataSet();
             }
             catch { }

@@ -28,13 +28,7 @@ namespace UI.SAD.Order
         string start = "starting SAD\\Order\\TA_DA_Bike_Car_User_Gb";
         string stop = "stopping SAD\\Order\\TA_DA_Bike_Car_User_Gb";
         private DataTable dt = new DataTable();
-        private int GetAllownce()
-        {
-            DataTable dtallow = new DataTable();
-            dtallow = bllview.GetDataTADAFuelAllowance(Enroll);
-            decimal maxoct = decimal.Parse(dtallow.Rows[0][6].ToString());
-            return Convert.ToInt32(maxoct);
-        }
+     
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -105,7 +99,13 @@ namespace UI.SAD.Order
 
 
         }
-
+        private int GetAllownce()
+        {
+            DataTable dtallow = new DataTable();
+            dtallow = bllview.GetDataTADAFuelAllowance(Enroll);
+            decimal maxoct = decimal.Parse(dtallow.Rows[0][6].ToString());
+            return Convert.ToInt32(maxoct);
+        }
         private void LoadGridwithXml()
         {
             try
@@ -1172,14 +1172,7 @@ namespace UI.SAD.Order
                 txtMobilCost.Enabled = false;
                 if (a > 1 && unitid == 4)
                 {
-                    //txtPetrolQnt.Text = "0";
-                    //txtPetrolCost.Text = "0";
-                    //txtOcten.Text = "0";
-                    //txtOctenCost.Text = "0";
-                    //txtMobilQnt.Text = "0";
-                    //txtMobilCost.Text = "0";
-                    //txtCNGQnt.Text = "0";
-                    //txtCNGCost.Text = "0";
+                    
                     txtPetrolCost.Enabled = false;
                     txtCNGCost.Enabled = false;
                     txtOctenCost.Enabled = false;
@@ -1209,14 +1202,7 @@ namespace UI.SAD.Order
 
                 if (a > 1 && unitid == 4)
                 {
-                    //txtPetrolQnt.Text = "0";
-                    //txtPetrolCost.Text = "0";
-                    //txtOcten.Text = "0";
-                    //txtOctenCost.Text = "0";
-                    //txtMobilQnt.Text = "0";
-                    //txtMobilCost.Text = "0";
-                    //txtCNGQnt.Text = "0";
-                    //txtCNGCost.Text = "0";
+                    
                     txtPetrolCost.Enabled = false;
                     txtCNGCost.Enabled = false;
                     txtOctenCost.Enabled = false;
