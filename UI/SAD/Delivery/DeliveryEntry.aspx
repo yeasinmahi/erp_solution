@@ -163,15 +163,15 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
-                    <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <asp:HiddenField ID="hdnPromoCogs" runat="server" />
-                     <asp:HiddenField ID="hdnPromoInvItemId" runat="server" />
+                    <asp:HiddenField ID="hdnUnit" runat="server" Value="0" />
+                    <asp:HiddenField ID="hdnPromoCogs" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnPromoInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPromoInvStock" runat="server" />
-                    <asp:HiddenField ID="hdnsalestype" runat="server" />
-                    <asp:HiddenField ID="hdnvisibility" runat="server" />
-                    <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
-                    <asp:HiddenField ID="hdnSupplierId" runat="server" />
-                     <asp:HiddenField ID="hdnSupplierName" runat="server" />
+                    <asp:HiddenField ID="hdnsalestype" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnvisibility" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnLogisBasedOnUom" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnSupplierName" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
                     <asp:HiddenField ID="hdnCreditSales" runat="server" />
                     <asp:HiddenField ID="hdnWHName" Value="0" runat="server" />
@@ -180,9 +180,10 @@
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnPickingId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnDoId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnRequistId" Value="0" runat="server" />
                      
                     <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
@@ -192,11 +193,7 @@
                             <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" Width="200px" AutoPostBack="True"
-                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged">
-                                        <asp:ListItem Selected="True" Value="1">DO</asp:ListItem>
-                                        <asp:ListItem Value="2">Picking</asp:ListItem>
-                                        <asp:ListItem Value="3">Delivery</asp:ListItem>
-                                        <asp:ListItem Value="4">Return</asp:ListItem>
+                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged"> 
                                     </asp:RadioButtonList></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
@@ -435,7 +432,7 @@
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
                             <td>Price</td>
-                            <td id="location" runat="server">Location</td>
+                            <td>Location</td>
                             <td>Commission</td>
                             <td style="color: Red;">Quantity</td>
                             <td>Total</td>
@@ -464,7 +461,7 @@
                                 <asp:TextBox ID="txtPrice" runat="server" Width="50px"></asp:TextBox>
                             </td>
                             <td align="center">
-                                <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlLocation"  runat="server">
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
@@ -555,7 +552,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="narr" SortExpression="narr" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Total Discount" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
                                             <ItemTemplate>
