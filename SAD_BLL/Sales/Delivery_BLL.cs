@@ -88,6 +88,18 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        public DataTable DoItemDetalis(string doid)
+        {
+            try
+            {
+                QryDoItemDetalisTableAdapter adp = new QryDoItemDetalisTableAdapter();
+                return adp.GetDoItemDetalisData(int.Parse(doid));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable PickingDetalis(string pickingId)
         {
             try

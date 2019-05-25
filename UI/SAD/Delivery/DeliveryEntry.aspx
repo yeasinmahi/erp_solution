@@ -485,7 +485,7 @@
                             <td>
                                 <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
                                     OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
-                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnSelectedIndexChanged="dgvSales_SelectedIndexChanged">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
 
