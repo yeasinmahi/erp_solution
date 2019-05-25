@@ -214,9 +214,7 @@ namespace SAD_BLL.Sales
             return adp.GetDataForInvoice(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), isCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice));
 
         }
-
         
-
         public string DOApprove(int intInsertBy, int intDOId)
         {
             string msg = "";
