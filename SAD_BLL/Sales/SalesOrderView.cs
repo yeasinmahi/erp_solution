@@ -349,6 +349,18 @@ namespace SAD_BLL.Sales
             catch { }
         }
 
+        public DataTable getUnitVsLocalSalesType (int unitid)
+        {
+            try
+            {
+                SprUnitVsLocalSalesTypeTableAdapter adp = new SprUnitVsLocalSalesTypeTableAdapter();
+              return  adp.GetDataUnitVsLocalSalesType(unitid);
+            }
+            catch(Exception ex)
+            {
+                return new DataTable();
+            }
+        }
       
 
     }  
