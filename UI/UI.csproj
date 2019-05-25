@@ -1275,6 +1275,7 @@
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
+    <Content Include="SAD\Delivery\QuotationEdit.aspx" />
     <Content Include="SAD\Delivery\Test.aspx" />
     <Content Include="SAD\Delivery\ViewOrder.aspx" />
     <Content Include="SAD\Delivery\ViewOrderForPicking.aspx" />
@@ -6132,6 +6133,13 @@
     </Compile>
     <Compile Include="SAD\Delivery\DOView.aspx.designer.cs">
       <DependentUpon>DOView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\QuotationEdit.aspx.cs">
+      <DependentUpon>QuotationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\QuotationEdit.aspx.designer.cs">
+      <DependentUpon>QuotationEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>

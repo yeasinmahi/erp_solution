@@ -247,13 +247,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnPrice;
         
         /// <summary>
-        /// hdnLogisGain control.
+        /// hdnPickingId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLogisGain;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPickingId;
         
         /// <summary>
         /// hdnVhlPrice control.
@@ -272,6 +272,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnDoId;
+        
+        /// <summary>
+        /// hdnRequistId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnRequistId;
         
         /// <summary>
         /// hdnSuppTax control.
@@ -794,15 +803,6 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
-        /// location control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTableCell location;
         
         /// <summary>
         /// hdnProduct control.
