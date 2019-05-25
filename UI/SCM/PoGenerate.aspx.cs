@@ -213,13 +213,13 @@ namespace UI.SCM
                 else
                 {
                     dgvIndent.UnLoad();
-                    Toaster(Message.NoFound.ToFriendlyString(),"Indent", Common.TosterType.Warning);
+                    Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
 
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,"Indent",Common.TosterType.Error);
+                Toaster(ex.Message, "Indent", Common.TosterType.Error);
             }
         }
 
@@ -246,7 +246,7 @@ namespace UI.SCM
 
                     ddlWH.SetSelectedValue(hdnWHId.Value);
                     ddlDepts.SetSelectedText(type);
-                    
+
                     dgvIndent.DataSource = dt;
                     dgvIndent.DataBind();
                     dt.Clear();
@@ -256,8 +256,8 @@ namespace UI.SCM
                     dgvIndent.UnLoad();
                     Toaster(Message.NoFound.ToFriendlyString(), "Indent", Common.TosterType.Warning);
                 }
-                
-               
+
+
             }
             catch (Exception ex)
             {
@@ -276,7 +276,7 @@ namespace UI.SCM
                 txtIndentNoDet.Text = "";
                 ddlItem.Items.Clear();
 
-                GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblIndent = row.FindControl("lblIndent") as Label;
                 int indent = int.Parse(lblIndent.Text.ToString());
                 intWh = int.Parse(hdnWHId.Value.ToString());
@@ -295,7 +295,7 @@ namespace UI.SCM
 
                     lblIndentDetWH.Text = dt.Rows[0]["strWareHoseName"].ToString();
                     lblIndentDate.Text = DateTime.Parse(dt.Rows[0]["dteIndentDate"].ToString()).ToString("dd-MM-yyyy");
-                    lblindentApproveDate.Text =DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
+                    lblindentApproveDate.Text = DateTime.Parse(dt.Rows[0]["dteApproveDate"].ToString()).ToString("dd-MM-yyyy");
                     lblInDueDate.Text = DateTime.Parse(dt.Rows[0]["dteDueDate"].ToString()).ToString("dd-MM-yyyy");
                 }
                 else
@@ -343,7 +343,7 @@ namespace UI.SCM
                 }
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
                 Session["unitId"] = "0".ToString();
@@ -479,21 +479,21 @@ namespace UI.SCM
             txtIndentNo.Text = "";
             txtIndentNoDet.Enabled = false;
             try { File.Delete(filePathForXML); } catch { }
-            try { File.Delete(filePathForXMLPo); } catch { } 
-            
+            try { File.Delete(filePathForXMLPo); } catch { }
+
             dt = objPo.GetUnitID(int.Parse(ddlWH.SelectedValue.ToString()));
             if (dt.Rows.Count > 0)
             {
                 hdnUnitId.Value = dt.Rows[0]["intUnitId"].ToString();
-               
+
             }
             else
-            { 
-                hdnUnitId.Value = "0"; 
+            {
+                hdnUnitId.Value = "0";
             }
             Session["unitId"] = hdnUnitId.Value.ToString();
             hdnWHId.Value = ddlWH.SelectedValue.ToString();
-            hdnWHName.Value = ddlWH.SelectedItem.ToString();  
+            hdnWHName.Value = ddlWH.SelectedItem.ToString();
             hdnUnitName.Value = "0";
         }
 
@@ -531,9 +531,9 @@ namespace UI.SCM
                 }
                 string dept = ddlDepts.SelectedItem.ToString();
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + "2018-01-01" + '"' + " dept=" + '"' + dept + '"' + "/></voucher>".ToString();
-                
+
                 dt = objPo.GetPoData(11, xmlData, int.Parse(hdnWHId.Value.ToString()), indentNo, DateTime.Now, Enroll);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     ddlItem.DataSource = dt;
                     ddlItem.DataTextField = "strName";
@@ -543,12 +543,12 @@ namespace UI.SCM
                 }
                 else
                 {
-                    ddlItem.Items.Clear();                  
-                    Toaster(Message.NoFound.ToFriendlyString(), "This is not valid againest."+ hdnWHName.Value.ToString(), Common.TosterType.Warning);
+                    ddlItem.Items.Clear();
+                    Toaster(Message.NoFound.ToFriendlyString(), "This is not valid againest." + hdnWHName.Value.ToString(), Common.TosterType.Warning);
 
-                    
+
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -711,6 +711,27 @@ namespace UI.SCM
                     ddlCostCenter.DataTextField = "strName";
                     ddlCostCenter.DataValueField = "Id";
                     ddlCostCenter.DataBind();
+
+                    if (ddlDepts.SelectedItem.Text == "Import")
+                    {
+                        dt = objPo.ImportLCType();
+                        ddlLCType.Loads(dt, "intLcType", "strLcType");
+                        dt = objPo.MaterialType();
+                        ddlMaterialType.Loads(dt, "intAutoID", "strReqItemCategory");
+                        dt = objPo.ImportLcIncoTerms();
+                        ddlIncoTerm.Loads(dt, "intLcIncoTerms", "strIncoTerms");
+                        dt = objPo.BankInfoForImportPayment();
+                        ddlBank.Loads(dt, "intBankID", "strBankCode");
+                        PI.Visible = true;
+                        import.Visible = true;
+                        //lblPacking.Visible = true;
+                        //txtPacking.Visible = true;
+                    }
+                    else
+                    {
+
+                    }
+
 
                     Tab1.CssClass = "Initial";
                     Tab2.CssClass = "Initial";
@@ -970,12 +991,63 @@ namespace UI.SCM
 
                     try { File.Delete(filePathForXMLPrepare); } catch { }
                     try { File.Delete(filePathForXMLPo); } catch { }
-                    
+
 
                     string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
-                  
+                    if (ddlDepts.SelectedItem.Text == "Import")
+                    {
+                        DateTime InsertDate = DateTime.Now;
+                        int POId = 0;//Convert.ToInt32(lblPoNo.Text);
+                        int LCTypeId = Convert.ToInt32(ddlLCType.SelectedItem.Value);
+                        int MaterialTypeId = Convert.ToInt32(ddlMaterialType.SelectedItem.Value);
+                        int BankId = Convert.ToInt32(ddlBank.SelectedItem.Value);
+                        int IncoTerm = Convert.ToInt32(ddlIncoTerm.SelectedItem.Value);
+                        int PresentDay = Convert.ToInt32(txtPresentDay.Text);
+                        string Origin = txtOrigin.Text;
+                        string LoadingPort = txtLoadPort.Text;
+                        string DestinationPort = txtDestPort.Text;
+                        string LcExpireDate = txtLCExpDate.Text;
+                        string PINo = txtPINo.Text;
+                        string PIDate = txtPIDate.Text;
+                        decimal LcTenorMonth = Convert.ToDecimal(txtTenor.Text);
+                        decimal QtyTolerancePercent = Convert.ToDecimal(txtToleranceQty.Text);
+                        decimal TolerancePercent = Convert.ToDecimal(txtTolerance.Text);
+                        string ItemDescription = txtItemDescription.Text;
+                        bool ysnSROBenifit = false, ysnLocalLc = false, ysnLcConfirmation = false;
+                        foreach (ListItem item in CheckList.Items)
+                        {
+                            if (item.Selected == true)
+                            {
+                                if (item.Value == "1")
+                                {
+                                    ysnSROBenifit = true;
+                                }
+                                if (item.Value == "2")
+                                {
+                                    ysnLocalLc = true;
+                                }
+                                if (item.Value == "3")
+                                {
+                                    ysnLcConfirmation = true;
+                                }
+
+                            }
+
+                        }
+                        decimal PIAmount = 0;
+                        dt = objPo.GetPOAmountByPOID(POId);
+                        if (dt.Rows.Count > 0)
+                        {
+                            PIAmount = decimal.Parse(dt.Rows[0]["monPOTotal"].ToString());
+                        }
+
+
+                        objPo.InsertImportLC(POId, LCTypeId, MaterialTypeId, BankId, LoadingPort, DestinationPort, TolerancePercent, currencyId, LcTenorMonth, dtelastShipment.ToString(), LcExpireDate, InsertDate, Enroll,
+                            unitid, supplierId, IncoTerm, Origin, ItemDescription, PINo, PIDate, PresentDay, ysnSROBenifit, ysnLocalLc, PIAmount, ysnLcConfirmation, QtyTolerancePercent);
+
+                    }
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                     txtIndentNoDet.Enabled = false;
                     txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
@@ -983,7 +1055,7 @@ namespace UI.SCM
                     txtIndentNo.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
-                       
+
 
                         dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind();
                         dgvIndentDet.DataSource = "";
@@ -995,7 +1067,7 @@ namespace UI.SCM
                     }
                 }
             }
-            catch { }
+            catch (Exception ex) { ex.ToString(); }
         }
 
         private void CreateXmlPO(string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment, string othersTrems, string warrentyperiod, string numIndentQty, string strPoFor)

@@ -12,6 +12,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -21,7 +22,9 @@ namespace UI.SCM
         private PoGenerate_BLL objPo = new PoGenerate_BLL();
         private int intWh;
         private string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; private string xmlString = "";
-        private int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; private string payDate, paymentTrems, destDelivery, paymentSchedule; private DateTime dtePo, dtelastShipment; private decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
+        private int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, 
+            noOfInstallment, intervalInstallment, noPayment, CheckItem; private string payDate, paymentTrems, destDelivery, paymentSchedule;
+        private DateTime dtePo, dtelastShipment; private decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
         private string[] arrayKey; private string strType; private char[] delimiterChars = { '[', ']' };
 
         protected void Page_Load(object sender, EventArgs e)
@@ -39,10 +42,51 @@ namespace UI.SCM
                 dte = DateTime.Parse(txtdtePo.Text);
                 //txtIndentNoDet.Enabled = false;
                 DefaltPageLoad();
+                LoadDropDownList();
             }
             else
             {
             }
+        }
+        private void LoadDropDownList()
+        {
+            dt=objPo.ImportLCType();
+            ddlLCType.Loads(dt, "intLcType", "strLcType");
+            dt = objPo.MaterialType();
+            ddlMaterialType.Loads(dt, "intAutoID", "strReqItemCategory");
+            dt = objPo.ImportLcIncoTerms();
+            ddlIncoTerm.Loads(dt, "intLcIncoTerms", "strIncoTerms");
+            dt=objPo.BankInfoForImportPayment();
+            ddlBank.Loads(dt, "intBankID", "strBankCode");
+
+
+            hdnWHName.Value = "ACCL Central";
+            hdnWHId.Value ="4";
+            hdnUnitId.Value = "4";
+            Session["unitId"] = hdnUnitId.Value;
+            List<ListItem> items = new List<ListItem>();
+            items.Add(new ListItem(hdnWHName.Value.ToString(), hdnWHId.Value.ToString()));
+            ddlWHPrepare.Items.AddRange(items.ToArray());
+            intWh = int.Parse(ddlWHPrepare.SelectedValue);
+            dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, Enroll);//get Currency Name
+            try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
+
+            ddlCurrency.DataSource = dt;
+            ddlCurrency.DataTextField = "strName";
+            ddlCurrency.DataValueField = "Id";
+            ddlCurrency.DataBind();
+
+            dt = objPo.GetPoData(7, "", intWh, int.Parse(hdnUnitId.Value), DateTime.Now, Enroll);// Pay Date
+            ddlDtePay.DataSource = dt;
+            ddlDtePay.DataTextField = "strName";
+            ddlDtePay.DataValueField = "dteDate";
+            ddlDtePay.DataBind();
+
+            dt = objPo.GetPoData(8, "", intWh, int.Parse(hdnUnitId.Value), DateTime.Now, Enroll);// Get Costcenter
+            ddlCostCenter.DataSource = dt;
+            ddlCostCenter.DataTextField = "strName";
+            ddlCostCenter.DataValueField = "Id";
+            ddlCostCenter.DataBind();
         }
         private void DefaltPageLoad()
         {
@@ -60,23 +104,24 @@ namespace UI.SCM
         #endregion====================Close===============================
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    arrayKey = txtSupplier.Text.Split(delimiterChars);
-            //    string strSupp = ""; int supplierid = 0;
-            //    if (arrayKey.Length > 0)
-            //    {
-            //        strSupp = arrayKey[0].ToString();
-            //        supplierid = int.Parse(arrayKey[1].ToString());
-            //    }
+            try
+            {
+                arrayKey = txtSupplier.Text.Split(delimiterChars);
+                string strSupp = "";
+                int supplierid = 0;
+                if (arrayKey.Length > 0)
+                {
+                    strSupp = arrayKey[0].ToString();
+                    supplierid = int.Parse(arrayKey[1].ToString());
+                }
 
-            //    dt = objPo.GetPoData(22, "", 0, supplierid, DateTime.Now, Enroll);
-            //    if (dt.Rows.Count > 0)
-            //    {
-            //        lblSuppAddress.Text = dt.Rows[0]["strName"].ToString();
-            //    }
-            //}
-            //catch { }
+                dt = objPo.GetPoData(22, "", 0, supplierid, DateTime.Now, Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    lblSuppAddress.Text = dt.Rows[0]["strName"].ToString();
+                }
+            }
+            catch { }
         }
 
         protected void dgvIndentPrepare_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -89,8 +134,14 @@ namespace UI.SCM
                 dsGrid.WriteXml(filePathForXMLPrepare);
                 DataSet dsGridAfterDelete = (DataSet)dgvIndentPrepare.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXMLPrepare); dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind(); }
-                else { LoadGridwithXmlPrepare(); }
+                {
+                    File.Delete(filePathForXMLPrepare);
+                    dgvIndentPrepare.DataSource = "";
+                    dgvIndentPrepare.DataBind();
+                }
+                else {
+                    LoadGridwithXmlPrepare();
+                }
             }
             catch { }
         }
@@ -154,7 +205,7 @@ namespace UI.SCM
                 try { dtelastShipment = DateTime.Parse(txtLastShipmentDate.Text); } catch { }
                 othersTrems = txtOthersTerms.Text.ToString();
                 warrentyperiod = txtWarrenty.Text.ToString();
-                string strPoFor = "";//ddlDepts.SelectedItem.ToString();
+                string strPoFor = "Import";//ddlDepts.SelectedItem.ToString();
 
                 if (dgvIndentPrepare.Rows.Count > 0 && hdnPreConfirm.Value.ToString() == "1")
                 {
@@ -204,8 +255,8 @@ namespace UI.SCM
                     try { File.Delete(filePathForXMLPrepare); } catch { }
                     try { File.Delete(filePathForXMLPo); } catch { }
 
-
-                    string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
+                    string msg = "";
+                    //string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
                     string[] searchKey = Regex.Split(msg, ":");
                     lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
 
@@ -217,7 +268,6 @@ namespace UI.SCM
                     //txtIndentNo.Text = "";
                     if (searchKey[1].ToString().Length > 2)
                     {
-
 
                         dgvIndentPrepare.DataSource = "";
                         dgvIndentPrepare.DataBind();
