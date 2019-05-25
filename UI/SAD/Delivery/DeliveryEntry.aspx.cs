@@ -564,7 +564,7 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetDisPointList(string prefixText, int count)
         {
-            return DistributionPointSt.GetDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session["sesCurrentCus"].ToString());
+            return SalesSearch_BLL.GetShipToParty(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session["sesCurrentCus"].ToString(),"");
         }
 
         [WebMethod]
