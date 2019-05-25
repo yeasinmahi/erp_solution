@@ -117,7 +117,8 @@
             NotExec(args);
             flag=false;
         }
-    }
+        }
+        var ready_for_submit = true;
     </script>
     <script type="text/javascript">
         function funConfirmAll() {
@@ -162,23 +163,27 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
-                    <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <asp:HiddenField ID="hdnDA" runat="server" />
-                    <asp:HiddenField ID="hdnsalestype" runat="server" />
-                    <asp:HiddenField ID="hdnvisibility" runat="server" />
-                    <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
-                    <asp:HiddenField ID="hdnCharBasedOnUom" runat="server" />
+                    <asp:HiddenField ID="hdnUnit" runat="server" Value="0" />
+                    <asp:HiddenField ID="hdnPromoCogs" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnPromoInvItemId" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnPromoInvStock" runat="server" />
+                    <asp:HiddenField ID="hdnsalestype" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnvisibility" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnLogisBasedOnUom" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnSupplierName" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
                     <asp:HiddenField ID="hdnCreditSales" runat="server" />
                     <asp:HiddenField ID="hdnWHName" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnProductCOGS" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInventoryStock" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnPickingId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnDoId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnRequistId" Value="0" runat="server" />
                      
                     <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
@@ -188,11 +193,7 @@
                             <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" Width="200px" AutoPostBack="True"
-                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged">
-                                        <asp:ListItem Selected="True" Value="1">DO</asp:ListItem>
-                                        <asp:ListItem Value="2">Picking</asp:ListItem>
-                                        <asp:ListItem Value="3">Delivery</asp:ListItem>
-                                        <asp:ListItem Value="4">Return</asp:ListItem>
+                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged"> 
                                     </asp:RadioButtonList></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
@@ -246,14 +247,14 @@
                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Date:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtDate" runat="server" CssClass="txtBox" EnableCaching="false" autocomplete="off" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender1" runat="server" SelectedDate="<%# DateTime.Today %>" StartDate="<%# DateTime.Today %>" EndDate="<%# DateTime.Now.AddYears(1) %>" Format="yyyy-MM-dd" TargetControlID="txtDate">
+                                <cc1:CalendarExtender ID="CalendarDate" runat="server" SelectedDate="<%# DateTime.Today %>" StartDate="<%# DateTime.Today %>" EndDate="<%# DateTime.Now.AddYears(1) %>" Format="yyyy-MM-dd" TargetControlID="txtDate">
                                 </cc1:CalendarExtender>
                             </td>
                             <td style="text-align: left;">
                                 <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Due Date:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtDueDate" runat="server" CssClass="txtBox" autocomplete="off" EnableCaching="false" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox>
-                                <cc1:CalendarExtender ID="CalendarExtender2" runat="server" SelectedDate="<%# DateTime.Today %>" StartDate="<%# DateTime.Today %>" EndDate="<%# DateTime.Now.AddYears(1) %>" Format="yyyy-MM-dd" TargetControlID="txtDueDate">
+                                <cc1:CalendarExtender ID="CalendarDueDate" runat="server" SelectedDate="<%# DateTime.Today %>" StartDate="<%# DateTime.Today %>" EndDate="<%# DateTime.Now.AddYears(1) %>" Format="yyyy-MM-dd" TargetControlID="txtDueDate">
                                 </cc1:CalendarExtender>
                             </td>
                         </tr>
@@ -357,7 +358,7 @@
                                                 </td>
                                                   <td>Supplier </td>
                                                 <td>
-                                                    <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px"></asp:TextBox>
+                                                    <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" AutoPostBack="true" Width="200px" OnTextChanged="txtSupplier_TextChanged"></asp:TextBox>
                                                     <cc1:AutoCompleteExtender ID="AutoCompleteExtender4" runat="server" CompletionInterval="1" CompletionListCssClass="autocomplete_completionListElementBig" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem" CompletionListItemCssClass="autocomplete_listItem" CompletionSetCount="1" EnableCaching="false" FirstRowSelected="true" MinimumPrefixLength="1" ServiceMethod="GetSupplierList" TargetControlID="txtSupplier">
                                                     </cc1:AutoCompleteExtender>
                                                 </td>
@@ -431,7 +432,7 @@
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
                             <td>Price</td>
-                            <td id="location" runat="server">Location</td>
+                            <td>Location</td>
                             <td>Commission</td>
                             <td style="color: Red;">Quantity</td>
                             <td>Total</td>
@@ -441,7 +442,8 @@
                             <td>
                                 <asp:HiddenField ID="hdnProduct" runat="server" />
                                 <asp:HiddenField ID="hdnProductText" runat="server" />
-                                <asp:TextBox ID="txtProduct" runat="server" AutoCompleteType="Search" Width="250px"
+                              
+                                <asp:TextBox ID="txtProduct" runat="server"      AutoCompleteType="Search" Width="250px"
                                     AutoPostBack="true" OnTextChanged="txtProduct_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender5" runat="server" TargetControlID="txtProduct"
                                     ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
@@ -451,7 +453,7 @@
                             </td>
                             <td>
                                 <asp:HiddenField ID="hdnUOM" runat="server" />
-                                <asp:DropDownList ID="ddlUOM" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged">
+                                <asp:DropDownList ID="ddlUOM" runat="server" Width="50px" AutoPostBack="True" OnSelectedIndexChanged="ddlUOM_SelectedIndexChanged">
                                 </asp:DropDownList>
 
                             </td>
@@ -459,7 +461,7 @@
                                 <asp:TextBox ID="txtPrice" runat="server" Width="50px"></asp:TextBox>
                             </td>
                             <td align="center">
-                                <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlLocation"  runat="server">
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
@@ -625,12 +627,7 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="250px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Narration" SortExpression="naration" Visible="false">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblnaration" runat="server" Text='<%# Bind("naration") %>'></asp:Label>
-                                            </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Left" Width="200px" />
-                                        </asp:TemplateField>
+                                         
                                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="uomName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUoM" runat="server" Text='<%# Bind("uomName") %>'></asp:Label>
@@ -663,7 +660,7 @@
                                         </asp:TemplateField>
                                          <asp:TemplateField HeaderText="Discount" SortExpression="discount" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldiscount" runat="server" Text='<%# Bind("discount") %>'></asp:Label>
+                                                <asp:Label ID="lbldiscounts" runat="server" Text='<%# Bind("discount") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -737,18 +734,15 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="narr" SortExpression="narr" Visible="false">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narr") %>'></asp:Label>
+                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center" SortExpression="Location">
+                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center" Visible="false" SortExpression="Location">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("location") %>'></asp:Label>
-                                            </ItemTemplate>
-                                            <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlLocations" runat="server" AutoPostBack="True"></asp:DropDownList>
-                                            </EditItemTemplate>
+                                            </ItemTemplate> 
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
@@ -781,15 +775,21 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="UomId" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="uomId">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblUomId" runat="server" Text='<%# Bind("uomId") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
                                          
                                         <asp:TemplateField HeaderText="Edit" ShowHeader="False">
                                             <EditItemTemplate>
-                                                <asp:LinkButton ID="LinkButton2" runat="server" CommandName="Update"
+                                                <asp:LinkButton ID="LinkButton20" runat="server" CommandName="Update"
                                                     Text="">
                                                     <img alt=""  src="../../Content/images/icons/Save.png" style="border: 0px;"
                                                          title="Update" />
                                                 </asp:LinkButton>
-                                                <asp:LinkButton ID="LinkButton3" runat="server" CommandName="Cancel"
+                                                <asp:LinkButton ID="LinkButton30" runat="server" CommandName="Cancel"
                                                     Text="">
                                                     <img alt="" height="20px" width="20px" src="../../Content/images/icons/132.png" style="border: 0px;"
                                                          title="Cancel" />

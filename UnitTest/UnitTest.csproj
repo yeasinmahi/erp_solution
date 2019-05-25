@@ -81,6 +81,10 @@
       <Project>{F1FFA03D-ED65-4159-A8FC-4E39DF84226B}</Project>
       <Name>DALOOP</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="HR\" />

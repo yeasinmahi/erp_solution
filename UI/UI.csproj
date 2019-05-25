@@ -210,6 +210,7 @@
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
     <Content Include="AEFPS\Benificiary_Report.aspx" />
+    <Content Include="AEFPS\ItemBridgeToInventoryMaster.aspx" />
     <Content Include="AEFPS\BlockItem.aspx" />
     <Content Include="AEFPS\CreateLocation.aspx" />
     <Content Include="AEFPS\CreditReport.aspx" />
@@ -468,6 +469,8 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
+    <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
+    <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
@@ -571,6 +574,7 @@
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
@@ -1394,15 +1398,19 @@
     <Content Include="SAD\Sales\Farmer_Setup.aspx" />
     <Content Include="SAD\Sales\NBR_DOEntry.aspx" />
     <Content Include="SAD\Sales\NBR_SalesChallan.aspx" />
+    <Content Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx" />
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
+    <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
     <Content Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
     <Content Include="SAD\Sales\Report\DOPrint.aspx" />
     <Content Include="SAD\Sales\Report\DOQntVsChallaQnt.aspx" />
     <Content Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx" />
+    <Content Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
@@ -1469,6 +1477,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
+    <Content Include="SAD\Sales\Report\Vehicle_Calling_List.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
     <Content Include="SAD\Sales\Return\CorporateSalesReturn.aspx" />
@@ -1490,6 +1499,7 @@
     <Content Include="SAD\Sales\SalesChallanAFBL.aspx" />
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
+    <Content Include="SAD\Sales\Report\Sales_Info_Report.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
     <Content Include="SAD\Transfer\FGTransfer.aspx" />
@@ -1594,6 +1604,7 @@
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
     <Content Include="SCM\IndentRFQ.aspx" />
     <Content Include="SCM\PoGenerate.aspx" />
+    <Content Include="SCM\POGenerate_For_Import.aspx" />
     <Content Include="SCM\PoUpdateNew.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
@@ -2220,6 +2231,13 @@
     </Compile>
     <Compile Include="AEFPS\Benificiary_Report.aspx.designer.cs">
       <DependentUpon>Benificiary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AEFPS\ItemBridgeToInventoryMaster.aspx.cs">
+      <DependentUpon>ItemBridgeToInventoryMaster.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AEFPS\ItemBridgeToInventoryMaster.aspx.designer.cs">
+      <DependentUpon>ItemBridgeToInventoryMaster.aspx</DependentUpon>
     </Compile>
     <Compile Include="AEFPS\BlockItem.aspx.cs">
       <DependentUpon>BlockItem.aspx</DependentUpon>
@@ -3197,6 +3215,13 @@
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.cs">
+      <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.designer.cs">
+      <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Insurance\InsuranceDateRangeReport.aspx.cs">
       <DependentUpon>InsuranceDateRangeReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3784,6 +3809,13 @@
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.cs">
+      <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.designer.cs">
+      <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\JV.aspx.cs">
       <DependentUpon>JV.aspx</DependentUpon>
@@ -6964,6 +6996,13 @@
     <Compile Include="SAD\Sales\NBR_SalesChallan.aspx.designer.cs">
       <DependentUpon>NBR_SalesChallan.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx.cs">
+      <DependentUpon>All_Shipping_Point_Delivery_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\All_Shipping_Point_Delivery_Report.aspx.designer.cs">
+      <DependentUpon>All_Shipping_Point_Delivery_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Area_vs_Item.aspx.cs">
       <DependentUpon>Area_vs_Item.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6984,6 +7023,20 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx.cs">
+      <DependentUpon>Customer_Pending_List_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx.designer.cs">
+      <DependentUpon>Customer_Pending_List_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx.cs">
+      <DependentUpon>Delivery_Challan_APL_Form.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx.designer.cs">
+      <DependentUpon>Delivery_Challan_APL_Form.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx.cs">
       <DependentUpon>Distributor_Wise_DO_Quantity_Report.aspx</DependentUpon>
@@ -7026,6 +7079,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\DO_Challan_N_Subledger_Reconcile_Report.aspx.designer.cs">
       <DependentUpon>DO_Challan_N_Subledger_Reconcile_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx.cs">
+      <DependentUpon>DR_Access_Finished_Goods_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx.designer.cs">
+      <DependentUpon>DR_Access_Finished_Goods_Stock.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Free.aspx.cs">
       <DependentUpon>Free.aspx</DependentUpon>
@@ -7489,6 +7549,13 @@
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.designer.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.cs">
+      <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.designer.cs">
+      <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx.cs">
       <DependentUpon>Vehicle_Per_Kilo_Cost_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7635,6 +7702,13 @@
     </Compile>
     <Compile Include="SAD\Sales\SalesPosting.aspx.designer.cs">
       <DependentUpon>SalesPosting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.cs">
+      <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.designer.cs">
+      <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\UnitTest.aspx.cs">
       <DependentUpon>UnitTest.aspx</DependentUpon>
@@ -8349,6 +8423,13 @@
     </Compile>
     <Compile Include="SCM\PoGenerate.aspx.designer.cs">
       <DependentUpon>PoGenerate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\POGenerate_For_Import.aspx.cs">
+      <DependentUpon>POGenerate_For_Import.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\POGenerate_For_Import.aspx.designer.cs">
+      <DependentUpon>POGenerate_For_Import.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoUpdateNew.aspx.cs">
       <DependentUpon>PoUpdateNew.aspx</DependentUpon>
@@ -9686,7 +9767,6 @@
     <Folder Include="HR\DocumentTracking\Data\" />
     <Folder Include="HR\DocumentTracking\Uploads\" />
     <Folder Include="HR\Employee\Upload\" />
-    <Folder Include="HR\HolidayCalendar\Holiday\" />
     <Folder Include="HR\Internal\Uploads\" />
     <Folder Include="HR\IssuedLetter\Data\" />
     <Folder Include="HR\KPI\Data\" />

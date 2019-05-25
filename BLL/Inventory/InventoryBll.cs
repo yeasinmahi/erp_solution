@@ -25,5 +25,10 @@ namespace BLL.Inventory
         {
             return _dal.InsertBySpInventoryTransection(intUnitId, intWhid, intLocationId, intItemId, numTransactionQty, monTransactionValue, intInOutReffId, intTransactionTypeId);
         }
+
+        public bool UpdateDailyJv(int jvId, int inventoryId)
+        {
+            return _dal.UpdateDailyJv(jvId, inventoryId);
+        }
     }
 }

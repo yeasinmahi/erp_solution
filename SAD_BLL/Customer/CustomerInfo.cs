@@ -189,5 +189,20 @@ namespace SAD_BLL.Customer
 
 
         }
+
+        public DataTable CustomerBYTripId(int TripId)
+        {
+            try
+            {
+                TblCustomerDataTableAdapter adp = new TblCustomerDataTableAdapter();
+                return adp.GetCustomerByTripID(TripId);
+
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+
     }
     }

@@ -92,10 +92,25 @@ namespace UI.SAD.Delivery
             string[] searchKey = temp.Split(delimiterChars);
             string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
-            string strReportType = "Picking";
+            string PopupType = "Picking";
+            string strReportType = "DO_Base";
             string ShipPointID = ddlShip.SelectedValue;
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
+        }
+
+        protected void Picking_Click(object sender, EventArgs e)
+        {
+            char[] delimiterChars = { ',' };
+            string temp = ((Button)sender).CommandArgument.ToString();
+            string[] searchKey = temp.Split(delimiterChars);
+            string intCusID = searchKey[0].ToString();
+            string intid = searchKey[1].ToString();
+            string PopupType = "Picking";
+            string strReportType = "Customer_Base";
+            string ShipPointID = ddlShip.SelectedValue;
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "PickingCustBase('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
         }
 
         protected void dgvViewOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)

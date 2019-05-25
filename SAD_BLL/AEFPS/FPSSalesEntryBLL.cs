@@ -7,6 +7,7 @@ using SAD_DAL.AEFPS.FPSSalesEntryTDSTableAdapters;
 using SAD_DAL.AEFPS.DITFPSTableAdapters;
 using SAD_DAL.AEFPS;
 using System.Data;
+using SAD_DAL.AEFPS.ItemTDSTableAdapters;
 
 namespace SAD_BLL.AEFPS
 {
@@ -16,6 +17,7 @@ namespace SAD_BLL.AEFPS
         private static FPSSalesEntryTDS.tblEmployeeDataTable[] tableemp = null;
         private static FPSSalesEntryTDS.tblShopItemListSearchDataTable[] tableempItem = null;
         private static FPSSalesEntryTDS.tblShopItemList2DataTable[] tableempItemDITF = null;
+        private static ItemTDS.tblItemMasterListDataTable[] TabletempitemMaster = null;
 
         public string[] GetEmployeeSearch(string prefix)
         {
@@ -74,6 +76,75 @@ namespace SAD_BLL.AEFPS
             }
         }
 
+        public void getinsert(int itemId1, int itemId2, string itemName, int whid)
+        {
+            try
+            {
+                tblShopItemListAddTableAdapter adp = new tblShopItemListAddTableAdapter();
+                adp.GetData(itemId1.ToString(), itemName, whid);
+            }
+            catch { }
+        }
+
+        public string[] GetItemSearchMaster(string prefix)
+        {
+            int intwh = Int32.Parse("1".ToString());
+            //Inatialize(intwh);
+            TabletempitemMaster = new ItemTDS.tblItemMasterListDataTable[intwh];
+            tblItemMasterListTableAdapter adps = new tblItemMasterListTableAdapter();
+            TabletempitemMaster[e] = adps.GetData();
+
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in TabletempitemMaster[e]//Convert.ToInt32(ht[unitID])
+                               orderby tmp.strName
+                               select tmp;
+                    if (rows.Any())
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in TabletempitemMaster[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strName.ToLower().Contains(prefix) || Convert.ToString(tmp.intItemMasterID).ToLower().Contains(prefix)
+                                   orderby tmp.strName
+                                   select tmp;
+
+                        if (rows.Any())
+                        {
+                            tbl = rows.CopyToDataTable();
+                        }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strName"] + "[" + tbl.Rows[i]["intItemMasterID"] + "]";
+
+                    //retStr[i] = tbl.Rows[i]["strItem"] +"[" + "Stock:" + " " + tbl.Rows[i]["monstock"] + " " + tbl.Rows[i]["strUom"] + "]" ;
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public DataTable getDiscountList(int whid)
         {
             try
