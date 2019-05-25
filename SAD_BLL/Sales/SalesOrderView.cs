@@ -384,7 +384,8 @@ namespace SAD_BLL.Sales
             try
             {
                 SprUnitVsLocalSalesTypeTableAdapter adp = new SprUnitVsLocalSalesTypeTableAdapter();
-              return  adp.GetDataUnitVsLocalSalesType(unitid);
+                return adp.GetDataUnitVsLocalSalesType(unitid);
+             
             }
             catch(Exception ex)
             {
