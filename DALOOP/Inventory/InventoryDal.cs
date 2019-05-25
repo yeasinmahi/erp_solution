@@ -46,18 +46,5 @@ namespace DALOOP.Inventory
                 return 0;
             }
         }
-        public bool UpdateDailyJv(int jvId, int inventoryId)
-        {
-            try
-            {
-                tblInventory2TableAdapter adp = new tblInventory2TableAdapter();
-                _dt = adp.UpdateDailyJv(jvId,inventoryId);
-                return _dt.Rows.Count > 0;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-        }
     }
 }
