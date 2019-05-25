@@ -51,9 +51,10 @@ namespace UI.SAD.Delivery
             //_filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
             if (!IsPostBack)
             {
+                try { File.Delete(GetXmlFilePath()); } catch { }
 
                 GetUrlData(Request.QueryString["PopupType"]);
-                try { File.Delete(GetXmlFilePath()); } catch { }
+             
                 
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
@@ -1237,11 +1238,11 @@ namespace UI.SAD.Delivery
         private void LoadGridwithXml()
         {
             string itemXML = XmlParser.GetXml(GetXmlFilePath());
-            if (rdoDeliveryType.SelectedItem.ToString() == "Picking")
+            if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit")
             {
                 GridViewUtil.LoadGridwithXml(itemXML, dgvSalesPicking, out string message);
             }
-            else if(rdoDeliveryType.SelectedItem.ToString() == "DO")
+            else if(rdoDeliveryType.SelectedItem.ToString() == "DO" || rdoDeliveryType.SelectedItem.ToString() == "DO_Edit")
             {
                 GridViewUtil.LoadGridwithXml(itemXML, dgvSales, out string message);
             }
