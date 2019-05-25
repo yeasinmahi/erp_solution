@@ -22,11 +22,11 @@ namespace SCM_BLL
             string msg = "";
             try
             {
-                
+
                 SprPoGenerateTableAdapter adp = new SprPoGenerateTableAdapter();
                 return adp.GetPoGenerateData(type, xml, intWh, indentId, dteDate, enroll, ref msg);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 msg = ex.Message;
                 return new DataTable();
@@ -460,11 +460,11 @@ namespace SCM_BLL
             {
                 return new DataTable();
             }
-            
-        }
-        
 
-        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby,  decimal monAIT)
+        }
+
+
+        public string UpdateItemInfoByPONew(int intPOID, decimal numPOQty, int intItemID, string strSpecification, decimal monRate, decimal monVAT, decimal monAmount, int intupdateby, decimal monAIT)
         {
             string msg = "";
             sprPOItemInfoUpdateTableAdapter adp = new sprPOItemInfoUpdateTableAdapter();
@@ -536,7 +536,7 @@ namespace SCM_BLL
             }
         }
 
-        
+
         public DataTable ImportLcIncoTerms()
         {
             TblImportLcIncoTermsTableAdapter adp = new TblImportLcIncoTermsTableAdapter();
@@ -562,7 +562,40 @@ namespace SCM_BLL
             }
         }
 
+        public string InsertImportLC(int intPOID, int intLCCategory, int intItemCategory, int intBank, string strLoadingPort, string strDestination, decimal monTolerancePercent, int intCurrency,
+        decimal monLcTenorMonth, string dteLastShipmentDate, string dteLcExpireDate, DateTime dteInsertionTime, int intInsertBy, int intUnit, int intSupplierID, int intIncoTerms,
+        string strOrigin, string strDescription, string strPiNo, string dtePIDate, int intPresentationDays, bool ysnSROBenifit, bool ysnLocalLc, decimal monPIAmount,
+        bool ysnLcConfirmation, decimal numQtyTolerancePercent)
+        {
+            string msg = "";
+            TblImportLCTableAdapter adp = new TblImportLCTableAdapter();
+            try
+            {
+                adp.InsertIntoImportLC(intPOID, intLCCategory, intItemCategory, intBank, strLoadingPort, strDestination, monTolerancePercent, intCurrency,
+                monLcTenorMonth, dteLastShipmentDate, dteLcExpireDate, dteInsertionTime, intInsertBy, intUnit, intSupplierID, intIncoTerms,
+                strOrigin, strDescription, strPiNo, dtePIDate, intPresentationDays, ysnSROBenifit, ysnLocalLc, monPIAmount,
+                ysnLcConfirmation, numQtyTolerancePercent);
+                msg = "Generated Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+            return msg;
+        }
 
+        public DataTable GetPOAmountByPOID(int POId)
+        {
+            qryInventoryPOTotalTableAdapter adp = new qryInventoryPOTotalTableAdapter();
+            try
+            {
+                return adp.GetPOTotalData(POId);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
 
 
     }
