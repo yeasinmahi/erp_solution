@@ -238,7 +238,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Customer Type:"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Sold To Party:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlCustomerType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlCustomerType_SelectedIndexChanged"></asp:DropDownList>
 
@@ -281,7 +281,7 @@
                                 <asp:HiddenField ID="hdnShipToPartyText" runat="server" />
                                 <asp:TextBox ID="txtShipToParty" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtShipToParty_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtShipToParty" OnClientItemSelected="autoCompleteEx_ItemSelected"
-                                    ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    ServiceMethod="GetDisPointList" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
@@ -337,7 +337,7 @@
                                  <td colspan="2">
                                                     <asp:RadioButtonList ID="rdoVehicleCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoVehicleCompany_SelectedIndexChanged">
                                                         <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
-                                                        <asp:ListItem Value="2">Rent</asp:ListItem>
+                                                        <asp:ListItem Value="2">Rented</asp:ListItem>
                                                         <asp:ListItem Value="3">Customer</asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </td>
