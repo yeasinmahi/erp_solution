@@ -17,7 +17,7 @@ namespace UnitTest.Inventory
         //    Assert.That(result);
         //}
 
-        [TestCase(842734, 606)]
+        [TestCase(10073, 1)]
         public void StoreIssue(int itemId,int whId)
         {
             StoreIssue storeIssue = new StoreIssue
