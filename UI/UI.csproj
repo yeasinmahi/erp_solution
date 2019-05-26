@@ -571,6 +571,7 @@
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
     <Content Include="PaymentModule\MDApprovalSheet.aspx" />
@@ -582,6 +583,8 @@
     <Content Include="PaymentModule\Production_Report.aspx" />
     <Content Include="PaymentModule\PurchaseVoucharDetalis.aspx" />
     <Content Include="PaymentModule\PurchaseVoucher.aspx" />
+    <Content Include="PaymentModule\Requisition_Summary_Report.aspx" />
+    <Content Include="PaymentModule\Requisition_VS_Stock.aspx" />
     <Content Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx" />
     <Content Include="PaymentModule\Supplier.aspx" />
     <Content Include="PaymentModule\SupplierCOA.aspx" />
@@ -3793,6 +3796,13 @@
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.cs">
+      <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.designer.cs">
+      <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="PaymentModule\JV.aspx.cs">
       <DependentUpon>JV.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3869,6 +3879,20 @@
     </Compile>
     <Compile Include="PaymentModule\PurchaseVoucher.aspx.designer.cs">
       <DependentUpon>PurchaseVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Requisition_Summary_Report.aspx.cs">
+      <DependentUpon>Requisition_Summary_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Requisition_Summary_Report.aspx.designer.cs">
+      <DependentUpon>Requisition_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\Requisition_VS_Stock.aspx.cs">
+      <DependentUpon>Requisition_VS_Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\Requisition_VS_Stock.aspx.designer.cs">
+      <DependentUpon>Requisition_VS_Stock.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\ShowAdviceOfTreasuryChallan.aspx.cs">
       <DependentUpon>ShowAdviceOfTreasuryChallan.aspx</DependentUpon>
