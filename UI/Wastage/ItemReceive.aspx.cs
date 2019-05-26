@@ -45,10 +45,17 @@ namespace UI.Wastage
         protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
         {
             dt = objWastage.getIteminfo(ddlItem.SelectedValue);
-            txtRate.Text = dt.Rows[0]["monRate"].ToString();
-            txtUOM.Text = dt.Rows[0]["strUOM"].ToString();          
-            hdnRate.Value = dt.Rows[0]["monRate"].ToString();         
-            hdnuom.Value = dt.Rows[0]["struom"].ToString();
+            if (dt.Rows.Count > 0)
+            {
+                txtRate.Text = dt.Rows[0]["monRate"].ToString();
+                txtUOM.Text = dt.Rows[0]["strUOM"].ToString();
+                hdnRate.Value = dt.Rows[0]["monRate"].ToString();
+                hdnuom.Value = dt.Rows[0]["struom"].ToString();
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('No Price Set.');", true);
+            }
            
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
