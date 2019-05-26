@@ -688,13 +688,22 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Button btnCommision;
         
         /// <summary>
-        /// Label40 control.
+        /// PI control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label40;
+        protected global::System.Web.UI.HtmlControls.HtmlTableRow PI;
+        
+        /// <summary>
+        /// lblPINo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPINo;
         
         /// <summary>
         /// txtPINo control.
@@ -706,13 +715,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.TextBox txtPINo;
         
         /// <summary>
-        /// Label41 control.
+        /// lblPIDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label41;
+        protected global::System.Web.UI.WebControls.Label lblPIDate;
         
         /// <summary>
         /// txtPIDate control.
@@ -733,13 +742,13 @@ namespace UI.SCM {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender5;
         
         /// <summary>
-        /// Label42 control.
+        /// lblLCExpDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label42;
+        protected global::System.Web.UI.WebControls.Label lblLCExpDate;
         
         /// <summary>
         /// txtLCExpDate control.
@@ -758,24 +767,6 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender6;
-        
-        /// <summary>
-        /// Label43 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label43;
-        
-        /// <summary>
-        /// txtPacking control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPacking;
         
         /// <summary>
         /// Label14 control.
@@ -821,6 +812,24 @@ namespace UI.SCM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAit;
+        
+        /// <summary>
+        /// lblPacking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPacking;
+        
+        /// <summary>
+        /// txtPacking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPacking;
         
         /// <summary>
         /// btnGeneratePO control.
@@ -1282,13 +1291,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label38;
         
         /// <summary>
-        /// TextBox12 control.
+        /// txtItemDescription control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox12;
+        protected global::System.Web.UI.WebControls.TextBox txtItemDescription;
         
         /// <summary>
         /// Label39 control.
@@ -1300,13 +1309,13 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.Label Label39;
         
         /// <summary>
-        /// CheckBoxList1 control.
+        /// CheckList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBoxList CheckBoxList1;
+        protected global::System.Web.UI.WebControls.CheckBoxList CheckList;
         
         /// <summary>
         /// View4 control.

@@ -178,19 +178,36 @@ namespace UI.SCM
                         
                         if (objects.Count > 0)
                         {
-                            //StoreIssueBll _bll = new StoreIssueBll();
-                            //_bll.StoreIssue(storeIssue, storeIssueByItems);
-                            xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
-                                Enroll);
-
-                            Alert(msg);
+                            if (intwh == 1)
+                            {
+                                StoreIssueBll bll = new StoreIssueBll();
+                                int issueId = bll.StoreIssue(storeIssue, storeIssueByItems);
+                                if (issueId > 0)
+                                {
+                                    Alert("Successfully Issued with issueId:"+issueId);
+                                }
+                                else
+                                {
+                                    Alert("Something error in issue.");
+                                }
+                            }
+                            else
+                            {
+                                xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                                string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                    Enroll);
+                                Alert(msg);
+                            }
+                            //xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                            //string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                            //    Enroll);
+                            //Alert(msg);
                             dgvDetalis.UnLoad();
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                         }
                         else
                         {
-                            Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
+                            Toaster("You have to issue at least 1 item ", Common.TosterType.Warning);
                         }
                     }
 
