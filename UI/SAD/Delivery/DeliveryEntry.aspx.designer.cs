@@ -148,13 +148,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnvisibility;
         
         /// <summary>
-        /// hdnLogisBasedOnUom control.
+        /// hdnButtonFire control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLogisBasedOnUom;
+        protected global::System.Web.UI.WebControls.HiddenField hdnButtonFire;
         
         /// <summary>
         /// hdnSupplierId control.
@@ -274,6 +274,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnDoId;
         
         /// <summary>
+        /// hdnDoQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDoQty;
+        
+        /// <summary>
         /// hdnRequistId control.
         /// </summary>
         /// <remarks>
@@ -308,6 +317,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnVatPrice;
+        
+        /// <summary>
+        /// hdnDelivery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDelivery;
         
         /// <summary>
         /// rdoDeliveryType control.
@@ -787,13 +805,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtReffNo;
         
         /// <summary>
-        /// btnProductAddAll control.
+        /// btnProductAddAlls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProductAddAll;
+        protected global::System.Web.UI.WebControls.Button btnProductAddAlls;
         
         /// <summary>
         /// btnSubmit control.
