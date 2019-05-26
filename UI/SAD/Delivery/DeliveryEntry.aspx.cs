@@ -516,6 +516,8 @@ namespace UI.SAD.Delivery
                 dt = unt.GetUnits(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 ddlUnit.Loads(dt, "intUnitID", "strUnit");
                 UnitSelectionChange();
+
+                Session["sesLogisticType"] = rdoVehicleCompany.SelectedItem.ToString();
             }
             catch { }
         }
@@ -755,7 +757,7 @@ namespace UI.SAD.Delivery
                 {
                     ds.ReadXml(GetXmlFilePath());
                     int i;
-                    if (type == "DO")
+                    if (hdnRequistId.Value=="0")
                     {
                         for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                         {
@@ -768,7 +770,8 @@ namespace UI.SAD.Delivery
                             _checkItem = false;
                         }
                     }
-                    else if (type == "DO_Edit")
+                    
+                    else if (type == "Picking" || type == "Picking_Edit" && hdnRequistId.Value=="0")
                     {
                         for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                         {
@@ -781,7 +784,7 @@ namespace UI.SAD.Delivery
                             _checkItem = false;
                         }
                     }
-                    else if (type == "Picking")
+                    else if (type == "Picking" || type == "Picking_Edit" && hdnRequistId.Value != "0")
                     {
                         for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                         {
@@ -795,20 +798,7 @@ namespace UI.SAD.Delivery
                             _checkItem = false;
                         }
                     }
-                    else if (type == "Picking_Edit")
-                    {
-                        for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
-                        {
-                            if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()) &&
-                                doid == (ds.Tables[0].Rows[i].ItemArray[7].ToString()))
-                            {
-                                _checkItem = true;
-                                break;
-
-                            }
-                            _checkItem = false;
-                        }
-                    }
+                    
 
                 }
                 else
@@ -820,7 +810,7 @@ namespace UI.SAD.Delivery
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
-                return _checkItem;
+                return _checkItem=false;
             }
             return _checkItem;
         }
@@ -1168,7 +1158,7 @@ namespace UI.SAD.Delivery
                         string promItem = "0";
                         string promUom = "0";
                         decimal promPrice = 0;
-                        if (type == "DO" || type=="DO_Edit")
+                        if (hdnRequistId.Value=="0" || type=="DO_Edit")
                         {
                                  promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
                                 , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId); 
@@ -1185,11 +1175,7 @@ namespace UI.SAD.Delivery
                             promUom = dt.Rows[0]["intPromUOM"].ToString(); 
 
                         }
-                         
-
-
-
-
+                          
 
                         string productId = hdnProduct.Value;
                         string productName = hdnProductText.Value;
@@ -1235,30 +1221,17 @@ namespace UI.SAD.Delivery
                         string whId = hdnWHId.Value;
                         string whName = hdnWHName.Value;
 
+
+
+
                         if (CheckXmlItemReqData(productId, doId, rdoDeliveryType.SelectedItem.ToString()))
-                        {
+                        { 
+                            Toaster("Can not add same product  duplicate.", "", Common.TosterType.Error);
+                            LoadGridwithXml();
                             return;
-                        }
+                        } 
+                        
 
-                        //if (rdoDeliveryType.SelectedItem.ToString() == "Picking")
-                        //{
-                            
-
-                        //    if (GridViewDuplicatedDataCheck(dgvSalesPicking, productId, productName))
-                        //    {
-                        //        return;
-                        //    }
-
-                        //}
-                        //else if (rdoDeliveryType.SelectedItem.ToString() == "DO")
-                        //{
-                        //    if (GridViewDuplicatedDataCheck(dgvSales, productId, productName))
-                        //    {
-                        //        return;
-                        //    }
-                             
-                        //}
-                         
                         RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                           narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                           priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
@@ -1427,15 +1400,20 @@ namespace UI.SAD.Delivery
 
         private void LoadGridwithXml()
         {
-            string itemXML = XmlParser.GetXml(GetXmlFilePath());
-            if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit")
+            try
             {
-                GridViewUtil.LoadGridwithXml(itemXML, dgvSalesPicking, out string message);
+                string itemXML = XmlParser.GetXml(GetXmlFilePath());
+                if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit")
+                {
+                    GridViewUtil.LoadGridwithXml(itemXML, dgvSalesPicking, out string message);
+                }
+                else if (rdoDeliveryType.SelectedItem.ToString() == "DO" || rdoDeliveryType.SelectedItem.ToString() == "DO_Edit")
+                {
+                    GridViewUtil.LoadGridwithXml(itemXML, dgvSales, out string message);
+                }
             }
-            else if(rdoDeliveryType.SelectedItem.ToString() == "DO" || rdoDeliveryType.SelectedItem.ToString() == "DO_Edit")
-            {
-                GridViewUtil.LoadGridwithXml(itemXML, dgvSales, out string message);
-            }
+            catch { }
+           
            
         }
 
@@ -1589,10 +1567,20 @@ namespace UI.SAD.Delivery
                             msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
                                 ref strOrderId, ref Code);
                         }
+                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Delivery")
+                        {
+                            msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
+                                ref strOrderId, ref Code);
+                        }
+                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO_Edit")
+                        {
+                            msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
+                                ref strOrderId, ref Code);
+                        }
 
 
 
-                        lblCodeText.Visible = true;
+                    lblCodeText.Visible = true;
                         lblCode.Text = Code;
                         lblOrderIDText.Visible = true;
                         lblOrderId.Text = strOrderId;
