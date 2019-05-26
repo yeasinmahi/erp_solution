@@ -1605,7 +1605,6 @@
     <Content Include="SCM\PoDocAttachmentDetalis.aspx" />
     <Content Include="SCM\IndentRFQ.aspx" />
     <Content Include="SCM\PoGenerate.aspx" />
-    <Content Include="SCM\POGenerate_For_Import.aspx" />
     <Content Include="SCM\PoUpdateNew.aspx" />
     <Content Include="SCM\PONew.aspx" />
     <Content Include="SCM\PONew1.aspx" />
@@ -8438,13 +8437,6 @@
     </Compile>
     <Compile Include="SCM\PoGenerate.aspx.designer.cs">
       <DependentUpon>PoGenerate.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SCM\POGenerate_For_Import.aspx.cs">
-      <DependentUpon>POGenerate_For_Import.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SCM\POGenerate_For_Import.aspx.designer.cs">
-      <DependentUpon>POGenerate_For_Import.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\PoUpdateNew.aspx.cs">
       <DependentUpon>PoUpdateNew.aspx</DependentUpon>
