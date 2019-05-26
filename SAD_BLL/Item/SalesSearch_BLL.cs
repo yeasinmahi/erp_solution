@@ -244,8 +244,8 @@ namespace SAD_BLL.Item
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strName"] + " [" + tbl.Rows[i]["intDisPointId"] + "]";
-                  //  retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
+                    retStr[i] = tbl.Rows[i]["strName"].ToString();
+                    //  retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
                 }
 
                 return retStr;

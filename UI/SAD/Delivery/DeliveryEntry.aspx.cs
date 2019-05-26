@@ -19,6 +19,7 @@ using SAD_BLL.Sales;
 using System.Xml;
 using System.IO;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace UI.SAD.Delivery
 {
@@ -45,7 +46,7 @@ namespace UI.SAD.Delivery
 
         private string message;
         private string _filePathForXml, _xmlString = "", xmlHeaderString = "";
-        private bool _isProcess = false;int _isCount = 0;
+        private bool _isProcess = false;int _isCount = 0, xmlSerial=0;
         protected void Page_Load(object sender, EventArgs e)
         {
             //_filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
@@ -227,6 +228,13 @@ namespace UI.SAD.Delivery
                 PickingGridDataBind(hdnPickingId.Value);
                 dt = deliveryBLL.PickingSummary(hdnPickingId.Value);
             }
+            else if (HttpContext.Current.Session["ReportType"].ToString() == "DO_Base" && Request.QueryString["PopupType"] == "DO_Edit")
+            {
+                hdnDoId.Value = Request.QueryString["intid"];
+                txtDoNumber.Text = Request.QueryString["intid"];
+                DoGridDataBind(hdnDoId.Value);
+                dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"]);
+            }
             if (dt.Rows.Count > 0)
             { 
                 DropDownDataBindFromDoCustomer(dt);
@@ -244,6 +252,62 @@ namespace UI.SAD.Delivery
             
 
            
+        }
+
+        private void DoGridDataBind(string Do)
+        {
+            dt = deliveryBLL.DoItemDetalis(Do); 
+            string productId = dt.Rows[0]["intProductId"].ToString();
+            string productName = dt.Rows[0]["strProductName"].ToString();
+            string quantity = dt.Rows[0]["numQuantity"].ToString();
+            string coaId = dt.Rows[0]["intCOAAccIdd"].ToString();
+            string coaName = dt.Rows[0]["strCOAAccName"].ToString();
+
+            string invProductId = "0";
+            string productCogs = "0";
+            string rate = dt.Rows[0]["monPrice"].ToString();
+            string uomId = dt.Rows[0]["intUom"].ToString();
+            string uomName = dt.Rows[0]["strUOM"].ToString();
+            string narration = dt.Rows[0]["strNarration"].ToString();
+            string currency = dt.Rows[0]["intCurrencyID"].ToString();
+            string conversionRate = dt.Rows[0]["monConversionRate"].ToString();
+            string commision = dt.Rows[0]["monCommission"].ToString();
+
+            string commisionTotal =Convert.ToString(decimal.Parse(dt.Rows[0]["monCommission"].ToString()) * decimal.Parse(dt.Rows[0]["numQuantity"].ToString())); 
+            string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[0]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[0]["numQuantity"].ToString()));
+
+            decimal priceTotal = decimal.Parse(dt.Rows[0]["monPrice"].ToString()) * decimal.Parse(dt.Rows[0]["numQuantity"].ToString());
+
+            string discount = dt.Rows[0]["decDiscountRate"].ToString();
+            string whId = "0";
+            string whName = "0";
+            hdnWHId.Value = "0";
+            hdnWHName.Value = "0";
+            string supplierTax = dt.Rows[0]["monSuppTax"].ToString();
+            string vat = dt.Rows[0]["monVAT"].ToString();
+            string vatPrice = dt.Rows[0]["monVatPrice"].ToString(); ;
+            string promtionItemId = dt.Rows[0]["intPromItemId"].ToString();
+            string invPromoProductId = "0";
+            string promoProductCogs = "0";
+            string promtionItem = dt.Rows[0]["strPromItemName"].ToString();
+            string promtionUom = dt.Rows[0]["intPromUOM"].ToString();
+
+            string promPrices = dt.Rows[0]["monPromPrice"].ToString();
+            string promtionItemCoaId = dt.Rows[0]["intPromItemCOAId"].ToString();
+            string promtionQnty = dt.Rows[0]["numPromotion"].ToString();
+            string promtionItemUom = dt.Rows[0]["intPromUomId"].ToString();
+            string location = "0";
+            string intInvItemId = dt.Rows[0]["intItemIdInventory"].ToString();
+            string editStatus = "0";
+            string doId = "0";
+            
+
+            RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
+                priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
+                promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
+                intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+
         }
 
         private void RadioButtonListBindFromDoCustomer(DataTable dt)
@@ -271,8 +335,7 @@ namespace UI.SAD.Delivery
             ddlSalesOffice.Items.Add(new ListItem(dt.Rows[0]["strSalesOfficeName"].ToString(), dt.Rows[0]["intSalesOffId"].ToString()));
             ddlCustomerType.Items.Add(new ListItem(dt.Rows[0]["strCustType"].ToString(), dt.Rows[0]["intCustTypeId"].ToString()));
             try{ddlCurrency.Items.Add(new ListItem(dt.Rows[0]["strCurrency"].ToString(), dt.Rows[0]["intCurrencyId"].ToString()));}
-            catch { }
-
+            catch { } 
 
             CalendarDate.SelectedDate = DateTime.Parse(dt.Rows[0]["dteDate"].ToString());
            try{ CalendarDueDate.SelectedDate = DateTime.Parse(dt.Rows[0]["dteReqDelivaryDate"].ToString()); }
@@ -501,7 +564,7 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetDisPointList(string prefixText, int count)
         {
-            return DistributionPointSt.GetDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session["sesCurrentCus"].ToString());
+            return SalesSearch_BLL.GetShipToParty(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session["sesCurrentCus"].ToString(),"");
         }
 
         [WebMethod]
@@ -1055,7 +1118,7 @@ namespace UI.SAD.Delivery
                         string intInvItemId = hdnInvItemId.Value;
                         string editStatus ="0";
                         string doId = hdnDoId.Value;
-
+                        
 
                         try { location = ddlLocation.SelectedItem.Value; }
                         catch { location = "0"; }
@@ -1131,8 +1194,18 @@ namespace UI.SAD.Delivery
             string promtionItemUom,   string location ,string intInvItemId,string editStatus, string invProductId,
             string productCogs, string invPromoProductId, string promoProductCogs,string conversionRate, string whId,string doId)
         {
-
-
+            try
+            {
+                var xDoc = XDocument.Load(GetXmlFilePath());
+                xmlSerial = xDoc.Descendants("items").Count();
+            }
+            catch
+            {
+                xmlSerial = 1;
+                
+            }
+           
+             
             dynamic obj = new
             {
                 productId,
@@ -1169,8 +1242,9 @@ namespace UI.SAD.Delivery
                 promoProductCogs,
                 conversionRate,
                 whId,
-                doId
-            };
+                doId,
+                serialId= xmlSerial + 1 
+        };
              
             XmlParser.CreateXml("Delivery", "items", obj, GetXmlFilePath(), out message);
           //  string xmlString = XmlParser.GetXml(GetXmlFilePath()); //"Entry", "items", objects, out message
@@ -1628,6 +1702,11 @@ namespace UI.SAD.Delivery
                 hdnSupplierId.Value = temp[temp.Length - 1];
                 hdnSupplierName.Value = temp[0];
             }
+        }
+
+        protected void dgvSales_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         protected void rdoSalesType_SelectedIndexChanged(object sender, EventArgs e)
