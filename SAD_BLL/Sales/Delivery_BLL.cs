@@ -88,6 +88,20 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        public DataTable ShipToPartyAddress(string customerId)
+        {
+            try
+            {
+                QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
+                return adp.GetShipToPartyAddressData(int.Parse(customerId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
         public DataTable DoItemDetalis(string doid)
         {
             try
