@@ -37,17 +37,26 @@
         }
     </script>
     <script type="text/javascript">
+        function setButtonFire() {
+            document.getElementById('hdnButtonFire').value = 'true';
+        }
         function SetPrice(txt) {
             var price = parseFloat(document.getElementById('txtPrice').value);
 
             var qnt = parseFloat(document.getElementById('txtQun').value);
-            var invStock = parseFloat(document.getElementById('hdnInventoryStock').value);
-            var rdoDeliveryType = document.getElementById("rdoDeliveryType");
-            var type = rdoDeliveryType.SelectedValue; 
-
+            
+            var RequestType = document.getElementById('hdnDelivery').value; 
+             var doqty = document.getElementById('hdnDoQty').value; 
+              
+            
             var tot = 0;
-            if (qnt <= invStock && type=='2') {
-                alert('Pleae Check Inventory Stock')
+            if (RequestType == "Picking_Edit" && RequestType == "Picking") {
+                
+                if (qnt > doqty) {
+                     alert('Pleae Check Delivery Quantity')
+                    document.getElementById('txtQun').innerText = doqty;
+                }
+               
             }
             if (!isNaN((price) * qnt)) { tot = ((price) * qnt); }
             document.getElementById('lblTotal').innerText = tot;
@@ -169,7 +178,7 @@
                     <asp:HiddenField ID="hdnPromoInvStock" runat="server" />
                     <asp:HiddenField ID="hdnsalestype" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnvisibility" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnLogisBasedOnUom" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnButtonFire" Value="true" runat="server" />
                     <asp:HiddenField ID="hdnSupplierId" Value="0" runat="server" />
                      <asp:HiddenField ID="hdnSupplierName" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
@@ -183,11 +192,13 @@
                     <asp:HiddenField ID="hdnPickingId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnDoId" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnDoQty" Value="0" runat="server" />
                      <asp:HiddenField ID="hdnRequistId" Value="0" runat="server" />
                      
                     <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVatPrice" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnDelivery" Value="0" runat="server" />
                     <div class="tabs_container">
                         <table>
                             <tr>
@@ -418,7 +429,7 @@
                                 <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
                             </td>
                             <td>
-                                <asp:Button ID="btnProductAddAll" runat="server" Text="Add-All" ValidationGroup="valComAdd" OnClick="btnProductAddAll_Click" />
+                                <asp:Button ID="btnProductAddAlls" runat="server" Text="Add-All" OnClientClick="setButtonFire();"   OnClick="btnProductAddAll_Click" />
 
                             </td>
                             <td>
@@ -468,15 +479,15 @@
                                 <asp:Label ID="lblComm" runat="server"></asp:Label>
                             </td>
                             <td align="center" style="vertical-align: middle;">
-                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="False" onkeyup="SetPrice(this);" Width="60px" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
-                                &nbsp;
+                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="false" onkeyup="SetPrice(this);" OnClientClick="setButtonFire();"  Width="60px" TextMode="Number" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
+                                
                             </td>
                             <td align="center" style="text-align: right;">
                                 <asp:Label ID="lblTotal" Text="0" runat="server"></asp:Label>
                             </td>
 
                             <td align="right">
-                                <asp:Button ID="btnProductAdd" runat="server" Text="Add" AutoPostBack="false" OnClick="btnProductAdd_Click" OnClientClick="return ProductValidation()" />
+                                <asp:Button ID="btnProductAdd" runat="server" Text="Add"   OnClientClick="setButtonFire();" OnClick="btnProductAdd_Click"  />
                             </td>
                         </tr>
                     </table>
