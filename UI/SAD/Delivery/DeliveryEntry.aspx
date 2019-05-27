@@ -105,17 +105,16 @@
     </script>
     <script type="text/javascript">
         function ValidationWithConfirm() {
-            alert(document.getElementById('hdnDelivery').value);
+            
             if(document.getElementById("txtDate") != null){
                 if (document.getElementById("txtDate").value == '') {
-                   
                     alert('Date not be blank');
                     return;
                 }
             }
         
-            if(document.getElementById("txtCus") != null){
-                if(document.getElementById("txtCus").value == ''){
+            if(document.getElementById("txtCustomer") != null){
+                if(document.getElementById("txtCustomer").value == ''){
                     alert('Customer not be blank');
                     return;
                 }
@@ -135,19 +134,17 @@
                 }
             }
         
-            if(document.getElementById("txtVehicle") != null && document.getElementById('hdnDelivery').value=="Picking"){
-                if(document.getElementById("txtVehicle").value == '' && document.getElementById('hdnDelivery').value=="Picking"){
+            if(document.getElementById("txtVehicle") =='' && document.getElementById('hdnDelivery').value =="Picking"){
+                 
                     alert('Please select a vehicle');
-                   
-                }  return;
+                    return;
+                 
             }
-            if (document.getElementById("txtVehicle") != null &&
-                document.getElementById('hdnDelivery').value == "Picking_Edit") {
-                if (document.getElementById("txtVehicle").value == '' &&
-                    document.getElementById('hdnDelivery').value == "Picking_Edit") {
+            if (document.getElementById("txtVehicle") =='' && document.getElementById('hdnDelivery').value == "Picking_Edit") {
+                
                     alert('Please select a vehicle');
-
-                } return;
+                    return;
+                 
             }
             else {
                 funConfirmAll();

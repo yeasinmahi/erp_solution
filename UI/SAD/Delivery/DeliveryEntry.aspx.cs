@@ -261,56 +261,61 @@ namespace UI.SAD.Delivery
             try
             {
                 dt = deliveryBLL.DoItemDetalis(Do);
-                string productId = dt.Rows[0]["intProductId"].ToString();
-                string productName = dt.Rows[0]["strProductName"].ToString();
-                string quantity = dt.Rows[0]["numQuantity"].ToString();
-                string coaId = dt.Rows[0]["intCOAAccId"].ToString();
-                string coaName = dt.Rows[0]["strCOAAccName"].ToString();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string productId = dt.Rows[i]["intProductId"].ToString();
+                    string productName = dt.Rows[i]["strProductName"].ToString();
+                    string quantity = dt.Rows[i]["numQuantity"].ToString();
+                    string coaId = dt.Rows[i]["intCOAAccId"].ToString();
+                    string coaName = dt.Rows[i]["strCOAAccName"].ToString();
 
-                string invProductId = "0";
-                string productCogs = "0";
-                string rate = dt.Rows[0]["monPrice"].ToString();
-                string uomId = dt.Rows[0]["intUom"].ToString();
-                string uomName = dt.Rows[0]["strUOM"].ToString();
-                string narration = dt.Rows[0]["strNarration"].ToString();
-                string currency = dt.Rows[0]["intCurrencyID"].ToString();
-                string conversionRate = dt.Rows[0]["monConversionRate"].ToString();
-                string commision = dt.Rows[0]["monCommission"].ToString();
+                    string invProductId = "0";
+                    string productCogs = "0";
+                    string rate = dt.Rows[i]["monPrice"].ToString();
+                    string uomId = dt.Rows[i]["intUom"].ToString();
+                    string uomName = dt.Rows[i]["strUOM"].ToString();
+                    string narration = dt.Rows[i]["strNarration"].ToString();
+                    string currency = dt.Rows[i]["intCurrencyID"].ToString();
+                    string conversionRate = dt.Rows[i]["monConversionRate"].ToString();
+                    string commision = dt.Rows[i]["monCommission"].ToString();
 
-                string commisionTotal = Convert.ToString(decimal.Parse(dt.Rows[0]["monCommission"].ToString()) * decimal.Parse(dt.Rows[0]["numQuantity"].ToString()));
-                string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[0]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[0]["numQuantity"].ToString()));
+                    string commisionTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["monCommission"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString()));
+                    string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString()));
 
-                decimal priceTotal = decimal.Parse(dt.Rows[0]["monPrice"].ToString()) * decimal.Parse(dt.Rows[0]["numQuantity"].ToString());
+                    decimal priceTotal = decimal.Parse(dt.Rows[i]["monPrice"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString());
 
-                string discount = dt.Rows[0]["decDiscountRate"].ToString();
-                string whId = "0";
-                string whName = "0";
-                hdnWHId.Value = "0";
-                hdnWHName.Value = "0";
-                string supplierTax = dt.Rows[0]["monSuppTax"].ToString();
-                string vat = dt.Rows[0]["monVAT"].ToString();
-                string vatPrice = dt.Rows[0]["monVatPrice"].ToString(); ;
-                string promtionItemId = dt.Rows[0]["intPromItemId"].ToString();
-                string invPromoProductId = "0";
-                string promoProductCogs = "0";
-                string promtionItem = dt.Rows[0]["strPromItemName"].ToString();
-                string promtionUom = dt.Rows[0]["intPromUOM"].ToString();
+                    string discount = dt.Rows[i]["decDiscountRate"].ToString();
+                    string whId = "0";
+                    string whName = "0";
+                    hdnWHId.Value = "0";
+                    hdnWHName.Value = "0";
+                    string supplierTax = dt.Rows[i]["monSuppTax"].ToString();
+                    string vat = dt.Rows[i]["monVAT"].ToString();
+                    string vatPrice = dt.Rows[i]["monVatPrice"].ToString(); ;
+                    string promtionItemId = dt.Rows[i]["intPromItemId"].ToString();
+                    string invPromoProductId = "0";
+                    string promoProductCogs = "0";
+                    string promtionItem = dt.Rows[i]["strPromItemName"].ToString();
+                    string promtionUom = dt.Rows[i]["intPromUOM"].ToString();
 
-                string promPrices = dt.Rows[0]["monPromPrice"].ToString();
-                string promtionItemCoaId = dt.Rows[0]["intPromItemCOAId"].ToString();
-                string promtionQnty = dt.Rows[0]["numPromotion"].ToString();
-                string promtionItemUom = dt.Rows[0]["intPromUOM"].ToString();
-                string location = "0";
-                string intInvItemId = "0";
-                string editStatus = "0";
-                string doId = dt.Rows[0]["intDoId"].ToString();
+                    string promPrices = dt.Rows[i]["monPromPrice"].ToString();
+                    string promtionItemCoaId = dt.Rows[i]["intPromItemCOAId"].ToString();
+                    string promtionQnty = dt.Rows[i]["numPromotion"].ToString();
+                    string promtionItemUom = dt.Rows[i]["intPromUOM"].ToString();
+                    string location = "0";
+                    string intInvItemId = "0";
+                    string editStatus = "0";
+                    string doId = dt.Rows[i]["intDoId"].ToString();
 
 
-                RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
-                    narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
-                    priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
-                    promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
-                    intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+                    RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                        narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
+                        priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
+                        promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
+                        intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+
+                }
+                
             }
             catch { }
            
@@ -395,56 +400,61 @@ namespace UI.SAD.Delivery
         private void PickingGridDataBind(string pickingId)
         {
             dt = deliveryBLL.PickingDetalis(pickingId);
-            hdnPickingId.Value = pickingId; 
-            string productId = dt.Rows[0]["intProductId"].ToString();
-            string productName = dt.Rows[0]["strProductName"].ToString();
-            string quantity = dt.Rows[0]["numQty"].ToString();
-            string coaId = dt.Rows[0]["intSalesCOAId"].ToString(); 
-            string coaName = dt.Rows[0]["strCOAName"].ToString(); 
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
 
-            string invProductId = dt.Rows[0]["intItemIdInventory"].ToString();
-            string productCogs = "0";
-            string rate = dt.Rows[0]["monPrice"].ToString();
-            string uomId = dt.Rows[0]["intSalesUomId"].ToString();
-            string uomName = dt.Rows[0]["strUOM"].ToString();
-            string narration = dt.Rows[0]["strNarration"].ToString();
-            string currency = dt.Rows[0]["intCurrencyId"].ToString();
-            string conversionRate= dt.Rows[0]["monConversionRate"].ToString();
-            string commision = dt.Rows[0]["monDiscount"].ToString();
-            string commisionTotal = dt.Rows[0]["monTotalCashAdjustment"].ToString();
-            string discountTotal = dt.Rows[0]["monTotalCashAdjustment"].ToString();
-            decimal priceTotal = decimal.Parse(dt.Rows[0]["monPrice"].ToString()) * decimal.Parse(dt.Rows[0]["numQty"].ToString());
+                hdnPickingId.Value = pickingId;
+                string productId = dt.Rows[i]["intProductId"].ToString();
+                string productName = dt.Rows[i]["strProductName"].ToString();
+                string quantity = dt.Rows[i]["numQty"].ToString();
+                string coaId = dt.Rows[i]["intSalesCOAId"].ToString();
+                string coaName = dt.Rows[i]["strCOAName"].ToString(); 
 
-            string discount = dt.Rows[0]["monDiscount"].ToString(); 
-            string whId = dt.Rows[0]["intWHId"].ToString(); 
-            string whName= dt.Rows[0]["strWareHoseName"].ToString(); 
-            hdnWHId.Value= dt.Rows[0]["intWHId"].ToString();
-            hdnWHName.Value = dt.Rows[0]["strWareHoseName"].ToString(); 
-            string supplierTax = "0";
-            string vat = "0";
-            string vatPrice = "0";
-            string promtionItemId = dt.Rows[0]["intPromProductId"].ToString();
-            string invPromoProductId = "0";
-            string promoProductCogs = "0";
-            string promtionItem = dt.Rows[0]["strPromItemName"].ToString();
-            string promtionUom = dt.Rows[0]["intPromUomId"].ToString();
-            
-            string promPrices = dt.Rows[0]["monPromPrice"].ToString();
-            string promtionItemCoaId = dt.Rows[0]["intPromCOAId"].ToString();
-            string promtionQnty = dt.Rows[0]["numPromQty"].ToString();
-            string promtionItemUom = dt.Rows[0]["intPromUomId"].ToString();
-            string location = dt.Rows[0]["intLocationId"].ToString();
-            string intInvItemId = dt.Rows[0]["intItemIdInventory"].ToString();
-            string editStatus = "0";
-            string doId = "0";
-            try { location = dt.Rows[0]["intLocationId"].ToString(); }
-            catch { location = "0"; }
+                string invProductId = dt.Rows[i]["intItemIdInventory"].ToString();
+                string productCogs = "0";
+                string rate = dt.Rows[i]["monPrice"].ToString();
+                string uomId = dt.Rows[i]["intSalesUomId"].ToString();
+                string uomName = dt.Rows[i]["strUOM"].ToString();
+                string narration = dt.Rows[i]["strNarration"].ToString();
+                string currency = dt.Rows[i]["intCurrencyId"].ToString();
+                string conversionRate = dt.Rows[i]["monConversionRate"].ToString();
+                string commision = dt.Rows[i]["monDiscount"].ToString();
+                string commisionTotal = dt.Rows[i]["monTotalCashAdjustment"].ToString();
+                string discountTotal = dt.Rows[i]["monTotalCashAdjustment"].ToString();
+                decimal priceTotal = decimal.Parse(dt.Rows[i]["monPrice"].ToString()) * decimal.Parse(dt.Rows[i]["numQty"].ToString());
 
-            RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
-                narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
-                priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
-                promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
-                intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+                string discount = dt.Rows[i]["monDiscount"].ToString();
+                string whId = dt.Rows[i]["intWHId"].ToString();
+                string whName = dt.Rows[i]["strWareHoseName"].ToString();
+                hdnWHId.Value = dt.Rows[i]["intWHId"].ToString();
+                hdnWHName.Value = dt.Rows[i]["strWareHoseName"].ToString();
+                string supplierTax = "0";
+                string vat = "0";
+                string vatPrice = "0";
+                string promtionItemId = dt.Rows[i]["intPromProductId"].ToString();
+                string invPromoProductId = "0";
+                string promoProductCogs = "0";
+                string promtionItem = dt.Rows[i]["strPromItemName"].ToString();
+                string promtionUom = dt.Rows[i]["intPromUomId"].ToString();
+
+                string promPrices = dt.Rows[i]["monPromPrice"].ToString();
+                string promtionItemCoaId = dt.Rows[i]["intPromCOAId"].ToString();
+                string promtionQnty = dt.Rows[i]["numPromQty"].ToString();
+                string promtionItemUom = dt.Rows[i]["intPromUomId"].ToString();
+                string location = dt.Rows[i]["intLocationId"].ToString();
+                string intInvItemId = dt.Rows[i]["intItemIdInventory"].ToString();
+                string editStatus = "0";
+                string doId = "0";
+                try { location = dt.Rows[i]["intLocationId"].ToString(); }
+                catch { location = "0"; }
+
+                RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
+                    narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
+                    priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
+                    promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
+                    intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+            }
+
         }
 
        
@@ -1651,24 +1661,29 @@ namespace UI.SAD.Delivery
                     {
                         msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
                             ref strOrderId, ref Code);
+
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking_Edit")
                     {
-                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                            ref strOrderId, ref Code);
+                        msg = deliveryBLL.PickingUpdate(xmlHeaderString, rowXml,int.Parse(hdnPickingId.Value));
+                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(" + msg + ");", true);
+                       
+                       // ScriptManager.RegisterStartupScript(this, this.GetType(), "onclick", "window.close()", true);
+ 
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Delivery")
                     {
-                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                            ref strOrderId, ref Code);
+                        msg = deliveryBLL.DeliveryEntry(  hdnPickingId.Value, ref Code);
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO_Edit")
                     {
-                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                            ref strOrderId, ref Code);
+                        msg = deliveryBLL.UpdateDeliveryOrder(xmlHeaderString, rowXml, int.Parse(hdnDoId.Value));
+                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert("+ msg+");", true);
+                        
+                       // ScriptManager.RegisterStartupScript(this, this.GetType(), "onclick", "window.close()", true);
                     }
 
-
+                    Toaster(msg + " Code:" + Code, Common.TosterType.Success);
 
                     lblCodeText.Visible = true;
                     lblCode.Text = Code;
@@ -1691,7 +1706,7 @@ namespace UI.SAD.Delivery
                     }
                     //LoadGridwithXml();
 
-                    Toaster(msg + " Code:" + Code, Common.TosterType.Success);
+                  
 
                 }
                 else
