@@ -376,6 +376,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UnitOOPTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\UnitTDS.cs">
+      <DependentUpon>UnitTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\UnitTDS.Designer.cs">
       <DependentUpon>UnitTDS.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
