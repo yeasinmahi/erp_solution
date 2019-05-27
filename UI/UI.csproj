@@ -570,6 +570,7 @@
     <Content Include="PaymentModule\Consumption_Report.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
+    <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
@@ -3788,6 +3789,13 @@
     </Compile>
     <Compile Include="PaymentModule\Duty_Summary_Report.aspx.designer.cs">
       <DependentUpon>Duty_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\FG_Cost_Update.aspx.cs">
+      <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\FG_Cost_Update.aspx.designer.cs">
+      <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>

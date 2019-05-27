@@ -3,6 +3,7 @@ using HR_DAL.Global.UnitTDSTableAdapters;
 using System.Web.UI.WebControls;
 using HR_DAL.Reports.ReportDataTDSTableAdapters;
 using HR_DAL.Reports;
+using System.Data;
 
 namespace HR_BLL.Global
 {
@@ -13,6 +14,11 @@ namespace HR_BLL.Global
         {
             TblUnitTableAdapter ta = new TblUnitTableAdapter();
             return ta.GetActiveData();
+        }
+        public DataTable GetUnitDescriptionByUnitID(int unitid)
+        {
+            UnitDescriptionTableAdapter ta = new UnitDescriptionTableAdapter();
+            return ta.GetUnitDescription(unitid);
         }
         public UnitTDS.SprGetUnitDataTable GetUnits(string userID)
         {
