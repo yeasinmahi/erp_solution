@@ -157,6 +157,59 @@ namespace SAD_BLL.Sales
            
         }
 
+        public string UpdateDeliveryOrder (string xmlHeader, string xmlRow,int DoId)
+        {
+            try
+            {
+                
+
+                   SprDOUpdateTableAdapter adp = new SprDOUpdateTableAdapter();
+                adp.DOUpdate(xmlRow, xmlHeader, DoId);
+                msg = "Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public string DeliveryEntry(string pickingId,ref string strCode)
+        {
+            try
+            { 
+                SprDeliverysEntryTableAdapter adp = new SprDeliverysEntryTableAdapter();
+                adp.DeliveryEntry(pickingId,ref strCode);
+                msg = "Picking Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        
+        public string PickingUpdate(string xmlHeader, string xmlRow, int pickingId)
+        {
+            try
+            {
+                 
+
+                SprPickingUpdateTableAdapter adp = new SprPickingUpdateTableAdapter();
+                adp.UpdatePicking(xmlRow, xmlHeader, pickingId);
+                msg = "Picking Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
         public string PickingCreate(string xmlHeader, string xmlRow,string customerAddress, ref string orderId, ref string strCode)
         {
             
