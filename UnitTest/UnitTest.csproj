@@ -63,6 +63,7 @@
     <Compile Include="Inventory\InventoryAdjustmentTdd.cs" />
     <Compile Include="Inventory\InventoryTdd.cs" />
     <Compile Include="Inventory\PoTypeTdd.cs" />
+    <Compile Include="Inventory\PurchaseReturnTdd.cs" />
     <Compile Include="Inventory\StoreIssueTdd.cs" />
     <Compile Include="Inventory\StoreIssueToFloreTransectionStatusTdd.cs" />
     <Compile Include="Inventory\SupplierTdd.cs" />

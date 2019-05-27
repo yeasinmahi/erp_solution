@@ -33,6 +33,7 @@ namespace UI.SCM
                 if (_dt.Rows.Count > 0)
                 {
                     lblSupp.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    hdnSupplierId.Value = _dt.Rows[0]["intSupplierID"].ToString();
                     dgvDelivery.Loads(_dt);
                 }
                 else
@@ -60,7 +61,7 @@ namespace UI.SCM
                 Label lblLocation = row.FindControl("lblLocation") as Label;
                 Label lblReceive = row.FindControl("lblReceve") as Label;
                 string location = lblLocation.Text;
-
+                int supplierId = Convert.ToInt32(hdnSupplierId.Value);
 
                 if (double.TryParse(txtReturnQty.Text, out double returnQty))
                 {
