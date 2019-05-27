@@ -224,7 +224,7 @@
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
     <asp:TemplateField HeaderText="Create Delivery"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete" runat="server" Text="Create Delivery" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Create_Delivery_Click"  CommandArgument='<%# Eval("intId")%>' /></ItemTemplate>
+    <asp:Button ID="Complete" runat="server" Text="Create Delivery" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Create_Delivery_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
     </asp:TemplateField>
         
     <asp:TemplateField HeaderText="Picking Edit"><ItemTemplate>                                                                                                          
