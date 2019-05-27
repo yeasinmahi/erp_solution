@@ -457,7 +457,7 @@ namespace UI.SAD.Delivery
                 { 
                     pnlVehicleMain.Visible = false;  
                     txtPrice.Visible = true;
-                    btnSubmit.Text = "Save Delivery OrderS";
+                    btnSubmit.Text = "Save Delivery Order";
                     lblDoCustId.Visible = true;
                     txtDoNumber.Visible = true;
                     lblDoCustId.Text = "DO/Customer Id";
@@ -844,6 +844,7 @@ namespace UI.SAD.Delivery
             }
             catch (Exception ex)
             {
+                btnProductAdd.Visible = true;
                 Toaster(ex.Message, Common.TosterType.Error);
                 return _checkItem = false;
             }
@@ -911,6 +912,7 @@ namespace UI.SAD.Delivery
             }
             catch (Exception ex)
             {
+                btnProductAdd.Visible = true;
                 Toaster(ex.Message, Common.TosterType.Error);
                 return _checkItem = false;
             }
@@ -1234,7 +1236,8 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                 
+                btnProductAdd.Visible = false;
+
                 if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" &&
                 decimal.Parse(txtPrice.Text) > 0 && decimal.Parse(txtQun.Text.ToString()) > 0)
                 {
@@ -1341,6 +1344,7 @@ namespace UI.SAD.Delivery
                           priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
                           promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom,  location,
                           intInvItemId, editStatus, invProductId, productCogs, invPromoProductId,promoProductCogs, conversionRate, whId, doId);
+                        btnProductAdd.Visible = true;
                         txtProduct.Text = "";
                         InitilizeXmlAddControl();
                         
@@ -1350,7 +1354,9 @@ namespace UI.SAD.Delivery
             }
             catch (Exception ex)
             {
+                btnProductAdd.Visible = true;
                 ex.ToString();
+                
             }
         }
 
@@ -1628,75 +1634,78 @@ namespace UI.SAD.Delivery
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            if (_isProcess) return;
-            _isProcess = true;
-              
+            btnSubmit.Visible = false; 
             try
+            { 
+                HeaderXmlCreate();
+                string rowXml = XmlParser.GetXml(GetXmlFilePath());
+                string strOrderId = "", Code = "", msg = "";
+                if (hdnConfirm.Value == "1")
                 {
-
-                   
-                    HeaderXmlCreate();
-                    string rowXml = XmlParser.GetXml(GetXmlFilePath());
-                    string strOrderId = "", Code = "", msg = "";
-                    if (hdnConfirm.Value == "1")
+                    if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
                     {
-                        if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
-                        {
-                           
-                            msg = deliveryBLL.DeliveryOrderCreate(xmlHeaderString, rowXml, ref strOrderId, ref Code);
-                        }
-                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
-                        {
-                            msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                                ref strOrderId, ref Code);
-                        }
-                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking_Edit")
-                        {
-                            msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                                ref strOrderId, ref Code);
-                        }
-                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Delivery")
-                        {
-                            msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                                ref strOrderId, ref Code);
-                        }
-                        else if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO_Edit")
-                        {
-                            msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
-                                ref strOrderId, ref Code);
-                        }
+
+                        msg = deliveryBLL.DeliveryOrderCreate(xmlHeaderString, rowXml, ref strOrderId, ref Code);
+                    }
+                    else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
+                    {
+                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
+                            ref strOrderId, ref Code);
+                    }
+                    else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking_Edit")
+                    {
+                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
+                            ref strOrderId, ref Code);
+                    }
+                    else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Delivery")
+                    {
+                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
+                            ref strOrderId, ref Code);
+                    }
+                    else if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO_Edit")
+                    {
+                        msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
+                            ref strOrderId, ref Code);
+                    }
 
 
 
                     lblCodeText.Visible = true;
-                        lblCode.Text = Code;
-                        lblOrderIDText.Visible = true;
-                        lblOrderId.Text = strOrderId;
-                        if (File.Exists(GetXmlFilePath()))
-                        {
-                            File.Delete(GetXmlFilePath());
-                            dgvSales.DataSource = "";
-                            dgvSales.DataBind();
-                            dgvSalesPicking.DataSource = "";
-                            dgvSalesPicking.DataBind();
+                    lblCode.Text = Code;
+                    lblOrderIDText.Visible = true;
+                    lblOrderId.Text = strOrderId;
+                    if (File.Exists(GetXmlFilePath()))
+                    {
+                        File.Delete(GetXmlFilePath());
+                        dgvSales.DataSource = "";
+                        dgvSales.DataBind();
+                        dgvSalesPicking.DataSource = "";
+                        dgvSalesPicking.DataBind();
+                        txtCustomer.Text = "";
+                        txtShipToParty.Text = "";
+                        txtCustomerAddress.Text = "";
+                        txtShipToPartyAddress.Text = "";
+                        txtVehicle.Text = "";
+                        txtDriver.Text = "";
+                        txtSupplier.Text = "";
                     }
-                        //LoadGridwithXml();
-                         
-                      Toaster(msg+" Code:"+ Code, Common.TosterType.Success);
-                   
-                    }
-                    else
-                    { 
-                        Toaster("Data not submitted", Common.TosterType.Warning);
-                    }
-                    _isProcess = false; 
+                    //LoadGridwithXml();
+
+                    Toaster(msg + " Code:" + Code, Common.TosterType.Success);
+
                 }
-                catch
+                else
                 {
-                    _isProcess = false;
+                    Toaster("Data not submitted", Common.TosterType.Warning);
                 }
-            
-            
+                btnSubmit.Visible = true;
+            }
+            catch
+            {
+                btnSubmit.Visible = false;
+            }
+
+
         }
 
         private void HeaderXmlCreate()

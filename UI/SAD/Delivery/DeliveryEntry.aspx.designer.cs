@@ -391,6 +391,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.Label lblOrderId;
         
         /// <summary>
+        /// txtReffNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReffNo;
+        
+        /// <summary>
         /// lblUnitName control.
         /// </summary>
         /// <remarks>
@@ -796,15 +805,6 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.RadioButtonList rdoSalesType;
         
         /// <summary>
-        /// txtReffNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReffNo;
-        
-        /// <summary>
         /// btnProductAddAlls control.
         /// </summary>
         /// <remarks>
@@ -947,5 +947,23 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvSalesPicking;
+        
+        /// <summary>
+        /// cvtComAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvtComAdd;
+        
+        /// <summary>
+        /// cvtCom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvtCom;
     }
 }

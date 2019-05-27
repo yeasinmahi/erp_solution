@@ -38,7 +38,9 @@
     </script>
     <script type="text/javascript">
         function setButtonFire() {
+           
             document.getElementById('hdnButtonFire').value = 'true';
+            // alert(document.getElementById('hdnDelivery').value);
         }
         function SetPrice(txt) {
             var price = parseFloat(document.getElementById('txtPrice').value);
@@ -46,14 +48,14 @@
             var qnt = parseFloat(document.getElementById('txtQun').value);
             
             var RequestType = document.getElementById('hdnDelivery').value; 
-             var doqty = document.getElementById('hdnDoQty').value; 
+            var doqty = document.getElementById('hdnDoQty').value; 
               
             
             var tot = 0;
             if (RequestType == "Picking_Edit" && RequestType == "Picking") {
                 
                 if (qnt > doqty) {
-                     alert('Pleae Check Delivery Quantity')
+                    alert('Pleae Check Delivery Quantity')
                     document.getElementById('txtQun').innerText = doqty;
                 }
                
@@ -62,75 +64,98 @@
             document.getElementById('lblTotal').innerText = tot;
         }
 
-      function ValidateCompleteAdd(sender, args){                        
+        function ValidateCompleteAdd(sender, args){                        
+         
         
-        var flag=Val(sender, args);
+            if(document.getElementById('hdnProduct').value == ''){
+                alert('Product not be blank'); 
+          
+            }
         
-        if(document.getElementById("hdnProduct").value == '' && flag){
-            alert('Product not be blank');
-            NotExec(args);
-            flag=false;
-        }
+            if(document.getElementById("ddlUOM").options.value == ''){
+                alert('UOM is blank');
+            }
         
-        if(document.getElementById("ddlUOM").options.value == '' && flag){
-            alert('UOM is blank');
-            NotExec(args);
-            flag=false;
-        }
+            if(document.getElementById("ddlCurrency").options.value == ''){
+                alert('Currency is blank');
+            }
         
-        if(document.getElementById("ddlCurrency").options.value == '' && flag){
-            alert('Currency is blank');
-            NotExec(args);
-            flag=false;
-        }
+            if(document.getElementById("txtQun").value == ''){
+                alert('Quantity not be blank');
+            
+            }        
         
-        if(document.getElementById("txtQun").value == '' && flag){
-            alert('Quantity not be blank');
-            NotExec(args);
-            flag=false;
-        }        
+            if(isNaN(document.getElementById("txtQun").value)){
+                alert('Put a number value in Quantity'); 
+            }
         
-        if(isNaN(document.getElementById("txtQun").value) && flag){
-            alert('Put a number value in Quantity');
-            NotExec(args);
-            flag=false;
-        }
-        
-        if (isNaN(document.getElementById("lblPrice").value) && flag) {
-            alert('Put a number value in price');
-            NotExec(args);
-            flag = false;
-        }
-        if (parseFloat(document.getElementById("lblPrice").value) <= 0 && flag) {
-            alert('Put a price');
-            NotExec(args);
-            flag = false;
-        }
+            if (isNaN(document.getElementById("lblPrice").value)) {
+                alert('Put a number value in price');
+            
+            }
+            if (parseFloat(document.getElementById("lblPrice").value) <= 0) {
+                alert('Put a price');
+            
+            }
         
         } 
 
-        function ValidateComplete(sender, args){                
-        
-        var flag=Val(sender, args);
-        
-        if(document.getElementById("txtChallan") != null && flag){
-            if(document.getElementById("txtChallan").value == ''){
-                if(!confirm('Do you want to go without challan no?')){
-                NotExec(args);
-                flag=false;
-                }
-            }           
-        }
-        
-        if(flag && !confirm('Do you want to save?')){
-            NotExec(args);
-            flag=false;
-        }
-        }
-        var ready_for_submit = true;
+       
+
     </script>
     <script type="text/javascript">
-        function funConfirmAll() {
+        function ValidationWithConfirm() {
+            alert(document.getElementById('hdnDelivery').value);
+            if(document.getElementById("txtDate") != null){
+                if (document.getElementById("txtDate").value == '') {
+                   
+                    alert('Date not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtCus") != null){
+                if(document.getElementById("txtCus").value == ''){
+                    alert('Customer not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtShipToParty") != null  ){
+                if(document.getElementById("txtShipToParty").value == ''){
+                    alert('Ship to Party   not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtCustomerAddress") != null){
+                if(document.getElementById("txtCustomerAddress").value == ''){
+                    alert('Address not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtVehicle") != null && document.getElementById('hdnDelivery').value=="Picking"){
+                if(document.getElementById("txtVehicle").value == '' && document.getElementById('hdnDelivery').value=="Picking"){
+                    alert('Please select a vehicle');
+                   
+                }  return;
+            }
+            if (document.getElementById("txtVehicle") != null &&
+                document.getElementById('hdnDelivery').value == "Picking_Edit") {
+                if (document.getElementById("txtVehicle").value == '' &&
+                    document.getElementById('hdnDelivery').value == "Picking_Edit") {
+                    alert('Please select a vehicle');
+
+                } return;
+            }
+            else {
+                funConfirmAll();
+            }
+        }
+
+        function funConfirmAll() { 
+
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
             if (confirm("Do you want to proceed?")) {
@@ -218,6 +243,11 @@
                                     <asp:Label runat="server" ID="lblOrderIDText" Visible="False" Text="Order ID: "></asp:Label></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblOrderId"></asp:Label></td>
+                                <td>PO No
+                                </td>
+                                <td>
+                                    <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
+                                </td>
                             </tr>
                         </table>
 
@@ -423,18 +453,16 @@
                                 <asp:RadioButtonList ID="rdoSalesType" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="rdoSalesType_SelectedIndexChanged">
                                 </asp:RadioButtonList>
                             </td>
-                            <td>Reff No
-                            </td>
                             <td>
-                                <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
+                                
                             </td>
                             <td>
                                 <asp:Button ID="btnProductAddAlls" runat="server" Text="Add-All" OnClientClick="setButtonFire();"   OnClick="btnProductAddAll_Click" />
 
                             </td>
                             <td>
-                                <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
-                                    OnClick="btnSubmit_Click" OnClientClick="return funConfirmAll()"/>
+                                <asp:Button ID="btnSubmit"   runat="server" Text="Save Sales"
+                                    OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
                             </td>
                         </tr>
                     </table>
@@ -487,7 +515,7 @@
                             </td>
 
                             <td align="right">
-                                <asp:Button ID="btnProductAdd" runat="server" Text="Add"   OnClientClick="setButtonFire();" OnClick="btnProductAdd_Click"  />
+                                <asp:Button ID="btnProductAdd" runat="server" Text="Add" ValidationGroup="valComAdd"   OnClientClick="setButtonFire();" OnClick="btnProductAdd_Click"  />
                             </td>
                         </tr>
                     </table>
@@ -836,44 +864,24 @@
                     </table>
 
                 </div>
+            <asp:CustomValidator ID="cvtComAdd" runat="server" ClientValidationFunction="ValidateCompleteAdd"
+             ValidationGroup="valComAdd"></asp:CustomValidator>
+            <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
+             ValidationGroup="valCom"></asp:CustomValidator>
 
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
-            <Triggers>
+            <%--<Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnProductAdd" EventName="Click" />
                 <%--<asp:PostBackTrigger ControlID="btnEdit" />--%>
                  <%--<asp:PostBackTrigger ControlID="btnUpdateFinal" />--%>
-            </Triggers>
+            <%--</Triggers>--%>
         </asp:UpdatePanel>
     </form>
 
 
-    <script type="text/javascript">
-        //debugger;
-        //$(document).ready(function () {
-        //    radioChange();
-        //    $('#rdoDeliveryType input').change(function () {
-        //        radioChange();
-        //    });
-        //});
-        //function radioChange() {
-        //    var radioValue = $('#rdoDeliveryType input:checked');
-        //    var gridPiking = $('#dgvSalesNew');
-        //    var location = document.getElementById("location").value;
-        //    var locationValue = document.getElementById("ddlLocation").value;
+    <script type="text/javascript"> 
 
-        //    if (radioValue.val() == 2) {
-        //        gridPiking.show();
-        //        location.show();
-        //        locationValue.show();
-
-        //    } else {
-        //        gridPiking.hide();
-        //        location.hide();
-        //        locationValue.hide();
-        //    }
-
-        //}
         function ProductValidation() {
             debugger;
             var customer = document.getElementById("txtCustomer").value;
