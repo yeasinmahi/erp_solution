@@ -70,6 +70,7 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnMrrNo" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" runat="server" />
                     <div class="tabs_container" style="text-align: left">Purchase Return:<hr />
                     </div>
                     <table>

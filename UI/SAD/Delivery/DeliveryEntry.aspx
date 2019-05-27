@@ -37,91 +37,122 @@
         }
     </script>
     <script type="text/javascript">
+        function setButtonFire() {
+           
+            document.getElementById('hdnButtonFire').value = 'true';
+            // alert(document.getElementById('hdnDelivery').value);
+        }
         function SetPrice(txt) {
             var price = parseFloat(document.getElementById('txtPrice').value);
 
             var qnt = parseFloat(document.getElementById('txtQun').value);
-            var invStock = parseFloat(document.getElementById('hdnInventoryStock').value);
-            var rdoDeliveryType = document.getElementById("rdoDeliveryType");
-            var type = rdoDeliveryType.SelectedValue; 
-
+            
+            var RequestType = document.getElementById('hdnDelivery').value; 
+            var doqty = document.getElementById('hdnDoQty').value; 
+              
+            
             var tot = 0;
-            if (qnt <= invStock && type=='2') {
-                alert('Pleae Check Inventory Stock')
+            if (RequestType == "Picking_Edit" && RequestType == "Picking") {
+                
+                if (qnt > doqty) {
+                    alert('Pleae Check Delivery Quantity')
+                    document.getElementById('txtQun').innerText = doqty;
+                }
+               
             }
             if (!isNaN((price) * qnt)) { tot = ((price) * qnt); }
             document.getElementById('lblTotal').innerText = tot;
         }
 
-      function ValidateCompleteAdd(sender, args){                        
+        function ValidateCompleteAdd(sender, args){                        
+         
         
-        var flag=Val(sender, args);
+            if(document.getElementById('hdnProduct').value == ''){
+                alert('Product not be blank'); 
+          
+            }
         
-        if(document.getElementById("hdnProduct").value == '' && flag){
-            alert('Product not be blank');
-            NotExec(args);
-            flag=false;
-        }
+            if(document.getElementById("ddlUOM").options.value == ''){
+                alert('UOM is blank');
+            }
         
-        if(document.getElementById("ddlUOM").options.value == '' && flag){
-            alert('UOM is blank');
-            NotExec(args);
-            flag=false;
-        }
+            if(document.getElementById("ddlCurrency").options.value == ''){
+                alert('Currency is blank');
+            }
         
-        if(document.getElementById("ddlCurrency").options.value == '' && flag){
-            alert('Currency is blank');
-            NotExec(args);
-            flag=false;
-        }
+            if(document.getElementById("txtQun").value == ''){
+                alert('Quantity not be blank');
+            
+            }        
         
-        if(document.getElementById("txtQun").value == '' && flag){
-            alert('Quantity not be blank');
-            NotExec(args);
-            flag=false;
-        }        
+            if(isNaN(document.getElementById("txtQun").value)){
+                alert('Put a number value in Quantity'); 
+            }
         
-        if(isNaN(document.getElementById("txtQun").value) && flag){
-            alert('Put a number value in Quantity');
-            NotExec(args);
-            flag=false;
-        }
-        
-        if (isNaN(document.getElementById("lblPrice").value) && flag) {
-            alert('Put a number value in price');
-            NotExec(args);
-            flag = false;
-        }
-        if (parseFloat(document.getElementById("lblPrice").value) <= 0 && flag) {
-            alert('Put a price');
-            NotExec(args);
-            flag = false;
-        }
+            if (isNaN(document.getElementById("lblPrice").value)) {
+                alert('Put a number value in price');
+            
+            }
+            if (parseFloat(document.getElementById("lblPrice").value) <= 0) {
+                alert('Put a price');
+            
+            }
         
         } 
 
-        function ValidateComplete(sender, args){                
-        
-        var flag=Val(sender, args);
-        
-        if(document.getElementById("txtChallan") != null && flag){
-            if(document.getElementById("txtChallan").value == ''){
-                if(!confirm('Do you want to go without challan no?')){
-                NotExec(args);
-                flag=false;
-                }
-            }           
-        }
-        
-        if(flag && !confirm('Do you want to save?')){
-            NotExec(args);
-            flag=false;
-        }
-        }
-        var ready_for_submit = true;
+       
+
     </script>
     <script type="text/javascript">
-        function funConfirmAll() {
+        function ValidationWithConfirm() {
+            
+            if(document.getElementById("txtDate") != null){
+                if (document.getElementById("txtDate").value == '') {
+                    alert('Date not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtCustomer") != null){
+                if(document.getElementById("txtCustomer").value == ''){
+                    alert('Customer not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtShipToParty") != null  ){
+                if(document.getElementById("txtShipToParty").value == ''){
+                    alert('Ship to Party   not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtCustomerAddress") != null){
+                if(document.getElementById("txtCustomerAddress").value == ''){
+                    alert('Address not be blank');
+                    return;
+                }
+            }
+        
+            if(document.getElementById("txtVehicle") =='' && document.getElementById('hdnDelivery').value =="Picking"){
+                 
+                    alert('Please select a vehicle');
+                    return;
+                 
+            }
+            if (document.getElementById("txtVehicle") =='' && document.getElementById('hdnDelivery').value == "Picking_Edit") {
+                
+                    alert('Please select a vehicle');
+                    return;
+                 
+            }
+            else {
+                funConfirmAll();
+            }
+        }
+
+        function funConfirmAll() { 
+
             var confirm_value = document.createElement("INPUT");
             confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
             if (confirm("Do you want to proceed?")) {
@@ -163,15 +194,15 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
-                    <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <asp:HiddenField ID="hdnPromoCogs" runat="server" />
-                     <asp:HiddenField ID="hdnPromoInvItemId" runat="server" />
+                    <asp:HiddenField ID="hdnUnit" runat="server" Value="0" />
+                    <asp:HiddenField ID="hdnPromoCogs" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnPromoInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPromoInvStock" runat="server" />
-                    <asp:HiddenField ID="hdnsalestype" runat="server" />
-                    <asp:HiddenField ID="hdnvisibility" runat="server" />
-                    <asp:HiddenField ID="hdnLogisBasedOnUom" runat="server" />
-                    <asp:HiddenField ID="hdnSupplierId" runat="server" />
-                     <asp:HiddenField ID="hdnSupplierName" runat="server" />
+                    <asp:HiddenField ID="hdnsalestype" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnvisibility" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnButtonFire" Value="true" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnSupplierName" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnWHId"  Value="0" runat="server" />
                     <asp:HiddenField ID="hdnCreditSales" runat="server" />
                     <asp:HiddenField ID="hdnWHName" Value="0" runat="server" />
@@ -180,23 +211,22 @@
                     <asp:HiddenField ID="hdnInvItemId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnnarration" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnPrice" Value="0" runat="server" />
-                    <asp:HiddenField ID="hdnLogisGain" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnPickingId" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVhlPrice" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnDoId" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnDoQty" Value="0" runat="server" />
+                     <asp:HiddenField ID="hdnRequistId" Value="0" runat="server" />
                      
                     <asp:HiddenField ID="hdnSuppTax" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVat" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnVatPrice" Value="0" runat="server" />
+                    <asp:HiddenField ID="hdnDelivery" Value="0" runat="server" />
                     <div class="tabs_container">
                         <table>
                             <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" Width="200px" AutoPostBack="True"
-                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged">
-                                        <asp:ListItem Selected="True" Value="1">DO</asp:ListItem>
-                                        <asp:ListItem Value="2">Picking</asp:ListItem>
-                                        <asp:ListItem Value="3">Delivery</asp:ListItem>
-                                        <asp:ListItem Value="4">Return</asp:ListItem>
+                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged"> 
                                     </asp:RadioButtonList></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
@@ -210,6 +240,11 @@
                                     <asp:Label runat="server" ID="lblOrderIDText" Visible="False" Text="Order ID: "></asp:Label></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblOrderId"></asp:Label></td>
+                                <td>PO No
+                                </td>
+                                <td>
+                                    <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
+                                </td>
                             </tr>
                         </table>
 
@@ -241,7 +276,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Customer Type:"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Sold To Party:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlCustomerType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlCustomerType_SelectedIndexChanged"></asp:DropDownList>
 
@@ -284,7 +319,7 @@
                                 <asp:HiddenField ID="hdnShipToPartyText" runat="server" />
                                 <asp:TextBox ID="txtShipToParty" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" OnTextChanged="txtShipToParty_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtShipToParty" OnClientItemSelected="autoCompleteEx_ItemSelected"
-                                    ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    ServiceMethod="GetDisPointList" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
@@ -340,7 +375,7 @@
                                  <td colspan="2">
                                                     <asp:RadioButtonList ID="rdoVehicleCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoVehicleCompany_SelectedIndexChanged">
                                                         <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
-                                                        <asp:ListItem Value="2">Rent</asp:ListItem>
+                                                        <asp:ListItem Value="2">Rented</asp:ListItem>
                                                         <asp:ListItem Value="3">Customer</asp:ListItem>
                                                     </asp:RadioButtonList>
                                                 </td>
@@ -415,18 +450,16 @@
                                 <asp:RadioButtonList ID="rdoSalesType" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" OnSelectedIndexChanged="rdoSalesType_SelectedIndexChanged">
                                 </asp:RadioButtonList>
                             </td>
-                            <td>Reff No
+                            <td>
+                                
                             </td>
                             <td>
-                                <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
-                            </td>
-                            <td>
-                                <asp:Button ID="btnProductAddAll" runat="server" Text="Add-All" ValidationGroup="valComAdd" OnClick="btnProductAddAll_Click" />
+                                <asp:Button ID="btnProductAddAlls" runat="server" Text="Add-All" OnClientClick="setButtonFire();"   OnClick="btnProductAddAll_Click" />
 
                             </td>
                             <td>
-                                <asp:Button ID="btnSubmit" ValidationGroup="valCom" runat="server" Text="Save Sales"
-                                    OnClick="btnSubmit_Click" OnClientClick="return funConfirmAll()"/>
+                                <asp:Button ID="btnSubmit"   runat="server" Text="Save Sales"
+                                    OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
                             </td>
                         </tr>
                     </table>
@@ -435,7 +468,7 @@
                             <td style="color: Green;">Product</td>
                             <td>UOM</td>
                             <td>Price</td>
-                            <td id="location" runat="server">Location</td>
+                            <td>Location</td>
                             <td>Commission</td>
                             <td style="color: Red;">Quantity</td>
                             <td>Total</td>
@@ -464,22 +497,22 @@
                                 <asp:TextBox ID="txtPrice" runat="server" Width="50px"></asp:TextBox>
                             </td>
                             <td align="center">
-                                <asp:DropDownList ID="ddlLocation" runat="server" AutoPostBack="True">
+                                <asp:DropDownList ID="ddlLocation"  runat="server">
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
                                 <asp:Label ID="lblComm" runat="server"></asp:Label>
                             </td>
                             <td align="center" style="vertical-align: middle;">
-                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="False" onkeyup="SetPrice(this);" Width="60px" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
-                                &nbsp;
+                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="false" onkeyup="SetPrice(this);" OnClientClick="setButtonFire();"  Width="60px" TextMode="Number" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
+                                
                             </td>
                             <td align="center" style="text-align: right;">
                                 <asp:Label ID="lblTotal" Text="0" runat="server"></asp:Label>
                             </td>
 
                             <td align="right">
-                                <asp:Button ID="btnProductAdd" runat="server" Text="Add" AutoPostBack="false" OnClick="btnProductAdd_Click" OnClientClick="return ProductValidation()" />
+                                <asp:Button ID="btnProductAdd" runat="server" Text="Add" ValidationGroup="valComAdd"   OnClientClick="setButtonFire();" OnClick="btnProductAdd_Click"  />
                             </td>
                         </tr>
                     </table>
@@ -488,7 +521,7 @@
                             <td>
                                 <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
                                     OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
-                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnSelectedIndexChanged="dgvSales_SelectedIndexChanged">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
 
@@ -555,7 +588,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="narr" SortExpression="narr" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblnarr" runat="server" Text='<%# Bind("narration") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Total Discount" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
                                             <ItemTemplate>
@@ -823,44 +861,24 @@
                     </table>
 
                 </div>
+            <asp:CustomValidator ID="cvtComAdd" runat="server" ClientValidationFunction="ValidateCompleteAdd"
+             ValidationGroup="valComAdd"></asp:CustomValidator>
+            <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
+             ValidationGroup="valCom"></asp:CustomValidator>
 
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
-            <Triggers>
+            <%--<Triggers>
                 <asp:AsyncPostBackTrigger ControlID="btnProductAdd" EventName="Click" />
                 <%--<asp:PostBackTrigger ControlID="btnEdit" />--%>
                  <%--<asp:PostBackTrigger ControlID="btnUpdateFinal" />--%>
-            </Triggers>
+            <%--</Triggers>--%>
         </asp:UpdatePanel>
     </form>
 
 
-    <script type="text/javascript">
-        //debugger;
-        //$(document).ready(function () {
-        //    radioChange();
-        //    $('#rdoDeliveryType input').change(function () {
-        //        radioChange();
-        //    });
-        //});
-        //function radioChange() {
-        //    var radioValue = $('#rdoDeliveryType input:checked');
-        //    var gridPiking = $('#dgvSalesNew');
-        //    var location = document.getElementById("location").value;
-        //    var locationValue = document.getElementById("ddlLocation").value;
+    <script type="text/javascript"> 
 
-        //    if (radioValue.val() == 2) {
-        //        gridPiking.show();
-        //        location.show();
-        //        locationValue.show();
-
-        //    } else {
-        //        gridPiking.hide();
-        //        location.hide();
-        //        locationValue.hide();
-        //    }
-
-        //}
         function ProductValidation() {
             debugger;
             var customer = document.getElementById("txtCustomer").value;

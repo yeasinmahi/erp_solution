@@ -151,8 +151,7 @@ namespace SAD_BLL.Sales
             return adp.GetSalesOrderViewForPickingData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
 
         }
-
-        
+                
 
         public SalesOrderViewTDS.SprPickingViewDataTable GetViewPickingData(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
            , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
@@ -185,8 +184,37 @@ namespace SAD_BLL.Sales
 
         }
 
-        
+        public SalesOrderViewTDS.SprViewSalesDataForInvoiceDataTable GetDataForInvoice(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
+           , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
+        {
+            SprViewSalesDataForInvoiceTableAdapter adp = new SprViewSalesDataForInvoiceTableAdapter();
 
+            int? cId = null;
+            if ("" + customerId != "")
+            {
+                cId = int.Parse(customerId);
+            }
+
+            if ("" + code == "")
+            {
+                code = null;
+            }
+
+            if (fromDate == null)
+            {
+                fromDate = DateTime.Now.AddDays(-7);
+            }
+
+            if (toDate == null)
+            {
+                toDate = DateTime.Now.AddDays(7);
+            }
+
+            if ("" + customerType == "") return null;
+            return adp.GetDataForInvoice(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), isCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+
+        }
+        
         public string DOApprove(int intInsertBy, int intDOId)
         {
             string msg = "";
@@ -349,6 +377,19 @@ namespace SAD_BLL.Sales
             catch { }
         }
 
+        public DataTable getUnitVsLocalSalesType (int unitid)
+        {
+            try
+            {
+                SprUnitVsLocalSalesTypeTableAdapter adp = new SprUnitVsLocalSalesTypeTableAdapter();
+                return adp.GetDataUnitVsLocalSalesType(unitid);
+             
+            }
+            catch(Exception ex)
+            {
+                return new DataTable();
+            }
+        }
       
 
     }  

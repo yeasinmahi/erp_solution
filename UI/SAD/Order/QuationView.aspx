@@ -46,7 +46,8 @@
 </script>
          <script type="text/javascript">
          function EditPageQuotation(url) {
-             window.open('QuotationEditNSave.aspx?ID=' + url, '', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
+           
+                window.open( url,'', "height=2024, width=750, scrollbars=yes, left=50, top=10, resizable=yes, title=Preview");
                   }
 </script>
 

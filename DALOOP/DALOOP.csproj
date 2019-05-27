@@ -51,6 +51,7 @@
     <Compile Include="Accounts\CodeInfoDal.cs" />
     <Compile Include="AFBLSMSServer\ApiSmsDal.cs" />
     <Compile Include="HR\UnitDal.cs" />
+    <Compile Include="Inventory\FactoryPurchaseReturnDal.cs" />
     <Compile Include="Inventory\InconsistanceItemDal.cs" />
     <Compile Include="Inventory\InventoryAdjustmentAuthorityDal.cs" />
     <Compile Include="Inventory\InventoryAdjustmentDal.cs" />

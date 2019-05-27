@@ -27,11 +27,12 @@ namespace UI.SAD.Order
         string location = "SAD";
         string start = "starting SAD\\Order\\TA_DA_Bike_Car_User_Gb";
         string stop = "stopping SAD\\Order\\TA_DA_Bike_Car_User_Gb";
+        private DataTable dt = new DataTable();
+     
         protected void Page_Load(object sender, EventArgs e)
         {
 
             pnlUpperControl.DataBind();
-
 
             filePathForXML = Server.MapPath("~/SAD/Order/Data/OR/" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + "_" + "remotetadaBikeCarUser.xml");
             if (!IsPostBack)
@@ -39,12 +40,10 @@ namespace UI.SAD.Order
                 hdnApplicantEnrol.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                 Int32 enroll = Convert.ToInt32(hdnApplicantEnrol.Value);
                 int unitid=int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
-                DataTable dt = new DataTable();
-                DataTable dtallow = new DataTable();
+                int jobstationid= int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
+
                 dt = bll.getEndMilageApplicant(enroll);
-                dtallow = bllview.GetDataTADAFuelAllowance(enroll);
-                decimal maxoct= decimal.Parse(dtallow.Rows[0][6].ToString());
-                int octcallw = Convert.ToInt32(maxoct);
+                
                 if (dt.Rows.Count > 0) { txtStartMilage.Text = dt.Rows[0][0].ToString(); }
                 else { txtStartMilage.Text = "0"; }
 
@@ -53,8 +52,10 @@ namespace UI.SAD.Order
 
                 if (dt.Rows.Count > 0) { txtToaddr.Text = dt.Rows[0][2].ToString(); }
                 else { txtToaddr.Text = ""; }
-
-                if(octcallw > 1 && unitid==4)
+                DataTable dtallow = new DataTable();
+                dtallow = bllview.GetDataTADAFuelAllowance(Enroll);
+                int octcallw = GetAllownce();
+                if (octcallw > 1 && unitid==4)
                 {
                     lblvheiclenameval.Text = dtallow.Rows[0][18].ToString();
                     lblMaxoctenval.Text = dtallow.Rows[0][6].ToString();
@@ -67,28 +68,30 @@ namespace UI.SAD.Order
                     txtDriverDA.Enabled = false;
                     txtDriverHotel.Enabled = false;
                     txtOtherCost.Enabled = false;
-
                     txtPetrolQnt.Enabled = false;
                     txtPetrolCost.Enabled = false;
+                    txtOcten.Enabled = false;
+                    txtOctenCost.Enabled = false;
                     txtCNGQnt.Enabled = false;
                     txtCNGCost.Enabled = false;
                     txtMobilQnt.Enabled = false;
                     txtMobilCost.Enabled = false;
                     txtOtherVh.Enabled = false;
                     txtCourier.Enabled = false;
+                    txtOwnDA.Enabled = false;
+                   
                 }
                 else
                 {
                     lblvheiclenameval.Text = "";
                     lblMaxoctenval.Text = "";
                 }
+
                
-            
 
-
-                //if(dt.Rows.Count>)
-                ////---------xml----------
-                try { File.Delete(filePathForXML); }
+                    //if(dt.Rows.Count>)
+                    ////---------xml----------
+                    try { File.Delete(filePathForXML); }
                 catch { }
                 ////-----**----------//
             }
@@ -96,7 +99,13 @@ namespace UI.SAD.Order
 
 
         }
-
+        private int GetAllownce()
+        {
+            DataTable dtallow = new DataTable();
+            dtallow = bllview.GetDataTADAFuelAllowance(Enroll);
+            decimal maxoct = decimal.Parse(dtallow.Rows[0][6].ToString());
+            return Convert.ToInt32(maxoct);
+        }
         private void LoadGridwithXml()
         {
             try
@@ -1116,8 +1125,9 @@ namespace UI.SAD.Order
         protected void rdbFuelStationList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-
-
+            int a = GetAllownce();
+            int unitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            int js= int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             if (rdbFuelStationList.SelectedItem.Text == "Cash")
             {
                 drdlSupplierName.Enabled = false;
@@ -1130,6 +1140,21 @@ namespace UI.SAD.Order
                 txtOctenCost.Enabled = true;
                 txtCNGCost.Enabled = true;
                 txtMobilCost.Enabled = true;
+
+                if(a>1 && unitid==4)
+                {
+                    txtPetrolCost.Enabled = false;
+                    txtCNGCost.Enabled = false;
+                    txtOctenCost.Enabled = false;
+                    txtMobilCost.Enabled = false;
+
+                }
+                if (a > 1 && js == 4)
+                {
+                    txtOwnDA.Enabled = true;
+                }
+
+
             }
 
             else if (rdbFuelStationList.SelectedItem.Text == "Credit")
@@ -1140,29 +1165,27 @@ namespace UI.SAD.Order
                 txtSupplierCNGCredit2.Enabled = true;
                 drdlOilCreditStationName1.Enabled = true;
                 txtOilCredit.Enabled = true;
+               
                 txtPetrolCost.Enabled = false;
                 txtOctenCost.Enabled = false;
                 txtCNGCost.Enabled = false;
                 txtMobilCost.Enabled = false;
+                if (a > 1 && unitid == 4)
+                {
+                    
+                    txtPetrolCost.Enabled = false;
+                    txtCNGCost.Enabled = false;
+                    txtOctenCost.Enabled = false;
+                    txtMobilCost.Enabled = false;
+
+                }
+                if (a > 1 && js == 4)
+                {
+                    txtOwnDA.Enabled = true;
+                }
             }
 
-            //else if (rdbFuelStationList.SelectedItem.Text == "Credit")
-            //{
-            //    drdlSupplierName.Enabled = true;
-            //    txtSupplierCNGCredit1.Enabled = true;
-            //    drdlCNGStationNameCredit2.Enabled = true;
-            //    txtSupplierCNGCredit2.Enabled = true;
-            //    drdlOilCreditStationName1.Enabled = true;
-            //    txtOilCredit.Enabled = true;
-            //    txtPetrolCost.Enabled = false;
-            //    txtOctenCost.Enabled = false;
-            //    txtCNGCost.Enabled = false;
-            //    txtMobilCost.Enabled = false;
-            //}
-
-
-
-
+          
             else
             {
 
@@ -1176,6 +1199,20 @@ namespace UI.SAD.Order
                 txtOctenCost.Enabled = true;
                 txtCNGCost.Enabled = true;
                 txtMobilCost.Enabled = true;
+
+                if (a > 1 && unitid == 4)
+                {
+                    
+                    txtPetrolCost.Enabled = false;
+                    txtCNGCost.Enabled = false;
+                    txtOctenCost.Enabled = false;
+                    txtMobilCost.Enabled = false;
+
+                }
+                if (a > 1 && js == 4)
+                {
+                    txtOwnDA.Enabled = true;
+                }
 
             }
 

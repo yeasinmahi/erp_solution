@@ -100,6 +100,10 @@
                     <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strDescription") %>' Width="250px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="left" Width="250px"/></asp:TemplateField>
 
+                    <asp:TemplateField HeaderText="Expense Code" SortExpression="strExpCode">
+                    <ItemTemplate><asp:Label ID="lblDiscription" runat="server" Text='<%# Bind("strExpCode") %>' Width="180px"></asp:Label>
+                    </ItemTemplate><ItemStyle HorizontalAlign="left" Width="180px"/></asp:TemplateField>
+
                     <asp:TemplateField HeaderText="Approved for Pay" SortExpression="monApprove">
                     <ItemTemplate><asp:Label ID="lblApprovedForPay" runat="server" Text='<%# Bind("monApprove", "{0:n2}") %>' Width="130px"></asp:Label>
                     </ItemTemplate><ItemStyle HorizontalAlign="right" Width="130px"/></asp:TemplateField>

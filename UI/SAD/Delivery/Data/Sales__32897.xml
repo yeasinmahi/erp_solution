@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Delivery>
+  <items productId="761" productName="PCC" quantity="300.00" rate="482.0000" uomId="12" uomName="Bag" narration="" currency="1" commision="0.0000" commisionTotal="0.0000" discount="0.0000" discountTotal="0.0000" priceTotal="144600.000000" supplierTax="0" vat="0" vatPrice="0" promtionItemId="761" promtionItem="PCC" promPrices="0.0000" promtionUom="1" coaId="38144" coaName="Portland Composit Cement L" promtionItemCoaId="0" promtionQnty="0.00" promtionItemUom="1" location="22046" intInvItemId="0" editStatus="0" invProductId="0" productCogs="0" invPromoProductId="0" promoProductCogs="0" conversionRate="1.00" whId="4" doId="0" serialId="2" />
+</Delivery>

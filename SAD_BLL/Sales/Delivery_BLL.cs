@@ -88,6 +88,32 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        public DataTable ShipToPartyAddress(string customerId)
+        {
+            try
+            {
+                QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
+                return adp.GetShipToPartyAddressData(int.Parse(customerId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public DataTable DoItemDetalis(string doid)
+        {
+            try
+            {
+                QryDoItemDetalisTableAdapter adp = new QryDoItemDetalisTableAdapter();
+                return adp.GetDoItemDetalisData(int.Parse(doid));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable PickingDetalis(string pickingId)
         {
             try
@@ -114,14 +140,13 @@ namespace SAD_BLL.Sales
 
         }
       
-        public string DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string orderId, ref string strCode)
+        public string DeliveryOrderCreate(string xmlHeader,string xmlRow,ref  string strOrderId, ref string strCode)
         {
             try
             {
-                long? orderNo = null;
+               
                 SprDOCreateTableAdapter adp = new SprDOCreateTableAdapter();
-                adp.DeliveryOrderCreate(xmlRow, xmlHeader, ref orderNo, ref strCode);
-                orderId = orderNo.ToString();
+                adp.DeliveryOrderCreate(xmlRow, xmlHeader, ref strOrderId, ref strCode); 
                 msg = "Submitted Successfully";
                 return msg;
             }
@@ -131,6 +156,59 @@ namespace SAD_BLL.Sales
             }
            
         }
+
+        public string UpdateDeliveryOrder (string xmlHeader, string xmlRow,int DoId)
+        {
+            try
+            {
+                
+
+                   SprDOUpdateTableAdapter adp = new SprDOUpdateTableAdapter();
+                adp.DOUpdate(xmlRow, xmlHeader, DoId);
+                msg = "Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public string DeliveryEntry(string pickingId,ref string strCode)
+        {
+            try
+            { 
+                SprDeliverysEntryTableAdapter adp = new SprDeliverysEntryTableAdapter();
+                adp.DeliveryEntry(pickingId,ref strCode);
+                msg = "Picking Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        
+        public string PickingUpdate(string xmlHeader, string xmlRow, int pickingId)
+        {
+            try
+            {
+                 
+
+                SprPickingUpdateTableAdapter adp = new SprPickingUpdateTableAdapter();
+                adp.UpdatePicking(xmlRow, xmlHeader, pickingId);
+                msg = "Picking Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public string PickingCreate(string xmlHeader, string xmlRow,string customerAddress, ref string orderId, ref string strCode)
         {
