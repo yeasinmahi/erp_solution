@@ -54,8 +54,10 @@ namespace UI.SAD.Delivery
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
 
-                GetUrlData(Request.QueryString["PopupType"]);
-                
+                if (Request.QueryString["PopupType"] != null)
+                {
+                    GetUrlData(Request.QueryString["PopupType"]); 
+                }
                 
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
@@ -1649,7 +1651,9 @@ namespace UI.SAD.Delivery
             { 
                 HeaderXmlCreate();
                 string rowXml = XmlParser.GetXml(GetXmlFilePath());
+                try { File.Delete(GetXmlFilePath()); } catch { }
                 string strOrderId = "", Code = "", msg = "";
+
                 if (hdnConfirm.Value == "1")
                 {
                     if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
