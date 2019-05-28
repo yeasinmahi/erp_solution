@@ -8,7 +8,7 @@ namespace DALOOP.Inventory
     public class StoreIssueToFloreTransectionStatusDal
     {
         private DataTable _dt= new DataTable();
-        public int Insert(int itemId,int inventoryId)
+        public int Insert(int itemId,int inventoryId, int whId, int unitId)
         {
             try
             {
@@ -57,6 +57,16 @@ namespace DALOOP.Inventory
             if (_dt.Rows.Count > 0)
             {
                 _dt = _dt.GetRows("isProcessed", true);
+                return _dt;
+            }
+            return new DataTable();
+        }
+        public DataTable GetTodaysComplete(int unitId)
+        {
+            _dt = GetTodaysComplete();
+            if (_dt.Rows.Count > 0)
+            {
+                _dt = _dt.GetRows("unitId", unitId);
                 return _dt;
             }
             return new DataTable();

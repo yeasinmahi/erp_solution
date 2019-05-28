@@ -64,7 +64,7 @@ namespace BLL.Inventory
                                 issueId, 3);
                             if (inventoryId > 0)
                             {
-                                int inventoryStatusId = _storeIssueToFloorTransectionStatusBll.Insert(issueByItem.ItemId, inventoryId);
+                                int inventoryStatusId = _storeIssueToFloorTransectionStatusBll.Insert(issueByItem.ItemId, inventoryId,whId,unitId);
                                 if (inventoryStatusId > 0)
                                 {
                                     int coaId = _itemList.GetItemCoaId(itemId);
@@ -75,7 +75,7 @@ namespace BLL.Inventory
                                         {
                                             continue;
                                         }
-                                        _dt = _storeIssueToFloorTransectionStatusBll.GetTodaysComplete();
+                                        _dt = _storeIssueToFloorTransectionStatusBll.GetTodaysComplete(unitId);
                                         if (_dt.Rows.Count > 0)
                                         {
                                             int jvId = Convert.ToInt32(_dt.Rows[0]["jvId"].ToString());
