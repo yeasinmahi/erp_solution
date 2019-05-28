@@ -111,6 +111,21 @@ namespace UI.PaymentModule
        
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
+            ItemId = Convert.ToInt32(ddlItem.SelectedItem.Value);
+            dt = inventoryTransfer_Obj.GetFGDetail(ItemId, UnitID);
+            if(dt.Rows.Count>0)
+            {
+                report.Visible = true;
+                dgvShowReport.DataSource = dt;
+                dgvShowReport.DataBind();
+            }
+            else
+            {
+                dgvShowReport.UnLoad();
+                Toaster("There is no data","Product Cost", Common.TosterType.Warning);
+            }
+            
 
         }
         #region =========== action button =================
@@ -157,7 +172,7 @@ namespace UI.PaymentModule
             lblReportName.Visible = false;
             txtEffectDate.Text = "";
             txtValue.Text = "";
-            Toaster("Submitted Successfully", "FG Cost Update", Common.TosterType.Success);
+            Toaster("Submitted Successfully", "Product Cost", Common.TosterType.Success);
         }
         #endregion ========= end button action ===========
         #region ================ XML Bind ===================
