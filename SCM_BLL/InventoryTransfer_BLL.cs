@@ -430,7 +430,18 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
-
+        public DataTable GetFGDetail(int itemid, int unitid)
+        {
+            try
+            {
+                TblItemCostingFGDetailTableAdapter adp = new TblItemCostingFGDetailTableAdapter();
+                return adp.GetItemCostingFGDetail(itemid,unitid);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
     }
 }
