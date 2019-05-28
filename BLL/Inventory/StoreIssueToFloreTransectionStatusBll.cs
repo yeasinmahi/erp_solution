@@ -5,9 +5,9 @@ namespace BLL.Inventory
     public class StoreIssueToFloreTransectionStatusBll
     {
         private readonly StoreIssueToFloreTransectionStatusDal _dal = new StoreIssueToFloreTransectionStatusDal();
-        public int Insert(int itemId, int inventoryId)
+        public int Insert(int itemId, int inventoryId, int whId, int unitId)
         {
-            return _dal.Insert(itemId, inventoryId);
+            return _dal.Insert(itemId, inventoryId, whId, unitId);
         }
         public DataTable GetAll()
         {
@@ -20,6 +20,10 @@ namespace BLL.Inventory
         public DataTable GetTodaysComplete()
         {
             return _dal.GetTodaysComplete();
+        }
+        public DataTable GetTodaysComplete(int unitId)
+        {
+            return _dal.GetTodaysComplete(unitId);
         }
         public bool UpdateIsProcessed(bool isProcessed, int autoId)
         {

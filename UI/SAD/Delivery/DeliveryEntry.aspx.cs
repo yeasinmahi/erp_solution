@@ -1502,7 +1502,7 @@ namespace UI.SAD.Delivery
             try
             {
                 string itemXML = XmlParser.GetXml(GetXmlFilePath());
-                if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit")
+                if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit" || rdoDeliveryType.SelectedItem.ToString() == "Delivery")
                 {
                     GridViewUtil.LoadGridwithXml(itemXML, dgvSalesPicking, out string message);
                 }

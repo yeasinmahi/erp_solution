@@ -53,7 +53,7 @@ namespace UI.SCM
                 string strApproveBy = Request.QueryString["strApproveBy"];
                 //string DeptId = Request.QueryString["DeptId"];
                 //string SectionID = Request.QueryString["SectionID"];
-                string SectionName = Request.QueryString["SectionName"];
+                string sectionName = Request.QueryString["SectionName"];
                 intwh = int.Parse(Request.QueryString["intwh"]);
 
                 lblReqCode.Text = ReqCode;
@@ -61,7 +61,7 @@ namespace UI.SCM
                 lblReqDept.Text = strDepartmentName;
                 lblReqBy.Text = strReqBy;
                 lblApproved.Text = strApproveBy;
-                lblSection.Text = SectionName;
+                lblSection.Text = sectionName;
 
                 LoadCostCenter(intwh);
 
