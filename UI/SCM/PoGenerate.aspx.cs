@@ -21,6 +21,7 @@ namespace UI.SCM
     {
         private DataTable dt = new DataTable();
         private PoGenerate_BLL objPo = new PoGenerate_BLL();
+        private readonly object _obj = new object();
         private int intWh;
         private string filePathForXML, filePathForXMLPrepare, filePathForXMLPo, othersTrems, warrentyperiod; private string xmlString = "";
         private int indentNo, whid, unitid, supplierId, currencyId, costId, partialShipment, noOfShifment, afterMrrDay, noOfInstallment, intervalInstallment, noPayment, CheckItem; private string payDate, paymentTrems, destDelivery, paymentSchedule; private DateTime dtePo, dtelastShipment; private decimal others = 0, tansport = 0, grosDiscount = 0, commision, ait;
@@ -908,166 +909,389 @@ namespace UI.SCM
         {
             try
             {
-                try { File.Delete(filePathForXMLPo); } catch { }
+                try
+                {
+                    File.Delete(filePathForXMLPo);
+                }
+                catch
+                {
+                }
+
                 try
                 {
                     arrayKey = txtSupplier.Text.Split(delimiterChars);
-                    string strSupp = ""; supplierId = 0;
+                    string strSupp = "";
+                    supplierId = 0;
                     if (arrayKey.Length > 0)
-                    { strSupp = arrayKey[0].ToString(); supplierId = int.Parse(arrayKey[1].ToString()); }
+                    {
+                        strSupp = arrayKey[0].ToString();
+                        supplierId = int.Parse(arrayKey[1].ToString());
+                    }
                 }
-                catch { supplierId = 0; }
+                catch
+                {
+                    supplierId = 0;
+                }
 
-                try { whid = int.Parse(ddlWHPrepare.SelectedValue); } catch { whid = 0; }
-                try { unitid = int.Parse(hdnUnitId.Value); } catch { }
+                try
+                {
+                    whid = int.Parse(ddlWHPrepare.SelectedValue);
+                }
+                catch
+                {
+                    whid = 0;
+                }
 
-                try { currencyId = int.Parse(ddlCurrency.SelectedValue); } catch { currencyId = 0; }
-                try { costId = int.Parse(ddlCostCenter.SelectedValue); } catch { }
-                try { payDate = ddlDtePay.SelectedValue.ToString(); } catch { payDate = "0"; }
-                try { dtePo = DateTime.Parse(txtdtePo.Text); } catch { dtePo = DateTime.Now; }
-                try { others = decimal.Parse(txtOthers.Text); } catch { }
-                try { tansport = decimal.Parse(txtTransport.Text); } catch { }
-                try { grosDiscount = decimal.Parse(txtGrossDiscount.Text); } catch { }
-                try { commision = decimal.Parse(txtCommosion.Text); } catch { commision = 0; }
+                try
+                {
+                    unitid = int.Parse(hdnUnitId.Value);
+                }
+                catch
+                {
+                }
 
-                try { partialShipment = int.Parse(ddlPartialShip.SelectedValue); } catch { partialShipment = 0; }
-                try { noOfShifment = int.Parse(txtNoOfShipment.Text); } catch { noOfShifment = 0; }
-                try { afterMrrDay = int.Parse(txtAfterMrrDay.Text); } catch { afterMrrDay = 0; }
-                try { paymentTrems = ddlPaymentTrams.SelectedItem.ToString(); } catch { }
-                try { noOfInstallment = int.Parse(txtNoOfInstall.Text.ToString()); } catch { noOfInstallment = 0; }
-                try { intervalInstallment = int.Parse(txtIntervel.Text.ToString()); } catch { intervalInstallment = 0; }
-                try { noPayment = int.Parse(txtNoOfPayment.Text); } catch { noPayment = 0; }
-                try { destDelivery = txtDestinationDelivery.Text.ToString(); } catch { destDelivery = ""; }
-                try { paymentSchedule = txtPaymentSchedule.Text.ToString(); } catch { paymentSchedule = "0"; }
-                try { dtelastShipment = DateTime.Parse(txtLastShipmentDate.Text); } catch { }
+                try
+                {
+                    currencyId = int.Parse(ddlCurrency.SelectedValue);
+                }
+                catch
+                {
+                    currencyId = 0;
+                }
+
+                try
+                {
+                    costId = int.Parse(ddlCostCenter.SelectedValue);
+                }
+                catch
+                {
+                }
+
+                try
+                {
+                    payDate = ddlDtePay.SelectedValue.ToString();
+                }
+                catch
+                {
+                    payDate = "0";
+                }
+
+                try
+                {
+                    dtePo = DateTime.Parse(txtdtePo.Text);
+                }
+                catch
+                {
+                    dtePo = DateTime.Now;
+                }
+
+                try
+                {
+                    others = decimal.Parse(txtOthers.Text);
+                }
+                catch
+                {
+                }
+
+                try
+                {
+                    tansport = decimal.Parse(txtTransport.Text);
+                }
+                catch
+                {
+                }
+
+                try
+                {
+                    grosDiscount = decimal.Parse(txtGrossDiscount.Text);
+                }
+                catch
+                {
+                }
+
+                try
+                {
+                    commision = decimal.Parse(txtCommosion.Text);
+                }
+                catch
+                {
+                    commision = 0;
+                }
+
+                try
+                {
+                    partialShipment = int.Parse(ddlPartialShip.SelectedValue);
+                }
+                catch
+                {
+                    partialShipment = 0;
+                }
+
+                try
+                {
+                    noOfShifment = int.Parse(txtNoOfShipment.Text);
+                }
+                catch
+                {
+                    noOfShifment = 0;
+                }
+
+                try
+                {
+                    afterMrrDay = int.Parse(txtAfterMrrDay.Text);
+                }
+                catch
+                {
+                    afterMrrDay = 0;
+                }
+
+                try
+                {
+                    paymentTrems = ddlPaymentTrams.SelectedItem.ToString();
+                }
+                catch
+                {
+                }
+
+                try
+                {
+                    noOfInstallment = int.Parse(txtNoOfInstall.Text.ToString());
+                }
+                catch
+                {
+                    noOfInstallment = 0;
+                }
+
+                try
+                {
+                    intervalInstallment = int.Parse(txtIntervel.Text.ToString());
+                }
+                catch
+                {
+                    intervalInstallment = 0;
+                }
+
+                try
+                {
+                    noPayment = int.Parse(txtNoOfPayment.Text);
+                }
+                catch
+                {
+                    noPayment = 0;
+                }
+
+                try
+                {
+                    destDelivery = txtDestinationDelivery.Text.ToString();
+                }
+                catch
+                {
+                    destDelivery = "";
+                }
+
+                try
+                {
+                    paymentSchedule = txtPaymentSchedule.Text.ToString();
+                }
+                catch
+                {
+                    paymentSchedule = "0";
+                }
+
+                try
+                {
+                    dtelastShipment = DateTime.Parse(txtLastShipmentDate.Text);
+                }
+                catch
+                {
+                }
+
                 othersTrems = txtOthersTerms.Text.ToString();
                 warrentyperiod = txtWarrenty.Text.ToString();
                 string strPoFor = ddlDepts.SelectedItem.ToString();
 
-                if (dgvIndentPrepare.Rows.Count > 0 && hdnPreConfirm.Value.ToString() == "1")
+                lock (_obj)
                 {
-                    for (int index = 0; index < dgvIndentPrepare.Rows.Count; index++)
+                    if (dgvIndentPrepare.Rows.Count > 0 && hdnPreConfirm.Value.ToString() == "1")
                     {
-                        string indentId = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentId")).Text.ToString();
-                        string itemId = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblItemId")).Text.ToString();
-                        string strItem = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblItemName")).Text.ToString();
-                        string strUom = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblUom")).Text.ToString();
-                        string strDesc = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblDescription")).Text.ToString();
-                        string numIndentQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentQty")).Text.ToString();
-                        string numPoQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblQty")).Text.ToString();
-                        string monRate = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtRate")).Text.ToString();
-                        string monVat = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtVAT")).Text.ToString();
-                        string monAIT = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtAIT")).Text.ToString();
-                        string monTotal = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblTotalVal")).Text.ToString();
-
-                        //*********For Devlopment Requirment Change********************
-
-                        // string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
-                        // string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
-                        // string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
-                        // string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
-                        // string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
-                        //  string strSpecification = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblSpecification")).Text.ToString();
-                        //  string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
-
-                        if (decimal.Parse(monRate) > 0 && int.Parse(itemId) > 0 && supplierId > 0)
+                        for (int index = 0; index < dgvIndentPrepare.Rows.Count; index++)
                         {
-                            CreateXmlPO(indentId, itemId, strItem, strUom, strDesc, numPoQty, monRate, monVat, monAIT, monTotal,
-                            whid.ToString(), unitid.ToString(), supplierId.ToString(), currencyId.ToString(), costId.ToString(), payDate.ToString(), dtePo.ToString(), others.ToString(), tansport.ToString(), grosDiscount.ToString(), commision.ToString(), partialShipment.ToString(), noOfShifment.ToString(),
-                            afterMrrDay.ToString(), paymentTrems.ToString(), noOfInstallment.ToString(), intervalInstallment.ToString(), noPayment.ToString(), destDelivery.ToString(), paymentSchedule.ToString(), dtelastShipment.ToString(), othersTrems, warrentyperiod, numIndentQty, strPoFor);
-                        }
-                        else
-                        {
-                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input valid rate');", true);
-                            try { File.Delete(filePathForXMLPo); } catch { }
-                            break;
-                        }
-                    }
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filePathForXMLPo);
-                    XmlNode dSftTm = doc.SelectSingleNode("issue");
-                    xmlString = dSftTm.InnerXml;
-                    xmlString = "<issue>" + xmlString + "</issue>";
+                            string indentId = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentId")).Text
+                                .ToString();
+                            string itemId = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblItemId")).Text.ToString();
+                            string strItem =
+                                ((Label)dgvIndentPrepare.Rows[index].FindControl("lblItemName")).Text.ToString();
+                            string strUom = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblUom")).Text.ToString();
+                            string strDesc = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblDescription")).Text
+                                .ToString();
+                            string numIndentQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblIndentQty")).Text
+                                .ToString();
+                            string numPoQty = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblQty")).Text.ToString();
+                            string monRate = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtRate")).Text
+                                .ToString();
+                            string monVat = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtVAT")).Text.ToString();
+                            string monAIT = ((TextBox)dgvIndentPrepare.Rows[index].FindControl("txtAIT")).Text.ToString();
+                            string monTotal = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblTotalVal")).Text
+                                .ToString();
 
-                    try { File.Delete(filePathForXMLPrepare); } catch { }
-                    try { File.Delete(filePathForXMLPo); } catch { }
+                            //*********For Devlopment Requirment Change********************
 
+                            // string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
+                            // string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
+                            // string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
+                            // string numPoIssued = ((Label)dgvIndentDet.Rows[index].FindControl("lblPoIssue")).Text.ToString();
+                            // string numRemain = ((Label)dgvIndentDet.Rows[index].FindControl("lblRemaining")).Text.ToString();
+                            //  string strSpecification = ((Label)dgvIndentPrepare.Rows[index].FindControl("lblSpecification")).Text.ToString();
+                            //  string monPreviousRate = ((Label)dgvIndentDet.Rows[index].FindControl("lblPreviousAvg")).Text.ToString();
 
-                    string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
-                    string[] searchKey = Regex.Split(msg, ":");
-                    lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
-                    if (ddlDepts.SelectedItem.Text == "Import")
-                    {
-                        DateTime InsertDate = DateTime.Now;
-                        int POId = 0;//Convert.ToInt32(lblPoNo.Text);
-                        int LCTypeId = Convert.ToInt32(ddlLCType.SelectedItem.Value);
-                        int MaterialTypeId = Convert.ToInt32(ddlMaterialType.SelectedItem.Value);
-                        int BankId = Convert.ToInt32(ddlBank.SelectedItem.Value);
-                        int IncoTerm = Convert.ToInt32(ddlIncoTerm.SelectedItem.Value);
-                        int PresentDay = Convert.ToInt32(txtPresentDay.Text);
-                        string Origin = txtOrigin.Text;
-                        string LoadingPort = txtLoadPort.Text;
-                        string DestinationPort = txtDestPort.Text;
-                        string LcExpireDate = txtLCExpDate.Text;
-                        string PINo = txtPINo.Text;
-                        string PIDate = txtPIDate.Text;
-                        decimal LcTenorMonth = Convert.ToDecimal(txtTenor.Text);
-                        decimal QtyTolerancePercent = Convert.ToDecimal(txtToleranceQty.Text);
-                        decimal TolerancePercent = Convert.ToDecimal(txtTolerance.Text);
-                        string ItemDescription = txtItemDescription.Text;
-                        bool ysnSROBenifit = false, ysnLocalLc = false, ysnLcConfirmation = false;
-                        foreach (ListItem item in CheckList.Items)
-                        {
-                            if (item.Selected == true)
+                            if (decimal.Parse(monRate) > 0 && int.Parse(itemId) > 0 && supplierId > 0)
                             {
-                                if (item.Value == "1")
+                                CreateXmlPO(indentId, itemId, strItem, strUom, strDesc, numPoQty, monRate, monVat, monAIT,
+                                    monTotal,
+                                    whid.ToString(), unitid.ToString(), supplierId.ToString(), currencyId.ToString(),
+                                    costId.ToString(), payDate.ToString(), dtePo.ToString(), others.ToString(),
+                                    tansport.ToString(), grosDiscount.ToString(), commision.ToString(),
+                                    partialShipment.ToString(), noOfShifment.ToString(),
+                                    afterMrrDay.ToString(), paymentTrems.ToString(), noOfInstallment.ToString(),
+                                    intervalInstallment.ToString(), noPayment.ToString(), destDelivery.ToString(),
+                                    paymentSchedule.ToString(), dtelastShipment.ToString(), othersTrems, warrentyperiod,
+                                    numIndentQty, strPoFor);
+                            }
+                            else
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                                    "alert('Please input valid rate');", true);
+                                try
                                 {
-                                    ysnSROBenifit = true;
+                                    File.Delete(filePathForXMLPo);
                                 }
-                                if (item.Value == "2")
+                                catch
                                 {
-                                    ysnLocalLc = true;
                                 }
-                                if (item.Value == "3")
+
+                                break;
+                            }
+                        }
+
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXMLPo);
+                        XmlNode dSftTm = doc.SelectSingleNode("issue");
+                        xmlString = dSftTm.InnerXml;
+                        xmlString = "<issue>" + xmlString + "</issue>";
+
+                        try
+                        {
+                            File.Delete(filePathForXMLPrepare);
+                        }
+                        catch
+                        {
+                        }
+
+                        try
+                        {
+                            File.Delete(filePathForXMLPo);
+                        }
+                        catch
+                        {
+                        }
+
+                        dgvIndentPrepare.UnLoad();
+
+                        string msg = objPo.PoApprove(9, xmlString, whid, 0, DateTime.Now, Enroll);
+
+                        string[] searchKey = Regex.Split(msg, ":");
+                        lblPoNo.Text = "Po Number: " + searchKey[1].ToString();
+                        if (ddlDepts.SelectedItem.Text == "Import")
+                        {
+                            DateTime InsertDate = DateTime.Now;
+                            int POId = 0; //Convert.ToInt32(lblPoNo.Text);
+                            int LCTypeId = Convert.ToInt32(ddlLCType.SelectedItem.Value);
+                            int MaterialTypeId = Convert.ToInt32(ddlMaterialType.SelectedItem.Value);
+                            int BankId = Convert.ToInt32(ddlBank.SelectedItem.Value);
+                            int IncoTerm = Convert.ToInt32(ddlIncoTerm.SelectedItem.Value);
+                            int PresentDay = Convert.ToInt32(txtPresentDay.Text);
+                            string Origin = txtOrigin.Text;
+                            string LoadingPort = txtLoadPort.Text;
+                            string DestinationPort = txtDestPort.Text;
+                            string LcExpireDate = txtLCExpDate.Text;
+                            string PINo = txtPINo.Text;
+                            string PIDate = txtPIDate.Text;
+                            decimal LcTenorMonth = Convert.ToDecimal(txtTenor.Text);
+                            decimal QtyTolerancePercent = Convert.ToDecimal(txtToleranceQty.Text);
+                            decimal TolerancePercent = Convert.ToDecimal(txtTolerance.Text);
+                            string ItemDescription = txtItemDescription.Text;
+                            bool ysnSROBenifit = false, ysnLocalLc = false, ysnLcConfirmation = false;
+                            foreach (ListItem item in CheckList.Items)
+                            {
+                                if (item.Selected == true)
                                 {
-                                    ysnLcConfirmation = true;
+                                    if (item.Value == "1")
+                                    {
+                                        ysnSROBenifit = true;
+                                    }
+
+                                    if (item.Value == "2")
+                                    {
+                                        ysnLocalLc = true;
+                                    }
+
+                                    if (item.Value == "3")
+                                    {
+                                        ysnLcConfirmation = true;
+                                    }
+
                                 }
 
                             }
 
+                            decimal PIAmount = 0;
+                            dt = objPo.GetPOAmountByPOID(POId);
+                            if (dt.Rows.Count > 0)
+                            {
+                                PIAmount = decimal.Parse(dt.Rows[0]["monPOTotal"].ToString());
+                            }
+
+
+                            objPo.InsertImportLC(POId, LCTypeId, MaterialTypeId, BankId, LoadingPort, DestinationPort,
+                                TolerancePercent, currencyId, LcTenorMonth, dtelastShipment.ToString(), LcExpireDate,
+                                InsertDate, Enroll,
+                                unitid, supplierId, IncoTerm, Origin, ItemDescription, PINo, PIDate, PresentDay,
+                                ysnSROBenifit, ysnLocalLc, PIAmount, ysnLcConfirmation, QtyTolerancePercent);
+
                         }
-                        decimal PIAmount = 0;
-                        dt = objPo.GetPOAmountByPOID(POId);
-                        if (dt.Rows.Count > 0)
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');",
+                            true);
+                        txtIndentNoDet.Enabled = false;
+                        txtGrossDiscount.Text = "0";
+                        txtOthers.Text = "0";
+                        txtTransport.Text = "0";
+                        txtAit.Text = "0";
+                        txtSupplier.Text = "";
+                        txtIndentNoDet.Text = "";
+                        txtIndentNo.Text = "";
+                        if (searchKey[1].ToString().Length > 2)
                         {
-                            PIAmount = decimal.Parse(dt.Rows[0]["monPOTotal"].ToString());
+
+
+                            dgvIndentPrepare.DataSource = "";
+                            dgvIndentPrepare.DataBind();
+                            dgvIndentDet.DataSource = "";
+                            dgvIndentDet.DataBind();
+                            Tab1.CssClass = "Initial";
+                            Tab2.CssClass = "Clicked";
+                            Tab3.CssClass = "Initial";
+                            MainView.ActiveViewIndex = 0;
                         }
-
-
-                        objPo.InsertImportLC(POId, LCTypeId, MaterialTypeId, BankId, LoadingPort, DestinationPort, TolerancePercent, currencyId, LcTenorMonth, dtelastShipment.ToString(), LcExpireDate, InsertDate, Enroll,
-                            unitid, supplierId, IncoTerm, Origin, ItemDescription, PINo, PIDate, PresentDay, ysnSROBenifit, ysnLocalLc, PIAmount, ysnLcConfirmation, QtyTolerancePercent);
-
-                    }
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
-                    txtIndentNoDet.Enabled = false;
-                    txtGrossDiscount.Text = "0"; txtOthers.Text = "0"; txtTransport.Text = "0"; txtAit.Text = "0";
-                    txtSupplier.Text = ""; txtIndentNoDet.Text = "";
-                    txtIndentNo.Text = "";
-                    if (searchKey[1].ToString().Length > 2)
-                    {
-
-
-                        dgvIndentPrepare.DataSource = ""; dgvIndentPrepare.DataBind();
-                        dgvIndentDet.DataSource = "";
-                        dgvIndentDet.DataBind();
-                        Tab1.CssClass = "Initial";
-                        Tab2.CssClass = "Clicked";
-                        Tab3.CssClass = "Initial";
-                        MainView.ActiveViewIndex = 0;
                     }
                 }
+
+                
             }
-            catch (Exception ex) { ex.ToString(); }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         private void CreateXmlPO(string indentId, string itemId, string strItem, string strUom, string strDesc, string numPoQty, string monRate, string monVat, string monAIT, string monTotal, string whid, string unitid, string supplierId, string currencyId, string costId, string payDate, string dtePo, string others, string tansport, string grosDiscount, string commision, string partialShipment, string noOfShifment, string afterMrrDay, string paymentTrems, string noOfInstallment, string intervalInstallment, string noPayment, string destDelivery, string paymentSchedule, string dtelastShipment, string othersTrems, string warrentyperiod, string numIndentQty, string strPoFor)
