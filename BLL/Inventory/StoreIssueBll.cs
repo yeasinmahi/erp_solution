@@ -18,7 +18,7 @@ namespace BLL.Inventory
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
-        private string storeIssueNarration = "Store Issue";
+        private readonly string storeIssueNarration = "Store Issue";
         private readonly string materialNarration = "Material Issue";
 
         private bool GetUnitId(int whId, out int unitId)
@@ -295,7 +295,7 @@ namespace BLL.Inventory
             if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, globalCoaId, coaId,
                 storeIssueNarration, meterialNarration, inventoryStatusId, intventoryId, enroll))
             {
-                //TODO: successs
+                //TODO: success
                 _storeIssueToFloorTransectionStatusBll.UpdateIsProcessed(true, inventoryStatusId);
                 return true;
             }
