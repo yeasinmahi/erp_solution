@@ -180,7 +180,7 @@ namespace SAD_BLL.Sales
             { 
                 SprDeliverysEntryTableAdapter adp = new SprDeliverysEntryTableAdapter();
                 adp.DeliveryEntry(pickingId,ref strCode);
-                msg = "Picking Update Successfully";
+                msg = "Delivery Successfully";
                 return msg;
             }
             catch (Exception ex)

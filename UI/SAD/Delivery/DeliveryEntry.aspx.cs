@@ -54,8 +54,10 @@ namespace UI.SAD.Delivery
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
 
-                GetUrlData(Request.QueryString["PopupType"]);
-                
+                if (Request.QueryString["PopupType"] != null)
+                {
+                    GetUrlData(Request.QueryString["PopupType"]); 
+                }
                 
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
@@ -1143,6 +1145,7 @@ namespace UI.SAD.Delivery
             catch {  }
         }
 
+        
         private void InitilizeXmlAddControl()
         {
             txtQun.Text = "0";
@@ -1649,7 +1652,10 @@ namespace UI.SAD.Delivery
             { 
                 HeaderXmlCreate();
                 string rowXml = XmlParser.GetXml(GetXmlFilePath());
+                try { File.Delete(GetXmlFilePath()); } catch { }
+                
                 string strOrderId = "", Code = "", msg = "";
+
                 if (hdnConfirm.Value == "1")
                 {
                     if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
@@ -1689,8 +1695,7 @@ namespace UI.SAD.Delivery
                     lblCode.Text = Code;
                     lblOrderIDText.Visible = true;
                     lblOrderId.Text = strOrderId;
-                    if (File.Exists(GetXmlFilePath()))
-                    {
+                    
                         File.Delete(GetXmlFilePath());
                         dgvSales.DataSource = "";
                         dgvSales.DataBind();
@@ -1703,11 +1708,7 @@ namespace UI.SAD.Delivery
                         txtVehicle.Text = "";
                         txtDriver.Text = "";
                         txtSupplier.Text = "";
-                    }
-                    //LoadGridwithXml();
-
-                  
-
+                   
                 }
                 else
                 {
