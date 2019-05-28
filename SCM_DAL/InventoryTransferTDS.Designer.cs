@@ -12150,7 +12150,6 @@ namespace SCM_DAL {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintItemID}, false));
                 this.columnintItemID.Unique = true;
-                this.columnstrProductName.AllowDBNull = false;
                 this.columnstrProductName.MaxLength = 200;
             }
             
@@ -16455,7 +16454,12 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string strProductName {
                 get {
-                    return ((string)(this[this.tabletblItem.strProductNameColumn]));
+                    try {
+                        return ((string)(this[this.tabletblItem.strProductNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strProductName\' in table \'tblItem\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tabletblItem.strProductNameColumn] = value;
@@ -16472,6 +16476,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetintItemIDNull() {
                 this[this.tabletblItem.intItemIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrProductNameNull() {
+                return this.IsNull(this.tabletblItem.strProductNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrProductNameNull() {
+                this[this.tabletblItem.strProductNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -25715,7 +25731,11 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT bi.intItemID as intItemID,strProductName  FROM ERP_SAD.dbo.tblItem si LEFT JOIN ERP_Inventory.dbo.tblBillOfMaterialItemNsadItemBridge bi ON si.intID=bi.intSADItemID  join ERP_SAD.dbo.tblItemType it on si.intTypeID=it.intID WHERE  it.ysnFinishGoods=1 and si.ysnActive=1 and si.intUnitID=@intUnitID  and intItemID is not null ";
+            this._commandCollection[0].CommandText = @"SELECT bi.intItemID as intItemID,strProductName +' ['+strUoM+']'  strProductName
+FROM ERP_SAD.dbo.tblItem si LEFT JOIN ERP_Inventory.dbo.tblBillOfMaterialItemNsadItemBridge bi 
+ON si.intID=bi.intSADItemID  join ERP_SAD.dbo.tblItemType it on si.intTypeID=it.intID 
+left join ERP_Inventory.dbo.tblItemList itm on itm.intItemID=bi.intItemID
+WHERE  it.ysnFinishGoods=1 and si.ysnActive=1 and si.intUnitID=@intUnitID  and bi.intItemID is not null ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
