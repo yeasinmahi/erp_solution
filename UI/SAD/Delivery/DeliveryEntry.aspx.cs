@@ -1570,6 +1570,12 @@ namespace UI.SAD.Delivery
                 {
                     productRate = itemPrice.GetPrice(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
                   , ref commission, ref suppTax, ref vat, ref vatPrice, ref convRate);
+
+                    dt = deliveryBLL.GetDiscount(hdnCustomer.Value, hdnProduct.Value);
+                    if (dt.Rows.Count>0)
+                    {
+                        commission = decimal.Parse(dt.Rows[0]["Amount"].ToString());
+                    }
                 }
                 else if (type=="Picking" || type == "Picking_Edit")
                 {

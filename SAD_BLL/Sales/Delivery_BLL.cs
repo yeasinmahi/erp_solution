@@ -161,8 +161,6 @@ namespace SAD_BLL.Sales
         {
             try
             {
-                
-
                    SprDOUpdateTableAdapter adp = new SprDOUpdateTableAdapter();
                 adp.DOUpdate(xmlRow, xmlHeader, DoId);
                 msg = "Update Successfully";
@@ -172,6 +170,21 @@ namespace SAD_BLL.Sales
             {
                 throw ex;
             }
+
+        }
+
+        public DataTable GetDiscount(string customerId, string ProductId)
+        {
+            try
+            {
+                FunGetItemDiscountTableAdapter adp = new FunGetItemDiscountTableAdapter();
+                return adp.GetDiscountData(int.Parse(customerId), int.Parse(ProductId), DateTime.Now.ToString());
+            }
+            catch
+            {
+                return new DataTable();
+            }
+
 
         }
         public string DeliveryEntry(string pickingId,ref string strCode)
