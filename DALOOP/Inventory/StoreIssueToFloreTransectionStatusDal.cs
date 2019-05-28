@@ -13,7 +13,7 @@ namespace DALOOP.Inventory
             try
             {
                 tblStoreIssueToFloreTransectionStatusTableAdapter adp = new tblStoreIssueToFloreTransectionStatusTableAdapter();
-                _dt = adp.Insert1(itemId, inventoryId);
+                _dt = adp.Insert1(itemId, inventoryId,whId,unitId);
                 if (_dt.Rows.Count > 0)
                 {
                     int inventoryStatusId = _dt.GetAutoId("autoId");

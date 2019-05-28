@@ -3448,22 +3448,44 @@ namespace DAL.Inventory.StoreIssueToFloreTransectionStatusTdsTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "INSERT INTO [dbo].[tblStoreIssueToFloreTransectionStatus]\r\n           ([itemId]\r\n" +
-                "           ,[inventoryId])\r\n\t\t   output inserted.autoId\r\n     VALUES\r\n          " +
-                " (@itemId\r\n           ,@inventoryId)";
+            this._commandCollection[0].CommandText = @"INSERT INTO [dbo].[tblStoreIssueToFloreTransectionStatus]
+           ([itemId]
+           ,[inventoryId]
+           ,[whId]
+           ,[unitId])
+output inserted.autoId
+     VALUES
+           (@itemId
+           ,@inventoryId
+           ,@whId
+           ,@unitId)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "itemId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@inventoryId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "inventoryId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@whId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "whId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "unitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual StoreIssueToFloreTransectionStatusTds.tblStoreIssueToFloreTransectionStatusDataTable Insert1(int itemId, int inventoryId) {
+        public virtual StoreIssueToFloreTransectionStatusTds.tblStoreIssueToFloreTransectionStatusDataTable Insert1(int itemId, int inventoryId, global::System.Nullable<int> whId, global::System.Nullable<int> unitId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(itemId));
             this.Adapter.SelectCommand.Parameters[1].Value = ((int)(inventoryId));
+            if ((whId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(whId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((unitId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(unitId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
             StoreIssueToFloreTransectionStatusTds.tblStoreIssueToFloreTransectionStatusDataTable dataTable = new StoreIssueToFloreTransectionStatusTds.tblStoreIssueToFloreTransectionStatusDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
