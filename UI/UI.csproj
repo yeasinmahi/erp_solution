@@ -1573,6 +1573,7 @@
     <Content Include="SCM\InventoryReport.aspx" />
     <Content Include="SCM\InventoryStatement.aspx" />
     <Content Include="SCM\InventoryValuetion.aspx" />
+    <Content Include="SCM\Inventory_Accounting_Status.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx" />
@@ -8216,6 +8217,13 @@
     </Compile>
     <Compile Include="SCM\InventoryValuetion.aspx.designer.cs">
       <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Inventory_Accounting_Status.aspx.cs">
+      <DependentUpon>Inventory_Accounting_Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Inventory_Accounting_Status.aspx.designer.cs">
+      <DependentUpon>Inventory_Accounting_Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\IssueForProduction.aspx.cs">
       <DependentUpon>IssueForProduction.aspx</DependentUpon>
