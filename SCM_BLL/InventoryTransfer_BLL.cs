@@ -442,6 +442,22 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
+        public string UpdateProductionApprove(int insertBy,int productId)
+        {
+            string msg = "";
+            try
+            {
+                TblProductionTableAdapter adp = new TblProductionTableAdapter();
+                adp.UpdateProduction(insertBy, productId);
+                return msg="Approved Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
+
 
     }
 }
