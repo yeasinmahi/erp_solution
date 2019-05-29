@@ -1283,7 +1283,10 @@ namespace UI.SAD.Delivery
                         if (hdnRequistId.Value=="0" || type=="DO_Edit")
                         {
                                  promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                                , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId); 
+                                , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+                           
+                             
                         }
                         else if (type == "Picking" || type== "Picking_Edit")
                         {
@@ -1313,7 +1316,8 @@ namespace UI.SAD.Delivery
                         string commision = lblComm.Text.ToString();
                         string commisionTotal = lblComm.Text.ToString();
                         string conversionRate = txtConvRate.Text.ToString();
-                        string discount = "0";
+                        string discount = (decimal.Parse(lblComm.Text.ToString()) * decimal.Parse(txtQun.Text.ToString())).ToString(); 
+
                         decimal discountTotal = decimal.Parse(lblComm.Text.ToString()) * decimal.Parse(txtQun.Text.ToString());
                         decimal priceTotal = decimal.Parse(txtPrice.Text.ToString()) * decimal.Parse(txtQun.Text.ToString());
                         string supplierTax = hdnSuppTax.Value;

@@ -38,17 +38,16 @@ namespace UI.SCM.BOM
             else { }
         }
 
-        protected void btnAction_Click(object sender, EventArgs e)
+        protected void btnApprove_Click(object sender, EventArgs e)
         {
             try
             {
-                if(rdoApprove.SelectedItem.Value=="2")
-                {
+                
                     GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                     Label lblProductID = row.FindControl("lblProductID") as Label;
 
-                    int producttionID = int.Parse(lblProductID.Text);
-                    string msg = InventoryTransfer_Obj.UpdateProductionApprove(Enroll, producttionID);
+                    int productionID = int.Parse(lblProductID.Text);
+                    string msg = InventoryTransfer_Obj.UpdateProductionApprove(Enroll, productionID);
                     if (msg.ToLower().Contains("successful"))
                     {
                         Toaster(msg, Common.TosterType.Success);
@@ -60,7 +59,7 @@ namespace UI.SCM.BOM
                     {
                         Toaster(msg, Common.TosterType.Error);
                     }
-                }
+                
                
                 
                 
@@ -74,6 +73,38 @@ namespace UI.SCM.BOM
         protected void btnViewProductionOrder_Click(object sender, EventArgs e)
         {
             LoadGrid();
+        }
+
+        protected void btnClosed_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                
+                    GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                    Label lblProductID = row.FindControl("lblProductID") as Label;
+
+                    int productionID = int.Parse(lblProductID.Text);
+                    string msg = InventoryTransfer_Obj.UpdateProductionClose(Enroll, productionID);
+                    if (msg.ToLower().Contains("successful"))
+                    {
+                        Toaster(msg, Common.TosterType.Success);
+
+                        LoadGrid();
+
+                    }
+                    else
+                    {
+                        Toaster(msg, Common.TosterType.Error);
+                    }
+                
+
+
+
+            }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         public void LoadGrid()
@@ -90,10 +121,17 @@ namespace UI.SCM.BOM
                 if (appType==1)
                 {
                     dgvBom.Columns[12].Visible = false;
+                    dgvBom.Columns[13].Visible = false;
                 }
                 else if(appType == 2)
                 {                   
                     dgvBom.Columns[12].Visible = true;
+                    dgvBom.Columns[13].Visible = true;
+                }
+                else if(appType==3)
+                {
+                    dgvBom.Columns[12].Visible = false;
+                    dgvBom.Columns[13].Visible = false;
                 }
                 dt = objBom.GetBomData(19, xmlData, intwh, BomId, dteDate, appType);
                 if(dt.Rows.Count>0)
