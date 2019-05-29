@@ -1546,6 +1546,7 @@
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
+    <Content Include="SCM\BOM\ProductionApproval.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
@@ -8040,6 +8041,13 @@
     </Compile>
     <Compile Include="SCM\BOM\FinishGoodRouting.aspx.designer.cs">
       <DependentUpon>FinishGoodRouting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionApproval.aspx.cs">
+      <DependentUpon>ProductionApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionApproval.aspx.designer.cs">
+      <DependentUpon>ProductionApproval.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
