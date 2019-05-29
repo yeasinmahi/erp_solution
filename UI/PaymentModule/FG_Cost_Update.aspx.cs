@@ -21,7 +21,7 @@ namespace UI.PaymentModule
         int type, GroupID=0, ItemId=0, UnitID=0, CoAID=0;
         string xmlString="", _filePathForXml;
         private string message;
-        decimal monRate=0;
+        decimal monRate=0; decimal total = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -116,17 +116,37 @@ namespace UI.PaymentModule
             dt = inventoryTransfer_Obj.GetFGDetail(ItemId, UnitID);
             if(dt.Rows.Count>0)
             {
+                lblUnitName.Visible = true;
+                lblReportName.Visible = true;
                 report.Visible = true;
                 dgvShowReport.DataSource = dt;
                 dgvShowReport.DataBind();
+                dgvShowReport.FooterRow.BackColor = System.Drawing.Color.LightGray;
             }
             else
             {
                 dgvShowReport.UnLoad();
                 Toaster("There is no data","Product Cost", Common.TosterType.Warning);
             }
-            
+            dgvReport.UnLoad();
 
+        }
+
+        protected void dgvShowReport_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+           
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                total += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "monCost"));
+            }
+            if (e.Row.RowType == DataControlRowType.Footer)
+            {
+                Label LabelTotal = (Label)e.Row.FindControl("lblTotal");
+                if (LabelTotal != null)
+                {
+                    LabelTotal.Text = total.ToString();
+                }
+            }
         }
         #region =========== action button =================
         protected void btnAdd_Click(object sender, EventArgs e)
@@ -152,7 +172,7 @@ namespace UI.PaymentModule
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
-            
+            dgvShowReport.UnLoad();
             
 
         }     
