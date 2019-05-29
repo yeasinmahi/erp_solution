@@ -90,12 +90,12 @@
                                 <asp:RadioButtonList ID="rdoApprove" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
                                     <asp:ListItem Value="1">Approve</asp:ListItem>
                                     <asp:ListItem Value="2">Not Approve</asp:ListItem>
-                                    <%--<asp:ListItem Value="3">Reject</asp:ListItem>--%>
+                                    <asp:ListItem Value="3">Closed</asp:ListItem>
                                 </asp:RadioButtonList>
                                 
                             </td>
 
-                            <td style="text-align: right" colspan="2">
+                            <td style="text-align: right">
                                 
                                 <asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClientClick="showLoader();" OnClick="btnViewProductionOrder_Click" /></td>
                         </tr>
@@ -191,11 +191,17 @@
                                             <ItemStyle HorizontalAlign="center" Width="40px" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right"  SortExpression="lineprocess">
+                                        <asp:TemplateField HeaderText="Approve" >
                                             <ItemTemplate>
-                                                <asp:Button ID="btnAction" forecolor="Red" runat="server" OnClientClick="return confirmMsg();" OnClick="btnAction_Click" Text="Approve"></asp:Button>
+                                                <asp:Button ID="btnApprove" forecolor="Red" runat="server" OnClientClick="return confirmMsg();" OnClick="btnApprove_Click" Text="Approve"></asp:Button><br />
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <%--<ItemStyle HorizontalAlign="Right"/>--%>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Close" >
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnClosed" forecolor="Red" runat="server" OnClientClick="return confirmMsg();" OnClick="btnClosed_Click" Text="Close"></asp:Button>
+                                            </ItemTemplate>
+                                            <%--<ItemStyle HorizontalAlign="Right"/>--%>
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
