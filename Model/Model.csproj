@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="APIsmsModel.cs" />
+    <Compile Include="FactoryReceiveMrr.cs" />
+    <Compile Include="FactoryReceiveMRRItemDetail.cs" />
     <Compile Include="ModularItem.cs" />
     <Compile Include="ModularOrder.cs" />
     <Compile Include="ModularOrderLine.cs" />
