@@ -26,6 +26,21 @@
             width: 820px;
         }
     </style>
+    <style type="text/css">
+ 
+        .header
+ 
+        {
+ 
+            font-weight:bold;
+ 
+            position:absolute;
+ 
+            background-color:White;
+ 
+        }
+ 
+    </style>
     <script language="javascript" type="text/javascript">
 
         function onlyNumbers(evt) {
@@ -324,13 +339,7 @@
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
-                            </td>
-                            <%-- <td style="text-align: right;">
-                                        <asp:Label ID="lblReffInfo" CssClass="lbl" runat="server" Text="Reff Info: "></asp:Label> 
-                                    </td>
-                                    <td style="text-align: right;">
-                                        <asp:TextBox ID="TextBox2" runat="server"   CssClass="txtBox"   ></asp:TextBox>
-                                    </td>--%>
+                            
                         </tr>
 
                         <tr>
@@ -358,13 +367,13 @@
                             <tr>
 
                                 <td>
-                                    <b style="color: Green;">LOGISTIC</b>
+                                    <b style="color: Green;">LOGISTIC Provider</b>
                                 </td>
-                                <td>
-                                    <asp:RadioButtonList ID="rdoNeedVehicle" runat="server" Width="120px" AutoPostBack="True"
-                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoNeedVehicle_SelectedIndexChanged">
-                                        <asp:ListItem Selected="True" Value="1">Yes</asp:ListItem>
-                                        <asp:ListItem Value="2">No</asp:ListItem>
+                                <td colspan="2">
+                                    <asp:RadioButtonList ID="rdoVehicleCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoVehicleCompany_SelectedIndexChanged">
+                                        <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
+                                        <asp:ListItem Value="2">Rented</asp:ListItem>
+                                        <asp:ListItem Value="3">Customer</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </td>
 
@@ -372,15 +381,6 @@
                         </table>
 
                         <table>
-                            <tr>
-                                 <td colspan="2">
-                                                    <asp:RadioButtonList ID="rdoVehicleCompany" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoVehicleCompany_SelectedIndexChanged">
-                                                        <asp:ListItem Selected="True" Value="1">Company</asp:ListItem>
-                                                        <asp:ListItem Value="2">Rented</asp:ListItem>
-                                                        <asp:ListItem Value="3">Customer</asp:ListItem>
-                                                    </asp:RadioButtonList>
-                                                </td>
-                            </tr>
                             <tr>
                                 <td style="width: 300px; vertical-align: top;">
                                     <asp:HiddenField ID="hdnPriceId" runat="server" />
@@ -517,6 +517,31 @@
                             </td>
                         </tr>
                     </table>
+                <div style ="background-image:url(nav_03.gif);background-repeat:repeat-x;
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              height:30px;width:600px; margin:0;padding:0">
+
+                    <table cellspacing="0" cellpadding = "0" rules="all" border="1" id="tblHeader"
+
+                           style="font-family:Arial;font-size:10pt;width:600px;color:white;
+
+                                                                                   border-collapse:collapse;height:100%;">
+
+                        <tr>
+
+                            <td style ="width:150px;text-align:center">CustomerID</td>
+
+                            <td style ="width:150px;text-align:center">City</td>
+
+                            <td style ="width:150px;text-align:center">Country</td>
+
+                            <td style ="width:150px;text-align:center">PostalCode</td>
+
+                        </tr>
+
+                    </table>
+
+                </div>
                     <table>
                         <tr>
                             <td>

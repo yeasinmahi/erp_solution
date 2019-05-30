@@ -754,10 +754,16 @@ namespace UI.SAD.Delivery
                     if (tbl.Rows.Count > 0)
                     {
                         txtCustomerAddress.Text = tbl[0].strAddress;
-                        hdnPriceId.Value = tbl[0].intPriceCatagory.ToString();
+                        try
+                        {
+                            hdnPriceId.Value = tbl[0].intPriceCatagory.ToString(); 
+                            
+                        }
+                        catch { };
                     }
                     txtShipToParty.Text = txtCustomer.Text;
                     txtShipToPartyAddress.Text = txtCustomerAddress.Text;
+                    hdnShipToPartyId.Value= temp[temp.Length - 1];
                 }
 
                
@@ -1047,33 +1053,7 @@ namespace UI.SAD.Delivery
             catch { }
         }
 
-        protected void rdoNeedVehicle_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                ControlHide(rdoDeliveryType.SelectedItem.Text.ToString());
-                if (rdoNeedVehicle.SelectedValue.ToString() == "1" && rdoDeliveryType.SelectedItem.Text=="DO")
-                { 
-                    pnlVehicleMain.Visible = false;
-                    rdoVehicleCompany.Visible = true;
-
-                }
-                else if (rdoNeedVehicle.SelectedValue.ToString() == "1")
-                {
-                    pnlVehicleMain.Visible = true;
-                    rdoVehicleCompany.Visible = true;
-
-                    
-                }
-                else 
-                {
-                    pnlVehicleMain.Visible = false;
-                    rdoVehicleCompany.Visible = false;
-                }
-                 
-            }
-            catch { }
-        }
+       
 
         protected void rdoVehicleCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1674,34 +1654,35 @@ namespace UI.SAD.Delivery
                     {
 
                         msg = deliveryBLL.DeliveryOrderCreate(xmlHeaderString, rowXml, ref strOrderId, ref Code);
+                        Toaster(msg + " Code:" + Code, "Delivery Order",Common.TosterType.Success);
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking")
                     {
                         msg = deliveryBLL.PickingCreate(xmlHeaderString, rowXml, txtCustomerAddress.Text,
                             ref strOrderId, ref Code);
-
+                        Toaster(msg + " Code:" + Code, "Picking Create", Common.TosterType.Success);
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Picking_Edit")
                     {
                         msg = deliveryBLL.PickingUpdate(xmlHeaderString, rowXml,int.Parse(hdnPickingId.Value));
-                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert(" + msg + ");", true);
-                       
-                       // ScriptManager.RegisterStartupScript(this, this.GetType(), "onclick", "window.close()", true);
- 
+                        Toaster(msg + " Code:" + Code, "Picking Updater", Common.TosterType.Success);
+                        
+
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "Delivery")
                     {
                         msg = deliveryBLL.DeliveryEntry(  hdnPickingId.Value, ref Code);
+                        Toaster(msg + " Code:" + Code, "Delivery", Common.TosterType.Success);
                     }
                     else if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO_Edit")
                     {
                         msg = deliveryBLL.UpdateDeliveryOrder(xmlHeaderString, rowXml, int.Parse(hdnDoId.Value));
-                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert("+ msg+");", true);
-                        
-                       // ScriptManager.RegisterStartupScript(this, this.GetType(), "onclick", "window.close()", true);
+                        Toaster(msg + " Code:" + Code, "Delivery Order Eid", Common.TosterType.Success);
+
+                        // ScriptManager.RegisterStartupScript(this, this.GetType(), "onclick", "window.close()", true);
                     }
 
-                    Toaster(msg + " Code:" + Code, Common.TosterType.Success);
+                  
 
                     lblCodeText.Visible = true;
                     lblCode.Text = Code;
