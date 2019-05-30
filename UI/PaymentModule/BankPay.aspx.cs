@@ -1,15 +1,11 @@
 ﻿using SCM_BLL;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
 using System.Web.Script.Services;
-using HR_BLL.Employee;
-using System.Text.RegularExpressions;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;

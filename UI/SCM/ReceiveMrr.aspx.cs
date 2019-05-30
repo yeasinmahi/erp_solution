@@ -187,7 +187,7 @@ namespace UI.SCM
                                 }
                                 else
                                 {
-                                    Toaster("Current loacation should be selected", Common.TosterType.Warning);
+                                    Toaster("Current location should be selected", Common.TosterType.Warning);
                                     return;
                                 }
                             }

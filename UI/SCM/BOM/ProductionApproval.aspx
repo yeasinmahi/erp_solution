@@ -29,11 +29,23 @@
         }
     </script>
 
-    <script>
+    <script type="text/javascript">
+        function Validation() {
+            var fdate = document.getElementById("txtFromDate").value;
+            var tdate = document.getElementById("txtToDate").value;
 
-        function Viewdetails(productID, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid, itemId) {
-            window.open('FinishedGoodEntryFgSavePopUP.aspx?productID=' + productID + '&productName=' + productName + '&bomName=' + bomName + '&batchName=' + batchName + '&startTime=' + startTime + '&endTime=' + endTime + '&invoice=' + invoice + '&srNo=' + srNo + '&quantity=' + quantity + '&whid=' + whid + '&itemId=' + itemId, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+            if (fdate === null || fdate === "") {
+                ShowNotification('Enter From Date', 'Production Approval', 'warning');
+                return false;
+            }
+            else if (tdate === null || tdate === "") {
+                ShowNotification('Enter To Date', 'Production Approval', 'warning');
+                return false;
+            }
+            return true;
+
         }
+       
     </script>
 </head>
 
@@ -70,14 +82,14 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="lblTo" runat="server" CssClass="lbl" Text="From Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtFromDate" runat="server" CssClass="txtBox" autoComplete="off" placeholder="click here"></asp:TextBox>
                                 <cc1:CalendarExtender ID="dteTo" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                             </td>
 
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="To Date :"></asp:Label></td>
                             <td style="text-align: left">
-                                <asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" autoComplete="off"></asp:TextBox>
+                                <asp:TextBox ID="txtToDate" runat="server" CssClass="txtBox" autoComplete="off" placeholder="click here"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                             </td>
                         </tr>
@@ -89,15 +101,15 @@
                             <td style="text-align:left">
                                 <asp:RadioButtonList ID="rdoApprove" runat="server" RepeatDirection="Horizontal" RepeatLayout="Flow">
                                     <asp:ListItem Value="1">Approve</asp:ListItem>
-                                    <asp:ListItem Value="2">Not Approve</asp:ListItem>
-                                    <%--<asp:ListItem Value="3">Reject</asp:ListItem>--%>
+                                    <asp:ListItem Selected="True" Value="2">Not Approve</asp:ListItem>
+                                    <asp:ListItem Value="3">Closed</asp:ListItem>
                                 </asp:RadioButtonList>
                                 
                             </td>
 
-                            <td style="text-align: right" colspan="2">
+                            <td style="text-align: right">
                                 
-                                <asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClientClick="showLoader();" OnClick="btnViewProductionOrder_Click" /></td>
+                                <asp:Button ID="btnViewProductionOrder" runat="server" Text="Show Production Order" forecolor="blue" OnClientClick="return Validation();" OnClick="btnViewProductionOrder_Click" /></td>
                         </tr>
                     </table>
                     <table>
@@ -111,7 +123,7 @@
 
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
-                                            <ItemStyle HorizontalAlign="center" Width="30px" />
+                                            <ItemStyle HorizontalAlign="center" Width="20px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
@@ -144,28 +156,28 @@
 
                                         <asp:TemplateField HeaderText="Batch No" ItemStyle-HorizontalAlign="right" SortExpression="strBatchNo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatch" runat="server" Width="40px" Text='<%# Bind("strBatchNo") %>'></asp:Label>
+                                                <asp:Label ID="lblBatch" runat="server" Width="100px" Text='<%# Bind("strBatchNo") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Start Time" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="dteStartTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblStartTime" Width="70px" runat="server" Text='<%# Bind("dteStartTime") %>'></asp:Label>
+                                                <asp:Label ID="lblStartTime" Width="100px" runat="server" Text='<%# Bind("dteStartTime") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="End Time" ItemStyle-HorizontalAlign="right" SortExpression="dteEndtTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblEndTime" Width="70px" runat="server" Text='<%# Bind("dteEndtTime" ) %>'></asp:Label>
+                                                <asp:Label ID="lblEndTime" Width="100px" runat="server" Text='<%# Bind("dteEndtTime" ) %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Invoice No" ItemStyle-HorizontalAlign="right" SortExpression="strCinvoiceode">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblInvoice" runat="server"></asp:Label>
+                                                <asp:Label ID="lblInvoice" runat="server" Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -186,16 +198,22 @@
 
                                         <asp:TemplateField HeaderText="Line/ Process/ Machine" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>' Width="90px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" Width="40px" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right"  SortExpression="lineprocess">
+                                        <asp:TemplateField HeaderText="Approve" >
                                             <ItemTemplate>
-                                                <asp:Button ID="btnAction" forecolor="Red" runat="server" OnClientClick="return confirmMsg();" OnClick="btnAction_Click" Text="Approve"></asp:Button>
+                                                <asp:Button ID="btnApprove" forecolor="Green" runat="server" OnClientClick="return confirmMsg();" OnClick="btnApprove_Click" Text="Approve"></asp:Button><br />
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <%--<ItemStyle HorizontalAlign="Right"/>--%>                                           
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Close" >
+                                            <ItemTemplate>
+                                                <asp:Button ID="btnClosed" forecolor="Red" runat="server" OnClientClick="return confirmMsg();" OnClick="btnClosed_Click" Text="Close"></asp:Button>
+                                            </ItemTemplate>
+                                            <%--<ItemStyle HorizontalAlign="Right"/>--%>
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />

@@ -456,7 +456,20 @@ namespace SCM_BLL
                 return ex.ToString();
             }
         }
-
+        public string UpdateProductionClose(int insertBy, int productId)
+        {
+            string msg = "";
+            try
+            {
+                TblProductionTableAdapter adp = new TblProductionTableAdapter();
+                adp.ProductionClose(insertBy, productId);
+                return msg = "Closed Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
 
 
     }
