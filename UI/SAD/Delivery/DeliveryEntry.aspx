@@ -18,29 +18,31 @@
         .txtBox {
         }
 
-        .auto-style1 {
+        </style>
+    <style type="text/css">
+
+       .headers { position:absolute; }
+
+        .auto-style3 {
             width: 814px;
         }
+        .auto-style4 {
+            width: 59px;
+        }
+        .auto-style5 {
+            width: 50px;
+        }
 
-        .auto-style2 {
-            width: 820px;
+        .auto-style6 {
+            width: 267px;
         }
-    </style>
-    <style type="text/css">
- 
-        .header
- 
-        {
- 
-            font-weight:bold;
- 
-            position:absolute;
- 
-            background-color:White;
- 
+        .auto-style7 {
+            width: 216px;
         }
- 
-    </style>
+
+   </style>
+    
+
     <script language="javascript" type="text/javascript">
 
         function onlyNumbers(evt) {
@@ -241,13 +243,13 @@
                         <table>
                             <tr>
                                 <td>
-                                    <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" Width="200px" AutoPostBack="True"
+                                    <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" AutoPostBack="True"
                                         RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged"> 
                                     </asp:RadioButtonList></td>
                                 <td>
-                                    <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="DO/Customer"></asp:Label></td>
+                                    <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="ID:"></asp:Label></td>
                                 <td>
-                                    <asp:TextBox runat="server" ForeColor="Red" Visible="False" ID="txtDoNumber" AutoPostBack="true" OnTextChanged="txtDoNumber_TextChanged"></asp:TextBox></td>
+                                    <asp:Label runat="server" ForeColor="Red" Visible="False" ID="txtDoNumber"></asp:Label></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblCodeText" Visible="False" Text="Code: "></asp:Label></td>
                                 <td>
@@ -261,6 +263,12 @@
                                 <td>
                                     <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
                                 </td>
+                                 <td>
+                                  <asp:Button ID="btnSubmit"   AutoPostBack="true"      runat="server" Text="Save Sales"
+                                    OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
+                                      
+                            </td>
+                                
                             </tr>
                         </table>
 
@@ -376,6 +384,11 @@
                                         <asp:ListItem Value="3">Customer</asp:ListItem>
                                     </asp:RadioButtonList>
                                 </td>
+                                
+                                <td style="text-align: right">Shipment_Cost </td>
+                                <td style="text-align: left">
+                                <asp:TextBox ID="txtShipmentCost" runat="server"  CssClass="txtBox" Text="0"></asp:TextBox>
+                                </td>
 
                             </tr>
                         </table>
@@ -458,10 +471,7 @@
                                 <asp:Button ID="btnProductAddAlls" runat="server" Text="Add-All" OnClientClick="setButtonFire();"   OnClick="btnProductAddAll_Click" />
 
                             </td>
-                            <td>
-                                <asp:Button ID="btnSubmit"   runat="server" Text="Save Sales"
-                                    OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
-                            </td>
+                           
                         </tr>
                     </table>
                     <table>
@@ -517,35 +527,14 @@
                             </td>
                         </tr>
                     </table>
-                <div style ="background-image:url(nav_03.gif);background-repeat:repeat-x;
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              height:30px;width:600px; margin:0;padding:0">
-
-                    <table cellspacing="0" cellpadding = "0" rules="all" border="1" id="tblHeader"
-
-                           style="font-family:Arial;font-size:10pt;width:600px;color:white;
-
-                                                                                   border-collapse:collapse;height:100%;">
-
-                        <tr>
-
-                            <td style ="width:150px;text-align:center">CustomerID</td>
-
-                            <td style ="width:150px;text-align:center">City</td>
-
-                            <td style ="width:150px;text-align:center">Country</td>
-
-                            <td style ="width:150px;text-align:center">PostalCode</td>
-
-                        </tr>
-
-                    </table>
-
-                </div>
+                 
+                  
+                    <%--<asp:Panel ID="Panel1" runat="server" Height="100px" 
+                       Width="750px" ScrollBars="Vertical">--%>
                     <table>
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
+                                <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Width="800" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
                                     OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
                                     BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnSelectedIndexChanged="dgvSales_SelectedIndexChanged">
 
@@ -653,18 +642,17 @@
                                                          title="Edit" />
                                                 </asp:LinkButton>
                                             </ItemTemplate>
+                                            
                                         </asp:TemplateField>
                                         <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true">
                                             <ControlStyle Font-Bold="True" ForeColor="Red" />
                                         </asp:CommandField>
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                    <HeaderStyle BackColor="Black" CssClass="header" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                 </asp:GridView>
-
-                                <%--  <asp:XmlDataSource ID="XmlDataSource1" EnableCaching="False" EnableViewState="False"
-                      runat="server"></asp:XmlDataSource>--%>
+                              
                             </td>
                         </tr>
                         <tr>
@@ -806,21 +794,34 @@
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center" Visible="false" SortExpression="Location">
-                                            <ItemTemplate>
-                                                <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("location") %>'></asp:Label>
+                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center"  >
+                                                                                       <ItemTemplate>
+                                                <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("locationName") %>'></asp:Label>
                                             </ItemTemplate> 
+
                                             <ItemStyle HorizontalAlign="Right" />
+                                            <EditItemTemplate>
+                                                <asp:DropDownList ID="ddlGLocation" Width="60px" runat="server" DataSourceID="ObjectDataSource1" DataTextField="strLocationName" DataValueField="intStoreLocationID">
+                                                </asp:DropDownList>
+                                                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetFGLocation" TypeName="SAD_DAL.Delivery.Delivery_TDSTableAdapters.FGLocationDataTableAdapter">
+                                                    <SelectParameters>
+                                                        <asp:ControlParameter ControlID="hdnWHId" DefaultValue="" Name="intWH" PropertyName="Value" Type="Int32" />
+                                                    </SelectParameters>
+                                                </asp:ObjectDataSource>
+                                            </EditItemTemplate>
+                                            
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblqty" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                                <asp:Label ID="lblqty" runat="server" Width="60px" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txtQtyEdit" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtQtyEdit" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
                                             </EditItemTemplate>
                                         </asp:TemplateField>
+
+                                        
 
                                         <asp:TemplateField HeaderText="Total" ItemStyle-HorizontalAlign="right" SortExpression="priceTotal">
                                             <ItemTemplate>
@@ -874,18 +875,17 @@
                                             <ControlStyle Font-Bold="True" ForeColor="Red" />
                                         </asp:CommandField>
                                     </Columns>
+                                   
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                    <HeaderStyle BackColor="Black" CssClass="header" Font-Bold="True" ForeColor="White" />
                                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                                 </asp:GridView>
 
-                                <%--  <asp:XmlDataSource ID="XmlDataSource1" EnableCaching="False" EnableViewState="False"
-                      runat="server"></asp:XmlDataSource>--%>
                             </td>
                         </tr>
 
                     </table>
-
+                        <%--</asp:Panel>--%>
                 </div>
             <asp:CustomValidator ID="cvtComAdd" runat="server" ClientValidationFunction="ValidateCompleteAdd"
              ValidationGroup="valComAdd"></asp:CustomValidator>

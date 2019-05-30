@@ -61,7 +61,7 @@ namespace UI.SAD.Delivery
                 
                 txtDate.Text = DateTime.Now.ToString("yyyy-MM-dd");
                 txtDueDate.Text = DateTime.Now.ToString("yyyy-MM-dd"); 
-              // RequestPopUp(); 
+              
                   
             }
 
@@ -305,6 +305,7 @@ namespace UI.SAD.Delivery
                     string promtionQnty = dt.Rows[i]["numPromotion"].ToString();
                     string promtionItemUom = dt.Rows[i]["intPromUOM"].ToString();
                     string location = "0";
+                    string locationName = "0";
                     string intInvItemId = "0";
                     string editStatus = "0";
                     string doId = dt.Rows[i]["intDoId"].ToString();
@@ -314,7 +315,7 @@ namespace UI.SAD.Delivery
                         narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                         priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
                         promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
-                        intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+                        intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName);
 
                 }
                 
@@ -363,6 +364,7 @@ namespace UI.SAD.Delivery
             txtCustomer.Text = dt.Rows[0]["strCustNameId"].ToString();
             txtCustomerAddress.Text = dt.Rows[0]["strCustAddress"].ToString();
             hdnCustomer.Value = dt.Rows[0]["intCustomerId"].ToString();
+            try { txtShipmentCost.Text = dt.Rows[0]["monShipmentCost"].ToString(); } catch { }
 
             if (hdnPickingId.Value== null)
             {
@@ -447,14 +449,18 @@ namespace UI.SAD.Delivery
                 string intInvItemId = dt.Rows[i]["intItemIdInventory"].ToString();
                 string editStatus = "0";
                 string doId = "0";
-                try { location = dt.Rows[i]["intLocationId"].ToString(); }
+                try
+                {
+                    location = dt.Rows[i]["intLocationId"].ToString();
+                }
                 catch { location = "0"; }
+                string locationName = "";
 
                 RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                     narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                     priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
                     promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
-                    intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId);
+                    intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName);
             }
 
         }
@@ -489,9 +495,10 @@ namespace UI.SAD.Delivery
                     dgvSales.Visible = false;
                     dgvSalesPicking.Visible = true;
                     ddlLocation.Visible = true;
+                    txtPrice.Visible = false;
                    // lblFgLocation.Visible = true;
-                    txtCustomer.Enabled = true;
-                    txtCustomerAddress.Enabled = true;
+
+                    txtShipmentCost.Enabled = false;
 
                 }
                 else if (Type == "Delivery")
@@ -506,7 +513,9 @@ namespace UI.SAD.Delivery
                     txtVehicle.Enabled = false;
                     pnlLogistic.Enabled = false;
                     ddlLocation.Visible = true;
-                   // lblFgLocation.Visible = true;
+                    txtPrice.Visible = false;
+                    txtShipmentCost.Enabled = false;
+                    // lblFgLocation.Visible = true;
                 }
                 else if (Type == "Return")
                 {
@@ -515,7 +524,8 @@ namespace UI.SAD.Delivery
                     lblDoCustId.Visible = false;
                     txtDoNumber.Visible = false;
                     ddlLocation.Visible = true;
-                   // lblFgLocation.Visible = true;
+                    txtShipmentCost.Enabled = false;
+                    // lblFgLocation.Visible = true;
                 }
             }
             catch { }
@@ -549,7 +559,8 @@ namespace UI.SAD.Delivery
                 ddlSalesOffice.Loads(dt, "intSalesOfficeId", "strName");
 
                 dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
-                ddlCustomerType.Loads(dt, "intTypeID", "strTypeName"); 
+                ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
+                ddlCustomerType.Items.FindByText("Local").Selected = true;
 
                 dt = salesConfig.GetSalesTypeForDO(ddlUnit.SelectedValue().ToString());
                 rdoSalesType.RadioLoad(dt, "intTypeID", "strTypeName");
@@ -1314,7 +1325,8 @@ namespace UI.SAD.Delivery
                         string promtionItemCoaId = promItemCOAId.ToString();
                         string promtionQnty = promQnty.ToString();
                         string promtionItemUom = promItemUOM.ToString();
-                        string location = "0";
+                        string location =ddlLocation.SelectedValue().ToString();
+                        string locationName = ddlLocation.SelectedItem.ToString();
                         string intInvItemId = hdnInvItemId.Value;
                         string editStatus ="0";
                         string doId = hdnDoId.Value;
@@ -1342,7 +1354,7 @@ namespace UI.SAD.Delivery
                           narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                           priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
                           promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom,  location,
-                          intInvItemId, editStatus, invProductId, productCogs, invPromoProductId,promoProductCogs, conversionRate, whId, doId);
+                          intInvItemId, editStatus, invProductId, productCogs, invPromoProductId,promoProductCogs, conversionRate, whId, doId, locationName);
                         btnProductAdd.Visible = true;
                         txtProduct.Text = "";
                         InitilizeXmlAddControl();
@@ -1394,7 +1406,7 @@ namespace UI.SAD.Delivery
             string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice,  string promtionItemId,
             string promtionItem, string promPrices,string promtionUom,string coaId,string coaName, string promtionItemCoaId, string promtionQnty,
             string promtionItemUom,   string location ,string intInvItemId,string editStatus, string invProductId,
-            string productCogs, string invPromoProductId, string promoProductCogs,string conversionRate, string whId,string doId)
+            string productCogs, string invPromoProductId, string promoProductCogs,string conversionRate, string whId,string doId,string locationName)
         {
             try
             {
@@ -1445,8 +1457,9 @@ namespace UI.SAD.Delivery
                 conversionRate,
                 whId,
                 doId,
-                serialId= xmlSerial + 1 
-        };
+                serialId= xmlSerial + 1,
+                locationName
+            };
              
             XmlParser.CreateXml("Delivery", "items", obj, GetXmlFilePath(), out message);
           //  string xmlString = XmlParser.GetXml(GetXmlFilePath()); //"Entry", "items", objects, out message
@@ -1826,16 +1839,7 @@ namespace UI.SAD.Delivery
            
             hdnButtonFire.Value = "false";
         }
-
-        protected void txtDoNumber_TextChanged(object sender, EventArgs e)
-        {
-            int Id = Convert.ToInt32(txtDoNumber.Text);
-            int userUnit = 53; //Convert.ToInt32( Session[SessionParams.UNIT_ID]);
-
-           
-
-        }
-
+         
        
         protected void rdoDeliveryType_SelectedIndexChanged(object sender, EventArgs e)
         {

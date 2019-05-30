@@ -344,6 +344,7 @@
     <Content Include="Content\images\img\NotApproved.png" />
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
+    <Content Include="Content\images\img\save.PNG" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
