@@ -277,7 +277,7 @@
                         </tr>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Sold To Party:"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Customer Type:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlCustomerType" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlCustomerType_SelectedIndexChanged"></asp:DropDownList>
 
@@ -301,7 +301,7 @@
                     <table>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Customer: "></asp:Label></td>
+                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Sold to party: "></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:HiddenField ID="hdnCustomer" runat="server" />
                                 <asp:HiddenField ID="hdnCustomerText" runat="server" />

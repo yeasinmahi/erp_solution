@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Delivery>
+  <items productId="142589" productName="Akij (PCC)" quantity="100.00" rate="433.0000" uomId="12" uomName="Bag" narration="" currency="1" commision="0.0000" commisionTotal="0.0000" discount="0.0000" discountTotal="0.0000" priceTotal="43300.000000" supplierTax="0" vat="0" vatPrice="0" promtionItemId="142589" promtionItem="Akij (PCC)" promPrices="0.0000" promtionUom="12" coaId="138067" coaName="Akij Brand Composit Cement L" promtionItemCoaId="0" promtionQnty="0.00" promtionItemUom="12" location="22046" intInvItemId="0" editStatus="0" invProductId="0" productCogs="0" invPromoProductId="0" promoProductCogs="0" conversionRate="1.00" whId="4" doId="0" serialId="2" />
+</Delivery>

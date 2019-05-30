@@ -756,6 +756,8 @@ namespace UI.SAD.Delivery
                         txtCustomerAddress.Text = tbl[0].strAddress;
                         hdnPriceId.Value = tbl[0].intPriceCatagory.ToString();
                     }
+                    txtShipToParty.Text = txtCustomer.Text;
+                    txtShipToPartyAddress.Text = txtCustomerAddress.Text;
                 }
 
                
