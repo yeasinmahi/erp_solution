@@ -13,6 +13,7 @@ using System.Xml;
 using System.IO;
 using GLOBAL_BLL;
 using Flogging.Core;
+using Utility;
 
 namespace UI.Asset
 {
@@ -62,10 +63,11 @@ namespace UI.Asset
 
                 RadioPreventive.Visible = false;
                 TxtCost.ReadOnly = true;
-               
 
-               
-                
+
+                dt = objMaintenance.LossReason();
+                ddlLossReason.LoadWithSelect(dt, "intId", "strName");
+
                 TxtOrder.Text = data.ToString();
                 if (Po == "1")
                 {
@@ -75,11 +77,9 @@ namespace UI.Asset
                     dt = new DataTable();
                     Int32 intEnroll = Int32.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     dt = objMaintenance.IndentWareHouse(intEnroll);
-                    DdlUnitName.DataSource = dt;
-                    DdlUnitName.DataTextField = "WHName";
-                    DdlUnitName.DataValueField = "ID";
-                    DdlUnitName.DataBind();
-                    Int32 IntUnitID = int.Parse(Session[SessionParams.UNIT_ID].ToString());
+                    DdlUnitName.LoadWithSelect(dt, "ID", "WHName"); 
+                   
+                    int IntUnitID = int.Parse(Session[SessionParams.UNIT_ID].ToString());
                     //Int32 IntUnitID = Int32.Parse(DdlUnitName.SelectedValue.ToString());
                     HdnUnit.Value = IntUnitID.ToString();
 
@@ -139,7 +139,12 @@ namespace UI.Asset
                 txtContactNo.Text = IssueDate.Rows[0]["strContactNo"].ToString();
                 txtUser.Text = IssueDate.Rows[0]["strUserName"].ToString(); 
                 lblunit.Text = IssueDate.Rows[0]["strUnitName"].ToString();
-
+                    try
+                    {
+                        
+                        ddlLossReason.SelectedValue= IssueDate.Rows[0]["intBreakDownReason"].ToString();
+                    }
+                    catch { }
                     vehicleNumber = HdnAssetid.Value.ToString();  
                 dt = new DataTable();
                 dt = objMaintenance.MilegeViewTextbox(vehicleNumber);
@@ -279,7 +284,7 @@ namespace UI.Asset
                 fd.Product, fd.Layer);
             try
             {
-                decimal cost;
+                    decimal cost;
                     int service = int.Parse(DdlService.SelectedValue.ToString());
                     string serviceName = DdlService.SelectedItem.ToString();
                     string type = DdlType.SelectedItem.ToString();
@@ -289,9 +294,7 @@ namespace UI.Asset
                     int intenroll = int.Parse(Session[SessionParams.USER_ID].ToString());
                     int intdept = int.Parse(Session[SessionParams.DEPT_ID].ToString());
                     int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
-
-
-
+                 
                     objMaintenance.RepairMaintenenceTaskInsert(Mnumber, service,serviceName,cost, type, intenroll, intjobid, intdept);
 
                     
@@ -347,7 +350,8 @@ namespace UI.Asset
                         int intjobid = int.Parse(Session[SessionParams.JOBSTATION_ID].ToString());
                         vehicleNumber = HdnAssetid.Value.ToString();
                         int Heavy = int.Parse(DdlHevvyVehicle.SelectedValue.ToString());
-                        objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM, Heavy, txtDriverName.Text.ToString(), txtContactNo.Text.ToString(), txtUser.Text.ToString(), Mnumber);
+                        
+                        objMaintenance.UpdateStatus(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin, presentM, nextM, Heavy, txtDriverName.Text.ToString(), txtContactNo.Text.ToString(), txtUser.Text.ToString(), Mnumber,ddlLossReason.SelectedValue());
 
                         if (DdlStatus.SelectedItem.ToString() == "Close")
                         {

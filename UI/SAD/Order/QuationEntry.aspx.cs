@@ -432,8 +432,8 @@ namespace UI.SAD.Order
 
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            try
-            {
+            //try
+            //{
 
                 if (ddlUOM.Items.Count > 0 && ddlCurrency.Items.Count > 0 && hdnCustomer.Value != "" && hdnProduct.Value != "" && txtQun.Text.Trim() != "")
                 {
@@ -451,16 +451,16 @@ namespace UI.SAD.Order
 
                         string chrPr = "0.0", incPr = "0.0";
 
-                        if (hdnXFactoryChr.Value == "true" && rdoNeedVehicle.SelectedIndex == 0)
-                        {
-                            if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
-                        }
-                        else if (hdnXFactoryChr.Value != "true")
-                        {
-                            if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
-                        }
+                        //if (hdnXFactoryChr.Value == "true" && rdoNeedVehicle.SelectedIndex == 0)
+                        //{
+                        //    if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
+                        //}
+                        //else if (hdnXFactoryChr.Value != "true")
+                        //{
+                        //    if (hdnCharBasedOnUom.Value == "true") chrPr = lblExtPr.Text;
+                        //}
 
-                        if (hdnIncenBasedOnUom.Value == "true") incPr = txtIncPr.Text;
+                        //if (hdnIncenBasedOnUom.Value == "true") incPr = txtIncPr.Text;
 
 
                         decimal promQnty = 0;
@@ -505,11 +505,11 @@ namespace UI.SAD.Order
                         txtProduct.Focus();
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Toaster(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Toaster(ex.Message);
+            //}
         }
         protected void btnCancel_Click(object sender, EventArgs e)
         {
@@ -910,10 +910,10 @@ namespace UI.SAD.Order
                 foreach (DataRow row in distingRow.Rows)
                 {
                     string attrId = panel.Controls.OfType<DropDownList>()
-                        .FirstOrDefault(control => control.ID.Equals("ddl" + counter))?.SelectedItem.Value;
+                        .FirstOrDefault(control => control.ID ==("ddl" + counter))?.SelectedItem.Value;
                     string strAtt = panel.Controls.OfType<Label>().FirstOrDefault(control => control.ID.Equals("ddllbl" + counter))?.Text;
                     string attrValue = panel.Controls.OfType<DropDownList>()
-                        .FirstOrDefault(control => control.ID.Equals("ddl" + counter))?.SelectedItem.Text;
+                        .FirstOrDefault(control => control.ID == ("ddl" + counter))?.SelectedItem.Text;
                     string descriptions = strAtt + " :" + attrValue;
                     itemSpecification += descriptions + "_";
                     dynamic obj = new

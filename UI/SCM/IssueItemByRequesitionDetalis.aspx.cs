@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 using BLL.DropDown;
+using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
 using Model;
@@ -52,7 +53,7 @@ namespace UI.SCM
                 string strApproveBy = Request.QueryString["strApproveBy"];
                 //string DeptId = Request.QueryString["DeptId"];
                 //string SectionID = Request.QueryString["SectionID"];
-                string SectionName = Request.QueryString["SectionName"];
+                string sectionName = Request.QueryString["SectionName"];
                 intwh = int.Parse(Request.QueryString["intwh"]);
 
                 lblReqCode.Text = ReqCode;
@@ -60,7 +61,7 @@ namespace UI.SCM
                 lblReqDept.Text = strDepartmentName;
                 lblReqBy.Text = strReqBy;
                 lblApproved.Text = strApproveBy;
-                lblSection.Text = SectionName;
+                lblSection.Text = sectionName;
 
                 LoadCostCenter(intwh);
 
@@ -140,11 +141,12 @@ namespace UI.SCM
                                 string remarks = ((Label)dgvDetalis.Rows[index].FindControl("lblRemarks")).Text.Trim();
                                 StoreIssueByItem storeIssueByItem = new StoreIssueByItem()
                                 {
-                                    IssueQuantity = Convert.ToDecimal(stockQty),
-                                    IssueValue = Convert.ToDecimal(stockVlaue),
+                                    IssueQuantity = Convert.ToDecimal(issueQty),
+                                    StockQuantity = Convert.ToDecimal(stockQty),
+                                    IssueValue = (Convert.ToDecimal(stockVlaue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
                                     ItemId = Convert.ToInt32(itemId),
                                     LocationId = Convert.ToInt32(locationId),
-                                    StockQuantity = Convert.ToDecimal(stockQty),
+                                    
                                     Remarks = remarks
                                 };
                                 storeIssueByItems.Add(storeIssueByItem);
@@ -176,17 +178,36 @@ namespace UI.SCM
                         
                         if (objects.Count > 0)
                         {
-                            xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
-                                Enroll);
-
-                            Alert(msg);
+                            if (intwh == 1)
+                            {
+                                StoreIssueBll bll = new StoreIssueBll();
+                                int issueId = bll.StoreIssue(storeIssue, storeIssueByItems);
+                                if (issueId > 0)
+                                {
+                                    Alert("Successfully Issued with issueId:"+issueId);
+                                }
+                                else
+                                {
+                                    Alert("Something error in issue.");
+                                }
+                            }
+                            else
+                            {
+                                xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                                string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                    Enroll);
+                                Alert(msg);
+                            }
+                            //xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                            //string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                            //    Enroll);
+                            //Alert(msg);
                             dgvDetalis.UnLoad();
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                         }
                         else
                         {
-                            Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
+                            Toaster("You have to issue at least 1 item ", Common.TosterType.Warning);
                         }
                     }
 

@@ -155,6 +155,9 @@
     <Compile Include="DropDown\CostCenterBll.cs" />
     <Compile Include="DropDown\Currency.cs" />
     <Compile Include="DropDown\Supplier.cs" />
+    <Compile Include="Inventory\FactoryPurchaseReturnBll.cs" />
+    <Compile Include="Inventory\FactoryReceiveMrrBll.cs" />
+    <Compile Include="Inventory\FactoryReceiveMRRItemDetailBll.cs" />
     <Compile Include="Inventory\InconsistanceItemBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentAuthorityBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
@@ -163,6 +166,7 @@
     <Compile Include="Inventory\PoTypeBll.cs" />
     <Compile Include="HR\UnitBll.cs" />
     <Compile Include="Inventory\StoreIssueBll.cs" />
+    <Compile Include="Inventory\StoreIssueByItemBll.cs" />
     <Compile Include="Inventory\StoreIssueToFloreTransectionStatusBll.cs" />
     <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />

@@ -68,10 +68,10 @@ namespace Purchase_BLL.Asset
 
 
 
-        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo,string strUser, int Mnumber)
+        public void UpdateStatus(string status, DateTime dteStart, string priority, string costcenter, string assign, string notes, int intcostcenter, int technichin,string presentM,string nextM,int Heavy,string strDriverName,string strConatactNo,string strUser, int Mnumber,int LossReason)
         {
             TblUpdateAssetMaintenanceTableAdapter insertdate = new TblUpdateAssetMaintenanceTableAdapter();
-            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo,strUser, Mnumber);
+            insertdate.UpdateMaintenanceStatusGetData(status, dteStart, priority, costcenter, assign, notes, intcostcenter, technichin,presentM,nextM,Heavy,strDriverName,strConatactNo,strUser, LossReason, Mnumber);
         }
 
 
@@ -637,6 +637,11 @@ namespace Purchase_BLL.Asset
         {
             IndentWHNameTableAdapter indentwh = new IndentWHNameTableAdapter();
             return indentwh.IndentWhareHouseGetData(intEnroll);
+        }
+        public DataTable LossReason()
+        {
+            LossReasonDataTableAdapter adp = new LossReasonDataTableAdapter();
+            return adp.GetLossReasonData();
         }
 
         public DataTable CorporateMaintenancePOWorkOrder(int intItem, int Mnumber, int intenroll, int intjobid, int intdept)

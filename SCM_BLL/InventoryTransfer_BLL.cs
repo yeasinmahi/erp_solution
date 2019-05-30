@@ -394,6 +394,83 @@ namespace SCM_BLL
             sprChallanWiseRouteCostTableAdapter adp = new sprChallanWiseRouteCostTableAdapter();
             return adp.TripEntry(strChallanNo, intUnitID, intSalesOffId, intShipPointId);
         }
+        public DataTable GetFgCostUpdate(int type,DateTime dteDate,int enroll,string xml,int intItemId,int intUnitID,int CostElementGroup,int CoAID,decimal monRate)
+        {
+            try
+            {
+                sprFGCostUpdateTableAdapter adp = new sprFGCostUpdateTableAdapter();
+                return adp.FgCostUpdate(type,dteDate,enroll,xml,intItemId,intUnitID,CostElementGroup,CoAID,monRate);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetFgCostGroup()
+        {
+            try
+            {
+                tblItemCostingFGCostGroupTableAdapter adp = new tblItemCostingFGCostGroupTableAdapter();
+                return adp.GetCostGroup();
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetItemByUnitID(int unitid)
+        {
+            try
+            {
+                tblItemTableAdapter adp = new tblItemTableAdapter();
+                return adp.GetItemByUnit(unitid);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetFGDetail(int itemid, int unitid)
+        {
+            try
+            {
+                TblItemCostingFGDetailTableAdapter adp = new TblItemCostingFGDetailTableAdapter();
+                return adp.GetItemCostingFGDetail(itemid,unitid);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public string UpdateProductionApprove(int insertBy,int productId)
+        {
+            string msg = "";
+            try
+            {
+                TblProductionTableAdapter adp = new TblProductionTableAdapter();
+                adp.UpdateProduction(insertBy, productId);
+                return msg="Approved Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+        public string UpdateProductionClose(int insertBy, int productId)
+        {
+            string msg = "";
+            try
+            {
+                TblProductionTableAdapter adp = new TblProductionTableAdapter();
+                adp.ProductionClose(insertBy, productId);
+                return msg = "Closed Successfully";
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
 
     }
 }

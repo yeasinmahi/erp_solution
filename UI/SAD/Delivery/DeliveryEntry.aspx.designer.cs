@@ -103,13 +103,31 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
         
         /// <summary>
-        /// hdnDA control.
+        /// hdnPromoCogs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnDA;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoCogs;
+        
+        /// <summary>
+        /// hdnPromoInvItemId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoInvItemId;
+        
+        /// <summary>
+        /// hdnPromoInvStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnPromoInvStock;
         
         /// <summary>
         /// hdnsalestype control.
@@ -130,31 +148,40 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnvisibility;
         
         /// <summary>
-        /// hdnLogisBasedOnUom control.
+        /// hdnButtonFire control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLogisBasedOnUom;
+        protected global::System.Web.UI.WebControls.HiddenField hdnButtonFire;
         
         /// <summary>
-        /// hdnCharBasedOnUom control.
+        /// hdnSupplierId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnCharBasedOnUom;
+        protected global::System.Web.UI.WebControls.HiddenField hdnSupplierId;
         
         /// <summary>
-        /// hdnIncenBasedOnUom control.
+        /// hdnSupplierName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnIncenBasedOnUom;
+        protected global::System.Web.UI.WebControls.HiddenField hdnSupplierName;
+        
+        /// <summary>
+        /// hdnWHId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnWHId;
         
         /// <summary>
         /// hdnCreditSales control.
@@ -166,49 +193,49 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnCreditSales;
         
         /// <summary>
-        /// hdnLm control.
+        /// hdnWHName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLm;
+        protected global::System.Web.UI.WebControls.HiddenField hdnWHName;
         
         /// <summary>
-        /// hdnBl control.
+        /// hdnProductCOGS control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnBl;
+        protected global::System.Web.UI.WebControls.HiddenField hdnProductCOGS;
         
         /// <summary>
-        /// HiddenField1 control.
+        /// hdnInventoryStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField HiddenField1;
+        protected global::System.Web.UI.WebControls.HiddenField hdnInventoryStock;
         
         /// <summary>
-        /// hdnXFactoryVhl control.
+        /// hdnInvItemId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnXFactoryVhl;
+        protected global::System.Web.UI.WebControls.HiddenField hdnInvItemId;
         
         /// <summary>
-        /// hdnXFactoryChr control.
+        /// hdnnarration control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnXFactoryChr;
+        protected global::System.Web.UI.WebControls.HiddenField hdnnarration;
         
         /// <summary>
         /// hdnPrice control.
@@ -220,13 +247,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnPrice;
         
         /// <summary>
-        /// hdnLogisGain control.
+        /// hdnPickingId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnLogisGain;
+        protected global::System.Web.UI.WebControls.HiddenField hdnPickingId;
         
         /// <summary>
         /// hdnVhlPrice control.
@@ -238,31 +265,31 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.HiddenField hdnVhlPrice;
         
         /// <summary>
-        /// hdnChrgPrice control.
+        /// hdnDoId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnChrgPrice;
+        protected global::System.Web.UI.WebControls.HiddenField hdnDoId;
         
         /// <summary>
-        /// hdnVhlMerge control.
+        /// hdnDoQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnVhlMerge;
+        protected global::System.Web.UI.WebControls.HiddenField hdnDoQty;
         
         /// <summary>
-        /// hdnChrgMerge control.
+        /// hdnRequistId control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hdnChrgMerge;
+        protected global::System.Web.UI.WebControls.HiddenField hdnRequistId;
         
         /// <summary>
         /// hdnSuppTax control.
@@ -290,6 +317,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hdnVatPrice;
+        
+        /// <summary>
+        /// hdnDelivery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnDelivery;
         
         /// <summary>
         /// rdoDeliveryType control.
@@ -353,6 +389,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblOrderId;
+        
+        /// <summary>
+        /// txtReffNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtReffNo;
         
         /// <summary>
         /// lblUnitName control.
@@ -445,13 +490,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtDate;
         
         /// <summary>
-        /// CalendarExtender1 control.
+        /// CalendarDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarDate;
         
         /// <summary>
         /// Label7 control.
@@ -472,13 +517,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtDueDate;
         
         /// <summary>
-        /// CalendarExtender2 control.
+        /// CalendarDueDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
+        protected global::AjaxControlToolkit.CalendarExtender CalendarDueDate;
         
         /// <summary>
         /// lblitm control.
@@ -625,6 +670,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.RadioButtonList rdoNeedVehicle;
         
         /// <summary>
+        /// rdoVehicleCompany control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdoVehicleCompany;
+        
+        /// <summary>
         /// hdnPriceId control.
         /// </summary>
         /// <remarks>
@@ -641,15 +695,6 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlVehicleMain;
-        
-        /// <summary>
-        /// rdoVehicleCompany control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdoVehicleCompany;
         
         /// <summary>
         /// hdnVehicle control.
@@ -688,6 +733,24 @@ namespace UI.SAD.Delivery {
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender3;
         
         /// <summary>
+        /// txtSupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSupplier;
+        
+        /// <summary>
+        /// AutoCompleteExtender4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender4;
+        
+        /// <summary>
         /// txtDriver control.
         /// </summary>
         /// <remarks>
@@ -713,24 +776,6 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlVehicle3rd;
-        
-        /// <summary>
-        /// txtSupplier control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSupplier;
-        
-        /// <summary>
-        /// AutoCompleteExtender4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender4;
         
         /// <summary>
         /// ddlCurrency control.
@@ -760,22 +805,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.RadioButtonList rdoSalesType;
         
         /// <summary>
-        /// txtReffNo control.
+        /// btnProductAddAlls control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReffNo;
-        
-        /// <summary>
-        /// btnProductAddAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnProductAddAll;
+        protected global::System.Web.UI.WebControls.Button btnProductAddAlls;
         
         /// <summary>
         /// btnSubmit control.
@@ -850,6 +886,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
         
         /// <summary>
+        /// ddlLocation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
+        
+        /// <summary>
         /// lblComm control.
         /// </summary>
         /// <remarks>
@@ -893,5 +938,32 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvSales;
+        
+        /// <summary>
+        /// dgvSalesPicking control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvSalesPicking;
+        
+        /// <summary>
+        /// cvtComAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvtComAdd;
+        
+        /// <summary>
+        /// cvtCom control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator cvtCom;
     }
 }

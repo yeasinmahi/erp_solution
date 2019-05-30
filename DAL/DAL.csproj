@@ -435,6 +435,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>UnitTds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\FactoryPurchaseReturnTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactoryPurchaseReturnTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\FactoryReceiveMRRItemDetailTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactoryReceiveMRRItemDetailTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\FactoryReceiveMRRTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactoryReceiveMRRTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InConsistanceItemTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -472,6 +487,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\StoreIssueByItem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreIssueByItem.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\StoreIssueTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StoreIssueTds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inventory\StoreIssueToFloreTransectionStatusTds.Designer.cs">
       <DependentUpon>StoreIssueToFloreTransectionStatusTds.xsd</DependentUpon>
@@ -1218,6 +1243,39 @@
     <None Include="HR\UnitTds.xss">
       <DependentUpon>UnitTds.xsd</DependentUpon>
     </None>
+    <None Include="Inventory\FactoryPurchaseReturnTds.xsc">
+      <DependentUpon>FactoryPurchaseReturnTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryPurchaseReturnTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FactoryPurchaseReturnTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\FactoryPurchaseReturnTds.xss">
+      <DependentUpon>FactoryPurchaseReturnTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRItemDetailTds.xsc">
+      <DependentUpon>FactoryReceiveMRRItemDetailTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRItemDetailTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FactoryReceiveMRRItemDetailTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRItemDetailTds.xss">
+      <DependentUpon>FactoryReceiveMRRItemDetailTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRTds.xsc">
+      <DependentUpon>FactoryReceiveMRRTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FactoryReceiveMRRTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRTds.xss">
+      <DependentUpon>FactoryReceiveMRRTds.xsd</DependentUpon>
+    </None>
     <None Include="Inventory\InConsistanceItemTds.xsc">
       <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
     </None>
@@ -1294,6 +1352,28 @@
     </None>
     <None Include="Inventory\RfqMainTds.xss">
       <DependentUpon>RfqMainTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueByItem.xsc">
+      <DependentUpon>StoreIssueByItem.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueByItem.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreIssueByItem.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\StoreIssueByItem.xss">
+      <DependentUpon>StoreIssueByItem.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueTds.xsc">
+      <DependentUpon>StoreIssueTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\StoreIssueTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StoreIssueTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\StoreIssueTds.xss">
+      <DependentUpon>StoreIssueTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\StoreIssueToFloreTransectionStatusTds.xsc">
       <DependentUpon>StoreIssueToFloreTransectionStatusTds.xsd</DependentUpon>

@@ -281,11 +281,11 @@ namespace UI.SAD.Order
                 //orderdelete.orderdeletefinal(intOrdernum);
 
                 Int32 enroll = int.Parse(Session[SessionParams.USER_ID].ToString());
-               
+
 
                 string intCustid;
-            DataTable dtr = new DataTable();
-            int count = grdvQuationDetails.Rows.Count;
+                DataTable dtr = new DataTable();
+                int count = grdvQuationDetails.Rows.Count;
 
                 if (grdvQuationDetails.Rows.Count > 0)
                 {
@@ -348,18 +348,18 @@ namespace UI.SAD.Order
                             int ExtId = 0;
                             int salestype = 90;
                             string ThanaRate = "0";
-                            dt = bll.getUOM(int.Parse(Session["intCustid"].ToString()),int.Parse("0"), int.Parse("0"), int.Parse("90") , Convert.ToDateTime(DateTime.Now));
+                            dt = bll.getUOM(int.Parse(Session["intCustid"].ToString()), int.Parse("0"), int.Parse("0"), int.Parse("90"), Convert.ToDateTime(DateTime.Now));
                             string uom = dt.Rows[0]["strUOM"].ToString();
                             string pUOm = "";
                             int proitemUOMID = int.Parse(dt.Rows[0]["intID"].ToString());
                             int uomid = int.Parse(dt.Rows[0]["intID"].ToString());
-                            int incentiveId =  int.Parse(Session["IntOrderNumber"].ToString());
-                        string code = "";
+                            int incentiveId = int.Parse(Session["IntOrderNumber"].ToString());
+                            string code = "";
                             if (quantity != "0")
                             {
                                 if (quantity != "0")
                                 {
-                                    narration = narration+ " [" + quantity + "] " + uom + " " + strItemName + " "+ remarks;
+                                    narration = narration + " [" + quantity + "] " + uom + " " + strItemName + " " + remarks;
 
                                 }
 
@@ -398,8 +398,8 @@ namespace UI.SAD.Order
                     intSalesOffId = int.Parse(dtpend.Rows[0]["intSalesOffId"].ToString());
                     ContactPhone = dtpend.Rows[0]["strContactNo"].ToString();
                     //narration = dtpend.Rows[0]["strCusName"].ToString() + narration;
-                Int32 unit = int.Parse(dtpend.Rows[0]["intunitid"].ToString());
-                string monLim = "", monBalance = "";
+                    Int32 unit = int.Parse(dtpend.Rows[0]["intunitid"].ToString());
+                    string monLim = "", monBalance = "";
 
                     decimal balance = decimal.Parse(dtpend.Rows[0]["monOutstanding"].ToString());
                     decimal Limit = decimal.Parse(dtpend.Rows[0]["monCreditLimit"].ToString());
@@ -413,10 +413,10 @@ namespace UI.SAD.Order
                     extCause = "Pcs";
                     Charge = 1;
                     ysnDelivaryOrder = true;
-               
+
 
                     #endregion ------------ Insertion End ----------------
-                DateTime date = DateTime.Parse(DateTime.Now.ToString());
+                    DateTime date = DateTime.Parse(DateTime.Now.ToString());
                     XmlDocument doc = new XmlDocument();
                     doc.Load(filePathForXML1);
                     XmlNode dSftTm = doc.SelectSingleNode("node");
@@ -425,36 +425,39 @@ namespace UI.SAD.Order
                     string message = bll.DoCreateFromQuotaion(xmlString, ref id, enroll, unit, date, date, custtype, Custid, shopid, narration, addresss, Territoryid, Charge, logis, Charge, Charge, incentiveId, incentiveId, currencyId, conversionRate, intsalestype, Totalamount, extCause, note
                     , contatcAt, ContactPhone, intSalesOffId, Depotid, ysnDelivaryOrder, ysnsdv, ref code);
                     File.Delete(filePathForXML1);
-              
-                //bll.getDoCompleteComplete(enroll, code, unit);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + "Your Do Number : " + code + "');", true);
+
+                    //bll.getDoCompleteComplete(enroll, code, unit);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + "Your Do Number : " + code + "');", true);
                     lblDo.Text = "DO No: " + code.ToString();
                     grdvQuationDetails.DataBind();
 
-                if (code.Length > 0)
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + code + "');", true);
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+                    if (code.Length > 0)
+                    {
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + code + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
 
 
+                    }
+                    else
+                    {
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Fail.....');", true);
+
+                    }
+
+
+                    //Int32 ONumber = Convert.ToInt32(Session["ordernumber1"].ToString());
+                    //objDo.getorderInactive(ONumber);
+
+                    //}
                 }
-                else
-                {
-
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
-
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Fail.....');", true);
-
-                }
-                //Int32 ONumber = Convert.ToInt32(Session["ordernumber1"].ToString());
-                //objDo.getorderInactive(ONumber);
-
-                //}
-            }
-            else
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Your Balance !');", true);
-            }
+            
+            //else
+            //{
+            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Your Balance !');", true);
+            
 
 
 

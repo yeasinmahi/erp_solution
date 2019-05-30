@@ -88,8 +88,8 @@ namespace SAD_BLL.Item
 
 
         public static string[] GetDoPendingItemByCustomer(string customerId,string shipPointId, string prefix)
-        { 
-             
+        {
+            tblDoPendintItem = new Delivery_TDS.QryDOPendingItemDataTable[Convert.ToInt32(customerId)];
             QryDOPendingItemTableAdapter adp = new QryDOPendingItemTableAdapter();
             tblDoPendintItem[e] = adp.GetDoPendingByCustomer(int.Parse(customerId), int.Parse(shipPointId));
 
@@ -144,7 +144,8 @@ namespace SAD_BLL.Item
         }
 
         public static string[] GetDoPendingItemByDo(string doId,string shipPointId, string prefix)
-        { 
+        {
+            tblDoPendintItem = new Delivery_TDS.QryDOPendingItemDataTable[Convert.ToInt32(shipPointId)];
             // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
             QryDOPendingItemTableAdapter adp = new QryDOPendingItemTableAdapter();
             tblDoPendintItem[e] = adp.GetPendingByDo(int.Parse(doId),int.Parse(shipPointId));
@@ -199,11 +200,11 @@ namespace SAD_BLL.Item
             }
         }
 
-        public static string[] GetShipToParty(string unitId, string salesOffice,string customerType, string prefix)
+        public static string[] GetShipToParty(string customerId, string prefix)
         {
-            // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
+            tblShipParty = new Delivery_TDS.QryShipToPartyDataTable[Convert.ToInt32(customerId)];
             QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
-            tblShipParty[e] = adp.GetShipToParty(int.Parse(unitId), int.Parse(customerType), int.Parse(salesOffice));
+            tblShipParty[e] = adp.GetShipToParty(int.Parse(customerId));
 
             prefix = prefix.Trim().ToLower();
             DataTable tbl = new DataTable();
@@ -243,8 +244,8 @@ namespace SAD_BLL.Item
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strName"] + " [" + tbl.Rows[i]["intDisPointId"] + "]";
-                  //  retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
+                    retStr[i] = tbl.Rows[i]["strName"]+"["+ tbl.Rows[i]["intCusID"] + "]";
+                    //  retStr[i] = tbl.Rows[i]["strProductName"] + " [" + tbl.Rows[i]["intDoId"] + "]" + " [" + tbl.Rows[i]["intProductId"] + "]";
                 }
 
                 return retStr;

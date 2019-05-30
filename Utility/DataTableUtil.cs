@@ -57,7 +57,11 @@ namespace Utility
         public static DataTable GetRows<T>(this DataTable dt, string columnName, T value)
         {
             EnumerableRowCollection<DataRow> rows = GetRowCollection(dt, columnName, value);
-            return rows.CopyToDataTable();
+            if (rows != null && rows.Any())
+            {
+                return rows.CopyToDataTable();
+            }
+            return new DataTable();
         }
 
         public static DataRow GetRow<T>(this DataTable dt, string columnName, T value)

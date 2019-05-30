@@ -219,9 +219,10 @@
              var alotmentqnt = parseFloat(document.getElementById('lblMaxoctenval').textContent);
              if (alotmentqnt > 10) {
                  var octenrate = parseFloat(document.getElementById('lblOctenRatePerLtr').textContent);
-                 //alert(alotmentqnt);
+                 octenrate = parseFloat(octenrate).toFixed(2);
                  var consumedmilage = document.getElementById('txtConsumed').value;
                  var costoctenqnt = parseFloat(consumedmilage) / (parseFloat(alotmentqnt));
+                 costoctenqnt = parseFloat(costoctenqnt).toFixed(2);
                  var totOctencost = parseFloat(costoctenqnt) * parseFloat(octenrate);
                  if (!isNaN(costoctenqnt)) {
                      document.getElementById('txtOcten').value = costoctenqnt;
@@ -229,11 +230,23 @@
                  if (!isNaN(totOctencost)) {
                      document.getElementById('txtOctenCost').value = Math.round(totOctencost);
                  }
+                 
+                document.getElementById("txtPetrolCost").disabled = true;
+                document.getElementById("txtOctenCost").disabled = true;
+                document.getElementById("txtCNGCost").disabled = true;
+                document.getElementById("txtMobilCost").disabled = true;
+                document.getElementById("txtTotal").disabled = true;
              }
          }
      
 
     </script>
+
+    <style type="text/css">
+        .auto-style1 {
+            height: 26px;
+        }
+    </style>
 
 </head>
 <body>
@@ -388,17 +401,18 @@
                       
                 </tr>
                 <tr class="tblrowOdd">
-                        <td style="text-align:right"><asp:Label ID="lblPetrolQnt" CssClass="lbl" runat="server" Text="PetrolQnt:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtPetrolQnt" placeholder="Only Numeric Digit" runat="server" Width="200px" AutoPostBack="false"  CssClass="txtBox"></asp:TextBox></td>      
+                     <%--onkeyup="sum();"--%>
+                        <td style="text-align:right" class="auto-style1"><asp:Label ID="lblPetrolQnt" CssClass="lbl" runat="server" Text="PetrolQnt:  " ></asp:Label></td>
+                        <td class="auto-style1"> <asp:TextBox ID="txtPetrolQnt" placeholder="Only Numeric Digit" runat="server" Width="200px" AutoPostBack="false"  CssClass="txtBox"></asp:TextBox></td>      
 
-                        <td style="text-align:right"><asp:Label ID="lblPetrolCost"  CssClass="lbl" runat="server" Text="PetrolCost:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtPetrolCost" placeholder="Only Numeric Digit"  onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px"  CssClass="txtBox"></asp:TextBox></td>      
+                        <td style="text-align:right" class="auto-style1"><asp:Label ID="lblPetrolCost"  CssClass="lbl" runat="server" Text="PetrolCost:  " ></asp:Label></td>
+                        <td class="auto-style1"> <asp:TextBox ID="txtPetrolCost" placeholder="Only Numeric Digit"  AutoPostBack="false" runat="server" Width="200px"  CssClass="txtBox"></asp:TextBox></td>      
 
-                        <td style="text-align:right"><asp:Label ID="lblOctenQnt" CssClass="lbl" runat="server" Text="OctenQnt:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtOcten" placeholder="Only Numeric Digit"   runat="server" Width="200px"  CssClass="txtBox"  onkeypress="javascript:return isNumber (event)"></asp:TextBox></td>      
+                        <td style="text-align:right" class="auto-style1"><asp:Label ID="lblOctenQnt" CssClass="lbl" runat="server" Text="OctenQnt:  " ></asp:Label></td>
+                        <td class="auto-style1"> <asp:TextBox ID="txtOcten" placeholder="Only Numeric Digit"   runat="server" Width="200px"  CssClass="txtBox"  onkeypress="javascript:return isNumber (event)"></asp:TextBox></td>      
 
-                        <td style="text-align:right"><asp:Label ID="lblOctenCost" CssClass="lbl" runat="server" Text="OctenCost:  " ></asp:Label></td>
-                        <td> <asp:TextBox ID="txtOctenCost" placeholder="Only Numeric Digit" onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px"  CssClass="txtBox"></asp:TextBox></td>      
+                        <td style="text-align:right" class="auto-style1"><asp:Label ID="lblOctenCost" CssClass="lbl" runat="server" Text="OctenCost:  " ></asp:Label></td>
+                        <td class="auto-style1"> <asp:TextBox ID="txtOctenCost" placeholder="Only Numeric Digit" onkeyup="sum();" AutoPostBack="false" runat="server" Width="200px"  CssClass="txtBox"></asp:TextBox></td>      
 
                  </tr>
 

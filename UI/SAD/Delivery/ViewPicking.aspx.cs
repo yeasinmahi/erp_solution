@@ -42,13 +42,9 @@ namespace UI.SAD.Delivery
             DateTime toDate = txtTo.Text == "" ? DateTime.Now.AddDays(30) : CommonClass.GetDateAtSQLDateFormat(txtTo.Text);
             hdnFrom.Value = fromDate.ToString();
             hdnTo.Value = toDate.ToString();
-            //dgvCustomerVSPendingQnt.DataBind();
+            //dgvViewPicking.DataBind();
         }
-
-        protected void btnCancel_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
@@ -87,25 +83,40 @@ namespace UI.SAD.Delivery
         }
 
 
-        protected void Complete_Click(object sender, EventArgs e)
+        protected void Create_Delivery_Click(object sender, EventArgs e)
         {
-
             char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
-            string intCustomerId = searchKey[0].ToString();
-
-            Session["intCustomerId"] = intCustomerId;
+            string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
+            string PopupType = "Delivery";
+            string strReportType = "Picking";
+            string ShipPointID = ddlShip.SelectedValue;
 
-            Session["intid"] = intid;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('QuatationToDOCreate.aspx');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Delivery('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
 
         }
 
-        protected void dgvCustomerVSPendingQnt_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void Picking_Edit_Click(object sender, EventArgs e)
         {
-            //dgvCustomerVSPendingQnt.PageIndex = e.NewPageIndex;
+            char[] delimiterChars = { ',' };
+            string temp = ((Button)sender).CommandArgument.ToString();
+            string[] searchKey = temp.Split(delimiterChars);
+            string intCusID = searchKey[0].ToString();
+            string intid = searchKey[1].ToString();
+            string PopupType = "Picking_Edit";
+            string strReportType = "Picking";
+            string ShipPointID = ddlShip.SelectedValue;
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
+
+        }
+
+
+        protected void dgvViewPicking_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //dgvViewPicking.PageIndex = e.NewPageIndex;
         }
 
 

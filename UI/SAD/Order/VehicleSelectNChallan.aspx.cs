@@ -5,9 +5,11 @@ using GLOBAL_BLL;
 using LOGIS_BLL;
 using LOGIS_BLL.Trip;
 using LOGIS_DAL.Trip;
+using SAD_BLL.Customer;
 using SAD_BLL.Customer.Report;
 using SAD_BLL.Item;
 using SAD_BLL.Sales;
+using SAD_DAL.Customer;
 using SAD_DAL.Sales;
 using System;
 using System.Collections.Generic;
@@ -167,10 +169,6 @@ namespace UI.SAD.Order
             {
 
                 Session["sesCurType"] = rdoVhlCompany.SelectedValue;
-
-            
-
-
                 BindGrid(GetXmlFilePath());
 
                 //if (hdnDoCode.Value != "")
@@ -521,10 +519,65 @@ namespace UI.SAD.Order
             txtVehicle.Text = ((LinkButton)sender).CommandArgument;
             //VehicleChange();
         }
-        
+        private void SalesConfigSet()
+        {
+            SalesConfig sc = new SalesConfig();
+            SalesConfigTDS.TblSalesConfigDataTable t = sc.GetInfoForDO(ddlUnit.SelectedValue);
+
+            if (t.Rows.Count > 0)
+            {
+                bool editPr = t[0].ysnEditPriceInDO;
+                bool viewPr = t[0].ysnViewPriceInDO;
+                bool chln = t[0].ysnChallanNoDO;
+                bool dis = false;//t[0].ysnDisPointEnable;
+
+                hdnCreditSales.Value = t[0].ysnCreditSales.ToString().ToLower();
+
+            }
+        }
+
+        private bool CheckLimitBalance(decimal currentAmount)
+        {
+            decimal lm = decimal.Parse(hdnLm.Value);
+            decimal bl = decimal.Parse(hdnBl.Value);
+            decimal cur = 0;//lm + bl - currentAmount;
+
+            if (hdnCreditSales.Value == "true")
+            {
+                cur = lm + (bl * -1) - currentAmount;  //cur = lm + bl - currentAmount;
+                //hdnRest.Value = cur.ToString();
+                if (lm > 0 && cur >= 0)
+                {
+                    return true;
+                }
+                //else if (lm >= 0 && cur < 0 && (hdnUnit.Value == "2" || int.Parse(ddlUnit.SelectedValue.ToString()) == 2)) //else if (lm > 0 && cur < 0)
+                else if (lm >= 0 && cur < 0 && (hdnUnit.Value == "2" || int.Parse(ddlUnit.SelectedValue.ToString()) == 2 || hdnUnit.Value == "6" || int.Parse(ddlUnit.SelectedValue.ToString()) == 6 || hdnUnit.Value == "1" || int.Parse(ddlUnit.SelectedValue.ToString()) == 1)) //else if (lm > 0 && cur < 0)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+            else
+            {
+                //hdnRest.Value = bl.ToString();
+
+                if (bl >= currentAmount)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
+     
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
+
+           
+
 
 
             var fd = log.GetFlogDetail(start, location, "Submit", null);
@@ -535,38 +588,53 @@ namespace UI.SAD.Order
                 fd.Product, fd.Layer);
             //try
             //{
+
+            CustomerInfo ci = new CustomerInfo();
+            decimal lm = 0, bl = 0;
+            ci.GetCustomerCreditLimitCreditBalance(hdnCustomer.Value, ddlUnit.SelectedValue, Session[SessionParams.USER_ID].ToString(), ref lm, ref bl);
+            lblLM.Text = CommonClass.GetFormettingNumber(lm);
+            lblBl.Text = CommonClass.GetFormettingNumber(bl);
+            hdnLm.Value = lblLM.Text;
+            hdnBl.Value = lblBl.Text;
+            //btnSubmit.Enabled = CheckLimitBalance(0);
+
+
+
+            if (decimal.Parse(hdnBl.Value) <0)
+            {
+
                 SalesOrderView bllsv = new SalesOrderView();
 
                 StatementC bll = new StatementC(); XmlDocument xmlDoc = xm.LoadXmlFile(GetXmlFilePath());
-                    XmlNode node = xmlDoc.SelectSingleNode(xm.MainNode);
-                    string xml = ("<" + xm.MainNode + "> " + node.InnerXml + " </" + xm.MainNode + ">");
+                XmlNode node = xmlDoc.SelectSingleNode(xm.MainNode);
+                string xml = ("<" + xm.MainNode + "> " + node.InnerXml + " </" + xm.MainNode + ">");
 
-                    string narrTop = "";
-                    string specification = "";
-                    for (int i = 0; i < GridView1.Rows.Count; i++)
+                string narrTop = "";
+                string specification = "";
+                for (int i = 0; i < GridView1.Rows.Count; i++)
+                {
+                    if (GridView1.Rows[i].RowType == DataControlRowType.DataRow)
                     {
-                        if (GridView1.Rows[i].RowType == DataControlRowType.DataRow)
-                        {
-                            narrTop += "[" + ((Label)(GridView1.Rows[i].Cells[2].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[3].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[1].Controls[1])).Text + "] ";
-                         
-                        }
-                    }
-            //specification = ((HiddenField)GridView1.Rows[i].FindControl("hdnstrTermsNCondition")).Value.ToString();
-            char[] ch = { '[', ']' };
-            string[] array;
-            string searchkey = txtVehicle.Text;
-            array = searchkey.Split(ch);
-            if (searchkey.Length <= 1) hdnVehicle.Value = "";
-            else
-            {
-                hdnVehicle.Value = array[1].ToString();
-                hdnVehicleText.Value = array[0].ToString();
-            }
+                        narrTop += "[" + ((Label)(GridView1.Rows[i].Cells[2].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[3].Controls[1])).Text + " " + ((Label)(GridView1.Rows[i].Cells[1].Controls[1])).Text + "] ";
 
-            string strsupplier = ddlSupllier.SelectedItem.Text.ToString();
-            string suppliercoaid =ddlSupllier.SelectedValue.ToString();
-          
-            string id = "", code = "";
+                    }
+                }
+                //specification = ((HiddenField)GridView1.Rows[i].FindControl("hdnstrTermsNCondition")).Value.ToString();
+                char[] ch = { '[', ']' };
+                string[] array;
+                string searchkey = txtVehicle.Text;
+                array = searchkey.Split(ch);
+                if (searchkey.Length <= 1) hdnVehicle.Value = "";
+                else
+                {
+                    hdnVehicle.Value = array[1].ToString();
+                    hdnVehicleText.Value = array[0].ToString();
+                }
+
+                string strsupplier = ddlSupllier.SelectedItem.Text.ToString();
+                string suppliercoaid = ddlSupllier.SelectedValue.ToString();
+
+                string id = "", code = "";
                 SAD_BLL.Sales.VehicleSelect vs = new SAD_BLL.Sales.VehicleSelect();
                 vs.VehicleAssignNChallan(xml, Session[SessionParams.USER_ID].ToString(), hdnUnit.Value, DateTime.Now
                     , hdnSOid.Value, hdnShipPoint.Value, hdnVehicle.Value
@@ -583,19 +651,26 @@ namespace UI.SAD.Order
                 //Response.Redirect("../../Accounts/Voucher/Exit.aspx");
                 if (code.Length > 0)
                 {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + code + "');", true);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
-            
-                    
-                }
-                else {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + code + "');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
-               
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Fail.....');", true);
-                
+
                 }
+
+                else
+                {
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Fail.....');", true);
+
+                }
+            }
+            else
+            {
+               ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Balance Exceed ..');", true);
                
+            }
 
 
 
@@ -613,6 +688,8 @@ namespace UI.SAD.Order
             // ends
             tracker.Stop();
         }
+      
+
         private void ChangeCompanyVehicle()
         {
             if (rdoVhlCompany.SelectedValue.ToLower() == "true")

@@ -1,5 +1,4 @@
 ﻿using SCM_BLL;
-using BLL.Inventory;
 using SCM_DAL.MrrReceiveTDSTableAdapters;
 using System;
 using System.Data;

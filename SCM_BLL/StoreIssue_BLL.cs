@@ -38,10 +38,6 @@ namespace SCM_BLL
 
 
         }
-
-
-
-
         public DataTable GetIssueItem(int intItemId, int intwh, DateTime dteFrom, DateTime dteTo)
         {
             string strMsg = "";

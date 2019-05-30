@@ -173,7 +173,7 @@ namespace UI.SAD.Order
             string intid = searchKey[1].ToString();
 
             Session["intid"] = intid;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "EditPageQuotation('QuotationEditNSave.aspx');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "EditPageQuotation('../Delivery/QuotationEdit.aspx');", true);
 
         }
 

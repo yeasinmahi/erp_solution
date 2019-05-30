@@ -12,39 +12,23 @@ namespace BLL.Inventory
         }
         public string GetSupplierName(int supplierId)
         {
-            DataTable dt = _dal.GetSupplier(supplierId);
-            if (dt.Rows.Count > 0)
-            {
-                return dt.Rows[0]["strSupplierName"].ToString();
-            }
-            return string.Empty;
+            return _dal.GetSupplierName(supplierId);
         }
         public string GetSupplierAddress(int supplierId)
         {
-            DataTable dt = _dal.GetSupplier(supplierId);
-            if (dt.Rows.Count > 0)
-            {
-                return dt.Rows[0]["strOrgAddress"].ToString();
-            }
-            return string.Empty;
+            return _dal.GetSupplierAddress(supplierId);
         }
         public string GetSupplierEmail(int supplierId)
         {
-            DataTable dt = _dal.GetSupplier(supplierId);
-            if (dt.Rows.Count > 0)
-            {
-                return dt.Rows[0]["strOrgMail"].ToString();
-            }
-            return string.Empty;
+            return _dal.GetSupplierEmail(supplierId);
         }
         public string GetSupplierPhone(int supplierId)
         {
-            DataTable dt = _dal.GetSupplier(supplierId);
-            if (dt.Rows.Count > 0)
-            {
-                return dt.Rows[0]["strOrgContactNo"].ToString();
-            }
-            return string.Empty;
+            return _dal.GetSupplierPhone(supplierId);
+        }
+        public int GetCoaId(int supplierId)
+        {
+            return _dal.GetCoaId(supplierId);
         }
     }
 }

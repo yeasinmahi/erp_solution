@@ -7,7 +7,7 @@ namespace DALOOP.Inventory
 {
     public class StoreIssueDal
     {
-        private DataTable _dt;
+        private DataTable _dt = new DataTable();
         public int Insert(int intUnitId, int intWhid, int intSrid, string strSrNo,string dteSrDate,string strReceivedBy,
            int intLastActionBy, int intCostCenter)
         {

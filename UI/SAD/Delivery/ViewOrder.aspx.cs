@@ -22,6 +22,10 @@ namespace UI.SAD.Delivery
         string location = "SAD";
         string start = "starting SAD\\Order\\DeliveryViewForPendingOrder";
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
+
+        SalesOrderView obj = new SalesOrderView();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -57,12 +61,13 @@ namespace UI.SAD.Delivery
         }
         protected void ddlUnit_DataBound(object sender, EventArgs e)
         {
-            Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
+            Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;            
             ddlShip.DataBind();
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
+            
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {
@@ -73,6 +78,10 @@ namespace UI.SAD.Delivery
             Session[SessionParams.CURRENT_CUS_TYPE] = ddlCusType.SelectedValue;
         }
 
+        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hdnShipPointid.Value = ddlShip.SelectedValue;
+        }
 
         protected void txtCus_TextChanged(object sender, EventArgs e)
         {
@@ -81,22 +90,53 @@ namespace UI.SAD.Delivery
             if (temp.Length > 1) hdnCustomer.Value = temp[temp.Length - 1];
             else hdnCustomer.Value = "";
         }
-
-
+        
         protected void Complete_Click(object sender, EventArgs e)
         {
+            if (hdnconfirm.Value == "1")
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intCustomerId = searchKey[0].ToString();
+                string intid = searchKey[1].ToString();
 
+                string message = obj.DOApprove(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                dgvViewOrder.DataBind();
+            }
+            
+        }
+
+        protected void DO_Edit_Click(object sender, EventArgs e)
+        {
             char[] delimiterChars = { ',' };
             string temp = ((Button)sender).CommandArgument.ToString();
             string[] searchKey = temp.Split(delimiterChars);
-            string intCustomerId = searchKey[0].ToString();
-
-            Session["intCustomerId"] = intCustomerId;
+            string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
+            string PopupType = "DO_Edit";
+            string strReportType = "DO_Base";
+            string ShipPointID = ddlShip.SelectedValue;
 
-            Session["intid"] = intid;
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Registration('QuatationToDOCreate.aspx');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
+            dgvViewOrder.DataBind();
+        }
 
+        protected void DO_Cancel_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "1")
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intCustomerId = searchKey[0].ToString();
+                string intid = searchKey[1].ToString();
+
+                string message = obj.DOCancel(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                dgvViewOrder.DataBind();
+            }
         }
 
         protected void dgvViewOrder_PageIndexChanging(object sender, GridViewPageEventArgs e)
