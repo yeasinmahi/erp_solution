@@ -43,7 +43,7 @@ namespace UI.SCM
                     // ignored
                 }
                 ddlInvoice.Enabled = false;
-                DefaltBind();
+                DefaultBind();
             }
         }
         #endregion
@@ -661,12 +661,13 @@ namespace UI.SCM
             }
             catch (Exception ex)
             {
+                Toaster(ex.Message,Common.TosterType.Error);
             }
             return sms;
 
 
         }
-        private void DefaltBind()
+        private void DefaultBind()
         {
             try
             {
