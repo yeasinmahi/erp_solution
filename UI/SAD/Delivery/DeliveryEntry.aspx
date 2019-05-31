@@ -60,20 +60,19 @@
             // alert(document.getElementById('hdnDelivery').value);
         }
         function SetPrice(txt) {
-            var price = parseFloat(document.getElementById('txtPrice').value);
-
-            var qnt = parseFloat(document.getElementById('txtQun').value);
             
-            var RequestType = document.getElementById('hdnDelivery').value; 
+            var qnt = txt.value; 
+            var price = document.getElementById('hdnPrice').value;
+            var RequestType = document.getElementById('hdnDelivery').value;  
             var doqty = document.getElementById('hdnDoQty').value; 
-              
-            
+          
             var tot = 0;
-            if (RequestType == "Picking_Edit" && RequestType == "Picking") {
-                
-                if (qnt > doqty) {
+            if (RequestType == "Picking_Edit" || RequestType == "Picking") {
+
+                if (parseFloat(qnt) > parseFloat(doqty)) {
+                      document.getElementById('txtQun').innerText = doqty;
                     alert('Pleae Check Delivery Quantity')
-                    document.getElementById('txtQun').innerText = doqty;
+                  
                 }
                
             }
@@ -512,7 +511,7 @@
                                 </asp:DropDownList>
                             </td>
                             <td align="center">
-                                <asp:Label ID="lblComm" runat="server"></asp:Label>
+                                <asp:Label ID="lblDiscount" runat="server"></asp:Label>
                             </td>
                             <td align="center" style="vertical-align: middle;">
                                 <asp:TextBox ID="txtQun" runat="server" AutoPostBack="false" onkeyup="SetPrice(this);" OnClientClick="setButtonFire();"  Width="60px" TextMode="Number" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
@@ -658,7 +657,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvSalesPicking" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvSalesPicking_RowDeleting"
-                                    OnRowCancelingEdit="dgvSalesPicking_RowCancelingEdit" OnRowEditing="dgvSalesPicking_RowEditing" OnRowUpdating="dgvSalesPicking_RowUpdating"
+                                    OnRowCancelingEdit="dgvSalesPicking_RowCancelingEdit" OnRowEditing="dgvSalesPicking_RowEditing" OnRowDataBound="RowDataBound" OnRowUpdating="dgvSalesPicking_RowUpdating"
                                     BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -794,20 +793,30 @@
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center"  >
-                                                                                       <ItemTemplate>
-                                                <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("locationName") %>'></asp:Label>
-                                            </ItemTemplate> 
+                                         <asp:TemplateField HeaderText="locationID" SortExpression="location" Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblLocationId" runat="server" Text='<%# Bind("location") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
 
+                                         <asp:TemplateField HeaderText="DO No" SortExpression="doid">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblDoId" runat="server" Text='<%# Bind("doid") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Center" />
+                                        </asp:TemplateField>
+
+
+                                        <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center"  >
+                                           <ItemTemplate>
+                                                <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("locationName") %>'></asp:Label>  
+                                            </ItemTemplate>  
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
-                                                <asp:DropDownList ID="ddlGLocation" Width="60px" runat="server" DataSourceID="ObjectDataSource1" DataTextField="strLocationName" DataValueField="intStoreLocationID">
-                                                </asp:DropDownList>
-                                                <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetFGLocation" TypeName="SAD_DAL.Delivery.Delivery_TDSTableAdapters.FGLocationDataTableAdapter">
-                                                    <SelectParameters>
-                                                        <asp:ControlParameter ControlID="hdnWHId" DefaultValue="" Name="intWH" PropertyName="Value" Type="Int32" />
-                                                    </SelectParameters>
-                                                </asp:ObjectDataSource>
+                                                <asp:DropDownList ID="ddlFGlocation" Width="60px" runat="server" >
+                                               </asp:DropDownList>
+                                                
                                             </EditItemTemplate>
                                             
                                         </asp:TemplateField>

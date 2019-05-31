@@ -267,7 +267,7 @@ namespace UI.SAD.Delivery
                 {
                     string productId = dt.Rows[i]["intProductId"].ToString();
                     string productName = dt.Rows[i]["strProductName"].ToString();
-                    string quantity = dt.Rows[i]["numQuantity"].ToString();
+                    string quantity = dt.Rows[i]["numRestQuantity"].ToString();
                     string coaId = dt.Rows[i]["intCOAAccId"].ToString();
                     string coaName = dt.Rows[i]["strCOAAccName"].ToString();
 
@@ -281,16 +281,15 @@ namespace UI.SAD.Delivery
                     string conversionRate = dt.Rows[i]["monConversionRate"].ToString();
                     string commision = dt.Rows[i]["monCommission"].ToString();
 
-                    string commisionTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["monCommission"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString()));
-                    string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString()));
+                    string commisionTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["monCommission"].ToString()) * decimal.Parse(dt.Rows[i]["numRestQuantity"].ToString()));
+                    string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[i]["numRestQuantity"].ToString()));
 
                     decimal priceTotal = decimal.Parse(dt.Rows[i]["monPrice"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString());
 
                     string discount = dt.Rows[i]["decDiscountRate"].ToString();
-                    string whId = "0";
-                    string whName = "0";
-                    hdnWHId.Value = "0";
-                    hdnWHName.Value = "0";
+                    string whId = hdnWHId.Value;
+                    string whName = hdnWHName.Value; 
+
                     string supplierTax = dt.Rows[i]["monSuppTax"].ToString();
                     string vat = dt.Rows[i]["monVAT"].ToString();
                     string vatPrice = dt.Rows[i]["monVatPrice"].ToString(); ;
@@ -309,13 +308,14 @@ namespace UI.SAD.Delivery
                     string intInvItemId = "0";
                     string editStatus = "0";
                     string doId = dt.Rows[i]["intDoId"].ToString();
+                    string doqty = dt.Rows[i]["numRestQuantity"].ToString();
 
 
                     RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                         narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                         priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
                         promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
-                        intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName);
+                        intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName, doqty);
 
                 }
                 
@@ -449,6 +449,8 @@ namespace UI.SAD.Delivery
                 string intInvItemId = dt.Rows[i]["intItemIdInventory"].ToString();
                 string editStatus = "0";
                 string doId = "0";
+                string doqty = dt.Rows[i]["numRestQuantity"].ToString(); 
+
                 try
                 {
                     location = dt.Rows[i]["intLocationId"].ToString();
@@ -460,7 +462,7 @@ namespace UI.SAD.Delivery
                     narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                     priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
                     promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
-                    intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName);
+                    intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName,doqty);
             }
 
         }
@@ -1006,12 +1008,12 @@ namespace UI.SAD.Delivery
 
             LoadGridwithXml();
 
-            DataSet ds = dgvSales.DataSource as DataSet; 
-          
-            UpdateXml(id,ds, lblProdutId.Text, lblProductName.Text,lblPrice.Text,   txtQtyEdit.Text, lblUoM.Text, lblUomId.Text, lblCommision.Text, lblnarr.Text);
+            DataSet ds = dgvSales.DataSource as DataSet;
+
+            UpdateXml(id, ds, lblProdutId.Text, lblProductName.Text, lblPrice.Text, txtQtyEdit.Text, lblUoM.Text, lblUomId.Text, lblCommision.Text, lblnarr.Text, "0", "0", "0");
         }
 
-        private void UpdateXml(int id,DataSet ds,string ProductId,string ProductName,string price ,string editQty,string uom,string UomId,string Commision,string narration)
+        private void UpdateXml(int id, DataSet ds, string ProductId, string ProductName, string price, string editQty, string uom, string UomId, string Commision, string narration, string locationId, string locationName, string doId)
         {
             try
             {
@@ -1030,14 +1032,15 @@ namespace UI.SAD.Delivery
                 int promItemUOM = 0;
                 string promItem = "";
                 string promUom = "";
+                decimal promPrice = 0;
+                decimal discount = 0;
 
-                decimal promPrice = itemPromotion.GetPromotion(ProductId, hdnCustomer.Value, hdnPriceId.Value, UomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                    , editQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId); 
-                string quantity = editQty;
-                 
-               
-                decimal discountTotal = decimal.Parse(Commision) * decimal.Parse(editQty);
+                PromotionWithDiscount(ProductId, doId, ref promQnty, ref promItemId, ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom, ref promPrice, ref discount);
+
+
+                decimal discountTotal = discount * decimal.Parse(editQty);
                 decimal priceTotal = decimal.Parse(price) * decimal.Parse(editQty);
+
                 ds.Tables[0].Rows[id]["discountTotal"] = discountTotal;
                 ds.Tables[0].Rows[id]["priceTotal"] = priceTotal;
 
@@ -1052,6 +1055,8 @@ namespace UI.SAD.Delivery
                 ds.Tables[0].Rows[id]["promtionQnty"] = promQnty;
                 ds.Tables[0].Rows[id]["promtionItemUom"] = promItemUOM;
                 ds.Tables[0].Rows[id]["promPrices"] = promPrice;
+                ds.Tables[0].Rows[id]["location"] = locationId;
+                ds.Tables[0].Rows[id]["locationName"] = locationName;
                 ds.Tables[0].Rows[id]["editStatus"] = "1";
 
 
@@ -1064,7 +1069,7 @@ namespace UI.SAD.Delivery
             catch { }
         }
 
-       
+
 
         protected void rdoVehicleCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1133,7 +1138,7 @@ namespace UI.SAD.Delivery
                 {
                     hdnProduct.Value = "";
                 }
-                return;
+                
             }
             catch {  }
         }
@@ -1144,7 +1149,7 @@ namespace UI.SAD.Delivery
             txtQun.Text = "0";
             txtPrice.Text = "0";
             lblTotal.Text = "0";
-            lblComm.Text = "0";
+            lblDiscount.Text = "0";
             ddlUOM.UnLoad();
             hdnProduct.Value = "";
             hdnProductText.Value = "";
@@ -1227,7 +1232,24 @@ namespace UI.SAD.Delivery
             
         }
 
-        
+        protected void RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow && dgvSalesPicking.EditIndex == e.Row.RowIndex)
+            {
+                DropDownList ddlFGlocation = (DropDownList)e.Row.FindControl("ddlFGlocation");
+                Label lblLocationId = (Label)e.Row.FindControl("lblLocationId");
+                dt = deliveryBLL.FgWarehouseLocation(int.Parse(hdnWHId.Value));
+
+                ddlFGlocation.DataSource = dt;
+                ddlFGlocation.DataTextField = "strLocationName";
+                ddlFGlocation.DataValueField = "intStoreLocationID";
+                ddlFGlocation.DataBind();
+                //string selectedCity = DataBinder.Eval(e.Row.DataItem, "City").ToString();
+                ddlFGlocation.Items.FindByValue(lblLocationId.Text).Selected = true;
+                         
+                    
+            }
+        }
 
         protected void btnProductAdd_Click(object sender, EventArgs e)
         {
@@ -1273,32 +1295,16 @@ namespace UI.SAD.Delivery
                         string promItem = "0";
                         string promUom = "0";
                         decimal promPrice = 0;
-                        if (hdnRequistId.Value=="0" || type=="DO_Edit")
-                        {
-                                 promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                                , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
-
-                           
-                             
-                        }
-                        else if (type == "Picking" || type== "Picking_Edit")
-                        {
-                            dt=deliveryBLL.DeliveryOrderItemPriceByDo(int.Parse(hdnDoId.Value),int.Parse(hdnProduct.Value));
-                            promQnty = decimal.Parse(dt.Rows[0]["numPromotion"].ToString());
-                            promItemId = int.Parse(dt.Rows[0]["intPromItemId"].ToString());
-                            promItemCOAId = int.Parse(dt.Rows[0]["intPromItemCOAId"].ToString());
-                            promItemUOM = int.Parse(dt.Rows[0]["intPromUOM"].ToString());
-                            promItem =  dt.Rows[0]["strPromItemName"].ToString();
-                            promPrice = decimal.Parse(dt.Rows[0]["monPromPrice"].ToString());
-                            promUom = dt.Rows[0]["intPromUOM"].ToString(); 
-
-                        }
+                        decimal discounts = 0;
                          
+
+                        PromotionWithDiscount(hdnProduct.Value, hdnDoId.Value, ref promQnty, ref promItemId, ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom, ref promPrice, ref discounts);
+
                         string productId = hdnProduct.Value;
                         string productName = hdnProductText.Value;
                         string quantity = txtQun.Text.ToString();
 
-                      
+
                         string invProductId = hdnInvItemId.Value;
                         string productCogs = hdnProductCOGS.Value;
                         string rate = txtPrice.Text;
@@ -1306,12 +1312,11 @@ namespace UI.SAD.Delivery
                         string uomName = ddlUOM.SelectedItem.ToString();
                         string narration = narr;
                         string currency = ddlCurrency.SelectedValue().ToString();
-                        string commision = lblComm.Text.ToString();
-                        string commisionTotal = lblComm.Text.ToString();
+                        string commision = discounts.ToString();
+                        string commisionTotal = (discounts * decimal.Parse(txtQun.Text.ToString())).ToString();
                         string conversionRate = txtConvRate.Text.ToString();
-                        string discount = (decimal.Parse(lblComm.Text.ToString()) * decimal.Parse(txtQun.Text.ToString())).ToString(); 
-
-                        decimal discountTotal = decimal.Parse(lblComm.Text.ToString()) * decimal.Parse(txtQun.Text.ToString());
+                        string discount = discounts.ToString();
+                        decimal discountTotal = decimal.Parse(lblDiscount.Text.ToString()) * decimal.Parse(txtQun.Text.ToString());
                         decimal priceTotal = decimal.Parse(txtPrice.Text.ToString()) * decimal.Parse(txtQun.Text.ToString());
                         string supplierTax = hdnSuppTax.Value;
                         string vat = hdnVat.Value;
@@ -1325,23 +1330,25 @@ namespace UI.SAD.Delivery
                         string promtionItemCoaId = promItemCOAId.ToString();
                         string promtionQnty = promQnty.ToString();
                         string promtionItemUom = promItemUOM.ToString();
-                        string location =ddlLocation.SelectedValue().ToString();
+                        string location = ddlLocation.SelectedValue().ToString();
                         string locationName = ddlLocation.SelectedItem.ToString();
                         string intInvItemId = hdnInvItemId.Value;
-                        string editStatus ="0";
+                        string editStatus = "0";
                         string doId = hdnDoId.Value;
-                        
+                        string doqty= hdnDoQty.Value;
+
 
                         try { location = ddlLocation.SelectedItem.Value; }
                         catch { location = "0"; }
                         string whId = hdnWHId.Value;
-                        string whName = hdnWHName.Value; 
+                        string whName = hdnWHName.Value;
 
 
                         if (CheckXmlItemReqData(productId, doId, rdoDeliveryType.SelectedItem.ToString()))
-                        { 
-                            Toaster("Can not add same product  duplicate.", "", Common.TosterType.Error);
+                        {
+                            Toaster("Can not add same product  duplicate.", "Picking", Common.TosterType.Error);
                             LoadGridwithXml();
+                            btnProductAdd.Visible = true;
                             return;
                         }
 
@@ -1353,12 +1360,12 @@ namespace UI.SAD.Delivery
                         RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                           narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
                           priceTotal.ToString(), supplierTax, vat, vatPrice, promtionItemId, promtionItem, promPrices,
-                          promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom,  location,
-                          intInvItemId, editStatus, invProductId, productCogs, invPromoProductId,promoProductCogs, conversionRate, whId, doId, locationName);
+                          promtionUom, coaId, coaName, promtionItemCoaId, promtionQnty, promtionItemUom, location,
+                          intInvItemId, editStatus, invProductId, productCogs, invPromoProductId, promoProductCogs, conversionRate, whId, doId, locationName, doqty);
                         btnProductAdd.Visible = true;
                         txtProduct.Text = "";
                         InitilizeXmlAddControl();
-                        
+
                         txtProduct.Focus();
                     }
                 }
@@ -1367,7 +1374,7 @@ namespace UI.SAD.Delivery
             {
                 btnProductAdd.Visible = true;
                 ex.ToString();
-                
+
             }
         }
 
@@ -1406,7 +1413,7 @@ namespace UI.SAD.Delivery
             string discountTotal, string priceTotal, string supplierTax, string vat, string vatPrice,  string promtionItemId,
             string promtionItem, string promPrices,string promtionUom,string coaId,string coaName, string promtionItemCoaId, string promtionQnty,
             string promtionItemUom,   string location ,string intInvItemId,string editStatus, string invProductId,
-            string productCogs, string invPromoProductId, string promoProductCogs,string conversionRate, string whId,string doId,string locationName)
+            string productCogs, string invPromoProductId, string promoProductCogs,string conversionRate, string whId,string doId,string locationName,string doqty)
         {
             try
             {
@@ -1458,7 +1465,8 @@ namespace UI.SAD.Delivery
                 whId,
                 doId,
                 serialId= xmlSerial + 1,
-                locationName
+                locationName,
+                doqty
             };
              
             XmlParser.CreateXml("Delivery", "items", obj, GetXmlFilePath(), out message);
@@ -1565,11 +1573,13 @@ namespace UI.SAD.Delivery
                 decimal vatPrice = 0;
                 decimal convRate = 0;
                 decimal productRate = 0;
+              
+ 
                 if (hdnRequistId.Value=="0" || type=="DO_Edit")
                 {
                     productRate = itemPrice.GetPrice(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
                   , ref commission, ref suppTax, ref vat, ref vatPrice, ref convRate);
-
+                    
                     dt = deliveryBLL.GetDiscount(hdnCustomer.Value, hdnProduct.Value);
                     if (dt.Rows.Count>0)
                     {
@@ -1588,10 +1598,11 @@ namespace UI.SAD.Delivery
                         vatPrice = decimal.Parse(dt.Rows[0]["monVatPrice"].ToString());
                         suppTax = decimal.Parse(dt.Rows[0]["monSuppTax"].ToString());
                         txtQun.Text=dt.Rows[0]["numRestQuantity"].ToString();
-                        lblTotal.Text = (decimal.Parse(dt.Rows[0]["numRestQuantity"].ToString()) * productRate).ToString("N2");  ;
-
+                        lblTotal.Text = (decimal.Parse(dt.Rows[0]["numRestQuantity"].ToString()) * productRate).ToString("N2"); 
                         hdnDoQty.Value= dt.Rows[0]["numRestQuantity"].ToString();
+                      
                     }
+                    hdnPrice.Value = productRate.ToString();
                 }
               
 
@@ -1620,7 +1631,7 @@ namespace UI.SAD.Delivery
             try
             {
                 txtPrice.Text = CommonClass.GetFormettingNumber(productRate);
-                lblComm.Text = CommonClass.GetFormettingNumber(commission);
+                lblDiscount.Text = CommonClass.GetFormettingNumber(commission);
                 hdnSuppTax.Value = CommonClass.GetFormettingNumber(suppTax);
                 hdnVat.Value = CommonClass.GetFormettingNumber(vat);
                 hdnVatPrice.Value = CommonClass.GetFormettingNumber(vatPrice);
@@ -1632,7 +1643,7 @@ namespace UI.SAD.Delivery
         private void PriceInitialize()
         {
             txtPrice.Text = "0.0";
-            lblComm.Text = "0.0";
+            lblDiscount.Text = "0.0";
             hdnSuppTax.Value = "0.0";
             hdnVat.Value = "0.0";
             hdnVatPrice.Value = "0.0";
@@ -1648,6 +1659,36 @@ namespace UI.SAD.Delivery
         protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetPrice(rdoDeliveryType.SelectedItem.Text);
+        }
+        private void PromotionWithDiscount(string productId, string doId, ref decimal promQnty, ref int promItemId, ref int promItemCOAId, ref int promItemUOM, ref string promItem, ref string promUom, ref decimal promPrice, ref decimal discount)
+        { 
+
+            if (hdnRequistId.Value == "0" || hdnDelivery.Value == "DO_Edit")
+            {
+                promPrice = itemPromotion.GetPromotion(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+               , txtQun.Text, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+                dt = deliveryBLL.GetDiscount(hdnCustomer.Value, productId);
+                if (dt.Rows.Count > 0)
+                {
+                    discount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
+                }
+
+            }
+            else if (hdnDelivery.Value == "Picking" || hdnDelivery.Value == "Picking_Edit")
+            {
+                dt = deliveryBLL.DeliveryOrderItemPriceByDo(int.Parse(doId), int.Parse(productId));
+                promQnty = decimal.Parse(dt.Rows[0]["numPromotion"].ToString());
+                promItemId = int.Parse(dt.Rows[0]["intPromItemId"].ToString());
+                promItemCOAId = int.Parse(dt.Rows[0]["intPromItemCOAId"].ToString());
+                promItemUOM = int.Parse(dt.Rows[0]["intPromUOM"].ToString());
+                promItem = dt.Rows[0]["strPromItemName"].ToString();
+                promPrice = decimal.Parse(dt.Rows[0]["monPromPrice"].ToString());
+                promUom = dt.Rows[0]["intPromUOM"].ToString();
+                discount = decimal.Parse(dt.Rows[0]["decDiscountRate"].ToString());
+
+            }
+       
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -1862,16 +1903,18 @@ namespace UI.SAD.Delivery
         {
             int id = dgvSalesPicking.Rows[e.RowIndex].DataItemIndex;
 
-            Label lblPrice = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblPrice") as Label; 
-            
+            Label lblPrice = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblPrice") as Label;
+
             Label lblProdutId = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblProdutId") as Label;
             Label lblProductName = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblProductName") as Label;
 
             TextBox txtQtyEdit = dgvSalesPicking.Rows[e.RowIndex].FindControl("txtQtyEdit") as TextBox;
+            DropDownList ddlFGlocation = dgvSalesPicking.Rows[e.RowIndex].FindControl("ddlFGlocation") as DropDownList;
             Label lblUoM = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblUoM") as Label;
             Label lblUomId = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblUomId") as Label;
             Label lblCommision = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblcommision") as Label;
             Label lblnarr = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblnarr") as Label;
+            Label lblDoId = dgvSalesPicking.Rows[e.RowIndex].FindControl("lblDoId") as Label;
 
 
             dgvSalesPicking.EditIndex = -1;
@@ -1880,7 +1923,7 @@ namespace UI.SAD.Delivery
 
             DataSet ds = dgvSalesPicking.DataSource as DataSet;
 
-            UpdateXml(id, ds, lblProdutId.Text, lblProductName.Text, lblPrice.Text, txtQtyEdit.Text, lblUoM.Text, lblUomId.Text, lblCommision.Text, lblnarr.Text);
+            UpdateXml(id, ds, lblProdutId.Text, lblProductName.Text, lblPrice.Text, txtQtyEdit.Text, lblUoM.Text, lblUomId.Text, lblCommision.Text, lblnarr.Text, ddlFGlocation.SelectedValue().ToString(), ddlFGlocation.SelectedItem.Text, lblDoId.Text);
         }
 
         protected void dgvSalesPicking_RowDeleting(object sender, GridViewDeleteEventArgs e)
