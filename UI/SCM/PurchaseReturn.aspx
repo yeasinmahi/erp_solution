@@ -70,6 +70,7 @@
 
                 <div class="leaveApplication_container">
                     <asp:HiddenField ID="hdnMrrNo" runat="server" />
+                    <asp:HiddenField ID="hdnSupplierId" runat="server" />
                     <div class="tabs_container" style="text-align: left">Purchase Return:<hr />
                     </div>
                     <table>
@@ -146,6 +147,12 @@
                                         <asp:TemplateField HeaderText="Returned" ItemStyle-HorizontalAlign="right" SortExpression="returnQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblReturnQty" runat="server" Text='<%# Bind("returnQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monFCRate","{0:n2}") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 

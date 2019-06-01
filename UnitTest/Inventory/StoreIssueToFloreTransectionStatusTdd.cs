@@ -10,26 +10,26 @@ namespace UnitTest.Inventory
         private readonly StoreIssueToFloreTransectionStatusBll _bll = new StoreIssueToFloreTransectionStatusBll();
         private DataTable _dt;
 
-        [TestCase(0,0)]
-        public void bll_insert_int(int itemId,int inventoryId)
+        [TestCase(0,0,0,0)]
+        public void bll_insert_int(int itemId,int inventoryId, int whId, int unitId)
         {
-            int result = _bll.Insert(itemId, inventoryId);
+            int result = _bll.Insert(itemId, inventoryId,whId,unitId);
             Assert.That(result>0);
         }
         [Test]
-        public void bll_GetAll_Datatable()
+        public void bll_GetAll_DataTable()
         {
             _dt = _bll.GetAll();
             Assert.That(_dt.Rows.Count > 0);
         }
         [Test]
-        public void bll_GetTodays_Datatable()
+        public void bll_GetTodays_DataTable()
         {
             _dt = _bll.GetTodays();
             Assert.That(_dt.Rows.Count > 0);
         }
         [Test]
-        public void bll_GetTodaysComplete_Datatable()
+        public void bll_GetTodaysComplete_DataTable()
         {
             _dt = _bll.GetTodaysComplete();
             Assert.That(_dt.Rows.Count > 0);

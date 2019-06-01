@@ -41,16 +41,13 @@
             else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Remarks'); }
             else if (parseFloat(monValue) == 0 || $.trim(monValue) == 0 || $.trim(monValue) == "" || $.trim(monValue) == null || $.trim(monValue) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Receive  Value must be greater than zero'); }
             else {
-                var confirm_value = document.createElement("INPUT");
-                confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) {
-                    confirm_value.value = "Yes";
-                    document.getElementById("hdnPreConfirm").value = "1";
+                    
                     showLoader();
+                    return true;
                 }
                 else {
-                    confirm_value.value = "No";
-                    document.getElementById("hdnPreConfirm").value = "0";
+                    return false;
                 }
 
                 // document.getElementById("hdnPreConfirm").value = "1";
@@ -70,9 +67,8 @@
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
-                <div style="height: 100px;"></div>
+                <div style="height: 30px;"></div>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <%--=========================================Start My Code From Here===============================================--%>
@@ -82,7 +78,7 @@
                     <asp:HiddenField ID="hdnPreConfirm" runat="server" />
                     <asp:HiddenField ID="hdnTransfromValue" runat="server" />
                     <asp:HiddenField ID="hdnStockQty" runat="server" />
-                    <div class="tabs_container">INVENTORY TRANSFER
+                    <div class="tabs_container">INVENTORY LOAN PAY
                         <hr />
                     </div>
 
@@ -102,7 +98,7 @@
                         </tr>
                     </table>
                     <table style="border-radius: 10px; width: 700px; border-style: groove">
-                        <caption style="text-align: left">Loan Pay</caption>
+                        
                         <tr>
                             <td style='text-align: left;'>To Pay</td>
                             <td style='text-align: left;'>
@@ -137,7 +133,7 @@
                             <td style='text-align: left;' colspan="3">
                                 <asp:TextBox ID="txtRemarks" Width="400px" runat="server" CssClass="txtBox" AutoPostBack="false"></asp:TextBox>
                                 <asp:Label ID="lblDetalis" runat="server" ForeColor="Blue"></asp:Label>
-                                <asp:Button ID="btnReceive" runat="server" Text="Receive" OnClientClick="Confirms();" OnClick="btnReceive_Click" />
+                                <asp:Button ID="btnReceive" runat="server" Text="Submit" OnClientClick="return Confirms();" OnClick="btnReceive_OnClick" />
                             </td>
                         </tr>
 

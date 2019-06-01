@@ -42,7 +42,7 @@
     </script>
      <script type="text/javascript">
          function Delivery(intid, intCusID, strReportType, ShipPointID, PopupType) {
-            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
          }
 
          function Picking_Edit(intid, intCusID, strReportType, ShipPointID, PopupType) {
@@ -224,7 +224,7 @@
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
     <asp:TemplateField HeaderText="Create Delivery"><ItemTemplate>                                                                                                          
-    <asp:Button ID="Complete" runat="server" Text="Create Delivery" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Create_Delivery_Click"  CommandArgument='<%# Eval("intId")%>' /></ItemTemplate>
+    <asp:Button ID="Complete" runat="server" Text="Create Delivery" class="nextclick" BackColor="Gray" ForeColor="Black" Font-Bold="true" CommandName="complete" OnClick="Create_Delivery_Click"  CommandArgument='<%# Eval("intCusID")+","+Eval("intid")%>' /></ItemTemplate>
     </asp:TemplateField>
         
     <asp:TemplateField HeaderText="Picking Edit"><ItemTemplate>                                                                                                          

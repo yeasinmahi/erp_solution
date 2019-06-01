@@ -18,7 +18,7 @@ namespace BLL.Inventory
         private readonly AccountsVoucherJournalBll _accountsVoucherJournalBll = new AccountsVoucherJournalBll();
         private readonly AccountsVoucherJournalDetailsBll _accountsVoucherJournalDetailsBll = new AccountsVoucherJournalDetailsBll();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
-        private string storeIssueNarration = "Store Issue";
+        private readonly string storeIssueNarration = "Store Issue";
         private readonly string materialNarration = "Material Issue";
 
         private bool GetUnitId(int whId, out int unitId)
@@ -64,7 +64,7 @@ namespace BLL.Inventory
                                 issueId, 3);
                             if (inventoryId > 0)
                             {
-                                int inventoryStatusId = _storeIssueToFloorTransectionStatusBll.Insert(issueByItem.ItemId, inventoryId);
+                                int inventoryStatusId = _storeIssueToFloorTransectionStatusBll.Insert(issueByItem.ItemId, inventoryId,whId,unitId);
                                 if (inventoryStatusId > 0)
                                 {
                                     int coaId = _itemList.GetItemCoaId(itemId);
@@ -75,7 +75,7 @@ namespace BLL.Inventory
                                         {
                                             continue;
                                         }
-                                        _dt = _storeIssueToFloorTransectionStatusBll.GetTodaysComplete();
+                                        _dt = _storeIssueToFloorTransectionStatusBll.GetTodaysComplete(unitId);
                                         if (_dt.Rows.Count > 0)
                                         {
                                             int jvId = Convert.ToInt32(_dt.Rows[0]["jvId"].ToString());
@@ -295,7 +295,7 @@ namespace BLL.Inventory
             if (_accountsVoucherJournalBll.InsertJournalVoucherWithVoucherDetails(whId, issueValue, globalCoaId, coaId,
                 storeIssueNarration, meterialNarration, inventoryStatusId, intventoryId, enroll))
             {
-                //TODO: successs
+                //TODO: success
                 _storeIssueToFloorTransectionStatusBll.UpdateIsProcessed(true, inventoryStatusId);
                 return true;
             }

@@ -344,6 +344,7 @@
     <Content Include="Content\images\img\NotApproved.png" />
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
+    <Content Include="Content\images\img\save.PNG" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
@@ -468,6 +469,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
+    <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
@@ -570,6 +572,7 @@
     <Content Include="PaymentModule\Consumption_Report.aspx" />
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
+    <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
@@ -1544,6 +1547,7 @@
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
+    <Content Include="SCM\BOM\ProductionApproval.aspx" />
     <Content Include="SCM\BOM\ProductionOrder.aspx" />
     <Content Include="SCM\BOM\ProductionReport.aspx" />
     <Content Include="SCM\BOM\ProfitCenter.aspx" />
@@ -1570,6 +1574,7 @@
     <Content Include="SCM\InventoryReport.aspx" />
     <Content Include="SCM\InventoryStatement.aspx" />
     <Content Include="SCM\InventoryValuetion.aspx" />
+    <Content Include="SCM\Inventory_Accounting_Status.aspx" />
     <Content Include="SCM\IssueForProduction.aspx" />
     <Content Include="SCM\IssueItemByRequesition.aspx" />
     <Content Include="SCM\IssueItemByRequesitionDetalisAFBL.aspx" />
@@ -3208,6 +3213,13 @@
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.cs">
+      <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.designer.cs">
+      <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Insurance\InsuranceDateRangeReport.aspx.cs">
       <DependentUpon>InsuranceDateRangeReport.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3656,9 +3668,6 @@
     <Compile Include="NewProject\pg_ProjectCreate.aspx.designer.cs">
       <DependentUpon>pg_ProjectCreate.aspx</DependentUpon>
     </Compile>
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Other\DocumentView.aspx.cs">
       <DependentUpon>DocumentView.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3788,6 +3797,13 @@
     </Compile>
     <Compile Include="PaymentModule\Duty_Summary_Report.aspx.designer.cs">
       <DependentUpon>Duty_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\FG_Cost_Update.aspx.cs">
+      <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\FG_Cost_Update.aspx.designer.cs">
+      <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
@@ -8025,6 +8041,13 @@
     <Compile Include="SCM\BOM\FinishGoodRouting.aspx.designer.cs">
       <DependentUpon>FinishGoodRouting.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\BOM\ProductionApproval.aspx.cs">
+      <DependentUpon>ProductionApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\ProductionApproval.aspx.designer.cs">
+      <DependentUpon>ProductionApproval.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BOM\ProductionOrder.aspx.cs">
       <DependentUpon>ProductionOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8192,6 +8215,13 @@
     </Compile>
     <Compile Include="SCM\InventoryValuetion.aspx.designer.cs">
       <DependentUpon>InventoryValuetion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Inventory_Accounting_Status.aspx.cs">
+      <DependentUpon>Inventory_Accounting_Status.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Inventory_Accounting_Status.aspx.designer.cs">
+      <DependentUpon>Inventory_Accounting_Status.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\IssueForProduction.aspx.cs">
       <DependentUpon>IssueForProduction.aspx</DependentUpon>
