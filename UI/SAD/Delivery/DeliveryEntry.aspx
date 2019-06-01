@@ -262,11 +262,7 @@
                                 <td>
                                     <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
                                 </td>
-                                 <td>
-                                  <asp:Button ID="btnSubmit"   AutoPostBack="true"      runat="server" Text="Save Sales"
-                                    OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
-                                      
-                            </td>
+                                 
                                 
                             </tr>
                         </table>
@@ -470,6 +466,11 @@
                                 <asp:Button ID="btnProductAddAlls" runat="server" Text="Add-All" OnClientClick="setButtonFire();"   OnClick="btnProductAddAll_Click" />
 
                             </td>
+                            <td>
+                                <asp:Button ID="btnSubmit"   AutoPostBack="true"      runat="server" Text="Save Sales"
+                                            OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
+                                      
+                            </td>
                            
                         </tr>
                     </table>
@@ -585,7 +586,13 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        
+                                        <asp:TemplateField HeaderText="Commision" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblqty" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
@@ -806,6 +813,13 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
+                                        
+                                    <asp:TemplateField HeaderText="Qty" Visible="False" SortExpression="quantity">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblQuantitys" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center"  >
@@ -822,11 +836,11 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblqty" runat="server" Width="60px" Text='<%# Bind("quantity") %>'></asp:Label>
+                                                <asp:Label ID="lblqtys" runat="server" Width="60px" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txtQtyEdit" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtQtyEdits" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
                                             </EditItemTemplate>
                                         </asp:TemplateField>
 
