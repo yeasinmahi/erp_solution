@@ -36,8 +36,6 @@
         }
 
     </script>
-
-
 </head>
 
 <body>
@@ -49,12 +47,12 @@
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%"> 
-    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                        <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
                 </asp:Panel>
                 <div style="height: 30px;"></div>
-                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-                </cc1:AlwaysVisibleControlExtender>
+               <%-- <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
+                </cc1:AlwaysVisibleControlExtender>--%>
 
                 <%--=========================================Start My Code From Here===============================================--%>
 
@@ -71,7 +69,6 @@
 
                     <table>
                         <tr>
-
                             <td style="text-align: right;">
                                 <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name"></asp:Label></td>
                             <td style="text-align: left;">
@@ -85,8 +82,6 @@
                                     <asp:ListItem>Fabrication</asp:ListItem>
                                     <asp:ListItem>Import</asp:ListItem>
                                 </asp:DropDownList></td>
-
-
                         </tr>
                         <tr>
                             <td style="text-align: right;">
@@ -201,13 +196,13 @@
 
                                         <asp:TemplateField HeaderText="Detalis">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClick="btnDetalis_Click" />
+                                                <asp:Button ID="btnDetalis" runat="server" Text="Detalis" OnClientClick="showLoader()" OnClick="btnDetalis_Click" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Complete">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnComplete" runat="server" Text="Complete" OnClick="btnComplete_Click" />
+                                                <asp:Button ID="btnComplete" runat="server" Text="Complete" OnClientClick="showLoader()" OnClick="btnComplete_Click" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
@@ -236,7 +231,6 @@
                                                 <asp:HiddenField ID="hfReceiveQnt" runat="server" Value='<%# Eval("numReceiveQty") %>' />
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-
                                     </Columns>
                                     <FooterStyle BackColor="#999999" Font-Bold="True" HorizontalAlign="Right" />
                                     <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -253,9 +247,6 @@
 
                 </div>
                 <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
-
-
-                <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
     </form>
