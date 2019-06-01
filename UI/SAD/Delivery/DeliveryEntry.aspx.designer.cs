@@ -352,7 +352,7 @@ namespace UI.SAD.Delivery {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDoNumber;
+        protected global::System.Web.UI.WebControls.Label txtDoNumber;
         
         /// <summary>
         /// lblCodeText control.
@@ -398,6 +398,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtReffNo;
+        
+        /// <summary>
+        /// btnSubmit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
         /// lblUnitName control.
@@ -661,15 +670,6 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.Panel pnlLogistic;
         
         /// <summary>
-        /// rdoNeedVehicle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdoNeedVehicle;
-        
-        /// <summary>
         /// rdoVehicleCompany control.
         /// </summary>
         /// <remarks>
@@ -677,6 +677,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rdoVehicleCompany;
+        
+        /// <summary>
+        /// txtShipmentCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShipmentCost;
         
         /// <summary>
         /// hdnPriceId control.
@@ -814,15 +823,6 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.Button btnProductAddAlls;
         
         /// <summary>
-        /// btnSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSubmit;
-        
-        /// <summary>
         /// hdnProduct control.
         /// </summary>
         /// <remarks>
@@ -895,13 +895,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
         
         /// <summary>
-        /// lblComm control.
+        /// lblDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblComm;
+        protected global::System.Web.UI.WebControls.Label lblDiscount;
         
         /// <summary>
         /// txtQun control.
