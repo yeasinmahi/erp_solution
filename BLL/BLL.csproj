@@ -162,9 +162,11 @@
     <Compile Include="Inventory\InventoryAdjustmentAuthorityBll.cs" />
     <Compile Include="Inventory\InventoryAdjustmentBll.cs" />
     <Compile Include="Inventory\InventoryBll.cs" />
+    <Compile Include="Inventory\InventoryLocationAndOpeningBll.cs" />
     <Compile Include="Inventory\ItemListBll.cs" />
     <Compile Include="Inventory\PoTypeBll.cs" />
     <Compile Include="HR\UnitBll.cs" />
+    <Compile Include="Inventory\RequisitionDetailBll.cs" />
     <Compile Include="Inventory\StoreIssueBll.cs" />
     <Compile Include="Inventory\StoreIssueByItemBll.cs" />
     <Compile Include="Inventory\StoreIssueToFloreTransectionStatusBll.cs" />

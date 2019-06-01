@@ -58,8 +58,10 @@
     <Compile Include="Inventory\InventoryAdjustmentAuthorityDal.cs" />
     <Compile Include="Inventory\InventoryAdjustmentDal.cs" />
     <Compile Include="Inventory\InventoryDal.cs" />
+    <Compile Include="Inventory\InventoryLocationAndOpeningDal.cs" />
     <Compile Include="Inventory\ItemListDal.cs" />
     <Compile Include="Inventory\PoTypeDal.cs" />
+    <Compile Include="Inventory\RequisitionDetailDal.cs" />
     <Compile Include="Inventory\RfqMainDal.cs" />
     <Compile Include="Inventory\StoreIssueByItemDal.cs" />
     <Compile Include="Inventory\StoreIssueDal.cs" />
