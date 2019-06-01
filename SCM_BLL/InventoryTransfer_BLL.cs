@@ -442,34 +442,30 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
-        public string UpdateProductionApprove(int insertBy,int productId)
+        public string UpdateProductionApprove(int intItemID,int intUnitID,int productId,int userId,int intType)
         {
             string msg = "";
             try
             {
                 TblProductionTableAdapter adp = new TblProductionTableAdapter();
-                adp.UpdateProduction(insertBy, productId);
-                return msg="Approved Successfully";
+                adp.UpdateProduction(intItemID,intUnitID,productId,userId,intType);
+                if(intType==1)
+                {
+                   msg = "Approved Successfully.";
+                }
+                else if(intType==2)
+                {
+                    msg = "Closed Successfully.";
+                }
+                return msg;
+                
             }
             catch (Exception ex)
             {
                 return ex.ToString();
             }
         }
-        public string UpdateProductionClose(int insertBy, int productId)
-        {
-            string msg = "";
-            try
-            {
-                TblProductionTableAdapter adp = new TblProductionTableAdapter();
-                adp.ProductionClose(insertBy, productId);
-                return msg = "Closed Successfully";
-            }
-            catch (Exception ex)
-            {
-                return ex.ToString();
-            }
-        }
+
 
 
     }

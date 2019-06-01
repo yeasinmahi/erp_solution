@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:QRYEMPLOYEEPROFILEALL" ZOrder="3" X="2" Y="5" Height="75" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="178" SplitterPosition="24" />
     <Shape ID="DesignTable:SprDispatch" ZOrder="2" X="4" Y="89" Height="96" Width="298" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
-    <Shape ID="DesignTable:SprDispatchAllReport" ZOrder="1" X="314" Y="7" Height="75" Width="268" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="254" SplitterPosition="24" />
+    <Shape ID="DesignTable:SprDispatchAllReport" ZOrder="1" X="314" Y="7" Height="305" Width="270" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="254" SplitterPosition="254" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

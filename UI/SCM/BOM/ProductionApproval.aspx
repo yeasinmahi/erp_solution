@@ -139,7 +139,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="45px" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Unit ID" Visible="false" SortExpression="intUnitID">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Product Name" SortExpression="strName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblProductName" runat="server" Width="200px" Text='<%# Bind("strName") %>'></asp:Label>
