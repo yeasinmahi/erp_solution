@@ -269,7 +269,7 @@ namespace UI.SAD.Delivery
                 txtDoNumber.Text = Request.QueryString["intid"];
                 DoGridDataBind(hdnDoId.Value);
                 dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"],false);
-                 string ast = dt.Rows[0]["ysnCompleted"].ToString();
+                  
 
                 if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"])==true)
                 {
