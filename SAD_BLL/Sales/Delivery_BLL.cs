@@ -11,12 +11,12 @@ namespace SAD_BLL.Sales
   public  class Delivery_BLL
     {
         string msg = "";
-        public DataTable DeliveryHeaderDataByCustomer(string intCustId,string intUnitId)
+        public DataTable DeliveryHeaderDataByCustomer(string CustId,string shipmentId,bool complete)
         {
             try
             {
                 QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByCustomer(int.Parse(intCustId), int.Parse(intUnitId));
+                return adp.GetDoProfileByCustomer(int.Parse(CustId), int.Parse(shipmentId));
             }
             catch (Exception ex)
             {
@@ -24,12 +24,12 @@ namespace SAD_BLL.Sales
             }
            
         }
-        public DataTable DeliveryHeaderDataByDo(string intDo, string intUnitId)
+        public DataTable DeliveryHeaderDataByDo(string doId, string ShipmentId,bool complete)
         {
             try
             {
                 QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByDo(int.Parse(intDo), int.Parse(intUnitId));
+                return adp.GetDoProfileByDo(int.Parse(doId), int.Parse(ShipmentId));
             }
             catch (Exception ex)
             {
