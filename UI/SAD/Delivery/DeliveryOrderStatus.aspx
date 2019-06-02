@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Invoice.aspx.cs" Inherits="UI.SAD.Delivery.Invoice" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="DeliveryOrderStatus.aspx.cs" Inherits="UI.SAD.Delivery.DeliveryOrderStatus" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html >
 
@@ -41,16 +42,15 @@
         }
     </script>
      <script type="text/javascript">
-         function Delivery(intid, intCusID, strReportType, ShipPointID, PopupType) {
-            window.open('Test.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
+         function Picking(intid, intCusID, strReportType, ShipPointID, PopupType) {
+            window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
          }
 
-         function Picking_Edit(intid, intCusID, strReportType, ShipPointID, PopupType) {
+         function PickingCustBase(intid, intCusID, strReportType, ShipPointID, PopupType) {
             window.open('DeliveryEntry.aspx?intid=' + intid + '&intCusID=' + intCusID + '&strReportType=' + strReportType + '&ShipPointID=' + ShipPointID + '&PopupType=' + PopupType, 'sub', "height=570, width=720, scrollbars=yes, left=50, top=45, resizable=no, title=Preview");
         }
 </script>
-
-    <script language="javascript" type="text/javascript">
+<script language="javascript" type="text/javascript">
    
     function Search_dgvservice(strKey, strGV) {
 
@@ -74,34 +74,6 @@
     }
 
 </script>
-<script type="text/javascript">
-        $("[id*=chkHeader]").live("click", function () {
-            var chkHeader = $(this);
-            var grid = $(this).closest("table");
-            $("input[type=checkbox]", grid).each(function () {
-                if (chkHeader.is(":checked")) {
-                    $(this).attr("checked", "checked");
-                    $("td", $(this).closest("tr")).addClass("selected");
-                } else {
-                    $(this).removeAttr("checked");
-                    $("td", $(this).closest("tr")).removeClass("selected");
-                }
-            });
-        });
-        $("[id*=chkRow]").live("click", function () {
-            var grid = $(this).closest("table");
-            var chkHeader = $("[id*=chkHeader]", grid);
-            if (!$(this).is(":checked")) {
-                $("td", $(this).closest("tr")).removeClass("selected");
-                chkHeader.removeAttr("checked");
-            } else {
-                $("td", $(this).closest("tr")).addClass("selected");
-                if ($("[id*=chkRow]", grid).length == $("[id*=chkRow]:checked", grid).length) {
-                    chkHeader.attr("checked", "checked");
-                }
-            }
-        });
-    </script>
 <style>
     .header-ta{
         z-index:-1;
@@ -138,13 +110,9 @@
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
     </marquee></div></asp:Panel>
                 
-    <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" />
+        
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
-            <tr>
-                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Picking <hr /></td>
-               
-            </tr>
             <tr>
                 <td align="right">Unit</td>
                 <td>
@@ -154,6 +122,20 @@
                     <SelectParameters><asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" /></SelectParameters>
                     </asp:ObjectDataSource>
                 </td>
+                <td style="text-align:right;">Ship Point</td>
+                <td>
+                    <asp:DropDownList ID="ddlShip" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource4" DataTextField="strName" DataValueField="intShipPointId"></asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetShipPoint" TypeName="SAD_BLL.Global.ShipPoint" OldValuesParameterFormatString="original_{0}">
+                    <SelectParameters><asp:SessionParameter Name="userId" SessionField="sesUserID" Type="String" /><asp:ControlParameter ControlID="ddlUnit" Name="unitId" PropertyName="SelectedValue" Type="String" />
+                    </SelectParameters></asp:ObjectDataSource>
+                </td>
+                    
+                <td style="text-align:right;">Sales Office</td>
+                <td>
+                    <asp:DropDownList ID="ddlSo" runat="server" AutoPostBack="True" DataSourceID="ods2" DataTextField="strName" DataValueField="intSalesOfficeId" OnDataBound="ddlSo_DataBound"
+                    OnSelectedIndexChanged="ddlSo_SelectedIndexChanged"></asp:DropDownList> <asp:ObjectDataSource ID="ods2" runat="server" SelectMethod="GetSalesOfficeByShipPoint" TypeName="SAD_BLL.Global.SalesOffice" OldValuesParameterFormatString="original_{0}">
+                    <SelectParameters><asp:ControlParameter ControlID="ddlShip" Name="shipPoint" PropertyName="SelectedValue" Type="String" /></SelectParameters></asp:ObjectDataSource>
+                </td>
                 <td style="text-align:right;">Type</td>
                 <td>
                     <asp:DropDownList ID="ddlCusType" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource7" DataTextField="strTypeName" DataValueField="intTypeID" ondatabound="ddlCusType_DataBound" 
@@ -161,23 +143,9 @@
                     TypeName="SAD_BLL.Customer.CustomerType" OldValuesParameterFormatString="original_{0}"><SelectParameters><asp:ControlParameter ControlID="ddlSo" Name="soId" PropertyName="SelectedValue" Type="String" />
                     </SelectParameters></asp:ObjectDataSource>
                 </td>
-                <td style="text-align:right;">Ship Point</td>
-                <td>
-                    <asp:DropDownList ID="ddlShip" runat="server" AutoPostBack="True" DataSourceID="ObjectDataSource4" DataTextField="strName" DataValueField="intShipPointId"  OnDataBound="ddlShip_DataBound" OnSelectedIndexChanged="ddlShip_SelectedIndexChanged"></asp:DropDownList>
-                    <asp:ObjectDataSource ID="ObjectDataSource4" runat="server" SelectMethod="GetShipPoint" TypeName="SAD_BLL.Global.ShipPoint" OldValuesParameterFormatString="original_{0}">
-                    <SelectParameters><asp:SessionParameter Name="userId" SessionField="sesUserID" Type="String" /><asp:ControlParameter ControlID="ddlUnit" Name="unitId" PropertyName="SelectedValue" Type="String" />
-                    </SelectParameters></asp:ObjectDataSource>
-                </td>                    
-                <td style="text-align:right;">Sales Office</td>
-                <td>
-                    <asp:DropDownList ID="ddlSo" runat="server" AutoPostBack="True" DataSourceID="ods2" DataTextField="strName" DataValueField="intSalesOfficeId" OnDataBound="ddlSo_DataBound"
-                    OnSelectedIndexChanged="ddlSo_SelectedIndexChanged"></asp:DropDownList> <asp:ObjectDataSource ID="ods2" runat="server" SelectMethod="GetSalesOfficeByShipPoint" TypeName="SAD_BLL.Global.SalesOffice" OldValuesParameterFormatString="original_{0}">
-                    <SelectParameters><asp:ControlParameter ControlID="ddlShip" Name="shipPoint" PropertyName="SelectedValue" Type="String" /></SelectParameters></asp:ObjectDataSource>
-                </td>
             </tr>
 
             <tr>
-            
             <td align="right">From</td>
             <td><asp:TextBox ID="txtFrom" runat="server" Enabled="false" Width="120px"></asp:TextBox>
                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
@@ -207,62 +175,125 @@
                 
             </td>
                                      
-            </tr> 
+            </tr>
             <tr>
-                <td colspan="6" style="text-align: left; padding: 15px 0px 5px 0px">   
-                <asp:Button ID="btnSingle" runat="server" class="myButton" Text="Single Invoice" Height="30px" OnClientClick="ConfirmAll()" OnClick="btnSingle_Click" />
-                <asp:Label ID="label" runat="server" Width="15px" />
-                <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" />                
-            </td>
-            </tr>  
+                <td align="right">Report Type </td>
+                <td colspan="3">
+                    <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
+                    <asp:ListItem Selected="True" Value="1">Not Approved </asp:ListItem>
+                    <asp:ListItem Value="2">  Approved</asp:ListItem>
+                    <asp:ListItem Value="3"> Cancelled</asp:ListItem>
+                    </asp:RadioButtonList>
+                </td>
+            </tr>                
         </table>
     </div>
 
     </asp:Panel>
 
     <div style="height: 170px;"></div>
-    
     <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"></cc1:AlwaysVisibleControlExtender>
     <asp:HiddenField ID="hdnFrom" runat="server" /><asp:HiddenField ID="hdnTo" runat="server" />
-    <asp:GridView ID="dgvInvoice" runat="server" PageSize="11125" OnPageIndexChanging="dgvInvoice_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" DataSourceID="odsInvoice">
-                          
+    <asp:GridView ID="dgvDelvOrderStatus" runat="server" PageSize="11125" OnPageIndexChanging="dgvDelvOrderStatus_PageIndexChanging"  AutoGenerateColumns="False" CellPadding="5" DataSourceID="objDelvOrderStatus" OnRowDataBound="dgvDelvOrderStatus_RowDataBound" OnDataBound="dgvDelvOrderStatus_DataBound">
+                     
     <Columns>
     <asp:TemplateField HeaderText="SL"><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-    
-    <asp:TemplateField HeaderText="intId" SortExpression="intId" Visible="false">
-    <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intId") %>' Width="80px"></asp:Label></ItemTemplate>                            
-    <ItemStyle HorizontalAlign="center" Width="80px" /></asp:TemplateField>
+  
 
-    <%--<asp:BoundField DataField="strLoadingSlipno" HeaderText=" Number" SortExpression="strLoadingSlipno" ItemStyle-HorizontalAlign="Center" >
-    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
-
-    <asp:BoundField DataField="strCode" HeaderText="Challan Number" SortExpression="strCode" ItemStyle-HorizontalAlign="Center" >
-    <ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-      
-    <asp:BoundField DataField="dtedate" HeaderText="Challan Date" SortExpression="dtedate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
-    <ItemStyle HorizontalAlign="left" /></asp:BoundField> 
-
-    <asp:TemplateField HeaderText="Party ID" SortExpression="intCusID" Visible="false">
-    <ItemTemplate><asp:Label ID="lblCusID" runat="server" Text='<%# Bind("intCusID") %>' Width="80px"></asp:Label></ItemTemplate>
-    <ItemStyle HorizontalAlign="center" Width="80px" /></asp:TemplateField>
-
-    <asp:TemplateField HeaderText="Sold To Party" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strTaskTitle" HeaderStyle-Height="30px" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
-    <HeaderTemplate> 
-    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvViewOrder')"></asp:TextBox>
-    <br></br>
-    <asp:Label ID="lblNumberHeader" runat="server" Text="Sold To Party" Font-Bold="true"></asp:Label>
-    </HeaderTemplate>
-    <ItemTemplate><asp:Label ID="lblNumber" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strName")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
-
-    <asp:BoundField DataField="strName" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
-    <ItemStyle HorizontalAlign="left" /></asp:BoundField>    
-
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Challan Amount" SortExpression="monTotalAmount" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
-    <ItemStyle HorizontalAlign="right" /></asp:BoundField>
+     <asp:TemplateField HeaderText="DO No" SortExpression="strCode">
+                        <ItemTemplate>
+                            <asp:Label ID="Label1" runat="server" Text='<%# Bind("strCode") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                   
+                    <asp:TemplateField HeaderText="Date" SortExpression="dteDate">
+                        <ItemTemplate>
+                            <asp:Label ID="Label3" runat="server" Text='<%# UI.ClassFiles.CommonClass.GetShortDateAtLocalDateFormat(Eval("dteDate")) %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>                    
+                    <asp:TemplateField HeaderText="Customer" SortExpression="strName">
+                        <ItemTemplate>
+                            <asp:Label ID="Label4" runat="server" Text='<%# Bind("strName") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>                    
+                    <asp:TemplateField HeaderText="Del. Point" SortExpression="strDisPointName">
+                        <ItemTemplate>
+                            <asp:Label ID="Label14" runat="server" Text='<%# "<b>"+Eval("intDisPointId") + "</b></br>" +Eval("strDisPointName") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Address" SortExpression="strAddress">
+                        <ItemTemplate>
+                            <asp:Label ID="Label8" runat="server" Text='<%# Eval("strAddress") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Logistic" SortExpression="ysnLogistic">
+                        <ItemTemplate>
+                            <asp:Label ID="Label15" runat="server" Text='<%# ((bool)Eval("ysnLogistic"))?"Yes":"No"  %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Narration" SortExpression="strNarration">
+                        <ItemTemplate>
+                            <asp:Label ID="Label5" runat="server" Text='<%# Bind("strNarration") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateField>                                        
+                     <asp:TemplateField HeaderText="Req. Qnt" SortExpression="numPieces">
+                        <ItemTemplate>
+                            <asp:Label ID="Label6" runat="server" Text='<%# UI.ClassFiles.CommonClass.GetFormettingNumber(Eval("numPieces")) %>'></asp:Label>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <%# UI.ClassFiles.CommonClass.GetFormettingNumber(totPieces) %>
+                        </FooterTemplate>
+                        <ItemStyle HorizontalAlign="Right"></ItemStyle>
+                        <FooterStyle HorizontalAlign="Right" />
+                    </asp:TemplateField>
+                    <asp:TemplateField HeaderText="Qnt" SortExpression="numApprPieces">
+                        <ItemTemplate>
+                            <asp:Label ID="Label16" runat="server" Text='<%# UI.ClassFiles.CommonClass.GetFormettingNumber(Eval("numApprPieces")) %>'></asp:Label>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <%# UI.ClassFiles.CommonClass.GetFormettingNumber(totPieces) %>
+                        </FooterTemplate>
+                        <ItemStyle HorizontalAlign="Right"></ItemStyle>
+                        <FooterStyle HorizontalAlign="Right" />
+                    </asp:TemplateField>   
+                    <asp:TemplateField HeaderText="Amount" SortExpression="monTotalAmount">
+                        <ItemTemplate>
+                            <asp:Label ID="Label7" runat="server" Text='<%# UI.ClassFiles.CommonClass.GetFormettingNumber(Eval("monTotalAmount")) %>'></asp:Label>
+                        </ItemTemplate>
+                        <FooterTemplate>
+                            <%# UI.ClassFiles.CommonClass.GetFormettingNumber(totAmount) %>
+                        </FooterTemplate>
+                        <ItemStyle HorizontalAlign="Right"></ItemStyle>
+                        <FooterStyle HorizontalAlign="Right" />
+                    </asp:TemplateField>
+             
+                    <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:Button ID="btnCompleted" ValidationGroup="valCom" runat="server" Text="Delivered"
+                                CommandArgument='<%# Eval("intId") +"#"+ Eval("dteDate") %>' OnClick="btnCompleted_Click" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:TemplateField>  
+                     <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <asp:Button ID="btnCancel" ValidationGroup="valCom" runat="server" Text="Cancel"
+                                CommandArgument='<%# Eval("intId") %>' OnClick="btnCancel_Click" />
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:TemplateField>
+                           <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                        <ItemTemplate>
+                            <%# GetEditLink(Eval("intId"), Eval("ysnDOCompleted"))%>
+                        </ItemTemplate>
+                        <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                    </asp:TemplateField>
+          <asp:CheckBoxField DataField="ysnDOCompleted" HeaderText="" ItemStyle-CssClass="hide"
+                        HeaderStyle-CssClass="hide" SortExpression="ysnDOCompleted">
+                        <HeaderStyle CssClass="hide"></HeaderStyle>
+                        <ItemStyle CssClass="hide"></ItemStyle>
+                    </asp:CheckBoxField>
+                  
         
-    <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate>
-    <ItemTemplate><asp:CheckBox ID="chkRow" runat="server" /></ItemTemplate></asp:TemplateField>
-   
     </Columns>
     <FooterStyle BackColor="#CCCCCC" />
     <HeaderStyle Font-Bold="True" ForeColor="White" />
@@ -275,7 +306,22 @@
 
     </asp:GridView>
         
-    <asp:ObjectDataSource ID="odsInvoice" runat="server" SelectMethod="GetDataForInvoice" TypeName="SAD_BLL.Sales.SalesOrderView">
+        <asp:ObjectDataSource ID="objDelvOrderStatus" runat="server" SelectMethod="GetDeliveryOrderStatus" TypeName="SAD_BLL.Sales.SalesOrderView">
+            <SelectParameters>
+                <asp:ControlParameter ControlID="hdnFrom" Name="fromDate" PropertyName="Value" Type="DateTime" />
+                <asp:ControlParameter ControlID="hdnTo" Name="toDate" PropertyName="Value" Type="DateTime" />
+                <asp:ControlParameter ControlID="txtCode" Name="code" PropertyName="Text" Type="String" />
+                <asp:ControlParameter ControlID="ddlUnit" Name="unitID" PropertyName="SelectedValue" Type="String" />
+                <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" />
+                <asp:ControlParameter ControlID="hdnCustomer" Name="customerId" PropertyName="Value" Type="String" />
+                <asp:ControlParameter ControlID="ddlCusType" Name="customerType" PropertyName="SelectedValue" Type="Int32" />
+                <asp:ControlParameter ControlID="rdoComplete" Name="intReportType" PropertyName="SelectedValue" Type="Int32" />
+                <asp:ControlParameter ControlID="ddlShip" Name="shippingPoint" PropertyName="SelectedValue" Type="String" />
+                <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
+            </SelectParameters>
+        </asp:ObjectDataSource>
+        
+<%--    <asp:ObjectDataSource ID="odsSOViewForPicking" runat="server" SelectMethod="GetSalesOrderViewForPicking" TypeName="SAD_BLL.Sales.SalesOrderView">
     <SelectParameters>
     <asp:ControlParameter ControlID="hdnFrom" Name="fromDate" PropertyName="Value" Type="DateTime" />
     <asp:ControlParameter ControlID="hdnTo" Name="toDate" PropertyName="Value" Type="DateTime" />
@@ -284,10 +330,10 @@
     <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" />
     <asp:ControlParameter ControlID="hdnCustomer" Name="customerId" PropertyName="Value" Type="String" />
     <asp:ControlParameter ControlID="ddlCusType" Name="customerType" PropertyName="SelectedValue" Type="String" />
-    <asp:ControlParameter ControlID="rdoComplete" Name="isCompleted" PropertyName="SelectedValue" Type="Boolean" />
+    <asp:ControlParameter ControlID="rdoComplete" Name="intReportType" PropertyName="SelectedValue" Type="Int32" />
     <asp:ControlParameter ControlID="ddlShip" Name="shippingPoint" PropertyName="SelectedValue" Type="String" />
     <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
-    </SelectParameters></asp:ObjectDataSource>
+    </SelectParameters></asp:ObjectDataSource>--%>
     <asp:CustomValidator ID="cvtCom" runat="server" ClientValidationFunction="ValidateComplete"
     ValidationGroup="valCom"></asp:CustomValidator>
     </ContentTemplate></asp:UpdatePanel>
@@ -295,76 +341,3 @@
     </form>
     </body>
     </html>
-
-       
-
-
-    <%--<table>
-        <tr>
-            <td style="text-align: right; padding: 15px 0px 5px 0px">   
-                <asp:Button ID="btnSingle" runat="server" class="myButton" Text="Single Invoice" Height="30px" OnClientClick="ConfirmAll()" />
-                <asp:Label ID="label" runat="server" Width="15px" />
-                <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" />
-                <hr />
-            </td>
-        </tr>
-        <tr>
-            <td>                
-                <asp:GridView ID="dgvInvoice" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"  DataSourceID="odsForInvoice"
-                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
-                    ForeColor="Black" GridLines="Vertical">
-                    <AlternatingRowStyle BackColor="#CCCCCC" />
-                    <Columns>
-                        <asp:TemplateField HeaderText="SL No."> <ItemStyle HorizontalAlign="center" Width="60px" /> 
-                        <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="intId" SortExpression="intId" Visible="false">
-                        <ItemTemplate><asp:Label ID="lblID" runat="server" Text='<%# Bind("intId") %>' Width="80px"></asp:Label></ItemTemplate>                            
-                        <ItemStyle HorizontalAlign="center" Width="80px" /></asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Code" SortExpression="strCode">
-                        <ItemTemplate><asp:Label ID="lblCode" runat="server" Text='<%# Bind("strCode") %>' Width="120px"></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="center" Width="120px" /></asp:TemplateField>
-                        
-                        <asp:TemplateField HeaderText="Date" SortExpression="dteDate">
-                        <ItemTemplate><asp:Label ID="lblDate" runat="server" Text='<%#Eval("dteDate", "{0:yyyy-MM-dd}") %>' Width="80px"></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="center" Width="80px" /></asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Party ID" SortExpression="intCusID" Visible="false">
-                        <ItemTemplate><asp:Label ID="lblintCusID" runat="server" Text='<%# Bind("intCusID") %>' Width="80px"></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="center" Width="80px" /></asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Sold To Party" SortExpression="strName">
-                        <ItemTemplate><asp:Label ID="lblstrName" runat="server" Text='<%# Bind("strName") %>' Width="265px"></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="left" Width="265px" /></asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="Total Amount" SortExpression="monTotalAmount">
-                        <ItemTemplate><asp:Label ID="lblTotalAmount" runat="server" Text='<%# Bind("monTotalAmount", "{0:n2}") %>' Width="100px"></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="right" Width="100px" /></asp:TemplateField>
-                        
-                        <asp:TemplateField><HeaderTemplate><asp:CheckBox ID="chkHeader" runat="server" /></HeaderTemplate>
-                        <ItemTemplate><asp:CheckBox ID="chkRow" runat="server" /></ItemTemplate></asp:TemplateField>
-                    </Columns>
-                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                </asp:GridView>
-                <asp:ObjectDataSource ID="odsForInvoice" runat="server" SelectMethod="GetDataForInvoice" TypeName="SAD_BLL.Sales.SalesOrderView">
-                <SelectParameters>
-                <asp:ControlParameter ControlID="hdnFrom" Name="fromDate" PropertyName="Value" Type="DateTime" />
-                <asp:ControlParameter ControlID="hdnTo" Name="toDate" PropertyName="Value" Type="DateTime" />
-                <asp:ControlParameter ControlID="txtCode" Name="code" PropertyName="Text" Type="String" />
-                <asp:ControlParameter ControlID="ddlUnit" Name="unitID" PropertyName="SelectedValue" Type="String" />
-                <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String" />
-                <asp:ControlParameter ControlID="hdnCustomer" Name="customerId" PropertyName="Value" Type="String" />
-                <asp:ControlParameter ControlID="ddlCusType" Name="customerType" PropertyName="SelectedValue" Type="String" />
-                <asp:ControlParameter ControlID="rdoComplete" Name="isCompleted" PropertyName="SelectedValue" Type="Boolean" />
-                <asp:ControlParameter ControlID="ddlShip" Name="shippingPoint" PropertyName="SelectedValue" Type="String" />
-                <asp:ControlParameter ControlID="ddlSo" Name="salesOffice" PropertyName="SelectedValue" Type="String" />
-                </SelectParameters></asp:ObjectDataSource>
-            </td>
-        </tr>
-    </table>
-    
-    </ContentTemplate></asp:UpdatePanel>--%>
-       

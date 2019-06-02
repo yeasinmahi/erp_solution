@@ -31,8 +31,24 @@ namespace UI.SAD.Delivery
             if (!IsPostBack)
             {
                 pnlMarque.DataBind();
+                dgvViewOrder.Columns[11].Visible = false;
+                dgvViewOrder.Columns[12].Visible = false;
+                dgvViewOrder.Columns[13].Visible = false;
+                dgvViewOrder.Columns[14].Visible = false;
+
+                if (rdoComplete.SelectedValue == "1")
+                {
+                    dgvViewOrder.Columns[14].Visible = true;
+                }
+                else if (rdoComplete.SelectedValue == "2")
+                {
+                    dgvViewOrder.Columns[11].Visible = true;
+                    dgvViewOrder.Columns[12].Visible = true;
+                    dgvViewOrder.Columns[13].Visible = true;
+                }
             }
         }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] GetCustomerList(string prefixText, int count)
@@ -48,26 +64,41 @@ namespace UI.SAD.Delivery
             hdnTo.Value = toDate.ToString();
             //dgvViewOrder.DataBind();
         }
-        
+
 
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlCusType.DataBind();
         }
+
+        protected void ddlShip_DataBound(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+            ddlSo.DataBind();
+            ddlCusType.DataBind();
+        }
+
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
         }
+
+        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SHIP] = ddlShip.SelectedValue;
+        }
         protected void ddlUnit_DataBound(object sender, EventArgs e)
         {
-            Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;            
+            Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
             ddlShip.DataBind();
+            ddlSo.DataBind();
+            ddlCusType.DataBind();
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
-            
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {
@@ -76,11 +107,6 @@ namespace UI.SAD.Delivery
         protected void ddlCusType_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_CUS_TYPE] = ddlCusType.SelectedValue;
-        }
-
-        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            hdnShipPointid.Value = ddlShip.SelectedValue;
         }
 
         protected void txtCus_TextChanged(object sender, EventArgs e)
@@ -123,7 +149,42 @@ namespace UI.SAD.Delivery
             dgvViewOrder.DataBind();
         }
 
+        protected void rdoComplete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvViewOrder.Columns[11].Visible = false;
+            dgvViewOrder.Columns[12].Visible = false;
+            dgvViewOrder.Columns[13].Visible = false;
+            dgvViewOrder.Columns[14].Visible = false;
+
+            if (rdoComplete.SelectedValue == "1")
+            {
+                dgvViewOrder.Columns[14].Visible = true;
+            }
+            else if (rdoComplete.SelectedValue == "2")
+            {
+                dgvViewOrder.Columns[11].Visible = true;
+                dgvViewOrder.Columns[12].Visible = true;
+                dgvViewOrder.Columns[13].Visible = true;
+            }
+        }
+
         protected void DO_Cancel_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "1")
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intCustomerId = searchKey[0].ToString();
+                string intid = searchKey[1].ToString();
+
+                string message = obj.DOCancel(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                dgvViewOrder.DataBind();
+            }
+        }
+
+        protected void DO_Close_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
             {

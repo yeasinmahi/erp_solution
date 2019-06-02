@@ -1278,6 +1278,7 @@
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\Delivery\Invoice.aspx" />
+    <Content Include="SAD\Delivery\PickingPrint.aspx" />
     <Content Include="SAD\Delivery\Picking_Summary_Report.aspx" />
     <Content Include="SAD\Delivery\Test.aspx" />
     <Content Include="SAD\Delivery\ViewOrder.aspx" />
@@ -6156,6 +6157,13 @@
     </Compile>
     <Compile Include="SAD\Delivery\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\PickingPrint.aspx.cs">
+      <DependentUpon>PickingPrint.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\PickingPrint.aspx.designer.cs">
+      <DependentUpon>PickingPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\Picking_Summary_Report.aspx.cs">
       <DependentUpon>Picking_Summary_Report.aspx</DependentUpon>

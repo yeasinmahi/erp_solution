@@ -46,7 +46,8 @@
                 <td align="right" style="vertical-align: top;">
 
                     <asp:HyperLink ID="hplStandard" CssClass="blink_me" NavigateUrl="http://deverp.akij.net/" runat="server" ForeColor="Green"
-                        Font-Bold="True" ImageHeight="40px" ImageUrl="~/Content/images/Cafeteria/NEW ERP.png" Target="_blank"><blink>Test </blink></asp:HyperLink>
+                        Font-Bold="True" ImageHeight="40px" ImageUrl="~/Content/images/Cafeteria/NEW ERP.png" Target="_blank"><blink>Test </blink>
+                    </asp:HyperLink>
                 </td>
                 <td align="right" style="vertical-align: top;">
                     <a class="signout" href="Logout.aspx" title="Sign Out" style="padding-right: 20px; width: 200px;">Sign Out</a>
