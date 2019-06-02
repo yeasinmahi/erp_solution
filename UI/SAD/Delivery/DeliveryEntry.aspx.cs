@@ -69,67 +69,71 @@ namespace UI.SAD.Delivery
         }
         private void GetUrlData(string type)
         {
-            Session[SessionParams.SalesProcess] = type;
-            hdnDelivery.Value = type;
-            rdoDeliveryType.Items.Clear();
-            rdoDeliveryType.Items.Add(new ListItem(type, "1"));
-            rdoDeliveryType.SelectedValue = "1";
-            Session[SessionParams.SalesProcess] = type;
+            try
+            {
+                Session[SessionParams.SalesProcess] = type;
+                hdnDelivery.Value = type;
+                rdoDeliveryType.Items.Clear();
+                rdoDeliveryType.Items.Add(new ListItem(type, "1"));
+                rdoDeliveryType.SelectedValue = "1";
+                Session[SessionParams.SalesProcess] = type;
 
-            Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
-            if (!IsNullOrEmpty(Request.QueryString["intid"]))
-            {
-                Session["DoId"] = Request.QueryString["intid"];
-                Session["PickingId"] = Request.QueryString["intid"];
-                hdnRequistId.Value = Request.QueryString["intid"];
-            }
-            else
-            {
-                Session["DoId"] = "0";
-                
-            }
-            if (!IsNullOrEmpty(Request.QueryString["intCusID"]))
-            {
-                Session["CustomerId"] = Request.QueryString["intCusID"];
-                hdnRequistId.Value = Request.QueryString["intCusID"];
-                
-            }
-            else
-            {
-                Session["CustomerId"] = "0";
-               // hdnRequistId.Value = "0";
-            }
-            if (!IsNullOrEmpty(Request.QueryString["strReportType"]))
-            {
-                Session["ReportType"] = Request.QueryString["strReportType"];
-            }
-            else
-            {
-                Session["ReportType"] = "0";
-            }
-            if (!IsNullOrEmpty(Request.QueryString["ShipPointID"]))
-            {
-                Session["ShipId"] = Request.QueryString["ShipPointID"];
-            }
-            else
-            {
-                Session["ShipId"] = "0";
-            }
-            
-            if (hdnRequistId.Value=="0")
-            {
-                DefaultPageLoad();
-            }
-            else
-            {
+                Session[SessionParams.SalesProcess] = Request.QueryString["PopupType"];
+                if (!IsNullOrEmpty(Request.QueryString["intid"]))
+                {
+                    Session["DoId"] = Request.QueryString["intid"];
+                    Session["PickingId"] = Request.QueryString["intid"];
+                    hdnRequistId.Value = Request.QueryString["intid"];
+                }
+                else
+                {
+                    Session["DoId"] = "0";
 
-                PickingPageloadDataBind();
-                txtCustomer.Enabled = false;
-                txtShipToParty.Enabled = false;
-                txtCustomerAddress.Enabled = false;
-                txtShipToPartyAddress.Enabled = false;
+                }
+                if (!IsNullOrEmpty(Request.QueryString["intCusID"]))
+                {
+                    Session["CustomerId"] = Request.QueryString["intCusID"];
+                    hdnRequistId.Value = Request.QueryString["intCusID"];
+
+                }
+                else
+                {
+                    Session["CustomerId"] = "0";
+                    // hdnRequistId.Value = "0";
+                }
+                if (!IsNullOrEmpty(Request.QueryString["strReportType"]))
+                {
+                    Session["ReportType"] = Request.QueryString["strReportType"];
+                }
+                else
+                {
+                    Session["ReportType"] = "0";
+                }
+                if (!IsNullOrEmpty(Request.QueryString["ShipPointID"]))
+                {
+                    Session["ShipId"] = Request.QueryString["ShipPointID"];
+                }
+                else
+                {
+                    Session["ShipId"] = "0";
+                }
+
+                if (hdnRequistId.Value == "0")
+                {
+                    DefaultPageLoad();
+                }
+                else
+                {
+
+                    PickingPageloadDataBind();
+                    txtCustomer.Enabled = false;
+                    txtShipToParty.Enabled = false;
+                    txtCustomerAddress.Enabled = false;
+                    txtShipToPartyAddress.Enabled = false;
+                }
+                ControlHide(type);
             }
-            ControlHide(type);
+            catch { }
         }
         public static bool IsNullOrEmpty(String str)
         {
@@ -227,7 +231,7 @@ namespace UI.SAD.Delivery
                 hdnDoId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text= Request.QueryString["intid"];
                 dt = deliveryBLL.DeliveryHeaderDataByDo(hdnDoId.Value.ToString(), Request.QueryString["ShipPointID"],true);
-                if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnComplete"]) == false)
+                if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
                 {
                     btnSubmit.Visible = false;
                     btnProductAddAlls.Visible = false;
@@ -243,7 +247,7 @@ namespace UI.SAD.Delivery
                 hdnCustomer.Value= Request.QueryString["intCusID"];
                 txtDoNumber.Text = Request.QueryString["intCusID"];
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(hdnCustomer.Value, Request.QueryString["ShipPointID"],true);
-                if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnComplete"]) == false)
+                if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
                 {
                     
                     btnSubmit.Visible = false;
@@ -277,8 +281,7 @@ namespace UI.SAD.Delivery
                     btnProductAddAlls.Visible = false;
                     txtProduct.Enabled = false; 
                     lblDoCustId.ForeColor=Color.Red;
-                    Toaster("Delivery already order approved", hdnDelivery.Value, Common.TosterType.Warning);
-                   
+                    Toaster("Delivery already order approved", hdnDelivery.Value, Common.TosterType.Warning); 
                 }
                 
             }
