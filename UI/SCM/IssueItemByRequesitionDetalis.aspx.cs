@@ -135,7 +135,7 @@ namespace UI.SCM
                             if (decimal.Parse(issueQty) > 0)
                             {
                                 string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
-                                string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
+                                string stockValue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
                                 string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
                                 string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
                                 string remarks = ((Label)dgvDetalis.Rows[index].FindControl("lblRemarks")).Text.Trim();
@@ -143,7 +143,7 @@ namespace UI.SCM
                                 {
                                     IssueQuantity = Convert.ToDecimal(issueQty),
                                     StockQuantity = Convert.ToDecimal(stockQty),
-                                    IssueValue = (Convert.ToDecimal(stockVlaue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
+                                    IssueValue = (Convert.ToDecimal(stockValue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
                                     ItemId = Convert.ToInt32(itemId),
                                     LocationId = Convert.ToInt32(locationId),
                                     
@@ -155,7 +155,7 @@ namespace UI.SCM
                                 {
                                     itemId,
                                     issueQty,
-                                    stockVlaue,
+                                    stockVlaue = stockValue,
                                     locationId,
                                     stockQty,
                                     reqId,
@@ -178,7 +178,7 @@ namespace UI.SCM
                         
                         if (objects.Count > 0)
                         {
-                            if (intwh == 1)
+                            if (intwh == 1 || intwh == 527)
                             {
                                 StoreIssueBll bll = new StoreIssueBll();
                                 int issueId = bll.StoreIssue(storeIssue, storeIssueByItems);
