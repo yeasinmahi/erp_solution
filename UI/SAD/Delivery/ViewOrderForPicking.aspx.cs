@@ -23,6 +23,7 @@ namespace UI.SAD.Delivery
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
         SalesOrderView obj = new SalesOrderView();
+        int intColumnVisible;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -30,6 +31,13 @@ namespace UI.SAD.Delivery
             if (!IsPostBack)
             {
                 pnlMarque.DataBind();
+
+                if (intColumnVisible == 1)
+                {
+                    dgvViewOrder.Columns[2].Visible = false;
+                    dgvViewOrder.Columns[3].Visible = false;
+                }
+                
             }
         }
         [WebMethod]
@@ -54,18 +62,34 @@ namespace UI.SAD.Delivery
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlCusType.DataBind();
         }
+
+        protected void ddlShip_DataBound(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+            ddlSo.DataBind();
+            ddlCusType.DataBind();
+        }
+
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+        }
+
+        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SHIP] = ddlShip.SelectedValue;
         }
         protected void ddlUnit_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
             ddlShip.DataBind();
+            ddlSo.DataBind();
+            ddlCusType.DataBind();
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {

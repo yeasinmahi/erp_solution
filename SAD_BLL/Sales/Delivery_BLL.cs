@@ -11,12 +11,12 @@ namespace SAD_BLL.Sales
   public  class Delivery_BLL
     {
         string msg = "";
-        public DataTable DeliveryHeaderDataByCustomer(string intCustId,string intUnitId)
+        public DataTable DeliveryHeaderDataByCustomer(string CustId,string shipmentId,bool complete)
         {
             try
             {
                 QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByCustomer(int.Parse(intCustId), int.Parse(intUnitId));
+                return adp.GetDoProfileByCustomer(int.Parse(CustId), int.Parse(shipmentId));
             }
             catch (Exception ex)
             {
@@ -24,12 +24,12 @@ namespace SAD_BLL.Sales
             }
            
         }
-        public DataTable DeliveryHeaderDataByDo(string intDo, string intUnitId)
+        public DataTable DeliveryHeaderDataByDo(string doId, string ShipmentId,bool complete)
         {
             try
             {
                 QryDOProfileTableAdapter adp = new QryDOProfileTableAdapter();
-                return adp.GetDoProfileByDo(int.Parse(intDo), int.Parse(intUnitId));
+                return adp.GetDoProfileByDo(int.Parse(doId), int.Parse(ShipmentId));
             }
             catch (Exception ex)
             {
@@ -88,6 +88,32 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        public DataTable ShipToPartyAddress(string customerId)
+        {
+            try
+            {
+                QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
+                return adp.GetShipToPartyAddressData(int.Parse(customerId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public DataTable DoItemDetalis(string doid)
+        {
+            try
+            {
+                QryDoItemDetalisTableAdapter adp = new QryDoItemDetalisTableAdapter();
+                return adp.GetDoItemDetalisData(int.Parse(doid));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable PickingDetalis(string pickingId)
         {
             try
@@ -130,6 +156,72 @@ namespace SAD_BLL.Sales
             }
            
         }
+
+        public string UpdateDeliveryOrder (string xmlHeader, string xmlRow,int DoId)
+        {
+            try
+            {
+                   SprDOUpdateTableAdapter adp = new SprDOUpdateTableAdapter();
+                adp.DOUpdate(xmlRow, xmlHeader, DoId);
+                msg = "Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        public DataTable GetDiscount(string customerId, string ProductId)
+        {
+            try
+            {
+                FunGetItemDiscountTableAdapter adp = new FunGetItemDiscountTableAdapter();
+                return adp.GetDiscountData(int.Parse(customerId), int.Parse(ProductId), DateTime.Now.ToString());
+            }
+            catch
+            {
+                return new DataTable();
+            }
+
+
+        }
+        public string DeliveryEntry(string pickingId,ref string strCode)
+        {
+            try
+            { 
+                SprDeliverysEntryTableAdapter adp = new SprDeliverysEntryTableAdapter();
+                adp.DeliveryEntry(pickingId,ref strCode);
+                msg = "Delivery Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        
+        public string PickingUpdate(string xmlHeader, string xmlRow, int pickingId)
+        {
+            try
+            {
+                 
+
+                SprPickingUpdateTableAdapter adp = new SprPickingUpdateTableAdapter();
+                adp.UpdatePicking(xmlRow, xmlHeader, pickingId);
+                msg = "Picking Update Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
 
         public string PickingCreate(string xmlHeader, string xmlRow,string customerAddress, ref string orderId, ref string strCode)
         {

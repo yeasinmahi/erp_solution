@@ -53,7 +53,7 @@ namespace UI.SCM
                 string strApproveBy = Request.QueryString["strApproveBy"];
                 //string DeptId = Request.QueryString["DeptId"];
                 //string SectionID = Request.QueryString["SectionID"];
-                string SectionName = Request.QueryString["SectionName"];
+                string sectionName = Request.QueryString["SectionName"];
                 intwh = int.Parse(Request.QueryString["intwh"]);
 
                 lblReqCode.Text = ReqCode;
@@ -61,7 +61,7 @@ namespace UI.SCM
                 lblReqDept.Text = strDepartmentName;
                 lblReqBy.Text = strReqBy;
                 lblApproved.Text = strApproveBy;
-                lblSection.Text = SectionName;
+                lblSection.Text = sectionName;
 
                 LoadCostCenter(intwh);
 
@@ -135,7 +135,7 @@ namespace UI.SCM
                             if (decimal.Parse(issueQty) > 0)
                             {
                                 string itemId = ((Label)dgvDetalis.Rows[index].FindControl("lblItemId")).Text;
-                                string stockVlaue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
+                                string stockValue = ((Label)dgvDetalis.Rows[index].FindControl("lblValue")).Text;
                                 string locationId = ((DropDownList)dgvDetalis.Rows[index].FindControl("ddlStoreLocation")).SelectedValue;
                                 string stockQty = ((Label)dgvDetalis.Rows[index].FindControl("lblStock")).Text;
                                 string remarks = ((Label)dgvDetalis.Rows[index].FindControl("lblRemarks")).Text.Trim();
@@ -143,7 +143,7 @@ namespace UI.SCM
                                 {
                                     IssueQuantity = Convert.ToDecimal(issueQty),
                                     StockQuantity = Convert.ToDecimal(stockQty),
-                                    IssueValue = (Convert.ToDecimal(stockVlaue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
+                                    IssueValue = (Convert.ToDecimal(stockValue)/ Convert.ToDecimal(stockQty))* Convert.ToDecimal(issueQty),
                                     ItemId = Convert.ToInt32(itemId),
                                     LocationId = Convert.ToInt32(locationId),
                                     
@@ -155,7 +155,7 @@ namespace UI.SCM
                                 {
                                     itemId,
                                     issueQty,
-                                    stockVlaue,
+                                    stockVlaue = stockValue,
                                     locationId,
                                     stockQty,
                                     reqId,
@@ -178,19 +178,36 @@ namespace UI.SCM
                         
                         if (objects.Count > 0)
                         {
-                            //StoreIssueBll _bll = new StoreIssueBll();
-                            //_bll.StoreIssue(storeIssue, storeIssueByItems);
-                            xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
-                            string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
-                                Enroll);
-
-                            Alert(msg);
+                            if (intwh == 1 || intwh == 527)
+                            {
+                                StoreIssueBll bll = new StoreIssueBll();
+                                int issueId = bll.StoreIssue(storeIssue, storeIssueByItems);
+                                if (issueId > 0)
+                                {
+                                    Alert("Successfully Issued with issueId:"+issueId);
+                                }
+                                else
+                                {
+                                    Alert("Something error in issue.");
+                                }
+                            }
+                            else
+                            {
+                                xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                                string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                                    Enroll);
+                                Alert(msg);
+                            }
+                            //xmlString = XmlParser.GetXml("issue", "issueEntry", objects, out string _);
+                            //string msg = objIssue.StoreIssue(5, xmlString, intwh, int.Parse(reqId), DateTime.Now,
+                            //    Enroll);
+                            //Alert(msg);
                             dgvDetalis.UnLoad();
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                         }
                         else
                         {
-                            Toaster("You have to issue at leasi 1 item ", Common.TosterType.Warning);
+                            Toaster("You have to issue at least 1 item ", Common.TosterType.Warning);
                         }
                     }
 

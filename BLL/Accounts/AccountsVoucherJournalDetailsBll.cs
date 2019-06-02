@@ -28,9 +28,8 @@ namespace BLL.Accounts
         {
             return _dal.UpdateAmount(amount, jvId, accId);
         }
-        public bool GetAltJvDetails(int coaId, out int coaId2, out string accName2, out string strNarration2)
+        public bool GetAltJvDetails(int globalCoaId, int coaId, out int coaId2, out string accName2, out string strNarration2)
         {
-            int globalCoaId = _accountsChartOfAccBll.GetGlobalCoaId(coaId);
             coaId2 = 0;
             accName2 = String.Empty;
             strNarration2 = String.Empty;
@@ -42,7 +41,7 @@ namespace BLL.Accounts
                     accName2 = _accountsChartOfAccBll.GetAccountNameByGlobalCoaId(32);
                     strNarration2 = "Transfer To WIP";
                 }
-                else if (globalCoaId == 249)
+                else if (globalCoaId == 349)
                 {
                     coaId2 = _accountsChartOfAccBll.GetCoaIdByGlobalCoaId(199);
                     accName2 = _accountsChartOfAccBll.GetAccountNameByGlobalCoaId(199);
@@ -56,7 +55,7 @@ namespace BLL.Accounts
             }
             return false;
         }
-        public int InsertJournalVoucherDetails(int voucherId, int coaId, string narration, decimal issueValue, int inventoryStatusId)
+        public int InsertJournalVoucherDetails(int voucherId,int globalCoaId, int coaId, string narration, decimal issueValue, int inventoryStatusId)
         {
             string accName = _accountsChartOfAccBll.GetAccountName(coaId);
             if (!string.IsNullOrWhiteSpace(accName))
@@ -65,7 +64,7 @@ namespace BLL.Accounts
                 if (intId > 0)
                 {
                     _storeIssueToFloreTransectionStatusBll.UpdateCoaId1(coaId, inventoryStatusId);
-                    if (GetAltJvDetails(coaId, out int coaId2, out string accName2,
+                    if (GetAltJvDetails(globalCoaId,coaId, out int coaId2, out string accName2,
                         out string strNarration))
                     {
                         intId = Insert(voucherId, coaId2, strNarration, issueValue * -1, accName2);

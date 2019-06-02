@@ -26,6 +26,7 @@ namespace UI.SAD.Delivery
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
         string Unitid, ShipPointid, SalesOffid, CustType, ReportType, challanid, custid, filePathForXML, xmlString = "", xml;
+        int intColumnStatus;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +35,8 @@ namespace UI.SAD.Delivery
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
 
                 pnlMarque.DataBind();
-                File.Delete(filePathForXML); dgvInvoice.DataSource = ""; dgvInvoice.DataBind();
+                //File.Delete(filePathForXML); dgvInvoice.DataSource = ""; dgvInvoice.DataBind();
+               
             }
         }
 
@@ -59,7 +61,6 @@ namespace UI.SAD.Delivery
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlCusType.DataBind();
         }
-
         protected void ddlShip_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
@@ -114,7 +115,7 @@ namespace UI.SAD.Delivery
                     ShipPointid = ddlShip.SelectedValue;
                     SalesOffid = ddlSo.SelectedValue;
                     CustType = ddlCusType.SelectedValue;
-                    ReportType = rdoComplete.SelectedValue;
+                    ReportType = "1";
                     
                     if (filePathForXML != null) { File.Delete(filePathForXML); }
 

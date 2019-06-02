@@ -4,6 +4,7 @@ using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using BLL.Inventory;
 using UI.ClassFiles;
 using Utility;
 
@@ -33,6 +34,7 @@ namespace UI.SCM
                 if (_dt.Rows.Count > 0)
                 {
                     lblSupp.Text = _dt.Rows[0]["strSupplierName"].ToString();
+                    hdnSupplierId.Value = _dt.Rows[0]["intSupplierID"].ToString();
                     dgvDelivery.Loads(_dt);
                 }
                 else
@@ -56,23 +58,49 @@ namespace UI.SCM
                 TextBox txtReturnQty = row.FindControl("txtReturnQty") as TextBox;
                 TextBox txtReson = row.FindControl("txtReson") as TextBox;
                 Label lblitemId = row.FindControl("lblitemId") as Label;
+                Label lblItemName = row.FindControl("lblItemName") as Label;
                 Label lblPoQty = row.FindControl("lblPoQty") as Label;
                 Label lblLocation = row.FindControl("lblLocation") as Label;
                 Label lblReceive = row.FindControl("lblReceve") as Label;
+                Label lblrate = row.FindControl("lblReceve") as Label;
+
+
                 string location = lblLocation.Text;
+                int supplierId = Convert.ToInt32(hdnSupplierId.Value);
 
-
-                if (double.TryParse(txtReturnQty.Text, out double returnQty))
+                if (decimal.TryParse(txtReturnQty.Text, out decimal returnQty))
                 {
                     string remarks = txtReson.Text;
+                    int itemId = Convert.ToInt32(lblitemId.Text);
+                    string itemName = lblItemName.Text;
+                    decimal poQuantity = Convert.ToDecimal(lblPoQty.Text);
+                    decimal receiveQuantity = Convert.ToDecimal(lblReceive.Text);
+                    int locationId = Convert.ToInt32(lblLocation.Text);
+                    string supplierName = lblSupp.Text;
+                    decimal rate = Convert.ToDecimal(lblrate.Text);
+
                     string xmlData = "<voucher><voucherentry returnQty=" + '"' + returnQty + '"' + " remarks=" + '"' +
-                                     remarks + '"' + " itemId=" + '"' + lblitemId.Text + '"' + " poQty=" + '"' +
-                                     lblPoQty.Text + '"' + " location=" + '"' + location + '"' + "/></voucher>";
-                    if (returnQty > 0 && returnQty <= double.Parse(lblReceive.Text))
+                                     remarks + '"' + " itemId=" + '"' + itemId + '"' + " poQty=" + '"' +
+                                     poQuantity + '"' + " location=" + '"' + location + '"' + "/></voucher>";
+                    if (returnQty > 0 && returnQty <= decimal.Parse(lblReceive.Text))
                     {
-                        string msg = _bll.PoApprove(37, xmlData, ddlWH.SelectedValue(), mrrNo, DateTime.Now, Enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('" + msg + "');", true);
+                        int whId = ddlWH.SelectedValue();
+                        // ***********NEW process***********
+                        FactoryPurchaseReturnBll bll = new FactoryPurchaseReturnBll();
+                        int returnId = bll.PurchaseReturn(whId, mrrNo, itemId, itemName, poQuantity, receiveQuantity, returnQty,
+                            rate*returnQty, locationId, remarks, supplierId, supplierName, Enroll);
+                        if (returnId > 0)
+                        {
+                            Toaster("Successfully purchase returned with ID: "+returnId,Common.TosterType.Success);
+                        }
+                        else
+                        {
+                            Toaster("Purchase returned Failed", Common.TosterType.Success);
+                        }
+                        // ***********OLD process***********
+                        //string msg = _bll.PoApprove(37, xmlData, whId, mrrNo, DateTime.Now, Enroll);
+                        //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                        //    "alert('" + msg + "');", true);
                     }
                     else
                     {
