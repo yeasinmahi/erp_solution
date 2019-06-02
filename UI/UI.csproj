@@ -1269,9 +1269,11 @@
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
+    <Content Include="SAD\Delivery\DeliveryOrderStatus.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\Delivery\Invoice.aspx" />
+    <Content Include="SAD\Delivery\PrintInvoice.aspx" />
     <Content Include="SAD\Delivery\Test.aspx" />
     <Content Include="SAD\Delivery\ViewOrder.aspx" />
     <Content Include="SAD\Delivery\ViewOrderForPicking.aspx" />
@@ -6089,6 +6091,13 @@
     <Compile Include="SAD\Delivery\DeliveryEntry.aspx.designer.cs">
       <DependentUpon>DeliveryEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Delivery\DeliveryOrderStatus.aspx.cs">
+      <DependentUpon>DeliveryOrderStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DeliveryOrderStatus.aspx.designer.cs">
+      <DependentUpon>DeliveryOrderStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Delivery\DeliverySales.aspx.cs">
       <DependentUpon>DeliverySales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6109,6 +6118,13 @@
     </Compile>
     <Compile Include="SAD\Delivery\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\PrintInvoice.aspx.cs">
+      <DependentUpon>PrintInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\PrintInvoice.aspx.designer.cs">
+      <DependentUpon>PrintInvoice.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>

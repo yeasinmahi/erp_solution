@@ -151,7 +151,45 @@ namespace SAD_BLL.Sales
             return adp.GetSalesOrderViewForPickingData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
 
         }
-                
+
+
+        public SalesOrderViewTDS.SprDelivaryOrderStatusDataTable GetDeliveryOrderStatus (DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
+       , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
+        {
+            SprDelivaryOrderStatusTableAdapter adp = new SprDelivaryOrderStatusTableAdapter();
+
+            int? cId = null;
+            if ("" + customerId != "")
+            {
+                cId = int.Parse(customerId);
+            }
+
+            cId = 0;
+
+            if ("" + code == "")
+            {
+                code = null;
+            }
+
+            if (fromDate == null)
+            {
+                fromDate = DateTime.Now.AddDays(-7);
+            }
+
+            if (toDate == null)
+            {
+                toDate = DateTime.Now.AddDays(7);
+            }
+
+            if ("" + customerType == "") return null;
+            return adp.GetDataDelivaryOrderStatus(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+
+        }
+
+
+
+
+
 
         public SalesOrderViewTDS.SprPickingViewDataTable GetViewPickingData(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
            , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
