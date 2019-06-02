@@ -149,6 +149,12 @@
                                                 <asp:Label ID="lblReturnQty" runat="server" Text='<%# Bind("returnQty","{0:n2}") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="Rate">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblRate" runat="server" Text='<%# Bind("monFCRate","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Return Qty" ItemStyle-HorizontalAlign="right" SortExpression="strCurrencyName">
                                             <ItemTemplate>

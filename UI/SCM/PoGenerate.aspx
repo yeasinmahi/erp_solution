@@ -9,6 +9,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
+    <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
 
     <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
     <script type="text/javascript">
@@ -32,8 +33,6 @@
 
 
         });
-
-
 
         <%-- Normal Textbox Onkey  Text Change Gridview row data  Calculation with ground Total --%>
         function PoGenerateCheck() {
@@ -677,7 +676,7 @@
                                                                     <td>
                                                                         <asp:Button ID="btnAddItem" runat="server" ForeColor="Blue" Text="Add" OnClick="btnAddItem_Click" />
 
-                                                                        <asp:Button ID="btnPrepare" ForeColor="Blue" runat="server" Text="Prepare PO" OnClick="btnPrepare_Click" /></td>
+                                                                        <asp:Button ID="btnPrepare" ForeColor="Blue" runat="server" Text="Prepare PO" OnClientClick="showLoader()" OnClick="btnPrepare_Click" /></td>
                                                                 </tr>
 
                                                             </table>

@@ -440,10 +440,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>FactoryPurchaseReturnTds.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Inventory\FactoryReceiveMRRItemDetailTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactoryReceiveMRRItemDetailTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\FactoryReceiveMRRTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactoryReceiveMRRTds.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Inventory\InConsistanceItemTds.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\InventoryLocationAndOpening.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InventoryLocationAndOpening.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inventory\InventoryTds.cs">
       <DependentUpon>InventoryTds.xsd</DependentUpon>
@@ -472,6 +487,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory\RequisitionDetailTds.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RequisitionDetailTds.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inventory\RfqMainTds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1244,6 +1264,28 @@
     <None Include="Inventory\FactoryPurchaseReturnTds.xss">
       <DependentUpon>FactoryPurchaseReturnTds.xsd</DependentUpon>
     </None>
+    <None Include="Inventory\FactoryReceiveMRRItemDetailTds.xsc">
+      <DependentUpon>FactoryReceiveMRRItemDetailTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRItemDetailTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FactoryReceiveMRRItemDetailTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRItemDetailTds.xss">
+      <DependentUpon>FactoryReceiveMRRItemDetailTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRTds.xsc">
+      <DependentUpon>FactoryReceiveMRRTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FactoryReceiveMRRTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\FactoryReceiveMRRTds.xss">
+      <DependentUpon>FactoryReceiveMRRTds.xsd</DependentUpon>
+    </None>
     <None Include="Inventory\InConsistanceItemTds.xsc">
       <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
     </None>
@@ -1254,6 +1296,17 @@
     </None>
     <None Include="Inventory\InConsistanceItemTds.xss">
       <DependentUpon>InConsistanceItemTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryLocationAndOpening.xsc">
+      <DependentUpon>InventoryLocationAndOpening.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\InventoryLocationAndOpening.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InventoryLocationAndOpening.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\InventoryLocationAndOpening.xss">
+      <DependentUpon>InventoryLocationAndOpening.xsd</DependentUpon>
     </None>
     <None Include="Inventory\InventoryTds.xsc">
       <DependentUpon>InventoryTds.xsd</DependentUpon>
@@ -1309,6 +1362,17 @@
     </None>
     <None Include="Inventory\PoTypeTds.xss">
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\RequisitionDetailTds.xsc">
+      <DependentUpon>RequisitionDetailTds.xsd</DependentUpon>
+    </None>
+    <None Include="Inventory\RequisitionDetailTds.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RequisitionDetailTds.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Inventory\RequisitionDetailTds.xss">
+      <DependentUpon>RequisitionDetailTds.xsd</DependentUpon>
     </None>
     <None Include="Inventory\RfqMainTds.xsc">
       <DependentUpon>RfqMainTds.xsd</DependentUpon>

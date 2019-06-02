@@ -255,6 +255,10 @@
         <asp:TemplateField HeaderText="Vehicle No" SortExpression="strVehicleNo">
         <ItemTemplate><asp:Label ID="lblVehicleNo" runat="server" Text='<%# Bind("strVehicleNo") %>'></asp:Label></ItemTemplate>
         <ItemStyle HorizontalAlign="Left" Width="150px"/></asp:TemplateField>
+        
+        <asp:TemplateField HeaderText="Remarks" SortExpression="strRemarks">
+        <ItemTemplate><asp:Label ID="lblRemarks" runat="server" Text='<%# Bind("strRemarks") %>'></asp:Label></ItemTemplate>
+        <ItemStyle HorizontalAlign="Left" Width="150px"/></asp:TemplateField>
 
         <asp:TemplateField HeaderText="Receive By Dispatch Dept." SortExpression="ApproveStatus">
         <ItemTemplate><asp:Label ID="lblAppStatus" runat="server" Text='<%# Bind("ApproveStatus") %>'></asp:Label></ItemTemplate>
