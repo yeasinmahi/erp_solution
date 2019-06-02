@@ -3090,6 +3090,10 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnnumRestQuantity;
             
+            private global::System.Data.DataColumn columndecDiscountRate;
+            
+            private global::System.Data.DataColumn columndecDiscountAmount;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public qryDOPendingPriceByItemDataTable() {
@@ -3285,6 +3289,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decDiscountRateColumn {
+                get {
+                    return this.columndecDiscountRate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn decDiscountAmountColumn {
+                get {
+                    return this.columndecDiscountAmount;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3340,7 +3360,9 @@ namespace SAD_DAL.Delivery {
                         int intPromUOM, 
                         decimal monPromPrice, 
                         int intPromItemCOAId, 
-                        decimal numRestQuantity) {
+                        decimal numRestQuantity, 
+                        decimal decDiscountRate, 
+                        decimal decDiscountAmount) {
                 qryDOPendingPriceByItemRow rowqryDOPendingPriceByItemRow = ((qryDOPendingPriceByItemRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intDoId,
@@ -3362,7 +3384,9 @@ namespace SAD_DAL.Delivery {
                         intPromUOM,
                         monPromPrice,
                         intPromItemCOAId,
-                        numRestQuantity};
+                        numRestQuantity,
+                        decDiscountRate,
+                        decDiscountAmount};
                 rowqryDOPendingPriceByItemRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowqryDOPendingPriceByItemRow);
                 return rowqryDOPendingPriceByItemRow;
@@ -3405,6 +3429,8 @@ namespace SAD_DAL.Delivery {
                 this.columnmonPromPrice = base.Columns["monPromPrice"];
                 this.columnintPromItemCOAId = base.Columns["intPromItemCOAId"];
                 this.columnnumRestQuantity = base.Columns["numRestQuantity"];
+                this.columndecDiscountRate = base.Columns["decDiscountRate"];
+                this.columndecDiscountAmount = base.Columns["decDiscountAmount"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3450,6 +3476,10 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintPromItemCOAId);
                 this.columnnumRestQuantity = new global::System.Data.DataColumn("numRestQuantity", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnumRestQuantity);
+                this.columndecDiscountRate = new global::System.Data.DataColumn("decDiscountRate", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecDiscountRate);
+                this.columndecDiscountAmount = new global::System.Data.DataColumn("decDiscountAmount", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndecDiscountAmount);
                 this.columnintDoId.AllowDBNull = false;
                 this.columnintCustomerId.AllowDBNull = false;
                 this.columnintProductId.AllowDBNull = false;
@@ -8869,6 +8899,40 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decDiscountRate {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.decDiscountRateColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decDiscountRate\' in table \'qryDOPendingPriceByItem\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tableqryDOPendingPriceByItem.decDiscountRateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal decDiscountAmount {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableqryDOPendingPriceByItem.decDiscountAmountColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'decDiscountAmount\' in table \'qryDOPendingPriceByItem\' is DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableqryDOPendingPriceByItem.decDiscountAmountColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonVATNull() {
                 return this.IsNull(this.tableqryDOPendingPriceByItem.monVATColumn);
             }
@@ -9033,6 +9097,30 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetnumRestQuantityNull() {
                 this[this.tableqryDOPendingPriceByItem.numRestQuantityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecDiscountRateNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.decDiscountRateColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecDiscountRateNull() {
+                this[this.tableqryDOPendingPriceByItem.decDiscountRateColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdecDiscountAmountNull() {
+                return this.IsNull(this.tableqryDOPendingPriceByItem.decDiscountAmountColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdecDiscountAmountNull() {
+                this[this.tableqryDOPendingPriceByItem.decDiscountAmountColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13303,6 +13391,8 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("monPromPrice", "monPromPrice");
             tableMapping.ColumnMappings.Add("intPromItemCOAId", "intPromItemCOAId");
             tableMapping.ColumnMappings.Add("numRestQuantity", "numRestQuantity");
+            tableMapping.ColumnMappings.Add("decDiscountRate", "decDiscountRate");
+            tableMapping.ColumnMappings.Add("decDiscountAmount", "decDiscountAmount");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

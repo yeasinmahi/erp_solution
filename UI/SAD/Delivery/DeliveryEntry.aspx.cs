@@ -410,7 +410,7 @@ namespace UI.SAD.Delivery
             txtCustomer.Text = dt.Rows[0]["strCustNameId"].ToString();
             txtCustomerAddress.Text = dt.Rows[0]["strCustAddress"].ToString();
             hdnCustomer.Value = dt.Rows[0]["intCustomerId"].ToString();
-            try { txtShipmentCost.Text = dt.Rows[0]["monShipmentCost"].ToString(); } catch { }
+            try { txtShipmentCost.Text = dt.Rows[0]["monshipmentCost"].ToString(); } catch { }
 
             if (hdnPickingId.Value== null)
             {
@@ -1749,7 +1749,7 @@ namespace UI.SAD.Delivery
                     promPrice = decimal.Parse(dt.Rows[0]["monPromPrice"].ToString());
                     promUom = dt.Rows[0]["intPromUOM"].ToString();
                     discount = decimal.Parse(dt.Rows[0]["decDiscountRate"].ToString());
-                    doQuantity = decimal.Parse(dt.Rows[0]["monRemainQty"].ToString());
+                    doQuantity = decimal.Parse(dt.Rows[0]["numRestQuantity"].ToString());
 
                     if (decimal.Parse(productQty) + doQuantity < decimal.Parse(editQty) && decimal.Parse(productQty)>0)
                     {
