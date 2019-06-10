@@ -207,7 +207,7 @@
 
                                         <asp:TemplateField HeaderText="Complete">
                                             <ItemTemplate>
-                                                <asp:Button ID="btnComplete" runat="server" Text="Complete" OnClick="btnComplete_Click" />
+                                                <asp:Button ID="btnComplete" runat="server" Text="Complete" OnClick="btnComplete_Click" OnClientClick="showLoader()" />
                                             </ItemTemplate>
                                         </asp:TemplateField>
 
