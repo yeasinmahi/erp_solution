@@ -121,51 +121,52 @@
     </script>
     <script type="text/javascript">
         function ValidationWithConfirm() {
-            alert('data');
-            var vehicle = document.getElementById('txtVehicle').value;
+           // alert('data');
+
+           // var vehicle = document.getElementById('txtVehicle').value;
             var delivery = document.getElementById('hdnDelivery').value;
-            alert(delivery); 
-            alert(vehicle.length);
+
+           
+           // alert(vehicle.length);
             
             if (delivery == 'DO' || delivery == 'DO_Edit') {
-                alert('do');
-                if (document.getElementById("txtDate") != null) {
+               // alert('do');
+                 if (document.getElementById("txtDate") != null) {
                     if (document.getElementById("txtDate").value == '') {
                         alert('Date not be blank');
                         return;
                     }
                 }
-                else if (document.getElementById("txtCustomer") != null) {
+                 if (document.getElementById("txtCustomer") != null) {
                     if (document.getElementById("txtCustomer").value == '') {
                         alert('Customer not be blank');
                         return;
                     }
                 }
-                else if (document.getElementById("txtShipToParty") != null) {
+                 if (document.getElementById("txtShipToParty") != null) {
                     if (document.getElementById("txtShipToParty").value == '') {
                         alert('Ship to Party   not be blank');
                         return;
                     }
                 }
-                else if (document.getElementById("txtCustomerAddress") != null) {
+                 if (document.getElementById("txtCustomerAddress") != null) {
                     if (document.getElementById("txtCustomerAddress").value == '') {
                         alert('Address not be blank');
                         return;
                     }
                 }
-                else {
-                    funConfirmAll();
-                }
+                 
             }
             else {
                 alert('Picking');
+                // var vehicle = document.getElementById('txtVehicle').value;
                 if (document.getElementById("txtDate") != null) {
                     if (document.getElementById("txtDate").value == '') {
                         alert('Date not be blank');
                         return;
                     }
                 }
-                else if (document.getElementById("txtCustomer") != null) {
+                 if (document.getElementById("txtCustomer") != null) {
                     if (document.getElementById("txtCustomer").value == '') {
                         alert('Customer not be blank');
                         return;
@@ -178,31 +179,28 @@
                         return;
                     }
                 }
-                else if (document.getElementById("txtCustomerAddress") != null) {
+                 if (document.getElementById("txtCustomerAddress") != null) {
                     if (document.getElementById("txtCustomerAddress").value == '') {
                         alert('Address not be blank');
                         return;
                     }
                 }
 
-                 else if (vehicle.length <3 ) { 
+                 if (vehicle.length <3 ) { 
 
                     alert('Please select a vehicle');
                     return; 
                 }
           
-                else if (vehicle.length < 3 && delivery == 'Picking_Edit') {
+               if (vehicle.length < 3 && delivery == 'Picking_Edit') {
 
                     alert('Please select a vehicle');
                     return;
 
-                }
-
-                else {
-                    funConfirmAll();
-                }
+                } 
             }
-           
+            
+            funConfirmAll(); 
         }
 
         function funConfirmAll() { 
