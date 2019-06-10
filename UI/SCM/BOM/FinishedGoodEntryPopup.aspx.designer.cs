@@ -247,13 +247,13 @@ namespace UI.SCM.BOM {
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
-        /// lblProductQty control.
+        /// lblProductQuantity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProductQty;
+        protected global::System.Web.UI.WebControls.Label lblProductQuantity;
         
         /// <summary>
         /// txtProductQty control.
@@ -481,15 +481,6 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Button btnSaves;
         
         /// <summary>
-        /// dgvStore control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvStore;
-        
-        /// <summary>
         /// dgvProductionEntry control.
         /// </summary>
         /// <remarks>
@@ -497,6 +488,15 @@ namespace UI.SCM.BOM {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvProductionEntry;
+        
+        /// <summary>
+        /// dgvStore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvStore;
         
         /// <summary>
         /// Label22 control.

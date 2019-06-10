@@ -8,9 +8,12 @@ namespace SCM_BLL
 {
     public class Bom_BLL
     {
+        #region INIT
         private static BomTDS.qryItemListDataTable[] tableBomItem = null;
         private static BomTDS.qryFgWithBomItemListDataTable[] tableItem = null;
         private int e;
+        #endregion
+
 
         public DataTable GetBomData(int Type, string xmlData, int intwh, int bomId, DateTime dteDate, int enroll)
         {
@@ -195,7 +198,7 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
-        public DataTable UpdateProductionTransfer(int Type,decimal quantity,int transectionId,int enroll, out string  msg)
+        public DataTable UpdateProductionTransfer(int Type, decimal quantity, int transectionId, int enroll, out string msg)
         {
             msg = null;
             try
@@ -220,7 +223,7 @@ namespace SCM_BLL
                 //qryFgWithBomItemListTableAdapter
                 tableItem = new BomTDS.qryFgWithBomItemListDataTable[Convert.ToInt32(unit)];
                 qryFgWithBomItemListTableAdapter adpCOA = new qryFgWithBomItemListTableAdapter();
-                tableItem[e] = adpCOA.GetBOMItemData(Convert.ToInt32(unit));  
+                tableItem[e] = adpCOA.GetBOMItemData(Convert.ToInt32(unit));
             }
             else
             {
@@ -287,6 +290,28 @@ namespace SCM_BLL
                 return widp.GetWastageItem(intUnitId);
             }
             catch { return new DataTable(); }
+        }
+
+        
+
+        public string InsertFinishProductProduction(int type, string xmlString, int ProductionId, int FItemId, int intWh, decimal ProductionQty, decimal GoodPQty)
+        {
+            /*
+             * Author   : Muktadir
+             * Date     : 30-May-2019
+             * For      : Finish Product Entry (UI.SCM.BOM.FinishedGoodEntryPopup.aspx)
+             */
+            string strMsg = "";
+            try
+            {
+                FinishProductProductionTableAdapter adp = new FinishProductProductionTableAdapter();
+                adp.InsertFinishProductProduction(type, xmlString, ProductionId, FItemId, intWh, ProductionQty, GoodPQty, ref strMsg);
+            }
+            catch (Exception ex)
+            {
+                return strMsg = ex.ToString();
+            }
+            return strMsg;
         }
 
     }
