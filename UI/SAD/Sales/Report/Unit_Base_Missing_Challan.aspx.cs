@@ -17,7 +17,6 @@ namespace UI.SAD.Sales.Report
                 pnlUpperControl.DataBind();
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Sales%20And%20Distribution/Unit_Base_Missing_Challan_Report?rs:Embed=true');", true);
-
         }
     }
 }
