@@ -449,6 +449,38 @@ namespace SCM_BLL
             }
         }
 
+        public bool CheckPOId(int POId)
+        {
+            bool result = false;
+            sprPOUPdateDeleteTableAdapter adp = new sprPOUPdateDeleteTableAdapter();
+            try
+            {
+                object _obj = adp.CheckPOId(POId);
+                if (_obj != null)
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
+
+        public bool UpdateCnFBillNo(string BillNo, int POId)
+        {
+            bool result = false;
+            sprPOUPdateDeleteTableAdapter adp = new sprPOUPdateDeleteTableAdapter();
+            try
+            {
+                int ii = adp.UpdateCnFBillNo(BillNo,POId);
+                if (ii > 0)
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
+
         public DataTable GetSuppliers(int poId)
         {
             try

@@ -503,6 +503,7 @@
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
     <Content Include="IMPORT MANAGEMENT\HS Code.aspx" />
+    <Content Include="IMPORT MANAGEMENT\HSCodeCorrection.aspx" />
     <Content Include="Import\ImportFileManagement.aspx" />
     <Content Include="Import\LCRegister.aspx" />
     <Content Include="Import\OutStanding_LC.aspx" />
@@ -3451,6 +3452,13 @@
     </Compile>
     <Compile Include="IMPORT MANAGEMENT\HS Code.aspx.designer.cs">
       <DependentUpon>HS Code.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IMPORT MANAGEMENT\HSCodeCorrection.aspx.cs">
+      <DependentUpon>HSCodeCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IMPORT MANAGEMENT\HSCodeCorrection.aspx.designer.cs">
+      <DependentUpon>HSCodeCorrection.aspx</DependentUpon>
     </Compile>
     <Compile Include="Import\ImportFileManagement.aspx.cs">
       <DependentUpon>ImportFileManagement.aspx</DependentUpon>

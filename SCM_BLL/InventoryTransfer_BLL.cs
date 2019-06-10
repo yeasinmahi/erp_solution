@@ -467,6 +467,60 @@ namespace SCM_BLL
         }
 
 
+        /*
+         * Author : Muktadir
+         * Date : 10-June-2019
+         * For : HS Code Correction
+         */
+        public DataTable GetAllUnit()
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                HSCodeCorrectionTableAdapter adp = new HSCodeCorrectionTableAdapter();
+                dt = adp.GetAllUnitData();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+        public DataTable GetItemDetails(int ItemId, int UnitId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                HSCodeCorrectionTableAdapter adp = new HSCodeCorrectionTableAdapter();
+                dt = adp.GetItemDetailsData(ItemId, UnitId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return dt;
+        }
+        public bool UpdateHSCode(string HSCode, int ItemId, int UnitId)
+        {
+            bool result = false;
+            try
+            {
+                HSCodeCorrectionTableAdapter adp = new HSCodeCorrectionTableAdapter();
+                int ii = adp.UpdateHSCode(HSCode,ItemId, UnitId);
+                if (ii > 0)
+                {
+                    result = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
 
     }
 }
