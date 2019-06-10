@@ -108,7 +108,7 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
-                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Picking <hr /></td>
+                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Order <hr /></td>
                
             </tr>
             <tr>
@@ -213,19 +213,19 @@
     </HeaderTemplate>
     <ItemTemplate><asp:Label ID="lblNumber" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strName")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
-    <asp:BoundField DataField="strName" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
+    <asp:BoundField DataField="strShipToParty" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField>
         
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Order Amount" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
+    <asp:BoundField DataField="OrderAmount" HeaderText="Order Amount" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
 
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Pending Amount" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
+    <asp:BoundField DataField="PendingAmount" HeaderText="Pending Amount" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
 
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Order Qty" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
+    <asp:BoundField DataField="OrderQty" HeaderText="Order Quantity" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
 
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Pending Qty" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
+    <asp:BoundField DataField="PendingQty" HeaderText="Pending Quantity" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>    
         
     <asp:TemplateField HeaderText=""><ItemTemplate>                                                                                                          
