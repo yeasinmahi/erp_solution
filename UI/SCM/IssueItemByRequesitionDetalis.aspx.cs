@@ -169,10 +169,6 @@ namespace UI.SCM
                                 };
                                 objects.Add(obj);
                             }
-                            else
-                            {
-                                Toaster("Please input issue quantity", Common.TosterType.Warning);
-                            }
 
                         }
                         
