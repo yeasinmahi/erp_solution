@@ -1482,6 +1482,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
+    <Content Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Calling_List.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
@@ -7585,6 +7586,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.designer.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.cs">
+      <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.designer.cs">
+      <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.cs">
       <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
