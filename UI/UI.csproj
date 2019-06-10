@@ -1483,6 +1483,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
+    <Content Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Calling_List.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
@@ -1546,6 +1547,7 @@
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntryPopup.aspx" />
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionApproval.aspx" />
@@ -7594,6 +7596,13 @@
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.designer.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.cs">
+      <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.designer.cs">
+      <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.cs">
       <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8034,6 +8043,13 @@
     </Compile>
     <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.designer.cs">
       <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx.cs">
       <DependentUpon>FinishedGoodRoutingDetalis.aspx</DependentUpon>
@@ -9786,6 +9802,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="backup.bat" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

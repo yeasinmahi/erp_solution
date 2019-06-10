@@ -13,10 +13,13 @@ namespace UI.SCM.BOM
     {
         private Bom_BLL objBom = new Bom_BLL();
         private DataTable dt = new DataTable();
-        private int intwh,  BomId; private string xmlData;
-        private int CheckItem = 1, intWh; private string[] arrayKey;
+        private int intwh, BomId;
+        private string xmlData;
+        private int CheckItem = 1, intWh;
+        private string[] arrayKey;
         private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "";
+        private string filePathForXML;
+        private string xmlString = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,7 +43,7 @@ namespace UI.SCM.BOM
         {
             try
             {
-                GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblProductID = row.FindControl("lblProductID") as Label;
 
                 int producttionID = int.Parse(lblProductID.Text);
@@ -80,7 +83,7 @@ namespace UI.SCM.BOM
                 dgvBom.DataSource = dt;
                 dgvBom.DataBind();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
             }
@@ -95,7 +98,7 @@ namespace UI.SCM.BOM
             try
             {
                 // lblProductID,lblProductName,lblBomName,lblBatch,lblStartTime,lblEndTime,lblInvoice,lblSrNO,lblQuantity,lblLine
-                GridViewRow row = (GridViewRow) ((Button) sender).NamingContainer;
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
                 Label lblProductId = row.FindControl("lblProductID") as Label;
                 Label lblProductName = row.FindControl("lblProductName") as Label;
                 Label lblBomName = row.FindControl("lblBomName") as Label;
@@ -129,7 +132,7 @@ namespace UI.SCM.BOM
             }
             catch (Exception ex)
             {
-                Toaster(ex.Message,Common.TosterType.Error);
+                Toaster(ex.Message, Common.TosterType.Error);
             }
         }
     }

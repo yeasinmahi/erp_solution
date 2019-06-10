@@ -14112,7 +14112,8 @@ namespace SAD_DAL.Sales.SalesOrderViewTDSTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "Update erp_sad.dbo.tblsalesorder Set ysnDOCompleted = 1, intCompletedBy = @intIns" +
-                "ertBy, dteDOCopmplitionTime = Getdate() Where intId = @intDOId";
+                "ertBy, dteDOCopmplitionTime = Getdate(), ysnCompleted = 1 Where intId = @intDOId" +
+                "";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intInsertBy", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCompletedBy", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDOId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
