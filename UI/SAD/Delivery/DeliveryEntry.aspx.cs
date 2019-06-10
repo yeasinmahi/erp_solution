@@ -495,13 +495,8 @@ namespace UI.SAD.Delivery
                 string intInvItemId = dt.Rows[i]["intItemIdInventory"].ToString();
                 string editStatus = "0";
                 string doId = dt.Rows[i]["intDoId"].ToString();
-                string doqty = "0";
-                try
-                {
-                    location = dt.Rows[i]["intLocationId"].ToString();
-                }
-                catch { location = "0"; }
-                string locationName = "";
+                string doqty = "0"; 
+                string locationName = dt.Rows[i]["strLocationName"].ToString(); 
 
                 RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                     narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
@@ -970,7 +965,7 @@ namespace UI.SAD.Delivery
                         for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
                         {
                             if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()) &&
-                                doid == (ds.Tables[0].Rows[i].ItemArray[7].ToString()))
+                                doid == (ds.Tables[0].Rows[i].ItemArray[34].ToString()))
                             {
                                 _checkItem = true;
                                 break;
@@ -1612,7 +1607,17 @@ namespace UI.SAD.Delivery
             if (hdnButtonFire.Value == "true")
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
-                DoGridDataBind(hdnDoId.Value);
+                if (Request.QueryString["PopupType"] == "Picking_Edit" || Request.QueryString["PopupType"] == "Delivery")
+                {
+                    PickingGridDataBind(hdnPickingId.Value);
+                }
+                else if (HttpContext.Current.Session["PopupType"].ToString() == "DO" ||Request.QueryString["PopupType"] == "DO_Edit")
+                {
+                    DoGridDataBind(hdnDoId.Value);
+                }
+
+              
+               
 
             }
            

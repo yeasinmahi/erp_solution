@@ -158,8 +158,8 @@
                  
             }
             else {
-                alert('Picking');
-                // var vehicle = document.getElementById('txtVehicle').value;
+               // alert('Picking');
+                 var vehicle = document.getElementById('txtVehicle').value;
                 if (document.getElementById("txtDate") != null) {
                     if (document.getElementById("txtDate").value == '') {
                         alert('Date not be blank');
@@ -173,7 +173,7 @@
                     }
                 }
 
-                else if (document.getElementById("txtShipToParty") != null) {
+                 if (document.getElementById("txtShipToParty") != null) {
                     if (document.getElementById("txtShipToParty").value == '') {
                         alert('Ship to Party   not be blank');
                         return;
