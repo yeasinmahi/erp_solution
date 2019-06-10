@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<Delivery>
-  <items productId="167462" productName="CIG-Navy-10 HL " quantity="6000" rate="4.60" uomId="1105" uomName="Sticks" narration="6000 Sticks CIG-Navy-10 HL  Sold To Adamjee" currency="1" commision="0.00" commisionTotal="0.00" discount="0.00" discountTotal="0.00" priceTotal="27600.00" supplierTax="0.00" vat="0.00" vatPrice="0.00" promtionItemId="0" promtionItem="0" promPrices="0.0000" promtionUom="0" coaId="184518" coaName="Cigarette L" promtionItemCoaId="0" promtionQnty="0.00" promtionItemUom="0" location="38207" intInvItemId="0" editStatus="0" invProductId="0" productCogs="0" invPromoProductId="0" promoProductCogs="0" conversionRate="0.00" whId="606" doId="2712751" serialId="2" locationName="UDTCL Central" />
-</Delivery>

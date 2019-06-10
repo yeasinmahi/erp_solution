@@ -215,18 +215,7 @@ namespace UI.SAD.Order
             string dodate, chamount="";
             SAD_BLL.Sales.Report.Challan ch = new SAD_BLL.Sales.Report.Challan();
             DataTable dtamnt = new DataTable();
-            //SprTripChallanInfoWithTotalAmnt
-
-
-
-            //ChallanTDS.SprTripChallanInfoCustomizeDataTable table = ch.GetTripDataCustomize(id, Session[SessionParams.USER_ID].ToString(), separator.ToString()
-            //    , ref date, ref unitName, ref unitAddress, ref userName
-            //    , ref challanNo, ref doNo, ref customerName, ref customerPhone, ref distributionPoint
-            //    , ref contactAt, ref contactPhone, ref delevaryAddress, ref other
-            //    , ref vehicle, ref extra, ref extAmount
-            //    , ref driver, ref driverPh, ref charge, ref logistic, ref incentive
-            //    , ref isLogBasedOnUOM, ref isCharBasedOnUOM, ref isIncenBasedOnUOM);
-
+           
             ChallanTDS.SprTripChallanInfoWithTotalAmntDataTable table = ch.GetTripDataCustomize1(id, Session[SessionParams.USER_ID].ToString(), separator.ToString()
                , ref date, ref unitName, ref unitAddress, ref userName
                , ref challanNo, ref doNo, ref customerName, ref customerPhone, ref distributionPoint

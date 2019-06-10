@@ -44,25 +44,41 @@ namespace UI.SAD.Delivery
             hdnTo.Value = toDate.ToString();
             //dgvViewPicking.DataBind();
         }
-        
+
 
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlCusType.DataBind();
         }
+
+        protected void ddlShip_DataBound(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+            ddlSo.DataBind();
+            ddlCusType.DataBind();
+        }
+
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+        }
+
+        protected void ddlShip_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session[SessionParams.CURRENT_SHIP] = ddlShip.SelectedValue;
         }
         protected void ddlUnit_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
             ddlShip.DataBind();
+            ddlSo.DataBind();
+            ddlCusType.DataBind();
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
+            Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {

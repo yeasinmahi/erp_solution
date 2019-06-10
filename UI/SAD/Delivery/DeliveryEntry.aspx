@@ -121,50 +121,86 @@
     </script>
     <script type="text/javascript">
         function ValidationWithConfirm() {
+           // alert('data');
+
+           // var vehicle = document.getElementById('txtVehicle').value;
+            var delivery = document.getElementById('hdnDelivery').value;
+
+           
+           // alert(vehicle.length);
             
-            if(document.getElementById("txtDate") != null){
-                if (document.getElementById("txtDate").value == '') {
-                    alert('Date not be blank');
-                    return;
+            if (delivery == 'DO' || delivery == 'DO_Edit') {
+               // alert('do');
+                 if (document.getElementById("txtDate") != null) {
+                    if (document.getElementById("txtDate").value == '') {
+                        alert('Date not be blank');
+                        return;
+                    }
                 }
-            }
-        
-            if(document.getElementById("txtCustomer") != null){
-                if(document.getElementById("txtCustomer").value == ''){
-                    alert('Customer not be blank');
-                    return;
+                 if (document.getElementById("txtCustomer") != null) {
+                    if (document.getElementById("txtCustomer").value == '') {
+                        alert('Customer not be blank');
+                        return;
+                    }
                 }
-            }
-        
-            if(document.getElementById("txtShipToParty") != null  ){
-                if(document.getElementById("txtShipToParty").value == ''){
-                    alert('Ship to Party   not be blank');
-                    return;
+                 if (document.getElementById("txtShipToParty") != null) {
+                    if (document.getElementById("txtShipToParty").value == '') {
+                        alert('Ship to Party   not be blank');
+                        return;
+                    }
                 }
-            }
-        
-            if(document.getElementById("txtCustomerAddress") != null){
-                if(document.getElementById("txtCustomerAddress").value == ''){
-                    alert('Address not be blank');
-                    return;
+                 if (document.getElementById("txtCustomerAddress") != null) {
+                    if (document.getElementById("txtCustomerAddress").value == '') {
+                        alert('Address not be blank');
+                        return;
+                    }
                 }
-            }
-        
-            if(document.getElementById("txtVehicle") =='' && document.getElementById('hdnDelivery').value =="Picking"){
-                 
-                    alert('Please select a vehicle');
-                    return;
-                 
-            }
-            if (document.getElementById("txtVehicle") =='' && document.getElementById('hdnDelivery').value == "Picking_Edit") {
-                
-                    alert('Please select a vehicle');
-                    return;
                  
             }
             else {
-                funConfirmAll();
+                alert('Picking');
+                // var vehicle = document.getElementById('txtVehicle').value;
+                if (document.getElementById("txtDate") != null) {
+                    if (document.getElementById("txtDate").value == '') {
+                        alert('Date not be blank');
+                        return;
+                    }
+                }
+                 if (document.getElementById("txtCustomer") != null) {
+                    if (document.getElementById("txtCustomer").value == '') {
+                        alert('Customer not be blank');
+                        return;
+                    }
+                }
+
+                else if (document.getElementById("txtShipToParty") != null) {
+                    if (document.getElementById("txtShipToParty").value == '') {
+                        alert('Ship to Party   not be blank');
+                        return;
+                    }
+                }
+                 if (document.getElementById("txtCustomerAddress") != null) {
+                    if (document.getElementById("txtCustomerAddress").value == '') {
+                        alert('Address not be blank');
+                        return;
+                    }
+                }
+
+                 if (vehicle.length <3 ) { 
+
+                    alert('Please select a vehicle');
+                    return; 
+                }
+          
+               if (vehicle.length < 3 && delivery == 'Picking_Edit') {
+
+                    alert('Please select a vehicle');
+                    return;
+
+                } 
             }
+            
+            funConfirmAll(); 
         }
 
         function funConfirmAll() { 
@@ -243,7 +279,7 @@
                             <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" AutoPostBack="True"
-                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged"> 
+                                        RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged" > 
                                     </asp:RadioButtonList></td>
                                 <td>
                                     <asp:Label runat="server" ID="lblDoCustId" Visible="False" Text="ID:"></asp:Label></td>
@@ -262,11 +298,7 @@
                                 <td>
                                     <asp:TextBox runat="server" ID="txtReffNo"></asp:TextBox>
                                 </td>
-                                 <td>
-                                  <asp:Button ID="btnSubmit"   AutoPostBack="true"      runat="server" Text="Save Sales"
-                                    OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
-                                      
-                            </td>
+                                 
                                 
                             </tr>
                         </table>
@@ -470,6 +502,11 @@
                                 <asp:Button ID="btnProductAddAlls" runat="server" Text="Add-All" OnClientClick="setButtonFire();"   OnClick="btnProductAddAll_Click" />
 
                             </td>
+                            <td>
+                                <asp:Button ID="btnSubmit"       runat="server" Text="Save Sales"
+                                 OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
+                                      
+                            </td>
                            
                         </tr>
                     </table>
@@ -585,7 +622,13 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
-                                        
+                                        <asp:TemplateField HeaderText="Commision" Visible="false" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblQuantity" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblqty" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
@@ -806,6 +849,13 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
                                         </asp:TemplateField>
+                                        
+                                    <asp:TemplateField HeaderText="Qty" Visible="False" SortExpression="quantity">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblQuantitys" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
 
 
                                         <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="center"  >
@@ -822,11 +872,11 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="quantity">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblqty" runat="server" Width="60px" Text='<%# Bind("quantity") %>'></asp:Label>
+                                                <asp:Label ID="lblqtys" runat="server" Width="60px" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txtQtyEdit" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtQtyEdits" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
                                             </EditItemTemplate>
                                         </asp:TemplateField>
 
