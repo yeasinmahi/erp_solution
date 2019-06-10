@@ -279,5 +279,15 @@ namespace SCM_BLL
             }
         }
 
+        public DataTable GetWastageItem(int intUnitId)
+        {
+            try
+            {
+                WastageItemTableAdapter widp = new WastageItemTableAdapter();
+                return widp.GetWastageItem(intUnitId);
+            }
+            catch { return new DataTable(); }
+        }
+
     }
 }
