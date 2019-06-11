@@ -152,7 +152,7 @@ namespace SAD_BLL.Sales
 
         }
 
-
+/* Below Code is Monir Vai
         public SalesOrderViewTDS.SprDelivaryOrderStatusDataTable GetDeliveryOrderStatus (DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
        , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
         {
@@ -186,7 +186,7 @@ namespace SAD_BLL.Sales
 
         }
 
-
+    */
 
 
 

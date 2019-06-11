@@ -25,9 +25,21 @@
             var quantity = parseFloat(txt.value);
             var stockQty = parseFloat(document.getElementById("hdnStockQty").value);
 
-            if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("txTransferQty").value = "0"; alert('Please input Transfer Qty'); }
-            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("txTransferQty").value = "0"; alert('Please Select Item'); }
-            else if ($.trim(stockQty) == 0 || $.trim(stockQty) == "" || $.trim(stockQty) == null || $.trim(stockQty) == undefined) { document.getElementById("txTransferQty").value = "0"; alert('Stock is not avaiable'); }
+            if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined)
+            {
+                document.getElementById("txTransferQty").value = "0";
+                alert('Please input Transfer Qty');
+            }
+            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined)
+            {
+                document.getElementById("txTransferQty").value = "0";
+                alert('Please Select Item');
+            }
+            else if ($.trim(stockQty) == 0 || $.trim(stockQty) == "" || $.trim(stockQty) == null || $.trim(stockQty) == undefined)
+            {
+                document.getElementById("txTransferQty").value = "0";
+                alert('Stock is not avaiable');
+            }
 
             else if (parseFloat(stockQty) < parseFloat(quantity)) { document.getElementById("txTransferQty").value = "0"; alert('Input Quantity greater then stock quantity'); }
             else {
@@ -47,16 +59,43 @@
             var vechile = document.getElementById("txtVehicle").value;
 
 
-            if ($.trim(transferType) == 0 || $.trim(transferType) == "" || $.trim(transferType) == null || $.trim(transferType) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Transfer Type'); }
-            else if ($.trim(locationId) == 0 || $.trim(locationId) == "" || $.trim(locationId) == null || $.trim(locationId) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select Sotre Location'); }
-            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please select In Item'); }
-            else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined || $.trim(remarks) == "NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Remarks'); }
-            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined) { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Quantity'); }
-            else if (parseFloat(stockQty) < parseFloat(quantity)) { document.getElementById("hdnPreConfirm").value = "0"; alert('input Quantity greater then Stock Quantity'); }
-            else if ($.trim(vechile) == 0 || $.trim(vechile) == "" || $.trim(vechile) == null || $.trim(vechile) == undefined || $.trim(vechile) == "NaN") { document.getElementById("hdnPreConfirm").value = "0"; alert('Please input Vehicle'); }
-
-
-            else {
+            if ($.trim(transferType) == 0 || $.trim(transferType) == "" || $.trim(transferType) == null || $.trim(transferType) == undefined)
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Transfer Type');
+            }
+            else if ($.trim(locationId) == 0 || $.trim(locationId) == "" || $.trim(locationId) == null || $.trim(locationId) == undefined)
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select Sotre Location');
+            }
+            else if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined)
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please select In Item');
+            }
+            else if ($.trim(remarks) == 0 || $.trim(remarks) == "" || $.trim(remarks) == null || $.trim(remarks) == undefined || $.trim(remarks) == "NaN")
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please input Remarks');
+            }
+            else if ($.trim(quantity) == 0 || $.trim(quantity) == "" || $.trim(quantity) == null || $.trim(quantity) == undefined)
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please input Quantity');
+            }
+            else if (parseFloat(stockQty) < parseFloat(quantity))
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('input Quantity greater then Stock Quantity');
+            }
+            else if ($.trim(vechile) == 0 || $.trim(vechile) == "" || $.trim(vechile) == null || $.trim(vechile) == undefined || $.trim(vechile) == "NaN")
+            {
+                document.getElementById("hdnPreConfirm").value = "0";
+                alert('Please input Vehicle');
+            }
+            else
+            {
                 showLoader();
                 document.getElementById("hdnPreConfirm").value = "1";
             }
@@ -68,10 +107,19 @@
             var towh = e.options[e.selectedIndex].value;
             var vehicle = document.getElementById("txtVehicle").value;
 
-            if ($.trim(towh) == 0 || $.trim(towh) == "" || $.trim(towh) == null || $.trim(towh) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please select Transfer Warehouse'); }
-            else if ($.trim(vehicle) == 0 || $.trim(vehicle) == "" || $.trim(vehicle) == null || $.trim(vehicle) == undefined) { document.getElementById("hdnConfirm").value = "0"; alert('Please input Vehicle Number'); }
+            if ($.trim(towh) == 0 || $.trim(towh) == "" || $.trim(towh) == null || $.trim(towh) == undefined)
+            {
+                document.getElementById("hdnConfirm").value = "0";
+                alert('Please select Transfer Warehouse');
+            }
+            else if ($.trim(vehicle) == 0 || $.trim(vehicle) == "" || $.trim(vehicle) == null || $.trim(vehicle) == undefined)
+            {
+                document.getElementById("hdnConfirm").value = "0";
+                alert('Please input Vehicle Number');
+            }
 
-            else {
+            else
+            {
                 var confirm_value = document.createElement("INPUT");
                 confirm_value.type = "hidden"; confirm_value.name = "confirm_value";
                 if (confirm("Do you want to proceed?")) {
@@ -113,7 +161,8 @@
                     <asp:HiddenField ID="hdnStockQty" runat="server" />
                     <asp:HiddenField ID="hdnValue" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" />
-                    <div class="tabs_container">FG INVENTORY TRANSFER
+                    <div class="tabs_container">
+                        FG INVENTORY TRANSFER
                         <hr />
                     </div>
 
@@ -204,31 +253,36 @@
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="item">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblItem" runat="server" Text='<%# Bind("item") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblItem" runat="server" Text='<%# Bind("item") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="qty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQty" runat="server" Text='<%# Bind("qty") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblQty" runat="server" Text='<%# Bind("qty") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="uom">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblUom" runat="server" Width="" Text='<%# Bind("uom") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblUom" runat="server" Width="" Text='<%# Bind("uom") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="right" SortExpression="locationName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLocation" Width="120px" runat="server" Text='<%# Bind("locationName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblLocation" Width="120px" runat="server" Text='<%# Bind("locationName") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="TransType" ItemStyle-HorizontalAlign="right" SortExpression="transType">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblTrans" runat="server" Width="" Text='<%# Bind("transType") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblTrans" runat="server" Width="" Text='<%# Bind("transType") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 

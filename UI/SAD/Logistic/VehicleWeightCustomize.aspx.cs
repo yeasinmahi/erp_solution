@@ -137,8 +137,8 @@ namespace UI.SAD.Logistic
                 {
                     hdnTrip.Value = tripId;
 
-                    //lblChallan.Text = "<a href=\"#\" onclick=\"ShowPopUpE('../Order/ChallanOneGPCustomize.aspx?id=" + tripId + "&unit=" + ddlUnit.SelectedValue + "')\"class=\"link\">Challan</a>";
-                        lblChallan.Text = "<a href=\"#\" onclick=\"ShowPopUpE('../Delivery/PrintInvoice.aspx?id=" + tripId + "&unit=" + ddlUnit.SelectedValue + "')\"class=\"link\">Challan</a>";
+                        lblChallan.Text = "<a href=\"#\" onclick=\"ShowPopUpE('../Order/ChallanOneGPCustomize.aspx?id=" + tripId + "&unit=" + ddlUnit.SelectedValue + "')\"class=\"link\">Challan</a>";
+                        //lblChallan.Text = "<a href=\"#\" onclick=\"ShowPopUpE('../Delivery/PrintInvoice.aspx?id=" + tripId + "&unit=" + ddlUnit.SelectedValue + "')\"class=\"link\">Challan</a>";
 
 
 

@@ -75,7 +75,32 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        
+        public DataTable CustomerInfo(string custId)
+        {
+            try
+            {
+                CustomerInfoTableAdapter adp = new CustomerInfoTableAdapter();
+                return adp.GetCustomerInformationData(int.Parse(custId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public DataTable PaymentsTerms(string unitId)
+        {
+            try
+            {
+                TblPaymentTermsTableAdapter adp = new TblPaymentTermsTableAdapter();
+                return adp.GetPaymentTermsData(int.Parse(unitId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable PickingSummary(string pickingId)
         {
             try

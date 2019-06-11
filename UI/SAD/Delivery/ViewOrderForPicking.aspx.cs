@@ -31,6 +31,12 @@ namespace UI.SAD.Delivery
             if (!IsPostBack)
             {
                 pnlMarque.DataBind();
+                dgvViewOrder.Columns[9].Visible = true;
+
+                if (rdoComplete.SelectedValue == "1")
+                {
+                    dgvViewOrder.Columns[9].Visible = false;
+                }
 
                 if (intColumnVisible == 1)
                 {
@@ -121,6 +127,16 @@ namespace UI.SAD.Delivery
             string ShipPointID = ddlShip.SelectedValue;
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
+        }
+
+        protected void rdoComplete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvViewOrder.Columns[9].Visible = true;
+
+            if (rdoComplete.SelectedValue == "1")
+            {
+                dgvViewOrder.Columns[9].Visible = false;
+            }
         }
 
         protected void Picking_Click(object sender, EventArgs e)
