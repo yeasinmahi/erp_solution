@@ -245,6 +245,8 @@
                 <%--=========================================Start My Code From Here===============================================--%>
 
                 <div class="leaveApplication_container">
+                <asp:HiddenField ID="hdnLm" Value="0" runat="server" />
+                <asp:HiddenField ID="hdnBl" Value="0" runat="server" />
                     <asp:HiddenField ID="hdnConfirm" runat="server" />
                     <asp:HiddenField ID="hdnUnit" runat="server" Value="0" />
                     <asp:HiddenField ID="hdnPromoCogs" Value="0" runat="server" />
@@ -545,7 +547,7 @@
                             <td>
                                 <asp:Button ID="btnSubmit"       runat="server" Text="Save Sales"
                                  OnClick="btnSubmit_Click"   OnClientClick="ValidationWithConfirm();"/>
-                                      
+                                <asp:Label ID="lblError" runat="server" ForeColor="red"></asp:Label>
                             </td>
                            
                         </tr>
@@ -611,7 +613,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvSales" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Width="800" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvGridView_RowDeleting"
-                                    OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating"
+                                    OnRowCancelingEdit="dgvSales_RowCancelingEdit" OnRowEditing="dgvSales_RowEditing" OnRowUpdating="dgvSales_RowUpdating" ShowFooter="True"
                                     BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right" OnSelectedIndexChanged="dgvSales_SelectedIndexChanged">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -673,6 +675,11 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblqty" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblTotalQuantity" runat="server" Text='<%# GetGrandTotal(8,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
+
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="txtQtyEdit" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
@@ -683,6 +690,11 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblTotal" runat="server" Text='<%# GetPriceTotal(""+Eval("rate"), ""+Eval("quantity")) %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblTotalPrice" runat="server" Text='<%# GetGrandTotal(9,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
+
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="narr" SortExpression="narr" Visible="false">
@@ -696,12 +708,21 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("discountTotal","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblDiscountTotal" runat="server" Text='<%# GetGrandTotal(11,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Grand Total" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGrandtoal" runat="server" DataFormatString="{0:0.00}" Text='<%# GetTotal(""+Eval("priceTotal"), ""+Eval("discountTotal")) %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblGTotal" runat="server" Text='<%# GetGrandTotal(12,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
+
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Edit" ShowHeader="False">
@@ -740,7 +761,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvSalesPicking" CssClass="GridWithPrint" runat="server" AutoGenerateColumns="False" Font-Size="10px" BackColor="White" BorderColor="#999999" OnRowDeleting="dgvSalesPicking_RowDeleting"
-                                    OnRowCancelingEdit="dgvSalesPicking_RowCancelingEdit" OnRowEditing="dgvSalesPicking_RowEditing" OnRowDataBound="RowDataBound" OnRowUpdating="dgvSalesPicking_RowUpdating"
+                                    OnRowCancelingEdit="dgvSalesPicking_RowCancelingEdit" OnRowEditing="dgvSalesPicking_RowEditing" OnRowDataBound="RowDataBound" OnRowUpdating="dgvSalesPicking_RowUpdating" ShowFooter="True"
                                     BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
@@ -914,6 +935,10 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblqtys" runat="server" Width="60px" Text='<%# Bind("quantity") %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblTotalQuantity" runat="server" Text='<%# GetGrandTotal(26,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
                                                 <asp:TextBox ID="txtQtyEdits" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
@@ -926,6 +951,10 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblTotal" runat="server" Text='<%# GetPriceTotal(""+Eval("rate"), ""+Eval("quantity")) %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblPriceTotal" runat="server" Text='<%# GetGrandTotal(27,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
@@ -934,12 +963,22 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblDiscount" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("discountTotal","{0:n2}") %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblDiscountTotal" runat="server" Text='<%# GetGrandTotal(28,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
+
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Grand Total" ItemStyle-HorizontalAlign="right" SortExpression="discountTotal">
+                                        <asp:TemplateField HeaderText="Grand Total" ItemStyle-HorizontalAlign="right" >
                                             <ItemTemplate>
                                                 <asp:Label ID="lblGrandtoal" runat="server" DataFormatString="{0:0.00}" Text='<%# GetTotal(""+Eval("priceTotal"), ""+Eval("discountTotal")) %>'></asp:Label>
                                             </ItemTemplate>
+                                            <FooterTemplate>
+                                                <asp:Label ID="lblGTotal" runat="server" Text='<%# GetGrandTotal(29,"dgvSales") %>'></asp:Label>
+                                            </FooterTemplate> 
+                                            <FooterStyle HorizontalAlign="Right" /> 
+
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="UomId" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="uomId">

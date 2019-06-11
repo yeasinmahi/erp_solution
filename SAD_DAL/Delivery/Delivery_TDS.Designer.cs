@@ -959,6 +959,10 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnysnCompleted;
             
+            private global::System.Data.DataColumn columnintPayTermsId;
+            
+            private global::System.Data.DataColumn columnstrPayTerms;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryDOProfileDataTable() {
@@ -1194,6 +1198,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intPayTermsIdColumn {
+                get {
+                    return this.columnintPayTermsId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPayTermsColumn {
+                get {
+                    return this.columnstrPayTerms;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1254,7 +1274,9 @@ namespace SAD_DAL.Delivery {
                         int intCurrencyId, 
                         string strCurrency, 
                         decimal monshipmentCost, 
-                        bool ysnCompleted) {
+                        bool ysnCompleted, 
+                        int intPayTermsId, 
+                        string strPayTerms) {
                 QryDOProfileRow rowQryDOProfileRow = ((QryDOProfileRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intDoId,
@@ -1281,7 +1303,9 @@ namespace SAD_DAL.Delivery {
                         intCurrencyId,
                         strCurrency,
                         monshipmentCost,
-                        ysnCompleted};
+                        ysnCompleted,
+                        intPayTermsId,
+                        strPayTerms};
                 rowQryDOProfileRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryDOProfileRow);
                 return rowQryDOProfileRow;
@@ -1329,6 +1353,8 @@ namespace SAD_DAL.Delivery {
                 this.columnstrCurrency = base.Columns["strCurrency"];
                 this.columnmonshipmentCost = base.Columns["monshipmentCost"];
                 this.columnysnCompleted = base.Columns["ysnCompleted"];
+                this.columnintPayTermsId = base.Columns["intPayTermsId"];
+                this.columnstrPayTerms = base.Columns["strPayTerms"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1384,6 +1410,10 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnmonshipmentCost);
                 this.columnysnCompleted = new global::System.Data.DataColumn("ysnCompleted", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnysnCompleted);
+                this.columnintPayTermsId = new global::System.Data.DataColumn("intPayTermsId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPayTermsId);
+                this.columnstrPayTerms = new global::System.Data.DataColumn("strPayTerms", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPayTerms);
                 this.columnintDoId.AllowDBNull = false;
                 this.columndteDate.AllowDBNull = false;
                 this.columnstrUnit.AllowDBNull = false;
@@ -1411,6 +1441,8 @@ namespace SAD_DAL.Delivery {
                 this.columnstrCustAddress.MaxLength = 2000;
                 this.columnstrCurrency.MaxLength = 100;
                 this.columnysnCompleted.AllowDBNull = false;
+                this.columnstrPayTerms.ReadOnly = true;
+                this.columnstrPayTerms.MaxLength = 208;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7489,13 +7521,13 @@ namespace SAD_DAL.Delivery {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TblPaymentTermsDataTable : global::System.Data.TypedTableBase<TblPaymentTermsRow> {
             
-            private global::System.Data.DataColumn columnintPayTermsDay;
-            
             private global::System.Data.DataColumn columndecDiscountRate;
             
             private global::System.Data.DataColumn columnintUnitId;
             
             private global::System.Data.DataColumn columnstrDescription;
+            
+            private global::System.Data.DataColumn columnintPayTermsId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -7532,14 +7564,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intPayTermsDayColumn {
-                get {
-                    return this.columnintPayTermsDay;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn decDiscountRateColumn {
                 get {
                     return this.columndecDiscountRate;
@@ -7559,6 +7583,14 @@ namespace SAD_DAL.Delivery {
             public global::System.Data.DataColumn strDescriptionColumn {
                 get {
                     return this.columnstrDescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intPayTermsIdColumn {
+                get {
+                    return this.columnintPayTermsId;
                 }
             }
             
@@ -7599,13 +7631,13 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblPaymentTermsRow AddTblPaymentTermsRow(int intPayTermsDay, decimal decDiscountRate, int intUnitId, string strDescription) {
+            public TblPaymentTermsRow AddTblPaymentTermsRow(decimal decDiscountRate, int intUnitId, string strDescription) {
                 TblPaymentTermsRow rowTblPaymentTermsRow = ((TblPaymentTermsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        intPayTermsDay,
                         decDiscountRate,
                         intUnitId,
-                        strDescription};
+                        strDescription,
+                        null};
                 rowTblPaymentTermsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblPaymentTermsRow);
                 return rowTblPaymentTermsRow;
@@ -7628,28 +7660,32 @@ namespace SAD_DAL.Delivery {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintPayTermsDay = base.Columns["intPayTermsDay"];
                 this.columndecDiscountRate = base.Columns["decDiscountRate"];
                 this.columnintUnitId = base.Columns["intUnitId"];
                 this.columnstrDescription = base.Columns["strDescription"];
+                this.columnintPayTermsId = base.Columns["intPayTermsId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintPayTermsDay = new global::System.Data.DataColumn("intPayTermsDay", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintPayTermsDay);
                 this.columndecDiscountRate = new global::System.Data.DataColumn("decDiscountRate", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndecDiscountRate);
                 this.columnintUnitId = new global::System.Data.DataColumn("intUnitId", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintUnitId);
                 this.columnstrDescription = new global::System.Data.DataColumn("strDescription", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrDescription);
-                this.columnintPayTermsDay.AllowDBNull = false;
+                this.columnintPayTermsId = new global::System.Data.DataColumn("intPayTermsId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintPayTermsId);
                 this.columndecDiscountRate.AllowDBNull = false;
                 this.columnintUnitId.AllowDBNull = false;
                 this.columnstrDescription.ReadOnly = true;
                 this.columnstrDescription.MaxLength = 208;
+                this.columnintPayTermsId.AutoIncrement = true;
+                this.columnintPayTermsId.AutoIncrementSeed = -1;
+                this.columnintPayTermsId.AutoIncrementStep = -1;
+                this.columnintPayTermsId.AllowDBNull = false;
+                this.columnintPayTermsId.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8493,6 +8529,38 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intPayTermsId {
+                get {
+                    try {
+                        return ((int)(this[this.tableQryDOProfile.intPayTermsIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intPayTermsId\' in table \'QryDOProfile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryDOProfile.intPayTermsIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPayTerms {
+                get {
+                    try {
+                        return ((string)(this[this.tableQryDOProfile.strPayTermsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPayTerms\' in table \'QryDOProfile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryDOProfile.strPayTermsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsdteReqDelivaryDateNull() {
                 return this.IsNull(this.tableQryDOProfile.dteReqDelivaryDateColumn);
             }
@@ -8633,6 +8701,30 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonshipmentCostNull() {
                 this[this.tableQryDOProfile.monshipmentCostColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintPayTermsIdNull() {
+                return this.IsNull(this.tableQryDOProfile.intPayTermsIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintPayTermsIdNull() {
+                this[this.tableQryDOProfile.intPayTermsIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrPayTermsNull() {
+                return this.IsNull(this.tableQryDOProfile.strPayTermsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrPayTermsNull() {
+                this[this.tableQryDOProfile.strPayTermsColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12349,17 +12441,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intPayTermsDay {
-                get {
-                    return ((int)(this[this.tableTblPaymentTerms.intPayTermsDayColumn]));
-                }
-                set {
-                    this[this.tableTblPaymentTerms.intPayTermsDayColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal decDiscountRate {
                 get {
                     return ((decimal)(this[this.tableTblPaymentTerms.decDiscountRateColumn]));
@@ -12393,6 +12474,17 @@ namespace SAD_DAL.Delivery {
                 }
                 set {
                     this[this.tableTblPaymentTerms.strDescriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intPayTermsId {
+                get {
+                    return ((int)(this[this.tableTblPaymentTerms.intPayTermsIdColumn]));
+                }
+                set {
+                    this[this.tableTblPaymentTerms.intPayTermsIdColumn] = value;
                 }
             }
             
@@ -13455,6 +13547,8 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("strCurrency", "strCurrency");
             tableMapping.ColumnMappings.Add("monshipmentCost", "monshipmentCost");
             tableMapping.ColumnMappings.Add("ysnCompleted", "ysnCompleted");
+            tableMapping.ColumnMappings.Add("intPayTermsId", "intPayTermsId");
+            tableMapping.ColumnMappings.Add("strPayTerms", "strPayTerms");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13471,13 +13565,13 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT TOP (1) intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId, intCurrencyId, strCurrency, ysnCompleted, monshipmentCost FROM qryDOProfile WHERE (intCustomerId = @intCustId) AND (intShipPointId = @shipId) ORDER BY intDoId DESC";
+            this._commandCollection[0].CommandText = @"SELECT TOP (1) intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId, intCurrencyId, strCurrency, ysnCompleted, monshipmentCost, intPayTermsId, strPayTerms FROM qryDOProfile WHERE (intCustomerId = @intCustId) AND (intShipPointId = @shipId) ORDER BY intDoId DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCustId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT dteDate, dteReqDelivaryDate, intCurrencyId, intCustTypeId, intCustomerId, intDoId, intSalesOffId, intSalesTypeId, intShipPointId, intShipToPartyId, intUnitId, monshipmentCost, strCurrency, strCustAddress, strCustName, strCustNameId, strCustType, strSalesOfficeName, strSalesType, strShipAddress, strShipPointName, strShipToParty, strShipToPartyNameId, strUnit, ysnCompleted FROM qryDOProfile WHERE (intDoId = @intDoId) AND (intShipPointId = @shipId)";
+            this._commandCollection[1].CommandText = @"SELECT intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId, intCurrencyId, strCurrency, ysnCompleted, monshipmentCost, intPayTermsId, strPayTerms FROM qryDOProfile WHERE (intDoId = @intDoId) AND (intShipPointId = @shipId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDoId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intDoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16468,41 +16562,33 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "TblPaymentTerms";
-            tableMapping.ColumnMappings.Add("intPayTermsDay", "intPayTermsDay");
             tableMapping.ColumnMappings.Add("decDiscountRate", "decDiscountRate");
             tableMapping.ColumnMappings.Add("intUnitId", "intUnitId");
             tableMapping.ColumnMappings.Add("strDescription", "strDescription");
+            tableMapping.ColumnMappings.Add("intPayTermsId", "intPayTermsId");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [tblPaymentTerms] WHERE (([intPayTermsDay] = @Original_intPayTermsDay) AND ([decDiscountRate] = @Original_decDiscountRate) AND ([intUnitId] = @Original_intUnitId) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [tblPaymentTerms] WHERE (([intPayTermsId] = @Original_intPayTermsId) AND ([decDiscountRate] = @Original_decDiscountRate) AND ([intUnitId] = @Original_intUnitId) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPayTermsDay", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsDay", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPayTermsId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_decDiscountRate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "decDiscountRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [tblPaymentTerms] ([intPayTermsDay], [decDiscountRate], [intUnitId]) VALUES (@intPayTermsDay, @decDiscountRate, @intUnitId);
-SELECT intPayTermsDay, decDiscountRate, intUnitId, strDescription FROM tblPaymentTerms WHERE (intPayTermsDay = @intPayTermsDay) AND (intUnitId = @intUnitId)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPayTermsDay", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsDay", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@decDiscountRate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "decDiscountRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [tblPaymentTerms] SET [intPayTermsDay] = @intPayTermsDay, [decDiscountRate] = @decDiscountRate, [intUnitId] = @intUnitId WHERE (([intPayTermsDay] = @Original_intPayTermsDay) AND ([decDiscountRate] = @Original_decDiscountRate) AND ([intUnitId] = @Original_intUnitId) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)));
-SELECT intPayTermsDay, decDiscountRate, intUnitId, strDescription FROM tblPaymentTerms WHERE (intPayTermsDay = @intPayTermsDay) AND (intUnitId = @intUnitId)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [tblPaymentTerms] SET [decDiscountRate] = @decDiscountRate, [intUnitId] = @intUnitId WHERE (([intPayTermsId] = @Original_intPayTermsId) AND ([decDiscountRate] = @Original_decDiscountRate) AND ([intUnitId] = @Original_intUnitId) AND ((@IsNull_strDescription = 1 AND [strDescription] IS NULL) OR ([strDescription] = @Original_strDescription)));
+SELECT intPayTermsId, decDiscountRate, intUnitId, strDescription FROM tblPaymentTerms WHERE (intPayTermsId = @intPayTermsId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPayTermsDay", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsDay", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@decDiscountRate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "decDiscountRate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPayTermsDay", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsDay", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intPayTermsId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_decDiscountRate", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 18, 2, "decDiscountRate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intUnitId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strDescription", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strDescription", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strDescription", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPayTermsId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intPayTermsId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16518,8 +16604,8 @@ SELECT intPayTermsDay, decDiscountRate, intUnitId, strDescription FROM tblPaymen
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT         intPayTermsDay, decDiscountRate, intUnitId, strDescription\r\nFROM  " +
-                "          tblPaymentTerms where  intUnitId=@unitId and ysnActive=1";
+            this._commandCollection[0].CommandText = "SELECT        intPayTermsId, decDiscountRate, intUnitId, strDescription\r\nFROM    " +
+                "        tblPaymentTerms where  intUnitId=@unitId and ysnActive=1";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
