@@ -477,7 +477,7 @@ namespace SCM_BLL
             DataTable dt = new DataTable();
             try
             {
-                HSCodeCorrectionTableAdapter adp = new HSCodeCorrectionTableAdapter();
+                UnitTableAdapter adp = new UnitTableAdapter();
                 dt = adp.GetAllUnitData();
             }
             catch (Exception ex)

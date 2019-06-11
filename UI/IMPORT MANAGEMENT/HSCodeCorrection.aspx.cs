@@ -33,7 +33,7 @@ namespace UI.IMPORT_MANAGEMENT
         {
             try
             {
-
+                ShowItemDetails();
             }
             catch (Exception ex)
             {
@@ -44,9 +44,30 @@ namespace UI.IMPORT_MANAGEMENT
 
         protected void btnHSCodeUpdate_Click(object sender, EventArgs e)
         {
+            bool result = false;
             try
             {
-
+                if(hfHSCode.Value != txtHSCode.Text)
+                {
+                    if (hdnconfirm.Value == "1")
+                    {
+                        result = UpdateHSCode();
+                        if (result)
+                        {
+                            Toaster("HS Code Update Successfully!", Utility.Common.TosterType.Success);
+                            Clear();
+                        }
+                        else
+                        {
+                            Toaster("HS Code Update Failed!", Utility.Common.TosterType.Success);
+                        }
+                    }
+                }
+                else
+                {
+                    Toaster("You Don't Change HS Code for "+txtItemName.Text+" This Item Till Now.", Utility.Common.TosterType.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -75,19 +96,95 @@ namespace UI.IMPORT_MANAGEMENT
         }
         private void ShowItemDetails()
         {
+            int UnitId = 0;
+            int ItemId = 0;
+            DataTable dt = new DataTable();
             try
             {
-                //if(ddlUnit.SelectedValue)
+                if (Convert.ToInt32(ddlUnit.SelectedValue) > 0)
+                {
+                    UnitId = Convert.ToInt32(ddlUnit.SelectedValue);
+                }
+                else
+                {
+                    ddlUnit.Focus();
+                    Toaster("Please Select Unit First", Utility.Common.TosterType.Warning);
+                    return;
+                }
+                if (!string.IsNullOrEmpty(txtItemId.Text))
+                {
+                    ItemId = Convert.ToInt32(txtItemId.Text);
+                }
+                else
+                {
+                    txtItemId.Focus();
+                    Toaster("Please Entered Item Id", Utility.Common.TosterType.Warning);
+                    return;
+                }
+                hfUnitId.Value = UnitId.ToString();
+                hfItemId.Value = ItemId.ToString();
+                dt = _BLL.GetItemDetails(ItemId, UnitId);
+                if(dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        txtItemName.Text = dt.Rows[0]["strItemName"].ToString(); txtItemName.Enabled = false;
+                        txtItemDescription.Text = dt.Rows[0]["strItemFullName"].ToString(); txtItemDescription.Enabled = false;
+                        txtItemUoM.Text = dt.Rows[0]["strUoM"].ToString(); txtItemUoM.Enabled = false;
+                        txtHSCode.Text = dt.Rows[0]["strHSCode"].ToString();
+                        hfHSCode.Value = dt.Rows[0]["strHSCode"].ToString();
+                    }
+                    else
+                    {
+                        Toaster("Data Not Found! ", Utility.Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    Toaster("Data Not Found! ", Utility.Common.TosterType.Warning);
+                }
             }
             catch (Exception ex)
             {
                 
             }
         }
+        private bool UpdateHSCode()
+        {
+            int ItemId = 0;
+            int UnitId = 0;
+            string HsCode = string.Empty;
+            bool result = false;
+            try
+            {
+                ItemId = !string.IsNullOrEmpty(hfItemId.Value) ? Convert.ToInt32(hfItemId.Value) : 0;
+                UnitId = !string.IsNullOrEmpty(hfUnitId.Value) ? Convert.ToInt32(hfUnitId.Value) : 0;
+                HsCode = txtHSCode.Text;
+                if (ItemId > 0 && UnitId > 0)
+                {
+                    result = _BLL.UpdateHSCode(HsCode, ItemId, UnitId);
+                }
+                else
+                {
+                    Toaster("Item ID or Unit ID Not Found!", Utility.Common.TosterType.Warning);
+                }
+                
+            }
+            catch (Exception)
+            {
+            }
+            return result;
+        }
+        private void Clear()
+        {
+            ddlUnit.SelectedValue = "-1";
+            txtItemId.Text = string.Empty;
+            txtItemName.Text = string.Empty;
+            txtItemDescription.Text = string.Empty;
+            txtItemUoM.Text = string.Empty;
+            txtHSCode.Text = string.Empty;
+        }
         #endregion
-
-
-
-
+        
     }
 }
