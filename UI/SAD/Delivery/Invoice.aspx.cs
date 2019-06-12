@@ -61,14 +61,14 @@ namespace UI.SAD.Delivery
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
-            ddlCusType.DataBind();
+            //ddlCusType.DataBind();
         }        
 
         protected void ddlShip_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlSo.DataBind();
-            ddlCusType.DataBind();
+            //ddlCusType.DataBind();
         }
 
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
