@@ -26,7 +26,7 @@ namespace UI.SAD.Delivery
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
         string Unitid, ShipPointid, SalesOffid, CustType, ReportType, challanid, custid, filePathForXML, xmlString = "", xml;
-        int intColumnStatus, intType;
+        int intColumnStatus, intType; int intCount = 0;
 
         SalesOrderView obj = new SalesOrderView();
 
@@ -161,6 +161,7 @@ namespace UI.SAD.Delivery
 
         public void InvoiceGenerate(int intType)
         {
+
             if (filePathForXML != null) { File.Delete(filePathForXML); }
 
             if (dgvInvoice.Rows.Count > 0)
@@ -169,6 +170,7 @@ namespace UI.SAD.Delivery
                 {
                     if (((CheckBox)dgvInvoice.Rows[index].FindControl("chkRow")).Checked == true)
                     {
+                        intCount = intCount + 1;
                         challanid = ((Label)dgvInvoice.Rows[index].FindControl("lblID")).Text.ToString();
                         custid = ((Label)dgvInvoice.Rows[index].FindControl("lblCusID")).Text.ToString();
 
@@ -181,6 +183,11 @@ namespace UI.SAD.Delivery
                     {
                         // not selected
                     }
+                }
+
+                if(intCount == 0)
+                {
+                    return;
                 }
             }
 

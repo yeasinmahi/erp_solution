@@ -260,7 +260,7 @@
     </HeaderTemplate>
     <ItemTemplate><asp:Label ID="lblNumber" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strName")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
-    <asp:BoundField DataField="strName" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
+    <asp:BoundField DataField="strShipToParty" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField>    
 
     <asp:BoundField DataField="monTotalAmount" HeaderText="Challan Amount" SortExpression="monTotalAmount" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
@@ -301,8 +301,6 @@
     </form>
     </body>
     </html>
-
-       
 
 
     <%--<table>
