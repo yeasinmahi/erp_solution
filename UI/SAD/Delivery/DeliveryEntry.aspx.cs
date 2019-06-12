@@ -1261,6 +1261,7 @@ namespace UI.SAD.Delivery
             hdnInventoryStock.Value = "0";
             hdnProductCOGS.Value = "0";
             hdnInvItemId.Value = "0";
+            btnProductAdd.Visible = true;
         }
 
         private bool  InventoryFinishedGoodCogs(int productId, string productName,decimal quantity, int promItemId,string promItem, decimal promQnty)
@@ -1302,7 +1303,7 @@ namespace UI.SAD.Delivery
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
               
 
@@ -1311,8 +1312,8 @@ namespace UI.SAD.Delivery
                 
               
             }
-            catch { }
-            return true;
+            catch { return true; }
+            return false;
             //if (decimal.Parse(hdnInventoryStock.Value)>quantity)
             //{ 
             //    Toaster(productName+" Stock is not avaiable", Common.TosterType.Error);
@@ -1321,13 +1322,13 @@ namespace UI.SAD.Delivery
             //else if(decimal.Parse(hdnProductCOGS.Value) > 0)
             //{
             //    Toaster(productName + " set COGS Value.", Common.TosterType.Error);
-               
+
             //    return false;
             //}
             //else if (decimal.Parse(hdnPromoInvStock.Value) > promQnty)
             //{
             //    Toaster("Promotion Item "+ promItem + " Stock is not avaiable", Common.TosterType.Error);
-               
+
             //    return false;
 
             //}
@@ -1339,10 +1340,10 @@ namespace UI.SAD.Delivery
             //}
             //else
             //{
-                
+
             //    return true;
             //}
-            
+
         }
 
         protected void RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1764,7 +1765,7 @@ namespace UI.SAD.Delivery
                 {
                     PickingGridDataBind(hdnPickingId.Value);
                 }
-                else if (hdnDelivery.Value == "DO" || hdnDelivery.Value == "DO_Edit")
+                else  
                 {
                     DoGridDataBind(hdnDoId.Value);
                 }
