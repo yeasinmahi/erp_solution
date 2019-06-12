@@ -253,8 +253,7 @@ namespace SAD_BLL.Sales
         
         public string DOApproveCancelClose(int intDOId, int intType, int intInsertBy)
         {
-            string msg = "";
-            
+            string msg = "";            
             try
             {
                 SprDOApproveCancelCloseTableAdapter adpdo = new SprDOApproveCancelCloseTableAdapter();
@@ -264,7 +263,21 @@ namespace SAD_BLL.Sales
 
             return msg;
         }
-       
+
+        public string InvoiceGenerate(int intType, int intInsertBy, string xml)
+        {
+            string msg = "";
+            try
+            {
+                SprInvoiceGenerateTableAdapter adpdo = new SprInvoiceGenerateTableAdapter();
+                adpdo.InvoiceGenerate(intType, intInsertBy, xml, ref msg);
+            }
+            catch (Exception e) { msg = e.ToString(); }
+
+            return msg;
+        }
+               
+
         public DataTable getQuationDet(int quatationid)
         {
             SprSalesQuationByCustomerDetTableAdapter ta = new SprSalesQuationByCustomerDetTableAdapter();
