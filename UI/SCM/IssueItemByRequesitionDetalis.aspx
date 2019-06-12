@@ -57,17 +57,13 @@
 
 
         });
-    </script>
-    <script>   function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
+        function CloseWindow() { window.close(); window.onbeforeunload = RefreshParent(); }
         //function RefreshParent() {
         //    if (window.opener != null && !window.opener.closed) {
         //        window.opener.location.reload();
         //    }
         //}
-
-    </script>
-
-    <script type="text/javascript"> 
+        
         function funConfirmAll() {
             
             if (confirm("Do you want to proceed?")) {
@@ -75,6 +71,20 @@
                 return true;
             } else {
                 return false;
+            }
+        }
+        $(document).ready(function () {
+
+            GetCellValues();
+        });
+        function GetCellValues() {
+            var table = document.getElementById('dgvDetalis');
+            for (var r = 1, n = table.rows.length-1; r < n; r++) {
+                if (parseInt(table.rows[r].cells[7].getElementsByTagName("span")[0].innerText) === 0) {
+                    table.rows[r].style.backgroundColor = "#e0ffbf";
+                } else {
+                    table.rows[r].style.backgroundColor = "#fcfcf9";
+                }
             }
         }
 
@@ -119,6 +129,9 @@
             margin-right: 00px;
             padding: 15px;
             overflow-y: scroll;
+        }
+        th {
+            font-size: 11px;
         }
     </style>
 </head>
@@ -191,18 +204,18 @@
                             <td>
                                 <asp:GridView ID="dgvDetalis" runat="server" AutoGenerateColumns="False" OnRowDataBound="GridView_RowDataBound" ShowFooter="True" Width="900px"
                                     CssClass="GridViewStyle" CellPadding="4" ForeColor="Black" GridLines="Vertical" BackColor="White" BorderColor="#DEDFDE" BorderStyle="None" BorderWidth="1px">
-                                    <HeaderStyle CssClass="HeaderStyle" BackColor="#6B696B" Font-Bold="True" ForeColor="White" />
+                                    <HeaderStyle CssClass="HeaderStyle" BackColor="#6B696B" Font-Bold="True" Font-Size="12px" ForeColor="White"  />
                                     <FooterStyle CssClass="FooterStyle" BackColor="#CCCC99" />
                                     <RowStyle CssClass="RowStyle" BackColor="#F7F7DE" />
                                     <PagerStyle CssClass="PagerStyle" BackColor="#F7F7DE" ForeColor="Black" HorizontalAlign="Right" />
                                     <AlternatingRowStyle BackColor="White" />
                                     <Columns>
-                                        <asp:TemplateField HeaderText="SL No.">
+                                        <asp:TemplateField HeaderText="SL">
                                             <ItemStyle HorizontalAlign="center" Width="60px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="ItemId" SortExpression="intItemID">
+                                        <asp:TemplateField HeaderText="Item Id" SortExpression="intItemID">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItemId" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                             </ItemTemplate>
@@ -211,8 +224,8 @@
 
                                         <asp:TemplateField HeaderText="Item Name" ItemStyle-HorizontalAlign="right" SortExpression="strItem">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblItem" runat="server" Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" Width="500px" />
+                                                <asp:Label ID="lblItem" runat="server"  Width="160px" Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left"/>
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Uom" ItemStyle-HorizontalAlign="right" SortExpression="strUoM">
@@ -224,37 +237,37 @@
                                         <asp:TemplateField HeaderText="Req Qty" ItemStyle-HorizontalAlign="right" SortExpression="numReqQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblReqQty" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numReqQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Issue Qty" ItemStyle-HorizontalAlign="right" SortExpression="numIssueQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblIssueQty" runat="server" Text='<%# Bind("numIssueQty") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Approve Qty" ItemStyle-HorizontalAlign="right" SortExpression="numApproveQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblApprQty" runat="server" Text='<%# Bind("numApproveQty","{0:n2}") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" />
+                                            <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Remain Issue" ItemStyle-HorizontalAlign="right" SortExpression="numRemainToIssueQty">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblRemainIssue" runat="server" Text='<%# Bind("numRemainToIssueQty") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" Width="100px" />
+                                            <ItemStyle HorizontalAlign="Right" Width="100px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Stock" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblStock" runat="server" Text="0"></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" Width="100px" />
+                                            <ItemStyle HorizontalAlign="Right" Width="100px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Actual Stock" ItemStyle-HorizontalAlign="right" SortExpression="monStock">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblActual" runat="server" Text='<%# Bind("monStock") %>'></asp:Label></ItemTemplate>
-                                            <ItemStyle HorizontalAlign="left" Width="100px" />
+                                            <ItemStyle HorizontalAlign="Right" Width="100px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Issue" ItemStyle-HorizontalAlign="right" SortExpression="monValue">

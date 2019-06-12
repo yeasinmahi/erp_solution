@@ -1547,6 +1547,7 @@
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntryPopup.aspx" />
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionApproval.aspx" />
@@ -8043,6 +8044,13 @@
     <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.designer.cs">
       <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx.cs">
       <DependentUpon>FinishedGoodRoutingDetalis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9794,6 +9802,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="backup.bat" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

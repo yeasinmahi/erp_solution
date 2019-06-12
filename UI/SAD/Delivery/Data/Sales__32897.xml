@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<Delivery>
+  <items productId="179334" productName="Bucket-Alpona-13L-Lid-Blue-1061" quantity="10.00" rate="40.0000" uomId="1081" uomName="1 Piece" narration="" currency="1" commision="0.0000" commisionTotal="0.000000" discount="0.00" discountTotal="0.0000" priceTotal="400.000000" supplierTax="0.0000" vat="0.0000" vatPrice="0.0000" promtionItemId="0" promtionItem="" promPrices="0.0000" promtionUom="0" coaId="162431" coaName="Bucket L" promtionItemCoaId="0" promtionQnty="0.00" promtionItemUom="0" location="0" intInvItemId="0" editStatus="0" invProductId="0" productCogs="0" invPromoProductId="0" promoProductCogs="0" conversionRate="1.0000000000" whId="0" doId="2743933" serialId="2" locationName="0" doqty="10.00" />
+</Delivery>
