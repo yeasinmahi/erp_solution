@@ -212,7 +212,7 @@
                 <td colspan="6" style="text-align: left; padding: 15px 0px 5px 0px">   
                 <asp:Button ID="btnSingle" runat="server" class="myButton" Text="Single Invoice" Height="30px" OnClientClick="ConfirmAll()" OnClick="btnSingle_Click" />
                 <asp:Label ID="label" runat="server" Width="15px" />
-                <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" />                
+                <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" OnClick="btnGroup_Click" />                
             </td>
 
             <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Visible="false">
