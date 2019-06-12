@@ -1129,7 +1129,7 @@ namespace UI.SAD.Delivery
                 decimal discount = 0;
                 decimal doQuantity = 0;
 
-                if (PromotionWithDiscount(ProductId, actualQty, editQty, UomId, doId, ref promQnty, ref promItemId,
+                if (PromotionWithDiscount(ProductId, actualQty, editQty, UomId, doId, price, ref promQnty, ref promItemId,
                     ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom, ref promPrice, ref discount,
                     ref doQuantity))
                 {
@@ -1413,8 +1413,8 @@ namespace UI.SAD.Delivery
                         string productName = hdnProductText.Value;
                         string quantity = txtQun.Text.ToString();
                         string uomId = ddlUOM.SelectedValue().ToString();
-
-                        if (PromotionWithDiscount(productId, quantity, "0", uomId, hdnDoId.Value, ref promQnty,
+                        string rate = txtPrice.Text;
+                        if (PromotionWithDiscount(productId, quantity, "0", uomId, hdnDoId.Value, rate, ref promQnty,
                             ref promItemId, ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom,
                             ref promPrice, ref discounts, ref doQuantity))
                         {
@@ -1423,7 +1423,7 @@ namespace UI.SAD.Delivery
 
                         string invProductId = hdnInvItemId.Value;
                         string productCogs = hdnProductCOGS.Value;
-                        string rate = txtPrice.Text;
+                        
 
                         string uomName = ddlUOM.SelectedItem.ToString();
                         string narration = narr;
@@ -1789,11 +1789,7 @@ namespace UI.SAD.Delivery
                     productRate = itemPrice.GetPrice(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
                   , ref commission, ref suppTax, ref vat, ref vatPrice, ref convRate);
                     
-                    dt = deliveryBLL.GetDiscount(hdnCustomer.Value, hdnProduct.Value);
-                    if (dt.Rows.Count>0)
-                    {
-                        commission = decimal.Parse(dt.Rows[0]["Amount"].ToString());
-                    }
+                    
                 }
                 else if (type=="Picking" || type == "Picking_Edit")
                 {
@@ -1869,7 +1865,7 @@ namespace UI.SAD.Delivery
         {
             SetPrice(rdoDeliveryType.SelectedItem.Text);
         }
-        private bool PromotionWithDiscount(string productId, string productQty,string editQty,string uomId,string doId, ref decimal promQnty, ref int promItemId, ref int promItemCOAId, ref int promItemUOM, ref string promItem, ref string promUom, ref decimal promPrice, ref decimal discount,ref decimal doQuantity)
+        private bool PromotionWithDiscount(string productId, string productQty,string editQty,string uomId,string doId, string price,ref decimal promQnty, ref int promItemId, ref int promItemCOAId, ref int promItemUOM, ref string promItem, ref string promUom, ref decimal promPrice, ref decimal discount,ref decimal doQuantity)
         {
             bool isCheck=false;
             if (hdnRequistId.Value == "0" || hdnDelivery.Value == "DO_Edit")
@@ -1877,9 +1873,15 @@ namespace UI.SAD.Delivery
                 promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
                , productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
 
-                dt = deliveryBLL.GetDiscount(hdnCustomer.Value, productId);
-                if (dt.Rows.Count > 0)
+
+                if (decimal.Parse(editQty) > 0)
                 {
+                    dt = deliveryBLL.GetDiscount(hdnCustomer.Value, productId,editQty,price);
+                    discount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
+                }
+                else if(decimal.Parse(productQty)>0)
+                {
+                    dt = deliveryBLL.GetDiscount(hdnCustomer.Value, productId, productQty, price);
                     discount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
                 }
                 doQuantity = 0;

@@ -198,12 +198,12 @@ namespace SAD_BLL.Sales
 
         }
 
-        public DataTable GetDiscount(string customerId, string ProductId)
+        public DataTable GetDiscount(string customerId, string ProductId,string quantity,string price)
         {
             try
             {
                 FunGetItemDiscountTableAdapter adp = new FunGetItemDiscountTableAdapter();
-                return adp.GetDiscountData(int.Parse(customerId), int.Parse(ProductId), DateTime.Now.ToString());
+                return adp.GetDiscountData(int.Parse(customerId), int.Parse(ProductId), DateTime.Now.ToString(),decimal.Parse(quantity), decimal.Parse(price));
             }
             catch
             {

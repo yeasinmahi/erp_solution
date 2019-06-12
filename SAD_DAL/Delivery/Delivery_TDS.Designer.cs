@@ -16460,18 +16460,20 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from dbo.funGetItemDiscount (@custId, @productId,@dteDate) ";
+            this._commandCollection[0].CommandText = "select * from dbo.funGetItemDiscount (@custId, @productId,@dteDate,@qty,@price) ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@custId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@productId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteDate", global::System.Data.SqlDbType.VarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@qty", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@price", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual Delivery_TDS.FunGetItemDiscountDataTable GetDiscountData(int custId, int productId, string dteDate) {
+        public virtual Delivery_TDS.FunGetItemDiscountDataTable GetDiscountData(int custId, int productId, string dteDate, decimal qty, decimal price) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(custId));
             this.Adapter.SelectCommand.Parameters[1].Value = ((int)(productId));
@@ -16481,6 +16483,8 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[2].Value = ((string)(dteDate));
             }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((decimal)(qty));
+            this.Adapter.SelectCommand.Parameters[4].Value = ((decimal)(price));
             Delivery_TDS.FunGetItemDiscountDataTable dataTable = new Delivery_TDS.FunGetItemDiscountDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
