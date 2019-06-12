@@ -1135,12 +1135,12 @@ namespace UI.SAD.Delivery
                 {
                     return;
                 }
-                 
 
-                //if (InventoryFinishedGoodCogs(int.Parse(ProductId), ProductName, decimal.Parse(editQty), promItemId, promItem, promQnty))
-                //{
-                //    return;
-                //}
+
+                if (InventoryFinishedGoodCogs(int.Parse(ProductId), ProductName, decimal.Parse(editQty), promItemId, promItem, promQnty))
+                {
+                    return;
+                }
 
 
                 decimal discountTotal = discount * decimal.Parse(editQty);
@@ -1267,36 +1267,44 @@ namespace UI.SAD.Delivery
         {
             try
             {
-                dt = deliveryBLL.InvenotoryStockByItem(productId, promItemId, hdnWHId.Value);
-                if (dt.Rows.Count > 0)
+                if (hdnDelivery.Value == "Picking" || hdnDelivery.Value == "Picking_Edit")
                 {
-                    DataRow[] drProduct = dt.Select("intSADItemID=" + productId);
-                    DataRow[] drPromoProduct = dt.Select("intSADItemID=" + promItemId);
-
-                    foreach (DataRow row in drProduct)
+                    dt = deliveryBLL.InvenotoryStockByItem(productId, promItemId, hdnWHId.Value);
+                    if (dt.Rows.Count > 0)
                     {
-                        hdnInvItemId.Value = row["intItemId"].ToString();
-                        hdnInventoryStock.Value = row["numQuantity"].ToString();
-                        hdnProductCOGS.Value = row["monCOGS"].ToString();
-                    }
-                    foreach (DataRow row in drPromoProduct)
-                    {
-                        hdnPromoInvItemId.Value = row["intItemId"].ToString();
-                        hdnPromoInvStock.Value = row["numQuantity"].ToString();
-                        hdnPromoCogs.Value = row["monCOGS"].ToString();
-                    }
+                        DataRow[] drProduct = dt.Select("intSADItemID=" + productId);
+                        DataRow[] drPromoProduct = dt.Select("intSADItemID=" + promItemId);
 
-                    if (!InventoryStockCheck(productId.ToString(), productName, quantity, promItemId.ToString(), promItem, promQnty))
-                    {
-                        return false;
-                    }
+                        foreach (DataRow row in drProduct)
+                        {
+                            hdnInvItemId.Value = row["intItemId"].ToString();
+                            hdnInventoryStock.Value = row["numQuantity"].ToString();
+                            hdnProductCOGS.Value = row["monCOGS"].ToString();
+                        }
+                        foreach (DataRow row in drPromoProduct)
+                        {
+                            hdnPromoInvItemId.Value = row["intItemId"].ToString();
+                            hdnPromoInvStock.Value = row["numQuantity"].ToString();
+                            hdnPromoCogs.Value = row["monCOGS"].ToString();
+                        }
 
+                        if (!InventoryStockCheck(productId.ToString(), productName, quantity, promItemId.ToString(), promItem, promQnty))
+                        {
+                            return false;
+                        }
+
+                    }
+                    else
+                    {
+                        Toaster(productName + " is not bridge", Common.TosterType.Error);
+                        return true;
+                    }
                 }
                 else
                 {
-                    Toaster(productName + " is not bridge", Common.TosterType.Error);
                     return true;
                 }
+              
 
                 //hdnPromoInvItemId.Value = "300";
                 //hdnInventoryStock.Value = "300";
@@ -1475,11 +1483,12 @@ namespace UI.SAD.Delivery
                             btnProductAdd.Visible = true;
                             return;
                         }
-
-                        if (InventoryFinishedGoodCogs(int.Parse(hdnProduct.Value), hdnProductText.Value, decimal.Parse(quantity), promItemId, promItem, promQnty))
-                        {
-                            return;
-                        }
+                        
+                            if (InventoryFinishedGoodCogs(int.Parse(hdnProduct.Value), hdnProductText.Value, decimal.Parse(quantity), promItemId, promItem, promQnty))
+                            {
+                                return;
+                            }
+                        
 
                         RowLavelXmlCreate(productId, productName, quantity, rate, uomId, uomName,
                             narration, currency, commision, commisionTotal, discount, discountTotal.ToString(),
