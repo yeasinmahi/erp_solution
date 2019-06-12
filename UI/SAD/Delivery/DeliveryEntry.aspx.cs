@@ -268,15 +268,14 @@ namespace UI.SAD.Delivery
                 txtDoNumber.Text = Request.QueryString["intCusID"];
                 btnProductAddAlls.Visible = false;
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(hdnCustomer.Value, Request.QueryString["ShipPointID"],true);
-                if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
-                {
-                    
-                    btnSubmit.Visible = false;
-                    btnProductAddAlls.Visible = false;
-                    txtProduct.Enabled = false; 
-                    lblDoCustId.ForeColor = Color.Red;
-                    Toaster("Delivery order not apporve", hdnDelivery.Value, Common.TosterType.Warning);
-                }
+                //if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
+                //{
+                //    btnSubmit.Visible = false;
+                //    btnProductAddAlls.Visible = false;
+                //    txtProduct.Enabled = false; 
+                //    lblDoCustId.ForeColor = Color.Red;
+                //    Toaster("Delivery order not apporve", hdnDelivery.Value, Common.TosterType.Warning);
+                //}
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
                 CustometChange();
