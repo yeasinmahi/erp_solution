@@ -27,6 +27,15 @@ namespace UI.SAD.Delivery
             if (!IsPostBack)
             {
                 pnlMarque.DataBind();
+
+                dgvViewPicking.Columns[8].Visible = false;
+                dgvViewPicking.Columns[9].Visible = false;
+
+                if (rdoComplete.SelectedValue == "false")
+                {
+                    dgvViewPicking.Columns[8].Visible = true;
+                    dgvViewPicking.Columns[9].Visible = true;
+                }
             }
         }
         [WebMethod]
@@ -112,6 +121,18 @@ namespace UI.SAD.Delivery
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Delivery('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
 
+        }
+
+        protected void rdoComplete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvViewPicking.Columns[8].Visible = false;
+            dgvViewPicking.Columns[9].Visible = false;
+
+            if (rdoComplete.SelectedValue == "false")
+            {
+                dgvViewPicking.Columns[8].Visible = true;
+                dgvViewPicking.Columns[9].Visible = true;
+            }
         }
 
         protected void Picking_Edit_Click(object sender, EventArgs e)

@@ -24,6 +24,7 @@ namespace UI.SAD.Delivery
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
         SalesOrderView obj = new SalesOrderView();
+        int intActionType;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -116,23 +117,6 @@ namespace UI.SAD.Delivery
             if (temp.Length > 1) hdnCustomer.Value = temp[temp.Length - 1];
             else hdnCustomer.Value = "";
         }
-        
-        protected void Complete_Click(object sender, EventArgs e)
-        {
-            if (hdnconfirm.Value == "1")
-            {
-                char[] delimiterChars = { ',' };
-                string temp = ((Button)sender).CommandArgument.ToString();
-                string[] searchKey = temp.Split(delimiterChars);
-                string intCustomerId = searchKey[0].ToString();
-                string intid = searchKey[1].ToString();
-
-                string message = obj.DOApprove(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                dgvViewOrder.DataBind();
-            }
-            
-        }
 
         protected void DO_Edit_Click(object sender, EventArgs e)
         {
@@ -168,6 +152,24 @@ namespace UI.SAD.Delivery
             }
         }
 
+        protected void Complete_Click(object sender, EventArgs e)
+        {
+            if (hdnconfirm.Value == "1")
+            {
+                char[] delimiterChars = { ',' };
+                string temp = ((Button)sender).CommandArgument.ToString();
+                string[] searchKey = temp.Split(delimiterChars);
+                string intCustomerId = searchKey[0].ToString();
+                string intid = searchKey[1].ToString();
+                intActionType = 1;
+
+                string message = obj.DOApproveCancelClose(int.Parse(intid), intActionType, int.Parse(Session[SessionParams.USER_ID].ToString()));
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                dgvViewOrder.DataBind();
+            }
+
+        }
+
         protected void DO_Cancel_Click(object sender, EventArgs e)
         {
             if (hdnconfirm.Value == "1")
@@ -177,8 +179,9 @@ namespace UI.SAD.Delivery
                 string[] searchKey = temp.Split(delimiterChars);
                 string intCustomerId = searchKey[0].ToString();
                 string intid = searchKey[1].ToString();
+                intActionType = 2;
 
-                string message = obj.DOCancel(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                string message = obj.DOApproveCancelClose(int.Parse(intid), intActionType, int.Parse(Session[SessionParams.USER_ID].ToString()));
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 dgvViewOrder.DataBind();
             }
@@ -193,8 +196,9 @@ namespace UI.SAD.Delivery
                 string[] searchKey = temp.Split(delimiterChars);
                 string intCustomerId = searchKey[0].ToString();
                 string intid = searchKey[1].ToString();
+                intActionType = 3;
 
-                string message = obj.DOCancel(int.Parse(Session[SessionParams.USER_ID].ToString()), int.Parse(intid));
+                string message = obj.DOApproveCancelClose(int.Parse(intid), intActionType, int.Parse(Session[SessionParams.USER_ID].ToString()));
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                 dgvViewOrder.DataBind();
             }

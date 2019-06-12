@@ -142,7 +142,7 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
-                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Picking <hr /></td>
+                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Sales Challan For Invoice <hr /></td>
                
             </tr>
             <tr>
@@ -214,6 +214,12 @@
                 <asp:Label ID="label" runat="server" Width="15px" />
                 <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" />                
             </td>
+
+            <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Visible="false">
+            <asp:ListItem Selected="True" Value="false"> Approved </asp:ListItem>
+            <asp:ListItem Value="false"> Unapproved</asp:ListItem>
+            </asp:RadioButtonList>
+
             </tr>  
         </table>
     </div>

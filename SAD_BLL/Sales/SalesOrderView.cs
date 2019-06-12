@@ -187,9 +187,7 @@ namespace SAD_BLL.Sales
         }
 
     */
-
-
-
+    
 
         public SalesOrderViewTDS.SprPickingViewDataTable GetViewPickingData(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
            , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
@@ -253,36 +251,20 @@ namespace SAD_BLL.Sales
 
         }
         
-        public string DOApprove(int intInsertBy, int intDOId)
+        public string DOApproveCancelClose(int intDOId, int intType, int intInsertBy)
         {
             string msg = "";
-          
+            
             try
             {
-                TblSalesOrderTableAdapter adpdo = new TblSalesOrderTableAdapter();
-                adpdo.ApproveDO(intInsertBy, intDOId);
-                msg = "Successfully";
+                SprDOApproveCancelCloseTableAdapter adpdo = new SprDOApproveCancelCloseTableAdapter();
+                adpdo.OrderApproveCancelClose(intDOId, intType, intInsertBy, ref msg);                
             }
             catch (Exception e) { msg = e.ToString(); }
 
             return msg;
         }
-
-        public string DOCancel(int intInsertBy, int intDOId)
-        {
-            string msg = "";
-
-            try
-            {
-                TblSalesOrder_DOCancelTableAdapter adpdo = new TblSalesOrder_DOCancelTableAdapter();
-                adpdo.DOCancel(intInsertBy, intDOId);
-                msg = "Successfully";
-            }
-            catch (Exception e) { msg = e.ToString(); }
-
-            return msg;
-        }
-
+       
         public DataTable getQuationDet(int quatationid)
         {
             SprSalesQuationByCustomerDetTableAdapter ta = new SprSalesQuationByCustomerDetTableAdapter();
