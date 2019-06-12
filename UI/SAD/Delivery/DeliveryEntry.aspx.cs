@@ -266,6 +266,7 @@ namespace UI.SAD.Delivery
             {
                 hdnCustomer.Value= Request.QueryString["intCusID"];
                 txtDoNumber.Text = Request.QueryString["intCusID"];
+                btnProductAddAlls.Visible = false;
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(hdnCustomer.Value, Request.QueryString["ShipPointID"],true);
                 if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
                 {
@@ -282,6 +283,9 @@ namespace UI.SAD.Delivery
             }
             else if ( Request.QueryString["PopupType"] == "Picking_Edit" || Request.QueryString["PopupType"] == "Delivery")
             {
+                txtDate.Enabled = false;
+                txtDueDate.Enabled = false;
+
                 hdnPickingId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text = Request.QueryString["intid"]; 
                
@@ -592,6 +596,8 @@ namespace UI.SAD.Delivery
                     ddlLocation.Visible = true;
                     txtPrice.Visible = false;
                     txtShipmentCost.Enabled = false;
+                    btnProductAddAlls.Visible = false;
+                   
                     // lblFgLocation.Visible = true;
                 }
                 else if (Type == "Return")
@@ -1123,7 +1129,7 @@ namespace UI.SAD.Delivery
                 decimal discount = 0;
                 decimal doQuantity = 0;
 
-                if (!PromotionWithDiscount(ProductId, actualQty, editQty, UomId, doId, ref promQnty, ref promItemId,
+                if (PromotionWithDiscount(ProductId, actualQty, editQty, UomId, doId, ref promQnty, ref promItemId,
                     ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom, ref promPrice, ref discount,
                     ref doQuantity))
                 {
@@ -1408,9 +1414,12 @@ namespace UI.SAD.Delivery
                         string quantity = txtQun.Text.ToString();
                         string uomId = ddlUOM.SelectedValue().ToString();
 
-                        PromotionWithDiscount(productId, quantity, "0", uomId, hdnDoId.Value, ref promQnty,
+                        if (PromotionWithDiscount(productId, quantity, "0", uomId, hdnDoId.Value, ref promQnty,
                             ref promItemId, ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom,
-                            ref promPrice, ref discounts, ref doQuantity);
+                            ref promPrice, ref discounts, ref doQuantity))
+                        {
+                            return;
+                        }
 
                         string invProductId = hdnInvItemId.Value;
                         string productCogs = hdnProductCOGS.Value;
@@ -1502,18 +1511,20 @@ namespace UI.SAD.Delivery
         protected string GetGrandTotal(int col,string grid)
         {
             decimal tot = 0;
-            if (hdnDelivery.Value == "DO" || hdnDelivery.Value == "DO_Edit")
-            {
-                for (int i = 0; i < dgvSales.Rows.Count; i++)
+            try
+            { 
+                if (hdnDelivery.Value == "DO" || hdnDelivery.Value == "DO_Edit")
                 {
-                    if (dgvSales.Rows[i].RowType == DataControlRowType.DataRow)
+                    for (int i = 0; i < dgvSales.Rows.Count; i++)
                     {
-                        tot += decimal.Parse(((Label) dgvSales.Rows[i].Cells[col].Controls[1]).Text);
+                        if (dgvSales.Rows[i].RowType == DataControlRowType.DataRow)
+                        {
+                            tot += decimal.Parse(((Label)dgvSales.Rows[i].Cells[col].Controls[1]).Text);
+                        }
                     }
-                }
 
-               // if (col == 9)
-                 
+                    // if (col == 9)
+
                     lblTotalProductPrice.Text = tot.ToString();
 
                     btnSubmit.Enabled = CheckLimitBalance(tot);
@@ -1524,19 +1535,22 @@ namespace UI.SAD.Delivery
                     else
                     {
                         lblError.Text = "";
-                    } 
-            }
-            else
-            {
-                for (int i = 0; i < dgvSalesPicking.Rows.Count; i++)
-                {
-                    if (dgvSalesPicking.Rows[i].RowType == DataControlRowType.DataRow)
-                    {
-                        tot += decimal.Parse(((Label)dgvSalesPicking.Rows[i].Cells[col].Controls[1]).Text);
                     }
                 }
+                else
+                {
+                    for (int i = 0; i < dgvSalesPicking.Rows.Count; i++)
+                    {
+                        if (dgvSalesPicking.Rows[i].RowType == DataControlRowType.DataRow)
+                        {
+                            tot += decimal.Parse(((Label)dgvSalesPicking.Rows[i].Cells[col].Controls[1]).Text);
+                        }
+                    }
+                }
+
+               
             }
-            
+            catch {  }
             return CommonClass.GetFormettingNumber(tot);
         }
         private bool CheckLimitBalance(decimal currentAmount)
@@ -1688,7 +1702,7 @@ namespace UI.SAD.Delivery
             try
             {
                 string itemXML = XmlParser.GetXml(GetXmlFilePath());
-                if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit" || rdoDeliveryType.SelectedItem.ToString() == "Delivery")
+                if (rdoDeliveryType.SelectedItem.ToString() == "Picking" || rdoDeliveryType.SelectedItem.ToString() == "Picking_Edit")
                 {
                     GridViewUtil.LoadGridwithXml(itemXML, dgvSalesPicking, out string message);
                 }
@@ -1696,6 +1710,14 @@ namespace UI.SAD.Delivery
                 {
                     GridViewUtil.LoadGridwithXml(itemXML, dgvSales, out string message);
                 }
+                else if (rdoDeliveryType.SelectedItem.ToString() == "Delivery")
+                {
+                    GridViewUtil.LoadGridwithXml(itemXML, dgvSalesPicking, out string message);
+                    dgvSalesPicking.Columns[30].Visible = false;
+                    dgvSalesPicking.Columns[31].Visible = false;
+                  
+                }
+
             }
             catch { }
            
@@ -1729,7 +1751,7 @@ namespace UI.SAD.Delivery
             if (hdnButtonFire.Value == "true")
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
-                if (hdnDelivery.Value == "Picking_Edit" || hdnDelivery.Value == "Delivery" || hdnDelivery.Value == "Picking")
+                if (hdnDelivery.Value == "Picking_Edit" || hdnDelivery.Value == "Delivery")
                 {
                     PickingGridDataBind(hdnPickingId.Value);
                 }
@@ -1737,9 +1759,9 @@ namespace UI.SAD.Delivery
                 {
                     DoGridDataBind(hdnDoId.Value);
                 }
-
               
-               
+
+
 
             }
            
@@ -1849,7 +1871,7 @@ namespace UI.SAD.Delivery
         }
         private bool PromotionWithDiscount(string productId, string productQty,string editQty,string uomId,string doId, ref decimal promQnty, ref int promItemId, ref int promItemCOAId, ref int promItemUOM, ref string promItem, ref string promUom, ref decimal promPrice, ref decimal discount,ref decimal doQuantity)
         {
-            bool isCheck=true;
+            bool isCheck=false;
             if (hdnRequistId.Value == "0" || hdnDelivery.Value == "DO_Edit")
             {
                 promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
@@ -1861,7 +1883,7 @@ namespace UI.SAD.Delivery
                     discount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
                 }
                 doQuantity = 0;
-                isCheck = true;
+               // isCheck = true;
             }
             else if (hdnDelivery.Value == "Picking" || hdnDelivery.Value == "Picking_Edit")
             {
@@ -1878,27 +1900,27 @@ namespace UI.SAD.Delivery
                     discount = decimal.Parse(dt.Rows[0]["decDiscountRate"].ToString());
                     doQuantity = decimal.Parse(dt.Rows[0]["numRestQuantity"].ToString());
 
-                    if (decimal.Parse(productQty) + doQuantity < decimal.Parse(editQty) && decimal.Parse(productQty)>0)
+                    if (doQuantity< decimal.Parse(editQty) && decimal.Parse(editQty) >0)
                     {
-                        Toaster("Delivery Order quantiy and Picking quantity mismatch", hdnDelivery.Value, Common.TosterType.Error);
-                        isCheck = false;
+                        Toaster("Order quantiy and Picking quantity mismatch", hdnDelivery.Value, Common.TosterType.Error);
+                        isCheck = true;
                     }
                     else if (doQuantity < decimal.Parse(productQty) && decimal.Parse(editQty) == 0)
                     {
-                        Toaster("Delivery Order quantiy and Picking quantity mismatch", hdnDelivery.Value,
+                        Toaster("Order quantiy and Picking quantity mismatch", hdnDelivery.Value,
                             Common.TosterType.Error);
-                        isCheck = false;
+                        isCheck = true;
                     }
                     else
                     {
-                        isCheck = true;
+                        isCheck = false;
                     }
                    
                      
                 }
                 else
                 {
-                    isCheck = false;
+                    isCheck = true;
                 }
                
             }
@@ -2002,17 +2024,18 @@ namespace UI.SAD.Delivery
                 driverContact = txtDriverContact.Text,
                 supplierId = hdnSupplierId.Value,
                 supplierName = hdnSupplierName.Value,
-                vehicleProviderName = rdoVehicleCompany.SelectedValue.ToString(),
+                vehicleProviderName = rdoVehicleCompany.SelectedItem.ToString(),
                 vehicleProviderId = rdoVehicleCompany.SelectedValue.ToString(),
-                shipmentCost = txtShipmentCost.Text;
+                shipmentCost = txtShipmentCost.Text,
+                payTerms=ddlPaymentTrems.SelectedValue;
             
 
-            BindHeaderXML(Enroll.ToString(), unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, hdnnarration.Value, currency, vehicleId, vehicleText, driver, driverContact, supplierId, supplierName, vehicleProviderName, vehicleProviderId, shipmentCost);
+            BindHeaderXML(Enroll.ToString(), unit, shipPoint, salesOffice, customerType, date, dueDate, customerId, shipPartyId, salesType, reffNo, customerAddress, shipToPartyAddress, hdnnarration.Value, currency, vehicleId, vehicleText, driver, driverContact, supplierId, supplierName, vehicleProviderName, vehicleProviderId, shipmentCost, payTerms);
         }
 
         private string BindHeaderXML(string userId,string unitId, string shipPointId, string salesOfficeId, string customerType, string date, string dueDate, string customerId, string shipPartyId, string salesType, 
             string reffNo, string customerAddress, string shipToPartyAddress,string narration, string currencyId,   string vehicleId,string vehicleName, string driver,
-            string driverContact, string supplierId,string supplierName,string vehicleProviderName,string vehicleProviderId,string shipmentCost)
+            string driverContact, string supplierId,string supplierName,string vehicleProviderName,string vehicleProviderId,string shipmentCost,string payTerms)
         {
             dynamic obj = new
             {
@@ -2039,7 +2062,8 @@ namespace UI.SAD.Delivery
                 supplierName,
                 vehicleProviderName,
                 vehicleProviderId,
-                shipmentCost
+                shipmentCost,
+                payTerms
 
             };
             List<object> objects = new List<object>();
@@ -2051,36 +2075,7 @@ namespace UI.SAD.Delivery
             return xmlHeaderString;
 
         }
-        private string BindDOHeaderXML(string userId,string unit, string shipPoint, string salesOffice, string customerType, string date, string dueDate, string customerId, string shipPartyId, string salesType, string reffNo, string customerAddress, string shipToPartyAddress,string narration, string currency, string conversionRate)
-        {
-            dynamic obj = new
-            {
-                userId,
-                unit,
-                shipPoint,
-                salesOffice,
-                customerType,
-                date,
-                dueDate,
-                customerId,
-                shipPartyId,
-                salesType,
-                reffNo,
-                customerAddress,
-                shipToPartyAddress,
-                narration,
-                currency,
-                conversionRate,
-            };
-            List<object> objects = new List<object>(); 
-            objects.Add(obj);
-
-            xmlHeaderString = XmlParser.GetXml("DeliveryEntry", "items", objects, out message);
-
-            return xmlHeaderString;
-
-        }
-
+     
         protected void txtQun_TextChanged(object sender, EventArgs e)
         {
            if (hdnButtonFire.Value == "true")

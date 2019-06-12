@@ -963,6 +963,8 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnstrPayTerms;
             
+            private global::System.Data.DataColumn columnintLogisticProvider;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryDOProfileDataTable() {
@@ -1214,6 +1216,14 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLogisticProviderColumn {
+                get {
+                    return this.columnintLogisticProvider;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1276,7 +1286,8 @@ namespace SAD_DAL.Delivery {
                         decimal monshipmentCost, 
                         bool ysnCompleted, 
                         int intPayTermsId, 
-                        string strPayTerms) {
+                        string strPayTerms, 
+                        int intLogisticProvider) {
                 QryDOProfileRow rowQryDOProfileRow = ((QryDOProfileRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intDoId,
@@ -1305,7 +1316,8 @@ namespace SAD_DAL.Delivery {
                         monshipmentCost,
                         ysnCompleted,
                         intPayTermsId,
-                        strPayTerms};
+                        strPayTerms,
+                        intLogisticProvider};
                 rowQryDOProfileRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryDOProfileRow);
                 return rowQryDOProfileRow;
@@ -1355,6 +1367,7 @@ namespace SAD_DAL.Delivery {
                 this.columnysnCompleted = base.Columns["ysnCompleted"];
                 this.columnintPayTermsId = base.Columns["intPayTermsId"];
                 this.columnstrPayTerms = base.Columns["strPayTerms"];
+                this.columnintLogisticProvider = base.Columns["intLogisticProvider"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1414,6 +1427,8 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintPayTermsId);
                 this.columnstrPayTerms = new global::System.Data.DataColumn("strPayTerms", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrPayTerms);
+                this.columnintLogisticProvider = new global::System.Data.DataColumn("intLogisticProvider", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLogisticProvider);
                 this.columnintDoId.AllowDBNull = false;
                 this.columndteDate.AllowDBNull = false;
                 this.columnstrUnit.AllowDBNull = false;
@@ -8561,6 +8576,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intLogisticProvider {
+                get {
+                    try {
+                        return ((int)(this[this.tableQryDOProfile.intLogisticProviderColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intLogisticProvider\' in table \'QryDOProfile\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryDOProfile.intLogisticProviderColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsdteReqDelivaryDateNull() {
                 return this.IsNull(this.tableQryDOProfile.dteReqDelivaryDateColumn);
             }
@@ -8725,6 +8756,18 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrPayTermsNull() {
                 this[this.tableQryDOProfile.strPayTermsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintLogisticProviderNull() {
+                return this.IsNull(this.tableQryDOProfile.intLogisticProviderColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintLogisticProviderNull() {
+                this[this.tableQryDOProfile.intLogisticProviderColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13549,6 +13592,7 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("ysnCompleted", "ysnCompleted");
             tableMapping.ColumnMappings.Add("intPayTermsId", "intPayTermsId");
             tableMapping.ColumnMappings.Add("strPayTerms", "strPayTerms");
+            tableMapping.ColumnMappings.Add("intLogisticProvider", "intLogisticProvider");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -13565,13 +13609,15 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT TOP (1) intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId, intCurrencyId, strCurrency, ysnCompleted, monshipmentCost, intPayTermsId, strPayTerms FROM qryDOProfile WHERE (intCustomerId = @intCustId) AND (intShipPointId = @shipId) ORDER BY intDoId DESC";
+            this._commandCollection[0].CommandText = "SELECT TOP (1) * FROM qryDOProfile WHERE (intCustomerId = @intCustId) AND (intShi" +
+                "pPointId = @shipId) ORDER BY intDoId DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCustId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCustomerId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = @"SELECT intDoId, dteDate, dteReqDelivaryDate, strUnit, intUnitId, strSalesOfficeName, intSalesOffId, strShipPointName, intShipPointId, strCustType, intCustTypeId, strCustName, intCustomerId, strCustAddress, strShipToParty, strShipAddress, intShipToPartyId, strSalesType, intSalesTypeId, strCustNameId, strShipToPartyNameId, intCurrencyId, strCurrency, ysnCompleted, monshipmentCost, intPayTermsId, strPayTerms FROM qryDOProfile WHERE (intDoId = @intDoId) AND (intShipPointId = @shipId)";
+            this._commandCollection[1].CommandText = "SELECT  *  FROM qryDOProfile WHERE (intDoId = @intDoId) AND (intShipPointId = @sh" +
+                "ipId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intDoId", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "intDoId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipPointId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
