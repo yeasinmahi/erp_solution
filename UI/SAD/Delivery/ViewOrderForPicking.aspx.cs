@@ -41,7 +41,7 @@ namespace UI.SAD.Delivery
                 dgvViewOrder.Columns[2].Visible = true;
                 dgvViewOrder.Columns[3].Visible = true;
 
-                if (ddlUnit.SelectedValue == "4" || ddlUnit.SelectedValue == "90")
+                if (ddlUnit.SelectedValue == "2" || ddlUnit.SelectedValue == "90")
                 {
                     dgvViewOrder.Columns[2].Visible = false;
                     dgvViewOrder.Columns[3].Visible = false;
@@ -129,7 +129,7 @@ namespace UI.SAD.Delivery
             dgvViewOrder.Columns[2].Visible = true;
             dgvViewOrder.Columns[3].Visible = true;
 
-            if (ddlUnit.SelectedValue == "4" || ddlUnit.SelectedValue == "90")
+            if (ddlUnit.SelectedValue == "2" || ddlUnit.SelectedValue == "90")
             {
                 dgvViewOrder.Columns[2].Visible = false;
                 dgvViewOrder.Columns[3].Visible = false;
@@ -145,7 +145,7 @@ namespace UI.SAD.Delivery
             string intid = searchKey[1].ToString();
             string PopupType = "Picking";
 
-            if (ddlUnit.SelectedValue == "4" || ddlUnit.SelectedValue == "90")
+            if (ddlUnit.SelectedValue == "2" || ddlUnit.SelectedValue == "90")
             {
                 strReportType = "Customer_Base";
             }

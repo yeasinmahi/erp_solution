@@ -5941,6 +5941,8 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnmonVatPrice;
             
+            private global::System.Data.DataColumn columnmonTotalAdjustment;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QryDoItemDetalisDataTable() {
@@ -6192,6 +6194,14 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monTotalAdjustmentColumn {
+                get {
+                    return this.columnmonTotalAdjustment;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6254,7 +6264,8 @@ namespace SAD_DAL.Delivery {
                         decimal numVolume, 
                         decimal decDiscountRate, 
                         decimal monVAT, 
-                        decimal monVatPrice) {
+                        decimal monVatPrice, 
+                        decimal monTotalAdjustment) {
                 QryDoItemDetalisRow rowQryDoItemDetalisRow = ((QryDoItemDetalisRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strProductName,
@@ -6283,7 +6294,8 @@ namespace SAD_DAL.Delivery {
                         numVolume,
                         decDiscountRate,
                         monVAT,
-                        monVatPrice};
+                        monVatPrice,
+                        monTotalAdjustment};
                 rowQryDoItemDetalisRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryDoItemDetalisRow);
                 return rowQryDoItemDetalisRow;
@@ -6333,6 +6345,7 @@ namespace SAD_DAL.Delivery {
                 this.columndecDiscountRate = base.Columns["decDiscountRate"];
                 this.columnmonVAT = base.Columns["monVAT"];
                 this.columnmonVatPrice = base.Columns["monVatPrice"];
+                this.columnmonTotalAdjustment = base.Columns["monTotalAdjustment"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6392,6 +6405,8 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnmonVAT);
                 this.columnmonVatPrice = new global::System.Data.DataColumn("monVatPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonVatPrice);
+                this.columnmonTotalAdjustment = new global::System.Data.DataColumn("monTotalAdjustment", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonTotalAdjustment);
                 this.columnstrProductName.AllowDBNull = false;
                 this.columnstrProductName.MaxLength = 200;
                 this.columnintDoId.AllowDBNull = false;
@@ -6413,6 +6428,7 @@ namespace SAD_DAL.Delivery {
                 this.columndecDiscountRate.ReadOnly = true;
                 this.columnmonVAT.ReadOnly = true;
                 this.columnmonVatPrice.ReadOnly = true;
+                this.columnmonTotalAdjustment.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12081,6 +12097,22 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monTotalAdjustment {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableQryDoItemDetalis.monTotalAdjustmentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monTotalAdjustment\' in table \'QryDoItemDetalis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryDoItemDetalis.monTotalAdjustmentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsnumRestQuantityNull() {
                 return this.IsNull(this.tableQryDoItemDetalis.numRestQuantityColumn);
             }
@@ -12293,6 +12325,18 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonVatPriceNull() {
                 this[this.tableQryDoItemDetalis.monVatPriceColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonTotalAdjustmentNull() {
+                return this.IsNull(this.tableQryDoItemDetalis.monTotalAdjustmentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonTotalAdjustmentNull() {
+                this[this.tableQryDoItemDetalis.monTotalAdjustmentColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15768,6 +15812,7 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("decDiscountRate", "decDiscountRate");
             tableMapping.ColumnMappings.Add("monVAT", "monVAT");
             tableMapping.ColumnMappings.Add("monVatPrice", "monVatPrice");
+            tableMapping.ColumnMappings.Add("monTotalAdjustment", "monTotalAdjustment");
             this._adapter.TableMappings.Add(tableMapping);
         }
         

@@ -358,12 +358,12 @@ namespace UI.SAD.Delivery
                     string conversionRate = dt.Rows[i]["monConversionRate"].ToString();
                     string commision = dt.Rows[i]["monCommission"].ToString();
 
-                    string commisionTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["monCommission"].ToString()) * decimal.Parse(dt.Rows[i]["numRestQuantity"].ToString()));
-                    string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[i]["numRestQuantity"].ToString()));
+                    string commisionTotal = dt.Rows[i]["monTotalAdjustment"].ToString(); 
+                    string discountTotal = dt.Rows[i]["monTotalAdjustment"].ToString();
 
                     decimal priceTotal = decimal.Parse(dt.Rows[i]["monPrice"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString());
 
-                    string discount = dt.Rows[i]["decDiscountRate"].ToString();
+                    string discount = dt.Rows[i]["monTotalAdjustment"].ToString();
                     string whId = hdnWHId.Value;
                     string whName = hdnWHName.Value; 
 
@@ -433,10 +433,8 @@ namespace UI.SAD.Delivery
             ddlCustomerType.Items.Add(new ListItem(dt.Rows[0]["strCustType"].ToString(), dt.Rows[0]["intCustTypeId"].ToString()));
             try{ddlCurrency.Items.Add(new ListItem(dt.Rows[0]["strCurrency"].ToString(), dt.Rows[0]["intCurrencyId"].ToString()));}
             catch { }
-           
-          
-
-            // ddlPaymentTrems.Items.Add(new ListItem(dt.Rows[0]["strCustType"].ToString(), dt.Rows[0]["intCustTypeId"].ToString()));
+            
+            
 
             CalendarDate.SelectedDate = DateTime.Parse(dt.Rows[0]["dteDate"].ToString());
            try{ CalendarDueDate.SelectedDate = DateTime.Parse(dt.Rows[0]["dteReqDelivaryDate"].ToString()); }
@@ -1142,10 +1140,10 @@ namespace UI.SAD.Delivery
                 }
 
 
-                decimal discountTotal = discount * decimal.Parse(editQty);
+               // decimal discountTotal = discount * decimal.Parse(editQty);
                 decimal priceTotal = decimal.Parse(price) * decimal.Parse(editQty);
 
-                ds.Tables[0].Rows[id]["discountTotal"] = discountTotal;
+                ds.Tables[0].Rows[id]["discountTotal"] = discount;
                 ds.Tables[0].Rows[id]["priceTotal"] = priceTotal;
 
                 ds.Tables[0].Rows[id]["quantity"] = editQty;
@@ -1440,8 +1438,7 @@ namespace UI.SAD.Delivery
                         string commisionTotal = (discounts * decimal.Parse(txtQun.Text.ToString())).ToString();
                         string conversionRate = txtConvRate.Text.ToString();
                         string discount = discounts.ToString();
-                        decimal discountTotal = decimal.Parse(lblDiscount.Text.ToString()) *
-                                                decimal.Parse(txtQun.Text.ToString());
+                        string discountTotal = discounts.ToString();
                         decimal priceTotal = decimal.Parse(txtPrice.Text.ToString()) *
                                              decimal.Parse(txtQun.Text.ToString());
                         string supplierTax = hdnSuppTax.Value;
