@@ -108,6 +108,13 @@ namespace UI.SAD.Delivery
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+
+            dt = new DataTable();
+            dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
+            if (dt.Rows.Count > 0)
+            {
+                hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
+            }
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {
