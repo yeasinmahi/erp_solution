@@ -65,8 +65,9 @@
                     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
                 </marquee>
                     </div>
+                
                 </asp:Panel>
-                <div id="divControl" class="divPopUp2" style="width: 100%; height: 100px; float: right;">
+                <div id="divControl" class="divPopUp2" style="width: 100%; height: 85px; float: right;">
                     <table style="width: 800px;">
                         <tr>
                             <td class="auto-style1">
@@ -241,22 +242,31 @@
                                 </table>
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="8">
+                                <asp:Label ID="lblCalculation" runat="server"></asp:Label>
+                            </td>
+                        </tr>
                     </table>
+                  
                 </div>
-            </asp:Panel>
-            <div style="height: 120px;">
-            </div>
-            <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1"
-                runat="server">
-            </cc1:AlwaysVisibleControlExtender>
-            
-
+        </asp:Panel>
+        <br /> <br /> <br /> <br /> 
+        <div style="height: 120px;">
+        </div>
+        <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1"
+                                          runat="server">
+        </cc1:AlwaysVisibleControlExtender>
+                
              <div id="divReportViewer" runat="server" >
+                 
                 <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
                     InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt"
-                    Width="1050" Height="750" BackColor="#EEF1FB" EnableTheming="true">
-                </rsweb:ReportViewer>                
+                    Width="1050" Height="750" BackColor="#EEF1FB" EnableTheming="true" style="margin-top: 62px">
+                </rsweb:ReportViewer>   
+                 
             </div>
+               
 
         </ContentTemplate>
     </asp:UpdatePanel>
