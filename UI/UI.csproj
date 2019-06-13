@@ -1654,6 +1654,7 @@
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
     <Content Include="SCM\Transfer\frmTransferOut.aspx" />
     <Content Include="SCM\Transfer\frmTransferOrder.aspx" />
+    <Content Include="SCM\WHItemLocationUpdate.aspx" />
     <Content Include="SCM\WHLocationCreate.aspx" />
     <Content Include="SCM\WHLocationStockTransfer.aspx" />
     <Content Include="SCM\WHLocationTransfer.aspx" />
@@ -8779,6 +8780,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferOrder.aspx.designer.cs">
       <DependentUpon>frmTransferOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\WHItemLocationUpdate.aspx.cs">
+      <DependentUpon>WHItemLocationUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\WHItemLocationUpdate.aspx.designer.cs">
+      <DependentUpon>WHItemLocationUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\WHLocationCreate.aspx.cs">
       <DependentUpon>WHLocationCreate.aspx</DependentUpon>

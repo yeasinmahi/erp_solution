@@ -8,6 +8,7 @@
     <title>::. HS Code </title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />  
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <script src="../Content/JS/jquery-3.3.1.js"></script>
 </head>
