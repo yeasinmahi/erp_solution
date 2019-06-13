@@ -869,7 +869,19 @@
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
+                                  <%--  <asp:TemplateField HeaderText="InventoryStatus" Visible="true" SortExpression="invStatus">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblInvStatus" runat="server" Text='<%# Bind("invStatus") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>--%>
 
+                                    <asp:TemplateField HeaderText="InventoryBalance" Visible="False" SortExpression="quantity">
+                                        <ItemTemplate>
+                                            <asp:Label ID="lblAvaileBalance" runat="server" Text='<%# Bind("quantity") %>'></asp:Label>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
                                         
 
                                     <asp:TemplateField HeaderText="Qty" Visible="False" SortExpression="quantity">

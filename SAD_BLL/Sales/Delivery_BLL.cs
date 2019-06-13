@@ -212,6 +212,24 @@ namespace SAD_BLL.Sales
 
 
         }
+
+       
+
+        public string InventoryCheck(string xml, ref string strMsg)
+        {
+            try
+            {
+                SprPickingStockCheckTableAdapter adp = new SprPickingStockCheckTableAdapter();
+                adp.GetInvnetoryCheck(xml, ref strMsg);
+                msg = "Delivery Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
         public string DeliveryEntry(string pickingId,ref string strCode)
         {
             try
