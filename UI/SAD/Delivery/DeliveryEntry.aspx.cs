@@ -268,15 +268,14 @@ namespace UI.SAD.Delivery
                 txtDoNumber.Text = Request.QueryString["intCusID"];
                 btnProductAddAlls.Visible = false;
                 dt = deliveryBLL.DeliveryHeaderDataByCustomer(hdnCustomer.Value, Request.QueryString["ShipPointID"],true);
-                if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
-                {
-                    
-                    btnSubmit.Visible = false;
-                    btnProductAddAlls.Visible = false;
-                    txtProduct.Enabled = false; 
-                    lblDoCustId.ForeColor = Color.Red;
-                    Toaster("Delivery order not apporve", hdnDelivery.Value, Common.TosterType.Warning);
-                }
+                //if (dt.Rows.Count > 0 && Convert.ToBoolean(dt.Rows[0]["ysnCompleted"]) == false)
+                //{
+                //    btnSubmit.Visible = false;
+                //    btnProductAddAlls.Visible = false;
+                //    txtProduct.Enabled = false; 
+                //    lblDoCustId.ForeColor = Color.Red;
+                //    Toaster("Delivery order not apporve", hdnDelivery.Value, Common.TosterType.Warning);
+                //}
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
                 CustometChange();
@@ -359,12 +358,12 @@ namespace UI.SAD.Delivery
                     string conversionRate = dt.Rows[i]["monConversionRate"].ToString();
                     string commision = dt.Rows[i]["monCommission"].ToString();
 
-                    string commisionTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["monCommission"].ToString()) * decimal.Parse(dt.Rows[i]["numRestQuantity"].ToString()));
-                    string discountTotal = Convert.ToString(decimal.Parse(dt.Rows[i]["decDiscountRate"].ToString()) * decimal.Parse(dt.Rows[i]["numRestQuantity"].ToString()));
+                    string commisionTotal = dt.Rows[i]["monTotalAdjustment"].ToString(); 
+                    string discountTotal = dt.Rows[i]["monTotalAdjustment"].ToString();
 
                     decimal priceTotal = decimal.Parse(dt.Rows[i]["monPrice"].ToString()) * decimal.Parse(dt.Rows[i]["numQuantity"].ToString());
 
-                    string discount = dt.Rows[i]["decDiscountRate"].ToString();
+                    string discount = dt.Rows[i]["monTotalAdjustment"].ToString();
                     string whId = hdnWHId.Value;
                     string whName = hdnWHName.Value; 
 
@@ -434,10 +433,8 @@ namespace UI.SAD.Delivery
             ddlCustomerType.Items.Add(new ListItem(dt.Rows[0]["strCustType"].ToString(), dt.Rows[0]["intCustTypeId"].ToString()));
             try{ddlCurrency.Items.Add(new ListItem(dt.Rows[0]["strCurrency"].ToString(), dt.Rows[0]["intCurrencyId"].ToString()));}
             catch { }
-           
-          
-
-            // ddlPaymentTrems.Items.Add(new ListItem(dt.Rows[0]["strCustType"].ToString(), dt.Rows[0]["intCustTypeId"].ToString()));
+            
+            
 
             CalendarDate.SelectedDate = DateTime.Parse(dt.Rows[0]["dteDate"].ToString());
            try{ CalendarDueDate.SelectedDate = DateTime.Parse(dt.Rows[0]["dteReqDelivaryDate"].ToString()); }
@@ -1143,10 +1140,10 @@ namespace UI.SAD.Delivery
                 }
 
 
-                decimal discountTotal = discount * decimal.Parse(editQty);
+               // decimal discountTotal = discount * decimal.Parse(editQty);
                 decimal priceTotal = decimal.Parse(price) * decimal.Parse(editQty);
 
-                ds.Tables[0].Rows[id]["discountTotal"] = discountTotal;
+                ds.Tables[0].Rows[id]["discountTotal"] = discount;
                 ds.Tables[0].Rows[id]["priceTotal"] = priceTotal;
 
                 ds.Tables[0].Rows[id]["quantity"] = editQty;
@@ -1261,6 +1258,7 @@ namespace UI.SAD.Delivery
             hdnInventoryStock.Value = "0";
             hdnProductCOGS.Value = "0";
             hdnInvItemId.Value = "0";
+            btnProductAdd.Visible = true;
         }
 
         private bool  InventoryFinishedGoodCogs(int productId, string productName,decimal quantity, int promItemId,string promItem, decimal promQnty)
@@ -1302,7 +1300,7 @@ namespace UI.SAD.Delivery
                 }
                 else
                 {
-                    return true;
+                    return false;
                 }
               
 
@@ -1311,8 +1309,8 @@ namespace UI.SAD.Delivery
                 
               
             }
-            catch { }
-            return true;
+            catch { return true; }
+            return false;
             //if (decimal.Parse(hdnInventoryStock.Value)>quantity)
             //{ 
             //    Toaster(productName+" Stock is not avaiable", Common.TosterType.Error);
@@ -1321,13 +1319,13 @@ namespace UI.SAD.Delivery
             //else if(decimal.Parse(hdnProductCOGS.Value) > 0)
             //{
             //    Toaster(productName + " set COGS Value.", Common.TosterType.Error);
-               
+
             //    return false;
             //}
             //else if (decimal.Parse(hdnPromoInvStock.Value) > promQnty)
             //{
             //    Toaster("Promotion Item "+ promItem + " Stock is not avaiable", Common.TosterType.Error);
-               
+
             //    return false;
 
             //}
@@ -1339,10 +1337,10 @@ namespace UI.SAD.Delivery
             //}
             //else
             //{
-                
+
             //    return true;
             //}
-            
+
         }
 
         protected void RowDataBound(object sender, GridViewRowEventArgs e)
@@ -1440,8 +1438,7 @@ namespace UI.SAD.Delivery
                         string commisionTotal = (discounts * decimal.Parse(txtQun.Text.ToString())).ToString();
                         string conversionRate = txtConvRate.Text.ToString();
                         string discount = discounts.ToString();
-                        decimal discountTotal = decimal.Parse(lblDiscount.Text.ToString()) *
-                                                decimal.Parse(txtQun.Text.ToString());
+                        string discountTotal = discounts.ToString();
                         decimal priceTotal = decimal.Parse(txtPrice.Text.ToString()) *
                                              decimal.Parse(txtQun.Text.ToString());
                         string supplierTax = hdnSuppTax.Value;
@@ -1764,7 +1761,7 @@ namespace UI.SAD.Delivery
                 {
                     PickingGridDataBind(hdnPickingId.Value);
                 }
-                else if (hdnDelivery.Value == "DO" || hdnDelivery.Value == "DO_Edit")
+                else  
                 {
                     DoGridDataBind(hdnDoId.Value);
                 }

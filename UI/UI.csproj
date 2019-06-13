@@ -1214,7 +1214,6 @@
     <Content Include="Projects\Local\ExecutionApproveBySupervisor.aspx" />
     <Content Include="Projects\Local\ExecutionPAppByAccount.aspx" />
     <Content Include="Projects\Local\ExecutionPlan.aspx" />
-    <Content Include="New_Project\QC_Management\agorder1355.xml" />
     <Content Include="New_Project\QC_Management\ItemAttributeAdd.aspx" />
     <Content Include="New_Project\QC_Management\ItemGridList.aspx" />
     <Content Include="New_Project\QC_Management\QcResultEntry.aspx" />
