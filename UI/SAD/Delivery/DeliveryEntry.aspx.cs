@@ -503,12 +503,12 @@ namespace UI.SAD.Delivery
                 string narration = dt.Rows[i]["strNarration"].ToString();
                 string currency = dt.Rows[i]["intCurrencyId"].ToString();
                 string conversionRate = dt.Rows[i]["monConversionRate"].ToString();
-                string commision = dt.Rows[i]["monDiscount"].ToString();
+                string commision = dt.Rows[i]["monTotalCashAdjustment"].ToString();
                 string commisionTotal = dt.Rows[i]["monTotalCashAdjustment"].ToString();
                 string discountTotal = dt.Rows[i]["monTotalCashAdjustment"].ToString();
                 decimal priceTotal = decimal.Parse(dt.Rows[i]["monPrice"].ToString()) * decimal.Parse(dt.Rows[i]["numQty"].ToString());
 
-                string discount = dt.Rows[i]["monDiscount"].ToString();
+                string discount = dt.Rows[i]["monTotalCashAdjustment"].ToString();
                 string whId = dt.Rows[i]["intWHId"].ToString();
                 string whName = dt.Rows[i]["strWareHoseName"].ToString();
                 hdnWHId.Value = dt.Rows[i]["intWHId"].ToString();
@@ -1964,17 +1964,18 @@ namespace UI.SAD.Delivery
 
                 if (hdnConfirm.Value == "1")
                 {
-                    
+                    string a = "1";
                     deliveryBLL.InventoryCheck(rowXml, ref msg);
-                    if (msg != "Successfully")
+                    if (a=="2")/*(msg != "Successfully")*/
                     {
                        
-                        Toaster(msg , "", Common.TosterType.Error);
+                        Toaster(msg, "", Common.TosterType.Error);
+                        return;
                     }
                     else
                     {
                         try { File.Delete(GetXmlFilePath()); } catch { }
-                        return;
+                       
                         if (rdoDeliveryType.SelectedItem.Text.ToString() == "DO")
                         {
 

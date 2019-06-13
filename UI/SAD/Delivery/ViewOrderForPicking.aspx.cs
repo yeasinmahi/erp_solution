@@ -40,12 +40,20 @@ namespace UI.SAD.Delivery
                     dgvViewOrder.Columns[9].Visible = false;
                 }
 
-                dt = new DataTable();
-                dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
-                if (dt.Rows.Count > 0)
+                try
                 {
-                    hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
-                }                
+                    dt = new DataTable();
+                    dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
+                    if (dt.Rows.Count > 0)
+                    {
+                        hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
+                    }
+                }
+                catch
+                {
+                    
+                }
+                         
 
                 dgvViewOrder.Columns[2].Visible = true;
                 dgvViewOrder.Columns[3].Visible = true;

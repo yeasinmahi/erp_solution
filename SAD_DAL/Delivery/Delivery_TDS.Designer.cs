@@ -4796,8 +4796,6 @@ namespace SAD_DAL.Delivery {
             
             private global::System.Data.DataColumn columnmonPromPrice;
             
-            private global::System.Data.DataColumn columnmonDiscount;
-            
             private global::System.Data.DataColumn columnmonLogisticAdjustment;
             
             private global::System.Data.DataColumn columnmonTotalCashAdjustment;
@@ -4813,6 +4811,8 @@ namespace SAD_DAL.Delivery {
             private global::System.Data.DataColumn columnintLocationId;
             
             private global::System.Data.DataColumn columnstrLocationName;
+            
+            private global::System.Data.DataColumn columnintDoId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -5001,14 +5001,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monDiscountColumn {
-                get {
-                    return this.columnmonDiscount;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public global::System.Data.DataColumn monLogisticAdjustmentColumn {
                 get {
                     return this.columnmonLogisticAdjustment;
@@ -5073,6 +5065,14 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intDoIdColumn {
+                get {
+                    return this.columnintDoId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -5128,7 +5128,6 @@ namespace SAD_DAL.Delivery {
                         int intPromUomId, 
                         int intPromCOAId, 
                         decimal monPromPrice, 
-                        decimal monDiscount, 
                         decimal monLogisticAdjustment, 
                         decimal monTotalCashAdjustment, 
                         string strNarration, 
@@ -5136,7 +5135,8 @@ namespace SAD_DAL.Delivery {
                         int intWHId, 
                         string strWareHoseName, 
                         int intLocationId, 
-                        string strLocationName) {
+                        string strLocationName, 
+                        long intDoId) {
                 QryPickingDetalisRow rowQryPickingDetalisRow = ((QryPickingDetalisRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intPickingId,
@@ -5158,7 +5158,6 @@ namespace SAD_DAL.Delivery {
                         intPromUomId,
                         intPromCOAId,
                         monPromPrice,
-                        monDiscount,
                         monLogisticAdjustment,
                         monTotalCashAdjustment,
                         strNarration,
@@ -5166,7 +5165,8 @@ namespace SAD_DAL.Delivery {
                         intWHId,
                         strWareHoseName,
                         intLocationId,
-                        strLocationName};
+                        strLocationName,
+                        intDoId};
                 rowQryPickingDetalisRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowQryPickingDetalisRow);
                 return rowQryPickingDetalisRow;
@@ -5208,7 +5208,6 @@ namespace SAD_DAL.Delivery {
                 this.columnintPromUomId = base.Columns["intPromUomId"];
                 this.columnintPromCOAId = base.Columns["intPromCOAId"];
                 this.columnmonPromPrice = base.Columns["monPromPrice"];
-                this.columnmonDiscount = base.Columns["monDiscount"];
                 this.columnmonLogisticAdjustment = base.Columns["monLogisticAdjustment"];
                 this.columnmonTotalCashAdjustment = base.Columns["monTotalCashAdjustment"];
                 this.columnstrNarration = base.Columns["strNarration"];
@@ -5217,6 +5216,7 @@ namespace SAD_DAL.Delivery {
                 this.columnstrWareHoseName = base.Columns["strWareHoseName"];
                 this.columnintLocationId = base.Columns["intLocationId"];
                 this.columnstrLocationName = base.Columns["strLocationName"];
+                this.columnintDoId = base.Columns["intDoId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5260,8 +5260,6 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintPromCOAId);
                 this.columnmonPromPrice = new global::System.Data.DataColumn("monPromPrice", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonPromPrice);
-                this.columnmonDiscount = new global::System.Data.DataColumn("monDiscount", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonDiscount);
                 this.columnmonLogisticAdjustment = new global::System.Data.DataColumn("monLogisticAdjustment", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonLogisticAdjustment);
                 this.columnmonTotalCashAdjustment = new global::System.Data.DataColumn("monTotalCashAdjustment", typeof(decimal), null, global::System.Data.MappingType.Element);
@@ -5278,6 +5276,8 @@ namespace SAD_DAL.Delivery {
                 base.Columns.Add(this.columnintLocationId);
                 this.columnstrLocationName = new global::System.Data.DataColumn("strLocationName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrLocationName);
+                this.columnintDoId = new global::System.Data.DataColumn("intDoId", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintDoId);
                 this.columnintPickingId.AllowDBNull = false;
                 this.columnstrProductName.AllowDBNull = false;
                 this.columnstrProductName.MaxLength = 200;
@@ -11429,22 +11429,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monDiscount {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableQryPickingDetalis.monDiscountColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monDiscount\' in table \'QryPickingDetalis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableQryPickingDetalis.monDiscountColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public decimal monLogisticAdjustment {
                 get {
                     try {
@@ -11570,6 +11554,22 @@ namespace SAD_DAL.Delivery {
                 }
                 set {
                     this[this.tableQryPickingDetalis.strLocationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long intDoId {
+                get {
+                    try {
+                        return ((long)(this[this.tableQryPickingDetalis.intDoIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intDoId\' in table \'QryPickingDetalis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableQryPickingDetalis.intDoIdColumn] = value;
                 }
             }
             
@@ -11767,18 +11767,6 @@ namespace SAD_DAL.Delivery {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonDiscountNull() {
-                return this.IsNull(this.tableQryPickingDetalis.monDiscountColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonDiscountNull() {
-                this[this.tableQryPickingDetalis.monDiscountColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsmonLogisticAdjustmentNull() {
                 return this.IsNull(this.tableQryPickingDetalis.monLogisticAdjustmentColumn);
             }
@@ -11871,6 +11859,18 @@ namespace SAD_DAL.Delivery {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrLocationNameNull() {
                 this[this.tableQryPickingDetalis.strLocationNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintDoIdNull() {
+                return this.IsNull(this.tableQryPickingDetalis.intDoIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintDoIdNull() {
+                this[this.tableQryPickingDetalis.intDoIdColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15621,7 +15621,6 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("intPromUomId", "intPromUomId");
             tableMapping.ColumnMappings.Add("intPromCOAId", "intPromCOAId");
             tableMapping.ColumnMappings.Add("monPromPrice", "monPromPrice");
-            tableMapping.ColumnMappings.Add("monDiscount", "monDiscount");
             tableMapping.ColumnMappings.Add("monLogisticAdjustment", "monLogisticAdjustment");
             tableMapping.ColumnMappings.Add("monTotalCashAdjustment", "monTotalCashAdjustment");
             tableMapping.ColumnMappings.Add("strNarration", "strNarration");
@@ -15630,6 +15629,7 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             tableMapping.ColumnMappings.Add("strWareHoseName", "strWareHoseName");
             tableMapping.ColumnMappings.Add("intLocationId", "intLocationId");
             tableMapping.ColumnMappings.Add("strLocationName", "strLocationName");
+            tableMapping.ColumnMappings.Add("intDoId", "intDoId");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -15646,7 +15646,7 @@ namespace SAD_DAL.Delivery.Delivery_TDSTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM erp_sad.dbo.qryPickingDetails where intPickingId=@intPickingId\r\n ";
+            this._commandCollection[0].CommandText = "SELECT *  FROM qryPickingDetails WHERE (intPickingId = @intPickingId)";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPickingId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intPickingId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
