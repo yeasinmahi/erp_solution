@@ -109,7 +109,7 @@
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
     </marquee></div></asp:Panel>
                 
-        
+    <asp:HiddenField ID="hdnPickingCreateStatus" runat="server" />    
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
