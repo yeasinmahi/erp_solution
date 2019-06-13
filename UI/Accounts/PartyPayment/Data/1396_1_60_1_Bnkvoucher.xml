@@ -1,4 +1,0 @@
-<?xml version="1.0"?>
-<BankVoucher>
-  <items bnkid="1" bnkaccid="100011" chequeno="Advice" chequedte="2013-08-26" amountcr="592290.0000" bnknarration="Advice" remarks="2 Meghna Petroleum Ltd." actualpaydte="2013-08-26" supcoaid="Advice" amountdr="592290.0000" supnarration="Being the amount paid to Meghna Petroleum Ltd.For purchase against PO No. 60 and Bill no. 25" />
-</BankVoucher>
