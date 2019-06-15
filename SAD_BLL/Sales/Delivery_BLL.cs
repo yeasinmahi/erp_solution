@@ -75,7 +75,32 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        
+        public DataTable CustomerInfo(string custId)
+        {
+            try
+            {
+                CustomerInfoTableAdapter adp = new CustomerInfoTableAdapter();
+                return adp.GetCustomerInformationData(int.Parse(custId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+        public DataTable PaymentsTerms(string unitId)
+        {
+            try
+            {
+                TblPaymentTermsTableAdapter adp = new TblPaymentTermsTableAdapter();
+                return adp.GetPaymentTermsData(int.Parse(unitId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable PickingSummary(string pickingId)
         {
             try
@@ -173,18 +198,36 @@ namespace SAD_BLL.Sales
 
         }
 
-        public DataTable GetDiscount(string customerId, string ProductId)
+        public DataTable GetDiscount(string customerId, string ProductId,string quantity,string price)
         {
             try
             {
                 FunGetItemDiscountTableAdapter adp = new FunGetItemDiscountTableAdapter();
-                return adp.GetDiscountData(int.Parse(customerId), int.Parse(ProductId), DateTime.Now.ToString());
+                return adp.GetDiscountData(int.Parse(customerId), int.Parse(ProductId), DateTime.Now.ToString(),decimal.Parse(quantity), decimal.Parse(price));
             }
             catch
             {
                 return new DataTable();
             }
 
+
+        }
+
+       
+
+        public string InventoryCheck(string xml, ref string strMsg)
+        {
+            try
+            {
+                SprPickingStockCheckTableAdapter adp = new SprPickingStockCheckTableAdapter();
+                adp.GetInvnetoryCheck(xml, ref strMsg);
+                msg = "Delivery Successfully";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
         public string DeliveryEntry(string pickingId,ref string strCode)

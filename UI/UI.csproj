@@ -1214,7 +1214,6 @@
     <Content Include="Projects\Local\ExecutionApproveBySupervisor.aspx" />
     <Content Include="Projects\Local\ExecutionPAppByAccount.aspx" />
     <Content Include="Projects\Local\ExecutionPlan.aspx" />
-    <Content Include="New_Project\QC_Management\agorder1355.xml" />
     <Content Include="New_Project\QC_Management\ItemAttributeAdd.aspx" />
     <Content Include="New_Project\QC_Management\ItemGridList.aspx" />
     <Content Include="New_Project\QC_Management\QcResultEntry.aspx" />
@@ -1279,7 +1278,6 @@
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\Delivery\Invoice.aspx" />
-    <Content Include="SAD\Delivery\PickingPrint.aspx" />
     <Content Include="SAD\Delivery\Picking_Summary_Report.aspx" />
     <Content Include="SAD\Delivery\PrintInvoice.aspx" />
     <Content Include="SAD\Delivery\QuotationEdit.aspx" />
@@ -1551,6 +1549,7 @@
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntryPopup.aspx" />
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionApproval.aspx" />
@@ -6170,33 +6169,12 @@
     <Compile Include="SAD\Delivery\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\Delivery\PickingPrint.aspx.cs">
-      <DependentUpon>PickingPrint.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\PickingPrint.aspx.designer.cs">
-      <DependentUpon>PickingPrint.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SAD\Delivery\Picking_Summary_Report.aspx.cs">
       <DependentUpon>Picking_Summary_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Delivery\Picking_Summary_Report.aspx.designer.cs">
       <DependentUpon>Picking_Summary_Report.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Delivery\PrintInvoice.aspx.cs">
-      <DependentUpon>PrintInvoice.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\PrintInvoice.aspx.designer.cs">
-      <DependentUpon>PrintInvoice.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Delivery\QuotationEdit.aspx.cs">
-      <DependentUpon>QuotationEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\QuotationEdit.aspx.designer.cs">
-      <DependentUpon>QuotationEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -8075,6 +8053,13 @@
     <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.designer.cs">
       <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx.cs">
       <DependentUpon>FinishedGoodRoutingDetalis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9826,6 +9811,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="backup.bat" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

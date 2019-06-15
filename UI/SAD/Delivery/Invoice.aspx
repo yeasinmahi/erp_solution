@@ -142,7 +142,7 @@
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
-                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Picking <hr /></td>
+                <td style="font: bold; font-size: 18px; padding-bottom: 5px;" colspan="8">View Sales Challan For Invoice <hr /></td>
                
             </tr>
             <tr>
@@ -212,8 +212,14 @@
                 <td colspan="6" style="text-align: left; padding: 15px 0px 5px 0px">   
                 <asp:Button ID="btnSingle" runat="server" class="myButton" Text="Single Invoice" Height="30px" OnClientClick="ConfirmAll()" OnClick="btnSingle_Click" />
                 <asp:Label ID="label" runat="server" Width="15px" />
-                <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" />                
+                <asp:Button ID="btnGroup" runat="server" class="myButton" Text="Group Invoice" Height="30px" OnClientClick="ConfirmAll()" OnClick="btnGroup_Click" />                
             </td>
+
+            <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" Visible="false">
+            <asp:ListItem Selected="True" Value="false"> Approved </asp:ListItem>
+            <asp:ListItem Value="false"> Unapproved</asp:ListItem>
+            </asp:RadioButtonList>
+
             </tr>  
         </table>
     </div>
@@ -254,7 +260,7 @@
     </HeaderTemplate>
     <ItemTemplate><asp:Label ID="lblNumber" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strName")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
-    <asp:BoundField DataField="strName" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
+    <asp:BoundField DataField="strShipToParty" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField>    
 
     <asp:BoundField DataField="monTotalAmount" HeaderText="Challan Amount" SortExpression="monTotalAmount" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
@@ -295,8 +301,6 @@
     </form>
     </body>
     </html>
-
-       
 
 
     <%--<table>
