@@ -1275,11 +1275,14 @@
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
+    <Content Include="SAD\Delivery\DeliveryOrderStatus.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\Delivery\Invoice.aspx" />
     <Content Include="SAD\Delivery\PickingPrint.aspx" />
     <Content Include="SAD\Delivery\Picking_Summary_Report.aspx" />
+    <Content Include="SAD\Delivery\PrintInvoice.aspx" />
+    <Content Include="SAD\Delivery\QuotationEdit.aspx" />
     <Content Include="SAD\Delivery\Test.aspx" />
     <Content Include="SAD\Delivery\ViewOrder.aspx" />
     <Content Include="SAD\Delivery\ViewOrderForPicking.aspx" />
@@ -1417,6 +1420,7 @@
     <Content Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
+    <Content Include="SAD\Sales\Report\Invoice_Print_Report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_OC_Report.aspx" />
@@ -6138,6 +6142,13 @@
     <Compile Include="SAD\Delivery\DeliveryEntry.aspx.designer.cs">
       <DependentUpon>DeliveryEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Delivery\DeliveryOrderStatus.aspx.cs">
+      <DependentUpon>DeliveryOrderStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DeliveryOrderStatus.aspx.designer.cs">
+      <DependentUpon>DeliveryOrderStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Delivery\DeliverySales.aspx.cs">
       <DependentUpon>DeliverySales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6172,6 +6183,20 @@
     </Compile>
     <Compile Include="SAD\Delivery\Picking_Summary_Report.aspx.designer.cs">
       <DependentUpon>Picking_Summary_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\PrintInvoice.aspx.cs">
+      <DependentUpon>PrintInvoice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\PrintInvoice.aspx.designer.cs">
+      <DependentUpon>PrintInvoice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Delivery\QuotationEdit.aspx.cs">
+      <DependentUpon>QuotationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\QuotationEdit.aspx.designer.cs">
+      <DependentUpon>QuotationEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\Test.aspx.cs">
       <DependentUpon>Test.aspx</DependentUpon>
@@ -7132,6 +7157,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.designer.cs">
       <DependentUpon>indent_statement_report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Invoice_Print_Report.aspx.cs">
+      <DependentUpon>Invoice_Print_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Invoice_Print_Report.aspx.designer.cs">
+      <DependentUpon>Invoice_Print_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx.cs">
       <DependentUpon>Itemwise_Deptwise_DO_vs_OC_Stock.aspx</DependentUpon>
