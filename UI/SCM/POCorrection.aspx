@@ -352,7 +352,7 @@
                                 <asp:TextBox ID="txtTransport" runat="server" CssClass="txtBox1"></asp:TextBox></td>
 
                             <td class="tdheight" style="text-align: right;">
-                                <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Payment days after MRR (days) : "></asp:Label></td>
+                                <asp:Label ID="Label13" CssClass="lbl" runat="server" Text="Payment days after MRR : "></asp:Label></td>
                             <td class="tdheight">
                                 <asp:TextBox ID="txtPaymentdaysAfterMRR" runat="server" CssClass="txtBox1"></asp:TextBox></td>
                         </tr>
@@ -416,6 +416,10 @@
                                 <asp:TextBox ID="txtWarrentyAfterDelivery" runat="server" CssClass="txtBox1"></asp:TextBox></td>
                         </tr>
                         <tr>
+                            <td class="tdheight" style="text-align: right;">
+                                <asp:Label ID="Label21" CssClass="lbl" runat="server" Text="C&F Bill No : "></asp:Label></td>
+                            <td class="tdheight">
+                                <asp:TextBox ID="txtCnFNo" runat="server" CssClass="txtBox1" Width="131px"></asp:TextBox></td>
                             <td colspan="4" style="text-align: right; padding: 10px 0px 0px 0px">
                                 <asp:Button ID="btnUpdatePO" runat="server" class="myButton" Text="Update" Width="120px" OnClientClick="Confirm()" OnClick="btnUpdatePO_Click" /></td>
                         </tr>

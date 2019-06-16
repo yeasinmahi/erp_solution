@@ -109,7 +109,7 @@
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
     </marquee></div></asp:Panel>
                 
-        
+    <asp:HiddenField ID="hdnPickingCreateStatus" runat="server" />    
     <div id="divControl" class="divPopUp2" style="width: 100%; height: 140px; float: right;">       
         <table width="100%" style="background-color:#C0C0C0">
             <tr>
@@ -150,7 +150,7 @@
             <tr>
             <td align="right">Order Status </td>
             <td colspan="1">
-                <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
+                <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoComplete_SelectedIndexChanged">
                 <asp:ListItem Selected="True" Value="1"> Complete </asp:ListItem>
                 <asp:ListItem Value="2"> Partial</asp:ListItem>
                 <asp:ListItem Value="3"> Pending</asp:ListItem>
@@ -220,10 +220,13 @@
     </HeaderTemplate>
     <ItemTemplate><asp:Label ID="lblNumber" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strName")) %>'></asp:Label></ItemTemplate></asp:TemplateField> 
         
-    <asp:BoundField DataField="strName" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
+    <asp:BoundField DataField="strShipToParty" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField>
 
-    <asp:BoundField DataField="monTotalAmount" HeaderText="Order Amount" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:###,###.00}">
+    <asp:BoundField DataField="OrderQty" HeaderText="Order Quantity" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
+    <ItemStyle HorizontalAlign="right" /></asp:BoundField>
+
+    <asp:BoundField DataField="PendingQty" HeaderText="Pending Quantity" SortExpression="challanqnt" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
     <asp:TemplateField HeaderText=""><ItemTemplate>                                                                                                          

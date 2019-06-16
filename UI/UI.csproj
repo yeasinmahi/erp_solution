@@ -470,6 +470,7 @@
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
+    <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
@@ -503,6 +504,7 @@
     <Content Include="HR\TourPlan\CustomerBankGuarantee.aspx" />
     <Content Include="HR\TourPlan\ProgramBillInfo.aspx" />
     <Content Include="IMPORT MANAGEMENT\HS Code.aspx" />
+    <Content Include="IMPORT MANAGEMENT\HSCodeCorrection.aspx" />
     <Content Include="Import\ImportFileManagement.aspx" />
     <Content Include="Import\LCRegister.aspx" />
     <Content Include="Import\OutStanding_LC.aspx" />
@@ -1214,7 +1216,6 @@
     <Content Include="Projects\Local\ExecutionApproveBySupervisor.aspx" />
     <Content Include="Projects\Local\ExecutionPAppByAccount.aspx" />
     <Content Include="Projects\Local\ExecutionPlan.aspx" />
-    <Content Include="New_Project\QC_Management\agorder1355.xml" />
     <Content Include="New_Project\QC_Management\ItemAttributeAdd.aspx" />
     <Content Include="New_Project\QC_Management\ItemGridList.aspx" />
     <Content Include="New_Project\QC_Management\QcResultEntry.aspx" />
@@ -1275,11 +1276,13 @@
     <Content Include="SAD\Customer\SetLogisVar.aspx" />
     <Content Include="SAD\Customer\SetPriceVar.aspx" />
     <Content Include="SAD\Delivery\DeliveryEntry.aspx" />
+    <Content Include="SAD\Delivery\DeliveryOrderStatus.aspx" />
     <Content Include="SAD\Delivery\DeliverySales.aspx" />
     <Content Include="SAD\Delivery\DOView.aspx" />
     <Content Include="SAD\Delivery\Invoice.aspx" />
-    <Content Include="SAD\Delivery\PickingPrint.aspx" />
     <Content Include="SAD\Delivery\Picking_Summary_Report.aspx" />
+    <Content Include="SAD\Delivery\PrintInvoice.aspx" />
+    <Content Include="SAD\Delivery\QuotationEdit.aspx" />
     <Content Include="SAD\Delivery\Test.aspx" />
     <Content Include="SAD\Delivery\ViewOrder.aspx" />
     <Content Include="SAD\Delivery\ViewOrderForPicking.aspx" />
@@ -1417,6 +1420,7 @@
     <Content Include="SAD\Sales\Report\DR_Access_Finished_Goods_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Free.aspx" />
     <Content Include="SAD\Sales\Report\indent_statement_report.aspx" />
+    <Content Include="SAD\Sales\Report\Invoice_Print_Report.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_DO_vs_OC_vs_Stock.aspx" />
     <Content Include="SAD\Sales\Report\Itemwise_OC_Report.aspx" />
@@ -1483,6 +1487,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesAndTransferReportSKUBase.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
+    <Content Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Calling_List.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
@@ -1546,6 +1551,7 @@
     <Content Include="SCM\BOM\EditRequisitionDetalis.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntry.aspx" />
     <Content Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx" />
+    <Content Include="SCM\BOM\FinishedGoodEntryPopup.aspx" />
     <Content Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx" />
     <Content Include="SCM\BOM\FinishGoodRouting.aspx" />
     <Content Include="SCM\BOM\ProductionApproval.aspx" />
@@ -1651,6 +1657,7 @@
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
     <Content Include="SCM\Transfer\frmTransferOut.aspx" />
     <Content Include="SCM\Transfer\frmTransferOrder.aspx" />
+    <Content Include="SCM\WHItemLocationUpdate.aspx" />
     <Content Include="SCM\WHLocationCreate.aspx" />
     <Content Include="SCM\WHLocationStockTransfer.aspx" />
     <Content Include="SCM\WHLocationTransfer.aspx" />
@@ -3451,6 +3458,13 @@
     </Compile>
     <Compile Include="IMPORT MANAGEMENT\HS Code.aspx.designer.cs">
       <DependentUpon>HS Code.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IMPORT MANAGEMENT\HSCodeCorrection.aspx.cs">
+      <DependentUpon>HSCodeCorrection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="IMPORT MANAGEMENT\HSCodeCorrection.aspx.designer.cs">
+      <DependentUpon>HSCodeCorrection.aspx</DependentUpon>
     </Compile>
     <Compile Include="Import\ImportFileManagement.aspx.cs">
       <DependentUpon>ImportFileManagement.aspx</DependentUpon>
@@ -6137,6 +6151,13 @@
     <Compile Include="SAD\Delivery\DeliveryEntry.aspx.designer.cs">
       <DependentUpon>DeliveryEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Delivery\DeliveryOrderStatus.aspx.cs">
+      <DependentUpon>DeliveryOrderStatus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Delivery\DeliveryOrderStatus.aspx.designer.cs">
+      <DependentUpon>DeliveryOrderStatus.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Delivery\DeliverySales.aspx.cs">
       <DependentUpon>DeliverySales.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6157,13 +6178,6 @@
     </Compile>
     <Compile Include="SAD\Delivery\Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="SAD\Delivery\PickingPrint.aspx.cs">
-      <DependentUpon>PickingPrint.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\Delivery\PickingPrint.aspx.designer.cs">
-      <DependentUpon>PickingPrint.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Delivery\Picking_Summary_Report.aspx.cs">
       <DependentUpon>Picking_Summary_Report.aspx</DependentUpon>
@@ -7132,6 +7146,13 @@
     <Compile Include="SAD\Sales\Report\indent_statement_report.aspx.designer.cs">
       <DependentUpon>indent_statement_report.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Invoice_Print_Report.aspx.cs">
+      <DependentUpon>Invoice_Print_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Invoice_Print_Report.aspx.designer.cs">
+      <DependentUpon>Invoice_Print_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Itemwise_Deptwise_DO_vs_OC_Stock.aspx.cs">
       <DependentUpon>Itemwise_Deptwise_DO_vs_OC_Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7594,6 +7615,13 @@
     <Compile Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx.designer.cs">
       <DependentUpon>UDTCLSalesViewReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.cs">
+      <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.designer.cs">
+      <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.cs">
       <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8034,6 +8062,13 @@
     </Compile>
     <Compile Include="SCM\BOM\FinishedGoodEntryFgSavePopUP.aspx.designer.cs">
       <DependentUpon>FinishedGoodEntryFgSavePopUP.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\BOM\FinishedGoodEntryPopup.aspx.designer.cs">
+      <DependentUpon>FinishedGoodEntryPopup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\BOM\FinishedGoodRoutingDetalis.aspx.cs">
       <DependentUpon>FinishedGoodRoutingDetalis.aspx</DependentUpon>
@@ -8755,6 +8790,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferOrder.aspx.designer.cs">
       <DependentUpon>frmTransferOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\WHItemLocationUpdate.aspx.cs">
+      <DependentUpon>WHItemLocationUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\WHItemLocationUpdate.aspx.designer.cs">
+      <DependentUpon>WHItemLocationUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\WHLocationCreate.aspx.cs">
       <DependentUpon>WHLocationCreate.aspx</DependentUpon>
@@ -9786,6 +9828,7 @@
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="backup.bat" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -9812,7 +9855,6 @@
     <Folder Include="HR\DocumentTracking\Data\" />
     <Folder Include="HR\DocumentTracking\Uploads\" />
     <Folder Include="HR\Employee\Upload\" />
-    <Folder Include="HR\HolidayCalendar\Holiday\" />
     <Folder Include="HR\Internal\Uploads\" />
     <Folder Include="HR\IssuedLetter\Data\" />
     <Folder Include="HR\KPI\Data\" />
@@ -9985,9 +10027,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="HR\Reports\ReportsTemplate\SalaryAdviceToBank.rdlc" />
-    <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\CreditBalance.rdlc" />
-    <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\Statement.rdlc" />
-    <EmbeddedResource Include="SAD\Customer\Report\ReportTemplete\StatementDrCr.rdlc" />
+    <Content Include="SAD\Customer\Report\ReportTemplete\CreditBalance.rdlc" />
+    <Content Include="SAD\Customer\Report\ReportTemplete\Statement.rdlc" />
+    <Content Include="SAD\Customer\Report\ReportTemplete\StatementDrCr.rdlc" />
     <EmbeddedResource Include="SAD\Sales\Report\ReportTemplete\Sales.rdlc" />
     <EmbeddedResource Include="SAD\Sales\Report\ReportTemplete\SalesG.rdlc" />
     <EmbeddedResource Include="SAD\Sales\Report\ReportTemplete\SalesP.rdlc" />

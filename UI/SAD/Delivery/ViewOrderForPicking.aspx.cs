@@ -22,8 +22,8 @@ namespace UI.SAD.Delivery
         string start = "starting SAD\\Order\\DeliveryViewForPendingOrder";
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
-        SalesOrderView obj = new SalesOrderView();
-        int intColumnVisible;
+        SalesOrderView obj = new SalesOrderView(); DataTable dt;
+        int intColumnVisible; string strReportType;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -31,13 +31,39 @@ namespace UI.SAD.Delivery
             if (!IsPostBack)
             {
                 pnlMarque.DataBind();
+                dgvViewOrder.Columns[9].Visible = true;
 
-                if (intColumnVisible == 1)
+                
+
+                if (rdoComplete.SelectedValue == "1")
+                {
+                    dgvViewOrder.Columns[9].Visible = false;
+                }
+
+                try
+                {
+                    dt = new DataTable();
+                    dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
+                    if (dt.Rows.Count > 0)
+                    {
+                        hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
+                    }
+                }
+                catch
+                {
+                    
+                }
+                         
+
+                dgvViewOrder.Columns[2].Visible = true;
+                dgvViewOrder.Columns[3].Visible = true;
+
+                if (hdnPickingCreateStatus.Value == "Customer Base")
                 {
                     dgvViewOrder.Columns[2].Visible = false;
                     dgvViewOrder.Columns[3].Visible = false;
                 }
-                
+
             }
         }
         [WebMethod]
@@ -60,14 +86,14 @@ namespace UI.SAD.Delivery
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
-            ddlCusType.DataBind();
+            //ddlCusType.DataBind();
         }
 
         protected void ddlShip_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlSo.DataBind();
-            ddlCusType.DataBind();
+            //ddlCusType.DataBind();
         }
 
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,6 +116,13 @@ namespace UI.SAD.Delivery
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+
+            dt = new DataTable();
+            dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
+            if (dt.Rows.Count > 0)
+            {
+                hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
+            }
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {
@@ -107,7 +140,25 @@ namespace UI.SAD.Delivery
             if (temp.Length > 1) hdnCustomer.Value = temp[temp.Length - 1];
             else hdnCustomer.Value = "";
         }
+                
+        protected void rdoComplete_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dgvViewOrder.Columns[9].Visible = true;
 
+            if (rdoComplete.SelectedValue == "1")
+            {
+                dgvViewOrder.Columns[9].Visible = false;
+            }
+
+            dgvViewOrder.Columns[2].Visible = true;
+            dgvViewOrder.Columns[3].Visible = true;
+
+            if (hdnPickingCreateStatus.Value == "Customer Base")
+            {
+                dgvViewOrder.Columns[2].Visible = false;
+                dgvViewOrder.Columns[3].Visible = false;
+            }
+        }
 
         protected void Complete_Click(object sender, EventArgs e)
         {
@@ -117,21 +168,16 @@ namespace UI.SAD.Delivery
             string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
             string PopupType = "Picking";
-            string strReportType = "DO_Base";
-            string ShipPointID = ddlShip.SelectedValue;
 
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "Picking('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);
-        }
-
-        protected void Picking_Click(object sender, EventArgs e)
-        {
-            char[] delimiterChars = { ',' };
-            string temp = ((Button)sender).CommandArgument.ToString();
-            string[] searchKey = temp.Split(delimiterChars);
-            string intCusID = searchKey[0].ToString();
-            string intid = searchKey[1].ToString();
-            string PopupType = "Picking";
-            string strReportType = "Customer_Base";
+            if (hdnPickingCreateStatus.Value == "Customer Base")
+            {
+                strReportType = "Customer_Base";
+            }
+            else
+            {
+                strReportType = "DO_Base";
+            }
+                        
             string ShipPointID = ddlShip.SelectedValue;
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "PickingCustBase('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);

@@ -151,7 +151,43 @@ namespace SAD_BLL.Sales
             return adp.GetSalesOrderViewForPickingData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
 
         }
-                
+
+/* Below Code is Monir Vai
+        public SalesOrderViewTDS.SprDelivaryOrderStatusDataTable GetDeliveryOrderStatus (DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
+       , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
+        {
+            SprDelivaryOrderStatusTableAdapter adp = new SprDelivaryOrderStatusTableAdapter();
+
+            int? cId = null;
+            if ("" + customerId != "")
+            {
+                cId = int.Parse(customerId);
+            }
+
+            cId = 0;
+
+            if ("" + code == "")
+            {
+                code = null;
+            }
+
+            if (fromDate == null)
+            {
+                fromDate = DateTime.Now.AddDays(-7);
+            }
+
+            if (toDate == null)
+            {
+                toDate = DateTime.Now.AddDays(7);
+            }
+
+            if ("" + customerType == "") return null;
+            return adp.GetDataDelivaryOrderStatus(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+
+        }
+
+    */
+    
 
         public SalesOrderViewTDS.SprPickingViewDataTable GetViewPickingData(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
            , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
@@ -215,34 +251,36 @@ namespace SAD_BLL.Sales
 
         }
         
-        public string DOApprove(int intInsertBy, int intDOId)
+        public string DOApproveCancelClose(int intDOId, int intType, int intInsertBy)
         {
-            string msg = "";
-          
+            string msg = "";            
             try
             {
-                TblSalesOrderTableAdapter adpdo = new TblSalesOrderTableAdapter();
-                adpdo.ApproveDO(intInsertBy, intDOId);
-                msg = "Successfully";
+                SprDOApproveCancelCloseTableAdapter adpdo = new SprDOApproveCancelCloseTableAdapter();
+                adpdo.OrderApproveCancelClose(intDOId, intType, intInsertBy, ref msg);                
             }
             catch (Exception e) { msg = e.ToString(); }
 
             return msg;
         }
 
-        public string DOCancel(int intInsertBy, int intDOId)
+        public string InvoiceGenerate(int intType, int intInsertBy, string xml)
         {
             string msg = "";
-
             try
             {
-                TblSalesOrder_DOCancelTableAdapter adpdo = new TblSalesOrder_DOCancelTableAdapter();
-                adpdo.DOCancel(intInsertBy, intDOId);
-                msg = "Successfully";
+                SprInvoiceGenerateTableAdapter adpdo = new SprInvoiceGenerateTableAdapter();
+                adpdo.InvoiceGenerate(intType, intInsertBy, xml, ref msg);
             }
             catch (Exception e) { msg = e.ToString(); }
 
             return msg;
+        }
+        
+        public DataTable GetPickingCreateStatusData(int intUnitId)
+        {
+            TblSalesConfigTableAdapter ta = new TblSalesConfigTableAdapter();
+            return ta.GetPickingCreateStatusData(intUnitId);
         }
 
         public DataTable getQuationDet(int quatationid)

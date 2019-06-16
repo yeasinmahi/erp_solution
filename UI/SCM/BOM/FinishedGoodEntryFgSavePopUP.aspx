@@ -194,7 +194,7 @@
                             <%--<MKB:TimeSelector ID="tpkEndTime" runat="server" SelectedTimeFormat="TwentyFour" ></MKB:TimeSelector>--%>
 
                             <td style="text-align: left;">
-                                <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Production Qty:"></asp:Label>
+                                <asp:Label ID="lblProductQty" Font-Bold="true" runat="server" Text="Plan Qty:"></asp:Label>
 
                             </td>
 

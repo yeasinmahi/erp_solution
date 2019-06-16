@@ -152,7 +152,7 @@
             <tr>
             <td align="right">Picking Status </td>
             <td colspan="1">
-                <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal">
+                <asp:RadioButtonList ID="rdoComplete" runat="server" AutoPostBack="True" RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoComplete_SelectedIndexChanged">
                 <asp:ListItem Value="true"> Delivered </asp:ListItem>
                 <asp:ListItem Selected="True" Value="false"> Undelivered</asp:ListItem>
                 </asp:RadioButtonList>
@@ -212,9 +212,8 @@
     <asp:Label ID="lblNumberHeader" runat="server" CssClass="lbl" Text="Number"></asp:Label>
     <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200" TextMode="MultiLine"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvViewPicking')"></asp:TextBox></HeaderTemplate>
     <ItemTemplate><asp:Label ID="lblNumber" runat="server" Width="100px" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strLoadingSlipno")) %>'></asp:Label></ItemTemplate></asp:TemplateField>--%>
-            
-    
-    <asp:BoundField DataField="dtedate" HeaderText="Quation Date" SortExpression="dtedate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
+          
+    <asp:BoundField DataField="dtedate" HeaderText="Picking Date" SortExpression="dtedate" ItemStyle-HorizontalAlign="left" DataFormatString="{0:dd/MM/yyyy}" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField> 
 
     <asp:BoundField DataField="intCusID" HeaderText="CustID" SortExpression="intCusID" ItemStyle-HorizontalAlign="Center" Visible="false" >
@@ -225,16 +224,16 @@
         
     <asp:TemplateField HeaderText="Sold To Party" Visible="true" ItemStyle-HorizontalAlign="left" SortExpression="strTaskTitle" HeaderStyle-Height="30px" HeaderStyle-VerticalAlign="Top" HeaderStyle-Wrap="true">
     <HeaderTemplate> 
-    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvViewOrder')"></asp:TextBox>
+    <asp:TextBox ID="TxtServiceConfg" ToolTip="Search Any Field" runat="server"  width="200"  placeholder="Search any column" onkeyup="Search_dgvservice(this, 'dgvViewPicking')"></asp:TextBox>
     <br></br>
     <asp:Label ID="lblNumberHeader" runat="server" Text="Sold To Party" Font-Bold="true"></asp:Label>
     </HeaderTemplate>
     <ItemTemplate><asp:Label ID="lblNumber" runat="server" DataFormatString="{0:0.00}" Text='<%# (""+Eval("strName")) %>'></asp:Label></ItemTemplate></asp:TemplateField>
 
-    <asp:BoundField DataField="strName" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
+    <asp:BoundField DataField="strShipToParty" HeaderText="Ship To Party" SortExpression="strName" ItemStyle-HorizontalAlign="left" >
     <ItemStyle HorizontalAlign="left" /></asp:BoundField>
 
-    <asp:BoundField DataField="numTotalQty" HeaderText="Order Total" SortExpression="numTotalQty" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
+    <asp:BoundField DataField="numTotalQty" HeaderText="Picking Quantity" SortExpression="numTotalQty" ItemStyle-HorizontalAlign="right" DataFormatString="{0:0.00}">
     <ItemStyle HorizontalAlign="right" /></asp:BoundField>
         
     <asp:TemplateField HeaderText=""><ItemTemplate>                                                                                                          

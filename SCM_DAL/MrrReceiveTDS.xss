@@ -8,12 +8,12 @@
   <Shapes>
     <Shape ID="DesignTable:SprMrrReceive" ZOrder="8" X="22" Y="25" Height="54" Width="300" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="45" OldDataTableHeight="64" SplitterPosition="24" />
     <Shape ID="DesignTable:TblPurchaseOrderMain" ZOrder="7" X="337" Y="25" Height="54" Width="278" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="64" OldDataTableHeight="64" SplitterPosition="24" />
-    <Shape ID="DesignTable:tblWearHouseOperator" ZOrder="6" X="655" Y="27" Height="54" Width="280" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="45" OldDataTableHeight="64" SplitterPosition="24" />
+    <Shape ID="DesignTable:tblWearHouseOperator" ZOrder="6" X="654" Y="28" Height="54" Width="280" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="45" OldDataTableHeight="64" SplitterPosition="24" />
     <Shape ID="DesignTable:tblPurchaseOrderMain" ZOrder="5" X="23" Y="93" Height="54" Width="275" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="45" OldDataTableHeight="64" SplitterPosition="24" />
-    <Shape ID="DesignTable:sprInventoryGetMissingCost" ZOrder="3" X="657" Y="97" Height="54" Width="300" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="44" OldDataTableHeight="46" SplitterPosition="24" />
+    <Shape ID="DesignTable:sprInventoryGetMissingCost" ZOrder="3" X="658" Y="144" Height="54" Width="300" AdapterExpanded="false" DataTableExpanded="false" OldAdapterHeight="44" OldDataTableHeight="46" SplitterPosition="24" />
     <Shape ID="DesignTable:PendingMRR" ZOrder="4" X="336" Y="96" Height="75" Width="267" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="24" OldDataTableHeight="178" SplitterPosition="25" />
-    <Shape ID="DesignSources:ImportInventoryTableAdapter" ZOrder="2" X="23" Y="165" Height="28" Width="300" AdapterExpanded="true" DataTableExpanded="false" OldAdapterHeight="0" OldDataTableHeight="101" SplitterPosition="24" />
     <Shape ID="DesignTable:FactoryReceiveMRRItemDetail" ZOrder="1" X="443" Y="233" Height="134" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignSources:ImportInventoryTableAdapter" ZOrder="2" X="23" Y="164" Height="105" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="24" SplitterPosition="101" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
