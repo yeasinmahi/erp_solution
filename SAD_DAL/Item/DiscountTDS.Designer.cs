@@ -3258,6 +3258,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,[strAdjustmentName]
            ,[intProductId]
            ,[monAdjustmentAmount]
+,monAdjustmentPercentage
            ,[monSalesQty]
            ,[intUOMId]
            ,[intAdjustmentTypeId]
@@ -3272,6 +3273,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,@strAdjustmentName
            ,@intProductId
            ,@monAdjustmentAmount
+,@monAdjustmentPercentage
            ,@monSalesQty
            ,@intUOMId
            ,@intAdjustmentTypeId
@@ -3286,6 +3288,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAdjustmentName", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAdjustmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "monAdjustmentAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentPercentage", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "monAdjustmentPercentage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monSalesQty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "monSalesQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOMId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUOMId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAdjustmentTypeId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAdjustmentTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3299,6 +3302,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,[strAdjustmentName]
            ,[intProductId]
            ,[monAdjustmentAmount]
+,monAdjustmentPercentage
            ,[monSalesQty]
            ,[intUOMId]
            ,[intAdjustmentTypeId]
@@ -3312,6 +3316,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,@strAdjustmentName
            ,@intProductId
            ,@monAdjustmentAmount
+,@monAdjustmentPercentage
            ,@monSalesQty
            ,@intUOMId
            ,@intAdjustmentTypeId
@@ -3326,6 +3331,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAdjustmentName", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAdjustmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "monAdjustmentAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentPercentage", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "monAdjustmentPercentage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monSalesQty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "monSalesQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOMId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUOMId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAdjustmentTypeId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAdjustmentTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3337,7 +3343,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DiscountTDS.tblAdjustmentByUnitAndProductDataTable GetAdjustmentByUnitAndProduct(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, string dteEndDate, global::System.Nullable<int> intInsertBy) {
+        public virtual DiscountTDS.tblAdjustmentByUnitAndProductDataTable GetAdjustmentByUnitAndProduct(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<decimal> monAdjustmentPercentage, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, string dteEndDate, global::System.Nullable<int> intInsertBy) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intCalculationType.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCalculationType.Value));
@@ -3369,41 +3375,47 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((monSalesQty.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(monSalesQty.Value));
+            if ((monAdjustmentPercentage.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((decimal)(monAdjustmentPercentage.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((intUOMId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intUOMId.Value));
+            if ((monSalesQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(monSalesQty.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intAdjustmentTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intAdjustmentTypeId.Value));
+            if ((intUOMId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intUOMId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((dteStartDate == null)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            if ((intAdjustmentTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intAdjustmentTypeId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(dteStartDate));
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((dteEndDate == null)) {
+            if ((dteStartDate == null)) {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteEndDate));
+                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteStartDate));
             }
-            if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intInsertBy.Value));
+            if ((dteEndDate == null)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteEndDate));
+            }
+            if ((intInsertBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intInsertBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             DiscountTDS.tblAdjustmentByUnitAndProductDataTable dataTable = new DiscountTDS.tblAdjustmentByUnitAndProductDataTable();
             this.Adapter.Fill(dataTable);
@@ -3414,7 +3426,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DiscountTDS.tblAdjustmentByUnitAndProductDataTable GetCustomizeinsertEndate(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, global::System.Nullable<int> intInsertBy) {
+        public virtual DiscountTDS.tblAdjustmentByUnitAndProductDataTable GetCustomizeinsertEndate(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<decimal> monAdjustmentPercentage, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, global::System.Nullable<int> intInsertBy) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((intCalculationType.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCalculationType.Value));
@@ -3446,35 +3458,41 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((monSalesQty.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(monSalesQty.Value));
+            if ((monAdjustmentPercentage.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((decimal)(monAdjustmentPercentage.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((intUOMId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(intUOMId.Value));
+            if ((monSalesQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(monSalesQty.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intAdjustmentTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intAdjustmentTypeId.Value));
+            if ((intUOMId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intUOMId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((dteStartDate == null)) {
+            if ((intAdjustmentTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intAdjustmentTypeId.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
+            if ((dteStartDate == null)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(dteStartDate));
+                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteStartDate));
             }
             if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intInsertBy.Value));
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intInsertBy.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             DiscountTDS.tblAdjustmentByUnitAndProductDataTable dataTable = new DiscountTDS.tblAdjustmentByUnitAndProductDataTable();
             this.Adapter.Fill(dataTable);
@@ -3622,6 +3640,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,[strAdjustmentName]
            ,[intProductId]
            ,[monAdjustmentAmount]
+,monAdjustmentPercentage
            ,[monSalesQty]
            ,[intUOMId]
            ,[intAdjustmentTypeId]
@@ -3636,6 +3655,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,@strAdjustmentName
            ,@intProductId
            ,@monAdjustmentAmount
+,@monAdjustmentPercentage
            ,@monSalesQty
            ,@intUOMId
            ,@intAdjustmentTypeId
@@ -3651,6 +3671,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAdjustmentName", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAdjustmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "monAdjustmentAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentPercentage", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "monAdjustmentPercentage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monSalesQty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "monSalesQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOMId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUOMId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAdjustmentTypeId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAdjustmentTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3665,6 +3686,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,[strAdjustmentName]
            ,[intProductId]
            ,[monAdjustmentAmount]
+,monAdjustmentPercentage
            ,[monSalesQty]
            ,[intUOMId]
            ,[intAdjustmentTypeId]
@@ -3679,6 +3701,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
            ,@strAdjustmentName
            ,@intProductId
            ,@monAdjustmentAmount
+,@monAdjustmentPercentage
            ,@monSalesQty
            ,@intUOMId
            ,@intAdjustmentTypeId
@@ -3694,6 +3717,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAdjustmentName", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAdjustmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "monAdjustmentAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentPercentage", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "monAdjustmentPercentage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monSalesQty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "monSalesQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOMId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUOMId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAdjustmentTypeId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAdjustmentTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -3705,7 +3729,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable GetAdjustmentBySalesOfficeAndProduct(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intSalesOfficeId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, string dteEndDate, global::System.Nullable<int> intInsertBy) {
+        public virtual DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable GetAdjustmentBySalesOfficeAndProduct(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intSalesOfficeId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<decimal> monAdjustmentPercentage, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, string dteEndDate, global::System.Nullable<int> intInsertBy) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intCalculationType.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCalculationType.Value));
@@ -3743,41 +3767,47 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((monSalesQty.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(monSalesQty.Value));
+            if ((monAdjustmentPercentage.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((decimal)(monAdjustmentPercentage.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intUOMId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intUOMId.Value));
+            if ((monSalesQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(monSalesQty.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((intAdjustmentTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intAdjustmentTypeId.Value));
+            if ((intUOMId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intUOMId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((dteStartDate == null)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((intAdjustmentTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intAdjustmentTypeId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteStartDate));
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((dteEndDate == null)) {
+            if ((dteStartDate == null)) {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteEndDate));
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteStartDate));
             }
-            if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intInsertBy.Value));
+            if ((dteEndDate == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(dteEndDate));
+            }
+            if ((intInsertBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(intInsertBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable dataTable = new DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable();
             this.Adapter.Fill(dataTable);
@@ -3788,7 +3818,7 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable GetCustomizeInsertbyEndDate(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intSalesOfficeId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, global::System.Nullable<int> intInsertBy) {
+        public virtual DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable GetCustomizeInsertbyEndDate(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intSalesOfficeId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<decimal> monAdjustmentPercentage, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, global::System.Nullable<int> intInsertBy) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((intCalculationType.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCalculationType.Value));
@@ -3826,35 +3856,41 @@ namespace SAD_DAL.Item.DiscountTDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((monSalesQty.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(monSalesQty.Value));
+            if ((monAdjustmentPercentage.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((decimal)(monAdjustmentPercentage.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intUOMId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intUOMId.Value));
+            if ((monSalesQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(monSalesQty.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((intAdjustmentTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intAdjustmentTypeId.Value));
+            if ((intUOMId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intUOMId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((dteStartDate == null)) {
+            if ((intAdjustmentTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intAdjustmentTypeId.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
+            if ((dteStartDate == null)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteStartDate));
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteStartDate));
             }
             if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intInsertBy.Value));
+                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intInsertBy.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable dataTable = new DiscountTDS.tblAdjustmentBySalesOfficeAndProductDataTable();
             this.Adapter.Fill(dataTable);
@@ -4003,6 +4039,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
            ,[strAdjustmentName]
            ,[intProductId]
            ,[monAdjustmentAmount]
+,monAdjustmentPercentage
            ,[monSalesQty]
            ,[intUOMId]
            ,[intAdjustmentTypeId]
@@ -4018,6 +4055,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
            ,@strAdjustmentName
            ,@intProductId
            ,@monAdjustmentAmount
+,@monAdjustmentPercentage
            ,@monSalesQty
            ,@intUOMId
            ,@intAdjustmentTypeId
@@ -4033,6 +4071,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAdjustmentName", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAdjustmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "monAdjustmentAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentPercentage", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "monAdjustmentPercentage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monSalesQty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "monSalesQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOMId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUOMId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAdjustmentTypeId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAdjustmentTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4049,6 +4088,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
            ,[strAdjustmentName]
            ,[intProductId]
            ,[monAdjustmentAmount]
+,monAdjustmentPercentage
            ,[monSalesQty]
            ,[intUOMId]
            ,[intAdjustmentTypeId]
@@ -4064,6 +4104,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
            ,@strAdjustmentName
            ,@intProductId
            ,@monAdjustmentAmount
+,@monAdjustmentPercentage
            ,@monSalesQty
            ,@intUOMId
            ,@intAdjustmentTypeId
@@ -4079,6 +4120,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strAdjustmentName", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "strAdjustmentName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intProductId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intProductId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentAmount", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 2, "monAdjustmentAmount", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monAdjustmentPercentage", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 4, "monAdjustmentPercentage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monSalesQty", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "monSalesQty", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUOMId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUOMId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intAdjustmentTypeId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAdjustmentTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -4090,7 +4132,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DiscountTDS.tblAdjustmentByCustomerAndProductDataTable GetAdjustmentByCustomerAndProduct(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intCustId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, string dteEndDate, global::System.Nullable<int> intInsertBy) {
+        public virtual DiscountTDS.tblAdjustmentByCustomerAndProductDataTable GetAdjustmentByCustomerAndProduct(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intCustId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<decimal> monAdjustmentPercentage, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, string dteEndDate, global::System.Nullable<int> intInsertBy) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((intCalculationType.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCalculationType.Value));
@@ -4128,41 +4170,47 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((monSalesQty.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(monSalesQty.Value));
+            if ((monAdjustmentPercentage.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((decimal)(monAdjustmentPercentage.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intUOMId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intUOMId.Value));
+            if ((monSalesQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(monSalesQty.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((intAdjustmentTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intAdjustmentTypeId.Value));
+            if ((intUOMId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intUOMId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((dteStartDate == null)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            if ((intAdjustmentTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intAdjustmentTypeId.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteStartDate));
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((dteEndDate == null)) {
+            if ((dteStartDate == null)) {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteEndDate));
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteStartDate));
             }
-            if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intInsertBy.Value));
+            if ((dteEndDate == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(dteEndDate));
+            }
+            if ((intInsertBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(intInsertBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             DiscountTDS.tblAdjustmentByCustomerAndProductDataTable dataTable = new DiscountTDS.tblAdjustmentByCustomerAndProductDataTable();
             this.Adapter.Fill(dataTable);
@@ -4173,7 +4221,7 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DiscountTDS.tblAdjustmentByCustomerAndProductDataTable GetCustomizeinserbyEndDate(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intCustId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, global::System.Nullable<int> intInsertBy) {
+        public virtual DiscountTDS.tblAdjustmentByCustomerAndProductDataTable GetCustomizeinserbyEndDate(global::System.Nullable<int> intCalculationType, global::System.Nullable<int> intUnitid, global::System.Nullable<int> intCustId, string strAdjustmentName, global::System.Nullable<int> intProductId, global::System.Nullable<decimal> monAdjustmentAmount, global::System.Nullable<decimal> monAdjustmentPercentage, global::System.Nullable<int> monSalesQty, global::System.Nullable<int> intUOMId, global::System.Nullable<int> intAdjustmentTypeId, string dteStartDate, global::System.Nullable<int> intInsertBy) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((intCalculationType.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCalculationType.Value));
@@ -4211,35 +4259,41 @@ INSERT INTO [dbo].[tblAdjustmentByCustomerAndProduct]
             else {
                 this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((monSalesQty.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(monSalesQty.Value));
+            if ((monAdjustmentPercentage.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((decimal)(monAdjustmentPercentage.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((intUOMId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(intUOMId.Value));
+            if ((monSalesQty.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((int)(monSalesQty.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
-            if ((intAdjustmentTypeId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intAdjustmentTypeId.Value));
+            if ((intUOMId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intUOMId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((dteStartDate == null)) {
+            if ((intAdjustmentTypeId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intAdjustmentTypeId.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
+            if ((dteStartDate == null)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((string)(dteStartDate));
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(dteStartDate));
             }
             if ((intInsertBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intInsertBy.Value));
+                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intInsertBy.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             DiscountTDS.tblAdjustmentByCustomerAndProductDataTable dataTable = new DiscountTDS.tblAdjustmentByCustomerAndProductDataTable();
             this.Adapter.Fill(dataTable);

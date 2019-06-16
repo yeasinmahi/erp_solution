@@ -59,7 +59,9 @@
             <td colspan="2"> <asp:DropDownList ID="ddloffice" runat="server" CssClass="ddllist"> </asp:DropDownList></td>            
         </tr> 
         <tr><td>Sales :UOM Name</td>
-            <td> <asp:DropDownList ID="ddlUom" runat="server" CssClass="ddllist"></asp:DropDownList></td>
+            <td> <asp:DropDownList ID="ddlUom" runat="server" CssClass="ddllist"></asp:DropDownList>
+                
+            </td>
             <td>Customer Name&nbsp; </td>
             <td colspan="2"><asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"  ></asp:TextBox>
             <cc1:AutoCompleteExtender ID="empsearch" runat="server" TargetControlID="txtCustomer"
@@ -68,8 +70,11 @@
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
         </tr> 
-        <tr><td>Sales Qty</td>
-            <td><asp:TextBox ID="txtSalesQty" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>
+        <tr><td>Calculation Type</td>
+            <td><asp:DropDownList ID="ddlcalcuationtype" runat="server">
+             <asp:ListItem Value="1">Qty Base</asp:ListItem>
+             <asp:ListItem Value="2">Taka Base</asp:ListItem>
+             </asp:DropDownList></td>
             <td>From Date</td> 
             <td colspan="2"><asp:TextBox ID="txtFrom" runat="server" Enabled="false"  Height="22px"></asp:TextBox>
             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy" PopupButtonID="imgCal_1"
@@ -78,8 +83,8 @@
             <img id="imgCal_1" src="../../Content/images/img/calbtn.gif" style="border: 0px;
             width: 34px; height: 23px; vertical-align: bottom;" /></td>
         </tr>
-        <tr><td>Discount Amount</td>
-            <td><asp:TextBox ID="txtDiscountAmount" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>
+        <tr><td>Sales Qty</td>
+            <td><asp:TextBox ID="txtSalesQty" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox></td>
             <td>To Date &nbsp;&nbsp;&nbsp; </td>
             <td colspan="2"><asp:TextBox ID="txtTo" Enabled="false"  runat="server" CssClass="txtbox"></asp:TextBox>
             <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy"
@@ -90,19 +95,19 @@
         </tr> 
       
         
-         <tr><td>Adjustment Type :</td>
-             <td> <asp:DropDownList ID="ddlAdjustmenttype" CssClass="ddllist" runat="server">
+         <tr><td>Discount Amount</td>
+             <td><asp:TextBox ID="txtDiscountAmount" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true" ></asp:TextBox>
+                 
+
+             </td><td>Adjustment Type</td><td><asp:DropDownList ID="ddlAdjustmenttype" CssClass="ddllist" runat="server">
             <asp:ListItem Value="1">Discount</asp:ListItem>
             <asp:ListItem Value="2">Transport</asp:ListItem>           
                  <asp:ListItem Value="3">SRSubsidiary</asp:ListItem>
-            </asp:DropDownList></td><td>Calculation Type</td><td><asp:DropDownList ID="ddlcalcuationtype" runat="server">
-             <asp:ListItem Value="1">Qty Base</asp:ListItem>
-             <asp:ListItem Value="2">Slab Discount</asp:ListItem>
-             </asp:DropDownList> </td>
+            </asp:DropDownList> </td>
              <td style="text-align:right" ><asp:Button ID="btnSave" Font-Bold="true" runat="server" Text="Save" OnClick="btnSave_Click" style="height: 26px" /></td></tr>
-         <tr><td>Group Offcer</td>
+         <tr><td>Discount Percentage</td>
 
-             <td></td>
+             <td><asp:TextBox ID="txtPercentage" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="10"></asp:TextBox></td>
 
          </tr>
             <tr><td colspan="6"><hr /></td></tr>
