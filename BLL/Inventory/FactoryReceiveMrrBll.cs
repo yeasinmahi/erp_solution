@@ -62,7 +62,40 @@ namespace BLL.Inventory
             }
             else // Local
             {
-
+                int mrrId = _dal.Insert(factoryReceiveMrr.PoId, factoryReceiveMrr.SupplierId, factoryReceiveMrr.ShipmentSl, factoryReceiveMrr.LastActionBy, factoryReceiveMrr.UnitId,
+                    factoryReceiveMrr.ExternalRef, factoryReceiveMrr.ChallanDate, factoryReceiveMrr.WhId, factoryReceiveMrr.VatChallan, factoryReceiveMrr.TotalVat, factoryReceiveMrr.TotalAit, factoryReceiveMrr.IsInventoryInserted,
+                    factoryReceiveMrr.ShipmentId);
+                if (mrrId > 0)
+                {
+                    foreach (FactoryReceiveMRRItemDetail obj in factoryReceiveMrrItemDetails)
+                    {
+                        int autoId = _factoryReceiveMrrItemDetailBll.Insert(obj.MrrId, obj.ItemId, obj.PoQuantity,
+                            obj.ReceiveQuantity, obj.FcRate, obj.FcTotal, obj.BdtTotal, obj.LocationId, obj.PoId,
+                            obj.ReceiveRemarks, obj.VatAmount, obj.AitAmount, null, null, null);
+                        if (autoId > 0)
+                        {
+                            int inventoryId = _inventory.InsertBySpInventoryTransection(factoryReceiveMrr.UnitId,
+                                factoryReceiveMrr.WhId, obj.LocationId, obj.LocationId, obj.ReceiveQuantity,
+                                obj.BdtTotal, mrrId, 1);
+                            if (inventoryId > 0)
+                            {
+                                //TODO: success
+                            }
+                            else
+                            {
+                                //TODO: inventory Insert Fail
+                            }
+                        }
+                        else
+                        {
+                            //TODO: MRR item Insert Fail 
+                        }
+                    }
+                }
+                else
+                {
+                    //TODO: MRR Insert Fail 
+                }
             }
         }
     }
