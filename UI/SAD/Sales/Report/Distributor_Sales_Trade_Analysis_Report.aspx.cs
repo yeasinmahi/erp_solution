@@ -6,9 +6,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
-namespace UI.PaymentModule
+namespace UI.SAD.Sales.Report
 {
-    public partial class Inventory_Summary_Report : BasePage
+    public partial class Distributor_Sales_Trade_Analysis_Report : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,7 +16,7 @@ namespace UI.PaymentModule
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Open_Reports/Inventory_Summary_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Sales%20And%20Distribution/Distributor_Sales_Trade_Analysis?rs:Embed=true');", true);
 
         }
     }
