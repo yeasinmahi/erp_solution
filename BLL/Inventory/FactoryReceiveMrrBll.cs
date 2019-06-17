@@ -26,7 +26,7 @@ namespace BLL.Inventory
             if (factoryReceiveMrr.ShipmentSl > 0) // import
             {
                 int mrrId=  _dal.Insert(factoryReceiveMrr.PoId, factoryReceiveMrr.SupplierId, factoryReceiveMrr.ShipmentSl, factoryReceiveMrr.LastActionBy, factoryReceiveMrr.UnitId,
-                    factoryReceiveMrr.ExternalRef, factoryReceiveMrr.ChallanDate, factoryReceiveMrr.WhId, factoryReceiveMrr.VatChallan, factoryReceiveMrr.TotalVat, factoryReceiveMrr.TotalAit, factoryReceiveMrr.IsInventoryInserted,
+                    factoryReceiveMrr.ExternalRef, factoryReceiveMrr.ChallanDate.ToString("dd/MM/yyyy"), factoryReceiveMrr.WhId, factoryReceiveMrr.VatChallan, factoryReceiveMrr.TotalVat, factoryReceiveMrr.TotalAit, factoryReceiveMrr.IsInventoryInserted,
                     factoryReceiveMrr.ShipmentId);
                 if (mrrId > 0)
                 {
@@ -63,7 +63,7 @@ namespace BLL.Inventory
             else // Local
             {
                 int mrrId = _dal.Insert(factoryReceiveMrr.PoId, factoryReceiveMrr.SupplierId, factoryReceiveMrr.ShipmentSl, factoryReceiveMrr.LastActionBy, factoryReceiveMrr.UnitId,
-                    factoryReceiveMrr.ExternalRef, factoryReceiveMrr.ChallanDate, factoryReceiveMrr.WhId, factoryReceiveMrr.VatChallan, factoryReceiveMrr.TotalVat, factoryReceiveMrr.TotalAit, factoryReceiveMrr.IsInventoryInserted,
+                    factoryReceiveMrr.ExternalRef, factoryReceiveMrr.ChallanDate.ToString("dd/MM/yyyy"), factoryReceiveMrr.WhId, factoryReceiveMrr.VatChallan, factoryReceiveMrr.TotalVat, factoryReceiveMrr.TotalAit, factoryReceiveMrr.IsInventoryInserted,
                     factoryReceiveMrr.ShipmentId);
                 if (mrrId > 0)
                 {

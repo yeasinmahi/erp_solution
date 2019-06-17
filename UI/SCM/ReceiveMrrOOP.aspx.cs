@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using BLL.AFBLSMSServer;
 using BLL.HR;
+using Model;
 using SCM_DAL.MrrReceiveTDSTableAdapters;
 using UI.ClassFiles;
 using Utility;
@@ -211,6 +212,48 @@ namespace UI.SCM
 
 
                         string msg = _obj.MrrReceive(11, xmlString, ddlWH.SelectedValue(), intPOID, DateTime.Now, Enroll);
+
+                        FactoryReceiveMrr factoryReceiveMrr = new FactoryReceiveMrr()
+                        {
+                            PoId = intPOID,
+                            SupplierId = intSupplierID,
+                            ShipmentSl = intShipment,
+                            ChallanDate = dteChallan,
+                            TotalVat = monVatAmount,
+                            VatChallan = challanNo,
+
+                            //ExternalRef = dteChallan,
+                            //IsInventoryInserted = 0,
+                            //ShipmentId = 0,
+
+                            //WhId = 1,
+
+
+
+                            //LastActionBy = 0,
+                            //TotalAit = 0,
+
+                            //UnitId = 0,
+                            //MrrCode = 0,
+                            //MrrId = 0,
+                            //PvAmount = 0,
+                        };
+                        FactoryReceiveMRRItemDetail factoryReceiveMrrItemDetail = new FactoryReceiveMRRItemDetail()
+                        {
+
+                            //PoId = 0,
+                            //MrrId = 0,
+                            //AitAmount = 0,
+                            //BdtTotal = 0,
+                            //FcRate = 0,
+                            //FcTotal = 0,
+                            //ItemId = 0,
+                            //LocationId = 0,
+                            //PoQuantity = 0,
+                            //ReceiveQuantity = 0,
+                            //ReceiveRemarks = 0,
+                            //VatAmount = 0
+                        };
 
                         if (msg.ToLower().Contains("success"))
                         {
