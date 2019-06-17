@@ -21,7 +21,7 @@ namespace UI.SAD.ExcelChallan
         DataTable dt; decimal balance, totalBalance, numLogisticCharge, monExtraAmount, numCharge, numIncentive, numConvRate;
         int Shipid, Custid, intunitid, part, Offid, enroll, intVehicleVarId, intVehicleId,  intsalestypeid, intVehicleTypeId, intDisPointId,
         intCurrencyId, intPriceVarId, CustType, intIncentiveId;
-        string slip, strCustnameName, strDrivername, xmlStringvat, narrationvat, narratioinvat, strDriverContact,strCode= "", price, strExtraCause, narration = "", intentryid = "", strSupplier, strOther, strVehicleRegNo, strChallanNo, CustAddress, strSupplierCOACod, narratioin, filePathForXML, filePathForXMLVat, vno,vid,driverenroll, suppliercheck;
+        string  msg,slip, strCustnameName, strDrivername, xmlStringvat, narrationvat, narratioinvat, strDriverContact,strCode= "", price, strExtraCause, narration = "", intentryid = "", strSupplier, strOther, strVehicleRegNo, strChallanNo, CustAddress, strSupplierCOACod, narratioin, filePathForXML, filePathForXMLVat, vno,vid,driverenroll, suppliercheck;
         challanandPending Report = new challanandPending();
         SeriLog log = new SeriLog();
         string location = "SAD";
@@ -227,14 +227,14 @@ namespace UI.SAD.ExcelChallan
                                         if (counts > 7)
                                         {
                                             counts = 1;
-                                            #region ------------ Insert into dataBase -----------                                                                            
-
+                                                #region ------------ Insert into dataBase -----------                                                                            
+                                               
                                             XmlDocument doc = new XmlDocument();
                                             doc.Load(filePathForXML);
                                             XmlNode dSftTm = doc.SelectSingleNode("node");
                                             string xmlString = dSftTm.InnerXml;
                                             xmlString = "<node>" + xmlString + "</node>";
-                                            string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode);
+                                            string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
 
                                             File.Delete(filePathForXML);
                                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
@@ -263,15 +263,16 @@ namespace UI.SAD.ExcelChallan
                             }
                             if(countsvat>0)
                             {
-                                #region ------------ Insert into dataBase not vat -----------                                                                            
-                                narratioinvat = Convert.ToString(Session[narratioinvat]);
+                                   
+                                    #region ------------ Insert into dataBase not vat -----------                                                                            
+                                    narratioinvat = Convert.ToString(Session[narratioinvat]);
                                 XmlDocument docvat = new XmlDocument();
-                                
+                                   
                                     docvat.Load(filePathForXMLVat);
                                     XmlNode dSftTmvat = docvat.SelectSingleNode("node");
                                     string xmlStringvat = dSftTmvat.InnerXml;
                                     xmlStringvat = "<node>" + xmlStringvat + "</node>";
-                                    string messagevat = Report.AutoChallaninsertform(xmlStringvat, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioinvat, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode);
+                                    string messagevat = Report.AutoChallaninsertform(xmlStringvat, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioinvat, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
                                     File.Delete(filePathForXMLVat);
                                 
                                 #endregion ------------ Insertion End ----------------
@@ -288,7 +289,7 @@ namespace UI.SAD.ExcelChallan
                                     XmlNode dSftTm = doc.SelectSingleNode("node");
                                     string xmlString = dSftTm.InnerXml;
                                     xmlString = "<node>" + xmlString + "</node>";
-                                    string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode);
+                                    string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
                                     File.Delete(filePathForXML);
                                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                                 //}
