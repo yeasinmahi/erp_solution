@@ -50064,6 +50064,7 @@ inner join ERP_HR.dbo.tblUserDesignation on ERP_HR.dbo.tblEmployee.intDesignatio
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSalesOffId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intShipPointId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strCode", global::System.Data.SqlDbType.VarChar, 350, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@msg", global::System.Data.SqlDbType.VarChar, 350, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -50109,7 +50110,8 @@ inner join ERP_HR.dbo.tblUserDesignation on ERP_HR.dbo.tblEmployee.intDesignatio
                     string strDriverContact, 
                     global::System.Nullable<int> intSalesOffId, 
                     global::System.Nullable<int> intShipPointId, 
-                    ref string strCode) {
+                    ref string strCode, 
+                    ref string msg) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((xmlString == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -50345,6 +50347,12 @@ inner join ERP_HR.dbo.tblUserDesignation on ERP_HR.dbo.tblEmployee.intDesignatio
             else {
                 this.Adapter.SelectCommand.Parameters[39].Value = ((string)(strCode));
             }
+            if ((msg == null)) {
+                this.Adapter.SelectCommand.Parameters[40].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[40].Value = ((string)(msg));
+            }
             AutoChallanAFBL.sprSalesEntryTest1DataTable dataTable = new AutoChallanAFBL.sprSalesEntryTest1DataTable();
             this.Adapter.Fill(dataTable);
             if (((this.Adapter.SelectCommand.Parameters[2].Value == null) 
@@ -50360,6 +50368,13 @@ inner join ERP_HR.dbo.tblUserDesignation on ERP_HR.dbo.tblEmployee.intDesignatio
             }
             else {
                 strCode = ((string)(this.Adapter.SelectCommand.Parameters[39].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[40].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[40].Value.GetType() == typeof(global::System.DBNull)))) {
+                msg = null;
+            }
+            else {
+                msg = ((string)(this.Adapter.SelectCommand.Parameters[40].Value));
             }
             return dataTable;
         }

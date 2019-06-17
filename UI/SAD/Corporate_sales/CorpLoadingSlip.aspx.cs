@@ -34,7 +34,7 @@ namespace UI.SAD.Corporate_sales
         DataTable dtSlipdetailsReport = new DataTable();
         DataTable dtSlipdetailsReportinfo = new DataTable();
         challanandPending Report = new challanandPending();
-        string filePathForXML; int enroll;
+        string filePathForXML,msg; int enroll;
 
         SeriLog log = new SeriLog();
         string location = "SAD";
@@ -401,7 +401,7 @@ namespace UI.SAD.Corporate_sales
                                     string xmlString = dSftTm.InnerXml;
                                     xmlString = "<node>" + xmlString + "</node>";
                                     //string message = rpt.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode);
-                                    string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode);
+                                    string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode,ref msg);
                                     File.Delete(filePathForXML);
                                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
 
@@ -442,7 +442,7 @@ namespace UI.SAD.Corporate_sales
                             XmlNode dSftTm = doc.SelectSingleNode("node");
                             string xmlString = dSftTm.InnerXml;
                             xmlString = "<node>" + xmlString + "</node>";
-                            string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode);
+                            string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode,ref msg);
                             File.Delete(filePathForXML);
                             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
 
