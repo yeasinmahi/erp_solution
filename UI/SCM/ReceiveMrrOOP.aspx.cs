@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Xml;
 using BLL.AFBLSMSServer;
 using BLL.HR;
+using Model;
 using SCM_DAL.MrrReceiveTDSTableAdapters;
 using UI.ClassFiles;
 using Utility;
@@ -162,6 +163,7 @@ namespace UI.SCM
                             try { DateTime dteExp = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtExpireDate")).Text)); expireDate = dteExp.ToString(); } catch { expireDate = null; }
                             try { DateTime dteManuf = DateTime.Parse((((TextBox)dgvMrr.Rows[index].FindControl("txtManufacturingDate")).Text)); manufactureDate = dteManuf.ToString(); } catch { manufactureDate = null; }
 
+                            int whId = ddlWH.SelectedValue();
                             if (decimal.TryParse(numRcvQty, out decimal receiveQuantity))
                             {
                                 if (receiveQuantity <= 0)
@@ -211,6 +213,50 @@ namespace UI.SCM
 
 
                         string msg = _obj.MrrReceive(11, xmlString, ddlWH.SelectedValue(), intPOID, DateTime.Now, Enroll);
+
+                        FactoryReceiveMrr factoryReceiveMrr = new FactoryReceiveMrr()
+                        {
+                            //PoId = intPOID,
+                            //SupplierId = intSupplierID,
+                            //ShipmentSl = intShipment,
+                            //ChallanDate = dteChallan,
+                            //TotalVat = monVatAmount,
+                            //ExternalRef = challanNo,
+                            //VatChallan = strVatChallan,
+
+                            
+                            //IsInventoryInserted = ysnInventory,
+                            //ShipmentId = intShipmentID,
+
+                            //WhId = whId,
+
+
+
+                            //LastActionBy = Enroll,
+                            //TotalAit = 0,
+
+                            //UnitId = 0,
+                            //MrrCode = "",
+                            //MrrId = 0,
+                            //PvAmount = 0,
+                        };
+
+                        FactoryReceiveMRRItemDetail factoryReceiveMrrItemDetail = new FactoryReceiveMRRItemDetail()
+                        {
+
+                            //PoId = intPOID,
+                            //MrrId = 0,
+                            //AitAmount = 0,
+                            //BdtTotal = 0,
+                            //FcRate = monRate,
+                            //FcTotal = numRcvValue+(()),
+                            //ItemId = intItemID,
+                            //LocationId = location,
+                            //PoQuantity = numPOQty,
+                            //ReceiveQuantity = numRcvQty,
+                            //ReceiveRemarks = remarks,
+                            //VatAmount = numRcvVatValue
+                        };
 
                         if (msg.ToLower().Contains("success"))
                         {

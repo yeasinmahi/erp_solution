@@ -1,4 +1,6 @@
-﻿namespace Model
+﻿using System;
+
+namespace Model
 {
     public class FactoryReceiveMrr
     {
@@ -9,7 +11,7 @@
         public int LastActionBy { get; set; }
         public int UnitId { get; set; }
         public string ExternalRef { get; set; }
-        public string ChallanDate { get; set; }
+        public DateTime ChallanDate { get; set; }
         public string MrrCode { get; set; }
         public int WhId { get; set; }
         public string VatChallan { get; set; }
