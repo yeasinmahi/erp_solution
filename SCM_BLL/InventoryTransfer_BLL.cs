@@ -521,6 +521,40 @@ namespace SCM_BLL
 
             return result;
         }
+        public decimal GetItemRate(int ItemId, int UnitId)
+        {
+            decimal ItemRate = 0;
+            try
+            {
+                sprInventoryTransferTableAdapter adapter = new sprInventoryTransferTableAdapter();
+                object _obj = adapter.GetItemRate(ItemId, UnitId);
+                if (_obj != null)
+                    ItemRate = Convert.ToDecimal(_obj);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return ItemRate;
+        }
+        public int GetSingleUnit(int WHId)
+        {
+            int UnitId = 0;
+            try
+            {
+                TblWearHouseTableAdapter adapter = new TblWearHouseTableAdapter();
+                object _obj = adapter.GetSingleUnit(WHId);
+                if (_obj != null)
+                    UnitId = Convert.ToInt32(_obj);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return UnitId;
+        }
 
     }
 }
