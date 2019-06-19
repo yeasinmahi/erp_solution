@@ -1411,6 +1411,7 @@
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
+    <Content Include="SAD\Sales\Report\Distributor_Sales_Trade_Analysis_Report.aspx" />
     <Content Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx" />
     <Content Include="SAD\Sales\Report\DO2Print.aspx" />
     <Content Include="SAD\Sales\Report\DOBaseCustomerReport.aspx" />
@@ -1640,6 +1641,7 @@
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
+    <Content Include="SCM\Transfer\FGAdjustment.aspx" />
     <Content Include="SCM\Transfer\InventoryAdjustmentApproval.aspx" />
     <Content Include="SCM\Transfer\ProductionTransferReport.aspx" />
     <Content Include="SCM\Transfer\frmTransferReceive.aspx" />
@@ -7083,6 +7085,13 @@
     <Compile Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx.designer.cs">
       <DependentUpon>Delivery_Challan_APL_Form.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\Distributor_Sales_Trade_Analysis_Report.aspx.cs">
+      <DependentUpon>Distributor_Sales_Trade_Analysis_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\Distributor_Sales_Trade_Analysis_Report.aspx.designer.cs">
+      <DependentUpon>Distributor_Sales_Trade_Analysis_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Distributor_Wise_DO_Quantity_Report.aspx.cs">
       <DependentUpon>Distributor_Wise_DO_Quantity_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8671,6 +8680,13 @@
     </Compile>
     <Compile Include="SCM\SupplierStatementReport.aspx.designer.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\FGAdjustment.aspx.cs">
+      <DependentUpon>FGAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\FGAdjustment.aspx.designer.cs">
+      <DependentUpon>FGAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\Transfer\InventoryAdjustmentApproval.aspx.cs">
       <DependentUpon>InventoryAdjustmentApproval.aspx</DependentUpon>
