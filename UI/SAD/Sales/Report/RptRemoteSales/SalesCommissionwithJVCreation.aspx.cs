@@ -1,4 +1,5 @@
 ﻿using SAD_BLL.Customer.Report;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,11 +16,13 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
     public partial class SalesCommissionwithJVCreation : System.Web.UI.Page
     {
         #region =========== Global Variable Declareation ==========
-        int enrol, reporttype, coaid, unitid, intmainheadcoaid; char[] delimiterChars = { '[', ']' }; string[] arrayKey;
+        int enrol, reporttype, coaid, unitid, intmainheadcoaid,areaid,  factleng,ghatlength; char[] delimiterChars = { '[', ']' }; string[] arrayKey;
         DataTable dt = new DataTable();
         StatementC bll = new StatementC();
+        DelivaryView bllsv = new DelivaryView();
         bool ysnChecked;
         string xmlpath, email, strVcode, strPrefix,glblnarration,rptname,salesofficelike;
+        decimal ghatrate, factrate;
 
         
         decimal totalcom, selectedtotalcom=0;
@@ -52,6 +55,10 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
             {
                 //try
                 //{
+                rptname = drdlSalesview.SelectedItem.Text.ToString();
+                DateTime dtFromDate1 = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+                DateTime dtToDate1 = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
+                
                 if (grdvCashDOCommission.Rows.Count > 0)
                 {
                     for (int index = 0; index < grdvCashDOCommission.Rows.Count; index++)
@@ -61,13 +68,17 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                             {
                             //shopid,  customerid,  custterritoryid,  salesofficeid,  targetqnt
                             string customercoaid = ((HiddenField)grdvCashDOCommission.Rows[index].FindControl("hdncustcoaid")).Value.ToString();
-                            string eachcustnarration = ((HiddenField)grdvCashDOCommission.Rows[index].FindControl("hdncustnarrationindividual")).Value.ToString();
-                            string eachcustamount = ((HiddenField)grdvCashDOCommission.Rows[index].FindControl("hdncustomercommissionndividual")).Value.ToString();
+
+                            //string eachcustamount = ((HiddenField)grdvCashDOCommission.Rows[index].FindControl("hdncustomercommissionndividual")).Value.ToString();
+                            //string quantity = ((TextBox)grdvQuationDetails.Rows[index].FindControl("txtquantity")).Text.ToString();
+                            string eachcustamount = ((TextBox)grdvCashDOCommission.Rows[index].FindControl("txtmonCashCommission1")).Text.ToString();
+                            string eachcustnarration = ((TextBox)grdvCashDOCommission.Rows[index].FindControl("txtmonCashCommission1")).Text.ToString();
+                            string eachcustnarration1 = eachcustnarration + " Taka.. " + rptname + " " + " Commission from " + Convert.ToString(dtFromDate1) + "  to " + Convert.ToString(dtToDate1);
                             string customername = ((HiddenField)grdvCashDOCommission.Rows[index].FindControl("hdncustname")).Value.ToString();
                             selectedtotalcom = selectedtotalcom + decimal.Parse(eachcustamount);
                             string selectedgrand = Convert.ToString(selectedtotalcom);
 
-                            Createxml(customercoaid, eachcustnarration, eachcustamount, customername);
+                            Createxml(customercoaid, eachcustnarration1, eachcustamount, customername);
                         }
                     }
 
@@ -78,7 +89,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                     unitid = int.Parse(drdlUnitName.SelectedValue.ToString());
                     strVcode = "voucherJV";
                     strPrefix = "JV";
-                    glblnarration = "ACCL Cash D.O Commission from :" + txtFromDate.Text + "to " + txtToDate.Text;
+                    glblnarration = "ACCL"+ rptname +" Commission from :" + txtFromDate.Text + "to " + txtToDate.Text;
                     totalcom = selectedtotalcom;
                     //totalcom = Convert.ToDecimal(lbltotalcomamount.Text);
                     
@@ -123,8 +134,32 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
                 salesofficelike = drdlSalesOfficeType.SelectedItem.Text.ToString();
                 rptname = drdlSalesview.SelectedItem.Text.ToString();
+                unitid = int.Parse(drdlUnitName.SelectedValue.ToString());
+                areaid = int.Parse(drdlCommissionCatg.SelectedValue.ToString());
+                factrate = Convert.ToDecimal(txtfactrate.Text.ToString());
+                factleng=Convert.ToInt32( (txtfactrate.Text.Length.ToString()));
+                if (factleng < 0)
+                {
+                    factrate = 0;
+                }
+                else
+                {
+                    factrate = Convert.ToDecimal(txtfactrate.Text.ToString()); ;
+                }
 
-                dt = bll.getdataCashDOCommissionjv(dtFromDate, dtToDate, salesofficelike, rptname);
+                ghatrate = Convert.ToDecimal(txtGhatRate.Text.ToString());
+                ghatlength = Convert.ToInt32((txtfactrate.Text.Length.ToString()));
+                if (ghatlength<0)
+                {
+                    ghatrate = 0;
+                }
+                else
+                {
+                    ghatrate = Convert.ToDecimal(txtGhatRate.Text.ToString());
+                }
+
+
+                dt = bllsv.getAreaBaseCommission(dtFromDate, dtToDate, salesofficelike, rptname, unitid, areaid, factrate, ghatrate);
                 if (dt.Rows.Count > 0)
                 {
                     grdvCashDOCommission.DataSource = dt;
@@ -200,10 +235,10 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
         {
             int unid = int.Parse(drdlUnitName.SelectedValue.ToString());
             dt = bll.getdataBrandMktProgramName(unid);
-            drdlCommissionCatg.DataSource = dt;
-            drdlCommissionCatg.DataTextField = "strProgramName";
-            drdlCommissionCatg.DataValueField = "intProgramID";
-            drdlCommissionCatg.DataBind();
+            //drdlCommissionCatg.DataSource = dt;
+            //drdlCommissionCatg.DataTextField = "strProgramName";
+            //drdlCommissionCatg.DataValueField = "intProgramID";
+            //drdlCommissionCatg.DataBind();
 
         }
 

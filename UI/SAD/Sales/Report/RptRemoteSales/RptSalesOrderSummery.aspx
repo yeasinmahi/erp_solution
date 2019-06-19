@@ -298,6 +298,8 @@
                   <asp:BoundField DataField="strCustName" HeaderText="Employee  Name" SortExpression="strName" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                 <asp:BoundField DataField="strProductName" HeaderText="ProductName" SortExpression="strProductName" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                 <asp:BoundField DataField="numPieces" HeaderText="D.O Qnt" SortExpression="numPieces" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                 <asp:BoundField DataField="numpromotion" HeaderText="Promotion Qnt" SortExpression="numpromotion" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+               
                 <asp:BoundField DataField="rate" HeaderText="Rate" SortExpression="rate" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                 <asp:BoundField DataField="monTotalAmount" HeaderText="TotalAmount" SortExpression="monTotalAmount" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                  <asp:BoundField DataField="strvheicle" HeaderText="Vheicle Name" SortExpression="strvheicle" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>

@@ -42,8 +42,8 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
         }
         protected void btnShow_Click(object sender, EventArgs e)
         {
-            fdate = Convert.ToDateTime( txtFromDate.Text);
-            tdate = Convert.ToDateTime(txtToDate.Text);
+            fdate = CommonClass.GetDateAtSQLDateFormat( txtFromDate.Text);
+            tdate = CommonClass.GetDateAtSQLDateFormat(txtToDate.Text);
             unitid = int.Parse(drdlUnitName.SelectedValue.ToString());
             salesoffid = int.Parse(ddlSo.SelectedValue.ToString());
             rptytypeid = int.Parse(drdlSalesview.SelectedValue.ToString());
@@ -51,9 +51,10 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
 
             if (rptytypeid == 0)
             {
-                dt = bll.CollectionbaseCommission(fdate, tdate, unitid, salesoffid, rptytypeid);
                 dgrdvRegionalManagerCommission.DataSource = null;
                 dgrdvRegionalManagerCommission.DataBind();
+                dt = bll.CollectionbaseCommission(fdate, tdate, unitid, salesoffid, rptytypeid);
+
                 grdvCollectionmoneyCommission.DataSource = dt;
                 grdvCollectionmoneyCommission.DataBind();
                 grdvCollectionmoneyCommission.FooterRow.Cells[3].Text = "total";

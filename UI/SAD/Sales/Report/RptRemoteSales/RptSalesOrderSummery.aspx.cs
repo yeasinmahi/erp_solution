@@ -127,8 +127,10 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                     grdvpriceCompare.FooterRow.Cells[5].Text = "Total";
                     grdvpriceCompare.FooterRow.Cells[5].HorizontalAlign = HorizontalAlign.Right;
                     grdvpriceCompare.FooterRow.Cells[6].Text = totaldobasedonchallannumber.ToString("N2");
+                    decimal totpromoqnt = dt.AsEnumerable().Sum(row => row.Field<decimal>("numpromotion"));
+                    grdvpriceCompare.FooterRow.Cells[7].Text = totpromoqnt.ToString("N2");
                     decimal totalmoney = dt.AsEnumerable().Sum(row => row.Field<decimal>("monTotalAmount"));
-                    grdvpriceCompare.FooterRow.Cells[8].Text = totalmoney.ToString("N2");
+                    grdvpriceCompare.FooterRow.Cells[9].Text = totalmoney.ToString("N2");
 
 
                    

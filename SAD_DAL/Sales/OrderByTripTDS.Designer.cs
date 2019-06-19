@@ -32,6 +32,8 @@ namespace SAD_DAL.Sales {
         
         private SprCustomerOrdervsChallanDetaillsDataTable tableSprCustomerOrdervsChallanDetaills;
         
+        private SprSalesOrderInfoForCustomerServiceDataTable tableSprSalesOrderInfoForCustomerService;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -71,6 +73,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["SprCustomerOrdervsChallanDetaills"] != null)) {
                     base.Tables.Add(new SprCustomerOrdervsChallanDetaillsDataTable(ds.Tables["SprCustomerOrdervsChallanDetaills"]));
+                }
+                if ((ds.Tables["SprSalesOrderInfoForCustomerService"] != null)) {
+                    base.Tables.Add(new SprSalesOrderInfoForCustomerServiceDataTable(ds.Tables["SprSalesOrderInfoForCustomerService"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -127,6 +132,16 @@ namespace SAD_DAL.Sales {
         public SprCustomerOrdervsChallanDetaillsDataTable SprCustomerOrdervsChallanDetaills {
             get {
                 return this.tableSprCustomerOrdervsChallanDetaills;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprSalesOrderInfoForCustomerServiceDataTable SprSalesOrderInfoForCustomerService {
+            get {
+                return this.tableSprSalesOrderInfoForCustomerService;
             }
         }
         
@@ -209,6 +224,9 @@ namespace SAD_DAL.Sales {
                 if ((ds.Tables["SprCustomerOrdervsChallanDetaills"] != null)) {
                     base.Tables.Add(new SprCustomerOrdervsChallanDetaillsDataTable(ds.Tables["SprCustomerOrdervsChallanDetaills"]));
                 }
+                if ((ds.Tables["SprSalesOrderInfoForCustomerService"] != null)) {
+                    base.Tables.Add(new SprSalesOrderInfoForCustomerServiceDataTable(ds.Tables["SprSalesOrderInfoForCustomerService"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -266,6 +284,12 @@ namespace SAD_DAL.Sales {
                     this.tableSprCustomerOrdervsChallanDetaills.InitVars();
                 }
             }
+            this.tableSprSalesOrderInfoForCustomerService = ((SprSalesOrderInfoForCustomerServiceDataTable)(base.Tables["SprSalesOrderInfoForCustomerService"]));
+            if ((initTable == true)) {
+                if ((this.tableSprSalesOrderInfoForCustomerService != null)) {
+                    this.tableSprSalesOrderInfoForCustomerService.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -284,6 +308,8 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprCustomerTripIdvsChallanDetaills);
             this.tableSprCustomerOrdervsChallanDetaills = new SprCustomerOrdervsChallanDetaillsDataTable();
             base.Tables.Add(this.tableSprCustomerOrdervsChallanDetaills);
+            this.tableSprSalesOrderInfoForCustomerService = new SprSalesOrderInfoForCustomerServiceDataTable();
+            base.Tables.Add(this.tableSprSalesOrderInfoForCustomerService);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -307,6 +333,12 @@ namespace SAD_DAL.Sales {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprCustomerOrdervsChallanDetaills() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprSalesOrderInfoForCustomerService() {
             return false;
         }
         
@@ -376,6 +408,9 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprCustomerOrdervsChallanDetaillsRowChangeEventHandler(object sender, SprCustomerOrdervsChallanDetaillsRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprSalesOrderInfoForCustomerServiceRowChangeEventHandler(object sender, SprSalesOrderInfoForCustomerServiceRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -1874,6 +1909,459 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprSalesOrderInfoForCustomerServiceDataTable : global::System.Data.TypedTableBase<SprSalesOrderInfoForCustomerServiceRow> {
+            
+            private global::System.Data.DataColumn columnintId;
+            
+            private global::System.Data.DataColumn columnstrCode;
+            
+            private global::System.Data.DataColumn columnintSOId;
+            
+            private global::System.Data.DataColumn columnintTripId;
+            
+            private global::System.Data.DataColumn columnysnLogistic;
+            
+            private global::System.Data.DataColumn columnysnLogisByCompany;
+            
+            private global::System.Data.DataColumn columnysnChargeTo3rdParty;
+            
+            private global::System.Data.DataColumn columnmonLogisCharge;
+            
+            private global::System.Data.DataColumn columnmonGain;
+            
+            private global::System.Data.DataColumn columnysnEnable;
+            
+            private global::System.Data.DataColumn columnintInsertedBy;
+            
+            private global::System.Data.DataColumn columndteInsertionTime;
+            
+            private global::System.Data.DataColumn columnintLastModifiedBy;
+            
+            private global::System.Data.DataColumn columndteLastModificationTime;
+            
+            private global::System.Data.DataColumn columnintLogisChargeUOM;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesOrderInfoForCustomerServiceDataTable() {
+                this.TableName = "SprSalesOrderInfoForCustomerService";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprSalesOrderInfoForCustomerServiceDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprSalesOrderInfoForCustomerServiceDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intIdColumn {
+                get {
+                    return this.columnintId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strCodeColumn {
+                get {
+                    return this.columnstrCode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intSOIdColumn {
+                get {
+                    return this.columnintSOId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intTripIdColumn {
+                get {
+                    return this.columnintTripId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnLogisticColumn {
+                get {
+                    return this.columnysnLogistic;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnLogisByCompanyColumn {
+                get {
+                    return this.columnysnLogisByCompany;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnChargeTo3rdPartyColumn {
+                get {
+                    return this.columnysnChargeTo3rdParty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monLogisChargeColumn {
+                get {
+                    return this.columnmonLogisCharge;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn monGainColumn {
+                get {
+                    return this.columnmonGain;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ysnEnableColumn {
+                get {
+                    return this.columnysnEnable;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intInsertedByColumn {
+                get {
+                    return this.columnintInsertedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteInsertionTimeColumn {
+                get {
+                    return this.columndteInsertionTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLastModifiedByColumn {
+                get {
+                    return this.columnintLastModifiedBy;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn dteLastModificationTimeColumn {
+                get {
+                    return this.columndteLastModificationTime;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLogisChargeUOMColumn {
+                get {
+                    return this.columnintLogisChargeUOM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesOrderInfoForCustomerServiceRow this[int index] {
+                get {
+                    return ((SprSalesOrderInfoForCustomerServiceRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesOrderInfoForCustomerServiceRowChangeEventHandler SprSalesOrderInfoForCustomerServiceRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesOrderInfoForCustomerServiceRowChangeEventHandler SprSalesOrderInfoForCustomerServiceRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesOrderInfoForCustomerServiceRowChangeEventHandler SprSalesOrderInfoForCustomerServiceRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesOrderInfoForCustomerServiceRowChangeEventHandler SprSalesOrderInfoForCustomerServiceRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprSalesOrderInfoForCustomerServiceRow(SprSalesOrderInfoForCustomerServiceRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesOrderInfoForCustomerServiceRow AddSprSalesOrderInfoForCustomerServiceRow(string strCode, long intSOId, int intTripId, bool ysnLogistic, bool ysnLogisByCompany, bool ysnChargeTo3rdParty, decimal monLogisCharge, decimal monGain, bool ysnEnable, int intInsertedBy, System.DateTime dteInsertionTime, int intLastModifiedBy, System.DateTime dteLastModificationTime, int intLogisChargeUOM) {
+                SprSalesOrderInfoForCustomerServiceRow rowSprSalesOrderInfoForCustomerServiceRow = ((SprSalesOrderInfoForCustomerServiceRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        strCode,
+                        intSOId,
+                        intTripId,
+                        ysnLogistic,
+                        ysnLogisByCompany,
+                        ysnChargeTo3rdParty,
+                        monLogisCharge,
+                        monGain,
+                        ysnEnable,
+                        intInsertedBy,
+                        dteInsertionTime,
+                        intLastModifiedBy,
+                        dteLastModificationTime,
+                        intLogisChargeUOM};
+                rowSprSalesOrderInfoForCustomerServiceRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprSalesOrderInfoForCustomerServiceRow);
+                return rowSprSalesOrderInfoForCustomerServiceRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprSalesOrderInfoForCustomerServiceDataTable cln = ((SprSalesOrderInfoForCustomerServiceDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprSalesOrderInfoForCustomerServiceDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintId = base.Columns["intId"];
+                this.columnstrCode = base.Columns["strCode"];
+                this.columnintSOId = base.Columns["intSOId"];
+                this.columnintTripId = base.Columns["intTripId"];
+                this.columnysnLogistic = base.Columns["ysnLogistic"];
+                this.columnysnLogisByCompany = base.Columns["ysnLogisByCompany"];
+                this.columnysnChargeTo3rdParty = base.Columns["ysnChargeTo3rdParty"];
+                this.columnmonLogisCharge = base.Columns["monLogisCharge"];
+                this.columnmonGain = base.Columns["monGain"];
+                this.columnysnEnable = base.Columns["ysnEnable"];
+                this.columnintInsertedBy = base.Columns["intInsertedBy"];
+                this.columndteInsertionTime = base.Columns["dteInsertionTime"];
+                this.columnintLastModifiedBy = base.Columns["intLastModifiedBy"];
+                this.columndteLastModificationTime = base.Columns["dteLastModificationTime"];
+                this.columnintLogisChargeUOM = base.Columns["intLogisChargeUOM"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintId = new global::System.Data.DataColumn("intId", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintId);
+                this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrCode);
+                this.columnintSOId = new global::System.Data.DataColumn("intSOId", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintSOId);
+                this.columnintTripId = new global::System.Data.DataColumn("intTripId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintTripId);
+                this.columnysnLogistic = new global::System.Data.DataColumn("ysnLogistic", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnLogistic);
+                this.columnysnLogisByCompany = new global::System.Data.DataColumn("ysnLogisByCompany", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnLogisByCompany);
+                this.columnysnChargeTo3rdParty = new global::System.Data.DataColumn("ysnChargeTo3rdParty", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnChargeTo3rdParty);
+                this.columnmonLogisCharge = new global::System.Data.DataColumn("monLogisCharge", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonLogisCharge);
+                this.columnmonGain = new global::System.Data.DataColumn("monGain", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmonGain);
+                this.columnysnEnable = new global::System.Data.DataColumn("ysnEnable", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnysnEnable);
+                this.columnintInsertedBy = new global::System.Data.DataColumn("intInsertedBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintInsertedBy);
+                this.columndteInsertionTime = new global::System.Data.DataColumn("dteInsertionTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteInsertionTime);
+                this.columnintLastModifiedBy = new global::System.Data.DataColumn("intLastModifiedBy", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLastModifiedBy);
+                this.columndteLastModificationTime = new global::System.Data.DataColumn("dteLastModificationTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndteLastModificationTime);
+                this.columnintLogisChargeUOM = new global::System.Data.DataColumn("intLogisChargeUOM", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLogisChargeUOM);
+                this.columnintId.AutoIncrement = true;
+                this.columnintId.AutoIncrementSeed = -1;
+                this.columnintId.AutoIncrementStep = -1;
+                this.columnintId.AllowDBNull = false;
+                this.columnintId.ReadOnly = true;
+                this.columnstrCode.AllowDBNull = false;
+                this.columnstrCode.MaxLength = 20;
+                this.columnintTripId.ReadOnly = true;
+                this.columnysnEnable.AllowDBNull = false;
+                this.columnintLogisChargeUOM.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesOrderInfoForCustomerServiceRow NewSprSalesOrderInfoForCustomerServiceRow() {
+                return ((SprSalesOrderInfoForCustomerServiceRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprSalesOrderInfoForCustomerServiceRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprSalesOrderInfoForCustomerServiceRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprSalesOrderInfoForCustomerServiceRowChanged != null)) {
+                    this.SprSalesOrderInfoForCustomerServiceRowChanged(this, new SprSalesOrderInfoForCustomerServiceRowChangeEvent(((SprSalesOrderInfoForCustomerServiceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprSalesOrderInfoForCustomerServiceRowChanging != null)) {
+                    this.SprSalesOrderInfoForCustomerServiceRowChanging(this, new SprSalesOrderInfoForCustomerServiceRowChangeEvent(((SprSalesOrderInfoForCustomerServiceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprSalesOrderInfoForCustomerServiceRowDeleted != null)) {
+                    this.SprSalesOrderInfoForCustomerServiceRowDeleted(this, new SprSalesOrderInfoForCustomerServiceRowChangeEvent(((SprSalesOrderInfoForCustomerServiceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprSalesOrderInfoForCustomerServiceRowDeleting != null)) {
+                    this.SprSalesOrderInfoForCustomerServiceRowDeleting(this, new SprSalesOrderInfoForCustomerServiceRowChangeEvent(((SprSalesOrderInfoForCustomerServiceRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprSalesOrderInfoForCustomerServiceRow(SprSalesOrderInfoForCustomerServiceRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                OrderByTripTDS ds = new OrderByTripTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprSalesOrderInfoForCustomerServiceDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class TblSalesOrderTripRow : global::System.Data.DataRow {
@@ -2789,6 +3277,402 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprSalesOrderInfoForCustomerServiceRow : global::System.Data.DataRow {
+            
+            private SprSalesOrderInfoForCustomerServiceDataTable tableSprSalesOrderInfoForCustomerService;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprSalesOrderInfoForCustomerServiceRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprSalesOrderInfoForCustomerService = ((SprSalesOrderInfoForCustomerServiceDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long intId {
+                get {
+                    return ((long)(this[this.tableSprSalesOrderInfoForCustomerService.intIdColumn]));
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.intIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strCode {
+                get {
+                    return ((string)(this[this.tableSprSalesOrderInfoForCustomerService.strCodeColumn]));
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.strCodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long intSOId {
+                get {
+                    try {
+                        return ((long)(this[this.tableSprSalesOrderInfoForCustomerService.intSOIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intSOId\' in table \'SprSalesOrderInfoForCustomerService\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.intSOIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intTripId {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesOrderInfoForCustomerService.intTripIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intTripId\' in table \'SprSalesOrderInfoForCustomerService\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.intTripIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnLogistic {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprSalesOrderInfoForCustomerService.ysnLogisticColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnLogistic\' in table \'SprSalesOrderInfoForCustomerService\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.ysnLogisticColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnLogisByCompany {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprSalesOrderInfoForCustomerService.ysnLogisByCompanyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnLogisByCompany\' in table \'SprSalesOrderInfoForCustomerSe" +
+                                "rvice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.ysnLogisByCompanyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnChargeTo3rdParty {
+                get {
+                    try {
+                        return ((bool)(this[this.tableSprSalesOrderInfoForCustomerService.ysnChargeTo3rdPartyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ysnChargeTo3rdParty\' in table \'SprSalesOrderInfoForCustomer" +
+                                "Service\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.ysnChargeTo3rdPartyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monLogisCharge {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesOrderInfoForCustomerService.monLogisChargeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monLogisCharge\' in table \'SprSalesOrderInfoForCustomerServi" +
+                                "ce\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.monLogisChargeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal monGain {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesOrderInfoForCustomerService.monGainColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'monGain\' in table \'SprSalesOrderInfoForCustomerService\' is " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.monGainColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool ysnEnable {
+                get {
+                    return ((bool)(this[this.tableSprSalesOrderInfoForCustomerService.ysnEnableColumn]));
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.ysnEnableColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intInsertedBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesOrderInfoForCustomerService.intInsertedByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intInsertedBy\' in table \'SprSalesOrderInfoForCustomerServic" +
+                                "e\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.intInsertedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteInsertionTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprSalesOrderInfoForCustomerService.dteInsertionTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteInsertionTime\' in table \'SprSalesOrderInfoForCustomerSer" +
+                                "vice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.dteInsertionTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intLastModifiedBy {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesOrderInfoForCustomerService.intLastModifiedByColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intLastModifiedBy\' in table \'SprSalesOrderInfoForCustomerSe" +
+                                "rvice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.intLastModifiedByColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public System.DateTime dteLastModificationTime {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tableSprSalesOrderInfoForCustomerService.dteLastModificationTimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dteLastModificationTime\' in table \'SprSalesOrderInfoForCust" +
+                                "omerService\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.dteLastModificationTimeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intLogisChargeUOM {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesOrderInfoForCustomerService.intLogisChargeUOMColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intLogisChargeUOM\' in table \'SprSalesOrderInfoForCustomerSe" +
+                                "rvice\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesOrderInfoForCustomerService.intLogisChargeUOMColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintSOIdNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.intSOIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintSOIdNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.intSOIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintTripIdNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.intTripIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintTripIdNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.intTripIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnLogisticNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.ysnLogisticColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnLogisticNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.ysnLogisticColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnLogisByCompanyNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.ysnLogisByCompanyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnLogisByCompanyNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.ysnLogisByCompanyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsysnChargeTo3rdPartyNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.ysnChargeTo3rdPartyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetysnChargeTo3rdPartyNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.ysnChargeTo3rdPartyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonLogisChargeNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.monLogisChargeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonLogisChargeNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.monLogisChargeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsmonGainNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.monGainColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetmonGainNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.monGainColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintInsertedByNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.intInsertedByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintInsertedByNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.intInsertedByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteInsertionTimeNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.dteInsertionTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteInsertionTimeNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.dteInsertionTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintLastModifiedByNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.intLastModifiedByColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintLastModifiedByNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.intLastModifiedByColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsdteLastModificationTimeNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.dteLastModificationTimeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetdteLastModificationTimeNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.dteLastModificationTimeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintLogisChargeUOMNull() {
+                return this.IsNull(this.tableSprSalesOrderInfoForCustomerService.intLogisChargeUOMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintLogisChargeUOMNull() {
+                this[this.tableSprSalesOrderInfoForCustomerService.intLogisChargeUOMColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -2910,6 +3794,40 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprCustomerOrdervsChallanDetaillsRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprSalesOrderInfoForCustomerServiceRowChangeEvent : global::System.EventArgs {
+            
+            private SprSalesOrderInfoForCustomerServiceRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesOrderInfoForCustomerServiceRowChangeEvent(SprSalesOrderInfoForCustomerServiceRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesOrderInfoForCustomerServiceRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3756,6 +4674,182 @@ where intTripId = @intTripId";
         public virtual OrderByTripTDS.SprCustomerOrdervsChallanDetaillsDataTable GetDataCustomerOrdervsChallanDetaills() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             OrderByTripTDS.SprCustomerOrdervsChallanDetaillsDataTable dataTable = new OrderByTripTDS.SprCustomerOrdervsChallanDetaillsDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprSalesOrderInfoForCustomerServiceTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprSalesOrderInfoForCustomerServiceTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprSalesOrderInfoForCustomerService";
+            tableMapping.ColumnMappings.Add("intId", "intId");
+            tableMapping.ColumnMappings.Add("strCode", "strCode");
+            tableMapping.ColumnMappings.Add("intSOId", "intSOId");
+            tableMapping.ColumnMappings.Add("intTripId", "intTripId");
+            tableMapping.ColumnMappings.Add("ysnLogistic", "ysnLogistic");
+            tableMapping.ColumnMappings.Add("ysnLogisByCompany", "ysnLogisByCompany");
+            tableMapping.ColumnMappings.Add("ysnChargeTo3rdParty", "ysnChargeTo3rdParty");
+            tableMapping.ColumnMappings.Add("monLogisCharge", "monLogisCharge");
+            tableMapping.ColumnMappings.Add("monGain", "monGain");
+            tableMapping.ColumnMappings.Add("ysnEnable", "ysnEnable");
+            tableMapping.ColumnMappings.Add("intInsertedBy", "intInsertedBy");
+            tableMapping.ColumnMappings.Add("dteInsertionTime", "dteInsertionTime");
+            tableMapping.ColumnMappings.Add("intLastModifiedBy", "intLastModifiedBy");
+            tableMapping.ColumnMappings.Add("dteLastModificationTime", "dteLastModificationTime");
+            tableMapping.ColumnMappings.Add("intLogisChargeUOM", "intLogisChargeUOM");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprSalesOrderInfoForCustomerService";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intSOid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual OrderByTripTDS.SprSalesOrderInfoForCustomerServiceDataTable GetDataSalesOrderInfoForCustomerService(global::System.Nullable<int> intSOid) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intSOid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intSOid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            OrderByTripTDS.SprSalesOrderInfoForCustomerServiceDataTable dataTable = new OrderByTripTDS.SprSalesOrderInfoForCustomerServiceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

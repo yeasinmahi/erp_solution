@@ -22,18 +22,20 @@ namespace UI.Vehicle_Registration_Renewal
             {
                 int deptid = int.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
                 int enrol = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                if (deptid == 11 || deptid == 8)
+                bool aprvpermission;
+                dt = objRenewal.GetAssetAprvPermission(deptid);
+                aprvpermission = Convert.ToBoolean(dt.Rows[0]["ysnpermissionallow"].ToString());
+
+                if (aprvpermission == true)
                 {
                     btnApprove.Visible = true;
                 }
-                else if (deptid == 21 && enrol == 1259)
-                {
-                    btnApprove.Visible = true;
-                }
+
                 else
                 {
                     btnApprove.Visible = false;
                 }
+
 
                 Int32 IDs = Convert.ToInt32(Session["AutoID"].ToString());
                 dt = new DataTable();

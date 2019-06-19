@@ -149,6 +149,40 @@ namespace SAD_BLL.Customer.Report
             
         }
 
+
+        public DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable infoByDODetailsWithoutTrip (string soid,
+            string userID,
+
+            ref string strChallanNo,
+            ref string strTripNo,
+            ref bool? ysnCompleted,
+
+            ref string strVehicle,
+            ref string strLogistic,
+            ref DateTime? dteInTime,
+            ref DateTime? dteOutTime,
+
+            ref string strDriver,
+            ref string strContact,
+            ref string strDrNid,
+            ref string strHealper,
+
+            ref string strUom,
+            ref decimal? numEmpty,
+            ref decimal? numLoaded,
+            ref decimal? numCapacity,
+            ref DateTime? dteWgtIn,
+            ref DateTime? dteWgtOut)
+        {
+            SprCustomerServiceDODetailsWithoutTripTableAdapter ta = new SprCustomerServiceDODetailsWithoutTripTableAdapter();
+
+            return ta.GetDataCustomerServiceDODetailsWithoutTrip(long.Parse(soid), int.Parse(userID), ref strChallanNo,
+            ref strTripNo, ref ysnCompleted,ref strVehicle, ref strLogistic,ref dteInTime, ref dteOutTime,ref strDriver,
+            ref strContact,ref strDrNid, ref strHealper, ref strUom, ref numEmpty,ref numLoaded, ref numCapacity,
+            ref dteWgtIn, ref dteWgtOut);
+
+        }
+
         public DataTable getEndMilageStandVheicle(int enrolentryby)
         {
             DataTable dt = new DataTable();
