@@ -28,7 +28,7 @@
             <table>
                 <tr>
                     <td align="left" class="PageHeader">
-                        Trial Banacce
+                        Trial Balance
                     </td>
                     <td colspan="6" align="right">
                         Unit:

@@ -159,7 +159,7 @@ namespace SAD_BLL.Item
             return msg;
         }
 
-        public string GetDiscount(int calculationid,int part, int intUnitId, int custid, string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty1, int intUomid, decimal salesQty2, int v2, DateTime dteFdate, DateTime dteTdate, int enroll)
+        public string GetDiscount(int calculationid,int part, int intUnitId, int custid, string promotionName, int itemidSales, decimal monAdjustmentAmount,decimal monAdjustmentPercentage, decimal salesQty1, int intUomid, decimal salesQty2, int v2, DateTime dteFdate, DateTime dteTdate, int enroll)
         {
             string msg = "";
             try
@@ -167,12 +167,12 @@ namespace SAD_BLL.Item
                 if (part == 1)
                 {
                     tblAdjustmentByCustomerAndProductTableAdapter adp = new tblAdjustmentByCustomerAndProductTableAdapter();
-                    adp.GetAdjustmentByCustomerAndProduct(calculationid,intUnitId, custid, promotionName, itemidSales, monAdjustmentAmount,int.Parse(salesQty1.ToString()), intUnitId, v2, dteFdate.ToString(), dteTdate.ToString(), enroll);
+                    adp.GetAdjustmentByCustomerAndProduct(calculationid,intUnitId, custid, promotionName, itemidSales, monAdjustmentAmount, monAdjustmentPercentage, int.Parse(salesQty1.ToString()), intUnitId, v2, dteFdate.ToString(), dteTdate.ToString(), enroll);
                     msg = "Successfully";
                 }else
                 {
                     tblAdjustmentByCustomerAndProductTableAdapter adp = new tblAdjustmentByCustomerAndProductTableAdapter();
-                    adp.GetCustomizeinserbyEndDate(calculationid,intUnitId, custid, promotionName, itemidSales, monAdjustmentAmount, int.Parse(salesQty1.ToString()), intUnitId, v2, dteTdate.ToString(), enroll);
+                    adp.GetCustomizeinserbyEndDate(calculationid,intUnitId, custid, promotionName, itemidSales, monAdjustmentAmount, monAdjustmentPercentage, int.Parse(salesQty1.ToString()), intUnitId, v2, dteTdate.ToString(), enroll);
                     msg = "Successfully";
                 }
                
@@ -184,7 +184,7 @@ namespace SAD_BLL.Item
 
         }
 
-        public string GetDiscountbyOffice(int calculationid,int partid, int intUnitId, int officeid, string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty, int intUomid, int v3, DateTime dteFdate, DateTime dteTdate, int enroll)
+        public string GetDiscountbyOffice(int calculationid,int partid, int intUnitId, int officeid, string promotionName, int itemidSales, decimal monAdjustmentAmount,decimal monAdjustmentPercentage, decimal salesQty, int intUomid, int v3, DateTime dteFdate, DateTime dteTdate, int enroll)
         {
             string msg = "";
             try
@@ -192,13 +192,13 @@ namespace SAD_BLL.Item
                 if (partid == 1)
                 {
                     tblAdjustmentBySalesOfficeAndProductTableAdapter adp = new tblAdjustmentBySalesOfficeAndProductTableAdapter();
-                    adp.GetAdjustmentBySalesOfficeAndProduct(calculationid,intUnitId, officeid, promotionName, itemidSales,monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), dteTdate.ToString(), enroll);
+                    adp.GetAdjustmentBySalesOfficeAndProduct(calculationid,intUnitId, officeid, promotionName, itemidSales,monAdjustmentAmount, monAdjustmentPercentage, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), dteTdate.ToString(), enroll);
                     msg = "Successfully";
                 }
                 else
                 {
                     tblAdjustmentBySalesOfficeAndProductTableAdapter adp = new tblAdjustmentBySalesOfficeAndProductTableAdapter();
-                    adp.GetCustomizeInsertbyEndDate(calculationid,intUnitId, officeid, promotionName, itemidSales, monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), enroll);
+                    adp.GetCustomizeInsertbyEndDate(calculationid,intUnitId, officeid, promotionName, itemidSales, monAdjustmentAmount, monAdjustmentPercentage, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), enroll);
                     msg = "Successfully";
                 }
 
@@ -208,7 +208,7 @@ namespace SAD_BLL.Item
 
             return msg;
         }
-        public string GetDiscountbyNational(int calculationid,int partid, int intUnitId,  string promotionName, int itemidSales, decimal monAdjustmentAmount, decimal salesQty, int intUomid, int v3, DateTime dteFdate, DateTime dteTdate, int enroll)
+        public string GetDiscountbyNational(int calculationid,int partid, int intUnitId,  string promotionName, int itemidSales, decimal monAdjustmentAmount,decimal monAdjustmentPercentage, decimal salesQty, int intUomid, int v3, DateTime dteFdate, DateTime dteTdate, int enroll)
         {
             string msg = "";
             try
@@ -216,13 +216,13 @@ namespace SAD_BLL.Item
                 if (partid == 1)
                 {
                     tblAdjustmentByUnitAndProductTableAdapter adp = new tblAdjustmentByUnitAndProductTableAdapter();
-                    adp.GetAdjustmentByUnitAndProduct(calculationid,intUnitId, promotionName, itemidSales, monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), dteTdate.ToString(), enroll);
+                    adp.GetAdjustmentByUnitAndProduct(calculationid,intUnitId, promotionName, itemidSales, monAdjustmentAmount, monAdjustmentPercentage, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), dteTdate.ToString(), enroll);
                     msg = "Successfully";
                 }
                 else
                 {
                     tblAdjustmentByUnitAndProductTableAdapter adp = new tblAdjustmentByUnitAndProductTableAdapter();
-                    adp.GetCustomizeinsertEndate(calculationid,intUnitId, promotionName, itemidSales,  monAdjustmentAmount, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), enroll);
+                    adp.GetCustomizeinsertEndate(calculationid,intUnitId, promotionName, itemidSales,  monAdjustmentAmount, monAdjustmentPercentage, int.Parse(salesQty.ToString()), intUomid, v3, dteFdate.ToString(), enroll);
                     msg = "Successfully";
                 }
 

@@ -22,7 +22,7 @@ namespace UI.SAD.Item
         DateTime dteFdate, dteTdate;
 
 
-        decimal SalesQty, PromotionQty,monAdjustmentAmount;
+        decimal SalesQty, monAdjustmentPercentage, monAdjustmentAmount;
 
         SeriLog log = new SeriLog();
         string location = "SAD";
@@ -41,7 +41,14 @@ namespace UI.SAD.Item
                     txtSalesItem.Visible = true;
                     ddlPGroupList.Visible = false;
                     lblproductGroup.Text = "Product Name";
-
+                if (Session[SessionParams.UNIT_ID].ToString() == "4")
+                {
+                    ddlDGroup.Items.FindByText("Single Customer".ToString()).Selected = true;
+                    ddlDGroup.Enabled = false;
+                    ddloffice.Enabled = false;
+                }
+                
+                    
             }
         }
 
@@ -174,22 +181,22 @@ namespace UI.SAD.Item
                         {
                             if (txtTo.Text != "")
                             {
-                                msg = objPromotion.GetDiscount(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 1, intUnitId, Custid, PromotionName, ItemidSales, monAdjustmentAmount, SalesQty, intUomid, SalesQty, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
+                                msg = objPromotion.GetDiscount(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 1, intUnitId, Custid, PromotionName, ItemidSales, monAdjustmentAmount, monAdjustmentPercentage, SalesQty, intUomid, SalesQty, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
                             }
                             else
                             {
-                                msg = objPromotion.GetDiscount(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 2, intUnitId, Custid, PromotionName, ItemidSales, monAdjustmentAmount, SalesQty, intUomid, SalesQty, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
+                                msg = objPromotion.GetDiscount(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 2, intUnitId, Custid, PromotionName, ItemidSales, monAdjustmentAmount, monAdjustmentPercentage, SalesQty, intUomid, SalesQty, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
                             }
                         }
                         else if (part == 2)
                         {
                             if (txtTo.Text != "")
                             {
-                                msg = objPromotion.GetDiscountbyOffice(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 1, intUnitId, int.Parse(ddloffice.SelectedValue.ToString()), PromotionName, ItemidSales, monAdjustmentAmount, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
+                                msg = objPromotion.GetDiscountbyOffice(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 1, intUnitId, int.Parse(ddloffice.SelectedValue.ToString()), PromotionName, ItemidSales, monAdjustmentAmount, monAdjustmentPercentage, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
                             }
                             else
                             {
-                                msg = objPromotion.GetDiscountbyOffice(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 2, intUnitId, int.Parse(ddloffice.SelectedValue.ToString()), PromotionName, ItemidSales, monAdjustmentAmount, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
+                                msg = objPromotion.GetDiscountbyOffice(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 2, intUnitId, int.Parse(ddloffice.SelectedValue.ToString()), PromotionName, ItemidSales, monAdjustmentAmount, monAdjustmentPercentage, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
 
                             }
                         }
@@ -197,11 +204,11 @@ namespace UI.SAD.Item
                         {
                             if (txtTo.Text != "")
                             {
-                                msg = objPromotion.GetDiscountbyNational(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 1, intUnitId, PromotionName, ItemidSales, monAdjustmentAmount, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
+                                msg = objPromotion.GetDiscountbyNational(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 1, intUnitId, PromotionName, ItemidSales, monAdjustmentAmount, monAdjustmentPercentage, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
                             }
                             else
                             {
-                                msg = objPromotion.GetDiscountbyNational(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 2, intUnitId, PromotionName, ItemidSales, monAdjustmentAmount, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
+                                msg = objPromotion.GetDiscountbyNational(int.Parse(ddlcalcuationtype.SelectedValue.ToString()), 2, intUnitId, PromotionName, ItemidSales, monAdjustmentAmount, monAdjustmentPercentage, SalesQty, intUomid, int.Parse(ddlAdjustmenttype.SelectedValue.ToString()), dteFdate, dteTdate, Enroll);
 
                             }
                         }

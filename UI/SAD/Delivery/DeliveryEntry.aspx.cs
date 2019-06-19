@@ -2032,7 +2032,7 @@ namespace UI.SAD.Delivery
                 }
                 btnSubmit.Visible = true;
             }
-            catch
+            catch(Exception ex)
             {
                 btnSubmit.Visible = false;
             }

@@ -35,7 +35,7 @@ namespace UI.SAD.AutoChallan
         DataTable dtSlipdetailsReportinfo = new DataTable();
         challanandPending Report = new challanandPending();
         autoChallReportsBLL BLL = new autoChallReportsBLL();
-        string filePathForXML, Slipno; int enroll;
+        string filePathForXML, Slipno, msg; int enroll;
         Decimal balance, ccredit;
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -373,7 +373,7 @@ namespace UI.SAD.AutoChallan
                                         string xmlString = dSftTm.InnerXml;
                                         xmlString = "<node>" + xmlString + "</node>";
                                         //string message = rpt.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode);
-                                        string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode);
+                                        string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode,ref msg);
                                         File.Delete(filePathForXML);
                                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
 
@@ -406,7 +406,7 @@ namespace UI.SAD.AutoChallan
                                 #region ------------ Insert into dataBase -----------
                                 narratioin = Convert.ToString(Session[narratioin]);
 
-                                string txtDate = "2015-5-7";
+                                string txtDate = "2015-5-7",msg="";
 
                                 DateTime date = DateTime.Parse(txtDate);
                                 XmlDocument doc = new XmlDocument();
@@ -414,7 +414,7 @@ namespace UI.SAD.AutoChallan
                                 XmlNode dSftTm = doc.SelectSingleNode("node");
                                 string xmlString = dSftTm.InnerXml;
                                 xmlString = "<node>" + xmlString + "</node>";
-                                string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode);
+                                string message = Report.AutoChallaninsertform(xmlString, ref intentryid, insertby, intunitid, dtdate, strChallanNo, CustType, custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, intSalesOffId, intshipingpointid, ref strCode,ref msg);
                                 File.Delete(filePathForXML);
                                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
 

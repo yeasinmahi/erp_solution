@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<production>
+  <productionEntry ProductionId="693027" FProductItem="Wastage and ByProduct" FProductItemId="847256" FProductQty="10" FProductType="Scrap Output" FProductTypeId="1" UnitId="2" Date="2019-06-01" Time="06:00" JobNo="" UserId="415055" totalExtraStore="10" />
+  <productionEntry ProductionId="693027" FProductItem="Wastage and ByProduct" FProductItemId="847256" FProductQty="5" FProductType="Wastage Output" FProductTypeId="2" UnitId="2" Date="2019-06-01" Time="06:00" JobNo="" UserId="415055" totalExtraStore="5" />
+</production>
