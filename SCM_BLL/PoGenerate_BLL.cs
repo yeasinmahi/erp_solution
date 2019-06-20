@@ -629,6 +629,70 @@ namespace SCM_BLL
             }
         }
 
+        /*
+         * Author       : Muktadir
+         * Date         : 20-June-2019
+         * For          : HSCode Update
+         */
+
+        public bool CheckHSCodeExistency(string HSCode)
+        {
+            HSCodeTableAdapter adapter = new HSCodeTableAdapter();
+            int count = 0;
+            bool result = false;
+            try
+            {
+               object _obj = adapter.CheckHSCodeExistency(HSCode);
+                if (_obj != null)
+                    count = Convert.ToInt32(_obj);
+
+                if (count > 0)
+                {
+                    result = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
+        public bool UpdateHSCodeIntoItemTable(string HSCode, int ItemId)
+        {
+            HSCodeTableAdapter adapter = new HSCodeTableAdapter();
+            bool result = false;
+            try
+            {
+                int count = adapter.UpdateItemHSCode(HSCode, ItemId);
+                if (count > 0)
+                {
+                    result = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
+        public DataTable GetAllCurrencyData()
+        {
+            CurrencyTableAdapter adapter = new CurrencyTableAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = adapter.GetAllCurrencyData();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            return dt;
+        }
 
     }
 }

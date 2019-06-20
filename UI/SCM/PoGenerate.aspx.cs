@@ -670,7 +670,8 @@ namespace UI.SCM
                         string itemId = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemId")).Text.ToString();
                         string strItem = ((Label)dgvIndentDet.Rows[index].FindControl("lblItemName")).Text.ToString();
                         string strUom = ((Label)dgvIndentDet.Rows[index].FindControl("lblUom")).Text.ToString();
-                        string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
+                        //string strHsCode = ((Label)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
+                        string strHsCode = ((TextBox)dgvIndentDet.Rows[index].FindControl("lblHsCode")).Text.ToString();
                         string strDesc = ((Label)dgvIndentDet.Rows[index].FindControl("lblPurpose")).Text.ToString();// lblPurpose
                         string numCurStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblCurrentStock")).Text.ToString();
                         string numSafetyStock = ((Label)dgvIndentDet.Rows[index].FindControl("lblSaftyStock")).Text.ToString();
@@ -685,6 +686,20 @@ namespace UI.SCM
                         {
                             CreateXmlPrepare(indentId, itemId, strItem, strUom, strHsCode, strDesc, numCurStock, numSafetyStock, numIndentQty, numPoIssued, numRemain, numNewPo, strSpecification, monPreviousRate);
                         }
+
+                        if (!string.IsNullOrEmpty(strHsCode))
+                        {
+                            if (objPo.CheckHSCodeExistency(strHsCode))
+                            {
+                                objPo.UpdateHSCodeIntoItemTable(strHsCode, int.Parse(itemId));
+                            }
+                            else
+                            {
+                                string sms = "The HSCode (" + strHsCode + ") You Entered is Incorrect. Please Enter a Correct HSCode";
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + sms + "');", true);
+                            }
+                        }
+
                     }
                     ddlWHPrepare.DataSource = "";
                     ddlWHPrepare.DataBind();
@@ -693,8 +708,22 @@ namespace UI.SCM
                     items.Add(new ListItem(hdnWHName.Value.ToString(), hdnWHId.Value.ToString()));
                     ddlWHPrepare.Items.AddRange(items.ToArray());
                     intWh = int.Parse(ddlWHPrepare.SelectedValue);
-                    dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, Enroll);//get Currency Name
-                    try { txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString(); } catch { }
+                    if(ddlDepts.SelectedItem.Text == "Import")
+                    {
+                        dt = objPo.GetAllCurrencyData();//get Currency Name
+                    }
+                    else
+                    {
+                        dt = objPo.GetPoData(5, "", intWh, 0, DateTime.Now, Enroll);//get Currency Name
+                    }
+                    
+                    try
+                    {
+                        txtDestinationDelivery.Text = dt.Rows[0]["whaddress"].ToString();
+                    }
+                    catch
+                    {
+                    }
 
                     ddlCurrency.DataSource = dt;
                     ddlCurrency.DataTextField = "strName";

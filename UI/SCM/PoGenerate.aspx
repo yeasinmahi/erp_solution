@@ -755,7 +755,8 @@
 
                                                     <asp:TemplateField HeaderText="HS Code" ItemStyle-HorizontalAlign="right" SortExpression="strHsCode">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblHsCode" runat="server" Text='<%# Bind("strHsCode") %>'></asp:Label>
+                                                            <asp:TextBox ID="lblHsCode" runat="server" Text='<%# Bind("strHsCode") %>'></asp:TextBox>
+                                                            <%--<asp:Label ID="lblHsCode" runat="server" Text='<%# Bind("strHsCode") %>'></asp:Label>--%>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="Right" />
                                                     </asp:TemplateField>
