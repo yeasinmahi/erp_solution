@@ -317,6 +317,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QcItemAttribute.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SupplierAuthorisedTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
