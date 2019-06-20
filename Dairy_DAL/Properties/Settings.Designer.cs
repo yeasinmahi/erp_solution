@@ -27,7 +27,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Global;Persist Security Info=True;User ID=rN" +
-            "wU@Ag;Password=a2sL@Ag")]
+            "wUs@Ag;Password=a2sLs@Ag")]
         public string ERP_GlobalConnectionString {
             get {
                 return ((string)(this["ERP_GlobalConnectionString"]));
@@ -38,7 +38,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;Persist Security Info=True;User ID=rNw" +
-            "U@Ag;Password=a2sL@Ag")]
+            "Us@Ag;Password=a2sLs@Ag")]
         public string AG_GlobalConnectionString {
             get {
                 return ((string)(this["AG_GlobalConnectionString"]));
@@ -49,7 +49,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_DairyMilk;Persist Security Info=True;User ID=" +
-            "rNwU@Ag;Password=a2sL@Ag")]
+            "rNwUs@Ag;Password=a2sLs@Ag")]
         public string AG_DairyMilkConnectionString {
             get {
                 return ((string)(this["AG_DairyMilkConnectionString"]));
@@ -59,7 +59,7 @@ namespace Dairy_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_HR;User ID=rNwU@Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_HR;User ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_HRConnectionString {
             get {
                 return ((string)(this["ERP_HRConnectionString"]));

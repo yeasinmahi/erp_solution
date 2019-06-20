@@ -27,7 +27,7 @@ namespace SCM_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID" +
-            "=rNwU@Ag;Password=a2sL@Ag")]
+            "=rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_InventoryConnectionString {
             get {
                 return ((string)(this["ERP_InventoryConnectionString"]));
@@ -37,8 +37,8 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=rNwU@A" +
-            "g;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_HR;Persist Security Info=True;User ID=rNwUs@" +
+            "Ag;Password=a2sLs@Ag")]
         public string ERP_HRConnectionString {
             get {
                 return ((string)(this["ERP_HRConnectionString"]));
@@ -48,8 +48,8 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_SAD;Persist Security Info=True;User ID=rNwU@" +
-            "Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_SAD;Persist Security Info=True;User ID=rNwUs" +
+            "@Ag;Password=a2sLs@Ag")]
         public string ERP_SADConnectionString {
             get {
                 return ((string)(this["ERP_SADConnectionString"]));
@@ -60,7 +60,7 @@ namespace SCM_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Accounts;Persist Security Info=True;User ID=" +
-            "rNwU@Ag;Password=a2sL@Ag")]
+            "rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_AccountsConnectionString {
             get {
                 return ((string)(this["ERP_AccountsConnectionString"]));
@@ -70,8 +70,8 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=rNwU@" +
-            "Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_VAT;Persist Security Info=True;User ID=rNwUs" +
+            "@Ag;Password=a2sLs@Ag")]
         public string ERP_VATConnectionString {
             get {
                 return ((string)(this["ERP_VATConnectionString"]));
@@ -81,7 +81,7 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Payment;User ID=rNwU@Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Payment;User ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_PaymentConnectionString {
             get {
                 return ((string)(this["ERP_PaymentConnectionString"]));
@@ -91,7 +91,7 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_FTP;User ID=rNwU@Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_FTP;User ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_FTPConnectionString {
             get {
                 return ((string)(this["ERP_FTPConnectionString"]));
@@ -101,7 +101,7 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;User ID=rNwU@Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_Global;User ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string AG_GlobalConnectionString {
             get {
                 return ((string)(this["AG_GlobalConnectionString"]));
@@ -112,7 +112,7 @@ namespace SCM_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=AG_WastageMaterial;Persist Security Info=True;Us" +
-            "er ID=rNwU@Ag;Password=a2sL@Ag")]
+            "er ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string AG_WastageMaterialConnectionString {
             get {
                 return ((string)(this["AG_WastageMaterialConnectionString"]));
@@ -123,7 +123,7 @@ namespace SCM_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Asset;Persist Security Info=True;User ID=rNw" +
-            "U@Ag;Password=a2sL@Ag")]
+            "Us@Ag;Password=a2sLs@Ag")]
         public string ERP_AssetConnectionString {
             get {
                 return ((string)(this["ERP_AssetConnectionString"]));
@@ -133,7 +133,8 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Inventory;User ID=rNwU@Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Inventory;User ID=rNwUs@Ag;Password=a2sLs@Ag" +
+            "")]
         public string ERP_InventoryConnectionString1 {
             get {
                 return ((string)(this["ERP_InventoryConnectionString1"]));
@@ -143,7 +144,7 @@ namespace SCM_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=SUPPORT;User ID=rNwU@Ag;Password=a2sL@Ag")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=SUPPORT;User ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string SUPPORTConnectionString {
             get {
                 return ((string)(this["SUPPORTConnectionString"]));
@@ -154,7 +155,7 @@ namespace SCM_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=esql;Initial Catalog=ERP_Logistic;Persist Security Info=True;User ID=" +
-            "rNwU@Ag;Password=a2sL@Ag")]
+            "rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_LogisticConnectionString {
             get {
                 return ((string)(this["ERP_LogisticConnectionString"]));
