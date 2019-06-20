@@ -47,7 +47,7 @@ namespace UI.SAD.Customer.Report
             try
             {
 
-                long? intID = null;
+            long? intID = null;
             DateTime? dteDate = null; DateTime? dteDateReq = null;
             string strInsertedBy = ""; DateTime? dteInsertionTime = null;
             string strModifieddBy = ""; DateTime? dteModificationTime = null;
@@ -238,16 +238,40 @@ namespace UI.SAD.Customer.Report
 
 
                 OrderByTrip ot = new OrderByTrip();
-                OrderByTripTDS.TblSalesOrderTripDataTable table = ot.GetDataBySO(intID.ToString());
+                    //OrderByTripTDS.TblSalesOrderTripDataTable table = ot.GetDataBySO(intID.ToString());
+                    int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
+                    OrderByTripTDS.SprSalesOrderInfoForCustomerServiceDataTable table = ot.GetSalesInfoSupport(int.Parse(intID.ToString()));
 
-                if (table.Rows.Count > 0)
-                {
-                    mainD.Append(@"<table align=""center""><tr><td><b style=""color:#990000; font-size:18px;"">ALL CHALLAN</b></td></tr></table>");
-                    for (int i = 0; i < table.Rows.Count; i++)
+                    if (unitid != 91)
                     {
-                        GetChallan(table[i].intId.ToString(), i);
+                        if (table.Rows.Count > 0)
+                        {
+                            mainD.Append(@"<table align=""center""><tr><td><b style=""color:#990000; font-size:18px;"">ALL CHALLAN</b></td></tr></table>");
+                            for (int i = 0; i < table.Rows.Count; i++)
+                            {
+                                GetChallan(table[i].intId.ToString(), i);
+                            }
+                        }
                     }
-                }
+
+                    else
+                    {
+                        if (table.Rows.Count > 0)
+                        {
+                            mainD.Append(@"<table align=""center""><tr><td><b style=""color:#990000; font-size:18px;"">ALL CHALLAN</b></td></tr></table>");
+                            for (int i = 0; i < table.Rows.Count; i++)
+                            {
+                                GetChallanABFL(table[i].intId.ToString(), i);
+                            }
+                        }
+
+                    }
+
+                   
+
+
+                    
+
             }
             else
             {
@@ -281,29 +305,30 @@ namespace UI.SAD.Customer.Report
             bool? ysnCompleted = false;
             DateTime? dteInTime = null, dteOutTime = null, dteWgtIn = null, dteWgtOut = null;
             decimal? numEmpty = null, numLoaded = null, numCapacity = null;
+            int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
+            if (unitid != 91) {
+                DeliverySupportTDS.SprCustomerServiceDODetailsDataTable table = ds.InfoByDODetails(id, Session["sesUserID"].ToString(), ref strChallanNo
+    , ref strTripNo, ref ysnCompleted, ref strVehicle, ref strLogistic
+    , ref dteInTime, ref dteOutTime, ref strDriver, ref strContact, ref strDrNid
+    , ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity
+    , ref dteWgtIn, ref dteWgtOut);
 
-            DeliverySupportTDS.SprCustomerServiceDODetailsDataTable table = ds.InfoByDODetails(id, Session["sesUserID"].ToString(), ref strChallanNo
-                    , ref strTripNo, ref ysnCompleted, ref strVehicle, ref strLogistic
-                    , ref dteInTime, ref dteOutTime, ref strDriver, ref strContact, ref strDrNid
-                    , ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity
-                    , ref dteWgtIn, ref dteWgtOut);
+                if (table.Rows.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sbP = new StringBuilder();
+                    StringBuilder sbGT = new StringBuilder();
 
-            if (table.Rows.Count > 0)
-            {
-                StringBuilder sb = new StringBuilder();
-                StringBuilder sbP = new StringBuilder();
-                StringBuilder sbGT = new StringBuilder();
+                    decimal count = 0, promCount = 0;
+                    decimal wgt = 0, promWgt = 0;
+                    string status = "";
 
-                decimal count = 0, promCount = 0;
-                decimal wgt = 0, promWgt = 0;
-                string status = "";
+                    if (dteOutTime != null) status = "Delivered from factory";
+                    else if (dteWgtOut != null) status = "Loaded. Waiting for delivery";
+                    else if (dteWgtIn != null) status = "Not Loaded. Waiting in quee for loading";
+                    else status = "Vehicle is in yeard";
 
-                if (dteOutTime != null) status = "Delivered from factory";
-                else if (dteWgtOut != null) status = "Loaded. Waiting for delivery";
-                else if (dteWgtIn != null) status = "Not Loaded. Waiting in quee for loading";
-                else status = "Vehicle is in yeard";
-
-                sb.Append(@"</br><table  align=""center"" style=""width:700px;"">
+                    sb.Append(@"</br><table  align=""center"" style=""width:700px;"">
                 <tr style=""background-color:#FF7777;"">
                     <td style=""font-weight:bold;width:110px"">
                                 Challan No</td>
@@ -414,10 +439,10 @@ namespace UI.SAD.Customer.Report
                 </tr>
                 </table></div>");
 
-                sb.Append(@"<div id='P" + id + @"' style=""display:none""></br><table  align=""center"" style=""width:700px;"" >");
-                sbP.Append("<table  align=\"center\" style=\"width:700px;\">");
+                    sb.Append(@"<div id='P" + id + @"' style=""display:none""></br><table  align=""center"" style=""width:700px;"" >");
+                    sbP.Append("<table  align=\"center\" style=\"width:700px;\">");
 
-                sb.Append(@"<tr style=""background-color:#9090FF; color:#FFFFFF"">
+                    sb.Append(@"<tr style=""background-color:#9090FF; color:#FFFFFF"">
                             <th style=""width:20px;text-align:center"">
                                 SL</th>
                             <th style=""text-align:center"">
@@ -430,7 +455,7 @@ namespace UI.SAD.Customer.Report
                                 WEIGHT</th>
                         </tr>");
 
-                sbP.Append(@"</br><tr style=""background-color:#FFFFFF"">
+                    sbP.Append(@"</br><tr style=""background-color:#FFFFFF"">
                                 <th colspan=""5"" style=""text-align:left"">
                                 P R O M O T I O N S</th>
                             </tr>
@@ -449,28 +474,699 @@ namespace UI.SAD.Customer.Report
 
 
 
-                for (int i = 0; i < table.Rows.Count; i++)
-                {
-                    sb.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
-
-                    sb.Append("<td>" + table[i].strProductFullName + "</td>");
-                    sb.Append("<td>" + table[i].strUOMShow + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
-                    sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
-                    sb.Append("</tr>");
-
-                    if ((table[i].IsnumPromotionNull() ? 0 : table[i].numPromotion) > 0)
+                    for (int i = 0; i < table.Rows.Count; i++)
                     {
-                        sbP.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+                        sb.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
 
-                        sbP.Append("<td>" + (table[i].IsstrPromItemNameNull() ? "" : table[i].strPromItemName) + "</td>");
-                        sbP.Append("<td>" + (table[i].IsstrPromUomNull() ? "" : table[i].strPromUom) + "</td>");
-                        sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromotion))) + "</td>");
-                        sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromWeight))) + "</td>");
-                        sbP.Append("</tr>");
-                        promCount += table[i].numPromotion;
-                        promWgt += table[i].numPromWeight;
+                        sb.Append("<td>" + table[i].strProductFullName + "</td>");
+                        sb.Append("<td>" + table[i].strUOMShow + "</td>");
+                        sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
+                        sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
+                        sb.Append("</tr>");
+
+                        if ((table[i].IsnumPromotionNull() ? 0 : table[i].numPromotion) > 0)
+                        {
+                            sbP.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+                            sbP.Append("<td>" + (table[i].IsstrPromItemNameNull() ? "" : table[i].strPromItemName) + "</td>");
+                            sbP.Append("<td>" + (table[i].IsstrPromUomNull() ? "" : table[i].strPromUom) + "</td>");
+                            sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromotion))) + "</td>");
+                            sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromWeight))) + "</td>");
+                            sbP.Append("</tr>");
+                            promCount += table[i].numPromotion;
+                            promWgt += table[i].numPromWeight;
+                        }
+
+                        count += table[i].numQuantity;
+                        wgt += table[i].numWeight;
                     }
+
+
+
+                    sb.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th><th style=\"text-align:right;\">" + wgt + "</th></tr>");
+                    sb.Append("</table>");
+
+                    sbP.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + promCount + "</th><th style=\"text-align:right;\">" + promWgt + "</th></tr>");
+                    sbP.Append("</table>");
+
+                    sbGT.Append("<table align=\"center\" style=\"width:700px;\">");
+                    sbGT.Append("<tr style=\"background-color:#E0E0E0\"><th>GRAND TOTAL</th><th style=\"width:100px; text-align:right;\">" + (count + promCount) + "</th><th style=\"width:100px; text-align:right;\">" + (wgt + promWgt) + "</th></tr>");
+                    sbGT.Append("</table>");
+
+                    if (promCount <= 0)
+                    {
+                        sbP = new StringBuilder();
+                        sbGT = new StringBuilder();
+                    }
+
+                    mainD.Append(sb.ToString());
+                    mainD.Append(sbP.ToString());
+                    mainD.Append(sbGT.ToString());
+                    mainD.Append("</div>");
+                }
+
+
+            }
+            else
+            {
+                DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable table = ds.infoByDODetailsWithoutTrip(id, Session["sesUserID"].ToString(), ref strChallanNo
+   , ref strTripNo, ref ysnCompleted, ref strVehicle, ref strLogistic
+   , ref dteInTime, ref dteOutTime, ref strDriver, ref strContact, ref strDrNid
+   , ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity
+   , ref dteWgtIn, ref dteWgtOut);
+                if (table.Rows.Count > 0)
+                {
+                    StringBuilder sb = new StringBuilder();
+                    StringBuilder sbP = new StringBuilder();
+                    StringBuilder sbGT = new StringBuilder();
+
+                    decimal count = 0, promCount = 0;
+                    decimal wgt = 0, promWgt = 0;
+                    string status = "";
+
+                    if (dteOutTime != null) status = "Delivered from factory";
+                    else if (dteWgtOut != null) status = "Loaded. Waiting for delivery";
+                    else if (dteWgtIn != null) status = "Not Loaded. Waiting in quee for loading";
+                    else status = "Vehicle is in yeard";
+
+                    sb.Append(@"</br><table  align=""center"" style=""width:700px;"">
+                <tr style=""background-color:#FF7777;"">
+                    <td style=""font-weight:bold;width:110px"">
+                                Challan No</td>
+                    <td style=""width:240px; color:#990000;font-size:13px;"">
+                         <b>" + strChallanNo + @"</b>
+                    </td> 
+                    <td style=""font-weight:bold;width:110px; "">
+                                Trip No</td>
+                    <td style=""width:240px"">
+                         " + strTripNo + @"
+                    </td>                                  
+                </tr>            
+                <tr style=""background-color:#D0D0FF;"">
+                    <td style=""font-weight:bold;"">
+                                Status</td>
+                    <td colspan=""3"">
+                         " + status + @"
+                    </td>                                  
+                </tr>
+                <tr style=""background-color:#F0F0FF;"">
+                    <td style=""font-weight:bold;"">
+                                Vehicle</td>
+                    <td>
+                         " + strVehicle + @"
+                    </td> 
+                    <td style=""font-weight:bold;"">
+                                Logistic By</td>
+                    <td>
+                         " + strLogistic + @"
+                    </td>                                  
+                </tr>
+                <tr><td colspan=""4"">
+                <a class=""link"" href=""#"" id='ds" + id + @"' onclick=""Show('" + id + @"')"">See More</a>
+                <a class=""link"" href=""#"" style=""display:none"" id='dh" + id + @"' onclick=""Hide('" + id + @"')"">Hide</a>                
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class=""link"" href=""#"" id='dsP" + id + @"' onclick=""Show('P" + id + @"')"">See Products</a>
+                <a class=""link"" href=""#"" style=""display:none"" id='dhP" + id + @"' onclick=""Hide('P" + id + @"')"">Hide Products</a></td>
+                </tr>
+                </table>
+                <div id='" + id + @"' style=""display:none"">                
+                <table  align=""center"" style=""width:700px;"">                
+                <tr style=""background-color:#D0D0FF;"">                
+                    <td style=""font-weight:bold;width:110px"">
+                        In Time</td>
+                    <td style=""width:240px"">
+                        " + CommonClass.GetDateAtLocalDateFormat(dteInTime) + @"
+                    </td>
+                     <td style=""font-weight:bold;width:110px;"">
+                          Out Time</td>
+                    <td style=""width:240px;"">
+                         " + CommonClass.GetDateAtLocalDateFormat(dteOutTime) + @"
+                    </td>
+                </tr>                
+                <tr style=""background-color:#F0F0FF;"">
+                    <td style=""font-weight:bold;"">
+                        Driver</td>
+                    <td>
+                        " + strDriver + @"</td>
+                    <td style=""font-weight:bold;"">
+                                           Healper</td>
+                    <td colspan=""2"">
+                        " + strHealper + @"
+                    </td>                    
+                </tr>
+                 <tr style=""background-color:#D0D0FF;"">
+                    <td style=""font-weight:bold;"">
+                        N ID</td>
+                    <td>
+                        " + strDrNid + @"</td>
+                    <td style=""font-weight:bold;"">
+                                            Contact No</td>
+                    <td colspan=""2"">
+                        " + strContact + @"
+                    </td>                    
+                </tr>
+                <tr style=""background-color:#F0F0FF;"">
+                    <td style=""font-weight:bold;"">
+                        UOM</td>
+                    <td>
+                        " + strUom + @"</td>
+                    <td style=""font-weight:bold;"">
+                         Empty Weight</td>
+                    <td colspan=""2"">
+                        " + numEmpty + @"
+                    </td>                    
+                </tr>
+                <tr style=""background-color:#D0D0FF;"">
+                    <td style=""font-weight:bold;"">
+                        Loaded Weight</td>
+                    <td>
+                        " + numLoaded + @"</td>
+                    <td style=""font-weight:bold;"">
+                         Capacity</td>
+                    <td colspan=""2"">
+                        " + numCapacity + @"
+                    </td>                    
+                </tr>
+                 <tr style=""background-color:#F0F0FF;"">
+                    <td style=""font-weight:bold;"">
+                        Wgt. Bridge In</td>
+                    <td>
+                        " + CommonClass.GetDateAtLocalDateFormat(dteWgtIn) + @"</td>
+                    <td style=""font-weight:bold;"">
+                         Wgt. Bridge Out</td>
+                    <td colspan=""2"">
+                        " + CommonClass.GetDateAtLocalDateFormat(dteWgtOut) + @"
+                    </td>                    
+                </tr>
+                </table></div>");
+
+                    sb.Append(@"<div id='P" + id + @"' style=""display:none""></br><table  align=""center"" style=""width:700px;"" >");
+                    sbP.Append("<table  align=\"center\" style=\"width:700px;\">");
+
+                    sb.Append(@"<tr style=""background-color:#9090FF; color:#FFFFFF"">
+                            <th style=""width:20px;text-align:center"">
+                                SL</th>
+                            <th style=""text-align:center"">
+                                PRODUCT DESCRIPTION</th>
+                            <th style=""width:100px;text-align:center"">
+                                UOM</th>
+                            <th style=""width:100px;text-align:center"">
+                                QNT.</th>
+                            <th style=""width:100px;text-align:center"">
+                                WEIGHT</th>
+                        </tr>");
+
+                    sbP.Append(@"</br><tr style=""background-color:#FFFFFF"">
+                                <th colspan=""5"" style=""text-align:left"">
+                                P R O M O T I O N S</th>
+                            </tr>
+                            <tr style=""background-color:#E0E0E0"">
+                            <th style=""width:20px;text-align:center"">
+                                SL</th>
+                            <th style=""text-align:center"">
+                                PRODUCT DESCRIPTION</th>
+                            <th style=""width:100px;text-align:center"">
+                                UOM</th>
+                            <th style=""width:100px;text-align:center"">
+                                QNT.</th>
+                            <th style=""width:100px;text-align:center"">
+                                WEIGHT</th>
+                        </tr>");
+
+
+
+                    for (int i = 0; i < table.Rows.Count; i++)
+                    {
+                        sb.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+                        sb.Append("<td>" + table[i].strProductFullName + "</td>");
+                        sb.Append("<td>" + table[i].strUOMShow + "</td>");
+                        sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
+                        sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
+                        sb.Append("</tr>");
+
+                        if ((table[i].IsnumPromotionNull() ? 0 : table[i].numPromotion) > 0)
+                        {
+                            sbP.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+                            sbP.Append("<td>" + (table[i].IsstrPromItemNameNull() ? "" : table[i].strPromItemName) + "</td>");
+                            sbP.Append("<td>" + (table[i].IsstrPromUomNull() ? "" : table[i].strPromUom) + "</td>");
+                            sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromotion))) + "</td>");
+                            sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromWeight))) + "</td>");
+                            sbP.Append("</tr>");
+                            promCount += table[i].numPromotion;
+                            promWgt += table[i].numPromWeight;
+                        }
+
+                        count += table[i].numQuantity;
+                        wgt += table[i].numWeight;
+                    }
+
+
+
+                    sb.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th><th style=\"text-align:right;\">" + wgt + "</th></tr>");
+                    sb.Append("</table>");
+
+                    sbP.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + promCount + "</th><th style=\"text-align:right;\">" + promWgt + "</th></tr>");
+                    sbP.Append("</table>");
+
+                    sbGT.Append("<table align=\"center\" style=\"width:700px;\">");
+                    sbGT.Append("<tr style=\"background-color:#E0E0E0\"><th>GRAND TOTAL</th><th style=\"width:100px; text-align:right;\">" + (count + promCount) + "</th><th style=\"width:100px; text-align:right;\">" + (wgt + promWgt) + "</th></tr>");
+                    sbGT.Append("</table>");
+
+                    if (promCount <= 0)
+                    {
+                        sbP = new StringBuilder();
+                        sbGT = new StringBuilder();
+                    }
+
+                    mainD.Append(sb.ToString());
+                    mainD.Append(sbP.ToString());
+                    mainD.Append(sbGT.ToString());
+                    mainD.Append("</div>");
+                }
+
+
+            }
+
+
+
+
+
+
+
+            //if (table.Rows.Count > 0)
+            //{
+            //    StringBuilder sb = new StringBuilder();
+            //    StringBuilder sbP = new StringBuilder();
+            //    StringBuilder sbGT = new StringBuilder();
+
+            //    decimal count = 0, promCount = 0;
+            //    decimal wgt = 0, promWgt = 0;
+            //    string status = "";
+
+            //    if (dteOutTime != null) status = "Delivered from factory";
+            //    else if (dteWgtOut != null) status = "Loaded. Waiting for delivery";
+            //    else if (dteWgtIn != null) status = "Not Loaded. Waiting in quee for loading";
+            //    else status = "Vehicle is in yeard";
+
+            //    sb.Append(@"</br><table  align=""center"" style=""width:700px;"">
+            //    <tr style=""background-color:#FF7777;"">
+            //        <td style=""font-weight:bold;width:110px"">
+            //                    Challan No</td>
+            //        <td style=""width:240px; color:#990000;font-size:13px;"">
+            //             <b>" + strChallanNo + @"</b>
+            //        </td> 
+            //        <td style=""font-weight:bold;width:110px; "">
+            //                    Trip No</td>
+            //        <td style=""width:240px"">
+            //             " + strTripNo + @"
+            //        </td>                                  
+            //    </tr>            
+            //    <tr style=""background-color:#D0D0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //                    Status</td>
+            //        <td colspan=""3"">
+            //             " + status + @"
+            //        </td>                                  
+            //    </tr>
+            //    <tr style=""background-color:#F0F0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //                    Vehicle</td>
+            //        <td>
+            //             " + strVehicle + @"
+            //        </td> 
+            //        <td style=""font-weight:bold;"">
+            //                    Logistic By</td>
+            //        <td>
+            //             " + strLogistic + @"
+            //        </td>                                  
+            //    </tr>
+            //    <tr><td colspan=""4"">
+            //    <a class=""link"" href=""#"" id='ds" + id + @"' onclick=""Show('" + id + @"')"">See More</a>
+            //    <a class=""link"" href=""#"" style=""display:none"" id='dh" + id + @"' onclick=""Hide('" + id + @"')"">Hide</a>                
+            //     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            //    <a class=""link"" href=""#"" id='dsP" + id + @"' onclick=""Show('P" + id + @"')"">See Products</a>
+            //    <a class=""link"" href=""#"" style=""display:none"" id='dhP" + id + @"' onclick=""Hide('P" + id + @"')"">Hide Products</a></td>
+            //    </tr>
+            //    </table>
+            //    <div id='" + id + @"' style=""display:none"">                
+            //    <table  align=""center"" style=""width:700px;"">                
+            //    <tr style=""background-color:#D0D0FF;"">                
+            //        <td style=""font-weight:bold;width:110px"">
+            //            In Time</td>
+            //        <td style=""width:240px"">
+            //            " + CommonClass.GetDateAtLocalDateFormat(dteInTime) + @"
+            //        </td>
+            //         <td style=""font-weight:bold;width:110px;"">
+            //              Out Time</td>
+            //        <td style=""width:240px;"">
+            //             " + CommonClass.GetDateAtLocalDateFormat(dteOutTime) + @"
+            //        </td>
+            //    </tr>                
+            //    <tr style=""background-color:#F0F0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //            Driver</td>
+            //        <td>
+            //            " + strDriver + @"</td>
+            //        <td style=""font-weight:bold;"">
+            //                               Healper</td>
+            //        <td colspan=""2"">
+            //            " + strHealper + @"
+            //        </td>                    
+            //    </tr>
+            //     <tr style=""background-color:#D0D0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //            N ID</td>
+            //        <td>
+            //            " + strDrNid + @"</td>
+            //        <td style=""font-weight:bold;"">
+            //                                Contact No</td>
+            //        <td colspan=""2"">
+            //            " + strContact + @"
+            //        </td>                    
+            //    </tr>
+            //    <tr style=""background-color:#F0F0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //            UOM</td>
+            //        <td>
+            //            " + strUom + @"</td>
+            //        <td style=""font-weight:bold;"">
+            //             Empty Weight</td>
+            //        <td colspan=""2"">
+            //            " + numEmpty + @"
+            //        </td>                    
+            //    </tr>
+            //    <tr style=""background-color:#D0D0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //            Loaded Weight</td>
+            //        <td>
+            //            " + numLoaded + @"</td>
+            //        <td style=""font-weight:bold;"">
+            //             Capacity</td>
+            //        <td colspan=""2"">
+            //            " + numCapacity + @"
+            //        </td>                    
+            //    </tr>
+            //     <tr style=""background-color:#F0F0FF;"">
+            //        <td style=""font-weight:bold;"">
+            //            Wgt. Bridge In</td>
+            //        <td>
+            //            " + CommonClass.GetDateAtLocalDateFormat(dteWgtIn) + @"</td>
+            //        <td style=""font-weight:bold;"">
+            //             Wgt. Bridge Out</td>
+            //        <td colspan=""2"">
+            //            " + CommonClass.GetDateAtLocalDateFormat(dteWgtOut) + @"
+            //        </td>                    
+            //    </tr>
+            //    </table></div>");
+
+            //    sb.Append(@"<div id='P" + id + @"' style=""display:none""></br><table  align=""center"" style=""width:700px;"" >");
+            //    sbP.Append("<table  align=\"center\" style=\"width:700px;\">");
+
+            //    sb.Append(@"<tr style=""background-color:#9090FF; color:#FFFFFF"">
+            //                <th style=""width:20px;text-align:center"">
+            //                    SL</th>
+            //                <th style=""text-align:center"">
+            //                    PRODUCT DESCRIPTION</th>
+            //                <th style=""width:100px;text-align:center"">
+            //                    UOM</th>
+            //                <th style=""width:100px;text-align:center"">
+            //                    QNT.</th>
+            //                <th style=""width:100px;text-align:center"">
+            //                    WEIGHT</th>
+            //            </tr>");
+
+            //    sbP.Append(@"</br><tr style=""background-color:#FFFFFF"">
+            //                    <th colspan=""5"" style=""text-align:left"">
+            //                    P R O M O T I O N S</th>
+            //                </tr>
+            //                <tr style=""background-color:#E0E0E0"">
+            //                <th style=""width:20px;text-align:center"">
+            //                    SL</th>
+            //                <th style=""text-align:center"">
+            //                    PRODUCT DESCRIPTION</th>
+            //                <th style=""width:100px;text-align:center"">
+            //                    UOM</th>
+            //                <th style=""width:100px;text-align:center"">
+            //                    QNT.</th>
+            //                <th style=""width:100px;text-align:center"">
+            //                    WEIGHT</th>
+            //            </tr>");
+
+
+
+            //    for (int i = 0; i < table.Rows.Count; i++)
+            //    {
+            //        sb.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+            //        sb.Append("<td>" + table[i].strProductFullName + "</td>");
+            //        sb.Append("<td>" + table[i].strUOMShow + "</td>");
+            //        sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
+            //        sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
+            //        sb.Append("</tr>");
+
+            //        if ((table[i].IsnumPromotionNull() ? 0 : table[i].numPromotion) > 0)
+            //        {
+            //            sbP.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+            //            sbP.Append("<td>" + (table[i].IsstrPromItemNameNull() ? "" : table[i].strPromItemName) + "</td>");
+            //            sbP.Append("<td>" + (table[i].IsstrPromUomNull() ? "" : table[i].strPromUom) + "</td>");
+            //            sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromotion))) + "</td>");
+            //            sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromWeight))) + "</td>");
+            //            sbP.Append("</tr>");
+            //            promCount += table[i].numPromotion;
+            //            promWgt += table[i].numPromWeight;
+            //        }
+
+            //        count += table[i].numQuantity;
+            //        wgt += table[i].numWeight;
+            //    }
+
+
+
+            //    sb.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th><th style=\"text-align:right;\">" + wgt + "</th></tr>");
+            //    sb.Append("</table>");
+
+            //    sbP.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + promCount + "</th><th style=\"text-align:right;\">" + promWgt + "</th></tr>");
+            //    sbP.Append("</table>");
+
+            //    sbGT.Append("<table align=\"center\" style=\"width:700px;\">");
+            //    sbGT.Append("<tr style=\"background-color:#E0E0E0\"><th>GRAND TOTAL</th><th style=\"width:100px; text-align:right;\">" + (count + promCount) + "</th><th style=\"width:100px; text-align:right;\">" + (wgt + promWgt) + "</th></tr>");
+            //    sbGT.Append("</table>");
+
+            //    if (promCount <= 0)
+            //    {
+            //        sbP = new StringBuilder();
+            //        sbGT = new StringBuilder();
+            //    }
+
+            //    mainD.Append(sb.ToString());
+            //    mainD.Append(sbP.ToString());
+            //    mainD.Append(sbGT.ToString());
+            //    mainD.Append("</div>");
+            //}
+        }
+
+        private void GetChallanABFL(string id, int rowCount)
+        {
+            string strChallanNo = "", strTripNo = "", strDriver = "", strContact = ""
+                , strDrNid = "", strHealper = "", strUom = ""
+                , strVehicle = "", strLogistic = "";
+            bool? ysnCompleted = false;
+            DateTime? dteInTime = null, dteOutTime = null, dteWgtIn = null, dteWgtOut = null;
+            decimal? numEmpty = null, numLoaded = null, numCapacity = null;
+            int unitid = int.Parse(ddlUnit.SelectedValue.ToString());
+         
+            DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable table = ds.infoByDODetailsWithoutTrip(id, Session["sesUserID"].ToString(), ref strChallanNo
+            , ref strTripNo, ref ysnCompleted, ref strVehicle, ref strLogistic
+            , ref dteInTime, ref dteOutTime, ref strDriver, ref strContact, ref strDrNid
+            , ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity
+            , ref dteWgtIn, ref dteWgtOut);
+
+            if (table.Rows.Count > 0)
+            {
+            StringBuilder sb = new StringBuilder();
+            StringBuilder sbP = new StringBuilder();
+            StringBuilder sbGT = new StringBuilder();
+
+            decimal count = 0, promCount = 0;
+            decimal wgt = 0, promWgt = 0;
+            string status = "";
+
+            if (dteOutTime != null) status = "Delivered from factory";
+            else if (dteWgtOut != null) status = "Loaded. Waiting for delivery";
+            else if (dteWgtIn != null) status = "Not Loaded. Waiting in quee for loading";
+            else status = "Vehicle is in yeard";
+
+            sb.Append(@"</br><table  align=""center"" style=""width:700px;"">
+            <tr style=""background-color:#FF7777;"">
+            <td style=""font-weight:bold;width:110px"">
+            Challan No</td>
+            <td style=""width:240px; color:#990000;font-size:13px;"">
+            <b>" + strChallanNo + @"</b>
+            </td> 
+            <td style=""font-weight:bold;width:110px; "">
+            Trip No</td>
+            <td style=""width:240px"">
+            " + strTripNo + @"
+            </td>                                  
+            </tr>            
+            <tr style=""background-color:#D0D0FF;"">
+            <td style=""font-weight:bold;"">
+            Status</td>
+            <td colspan=""3"">
+            " + status + @"
+            </td>                                  
+            </tr>
+            <tr style=""background-color:#F0F0FF;"">
+            <td style=""font-weight:bold;"">
+            Vehicle</td>
+            <td>
+            " + strVehicle + @"
+            </td> 
+            <td style=""font-weight:bold;"">
+            Logistic By</td>
+            <td>
+            " + strLogistic + @"
+            </td>                                  
+            </tr>
+            <tr><td colspan=""4"">
+            <a class=""link"" href=""#"" id='ds" + id + @"' onclick=""Show('" + id + @"')"">See More</a>
+            <a class=""link"" href=""#"" style=""display:none"" id='dh" + id + @"' onclick=""Hide('" + id + @"')"">Hide</a>                
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a class=""link"" href=""#"" id='dsP" + id + @"' onclick=""Show('P" + id + @"')"">See Products</a>
+            <a class=""link"" href=""#"" style=""display:none"" id='dhP" + id + @"' onclick=""Hide('P" + id + @"')"">Hide Products</a></td>
+            </tr>
+            </table>
+            <div id='" + id + @"' style=""display:none"">                
+            <table  align=""center"" style=""width:700px;"">                
+            <tr style=""background-color:#D0D0FF;"">                
+            <td style=""font-weight:bold;width:110px"">
+            In Time</td>
+            <td style=""width:240px"">
+            " + CommonClass.GetDateAtLocalDateFormat(dteInTime) + @"
+            </td>
+            <td style=""font-weight:bold;width:110px;"">
+            Out Time</td>
+            <td style=""width:240px;"">
+            " + CommonClass.GetDateAtLocalDateFormat(dteOutTime) + @"
+            </td>
+            </tr>                
+            <tr style=""background-color:#F0F0FF;"">
+            <td style=""font-weight:bold;"">
+            Driver</td>
+            <td>
+            " + strDriver + @"</td>
+            <td style=""font-weight:bold;"">
+            Healper</td>
+            <td colspan=""2"">
+            " + strHealper + @"
+            </td>                    
+            </tr>
+            <tr style=""background-color:#D0D0FF;"">
+            <td style=""font-weight:bold;"">
+            N ID</td>
+            <td>
+            " + strDrNid + @"</td>
+            <td style=""font-weight:bold;"">
+            Contact No</td>
+            <td colspan=""2"">
+            " + strContact + @"
+            </td>                    
+            </tr>
+            <tr style=""background-color:#F0F0FF;"">
+            <td style=""font-weight:bold;"">
+            UOM</td>
+            <td>
+            " + strUom + @"</td>
+            <td style=""font-weight:bold;"">
+            Empty Weight</td>
+            <td colspan=""2"">
+            " + numEmpty + @"
+            </td>                    
+            </tr>
+            <tr style=""background-color:#D0D0FF;"">
+            <td style=""font-weight:bold;"">
+            Loaded Weight</td>
+            <td>
+            " + numLoaded + @"</td>
+            <td style=""font-weight:bold;"">
+            Capacity</td>
+            <td colspan=""2"">
+            " + numCapacity + @"
+            </td>                    
+            </tr>
+            <tr style=""background-color:#F0F0FF;"">
+            <td style=""font-weight:bold;"">
+            Wgt. Bridge In</td>
+            <td>
+            " + CommonClass.GetDateAtLocalDateFormat(dteWgtIn) + @"</td>
+            <td style=""font-weight:bold;"">
+            Wgt. Bridge Out</td>
+            <td colspan=""2"">
+            " + CommonClass.GetDateAtLocalDateFormat(dteWgtOut) + @"
+            </td>                    
+            </tr>
+            </table></div>");
+
+            sb.Append(@"<div id='P" + id + @"' style=""display:none""></br><table  align=""center"" style=""width:700px;"" >");
+            sbP.Append("<table  align=\"center\" style=\"width:700px;\">");
+
+            sb.Append(@"<tr style=""background-color:#9090FF; color:#FFFFFF"">
+            <th style=""width:20px;text-align:center"">
+            SL</th>
+            <th style=""text-align:center"">
+            PRODUCT DESCRIPTION</th>
+            <th style=""width:100px;text-align:center"">
+            UOM</th>
+            <th style=""width:100px;text-align:center"">
+            QNT.</th>
+            <th style=""width:100px;text-align:center"">
+            WEIGHT</th>
+            </tr>");
+
+            sbP.Append(@"</br><tr style=""background-color:#FFFFFF"">
+            <th colspan=""5"" style=""text-align:left"">
+            P R O M O T I O N S</th>
+            </tr>
+            <tr style=""background-color:#E0E0E0"">
+            <th style=""width:20px;text-align:center"">
+            SL</th>
+            <th style=""text-align:center"">
+            PRODUCT DESCRIPTION</th>
+            <th style=""width:100px;text-align:center"">
+            UOM</th>
+            <th style=""width:100px;text-align:center"">
+            QNT.</th>
+            <th style=""width:100px;text-align:center"">
+            WEIGHT</th>
+            </tr>");
+
+
+
+            for (int i = 0; i < table.Rows.Count; i++)
+            {
+            sb.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+            sb.Append("<td>" + table[i].strProductFullName + "</td>");
+            sb.Append("<td>" + table[i].strUOMShow + "</td>");
+            sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numQuantity) + "</td>");
+            sb.Append("<td style=\"text-align:right\">" + CommonClass.GetFormettingNumberfourdigit(table[i].numWeight) + "</td>");
+            sb.Append("</tr>");
+
+                    //if ((table[i].IsnumPromotionNull() ? 0 : table[i].numPromotion) > 0)
+                    //{
+                    //    sbP.Append("<tr style=\" \"><td>" + table[i].intRowNumber + "</td>");
+
+                    //    sbP.Append("<td>" + (table[i].IsstrPromItemNameNull() ? "" : table[i].strPromItemName) + "</td>");
+                    //    sbP.Append("<td>" + (table[i].IsstrPromUomNull() ? "" : table[i].strPromUom) + "</td>");
+                    //    sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromotionNull() ? "" : (table[i].numPromotion <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromotion))) + "</td>");
+                    //    sbP.Append("<td style=\"text-align:right\">" + (table[i].IsnumPromWeightNull() ? "" : (table[i].numPromWeight <= 0 ? "" : CommonClass.GetFormettingNumber(table[i].numPromWeight))) + "</td>");
+                    //    sbP.Append("</tr>");
+                    //    promCount += table[i].numPromotion;
+                    //    promWgt += table[i].numPromWeight;
+                    //}
 
                     count += table[i].numQuantity;
                     wgt += table[i].numWeight;
@@ -479,26 +1175,29 @@ namespace UI.SAD.Customer.Report
 
 
                 sb.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + count + "</th><th style=\"text-align:right;\">" + wgt + "</th></tr>");
-                sb.Append("</table>");
+            sb.Append("</table>");
 
-                sbP.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + promCount + "</th><th style=\"text-align:right;\">" + promWgt + "</th></tr>");
-                sbP.Append("</table>");
+            sbP.Append("<tr style=\"background-color:#E0E0E0\"><th colspan=\"3\">TOTAL</th><th style=\"text-align:right;\">" + promCount + "</th><th style=\"text-align:right;\">" + promWgt + "</th></tr>");
+            sbP.Append("</table>");
 
-                sbGT.Append("<table align=\"center\" style=\"width:700px;\">");
-                sbGT.Append("<tr style=\"background-color:#E0E0E0\"><th>GRAND TOTAL</th><th style=\"width:100px; text-align:right;\">" + (count + promCount) + "</th><th style=\"width:100px; text-align:right;\">" + (wgt + promWgt) + "</th></tr>");
-                sbGT.Append("</table>");
+            sbGT.Append("<table align=\"center\" style=\"width:700px;\">");
+            sbGT.Append("<tr style=\"background-color:#E0E0E0\"><th>GRAND TOTAL</th><th style=\"width:100px; text-align:right;\">" + (count + promCount) + "</th><th style=\"width:100px; text-align:right;\">" + (wgt + promWgt) + "</th></tr>");
+            sbGT.Append("</table>");
 
-                if (promCount <= 0)
-                {
-                    sbP = new StringBuilder();
-                    sbGT = new StringBuilder();
-                }
-
-                mainD.Append(sb.ToString());
-                mainD.Append(sbP.ToString());
-                mainD.Append(sbGT.ToString());
-                mainD.Append("</div>");
+            if (promCount <= 0)
+            {
+            sbP = new StringBuilder();
+            sbGT = new StringBuilder();
             }
+
+            mainD.Append(sb.ToString());
+            mainD.Append(sbP.ToString());
+            mainD.Append(sbGT.ToString());
+            mainD.Append("</div>");
+            }
+
+
         }
+        
     }
 }

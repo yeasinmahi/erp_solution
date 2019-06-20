@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using SAD_DAL.Sales;
@@ -94,6 +95,25 @@ namespace SAD_BLL.Sales
         {
             SprReturnSalesDelivaryOrderCompleteTableAdapter adp = new SprReturnSalesDelivaryOrderCompleteTableAdapter();
             adp.GetDataReturnSalesDelivaryOrderComplete(int.Parse(unitId), long.Parse(doId), int.Parse(userId));
+        }
+
+        public DataTable GetAreaName (int unitid)
+        {
+            TblAreaNameTableAdapter adp = new TblAreaNameTableAdapter();
+            return adp.GetDataAreaName(unitid);
+        }
+
+        public DataTable getAreaBaseCommission (DateTime from,DateTime to, string salesofname,string reptname,int unitid ,int areaid, decimal factrate, decimal ghatrate)
+        {
+            try
+            {
+                SprACCCashDOCommission1TableAdapter ta = new SprACCCashDOCommission1TableAdapter();
+                return ta.GetDataACCCashDOCommission(from, to, salesofname, reptname, unitid, areaid, factrate, ghatrate);
+            }
+            catch(Exception ex)
+            {
+                return new DataTable();
+            }
         }
 
     }

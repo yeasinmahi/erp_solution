@@ -36,6 +36,8 @@ namespace SAD_DAL.Customer.Report {
         
         private SprAttachmentInfoDataTable tableSprAttachmentInfo;
         
+        private SprCustomerServiceDODetailsWithoutTripDataTable tableSprCustomerServiceDODetailsWithoutTrip;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -81,6 +83,9 @@ namespace SAD_DAL.Customer.Report {
                 }
                 if ((ds.Tables["SprAttachmentInfo"] != null)) {
                     base.Tables.Add(new SprAttachmentInfoDataTable(ds.Tables["SprAttachmentInfo"]));
+                }
+                if ((ds.Tables["SprCustomerServiceDODetailsWithoutTrip"] != null)) {
+                    base.Tables.Add(new SprCustomerServiceDODetailsWithoutTripDataTable(ds.Tables["SprCustomerServiceDODetailsWithoutTrip"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -157,6 +162,16 @@ namespace SAD_DAL.Customer.Report {
         public SprAttachmentInfoDataTable SprAttachmentInfo {
             get {
                 return this.tableSprAttachmentInfo;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprCustomerServiceDODetailsWithoutTripDataTable SprCustomerServiceDODetailsWithoutTrip {
+            get {
+                return this.tableSprCustomerServiceDODetailsWithoutTrip;
             }
         }
         
@@ -245,6 +260,9 @@ namespace SAD_DAL.Customer.Report {
                 if ((ds.Tables["SprAttachmentInfo"] != null)) {
                     base.Tables.Add(new SprAttachmentInfoDataTable(ds.Tables["SprAttachmentInfo"]));
                 }
+                if ((ds.Tables["SprCustomerServiceDODetailsWithoutTrip"] != null)) {
+                    base.Tables.Add(new SprCustomerServiceDODetailsWithoutTripDataTable(ds.Tables["SprCustomerServiceDODetailsWithoutTrip"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -314,6 +332,12 @@ namespace SAD_DAL.Customer.Report {
                     this.tableSprAttachmentInfo.InitVars();
                 }
             }
+            this.tableSprCustomerServiceDODetailsWithoutTrip = ((SprCustomerServiceDODetailsWithoutTripDataTable)(base.Tables["SprCustomerServiceDODetailsWithoutTrip"]));
+            if ((initTable == true)) {
+                if ((this.tableSprCustomerServiceDODetailsWithoutTrip != null)) {
+                    this.tableSprCustomerServiceDODetailsWithoutTrip.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -336,6 +360,8 @@ namespace SAD_DAL.Customer.Report {
             base.Tables.Add(this.tableSprAttachDeleteAllow);
             this.tableSprAttachmentInfo = new SprAttachmentInfoDataTable();
             base.Tables.Add(this.tableSprAttachmentInfo);
+            this.tableSprCustomerServiceDODetailsWithoutTrip = new SprCustomerServiceDODetailsWithoutTripDataTable();
+            base.Tables.Add(this.tableSprCustomerServiceDODetailsWithoutTrip);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -371,6 +397,12 @@ namespace SAD_DAL.Customer.Report {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprAttachmentInfo() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprCustomerServiceDODetailsWithoutTrip() {
             return false;
         }
         
@@ -446,6 +478,9 @@ namespace SAD_DAL.Customer.Report {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprAttachmentInfoRowChangeEventHandler(object sender, SprAttachmentInfoRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprCustomerServiceDODetailsWithoutTripRowChangeEventHandler(object sender, SprCustomerServiceDODetailsWithoutTripRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2370,6 +2405,413 @@ namespace SAD_DAL.Customer.Report {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprCustomerServiceDODetailsWithoutTripDataTable : global::System.Data.TypedTableBase<SprCustomerServiceDODetailsWithoutTripRow> {
+            
+            private global::System.Data.DataColumn columnintRowNumber;
+            
+            private global::System.Data.DataColumn columnintProductId;
+            
+            private global::System.Data.DataColumn columnstrProductFullName;
+            
+            private global::System.Data.DataColumn columnnumQuantity;
+            
+            private global::System.Data.DataColumn columnstrUOMShow;
+            
+            private global::System.Data.DataColumn columnstrPromItemName;
+            
+            private global::System.Data.DataColumn columnstrPromUom;
+            
+            private global::System.Data.DataColumn columnnumPromotion;
+            
+            private global::System.Data.DataColumn columnnumWeight;
+            
+            private global::System.Data.DataColumn columnnumVolume;
+            
+            private global::System.Data.DataColumn columnnumPromWeight;
+            
+            private global::System.Data.DataColumn columnnumPromVolume;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCustomerServiceDODetailsWithoutTripDataTable() {
+                this.TableName = "SprCustomerServiceDODetailsWithoutTrip";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprCustomerServiceDODetailsWithoutTripDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprCustomerServiceDODetailsWithoutTripDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intRowNumberColumn {
+                get {
+                    return this.columnintRowNumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intProductIdColumn {
+                get {
+                    return this.columnintProductId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strProductFullNameColumn {
+                get {
+                    return this.columnstrProductFullName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numQuantityColumn {
+                get {
+                    return this.columnnumQuantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strUOMShowColumn {
+                get {
+                    return this.columnstrUOMShow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPromItemNameColumn {
+                get {
+                    return this.columnstrPromItemName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strPromUomColumn {
+                get {
+                    return this.columnstrPromUom;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numPromotionColumn {
+                get {
+                    return this.columnnumPromotion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numWeightColumn {
+                get {
+                    return this.columnnumWeight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numVolumeColumn {
+                get {
+                    return this.columnnumVolume;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numPromWeightColumn {
+                get {
+                    return this.columnnumPromWeight;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numPromVolumeColumn {
+                get {
+                    return this.columnnumPromVolume;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCustomerServiceDODetailsWithoutTripRow this[int index] {
+                get {
+                    return ((SprCustomerServiceDODetailsWithoutTripRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCustomerServiceDODetailsWithoutTripRowChangeEventHandler SprCustomerServiceDODetailsWithoutTripRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCustomerServiceDODetailsWithoutTripRowChangeEventHandler SprCustomerServiceDODetailsWithoutTripRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCustomerServiceDODetailsWithoutTripRowChangeEventHandler SprCustomerServiceDODetailsWithoutTripRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprCustomerServiceDODetailsWithoutTripRowChangeEventHandler SprCustomerServiceDODetailsWithoutTripRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprCustomerServiceDODetailsWithoutTripRow(SprCustomerServiceDODetailsWithoutTripRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCustomerServiceDODetailsWithoutTripRow AddSprCustomerServiceDODetailsWithoutTripRow(long intRowNumber, long intProductId, string strProductFullName, decimal numQuantity, string strUOMShow, string strPromItemName, string strPromUom, decimal numPromotion, decimal numWeight, decimal numVolume, decimal numPromWeight, decimal numPromVolume) {
+                SprCustomerServiceDODetailsWithoutTripRow rowSprCustomerServiceDODetailsWithoutTripRow = ((SprCustomerServiceDODetailsWithoutTripRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intRowNumber,
+                        intProductId,
+                        strProductFullName,
+                        numQuantity,
+                        strUOMShow,
+                        strPromItemName,
+                        strPromUom,
+                        numPromotion,
+                        numWeight,
+                        numVolume,
+                        numPromWeight,
+                        numPromVolume};
+                rowSprCustomerServiceDODetailsWithoutTripRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprCustomerServiceDODetailsWithoutTripRow);
+                return rowSprCustomerServiceDODetailsWithoutTripRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprCustomerServiceDODetailsWithoutTripDataTable cln = ((SprCustomerServiceDODetailsWithoutTripDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprCustomerServiceDODetailsWithoutTripDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintRowNumber = base.Columns["intRowNumber"];
+                this.columnintProductId = base.Columns["intProductId"];
+                this.columnstrProductFullName = base.Columns["strProductFullName"];
+                this.columnnumQuantity = base.Columns["numQuantity"];
+                this.columnstrUOMShow = base.Columns["strUOMShow"];
+                this.columnstrPromItemName = base.Columns["strPromItemName"];
+                this.columnstrPromUom = base.Columns["strPromUom"];
+                this.columnnumPromotion = base.Columns["numPromotion"];
+                this.columnnumWeight = base.Columns["numWeight"];
+                this.columnnumVolume = base.Columns["numVolume"];
+                this.columnnumPromWeight = base.Columns["numPromWeight"];
+                this.columnnumPromVolume = base.Columns["numPromVolume"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintRowNumber = new global::System.Data.DataColumn("intRowNumber", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintRowNumber);
+                this.columnintProductId = new global::System.Data.DataColumn("intProductId", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintProductId);
+                this.columnstrProductFullName = new global::System.Data.DataColumn("strProductFullName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrProductFullName);
+                this.columnnumQuantity = new global::System.Data.DataColumn("numQuantity", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumQuantity);
+                this.columnstrUOMShow = new global::System.Data.DataColumn("strUOMShow", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrUOMShow);
+                this.columnstrPromItemName = new global::System.Data.DataColumn("strPromItemName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPromItemName);
+                this.columnstrPromUom = new global::System.Data.DataColumn("strPromUom", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrPromUom);
+                this.columnnumPromotion = new global::System.Data.DataColumn("numPromotion", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumPromotion);
+                this.columnnumWeight = new global::System.Data.DataColumn("numWeight", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumWeight);
+                this.columnnumVolume = new global::System.Data.DataColumn("numVolume", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumVolume);
+                this.columnnumPromWeight = new global::System.Data.DataColumn("numPromWeight", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumPromWeight);
+                this.columnnumPromVolume = new global::System.Data.DataColumn("numPromVolume", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumPromVolume);
+                this.columnintRowNumber.ReadOnly = true;
+                this.columnstrProductFullName.MaxLength = 200;
+                this.columnnumQuantity.AllowDBNull = false;
+                this.columnstrUOMShow.MaxLength = 500;
+                this.columnstrPromItemName.MaxLength = 500;
+                this.columnstrPromUom.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCustomerServiceDODetailsWithoutTripRow NewSprCustomerServiceDODetailsWithoutTripRow() {
+                return ((SprCustomerServiceDODetailsWithoutTripRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprCustomerServiceDODetailsWithoutTripRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprCustomerServiceDODetailsWithoutTripRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprCustomerServiceDODetailsWithoutTripRowChanged != null)) {
+                    this.SprCustomerServiceDODetailsWithoutTripRowChanged(this, new SprCustomerServiceDODetailsWithoutTripRowChangeEvent(((SprCustomerServiceDODetailsWithoutTripRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprCustomerServiceDODetailsWithoutTripRowChanging != null)) {
+                    this.SprCustomerServiceDODetailsWithoutTripRowChanging(this, new SprCustomerServiceDODetailsWithoutTripRowChangeEvent(((SprCustomerServiceDODetailsWithoutTripRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprCustomerServiceDODetailsWithoutTripRowDeleted != null)) {
+                    this.SprCustomerServiceDODetailsWithoutTripRowDeleted(this, new SprCustomerServiceDODetailsWithoutTripRowChangeEvent(((SprCustomerServiceDODetailsWithoutTripRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprCustomerServiceDODetailsWithoutTripRowDeleting != null)) {
+                    this.SprCustomerServiceDODetailsWithoutTripRowDeleting(this, new SprCustomerServiceDODetailsWithoutTripRowChangeEvent(((SprCustomerServiceDODetailsWithoutTripRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprCustomerServiceDODetailsWithoutTripRow(SprCustomerServiceDODetailsWithoutTripRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DeliverySupportTDS ds = new DeliverySupportTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprCustomerServiceDODetailsWithoutTripDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class SprCustomerServiceDORow : global::System.Data.DataRow {
@@ -3416,6 +3858,351 @@ namespace SAD_DAL.Customer.Report {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprCustomerServiceDODetailsWithoutTripRow : global::System.Data.DataRow {
+            
+            private SprCustomerServiceDODetailsWithoutTripDataTable tableSprCustomerServiceDODetailsWithoutTrip;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprCustomerServiceDODetailsWithoutTripRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprCustomerServiceDODetailsWithoutTrip = ((SprCustomerServiceDODetailsWithoutTripDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long intRowNumber {
+                get {
+                    try {
+                        return ((long)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.intRowNumberColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intRowNumber\' in table \'SprCustomerServiceDODetailsWithoutT" +
+                                "rip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.intRowNumberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public long intProductId {
+                get {
+                    try {
+                        return ((long)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.intProductIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intProductId\' in table \'SprCustomerServiceDODetailsWithoutT" +
+                                "rip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.intProductIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strProductFullName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.strProductFullNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strProductFullName\' in table \'SprCustomerServiceDODetailsWi" +
+                                "thoutTrip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.strProductFullNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numQuantity {
+                get {
+                    return ((decimal)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.numQuantityColumn]));
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.numQuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strUOMShow {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.strUOMShowColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strUOMShow\' in table \'SprCustomerServiceDODetailsWithoutTri" +
+                                "p\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.strUOMShowColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPromItemName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.strPromItemNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPromItemName\' in table \'SprCustomerServiceDODetailsWitho" +
+                                "utTrip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.strPromItemNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strPromUom {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.strPromUomColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strPromUom\' in table \'SprCustomerServiceDODetailsWithoutTri" +
+                                "p\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.strPromUomColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numPromotion {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromotionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numPromotion\' in table \'SprCustomerServiceDODetailsWithoutT" +
+                                "rip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromotionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numWeight {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.numWeightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numWeight\' in table \'SprCustomerServiceDODetailsWithoutTrip" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.numWeightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numVolume {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.numVolumeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numVolume\' in table \'SprCustomerServiceDODetailsWithoutTrip" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.numVolumeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numPromWeight {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromWeightColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numPromWeight\' in table \'SprCustomerServiceDODetailsWithout" +
+                                "Trip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromWeightColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numPromVolume {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromVolumeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numPromVolume\' in table \'SprCustomerServiceDODetailsWithout" +
+                                "Trip\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromVolumeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintRowNumberNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.intRowNumberColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintRowNumberNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.intRowNumberColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintProductIdNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.intProductIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintProductIdNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.intProductIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrProductFullNameNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.strProductFullNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrProductFullNameNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.strProductFullNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrUOMShowNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.strUOMShowColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrUOMShowNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.strUOMShowColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrPromItemNameNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.strPromItemNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrPromItemNameNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.strPromItemNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrPromUomNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.strPromUomColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrPromUomNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.strPromUomColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumPromotionNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.numPromotionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumPromotionNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromotionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumWeightNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.numWeightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumWeightNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.numWeightColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumVolumeNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.numVolumeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumVolumeNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.numVolumeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumPromWeightNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.numPromWeightColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumPromWeightNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromWeightColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumPromVolumeNull() {
+                return this.IsNull(this.tableSprCustomerServiceDODetailsWithoutTrip.numPromVolumeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumPromVolumeNull() {
+                this[this.tableSprCustomerServiceDODetailsWithoutTrip.numPromVolumeColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -3605,6 +4392,40 @@ namespace SAD_DAL.Customer.Report {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprAttachmentInfoRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprCustomerServiceDODetailsWithoutTripRowChangeEvent : global::System.EventArgs {
+            
+            private SprCustomerServiceDODetailsWithoutTripRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCustomerServiceDODetailsWithoutTripRowChangeEvent(SprCustomerServiceDODetailsWithoutTripRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprCustomerServiceDODetailsWithoutTripRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -5523,6 +6344,443 @@ namespace SAD_DAL.Customer.Report.DeliverySupportTDSTableAdapters {
             }
             DeliverySupportTDS.SprAttachmentInfoDataTable dataTable = new DeliverySupportTDS.SprAttachmentInfoDataTable();
             this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprCustomerServiceDODetailsWithoutTripTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprCustomerServiceDODetailsWithoutTripTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprCustomerServiceDODetailsWithoutTrip";
+            tableMapping.ColumnMappings.Add("intRowNumber", "intRowNumber");
+            tableMapping.ColumnMappings.Add("intProductId", "intProductId");
+            tableMapping.ColumnMappings.Add("strProductFullName", "strProductFullName");
+            tableMapping.ColumnMappings.Add("numQuantity", "numQuantity");
+            tableMapping.ColumnMappings.Add("strUOMShow", "strUOMShow");
+            tableMapping.ColumnMappings.Add("strPromItemName", "strPromItemName");
+            tableMapping.ColumnMappings.Add("strPromUom", "strPromUom");
+            tableMapping.ColumnMappings.Add("numPromotion", "numPromotion");
+            tableMapping.ColumnMappings.Add("numWeight", "numWeight");
+            tableMapping.ColumnMappings.Add("numVolume", "numVolume");
+            tableMapping.ColumnMappings.Add("numPromWeight", "numPromWeight");
+            tableMapping.ColumnMappings.Add("numPromVolume", "numPromVolume");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprCustomerServiceDODetailsWithoutTrip";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intID", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 19, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUserID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strChallanNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strTripNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ysnCompleted", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.InputOutput, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strVehicle", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strLogistic", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteInTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.InputOutput, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteOutTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.InputOutput, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDriver", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strContact", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strDriverNID", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strHelperName", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strLoadUOM", global::System.Data.SqlDbType.VarChar, 200, global::System.Data.ParameterDirection.InputOutput, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numEmptyWeight", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.InputOutput, 18, 2, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numLoadedWeight", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.InputOutput, 18, 2, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@numLoadingCapacity", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.InputOutput, 18, 2, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteEmptyWgtTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.InputOutput, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLoadedWgtTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.InputOutput, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable GetDataCustomerServiceDODetailsWithoutTrip(
+                    global::System.Nullable<long> intID, 
+                    global::System.Nullable<int> intUserID, 
+                    ref string strChallanNo, 
+                    ref string strTripNo, 
+                    ref global::System.Nullable<bool> ysnCompleted, 
+                    ref string strVehicle, 
+                    ref string strLogistic, 
+                    ref global::System.Nullable<global::System.DateTime> dteInTime, 
+                    ref global::System.Nullable<global::System.DateTime> dteOutTime, 
+                    ref string strDriver, 
+                    ref string strContact, 
+                    ref string strDriverNID, 
+                    ref string strHelperName, 
+                    ref string strLoadUOM, 
+                    ref global::System.Nullable<decimal> numEmptyWeight, 
+                    ref global::System.Nullable<decimal> numLoadedWeight, 
+                    ref global::System.Nullable<decimal> numLoadingCapacity, 
+                    ref global::System.Nullable<global::System.DateTime> dteEmptyWgtTime, 
+                    ref global::System.Nullable<global::System.DateTime> dteLoadedWgtTime) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((long)(intID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((intUserID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intUserID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((strChallanNo == null)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((string)(strChallanNo));
+            }
+            if ((strTripNo == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(strTripNo));
+            }
+            if ((ysnCompleted.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((bool)(ysnCompleted.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((strVehicle == null)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(strVehicle));
+            }
+            if ((strLogistic == null)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(strLogistic));
+            }
+            if ((dteInTime.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((System.DateTime)(dteInTime.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((dteOutTime.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((System.DateTime)(dteOutTime.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((strDriver == null)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strDriver));
+            }
+            if ((strContact == null)) {
+                this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strContact));
+            }
+            if ((strDriverNID == null)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(strDriverNID));
+            }
+            if ((strHelperName == null)) {
+                this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((string)(strHelperName));
+            }
+            if ((strLoadUOM == null)) {
+                this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[14].Value = ((string)(strLoadUOM));
+            }
+            if ((numEmptyWeight.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[15].Value = ((decimal)(numEmptyWeight.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            if ((numLoadedWeight.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[16].Value = ((decimal)(numLoadedWeight.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((numLoadingCapacity.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[17].Value = ((decimal)(numLoadingCapacity.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            if ((dteEmptyWgtTime.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[18].Value = ((System.DateTime)(dteEmptyWgtTime.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            if ((dteLoadedWgtTime.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[19].Value = ((System.DateTime)(dteLoadedWgtTime.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
+            DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable dataTable = new DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable();
+            this.Adapter.Fill(dataTable);
+            if (((this.Adapter.SelectCommand.Parameters[3].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[3].Value.GetType() == typeof(global::System.DBNull)))) {
+                strChallanNo = null;
+            }
+            else {
+                strChallanNo = ((string)(this.Adapter.SelectCommand.Parameters[3].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[4].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[4].Value.GetType() == typeof(global::System.DBNull)))) {
+                strTripNo = null;
+            }
+            else {
+                strTripNo = ((string)(this.Adapter.SelectCommand.Parameters[4].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[5].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[5].Value.GetType() == typeof(global::System.DBNull)))) {
+                ysnCompleted = new global::System.Nullable<bool>();
+            }
+            else {
+                ysnCompleted = new global::System.Nullable<bool>(((bool)(this.Adapter.SelectCommand.Parameters[5].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[6].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[6].Value.GetType() == typeof(global::System.DBNull)))) {
+                strVehicle = null;
+            }
+            else {
+                strVehicle = ((string)(this.Adapter.SelectCommand.Parameters[6].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[7].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[7].Value.GetType() == typeof(global::System.DBNull)))) {
+                strLogistic = null;
+            }
+            else {
+                strLogistic = ((string)(this.Adapter.SelectCommand.Parameters[7].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[8].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[8].Value.GetType() == typeof(global::System.DBNull)))) {
+                dteInTime = new global::System.Nullable<global::System.DateTime>();
+            }
+            else {
+                dteInTime = new global::System.Nullable<global::System.DateTime>(((global::System.DateTime)(this.Adapter.SelectCommand.Parameters[8].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[9].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[9].Value.GetType() == typeof(global::System.DBNull)))) {
+                dteOutTime = new global::System.Nullable<global::System.DateTime>();
+            }
+            else {
+                dteOutTime = new global::System.Nullable<global::System.DateTime>(((global::System.DateTime)(this.Adapter.SelectCommand.Parameters[9].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[10].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[10].Value.GetType() == typeof(global::System.DBNull)))) {
+                strDriver = null;
+            }
+            else {
+                strDriver = ((string)(this.Adapter.SelectCommand.Parameters[10].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[11].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[11].Value.GetType() == typeof(global::System.DBNull)))) {
+                strContact = null;
+            }
+            else {
+                strContact = ((string)(this.Adapter.SelectCommand.Parameters[11].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[12].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[12].Value.GetType() == typeof(global::System.DBNull)))) {
+                strDriverNID = null;
+            }
+            else {
+                strDriverNID = ((string)(this.Adapter.SelectCommand.Parameters[12].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[13].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[13].Value.GetType() == typeof(global::System.DBNull)))) {
+                strHelperName = null;
+            }
+            else {
+                strHelperName = ((string)(this.Adapter.SelectCommand.Parameters[13].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[14].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[14].Value.GetType() == typeof(global::System.DBNull)))) {
+                strLoadUOM = null;
+            }
+            else {
+                strLoadUOM = ((string)(this.Adapter.SelectCommand.Parameters[14].Value));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[15].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[15].Value.GetType() == typeof(global::System.DBNull)))) {
+                numEmptyWeight = new global::System.Nullable<decimal>();
+            }
+            else {
+                numEmptyWeight = new global::System.Nullable<decimal>(((decimal)(this.Adapter.SelectCommand.Parameters[15].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[16].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[16].Value.GetType() == typeof(global::System.DBNull)))) {
+                numLoadedWeight = new global::System.Nullable<decimal>();
+            }
+            else {
+                numLoadedWeight = new global::System.Nullable<decimal>(((decimal)(this.Adapter.SelectCommand.Parameters[16].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[17].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[17].Value.GetType() == typeof(global::System.DBNull)))) {
+                numLoadingCapacity = new global::System.Nullable<decimal>();
+            }
+            else {
+                numLoadingCapacity = new global::System.Nullable<decimal>(((decimal)(this.Adapter.SelectCommand.Parameters[17].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[18].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[18].Value.GetType() == typeof(global::System.DBNull)))) {
+                dteEmptyWgtTime = new global::System.Nullable<global::System.DateTime>();
+            }
+            else {
+                dteEmptyWgtTime = new global::System.Nullable<global::System.DateTime>(((global::System.DateTime)(this.Adapter.SelectCommand.Parameters[18].Value)));
+            }
+            if (((this.Adapter.SelectCommand.Parameters[19].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[19].Value.GetType() == typeof(global::System.DBNull)))) {
+                dteLoadedWgtTime = new global::System.Nullable<global::System.DateTime>();
+            }
+            else {
+                dteLoadedWgtTime = new global::System.Nullable<global::System.DateTime>(((global::System.DateTime)(this.Adapter.SelectCommand.Parameters[19].Value)));
+            }
             return dataTable;
         }
     }

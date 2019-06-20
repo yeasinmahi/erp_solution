@@ -134,7 +134,48 @@
             </table>
                       
             </div>
-         <div class="leaveApplication_container"> 
+                  <div class="leaveApplication_container"> 
+             <table>
+                 <tr class="tblroweven"><td>
+              <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" AllowPaging="false"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="grdvDiscountAdjustment_PageIndexChanging" OnRowDataBound="grdvDiscountAdjustment_RowDataBound" >
+                  <AlternatingRowStyle BackColor="#CCCCCC" />
+                  <Columns>
+                     
+                      <asp:TemplateField><HeaderTemplate>    
+                <asp:CheckBox ID="chkbx" runat="server" onclick="CheckAll(this);" />   
+                </HeaderTemplate>  
+                <ItemTemplate><asp:CheckBox ID="chkbx" runat="server"/></ItemTemplate></asp:TemplateField>
+                    <asp:TemplateField HeaderText="Sl"> <ItemTemplate> <%#Container.DataItemIndex+1 %> 
+                    <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustid1") %>' />
+                    <asp:HiddenField ID="hdncustcoaid" runat="server" Value='<%# Eval("intCustCoAid1") %>' />
+                     <asp:HiddenField ID="hdncustnarrationindividual" runat="server" Value='<%# Eval("Narration1") %>' />
+                    <asp:HiddenField ID="hdncustomercommissionndividual" runat="server" Value='<%# Eval("monCashCommission1") %>' />
+                    <asp:HiddenField ID="hdncustname" runat="server" Value='<%# Eval("strCustName1") %>' />
+                    </ItemTemplate></asp:TemplateField>
+                    <asp:BoundField DataField="strCustName1" HeaderText="Name" SortExpression="strCustName" ItemStyle-HorizontalAlign="Center" >
+                    <ItemStyle HorizontalAlign="Center" />
+                    </asp:BoundField>
+                    <asp:BoundField DataField="intTotalNumberDO1" HeaderText="TotalNumberDO" SortExpression="intTotalNumberDO" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="decTotalDelv1" HeaderText="TotalDelv" SortExpression="decTotalDelv" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                  
+                    <asp:BoundField DataField="monCashCommission1" HeaderText="AdjustableAmount" SortExpression="monCashCommission" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                   
+                       <asp:BoundField DataField="Narration1" HeaderText="Narration" SortExpression="Narration1" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    </Columns>
+                    <FooterStyle BackColor="#CCCCCC" />
+                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                    <SortedAscendingHeaderStyle BackColor="#808080" />
+                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                    <SortedDescendingHeaderStyle BackColor="#383838" />
+                    <HeaderStyle CssClass="GridviewScrollHeader"/><PagerStyle CssClass="GridviewScrollPager"/>
+                        </asp:GridView> </td></tr>   
+                    </table>
+             </div>
+
+<div class="leaveApplication_container"> 
              <table>
                  <tr class="tblroweven"><td>
               <asp:GridView ID="grdvDiscountAdjustment" runat="server" AutoGenerateColumns="False" AllowPaging="false"  BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" ForeColor="Black" GridLines="Vertical" OnPageIndexChanging="grdvDiscountAdjustment_PageIndexChanging" OnRowDataBound="grdvDiscountAdjustment_RowDataBound" >
@@ -146,8 +187,8 @@
                 </HeaderTemplate>  
                 <ItemTemplate><asp:CheckBox ID="chkbx" runat="server"/></ItemTemplate></asp:TemplateField>
                     <asp:TemplateField HeaderText="Sl"> <ItemTemplate> <%#Container.DataItemIndex+1 %> 
-                    <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustid") %>' />
-                    <asp:HiddenField ID="hdncustcoaid" runat="server" Value='<%# Eval("intCOId1") %>' />
+                    <asp:HiddenField ID="hdncustid" runat="server" Value='<%# Eval("intCustid1") %>' />
+                    <asp:HiddenField ID="hdncustcoaid" runat="server" Value='<%# Eval("intCustCoAid1") %>' />
                      <asp:HiddenField ID="hdncustnarrationindividual" runat="server" Value='<%# Eval("Narration1") %>' />
                     <asp:HiddenField ID="hdncustomercommissionndividual" runat="server" Value='<%# Eval("monCashCommission1") %>' />
                     <asp:HiddenField ID="hdncustname" runat="server" Value='<%# Eval("strCustName1") %>' />
