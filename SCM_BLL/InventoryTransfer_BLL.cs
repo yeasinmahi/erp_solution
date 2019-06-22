@@ -570,19 +570,20 @@ namespace SCM_BLL
 
             return dt;
         }
-        public DataTable InsertFGAdjustment(int typeid,string xml,int whid, int unitid, int user)
+        public string InsertFGAdjustment(int typeid,string xml,int whid, int unitid, int user, ref string Message)
         {
             string strMsg = "";
+            string sms = string.Empty;
             try
             {
                 InsertFGItemAdjustmentTableAdapter adapter = new InsertFGItemAdjustmentTableAdapter();
-                return adapter.InsertFGAdjustment(typeid, xml, whid, unitid, user, ref strMsg);
+                adapter.InsertFGAdjustment(typeid, xml, whid, unitid, user, ref strMsg);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.ToString());
+                return strMsg;
             }
-           
+            return strMsg;
         }
     }
 }

@@ -230,21 +230,32 @@ namespace UI.SCM.Transfer
                 int unitId = new UnitBll().GetUnitIdByWhId(intWh);
                 if (unitId > 0)
                 {
-                    dt = objTransfer.InsertFGAdjustment(1, xmlString, intWh, unitId, Enroll);
+                    string Message = string.Empty;
+                   objTransfer.InsertFGAdjustment(1, xmlString, intWh, unitId, Enroll, ref Message);
 
-                    //if(dt != null)
+                    //if (dt != null)
                     //{
                     //    if (dt.Rows.Count > 0)
                     //    {
-                    //        string message = dt.Rows[0]["strMsg"].ToString();
+                    //        string message = dt.Rows[0]["Message"].ToString();
                     //    }
                     //}
 
-                    Toaster("Data Saved Successfully", Common.TosterType.Success);
+                    if(Message == "success")
+                    {
+                        dgvStore.DataSource = null;
+                        dgvStore.DataBind();
+                        Toaster(Message, Common.TosterType.Success);
+                    }
+                    else
+                    {
+                        Toaster(Message, Common.TosterType.Success);
+                    }
+
+                    
 
 
-                    dgvStore.DataSource = null;
-                    dgvStore.DataBind();
+                    
                 }
                 else
                 {
