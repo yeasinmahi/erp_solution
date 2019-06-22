@@ -27,7 +27,7 @@ namespace LOGIS_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Logistic;Persist Security Info=True;User ID=" +
-            "apsrw;Password=SalAg@3221#")]
+            "rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_LogisticConnectionString {
             get {
                 return ((string)(this["ERP_LogisticConnectionString"]));
@@ -38,7 +38,7 @@ namespace LOGIS_DAL.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Logistic;Persist Security Info=True;User ID=" +
-            "apsrw;Password=SalAg@3221#")]
+            "rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_LogisticConnectionString1 {
             get {
                 return ((string)(this["ERP_LogisticConnectionString1"]));
@@ -48,8 +48,8 @@ namespace LOGIS_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Asset;Persist Security Info=True;User ID=aps" +
-            "rw;Password=SalAg@3221#")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Asset;Persist Security Info=True;User ID=rNw" +
+            "Us@Ag;Password=a2sLs@Ag")]
         public string ERP_AssetConnectionString {
             get {
                 return ((string)(this["ERP_AssetConnectionString"]));
@@ -59,7 +59,7 @@ namespace LOGIS_DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Global;User ID=apsrw;Password=SalAg@3221#")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=ESQL;Initial Catalog=ERP_Global;User ID=rNwUs@Ag;Password=a2sLs@Ag")]
         public string ERP_GlobalConnectionString {
             get {
                 return ((string)(this["ERP_GlobalConnectionString"]));

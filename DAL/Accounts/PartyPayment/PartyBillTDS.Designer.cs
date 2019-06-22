@@ -13264,7 +13264,7 @@ Where mrr.intPOID=@poid ";
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
             this._connection.ConnectionString = "Data Source=ESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID" +
-                "=sqlrw;Password=RWsql@123";
+                "=rNwUs@Ag;Password=a2sLs@Ag";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13435,7 +13435,7 @@ Where mrr.intPOID=@poid ";
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
             this._connection.ConnectionString = "Data Source=ESQL;Initial Catalog=ERP_Inventory;Persist Security Info=True;User ID" +
-                "=sqlrw;Password=RWsql@123";
+                "=rNwUs@Ag;Password=a2sLs@Ag";
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
