@@ -78,6 +78,7 @@ namespace UI.SCM.Transfer
         }
         protected void txtItem_TextChanged(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
             try
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
@@ -100,9 +101,21 @@ namespace UI.SCM.Transfer
                 ddlLcation.DataTextField = "strLocationName";
                 ddlLcation.DataBind();
 
-                int UnitId = objTransfer.GetSingleUnit(intWh);
-                decimal Rate = objTransfer.GetItemRate(Id, UnitId);
-                hfRate.Value = Rate.ToString();
+                //int UnitId = objTransfer.GetSingleUnit(intWh);
+                //decimal Rate = objTransfer.GetItemRate(Id, UnitId);
+                dt = objTransfer.GetItemDetailsData(Id, intWh);
+                if(dt != null)
+                {
+                    if (dt.Rows.Count > 0)
+                    {
+                        hfCurrentStock.Value = dt.Rows[0]["current_stock"].ToString();
+                        hfCurrentValue.Value = dt.Rows[0]["total_amount"].ToString();
+                        hfRate.Value = dt.Rows[0]["unit_price"].ToString();
+
+                    }
+                }
+
+                txtCurrentStock.Text = !string.IsNullOrEmpty(hfCurrentStock.Value) ? hfCurrentStock.Value : "0";
             }
             catch
             {
@@ -119,6 +132,7 @@ namespace UI.SCM.Transfer
                 bool proceed = false;
                 string remarks = string.Empty;
                 decimal monValue = 0;
+                decimal newValue = 0;
                 if (arrayKey.Length > 0)
                 {
                     item = arrayKey[0].ToString();
@@ -128,25 +142,25 @@ namespace UI.SCM.Transfer
 
                 string locationId = ddlLcation.SelectedValue.ToString();
                 string locationName = ddlLcation.SelectedValue.ToString();
-                string transType = ddlType.SelectedItem.ToString();
-                string transTypeId = ddlType.SelectedValue.ToString();
+                decimal currentStock = !string.IsNullOrEmpty(hfCurrentStock.Value) ? decimal.Parse(hfCurrentStock.Value) : 0;
+                decimal currentValue = !string.IsNullOrEmpty(hfCurrentValue.Value) ? decimal.Parse(hfCurrentValue.Value) : 0;
                 uom = hdnUom.Value.ToString();
                 remarks = txtRemarks.Text.ToString();
-                decimal qty = Convert.ToDecimal(txtQty.Text.ToString());
-                //decimal rate = Convert.ToDecimal(txtRate.Text.ToString());
+                decimal newQty = Convert.ToDecimal(txtQty.Text.ToString());
                 decimal rate = Convert.ToDecimal(hfRate.Value);
                 if (rate > 0)
                 {
-                    monValue = qty * rate;
-                    if (ddlType.SelectedValue().Equals(2))
-                    {
-                        monValue = 0;
-                    }
+                    monValue = newQty * rate;
+                    newValue = newQty * rate;
 
+                    decimal adjustQty = newQty - currentStock;
+                    decimal adjustValue = newValue - currentValue;
                     checkXmlItemData(itemid);
                     if (CheckItem == 1)
                     {
-                        CreateXml(item, itemid, qty.ToString(), rate.ToString(), monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+                        // CreateXml(item, itemid, qty.ToString(), rate.ToString(), monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+                        CreateXml(item, itemid, currentStock.ToString(), rate.ToString(), currentValue.ToString(), newQty.ToString(), newValue.ToString(), locationId, locationName,
+                            adjustQty.ToString(), adjustValue.ToString(), uom, remarks);
                         txtItem.Text = "";
                         txtQty.Text = "0";
                         //txtRate.Text = "0";
@@ -161,39 +175,10 @@ namespace UI.SCM.Transfer
                 }
                 else
                 {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('COGS Cost Missing.');", true);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Costing for Selected Item is not set. Please Contact with your Accounts Department.');", true);
+                    return;
                 }
                 
-
-
-
-                //if (ddlType.SelectedValue().Equals(2))
-                //{
-                //    qty *= -1;
-                //    monValue *= -1;
-                //}
-                //if (qty > 0 || rate > 0)
-                //{
-                //    checkXmlItemData(itemid);
-                //    if (CheckItem == 1)
-                //    {
-                //        CreateXml(item, itemid, qty.ToString(), rate.ToString(), monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
-                //        txtItem.Text = "";
-                //        txtQty.Text = "0";
-                //        //txtRate.Text = "0";
-                //        hfRate.Value = "0";
-                //        ddlLcation.DataSource = "";
-                //        ddlLcation.DataBind();
-                //    }
-                //    else
-                //    {
-                //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true);
-                //    }
-                //}
-                //else
-                //{
-                //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please input Valid Quantity and Rate');", true);
-                //}
             }
             catch
             {
@@ -252,10 +237,10 @@ namespace UI.SCM.Transfer
                     int unitId = new UnitBll().GetUnitIdByWhId(intWh);
                     if (unitId > 0)
                     {
-                        dt = objTransfer.InventoryAdjustment(unitId, intWh, enroll, intItemId, quantity, rate, intLocation,
-                            remarks);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('" + dt.Rows[0][0] + "');", true);
+                        // dt = objTransfer.InventoryAdjustment(unitId, intWh, enroll, intItemId, quantity, rate, intLocation,remarks);
+                        dt = objTransfer.InsertFGAdjustment(1, xmlString, intWh, unitId, Enroll);
+
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0][0] + "');", true);
                         dgvStore.UnLoad();
                         try
                         {
@@ -280,18 +265,20 @@ namespace UI.SCM.Transfer
                 try { File.Delete(filePathForXML); } catch { }
             }
         }
-        
+
         #endregion
 
         #region Method
-        private void CreateXml(string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
+        private void CreateXml(string item, string itemid, string currentStock, string rate, string currentValue, string newQty,string newValue, string locationId, string locationName, 
+            string adjustQty, string adjustValue, string uom, string remarks)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, item, itemid, qty, rate, monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+                XmlNode addItem = CreateItemNode(doc, item, itemid, currentStock.ToString(), rate.ToString(), currentValue.ToString(), newQty.ToString(), newValue.ToString(), locationId, locationName,
+                            adjustQty.ToString(), adjustValue.ToString(), uom, remarks);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -299,8 +286,31 @@ namespace UI.SCM.Transfer
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, item, itemid, qty, rate, monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+                XmlNode addItem = CreateItemNode(doc, item, itemid, currentStock.ToString(), rate.ToString(), currentValue.ToString(), newQty.ToString(), newValue.ToString(), locationId, locationName,
+                            adjustQty.ToString(), adjustValue.ToString(), uom, remarks);
                 rootNode.AppendChild(addItem);
+                doc.AppendChild(rootNode);
+            }
+            doc.Save(filePathForXML);
+            LoadGridwithXml();
+        }
+        private void CreateXml_old(string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
+        {
+            XmlDocument doc = new XmlDocument();
+            if (File.Exists(filePathForXML))
+            {
+                doc.Load(filePathForXML);
+                XmlNode rootNode = doc.SelectSingleNode("voucher");
+                //XmlNode addItem = CreateItemNode(doc, item, itemid, qty, rate, monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+               // rootNode.AppendChild(addItem);
+            }
+            else
+            {
+                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
+                doc.AppendChild(xmldeclerationNode);
+                XmlNode rootNode = doc.CreateElement("voucher");
+                //XmlNode addItem = CreateItemNode(doc, item, itemid, qty, rate, monValue.ToString(), locationId, locationName, transType, transTypeId, uom, remarks);
+                //rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
@@ -331,7 +341,64 @@ namespace UI.SCM.Transfer
             }
             catch { }
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
+        private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string currentStock, string rate, string currentValue, string newQty, string newValue, string locationId, string locationName,
+            string adjustQty, string adjustValue, string uom, string remarks)
+        {
+            XmlNode node = doc.CreateElement("voucherEntry");
+
+            XmlAttribute Item = doc.CreateAttribute("item");
+            Item.Value = item;
+            XmlAttribute Itemid = doc.CreateAttribute("itemid");
+            Itemid.Value = itemid;
+            XmlAttribute CurrentStock = doc.CreateAttribute("currentStock");
+            CurrentStock.Value = currentStock;
+
+            XmlAttribute Rate = doc.CreateAttribute("rate");
+            Rate.Value = rate;
+
+            XmlAttribute CurrentValue = doc.CreateAttribute("currentValue");
+            CurrentValue.Value = currentValue;
+
+            XmlAttribute NewQty = doc.CreateAttribute("newQty");
+            NewQty.Value = newQty;
+
+            XmlAttribute NewValue = doc.CreateAttribute("newValue");
+            NewValue.Value = newValue;
+
+            XmlAttribute LocationId = doc.CreateAttribute("locationId");
+            LocationId.Value = locationId;
+            XmlAttribute LocationName = doc.CreateAttribute("locationName");
+            LocationName.Value = locationName;
+
+            XmlAttribute AdjustQty = doc.CreateAttribute("adjustQty");
+            AdjustQty.Value = adjustQty;
+            XmlAttribute AdjustValue = doc.CreateAttribute("adjustValue");
+            AdjustValue.Value = adjustValue;
+
+            XmlAttribute Uom = doc.CreateAttribute("uom");
+            Uom.Value = uom;
+
+            XmlAttribute Remarks = doc.CreateAttribute("remarks");
+            Remarks.Value = remarks;
+
+            node.Attributes.Append(Item);
+            node.Attributes.Append(Itemid);
+            node.Attributes.Append(CurrentStock);
+            node.Attributes.Append(Rate);
+            node.Attributes.Append(CurrentValue);
+            node.Attributes.Append(NewQty);
+            node.Attributes.Append(NewValue);
+            node.Attributes.Append(LocationId);
+            node.Attributes.Append(LocationName);
+            node.Attributes.Append(AdjustQty);
+            node.Attributes.Append(AdjustValue);
+            node.Attributes.Append(Uom);
+            //node.Attributes.Append(MonValue);
+            node.Attributes.Append(Remarks);
+
+            return node;
+        }
+        private XmlNode CreateItemNode_old(XmlDocument doc, string item, string itemid, string qty, string rate, string monValue, string locationId, string locationName, string transType, string transTypeId, string uom, string remarks)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 

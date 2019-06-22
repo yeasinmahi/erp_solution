@@ -73,14 +73,21 @@
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
-                                <asp:HiddenField runat="server" ID="hfRate" />
+                                <asp:HiddenField runat="server" ID="hfRate"/>
+                                <asp:HiddenField runat="server" ID="hfCurrentStock"/>
+                                <asp:HiddenField runat="server" ID="hfCurrentValue"/>
                             </td>
-                            <td style='text-align: left;'>Type:</td>
+                            <%--<td style='text-align: left;'>Type:</td>
                             <td style='text-align: left;'>
                                 <asp:DropDownList ID="ddlType" runat="server" CssClass="ddList">
                                     <asp:ListItem Text="Increase Inventory" Value="1"></asp:ListItem>
                                     <asp:ListItem Text="Decrease Inventory" Value="2"></asp:ListItem>
-                                </asp:DropDownList></td>
+                                </asp:DropDownList>
+                            </td>--%>
+                            <td style='text-align: left;'>Current Stock:</td>
+                            <td style='text-align: left;'>
+                                <asp:TextBox ID="txtCurrentStock" runat="server"  CssClass="txtBox" Enabled="false"></asp:TextBox>
+                            </td>
                         </tr>
                         <tr>
                             <td style='text-align: left;'>Location:</td>
@@ -95,7 +102,7 @@
                                 <asp:Label ID="Label3" Text="Quantity:" runat="server"></asp:Label>
                             </td>
                             <td style='text-align: left;'>
-                                <asp:TextBox ID="txtQty" CssClass="txtBox" Width="130px" Text="0" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtQty" CssClass="txtBox" Text="0" runat="server"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
@@ -139,16 +146,16 @@
                                         </asp:TemplateField>
 
 
-                                        <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="qty">
+                                        <asp:TemplateField HeaderText="New Quantity" ItemStyle-HorizontalAlign="right" SortExpression="newQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblQty" runat="server" Text='<%# Bind("qty") %>'></asp:Label>
+                                                <asp:Label ID="lblQty" runat="server" Text='<%# Bind("newQty") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue">
+                                        <asp:TemplateField HeaderText="New Value" ItemStyle-HorizontalAlign="right" SortExpression="newValue">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblValue" runat="server" Text='<%# Bind("monValue") %>'></asp:Label>
+                                                <asp:Label ID="lblValue" runat="server" Text='<%# Bind("newValue") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
@@ -173,12 +180,12 @@
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
-                                        <asp:TemplateField HeaderText="TransType" ItemStyle-HorizontalAlign="right" SortExpression="transType">
+                                       <%-- <asp:TemplateField HeaderText="TransType" ItemStyle-HorizontalAlign="right" SortExpression="transType">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblTrans" runat="server" Width="" Text='<%# Bind("transType") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Remarks" ItemStyle-HorizontalAlign="right" SortExpression="transType">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblRemarks" runat="server" Width="" Text='<%# Bind("remarks") %>'></asp:Label>
