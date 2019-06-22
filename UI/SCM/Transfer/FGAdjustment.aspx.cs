@@ -102,7 +102,8 @@ namespace UI.SCM.Transfer
                 ddlLcation.DataBind();
 
                 //int UnitId = objTransfer.GetSingleUnit(intWh);
-                //decimal Rate = objTransfer.GetItemRate(Id, UnitId);
+                decimal Rate = objTransfer.GetItemRate(Id, UnitId);
+                hfRate.Value = Rate.ToString();
                 dt = objTransfer.GetItemDetailsData(Id, intWh);
                 if(dt != null)
                 {
@@ -110,7 +111,7 @@ namespace UI.SCM.Transfer
                     {
                         hfCurrentStock.Value = dt.Rows[0]["current_stock"].ToString();
                         hfCurrentValue.Value = dt.Rows[0]["total_amount"].ToString();
-                        hfRate.Value = dt.Rows[0]["unit_price"].ToString();
+                        //hfRate.Value = dt.Rows[0]["unit_price"].ToString();
 
                     }
                 }
@@ -226,37 +227,61 @@ namespace UI.SCM.Transfer
                 {
                 }
                 intWh = ddlWh.SelectedValue();
-                foreach (GridViewRow row in dgvStore.Rows)
+                int unitId = new UnitBll().GetUnitIdByWhId(intWh);
+                if (unitId > 0)
                 {
-                    int intItemId = Convert.ToInt32(((Label)row.FindControl("lblItemId")).Text);
-                    decimal quantity = Convert.ToDecimal(((Label)row.FindControl("lblQty")).Text);
-                    decimal rate = Convert.ToDecimal(((Label)row.FindControl("lblRate")).Text);
-                    int intLocation = Convert.ToInt32(((Label)row.FindControl("lblLocationId")).Text);
-                    string remarks = ((Label)row.FindControl("lblRemarks")).Text;
+                    dt = objTransfer.InsertFGAdjustment(1, xmlString, intWh, unitId, Enroll);
 
-                    int unitId = new UnitBll().GetUnitIdByWhId(intWh);
-                    if (unitId > 0)
-                    {
-                        // dt = objTransfer.InventoryAdjustment(unitId, intWh, enroll, intItemId, quantity, rate, intLocation,remarks);
-                        dt = objTransfer.InsertFGAdjustment(1, xmlString, intWh, unitId, Enroll);
+                    //if(dt != null)
+                    //{
+                    //    if (dt.Rows.Count > 0)
+                    //    {
+                    //        string message = dt.Rows[0]["strMsg"].ToString();
+                    //    }
+                    //}
 
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0][0] + "');", true);
-                        dgvStore.UnLoad();
-                        try
-                        {
-                            File.Delete(filePathForXML);
-                        }
-                        catch
-                        {
-                        }
-                    }
-                    else
-                    {
-                        Toaster("Something error in getting unit Id", Common.TosterType.Error);
-                    }
+                    Toaster("Data Saved Successfully", Common.TosterType.Success);
 
+
+                    dgvStore.DataSource = null;
+                    dgvStore.DataBind();
                 }
-                txtItem.Text = String.Empty;
+                else
+                {
+                Toaster("Something error in getting unit Id", Common.TosterType.Error);
+                }
+
+            //foreach (GridViewRow row in dgvStore.Rows)
+            //{
+            //    int intItemId = Convert.ToInt32(((Label)row.FindControl("lblItemId")).Text);
+            //    decimal quantity = Convert.ToDecimal(((Label)row.FindControl("lblQty")).Text);
+            //    decimal rate = Convert.ToDecimal(((Label)row.FindControl("lblValue")).Text);
+            //    int intLocation = Convert.ToInt32(((Label)row.FindControl("lblLocationId")).Text);
+            //    string remarks = ((Label)row.FindControl("lblRemarks")).Text;
+
+            //    int unitId = new UnitBll().GetUnitIdByWhId(intWh);
+            //    if (unitId > 0)
+            //    {
+            //        // dt = objTransfer.InventoryAdjustment(unitId, intWh, enroll, intItemId, quantity, rate, intLocation,remarks);
+            //        dt = objTransfer.InsertFGAdjustment(1, xmlString, intWh, unitId, Enroll);
+
+            //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0][0] + "');", true);
+            //        dgvStore.UnLoad();
+            //        try
+            //        {
+            //            File.Delete(filePathForXML);
+            //        }
+            //        catch
+            //        {
+            //        }
+            //    }
+            //    else
+            //    {
+            //        Toaster("Something error in getting unit Id", Common.TosterType.Error);
+            //    }
+
+            //}
+            txtItem.Text = String.Empty;
                 txtRemarks.Text = String.Empty;
             }
             catch (Exception ex)
