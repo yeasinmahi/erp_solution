@@ -12,6 +12,8 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
+
 namespace UI.SAD.Delivery
 {
     public partial class ViewOrderForPicking : BasePage
@@ -43,15 +45,15 @@ namespace UI.SAD.Delivery
                 try
                 {
                     dt = new DataTable();
-                    dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
+                    dt = obj.GetPickingCreateStatusData(ddlUnit.SelectedValue());
                     if (dt.Rows.Count > 0)
                     {
                         hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
                     }
                 }
-                catch
+                catch(Exception ex)
                 {
-                    
+                    Toaster(ex.Message,Common.TosterType.Error);
                 }
                          
 

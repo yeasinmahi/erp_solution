@@ -87,5 +87,25 @@ namespace SAD_BLL.Global
             }
             catch { return new DataTable(); }
         }
+
+        public void saveRegion(Int32 unitID, string region, Int32 regionEnroll, string mobileNo, string department, Int32 userID)
+        {
+            QueriesTableAdapter objQue = new QueriesTableAdapter();
+
+            // This Hard Coded Parameter Exist in Providing Excel Code
+
+            Int32 regionID =1, areaID=6, territoryID=7, pointID=8, zoneID=9, clasterID=10, custid=300494, areaEnroll=58057;
+            Int32 territoryEnroll = 58058, pointEnroll = 58059, zoneEnroll = 58060, clasterEnroll = 58061, part = 1;
+            string area = "Jessore", territory = "Nowapara", point = "Keshobpur", zone = "keshobpur", claster = "Magurkhali", officeEmail="";
+
+            try
+            {
+                objQue.RegionSetupAGCustAdd(unitID,custid,region, regionEnroll, area, areaEnroll, territory, territoryEnroll, point, pointEnroll, zone, zoneEnroll, claster, clasterEnroll, userID,part, regionID, areaID, territoryID, pointID, zoneID, clasterID, mobileNo,department, officeEmail);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
