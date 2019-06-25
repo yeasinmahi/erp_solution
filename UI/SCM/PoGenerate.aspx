@@ -753,12 +753,13 @@
                                                         <ItemStyle HorizontalAlign="center" />
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="HS Code" ItemStyle-HorizontalAlign="right" SortExpression="strHsCode">
+                                                    <asp:TemplateField HeaderText="HS Code" ItemStyle-HorizontalAlign="center" SortExpression="strHsCode">
                                                         <ItemTemplate>
-                                                            <asp:TextBox ID="lblHsCode" runat="server" Text='<%# Bind("strHsCode") %>'></asp:TextBox>
+                                                            <asp:TextBox ID="lblHsCode" ForeColor="blue" runat="server" Text='<%# Bind("strHsCode") %>' Width="70px"></asp:TextBox>
                                                             <%--<asp:Label ID="lblHsCode" runat="server" Text='<%# Bind("strHsCode") %>'></asp:Label>--%>
                                                         </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="Right" />
+                                                        <ItemStyle HorizontalAlign="center"/>
+                                                        
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Purpose" ItemStyle-HorizontalAlign="right" SortExpression="strDesc">
@@ -817,11 +818,11 @@
                                                         <ItemStyle HorizontalAlign="Right" />
                                                     </asp:TemplateField>
 
-                                                    <asp:TemplateField HeaderText="Previous Price" ItemStyle-HorizontalAlign="right" Visible="true" SortExpression="monPreviousRate">
+                                                    <asp:TemplateField HeaderText="Previous Price" ItemStyle-HorizontalAlign="right"  Visible="true" SortExpression="monPreviousRate">
                                                         <ItemTemplate>
-                                                            <asp:LinkButton runat="server" ID="lblPreviousPrice" Text='<%# Bind("monPreviousRate","{0:n2}") %>' OnClick="lblPreviousPrice_Click"></asp:LinkButton>
+                                                            <asp:LinkButton runat="server" ID="lblPreviousPrice" forecolor="Blue" Text='<%# Bind("monPreviousRate","{0:n2}") %>' OnClick="lblPreviousPrice_Click"></asp:LinkButton>
                                                         </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="Right" Width="50px" />
+                                                        <ItemStyle HorizontalAlign="Right" Width="60px" />
                                                     </asp:TemplateField>
 
                                                     <asp:TemplateField HeaderText="Previous avg" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="monPreviousRate">
