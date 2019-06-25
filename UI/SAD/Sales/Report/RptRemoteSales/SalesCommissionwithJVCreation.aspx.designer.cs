@@ -301,6 +301,15 @@ namespace UI.SAD.Sales.Report.RptRemoteSales {
         protected global::System.Web.UI.WebControls.DropDownList drdlCommissionCatg;
         
         /// <summary>
+        /// odsarea2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource odsarea2;
+        
+        /// <summary>
         /// lblcreatedjv control.
         /// </summary>
         /// <remarks>
@@ -317,6 +326,42 @@ namespace UI.SAD.Sales.Report.RptRemoteSales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCreatedjvnumber;
+        
+        /// <summary>
+        /// lblFactroyRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFactroyRate;
+        
+        /// <summary>
+        /// txtfactrate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtfactrate;
+        
+        /// <summary>
+        /// lblGhatRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblGhatRate;
+        
+        /// <summary>
+        /// txtGhatRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtGhatRate;
         
         /// <summary>
         /// btnShow control.

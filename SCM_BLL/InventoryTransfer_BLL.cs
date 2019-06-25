@@ -555,6 +555,35 @@ namespace SCM_BLL
 
             return UnitId;
         }
+        public DataTable GetItemDetailsData(int ItemId, int WHId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                InventoryRunningBalanceTableAdapter adapter = new InventoryRunningBalanceTableAdapter();
+                dt = adapter.GetItemDetailsData(ItemId, WHId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
 
+            return dt;
+        }
+        public string InsertFGAdjustment(int typeid,string xml,int whid, int unitid, int user, ref string Message)
+        {
+            string strMsg = "";
+            string sms = string.Empty;
+            try
+            {
+                InsertFGItemAdjustmentTableAdapter adapter = new InsertFGItemAdjustmentTableAdapter();
+                adapter.InsertFGAdjustment(typeid, xml, whid, unitid, user, ref strMsg);
+            }
+            catch (Exception ex)
+            {
+                return strMsg;
+            }
+            return strMsg;
+        }
     }
 }

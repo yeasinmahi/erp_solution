@@ -25239,6 +25239,8 @@ namespace SAD_DAL.Sales {
                 this.columnamdesignationid = new global::System.Data.DataColumn("amdesignationid", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnamdesignationid);
                 this.columnaremangaername.MaxLength = 500;
+                this.columnmonCollection.ReadOnly = true;
+                this.columnmoncommission.ReadOnly = true;
                 this.columnstrSalesOffice.MaxLength = 500;
                 this.columnAMaccountnumber.MaxLength = 500;
                 this.columnAMbankname.MaxLength = 500;

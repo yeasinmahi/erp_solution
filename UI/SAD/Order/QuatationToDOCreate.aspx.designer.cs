@@ -139,6 +139,33 @@ namespace UI.SAD.Order {
         protected global::System.Web.UI.WebControls.HiddenField hdnDiscountP;
         
         /// <summary>
+        /// hdnLm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnLm;
+        
+        /// <summary>
+        /// hdnBl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnBl;
+        
+        /// <summary>
+        /// hdnCreditSales control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnCreditSales;
+        
+        /// <summary>
         /// lblordernumberval control.
         /// </summary>
         /// <remarks>

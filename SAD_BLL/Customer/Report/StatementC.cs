@@ -8,6 +8,7 @@ using SAD_DAL.Customer.Report.StatementTDSTableAdapters;
 using System.Data;
 using System.Collections;
 using SAD_DAL.Sales.SalesViewTDSTableAdapters;
+using SAD_DAL.Sales.SalesOrderViewTDSTableAdapters;
 
 namespace SAD_BLL.Customer.Report
 {
@@ -1701,8 +1702,8 @@ namespace SAD_BLL.Customer.Report
         {
             try
             {
-                SprDOSummeryReportsTableAdapter bll = new SprDOSummeryReportsTableAdapter();
-                return bll.tasprDOSummeryReports(reporttype, unitdid, dtefromdate, dttodate);
+                SprDOSummeryReports1TableAdapter bll = new SprDOSummeryReports1TableAdapter();
+                return bll.DOSummeryReports(reporttype, unitdid, dtefromdate, dttodate);
             }
             catch { return new DataTable(); }
         }
@@ -2022,8 +2023,8 @@ namespace SAD_BLL.Customer.Report
         {
             try
             {
-                SprDiscountAdjustmentTableAdapter bll = new SprDiscountAdjustmentTableAdapter();
-                return bll.GetDatasprDiscountAdjustment(dtfromdate, dttodate, salesofice, reptname, unitid);
+                SprDiscountAdjustment1TableAdapter bll = new SprDiscountAdjustment1TableAdapter();
+                return bll.DiscountAdjustment(dtfromdate, dttodate, salesofice, reptname, unitid);
             }
             catch { return new DataTable(); }
         }

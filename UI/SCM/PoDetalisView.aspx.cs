@@ -57,6 +57,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
+                DataTable dtvb = new DataTable();
                 enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
 
                 dt = DataTableLoad.GetPoViewDetalisDataTable(PoNo, enroll);
@@ -106,6 +107,14 @@ namespace UI.SCM
                     AmountFormat formatAmount = new AmountFormat();
                     string totalAmountInWord = formatAmount.GetTakaInWords(groundTotal, "", "Only");
                     lblInWard.Text = "In Word GT: " + totalAmountInWord;
+
+                    dtvb = obj.GetVATnBINNoData(intunit);
+                    if(dtvb != null && dtvb.Rows.Count > 0)
+                    {
+                        lblBinNo.Text = !string.IsNullOrEmpty(dtvb.Rows[0]["BIN_no"].ToString()) ? dtvb.Rows[0]["BIN_no"].ToString() : "N/A";
+                        lblVatRegNo.Text = !string.IsNullOrEmpty(dtvb.Rows[0]["Vat_Reg_No"].ToString()) ? dtvb.Rows[0]["Vat_Reg_No"].ToString() : "N/A";
+                    }
+
                 }
                 else
                 {

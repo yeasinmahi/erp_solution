@@ -166,13 +166,31 @@ namespace UI.SCM.Transfer {
         protected global::System.Web.UI.WebControls.HiddenField hfRate;
         
         /// <summary>
-        /// ddlType control.
+        /// hfCurrentStock control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlType;
+        protected global::System.Web.UI.WebControls.HiddenField hfCurrentStock;
+        
+        /// <summary>
+        /// hfCurrentValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCurrentValue;
+        
+        /// <summary>
+        /// txtCurrentStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCurrentStock;
         
         /// <summary>
         /// ddlLcation control.

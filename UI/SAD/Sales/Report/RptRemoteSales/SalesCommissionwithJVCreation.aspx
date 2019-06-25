@@ -107,12 +107,27 @@
 
              <tr class="tblrowOdd">
     
-             <td style="text-align:right"><asp:Label ID="lblCommissionType" CssClass="lbl" runat="server" Text="Commission Category:  "></asp:Label></td>
-             <td><asp:DropDownList ID="drdlCommissionCatg" runat="server" ></asp:DropDownList>
+             <td style="text-align:right"><asp:Label ID="lblCommissionType" CssClass="lbl" runat="server" Text="Area Name:  "></asp:Label></td>
+             <td><asp:DropDownList ID="drdlCommissionCatg" runat="server" DataSourceID="odsarea2" DataTextField="strText" DataValueField="intID" ></asp:DropDownList>
+                 <asp:ObjectDataSource ID="odsarea2" runat="server" SelectMethod="GetAreaName" TypeName="SAD_BLL.Sales.DelivaryView">
+                     <SelectParameters>
+                         <asp:ControlParameter ControlID="drdlUnitName" Name="unitid" PropertyName="SelectedValue" Type="Int32" />
+                     </SelectParameters>
+                 </asp:ObjectDataSource>
                 <td style="text-align:right"><asp:Label ID="lblcreatedjv" CssClass="lbl" runat="server" Text="Journal Voucher No.:  "></asp:Label></td>                   
                 <td style="text-align:right"><asp:Label ID="lblCreatedjvnumber" CssClass="lbl" runat="server"></asp:Label></td> 
 
                 </tr>
+            <tr>
+                <td style="text-align:right"><asp:Label ID="lblFactroyRate" CssClass="lbl" runat="server" Text="FactRate"></asp:Label></td> 
+                <td>
+                    <asp:TextBox ID="txtfactrate" runat="server" BackColor="#ffcc00"></asp:TextBox>
+                </td>
+                 <td style="text-align:right"><asp:Label ID="lblGhatRate" CssClass="lbl" runat="server" Text="Ghat Rate.:  "></asp:Label></td>                   
+                <td>
+                    <asp:TextBox ID="txtGhatRate" runat="server" BackColor="#ffcc00"></asp:TextBox>
+                </td>
+            </tr>
 
          
             <tr class="tblrowOdd"><td style="text-align:right" > <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
@@ -137,16 +152,29 @@
                     <asp:HiddenField ID="hdncustcoaid" runat="server" Value='<%# Eval("intCustCoAid1") %>' />
                      <asp:HiddenField ID="hdncustnarrationindividual" runat="server" Value='<%# Eval("Narration1") %>' />
                     <asp:HiddenField ID="hdncustomercommissionndividual" runat="server" Value='<%# Eval("monCashCommission1") %>' />
+                        <%--<asp:HiddenField ID="hdncustomercommissionndividual" runat="server" Value='<%# Eval("lblmonCashCommission1") %>' />--%>
                           <asp:HiddenField ID="hdncustname" runat="server" Value='<%# Eval("strCustName1") %>' />
                     </ItemTemplate></asp:TemplateField>
                     <asp:BoundField DataField="strCustName1" HeaderText="Name" SortExpression="strCustName" ItemStyle-HorizontalAlign="Center" >
                     <ItemStyle HorizontalAlign="Center" />
                     </asp:BoundField>
-                    <asp:BoundField DataField="intTotalNumberDO1" HeaderText="TotalNumberDO" SortExpression="intTotalNumberDO" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="decTotalDelv1" HeaderText="TotalDelv" SortExpression="decTotalDelv" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="decOnlyCashDOQnt1" HeaderText="OnlyCashDOQnt" SortExpression="decOnlyCashDOQnt" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>                     
-                    <asp:BoundField DataField="monCashCommission1" HeaderText="CashCommission" SortExpression="monCashCommission" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="strTerritory1" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="intTotalNumberDO1" HeaderText="FactDelv" SortExpression="intTotalNumberDO" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="decOnlyCashDOQnt1" HeaderText="GhatDelv" SortExpression="decOnlyCashDOQnt" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField> 
+                      <asp:BoundField DataField="decTotalDelv1" HeaderText="TotalDelv" SortExpression="decTotalDelv" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                                      
+                    <%--<asp:BoundField DataField="monCashCommission1" HeaderText="CashCommission" SortExpression="monCashCommission" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
+                     <asp:TemplateField HeaderText="monCashCommission1" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
+                                    <ItemTemplate>
+                                     
+                                        <asp:HiddenField ID="hdnmonCashCommission1" runat="server" Value='<%# Bind("monCashCommission1", "{0:0.0}") %>'></asp:HiddenField>  
+                                   <asp:Label ID="lblmonCashCommission1" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monCashCommission1", "{0:0.00}"))) %>'></asp:Label>
+
+                                        <asp:TextBox ID="txtmonCashCommission1"  runat="server" onblur="" CssClass="txtBox" Width="75px" TextMode="Number" Text='<%# Bind("monCashCommission1", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
+                                     </ItemTemplate>
+                                
+                                </asp:TemplateField>
+                      
+                      <asp:BoundField DataField="strTerritory1" HeaderText="Territory" SortExpression="strTerritory" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="strArea1" HeaderText="Area" SortExpression="strArea" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="strRegion1" HeaderText="Region" SortExpression="strRegion" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                        <asp:BoundField DataField="Narration1" HeaderText="Narration" SortExpression="Narration1" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
