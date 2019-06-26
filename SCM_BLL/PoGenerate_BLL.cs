@@ -694,5 +694,20 @@ namespace SCM_BLL
             return dt;
         }
 
+        public DataTable GetVATnBINNoData(int UnitId)
+        {
+            VATnBINTableAdapter adapter = new VATnBINTableAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = adapter.GetVATnBINNoData(UnitId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            return dt;
+        }
+
     }
 }
