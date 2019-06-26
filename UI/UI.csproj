@@ -474,6 +474,7 @@
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
+    <Content Include="HR\Insurance\InsuranceShowReport.aspx" />
     <Content Include="HR\Loan\ApproveLoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanComplete.aspx" />
@@ -1308,6 +1309,7 @@
     <Content Include="SAD\Item\ItemManager.aspx" />
     <Content Include="SAD\Item\ItemManagerUOM.aspx" />
     <Content Include="SAD\Item\ItemSearch.aspx" />
+    <Content Include="SAD\Item\PriceRateOfAMFL.aspx" />
     <Content Include="SAD\Item\PriceApprovalOne.aspx" />
     <Content Include="SAD\Item\PriceApprovalTwo.aspx" />
     <Content Include="SAD\Item\PriceByDate.aspx" />
@@ -3251,6 +3253,13 @@
     </Compile>
     <Compile Include="HR\Insurance\InsuranceReport.aspx.designer.cs">
       <DependentUpon>InsuranceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Insurance\InsuranceShowReport.aspx.cs">
+      <DependentUpon>InsuranceShowReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Insurance\InsuranceShowReport.aspx.designer.cs">
+      <DependentUpon>InsuranceShowReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Loan\ApproveLoanApplicationN.aspx.cs">
       <DependentUpon>ApproveLoanApplicationN.aspx</DependentUpon>
@@ -6363,6 +6372,13 @@
     </Compile>
     <Compile Include="SAD\Item\ItemSearch.aspx.designer.cs">
       <DependentUpon>ItemSearch.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Item\PriceRateOfAMFL.aspx.cs">
+      <DependentUpon>PriceRateOfAMFL.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\PriceRateOfAMFL.aspx.designer.cs">
+      <DependentUpon>PriceRateOfAMFL.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Item\PriceApprovalOne.aspx.cs">
       <DependentUpon>PriceApprovalOne.aspx</DependentUpon>
