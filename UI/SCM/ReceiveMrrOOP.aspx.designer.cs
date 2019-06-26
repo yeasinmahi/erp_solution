@@ -202,6 +202,33 @@ namespace UI.SCM {
         protected global::System.Web.UI.WebControls.DropDownList ddlPoType;
         
         /// <summary>
+        /// hfImportMissingCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfImportMissingCost;
+        
+        /// <summary>
+        /// hfConfirm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfConfirm;
+        
+        /// <summary>
+        /// hfddlPoType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfddlPoType;
+        
+        /// <summary>
         /// lblItem control.
         /// </summary>
         /// <remarks>

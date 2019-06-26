@@ -85,13 +85,13 @@
                                     <asp:DropDownList ID="ddlSearchBy" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlSearchBy_SelectedIndexChanged" AutoPostBack="true">
                                         <%--<asp:ListItem Text="--Select--" Value="0"></asp:ListItem--%>
                                         <asp:ListItem Text="ALL" Value="11"></asp:ListItem>
-                                        <asp:ListItem Text="Category" Value="1"></asp:ListItem>
+                                        <%--<asp:ListItem Text="Category" Value="1"></asp:ListItem>--%>
                                         <asp:ListItem Text="Sub-Category" Value="2"></asp:ListItem>
                                         <asp:ListItem Text="Item ID" Value="3"></asp:ListItem>
                                         <asp:ListItem Text="Item Name" Value="4"></asp:ListItem>
                                         <asp:ListItem Text="Purchase Type (Local/Foreign)" Value="5"></asp:ListItem>
                                         <asp:ListItem Text="Major Category" Value="6"></asp:ListItem>
-                                        <asp:ListItem Text="Minor Category" Value="12"></asp:ListItem>
+                                       <%-- <asp:ListItem Text="Minor Category" Value="12"></asp:ListItem>--%>
                                         <asp:ListItem Text="Cluster" Value="7"></asp:ListItem>
                                         <asp:ListItem Text="Commodity" Value="8"></asp:ListItem>
                                         <asp:ListItem Text="Store Location" Value="9"></asp:ListItem>

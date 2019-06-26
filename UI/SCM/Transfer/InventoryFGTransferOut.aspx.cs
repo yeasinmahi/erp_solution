@@ -177,7 +177,7 @@ namespace UI.SCM.Transfer
                             itemid = arrayKey[1];
                         }
 
-                        arrayKeyV = txtItem.Text.Split(delimiterChars);
+                        arrayKeyV = txtVehicle.Text.Split(delimiterChars);
                         string vehicle = "0";
                         if (arrayKeyV.Length > 0)
                         {
@@ -380,8 +380,7 @@ namespace UI.SCM.Transfer
                     if (xmlString.Length > 5)
                     {
                         string msg = objTransfer.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, Enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
-                            "alert('" + msg + "');", true);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                         dgvStore.DataSource = "";
                         dgvStore.DataBind();
 

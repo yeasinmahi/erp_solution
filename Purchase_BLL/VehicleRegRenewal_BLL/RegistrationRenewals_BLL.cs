@@ -374,5 +374,22 @@ namespace Purchase_BLL.VehicleRegRenewal_BLL
             }
         }
 
+        public DataTable GetAssetAprvPermission(int deptid)
+        {
+
+            try
+            {
+                SprAssetBillAprvPermissionTableAdapter dtview = new SprAssetBillAprvPermissionTableAdapter();
+                return dtview.GetDataAssetBillAprvPermission(deptid);
+            }
+            catch
+            {
+                return new DataTable();
+            }
+           
+        }
+
+
+
     }
 }

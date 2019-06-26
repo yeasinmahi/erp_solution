@@ -12,6 +12,8 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
+using Utility;
+
 namespace UI.SAD.Delivery
 {
     public partial class ViewOrderForPicking : BasePage
@@ -22,7 +24,7 @@ namespace UI.SAD.Delivery
         string start = "starting SAD\\Order\\DeliveryViewForPendingOrder";
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
-        SalesOrderView obj = new SalesOrderView();
+        SalesOrderView obj = new SalesOrderView(); DataTable dt;
         int intColumnVisible; string strReportType;
 
 
@@ -33,15 +35,32 @@ namespace UI.SAD.Delivery
                 pnlMarque.DataBind();
                 dgvViewOrder.Columns[9].Visible = true;
 
+                
+
                 if (rdoComplete.SelectedValue == "1")
                 {
                     dgvViewOrder.Columns[9].Visible = false;
                 }
 
+                try
+                {
+                    dt = new DataTable();
+                    dt = obj.GetPickingCreateStatusData(ddlUnit.SelectedValue());
+                    if (dt.Rows.Count > 0)
+                    {
+                        hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Toaster(ex.Message,Common.TosterType.Error);
+                }
+                         
+
                 dgvViewOrder.Columns[2].Visible = true;
                 dgvViewOrder.Columns[3].Visible = true;
 
-                if (ddlUnit.SelectedValue == "2" || ddlUnit.SelectedValue == "90")
+                if (hdnPickingCreateStatus.Value == "Customer Base")
                 {
                     dgvViewOrder.Columns[2].Visible = false;
                     dgvViewOrder.Columns[3].Visible = false;
@@ -99,6 +118,13 @@ namespace UI.SAD.Delivery
         {
             Session[ClassFiles.SessionParams.CURRENT_UNIT] = ddlUnit.SelectedValue;
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
+
+            dt = new DataTable();
+            dt = obj.GetPickingCreateStatusData(int.Parse(ddlUnit.SelectedValue));
+            if (dt.Rows.Count > 0)
+            {
+                hdnPickingCreateStatus.Value = dt.Rows[0]["strPickingCreateStatus"].ToString();
+            }
         }
         protected void ddlCusType_DataBound(object sender, EventArgs e)
         {
@@ -129,7 +155,7 @@ namespace UI.SAD.Delivery
             dgvViewOrder.Columns[2].Visible = true;
             dgvViewOrder.Columns[3].Visible = true;
 
-            if (ddlUnit.SelectedValue == "2" || ddlUnit.SelectedValue == "90")
+            if (hdnPickingCreateStatus.Value == "Customer Base")
             {
                 dgvViewOrder.Columns[2].Visible = false;
                 dgvViewOrder.Columns[3].Visible = false;
@@ -145,7 +171,7 @@ namespace UI.SAD.Delivery
             string intid = searchKey[1].ToString();
             string PopupType = "Picking";
 
-            if (ddlUnit.SelectedValue == "2" || ddlUnit.SelectedValue == "90")
+            if (hdnPickingCreateStatus.Value == "Customer Base")
             {
                 strReportType = "Customer_Base";
             }

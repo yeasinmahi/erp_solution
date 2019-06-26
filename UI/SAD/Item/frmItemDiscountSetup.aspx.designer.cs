@@ -202,13 +202,13 @@ namespace UI.SAD.Item {
         protected global::AjaxControlToolkit.AutoCompleteExtender empsearch;
         
         /// <summary>
-        /// txtSalesQty control.
+        /// ddlcalcuationtype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSalesQty;
+        protected global::System.Web.UI.WebControls.DropDownList ddlcalcuationtype;
         
         /// <summary>
         /// txtFrom control.
@@ -229,13 +229,13 @@ namespace UI.SAD.Item {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender1;
         
         /// <summary>
-        /// txtDiscountAmount control.
+        /// txtSalesQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiscountAmount;
+        protected global::System.Web.UI.WebControls.TextBox txtSalesQty;
         
         /// <summary>
         /// txtTo control.
@@ -256,6 +256,15 @@ namespace UI.SAD.Item {
         protected global::AjaxControlToolkit.CalendarExtender CalendarExtender2;
         
         /// <summary>
+        /// txtDiscountAmount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDiscountAmount;
+        
+        /// <summary>
         /// ddlAdjustmenttype control.
         /// </summary>
         /// <remarks>
@@ -265,15 +274,6 @@ namespace UI.SAD.Item {
         protected global::System.Web.UI.WebControls.DropDownList ddlAdjustmenttype;
         
         /// <summary>
-        /// ddlcalcuationtype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlcalcuationtype;
-        
-        /// <summary>
         /// btnSave control.
         /// </summary>
         /// <remarks>
@@ -281,6 +281,15 @@ namespace UI.SAD.Item {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+        
+        /// <summary>
+        /// txtPercentage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtPercentage;
         
         /// <summary>
         /// lblnaes control.

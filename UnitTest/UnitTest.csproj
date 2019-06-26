@@ -59,6 +59,8 @@
     <Compile Include="Accounts\AccountsVoucherJournalTdd.cs" />
     <Compile Include="Accounts\CodeInfoTdd.cs" />
     <Compile Include="AFBLSMSServer\ApiSmsTdd.cs" />
+    <Compile Include="Inventory\FactoryReceiveMRRItemDetailTdd.cs" />
+    <Compile Include="Inventory\FactoryReceiveMrrTdd.cs" />
     <Compile Include="Inventory\InconsistanceItemTdd.cs" />
     <Compile Include="Inventory\InventoryAdjustmentTdd.cs" />
     <Compile Include="Inventory\InventoryTdd.cs" />

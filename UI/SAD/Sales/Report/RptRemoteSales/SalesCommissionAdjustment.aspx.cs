@@ -55,6 +55,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                 rptname = drdlSalesview.SelectedItem.Text.ToString();
                 int unitid = Convert.ToInt32(drdlUnitName.SelectedValue.ToString());
                 dt = bll.getdataCustomerCommission(dtFromDate, dtToDate, soid, rptname, unitid);
+
                 if (dt.Rows.Count > 0)
                 {
                     grdvCustomerCommission.DataSource = dt;
@@ -117,6 +118,10 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
 
         protected void btnJVCreation_Click(object sender, EventArgs e)
         {
+            rptname = drdlSalesview.SelectedItem.Text.ToString();
+            DateTime dtFromDate1 = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
+            DateTime dtToDate1 = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtToDate.Text).Value;
+
             if (hdnconfirm.Value == "1")
             {
                 //try
@@ -127,15 +132,17 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                     {
                         if (((CheckBox)grdvCustomerCommission.Rows[index].FindControl("chkbx")).Checked == true)
                         {
-                            //shopid,  customerid,  custterritoryid,  salesofficeid,  targetqnt
+                           
                             string customercoaid = ((HiddenField)grdvCustomerCommission.Rows[index].FindControl("hdncustcoaid")).Value.ToString();
-                            string eachcustnarration = ((HiddenField)grdvCustomerCommission.Rows[index].FindControl("hdncustnarrationindividual")).Value.ToString();
-                            string eachcustamount = ((HiddenField)grdvCustomerCommission.Rows[index].FindControl("hdncustomercommissionndividual")).Value.ToString();
+                           
+                            string eachcustamount = ((TextBox)grdvCustomerCommission.Rows[index].FindControl("txtmonadjustableamount")).Text.ToString();
+                            string eachcustnarration = ((TextBox)grdvCustomerCommission.Rows[index].FindControl("txtmonadjustableamount")).Text.ToString();
+                            string eachcustnarration1 = eachcustnarration + " Taka.. " + rptname + " " + " Commission from " + Convert.ToString(dtFromDate1) + "  to " + Convert.ToString(dtToDate1);
                             string customername = ((HiddenField)grdvCustomerCommission.Rows[index].FindControl("hdncustname")).Value.ToString();
                             selectedtotalcom = selectedtotalcom + decimal.Parse(eachcustamount);
                             string selectedgrand = Convert.ToString(selectedtotalcom);
 
-                            Createxml(customercoaid, eachcustnarration, eachcustamount, customername);
+                            Createxml(customercoaid, eachcustnarration1, eachcustamount, customername);
                         }
                     }
 

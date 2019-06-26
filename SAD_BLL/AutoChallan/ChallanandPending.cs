@@ -149,17 +149,18 @@ namespace SAD_BLL.AutoChallanBll
             }
             catch { }
         }
-        public string AutoChallaninsertform(string xmlString, ref string intentryid, int insertby, int intunitid, DateTime dtdate, string strChallanNo, int CustType, int custid, int intDisPointId, string narratioin, string CustAddress, bool ysnDO2, bool ysnChallanCompleted, int intPriceVarId, int intVehicleVarId, decimal numLogisticCharge, bool ysnLogistic, bool ysnLogisticByCompany, string strVehicleRegNo, int intVehicleId, int intVehicleTypeId, int intChargeId, decimal numCharge, int intIncentiveId, decimal numIncentive, string strSupplierCOACod, string strSupplier, bool ysnChargeToSupplier, int intCurrencyId, decimal numConvRate, int intsalestypeid, decimal monExtraAmount, string strExtraCause, string strOther, string strDrivername, string strDriverContact, int intSalesOffId, int intshipingpointid, ref string strCode)
+        public string AutoChallaninsertform(string xmlString, ref string intentryid, int insertby, int intunitid, DateTime dtdate, string strChallanNo, int CustType, int custid, int intDisPointId, string narratioin, string CustAddress, bool ysnDO2, bool ysnChallanCompleted, int intPriceVarId, int intVehicleVarId, decimal numLogisticCharge, bool ysnLogistic, bool ysnLogisticByCompany, string strVehicleRegNo, int intVehicleId, int intVehicleTypeId, int intChargeId, decimal numCharge, int intIncentiveId, decimal numIncentive, string strSupplierCOACod, string strSupplier, bool ysnChargeToSupplier, int intCurrencyId, decimal numConvRate, int intsalestypeid, decimal monExtraAmount, string strExtraCause, string strOther, string strDrivername, string strDriverContact, int intSalesOffId, int intshipingpointid, ref string strCode,ref string msg)
         {
             long? id = null;
             //  id = long.Parse(intentryid);
-
+            string message;
             // sprSalesEntryTableAdapter autochallancreate = new sprSalesEntryTableAdapter();
             sprSalesEntryTest1TableAdapter autochallancreate = new sprSalesEntryTest1TableAdapter();
-            autochallancreate.GetData(xmlString, ref  id, Convert.ToInt32(insertby), Convert.ToInt32(intunitid), dtdate, strChallanNo, Convert.ToInt32(CustType), Convert.ToInt32(custid), Convert.ToInt32(intDisPointId), narratioin, CustAddress, ysnDO2, ysnChallanCompleted, Convert.ToInt32(intPriceVarId), Convert.ToInt32(intVehicleVarId), Convert.ToDecimal(numLogisticCharge), ysnLogistic, Convert.ToBoolean(ysnLogisticByCompany), strVehicleRegNo, Convert.ToInt32(intVehicleId), Convert.ToInt32(intVehicleTypeId), Convert.ToInt32(intChargeId), Convert.ToDecimal(numCharge), Convert.ToInt32(intIncentiveId), Convert.ToDecimal(numIncentive), strSupplierCOACod, strSupplier, ysnChargeToSupplier, Convert.ToInt32(intCurrencyId), Convert.ToDecimal(numConvRate), Convert.ToInt32(intsalestypeid), Convert.ToDecimal(monExtraAmount), strExtraCause, strOther, strDrivername, strDriverContact, Convert.ToInt32(intSalesOffId),Convert.ToInt32(intshipingpointid), ref strCode);
-        
-            string msg = "Successfully";
-            return msg;
+            autochallancreate.GetData(xmlString, ref  id, Convert.ToInt32(insertby), Convert.ToInt32(intunitid), dtdate, strChallanNo, Convert.ToInt32(CustType), Convert.ToInt32(custid), Convert.ToInt32(intDisPointId), narratioin, CustAddress, ysnDO2, ysnChallanCompleted, Convert.ToInt32(intPriceVarId), Convert.ToInt32(intVehicleVarId), Convert.ToDecimal(numLogisticCharge), ysnLogistic, Convert.ToBoolean(ysnLogisticByCompany), strVehicleRegNo, Convert.ToInt32(intVehicleId), Convert.ToInt32(intVehicleTypeId), Convert.ToInt32(intChargeId), Convert.ToDecimal(numCharge), Convert.ToInt32(intIncentiveId), Convert.ToDecimal(numIncentive), strSupplierCOACod, strSupplier, ysnChargeToSupplier, Convert.ToInt32(intCurrencyId), Convert.ToDecimal(numConvRate), Convert.ToInt32(intsalestypeid), Convert.ToDecimal(monExtraAmount), strExtraCause, strOther, strDrivername, strDriverContact, Convert.ToInt32(intSalesOffId),Convert.ToInt32(intshipingpointid), ref strCode,ref msg);
+
+            //string msg = "Successfully";
+            message = msg;
+            return message;
         }
 
 

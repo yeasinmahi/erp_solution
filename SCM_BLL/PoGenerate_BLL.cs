@@ -449,6 +449,38 @@ namespace SCM_BLL
             }
         }
 
+        public bool CheckPOId(int POId)
+        {
+            bool result = false;
+            sprPOUPdateDeleteTableAdapter adp = new sprPOUPdateDeleteTableAdapter();
+            try
+            {
+                object _obj = adp.CheckPOId(POId);
+                if (_obj != null)
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
+
+        public bool UpdateCnFBillNo(string BillNo, int POId)
+        {
+            bool result = false;
+            sprPOUPdateDeleteTableAdapter adp = new sprPOUPdateDeleteTableAdapter();
+            try
+            {
+                int ii = adp.UpdateCnFBillNo(BillNo,POId);
+                if (ii > 0)
+                    result = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            return result;
+        }
+
         public DataTable GetSuppliers(int poId)
         {
             try
@@ -597,6 +629,85 @@ namespace SCM_BLL
             }
         }
 
+        /*
+         * Author       : Muktadir
+         * Date         : 20-June-2019
+         * For          : HSCode Update
+         */
+
+        public bool CheckHSCodeExistency(string HSCode)
+        {
+            HSCodeTableAdapter adapter = new HSCodeTableAdapter();
+            int count = 0;
+            bool result = false;
+            try
+            {
+               object _obj = adapter.CheckHSCodeExistency(HSCode);
+                if (_obj != null)
+                    count = Convert.ToInt32(_obj);
+
+                if (count > 0)
+                {
+                    result = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
+        public bool UpdateHSCodeIntoItemTable(string HSCode, int ItemId)
+        {
+            HSCodeTableAdapter adapter = new HSCodeTableAdapter();
+            bool result = false;
+            try
+            {
+                int count = adapter.UpdateItemHSCode(HSCode, ItemId);
+                if (count > 0)
+                {
+                    result = true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return result;
+        }
+        public DataTable GetAllCurrencyData()
+        {
+            CurrencyTableAdapter adapter = new CurrencyTableAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = adapter.GetAllCurrencyData();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            return dt;
+        }
+
+        public DataTable GetVATnBINNoData(int UnitId)
+        {
+            VATnBINTableAdapter adapter = new VATnBINTableAdapter();
+            DataTable dt = new DataTable();
+            try
+            {
+                dt = adapter.GetVATnBINNoData(UnitId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            return dt;
+        }
 
     }
 }

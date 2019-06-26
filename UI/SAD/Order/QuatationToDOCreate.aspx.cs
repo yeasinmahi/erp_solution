@@ -1,4 +1,5 @@
-﻿using SAD_BLL.Sales;
+﻿using SAD_BLL.Customer;
+using SAD_BLL.Sales;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,7 +13,7 @@ using UI.ClassFiles;
 
 namespace UI.SAD.Order
 {
-    public partial class QuatationToDOCreate : System.Web.UI.Page
+    public partial class QuatationToDOCreate : BasePage
     {
         #region Global variable
         string strcustid, strautoid;
@@ -271,11 +272,16 @@ namespace UI.SAD.Order
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
-            //if (hdnconfirm.Value == "1")
-            //{
+            CustomerInfo ci = new CustomerInfo();
+            decimal lm = 0, bl = 0;
+            ci.GetCustomerCreditLimitCreditBalance(Session["intCustomerId"].ToString(), Session[SessionParams.UNIT_ID].ToString(), Session[SessionParams.USER_ID].ToString(), ref lm, ref bl);
+            lblcreditlmval.Text = CommonClass.GetFormettingNumber(lm);
+            lbloutstandingval.Text = CommonClass.GetFormettingNumber(bl);
+            hdnLm.Value = lblcreditlmval.Text;
+            hdnBl.Value = lbloutstandingval.Text;
 
-            //if (decimal.Parse(lbloutstandingval.Text.ToString()) >= decimal.Parse(lbltotamounval.Text.ToString()))
-            //{
+            if (decimal.Parse(hdnBl.Value) < 0)
+            {
 
                 Int32 intOrdernum = Convert.ToInt32(Session["intid"].ToString().ToString());
                 //orderdelete.orderdeletefinal(intOrdernum);
@@ -453,14 +459,15 @@ namespace UI.SAD.Order
 
                     //}
                 }
-            
-            //else
-            //{
-            //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Your Balance !');", true);
-            
+            }
+
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Check Your Balance !');", true);
+
+            }
 
 
-
+            }
         }
-    }
 }

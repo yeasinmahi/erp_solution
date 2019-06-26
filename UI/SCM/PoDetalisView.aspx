@@ -98,37 +98,38 @@
                     <table style="width: 700px">
                         <tr>
                             <td></td>
-                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                             <td></td>
-                             <td><asp:Button ID="btnEmail" Text="e-mail" runat="server" Font-Size="Small" OnClick="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
-                             <td><asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" Font-Size="Small" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <asp:Button ID="btnEmail" Text="e-mail" runat="server" Font-Size="Small" OnClick="btnEmail_OnClick" OnClientClick="return ConvertToImage(this)" /></td>
+                            <td>
+                                <asp:Button ID="btnDownload" Text="Download" runat="server" UseSubmitBehavior="false" Font-Size="Small" OnClick="btnDownload_Click" OnClientClick="return ConvertToImage(this)" /></td>
                         </tr>
                         <tr>
                             <td>
                                 <asp:Label ID="lblPurchaseOrderNo" runat="server" Text="Purchase Order No:"></asp:Label><asp:Label ID="lblpoNo" Font-Bold="true" Font-Size="Medium" runat="server"></asp:Label>
-                                <td>
-                                    <asp:Label ID="lblspace" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="false" runat="server"></asp:Label></td>
+                            <td>
+                                <asp:Label ID="lblspace" runat="server"></asp:Label><asp:Label ID="lblPoDate" Font-Bold="false" runat="server"></asp:Label></td>
                             <td>
                                 <asp:TextBox ID="txtPoNumbers" runat="server" CssClass="txtBox" Visible="false" PlaceHolder="PO" Width="50px" /></td>
                             <td>
-                               
-                            <td>
-                                </td>
+
+                            <td></td>
                         </tr>
                     </table>
                     <table style="border-color: black; width: 700px; -ms-border-radius: 10px; border-radius: 10px; border: 1px solid black; border-collapse: unset; padding: 10px;">
-                        <tr style="padding-left:10px;" >
+                        <tr style="padding-left: 10px;">
                             <td style="text-align: left; width: 10px">Supplier:</td>
-                            <td style="text-align: left">Ship TO</td>
-                            <td style="text-align: left;">Bill To</td>
+                            <td style="text-align: left">Ship To:</td>
+                            <td style="text-align: left;">Bill To:</td>
                         </tr>
                         <tr>
                             <td style="text-align: left">
                                 <asp:Label ID="lblSuppliyers" runat="server" Font-Bold="true"></asp:Label></td>
-                            <td style="text-align: left">
+                            <td style="text-align: left" rowspan="2">
                                 <asp:Label ID="lblShipTo" Width="200px" runat="server" Font-Bold="true"></asp:Label></td>
                             <td style="text-align: left">
                                 <asp:Label ID="lblBillTo" Width="250px" runat="server"></asp:Label></td>
@@ -137,14 +138,14 @@
                         <tr>
                             <td style="text-align: left">
                                 <asp:Label ID="lblSupEmail" Width="200px" runat="server"></asp:Label></td>
-                            <td></td>
+
                             <td rowspan="3" style="text-align: left;">
                                 <asp:Label ID="Label1" Width="200px" Text="Akij House, 198 Bir Uttam Mir Shawkat Sharak, Gulshan Link Road, Tejgaon, Dhaka-1208" runat="server"></asp:Label></td>
                         </tr>
 
 
 
-                        
+
 
                         <tr>
                             <td style="text-align: left">
@@ -157,13 +158,44 @@
                         </tr>
 
                         <tr>
-                            <td style="text-align: left">
+                            <td style="text-align: left" rowspan="3">
                                 <asp:Label ID="lblSuppAddress" Width="300px" runat="server"></asp:Label></td>
 
-                            <td style="text-align: center"> <asp:Label ID="Label3" forecolor="#bbbbbb" Width="200px" text="PR No." runat="server"></asp:Label> </td>
+                            <td style="text-align: left; padding-left: 2px">
+                                <asp:Label ID="Label5" ForeColor="#000000" Width="200px" Text="BIN No." runat="server" Style="padding-left: 1px"></asp:Label>
+                            </td>
 
                             <td style="text-align: left">
-                                <asp:Label ID="lblIndentNo" Font-Size="Small" forecolor="#bbbbbb" Width="200px" runat="server"></asp:Label></td>
+                                <asp:Label ID="lblBinNo" Font-Size="Small" ForeColor="#000000" Width="200px" runat="server"></asp:Label></td>
+
+
+                        </tr>
+
+                        <tr>
+
+
+
+                            <td style="text-align: left; padding-left: 2px">
+                                <asp:Label ID="Label7" ForeColor="#000000" Width="200px" Text="VAT Reg.No." runat="server"></asp:Label>
+                            </td>
+
+                            <td style="text-align: left">
+                                <asp:Label ID="lblVatRegNo" Font-Size="Small" ForeColor="#000000" Width="200px" runat="server"></asp:Label></td>
+
+                        </tr>
+
+
+                        <tr>
+
+
+
+
+                            <td style="text-align: left; padding-left: 2px">
+                                <asp:Label ID="Label3" ForeColor="#bbbbbb" Width="200px" Text="PR No." runat="server"></asp:Label>
+                            </td>
+
+                            <td style="text-align: left">
+                                <asp:Label ID="lblIndentNo" Font-Size="Small" ForeColor="#bbbbbb" Width="200px" runat="server"></asp:Label></td>
                         </tr>
                     </table>
                     <table style="width: 770px">
@@ -171,7 +203,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvPoDetalis" runat="server" AutoGenerateColumns="False" Font-Size="11px" Width="770px" ShowFooter="true"
-                                    BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical"  HeaderStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Right">
+                                    BorderWidth="1px" CssClass="GridWithPrint" CellPadding="5" GridLines="Vertical" HeaderStyle-HorizontalAlign="Center" FooterStyle-HorizontalAlign="Right">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL">
@@ -188,7 +220,7 @@
 
                                         <asp:TemplateField HeaderText="Description" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strSpecification">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDescription"  runat="server" Text='<%# Bind("strSpecification") %>'></asp:Label>
+                                                <asp:Label ID="lblDescription" runat="server" Text='<%# Bind("strSpecification") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" Width="110px" />
                                         </asp:TemplateField>
@@ -239,7 +271,7 @@
                                             <ItemTemplate>
                                                 <asp:Label ID="lblPoTotalAmount" runat="server" Text='<%# Bind("monAmount") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right"/>
+                                            <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                     </Columns>
                                     <FooterStyle BackColor="Gray" Font-Bold="True" HorizontalAlign="Right" ForeColor="Black" />
@@ -259,59 +291,59 @@
                     </table>
                     <table class="detailstable">
                         <tr>
-                            <td >Partial Shipment</td>
-                            <td >
+                            <td>Partial Shipment</td>
+                            <td>
                                 <asp:Label ID="lblPartialShip" Width="100px" runat="server"></asp:Label></td>
-                            <td >Trnsport Charge</td>
-                            <td >
+                            <td>Trnsport Charge</td>
+                            <td>
                                 <asp:Label ID="lblTransportCharge" Width="100px" runat="server"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >No of Shipment</td>
-                            <td >
+                            <td>No of Shipment</td>
+                            <td>
                                 <asp:Label ID="lblNoShipment" Width="100px" runat="server"></asp:Label></td>
-                            <td >Others Charge</td>
-                            <td >
+                            <td>Others Charge</td>
+                            <td>
                                 <asp:Label ID="lblOthersCharge" runat="server" Width="100px"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >Last Shipment Date</td>
-                            <td >
+                            <td>Last Shipment Date</td>
+                            <td>
                                 <asp:Label ID="lbllastShipmentDate" Width="100px" runat="server"></asp:Label></td>
-                            <td >Gross Discount</td>
+                            <td>Gross Discount</td>
                             <td style="text-align: left; border: 1px  inset gray">
                                 <asp:Label ID="lblGrossDis" runat="server" Width="100px"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >Payment terms</td>
-                            <td >
+                            <td>Payment terms</td>
+                            <td>
                                 <asp:Label ID="lblPaymentTrems" runat="server"></asp:Label></td>
-                            <td >Commission</td>
-                            <td >
+                            <td>Commission</td>
+                            <td>
                                 <asp:Label ID="lblComission" runat="server" Width="100px"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >Payment days after MRR</td>
-                            <td >
+                            <td>Payment days after MRR</td>
+                            <td>
                                 <asp:Label ID="lblPaymentDaysMrr" runat="server"></asp:Label></td>
-                            <td >Grand Total</td>
-                            <td >
+                            <td>Grand Total</td>
+                            <td>
                                 <asp:Label ID="lblGrandTotal" runat="server" Width="100px" Font-Bold="true"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >No of Installment</td>
-                            <td >
+                            <td>No of Installment</td>
+                            <td>
                                 <asp:Label ID="lblNoOfInstallment" runat="server"></asp:Label></td>
-                             
+
                         </tr>
                         <tr>
-                            <td >Installment Interval (Days)</td>
-                            <td >
+                            <td>Installment Interval (Days)</td>
+                            <td>
                                 <asp:Label ID="lblIntervelDay" runat="server"></asp:Label></td>
                         </tr>
                         <tr>
-                            <td >Warrenty after delivery (months)</td>
-                            <td >
+                            <td>Warrenty after delivery (months)</td>
+                            <td>
                                 <asp:Label ID="lblDeliveryMonth" runat="server"></asp:Label></td>
                         </tr>
                     </table>
@@ -324,11 +356,13 @@
                             <td style="text-align: left;">
                                 <asp:Label ID="lblOthersterms" runat="server"></asp:Label></td>
                         </tr>
-                        
+
                         <tr>
-                            <td style="height:10px"><br></td>
+                            <td style="height: 10px">
+                                <br>
+                            </td>
                         </tr>
-                             
+
                         <tr>
                             <td>
                                 <asp:Label ID="lblPrepareBy" Font-Bold="true" runat="server"></asp:Label></td>

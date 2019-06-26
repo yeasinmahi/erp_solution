@@ -21,6 +21,13 @@ namespace SAD_BLL.Sales
             return ta.GetDataBySO(int.Parse(soId));
         }
 
+        public OrderByTripTDS.SprSalesOrderInfoForCustomerServiceDataTable GetSalesInfoSupport(int soid)
+        {
+            SprSalesOrderInfoForCustomerServiceTableAdapter ta = new SprSalesOrderInfoForCustomerServiceTableAdapter();
+            return ta.GetDataSalesOrderInfoForCustomerService(soid);
+        }
+
+
 
         public OrderByTripTDS.SprGetCustomeridFromTripIdDataTable Getcustomeridfromtripid(string tripid)
         {

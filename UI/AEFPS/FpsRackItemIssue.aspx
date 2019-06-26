@@ -97,7 +97,7 @@
       </td> 
         <td style="text-align:right;"  ><asp:Label ID="lblRack" runat="server" Font-Bold="true" CssClass="lbl" Text="Rack  Name"></asp:Label></td>
             <td style="text-align:left;">
-            <asp:DropDownList ID="ddlRack" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" Width="195px"  ></asp:DropDownList>
+            <asp:DropDownList ID="ddlRack" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" Width="195px" OnSelectedIndexChanged="ddlRack_SelectedIndexChanged"  ></asp:DropDownList>
               
                 <asp:Button ID="btnPrintBarcode" runat="server" Text="Print"  OnClick="btnPrintBarcode_Click"   />
                 <%--OnClick="btnPrintBarcode_Click"--%>

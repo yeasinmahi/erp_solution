@@ -87,7 +87,7 @@ namespace UI.SAD.Sales.Report.RptRemoteSales
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data against your query.');", true);
                 }
             }
-            catch { }
+            catch(Exception ex) {  }
 
 
 

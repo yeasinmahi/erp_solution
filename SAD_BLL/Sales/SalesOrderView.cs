@@ -276,7 +276,12 @@ namespace SAD_BLL.Sales
 
             return msg;
         }
-               
+        
+        public DataTable GetPickingCreateStatusData(int intUnitId)
+        {
+            TblSalesConfigTableAdapter ta = new TblSalesConfigTableAdapter();
+            return ta.GetPickingCreateStatusData(intUnitId);
+        }
 
         public DataTable getQuationDet(int quatationid)
         {

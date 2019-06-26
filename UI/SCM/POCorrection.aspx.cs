@@ -19,7 +19,8 @@ namespace UI.SCM
         private DateTime dtePODate, dteLastShipmentDate;
         private decimal monFreight, monPacking, monDiscount, monRate, monVAT, monAmount, monAIT, numPOQty;
 
-        private string filePathForXML, xmlString = "", xml, strPo, intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting, message, potype, ysnApprove, intSingleApproveBy, strDeliveryAddress, strPayTerm, strOtherTerms;
+        private string filePathForXML, xmlString = "", xml, strPo, intemid, itemname, specification, uom, qty, rate, vat, ait, total, ysnExisting, message, potype, ysnApprove, 
+            intSingleApproveBy, strDeliveryAddress, strPayTerm, strOtherTerms, strCnFBillNo;
         private int intItemID; private string strSpecification, PoType;
         List<Control> exceptControls = new List<Control>();
         
@@ -397,6 +398,9 @@ namespace UI.SCM
                 }
                 int supplierId = ddlSupplier.SelectedValue();
 
+                strCnFBillNo = !string.IsNullOrEmpty(txtCnFNo.Text) ? txtCnFNo.Text : string.Empty;
+
+
                 strOtherTerms = txtOtherTerms.Text;
                 intPart = 1;
                 _dt = _bll.POCurrection(intPart, intPOID, dtePODate, intCurrencyID, monFreight, monPacking, monDiscount,
@@ -405,6 +409,10 @@ namespace UI.SCM
                     strOtherTerms, dteLastShipmentDate, Enroll, supplierId);
                 if (_dt.Rows.Count > 0)
                 {
+                    if (_bll.CheckPOId(intPOID))
+                    {
+                        _bll.UpdateCnFBillNo(strCnFBillNo, intPOID);
+                    }
                     string msg = _dt.Rows[0]["msg"].ToString();
                     Toaster(msg,
                         msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);

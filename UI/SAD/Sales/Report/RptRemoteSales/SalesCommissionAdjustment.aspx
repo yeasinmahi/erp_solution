@@ -163,8 +163,17 @@
                     <asp:BoundField DataField="intTotalNumberDO" HeaderText="TotalNumberDO" SortExpression="intTotalNumberDO" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="decTotalDelv" HeaderText="TotalDelv" SortExpression="decTotalDelv" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                   
-                    <asp:BoundField DataField="monadjustableamount" HeaderText="Commission Amount" SortExpression="monadjustableamount" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                   
+                    <%--<asp:BoundField DataField="monadjustableamount" HeaderText="Commission Amount" SortExpression="monadjustableamount" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>--%>
+                              <asp:TemplateField HeaderText="Commission" HeaderStyle-HorizontalAlign="Center"  SortExpression="Quantity">
+                                    <ItemTemplate>
+                                     
+                                        <asp:HiddenField ID="hdnmonadjustableamount" runat="server" Value='<%# Bind("monadjustableamount", "{0:0.0}") %>'></asp:HiddenField>  
+                                   <asp:Label ID="lblmonadjustableamount" runat="server" Visible="false" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("monadjustableamount", "{0:0.00}"))) %>'></asp:Label>
+
+                                        <asp:TextBox ID="txtmonadjustableamount"  runat="server" onblur="" CssClass="txtBox" Width="75px"  Text='<%# Bind("monadjustableamount", "{0:0}") %>' AutoPostBack="false"></asp:TextBox>
+                                     </ItemTemplate>
+                                
+                                </asp:TemplateField>
                        <asp:BoundField DataField="strnarration" HeaderText="Narration" SortExpression="strnarration" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     </Columns>
                     <FooterStyle BackColor="#CCCCCC" />

@@ -133,7 +133,9 @@
             <asp:HiddenField ID="hdnLog" runat="server" />
             <asp:HiddenField ID="hdnodramt" runat="server" />
             <asp:HiddenField ID="hdnDiscountP" runat="server" />
-
+              <asp:HiddenField ID="hdnLm" runat="server" />
+                   <asp:HiddenField ID="hdnBl" runat="server" />
+                  <asp:HiddenField ID="hdnCreditSales" runat="server" />
 
             <div class="container">
                 <div class="panel panel-info">

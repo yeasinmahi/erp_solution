@@ -16,7 +16,7 @@ namespace UI.PaymentModule
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/SCM/Inventory_Summary_Report?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Open_Reports/Inventory_Summary_Report?rs:Embed=true');", true);
 
         }
     }

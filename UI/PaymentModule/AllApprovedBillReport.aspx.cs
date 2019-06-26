@@ -21,7 +21,7 @@ namespace UI.PaymentModule
 {
     public partial class AllApprovedBillReport : BasePage
     {
-        #region===== Variable & Object Declaration ====================================================
+        #region Variable & Object Declaration 
         SeriLog log = new SeriLog();
         string location = "PaymentModule";
         string start = "starting PaymentModule/AllApprovedBillReport.aspx";
@@ -33,7 +33,7 @@ namespace UI.PaymentModule
         int intUnitID;
         DateTime dteFDate, dteTDate;
 
-        #endregion ====================================================================================
+        #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
