@@ -1,7 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="UI.SAD.Customer.Report.Statement" Codebehind="Statement.aspx.cs" %>
-
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="UI.SAD.Customer.Report.Statement" CodeBehind="Statement.aspx.cs" %>
 
 <%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845DCD8080CC91"
     Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
@@ -9,81 +6,57 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
-<html >
+<html>
 <head id="Head1" runat="server">
     <title>Untitled Page</title>
 
-     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />   
-    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />   
-
-     <link href="../../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css"/> 
-
-    <style type="text/css">
-        .auto-style1 {
-            height: 83px;
-        }
-        .auto-style2 {
-            width: 30px;
-            height: 83px;
+    <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
+    <webopt:BundleReference ID="BundleReference1" runat="server" Path="~/Content/Bundle/gridCalanderCSS" />
+    <%--<webopt:BundleReference ID="BundleReference4" runat="server" Path="~/Content/Bundle/hrCSS" />--%>
+    <link href="../../../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
+    <style>
+        .container{
+            border: 1px solid #ccc;
+            padding: 5px;
+            width: Auto;
+            border-radius: 5px 5px 0 0;
+            background-color: #eeeeee;
+            -moz-border-radius: 5px 5px 0 0;
+            -webkit-border-top-left-radius: 5px;
+            float: left;
+            -webkit-border-top-right-radius: 5px;
         }
     </style>
-
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
-        <CompositeScript>
-            <Scripts>
-                
-<asp:ScriptReference name="MicrosoftAjax.js"/>
-	<asp:ScriptReference name="MicrosoftAjaxWebForms.js"/>
-	
-	<asp:ScriptReference name="MicrosoftAjaxTimer.js" assembly="System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"/>
-	<asp:ScriptReference name="Common.Common.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="Common.DateTime.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="Compat.Timer.Timer.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="Animation.Animations.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="ExtenderBase.BaseScripts.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="Animation.AnimationBehavior.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="PopupExtender.PopupBehavior.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="Common.Threading.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="Calendar.CalendarBehavior.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="AutoComplete.AutoCompleteBehavior.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-	<asp:ScriptReference name="AlwaysVisibleControl.AlwaysVisibleControlBehavior.js" assembly="AjaxControlToolkit, Version=4.1.60919.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"/>
-
-            </Scripts>
-        </CompositeScript>
-    </asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
-            <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
-                <asp:Panel ID="pnlMarque" runat="server" Width="100%">
-                    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;
-                        z-index: 1; position: absolute;">
-                        <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2"
-                            scrolldelay="-1" width="100%">
-                    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span>
-                </marquee>
+        <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
+        <asp:UpdatePanel ID="UpdatePanel0" runat="server">
+            <ContentTemplate>
+                <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
+                    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
+                        <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
+                    <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-                
                 </asp:Panel>
-                <div id="divControl" class="divPopUp2" style="width: 100%; height: 85px; float: right;">
+                <div style="height: 30px;"></div>
+                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender2" runat="server">
+                </cc1:AlwaysVisibleControlExtender>
+                <div class="container">
                     <table style="width: 800px;">
                         <tr>
-                            <td class="auto-style1">
-                                From
+                            <td>From
                             </td>
-                            <td class="auto-style1">
+                            <td>
                                 <asp:HiddenField ID="hdnFrm" runat="server" />
                                 <asp:TextBox ID="txtFrom" runat="server"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtFrom" Format="dd/MM/yyyy"
                                     PopupButtonID="imgCal_1" ID="CalendarExtender1" runat="server" EnableViewState="true">
                                 </cc1:CalendarExtender>
-                                <img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
-                                    width: 34px; height: 23px; vertical-align: bottom;" />
+                                <img id="imgCal_1" src="../../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                             </td>
-                            <td class="auto-style2">
-                                <asp:DropDownList ID="ddlFHour" runat="server">                                                                        
+                            <td style="width: 30px">
+                                <asp:DropDownList ID="ddlFHour" runat="server">
                                     <%--<asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
                                     <asp:ListItem>10 AM</asp:ListItem>
@@ -117,20 +90,18 @@
                                     <asp:ListItem>12 AM</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td class="auto-style1">
-                                To
+                            <td>To
                             </td>
-                            <td class="auto-style1">
+                            <td>
                                 <asp:HiddenField ID="hdnTo" runat="server" />
                                 <asp:TextBox ID="txtTo" runat="server"></asp:TextBox>
                                 <cc1:CalendarExtender CssClass="cal_Theme1" TargetControlID="txtTo" Format="dd/MM/yyyy"
                                     PopupButtonID="imgCal_2" ID="CalendarExtender2" runat="server" EnableViewState="true">
                                 </cc1:CalendarExtender>
-                                <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px;
-                                    width: 34px; height: 23px; vertical-align: bottom;" />
+                                <img id="imgCal_2" src="../../../Content/images/img/calbtn.gif" style="border: 0px; width: 34px; height: 23px; vertical-align: bottom;" />
                             </td>
-                            <td class="auto-style2">
-                                <asp:DropDownList ID="ddlTHour" runat="server">                                                                        
+                            <td style="width: 30px">
+                                <asp:DropDownList ID="ddlTHour" runat="server">
                                     <%--<asp:ListItem>06 AM</asp:ListItem>
                                     <asp:ListItem>08 AM</asp:ListItem>
                                     <asp:ListItem>10 AM</asp:ListItem>
@@ -164,7 +135,7 @@
                                     <asp:ListItem>12 AM</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
-                            <td align="right" class="auto-style1">
+                            <td align="right">
                                 <asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="True" DataSourceID="odsUnit"
                                     DataTextField="strUnit" DataValueField="intUnitID" OnDataBound="ddlUnit_DataBound"
                                     OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged">
@@ -177,8 +148,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                Sales Office
+                            <td>Sales Office
                             </td>
                             <td>
                                 <asp:DropDownList ID="ddlSo" runat="server" AutoPostBack="True" DataSourceID="ods2"
@@ -195,8 +165,7 @@
                                 </asp:ObjectDataSource>
                             </td>
                             <td></td>
-                            <td align="left">
-                                Type
+                            <td align="left">Type
                             </td>
                             <td colspan="3" align="left">
                                 <asp:DropDownList ID="ddlCusType" runat="server" AutoPostBack="true" DataSourceID="ods3"
@@ -213,8 +182,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td style="width: 100px;">
-                                Customer
+                            <td style="width: 100px;">Customer
                             </td>
                             <td colspan="4">
                                 <asp:HiddenField ID="hdnCustomer" runat="server" />
@@ -242,35 +210,19 @@
                                 </table>
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="8">
-                                <asp:Label ID="lblCalculation" runat="server"></asp:Label>
-                            </td>
-                        </tr>
                     </table>
-                  
                 </div>
-        </asp:Panel>
-        <br /> <br /> <br /> <br /> 
-        <div style="height: 120px;">
-        </div>
-        <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1"
-                                          runat="server">
-        </cc1:AlwaysVisibleControlExtender>
-                
-             <div id="divReportViewer" runat="server" >
-                 
-                <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
-                    InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt"
-                    Width="1050" Height="750" BackColor="#EEF1FB" EnableTheming="true" style="margin-top: 62px">
-                </rsweb:ReportViewer>   
-                 
-            </div>
-               
 
-        </ContentTemplate>
-    </asp:UpdatePanel>
-       
+                <div id="divReportViewer" runat="server">
+                    <rsweb:ReportViewer ID="ReportViewer1" runat="server" Font-Names="Verdana" Font-Size="8pt"
+                        InteractiveDeviceInfos="(Collection)" WaitMessageFont-Names="Verdana" WaitMessageFont-Size="14pt"
+                        Width="1050" Height="750" BackColor="#EEF1FB" EnableTheming="true">
+                    </rsweb:ReportViewer>
+                </div>
+
+            </ContentTemplate>
+        </asp:UpdatePanel>
+
     </form>
 </body>
 </html>

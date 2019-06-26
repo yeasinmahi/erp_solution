@@ -34,5 +34,11 @@ namespace SAD_BLL.Sales
             return ta.GetDataCustomerTripIdvsChallanDetaills(int.Parse(tripId));
         }
 
+        public OrderByTripTDS.SprCustomerOrdervsChallanDetaillsDataTable GetDataByInformation()
+        {
+            SprCustomerOrdervsChallanDetaillsTableAdapter ta = new SprCustomerOrdervsChallanDetaillsTableAdapter();
+            return ta.GetDataCustomerOrdervsChallanDetaills();
+        }
+
     }
 }

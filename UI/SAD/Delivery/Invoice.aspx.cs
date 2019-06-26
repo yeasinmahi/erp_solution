@@ -26,6 +26,9 @@ namespace UI.SAD.Delivery
         string stop = "stopping SAD\\Order\\DeliveryViewForPendingOrder";
 
         string Unitid, ShipPointid, SalesOffid, CustType, ReportType, challanid, custid, filePathForXML, xmlString = "", xml;
+        int intColumnStatus, intType; int intCount = 0;
+
+        SalesOrderView obj = new SalesOrderView();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -34,7 +37,8 @@ namespace UI.SAD.Delivery
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
 
                 pnlMarque.DataBind();
-                File.Delete(filePathForXML); dgvInvoice.DataSource = ""; dgvInvoice.DataBind();
+                //File.Delete(filePathForXML); dgvInvoice.DataSource = ""; dgvInvoice.DataBind();
+               
             }
         }
 
@@ -57,14 +61,14 @@ namespace UI.SAD.Delivery
         protected void ddlSo_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
-            ddlCusType.DataBind();
-        }
+            //ddlCusType.DataBind();
+        }        
 
         protected void ddlShip_DataBound(object sender, EventArgs e)
         {
             Session[SessionParams.CURRENT_SO] = ddlSo.SelectedValue;
             ddlSo.DataBind();
-            ddlCusType.DataBind();
+            //ddlCusType.DataBind();
         }
 
         protected void ddlSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,58 +113,9 @@ namespace UI.SAD.Delivery
             try
             {
                 if (hdnconfirm.Value == "1")
-                {
-                    Unitid = ddlUnit.SelectedValue;
-                    ShipPointid = ddlShip.SelectedValue;
-                    SalesOffid = ddlSo.SelectedValue;
-                    CustType = ddlCusType.SelectedValue;
-                    ReportType = rdoComplete.SelectedValue;
-                    
-                    if (filePathForXML != null) { File.Delete(filePathForXML); }
-
-                    if (dgvInvoice.Rows.Count > 0)
-                    {
-                        for (int index = 0; index < dgvInvoice.Rows.Count; index++)
-                        {
-                            if (((CheckBox)dgvInvoice.Rows[index].FindControl("chkRow")).Checked == true)
-                            {
-                                challanid = ((Label)dgvInvoice.Rows[index].FindControl("lblID")).Text.ToString();
-                                custid = ((Label)dgvInvoice.Rows[index].FindControl("lblCusID")).Text.ToString();
-                               
-                                if (challanid != "" || custid != "")
-                                {
-                                    CreateVoucherXml(challanid, custid);
-                                }
-                            }
-                            else
-                            {
-                                // not selected
-                            }
-
-                        }
-                    }
-
-                    if (dgvInvoice.Rows.Count > 0)
-                    {
-                        try
-                        {
-                            XmlDocument doc = new XmlDocument();
-                            doc.Load(filePathForXML);
-                            XmlNode dSftTm = doc.SelectSingleNode("INV");
-                            string xmlString = dSftTm.InnerXml;
-                            xmlString = "<INV>" + xmlString + "</INV>";
-                            xml = xmlString;
-                        }
-                        catch { }
-                    }
-                    if (xml == null) { return; }
-                    if (xml == "") { return; }
-
-                    //*** Final Insert
-                    //string message = objVoucher.InsertPurchaseVoucher(intUnitID, intUser, intType, xml);
-                    //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                    if (filePathForXML != null) { File.Delete(filePathForXML); }
-                    //LoadGrid();
+                {                   
+                    intType = 1;                    
+                    InvoiceGenerate(intType);
                 }
             }
             catch (Exception ex)
@@ -174,6 +129,91 @@ namespace UI.SAD.Delivery
             // ends
             tracker.Stop();
         }
+
+        protected void btnGroup_Click(object sender, EventArgs e)
+        {
+            var fd = log.GetFlogDetail(start, location, "btnPrepareAllVoucher_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/PurchaseVoucher.aspx btnPrepareAllVoucher_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+            try
+            {
+                if (hdnconfirm.Value == "1")
+                {
+                    intType = 2;
+                    InvoiceGenerate(intType);
+                }
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnPrepareAllVoucher_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnPrepareAllVoucher_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
+        }
+
+        public void InvoiceGenerate(int intType)
+        {
+
+            if (filePathForXML != null) { File.Delete(filePathForXML); }
+
+            if (dgvInvoice.Rows.Count > 0)
+            {
+                for (int index = 0; index < dgvInvoice.Rows.Count; index++)
+                {
+                    if (((CheckBox)dgvInvoice.Rows[index].FindControl("chkRow")).Checked == true)
+                    {
+                        intCount = intCount + 1;
+                        challanid = ((Label)dgvInvoice.Rows[index].FindControl("lblID")).Text.ToString();
+                        custid = ((Label)dgvInvoice.Rows[index].FindControl("lblCusID")).Text.ToString();
+
+                        if (challanid != "" || custid != "")
+                        {
+                            CreateVoucherXml(challanid, custid);
+                        }
+                    }
+                    else
+                    {
+                        // not selected
+                    }
+                }
+
+                if(intCount == 0)
+                {
+                    return;
+                }
+            }
+
+            if (dgvInvoice.Rows.Count > 0)
+            {
+                try
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXML);
+                    XmlNode dSftTm = doc.SelectSingleNode("INV");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<INV>" + xmlString + "</INV>";
+                    xml = xmlString;
+                }
+                catch { }
+            }
+            if (xml == null) { return; }
+            if (xml == "") { return; }
+
+            //*** Final Insert
+            string message = obj.InvoiceGenerate(intType, int.Parse(Session[SessionParams.USER_ID].ToString()), xml);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+            if (filePathForXML != null) { File.Delete(filePathForXML); }
+            //LoadGrid();
+        }
+
         private void CreateVoucherXml(string challanid, string custid)
         {
             XmlDocument doc = new XmlDocument();

@@ -123,7 +123,7 @@
 
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
-                                            <ItemStyle HorizontalAlign="center" Width="30px" />
+                                            <ItemStyle HorizontalAlign="center" Width="20px" />
                                             <ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate>
                                         </asp:TemplateField>
 
@@ -139,7 +139,12 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="45px" />
                                         </asp:TemplateField>
-
+                                        <asp:TemplateField HeaderText="Unit ID" Visible="false" SortExpression="intUnitID">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Left" Width="45px" />
+                                        </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Product Name" SortExpression="strName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblProductName" runat="server" Width="200px" Text='<%# Bind("strName") %>'></asp:Label>
@@ -156,28 +161,28 @@
 
                                         <asp:TemplateField HeaderText="Batch No" ItemStyle-HorizontalAlign="right" SortExpression="strBatchNo">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblBatch" runat="server" Width="40px" Text='<%# Bind("strBatchNo") %>'></asp:Label>
+                                                <asp:Label ID="lblBatch" runat="server" Width="100px" Text='<%# Bind("strBatchNo") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Start Time" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="dteStartTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblStartTime" Width="70px" runat="server" Text='<%# Bind("dteStartTime") %>'></asp:Label>
+                                                <asp:Label ID="lblStartTime" Width="100px" runat="server" Text='<%# Bind("dteStartTime") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="End Time" ItemStyle-HorizontalAlign="right" SortExpression="dteEndtTime">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblEndTime" Width="70px" runat="server" Text='<%# Bind("dteEndtTime" ) %>'></asp:Label>
+                                                <asp:Label ID="lblEndTime" Width="100px" runat="server" Text='<%# Bind("dteEndtTime" ) %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Invoice No" ItemStyle-HorizontalAlign="right" SortExpression="strCinvoiceode">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblInvoice" runat="server"></asp:Label>
+                                                <asp:Label ID="lblInvoice" runat="server" Width="60px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
@@ -198,7 +203,7 @@
 
                                         <asp:TemplateField HeaderText="Line/ Process/ Machine" ItemStyle-HorizontalAlign="right" SortExpression="strplantname">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>'></asp:Label>
+                                                <asp:Label ID="lblLine" runat="server" Text='<%# Bind("strplantname") %>' Width="90px"></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" Width="40px" />
                                         </asp:TemplateField>

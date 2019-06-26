@@ -42,27 +42,30 @@ namespace UI.SCM.BOM
         {
             try
             {
-                
-                    GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-                    Label lblProductID = row.FindControl("lblProductID") as Label;
 
-                    int productionID = int.Parse(lblProductID.Text);
-                    string msg = InventoryTransfer_Obj.UpdateProductionApprove(Enroll, productionID);
-                    if (msg.ToLower().Contains("successful"))
-                    {
-                        Toaster(msg, Common.TosterType.Success);
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblProductID = row.FindControl("lblProductID") as Label;
+                Label lblItemID = row.FindControl("lblItemID") as Label;
+                Label lblUnitID = row.FindControl("lblUnitID") as Label;
+                int ProductID = int.Parse(lblProductID.Text);
+                int ItemID = int.Parse(lblItemID.Text);
+                int UnitID = int.Parse(lblUnitID.Text);
+                string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, ProductID, Enroll, 1);
+                if (msg.ToLower().Contains("successful"))
+                {
+                    Toaster(msg, Common.TosterType.Success);
 
-                        LoadGrid();
+                    LoadGrid();
 
-                    }
-                    else
-                    {
-                        Toaster(msg, Common.TosterType.Error);
-                    }
-                
-               
-                
-                
+                }
+                else
+                {
+                    Toaster(msg, Common.TosterType.Error);
+                }
+
+
+
+
             }
             catch (Exception ex)
             {
@@ -79,24 +82,27 @@ namespace UI.SCM.BOM
         {
             try
             {
-                
-                    GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-                    Label lblProductID = row.FindControl("lblProductID") as Label;
 
-                    int productionID = int.Parse(lblProductID.Text);
-                    string msg = InventoryTransfer_Obj.UpdateProductionClose(Enroll, productionID);
-                    if (msg.ToLower().Contains("successful"))
-                    {
-                        Toaster(msg, Common.TosterType.Success);
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                Label lblProductID = row.FindControl("lblProductID") as Label;
+                Label lblItemID = row.FindControl("lblItemID") as Label;
+                Label lblUnitID = row.FindControl("lblUnitID") as Label;
+                int ProductID = int.Parse(lblProductID.Text);
+                int ItemID = int.Parse(lblItemID.Text);
+                int UnitID = int.Parse(lblUnitID.Text);
+                string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, ProductID, Enroll, 2);
+                if (msg.ToLower().Contains("successful"))
+                {
+                    Toaster(msg, Common.TosterType.Success);
 
-                        LoadGrid();
+                    LoadGrid();
 
-                    }
-                    else
-                    {
-                        Toaster(msg, Common.TosterType.Error);
-                    }
-                
+                }
+                else
+                {
+                    Toaster(msg, Common.TosterType.Error);
+                }
+
 
 
 
@@ -118,23 +124,23 @@ namespace UI.SCM.BOM
                 string xmlData = "<voucher><voucherentry dteTo=" + '"' + dteTo + '"' + " dteFrom=" + '"' + dteFrom + '"' + "/></voucher>";
 
                 int appType = Convert.ToInt32(rdoApprove.SelectedItem.Value);
-                if (appType==1)
+                if (appType == 1)
                 {
                     dgvBom.Columns[12].Visible = false;
                     dgvBom.Columns[13].Visible = false;
                 }
-                else if(appType == 2)
-                {                   
+                else if (appType == 2)
+                {
                     dgvBom.Columns[12].Visible = true;
                     dgvBom.Columns[13].Visible = true;
                 }
-                else if(appType==3)
+                else if (appType == 3)
                 {
                     dgvBom.Columns[12].Visible = false;
                     dgvBom.Columns[13].Visible = false;
                 }
                 dt = objBom.GetBomData(19, xmlData, intwh, BomId, dteDate, appType);
-                if(dt.Rows.Count>0)
+                if (dt.Rows.Count > 0)
                 {
                     dgvBom.DataSource = dt;
                     dgvBom.DataBind();
@@ -142,10 +148,10 @@ namespace UI.SCM.BOM
                 else
                 {
                     dgvBom.UnLoad();
-                    Toaster("There is no data","Production Approval", Common.TosterType.Warning);
+                    Toaster("There is no data", "Production Approval", Common.TosterType.Warning);
                 }
 
-                
+
             }
             catch (Exception ex)
             {

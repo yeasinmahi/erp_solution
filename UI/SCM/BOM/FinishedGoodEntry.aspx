@@ -32,6 +32,7 @@
 
         function Viewdetails(productID, productName, bomName, batchName, startTime, endTime, invoice, srNo, quantity, whid, itemId) {
             window.open('FinishedGoodEntryFgSavePopUP.aspx?productID=' + productID + '&productName=' + productName + '&bomName=' + bomName + '&batchName=' + batchName + '&startTime=' + startTime + '&endTime=' + endTime + '&invoice=' + invoice + '&srNo=' + srNo + '&quantity=' + quantity + '&whid=' + whid + '&itemId=' + itemId, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
+             //window.open('FinishedGoodEntryPopup.aspx?productID=' + productID + '&productName=' + productName + '&bomName=' + bomName + '&batchName=' + batchName + '&startTime=' + startTime + '&endTime=' + endTime + '&invoice=' + invoice + '&srNo=' + srNo + '&quantity=' + quantity + '&whid=' + whid + '&itemId=' + itemId, 'sub', "scrollbars=yes,toolbar=0,height=500,width=950,top=100,left=200, resizable=yes, directories=no,location=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no, addressbar=no");
         }
     </script>
 </head>
@@ -96,7 +97,8 @@
                             <td>
 
                                 <asp:GridView ID="dgvBom" runat="server" AutoGenerateColumns="False" Font-Size="10px" Width="850px" BackColor="White" BorderColor="#999999" BorderStyle="Solid"
-                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999" FooterStyle-HorizontalAlign="Right">
+                                    BorderWidth="1px" CellPadding="5" ForeColor="Black" GridLines="Vertical" FooterStyle-Font-Bold="true" FooterStyle-BackColor="#999999"
+                                    FooterStyle-HorizontalAlign="Right">
 
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
 

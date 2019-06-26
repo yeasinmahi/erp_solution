@@ -1,15 +1,7 @@
 ﻿using System;
-using System.Collections;
-using System.Configuration;
 using System.Data;
-using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Xml.Linq;
 using System.Web.Services;
 using System.Web.Script.Services;
 using SAD_BLL.Customer;
@@ -34,7 +26,7 @@ namespace UI.SAD.Customer.Report
             if (!IsPostBack)
             {
                 //Session["sesUserID"] = "1";
-                pnlMarque.DataBind();
+                pnlUpperControl.DataBind();
 
                 txtFrom.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(-1));
                 txtTo.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);

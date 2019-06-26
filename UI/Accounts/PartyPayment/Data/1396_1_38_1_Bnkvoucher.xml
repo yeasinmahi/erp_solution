@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<BankVoucher>
-  <items bnkid="2" bnkaccid="100338" chequeno="7287336" chequedte="2013-08-19" amountcr="7600.0000" bnknarration="Cheque" remarks="1 Syed Gas &amp; Chemicals Ltd" actualpaydte="2013-08-20" supcoaid="Cheque" amountdr="7600.0000" supnarration="Being the amount 1paid to Syed Gas &amp; Chemicals Ltd" />
-  <items bnkid="1" bnkaccid="100011" chequeno="7287342" chequedte="2013-08-15" amountcr="7600.0000" bnknarration="Cheque" remarks="1 Syed Gas &amp; Chemicals Ltd" actualpaydte="2013-08-22" supcoaid="Cheque" amountdr="7600.0000" supnarration="Being the amount 1paid to Syed Gas &amp; Chemicals Ltd" />
-  <items bnkid="1" bnkaccid="100011" chequeno="7287346" chequedte="2013-08-21" amountcr="7600.0000" bnknarration="Cheque" remarks="1 Syed Gas &amp; Chemicals Ltd" actualpaydte="2013-08-22" supcoaid="Cheque" amountdr="7600.0000" supnarration="Being the amount 1paid to Syed Gas &amp; Chemicals Ltd" />
-  <items bnkid="1" bnkaccid="100011" chequeno="7287350" chequedte="2013-08-21" amountcr="7600.0000" bnknarration="Cheque" remarks="1 Syed Gas &amp; Chemicals Ltd" actualpaydte="2013-08-22" supcoaid="Cheque" amountdr="7600.0000" supnarration="Being the amount 1paid to Syed Gas &amp; Chemicals Ltd" />
-  <items bnkid="1" bnkaccid="100011" chequeno="Advice" chequedte="2013-08-26" amountcr="7600.0000" bnknarration="Advice" remarks="2 Syed Gas &amp; Chemicals Ltd" actualpaydte="2013-08-26" supcoaid="Advice" amountdr="7600.0000" supnarration="Being the amount paid to Syed Gas &amp; Chemicals LtdFor purchase against PO No. 38 and Bill no. 27" />
-</BankVoucher>

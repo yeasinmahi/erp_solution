@@ -85,6 +85,24 @@ namespace UI.SAD.Delivery {
         protected global::AjaxControlToolkit.AlwaysVisibleControlExtender AlwaysVisibleControlExtender1;
         
         /// <summary>
+        /// hdnLm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnLm;
+        
+        /// <summary>
+        /// hdnBl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnBl;
+        
+        /// <summary>
         /// hdnConfirm control.
         /// </summary>
         /// <remarks>
@@ -352,7 +370,7 @@ namespace UI.SAD.Delivery {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDoNumber;
+        protected global::System.Web.UI.WebControls.Label txtDoNumber;
         
         /// <summary>
         /// lblCodeText control.
@@ -652,6 +670,60 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.TextBox txtShipToPartyAddress;
         
         /// <summary>
+        /// Label6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label6;
+        
+        /// <summary>
+        /// ddlPaymentTrems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPaymentTrems;
+        
+        /// <summary>
+        /// pnlClCb control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlClCb;
+        
+        /// <summary>
+        /// lblLM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLM;
+        
+        /// <summary>
+        /// lblBl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblBl;
+        
+        /// <summary>
+        /// lblTotalProductPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTotalProductPrice;
+        
+        /// <summary>
         /// pnlLogistic control.
         /// </summary>
         /// <remarks>
@@ -661,15 +733,6 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.Panel pnlLogistic;
         
         /// <summary>
-        /// rdoNeedVehicle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rdoNeedVehicle;
-        
-        /// <summary>
         /// rdoVehicleCompany control.
         /// </summary>
         /// <remarks>
@@ -677,6 +740,15 @@ namespace UI.SAD.Delivery {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rdoVehicleCompany;
+        
+        /// <summary>
+        /// txtShipmentCost control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtShipmentCost;
         
         /// <summary>
         /// hdnPriceId control.
@@ -823,6 +895,15 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
+        /// lblError control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+        
+        /// <summary>
         /// hdnProduct control.
         /// </summary>
         /// <remarks>
@@ -895,13 +976,13 @@ namespace UI.SAD.Delivery {
         protected global::System.Web.UI.WebControls.DropDownList ddlLocation;
         
         /// <summary>
-        /// lblComm control.
+        /// lblDiscount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblComm;
+        protected global::System.Web.UI.WebControls.Label lblDiscount;
         
         /// <summary>
         /// txtQun control.

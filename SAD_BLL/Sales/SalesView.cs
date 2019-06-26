@@ -672,7 +672,11 @@ namespace SAD_BLL.Sales
             }
             catch (Exception ex) { return new DataTable(); }
         }
-      
+
+  
+
+
+
         public DataTable getSetupvsCollection(DateTime fromdate, DateTime todate, int intunitid, int salesofficeid, int customertypeid, int reporttype, int intteritoryid, int intareaid, int regionid)
         {
             try
