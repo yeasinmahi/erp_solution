@@ -251,6 +251,3 @@ paket-files/
 .idea/
 *.sln.iml
 *.xml
-/UI/SAD/Sales/Report/Item_category_top_Sheet.aspx
-/UI/SAD/Sales/Report/Item_category_top_Sheet.aspx.cs
-/UI/SAD/Sales/Report/Item_category_top_Sheet.aspx.designer.cs
