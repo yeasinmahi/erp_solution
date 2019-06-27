@@ -489,6 +489,7 @@
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\Penalty\Familyday.aspx" />
     <Content Include="HR\Penalty\FamilyDayPub.aspx" />
+    <Content Include="HR\PiceRateCalculation\CasualWorkerBill.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
@@ -3360,6 +3361,13 @@
     </Compile>
     <Compile Include="HR\Penalty\FamilyDayPub.aspx.designer.cs">
       <DependentUpon>FamilyDayPub.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.cs">
+      <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.designer.cs">
+      <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>

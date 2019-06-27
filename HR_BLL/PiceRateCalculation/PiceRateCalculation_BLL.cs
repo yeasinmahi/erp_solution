@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HR_DAL.PiceRateCalculation.PiceRateCalculationTableAdapters;
 using System.Data;
+using Utility;
 
 namespace HR_BLL.PiceRateCalculation
 {
@@ -77,6 +75,43 @@ namespace HR_BLL.PiceRateCalculation
             catch (Exception ex)
             { return ex.Message.ToString(); }
         }
-        
+        public DataTable GetAttendentEmployeeList(DateTime date)
+        {
+            try
+            {
+                sprATMLCausalTableAdapter adp = new sprATMLCausalTableAdapter();
+                return adp.GetData(date);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetProductList()
+        {
+            try
+            {
+                tblCasualWorkerProductTableAdapter adp = new tblCasualWorkerProductTableAdapter();
+                return adp.GetData();
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public int InsertCasualSalary(int employeeId, int unitId, string date, int quantity, int productionId)
+        {
+            try
+            {
+                tblCasualSalaryTableAdapter adp = new tblCasualSalaryTableAdapter();
+                DataTable dt = adp.Insert1(employeeId,unitId,date,quantity,productionId);
+                return dt.GetAutoId("intEmpID");
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
     }
 }

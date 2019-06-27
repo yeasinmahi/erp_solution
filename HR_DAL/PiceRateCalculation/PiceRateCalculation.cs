@@ -1,7 +1,9 @@
-﻿namespace HR_DAL.PiceRateCalculation {
-    
-    
-    public partial class PiceRateCalculation {
+﻿namespace HR_DAL.PiceRateCalculation
+{
+
+
+    public partial class PiceRateCalculation
+    {
     }
 }
 
