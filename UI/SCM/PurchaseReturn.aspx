@@ -26,19 +26,26 @@
 
     </script>
     <script type="text/javascript">
-
+        function getNum(val) {
+            if (isNaN(val)) {
+                return 0;
+            }
+            return val;
+        }
         $("[id*=txtReturnQty]").live("keyup", function () {
             if (!jQuery.trim($(this).val()) == '') {
                 if (!isNaN(parseFloat($(this).val()))) {
+                    debugger;
                     var row = $(this).closest("tr");
                     var receivedQuantity = parseFloat($("[id*=lblReceve]", row).html().replace(/,/g, ""));
                     var currentStock = parseFloat($("[id*=lblCurrentStock]", row).html().replace(/,/g, ""));
                     var returnQty = parseFloat($(this).val().replace(/,/g, ""));
+                    var returnedQty = getNum(parseFloat($("[id*=lblReturnQty]", row).html().replace(/,/g, "")));
 
-                    if (receivedQuantity < returnQty) {
+                    if (receivedQuantity < returnQty+returnedQty) {
                         $("[id*=txtReturnQty]", row).val('0');
                         alert('Return Quantity can not be greater then Receive Quantity');
-                    } else if (currentStock < returnQty) {
+                    } else if (currentStock < returnQty+returnedQty) {
                         $("[id*=txtReturnQty]", row).val('0');
                         alert('Return Quantity can not be greater then Current Stock');
                     }

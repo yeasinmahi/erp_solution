@@ -87,15 +87,15 @@ namespace UI.SCM
                         int whId = ddlWH.SelectedValue();
                         // ***********NEW process***********
                         FactoryPurchaseReturnBll bll = new FactoryPurchaseReturnBll();
-                        int returnId = bll.PurchaseReturn(whId, mrrNo, itemId, itemName, poQuantity, receiveQuantity, returnQty,
+                        string message = bll.PurchaseReturn(whId, mrrNo, itemId, itemName, poQuantity, receiveQuantity, returnQty,
                             rate*returnQty, locationId, remarks, supplierId, supplierName, Enroll);
-                        if (returnId > 0)
+                        if (message.ToLower().Contains("success"))
                         {
-                            Toaster("Successfully purchase returned with ID: "+returnId,Common.TosterType.Success);
+                            Toaster(message, Common.TosterType.Success);
                         }
                         else
                         {
-                            Toaster("Purchase returned Failed", Common.TosterType.Warning);
+                            Toaster(message, Common.TosterType.Warning);
                         }
                         // ***********OLD process***********
                         //string msg = _bll.PoApprove(37, xmlData, whId, mrrNo, DateTime.Now, Enroll);

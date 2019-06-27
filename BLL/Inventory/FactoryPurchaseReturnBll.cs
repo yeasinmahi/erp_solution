@@ -20,13 +20,13 @@ namespace BLL.Inventory
         private readonly BillRegisterDetailMrrBll _billRegisterDetail = new BillRegisterDetailMrrBll();
         private DataTable _dt = new DataTable();
 
-        public int PurchaseReturn(int intWhId, int intMrrId, int itemId, string itemName, decimal poQty, decimal numRcvQty, decimal returnQty, decimal returnValue, int locationId, string remarks, int supplierId, string supplierName, int intEnroll)
+        public string PurchaseReturn(int intWhId, int intMrrId, int itemId, string itemName, decimal poQty, decimal numRcvQty, decimal returnQty, decimal returnValue, int locationId, string remarks, int supplierId, string supplierName, int intEnroll)
         {
             int unitId = _unitBll.GetUnitIdByWhId(intWhId);
             _dt = _billRegisterDetail.GetBillRegisterDetailsMrrByMrrId(intMrrId);
             if (_dt.Rows.Count > 0)
             {
-                return 0;
+                return "This MRR already complete payment. It can not be returned.";
             }
             int purchaseReturnId = _dal.Insert(intMrrId, itemId, poQty, numRcvQty, returnQty, returnValue, intEnroll, unitId, remarks);
             if (purchaseReturnId > 0)
@@ -50,37 +50,42 @@ namespace BLL.Inventory
                                 int jvId2 = _accountsVoucherJournalDetailsBll.Insert(jvId, coaId2, supplierName, returnValue * -1, accName2);
                                 if(jvId1>0 && jvId2 > 0)
                                 {
-                                    return purchaseReturnId;
+                                    return "Purchase Return Successful. Returned ID: "+ purchaseReturnId;
                                 }
                             }
                             else
                             {
+                                return "Jv Insert failed";
                                 //TODO: Jv insert Failed
                             }
                             
                         }
                         else
                         {
+                            return "failed to get acc";
                             //TODO: RollBack
                         }
 
                     }
                     else
                     {
+                        return "failed to get COA";
                         //TODO: RollBack
                     }
                     
                 }
                 else
                 {
+                    return "Failed to inset data into inventory";
                     //TODO: Inventory insert Failed
                 }
             }
             else
             {
+                return "Failed to inset data into purchase return";
                 //TODO: Purchase Return insert Failed
             }
-            return purchaseReturnId;
+            return "Purchase Return Failed";
         }
     }
 }
