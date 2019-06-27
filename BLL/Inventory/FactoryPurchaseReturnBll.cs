@@ -1,5 +1,7 @@
-﻿using BLL.Accounts;
+﻿using System.Data;
+using BLL.Accounts;
 using BLL.HR;
+using BLL.Payment;
 using DALOOP.Inventory;
 
 namespace BLL.Inventory
@@ -15,10 +17,17 @@ namespace BLL.Inventory
         private readonly ItemListBll _itemListBll = new ItemListBll();
         private readonly AccountsChartOfAccBll _accountsChartOfAccBll = new AccountsChartOfAccBll();
         private readonly SupplierBll _supplierBll = new SupplierBll();
+        private readonly BillRegisterDetailMrrBll _billRegisterDetail = new BillRegisterDetailMrrBll();
+        private DataTable _dt = new DataTable();
 
         public int PurchaseReturn(int intWhId, int intMrrId, int itemId, string itemName, decimal poQty, decimal numRcvQty, decimal returnQty, decimal returnValue, int locationId, string remarks, int supplierId, string supplierName, int intEnroll)
         {
             int unitId = _unitBll.GetUnitIdByWhId(intWhId);
+            _dt = _billRegisterDetail.GetBillRegisterDetailsMrrByMrrId(intMrrId);
+            if (_dt.Rows.Count > 0)
+            {
+                return 0;
+            }
             int purchaseReturnId = _dal.Insert(intMrrId, itemId, poQty, numRcvQty, returnQty, returnValue, intEnroll, unitId, remarks);
             if (purchaseReturnId > 0)
             {

@@ -31,12 +31,16 @@
             if (!jQuery.trim($(this).val()) == '') {
                 if (!isNaN(parseFloat($(this).val()))) {
                     var row = $(this).closest("tr");
-                    var isssueqty = parseFloat($("[id*=lblPoQty]", row).html());
-                    var returnQty = parseFloat($(this).val());
+                    var receivedQuantity = parseFloat($("[id*=lblReceve]", row).html().replace(/,/g, ""));
+                    var currentStock = parseFloat($("[id*=lblCurrentStock]", row).html().replace(/,/g, ""));
+                    var returnQty = parseFloat($(this).val().replace(/,/g, ""));
 
-                    if (isssueqty > returnQty) {
+                    if (receivedQuantity < returnQty) {
                         $("[id*=txtReturnQty]", row).val('0');
-                        alert('Please PO Qty Grather then Return Qty');
+                        alert('Return Quantity can not be greater then Receive Quantity');
+                    } else if (currentStock < returnQty) {
+                        $("[id*=txtReturnQty]", row).val('0');
+                        alert('Return Quantity can not be greater then Current Stock');
                     }
 
                 }
@@ -95,7 +99,7 @@
                     <table>
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvDelivery" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true" Width="600px"
+                                <asp:GridView ID="dgvDelivery" runat="server" AutoGenerateColumns="False" ShowFooter="true" ShowHeader="true" Width="800px"
                                     CssClass="GridViewStyle">
                                     <HeaderStyle CssClass="HeaderStyle" />
                                     <FooterStyle CssClass="FooterStyle" />
@@ -116,25 +120,31 @@
 
                                         <asp:TemplateField HeaderText="ItemName" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblItemName" runat="server" Width="150px" Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strName") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblUom" runat="server" Width="90px" Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblUom" runat="server" Text='<%# Bind("strUoM") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO Quantity" ItemStyle-HorizontalAlign="right" SortExpression="numPOQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPoQty" runat="server" Width="50px" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPoQty" runat="server" Text='<%# Bind("numPOQty","{0:n2}") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Received" ItemStyle-HorizontalAlign="right" SortExpression="numReceiveQty">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblReceve" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("numReceiveQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblReceve" runat="server" Text='<%# Bind("numReceiveQty","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+                                        
+                                        <asp:TemplateField HeaderText="Current Stock" ItemStyle-HorizontalAlign="right">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblCurrentStock" runat="server" Text='<%# Bind("numQuantity","{0:n2}") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 

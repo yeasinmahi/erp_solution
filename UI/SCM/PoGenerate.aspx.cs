@@ -1243,7 +1243,7 @@ namespace UI.SCM
                         if (ddlDepts.SelectedItem.Text == "Import")
                         {
                             DateTime InsertDate = DateTime.Now;
-                            int POId = Convert.ToInt32(lblPoNo.Text);
+                            int POId = Convert.ToInt32(searchKey[1]);
                             int LCTypeId = Convert.ToInt32(ddlLCType.SelectedItem.Value);
                             int MaterialTypeId = Convert.ToInt32(ddlMaterialType.SelectedItem.Value);
                             int BankId = Convert.ToInt32(ddlBank.SelectedItem.Value);

@@ -95,7 +95,7 @@ namespace UI.SCM
                         }
                         else
                         {
-                            Toaster("Purchase returned Failed", Common.TosterType.Success);
+                            Toaster("Purchase returned Failed", Common.TosterType.Warning);
                         }
                         // ***********OLD process***********
                         //string msg = _bll.PoApprove(37, xmlData, whId, mrrNo, DateTime.Now, Enroll);
