@@ -139,11 +139,9 @@
 
     <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
                     </div>
-
-                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
 
-                <div style="height: 100px;"></div>
+                <div style="height: 20px;"></div>
 
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
@@ -221,43 +219,50 @@
 
                                         <asp:TemplateField HeaderText="PO No" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="intPOID">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPoNo" runat="server" Text='<%# Bind("intPOID") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPoNo" runat="server" Text='<%# Bind("intPOID") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO Date" ItemStyle-HorizontalAlign="right" SortExpression="dtePODate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPoDate" runat="server" Width="75px" Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPoDate" runat="server" Width="75px" Text='<%# Bind("dtePODate","{0:dd-MM-yyyy}") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Supplier Name" ItemStyle-HorizontalAlign="right" SortExpression="strSupplierName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblSuppliyer" runat="server" Width="200px" Text='<%# Bind("strSupplierName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblSuppliyer" runat="server" Width="200px" Text='<%# Bind("strSupplierName") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO Amount" ItemStyle-HorizontalAlign="right" SortExpression="monPOTotal">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblPoTotal" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblPoTotal" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("monPOTotal","{0:n2}") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="right" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Currency" ItemStyle-HorizontalAlign="right" SortExpression="strCurrencyName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblCurrency" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strCurrencyName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblCurrency" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("strCurrencyName") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="center" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="PO Issuer" ItemStyle-HorizontalAlign="right" SortExpression="strEmployeeName">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblEmpName" runat="server" Width="200px" Text='<%# Bind("strEmployeeName") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblEmpName" runat="server" Width="200px" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="Approve?" ItemStyle-HorizontalAlign="right" Visible="false" SortExpression="strIndentType">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblIndentType" runat="server"></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lblIndentType" runat="server"></asp:Label>
+                                            </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
