@@ -11,86 +11,77 @@
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />  
     <link href="../Content/CSS/bootstrap.min.css" rel="stylesheet" />
     <script src="../Content/JS/jquery-3.3.1.js"></script>
+    <style>
+        .lbl{text-align:right;}
+        .mrg-left{margin-left:7px}
+        .ddl{width:250px}
+        .td-lbl-width{width:11%;text-align:right}
+        .td-txt-width{width:20%}
+        .td-button{width:34%;margin-left:1%}
+        .mrg-btn{margin-left:2%}
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel runat="server" ID="pnl_hscode">
             <ContentTemplate>
-                <div class="container-fluid">
+                <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
+                    <div id="navbar" name="navbar" style="width: 100%; height: 20px; vertical-align: top;">
+                        <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
+                        <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
+                    </div>
+                    <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
+                </asp:Panel>
+                <div style="height: 100px;"></div>
+                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
+                </cc1:AlwaysVisibleControlExtender>
+
+
+                <div class="container" style="margin-top: 1%;">
                     <div class="panel panel-group">
                         <div class="panel panel-primary">
                             <div class="panel panel-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-sm">
-                                            <label class="col-sm-5 control-label text-right">Unit :</label>
-                                            <div class="col-sm-7">
-                                                <asp:DropDownList ID="ddlUnit" CssClass="form-control" runat="server"></asp:DropDownList>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group form-group-sm">
-                                            <label class="col-sm-5 control-label text-right">Item ID :</label>
-                                            <div class="col-sm-7">
-                                                <asp:TextBox runat="server" ID="txtItemId" CssClass="form-control" TextMode="Number"></asp:TextBox>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <asp:Button runat="server" ID="btnShowItem" Text="Show" CssClass="btn btn-primary btn-sm" Style="float: left" OnClick="btnShowItem_Click" />
-                                    </div>
-                                </div>
+                                <table>
+                                    <tr>
+                                        <td class="td-lbl-width"><asp:Label ID="Label2" runat="server" Text="Unit :"></asp:Label></td>
+                                        <td class="td-txt-width"><asp:DropDownList ID="ddlUnit" CssClass="form-control mrg-left ddl" runat="server"></asp:DropDownList></td>
+
+                                        <td class="td-lbl-width"><asp:Label ID="Label1" runat="server" Text="Item ID :"></asp:Label></td>
+                                        <td class="td-txt-width"><asp:TextBox ID="txtItemId" CssClass="form-control mrg-left ddl" runat="server"></asp:TextBox></td>
+
+                                        <td class="td-button"><asp:Button runat="server" ID="btnShowItem" Text="Show" CssClass="btn btn-primary btn-sm mrg-btn" Style="float: left" OnClick="btnShowItem_Click" /></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                         <div class="panel panel-primary">
                                 <div class="panel panel-body">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group form-group-sm">
-                                                <label class="col-sm-5 control-label text-right">Item Name :</label>
-                                                <div class="col-sm-7">
-                                                    <asp:TextBox ID="txtItemName" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <div class="form-group form-group-sm">
-                                                <label class="col-sm-5 control-label text-right">Description :</label>
-                                                <div class="col-sm-7">
-                                                    <asp:TextBox ID="txtItemDescription" CssClass="form-control" runat="server" TextMode="MultiLine" Height="35px"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                          <div class="col-md-4">
-                                            <div class="form-group form-group-sm">
-                                                <label class="col-sm-5 control-label text-right">Item UoM :</label>
-                                                <div class="col-sm-7">
-                                                    <asp:TextBox ID="txtItemUoM" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <div class="form-group form-group-sm">
-                                                <label class="col-sm-5 control-label text-right">HS Code :</label>
-                                                <div class="col-sm-7">
-                                                    <asp:TextBox ID="txtHSCode" CssClass="form-control" runat="server"></asp:TextBox>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <asp:HiddenField runat="server" ID="hfHSCode" />
-                                            <asp:HiddenField runat="server" ID="hfUnitId" />
-                                            <asp:HiddenField runat="server" ID="hfItemId" />
-                                            <asp:HiddenField runat="server" ID="hdnconfirm" />
-                                        </div>
-                                          <div class="col-md-4">
-                                            <asp:Button runat="server" ID="btnHSCodeUpdate" Text="Update" CssClass="btn btn-success btn-sm" Style="float: left" OnClick="btnHSCodeUpdate_Click" />
-                                        </div>
-                                    </div>
+                                    <table>
+                                        <tr>
+                                            <td class="td-lbl-width"><asp:Label ID="Label3" runat="server" Text="Item Name :"></asp:Label></td>
+                                            <td class="td-txt-width"><asp:TextBox ID="txtItemName" CssClass="form-control mrg-btn ddl" runat="server"></asp:TextBox></td>
+
+                                            <td class="td-lbl-width"><asp:Label ID="Label4" runat="server" Text="Description :"></asp:Label></td>
+                                            <td class="td-txt-width"><asp:TextBox ID="txtItemDescription" CssClass="form-control mrg-btn ddl" runat="server" TextMode="MultiLine" Height="35px"></asp:TextBox></td>
+
+                                            <td class="td-lbl-width"><asp:Label ID="Label5" runat="server" Text="Item UoM :"></asp:Label></td>
+                                            <td class="td-txt-width"><asp:TextBox ID="txtItemUoM" CssClass="form-control mrg-btn ddl" runat="server"></asp:TextBox></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="td-lbl-width"><asp:Label ID="Label6" runat="server" Text="HS Code :"></asp:Label></td>
+                                            <td class="td-txt-width"><asp:TextBox ID="txtHSCode" CssClass="form-control mrg-btn ddl" runat="server"></asp:TextBox></td>
+                                            <td class="td-lbl-width"></td>
+                                            <td class="td-txt-width">
+                                                <asp:HiddenField runat="server" ID="hfHSCode" />
+                                                <asp:HiddenField runat="server" ID="hfUnitId" />
+                                                <asp:HiddenField runat="server" ID="hfItemId" />
+                                                <asp:HiddenField runat="server" ID="hdnconfirm" />
+                                            </td>
+                                            <td class="td-button" colspan="2"><asp:Button runat="server" ID="btnHSCodeUpdate" Text="Update" CssClass="btn btn-success btn-sm" Style="float: right" OnClick="btnHSCodeUpdate_Click" /></td>
+                                        </tr>
+                                    </table>
+                                    
                                 </div>
                             </div>
                     </div>
