@@ -31,11 +31,11 @@
                         </div>
                         <div class="panel-body">
                             <div class="row form-group">
-                                 <div class="col-md-4">
+                                 <div class="col-md-6">
                                       <asp:Label ID="Label1" runat="server" Text="Employee Search" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                       <asp:TextBox ID="txtEmployeeSearch" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>
                                  </div>
-                                 <div class="col-md-4" style="padding-top:20px;">   
+                                 <div class="col-md-6" style="padding-top:20px;">   
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" OnClick="btnShow_Click"/>
                                  </div>
                             </div>
