@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Employee Previous History Report</title>
+    <title>Employee Information Report</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
@@ -74,7 +74,7 @@
                     //debugger;
                     var param = { strSearchKey: $("#txtEmployeeSearch").val() };
                     $.ajax({
-                        url: "Employee_Previous_History.aspx/GetAutoCompleteData",
+                        url: "All_Employee_Information_Report.aspx/GetAutoCompleteData",
                         data: JSON.stringify(param),
                         dataType:"json",
                         type: "post",
@@ -95,7 +95,7 @@
         function validation() {
             var emp = document.getElementById("txtEmployeeSearch").value;
             if (emp === null || emp === "") {
-                ShowNotification('Employee search can not be blank', 'Employee Previous History Report', 'warning');
+                ShowNotification('Employee search can not be blank', '', 'warning');
                 return false;
             }
         }
