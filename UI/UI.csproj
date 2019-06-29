@@ -495,6 +495,7 @@
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
     <Content Include="HR\Reports\Employee_Movement_History.aspx" />
+    <Content Include="HR\Reports\Employee_PF_Report.aspx" />
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
     <Content Include="HR\Reports\Lync_Bill_Report.aspx" />
@@ -1676,6 +1677,7 @@
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
     <Content Include="Transport\AccidentRegisterEntry.aspx" />
+    <Content Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx" />
     <Content Include="Transport\InternalTRouteCostUpdate.aspx" />
     <Content Include="Transport\NewVehicleEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
@@ -3402,6 +3404,13 @@
     </Compile>
     <Compile Include="HR\Reports\Employee_Movement_History.aspx.designer.cs">
       <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_PF_Report.aspx.cs">
+      <DependentUpon>Employee_PF_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_PF_Report.aspx.designer.cs">
+      <DependentUpon>Employee_PF_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\Employee_Previous_History.aspx.cs">
       <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
@@ -7204,6 +7213,7 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_category_top_Sheet.aspx.cs">
       <DependentUpon>Item_category_top_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_category_top_Sheet.aspx.designer.cs">
       <DependentUpon>Item_category_top_Sheet.aspx</DependentUpon>
@@ -8985,6 +8995,13 @@
     </Compile>
     <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.cs">
+      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.designer.cs">
+      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\InternalTRouteCostUpdate.aspx.cs">
       <DependentUpon>InternalTRouteCostUpdate.aspx</DependentUpon>
