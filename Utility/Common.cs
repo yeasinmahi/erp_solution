@@ -323,18 +323,29 @@ namespace Utility
             return str.ToString();
         }
 
-        public static bool Dublicate(this string xml, string parent, string attribute)
+        public static bool Duplicate(this string xml, string parent, string attribute)
         {
             //var dublicates = XDocument.Parse(xml)
             //    .Descendants(parent)
             //    .GroupBy(g => (string)g.Attribute(attribute))
             //    .Where(g => g.Count() > 1)
             //    .Select(g => g.Key);
-            var dublicates = XDocument.Parse(xml)
+            var duplicates = XDocument.Parse(xml)
                 .Descendants(parent)
                 .GroupBy(x => new { x.Parent?.Name, orderno = x.Attribute(attribute)?.Value })
                 .Where(g => g.Count() > 1);
-            return dublicates.Any();
+            return duplicates.Any();
+        }
+
+        public static string ToStringWithDelimiter<T>(this List<T> list, string delimiter)
+        {
+            string result = string.Empty;
+            foreach (T id in list)
+            {
+                result = result + id + delimiter;
+            }
+            result = result.TrimEnd(delimiter.ToCharArray());
+            return result;
         }
         
     }
