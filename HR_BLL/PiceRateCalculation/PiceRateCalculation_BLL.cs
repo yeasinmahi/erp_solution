@@ -112,6 +112,30 @@ namespace HR_BLL.PiceRateCalculation
                 return 0;
             }
         }
+        public DataTable GetAllReport(int unitId, DateTime month)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetAllReport(unitId, month);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public DataTable GetIndividualReport(int unitId, int enroll, DateTime month)
+        {
+            try
+            {
+                DataTable2TableAdapter adp = new DataTable2TableAdapter();
+                return adp.GetIndividualReport(unitId,enroll, month);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
     }
 }
