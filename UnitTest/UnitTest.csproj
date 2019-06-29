@@ -72,6 +72,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Inventory\WarehouseOperatorTdd.cs" />
     <Compile Include="Inventory\WarehouseTdd.cs" />
+    <Compile Include="Utility\CommonTdd.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -88,6 +89,10 @@
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{8F40C256-179D-48A3-84B2-5DADBAA00068}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
