@@ -1313,7 +1313,7 @@
     <Content Include="SAD\Item\ItemManager.aspx" />
     <Content Include="SAD\Item\ItemManagerUOM.aspx" />
     <Content Include="SAD\Item\ItemSearch.aspx" />
-    <Content Include="SAD\Item\PriceRateOfAMFL.aspx" />
+    <Content Include="SAD\Item\PieceRateOfAMFL.aspx" />
     <Content Include="SAD\Item\PriceApprovalOne.aspx" />
     <Content Include="SAD\Item\PriceApprovalTwo.aspx" />
     <Content Include="SAD\Item\PriceByDate.aspx" />
@@ -6408,12 +6408,12 @@
     <Compile Include="SAD\Item\ItemSearch.aspx.designer.cs">
       <DependentUpon>ItemSearch.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\Item\PriceRateOfAMFL.aspx.cs">
-      <DependentUpon>PriceRateOfAMFL.aspx</DependentUpon>
+    <Compile Include="SAD\Item\PieceRateOfAMFL.aspx.cs">
+      <DependentUpon>PieceRateOfAMFL.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SAD\Item\PriceRateOfAMFL.aspx.designer.cs">
-      <DependentUpon>PriceRateOfAMFL.aspx</DependentUpon>
+    <Compile Include="SAD\Item\PieceRateOfAMFL.aspx.designer.cs">
+      <DependentUpon>PieceRateOfAMFL.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Item\PriceApprovalOne.aspx.cs">
       <DependentUpon>PriceApprovalOne.aspx</DependentUpon>

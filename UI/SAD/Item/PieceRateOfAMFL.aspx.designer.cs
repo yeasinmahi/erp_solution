@@ -10,7 +10,7 @@
 namespace UI.SAD.Item {
     
     
-    public partial class PriceRateOfAMFL {
+    public partial class PieceRateOfAMFL {
         
         /// <summary>
         /// PlaceHolder0 control.
