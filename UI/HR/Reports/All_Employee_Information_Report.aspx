@@ -4,7 +4,7 @@
 
 <html>
 <head runat="server">
-    <title>Employee Previous History Report</title>
+    <title>Employee Information Report</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
@@ -30,12 +30,12 @@
                             <asp:Label runat="server" Text="Employee Information" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <div class="row form-group">
-                                 <div class="col-md-4">
+                            <div class="row form-group">    
+                                 <div class="col-md-6">
                                       <asp:Label ID="Label1" runat="server" Text="Employee Search" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                       <asp:TextBox ID="txtEmployeeSearch" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>
                                  </div>
-                                 <div class="col-md-4" style="padding-top:20px;">   
+                                 <div class="col-md-6" style="padding-top:20px;">   
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" OnClick="btnShow_Click"/>
                                  </div>
                             </div>
@@ -74,7 +74,7 @@
                     //debugger;
                     var param = { strSearchKey: $("#txtEmployeeSearch").val() };
                     $.ajax({
-                        url: "Employee_Previous_History.aspx/GetAutoCompleteData",
+                        url: "All_Employee_Information_Report.aspx/GetAutoCompleteData",
                         data: JSON.stringify(param),
                         dataType:"json",
                         type: "post",
@@ -95,7 +95,7 @@
         function validation() {
             var emp = document.getElementById("txtEmployeeSearch").value;
             if (emp === null || emp === "") {
-                ShowNotification('Employee search can not be blank', 'Employee Previous History Report', 'warning');
+                ShowNotification('Employee search can not be blank', '', 'warning');
                 return false;
             }
         }
