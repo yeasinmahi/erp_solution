@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PieceRateOfAMFL.aspx.cs" Inherits="PieceRateOfAMFL" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PieceRateOfAMFL.aspx.cs" Inherits="UI.SAD.Item.PieceRateOfAMFL" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
