@@ -491,10 +491,12 @@
     <Content Include="HR\Penalty\FamilyDayPub.aspx" />
     <Content Include="HR\PiceRateCalculation\CasualWorkerBill.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
+    <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
+    <Content Include="HR\Reports\Employee_Leave_Movement_Report.aspx" />
     <Content Include="HR\Reports\Employee_Movement_History.aspx" />
     <Content Include="HR\Reports\Employee_PF_Report.aspx" />
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
@@ -3378,6 +3380,13 @@
     <Compile Include="HR\policyDoc\frmPolicy.aspx.designer.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Reports\All_Employee_Information_Report.aspx.cs">
+      <DependentUpon>All_Employee_Information_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\All_Employee_Information_Report.aspx.designer.cs">
+      <DependentUpon>All_Employee_Information_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.cs">
       <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3405,6 +3414,13 @@
     </Compile>
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Leave_Movement_Report.aspx.cs">
+      <DependentUpon>Employee_Leave_Movement_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Leave_Movement_Report.aspx.designer.cs">
+      <DependentUpon>Employee_Leave_Movement_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\Employee_Movement_History.aspx.cs">
       <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
