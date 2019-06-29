@@ -87,7 +87,7 @@ namespace UI.HR.PiceRateCalculation
         {
             UnloadAll();
             int unitId = ddlUnit.SelectedValue();
-            DateTime dateTime = txtDate.Text.ToDateTime("dd/MM/yyyy");
+            DateTime dateTime = txtMonth.Text.ToDateTime("MM/yyyy");
             int enroll = Convert.ToInt32(txtEnroll.Text);
             _dt = _bll.GetIndividualReport(unitId, enroll, dateTime);
             gridViewIndividualReport.Loads(_dt);
@@ -98,7 +98,7 @@ namespace UI.HR.PiceRateCalculation
         {
             UnloadAll();
             int unitId = ddlUnit.SelectedValue();
-            DateTime dateTime = txtDate.Text.ToDateTime("dd/MM/yyyy");
+            DateTime dateTime = txtMonth.Text.ToDateTime("MM/yyyy");
             _dt = _bll.GetAllReport(unitId, dateTime);
             gridViewReport.Loads(_dt);
             HidePanel();

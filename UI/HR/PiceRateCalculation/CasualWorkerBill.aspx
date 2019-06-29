@@ -68,22 +68,23 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
+                                        
+                                        <div class="col-md-6 col-sm-6">
+                                            <asp:Label ID="Label1" runat="server" Text="Select Month"></asp:Label>
+                                            <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                            <asp:TextBox ID="txtMonth"  CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select Month"></asp:TextBox>
 
+                                        </div>
                                         <div class="col-md-6 col-sm-6">
                                             <asp:Label ID="Label3" runat="server" Text="Enroll"></asp:Label>
                                             <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                             <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
 
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <asp:Label ID="Label1" runat="server" Text="Employee Name"></asp:Label>
-                                            <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                            <asp:TextBox ID="txtEmployeeName" Enabled="False" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Name"></asp:TextBox>
-
-                                        </div>
+                                        
                                         <div class="col-md-12 col-sm-12" style="padding-top: 10px">
-                                            <asp:Button ID="btnShowIndividualReport" runat="server" class="btn btn-primary form-control pull-right" Text="Individual Report" OnClientClick="return ValidateEnroll();" OnClick="btnShowIndividualReport_OnClick" />
-                                            <asp:Button ID="btnShowAllReport" runat="server" class="btn btn-primary form-control pull-right" Text="All Report" OnClientClick="return ValidateDate();" OnClick="btnShowAllReport_OnClick" />
+                                            <asp:Button ID="btnShowIndividualReport" runat="server" class="btn btn-primary form-control pull-left" Text="Individual Report" OnClientClick="return ValidateEnrollAndMonth();" OnClick="btnShowIndividualReport_OnClick" />
+                                            <asp:Button ID="btnShowAllReport" runat="server" class="btn btn-primary form-control pull-right" Text="All Report" OnClientClick="return ValidateMonth();" OnClick="btnShowAllReport_OnClick" />
                                         </div>
                                     </div>
 
@@ -301,11 +302,25 @@
                 showLoader();
                 return true;
             }
-            function ValidateEnroll() {
-                var txtEnroll = document.getElementById("txtEnroll").value;
+            function ValidateMonth() {
+                var txtMonth = document.getElementById("txtMonth").value;
 
+                if (txtMonth === null || txtMonth === "") {
+                    ShowNotification('Month can not be blank', 'Casual Worker Bill', 'warning');
+                    return false;
+                }
+                showLoader();
+                return true;
+            }
+            function ValidateEnrollAndMonth() {
+                var txtEnroll = document.getElementById("txtEnroll").value;
+                var txtMonth = document.getElementById("txtMonth").value;
                 if (txtEnroll === null || txtEnroll === "") {
                     ShowNotification('Enroll can not be blank', 'Casual Worker Bill', 'warning');
+                    return false;
+                }
+                if (txtMonth === null || txtMonth === "") {
+                    ShowNotification('Month can not be blank', 'Casual Worker Bill', 'warning');
                     return false;
                 }
                 showLoader();
@@ -318,8 +333,29 @@
             });
 
             function Init() {
+                
                 $('#txtDate').datepicker({
                     dateFormat: 'dd/mm/yy'
+                });
+                $('#txtMonth').datepicker({
+                    changeMonth: true,
+                    changeYear: true,
+                    showButtonPanel: true,
+                    dateFormat: 'mm/yy',
+                    onClose: function() {
+
+                        //Get the selected month value
+                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+
+                        //Get the selected year value
+                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+
+                        //set month value to the textbox
+                        $(this).datepicker('setDate', new Date(year, month, 1));
+                    }
+                });
+                $("#txtMonth").focus(function () {
+                    $(".ui-datepicker-calendar").hide();
                 });
 
             }
