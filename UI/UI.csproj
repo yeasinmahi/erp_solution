@@ -1515,6 +1515,7 @@
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
+    <Content Include="SAD\Setup\EmployeeBridgeJobStation.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -7204,6 +7205,7 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_category_top_Sheet.aspx.cs">
       <DependentUpon>Item_category_top_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_category_top_Sheet.aspx.designer.cs">
       <DependentUpon>Item_category_top_Sheet.aspx</DependentUpon>
@@ -7816,6 +7818,13 @@
     </Compile>
     <Compile Include="SAD\Sales\UnitTest.aspx.designer.cs">
       <DependentUpon>UnitTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.designer.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>
