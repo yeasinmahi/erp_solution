@@ -30,7 +30,7 @@
                             <asp:Label runat="server" Text="Employee Information" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <div class="row form-group">
+                            <div class="row form-group">    
                                  <div class="col-md-6">
                                       <asp:Label ID="Label1" runat="server" Text="Employee Search" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                       <asp:TextBox ID="txtEmployeeSearch" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"></asp:TextBox>
