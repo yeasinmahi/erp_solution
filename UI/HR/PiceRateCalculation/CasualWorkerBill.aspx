@@ -15,7 +15,7 @@
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server">
         </asp:ScriptManager>
 
-        <asp:UpdatePanel ID="UpdatePanel0" runat="server" >
+        <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
                 <asp:Panel ID="pnlUpperControl" runat="server" Width="100%">
                     <div id="navbar" style="width: 100%; height: 20px; vertical-align: top;">
@@ -55,8 +55,6 @@
                                             <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return ValidateDate();" OnClick="btnShow_OnClick" />
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>
@@ -68,11 +66,10 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        
                                         <div class="col-md-6 col-sm-6">
                                             <asp:Label ID="Label1" runat="server" Text="Select Month"></asp:Label>
                                             <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                            <asp:TextBox ID="txtMonth"  CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select Month"></asp:TextBox>
+                                            <asp:TextBox ID="txtMonth" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select Month"></asp:TextBox>
 
                                         </div>
                                         <div class="col-md-6 col-sm-6">
@@ -81,7 +78,7 @@
                                             <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
 
                                         </div>
-                                        
+
                                         <div class="col-md-12 col-sm-12" style="padding-top: 10px">
                                             <asp:Button ID="btnShowIndividualReport" runat="server" class="btn btn-primary form-control pull-left" Text="Individual Report" OnClientClick="return ValidateEnrollAndMonth();" OnClick="btnShowIndividualReport_OnClick" />
                                             <asp:Button ID="btnShowAllReport" runat="server" class="btn btn-primary form-control pull-right" Text="All Report" OnClientClick="return ValidateMonth();" OnClick="btnShowAllReport_OnClick" />
@@ -165,7 +162,7 @@
                             <asp:Label runat="server" Text="Worker Bill All Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                           <asp:GridView ID="gridViewReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                            <asp:GridView ID="gridViewReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
                                 DataKeyNames="intEmpID" GridLines="Both">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
@@ -198,7 +195,7 @@
                                             <asp:Label ID="lblWorkCount" runat="server" Text='<%# Bind("TotalCount") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    
+
                                     <asp:TemplateField HeaderText="Product Name">
                                         <ItemTemplate>
                                             <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("ProductName") %>'></asp:Label>
@@ -220,12 +217,12 @@
                         </div>
 
                     </div>
-                     <div class="panel panel-info" id="itemPanel2">
+                    <div class="panel panel-info" id="itemPanel2">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Worker Bill Individual Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                           <asp:GridView ID="gridViewIndividualReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                            <asp:GridView ID="gridViewIndividualReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
                                 DataKeyNames="intEmpID" GridLines="Both">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
@@ -252,7 +249,7 @@
                                             <asp:Label ID="lblEmpName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    
+
                                     <asp:TemplateField HeaderText="Date">
                                         <ItemTemplate>
                                             <asp:Label ID="lblDate" runat="server" Text='<%# Bind("dteDate") %>'></asp:Label>
@@ -264,7 +261,7 @@
                                             <asp:Label ID="lblWorkCount" runat="server" Text='<%# Bind("TotalCount") %>'></asp:Label>
                                         </ItemTemplate>
                                     </asp:TemplateField>
-                                    
+
                                     <asp:TemplateField HeaderText="Product Name">
                                         <ItemTemplate>
                                             <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("ProductName") %>'></asp:Label>
@@ -333,7 +330,7 @@
             });
 
             function Init() {
-                
+
                 $('#txtDate').datepicker({
                     dateFormat: 'dd/mm/yy'
                 });
@@ -342,7 +339,7 @@
                     changeYear: true,
                     showButtonPanel: true,
                     dateFormat: 'mm/yy',
-                    onClose: function() {
+                    onClose: function () {
 
                         //Get the selected month value
                         var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();

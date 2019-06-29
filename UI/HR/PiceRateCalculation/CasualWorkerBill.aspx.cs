@@ -49,26 +49,33 @@ namespace UI.HR.PiceRateCalculation
 
         protected void btnSubmit_OnClick(object sender, EventArgs e)
         {
-            UnloadAll();
             List<int> empIds= new List<int>();
             int unitId = ddlUnit.SelectedValue();
             DateTime dateTime = txtDate.Text.ToDateTime("dd/MM/yyyy");
             foreach (GridViewRow row in gridView.Rows)
             {
-                int employeeId = Convert.ToInt32((row.FindControl("lblEmpEnroll") as Label)?.Text);
-                int quantity = Convert.ToInt32((row.FindControl("txtQuantity") as Label)?.Text);
-                int productionId = Convert.ToInt32((row.FindControl("ddlProductionType") as DropDownList)?.SelectedValue());
-                if (quantity == 0 || productionId == 0)
+
+                if (int.TryParse((row.FindControl("txtQuantity") as TextBox)?.Text, out int quantity))
                 {
-                    continue;
+                    int productionId = Convert.ToInt32((row.FindControl("ddlProductionType") as DropDownList)?.SelectedValue());
+                    if (quantity == 0 || productionId == 0)
+                    {
+                        continue;
+                    }
+                    int employeeId = Convert.ToInt32((row.FindControl("lblEmpEnroll") as Label)?.Text);
+
+                    int empId = _bll.InsertCasualSalary(employeeId, unitId, dateTime.ToString("yyyy/MM/dd"), quantity, productionId);
+                    if (empId == 0)
+                    {
+                        empIds.Add(employeeId);
+
+                    }
+                }
+                else
+                {
+                    // blank quantity
                 }
                 
-                int empId = _bll.InsertCasualSalary(employeeId, unitId, dateTime.ToString("yyyy/MM/dd"), quantity, productionId);
-                if (empId == 0)
-                {
-                    empIds.Add(employeeId);
-
-                }
             }
 
             if (empIds.Count > 0)
@@ -80,6 +87,7 @@ namespace UI.HR.PiceRateCalculation
             {
                 Toaster("Insert successfully",Common.TosterType.Success);
             }
+            UnloadAll();
             HidePanel();
         }
 
