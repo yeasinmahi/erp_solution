@@ -69,7 +69,7 @@ namespace UI.SAD.Delivery
         }
         private void Reset()
         {
-         
+            try { File.Delete(GetXmlFilePath()); } catch { }
             dgvSales.DataSource = "";
             dgvSales.DataBind();
             dgvSalesPicking.DataSource = "";

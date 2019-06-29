@@ -78,5 +78,34 @@ namespace SAD_BLL.Transport
             }
             catch { }
         }
+        public DataTable VehicleList()
+        {
+            try
+            {
+                TblAGVehicleInfoFuelLogTableAdapter adp = new TblAGVehicleInfoFuelLogTableAdapter();
+                return adp.GetVehicleList();
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable JobStationByVehicleID(int VehicleId)
+        {
+            try
+            {
+                TblAGVehicleInfoFuelLogTableAdapter adp = new TblAGVehicleInfoFuelLogTableAdapter();
+                return adp.GetJobStationByVehicleId(VehicleId);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable FuelCompanyList()
+        {
+            try
+            {
+                TblOilAndCngPartyNameTableAdapter adp = new TblOilAndCngPartyNameTableAdapter();
+                return adp.GetFuelCompany();
+            }
+            catch { return new DataTable(); }
+        }
+
+
     }
 }
