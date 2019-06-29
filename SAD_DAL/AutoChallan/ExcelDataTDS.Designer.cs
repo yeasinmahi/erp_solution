@@ -10984,7 +10984,7 @@ namespace SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT  [intID] ,[strRegNo]   FROM [ERP_Logistic].[dbo].[tblVehicle] where ysnena" +
-                "ble=1";
+                "ble=1 and intUnitID=2";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
