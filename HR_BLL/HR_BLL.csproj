@@ -212,6 +212,10 @@
       <Project>{4DC04AE5-BCEE-409A-8D6F-5167F27DADEF}</Project>
       <Name>UserSecurity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
