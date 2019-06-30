@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PriceRateOfAMFL.aspx.cs" Inherits="UI.SAD.Item.PriceRateOfAMFL" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Employee_PF_Report.aspx.cs" Inherits="UI.HR.Reports.Employee_PF_Report" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 
@@ -42,4 +43,3 @@
     </form>
 </body>
 </html>
-

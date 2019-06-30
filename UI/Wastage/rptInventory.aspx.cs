@@ -15,6 +15,7 @@ using UI.ClassFiles;
 using Projects_BLL;
 using System.IO;
 using System.Xml;
+using System.Drawing;
 
 namespace UI.Wastage
 {
@@ -68,6 +69,9 @@ namespace UI.Wastage
 
         }
         protected decimal clovalue = 0, issvalue = 0, avavalue = 0, recvalue = 0, OtotalOpening = 0;
+
+        
+
         protected void dgvReport_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             try
@@ -83,6 +87,32 @@ namespace UI.Wastage
             catch { }
         }
 
-       
+        protected void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dgvReportDetails.Rows.Count > 0)
+            {
+                ExportToExcel();
+            }
+        }
+
+        //public override void VerifyRenderingInServerForm(Control control)
+        //{
+        //    //required to avoid the runtime error "  
+        //    //Control 'GridView1' of type 'GridView' must be placed inside a form tag with runat=server."  
+        //}
+
+        private void ExportToExcel()
+        {
+            string html = HdnValue.Value;
+            string fileName = ddlWHName.SelectedItem.ToString();
+
+            html = html.Replace("&gt;", ">");
+            html = html.Replace("&lt;", "<");
+            HttpContext.Current.Response.ClearContent();
+            HttpContext.Current.Response.AddHeader("content-disposition", "attachment;filename=" + fileName + "_" + DateTime.Now.ToString("dd_MM_yyyy_HH_mm_ss") + ".xls");
+            HttpContext.Current.Response.ContentType = "application/xls";
+            HttpContext.Current.Response.Write(html);
+            HttpContext.Current.Response.End();
+        }
     }
 }

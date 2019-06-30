@@ -107,5 +107,106 @@ namespace SAD_BLL.Global
                 throw ex;
             }
         }
+
+        public DataTable GetJobStationList(int unitId)
+        {
+            DataTable dt = new DataTable();
+            tblEmployeeJobStationTableAdapter objJobStation = new tblEmployeeJobStationTableAdapter();
+            try
+            {
+                dt = objJobStation.GetJobStationList(unitId);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public DataTable GetCustomerList()
+        {
+            DataTable dt = new DataTable();
+            tblCustomerTableAdapter objCust = new tblCustomerTableAdapter();
+            try
+            {
+                dt = objCust.GetCustomerList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public DataTable GetEmpBridgeJobStationList()
+        {
+            DataTable dt = new DataTable();
+            tblRemoteRelationCnJTableAdapter objRRelationCNJ = new tblRemoteRelationCnJTableAdapter();
+            try
+            {
+                dt = objRRelationCNJ.GetBridgeJobStationList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public DataTable GetEmpNonBridgeJobStationList()
+        {
+            DataTable dt = new DataTable();
+            tblNonBridgeEmpJobStationTableAdapter obj = new tblNonBridgeEmpJobStationTableAdapter();
+            try
+            {
+                dt = obj.GetNonBridgeJobStation();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return dt;
+        }
+
+        public void SaveEmpBridgeJobStation(int stationID, int custID)
+        {
+            try
+            {
+                QueriesTableAdapter obj = new QueriesTableAdapter();
+                obj.sprJobStationBridge(stationID, custID);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void DelEmpBridgeJobStation(int custid)
+        {
+            int i;
+            try
+            {
+                DelJobStationTableAdapter obj = new DelJobStationTableAdapter();
+                obj.DelJobStationBridge(custid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public void DelAllEmpBridgeJobStation(int custid)
+        {
+            int i;
+            try
+            {
+                DelAllJobStationTableAdapter obj = new DelAllJobStationTableAdapter();
+                obj.DelAllBridgeStation(custid);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
