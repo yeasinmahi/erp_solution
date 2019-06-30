@@ -1679,6 +1679,7 @@
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
     <Content Include="Transport\AccidentRegisterEntry.aspx" />
+    <Content Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx" />
     <Content Include="Transport\InternalTRouteCostUpdate.aspx" />
     <Content Include="Transport\NewVehicleEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
@@ -9010,6 +9011,13 @@
     </Compile>
     <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.cs">
+      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.designer.cs">
+      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\InternalTRouteCostUpdate.aspx.cs">
       <DependentUpon>InternalTRouteCostUpdate.aspx</DependentUpon>
