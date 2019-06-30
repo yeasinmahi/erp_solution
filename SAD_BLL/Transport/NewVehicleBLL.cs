@@ -78,5 +78,55 @@ namespace SAD_BLL.Transport
             }
             catch { }
         }
+
+        
+
+
+        public DataTable GetDataVehicleInfo(string assetid)
+        {
+            SprVheicleInfoSearchingTableAdapter bll = new SprVheicleInfoSearchingTableAdapter();
+            return bll.GetDataVheicleInfoSearching(assetid);
+        }
+
+        public List<string> AutosearchingVhcleName(string strSearchKey)
+        {
+            List<string> result = new List<string>();
+            SprVheicleInfoSearchingTableAdapter objSprAutoSearchAsset = new SprVheicleInfoSearchingTableAdapter();
+            DataTable oDT = new DataTable();
+            oDT = objSprAutoSearchAsset.GetDataVheicleInfoSearching(strSearchKey);
+            if (oDT.Rows.Count > 0)
+            {
+                for (int index = 0; index < oDT.Rows.Count; index++)
+                {
+                    result.Add(oDT.Rows[index]["strRegNo"].ToString());
+                }
+
+            }
+            return result;
+        }
+
+        public DataTable GetvhcleInfoupdate (int intvhclId ,string strvhclname ,string drvname ,int  drvenrol ,string drvphone ,int drvnationalid ,string helpername ,string Lisence ,decimal driverDA
+,decimal HelperDA  ,decimal DownTripallowance  ,decimal DownTripDA  ,decimal Milageallow100  ,decimal MilageAllow100Above ,decimal MilageLocal ,decimal MilageOutStation ,decimal CngAllowance ,
+decimal monDieselPerKMOutStation ,decimal monCNGPerKMOutStation ,decimal monDieselPerLitterKM  ,decimal monUpDownTripDiselPerLitter , decimal monCNGPerKM ,int intUpdateBy,int modifytype)
+
+        {
+            string msg = "";
+
+            try {
+                SprVehicleInfoModifyTableAdapter bll = new SprVehicleInfoModifyTableAdapter();
+                return bll.GetDataVehicleInfoModify(intvhclId, strvhclname, drvname, drvenrol, drvphone, drvnationalid, helpername, Lisence, driverDA
+                , HelperDA, DownTripallowance, DownTripDA, Milageallow100, MilageAllow100Above, MilageLocal, MilageOutStation, CngAllowance,
+                monDieselPerKMOutStation, monCNGPerKMOutStation, monDieselPerLitterKM, monUpDownTripDiselPerLitter, monCNGPerKM, intUpdateBy, modifytype );
+
+            }
+            catch
+            {
+                return new DataTable();
+
+            }
+          
+
+        }
+
     }
 }

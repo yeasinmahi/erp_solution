@@ -390,6 +390,21 @@ namespace Purchase_BLL.VehicleRegRenewal_BLL
         }
 
 
+        public List<string> AutoSearchVhcleName(string strSearchKey)
+        {
+            List<string> result = new List<string>();
+            SprAssetNameSearchingTableAdapter objSprAutoSearchAsset = new SprAssetNameSearchingTableAdapter();
+            DataTable oDT = new DataTable();
+            oDT = objSprAutoSearchAsset.GetDatasprAssetNameSearching(strSearchKey);
+            if (oDT.Rows.Count > 0)
+            {
+                for (int index = 0; index < oDT.Rows.Count; index++)
+                {
+                    result.Add(oDT.Rows[index]["strNameOfAsset"].ToString());
+                }
 
+            }
+            return result;
+        }
     }
 }

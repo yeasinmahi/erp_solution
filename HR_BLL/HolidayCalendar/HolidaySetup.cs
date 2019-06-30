@@ -65,6 +65,42 @@ namespace HR_BLL.HolidayCalendar
            return msgStatus;
        }
 
+        public DataTable getHolyDayAllJobs(int unitid)
+        {
+            try
+            {
+                SprAllJobstationHolyDayTableAdapter ta = new SprAllJobstationHolyDayTableAdapter();
+                return ta.GetDataAllJobstationHolyDay(unitid);
+            }
+            catch(Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
+
+        public string InsertAllJobInfo(string xmlstring, int holydayid, int actionby, DateTime from, DateTime to)
+        {
+            //string msg = "";
+
+            //try
+            //{
+            //    SprAllJobstationEmployeeHolidayInsertionTableAdapter ta = new SprAllJobstationEmployeeHolidayInsertionTableAdapter();
+            //    return ta.GetDataAllJobstationEmployeeHolidayInsertion(xmlstring,  holydayid,  actionby,  from,  to,ref msg );
+            //}
+            //catch (Exception ex)
+            //{
+            //    return new DataTable();
+            //}
+
+            SprAllJobstationEmployeeHolidayInsertionTableAdapter adp = new SprAllJobstationEmployeeHolidayInsertionTableAdapter();
+            string msgStatus = "";
+            try { adp.GetDataAllJobstationEmployeeHolidayInsertion(xmlstring, holydayid, actionby, from, to, ref msgStatus); }
+            catch (Exception ex) { msgStatus = ex.ToString(); }
+            return msgStatus;
+
+
+        }
 
 
 

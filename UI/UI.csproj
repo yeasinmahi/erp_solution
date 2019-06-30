@@ -483,6 +483,7 @@
     <Content Include="HR\Loan\LoanStatusSummary.aspx" />
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
+    <Content Include="HR\OfficialMovement\HolyDaySet.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryIndividual.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryNew.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
@@ -1693,6 +1694,7 @@
     <Content Include="Transport\InternalTVehicleMovementDetails.aspx" />
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
+    <Content Include="Transport\TransportVheicleInfoUpdate.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBillReport.aspx" />
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
@@ -3315,6 +3317,13 @@
     </Compile>
     <Compile Include="HR\Loan\Reward.aspx.designer.cs">
       <DependentUpon>Reward.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\OfficialMovement\HolyDaySet.aspx.cs">
+      <DependentUpon>HolyDaySet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\OfficialMovement\HolyDaySet.aspx.designer.cs">
+      <DependentUpon>HolyDaySet.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Overtime\OvertimeEntryIndividual.aspx.cs">
       <DependentUpon>OvertimeEntryIndividual.aspx</DependentUpon>
@@ -9102,6 +9111,13 @@
     </Compile>
     <Compile Include="Transport\RentedVehicleReg.aspx.designer.cs">
       <DependentUpon>RentedVehicleReg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TransportVheicleInfoUpdate.aspx.cs">
+      <DependentUpon>TransportVheicleInfoUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TransportVheicleInfoUpdate.aspx.designer.cs">
+      <DependentUpon>TransportVheicleInfoUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\PumpFoodingBill.aspx.cs">
       <DependentUpon>PumpFoodingBill.aspx</DependentUpon>
