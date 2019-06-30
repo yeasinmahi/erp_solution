@@ -15,9 +15,9 @@ namespace UI.Vat
         {
             if(!IsPostBack)
             {
-                string M65 = "5";//Request.QueryString["M65"];
-                string VATPointID = "1";// Request.QueryString["VATPointID"];
-                string VATYear = "20182019";//Request.QueryString["VATYear"];
+                string M65 = Request.QueryString["M65"];
+                string VATPointID =  Request.QueryString["VATPointID"];
+                string VATYear = Request.QueryString["VATYear"];
 
 
                 url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.5" + "&M65=" + M65 + "&VATPointID=" + VATPointID + "&intVATYear=" + VATYear +  "&rc:LinkTarget=_self"; 
