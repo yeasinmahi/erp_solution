@@ -173,6 +173,7 @@
     <Compile Include="Inventory\SupplierBll.cs" />
     <Compile Include="Inventory\WareHouseBll.cs" />
     <Compile Include="Inventory\WarehouseOperatorBll.cs" />
+    <Compile Include="Payment\BillRegisterDetailMrrBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

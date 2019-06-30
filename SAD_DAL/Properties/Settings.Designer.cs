@@ -161,5 +161,16 @@ namespace SAD_DAL.Properties {
                 return ((string)(this["ERP_AssetConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("\nData Source=ESQL;Initial Catalog=AG_FuelLog;Persist Security Info=True;User ID=r" +
+            "NwUs@Ag;Password=a2sLs@Ag")]
+        public string AG_FuelLogConnectionString {
+            get {
+                return ((string)(this["AG_FuelLogConnectionString"]));
+            }
+        }
     }
 }

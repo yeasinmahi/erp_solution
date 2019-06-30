@@ -40,6 +40,12 @@
             document.forms["frmSO"]["txtValue"].value = (a*b).toFixed(0);
         }
   </script>  
+     <script>
+        function PrintPage() {          
+            window.print();
+            self.close();
+        }
+    </script>
    <style type="text/css"> 
         .rounds {
         height: 80px;
@@ -96,7 +102,9 @@
           </tr>
          <tr><td colspan="5"><hr /></td></tr> 
           <tr>
-             <td colspan="5" style="text-align:right; padding: 0px 0px 0px 0px">&nbsp&nbsp <asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" OnClick="btnShow_Click" /> </td>        
+             <td colspan="5" style="text-align:right; padding: 0px 0px 0px 0px"> <asp:Button ID="btnprint" runat="server" class="myButtonGrey" Text="Print" Width="100px" OnClientClick="PrintPage()" />
+                               &nbsp&nbsp 
+                 <asp:Button ID="btnShow" runat="server" class="myButtonGrey" Text="Show" OnClick="btnShow_Click" /> </td>        
           </tr>
     </table>
     </div>

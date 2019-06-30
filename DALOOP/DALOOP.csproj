@@ -69,6 +69,7 @@
     <Compile Include="Inventory\SupplierDal.cs" />
     <Compile Include="Inventory\WareHouseDal.cs" />
     <Compile Include="Inventory\WarehouseOperatorDal.cs" />
+    <Compile Include="Payment\BillRegisterDetailMrrDal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

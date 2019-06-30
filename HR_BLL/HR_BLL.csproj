@@ -153,6 +153,7 @@
     <Compile Include="Leave\Leave.cs" />
     <Compile Include="Leave\LeaveApplicationProcess.cs" />
     <Compile Include="Leave\LeaveType.cs" />
+    <Compile Include="Leave\PLLeave.cs" />
     <Compile Include="Loan\Loan.cs" />
     <Compile Include="Mail\MailPremission.cs" />
     <Compile Include="Mail\MailType.cs" />
@@ -211,6 +212,10 @@
     <ProjectReference Include="..\UserSecurity\UserSecurity.csproj">
       <Project>{4DC04AE5-BCEE-409A-8D6F-5167F27DADEF}</Project>
       <Name>UserSecurity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3E7D37DD-F3E6-4932-B05C-821F021A92EE}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
