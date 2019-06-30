@@ -56,41 +56,33 @@
                                       <asp:DropDownList ID="ddlChallan" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12">                                      
                                       </asp:DropDownList>
                                  </div>
-                                
-                                 <div class="col-md-3" style="padding-top:20px;">   
-                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Save" OnClick="btnSave_OnClick"/>
-                                 </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-md-3">
                                     <asp:Label ID="Label5" runat="server" Text="Actual Delivery Date"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label6" runat="server" Text="Customer BIN No"></asp:Label>
-                                    <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer BIN No"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtCustomerBinNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer BIN No"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label7" runat="server" Text="Final Address"></asp:Label>
-                                    <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Final Address"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtFinalAddress" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Final Address"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label8" runat="server" Text="Vehicle No"></asp:Label>
-                                    <asp:TextBox runat="server" ID="TextBox3" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vehicle No"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtVehicleNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vehicle No"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label9" runat="server" Text="Vat Challan No"></asp:Label>
-                                    <asp:TextBox runat="server" ID="TextBox4" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vat Challan No"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtChallanNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vat Challan No"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label10" runat="server" Text="Customer Name"></asp:Label>
-                                    <asp:TextBox runat="server" ID="TextBox5" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer Name"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtCustomerName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer Name"></asp:TextBox>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3" style="padding-top:20px;">   
-                                    <asp:Button ID="Button1" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" />
-                                </div>
+                                 <div class="col-md-3" style="padding-top:20px;">   
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Save" OnClick="btnSave_OnClick"/>
+                                 </div>
                             </div>
                         </div>
 
@@ -116,7 +108,7 @@
             });
         }
         function validation() {
-            var emp = document.getElementById("txtEmployeeSearch").value;
+            var emp = document.getElementById("ddlChallan").value;
             if (emp === null || emp === "") {
                 ShowNotification('Employee search can not be blank', '', 'warning');
                 return false;
