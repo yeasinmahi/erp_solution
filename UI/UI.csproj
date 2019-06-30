@@ -1726,6 +1726,7 @@
     <Content Include="Vat\PrintM16.aspx" />
     <Content Include="Vat\PrintM17.aspx" />
     <Content Include="Vat\PrintM18.aspx" />
+    <Content Include="Vat\PrintMushak_6_5.aspx" />
     <Content Include="Vat\PrintReturn.aspx" />
     <Content Include="Vat\PrintTreasury.aspx" />
     <Content Include="Vat\ProductionEntry.aspx" />
@@ -9343,6 +9344,13 @@
     </Compile>
     <Compile Include="Vat\PrintM18.aspx.designer.cs">
       <DependentUpon>PrintM18.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\PrintMushak_6_5.aspx.cs">
+      <DependentUpon>PrintMushak_6_5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\PrintMushak_6_5.aspx.designer.cs">
+      <DependentUpon>PrintMushak_6_5.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vat\PrintReturn.aspx.cs">
       <DependentUpon>PrintReturn.aspx</DependentUpon>

@@ -211,8 +211,9 @@ namespace SAD_BLL.Customer
                 return adp.GetCustomerByUnit(UnitId);
 
             }
-            catch
+            catch(Exception ex)
             {
+                string msg = ex.Message;
                 return new DataTable();
             }
         }
