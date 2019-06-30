@@ -475,6 +475,8 @@
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
     <Content Include="HR\Insurance\InsuranceShowReport.aspx" />
+    <Content Include="HR\Leave\PLLeaveEntry.aspx" />
+    <Content Include="HR\Leave\PLLeaveUpdate.aspx" />
     <Content Include="HR\Loan\ApproveLoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanComplete.aspx" />
@@ -3262,6 +3264,20 @@
     </Compile>
     <Compile Include="HR\Insurance\InsuranceShowReport.aspx.designer.cs">
       <DependentUpon>InsuranceShowReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveEntry.aspx.cs">
+      <DependentUpon>PLLeaveEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveEntry.aspx.designer.cs">
+      <DependentUpon>PLLeaveEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveUpdate.aspx.cs">
+      <DependentUpon>PLLeaveUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveUpdate.aspx.designer.cs">
+      <DependentUpon>PLLeaveUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Loan\ApproveLoanApplicationN.aspx.cs">
       <DependentUpon>ApproveLoanApplicationN.aspx</DependentUpon>
@@ -7204,6 +7220,7 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_category_top_Sheet.aspx.cs">
       <DependentUpon>Item_category_top_Sheet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Sales\Report\Item_category_top_Sheet.aspx.designer.cs">
       <DependentUpon>Item_category_top_Sheet.aspx</DependentUpon>

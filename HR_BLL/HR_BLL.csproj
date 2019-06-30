@@ -153,6 +153,7 @@
     <Compile Include="Leave\Leave.cs" />
     <Compile Include="Leave\LeaveApplicationProcess.cs" />
     <Compile Include="Leave\LeaveType.cs" />
+    <Compile Include="Leave\PLLeave.cs" />
     <Compile Include="Loan\Loan.cs" />
     <Compile Include="Mail\MailPremission.cs" />
     <Compile Include="Mail\MailType.cs" />
