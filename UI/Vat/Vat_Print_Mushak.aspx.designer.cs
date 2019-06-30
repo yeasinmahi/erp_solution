@@ -148,6 +148,15 @@ namespace UI.Vat {
         protected global::System.Web.UI.WebControls.DropDownList ddlChallan;
         
         /// <summary>
+        /// txtChallanNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtChallanNo;
+        
+        /// <summary>
         /// Label5 control.
         /// </summary>
         /// <remarks>
@@ -229,13 +238,13 @@ namespace UI.Vat {
         protected global::System.Web.UI.WebControls.Label Label9;
         
         /// <summary>
-        /// txtChallanNo control.
+        /// txtVatChallanNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtChallanNo;
+        protected global::System.Web.UI.WebControls.TextBox txtVatChallanNo;
         
         /// <summary>
         /// Label10 control.

@@ -22,7 +22,7 @@ namespace UI.Vat
             {
                 LoadUnitList();
                 LoadShipPoint();
-                LoadChallanList();
+                LoadSalesCode();
             }
         }
         public void LoadUnitList()
@@ -49,8 +49,16 @@ namespace UI.Vat
             ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
         }
 
-
-        public void LoadSalesCode()
+        private void GetVatPointId()
+        {
+            dt = _vatObj.GetVatUnitByUser(Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
+            }
+        }
+        public void LoadTransferCode()
         {
             int shippingPointId = ddlShipPoint.SelectedValue();
             dt = _vatObj.GetVatUnitByUser(Enroll);
@@ -58,7 +66,7 @@ namespace UI.Vat
             {
                 DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
                 int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
-                dt = _vatObj.GetSalesCode(accountId, shippingPointId);
+                dt = _vatObj.GetTransferbyVat(accountId, shippingPointId);
                 ddlChallan.LoadWithSelect(dt, "intId", "strCode");
             }
             else
@@ -67,14 +75,14 @@ namespace UI.Vat
             }
             
         }
-        public void LoadChallanList()
+        public void LoadSalesCode()
         {
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
             {
                 DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
                 int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
-                dt = _vatObj.GetChallanByVAT(vatid);
+                dt = _vatObj.GetSalesByVAT(vatid);
                 ddlChallan.LoadWithSelect(dt, "intId", "strCode");
             }
             else
@@ -92,7 +100,8 @@ namespace UI.Vat
             }
             else if (typeId == 2) //Transfer
             {
-                LoadChallanList();
+                LoadTransferCode();
+                
             }
             else
             {
@@ -102,11 +111,69 @@ namespace UI.Vat
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            //string value1,value2,value3;
-            //url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/CNG_Report" + "&pUnitName=" + UnitID + "&pJobStation=" + JobStationID + "&pDateFrom=" + txtFromDate.Text + "&pDateTo=" + txtToDate.Text + "&pFuelCompany=" + FuelCompanyID + "&rc:LinkTarget=_self";
-       
-            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+            string vatPointId = string.Empty, challan, actualDeliveryDate, customerBinNo,finalAddress,vehicleNo,vatChallanNo,customerName;
+            dt = _vatObj.GetVatUnitByUser(Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                vatPointId = row["intVatPointID"].ToString();
+            }
+            challan = ddlChallan.SelectedText();
+            if (ddlChallan.SelectedValue() == 0)
+            {
+                challan = txtChallanNo.Text;
+            }
+
+            actualDeliveryDate = txtActualDeliveryDate.Text;
+            customerBinNo = txtCustomerBinNo.Text;
+            finalAddress = txtFinalAddress.Text;
+            vehicleNo = txtVehicleNo.Text;
+            vatChallanNo = txtVatChallanNo.Text;
+            customerName = txtCustomerName.Text;
+            if (ddlType.SelectedValue() == 1)
+            {
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan + "&ActualDelivery=" + actualDeliveryDate + "&strCustVATRegNo=" + customerBinNo + "&strFinalDistanitionAddress=" + finalAddress + "&strVehicleRegNo=" + vehicleNo + "&intVatChallanNo=" + vatChallanNo + "&strCustomerName=" + customerName + "&rc:LinkTarget=_self";
+
+            }
+            else if (ddlType.SelectedValue() == 2)
+            {
+                string m11No, vatAc, vatYear ;
+                int challanNo = ddlChallan.SelectedValue();
+                if (ddlChallan.SelectedValue() == 0)
+                {
+                    challan = txtChallanNo.Text;
+                    challanNo = _vatObj.GetChallnIdByCode(challan, ddlUnit.SelectedValue());
+                }
+                dt = _vatObj.GetMoshok6Info(challanNo, Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    m11No = dt.Rows[0]["intM11gaNo"].ToString();
+                    vatAc = dt.Rows[0]["intFromVatAc"].ToString();
+                    vatYear = dt.Rows[0]["intVatYear"].ToString();
+                    url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.5" + "&M65=" + m11No + "&VATPointID=" + vatAc + "&intVATYear=" + vatYear + "&rc:LinkTarget=_self";
+                }
+                else
+                {
+                    Toaster("Getting information Error");
+                }
+                
+            }
+
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
 
         }
-}
+
+        protected void ddlChallan_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlChallan.SelectedValue() == 0)
+            {
+                txtChallanNo.Enabled = true;
+            }
+            else
+            {
+                txtChallanNo.Enabled = false;
+            }
+            
+        }
+    }
 }

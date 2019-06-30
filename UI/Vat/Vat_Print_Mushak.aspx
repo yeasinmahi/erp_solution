@@ -53,8 +53,9 @@
                                 </div>
                                 <div class="col-md-3">
                                       <asp:Label ID="Label2" runat="server" Text="Challan" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
-                                      <asp:DropDownList ID="ddlChallan" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12">                                      
+                                      <asp:DropDownList ID="ddlChallan" runat="server" CssClass="form-control col-md-6 col-sm-6 col-xs-6" AutoPostBack="True" OnSelectedIndexChanged="ddlChallan_OnSelectedIndexChanged">                                      
                                       </asp:DropDownList>
+                                    <asp:TextBox runat="server" ID="txtChallanNo" CssClass="form-control col-md-6 col-sm-6 col-xs-6"></asp:TextBox>
                                  </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label5" runat="server" Text="Actual Delivery Date"></asp:Label>
@@ -74,15 +75,17 @@
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label9" runat="server" Text="Vat Challan No"></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtChallanNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vat Challan No"></asp:TextBox>
+                                    <asp:TextBox runat="server" ID="txtVatChallanNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vat Challan No"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3">
                                     <asp:Label ID="Label10" runat="server" Text="Customer Name"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtCustomerName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer Name"></asp:TextBox>
                                 </div>
-                                 <div class="col-md-3" style="padding-top:20px;">   
-                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Save" OnClick="btnSave_OnClick"/>
-                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3" >   
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="showLoader();" Text="Save" OnClick="btnSave_OnClick"/>
+                                </div>
                             </div>
                         </div>
 
@@ -108,11 +111,14 @@
             });
         }
         function validation() {
-            var emp = document.getElementById("ddlChallan").value;
-            if (emp === null || emp === "") {
-                ShowNotification('Employee search can not be blank', '', 'warning');
+            var e = document.getElementById("ddlChallan");
+            var value = e.options[e.selectedIndex].value;
+            var challanNo = document.getElementById("txtchallanno").value;
+            if ((value === null || value === "0") || challanNo === null || challanNo ==="") {
+                ShowNotification('Select a challan or Write Manual challan no', 'Vat Print Mushak', 'warning');
                 return false;
             }
+            showLoader();
             return true;
         }
         function loadIframe(iframeName, url) {

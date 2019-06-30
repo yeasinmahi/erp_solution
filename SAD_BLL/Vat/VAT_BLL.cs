@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SAD_DAL.Vat.VAT_TDS;
+using Utility;
 
 namespace SAD_BLL.Vat
 {
@@ -396,7 +397,7 @@ namespace SAD_BLL.Vat
             catch { return new DataTable(); }
         }
         
-        public DataTable GetChallanByVAT(int VatID)
+        public DataTable GetSalesByVAT(int VatID)
         {
             try
             {
@@ -414,7 +415,7 @@ namespace SAD_BLL.Vat
             }
             catch { return new DataTable(); }
         }
-        public DataTable GetSalesCode(int accountId, int shippingPointId)
+        public DataTable GetTransferbyVat(int accountId, int shippingPointId)
         {
             try
             {
@@ -422,6 +423,33 @@ namespace SAD_BLL.Vat
                 return adp.GetData(accountId,shippingPointId);
             }
             catch { return new DataTable(); }
+        }
+        public DataTable GetMoshok6Info(int intSalesEntryID, int enroll)
+        {
+            try
+            {
+                sprMushak6point5EntryTableAdapter adp = new sprMushak6point5EntryTableAdapter();
+                return adp.GetData(intSalesEntryID, enroll);
+            }
+            catch { return new DataTable(); }
+        }
+        public int GetChallnIdByCode(string strCode, int intUnitID)
+        {
+            try
+            {
+                tblSalesEntryTableAdapter adp = new tblSalesEntryTableAdapter();
+                DataTable dt = adp.GetData(strCode, intUnitID);
+                if (dt.Rows.Count > 0)
+                {
+                    return dt.GetAutoId("intId");
+                }
+
+                return 0;
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
 
