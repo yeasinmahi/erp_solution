@@ -392,5 +392,61 @@ namespace SCM_BLL
             }
             catch { return new DataTable(); }
         }
+
+
+
+        public DataTable GetFromWH(int intEnroll)
+        {
+            try
+            {
+                GetFromWHTableAdapter adp = new GetFromWHTableAdapter();
+                return adp.GetFromWH(intEnroll);
+
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetToWH(int intEnroll)
+        {
+            try
+            {
+                GetToWHTableAdapter adp = new GetToWHTableAdapter();
+                return adp.GetToWH(intEnroll);
+
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetProductDataForTransfer(int intFromWHID, int intToWHID, string dteTransferDate)
+        {
+            try
+            {
+                GetProductDataForTransferTableAdapter adp = new GetProductDataForTransferTableAdapter();
+                return adp.GetProductDataByWH(intFromWHID, intToWHID, dteTransferDate);
+
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetMushakGa6Point5PrintData(int intFromVatAc, int intToVatAc, string strVehicle, DateTime dteTransferDate, int intUser, string xml)
+        {
+            try
+            {
+                SprPrintTransferChallanMushak6Point5TableAdapter adp = new SprPrintTransferChallanMushak6Point5TableAdapter();
+                return adp.GetMushakGa6Point5PrintData(intFromVatAc, intToVatAc, strVehicle, dteTransferDate, intUser, xml);
+
+            }
+            catch { return new DataTable(); }
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }
