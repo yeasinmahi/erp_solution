@@ -20,7 +20,7 @@ namespace UI.Vat
             if(!IsPostBack)
             {
                 LoadUnitList();
-               
+                LoadShipPoint();
                 LoadChallanList();
             }
         }
@@ -37,17 +37,59 @@ namespace UI.Vat
         public void LoadChallanList()
         {
             dt = _vatObj.GetVatUnitByUser(Enroll);
-            DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
-            int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
-            dt = _vatObj.GetChallanByVAT(vatid);
-            ddlChallan.LoadWithSelect(dt, "strCode", "strName");
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
+                dt = _vatObj.GetChallanByVAT(vatid);
+                ddlChallan.LoadWithSelect(dt, "strCode", "strName");
+            }
+            
             
         }
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
+            LoadShipPoint();
+        }
+
+        protected void ddlShipPoint_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
             
-            LoadChallanList();
+        }
+
+        public void LoadShipPoint()
+        {
+            int unitId = ddlUnit.SelectedValue();
+            dt = _vatObj.GetShippingPoint(Enroll, unitId);
+            ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
+        }
+
+        public void LoadSalesCode()
+        {
+            int shippingPointId = ddlShipPoint.SelectedValue();
+            dt = _vatObj.GetVatUnitByUser(Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
+                dt = _vatObj.GetSalesCode(accountId, shippingPointId);
+                ddlChallan.LoadWithSelect(dt, "intId", "strCode");
+            }
+            
+        }
+
+        protected void ddlType_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            int typeId = ddlType.SelectedValue();
+            if (typeId == 1) //Sales
+            {
+                LoadSalesCode();
+            }
+            else if (typeId == 2) //Transfer
+            {
+                LoadChallanList();
+            }
         }
     }
 }

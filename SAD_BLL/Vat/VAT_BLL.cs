@@ -405,6 +405,24 @@ namespace SAD_BLL.Vat
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetShippingPoint(int enroll, int unitId)
+        {
+            try
+            {
+                sprShipPointByUserTableAdapter adp = new sprShipPointByUserTableAdapter();
+                return adp.GetData(enroll,unitId,true);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetSalesCode(int accountId, int shippingPointId)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetData(accountId,shippingPointId);
+            }
+            catch { return new DataTable(); }
+        }
 
 
 

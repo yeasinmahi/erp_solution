@@ -38,18 +38,25 @@
                                       </asp:DropDownList>
                                  </div>
                                 <div class="col-md-3">
+                                    <asp:Label ID="Label3" runat="server" Text="Shipping Point" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:DropDownList ID="ddlShipPoint" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlShipPoint_OnSelectedIndexChanged">
+                                       
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label4" runat="server" Text="Type" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="True" OnSelectedIndexChanged="ddlType_OnSelectedIndexChanged"> 
+                                        <asp:ListItem Value="0">--Select Type--</asp:ListItem>
+                                        <asp:ListItem Value="1">Sales</asp:ListItem>
+                                        <asp:ListItem Value="2">Transfer</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-md-3">
                                       <asp:Label ID="Label2" runat="server" Text="Challan" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                       <asp:DropDownList ID="ddlChallan" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12">                                      
                                       </asp:DropDownList>
                                  </div>
-                                <div class="col-md-3">
-                                      <asp:Label ID="Label4" runat="server" Text="Type" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
-                                      <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12"> 
-                                          <asp:ListItem Value="0">--Select Type--</asp:ListItem>
-                                          <asp:ListItem Value="Sales">Sales</asp:ListItem>
-                                          <asp:ListItem Value="Transfer">Transfer</asp:ListItem>
-                                      </asp:DropDownList>
-                                 </div>
+                                
                                  <div class="col-md-3" style="padding-top:20px;">   
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" OnClick="btnShow_Click"/>
                                  </div>
