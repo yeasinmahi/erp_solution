@@ -495,6 +495,7 @@
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
+    <Content Include="HR\Reports\EmployeeServiceInformation.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
     <Content Include="HR\Reports\Employee_Movement_History.aspx" />
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
@@ -3404,6 +3405,13 @@
     </Compile>
     <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
       <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeServiceInformation.aspx.cs">
+      <DependentUpon>EmployeeServiceInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeServiceInformation.aspx.designer.cs">
+      <DependentUpon>EmployeeServiceInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
