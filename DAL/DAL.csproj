@@ -478,10 +478,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\ItemList.Designer.cs">
+    <Compile Include="Inventory\ItemListTdd.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ItemList.xsd</DependentUpon>
+      <DependentUpon>ItemListTdd.xsd</DependentUpon>
     </Compile>
     <Compile Include="Inventory\PoTypeTds.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -530,6 +530,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WarehouseTds.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\BillRegisterDetailMrr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BillRegisterDetailMrr.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -1342,16 +1347,16 @@
     <None Include="Inventory\InventoryAdjustmentAuthority.xss">
       <DependentUpon>InventoryAdjustmentAuthority.xsd</DependentUpon>
     </None>
-    <None Include="Inventory\ItemList.xsc">
-      <DependentUpon>ItemList.xsd</DependentUpon>
+    <None Include="Inventory\ItemListTdd.xsc">
+      <DependentUpon>ItemListTdd.xsd</DependentUpon>
     </None>
-    <None Include="Inventory\ItemList.xsd">
+    <None Include="Inventory\ItemListTdd.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ItemList.Designer.cs</LastGenOutput>
+      <LastGenOutput>ItemListTdd.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Inventory\ItemList.xss">
-      <DependentUpon>ItemList.xsd</DependentUpon>
+    <None Include="Inventory\ItemListTdd.xss">
+      <DependentUpon>ItemListTdd.xsd</DependentUpon>
     </None>
     <None Include="Inventory\PoTypeTds.xsc">
       <DependentUpon>PoTypeTds.xsd</DependentUpon>
@@ -1451,6 +1456,17 @@
     </None>
     <None Include="Inventory\WarehouseTds.xss">
       <DependentUpon>WarehouseTds.xsd</DependentUpon>
+    </None>
+    <None Include="Payment\BillRegisterDetailMrr.xsc">
+      <DependentUpon>BillRegisterDetailMrr.xsd</DependentUpon>
+    </None>
+    <None Include="Payment\BillRegisterDetailMrr.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BillRegisterDetailMrr.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Payment\BillRegisterDetailMrr.xss">
+      <DependentUpon>BillRegisterDetailMrr.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

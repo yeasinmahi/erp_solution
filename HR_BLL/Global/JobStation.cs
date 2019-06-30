@@ -58,6 +58,11 @@ namespace HR_BLL.Global
             TblEmployeeJobStationTableAdapter adp = new TblEmployeeJobStationTableAdapter();
             return adp.GetJobStationList();
         }
-    
+        public DataTable GetJobStationListByUnit(int UnitId)
+        {
+            TblEmployeeJobStation1TableAdapter adp = new TblEmployeeJobStation1TableAdapter();
+            return adp.GetJobStationByUnitID(UnitId);
+        }
+
     }
 }
