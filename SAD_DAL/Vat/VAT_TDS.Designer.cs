@@ -9002,7 +9002,7 @@ namespace SAD_DAL.Vat {
             
             private global::System.Data.DataColumn columnstrCode;
             
-            private global::System.Data.DataColumn columnstrName;
+            private global::System.Data.DataColumn columnintId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -9047,9 +9047,9 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNameColumn {
+            public global::System.Data.DataColumn intIdColumn {
                 get {
-                    return this.columnstrName;
+                    return this.columnintId;
                 }
             }
             
@@ -9090,14 +9090,21 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public qrySalesChallanForM11PrintRow AddqrySalesChallanForM11PrintRow(string strCode, string strName) {
+            public qrySalesChallanForM11PrintRow AddqrySalesChallanForM11PrintRow(string strCode, long intId) {
                 qrySalesChallanForM11PrintRow rowqrySalesChallanForM11PrintRow = ((qrySalesChallanForM11PrintRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         strCode,
-                        strName};
+                        intId};
                 rowqrySalesChallanForM11PrintRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowqrySalesChallanForM11PrintRow);
                 return rowqrySalesChallanForM11PrintRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public qrySalesChallanForM11PrintRow FindByintId(long intId) {
+                return ((qrySalesChallanForM11PrintRow)(this.Rows.Find(new object[] {
+                            intId})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9118,7 +9125,7 @@ namespace SAD_DAL.Vat {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
                 this.columnstrCode = base.Columns["strCode"];
-                this.columnstrName = base.Columns["strName"];
+                this.columnintId = base.Columns["intId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9126,12 +9133,14 @@ namespace SAD_DAL.Vat {
             private void InitClass() {
                 this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrCode);
-                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrName);
+                this.columnintId = new global::System.Data.DataColumn("intId", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintId);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintId}, true));
                 this.columnstrCode.AllowDBNull = false;
                 this.columnstrCode.MaxLength = 20;
-                this.columnstrName.ReadOnly = true;
-                this.columnstrName.MaxLength = 153;
+                this.columnintId.AllowDBNull = false;
+                this.columnintId.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12424,30 +12433,13 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strName {
+            public long intId {
                 get {
-                    try {
-                        return ((string)(this[this.tableqrySalesChallanForM11Print.strNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'qrySalesChallanForM11Print\' is DBNull.", e);
-                    }
+                    return ((long)(this[this.tableqrySalesChallanForM11Print.intIdColumn]));
                 }
                 set {
-                    this[this.tableqrySalesChallanForM11Print.strNameColumn] = value;
+                    this[this.tableqrySalesChallanForM11Print.intIdColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrNameNull() {
-                return this.IsNull(this.tableqrySalesChallanForM11Print.strNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrNameNull() {
-                this[this.tableqrySalesChallanForM11Print.strNameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -19485,7 +19477,7 @@ va.strAddress, strVATRegNo From ERP_VAT.dbo.tblConfigVATUserPermission p Join ER
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "qrySalesChallanForM11Print";
             tableMapping.ColumnMappings.Add("strCode", "strCode");
-            tableMapping.ColumnMappings.Add("strName", "strName");
+            tableMapping.ColumnMappings.Add("intId", "intId");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19502,21 +19494,21 @@ va.strAddress, strVATRegNo From ERP_VAT.dbo.tblConfigVATUserPermission p Join ER
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT strCode, strName + \' (\' + strVehicleRegNo + \')\' as strName\r\nFROM ERP_VAT.d" +
-                "bo.qrySalesChallanForM11Print\r\nWHERE intVatAccountID = @vatId GROUP BY strCode, " +
-                "strName + \' (\' + strVehicleRegNo + \')\' ORDER BY strCode ";
+            this._commandCollection[0].CommandText = "SELECT intId, strCode\r\nFROM ERP_VAT.dbo.qrySalesChallanForM11Print\r\nWHERE intVatA" +
+                "ccountID = @accountId \r\nGROUP BY intId,strCode, strName,strVehicleRegNo ORDER BY" +
+                " strCode \r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@vatId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVatAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accountId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intVatAccountID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual VAT_TDS.qrySalesChallanForM11PrintDataTable GetData(global::System.Nullable<int> vatId) {
+        public virtual VAT_TDS.qrySalesChallanForM11PrintDataTable GetData(global::System.Nullable<int> accountId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((vatId.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(vatId.Value));
+            if ((accountId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(accountId.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;

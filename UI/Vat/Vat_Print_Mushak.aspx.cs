@@ -15,6 +15,7 @@ namespace UI.Vat
     {
         VAT_BLL _vatObj = new VAT_BLL();
         DataTable dt = new DataTable();
+        private string url = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
@@ -24,29 +25,12 @@ namespace UI.Vat
                 LoadChallanList();
             }
         }
-
-        protected void btnShow_Click(object sender, EventArgs e)
-        {
-
-        }
         public void LoadUnitList()
         {
             dt = _vatObj.GetVatUnitByUser(Enroll);
             ddlUnit.Loads(dt, "intUnitID", "strVATAccountName");
         }
-        public void LoadChallanList()
-        {
-            dt = _vatObj.GetVatUnitByUser(Enroll);
-            if (dt.Rows.Count > 0)
-            {
-                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
-                int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
-                dt = _vatObj.GetChallanByVAT(vatid);
-                ddlChallan.LoadWithSelect(dt, "strCode", "strName");
-            }
-            
-            
-        }
+        
 
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -55,7 +39,7 @@ namespace UI.Vat
 
         protected void ddlShipPoint_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            ddlType.SetSelectedValue("0");
         }
 
         public void LoadShipPoint()
@@ -64,6 +48,7 @@ namespace UI.Vat
             dt = _vatObj.GetShippingPoint(Enroll, unitId);
             ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
         }
+
 
         public void LoadSalesCode()
         {
@@ -76,7 +61,26 @@ namespace UI.Vat
                 dt = _vatObj.GetSalesCode(accountId, shippingPointId);
                 ddlChallan.LoadWithSelect(dt, "intId", "strCode");
             }
+            else
+            {
+                ddlChallan.UnLoad();
+            }
             
+        }
+        public void LoadChallanList()
+        {
+            dt = _vatObj.GetVatUnitByUser(Enroll);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
+                dt = _vatObj.GetChallanByVAT(vatid);
+                ddlChallan.LoadWithSelect(dt, "intId", "strCode");
+            }
+            else
+            {
+                ddlChallan.UnLoad();
+            }
         }
 
         protected void ddlType_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -90,6 +94,19 @@ namespace UI.Vat
             {
                 LoadChallanList();
             }
+            else
+            {
+                ddlChallan.UnLoad();
+            }
         }
-    }
+
+        protected void btnSave_OnClick(object sender, EventArgs e)
+        {
+            //string value1,value2,value3;
+            //url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/CNG_Report" + "&pUnitName=" + UnitID + "&pJobStation=" + JobStationID + "&pDateFrom=" + txtFromDate.Text + "&pDateTo=" + txtToDate.Text + "&pFuelCompany=" + FuelCompanyID + "&rc:LinkTarget=_self";
+       
+            //ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
+
+        }
+}
 }

@@ -32,19 +32,19 @@
                         <div class="panel-body">
                             <div class="row form-group">    
                                  <div class="col-md-3">
-                                      <asp:Label ID="Label1" runat="server" Text="Unit" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
-                                      <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged">
+                                      <asp:Label ID="Label1" runat="server" Text="Unit" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                      <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="True" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged">
                                        
                                       </asp:DropDownList>
                                  </div>
                                 <div class="col-md-3">
-                                    <asp:Label ID="Label3" runat="server" Text="Shipping Point" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
-                                    <asp:DropDownList ID="ddlShipPoint" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" OnSelectedIndexChanged="ddlShipPoint_OnSelectedIndexChanged">
+                                    <asp:Label ID="Label3" runat="server" Text="Shipping Point" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:DropDownList ID="ddlShipPoint" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="True" OnSelectedIndexChanged="ddlShipPoint_OnSelectedIndexChanged">
                                        
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-md-3">
-                                    <asp:Label ID="Label4" runat="server" Text="Type" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                    <asp:Label ID="Label4" runat="server" Text="Type" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                     <asp:DropDownList ID="ddlType" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoPostBack="True" OnSelectedIndexChanged="ddlType_OnSelectedIndexChanged"> 
                                         <asp:ListItem Value="0">--Select Type--</asp:ListItem>
                                         <asp:ListItem Value="1">Sales</asp:ListItem>
@@ -52,14 +52,45 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-md-3">
-                                      <asp:Label ID="Label2" runat="server" Text="Challan" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
+                                      <asp:Label ID="Label2" runat="server" Text="Challan" CssClass="col-md-12 col-sm-12 col-xs-12"></asp:Label>
                                       <asp:DropDownList ID="ddlChallan" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12">                                      
                                       </asp:DropDownList>
                                  </div>
                                 
                                  <div class="col-md-3" style="padding-top:20px;">   
-                                    <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" OnClick="btnShow_Click"/>
+                                    <asp:Button ID="btnSave" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Save" OnClick="btnSave_OnClick"/>
                                  </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label5" runat="server" Text="Actual Delivery Date"></asp:Label>
+                                    <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label6" runat="server" Text="Customer BIN No"></asp:Label>
+                                    <asp:TextBox runat="server" ID="TextBox1" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer BIN No"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label7" runat="server" Text="Final Address"></asp:Label>
+                                    <asp:TextBox runat="server" ID="TextBox2" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Final Address"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label8" runat="server" Text="Vehicle No"></asp:Label>
+                                    <asp:TextBox runat="server" ID="TextBox3" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vehicle No"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label9" runat="server" Text="Vat Challan No"></asp:Label>
+                                    <asp:TextBox runat="server" ID="TextBox4" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vat Challan No"></asp:TextBox>
+                                </div>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label10" runat="server" Text="Customer Name"></asp:Label>
+                                    <asp:TextBox runat="server" ID="TextBox5" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer Name"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3" style="padding-top:20px;">   
+                                    <asp:Button ID="Button1" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" />
+                                </div>
                             </div>
                         </div>
 
@@ -74,52 +105,14 @@
         </asp:UpdatePanel>
     </form>
     <script>
-        $(function () {
-            SetAutoComplete();
-             $("#txtDate").datepicker({
-                dateFormat: "yy-mm-dd"
-            });
-        });
-        $(document).ready(function() {
+        $(document).ready(function () {
+            Init();
             var prm = Sys.WebForms.PageRequestManager.getInstance();
-            prm.add_initializeRequest(InitializeRequest);
-            prm.add_endRequest(EndRequest);
-            SetAutoComplete();
-
-            $("#txtDate").datepicker({
-                dateFormat: "yyyy-MM-dd"
-            });
-
+            prm.add_initializeRequest(Init);
         });
-        function InitializeRequest(sender, args) {}
-
-        function EndRequest(sender, args) {
-              // after update occur on UpdatePanel re-init the Autocomplete
-              SetAutoComplete();
-        }
-        function SetAutoComplete() {
-            $("#txtEmployeeSearch").autocomplete({
-
-                source: function (request, response) {
-                    //debugger;
-                    var param = { strSearchKey: $("#txtEmployeeSearch").val() };
-                    $.ajax({
-                        url: "All_Employee_Information_Report.aspx/GetAutoCompleteData",
-                        data: JSON.stringify(param),
-                        dataType:"json",
-                        type: "post",
-                        contentType: "application/json;charset=utf-8",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-                            response($.map(data.d, function (item) { return {value:item}}))
-                        },
-                        error: function (XMLHttpRequest, textStatus, errorThrown) {  
-                             var err = eval("(" + XMLHttpRequest.responseText + ")");  
-                            alert(err.Message);
-                         } 
-                    });
-                },
-                minLength:1
+        function Init() {
+            $("#txtActualDeliveryDate").datepicker({
+                dateFormat: "yy-mm-dd"
             });
         }
         function validation() {
@@ -128,9 +121,8 @@
                 ShowNotification('Employee search can not be blank', '', 'warning');
                 return false;
             }
+            return true;
         }
-    </script>
-    <script>
         function loadIframe(iframeName, url) {
             var $iframe = $('#' + iframeName);
             if ($iframe.length) {
