@@ -80,6 +80,13 @@ function convertDatetoString(date) {
 function confirmMsg() {
     return confirm("Do you want to proceed?");
 }
+function confirmMsgWithLoader() {
+    if (confirmMsg()) {
+        showLoader();
+        return true;
+    }
+    return false;
+}
 
 /**
  * @param {string} divId The string
