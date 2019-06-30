@@ -361,6 +361,8 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnmonBDTTotal;
             
+            private global::System.Data.DataColumn columnnumQuantity;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public DataTable1DataTable() {
@@ -444,6 +446,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numQuantityColumn {
+                get {
+                    return this.columnnumQuantity;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -479,7 +489,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public DataTable1Row AddDataTable1Row(int intItemID, string Item, string struom, decimal numPOQty, decimal numReceiveQty, decimal monBDTTotal) {
+            public DataTable1Row AddDataTable1Row(int intItemID, string Item, string struom, decimal numPOQty, decimal numReceiveQty, decimal monBDTTotal, decimal numQuantity) {
                 DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intItemID,
@@ -487,7 +497,8 @@ namespace SCM_DAL {
                         struom,
                         numPOQty,
                         numReceiveQty,
-                        monBDTTotal};
+                        monBDTTotal,
+                        numQuantity};
                 rowDataTable1Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable1Row);
                 return rowDataTable1Row;
@@ -516,6 +527,7 @@ namespace SCM_DAL {
                 this.columnnumPOQty = base.Columns["numPOQty"];
                 this.columnnumReceiveQty = base.Columns["numReceiveQty"];
                 this.columnmonBDTTotal = base.Columns["monBDTTotal"];
+                this.columnnumQuantity = base.Columns["numQuantity"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -537,8 +549,11 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnnumReceiveQty);
                 this.columnmonBDTTotal = new global::System.Data.DataColumn("monBDTTotal", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonBDTTotal);
+                this.columnnumQuantity = new global::System.Data.DataColumn("numQuantity", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumQuantity);
                 this.columnItem.ReadOnly = true;
                 this.columnItem.MaxLength = 750;
+                this.columnstruom.AllowDBNull = false;
                 this.columnstruom.MaxLength = 50;
             }
             
@@ -1394,12 +1409,7 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string struom {
                 get {
-                    try {
-                        return ((string)(this[this.tableDataTable1.struomColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'struom\' in table \'DataTable1\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tableDataTable1.struomColumn]));
                 }
                 set {
                     this[this.tableDataTable1.struomColumn] = value;
@@ -1456,6 +1466,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numQuantity {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableDataTable1.numQuantityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numQuantity\' in table \'DataTable1\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable1.numQuantityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintItemIDNull() {
                 return this.IsNull(this.tableDataTable1.intItemIDColumn);
             }
@@ -1476,18 +1502,6 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetItemNull() {
                 this[this.tableDataTable1.ItemColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstruomNull() {
-                return this.IsNull(this.tableDataTable1.struomColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstruomNull() {
-                this[this.tableDataTable1.struomColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1524,6 +1538,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonBDTTotalNull() {
                 this[this.tableDataTable1.monBDTTotalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumQuantityNull() {
+                return this.IsNull(this.tableDataTable1.numQuantityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumQuantityNull() {
+                this[this.tableDataTable1.numQuantityColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2148,6 +2174,7 @@ namespace SCM_DAL.MrrCorrectionTableAdapters {
             tableMapping.ColumnMappings.Add("numPOQty", "numPOQty");
             tableMapping.ColumnMappings.Add("numReceiveQty", "numReceiveQty");
             tableMapping.ColumnMappings.Add("monBDTTotal", "monBDTTotal");
+            tableMapping.ColumnMappings.Add("numQuantity", "numQuantity");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2164,10 +2191,11 @@ namespace SCM_DAL.MrrCorrectionTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"select mrd.intItemID,(i.strItemName+i.strDescription+i.strPartNo) as Item,i.struom,mrd.numPOQty,mrd.numReceiveQty,mrd.monBDTTotal 
+            this._commandCollection[0].CommandText = @"Select mrd.intItemID,(i.strItemName+i.strDescription+i.strPartNo) as Item,i.struom,mrd.numPOQty,mrd.numReceiveQty,rb.numQuantity, mrd.monBDTTotal 
 from ERP_Inventory.dbo.tblFactoryReceiveMRR mrr 
 JOIN ERP_Inventory.dbo.tblFactoryReceiveMRRItemDetail mrd ON mrr.intMRRID=mrd.intMRRID
 join ERP_Inventory.dbo.tblItemList i on mrd.intItemID=i.intItemID 
+left join ERP_Inventory.dbo.tblInventoryRunningBalance rb ON mrd.intItemID=rb.intItemID and mrr.intWHID=rb.intWHID
 where mrr.intMRRID=@MrrId
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
