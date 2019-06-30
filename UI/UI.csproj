@@ -475,6 +475,8 @@
     <Content Include="HR\Insurance\InsuranceInformationUpdate.aspx" />
     <Content Include="HR\Insurance\InsuranceReport.aspx" />
     <Content Include="HR\Insurance\InsuranceShowReport.aspx" />
+    <Content Include="HR\Leave\PLLeaveEntry.aspx" />
+    <Content Include="HR\Leave\PLLeaveUpdate.aspx" />
     <Content Include="HR\Loan\ApproveLoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanApplicationN.aspx" />
     <Content Include="HR\Loan\LoanComplete.aspx" />
@@ -489,16 +491,13 @@
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\Penalty\Familyday.aspx" />
     <Content Include="HR\Penalty\FamilyDayPub.aspx" />
-    <Content Include="HR\PiceRateCalculation\CasualWorkerBill.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
-    <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
+    <Content Include="HR\Reports\EmployeeServiceInformation.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
-    <Content Include="HR\Reports\Employee_Leave_Movement_Report.aspx" />
     <Content Include="HR\Reports\Employee_Movement_History.aspx" />
-    <Content Include="HR\Reports\Employee_PF_Report.aspx" />
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
     <Content Include="HR\Reports\Lync_Bill_Report.aspx" />
@@ -1680,7 +1679,6 @@
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
     <Content Include="Transport\AccidentRegisterEntry.aspx" />
-    <Content Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx" />
     <Content Include="Transport\InternalTRouteCostUpdate.aspx" />
     <Content Include="Transport\NewVehicleEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
@@ -3268,6 +3266,20 @@
     <Compile Include="HR\Insurance\InsuranceShowReport.aspx.designer.cs">
       <DependentUpon>InsuranceShowReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Leave\PLLeaveEntry.aspx.cs">
+      <DependentUpon>PLLeaveEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveEntry.aspx.designer.cs">
+      <DependentUpon>PLLeaveEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveUpdate.aspx.cs">
+      <DependentUpon>PLLeaveUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Leave\PLLeaveUpdate.aspx.designer.cs">
+      <DependentUpon>PLLeaveUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Loan\ApproveLoanApplicationN.aspx.cs">
       <DependentUpon>ApproveLoanApplicationN.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3366,26 +3378,12 @@
     <Compile Include="HR\Penalty\FamilyDayPub.aspx.designer.cs">
       <DependentUpon>FamilyDayPub.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.cs">
-      <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.designer.cs">
-      <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
-    </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.designer.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HR\Reports\All_Employee_Information_Report.aspx.cs">
-      <DependentUpon>All_Employee_Information_Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HR\Reports\All_Employee_Information_Report.aspx.designer.cs">
-      <DependentUpon>All_Employee_Information_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.cs">
       <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
@@ -3408,6 +3406,13 @@
     <Compile Include="HR\Reports\EmployeeMovementAttendanceReport.aspx.designer.cs">
       <DependentUpon>EmployeeMovementAttendanceReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Reports\EmployeeServiceInformation.aspx.cs">
+      <DependentUpon>EmployeeServiceInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\EmployeeServiceInformation.aspx.designer.cs">
+      <DependentUpon>EmployeeServiceInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3415,26 +3420,12 @@
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
     </Compile>
-    <Compile Include="HR\Reports\Employee_Leave_Movement_Report.aspx.cs">
-      <DependentUpon>Employee_Leave_Movement_Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HR\Reports\Employee_Leave_Movement_Report.aspx.designer.cs">
-      <DependentUpon>Employee_Leave_Movement_Report.aspx</DependentUpon>
-    </Compile>
     <Compile Include="HR\Reports\Employee_Movement_History.aspx.cs">
       <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HR\Reports\Employee_Movement_History.aspx.designer.cs">
       <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="HR\Reports\Employee_PF_Report.aspx.cs">
-      <DependentUpon>Employee_PF_Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="HR\Reports\Employee_PF_Report.aspx.designer.cs">
-      <DependentUpon>Employee_PF_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\Employee_Previous_History.aspx.cs">
       <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
@@ -9019,13 +9010,6 @@
     </Compile>
     <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.cs">
-      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.designer.cs">
-      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\InternalTRouteCostUpdate.aspx.cs">
       <DependentUpon>InternalTRouteCostUpdate.aspx</DependentUpon>
