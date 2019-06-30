@@ -9246,7 +9246,7 @@ SELECT intCusID, intUnitID, intGeoID, strName, strAddress, strPhone, monCreditLi
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT intCusID, intUnitID, intGeoID, strName, strAddress, strPhone, monCreditLimit, intCusType, intLastActionBy, dteLastActionTime, strPropitor, intPriceCatagory, intLogisticCatagory, ysnPeriodicleCrLim, intDaysOfCrLim, intSalesOffId, intCOAid,strVatRegNo ,strEmailAddress FROM dbo.tblCustomer
@@ -9261,26 +9261,32 @@ where intCusID = @intCusID";
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = @"SELECT dteLastActionTime, intCOAid, intCusID, intCusType, intDaysOfCrLim, intGeoID, intLastActionBy, intLogisticCatagory, intPriceCatagory, intSalesOffId, intUnitID, monCreditLimit, strAddress, strEmailAddress, strName, strPhone, strPropitor, strVatRegNo, ysnPeriodicleCrLim FROM tblCustomer WHERE (intUnitID = @intUnitID) AND (ISNULL(intGeoID, 0) = ISNULL(@intGeoID, 0)) AND (intCusType = @custype) AND (intSalesOffId = @salesOff) OR (intUnitID = @intUnitID) AND (intCusType = @custype) AND (intSalesOffId = @salesOff) AND (intGeoID IS NULL)";
+            this._commandCollection[2].CommandText = " SELECT (strName + \' [\' + cast(intCusID as varchar) + \']\') as strName, intCusID \r" +
+                "\nFROM ERP_SAD.dbo.tblCustomer Where intUnitID = @intUnit Order by strName";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intGeoID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@custype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@salesOff", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSalesOffId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE dbo.tblCustomer set intLogisticCatagory = @intLogisticCatagory\r\nwhere intC" +
-                "usID = @intCusID";
+            this._commandCollection[3].CommandText = @"SELECT dteLastActionTime, intCOAid, intCusID, intCusType, intDaysOfCrLim, intGeoID, intLastActionBy, intLogisticCatagory, intPriceCatagory, intSalesOffId, intUnitID, monCreditLimit, strAddress, strEmailAddress, strName, strPhone, strPropitor, strVatRegNo, ysnPeriodicleCrLim FROM tblCustomer WHERE (intUnitID = @intUnitID) AND (ISNULL(intGeoID, 0) = ISNULL(@intGeoID, 0)) AND (intCusType = @custype) AND (intSalesOffId = @salesOff) OR (intUnitID = @intUnitID) AND (intCusType = @custype) AND (intSalesOffId = @salesOff) AND (intGeoID IS NULL)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLogisticCatagory", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intLogisticCatagory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intUnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intGeoID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@custype", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@salesOff", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intSalesOffId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE dbo.tblCustomer set intPriceCatagory = @intPriceCatagory\r\nwhere intCusID =" +
-                " @intCusID";
+            this._commandCollection[4].CommandText = "UPDATE dbo.tblCustomer set intLogisticCatagory = @intLogisticCatagory\r\nwhere intC" +
+                "usID = @intCusID";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPriceCatagory", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intPriceCatagory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLogisticCatagory", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intLogisticCatagory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "UPDATE dbo.tblCustomer set intPriceCatagory = @intPriceCatagory\r\nwhere intCusID =" +
+                " @intCusID";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPriceCatagory", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intPriceCatagory", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCusID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCusID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9299,8 +9305,25 @@ where intCusID = @intCusID";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual CustomerTDS.TblCustomerDataTable GetData(global::System.Nullable<int> intUnitID, global::System.Nullable<int> intGeoID, global::System.Nullable<int> custype, global::System.Nullable<int> salesOff) {
+        public virtual CustomerTDS.TblCustomerDataTable GetCustomerByUnit(global::System.Nullable<int> intUnit) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((intUnit.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnit.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            CustomerTDS.TblCustomerDataTable dataTable = new CustomerTDS.TblCustomerDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual CustomerTDS.TblCustomerDataTable GetData(global::System.Nullable<int> intUnitID, global::System.Nullable<int> intGeoID, global::System.Nullable<int> custype, global::System.Nullable<int> salesOff) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((intUnitID.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intUnitID.Value));
             }
@@ -9393,7 +9416,7 @@ where intCusID = @intCusID";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateLogisCatagory(global::System.Nullable<int> intLogisticCatagory, int intCusID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((intLogisticCatagory.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(intLogisticCatagory.Value));
             }
@@ -9423,7 +9446,7 @@ where intCusID = @intCusID";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdatePriceCatagory(global::System.Nullable<int> intPriceCatagory, int intCusID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((intPriceCatagory.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(intPriceCatagory.Value));
             }

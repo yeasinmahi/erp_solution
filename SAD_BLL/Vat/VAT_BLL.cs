@@ -386,7 +386,25 @@ namespace SAD_BLL.Vat
         #endregion ===========================================================================
 
 
-
+        public DataTable GetVatUnitByUser(int enroll)
+        {
+            try
+            {
+                TblConfigVATUserPermissionTableAdapter adp = new TblConfigVATUserPermissionTableAdapter();
+                return adp.GetVatUnitByEnroll(enroll);
+            }
+            catch { return new DataTable(); }
+        }
+        
+        public DataTable GetChallanByVAT(int VatID)
+        {
+            try
+            {
+                qrySalesChallanForM11PrintTableAdapter adp = new qrySalesChallanForM11PrintTableAdapter();
+                return adp.GetData(VatID);
+            }
+            catch { return new DataTable(); }
+        }
 
 
 

@@ -203,6 +203,21 @@ namespace SAD_BLL.Customer
                 return new DataTable();
             }
         }
+        public DataTable GetCustomerListByUnit(int UnitId)
+        {
+            try
+            {
+                TblCustomerTableAdapter adp = new TblCustomerTableAdapter();
+                return adp.GetCustomerByUnit(UnitId);
+
+            }
+            catch
+            {
+                return new DataTable();
+            }
+        }
+
+
 
     }
     }

@@ -176,6 +176,7 @@
     <Content Include="Accounts\Banking\Report\DepositSlip.aspx" />
     <Content Include="Accounts\Bank\BankInfo.aspx" />
     <Content Include="Accounts\Bank\BankInfoEdit.aspx" />
+    <Content Include="Accounts\Bank\BankReceive.aspx" />
     <Content Include="Accounts\Bank\ChequeBook.aspx" />
     <Content Include="Accounts\Bank\LoanType.aspx" />
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
@@ -1731,6 +1732,7 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="Vat\Vat_Print_Mushak.aspx" />
     <Content Include="VAT_Management\BandrollReceive.aspx" />
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
@@ -1915,6 +1917,13 @@
     </Compile>
     <Compile Include="Accounts\Bank\BankInfoEdit.aspx.designer.cs">
       <DependentUpon>BankInfoEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankReceive.aspx.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankReceive.aspx.designer.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Bank\ChequeBook.aspx.cs">
       <DependentUpon>ChequeBook.aspx</DependentUpon>
@@ -9375,6 +9384,13 @@
     </Compile>
     <Compile Include="Vat\VatMonthlyReturnM19.aspx.designer.cs">
       <DependentUpon>VatMonthlyReturnM19.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\Vat_Print_Mushak.aspx.cs">
+      <DependentUpon>Vat_Print_Mushak.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\Vat_Print_Mushak.aspx.designer.cs">
+      <DependentUpon>Vat_Print_Mushak.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\BandrollReceive.aspx.cs">
       <DependentUpon>BandrollReceive.aspx</DependentUpon>
