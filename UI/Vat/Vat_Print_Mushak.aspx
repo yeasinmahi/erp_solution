@@ -57,27 +57,27 @@
                                       </asp:DropDownList>
                                     <asp:TextBox runat="server" ID="txtChallanNo" CssClass="form-control col-md-6 col-sm-6 col-xs-6"></asp:TextBox>
                                  </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 hidden">
                                     <asp:Label ID="Label5" runat="server" Text="Actual Delivery Date"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtActualDeliveryDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Actual Delivery Date"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 hidden">
                                     <asp:Label ID="Label6" runat="server" Text="Customer BIN No"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtCustomerBinNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer BIN No"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 hidden">
                                     <asp:Label ID="Label7" runat="server" Text="Final Address"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtFinalAddress" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Final Address"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 hidden">
                                     <asp:Label ID="Label8" runat="server" Text="Vehicle No"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtVehicleNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vehicle No"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 hidden">
                                     <asp:Label ID="Label9" runat="server" Text="Vat Challan No"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtVatChallanNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Vat Challan No"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3 hidden">
                                     <asp:Label ID="Label10" runat="server" Text="Customer Name"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtCustomerName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer Name"></asp:TextBox>
                                 </div>
