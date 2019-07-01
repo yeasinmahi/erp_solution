@@ -17,6 +17,7 @@ namespace UI.ClassFiles
         //protected int Enroll = 0;
         public int Enroll { get; private set; }
         public int JobStationId { get; private set; }
+        public string JobStationName { get; private set; }
         public int UnitId { get; private set; }
         public String UnitName { get; private set; }
         public string UserEmail { get; private set; }
@@ -27,6 +28,7 @@ namespace UI.ClassFiles
             UserActivityCheck();
             Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
+            JobStationName = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString();
             UnitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
             UnitName = HttpContext.Current.Session[SessionParams.UNIT_NAME].ToString();
             UserEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();

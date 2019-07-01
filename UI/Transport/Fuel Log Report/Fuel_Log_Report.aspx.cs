@@ -56,6 +56,7 @@ namespace UI.Transport.Fuel_Log_Report
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadJobStationList(Convert.ToInt32(ddlUnit.SelectedItem.Value));
+            ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
         }
 
         protected void btnShow_Click(object sender, EventArgs e)

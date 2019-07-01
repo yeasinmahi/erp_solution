@@ -17,6 +17,7 @@ namespace HR_BLL.Leave
         SprDeleteLeaveApplicationTableAdapter objSprDeleteLeaveApplicationTableAdapter = new SprDeleteLeaveApplicationTableAdapter();
 
         #endregion
+
         #region Method
         public DataTable GetLeaveSummaryByEmployeeCodeOrUserID(int? userID,string empCode)
         {
@@ -86,5 +87,7 @@ namespace HR_BLL.Leave
             return objSprGetAllUnApprovedLeaveApplicationByUserIDOrEmpCodeTableAdapter.SprGetAllUnApprovedLeaveApplicationByUserIDOrEmpCode(userID, empCode);
         }
         #endregion
+
+        
     }
 }

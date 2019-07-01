@@ -237,8 +237,8 @@ namespace UI.HR.Overtime
                 // ignored
             }
             AutoSearch_BLL objAutoSearchBll = new AutoSearch_BLL();
-            var result = objAutoSearchBll.AutoSearchEmployeesData(//1399, 12, strSearchKey);
-                int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()), jobStationId, strSearchKey);
+            var result = objAutoSearchBll.AutoSearchEmployeesData(//12, strSearchKey);
+                jobStationId, strSearchKey);
             return result;
         }
 

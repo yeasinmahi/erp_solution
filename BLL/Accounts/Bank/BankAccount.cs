@@ -160,5 +160,16 @@ namespace BLL.Accounts.Bank
 
         }
 
+        public DataTable GetBankReceiveData(string unitid)
+        {
+            try
+            {
+                TblBankAccountStatementTableAdapter adp = new TblBankAccountStatementTableAdapter();
+                return adp.GetBankReceiveInfo(unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+
     }
 }

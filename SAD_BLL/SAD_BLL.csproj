@@ -189,6 +189,10 @@
       <Project>{16E00442-31FA-416F-AF68-BE5AD09F4D2A}</Project>
       <Name>SAD_DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3e7d37dd-f3e6-4932-b05c-821f021a92ee}</Project>
+      <Name>Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

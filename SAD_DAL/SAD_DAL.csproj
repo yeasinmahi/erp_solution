@@ -511,6 +511,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VatReportTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Vat\VAT_TDS.cs">
+      <DependentUpon>VAT_TDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Vat\VAT_TDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
