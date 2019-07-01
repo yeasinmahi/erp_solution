@@ -84,19 +84,19 @@
             <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px"/><ItemTemplate><%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>              
             
             <asp:TemplateField HeaderText="intTransferID" Visible="false" SortExpression="intTransferID"><ItemTemplate>            
-            <asp:Label ID="lblTransferID" runat="server" Text='<%# Bind("intTransferID") %>'></asp:Label></ItemTemplate>
+            <asp:Label ID="lblTransferID" runat="server" Text='<%# Bind("transferid") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="45px"/></asp:TemplateField>
                 
             <asp:TemplateField HeaderText="Item Name" SortExpression="ItemName"><ItemTemplate>            
-            <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("strItemName") %>'></asp:Label></ItemTemplate>
+            <asp:Label ID="lblItemName" runat="server" Text='<%# Bind("itemname") %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="Left" Width="300px"/></asp:TemplateField>
             
             <asp:TemplateField HeaderText="Quantity" ItemStyle-HorizontalAlign="right" SortExpression="qty" >
-            <ItemTemplate><asp:Label ID="lblQty" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("numQty"))) %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblQty" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("qty"))) %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="right" Width="90px"/></asp:TemplateField>
                          
             <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
-            <ItemTemplate><asp:Label ID="lblUOM" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("strUoM"))) %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblUOM" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("uom"))) %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="right" Width="90px"/></asp:TemplateField>
                      
             <asp:CommandField ShowDeleteButton="true" Visible="false" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 

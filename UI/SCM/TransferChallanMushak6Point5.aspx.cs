@@ -21,23 +21,20 @@ namespace UI.SCM
     {
         DataTable dt; InternalTransportBLL obj = new InternalTransportBLL();
         TransferBLLNew objTransfer = new TransferBLLNew();
-        string filePathForXMLProcess1, filePathForXMLProcess2, xmlStringProcess1 = "", xmlStringProcess2 = "";
-        string itemid, itemname, narration;
+        string filePathForXMLProcess1, xmlStringProcess1 = "";
+        string transferid, itemname, narration, qty, uom;
         int intFromVATAc, intToVATAc, intYear;
         DateTime dteTransferDate; string strVehicle, strGaNo;
-
-
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
             filePathForXMLProcess1 = Server.MapPath("~/SCM/Data/TransferXML1_" + hdnEnroll.Value + ".xml");
-            filePathForXMLProcess2 = Server.MapPath("~/SCM/Data/TransferXML2_" + hdnEnroll.Value + ".xml");
 
             if (!IsPostBack)
             {
                 File.Delete(filePathForXMLProcess1); dgvItemList.DataSource = ""; dgvItemList.DataBind();
-                File.Delete(filePathForXMLProcess2);
 
                 dt = objTransfer.GetFromWH(int.Parse(hdnEnroll.Value));
                 ddlFromWH.DataTextField = "strWareHoseName";
@@ -50,7 +47,6 @@ namespace UI.SCM
                 ddlToWH.DataValueField = "intWHID";
                 ddlToWH.DataSource = dt;
                 ddlToWH.DataBind();
-
             }
         }
 
@@ -67,62 +63,30 @@ namespace UI.SCM
             catch { }
         }
 
-        /*
-        protected void btnFuelCostAdd_Click(object sender, EventArgs e)
-        {
-            intPartyID = ddlFuelStation.SelectedValue.ToString();
-            fuelstation = ddlFuelStation.SelectedItem.ToString();
-            if (txtDieselCredit.Text == "") { dieselcredit = "0"; } else { dieselcredit = txtDieselCredit.Text; }
-            if (txtCNGCredit.Text == "") { cngcredit = "0"; } else { cngcredit = txtCNGCredit.Text; }
-            decimal dieselcrtk = decimal.Parse(dieselcredit.ToString());
-            decimal cngcrtk = decimal.Parse(cngcredit.ToString());
-            decimal ttk = dieselcrtk + cngcrtk;
-            totalcredit = ttk.ToString();
-            inttype = "0";
-
-            try
-            {
-                if (txtFuelPurchaeDate.Text == "")
-                {
-                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fuel Purchase Date Properly Input.');", true); return;
-                }
-                else { strFuelPurchaseDate = txtFuelPurchaeDate.Text; }
-            }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fuel Purchase Date Properly Input.');", true); return; }
-
-            try
-            {
-                strFuelPurchaseDate = txtFuelPurchaeDate.Text;
-            }
-            catch { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Fuel Purchase Date Properly Input.');", true); return; }
-
-            if (intPartyID != "" && fuelstation != "" && ttk != 0)
-            {
-                CreateVoucherXml(intPartyID, fuelstation, dieselcredit, cngcredit, totalcredit, inttype, strFuelPurchaseDate);
-                txtDieselCredit.Text = "";
-                txtCNGCredit.Text = "";
-                ddlFuelStation.Text = "";
-            }
-            else
-            { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Select Fuel Station.');", true); return; }
-
-        }
-        */
-
         #region==== Transfer Product Add =============================================================
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            CreateTransferXmlProcess1(itemid, itemname, narration);
-            CreateTransferXmlProcess2(itemid, itemname, narration);
+            transferid = ddlItemList.SelectedValue;
+            itemname = ddlItemList.SelectedItem.ToString();
+
+            dt = new DataTable();
+            dt = objTransfer.GetProductInfoForTransfer(int.Parse(transferid));
+            if (dt.Rows.Count > 0)
+            {
+                qty = dt.Rows[0]["numQty"].ToString();
+                uom = dt.Rows[0]["strUoM"].ToString();
+            }
+
+            CreateTransferXmlProcess1(transferid, itemname, qty, uom);
         }
-        private void CreateTransferXmlProcess1(string intItemID, string strItemName, string strNarration)
+        private void CreateTransferXmlProcess1(string transferid, string itemname, string qty, string uom)
         {
             XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(filePathForXMLProcess1))
             {
                 doc.Load(filePathForXMLProcess1);
                 XmlNode rootNode = doc.SelectSingleNode("TransferProcess1");
-                XmlNode addItem = CreateItemNode(doc, intItemID, strItemName, strNarration);
+                XmlNode addItem = CreateItemNode(doc, transferid, itemname, qty, uom);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -130,32 +94,33 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("TransferProcess1");
-                XmlNode addItem = CreateItemNode(doc, intItemID, strItemName, strNarration);
+                XmlNode addItem = CreateItemNode(doc, transferid, itemname, qty, uom);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXMLProcess1);
             LoadGridwithXml();
         }
-        private XmlNode CreateItemNode(XmlDocument doc, string intItemID, string strItemName, string strNarration)
+        private XmlNode CreateItemNode(XmlDocument doc, string transferid, string itemname, string qty, string uom)
         {
             XmlNode node = doc.CreateElement("TransferProcess1");
 
-            XmlAttribute IntItemID = doc.CreateAttribute("intItemID");
-            IntItemID.Value = intItemID;
-            XmlAttribute StrItemName = doc.CreateAttribute("strItemName");
-            StrItemName.Value = strItemName;
-            XmlAttribute StrNarration = doc.CreateAttribute("strNarration");
-            StrNarration.Value = strNarration;
+            XmlAttribute Transferid = doc.CreateAttribute("transferid");
+            Transferid.Value = transferid;
+            XmlAttribute Itemname = doc.CreateAttribute("itemname");
+            Itemname.Value = itemname;
+            XmlAttribute Qty = doc.CreateAttribute("qty");
+            Qty.Value = qty;
+            XmlAttribute Uom = doc.CreateAttribute("uom");
+            Uom.Value = uom;
 
-            node.Attributes.Append(IntItemID);
-            node.Attributes.Append(StrItemName);
-            node.Attributes.Append(StrNarration);
+            node.Attributes.Append(Transferid);
+            node.Attributes.Append(Itemname);
+            node.Attributes.Append(Qty);
+            node.Attributes.Append(Uom);
             return node;
         }
-
-
-
+        
         private void LoadGridwithXml()
         {
             XmlDocument doc = new XmlDocument();
@@ -169,45 +134,6 @@ namespace UI.SCM
             if (ds.Tables[0].Rows.Count > 0) { dgvItemList.DataSource = ds; }
             else { dgvItemList.DataSource = ""; }
             dgvItemList.DataBind();
-        }
-
-        private void CreateTransferXmlProcess2(string intItemID, string strItemName, string strNarration)
-        {
-            XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXMLProcess2))
-            {
-                doc.Load(filePathForXMLProcess2);
-                XmlNode rootNode = doc.SelectSingleNode("TransferProcess2");
-                XmlNode addItem = CreateItemNode2(doc, intItemID, strItemName, strNarration);
-                rootNode.AppendChild(addItem);
-            }
-            else
-            {
-                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
-                doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("TransferProcess2");
-                XmlNode addItem = CreateItemNode2(doc, intItemID, strItemName, strNarration);
-                rootNode.AppendChild(addItem);
-                doc.AppendChild(rootNode);
-            }
-            doc.Save(filePathForXMLProcess2);
-        }
-
-        private XmlNode CreateItemNode2(XmlDocument doc, string intItemID, string strItemName, string strNarration)
-        {
-            XmlNode node = doc.CreateElement("TransferProcess2");
-
-            XmlAttribute IntItemID = doc.CreateAttribute("intItemID");
-            IntItemID.Value = intItemID;
-            XmlAttribute StrItemName = doc.CreateAttribute("strItemName");
-            StrItemName.Value = strItemName;
-            XmlAttribute StrNarration = doc.CreateAttribute("strNarration");
-            StrNarration.Value = strNarration;
-
-            node.Attributes.Append(IntItemID);
-            node.Attributes.Append(StrItemName);
-            node.Attributes.Append(StrNarration);
-            return node;
         }
 
         protected void dgvItemList_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -272,9 +198,8 @@ namespace UI.SCM
                     strGaNo = dt.Rows[0]["M11GaNo"].ToString();
                 }
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + strGaNo + "', '" + intFromVATAc + "', '" + intYear + "');", true);
-
-
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "M6Point5Pint('" + strGaNo + "', '" + intFromVATAc + "', '" + intYear + "');", true);
+                
             }
 
         }
