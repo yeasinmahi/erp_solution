@@ -124,16 +124,17 @@ namespace UI.Vat
                 challan = txtChallanNo.Text;
             }
 
-            actualDeliveryDate = txtActualDeliveryDate.Text;
-            customerBinNo = txtCustomerBinNo.Text;
-            finalAddress = txtFinalAddress.Text;
-            vehicleNo = txtVehicleNo.Text;
-            vatChallanNo = txtVatChallanNo.Text;
-            customerName = txtCustomerName.Text;
+            //actualDeliveryDate = null;
+            //customerBinNo = txtCustomerBinNo.Text;
+            //finalAddress = txtFinalAddress.Text;
+            //vehicleNo = txtVehicleNo.Text;
+            //vatChallanNo = txtVatChallanNo.Text;
+            //customerName = txtCustomerName.Text;
             if (ddlType.SelectedValue() == 1)
             {
-                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan + "&ActualDelivery=" + actualDeliveryDate + "&strCustVATRegNo=" + customerBinNo + "&strFinalDistanitionAddress=" + finalAddress + "&strVehicleRegNo=" + vehicleNo + "&intVatChallanNo=" + vatChallanNo + "&strCustomerName=" + customerName + "&rc:LinkTarget=_self";
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan + "&Challan2=" + "" + "&rc:LinkTarget=_self";
 
+                //"&ActualDelivery=" + actualDeliveryDate + "&strCustVATRegNo=" + customerBinNo + "&strFinalDistanitionAddress=" + finalAddress + "&strVehicleRegNo=" + vehicleNo + "&intVatChallanNo=" + vatChallanNo + "&strCustomerName=" + customerName +
             }
             else if (ddlType.SelectedValue() == 2)
             {
