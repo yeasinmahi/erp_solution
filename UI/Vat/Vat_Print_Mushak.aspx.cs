@@ -28,7 +28,7 @@ namespace UI.Vat
         public void LoadUnitList()
         {
             dt = _vatObj.GetVatUnitByUser(Enroll);
-            ddlUnit.Loads(dt, "intUnitID", "strVATAccountName");
+            ddlUnit.Loads(dt, "intVatAccountID", "strVATAccountName");
         }
         
 

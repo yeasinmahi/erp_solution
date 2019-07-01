@@ -8733,6 +8733,8 @@ namespace SAD_DAL.Vat {
             
             private global::System.Data.DataColumn columnstrVATRegNo;
             
+            private global::System.Data.DataColumn columnintVatAccountID;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblConfigVATUserPermissionDataTable() {
@@ -8824,6 +8826,14 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intVatAccountIDColumn {
+                get {
+                    return this.columnintVatAccountID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -8868,7 +8878,8 @@ namespace SAD_DAL.Vat {
                         intEmployeeID,
                         ysnFactory,
                         strAddress,
-                        strVATRegNo};
+                        strVATRegNo,
+                        null};
                 rowTblConfigVATUserPermissionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblConfigVATUserPermissionRow);
                 return rowTblConfigVATUserPermissionRow;
@@ -8907,6 +8918,7 @@ namespace SAD_DAL.Vat {
                 this.columnysnFactory = base.Columns["ysnFactory"];
                 this.columnstrAddress = base.Columns["strAddress"];
                 this.columnstrVATRegNo = base.Columns["strVATRegNo"];
+                this.columnintVatAccountID = base.Columns["intVatAccountID"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8926,6 +8938,8 @@ namespace SAD_DAL.Vat {
                 base.Columns.Add(this.columnstrAddress);
                 this.columnstrVATRegNo = new global::System.Data.DataColumn("strVATRegNo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrVATRegNo);
+                this.columnintVatAccountID = new global::System.Data.DataColumn("intVatAccountID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintVatAccountID);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintVatPointID,
                                 this.columnintUnitID,
@@ -8937,6 +8951,11 @@ namespace SAD_DAL.Vat {
                 this.columnysnFactory.ReadOnly = true;
                 this.columnstrAddress.MaxLength = 250;
                 this.columnstrVATRegNo.MaxLength = 250;
+                this.columnintVatAccountID.AutoIncrement = true;
+                this.columnintVatAccountID.AutoIncrementSeed = -1;
+                this.columnintVatAccountID.AutoIncrementStep = -1;
+                this.columnintVatAccountID.AllowDBNull = false;
+                this.columnintVatAccountID.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12964,6 +12983,17 @@ namespace SAD_DAL.Vat {
                 }
                 set {
                     this[this.tableTblConfigVATUserPermission.strVATRegNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intVatAccountID {
+                get {
+                    return ((int)(this[this.tableTblConfigVATUserPermission.intVatAccountIDColumn]));
+                }
+                set {
+                    this[this.tableTblConfigVATUserPermission.intVatAccountIDColumn] = value;
                 }
             }
             
@@ -20123,6 +20153,7 @@ From ERP_VAT.dbo.tblConfigVATUserPermission p Join ERP_VAT.dbo.tblVATAccount va 
             tableMapping.ColumnMappings.Add("ysnFactory", "ysnFactory");
             tableMapping.ColumnMappings.Add("strAddress", "strAddress");
             tableMapping.ColumnMappings.Add("strVATRegNo", "strVATRegNo");
+            tableMapping.ColumnMappings.Add("intVatAccountID", "intVatAccountID");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -20139,7 +20170,7 @@ From ERP_VAT.dbo.tblConfigVATUserPermission p Join ERP_VAT.dbo.tblVATAccount va 
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT va.strDescription AS strVATAccountName, p.intVatPointID, p.intUnitID, p.intEmployeeID, Cast(isnull(va.ysnFactory,0) AS INT) AS ysnFactory, 
+            this._commandCollection[0].CommandText = @"  SELECT va.strDescription AS strVATAccountName,va.intVatAccountID, p.intVatPointID, p.intUnitID, p.intEmployeeID, Cast(isnull(va.ysnFactory,0) AS INT) AS ysnFactory, 
 va.strAddress, strVATRegNo From ERP_VAT.dbo.tblConfigVATUserPermission p Join ERP_VAT.dbo.tblVATAccount va on p.intVatPointID=va.intVATAccountID WHERE p.intEmployeeID=@Enroll ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Enroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
