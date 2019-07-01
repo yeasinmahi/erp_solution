@@ -17043,11 +17043,12 @@ inner join ERP_HR.dbo.tblUserDesignation on ERP_HR.dbo.tblEmployee.intDesignatio
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT distinct ERP_SAD.DBO.tblCustomer.strName
-+ ' [ ' + cast(ERP_SAD.DBO.tblInstituteMarketSetup.intcustid as nvarchar(50)) + ' ] [ '
- + ERP_SAD.DBO.tblInstituteMarketSetup.strpoint + ' ] [ '
-+ ERP_SAD.DBO.tblInstituteMarketSetup.strterritory + ' ]^'  + cast(ERP_SAD.DBO.tblInstituteMarketSetup.intcustid as nvarchar(50)) as distributorinfo
-FROM ERP_SAD.DBO.tblCustomer inner join ERP_SAD.DBO.tblInstituteMarketSetup on ERP_SAD.DBO.tblCustomer.intCusID= ERP_SAD.DBO.tblInstituteMarketSetup.intcustid
-where cast(ERP_SAD.DBO.tblInstituteMarketSetup.intcustid as nvarchar(50)) like '%'+@search+'%' or ERP_SAD.DBO.tblCustomer.strName like '%'+@search+'%' or ERP_SAD.DBO.tblInstituteMarketSetup.strpoint like '%'+@search+'%'";
++ ' [ ' + cast(cf.intcustid as nvarchar(50)) + ' ] [ '
+ + setup.strpoint + ' ] [ '
++ setup.strterritory + ' ]^'  + cast(cf.intcustid as nvarchar(50)) as distributorinfo
+FROM ERP_SAD.DBO.tblCustomer inner join ERP_SAD.DBO.tblGeoCustomerConfig cf on ERP_SAD.DBO.tblCustomer.intCusID= cf.intcustid
+inner join ERP_Remote.dbo.tblGEOSetup setup on cf.intGeoID=setup.intPointId
+where cast(cf.intcustid as nvarchar(50)) like '%'+@search+'%' or ERP_SAD.DBO.tblCustomer.strName like '%'+@search+'%' or setup.strpoint like '%'+@search+'%' and intFGGroupID=7";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@search", global::System.Data.SqlDbType.NVarChar, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
