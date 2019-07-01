@@ -103,6 +103,21 @@ namespace HR_BLL.Global
             }
             return result;
         }
+        public List<string> AutoSearchEmployeesData(int intJobStationId, string strSearchKey)
+        {
+            List<string> result = new List<string>();
+            sprAutoSearchEmployeeByJobStationTableAdapter adp = new sprAutoSearchEmployeeByJobStationTableAdapter();
+            DataTable dt = adp.GetData(intJobStationId, strSearchKey);
+            if (dt.Rows.Count > 0)
+            {
+                for (int index = 0; index < dt.Rows.Count; index++)
+                {
+                    result.Add(dt.Rows[index]["strEmployeeNameWithCode"].ToString());
+                }
+
+            }
+            return result;
+        }
         public DataTable AutoSearchEmployees(int userid, int JobStationId, string strSearchKey)
         {
             SprAutoSearchEmployeeFilterByJobStationTableAdapter ta = new SprAutoSearchEmployeeFilterByJobStationTableAdapter();

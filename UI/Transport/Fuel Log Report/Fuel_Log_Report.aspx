@@ -76,7 +76,7 @@
                                 <div class="col-md-4 hidden" id="unit">
 
                                     <asp:Label ID="Label5" runat="server" Text="Unit"></asp:Label>
-                                    <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 " OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlUnit" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 " AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-4 hidden" id="jobstation">

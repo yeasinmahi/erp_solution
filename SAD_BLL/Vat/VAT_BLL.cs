@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static SAD_DAL.Vat.VAT_TDS;
+using Utility;
 
 namespace SAD_BLL.Vat
 {
@@ -386,7 +387,70 @@ namespace SAD_BLL.Vat
         #endregion ===========================================================================
 
 
+        public DataTable GetVatUnitByUser(int enroll)
+        {
+            try
+            {
+                TblConfigVATUserPermissionTableAdapter adp = new TblConfigVATUserPermissionTableAdapter();
+                return adp.GetVatUnitByEnroll(enroll);
+            }
+            catch { return new DataTable(); }
+        }
+        
+        public DataTable GetSalesByVAT(int VatID)
+        {
+            try
+            {
+                qrySalesChallanForM11PrintTableAdapter adp = new qrySalesChallanForM11PrintTableAdapter();
+                return adp.GetData(VatID);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetShippingPoint(int enroll, int unitId)
+        {
+            try
+            {
+                sprShipPointByUserTableAdapter adp = new sprShipPointByUserTableAdapter();
+                return adp.GetData(enroll,unitId,true);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetTransferbyVat(int accountId, int shippingPointId)
+        {
+            try
+            {
+                DataTable1TableAdapter adp = new DataTable1TableAdapter();
+                return adp.GetData(accountId,shippingPointId);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetMoshok6Info(int intSalesEntryID, int enroll)
+        {
+            try
+            {
+                sprMushak6point5EntryTableAdapter adp = new sprMushak6point5EntryTableAdapter();
+                return adp.GetData(intSalesEntryID, enroll);
+            }
+            catch { return new DataTable(); }
+        }
+        public int GetChallnIdByCode(string strCode, int intUnitID)
+        {
+            try
+            {
+                tblSalesEntryTableAdapter adp = new tblSalesEntryTableAdapter();
+                DataTable dt = adp.GetData(strCode, intUnitID);
+                if (dt.Rows.Count > 0)
+                {
+                    return dt.GetAutoId("intId");
+                }
 
+                return 0;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
 
 
 
