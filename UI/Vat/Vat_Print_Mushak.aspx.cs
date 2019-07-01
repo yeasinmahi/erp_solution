@@ -132,7 +132,7 @@ namespace UI.Vat
             //customerName = txtCustomerName.Text;
             if (ddlType.SelectedValue() == 1)
             {
-                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan +  "&rc:LinkTarget=_self";
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan + "&Challan2=" + "" + "&rc:LinkTarget=_self";
 
                 //"&ActualDelivery=" + actualDeliveryDate + "&strCustVATRegNo=" + customerBinNo + "&strFinalDistanitionAddress=" + finalAddress + "&strVehicleRegNo=" + vehicleNo + "&intVatChallanNo=" + vatChallanNo + "&strCustomerName=" + customerName +
             }
