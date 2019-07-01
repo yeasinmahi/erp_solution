@@ -1,4 +1,5 @@
 ﻿using SAD_DAL.Delivery.Delivery_TDSTableAdapters;
+using SAD_DAL.Sales.SearchSales_TDSTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -105,7 +106,7 @@ namespace SAD_BLL.Sales
         {
             try
             {
-                PickingSummaryTableAdapter adp = new PickingSummaryTableAdapter();
+                qryPickingSummaryTableAdapter adp = new qryPickingSummaryTableAdapter();
                 return adp.GetPickingSummaryData(int.Parse(pickingId));
             }
             catch (Exception ex)
@@ -119,6 +120,19 @@ namespace SAD_BLL.Sales
             {
                 QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
                 return adp.GetShipToPartyAddressData(int.Parse(customerId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable OrderType()
+        {
+            try
+            {
+                TblOrderTypeTableAdapter adp = new TblOrderTypeTableAdapter();
+                return adp.GetSalesOrderType();
             }
             catch (Exception ex)
             {
@@ -145,6 +159,18 @@ namespace SAD_BLL.Sales
             {
                 QryPickingDetalisTableAdapter adp = new QryPickingDetalisTableAdapter();
                 return adp.GetPickingDetalisData(int.Parse(pickingId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable GetWhAddress(string whid)
+        {
+            try
+            {
+                TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+                return adp.GetWhareHouseData(int.Parse(whid));
             }
             catch (Exception ex)
             {
