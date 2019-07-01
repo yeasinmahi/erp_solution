@@ -439,6 +439,17 @@ namespace SCM_BLL
             catch { return new DataTable(); }
         }
 
+        public DataTable GetProductInfoForTransfer(int intTransferID)
+        {
+            try
+            {
+                GetProductInfoForTransferTableAdapter adp = new GetProductInfoForTransferTableAdapter();
+                return adp.GetData(intTransferID);
+
+            }
+            catch { return new DataTable(); }
+        }
+        
 
 
 
