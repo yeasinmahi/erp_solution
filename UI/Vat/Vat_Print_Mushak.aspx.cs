@@ -111,7 +111,7 @@ namespace UI.Vat
 
         protected void btnSave_OnClick(object sender, EventArgs e)
         {
-            string vatPointId = string.Empty, challan, actualDeliveryDate, customerBinNo,finalAddress,vehicleNo,vatChallanNo,customerName;
+            string vatPointId = string.Empty, challan,challan2, actualDeliveryDate, customerBinNo,finalAddress,vehicleNo,vatChallanNo,customerName;
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
             {
@@ -121,9 +121,15 @@ namespace UI.Vat
             challan = ddlChallan.SelectedText();
             if (ddlChallan.SelectedValue() == 0)
             {
-                challan = txtChallanNo.Text;
+                challan2 = txtChallanNo.Text;
+                challan = "";
+            }
+            else
+            {
+                challan2 = "";
             }
 
+            
             //actualDeliveryDate = null;
             //customerBinNo = txtCustomerBinNo.Text;
             //finalAddress = txtFinalAddress.Text;
@@ -132,7 +138,7 @@ namespace UI.Vat
             //customerName = txtCustomerName.Text;
             if (ddlType.SelectedValue() == 1)
             {
-                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan + "&Challan2=" + "" + "&rc:LinkTarget=_self";
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.3" + "&VATPointID=" + vatPointId + "&Challan=" + challan + "&Challan2=" + challan2 + "&rc:LinkTarget=_self";
 
                 //"&ActualDelivery=" + actualDeliveryDate + "&strCustVATRegNo=" + customerBinNo + "&strFinalDistanitionAddress=" + finalAddress + "&strVehicleRegNo=" + vehicleNo + "&intVatChallanNo=" + vatChallanNo + "&strCustomerName=" + customerName +
             }
