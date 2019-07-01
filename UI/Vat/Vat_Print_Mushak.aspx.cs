@@ -54,7 +54,7 @@ namespace UI.Vat
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
             {
-                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
                 int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
             }
         }
@@ -64,7 +64,7 @@ namespace UI.Vat
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
             {
-                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
                 int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
                 dt = _vatObj.GetTransferbyVat(accountId, shippingPointId);
                 ddlChallan.LoadWithSelect(dt, "intId", "strCode");
@@ -80,7 +80,7 @@ namespace UI.Vat
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
             {
-                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
                 int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
                 dt = _vatObj.GetSalesByVAT(vatid);
                 ddlChallan.LoadWithSelect(dt, "intId", "strCode");
@@ -115,7 +115,7 @@ namespace UI.Vat
             dt = _vatObj.GetVatUnitByUser(Enroll);
             if (dt.Rows.Count > 0)
             {
-                DataRow row = dt.GetRow<int>("intUnitID", ddlUnit.SelectedValue());
+                DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
                 vatPointId = row["intVatPointID"].ToString();
             }
             challan = ddlChallan.SelectedText();
