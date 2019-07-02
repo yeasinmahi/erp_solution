@@ -26,11 +26,7 @@
                     <div id="navbar" style="width: 100%; height: 20px; vertical-align: top;">
                         <marquee height="17" onmouseout="this.start()" onmouseover="this.stop()" scrollamount="2" scrolldelay="-1" width="100%">
                         <span class="message-text" id="msg"><%# UI.ClassFiles.CommonClass.GetGlobalMessage() %></span></marquee>
-                    </div>
-                </asp:Panel>
-                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"></cc1:AlwaysVisibleControlExtender>
-                <div class="auto-style1"></div>
-                <%--=========================================Start My Code From Here===============================================--%>
+                    </div>-
                 <%--Bank Receive Form Start--%>
                 <div class="container-fluid">
                     <div class="panel panel-info">
