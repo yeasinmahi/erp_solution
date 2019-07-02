@@ -469,6 +469,7 @@
     <Content Include="HR\DocumentTracking\DocumentRequisition.aspx" />
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
+    <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
@@ -3242,6 +3243,13 @@
     </Compile>
     <Compile Include="HR\DocumentTracking\DocumentTransfer.aspx.designer.cs">
       <DependentUpon>DocumentTransfer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.cs">
+      <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
+      <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
