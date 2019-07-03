@@ -35,7 +35,7 @@
         /*===== Quantity Input  ==============================================================================*/
         function Add(txt) {   
             
-            var a, isst = 0, b;
+            var a, isst = 0, b, receiveqty;
             r = txt.value;
 
             var grandTotal = 0; var grandTotalIssue = 0; grandTotalDed = 0, dedqty1 = 0, dedfat1 = 0, grandTNet1 = 0, issueValue1 = 0;
@@ -51,44 +51,48 @@
                 
                 if (r == "" || r == "0")
                 {
-                    $("[id*=lblRecQty]", row).html(0);
-                    $("[id*=lblDeductQtyAmount]", row).html(0);
+                    $("[id*=lblRecQty]", row).val(0);
+                    $("[id*=lblDeductQtyAmount]", row).val(0);
                 }
                 else if (isst <= r)
                 {
                     a = parseFloat($("[id*=lblIssueQty]", row).html());
-                    $("[id*=lblRecQty]", row).html(a);
-                    $("[id*=lblDeductQtyAmount]", row).html(0);
+
+                    //$("[id*=txtAIT]", row).val((rate * parseFloat(txt.value.toString())) / 100);
+
+                    //$("[id*=lblRecQty]", row).html(a);
+                    $("[id*=lblRecQty]", row).val(a);
+                    $("[id*=lblDeductQtyAmount]", row).val(0);
                 }
                 else {
                     a = parseFloat($("[id*=lblIssueQty]", row).html());
-                    $("[id*=lblRecQty]", row).html((a * (100 - ((isst - r) / isst * 100)) * 0.01).toFixed(2));
+                    $("[id*=lblRecQty]", row).val((a * (100 - ((isst - r) / isst * 100)) * 0.01).toFixed(2));
                     
                     c = parseFloat($("[id*=lblIssueRate]", row).html());
 
-                    $("[id*=lblDeductQtyAmount]", row).html(((a - (a * (100 - ((isst - r) / isst * 100)) * 0.01)) * c).toFixed(4));
+                    $("[id*=lblDeductQtyAmount]", row).val(((a - (a * (100 - ((isst - r) / isst * 100)) * 0.01)) * c).toFixed(4));
                 }
 
-                dedqty1 = parseFloat($("[id*=lblDeductQtyAmount]", row).html());
-                dedfat1 = parseFloat($("[id*=lblDeductFatPer]", row).html());
+                dedqty1 = parseFloat($("[id*=lblDeductQtyAmount]", row).val());
+                dedfat1 = parseFloat($("[id*=lblDeductFatPer]", row).val());
                 issuvalcal1 = parseFloat($("[id*=lblIssueValue]", row).html());
-                $("[id*=lblNetValue]", row).html((issuvalcal1 - (dedqty1 + dedfat1)).toFixed(2));
+                $("[id*=lblNetValue]", row).val((issuvalcal1 - (dedqty1 + dedfat1)).toFixed(2));
             });
-            $("[id*=lblRecQtyTotal]").html(0);
+            $("[id*=lblRecQtyTotal]").val(0);
             $("[id*=lblRecQty]").each(function () {
-                grandTotal = grandTotal + parseFloat($(this).html());
+                grandTotal = grandTotal + parseFloat($(this).val());
             });
             $("[id*=lblRecQtyTotal]").html(parseFloat(grandTotal.toString()).toFixed(2));
 
-            $("[id*=lblDeductQtyAmountTotal]").html(0);
+            $("[id*=lblDeductQtyAmountTotal]").val(0);
             $("[id*=lblDeductQtyAmount]").each(function () {
-                grandTotalDed = grandTotalDed + parseFloat($(this).html());
+                grandTotalDed = grandTotalDed + parseFloat($(this).val());
             });
             $("[id*=lblDeductQtyAmountTotal]").html(parseFloat(grandTotalDed.toString()).toFixed(2));
 
-            $("[id*=lblNetValueTotal]").html(0);
+            $("[id*=lblNetValueTotal]").val(0);
             $("[id*=lblNetValue]").each(function () {
-                grandTNet1 = grandTNet1 + parseFloat($(this).html());
+                grandTNet1 = grandTNet1 + parseFloat($(this).val());
             });
             $("[id*=lblNetValueTotal]").html(parseFloat(grandTNet1.toString()).toFixed(2));
             
@@ -141,28 +145,28 @@
                 defftk = (isstvalue - deffValue);
 
                 issueValue = parseFloat($("[id*=lblIssueValue]", row).html());
-                $("[id*=lblDeductFatPer]", row).html(0);
-                $("[id*=lblDeductFatPer]", row).html((issueValue - issueValue * (100 - ((isstvalue - defftk) / isstvalue * 100)) * 0.01).toFixed(2));
+                $("[id*=lblDeductFatPer]", row).val(0);
+                $("[id*=lblDeductFatPer]", row).val((issueValue - issueValue * (100 - ((isstvalue - defftk) / isstvalue * 100)) * 0.01).toFixed(2));
 
-                dedqty = parseFloat($("[id*=lblDeductQtyAmount]", row).html());
-                dedfat = parseFloat($("[id*=lblDeductFatPer]", row).html());
+                dedqty = parseFloat($("[id*=lblDeductQtyAmount]", row).val());
+                dedfat = parseFloat($("[id*=lblDeductFatPer]", row).val());
                 //issuvalcal = parseFloat($("[id*=lblIssueValue]", row).html());
-                $("[id*=lblNetValue]", row).html((issueValue - (dedqty + dedfat)).toFixed(2));
+                $("[id*=lblNetValue]", row).val((issueValue - (dedqty + dedfat)).toFixed(2));
 
                 if (fatper == "" || fatper == "0")
                 {
-                    $("[id*=lblDeductFatPer]", row).html(0);
+                    $("[id*=lblDeductFatPer]", row).val(0);
                 }
             });
-            $("[id*=lblDeductFatPerTotal]").html(0);
+            $("[id*=lblDeductFatPerTotal]").val(0);
             $("[id*=lblDeductFatPer]").each(function () {
-                grandTotalFat = grandTotalFat + parseFloat($(this).html());
+                grandTotalFat = grandTotalFat + parseFloat($(this).val());
             });
             $("[id*=lblDeductFatPerTotal]").html(parseFloat(grandTotalFat.toString()).toFixed(2));
 
-            $("[id*=lblNetValueTotal]").html(0);
+            $("[id*=lblNetValueTotal]").val(0);
             $("[id*=lblNetValue]").each(function () {
-                grandTNet = grandTNet + parseFloat($(this).html());
+                grandTNet = grandTNet + parseFloat($(this).val());
             });
             $("[id*=lblNetValueTotal]").html(parseFloat(grandTNet.toString()).toFixed(2));
         }
@@ -274,25 +278,30 @@
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             <FooterTemplate><asp:Label ID="lblIssueValueTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalissuevalue %>" /></FooterTemplate></asp:TemplateField>
 
-            <asp:TemplateField HeaderText="Receive Quantity" SortExpression="RecValue">
+            <%--<asp:TemplateField HeaderText="Receive Quantity" SortExpression="RecValue">
             <ItemTemplate><asp:Label ID="lblRecQty" runat="server" DataFormatString="{0:0.00}"  Text="0" Width="80px"></asp:Label>
+            </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
+            <FooterTemplate><asp:Label ID="lblRecQtyTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalrecqty %>" /></FooterTemplate></asp:TemplateField>--%>
+
+            <asp:TemplateField HeaderText="Receive Quantity" SortExpression="RecValue">
+            <ItemTemplate><asp:TextBox ID="lblRecQty" runat="server" DataFormatString="{0:0.00}" Text="0" Width="80px"></asp:TextBox>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             <FooterTemplate><asp:Label ID="lblRecQtyTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalrecqty %>" /></FooterTemplate></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Deduct Qty. Amount" SortExpression="RecValue">
-            <ItemTemplate><asp:Label ID="lblDeductQtyAmount" runat="server" DataFormatString="{0:0.00}"  Text="0" Width="80px"></asp:Label>
+            <ItemTemplate><asp:TextBox ID="lblDeductQtyAmount" runat="server" DataFormatString="{0:0.00}" Text="0" Width="80px"></asp:TextBox>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             <FooterTemplate><asp:Label ID="lblDeductQtyAmountTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalqtydedamou %>" /></FooterTemplate></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Deduct Fat% Amount" SortExpression="RecValue">
-            <ItemTemplate><asp:Label ID="lblDeductFatPer" runat="server" DataFormatString="{0:0.00}"  Text="<%# totalfatdedamou %>" Width="80px"></asp:Label>
+            <ItemTemplate><asp:TextBox ID="lblDeductFatPer" runat="server" DataFormatString="{0:0.00}"  Text="<%# totalfatdedamou %>" Width="80px"></asp:TextBox>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
             <FooterTemplate><asp:Label ID="lblDeductFatPerTotal" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate></asp:TemplateField>
 
             <asp:TemplateField HeaderText="Net Value" SortExpression="RecValue">
-            <ItemTemplate><asp:Label ID="lblNetValue" runat="server" DataFormatString="{0:0.00}"  Text="0" Width="80px"></asp:Label>
+            <ItemTemplate><asp:TextBox ID="lblNetValue" runat="server" DataFormatString="{0:0.00}" Text="0" Width="80px"></asp:TextBox>
             </ItemTemplate><ItemStyle HorizontalAlign="right" Width="80px" />
-            <FooterTemplate><asp:Label ID="lblNetValueTotal" runat="server" DataFormatString="{0:0.00}" Text="<%# totalnetvalue %>" /></FooterTemplate></asp:TemplateField>
+            <FooterTemplate><asp:Label ID="lblNetValueTotal" runat="server" DataFormatString="{0:0.00}" Text="0" /></FooterTemplate></asp:TemplateField>
 
             <asp:TemplateField HeaderText="IssueID" Visible="false" SortExpression="intIssueID"><ItemTemplate>            
             <asp:Label ID="lblIssueID" runat="server" Text='<%# Bind("intIssueID") %>'></asp:Label></ItemTemplate>
