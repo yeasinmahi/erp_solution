@@ -174,33 +174,36 @@ namespace UI.SCM
         {
             if (hdnconfirm.Value == "1")
             {
-                intFromVATAc = int.Parse(ddlFromWH.SelectedValue);
-                intToVATAc = int.Parse(ddlToWH.SelectedValue);
-                strVehicle = txtVehicleNo.Text;
-                dteTransferDate = DateTime.Parse(txtTransferDate.Text);
-
                 try
                 {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filePathForXMLProcess1);
-                    XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
-                    xmlStringProcess1 = dSftTm.InnerXml;
-                    xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
+                    intFromVATAc = int.Parse(ddlFromWH.SelectedValue);
+                    intToVATAc = int.Parse(ddlToWH.SelectedValue);
+                    strVehicle = txtVehicleNo.Text;
+                    dteTransferDate = DateTime.Parse(txtTransferDate.Text);
+
+                    try
+                    {
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(filePathForXMLProcess1);
+                        XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
+                        xmlStringProcess1 = dSftTm.InnerXml;
+                        xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
+                    }
+                    catch { }
+
+                    dt = new DataTable();
+                    dt = objTransfer.GetMushakGa6Point5PrintData(intFromVATAc, intToVATAc, strVehicle, dteTransferDate, int.Parse(hdnEnroll.Value), xmlStringProcess1);
+                    if (dt.Rows.Count > 0)
+                    {
+                        intYear = int.Parse(dt.Rows[0]["intFromVatAc"].ToString());
+                        intFromVATAc = int.Parse(dt.Rows[0]["intVatYear"].ToString());
+                        strGaNo = dt.Rows[0]["M11GaNo"].ToString();
+                    }
+
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "M6Point5Pint('" + strGaNo + "', '" + intFromVATAc + "', '" + intYear + "');", true);
                 }
                 catch { }
-
-                dt = new DataTable();
-                dt = objTransfer.GetMushakGa6Point5PrintData(intFromVATAc, intToVATAc, strVehicle, dteTransferDate, int.Parse(hdnEnroll.Value), xmlStringProcess1);
-                if (dt.Rows.Count > 0)
-                {
-                    intYear = int.Parse(dt.Rows[0]["intFromVatAc"].ToString());
-                    intFromVATAc = int.Parse(dt.Rows[0]["intVatYear"].ToString());
-                    strGaNo = dt.Rows[0]["M11GaNo"].ToString();
-                }
-
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "M6Point5Pint('" + strGaNo + "', '" + intFromVATAc + "', '" + intYear + "');", true);
-                
-            }
+             }
 
         }
         #endregion==== Transfer Action Ended ===========================================================
