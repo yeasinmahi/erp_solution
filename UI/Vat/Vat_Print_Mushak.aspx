@@ -65,9 +65,9 @@
                                     <asp:Label ID="Label6" runat="server" Text="Customer BIN No"></asp:Label>
                                     <asp:TextBox runat="server" ID="txtCustomerBinNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Customer BIN No"></asp:TextBox>
                                 </div>
-                                <div class="col-md-3 hidden">
-                                    <asp:Label ID="Label7" runat="server" Text="Final Address"></asp:Label>
-                                    <asp:TextBox runat="server" ID="txtFinalAddress" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Final Address"></asp:TextBox>
+                                <div class="col-md-3">
+                                    <asp:Label ID="Label7" runat="server" Text="Destination"></asp:Label>
+                                    <asp:TextBox runat="server" ID="txtFinalAddress" CssClass="form-control col-md-12 col-sm-12 col-xs-12" placeholder="Destination"></asp:TextBox>
                                 </div>
                                 <div class="col-md-3 hidden">
                                     <asp:Label ID="Label8" runat="server" Text="Vehicle No"></asp:Label>

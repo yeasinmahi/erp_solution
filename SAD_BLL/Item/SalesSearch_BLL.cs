@@ -24,6 +24,7 @@ namespace SAD_BLL.Item
         private static Delivery_TDS.QryDOProfileDataTable[] tblDoProfile = null;
         private static Delivery_TDS.QryDOPendingItemDataTable[] tblDoPendintItem = null;
         private static Delivery_TDS.QryShipToPartyDataTable[] tblShipParty = null;
+        private static SearchSales_TDS.TblWearHouseDataTable[] tblWHList = null;
 
 
         private static Hashtable ht = new Hashtable();
@@ -199,7 +200,63 @@ namespace SAD_BLL.Item
                 return null;
             }
         }
+        public static string[] GeWthlist(string prefix, string unit)
+        {
+            tblWHList = new SearchSales_TDS.TblWearHouseDataTable[Convert.ToInt32(unit)];
+            TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+            tblWHList[e] = adp.GetWhareHouseData(int.Parse(unit));
 
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tblWHList[e]//Convert.ToInt32(ht[unitID])                           
+                    orderby tmp.strWareHoseName
+                    select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else if (prefix.Trim().Length >= 3)
+            {
+                try
+                {
+
+                    var rows = from tmp in tblWHList[e]
+                        where tmp.strWareHoseName.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                        orderby tmp.strWareHoseName
+                        select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["strWareHoseName"] + " [" + tbl.Rows[i]["intWHID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+
+
+        }
         public static string[] GetShipToParty(string customerId, string prefix)
         {
             tblShipParty = new Delivery_TDS.QryShipToPartyDataTable[Convert.ToInt32(customerId)];
