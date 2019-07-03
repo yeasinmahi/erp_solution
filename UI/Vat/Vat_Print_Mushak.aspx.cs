@@ -159,7 +159,7 @@ namespace UI.Vat
                     m11No = dt.Rows[0]["intM11gaNo"].ToString();
                     vatAc = dt.Rows[0]["intFromVatAc"].ToString();
                     vatYear = dt.Rows[0]["intVatYear"].ToString();
-                    url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.5" + "&M65=" + m11No + "&VATPointID=" + vatAc + "&intVATYear=" + vatYear + "&strFinalDistanitionAddress=" + finalAddress + "&rc:LinkTarget=_self";
+                    url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/VAT_Management/M-6.5" + "&M65=" + m11No + "&VATPointID=" + vatAc + "&intVATYear=" + vatYear + "&rc:LinkTarget=_self";
                 }
                 else
                 {
