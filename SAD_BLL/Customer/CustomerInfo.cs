@@ -207,8 +207,8 @@ namespace SAD_BLL.Customer
         {
             try
             {
-                TblCustomerTableAdapter adp = new TblCustomerTableAdapter();
-                return adp.GetCustomerByUnit(UnitId);
+                tblCustomerTableAdapter adp = new tblCustomerTableAdapter();
+                return adp.GetDataByUnit(UnitId);
 
             }
             catch(Exception ex)

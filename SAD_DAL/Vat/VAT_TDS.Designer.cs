@@ -8887,15 +8887,6 @@ namespace SAD_DAL.Vat {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblConfigVATUserPermissionRow FindByintVatPointIDintUnitIDintEmployeeID(int intVatPointID, int intUnitID, int intEmployeeID) {
-                return ((TblConfigVATUserPermissionRow)(this.Rows.Find(new object[] {
-                            intVatPointID,
-                            intUnitID,
-                            intEmployeeID})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 TblConfigVATUserPermissionDataTable cln = ((TblConfigVATUserPermissionDataTable)(base.Clone()));
                 cln.InitVars();
@@ -8940,10 +8931,6 @@ namespace SAD_DAL.Vat {
                 base.Columns.Add(this.columnstrVATRegNo);
                 this.columnintVatAccountID = new global::System.Data.DataColumn("intVatAccountID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnintVatAccountID);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnintVatPointID,
-                                this.columnintUnitID,
-                                this.columnintEmployeeID}, true));
                 this.columnstrVATAccountName.MaxLength = 250;
                 this.columnintVatPointID.AllowDBNull = false;
                 this.columnintUnitID.AllowDBNull = false;
