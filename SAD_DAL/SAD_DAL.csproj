@@ -196,6 +196,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerGeoTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Customer\CustomerTDS.cs">
+      <DependentUpon>CustomerTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CustomerTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -22,7 +22,7 @@ namespace UI.Accounts.Bank
         {
             if(!IsPostBack)
             {
-                pnlUpperControl.DataBind();
+                //pnlUpperControl.DataBind();
                 LoadUnitList();
             }
 
@@ -45,6 +45,36 @@ namespace UI.Accounts.Bank
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
 
+
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            string ID  = gridReport.DataKeys[row.RowIndex]?.Value.ToString();
+          
+            DropDownList ddlcustomer = row.FindControl("ddlCustomer") as DropDownList;
+
+            string CustomerId = ddlcustomer.SelectedValue;
+            string CustomerName = ddlcustomer.SelectedItem.Text;
+
+            string Date = (row.FindControl("lblDate") as Label).Text;
+            string strChequeNo = (row.FindControl("lblCheque") as Label).Text;
+            string monAmount = (row.FindControl("lblAmount") as Label).Text;
+            string Other = "";
+            try
+            {
+                 Other = (row.FindControl("txtOther") as TextBox).Text;
+            }
+            catch
+            {
+                Other = "";
+            }
+            
+            string Narration = "Amount Received From " + CustomerName+ " Check : "+strChequeNo+ " Amount : "+monAmount+" "+Other+ " Dated : "+Date;
+            int unitId = Convert.ToInt32(ddlUnit.SelectedValue);
+
+            string msg = bankObj.SubmitBankReceiveData(unitId, Enroll,Convert.ToInt32( CustomerId),Convert.ToInt32(ID), Narration);
+            Toaster(msg, "", Common.TosterType.Success);
+
+            LoadReport();
+
         }
 
         protected void btnShow_Click(object sender, EventArgs e)
@@ -54,7 +84,7 @@ namespace UI.Accounts.Bank
         }
         public void LoadUnitList()
         {
-            dt = unitObj.GetUnits();
+            dt = unitObj.GetUnits(Enroll.ToString());
             ddlUnit.Loads(dt, "intUnitID", "strUnit");
         }
         public void LoadReport()
@@ -69,5 +99,7 @@ namespace UI.Accounts.Bank
         {
             //gridReport_RowDataBound(ddlUnit,null);
         }
+
+       
     }
 }
