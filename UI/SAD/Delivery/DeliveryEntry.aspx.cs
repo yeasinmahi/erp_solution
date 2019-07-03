@@ -65,7 +65,6 @@ namespace UI.SAD.Delivery
               
                   
             }
-
         }
         private void Reset()
         {
@@ -142,7 +141,7 @@ namespace UI.SAD.Delivery
                 else
                 {
 
-                    PickingPageloadDataBind();
+                    PickingPageloadDataBind(Request.QueryString["strReportType"], Request.QueryString["PopupType"]);
                     txtCustomer.Enabled = false;
                     txtShipToParty.Enabled = false;
                     txtCustomerAddress.Enabled = false;
@@ -157,9 +156,9 @@ namespace UI.SAD.Delivery
             return(str == null || str == String.Empty) ? true : false;
         }
         
-        private void PickingPageloadDataBind()
+        private void PickingPageloadDataBind(string strReportType,string strPopupType)
         {
-            if (HttpContext.Current.Session["ReportType"].ToString() == "Order_Base" && Request.QueryString["PopupType"] == "Picking")
+            if (strReportType == "Order_Base" && strPopupType == "Picking")
             {
                 hdnDoId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text= Request.QueryString["intid"];
@@ -174,9 +173,9 @@ namespace UI.SAD.Delivery
                 }
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
-                CustometChange();
+                CustomerChange();
             }
-            else if (Request.QueryString["strReportType"] == "Customer_Base" && Request.QueryString["PopupType"] == "Picking")
+            else if (strReportType == "Customer_Base" && strPopupType == "Picking")
             {
                 hdnCustomer.Value= Request.QueryString["intCusID"];
                 txtDoNumber.Text = Request.QueryString["intCusID"];
@@ -192,9 +191,9 @@ namespace UI.SAD.Delivery
                 //}
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
-                CustometChange();
+                CustomerChange();
             }
-            else if ( Request.QueryString["PopupType"] == "Picking_Edit" || Request.QueryString["PopupType"] == "Delivery")
+            else if (strPopupType == "Picking_Edit" || strPopupType == "Delivery")
             {
                 txtDate.Enabled = false;
                 txtDueDate.Enabled = false;
@@ -205,11 +204,11 @@ namespace UI.SAD.Delivery
                 dt = deliveryBLL.PickingSummary(hdnPickingId.Value);
                 DropDownDataBindFromDoCustomer(dt);
                 RadioButtonListBindFromDoCustomer(dt);
-                CustometChange();
+                CustomerChange();
                 PickingGridDataBind(hdnPickingId.Value);
 
             }
-            else if (HttpContext.Current.Session["ReportType"].ToString() == "Order_Base" && Request.QueryString["PopupType"] == "Order_Edit")
+            else if (strReportType == "Order_Base" && strPopupType == "Order_Edit")
             {
                 hdnDoId.Value = Request.QueryString["intid"];
                 txtDoNumber.Text = Request.QueryString["intid"];
@@ -227,12 +226,12 @@ namespace UI.SAD.Delivery
                     lblDoCustId.ForeColor=Color.Red;
                     Toaster("Delivery already order approved", hdnDelivery.Value, Common.TosterType.Warning); 
                 }
-                CustometChange();
+                CustomerChange();
                 DoGridDataBind(hdnDoId.Value);
 
             }
-            
-               
+             
+
                 SessionDataSet();
                 ControlHide(rdoDeliveryType.SelectedItem.Text.ToString());
                
@@ -472,6 +471,8 @@ namespace UI.SAD.Delivery
             }
             else if (ddlOrderType.SelectedValue == "2")
             {
+                lblCustomer.Text = "Transfer Ware House";
+                lblCustomerToAdd.Text = "Ship To Ware House";
                 txtOrderNo.Visible = false;
                 lblOrderNo.Visible = false;
             }
@@ -797,10 +798,10 @@ namespace UI.SAD.Delivery
 
         protected void txtCustomer_TextChanged(object sender, EventArgs e)
         {
-            CustometChange();
+            CustomerChange();
         }
 
-        private void CustometChange()
+        private void CustomerChange()
         {
             try
             {
@@ -1161,8 +1162,6 @@ namespace UI.SAD.Delivery
             catch { }
         }
 
-
-
         protected void rdoVehicleCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1210,8 +1209,7 @@ namespace UI.SAD.Delivery
             try
             {
                 
-                InitilizeXmlAddControl(); 
-
+                InitilizeXmlAddControl();  
                 if (txtProduct.Text.Trim() != "")
                 {
                      
@@ -1223,7 +1221,7 @@ namespace UI.SAD.Delivery
                     ddlUOM.Loads(dt, "intID", "strUOM");
                      
                      
-                    SetPrice(rdoDeliveryType.SelectedItem.Text);
+                    SetPrice(rdoDeliveryType.SelectedItem.Text,hdnProduct.Value,ddlOrderType.SelectedValue().ToString());
                     txtQun.Focus();
                 }
                 else
@@ -1409,21 +1407,21 @@ namespace UI.SAD.Delivery
                         string promUom = "0";
                         decimal promPrice = 0;
                         decimal discounts = 0;
-                        decimal doQuantity = 0;
-
-
+                        decimal doQuantity = 0; 
 
                         string productId = hdnProduct.Value;
                         string productName = hdnProductText.Value;
                         string quantity = txtQun.Text.ToString();
                         string uomId = ddlUOM.SelectedValue().ToString();
                         string rate = txtPrice.Text;
+
                         if (PromotionWithDiscount(productId, quantity, "0", uomId, hdnDoId.Value, rate, ref promQnty,
                             ref promItemId, ref promItemCOAId, ref promItemUOM, ref promItem, ref promUom,
                             ref promPrice, ref discounts, ref doQuantity))
                         {
                             return;
                         }
+
 
                         string invProductId = hdnInvItemId.Value;
                         string productCogs = hdnProductCOGS.Value;
@@ -1782,25 +1780,32 @@ namespace UI.SAD.Delivery
             SessionDataSet();
         }
 
-        private void SetPrice(string type)
+        private void SetPrice(string type,string productId ,string orderTypeId)
         {
-            if (hdnProduct.Value != "")
+            if (int.Parse(productId) >0)
             {
                 decimal commission = 0;
                 decimal suppTax = 0;
                 decimal vat = 0;
                 decimal vatPrice = 0;
                 decimal convRate = 0;
-                decimal productRate = 0;
+                decimal productRate = 0; 
               
- 
-                if (hdnRequistId.Value=="0" || type== "Order_Edit")
+
+                if (type == "Order" || type== "Order_Edit")
                 {
-                    productRate = itemPrice.GetPrice(hdnProduct.Value, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-                  , ref commission, ref suppTax, ref vat, ref vatPrice, ref convRate);
-                    
+                    if (orderTypeId != "1")
+                    {
+
+                    }
+                    else
+                    {
+                        productRate = itemPrice.GetPrice(productId, hdnCustomer.Value, hdnPriceId.Value, ddlUOM.SelectedValue, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+                        , ref commission, ref suppTax, ref vat, ref vatPrice, ref convRate);
+                    }
                     
                 }
+                
                 else if (type=="Picking" || type == "Picking_Edit")
                 {
                     dt=deliveryBLL.DeliveryOrderItemPriceByDo(int.Parse(hdnDoId.Value), int.Parse(hdnProduct.Value));
@@ -1819,9 +1824,7 @@ namespace UI.SAD.Delivery
                     }
                     hdnPrice.Value = productRate.ToString();
                 }
-              
 
-                // hdnvisibility.Value = objbll.GetVisibility(int.Parse(hdnProduct.Value)).ToString();
                 PriceSetWithCommonFormat(productRate, commission, suppTax, vat, vatPrice, convRate);
                 if (productRate <= 0)
                 {
@@ -1873,15 +1876,68 @@ namespace UI.SAD.Delivery
         }
         protected void ddlUOM_SelectedIndexChanged(object sender, EventArgs e)
         {
-            SetPrice(rdoDeliveryType.SelectedItem.Text);
+            SetPrice(rdoDeliveryType.SelectedItem.Text,hdnProduct.Value,ddlOrderType.SelectedValue().ToString());
         }
+
+        private bool PromotionWithDiscountOrder(string productId, string productQty, string editQty, string uomId,
+            string doId, string price, ref decimal promQnty, ref int promItemId, ref int promItemCOAId,
+            ref int promItemUOM, ref string promItem, ref string promUom, ref decimal promPrice, ref decimal discount,
+            ref decimal doQuantity)
+            {
+            bool isCheck = false;
+
+            if (ddlOrderType.SelectedValue().ToString() == "2")
+            {
+                promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+                    , productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+            }
+            else
+            {
+                promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
+                    , productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+            }
+
+
+            if (decimal.Parse(editQty) > 0)
+            {
+                dt = deliveryBLL.GetDiscount(hdnCustomer.Value, productId, editQty, price);
+                discount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
+            }
+            else if (decimal.Parse(productQty) > 0)
+            {
+                dt = deliveryBLL.GetDiscount(hdnCustomer.Value, productId, productQty, price);
+                discount = decimal.Parse(dt.Rows[0]["Amount"].ToString());
+            }
+            doQuantity = 0;
+             
+            return isCheck;
+        }
+
         private bool PromotionWithDiscount(string productId, string productQty,string editQty,string uomId,string doId, string price,ref decimal promQnty, ref int promItemId, ref int promItemCOAId, ref int promItemUOM, ref string promItem, ref string promUom, ref decimal promPrice, ref decimal discount,ref decimal doQuantity)
         {
             bool isCheck=false;
             if (hdnRequistId.Value == "0" || hdnDelivery.Value == "Order_Edit")
             {
-                promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date
-               , productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+                if (ddlOrderType.SelectedValue().ToString() == "2")//WH FG Order
+                {
+                        //promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date,
+                        //productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+                }
+                else if(ddlOrderType.SelectedValue().ToString() == "5")// WH Material Order
+                {
+                    promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date,
+                      productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+                }
+                else
+                {
+                    promPrice = itemPromotion.GetPromotion(productId, hdnCustomer.Value, hdnPriceId.Value, uomId, ddlCurrency.SelectedValue, rdoSalesType.SelectedValue, CommonClass.GetDateAtSQLDateFormat(txtDate.Text).Date,
+                        productQty, ref promQnty, ref promItemId, ref promItem, ref promItemUOM, ref promUom, ref promItemCOAId);
+
+                }
 
 
                 if (decimal.Parse(editQty) > 0)
@@ -2133,7 +2189,7 @@ namespace UI.SAD.Delivery
         protected void dgvSalesPicking_RowEditing(object sender, GridViewEditEventArgs e)
         {
              dgvSalesPicking.EditIndex= e.NewEditIndex;
-            LoadGridwithXml();
+             LoadGridwithXml();
         }
 
         protected void dgvSalesPicking_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
