@@ -1527,6 +1527,7 @@
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
+    <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
@@ -7920,6 +7921,13 @@
     </Compile>
     <Compile Include="SAD\Sales\UnitTest.aspx.designer.cs">
       <DependentUpon>UnitTest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblAreaSetup.aspx.cs">
+      <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblAreaSetup.aspx.designer.cs">
+      <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
