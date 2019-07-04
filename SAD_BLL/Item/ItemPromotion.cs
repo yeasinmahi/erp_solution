@@ -6,6 +6,7 @@ using System.Text;
 using SAD_DAL.Item.ItemPromotionTDSTableAdapters;
 using SAD_DAL.Item;
 using SAD_DAL.Item.DiscountTDSTableAdapters;
+using SAD_DAL.Item.ItemPromotionSecondaryTableAdapters;
 namespace SAD_BLL.Item
 {
     public class ItemPromotion
@@ -64,7 +65,16 @@ namespace SAD_BLL.Item
             }
             catch { return new DataTable(); }
         }
+        public DataTable getPromotionReportSec(int intActive, int customertype, int custid, int itemidSales)
+        {
+            try
+            {
+                sprFreeReportSecondarySTableAdapter adpPromotion = new sprFreeReportSecondarySTableAdapter();
+                return adpPromotion.GetData(intActive, customertype, custid, itemidSales);
 
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable GetLine()
         {
             try
@@ -156,6 +166,18 @@ namespace SAD_BLL.Item
                 msg = "Successfully Save";
             }
             catch (Exception e) { msg = e.ToString();  }
+            return msg;
+        }
+        public string getPromotionEntrySecondary(int part, int custid, string promotionName, int itemidSales, int intUomid, decimal salesQty, int itemidPromotion, int pUomId, decimal promotionQty, int Enroll, DateTime dteFdate, DateTime dteTDate, int rid, int aid, int intLineid)
+        {
+            string msg = "";
+            try
+            {
+                sprAccountTradeOfferEntrySecondaryTableAdapter adpAccTrade = new sprAccountTradeOfferEntrySecondaryTableAdapter();
+                adpAccTrade.GetSecondary(part, custid, promotionName, itemidSales, intUomid, salesQty, itemidPromotion, pUomId, promotionQty, Enroll, dteFdate, dteTDate, rid, aid, intLineid, ref msg);
+                msg = "Successfully Save";
+            }
+            catch (Exception e) { msg = e.ToString(); }
             return msg;
         }
 
@@ -365,6 +387,37 @@ namespace SAD_BLL.Item
                 else if (part == 4)
                 {
                     tblSalesPromotionUpdateTableAdapter PromUpdate = new tblSalesPromotionUpdateTableAdapter();
+                    PromUpdate.GetCustomerEnd(dteTdate, custid, batchno, itemidSales);
+                }
+
+
+            }
+            catch { }
+        }
+
+
+        public void getNationalPINactiveEndSec(DateTime dteTdate, int itemidSales, string batchno, int custid, int part)
+        {
+            try
+            {
+                if (part == 1)
+                {
+                    tblSalesPromotionSecTableAdapter PromUpdate = new tblSalesPromotionSecTableAdapter();
+                    PromUpdate.GetUpDateFreebyNationalInActiveEndDate(dteTdate, itemidSales, batchno);
+                }
+                else if (part == 2)
+                {
+                    tblSalesPromotionSecTableAdapter PromUpdate = new tblSalesPromotionSecTableAdapter();
+                    PromUpdate.GetNationalEndDate(dteTdate, itemidSales, batchno);
+                }
+                else if (part == 3)
+                {
+                    tblSalesPromotionSecTableAdapter PromUpdate = new tblSalesPromotionSecTableAdapter();
+                    PromUpdate.GetCustomerInactiveEnd(dteTdate, custid, batchno, itemidSales);
+                }
+                else if (part == 4)
+                {
+                    tblSalesPromotionSecTableAdapter PromUpdate = new tblSalesPromotionSecTableAdapter();
                     PromUpdate.GetCustomerEnd(dteTdate, custid, batchno, itemidSales);
                 }
 

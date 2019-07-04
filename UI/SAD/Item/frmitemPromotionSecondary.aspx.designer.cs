@@ -10,7 +10,7 @@
 namespace UI.SAD.Item {
     
     
-    public partial class frmItemPromotion {
+    public partial class frmitemPromotionSecondary {
         
         /// <summary>
         /// PlaceHolder1 control.
@@ -38,6 +38,15 @@ namespace UI.SAD.Item {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Microsoft.AspNet.Web.Optimization.WebForms.BundleReference BundleReference3;
+        
+        /// <summary>
+        /// frmItemPromotion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm frmItemPromotion;
         
         /// <summary>
         /// ScriptManager0 control.

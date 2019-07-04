@@ -44,9 +44,16 @@ namespace UI.Vat
 
         public void LoadShipPoint()
         {
-            int unitId = ddlUnit.SelectedValue();
-            dt = _vatObj.GetShippingPoint(Enroll, unitId);
-            ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
+            int vatAccountId = ddlUnit.SelectedValue();
+            dt = _vatObj.GetVatUnitByUser(Enroll);
+            DataRow row = dt.GetRow("intVatAccountID", vatAccountId);
+            if (row != null)
+            {
+                int unitId = Convert.ToInt32(row["intUnitID"].ToString());
+                dt = _vatObj.GetShippingPoint(Enroll, unitId);
+                ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
+            }
+            
         }
 
         private void GetVatPointId()
