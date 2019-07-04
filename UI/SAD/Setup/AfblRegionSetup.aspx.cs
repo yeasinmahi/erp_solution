@@ -9,9 +9,8 @@ using System.Web.UI.WebControls;
 
 namespace UI.SAD.Setup
 {
-    public partial class AfblLineSetup : System.Web.UI.Page
+    public partial class AfblRegionSetup : System.Web.UI.Page
     {
-
         #region INITIALIZE
 
         String errMsg = string.Empty;
@@ -19,8 +18,7 @@ namespace UI.SAD.Setup
 
         #endregion
 
-        #region Event_Generated
-
+        #region Event_Base
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -29,17 +27,17 @@ namespace UI.SAD.Setup
             }
         }
 
-
         protected void btnCreate_Click(object sender, EventArgs e)
         {
             string vMsg = string.Empty;
             if (hdnconfirm.Value == "1")
             {
-                if (string.IsNullOrEmpty(txtLineName.Text))
-                    vMsg = "Provide New Line Name";
-
+                if (string.IsNullOrEmpty(txtRegion.Text))
+                    vMsg = "Provide New Region Name";
+                else if (string.IsNullOrEmpty(ddlExLineName.SelectedValue))
+                    vMsg = "Select Line";
                 if (string.IsNullOrEmpty(vMsg))
-                    SaveAFBLLineInfo();
+                    SaveAFBLRegionInfo();
                 else
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + vMsg + "');", true);
             }
@@ -52,11 +50,13 @@ namespace UI.SAD.Setup
             {
                 if (string.IsNullOrEmpty(ddlExLineName.SelectedValue))
                     vMsg = "Select Exist Line";
-                else if (string.IsNullOrEmpty(txtLineName.Text))
-                    vMsg = "Provide New Line Name";
+                else if (string.IsNullOrEmpty(ddlExRegion.SelectedValue))
+                    vMsg = "Select Exist Region";
+                else if (string.IsNullOrEmpty(txtRegion.Text))
+                    vMsg = "Provide New Region Name";
 
                 if (string.IsNullOrEmpty(vMsg))
-                    UpdateAFBLLineInfo();
+                    UpdateAFBLRegionInfo();
                 else
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + vMsg + "');", true);
             }
@@ -66,9 +66,62 @@ namespace UI.SAD.Setup
         {
             clearAll();
         }
+
+        protected void ddlExLineName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                if (!string.IsNullOrEmpty(ddlExLineName.SelectedValue))
+                {
+                    int parentId = Convert.ToInt32(ddlExLineName.SelectedValue.ToString()); ;
+                    int part = 8;
+                    dt = objAfblDistributionBll.GetAFBLGeoList(parentId, part);
+                    ddlExRegion.DataTextField = "strDiscription";
+                    ddlExRegion.DataValueField = "intID";
+                    ddlExRegion.DataSource = dt;
+                    ddlExRegion.DataBind();
+                    // To make it the first element at the list, use 0 index : 
+                    ddlExRegion.Items.Insert(0, new ListItem("Select", string.Empty));
+                }                    
+            }
+            catch (Exception Ex)
+            {
+                errMsg = Ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
+            }
+        }
+
+        protected void ddlExRegion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            string phoneNo = string.Empty;
+            int lineId = 0;
+            try
+            {
+                if (!string.IsNullOrEmpty(ddlExRegion.SelectedValue))
+                {
+                    int part = 14;
+                    lineId = Convert.ToInt32(ddlExRegion.SelectedValue.ToString());
+                    dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
+                    if (dt.Rows.Count > 0)
+                        phoneNo = dt.Rows[0].Field<string>(3);
+
+                    btnCreate.Visible = false;
+                }
+                else
+                    btnCreate.Visible = true;
+                txtPhoneNo.Text = phoneNo;
+            }
+            catch (Exception Ex)
+            {
+                errMsg = Ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
+            }
+        }
         #endregion
 
-        #region userMethod
+        #region UserMethod
         private void BindCombo()
         {
             DataTable dt = new DataTable();
@@ -91,44 +144,21 @@ namespace UI.SAD.Setup
             }
         }
 
-        protected void ddlExLineName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataTable dt = new DataTable();
-            string phoneNo = string.Empty;
-            int lineId = 0;
-            try
-            {
-                if (!string.IsNullOrEmpty(ddlExLineName.SelectedValue))
-                {
-                    int part = 14;
-                    lineId = Convert.ToInt32(ddlExLineName.SelectedValue.ToString());
-                    dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
-                    if (dt.Rows.Count > 0)
-                        phoneNo = dt.Rows[0].Field<string>(3);
-
-                    btnCreate.Visible = false;
-                }
-                txtPhoneNo.Text = phoneNo;
-            }
-            catch (Exception Ex)
-            {
-                errMsg = Ex.Message.ToString();
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
-            }
-        }
-
-        private void SaveAFBLLineInfo()
+        private void SaveAFBLRegionInfo()
         {
             try
             {
+                int lvlId = 2, part = 1, activeEnroll = 0;
                 string officePhone = "0";
-                string newLine = txtLineName.Text.Trim();
+                int parentId = Convert.ToInt32(ddlExLineName.SelectedValue.ToString());
+                string desc = txtRegion.Text.Trim();
+
                 if (!string.IsNullOrEmpty(txtPhoneNo.Text))
                     officePhone = txtPhoneNo.Text.Trim();
 
-                objAfblDistributionBll.SaveAFBLLineInfo(newLine, officePhone);
+                objAfblDistributionBll.SaveAFBLGeoInfo(desc, officePhone, parentId, lvlId, part, activeEnroll);
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('New Line Created Successfully.');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Created Successfully.');", true);
                 clearAll();
             }
             catch (Exception Ex)
@@ -138,19 +168,19 @@ namespace UI.SAD.Setup
             }
         }
 
-        private void UpdateAFBLLineInfo()
+        private void UpdateAFBLRegionInfo()
         {
             try
             {
+                int part = 9;
                 string officePhone = "0";
-                int lineId = Convert.ToInt32(ddlExLineName.SelectedValue.ToString());
-                string newLine = txtLineName.Text.Trim();
+                int lineId = Convert.ToInt32(ddlExRegion.SelectedValue.ToString());
+                string desc = txtRegion.Text.Trim();
                 if (!string.IsNullOrEmpty(txtPhoneNo.Text))
                     officePhone = txtPhoneNo.Text.Trim();
 
-                objAfblDistributionBll.UpdateAFBLLineInfo(newLine, officePhone, lineId);
-
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Line Successfully.');", true);
+                objAfblDistributionBll.UpdateAFBLGeoInfo(desc, officePhone, lineId, part);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update  Successfully.');", true);
                 clearAll();
             }
             catch (Exception Ex)
@@ -163,15 +193,17 @@ namespace UI.SAD.Setup
 
         private void clearAll()
         {
-            txtLineName.Text = string.Empty;
+            txtRegion.Text = string.Empty;
             txtPhoneNo.Text = string.Empty;
+            ddlExRegion.Items.Clear();
             ddlExLineName.Items.Clear();
             BindCombo();
             btnCreate.Visible = true;
         }
 
+
         #endregion
 
-        
+
     }
 }

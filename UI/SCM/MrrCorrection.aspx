@@ -111,6 +111,11 @@
                                     <asp:BoundField DataField="numReceiveQty" HeaderText="MRR Quantity" >
                                         <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>
+
+                                     <asp:BoundField DataField="numQuantity" HeaderText="Current Stock" >
+                                        <ItemStyle HorizontalAlign="Center"/>
+                                    </asp:BoundField>
+
                                     <asp:BoundField DataField="monBDTTotal" HeaderText="MRR Value" >
                                         <ItemStyle HorizontalAlign="Center"/>
                                     </asp:BoundField>

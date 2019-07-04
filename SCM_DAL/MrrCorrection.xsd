@@ -13,10 +13,11 @@
               <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetMrrItemInfo" GetMethodModifier="Public" GetMethodName="GetMrrItemInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetMrrItemInfo" UserSourceName="GetMrrItemInfo">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>select mrd.intItemID,(i.strItemName+i.strDescription+i.strPartNo) as Item,i.struom,mrd.numPOQty,mrd.numReceiveQty,mrd.monBDTTotal 
+                    <CommandText>Select mrd.intItemID,(i.strItemName+i.strDescription+i.strPartNo) as Item,i.struom,mrd.numPOQty,mrd.numReceiveQty,rb.numQuantity, mrd.monBDTTotal 
 from ERP_Inventory.dbo.tblFactoryReceiveMRR mrr 
 JOIN ERP_Inventory.dbo.tblFactoryReceiveMRRItemDetail mrd ON mrr.intMRRID=mrd.intMRRID
 join ERP_Inventory.dbo.tblItemList i on mrd.intItemID=i.intItemID 
+left join ERP_Inventory.dbo.tblInventoryRunningBalance rb ON mrd.intItemID=rb.intItemID and mrr.intWHID=rb.intWHID
 where mrr.intMRRID=@MrrId
 </CommandText>
                     <Parameters>
@@ -33,6 +34,7 @@ where mrr.intMRRID=@MrrId
               <Mapping SourceColumn="numPOQty" DataSetColumn="numPOQty" />
               <Mapping SourceColumn="numReceiveQty" DataSetColumn="numReceiveQty" />
               <Mapping SourceColumn="monBDTTotal" DataSetColumn="monBDTTotal" />
+              <Mapping SourceColumn="numQuantity" DataSetColumn="numQuantity" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -103,7 +105,7 @@ Where mrr.intMRRID = @intMrrId</CommandText>
   <xs:element name="MrrCorrection" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="MrrCorrection" msprop:Generator_UserDSName="MrrCorrection">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_RowClassName="DataTable1Row" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" minOccurs="0" />
@@ -114,7 +116,7 @@ Where mrr.intMRRID = @intMrrId</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="struom" msprop:Generator_ColumnVarNameInTable="columnstruom" msprop:Generator_ColumnPropNameInRow="struom" msprop:Generator_ColumnPropNameInTable="struomColumn" msprop:Generator_UserColumnName="struom" minOccurs="0">
+              <xs:element name="struom" msprop:Generator_ColumnVarNameInTable="columnstruom" msprop:Generator_ColumnPropNameInRow="struom" msprop:Generator_ColumnPropNameInTable="struomColumn" msprop:Generator_UserColumnName="struom">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -124,10 +126,11 @@ Where mrr.intMRRID = @intMrrId</CommandText>
               <xs:element name="numPOQty" msprop:Generator_ColumnVarNameInTable="columnnumPOQty" msprop:Generator_ColumnPropNameInRow="numPOQty" msprop:Generator_ColumnPropNameInTable="numPOQtyColumn" msprop:Generator_UserColumnName="numPOQty" type="xs:decimal" minOccurs="0" />
               <xs:element name="numReceiveQty" msprop:Generator_ColumnVarNameInTable="columnnumReceiveQty" msprop:Generator_ColumnPropNameInRow="numReceiveQty" msprop:Generator_ColumnPropNameInTable="numReceiveQtyColumn" msprop:Generator_UserColumnName="numReceiveQty" type="xs:decimal" minOccurs="0" />
               <xs:element name="monBDTTotal" msprop:Generator_ColumnVarNameInTable="columnmonBDTTotal" msprop:Generator_ColumnPropNameInRow="monBDTTotal" msprop:Generator_ColumnPropNameInTable="monBDTTotalColumn" msprop:Generator_UserColumnName="monBDTTotal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="numQuantity" msprop:Generator_ColumnVarNameInTable="columnnumQuantity" msprop:Generator_ColumnPropNameInRow="numQuantity" msprop:Generator_ColumnPropNameInTable="numQuantityColumn" msprop:Generator_UserColumnName="numQuantity" type="xs:decimal" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent" msprop:Generator_RowClassName="DataTable2Row">
+        <xs:element name="DataTable2" msprop:Generator_TableClassName="DataTable2DataTable" msprop:Generator_TableVarName="tableDataTable2" msprop:Generator_RowChangedName="DataTable2RowChanged" msprop:Generator_TablePropName="DataTable2" msprop:Generator_RowDeletingName="DataTable2RowDeleting" msprop:Generator_RowChangingName="DataTable2RowChanging" msprop:Generator_RowEvHandlerName="DataTable2RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable2RowDeleted" msprop:Generator_RowClassName="DataTable2Row" msprop:Generator_UserTableName="DataTable2" msprop:Generator_RowEvArgName="DataTable2RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
@@ -188,7 +191,7 @@ Where mrr.intMRRID = @intMrrId</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sprMRRCorrection" msprop:Generator_TableClassName="sprMRRCorrectionDataTable" msprop:Generator_TableVarName="tablesprMRRCorrection" msprop:Generator_TablePropName="sprMRRCorrection" msprop:Generator_RowDeletingName="sprMRRCorrectionRowDeleting" msprop:Generator_RowChangingName="sprMRRCorrectionRowChanging" msprop:Generator_RowEvHandlerName="sprMRRCorrectionRowChangeEventHandler" msprop:Generator_RowDeletedName="sprMRRCorrectionRowDeleted" msprop:Generator_UserTableName="sprMRRCorrection" msprop:Generator_RowChangedName="sprMRRCorrectionRowChanged" msprop:Generator_RowEvArgName="sprMRRCorrectionRowChangeEvent" msprop:Generator_RowClassName="sprMRRCorrectionRow">
+        <xs:element name="sprMRRCorrection" msprop:Generator_TableClassName="sprMRRCorrectionDataTable" msprop:Generator_TableVarName="tablesprMRRCorrection" msprop:Generator_RowChangedName="sprMRRCorrectionRowChanged" msprop:Generator_TablePropName="sprMRRCorrection" msprop:Generator_RowDeletingName="sprMRRCorrectionRowDeleting" msprop:Generator_RowChangingName="sprMRRCorrectionRowChanging" msprop:Generator_RowEvHandlerName="sprMRRCorrectionRowChangeEventHandler" msprop:Generator_RowDeletedName="sprMRRCorrectionRowDeleted" msprop:Generator_RowClassName="sprMRRCorrectionRow" msprop:Generator_UserTableName="sprMRRCorrection" msprop:Generator_RowEvArgName="sprMRRCorrectionRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strStatus" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnstrStatus" msprop:Generator_ColumnPropNameInRow="strStatus" msprop:Generator_ColumnPropNameInTable="strStatusColumn" msprop:Generator_UserColumnName="strStatus" minOccurs="0">
