@@ -580,13 +580,13 @@ namespace UI.SAD.Delivery {
         protected global::AjaxControlToolkit.CalendarExtender CalendarDueDate;
         
         /// <summary>
-        /// lblitm control.
+        /// lblCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblitm;
+        protected global::System.Web.UI.WebControls.Label lblCustomer;
         
         /// <summary>
         /// hdnCustomer control.
@@ -625,13 +625,13 @@ namespace UI.SAD.Delivery {
         protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
-        /// Label3 control.
+        /// lblCustomerToAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label lblCustomerToAdd;
         
         /// <summary>
         /// hdnShipToPartyId control.

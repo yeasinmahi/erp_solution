@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmItemPromotion.aspx.cs" Inherits="UI.SAD.Item.frmitemPromotionSecondary" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmitemPromotionSecondary.aspx.cs" Inherits="UI.SAD.Item.frmItemPromotion" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>

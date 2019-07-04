@@ -372,7 +372,7 @@
                     <table>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Sold to party: "></asp:Label></td>
+                                <asp:Label ID="lblCustomer" CssClass="lbl" runat="server" Text="Sold to party: "></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:HiddenField ID="hdnCustomer" runat="server" />
                                 <asp:HiddenField ID="hdnCustomerText" runat="server" />
@@ -385,7 +385,7 @@
                             </td>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Ship To Party: "></asp:Label></td>
+                                <asp:Label ID="lblCustomerToAdd" CssClass="lbl" runat="server" Text="Ship To Party: "></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:HiddenField ID="hdnShipToPartyId" runat="server" />
                                 <asp:HiddenField ID="hdnShipToPartyText" runat="server" />

@@ -17,7 +17,7 @@ function SearchText() {
                     response(data.d);
                 },
                 error: function (result) {
-                    alert("Error");
+                    //alert("Error");
                 }
             });
         }

@@ -1315,6 +1315,7 @@
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
     <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
     <Content Include="SAD\Item\frmItemDiscountSetup.aspx" />
+    <Content Include="SAD\Item\frmitemPromotionSecondary.aspx" />
     <Content Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
     <Content Include="SAD\Item\ItemManager.aspx" />
@@ -6433,6 +6434,13 @@
     </Compile>
     <Compile Include="SAD\Item\frmItemDiscountSetup.aspx.designer.cs">
       <DependentUpon>frmItemDiscountSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Item\frmitemPromotionSecondary.aspx.cs">
+      <DependentUpon>frmitemPromotionSecondary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\frmitemPromotionSecondary.aspx.designer.cs">
+      <DependentUpon>frmitemPromotionSecondary.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx.cs">
       <DependentUpon>frmItemPromotionSetupOtherUnit.aspx</DependentUpon>
