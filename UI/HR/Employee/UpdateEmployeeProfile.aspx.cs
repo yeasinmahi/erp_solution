@@ -154,7 +154,7 @@ namespace UI.HR.Employee
                         ddlDesignation.SelectedValue = objDT.Rows[0]["intDesignationID"].ToString();
                         ddlDutyCategory.SelectedValue = objDT.Rows[0]["intDutyCatID"].ToString();
                         txtContact.Text = objDT.Rows[0]["strContactPeriod"].ToString();
-
+                        txtCardNo.Text = objDT.Rows[0]["strSortName"].ToString();
                         //ddlShiftStatus.DataBind();
                         //ddlShiftStatus.SelectedValue = objDT.Rows[0]["intTeamId"].ToString();
                         //ddlPresentShift.DataBind();
@@ -184,10 +184,7 @@ namespace UI.HR.Employee
                         string strActive = objDT.Rows[0]["ysnActive"].ToString();
                         string strSalaryhold = objDT.Rows[0]["ysnSalaryHold"].ToString();
                         txtDOB.Text = DateTime.Parse(objDT.Rows[0]["dteBirth"].ToString()).ToString("yyyy-MM-dd");
-
-                        objDT = objGetProfile.GetGLCodeData(Convert.ToInt32(ddlUnit.SelectedValue));
-                        ddlGLCode.LoadWithSelect(objDT, "intCostCenterID", "strCCName");
-
+                        
                         ddlFloorAccess.DataBind();
                         if (!String.IsNullOrEmpty(objDT.Rows[0]["strFloorAccess"].ToString()))
                         { ddlFloorAccess.SelectedValue = objDT.Rows[0]["strFloorAccess"].ToString(); }
@@ -199,6 +196,17 @@ namespace UI.HR.Employee
                         if (strSalaryhold.ToUpper() == "TRUE")
                         { chkHold.Checked = true; }
                         else { chkHold.Checked = false; }
+
+                        objDT = objGetProfile.GetGLCodeData(Convert.ToInt32(ddlUnit.SelectedValue));
+                        ddlGLCode.LoadWithSelect(objDT, "intCostCenterID", "strCCName");
+
+                        objDT = objGetProfile.GetEmployeeGLCodeData(Convert.ToInt32(ddlUnit.SelectedValue),empCode);
+
+                        ddlGLCode.SelectedValue=objDT.Rows[0]["intCostCenterID"].ToString();
+                        
+                      
+
+
                     }
                 }
             }
@@ -389,16 +397,43 @@ namespace UI.HR.Employee
 
         private void ClearControls()
         {
-            txtEmployeeSearch.Text = ""; hdfEmpCode.Value = ""; txtJobStatus.Text = ""; txtUnit.Text = ""; txtStation.Text = "";
-            txtDepartment.Text = ""; txtDesignation.Text = ""; txtShiftStatus.Text = ""; txtCurrentShift.Text = ""; txtDOB.Text = "";
+            txtEmployeeSearch.Text = "";
+            hdfEmpCode.Value = "";
+            txtJobStatus.Text = "";
+            txtUnit.Text = "";
+            txtStation.Text = "";
+            txtDepartment.Text = "";
+            txtDesignation.Text = "";
+            txtShiftStatus.Text = "";
+            txtCurrentShift.Text = "";
+            txtDOB.Text = "";
 
-            txtFullName.Text = ""; txtEmail.Text = ""; ddlReligion.DataBind(); ddlOffDay.DataBind(); ddlGroup.DataBind();
-            ddlUnit.DataBind(); ddlJobStation.DataBind(); ddlJobStatus.DataBind(); ddlDepartment.DataBind(); ddlDesignation.DataBind();
-            ddlDutyCategory.DataBind(); txtContact.Text = "";//ddlShiftStatus.DataBind(); ddlPresentShift.DataBind();txtBankName.Text = ""; txtBranchName.Text = "";
+            txtFullName.Text = "";
+            txtEmail.Text = "";
+            ddlReligion.DataBind();
+            ddlOffDay.DataBind();
+            ddlGroup.DataBind();
+            ddlUnit.DataBind();
+            ddlJobStation.DataBind();
+            ddlJobStatus.DataBind();
+            ddlDepartment.DataBind();
+            ddlDesignation.DataBind();
+            ddlDutyCategory.DataBind();
+            txtContact.Text = "";//ddlShiftStatus.DataBind(); ddlPresentShift.DataBind();txtBankName.Text = ""; txtBranchName.Text = "";
 
-            ddlBank.DataBind(); ddlDistrict.DataBind(); ddlBranch.DataBind(); txtAccountNo.Text = ""; monSalary.Text = ""; monBasic.Text = "";
-            txtContactNo.Text = ""; txtPermanentAddress.Text = ""; txtPresentAddress.Text = ""; txtReportingBoss.Text = "";  chkActive.Checked = false;
-            chkHold.Checked = false; photo.Visible = false;
+            ddlBank.DataBind();
+            ddlDistrict.DataBind();
+            ddlBranch.DataBind();
+            txtAccountNo.Text = "";
+            monSalary.Text = "";
+            monBasic.Text = "";
+            txtContactNo.Text = "";
+            txtPermanentAddress.Text = "";
+            txtPresentAddress.Text = "";
+            txtReportingBoss.Text = "";
+            chkActive.Checked = false;
+            chkHold.Checked = false;
+            photo.Visible = false;
             //ddlFloorAccess.Text = "";
         }
 
