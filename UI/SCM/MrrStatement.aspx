@@ -165,7 +165,13 @@
 
                                         <asp:TemplateField HeaderText="MRR Date" ItemStyle-HorizontalAlign="right" SortExpression="dteMrr">
                                             <ItemTemplate>
-                                                <asp:Label ID="lbldteMrr" Width="60px" runat="server" Text='<%# Bind("dteMrr","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+                                                <asp:Label ID="lbldteMrr" Width="70px" runat="server" Text='<%# Bind("dteMrr","{0:yyyy-MM-dd}") %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="left" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="Item ID" ItemStyle-HorizontalAlign="right" SortExpression="intITem">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblItemID" runat="server" Width="" Text='<%# Bind("intItem") %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
 
@@ -190,6 +196,12 @@
                                         <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="monValue">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblmonValue" runat="server" Text='<%# Bind("monValue","{0:n2}" ) %>'></asp:Label></ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+
+                                        <asp:TemplateField HeaderText="VAT" ItemStyle-HorizontalAlign="right" SortExpression="monVAT">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblVAt" runat="server" Text='<%# Bind("monVat","{0:n2}" ) %>'></asp:Label></ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
 
