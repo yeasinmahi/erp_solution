@@ -79,7 +79,7 @@ namespace UI.Accounts.Banking.Report
             decimal bankBookBalance = 0;
             decimal bankStatementBalance = 0;
             decimal bankActualStatementBalance = 0;
-            DateTime lastDay = DateTime.Now;
+            DateTime lastDay = Convert.ToDateTime(txtFrom.Text);
             string Date ="As On " + CommonClass.GetShortDateAtLocalDateFormat(lastDay);
             Reconcile rc = new Reconcile();
 
