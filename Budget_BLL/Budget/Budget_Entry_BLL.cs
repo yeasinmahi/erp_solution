@@ -127,7 +127,52 @@ namespace Budget_BLL.Budget
                 return new DataTable();
             }
         }
-        //@intUnitID int, @intCOAID int, @intYear int, @intMonth int, @monBAmount money, @monTAmount money, @intUserID int, @intCCID
+
+        public DataTable GetUnitvsCostecenter(int unitid)
+        {
+            try
+            {
+                TblUnitVsCostCenterTableAdapter adp = new TblUnitVsCostCenterTableAdapter();
+                return adp.GetDataUnitVsCostCenter(unitid);
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetBudgetType()
+        {
+            try
+            {
+                TblBudgetTypeTableAdapter adp = new TblBudgetTypeTableAdapter();
+                return adp.GetDataBudgetType();
+            }
+            catch { return new DataTable(); }
+        }
+
+        public DataTable GetYearNAmount()
+        {
+            try
+            {
+                TblYearNAmountTableAdapter adp = new TblYearNAmountTableAdapter();
+                return adp.GetDataYearAndAmount();
+            }
+            catch { return new DataTable(); }
+        }
+
+      public string InsertOPSetupBaseBudget(string xmlString,  int Enrol, int unit)
+        {
+            SprOperationalSetUpBaseBudgetTableAdapter obj = new SprOperationalSetUpBaseBudgetTableAdapter();
+            string msg = "";
+            try
+            {
+                obj.GetDataOperationalSetUpBaseBudget(xmlString, Enrol, unit, ref msg);
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+
+        }
 
 
 
