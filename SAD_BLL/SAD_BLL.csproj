@@ -118,6 +118,7 @@
     <Compile Include="Customer\Report\ExportClass.cs" />
     <Compile Include="Customer\Report\StatementC.cs" />
     <Compile Include="DisPoint\DisPointInfo.cs" />
+    <Compile Include="Global\AfblDistributionBll.cs" />
     <Compile Include="Global\CodeGenatator.cs" />
     <Compile Include="Global\ExtraCharge.cs" />
     <Compile Include="Global\Incentive.cs" />

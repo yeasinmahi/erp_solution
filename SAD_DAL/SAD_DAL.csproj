@@ -244,6 +244,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DisPointTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Global\AfblDistributionSetup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AfblDistributionSetup.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global\CodeGenaratorTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -817,6 +822,17 @@
     </None>
     <None Include="DisPoint\DisPointTDS.xss">
       <DependentUpon>DisPointTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Global\AfblDistributionSetup.xsc">
+      <DependentUpon>AfblDistributionSetup.xsd</DependentUpon>
+    </None>
+    <None Include="Global\AfblDistributionSetup.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AfblDistributionSetup.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\AfblDistributionSetup.xss">
+      <DependentUpon>AfblDistributionSetup.xsd</DependentUpon>
     </None>
     <None Include="Global\CodeGenaratorTDS.xsc">
       <DependentUpon>CodeGenaratorTDS.xsd</DependentUpon>
