@@ -1530,6 +1530,7 @@
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
+    <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -7942,6 +7943,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.designer.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.cs">
+      <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.designer.cs">
+      <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>
