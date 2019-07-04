@@ -16,7 +16,8 @@ function SearchText() {
                 success: function (data) {
                     response(data.d);
                 },
-                error: function (result) {
+                error: function (result)
+                {
                     //alert("Error");
                 }
             });
