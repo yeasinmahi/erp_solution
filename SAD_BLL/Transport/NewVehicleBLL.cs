@@ -78,9 +78,33 @@ namespace SAD_BLL.Transport
             }
             catch { }
         }
-
-        
-
+        public DataTable VehicleList()
+        {
+            try
+            {
+                TblAGVehicleInfoFuelLogTableAdapter adp = new TblAGVehicleInfoFuelLogTableAdapter();
+                return adp.GetVehicleList();
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable JobStationByVehicleID(int VehicleId)
+        {
+            try
+            {
+                TblAGVehicleInfoFuelLogTableAdapter adp = new TblAGVehicleInfoFuelLogTableAdapter();
+                return adp.GetJobStationByVehicleId(VehicleId);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable FuelCompanyList()
+        {
+            try
+            {
+                TblOilAndCngPartyNameTableAdapter adp = new TblOilAndCngPartyNameTableAdapter();
+                return adp.GetFuelCompany();
+            }
+            catch { return new DataTable(); }
+        }
 
         public DataTable GetDataVehicleInfo(string assetid)
         {
@@ -105,18 +129,19 @@ namespace SAD_BLL.Transport
             return result;
         }
 
-        public DataTable GetvhcleInfoupdate (int intvhclId ,string strvhclname ,string drvname ,int  drvenrol ,string drvphone ,int drvnationalid ,string helpername ,string Lisence ,decimal driverDA
-,decimal HelperDA  ,decimal DownTripallowance  ,decimal DownTripDA  ,decimal Milageallow100  ,decimal MilageAllow100Above ,decimal MilageLocal ,decimal MilageOutStation ,decimal CngAllowance ,
-decimal monDieselPerKMOutStation ,decimal monCNGPerKMOutStation ,decimal monDieselPerLitterKM  ,decimal monUpDownTripDiselPerLitter , decimal monCNGPerKM ,int intUpdateBy,int modifytype)
+        public DataTable GetvhcleInfoupdate(int intvhclId, string strvhclname, string drvname, int drvenrol, string drvphone, int drvnationalid, string helpername, string Lisence, decimal driverDA
+        , decimal HelperDA, decimal DownTripallowance, decimal DownTripDA, decimal Milageallow100, decimal MilageAllow100Above, decimal MilageLocal, decimal MilageOutStation, decimal CngAllowance,
+        decimal monDieselPerKMOutStation, decimal monCNGPerKMOutStation, decimal monDieselPerLitterKM, decimal monUpDownTripDiselPerLitter, decimal monCNGPerKM, int intUpdateBy, int modifytype)
 
         {
             string msg = "";
 
-            try {
+            try
+            {
                 SprVehicleInfoModifyTableAdapter bll = new SprVehicleInfoModifyTableAdapter();
                 return bll.GetDataVehicleInfoModify(intvhclId, strvhclname, drvname, drvenrol, drvphone, drvnationalid, helpername, Lisence, driverDA
                 , HelperDA, DownTripallowance, DownTripDA, Milageallow100, MilageAllow100Above, MilageLocal, MilageOutStation, CngAllowance,
-                monDieselPerKMOutStation, monCNGPerKMOutStation, monDieselPerLitterKM, monUpDownTripDiselPerLitter, monCNGPerKM, intUpdateBy, modifytype );
+                monDieselPerKMOutStation, monCNGPerKMOutStation, monDieselPerLitterKM, monUpDownTripDiselPerLitter, monCNGPerKM, intUpdateBy, modifytype);
 
             }
             catch
@@ -124,9 +149,8 @@ decimal monDieselPerKMOutStation ,decimal monCNGPerKMOutStation ,decimal monDies
                 return new DataTable();
 
             }
-          
+
 
         }
-
     }
 }

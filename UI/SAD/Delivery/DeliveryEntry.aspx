@@ -129,7 +129,7 @@
            
            // alert(vehicle.length);
             
-            if (delivery == 'DO' || delivery == 'DO_Edit') {
+            if (delivery == 'Order' || delivery == 'Order_Edit') {
                // alert('do');
                  if (document.getElementById("txtDate") != null) {
                     if (document.getElementById("txtDate").value == '') {
@@ -138,7 +138,7 @@
                     }
                 }
                  if (document.getElementById("txtCustomer") != null) {
-                    if (document.getElementById("txtCustomer").value == '') {
+                 if (document.getElementById("txtCustomer").value == '') {
                         alert('Customer not be blank');
                         return;
                     }
@@ -279,6 +279,24 @@
                     <div class="tabs_container">
                         <table>
                             <tr>
+                                <td style="text-align: left;">
+                                    <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Order Type:"></asp:Label></td>
+                                <td style="text-align: left;">
+                                    <asp:DropDownList ID="ddlOrderType" CssClass="ddList" Font-Bold="False" AutoPostBack="True" runat="server" OnDataBound="ddlOrderType_OnDataBound" OnSelectedIndexChanged="ddlOrderType_SelectedIndexChanged" >
+                                    </asp:DropDownList> 
+                                </td>    
+                                <td style="text-align: left;">
+                                    <asp:Label ID="lblOrderNo" runat="server" CssClass="lbl" Text="Order-No:"></asp:Label></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtOrderNo" CssClass="txtbox" Font-Bold="False"  runat="server" >
+                                    </asp:TextBox> 
+                                </td>    
+
+                            </tr>
+                        </table>
+                        <hr/>
+                        <table>
+                            <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" AutoPostBack="True"
                                         RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged" > 
@@ -313,10 +331,7 @@
                                 <asp:Label ID="lblUnitName" runat="server" CssClass="lbl" Text="Unit Name:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged">
-                                </asp:DropDownList>
-
-
-
+                                </asp:DropDownList> 
                             </td>
                             <td style="text-align: left;">
                                 <asp:Label ID="lblShipPoint" runat="server" CssClass="lbl" Text="Ship Point:"></asp:Label></td>
@@ -428,7 +443,7 @@
                                                 <td style="width: 10px;">
                                                 </td>
                                         <td style="background-color: Maroon; color: White;">
-                                            Total Product Price:
+                                            Order Total:
                                         </td>
                                         <td style="background-color: Maroon; color: White;">
                                             <asp:Label ID="lblTotalProductPrice" runat="server" Text="0.0"></asp:Label>
