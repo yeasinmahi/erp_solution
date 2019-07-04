@@ -207,8 +207,8 @@ namespace SAD_BLL.Customer
         {
             try
             {
-                TblCustomerTableAdapter adp = new TblCustomerTableAdapter();
-                return adp.GetCustomerByUnit(UnitId);
+                tblCustomerTableAdapter adp = new tblCustomerTableAdapter();
+                return adp.GetDataByUnit(UnitId);
 
             }
             catch(Exception ex)
@@ -217,6 +217,38 @@ namespace SAD_BLL.Customer
                 return new DataTable();
             }
         }
+
+        //string[] results;
+        //public static string[] GetCustomerByUnitId(string prefix,string UnitId)
+        //{
+        //    prefix = prefix.ToLower();
+        //    tblCustomerTableAdapter adp = new tblCustomerTableAdapter();
+        //    DataTable dt = adp.GetDataByUnit(UnitId);
+
+        //    if (prefix.Trim().Length >= 3)
+
+        //    {
+        //        if (dt.Rows.Count > 0)
+        //        {
+        //            string[] cust = new string[dt.Rows.Count];
+        //            for (int i = 0; i < dt.Rows.Count; i++)
+        //            {
+        //                cust[i] = dt.Rows[i]["strName"] + " [" + dt.Rows[i]["intCusID"] + "]";
+        //            }
+        //            results = Array.FindAll(cust, x => x.ToLower().Contains(prefix));
+        //            return results;
+        //        }
+        //        else
+        //        {
+        //            return null;
+        //        }
+
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
 
 

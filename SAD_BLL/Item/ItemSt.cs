@@ -18,6 +18,7 @@ namespace SAD_BLL.Item
         private static ItemTDS.tblItemBridge1DataTable[] tableProductsAPL = null;
         private static ItemTDS.TblItemDataTable[] tableProducts = null;
         private static SearchSales_TDS.SprSalesOrderDetaillsForTripDataTable[] tblPendingItem = null;
+      
         private static Hashtable ht = new Hashtable();
        
         //SprSalesOrderDetaillsForTripAssign
@@ -211,7 +212,7 @@ namespace SAD_BLL.Item
             tableProducts[Convert.ToInt32(ht[unitID])] = adpCOA.GetDataByUnit_Type(int.Parse(unitID), id, true);
         }
 
-         
+       
 
 
     }

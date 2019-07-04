@@ -1,4 +1,5 @@
 ﻿using SAD_DAL.Delivery.Delivery_TDSTableAdapters;
+using SAD_DAL.Sales.SearchSales_TDSTableAdapters;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -105,7 +106,7 @@ namespace SAD_BLL.Sales
         {
             try
             {
-                PickingSummaryTableAdapter adp = new PickingSummaryTableAdapter();
+                qryPickingSummaryTableAdapter adp = new qryPickingSummaryTableAdapter();
                 return adp.GetPickingSummaryData(int.Parse(pickingId));
             }
             catch (Exception ex)
@@ -119,6 +120,69 @@ namespace SAD_BLL.Sales
             {
                 QryShipToPartyTableAdapter adp = new QryShipToPartyTableAdapter();
                 return adp.GetShipToPartyAddressData(int.Parse(customerId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable OrderType()
+        {
+            try
+            {
+                TblOrderTypeTableAdapter adp = new TblOrderTypeTableAdapter();
+                return adp.GetSalesOrderType();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        
+
+        public DataTable GetInvItemUOM(string itemId)
+        {
+            try
+            {
+                TblItemListTableAdapter adp = new TblItemListTableAdapter();
+                return adp.GetInventorytemInfo(int.Parse(itemId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable GetInvFGUOM(string fgItemId)
+        {
+            try
+            {
+                UomByWHTransferFGItemTableAdapter adp = new UomByWHTransferFGItemTableAdapter();
+                return adp.GetUomByWHTransferItem(int.Parse(fgItemId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable InventoryItemPrice(string itemId,string wh)
+        {
+            try
+            {
+                QryInventoryRunningBalanceTableAdapter adp = new QryInventoryRunningBalanceTableAdapter();
+                return adp.GetInvenotryItemPrice(int.Parse(itemId),int.Parse(wh));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable InventoryFGItemPrice(string itemId, string wh)
+        {
+            try
+            {
+                QryInventoryRunningBalanceTableAdapter adp = new QryInventoryRunningBalanceTableAdapter();
+                return adp.GetInventoryFGItemPrice(int.Parse(itemId), int.Parse(wh));
             }
             catch (Exception ex)
             {
@@ -145,6 +209,18 @@ namespace SAD_BLL.Sales
             {
                 QryPickingDetalisTableAdapter adp = new QryPickingDetalisTableAdapter();
                 return adp.GetPickingDetalisData(int.Parse(pickingId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable GetWhAddress(string whid)
+        {
+            try
+            {
+                TblWearHouseTableAdapter adp = new TblWearHouseTableAdapter();
+                return adp.GetWhareHouseData(int.Parse(whid));
             }
             catch (Exception ex)
             {

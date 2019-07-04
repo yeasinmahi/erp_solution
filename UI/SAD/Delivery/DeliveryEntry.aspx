@@ -45,27 +45,27 @@
 
     <script language="javascript" type="text/javascript">
 
-        function onlyNumbers(evt) {
-            var e = event || evt; // for trans-browser compatibility
-            var charCode = e.which || e.keyCode;
-            if ((charCode > 57))
-                return false;
-            return true;
-        }
+        //function onlyNumbers(evt) {
+        //    var e = event || evt; // for trans-browser compatibility
+        //    var charCode = e.which || e.keyCode;
+        //    if ((charCode > 57))
+        //        return false;
+        //    return true;
+        //}
     </script>
     <script type="text/javascript">
         function setButtonFire() {
-           
+            
             document.getElementById('hdnButtonFire').value = 'true';
             // alert(document.getElementById('hdnDelivery').value);
         }
         function SetPrice(txt) {
-            
+           
             var qnt = txt.value; 
             var price = document.getElementById('hdnPrice').value;
             var RequestType = document.getElementById('hdnDelivery').value;  
             var doqty = document.getElementById('hdnDoQty').value; 
-          
+            
             var tot = 0;
             if (RequestType == "Picking_Edit" || RequestType == "Picking") {
 
@@ -129,7 +129,7 @@
            
            // alert(vehicle.length);
             
-            if (delivery == 'DO' || delivery == 'DO_Edit') {
+            if (delivery == 'Order' || delivery == 'Order_Edit') {
                // alert('do');
                  if (document.getElementById("txtDate") != null) {
                     if (document.getElementById("txtDate").value == '') {
@@ -138,7 +138,7 @@
                     }
                 }
                  if (document.getElementById("txtCustomer") != null) {
-                    if (document.getElementById("txtCustomer").value == '') {
+                 if (document.getElementById("txtCustomer").value == '') {
                         alert('Customer not be blank');
                         return;
                     }
@@ -279,6 +279,24 @@
                     <div class="tabs_container">
                         <table>
                             <tr>
+                                <td style="text-align: left;">
+                                    <asp:Label ID="Label8" runat="server" CssClass="lbl" Text="Order Type:"></asp:Label></td>
+                                <td style="text-align: left;">
+                                    <asp:DropDownList ID="ddlOrderType" CssClass="ddList" Font-Bold="False" AutoPostBack="True" runat="server" OnDataBound="ddlOrderType_OnDataBound" OnSelectedIndexChanged="ddlOrderType_SelectedIndexChanged" >
+                                    </asp:DropDownList> 
+                                </td>    
+                                <td style="text-align: left;">
+                                    <asp:Label ID="lblOrderNo" runat="server" CssClass="lbl" Text="Order-No:"></asp:Label></td>
+                                <td style="text-align: left;">
+                                    <asp:TextBox ID="txtOrderNo" CssClass="txtbox" Font-Bold="False"  runat="server" >
+                                    </asp:TextBox> 
+                                </td>    
+
+                            </tr>
+                        </table>
+                        <hr/>
+                        <table>
+                            <tr>
                                 <td>
                                     <asp:RadioButtonList ID="rdoDeliveryType" ForeColor="maroon" Font-Bold="True" runat="server" AutoPostBack="True"
                                         RepeatDirection="Horizontal" OnSelectedIndexChanged="rdoDeliveryType_SelectedIndexChanged" > 
@@ -313,10 +331,7 @@
                                 <asp:Label ID="lblUnitName" runat="server" CssClass="lbl" Text="Unit Name:"></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" AutoPostBack="True" runat="server" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged">
-                                </asp:DropDownList>
-
-
-
+                                </asp:DropDownList> 
                             </td>
                             <td style="text-align: left;">
                                 <asp:Label ID="lblShipPoint" runat="server" CssClass="lbl" Text="Ship Point:"></asp:Label></td>
@@ -357,7 +372,7 @@
                     <table>
                         <tr>
                             <td style="text-align: left;">
-                                <asp:Label ID="lblitm" CssClass="lbl" runat="server" Text="Sold to party: "></asp:Label></td>
+                                <asp:Label ID="lblCustomer" CssClass="lbl" runat="server" Text="Sold to party: "></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:HiddenField ID="hdnCustomer" runat="server" />
                                 <asp:HiddenField ID="hdnCustomerText" runat="server" />
@@ -370,7 +385,7 @@
                             </td>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="Ship To Party: "></asp:Label></td>
+                                <asp:Label ID="lblCustomerToAdd" CssClass="lbl" runat="server" Text="Ship To Party: "></asp:Label></td>
                             <td style="text-align: left;">
                                 <asp:HiddenField ID="hdnShipToPartyId" runat="server" />
                                 <asp:HiddenField ID="hdnShipToPartyText" runat="server" />
@@ -428,7 +443,7 @@
                                                 <td style="width: 10px;">
                                                 </td>
                                         <td style="background-color: Maroon; color: White;">
-                                            Total Product Price:
+                                            Order Total:
                                         </td>
                                         <td style="background-color: Maroon; color: White;">
                                             <asp:Label ID="lblTotalProductPrice" runat="server" Text="0.0"></asp:Label>
@@ -593,8 +608,8 @@
                                 <asp:Label ID="lblDiscount" runat="server"></asp:Label>
                             </td>
                             <td align="center" style="vertical-align: middle;">
-                                <asp:TextBox ID="txtQun" runat="server" AutoPostBack="false" onkeyup="SetPrice(this);" OnClientClick="setButtonFire();"  Width="60px" TextMode="Number" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
-                                
+                                <asp:TextBox ID="txtQun" runat="server"    Width="60px" AutoPostBack="False" TextMode="Number" onkeyup="SetPrice(this);" OnTextChanged="txtQun_TextChanged"></asp:TextBox>
+                                <%--onkeyup="SetPrice(this);"--%> 
                             </td>
                             <td align="center" style="text-align: right;">
                                 <asp:Label ID="lblTotal" Text="0" runat="server"></asp:Label>
@@ -682,7 +697,7 @@
 
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txtQtyEdit" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtQtyEdit" runat="server" Width="45px" AutoPostBack="False" onkeydown = "return (event.keyCode!=13);" Text='<%# Bind("quantity") %>' ></asp:TextBox>
                                             </EditItemTemplate>
                                         </asp:TemplateField>
 
@@ -828,7 +843,7 @@
                                             <FooterStyle HorizontalAlign="Right" /> 
                                             <ItemStyle HorizontalAlign="Right" />
                                             <EditItemTemplate>
-                                                <asp:TextBox ID="txtQtyEdits" Width="60px" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
+                                                <asp:TextBox ID="txtQtyEdits" Width="45px" AutoPostBack="False" onkeydown = "return (event.keyCode!=13)" runat="server" Text='<%# Bind("quantity") %>'></asp:TextBox>
                                             </EditItemTemplate>
                                         </asp:TemplateField>
 

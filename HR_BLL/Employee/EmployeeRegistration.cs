@@ -81,5 +81,35 @@ namespace HR_BLL.Employee
             catch { return new DataTable(); }
 
         }
+        public DataTable UpdateEmployeeGLCodeAndCardNo(int type, string empCode, string CardNo, string GLCode)
+        {
+            try
+            {
+                TblEmployeeTableAdapter ast = new TblEmployeeTableAdapter();
+                return ast.UpdateEmpGLAndCard(type, empCode, CardNo,GLCode);
+            }
+            catch { return new DataTable(); }
+
+        }
+        public DataTable GetGLCodeData(int UnitId)
+        {
+            try
+            {
+                TblCostCenterTableAdapter ast = new TblCostCenterTableAdapter();
+                return ast.GetGLCode(UnitId);
+            }
+            catch { return new DataTable(); }
+
+        }
+        public DataTable GetEmployeeGLCodeData(int UnitId,string EmpCode)
+        {
+            try
+            {
+                GLCodeTableAdapter ast = new GLCodeTableAdapter();
+                return ast.GetEmployeeGLCode(UnitId,EmpCode);
+            }
+            catch { return new DataTable(); }
+
+        }
     }   
 }
