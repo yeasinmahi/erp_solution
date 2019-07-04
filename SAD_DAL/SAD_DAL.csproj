@@ -332,6 +332,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ItemPriceTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Item\ItemPromotionSecondary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemPromotionSecondary.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Item\ItemPromotionTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1007,6 +1012,17 @@
     </None>
     <None Include="Item\ItemPriceTDS.xss">
       <DependentUpon>ItemPriceTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Item\ItemPromotionSecondary.xsc">
+      <DependentUpon>ItemPromotionSecondary.xsd</DependentUpon>
+    </None>
+    <None Include="Item\ItemPromotionSecondary.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemPromotionSecondary.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Item\ItemPromotionSecondary.xss">
+      <DependentUpon>ItemPromotionSecondary.xsd</DependentUpon>
     </None>
     <None Include="Item\ItemPromotionTDS.xsc">
       <DependentUpon>ItemPromotionTDS.xsd</DependentUpon>
