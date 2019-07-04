@@ -1,6 +1,8 @@
-﻿namespace SAD_DAL.Customer {
-    
-    
-    public partial class CustomerTDS {
+﻿namespace SAD_DAL.Customer
+{
+
+
+    public partial class CustomerTDS
+    {
     }
 }

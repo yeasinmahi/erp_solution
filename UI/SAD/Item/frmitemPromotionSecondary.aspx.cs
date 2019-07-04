@@ -14,7 +14,7 @@ using Flogging.Core;
 
 namespace UI.SAD.Item
 {
-    public partial class frmItemPromotion : System.Web.UI.Page
+    public partial class frmitemPromotionSecondary : BasePage
     {
         DataTable dt;int Custid,intActive,rptTYpe,intLineid,intGroupid,PUomId, ItemidSales,ItemidPromotion,Groupid, Rid, Aid,part,intUomid;        
         ItemPromotion objPromotion = new ItemPromotion();
@@ -132,7 +132,7 @@ namespace UI.SAD.Item
                 part = int.Parse(ddlPGroup.SelectedValue);
                 PromotionName = txtPromotionName.Text;
 
-                msg = objPromotion.getPromotionEntry(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
+                msg = objPromotion.getPromotionEntrySecondary(part, Custid, PromotionName, ItemidSales, intUomid, SalesQty, ItemidPromotion, PUomId, PromotionQty, int.Parse(Session[SessionParams.USER_ID].ToString()), dteFdate, dteTdate, Rid, Aid, intLineid);
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + msg + "');", true);
                 txtCustomer.Text = "";
                 txtPromotionItem.Text = "";
@@ -165,7 +165,7 @@ namespace UI.SAD.Item
             try
             {
                 char[] delimiterCharss = { '[', ']' };
-            if (int.Parse(ddlReportBy.SelectedValue) == 1)
+            if (int.Parse(ddlReportBy.SelectedValue) == 0)
             {
                 if (txtSalesItem.Text != "")
                 {
@@ -174,7 +174,7 @@ namespace UI.SAD.Item
                 }
                 else { ItemidSales = 0; }
                 intActive = int.Parse(ddlReporType.SelectedValue);
-                dt = objPromotion.getPromotionReport(intActive, 1, 0, ItemidSales);
+                dt = objPromotion.getPromotionReportSec(intActive, 1, 0, ItemidSales);
             }
             else
             {
@@ -188,7 +188,7 @@ namespace UI.SAD.Item
                 ItemidSales = int.Parse(arrayKeyItem[1].ToString());
 
                 intActive = int.Parse(ddlReporType.SelectedValue);
-                dt = objPromotion.getPromotionReport(intActive, 2, Custid, ItemidSales);
+                dt = objPromotion.getPromotionReportSec(intActive, 2, Custid, ItemidSales);
 
             }
             dgvPromotionReport.DataSource = dt;
@@ -217,7 +217,7 @@ namespace UI.SAD.Item
             try
             {
 
-                if (txtPromotionName.Text != "")
+                if ((txtPromotionName.Text != "")||(txtPromotionName.Text==""))
             {
                 char[] delimiterCharss = { '[', ']' };
                 if (txtCustomer.Text != "")
@@ -229,13 +229,20 @@ namespace UI.SAD.Item
                 arrayKeyItem = txtSalesItem.Text.Split(delimiterCharss);
                 ItemidSales = int.Parse(arrayKeyItem[1].ToString());
             }
-            dteTdate =DateTime.Parse(txtTo.Text);
-            batchno = txtPromotionName.Text;
-            part =int.Parse(ddlCancelType.SelectedValue);
- 
+                if (txtTo.Text == "")
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Please Date Or Code Select !');", true);
+                }
+                else
+                { 
+                    dteTdate = DateTime.Parse(txtTo.Text);
+                    batchno = txtPromotionName.Text;
+                    part = int.Parse(ddlCancelType.SelectedValue);
 
-            objPromotion.getNationalPINactiveEnd(dteTdate, ItemidSales, batchno, Custid, part);
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully');", true);
+
+                    objPromotion.getNationalPINactiveEndSec(dteTdate, ItemidSales, batchno, Custid, part);
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully');", true);
+                }
             }
             catch (Exception ex)
             {

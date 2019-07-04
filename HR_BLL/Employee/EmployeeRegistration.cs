@@ -101,5 +101,15 @@ namespace HR_BLL.Employee
             catch { return new DataTable(); }
 
         }
+        public DataTable GetEmployeeGLCodeData(int UnitId,string EmpCode)
+        {
+            try
+            {
+                GLCodeTableAdapter ast = new GLCodeTableAdapter();
+                return ast.GetEmployeeGLCode(UnitId,EmpCode);
+            }
+            catch { return new DataTable(); }
+
+        }
     }   
 }

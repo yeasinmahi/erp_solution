@@ -1528,6 +1528,7 @@
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
+    <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -7926,6 +7927,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.designer.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblRegionSetup.aspx.cs">
+      <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblRegionSetup.aspx.designer.cs">
+      <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>

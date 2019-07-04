@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmitemPromotionSecondary.aspx.cs" Inherits="UI.SAD.Item.frmItemPromotion" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="frmitemPromotionSecondary.aspx.cs" Inherits="UI.SAD.Item.frmitemPromotionSecondary" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>
 <html>
@@ -30,7 +30,7 @@
         <tr><td colspan="5"><hr /></td></tr>                              
         <tr class="tblrowodd">           
             <td style="text-align:left;">Promotion Group:</td>
-            <td style="text-align:left;"><asp:TextBox ID="txtPromotionName" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="10"></asp:TextBox></td>
+            <td style="text-align:left;"><asp:TextBox ID="txtPromotionName" runat="server" AutoPostBack="true" CssClass="txtBox" ></asp:TextBox></td>
             <td style='text-align: left; width:120px;'>Promotion Group : </td>
             <td colspan="2" style='text-align: left;'>  <asp:DropDownList ID="ddlLine" runat="server" CssClass="ddllist"> </asp:DropDownList></td>              
         </tr>    
@@ -42,7 +42,7 @@
             CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
             </cc1:AutoCompleteExtender></td>
             <td>Promotion Group </td>
-            <td colspan="2"><asp:DropDownList ID="ddlPGroup" CssClass="ddllist" runat="server">
+            <td colspan="2"><asp:DropDownList ID="ddlPGroup" CssClass="ddllist" runat="server" AutoPostBack="True">
             <asp:ListItem Value="0">National</asp:ListItem>
             <asp:ListItem Value="1">Single Customer</asp:ListItem>
             <asp:ListItem Value="2">All Customer</asp:ListItem>
