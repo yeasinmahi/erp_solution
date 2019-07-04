@@ -153,6 +153,18 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        public DataTable GetInvFGUOM(string fgItemId)
+        {
+            try
+            {
+                UomByWHTransferFGItemTableAdapter adp = new UomByWHTransferFGItemTableAdapter();
+                return adp.GetUomByWHTransferItem(int.Parse(fgItemId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public DataTable InventoryItemPrice(string itemId,string wh)
         {
             try

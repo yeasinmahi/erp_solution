@@ -118,7 +118,7 @@ namespace UI.SAD.Order
                     }
                     else if (rdbUserOption.SelectedItem.Text == "Other"  )
                     {
-                        if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21)
+                        if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21 || deptid == 234)
                         {
 
                             string strSearchKey = txtEmployeeSearch.Text;

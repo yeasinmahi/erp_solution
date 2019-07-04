@@ -1,12 +1,11 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AfblRegionSetup.aspx.cs" Inherits="UI.SAD.Setup.AfblRegionSetup" %>
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AfblTerritorySetup.aspx.cs" Inherits="UI.SAD.Setup.AfblTerritorySetup" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-     <title></title>
+    <title>AFBL Territory Setup</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
         <%: Scripts.Render("~/Content/Bundle/jqueryJS") %>
@@ -39,7 +38,7 @@
     </script>
 </head>
 <body>
-    <form id="frmRegionSetup" runat="server">
+    <form id="frmTerritory" runat="server">
         <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
         <asp:UpdatePanel ID="UpdatePanel0" runat="server">
             <ContentTemplate>
@@ -51,14 +50,14 @@
                     <div id="divControl" class="divPopUp2" style="width: 100%; height: 80px; float: right;">&nbsp;</div>
                 </asp:Panel>
                 <div style="height: 100px;"></div>
-                <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
-                </cc1:AlwaysVisibleControlExtender>
+                <cc1:alwaysvisiblecontrolextender targetcontrolid="pnlUpperControl" id="AlwaysVisibleControlExtender1" runat="server">
+                </cc1:alwaysvisiblecontrolextender>
                 <%--=========================================Start===============================================--%>
                 <asp:HiddenField ID="hdnconfirm" runat="server" />
 
                 <div class="divbody" style="padding-right: 10px;">
                     <div class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
-                        AFBL Region Setup<hr />
+                        AFBL Area Setup<hr />
                     </div>
                     <table style="width: auto; float: left;">
                         <tr>
@@ -73,11 +72,28 @@
                             <td style="text-align: right; width: 15px;">
                                 <asp:Label ID="Label1" runat="server" Text=""></asp:Label></td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblExRegion" runat="server" CssClass="lbl" Text="Exist Region Name"></asp:Label></td>
+                                <asp:Label ID="lblExRegion" runat="server" CssClass="lbl" Text="Region Name"></asp:Label></td>
                             <td>
-                                 <asp:DropDownList ID="ddlExRegion" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px"
+                                <asp:DropDownList ID="ddlExRegion" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px"
                                     AutoPostBack="True" OnSelectedIndexChanged="ddlExRegion_SelectedIndexChanged">
+                                </asp:DropDownList></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align: right;">
+                                <asp:Label ID="lblExAreaName" runat="server" CssClass="lbl" Text="Area Name"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlExArea" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px"
+                                    AutoPostBack="True" OnSelectedIndexChanged="ddlExArea_SelectedIndexChanged">
                                 </asp:DropDownList>
+                            </td>
+                              <td style="text-align: right; width: 15px;">
+                                <asp:Label ID="Label2" runat="server" Text=""></asp:Label></td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label4" runat="server" CssClass="lbl" Text="Exist Territory Name"></asp:Label></td>
+                            <td>
+                                <asp:DropDownList ID="ddlExTerritory" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px"
+                                    AutoPostBack="True" OnSelectedIndexChanged="ddlExTerritory_SelectedIndexChanged">
+                                </asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td colspan="5">
@@ -87,9 +103,9 @@
                         <tr>
 
                             <td style="text-align: right;">
-                                <asp:Label ID="lblLineName" runat="server" CssClass="lbl" Text="New Region Name"></asp:Label></td>
+                                <asp:Label ID="lblLineName" runat="server" CssClass="lbl" Text="New Territory Name"></asp:Label></td>
                             <td>
-                                <asp:TextBox ID="txtRegion" runat="server" CssClass="txtBox1"></asp:TextBox></td>
+                                <asp:TextBox ID="txtTerritory" runat="server" CssClass="txtBox1"></asp:TextBox></td>
                             <td style="text-align: right; width: 15px;">
                                 <asp:Label ID="Label3" runat="server" Text=""></asp:Label></td>
                             <td style="text-align: right;">

@@ -9,16 +9,16 @@ using System.Web.UI.WebControls;
 
 namespace UI.SAD.Setup
 {
-    public partial class AfblRegionSetup : System.Web.UI.Page
+    public partial class AfblTerritorySetup : System.Web.UI.Page
     {
         #region INITIALIZE
-
         String errMsg = string.Empty;
         AfblDistributionBll objAfblDistributionBll = new AfblDistributionBll();
 
         #endregion
 
-        #region Event_Base
+
+        #region EventMethod
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,35 +32,43 @@ namespace UI.SAD.Setup
             string vMsg = string.Empty;
             if (hdnconfirm.Value == "1")
             {
-                if (string.IsNullOrEmpty(txtRegion.Text))
-                    vMsg = "Provide New Region Name";
+                if (string.IsNullOrEmpty(txtTerritory.Text))
+                    vMsg = "Provide New Territory Name";
                 else if (string.IsNullOrEmpty(ddlExLineName.SelectedValue))
                     vMsg = "Select Line";
+                else if (string.IsNullOrEmpty(ddlExRegion.SelectedValue))
+                    vMsg = "Select Region";
+                else if (string.IsNullOrEmpty(ddlExArea.SelectedValue))
+                    vMsg = "Select Area";
                 if (string.IsNullOrEmpty(vMsg))
-                    SaveAFBLRegionInfo();
+                    SaveAFBLTerritoryInfo();
                 else
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + vMsg + "');", true);
             }
         }
-
+               
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
             string vMsg = string.Empty;
             if (hdnconfirm.Value == "1")
             {
                 if (string.IsNullOrEmpty(ddlExLineName.SelectedValue))
-                    vMsg = "Select Exist Line";
+                    vMsg = "Select Line";
                 else if (string.IsNullOrEmpty(ddlExRegion.SelectedValue))
-                    vMsg = "Select Exist Region";
-                else if (string.IsNullOrEmpty(txtRegion.Text))
-                    vMsg = "Provide New Region Name";
+                    vMsg = "Select Region";
+                else if (string.IsNullOrEmpty(ddlExArea.SelectedValue))
+                    vMsg = "Select  Area";
+                else if (string.IsNullOrEmpty(ddlExTerritory.SelectedValue))
+                    vMsg = "Select Exist Area";
+                else if (string.IsNullOrEmpty(txtTerritory.Text))
+                    vMsg = "Provide New Territory Name";
 
                 if (string.IsNullOrEmpty(vMsg))
-                    UpdateAFBLRegionInfo();
+                    UpdateAFBLTerritoryInfo();
                 else
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + vMsg + "');", true);
             }
-        }
+        }        
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
@@ -71,7 +79,11 @@ namespace UI.SAD.Setup
         {
             DataTable dt = new DataTable();
             try
-            {
+            {               
+                ddlExRegion.Items.Clear();               
+                ddlExArea.Items.Clear();
+                ddlExTerritory.Items.Clear();
+
                 if (!string.IsNullOrEmpty(ddlExLineName.SelectedValue))
                 {
                     int parentId = Convert.ToInt32(ddlExLineName.SelectedValue.ToString()); ;
@@ -83,7 +95,7 @@ namespace UI.SAD.Setup
                     ddlExRegion.DataBind();
                     // To make it the first element at the list, use 0 index : 
                     ddlExRegion.Items.Insert(0, new ListItem("Select", string.Empty));
-                }                    
+                }
             }
             catch (Exception Ex)
             {
@@ -95,14 +107,68 @@ namespace UI.SAD.Setup
         protected void ddlExRegion_SelectedIndexChanged(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
+            try
+            {
+                ddlExArea.Items.Clear();
+                ddlExTerritory.Items.Clear();
+
+                if (!string.IsNullOrEmpty(ddlExRegion.SelectedValue))
+                {
+                    int parentId = Convert.ToInt32(ddlExRegion.SelectedValue.ToString()); ;
+                    int part = 8;
+                    dt = objAfblDistributionBll.GetAFBLGeoList(parentId, part);
+                    ddlExArea.DataTextField = "strDiscription";
+                    ddlExArea.DataValueField = "intID";
+                    ddlExArea.DataSource = dt;
+                    ddlExArea.DataBind();
+                    // To make it the first element at the list, use 0 index : 
+                    ddlExArea.Items.Insert(0, new ListItem("Select", string.Empty));
+                }
+            }
+            catch (Exception Ex)
+            {
+                errMsg = Ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
+            }
+        }
+
+        protected void ddlExArea_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                ddlExTerritory.Items.Clear();
+
+                if (!string.IsNullOrEmpty(ddlExArea.SelectedValue))
+                {
+                    int parentId = Convert.ToInt32(ddlExArea.SelectedValue.ToString()); ;
+                    int part = 8;
+                    dt = objAfblDistributionBll.GetAFBLGeoList(parentId, part);
+                    ddlExTerritory.DataTextField = "strDiscription";
+                    ddlExTerritory.DataValueField = "intID";
+                    ddlExTerritory.DataSource = dt;
+                    ddlExTerritory.DataBind();
+                    // To make it the first element at the list, use 0 index : 
+                    ddlExTerritory.Items.Insert(0, new ListItem("Select", string.Empty));
+                }
+            }
+            catch (Exception Ex)
+            {
+                errMsg = Ex.Message.ToString();
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
+            }
+        }
+        protected void ddlExTerritory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
             string phoneNo = string.Empty;
             int lineId = 0;
             try
             {
-                if (!string.IsNullOrEmpty(ddlExRegion.SelectedValue))
+                if (!string.IsNullOrEmpty(ddlExTerritory.SelectedValue))
                 {
                     int part = 14;
-                    lineId = Convert.ToInt32(ddlExRegion.SelectedValue.ToString());
+                    lineId = Convert.ToInt32(ddlExTerritory.SelectedValue.ToString());
                     dt = objAfblDistributionBll.GetAFBLExistGeoInfo(lineId, part);
                     if (dt.Rows.Count > 0)
                         phoneNo = dt.Rows[0].Field<string>(3);
@@ -119,8 +185,9 @@ namespace UI.SAD.Setup
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
             }
         }
+        
         #endregion
-
+        
         #region UserMethod
         private void BindCombo()
         {
@@ -144,21 +211,33 @@ namespace UI.SAD.Setup
             }
         }
 
-        private void SaveAFBLRegionInfo()
+        private void clearAll()
+        {
+            txtTerritory.Text = string.Empty;
+            txtPhoneNo.Text = string.Empty;
+            ddlExRegion.Items.Clear();
+            ddlExLineName.Items.Clear();
+            ddlExArea.Items.Clear();
+            ddlExTerritory.Items.Clear();
+            BindCombo();
+            btnCreate.Visible = true;
+        }
+
+        private void SaveAFBLTerritoryInfo()
         {
             try
             {
-                int lvlId = 2, part = 1, activeEnroll = 0;
+                int lvlId = 4, part = 1, activeEnroll = 0;
                 string officePhone = "0";
-                int parentId = Convert.ToInt32(ddlExLineName.SelectedValue.ToString());
-                string desc = txtRegion.Text.Trim();
+                int parentId = Convert.ToInt32(ddlExArea.SelectedValue.ToString());
+                string desc = txtTerritory.Text.Trim();
 
                 if (!string.IsNullOrEmpty(txtPhoneNo.Text))
                     officePhone = txtPhoneNo.Text.Trim();
 
                 objAfblDistributionBll.SaveAFBLGeoInfo(desc, officePhone, parentId, lvlId, part, activeEnroll);
 
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Created Successfully.');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Create Successfully.');", true);
                 clearAll();
             }
             catch (Exception Ex)
@@ -168,19 +247,19 @@ namespace UI.SAD.Setup
             }
         }
 
-        private void UpdateAFBLRegionInfo()
+        private void UpdateAFBLTerritoryInfo()
         {
             try
             {
                 int part = 9;
                 string officePhone = "0";
-                int lineId = Convert.ToInt32(ddlExRegion.SelectedValue.ToString());
-                string desc = txtRegion.Text.Trim();
+                int lineId = Convert.ToInt32(ddlExTerritory.SelectedValue.ToString());
+                string desc = txtTerritory.Text.Trim();
                 if (!string.IsNullOrEmpty(txtPhoneNo.Text))
                     officePhone = txtPhoneNo.Text.Trim();
 
                 objAfblDistributionBll.UpdateAFBLGeoInfo(desc, officePhone, lineId, part);
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update  Successfully.');", true);
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Update Successfully.');", true);
                 clearAll();
             }
             catch (Exception Ex)
@@ -188,17 +267,6 @@ namespace UI.SAD.Setup
                 errMsg = Ex.Message.ToString();
                 ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + errMsg + "');", true);
             }
-        }
-
-
-        private void clearAll()
-        {
-            txtRegion.Text = string.Empty;
-            txtPhoneNo.Text = string.Empty;
-            ddlExRegion.Items.Clear();
-            ddlExLineName.Items.Clear();
-            BindCombo();
-            btnCreate.Visible = true;
         }
 
 
