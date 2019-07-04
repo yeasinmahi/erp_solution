@@ -113,7 +113,7 @@
                     </td>
                     <td style="text-align:right;"><asp:Label ID="lblddlUnit" CssClass="lbl" runat="server" Text="Unit-Name : "></asp:Label></td>
                     <td><asp:DropDownList ID="ddlUnit" runat="server" AutoPostBack="True" CssClass="dropdownList" 
-                    DataSourceID="ODSUnit" DataTextField="strUnit" DataValueField="intUnitID"></asp:DropDownList>
+                    DataSourceID="ODSUnit" DataTextField="strUnit" DataValueField="intUnitID" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList>
                     <asp:ObjectDataSource ID="ODSUnit" runat="server" SelectMethod="GetUnits" TypeName="HR_BLL.Global.Unit"
                     OldValuesParameterFormatString="original_{0}"><SelectParameters>
                     <asp:SessionParameter Name="userID" SessionField="sesUserID" Type="String"/>
@@ -256,9 +256,15 @@
                 <tr>
                     <td style="text-align:right;"><asp:Label ID="lblFloorAccess" CssClass ="lbl" runat="server" Text="Floor Access :"></asp:Label></td>
                     <td style="text-align:left;"><asp:DropDownList ID="ddlFloorAccess" runat="server" CssClass="ddList"></asp:DropDownList></td>
-                    <td colspan="2" style="text-align:right;"> <asp:Button ID="btnCancel" runat="server" CssClass="nextclick" Text="Cancel" OnClick="btnCancel_Click"/>
-                <a class="nextclick" onclick="CheckValidation()"> Update </a></td>                    
+                    <td style="text-align:right;"><asp:Label ID="Label3" CssClass ="lbl" runat="server" Text="Card Update :"></asp:Label></td>
+                    <td style="text-align:left;"><asp:TextBox ID="txtCardNo" runat="server" CssClass="txtBox"></asp:TextBox></td>                  
                 </tr> 
+            <tr>
+                <td style="text-align:right;"><asp:Label ID="Label2" CssClass ="lbl" runat="server" Text="GL Code :"></asp:Label></td>
+                <td style="text-align:left;"><asp:DropDownList ID="ddlGLCode" runat="server" CssClass="ddList"></asp:DropDownList></td>
+                <td colspan="2" style="text-align:right;"> <asp:Button ID="btnCancel" runat="server" CssClass="nextclick" Text="Cancel" OnClick="btnCancel_Click"/>
+                <a class="nextclick" onclick="CheckValidation()"> Update </a></td> 
+            </tr>
 
             </table>            
     </div>
