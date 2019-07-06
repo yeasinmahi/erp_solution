@@ -139,6 +139,56 @@ namespace SAD_BLL.Sales
                 throw ex;
             }
         }
+        
+
+        public DataTable GetInvItemUOM(string itemId)
+        {
+            try
+            {
+                TblItemListTableAdapter adp = new TblItemListTableAdapter();
+                return adp.GetInventorytemInfo(int.Parse(itemId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable GetInvFGUOM(string fgItemId)
+        {
+            try
+            {
+                UomByWHTransferFGItemTableAdapter adp = new UomByWHTransferFGItemTableAdapter();
+                return adp.GetUomByWHTransferItem(int.Parse(fgItemId));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable InventoryItemPrice(string itemId,string wh)
+        {
+            try
+            {
+                QryInventoryRunningBalanceTableAdapter adp = new QryInventoryRunningBalanceTableAdapter();
+                return adp.GetInvenotryItemPrice(int.Parse(itemId),int.Parse(wh));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable InventoryFGItemPrice(string itemId, string wh)
+        {
+            try
+            {
+                QryInventoryRunningBalanceTableAdapter adp = new QryInventoryRunningBalanceTableAdapter();
+                return adp.GetInventoryFGItemPrice(int.Parse(itemId), int.Parse(wh));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         public DataTable DoItemDetalis(string doid)

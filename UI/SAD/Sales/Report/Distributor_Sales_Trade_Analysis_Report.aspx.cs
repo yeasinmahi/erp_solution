@@ -15,6 +15,7 @@ namespace UI.SAD.Sales.Report
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
+                // btn
             }
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Sales%20And%20Distribution/Distributor_Sales_Trade_Analysis?rs:Embed=true');", true);
 

@@ -562,7 +562,7 @@ namespace UI.Accounts.Advice
                 {
                     if (Session["accountNo"] != null)
                     {
-                        ((Label)e.Row.FindControl("lblDebitAcc")).Text = Session["accountNo"].ToString();
+                        ((Label)e.Row.FindControl("lblDebitAcc")).Text = "'"+Session["accountNo"].ToString();
                         e.Row.Cells[12].Visible = true;
                         e.Row.Cells[13].Visible = true;
                     }
