@@ -201,8 +201,10 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx" />
     <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
+    <Content Include="Accounts\Report\ViewVoucherReport.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
     <Content Include="Accounts\Voucher\ContraVoucher.aspx" />
@@ -2158,6 +2160,13 @@
     <Compile Include="Accounts\Report\CashBook.aspx.designer.cs">
       <DependentUpon>CashBook.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx.cs">
+      <DependentUpon>Cash_and_Bank_Book_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx.designer.cs">
+      <DependentUpon>Cash_and_Bank_Book_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Report\JournalBook.aspx.cs">
       <DependentUpon>JournalBook.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2199,6 +2208,13 @@
     </Compile>
     <Compile Include="Accounts\Report\TrialBalance.aspx.designer.cs">
       <DependentUpon>TrialBalance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\ViewVoucherReport.aspx.cs">
+      <DependentUpon>ViewVoucherReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\ViewVoucherReport.aspx.designer.cs">
+      <DependentUpon>ViewVoucherReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Voucher\BankVoucher.aspx.cs">
       <DependentUpon>BankVoucher.aspx</DependentUpon>

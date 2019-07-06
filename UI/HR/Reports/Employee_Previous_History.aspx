@@ -24,8 +24,8 @@
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server"></cc1:AlwaysVisibleControlExtender>
                 <div style="height: 50px; width: 100%"></div>
                 <%--=========================================Start My Code From Here===============================================--%>
-                <div class="container">
-                    <div class="panel panel-info">
+                <div class="container-fluid">
+                    <div class="panel panel-info pull-left">
                         <div class="panel-heading">
                             <asp:Label runat="server" Text="Employee Previous History Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
