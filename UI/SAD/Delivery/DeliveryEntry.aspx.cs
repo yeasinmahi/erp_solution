@@ -638,17 +638,17 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetCustomerList(string prefixText, int count)
         {
-            if (HttpContext.Current.Session["OrderTypeId"].ToString() == "2" || HttpContext.Current.Session["OrderTypeId"].ToString() == "5")
-            {
-                return SalesSearch_BLL.GeWthlist(prefixText,
-                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString());
-            }
-            else
-            {
-                return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_CUS_TYPE].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
-            }
+            //if (HttpContext.Current.Session["OrderTypeId"].ToString() == "2" || HttpContext.Current.Session["OrderTypeId"].ToString() == "5")
+            //{
+            //    return SalesSearch_BLL.GeWthlist(prefixText,
+            //        HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString());
+            //}
+            //else
+            //{
+                
+            //}
+            return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_CUS_TYPE].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
 
-            
         }
 
         [WebMethod]
@@ -789,6 +789,7 @@ namespace UI.SAD.Delivery
         {
             try
             {
+                Reset();
                 ShipPointSelectionChange(); 
                 
             }
@@ -797,6 +798,7 @@ namespace UI.SAD.Delivery
 
         private void SalesOfficeSelectionChange()
         {
+            Reset();
             dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
             ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
             ddlCustomerType.Items.FindByText("Local").Selected = true;
@@ -848,6 +850,7 @@ namespace UI.SAD.Delivery
 
         protected void txtCustomer_TextChanged(object sender, EventArgs e)
         {
+            Reset();
             CustomerChange();
         }
 
@@ -1189,14 +1192,7 @@ namespace UI.SAD.Delivery
                 //    return;
                 //}
 
-                try
-                {
-
-                }
-                catch
-                {
-                    
-                }
+               
                 decimal discountTotal = discount * decimal.Parse(editQty);
                 decimal priceTotal = decimal.Parse(price) * decimal.Parse(editQty); 
                 

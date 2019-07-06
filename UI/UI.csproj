@@ -208,6 +208,7 @@
     <Content Include="Accounts\Voucher\ContraVoucher.aspx" />
     <Content Include="Accounts\Voucher\DocVoucherView.aspx" />
     <Content Include="Accounts\Voucher\JournalVoucher.aspx" />
+    <Content Include="Accounts\Voucher\SubAccountVoucherEntry.aspx" />
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
     <Content Include="AEFPS\Benificiary_Report.aspx" />
@@ -2240,6 +2241,13 @@
     </Compile>
     <Compile Include="Accounts\Voucher\JournalVoucher.aspx.designer.cs">
       <DependentUpon>JournalVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\SubAccountVoucherEntry.aspx.cs">
+      <DependentUpon>SubAccountVoucherEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Voucher\SubAccountVoucherEntry.aspx.designer.cs">
+      <DependentUpon>SubAccountVoucherEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Voucher\VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>
