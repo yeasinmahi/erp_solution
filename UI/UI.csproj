@@ -1530,8 +1530,10 @@
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
+    <Content Include="SAD\Setup\AfblPointSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
     <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
+    <Content Include="SAD\Setup\EmployeeBridgeJobStation.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -7945,6 +7947,13 @@
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.designer.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblPointSetup.aspx.cs">
+      <DependentUpon>AfblPointSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblPointSetup.aspx.designer.cs">
+      <DependentUpon>AfblPointSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7958,6 +7967,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.designer.cs">
       <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.designer.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>
