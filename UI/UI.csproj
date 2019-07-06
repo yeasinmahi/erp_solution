@@ -201,13 +201,17 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx" />
+    <Content Include="Accounts\Report\DailyCollectionReport.aspx" />
     <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
+    <Content Include="Accounts\Report\ViewVoucherReport.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
     <Content Include="Accounts\Voucher\CashVoucher.aspx" />
     <Content Include="Accounts\Voucher\ContraVoucher.aspx" />
     <Content Include="Accounts\Voucher\DocVoucherView.aspx" />
     <Content Include="Accounts\Voucher\JournalVoucher.aspx" />
+    <Content Include="Accounts\Voucher\SubAccountVoucherEntry.aspx" />
     <Content Include="Accounts\Voucher\VoucherEntryEdit.aspx" />
     <Content Include="AEFPS\BarcodeItemBridge.aspx" />
     <Content Include="AEFPS\Benificiary_Report.aspx" />
@@ -499,6 +503,7 @@
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
+    <Content Include="HR\Reports\AllowanceCheck.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\EmployeeServiceInformation.aspx" />
@@ -1530,7 +1535,10 @@
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
+    <Content Include="SAD\Setup\AfblPointSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
+    <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
+    <Content Include="SAD\Setup\EmployeeBridgeJobStation.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -2154,6 +2162,13 @@
     <Compile Include="Accounts\Report\CashBook.aspx.designer.cs">
       <DependentUpon>CashBook.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx.cs">
+      <DependentUpon>Cash_and_Bank_Book_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx.designer.cs">
+      <DependentUpon>Cash_and_Bank_Book_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Report\JournalBook.aspx.cs">
       <DependentUpon>JournalBook.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2175,6 +2190,13 @@
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Report\DailyCollectionReport.aspx.cs">
+      <DependentUpon>DailyCollectionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\DailyCollectionReport.aspx.designer.cs">
+      <DependentUpon>DailyCollectionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.cs">
       <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2195,6 +2217,13 @@
     </Compile>
     <Compile Include="Accounts\Report\TrialBalance.aspx.designer.cs">
       <DependentUpon>TrialBalance.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\ViewVoucherReport.aspx.cs">
+      <DependentUpon>ViewVoucherReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\ViewVoucherReport.aspx.designer.cs">
+      <DependentUpon>ViewVoucherReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Voucher\BankVoucher.aspx.cs">
       <DependentUpon>BankVoucher.aspx</DependentUpon>
@@ -2237,6 +2266,13 @@
     </Compile>
     <Compile Include="Accounts\Voucher\JournalVoucher.aspx.designer.cs">
       <DependentUpon>JournalVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\SubAccountVoucherEntry.aspx.cs">
+      <DependentUpon>SubAccountVoucherEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Voucher\SubAccountVoucherEntry.aspx.designer.cs">
+      <DependentUpon>SubAccountVoucherEntry.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Voucher\VoucherDetails.aspx.cs">
       <DependentUpon>VoucherDetails.aspx</DependentUpon>
@@ -3451,6 +3487,13 @@
     </Compile>
     <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.designer.cs">
       <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\AllowanceCheck.aspx.cs">
+      <DependentUpon>AllowanceCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\AllowanceCheck.aspx.designer.cs">
+      <DependentUpon>AllowanceCheck.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
@@ -7944,12 +7987,33 @@
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.designer.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblPointSetup.aspx.cs">
+      <DependentUpon>AfblPointSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblPointSetup.aspx.designer.cs">
+      <DependentUpon>AfblPointSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.designer.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.cs">
+      <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.designer.cs">
+      <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.designer.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>
