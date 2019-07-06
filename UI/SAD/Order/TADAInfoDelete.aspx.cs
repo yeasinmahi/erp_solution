@@ -154,7 +154,7 @@ namespace UI.SAD.Order
             int rowscount = grdvTADAInfoDelete.Rows.Count;
             decimal tot =decimal.Parse (grdvTADAInfoDelete.Rows[rowIndex].Cells[5].Text.ToString());
 
-            if (tot >0)
+            if (tot >=0)
             {
                dt = bll.getDataforTADAInfoDelete(dtFromDate, empCode, aprovestatsu, pkid, inactiveby);
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Messages"].ToString() + "');", true);
