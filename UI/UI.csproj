@@ -201,6 +201,7 @@
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\DailyCollectionReport.aspx" />
     <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Voucher\BankVoucher.aspx" />
@@ -500,6 +501,7 @@
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
+    <Content Include="HR\Reports\AllowanceCheck.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\EmployeeServiceInformation.aspx" />
@@ -1531,8 +1533,10 @@
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
+    <Content Include="SAD\Setup\AfblPointSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
     <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
+    <Content Include="SAD\Setup\EmployeeBridgeJobStation.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -2176,6 +2180,13 @@
     </Compile>
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\DailyCollectionReport.aspx.cs">
+      <DependentUpon>DailyCollectionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\DailyCollectionReport.aspx.designer.cs">
+      <DependentUpon>DailyCollectionReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.cs">
       <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
@@ -3460,6 +3471,13 @@
     </Compile>
     <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.designer.cs">
       <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\AllowanceCheck.aspx.cs">
+      <DependentUpon>AllowanceCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\AllowanceCheck.aspx.designer.cs">
+      <DependentUpon>AllowanceCheck.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>
@@ -7953,6 +7971,13 @@
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.designer.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblPointSetup.aspx.cs">
+      <DependentUpon>AfblPointSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblPointSetup.aspx.designer.cs">
+      <DependentUpon>AfblPointSetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7966,6 +7991,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.designer.cs">
       <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\EmployeeBridgeJobStation.aspx.designer.cs">
+      <DependentUpon>EmployeeBridgeJobStation.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>
