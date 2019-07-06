@@ -50,7 +50,7 @@ namespace UI.SAD.Delivery
         private bool _isProcess = false, _checkItem=false; int _isCount = 0, xmlSerial=0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //_filePathForXml = Server.MapPath("~/SAD/Delivery/Data/Sales__" + Enroll + ".xml");
+           
             if (!IsPostBack)
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
@@ -73,6 +73,9 @@ namespace UI.SAD.Delivery
             dgvSales.DataBind();
             dgvSalesPicking.DataSource = "";
             dgvSalesPicking.DataBind();
+            txtProduct.Text = "";
+            txtPrice.Text = "0";
+            
             txtCustomer.Text = "";
             txtShipToParty.Text = "";
             txtCustomerAddress.Text = "";
@@ -82,6 +85,11 @@ namespace UI.SAD.Delivery
             txtSupplier.Text = "";
             lblBl.Text = "0.0";
             lblLM.Text = "0.0";
+            txtDoNumber.Text = "";
+            lblDoCustId.Text = "";
+            lblCodeText.Text = "";
+            lblCode.Text = "";
+            lblOrderIDText.Text = "";
             InitilizeXmlAddControl();
         }
         private void GetUrlData(string type)
@@ -466,6 +474,8 @@ namespace UI.SAD.Delivery
         {
             if (ddlOrderType.SelectedValue == "1")
             {
+                lblCustomer.Text = "Spld To Party";
+                lblCustomerToAdd.Text = "Ship To Party";
                 txtOrderNo.Visible = false;
                 lblOrderNo.Visible = false;
             }
@@ -628,17 +638,17 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetCustomerList(string prefixText, int count)
         {
-            if (HttpContext.Current.Session["OrderTypeId"].ToString() == "2")
-            {
-                return SalesSearch_BLL.GeWthlist(prefixText,
-                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString());
-            }
-            else
-            {
-                return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_CUS_TYPE].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
-            }
+            //if (HttpContext.Current.Session["OrderTypeId"].ToString() == "2" || HttpContext.Current.Session["OrderTypeId"].ToString() == "5")
+            //{
+            //    return SalesSearch_BLL.GeWthlist(prefixText,
+            //        HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString());
+            //}
+            //else
+            //{
+                
+            //}
+            return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_CUS_TYPE].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
 
-            
         }
 
         [WebMethod]
@@ -779,6 +789,7 @@ namespace UI.SAD.Delivery
         {
             try
             {
+                Reset();
                 ShipPointSelectionChange(); 
                 
             }
@@ -787,6 +798,7 @@ namespace UI.SAD.Delivery
 
         private void SalesOfficeSelectionChange()
         {
+            Reset();
             dt = customerType.GetCustomerTypeBySOForDO(ddlSalesOffice.SelectedValue().ToString());
             ddlCustomerType.Loads(dt, "intTypeID", "strTypeName");
             ddlCustomerType.Items.FindByText("Local").Selected = true;
@@ -838,6 +850,7 @@ namespace UI.SAD.Delivery
 
         protected void txtCustomer_TextChanged(object sender, EventArgs e)
         {
+            Reset();
             CustomerChange();
         }
 
@@ -1179,14 +1192,7 @@ namespace UI.SAD.Delivery
                 //    return;
                 //}
 
-                try
-                {
-
-                }
-                catch
-                {
-                    
-                }
+               
                 decimal discountTotal = discount * decimal.Parse(editQty);
                 decimal priceTotal = decimal.Parse(price) * decimal.Parse(editQty); 
                 
@@ -1270,9 +1276,9 @@ namespace UI.SAD.Delivery
                 {
                      
                     GetProduct(rdoDeliveryType.SelectedItem.Text);
-                    ItemUOMBind(ddlOrderType.SelectedValue().ToString(), hdnProduct.Value); 
-                     
+                    ItemUOMBind(ddlOrderType.SelectedValue().ToString(), hdnProduct.Value);
                     SetPrice(rdoDeliveryType.SelectedItem.Text,hdnProduct.Value,ddlOrderType.SelectedValue().ToString());
+                   
                     txtQun.Focus();
                 }
                 else
@@ -1291,9 +1297,15 @@ namespace UI.SAD.Delivery
                 dt = objUom.GetUOMRelationByPrice(hdnProduct.Value, hdnCustomer.Value,
                     hdnPriceId.Value, rdoSalesType.SelectedValue.ToString(), txtDate.Text.ToString()); 
             }
+            else if (orderTypeId == "2")
+            {
+                dt = deliveryBLL.GetInvFGUOM(productId);
+               
+            }
             else
             {
                 dt = deliveryBLL.GetInvItemUOM(productId);
+                
             }
             ddlUOM.Loads(dt, "intID", "strUOM");
         }
@@ -1881,12 +1893,13 @@ namespace UI.SAD.Delivery
                         {
                             dt = deliveryBLL.InventoryFGItemPrice(productId, hdnWHId.Value);
                             productRate = decimal.Parse(dt.Rows[0]["monRate"].ToString());
+                           
                         }
                         catch
                         {
                             productRate = 0;
                         }
-                       
+                        convRate = 1;
                     }
                     else if(orderTypeId == "5")
                     {
@@ -1894,12 +1907,13 @@ namespace UI.SAD.Delivery
                         {
                             dt = deliveryBLL.InventoryItemPrice(productId, hdnWHId.Value);
                             productRate = decimal.Parse(dt.Rows[0]["monRate"].ToString());
+                           
                         }
                         catch
                         {
                             productRate = 0;
                         }
-
+                        convRate = 1;
                     }
                     
                 }
@@ -1920,9 +1934,9 @@ namespace UI.SAD.Delivery
                         hdnDoQty.Value= dt.Rows[0]["numRestQuantity"].ToString();
                       
                     }
-                    hdnPrice.Value = productRate.ToString();
+                   
                 }
-
+                hdnPrice.Value = productRate.ToString();
                 PriceSetWithCommonFormat(productRate, commission, suppTax, vat, vatPrice, convRate);
                 if (productRate <= 0)
                 {
@@ -2263,11 +2277,12 @@ namespace UI.SAD.Delivery
      
         protected void txtQun_TextChanged(object sender, EventArgs e)
         {
-           if (hdnButtonFire.Value == "true")
-            {
+           //if (hdnButtonFire.Value == "true")
+           // {
                 ProductAdd(rdoDeliveryType.SelectedItem.Text);
 
-            }
+                
+           // }
            
             hdnButtonFire.Value = "false";
         }
@@ -2357,6 +2372,11 @@ namespace UI.SAD.Delivery
         protected void ddlOrderType_OnDataBound(object sender, EventArgs e)
         {
             ControlHideAccrodingToOrderType();
+        }
+
+        protected void txtQtyEdit_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         protected void txtSupplier_TextChanged(object sender, EventArgs e)
