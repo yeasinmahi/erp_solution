@@ -196,6 +196,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerGeoTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Customer\CustomerTDS.cs">
+      <DependentUpon>CustomerTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CustomerTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -243,6 +246,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DisPointTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Global\AfblDistributionSetup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AfblDistributionSetup.xsd</DependentUpon>
     </Compile>
     <Compile Include="Global\CodeGenaratorTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -328,6 +336,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ItemPriceTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Item\ItemPromotionSecondary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemPromotionSecondary.xsd</DependentUpon>
     </Compile>
     <Compile Include="Item\ItemPromotionTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -510,6 +523,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VatReportTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\VAT_TDS.cs">
+      <DependentUpon>VAT_TDS.xsd</DependentUpon>
     </Compile>
     <Compile Include="Vat\VAT_TDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -815,6 +831,17 @@
     <None Include="DisPoint\DisPointTDS.xss">
       <DependentUpon>DisPointTDS.xsd</DependentUpon>
     </None>
+    <None Include="Global\AfblDistributionSetup.xsc">
+      <DependentUpon>AfblDistributionSetup.xsd</DependentUpon>
+    </None>
+    <None Include="Global\AfblDistributionSetup.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AfblDistributionSetup.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Global\AfblDistributionSetup.xss">
+      <DependentUpon>AfblDistributionSetup.xsd</DependentUpon>
+    </None>
     <None Include="Global\CodeGenaratorTDS.xsc">
       <DependentUpon>CodeGenaratorTDS.xsd</DependentUpon>
     </None>
@@ -1001,6 +1028,17 @@
     </None>
     <None Include="Item\ItemPriceTDS.xss">
       <DependentUpon>ItemPriceTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Item\ItemPromotionSecondary.xsc">
+      <DependentUpon>ItemPromotionSecondary.xsd</DependentUpon>
+    </None>
+    <None Include="Item\ItemPromotionSecondary.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ItemPromotionSecondary.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Item\ItemPromotionSecondary.xss">
+      <DependentUpon>ItemPromotionSecondary.xsd</DependentUpon>
     </None>
     <None Include="Item\ItemPromotionTDS.xsc">
       <DependentUpon>ItemPromotionTDS.xsd</DependentUpon>

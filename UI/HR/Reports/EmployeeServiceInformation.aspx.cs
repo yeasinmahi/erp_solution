@@ -50,7 +50,7 @@ namespace UI.HR.Reports
                 gratuity = false;
             }
 
-            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/AFBL/HR/Employee_Service_Information" + "&intEnroll=" + EmpID + "&dteDate=" + txtDate.Text + "&ysnGratuity=" + gratuity + "&rc:LinkTarget=_self";
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/AFBL/HR/Employee_Service_Information"+ "&sessionEnroll=" + Enroll + "&intEnroll=" + EmpID + "&dteDate=" + txtDate.Text + "&ysnGratuity=" + gratuity + "&rc:LinkTarget=_self";
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }
 

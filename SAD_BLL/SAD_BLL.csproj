@@ -118,6 +118,7 @@
     <Compile Include="Customer\Report\ExportClass.cs" />
     <Compile Include="Customer\Report\StatementC.cs" />
     <Compile Include="DisPoint\DisPointInfo.cs" />
+    <Compile Include="Global\AfblDistributionBll.cs" />
     <Compile Include="Global\CodeGenatator.cs" />
     <Compile Include="Global\ExtraCharge.cs" />
     <Compile Include="Global\Incentive.cs" />
@@ -144,6 +145,7 @@
     <Compile Include="AutoChallan\AutoChallReportsBLL.cs" />
     <Compile Include="RevenueBLL\RevenueClsBLL.cs" />
     <Compile Include="Sales\AppsSalesOrder_BLL.cs" />
+    <Compile Include="Sales\AutoSearch_Sales_BLL.cs" />
     <Compile Include="Sales\DelivaryView.cs" />
     <Compile Include="Sales\Delivery_BLL.cs" />
     <Compile Include="Sales\OrderByTrip.cs" />
@@ -187,6 +189,10 @@
     <ProjectReference Include="..\SAD_DAL\SAD_DAL.csproj">
       <Project>{16E00442-31FA-416F-AF68-BE5AD09F4D2A}</Project>
       <Name>SAD_DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Utility\Utility.csproj">
+      <Project>{3e7d37dd-f3e6-4932-b05c-821f021a92ee}</Project>
+      <Name>Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -140,6 +140,44 @@ namespace SAD_BLL.Sales
                 return new DataTable();
             }
         }
+        public DataTable GetRegion(int unitd)
+        {
+            try
+            {
+                SprOSRegionTableAdapter obj = new SprOSRegionTableAdapter();
+                return obj.GetDataOSRegion(unitd);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
 
+        public DataTable GetArea(int unitd,int regionid)
+        {
+            try
+            {
+                SprOSAreaTableAdapter obj = new SprOSAreaTableAdapter();
+                return obj.GetDataOSArea(unitd,regionid);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
+
+        public DataTable GetPrdLine(int unitd)
+        {
+            try
+            {
+                SprPrdGrpNameTableAdapter obj = new SprPrdGrpNameTableAdapter();
+                return obj.GetDataPrdGrpName(unitd);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
     }
 }

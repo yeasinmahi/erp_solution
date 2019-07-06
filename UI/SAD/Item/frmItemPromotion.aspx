@@ -30,7 +30,7 @@
         <tr><td colspan="5"><hr /></td></tr>                              
         <tr class="tblrowodd">           
             <td style="text-align:left;">Promotion Group:</td>
-            <td style="text-align:left;"><asp:TextBox ID="txtPromotionName" runat="server" AutoPostBack="true" CssClass="txtBox" MaxLength="10"></asp:TextBox></td>
+            <td style="text-align:left;"><asp:TextBox ID="txtPromotionName" runat="server" AutoPostBack="true" CssClass="txtBox" ></asp:TextBox></td>
             <td style='text-align: left; width:120px;'>Promotion Group : </td>
             <td colspan="2" style='text-align: left;'>  <asp:DropDownList ID="ddlLine" runat="server" CssClass="ddllist"> </asp:DropDownList></td>              
         </tr>    

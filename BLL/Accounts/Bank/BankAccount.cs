@@ -160,5 +160,31 @@ namespace BLL.Accounts.Bank
 
         }
 
+        #region====Bank Receive ====
+        public DataTable GetBankReceiveData(string unitid)
+        {
+            try
+            {
+                TblBankAccountStatementTableAdapter adp = new TblBankAccountStatementTableAdapter();
+                return adp.GetBankReceiveInfo(unitid);
+            }
+            catch { return new DataTable(); }
+        }
+        public string SubmitBankReceiveData(int unitid,int enroll,int intCustID,int intBSId,string strNarration)
+        {
+            string msg = "";
+            try
+            {
+                sprBankReciveBRMakingTableAdapter adp = new sprBankReciveBRMakingTableAdapter();
+                adp.SubmitBankReceive(unitid,enroll,intCustID,intBSId,strNarration);
+                return msg = "Submitted Successfully";
+            }
+            catch { return msg="Not Submitted"; }
+        }
+
+        #endregion=======
+
+
+
     }
 }

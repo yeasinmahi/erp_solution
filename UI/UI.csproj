@@ -176,6 +176,7 @@
     <Content Include="Accounts\Banking\Report\DepositSlip.aspx" />
     <Content Include="Accounts\Bank\BankInfo.aspx" />
     <Content Include="Accounts\Bank\BankInfoEdit.aspx" />
+    <Content Include="Accounts\Bank\BankReceive.aspx" />
     <Content Include="Accounts\Bank\ChequeBook.aspx" />
     <Content Include="Accounts\Bank\LoanType.aspx" />
     <Content Include="Accounts\ChartOfAccount\animatedcollapse.js" />
@@ -315,6 +316,7 @@
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetVarianceReport.aspx" />
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
+    <Content Include="BudgetPlan\SetUpBaseBudgetEntry.aspx" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\CommonStyle.css" />
@@ -469,6 +471,7 @@
     <Content Include="HR\DocumentTracking\DocumentRequisition.aspx" />
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
+    <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
@@ -487,18 +490,24 @@
     <Content Include="HR\Loan\LoanStatusSummary.aspx" />
     <Content Include="HR\Loan\LoanSummaryPrint.aspx" />
     <Content Include="HR\Loan\Reward.aspx" />
+    <Content Include="HR\OfficialMovement\HolyDaySet.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryIndividual.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryNew.aspx" />
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\Penalty\Familyday.aspx" />
     <Content Include="HR\Penalty\FamilyDayPub.aspx" />
+    <Content Include="HR\PiceRateCalculation\CasualWorkerBill.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
+    <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\EmployeeServiceInformation.aspx" />
     <Content Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx" />
+    <Content Include="HR\Reports\Employee_Leave_History.aspx" />
+    <Content Include="HR\Reports\Employee_Leave_Movement_Report.aspx" />
     <Content Include="HR\Reports\Employee_Movement_History.aspx" />
+    <Content Include="HR\Reports\Employee_PF_Report.aspx" />
     <Content Include="HR\Reports\Employee_Previous_History.aspx" />
     <Content Include="HR\Reports\Family_Day_Report.aspx" />
     <Content Include="HR\Reports\Lync_Bill_Report.aspx" />
@@ -1308,6 +1317,7 @@
     <Content Include="SAD\IHB\DistributorWithIHB.aspx" />
     <Content Include="SAD\IHB\DistributorWithIhbReport.aspx" />
     <Content Include="SAD\Item\frmItemDiscountSetup.aspx" />
+    <Content Include="SAD\Item\frmitemPromotionSecondary.aspx" />
     <Content Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx" />
     <Content Include="SAD\Item\frmItemPromotion.aspx" />
     <Content Include="SAD\Item\ItemManager.aspx" />
@@ -1519,6 +1529,10 @@
     <Content Include="SAD\Sales\SalesMarketting.aspx" />
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
+    <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
+    <Content Include="SAD\Setup\AfblLineSetup.aspx" />
+    <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
+    <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
     <Content Include="SAD\Setup\GeoRegionSetup.aspx" />
     <Content Include="SAD\Setup\GeoMarketSetup.aspx" />
@@ -1650,6 +1664,7 @@
     <Content Include="SCM\SupplierManeger.aspx" />
     <Content Include="SCM\SupplierListUpdate.aspx" />
     <Content Include="SCM\SupplierStatementReport.aspx" />
+    <Content Include="SCM\TransferChallanMushak6Point5.aspx" />
     <Content Include="SCM\Transfer\FGAdjustment.aspx" />
     <Content Include="SCM\Transfer\InventoryAdjustmentApproval.aspx" />
     <Content Include="SCM\Transfer\ProductionTransferReport.aspx" />
@@ -1680,6 +1695,7 @@
     <Content Include="Support\POSupport.aspx" />
     <Content Include="CreativeSupportModule\HomeT.aspx" />
     <Content Include="Transport\AccidentRegisterEntry.aspx" />
+    <Content Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx" />
     <Content Include="Transport\InternalTRouteCostUpdate.aspx" />
     <Content Include="Transport\NewVehicleEntry.aspx" />
     <Content Include="Transport\InternalTDocPathList.aspx" />
@@ -1700,6 +1716,7 @@
     <Content Include="Transport\InternalTVehicleMovementDetails.aspx" />
     <Content Include="Transport\InternalTVehicleMovementReport.aspx" />
     <Content Include="Transport\RentedVehicleReg.aspx" />
+    <Content Include="Transport\TransportVheicleInfoUpdate.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBill.aspx" />
     <Content Include="Transport\TripvsCost\PumpFoodingBillReport.aspx" />
     <Content Include="Transport\TripvsCost\ThanaRateChecking.aspx" />
@@ -1724,6 +1741,7 @@
     <Content Include="Vat\PrintM16.aspx" />
     <Content Include="Vat\PrintM17.aspx" />
     <Content Include="Vat\PrintM18.aspx" />
+    <Content Include="Vat\PrintMushak_6_5.aspx" />
     <Content Include="Vat\PrintReturn.aspx" />
     <Content Include="Vat\PrintTreasury.aspx" />
     <Content Include="Vat\ProductionEntry.aspx" />
@@ -1731,6 +1749,7 @@
     <Content Include="Vat\SalesRegisterM17.aspx" />
     <Content Include="Vat\TresaryEntry.aspx" />
     <Content Include="Vat\VatMonthlyReturnM19.aspx" />
+    <Content Include="Vat\Vat_Print_Mushak.aspx" />
     <Content Include="VAT_Management\BandrollReceive.aspx" />
     <Content Include="VAT_Management\BridgeFinishedItem.aspx" />
     <Content Include="VAT_Management\BridgeMaterialForM1.aspx" />
@@ -1915,6 +1934,13 @@
     </Compile>
     <Compile Include="Accounts\Bank\BankInfoEdit.aspx.designer.cs">
       <DependentUpon>BankInfoEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankReceive.aspx.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Bank\BankReceive.aspx.designer.cs">
+      <DependentUpon>BankReceive.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Bank\ChequeBook.aspx.cs">
       <DependentUpon>ChequeBook.aspx</DependentUpon>
@@ -2987,6 +3013,13 @@
     <Compile Include="BudgetPlan\CostCenterCorrection.aspx.designer.cs">
       <DependentUpon>CostCenterCorrection.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BudgetPlan\SetUpBaseBudgetEntry.aspx.cs">
+      <DependentUpon>SetUpBaseBudgetEntry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\SetUpBaseBudgetEntry.aspx.designer.cs">
+      <DependentUpon>SetUpBaseBudgetEntry.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreativeSupportModule\AggrementPage.aspx.cs">
       <DependentUpon>AggrementPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3232,6 +3265,13 @@
     <Compile Include="HR\DocumentTracking\DocumentTransfer.aspx.designer.cs">
       <DependentUpon>DocumentTransfer.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.cs">
+      <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
+      <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3351,6 +3391,13 @@
     <Compile Include="HR\Loan\Reward.aspx.designer.cs">
       <DependentUpon>Reward.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\OfficialMovement\HolyDaySet.aspx.cs">
+      <DependentUpon>HolyDaySet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\OfficialMovement\HolyDaySet.aspx.designer.cs">
+      <DependentUpon>HolyDaySet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Overtime\OvertimeEntryIndividual.aspx.cs">
       <DependentUpon>OvertimeEntryIndividual.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3386,12 +3433,26 @@
     <Compile Include="HR\Penalty\FamilyDayPub.aspx.designer.cs">
       <DependentUpon>FamilyDayPub.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.cs">
+      <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.designer.cs">
+      <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HR\policyDoc\frmPolicy.aspx.designer.cs">
       <DependentUpon>frmPolicy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\All_Employee_Information_Report.aspx.cs">
+      <DependentUpon>All_Employee_Information_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\All_Employee_Information_Report.aspx.designer.cs">
+      <DependentUpon>All_Employee_Information_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.cs">
       <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
@@ -3428,12 +3489,33 @@
     <Compile Include="HR\Reports\Employee_Attendance_with_Overtime_Status.aspx.designer.cs">
       <DependentUpon>Employee_Attendance_with_Overtime_Status.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Reports\Employee_Leave_History.aspx.cs">
+      <DependentUpon>Employee_Leave_History.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Leave_History.aspx.designer.cs">
+      <DependentUpon>Employee_Leave_History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Leave_Movement_Report.aspx.cs">
+      <DependentUpon>Employee_Leave_Movement_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_Leave_Movement_Report.aspx.designer.cs">
+      <DependentUpon>Employee_Leave_Movement_Report.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Reports\Employee_Movement_History.aspx.cs">
       <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="HR\Reports\Employee_Movement_History.aspx.designer.cs">
       <DependentUpon>Employee_Movement_History.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_PF_Report.aspx.cs">
+      <DependentUpon>Employee_PF_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\Employee_PF_Report.aspx.designer.cs">
+      <DependentUpon>Employee_PF_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\Employee_Previous_History.aspx.cs">
       <DependentUpon>Employee_Previous_History.aspx</DependentUpon>
@@ -6372,6 +6454,13 @@
     <Compile Include="SAD\Item\frmItemDiscountSetup.aspx.designer.cs">
       <DependentUpon>frmItemDiscountSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Item\frmitemPromotionSecondary.aspx.cs">
+      <DependentUpon>frmitemPromotionSecondary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Item\frmitemPromotionSecondary.aspx.designer.cs">
+      <DependentUpon>frmitemPromotionSecondary.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Item\frmItemPromotionSetupOtherUnit.aspx.cs">
       <DependentUpon>frmItemPromotionSetupOtherUnit.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7850,6 +7939,34 @@
     <Compile Include="SAD\Sales\UnitTest.aspx.designer.cs">
       <DependentUpon>UnitTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblAreaSetup.aspx.cs">
+      <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblAreaSetup.aspx.designer.cs">
+      <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblLineSetup.aspx.cs">
+      <DependentUpon>AfblLineSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblLineSetup.aspx.designer.cs">
+      <DependentUpon>AfblLineSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblRegionSetup.aspx.cs">
+      <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblRegionSetup.aspx.designer.cs">
+      <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.cs">
+      <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.designer.cs">
+      <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\GeoAreaSetup.aspx.cs">
       <DependentUpon>GeoAreaSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8753,6 +8870,13 @@
     <Compile Include="SCM\SupplierStatementReport.aspx.designer.cs">
       <DependentUpon>SupplierStatementReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SCM\TransferChallanMushak6Point5.aspx.cs">
+      <DependentUpon>TransferChallanMushak6Point5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\TransferChallanMushak6Point5.aspx.designer.cs">
+      <DependentUpon>TransferChallanMushak6Point5.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SCM\Transfer\FGAdjustment.aspx.cs">
       <DependentUpon>FGAdjustment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9019,6 +9143,13 @@
     <Compile Include="Transport\AccidentRegisterEntry.aspx.designer.cs">
       <DependentUpon>AccidentRegisterEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.cs">
+      <DependentUpon>Fuel_Log_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\Fuel Log Report\Fuel_Log_Report.aspx.designer.cs">
+      <DependentUpon>Fuel_Log_Report.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transport\InternalTRouteCostUpdate.aspx.cs">
       <DependentUpon>InternalTRouteCostUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9158,6 +9289,13 @@
     </Compile>
     <Compile Include="Transport\RentedVehicleReg.aspx.designer.cs">
       <DependentUpon>RentedVehicleReg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Transport\TransportVheicleInfoUpdate.aspx.cs">
+      <DependentUpon>TransportVheicleInfoUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Transport\TransportVheicleInfoUpdate.aspx.designer.cs">
+      <DependentUpon>TransportVheicleInfoUpdate.aspx</DependentUpon>
     </Compile>
     <Compile Include="Transport\TripvsCost\PumpFoodingBill.aspx.cs">
       <DependentUpon>PumpFoodingBill.aspx</DependentUpon>
@@ -9327,6 +9465,13 @@
     <Compile Include="Vat\PrintM18.aspx.designer.cs">
       <DependentUpon>PrintM18.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Vat\PrintMushak_6_5.aspx.cs">
+      <DependentUpon>PrintMushak_6_5.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\PrintMushak_6_5.aspx.designer.cs">
+      <DependentUpon>PrintMushak_6_5.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Vat\PrintReturn.aspx.cs">
       <DependentUpon>PrintReturn.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9375,6 +9520,13 @@
     </Compile>
     <Compile Include="Vat\VatMonthlyReturnM19.aspx.designer.cs">
       <DependentUpon>VatMonthlyReturnM19.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vat\Vat_Print_Mushak.aspx.cs">
+      <DependentUpon>Vat_Print_Mushak.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vat\Vat_Print_Mushak.aspx.designer.cs">
+      <DependentUpon>Vat_Print_Mushak.aspx</DependentUpon>
     </Compile>
     <Compile Include="VAT_Management\BandrollReceive.aspx.cs">
       <DependentUpon>BandrollReceive.aspx</DependentUpon>

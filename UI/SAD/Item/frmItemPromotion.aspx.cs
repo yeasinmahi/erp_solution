@@ -14,7 +14,7 @@ using Flogging.Core;
 
 namespace UI.SAD.Item
 {
-    public partial class frmItemPromotion : System.Web.UI.Page
+    public partial class frmItemPromotion : BasePage
     {
         DataTable dt;int Custid,intActive,rptTYpe,intLineid,intGroupid,PUomId, ItemidSales,ItemidPromotion,Groupid, Rid, Aid,part,intUomid;        
         ItemPromotion objPromotion = new ItemPromotion();

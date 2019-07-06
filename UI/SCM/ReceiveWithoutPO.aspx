@@ -25,6 +25,15 @@
                 document.getElementById("hdnConfirm").value = "0";
             }
         }
+        function validation() {
+            var quantity = parseFloat(document.getElementById("txtQty").value);
+            if (quantity === 0) {
+                ShowNotification("Enter quantity properly", "Other Receive", "warning");
+                return false;
+            }
+            showLoader();
+            return true;
+        }
     </script>
 </head>
 <body>
@@ -50,7 +59,7 @@
                     <asp:HiddenField ID="hdnUnit" runat="server" />
                     <asp:HiddenField ID="hdnDA" runat="server" />
                     <div class="tabs_container">
-                        Receive without PO  From<hr />
+                        Others Receive<hr />
                     </div>
 
                     <table>
@@ -95,8 +104,8 @@
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtRate" CssClass="txtBox" Font-Bold="False"  Text="0" runat="server"></asp:TextBox>
 
-                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="showLoader();" OnClick="btnAdd_Click" />
-                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="funConfirmAll();" OnClick="btnSubmit_Click" /></td>
+                                <asp:Button ID="btnAdd" runat="server" Text="Add" OnClientClick="return validation();" OnClick="btnAdd_Click" />
+                                <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClientClick="return confirmMsgWithLoader();" OnClick="btnSubmit_Click" /></td>
                         </tr>
                         <tr>
                             <td colspan="4">
@@ -127,15 +136,15 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Value" ItemStyle-HorizontalAlign="right" SortExpression="rate">
+                                        <asp:TemplateField HeaderText="Rate" ItemStyle-HorizontalAlign="right" SortExpression="rate">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblValue" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("rate") %>'></asp:Label>
+                                                <asp:Label ID="lblValue" runat="server"  Text='<%# Bind("rate") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Location" ItemStyle-HorizontalAlign="right" SortExpression="Location">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblLOcation" runat="server" DataFormatString="{0:0.00}" Text='<%# Bind("Location") %>'></asp:Label>
+                                                <asp:Label ID="lblLOcation" runat="server" Text='<%# Bind("Location") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>

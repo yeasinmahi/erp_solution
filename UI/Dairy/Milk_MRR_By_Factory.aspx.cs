@@ -205,11 +205,11 @@ namespace UI.Dairy
                         for (int index = 0; index < dgvMRR.Rows.Count; index++)
                         {
                             suppid = ((Label)dgvMRR.Rows[index].FindControl("lblSupplierID")).Text.ToString();
-                            mrrqty = ((Label)dgvMRR.Rows[index].FindControl("lblRecQty")).Text.ToString();
+                            mrrqty = ((TextBox)dgvMRR.Rows[index].FindControl("lblRecQty")).Text.ToString();
                             mrrrate = ((Label)dgvMRR.Rows[index].FindControl("lblIssueRate")).Text.ToString();
-                            dqtyamount = ((Label)dgvMRR.Rows[index].FindControl("lblDeductQtyAmount")).Text.ToString();
-                            dfatamount = ((Label)dgvMRR.Rows[index].FindControl("lblDeductFatPer")).Text.ToString();
-                            mrrvalue = ((Label)dgvMRR.Rows[index].FindControl("lblNetValue")).Text.ToString();
+                            dqtyamount = ((TextBox)dgvMRR.Rows[index].FindControl("lblDeductQtyAmount")).Text.ToString();
+                            dfatamount = ((TextBox)dgvMRR.Rows[index].FindControl("lblDeductFatPer")).Text.ToString();
+                            mrrvalue = ((TextBox)dgvMRR.Rows[index].FindControl("lblNetValue")).Text.ToString();
                             challanno = ((Label)dgvMRR.Rows[index].FindControl("lblChallanNo")).Text.ToString();
                             challanqty = ((Label)dgvMRR.Rows[index].FindControl("lblIssueQty")).Text.ToString();
                             challanfat = ((Label)dgvMRR.Rows[index].FindControl("lblIssueFat")).Text.ToString();

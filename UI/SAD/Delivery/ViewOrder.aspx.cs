@@ -125,8 +125,8 @@ namespace UI.SAD.Delivery
             string[] searchKey = temp.Split(delimiterChars);
             string intCusID = searchKey[0].ToString();
             string intid = searchKey[1].ToString();
-            string PopupType = "DO_Edit";
-            string strReportType = "DO_Base";
+            string PopupType = "Order_Edit";
+            string strReportType = "Order_Base";
             string ShipPointID = ddlShip.SelectedValue;
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "DO_Edit('" + intid + "', '" + intCusID + "', '" + strReportType + "', '" + ShipPointID + "', '" + PopupType + "');", true);

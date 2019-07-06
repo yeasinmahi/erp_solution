@@ -9,7 +9,10 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.HR;
+using BLL.Inventory;
 using UI.ClassFiles;
+using Utility;
 
 namespace UI.SCM
 {
@@ -18,43 +21,49 @@ namespace UI.SCM
         private MrrReceive_BLL objRecive = new MrrReceive_BLL();
         private DataTable dt = new DataTable();
         private Location_BLL objOperation = new Location_BLL();
+        private ItemListBll itemList = new ItemListBll();
 
-        private string xmlunit = ""; private int enroll, CheckItem = 1, intWh; private string[] arrayKey; private char[] delimiterChars = { '[', ']' };
-        private string filePathForXML; private string xmlString = "";
+        private string xmlunit = "";
+        private int CheckItem = 1, intWh;
+        private string[] arrayKey;
+        private char[] delimiterChars = { '[', ']' };
+        private string filePathForXML;
+        private string xmlString = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/Inden__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/Rcv__" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
-                ast = new AutoSearch_BLL();
-                try { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
-                catch { }
-                DefaltLoad();
                 pnlUpperControl.DataBind();
+                ast = new AutoSearch_BLL();
+                try
+                {
+                    File.Delete(filePathForXML);
+                    dgvRecive.UnLoad();
+                }
+                catch { }
+                DefaultLoad();
+
             }
             else { }
         }
 
-        private void DefaltLoad()
+        private void DefaultLoad()
         {
             try
             {
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-                dt = objRecive.DataView(1, xmlunit, 0, 0, DateTime.Now, enroll);
-                ddlWH.DataSource = dt;
-                ddlWH.DataTextField = "strName";
-                ddlWH.DataValueField = "Id";
-                ddlWH.DataBind();
+                dt = objRecive.DataView(1, xmlunit, 0, 0, DateTime.Now, Enroll);
+                ddlWH.Loads(dt, "Id", "strName");
 
-                try
-                {
-                    Session["WareID"] = ddlWH.SelectedValue;
-                }
-                catch { }
+                Session["WareID"] = ddlWH.SelectedValue;
+
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
         }
 
         #region========================Auto Search============================
@@ -64,7 +73,7 @@ namespace UI.SCM
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            
+
             return ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
             //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
@@ -77,37 +86,76 @@ namespace UI.SCM
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = ""; bool proceed = false;
+                string item = "";
+                string itemid = "";
+                bool proceed = false;
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
-
-                checkXmlItemData(itemid);
-                if (CheckItem == 1 && double.Parse(txtQty.Text.ToString()) > 0 && txtRate.Text.Length > 0)
                 {
-                    string itemId = itemid;
-                    string itemName = item;
-                    string qty = txtQty.Text.ToString();
-                    string rate = txtRate.Text.ToString();
-                    string locationid = ddlLocation.SelectedValue.ToString();
-                    string location = ddlLocation.SelectedItem.ToString();
-                    string remarks = txtPurpose.Text.ToString();
-
-                    CreateXml(itemId, itemName, qty, rate, locationid, location, remarks);
+                    item = arrayKey[0];
+                    itemid = arrayKey[1];
                 }
-                else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Item already added');", true); }
-                txtItem.Text = ""; txtQty.Text = "0";
+
+                CheckXmlItemData(itemid);
+                if (CheckItem == 1 && double.Parse(txtQty.Text) > 0)
+                {
+                    int itemsId = Convert.ToInt32(itemid);
+                    dt = itemList.GetItem(itemsId);
+                    if (dt.Rows.Count > 0)
+                    {
+                        string itemId = itemid;
+                        string itemName = item;
+                        string qty = txtQty.Text;
+                        string rate = txtRate.Text;
+                        string locationId = ddlLocation.SelectedValue;
+                        string location = ddlLocation.SelectedItem.ToString();
+                        string remarks = txtPurpose.Text;
+
+                        int categoryId = Convert.ToInt32(dt.Rows[0]["intMasterCategory"].ToString());
+                        int masterCombGroup = Convert.ToInt32(dt.Rows[0]["intMasterComGroup"].ToString());
+                        if (categoryId == 45 || masterCombGroup == 37)
+                        {
+                            int unitId = new UnitBll().GetUnitIdByWhId(intWh);
+                            decimal Rate = new InventoryTransfer_BLL().GetItemRate(itemsId, unitId);
+                            if (Rate > 0)
+                            {
+                                rate = Rate.ToString();
+                            }
+                            else
+                            {
+                                Toaster("Item COGS price missing", Common.TosterType.Warning);
+                                return;
+                            }
+                        }
+
+                        CreateXml(itemId, itemName, qty, rate, locationId, location, remarks);
+                    }
+                    else
+                    {
+                        Toaster("Item information getting error", Common.TosterType.Warning);
+                    }
+                }
+                else
+                {
+                    Toaster("Item already added", Common.TosterType.Warning);
+                }
+
+                txtItem.Text = "";
+                txtQty.Text = "0";
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
-        private void CreateXml(string itemId, string itemName, string qty, string rate, string locationid, string location, string remarks)
+        private void CreateXml(string itemId, string itemName, string qty, string rate, string locationId, string location, string remarks)
         {
             XmlDocument doc = new XmlDocument();
             if (File.Exists(filePathForXML))
             {
                 doc.Load(filePathForXML);
                 XmlNode rootNode = doc.SelectSingleNode("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemId, itemName, qty, rate, locationid, location, remarks);
+                XmlNode addItem = CreateItemNode(doc, itemId, itemName, qty, rate, locationId, location, remarks);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -115,12 +163,12 @@ namespace UI.SCM
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("voucher");
-                XmlNode addItem = CreateItemNode(doc, itemId, itemName, qty, rate, locationid, location, remarks);
+                XmlNode addItem = CreateItemNode(doc, itemId, itemName, qty, rate, locationId, location, remarks);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-            LoadGridwithXml();
+            LoadGridWithXml();
         }
 
         #region========================Data Submit Action=====================
@@ -129,9 +177,8 @@ namespace UI.SCM
         {
             try
             {
-                if (hdnConfirm.Value.ToString() == "1")
+                if (hdnConfirm.Value == "1")
                 {
-                    enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                     XmlDocument doc = new XmlDocument();
                     intWh = int.Parse(ddlWH.SelectedValue);
                     doc.Load(filePathForXML);
@@ -139,17 +186,27 @@ namespace UI.SCM
                     xmlString = dSftTm.InnerXml;
                     xmlString = "<voucher>" + xmlString + "</voucher>";
 
-                    try { File.Delete(filePathForXML); } catch { }
+                    if (filePathForXML.IsExist())
+                    {
+                        File.Delete(filePathForXML);
+                    }
+
                     if (xmlString.Length > 5)
                     {
-                        string mrtg = objRecive.MrrReceive(18, xmlString, intWh, 0, DateTime.Now, enroll);
-                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + mrtg + "');", true);
-                        dgvRecive.DataSource = "";
-                        dgvRecive.DataBind();
+                        string mrtg = objRecive.MrrReceive(18, xmlString, intWh, 0, DateTime.Now, Enroll);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                            "alert('" + mrtg + "');", true);
+                        dgvRecive.UnLoad();
                     }
                 }
             }
-            catch { try { File.Delete(filePathForXML); } catch { } }
+            catch
+            {
+                if (filePathForXML.IsExist())
+                {
+                    File.Delete(filePathForXML);
+                }
+            }
         }
 
         #endregion======================Close=================================
@@ -158,14 +215,14 @@ namespace UI.SCM
         {
             try
             {
-                LoadGridwithXml();
+                LoadGridWithXml();
                 DataSet dsGrid = (DataSet)dgvRecive.DataSource;
                 dsGrid.Tables[0].Rows[dgvRecive.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvRecive.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 { File.Delete(filePathForXML); dgvRecive.DataSource = ""; dgvRecive.DataBind(); }
-                else { LoadGridwithXml(); }
+                else { LoadGridWithXml(); }
             }
             catch { }
         }
@@ -176,7 +233,10 @@ namespace UI.SCM
             {
                 Session["WareID"] = ddlWH.SelectedValue;
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
         protected void txtItem_TextChanged(object sender, EventArgs e)
@@ -185,19 +245,24 @@ namespace UI.SCM
             {
                 arrayKey = txtItem.Text.Split(delimiterChars);
                 intWh = int.Parse(ddlWH.SelectedValue);
-                string item = ""; string itemid = "";
+                string item = "";
+                string itemid = "";
                 if (arrayKey.Length > 0)
-                { item = arrayKey[0].ToString(); itemid = arrayKey[1].ToString(); }
+                {
+                    item = arrayKey[0];
+                    itemid = arrayKey[1];
+                }
+
                 dt = objOperation.WhDataView(8, "", intWh, int.Parse(itemid), 1);
-                ddlLocation.DataSource = dt;
-                ddlLocation.DataValueField = "intLocation";
-                ddlLocation.DataTextField = "strLocationName";
-                ddlLocation.DataBind();
+                ddlLocation.Loads(dt, "intLocation", "strLocationName");
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
 
-        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string qty, string rate, string locationid, string location, string remarks)
+        private XmlNode CreateItemNode(XmlDocument doc, string itemId, string itemName, string qty, string rate, string locationId, string location, string remarks)
         {
             XmlNode node = doc.CreateElement("voucherEntry");
 
@@ -210,7 +275,7 @@ namespace UI.SCM
             XmlAttribute Rate = doc.CreateAttribute("rate");
             Rate.Value = rate;
             XmlAttribute Locationid = doc.CreateAttribute("locationid");
-            Locationid.Value = locationid;
+            Locationid.Value = locationId;
             XmlAttribute Location = doc.CreateAttribute("location");
             Location.Value = location;
             XmlAttribute Remarks = doc.CreateAttribute("remarks");
@@ -229,47 +294,66 @@ namespace UI.SCM
             return node;
         }
 
-        private void LoadGridwithXml()
+        private void LoadGridWithXml()
         {
             try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<voucher>" + xmlString + "</voucher>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0)
-                { dgvRecive.DataSource = ds; }
-                else { dgvRecive.DataSource = ""; }
-                dgvRecive.DataBind();
-            }
-            catch { }
-        }
-
-        private void checkXmlItemData(string itemid)
-        {
-            try
-            {
-                DataSet ds = new DataSet();
-                ds.ReadXml(filePathForXML);
-                int i = 0;
-                for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                if (filePathForXML.IsExist())
                 {
-                    if (itemid == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filePathForXML);
+                    XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                    xmlString = dSftTm.InnerXml;
+                    xmlString = "<voucher>" + xmlString + "</voucher>";
+                    StringReader sr = new StringReader(xmlString);
+                    DataSet ds = new DataSet();
+                    ds.ReadXml(sr);
+                    if (ds.Tables[0].Rows.Count > 0)
                     {
-                        CheckItem = 0;
-                        break;
+                        dgvRecive.DataSource = ds;
                     }
                     else
                     {
-                        CheckItem = 1;
+                        dgvRecive.DataSource = "";
+                    }
+                    dgvRecive.DataBind();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
+        }
+
+        private void CheckXmlItemData(string itemId)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                if (filePathForXML.IsExist())
+                {
+                    ds.ReadXml(filePathForXML);
+                    int i = 0;
+                    for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                    {
+                        if (itemId == (ds.Tables[0].Rows[i].ItemArray[0].ToString()))
+                        {
+                            CheckItem = 0;
+                            break;
+                        }
+                        else
+                        {
+                            CheckItem = 1;
+                        }
                     }
                 }
+                
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message,Common.TosterType.Error);
+            }
         }
     }
 }
