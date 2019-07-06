@@ -202,6 +202,7 @@
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
     <Content Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx" />
+    <Content Include="Accounts\Report\DailyCollectionReport.aspx" />
     <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
     <Content Include="Accounts\Report\SubledgerDetalis.aspx" />
     <Content Include="Accounts\Report\ViewVoucherReport.aspx" />
@@ -502,6 +503,7 @@
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
     <Content Include="HR\Reports\AttendanceReport_ByUnit.aspx" />
+    <Content Include="HR\Reports\AllowanceCheck.aspx" />
     <Content Include="HR\Reports\EmployeeDetailsReport.aspx" />
     <Content Include="HR\Reports\EmployeeMovementAttendanceReport.aspx" />
     <Content Include="HR\Reports\EmployeeServiceInformation.aspx" />
@@ -2188,6 +2190,13 @@
     <Compile Include="Accounts\Report\MDSlip.aspx.designer.cs">
       <DependentUpon>MDSlip.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Report\DailyCollectionReport.aspx.cs">
+      <DependentUpon>DailyCollectionReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\DailyCollectionReport.aspx.designer.cs">
+      <DependentUpon>DailyCollectionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Report\NBR_Ledger_Report_New.aspx.cs">
       <DependentUpon>NBR_Ledger_Report_New.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3478,6 +3487,13 @@
     </Compile>
     <Compile Include="HR\Reports\AttendanceReport_ByUnit.aspx.designer.cs">
       <DependentUpon>AttendanceReport_ByUnit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Reports\AllowanceCheck.aspx.cs">
+      <DependentUpon>AllowanceCheck.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Reports\AllowanceCheck.aspx.designer.cs">
+      <DependentUpon>AllowanceCheck.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Reports\EmployeeDetailsReport.aspx.cs">
       <DependentUpon>EmployeeDetailsReport.aspx</DependentUpon>

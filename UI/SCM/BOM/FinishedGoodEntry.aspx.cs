@@ -124,11 +124,21 @@ namespace UI.SCM.BOM
                 string itemId = lblItem.Text;
                 string productName = product.Replace("\"", string.Empty).Replace("'", string.Empty);
                 string bomName = bom.Replace("\"", string.Empty).Replace("'", string.Empty);
-
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                if (Enroll == 369116 || Enroll ==1039 || Enroll == 1023 || Enroll == 1795)
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
+                    "ViewdetailsNew('" + productId + "','" + productName + "','" + bomName + "','" + batchName + "','" +
+                    startTime + "','" + endTime + "','" + invoice + "','" + srNo + "','" + quantity + "','" + whid +
+                    "','" + itemId + "');", true);
+                }
+                else
+                {
+                    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                     "Viewdetails('" + productId + "','" + productName + "','" + bomName + "','" + batchName + "','" +
                     startTime + "','" + endTime + "','" + invoice + "','" + srNo + "','" + quantity + "','" + whid +
                     "','" + itemId + "');", true);
+                }
+                
             }
             catch (Exception ex)
             {
