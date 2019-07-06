@@ -18,13 +18,7 @@ namespace UI.HR.OfficialMovement
         int enrol, reporttype, coaid, unitid, intmainheadcoaid; char[] delimiterChars = { '[', ']' }; string[] arrayKey;
         DataTable dt = new DataTable();
         HolidaySetup bll = new HolidaySetup();
-        bool ysnChecked;
-
-      
-        string xmlpath, email, strVcode, strPrefix, glblnarration, rptname, salesofficelike;
-
-       
-
+        bool ysnChecked; string xmlpath, email, strVcode, strPrefix, glblnarration, rptname, salesofficelike;
         decimal totalcom, selectedtotalcom = 0;
         #endregion
 
@@ -39,7 +33,7 @@ namespace UI.HR.OfficialMovement
                     try { File.Delete(xmlpath); } catch { }
                     txtFromDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now.AddDays(-1));
                     txtToDate.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
-                    //pnlUpperControl.DataBind();
+                 
                     hdnenroll.Value = HttpContext.Current.Session[SessionParams.USER_ID].ToString();
                     hdnemail.Value = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
 

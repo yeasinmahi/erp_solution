@@ -139,7 +139,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-4">
-                                    <asp:Button ID="btnDeleteJv" runat="server" class="btn btn-primary form-control pull-left" Text="Delete JV" OnClientClick="return confirmMsg();" OnClick="btnDeleteJV_Click" />
+                                    <asp:Button ID="btnDeleteJv" runat="server" class="btn btn-primary form-control pull-left" visible="false" Text ="Delete JV" OnClientClick="return confirmMsg();" OnClick="btnDeleteJV_Click" />
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-4 text-center">
                                     <asp:Button ID="btnFreeMrr" runat="server" class="btn btn-primary form-control" Text="Free MRR" Visible="False" OnClientClick="return confirmMsg();" OnClick="btnFreeMRR_Click" />
