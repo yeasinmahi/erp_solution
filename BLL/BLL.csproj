@@ -140,6 +140,7 @@
     <Compile Include="Accounts\SubLedger\SubLedgerC.cs" />
     <Compile Include="Accounts\SubLedger\SubLedgerType.cs" />
     <Compile Include="Accounts\TrialBalance\TrialBalanceC.cs" />
+    <Compile Include="Accounts\Voucher\AccountsNsubAccountsBLL.cs" />
     <Compile Include="Accounts\Voucher\BankContraChqBearerST.cs" />
     <Compile Include="Accounts\Voucher\BankVoucher.cs" />
     <Compile Include="Accounts\Voucher\Budget.cs" />

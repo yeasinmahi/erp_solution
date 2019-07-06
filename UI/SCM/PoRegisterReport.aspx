@@ -152,9 +152,9 @@
                     <table>
                         <tr>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Unit Name:"></asp:Label></td>
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="WH Name:"></asp:Label></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlWH" CssClass="ddList" Font-Bold="False" AutoPostBack="true" runat="server" OnSelectedIndexChanged="ddlWH_SelectedIndexChanged" Height="16px"></asp:DropDownList></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" CssClass="lbl" runat="server" Text="View By: "></asp:Label></td>
                             <td>

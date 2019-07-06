@@ -85,6 +85,15 @@ namespace UI.Accounts.Bank {
         protected global::System.Web.UI.WebControls.Button btnShow;
         
         /// <summary>
+        /// hdnUnit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnUnit;
+        
+        /// <summary>
         /// gridReport control.
         /// </summary>
         /// <remarks>

@@ -339,6 +339,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VATInformationTDS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Voucher\AccountsNsubAccountsTDS.cs">
+      <DependentUpon>AccountsNsubAccountsTDS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Voucher\AccountsNsubAccountsTDS.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountsNsubAccountsTDS.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Voucher\BankContraChqBearerTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1006,6 +1014,17 @@
     </None>
     <None Include="Accounts\Vat\VATInformationTDS.xss">
       <DependentUpon>VATInformationTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\AccountsNsubAccountsTDS.xsc">
+      <DependentUpon>AccountsNsubAccountsTDS.xsd</DependentUpon>
+    </None>
+    <None Include="Accounts\Voucher\AccountsNsubAccountsTDS.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AccountsNsubAccountsTDS.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Accounts\Voucher\AccountsNsubAccountsTDS.xss">
+      <DependentUpon>AccountsNsubAccountsTDS.xsd</DependentUpon>
     </None>
     <None Include="Accounts\Voucher\BankContraChqBearerTDS.xsc">
       <DependentUpon>BankContraChqBearerTDS.xsd</DependentUpon>

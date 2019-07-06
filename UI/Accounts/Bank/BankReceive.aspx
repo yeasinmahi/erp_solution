@@ -9,12 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
+     <link href="../Content/CSS/CommonStyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style1 {
             height: 50px;
             width: 100%;
         }
     </style>
+
+    <script>
+          
+          function Changed() {
+              document.getElementById('HdfSearchbox').value = 'true';
+          }
+         
+    </script>
+
+
 </head>
 <body>
     <form id="form1" runat="server">
@@ -54,10 +66,11 @@
                     </div>
 
                 </div>
+                <asp:HiddenField ID="hdnUnit" runat="server" />
                 <%--Bank Receive Form End--%>
                 <%--GridView Start--%>
                 <div>
-                    <asp:GridView ID="gridReport" runat="server" AutoGenerateColumns="False" PageSize="3000" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" 
+                    <asp:GridView ID="gridReport" runat="server" AutoGenerateColumns="False" PageSize="3000" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px"
                         CellPadding="3" ForeColor="Black" HeaderStyle-Wrap="true" OnRowDataBound="gridReport_RowDataBound" GridLines="Vertical" DataKeyNames="intID">
                         <AlternatingRowStyle BackColor="#CCCCCC" />
                         <Columns>
@@ -81,7 +94,7 @@
                                 </ItemTemplate>
                                 <ItemStyle HorizontalAlign="Left" />
                             </asp:TemplateField>
-                           <asp:TemplateField HeaderText="Particulars">
+                            <asp:TemplateField HeaderText="Particulars">
                                 <ItemTemplate>
                                     <asp:Label ID="lblParticulars" runat="server" Text='<%# Bind("strParticulars") %>' Width="170px"></asp:Label>
                                 </ItemTemplate>
@@ -114,13 +127,18 @@
 
                             <asp:TemplateField HeaderText="Customer List">
                                 <ItemTemplate>
-                                    <asp:DropDownList ID="ddlCustomer" runat="server" CssClass="ddList" Width="150px" AutoPostBack="true">
-                                    </asp:DropDownList>
+                               
+                                <asp:TextBox ID="txtCustomer" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="300px" placeholde="Search Customer"></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtCustomer" 
+                                    ServiceMethod="GetCustomerList" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender> 
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="Other">
+                            <asp:TemplateField HeaderText="Remarks">
                                 <ItemTemplate>
-                                    <asp:TextBox ID="txtOther" runat="server" CssClass="" Width="100px" AutoPostBack="true"></asp:TextBox>
+                                    <asp:TextBox ID="txtOther" runat="server" CssClass="" Width="130px" AutoPostBack="true"></asp:TextBox>
                                 </ItemTemplate>
                             </asp:TemplateField>
 
@@ -151,7 +169,9 @@
             </Triggers>
         </asp:UpdatePanel>
     </form>
+  
 
+    
 </body>
 </html>
 
