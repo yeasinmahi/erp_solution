@@ -1533,6 +1533,7 @@
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
     <Content Include="SAD\Setup\AfblPointSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
+    <Content Include="SAD\Setup\AfblSectionSetup.aspx" />
     <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
     <Content Include="SAD\Setup\EmployeeBridgeJobStation.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
@@ -7968,6 +7969,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.designer.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblSectionSetup.aspx.cs">
+      <DependentUpon>AfblSectionSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblSectionSetup.aspx.designer.cs">
+      <DependentUpon>AfblSectionSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.cs">
       <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>
