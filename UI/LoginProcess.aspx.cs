@@ -47,10 +47,10 @@ namespace UI
                 {
              
                     string[] donainpatrs = domainUser.Split('\\');
-                   var id = donainpatrs[1] + "@akij.net";
+                    var id = donainpatrs[1] + "@akij.net";
 
 
-                    //var id = "test.acrl@akij.net";
+                    //var id = "rakibur.afbl@akij.net";
 
 
                     string ip = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];

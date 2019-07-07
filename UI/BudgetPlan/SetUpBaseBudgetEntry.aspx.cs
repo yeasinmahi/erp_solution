@@ -50,6 +50,22 @@ namespace UI.BudgetPlan
                 try { File.Delete(xmlpath); }
                 catch { }
                 ////-----**----------//
+                ///
+
+                txtjan.Text = "0";
+                txtFeb.Text = "0";
+                txtMarch.Text = "0";
+                txtApril.Text = "0";
+                txtMay.Text = "0";
+                txtJune.Text = "0";
+                txtJuly.Text = "0";
+                txtAugest.Text = "0";
+                txtSpetmeber.Text = "0";
+                txtOctober.Text = "0";
+                txtNovember.Text = "0";
+                txtDecember.Text = "0";
+
+
             }
             else
             {
@@ -230,11 +246,15 @@ namespace UI.BudgetPlan
                 if (december.Length <= 0) { december = "0"; }
                 budgyr = ddlYear.SelectedItem.Text.ToString();
 
+                string Productprice = txtProductRate.Text;
+                if (Productprice.Length <= 0) { Productprice = "0"; }
+              
+
                 //budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
                 //january, february, march, april, may, june, july, augest, september, october, november, december
 
                 Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr);
+                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, Productprice);
 
             }
             //else
@@ -249,7 +269,7 @@ namespace UI.BudgetPlan
         #region ================ Generate XML and Others ==========        
         private void Createxml(string budgettype, string itemid, string salesofficeid, string regionid, string areaid, string prdlineid, string costcneteid, string yrid,
            string january, string february, string march, string april, string may, string june, string july, string augest, string september, string october, string november, string december
-            , string prdname, string budgyr)
+            , string prdname, string budgyr,string productprice)
         {
             System.Xml.XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))
@@ -257,7 +277,7 @@ namespace UI.BudgetPlan
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("SetupbaseBudget");
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr);
+                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, productprice);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -266,7 +286,7 @@ namespace UI.BudgetPlan
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("SetupbaseBudget");
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr);
+                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, productprice);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -275,7 +295,7 @@ namespace UI.BudgetPlan
         }
         private XmlNode CreateNode(XmlDocument doc, string budgettype, string itemid, string salesofficeid, string regionid, string areaid, string prdlineid, string costcneteid, string yrid,
         string january, string february, string march, string april, string may, string june, string july, string augest
-        , string september, string october, string november, string december, string prdname, string budgyr)
+        , string september, string october, string november, string december, string prdname, string budgyr,string productprice)
         {
             XmlNode node = doc.CreateElement("req");
             XmlAttribute Budgettype = doc.CreateAttribute("budgettype"); Budgettype.Value = budgettype;
@@ -300,7 +320,7 @@ namespace UI.BudgetPlan
             XmlAttribute December = doc.CreateAttribute("december"); December.Value = december;
             XmlAttribute Prdname = doc.CreateAttribute("prdname"); Prdname.Value = prdname;
             XmlAttribute Budgyr = doc.CreateAttribute("budgyr"); Budgyr.Value = budgyr;
-
+            XmlAttribute Productprice = doc.CreateAttribute("productprice"); Productprice.Value = productprice;
 
             node.Attributes.Append(Budgettype);
             node.Attributes.Append(Itemid);
@@ -328,7 +348,7 @@ namespace UI.BudgetPlan
             node.Attributes.Append(December);
             node.Attributes.Append(Prdname);
             node.Attributes.Append(Budgyr);
-
+            node.Attributes.Append(Productprice);
 
             return node;
         }
@@ -346,9 +366,10 @@ namespace UI.BudgetPlan
                 string[] temp = txtProduct.Text.Split(ch, StringSplitOptions.RemoveEmptyEntries);
                 hdnProduct.Value = temp[temp.Length - 1];
                 hdnProductText.Value = temp[0];
+                int prdid = int.Parse(hdnProduct.Value);
 
-
-
+                dt = obj.GetBudgetProductInfo(prdid);
+                txtProductRate.Text = dt.Rows[0]["monprice"].ToString();
 
             }
             else

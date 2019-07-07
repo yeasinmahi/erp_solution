@@ -35,18 +35,18 @@ namespace UI.SCM
                 VisiblePanel();
                 return;
             }
-            if (txtStatus.Text.ToLower().Equals("complete"))
-            {
-                Toaster("Voucher completed. MRR cannot be Deleted.", Common.TosterType.Warning);
-                VisiblePanel();
-            }
-            else if (!string.IsNullOrWhiteSpace(txtVoucherNo.Text))
-            {
-                Toaster("Please Delete JV Voucher.", Common.TosterType.Warning);
-                VisiblePanel();
-            }
-            else
-            {
+            //if (txtStatus.Text.ToLower().Equals("complete"))
+            //{
+            //    Toaster("Voucher completed. MRR cannot be Deleted.", Common.TosterType.Warning);
+            //    VisiblePanel();
+            //}
+            //else if (!string.IsNullOrWhiteSpace(txtVoucherNo.Text))
+            //{
+            //    Toaster("Please Delete JV Voucher.", Common.TosterType.Warning);
+            //    VisiblePanel();
+            //}
+            //else
+            //{
                 try
                 {
                     _intMrrid = int.Parse(txtMrrNo.Text);
@@ -66,7 +66,7 @@ namespace UI.SCM
                     Toaster(ex.Message, Common.TosterType.Error);
                     VisiblePanel();
                 }
-            }
+            //}
 
         }
         protected void btnFreeMRR_Click(object sender, EventArgs e)

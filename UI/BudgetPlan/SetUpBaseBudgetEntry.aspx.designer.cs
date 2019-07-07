@@ -427,6 +427,24 @@ namespace UI.BudgetPlan {
         protected global::System.Web.UI.WebControls.ObjectDataSource odsGetYR;
         
         /// <summary>
+        /// lbProudctRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbProudctRate;
+        
+        /// <summary>
+        /// txtProductRate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtProductRate;
+        
+        /// <summary>
         /// txtjan control.
         /// </summary>
         /// <remarks>
