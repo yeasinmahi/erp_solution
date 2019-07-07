@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.Accounts.Report {
+namespace UI.HR.Reports {
     
     
     public partial class AllowanceCheck {
