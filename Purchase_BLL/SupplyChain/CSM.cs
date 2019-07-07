@@ -490,8 +490,7 @@ namespace Purchase_BLL.SupplyChain
              try
              { return adp.GetDataCommodity(intClusterid); }
              catch { return new DataTable(); }
-         }
-        
+         }        
 
          public DataTable GetRequisitionReport()
          {
@@ -499,10 +498,7 @@ namespace Purchase_BLL.SupplyChain
               GetRequisitionReportTableAdapter it = new GetRequisitionReportTableAdapter();
              return it.GetRequisitionReport();
           }
-
-
-
-
+        
          public List<string> AutoSearchItemData(string strSearchKeyemp)
          {
              List<string> result = new List<string>();

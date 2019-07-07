@@ -23,7 +23,7 @@ namespace UI.Transport
         SetupBLL objsetup = new SetupBLL();
         DataTable dt = new DataTable();
         NewVehicleBLL objVehicle = new NewVehicleBLL();
-        //char[] delimiterChars = { '[',']' }; string[] arrayKey;
+      
         char[] delimiterChars = { '[', ']' }; string[] arrayKey;
         int vhclid;
         
@@ -36,7 +36,7 @@ namespace UI.Transport
         decimal DriverDA, diselperkm, HelperDA, DownTripAllowance, DownTripDA, MillageAllowance100KM, MillageAllowance100KMAbove, MillageLocal,
         MillageOutstation, CNGAllowance, DiselPerKmOutstation, DiselPerKMLocal, DiselPerKMLitter, DownTripDiselPerKM, CNGPerKM,
         LoadingCapacity, CNGPerKMOutstation;
-        //NewVehicleBLL objVehicle = new NewVehicleBLL();
+       
         string[] arrayKeyItem; 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -51,12 +51,12 @@ namespace UI.Transport
                 if (!String.IsNullOrEmpty(txtVheicleNumber.Text))
                 {
                     string strvheiclename = txtVheicleNumber.Text;
-                    //LoadFieldValue(strvheiclename);
+                  
 
                 }
                 else
                 {
-                    //ClearControls();
+                   
                 }
             }
 

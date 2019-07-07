@@ -175,7 +175,15 @@ namespace Budget_BLL.Budget
         }
 
 
-
+        public DataTable GetBudgetProductInfo(int prdid)
+        {
+            try
+            {
+                SprBudgetProductPriceTableAdapter adp = new SprBudgetProductPriceTableAdapter();
+                return adp.GetDataBudgetProductPrice(prdid);
+            }
+            catch { return new DataTable(); }
+        }
 
 
 
