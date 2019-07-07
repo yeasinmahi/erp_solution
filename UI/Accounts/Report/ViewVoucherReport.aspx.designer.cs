@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.HR.Reports {
+namespace UI.Accounts.Report {
     
     
-    public partial class AllowanceCheck {
+    public partial class ViewVoucherReport {
         
         /// <summary>
         /// PlaceHolder0 control.

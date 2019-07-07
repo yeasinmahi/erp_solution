@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.HR.Reports {
+namespace UI.Accounts.Report {
     
     
-    public partial class AllowanceCheck {
+    public partial class Cash_and_Bank_Book_Report {
         
         /// <summary>
         /// PlaceHolder0 control.

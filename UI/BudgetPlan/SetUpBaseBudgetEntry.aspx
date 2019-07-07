@@ -23,86 +23,55 @@
     <script src="../../../../Content/JS/datepickr.min.js"></script>
     <script src="../../../../Content/JS/JQUERY/MigrateJS.js"></script>
     <script src="../../../../Content/JS/JQUERY/GridviewScroll.min.js"></script>
-        <%--<script>
+        <script>
             function sum() {
 
-                // if (isNaN(txtjan)){ txtjan = "0"; }
-                //if (isNaN(txtFeb)) { txtFeb = "0"; }
-                // if (isNaN(txtMarch)) { txtMarch = "0"; }
-                //  if (isNaN(txtApril)){ txtApril = "0"; }
-                //if (isNaN(txtMay)) { txtMay = "0"; }
-                // if (isNaN(txtJune)) { txtJune = "0"; }
-                //  if (isNaN(txtJuly)){ txtJuly = "0"; }
-                //if (isNaN(txtAugest)) { txtAugest = "0"; }
-                // if (isNaN(txtSpetmeber)) { txtSpetmeber = "0"; }
-                //  if (isNaN(txtOctober)){ txtOctober = "0"; }
-                //if (isNaN(txtNovember)) { txtNovember = "0"; }
-                // if (isNaN(txtDecember)) { txtDecember = "0"; }
-
-
-
-
-            var txtjan =parseInt (document.getElementById("txtjan").value);
-           alert(txtjan);
-            var txtFeb = parseInt(document.getElementById("txtFeb").value);
-              alert(txtFeb);
-            var txtMarch = parseInt(document.getElementById("txtMarch").value);
-              alert(txtMarch);
+            var txtjan =parseInt (document.getElementById('txtjan').value);
+          
+            var txtFeb = parseInt(document.getElementById('txtFeb').value);
+             
+            var txtMarch = parseInt(document.getElementById('txtMarch').value);
+            
            
-
-
-            var txtApril = parseInt(document.getElementById("txtApril").value);
-
-             alert(txtApril);
-            var txtMay = parseInt(document.getElementById("txtMay").value);
-              alert(txtMay);
-            var txtJune = parseInt(document.getElementById("txtJune").value);
-              alert(txtJune);
-            var txtJuly = parseInt(document.getElementById("txtJuly").value);
-              alert(txtJuly);
-            var txtAugest = parseInt(document.getElementById("txtAugest").value);
-              alert(txtAugest);
-            var txtSpetmeber = parseInt(document.getElementById("txtSpetmeber").value);
-              alert(txtSpetmeber);
-            var txtOctober = parseInt(document.getElementById("txtOctober").value);
-              alert(txtOctober);
-            var txtNovemeber = parseInt(document.getElementById("txtNovember").value);
-              alert(txtNovemeber);
-            var txtDecember = parseInt(document.getElementById("txtDecember").value);
-              alert(txtDecember);
-            //var tot = document.getElementById('txtTotal').value;
+            var txtApril = parseInt(document.getElementById('txtApril').value);
 
            
-            //           if (txtFeb = "") { txtFeb = "0"; }
-            //if (txtMarch = "") { txtMarch = "0"; }
-            //if (txtApril = "") { txtApril = "0"; }
-            //if (txtMay = "") { txtMay = "0"; }
-            //if (txtJune = "") { txtJune = "0"; }
-            //if (txtJuly = "") { txtJuly = {"0"; }
-            //if (txtAugest = "") { txtAugest = "0"; }
-            //if (txtSpetmeber = "") { txtSpetmeber = "0"; }
-            //if (txtOctober = "") { txtOctober = "0"; }
-            //if (txtNovember = "") { txtNovember = "0"; }
-            //if (txtDecember = "") { txtDecember = "0"; }
+            var txtMay = parseInt(document.getElementById('txtMay').value);
+             
+            var txtJune = parseInt(document.getElementById('txtJune').value);
+             
+            var txtJuly = parseInt(document.getElementById('txtJuly').value);
+             
+            var txtAugest = parseInt(document.getElementById('txtAugest').value);
+            
+            var txtSpetmeber = parseInt(document.getElementById('txtSpetmeber').value);
+             
+            var txtOctober = parseInt(document.getElementById('txtOctober').value);
+             
+            var txtNovember = parseInt(document.getElementById('txtNovember').value);
+             
+            var txtDecember = parseInt(document.getElementById('txtDecember').value);
+            
+                var tot = document.getElementById('txtTotal').value;
+                var prate=document.getElementById('txtProductRate').value;
 
-
-            //  var result = parseInt(txtjan) + parseInt(txtFeb) + parseInt(txtMarch) + parseInt(txtApril)
-            //             + parseInt(txtMay) + parseInt(txtJune) + parseInt(txtJuly) + parseInt(txtAugest)
-            //      + parseInt(txtSpetmeber) + parseInt(txtOctober)
-            //      + parseInt(txtNovember)
-            //      + parseInt(txtDecember)
+                var result = parseFloat(txtjan*prate) + parseFloat(txtFeb*prate) + parseFloat(txtMarch*prate) + parseFloat(txtApril*prate)
+                         + parseFloat(txtMay*prate) + parseFloat(txtJune*prate) + parseFloat(txtJuly*prate) + parseFloat(txtAugest*prate)
+                  + parseFloat(txtSpetmeber) + parseFloat(txtOctober)
+                  + parseFloat(txtNovember*prate)
+                  + parseFloat(txtDecember*prate)
 
 
             //alert(result);
 
-            //if (!isNaN(result)) {
-            //    document.getElementById('txtTotal').value = result;
-            //}
+            if (!isNaN(result)) {
+                document.getElementById('txtTotal').value = result;
+            }
 
 
         }
     </script>
-    --%>
+    
     
     <script>
            function Confirm() {
@@ -332,41 +301,47 @@
             <td style="text-align:left;"><asp:DropDownList ID="ddlYear" CssClass="ddList" Font-Bold="False" Width="120px" runat="server" DataSourceID="odsGetYR" DataTextField="strYearList" DataValueField="intYear"></asp:DropDownList>                                                                       
                 <asp:ObjectDataSource ID="odsGetYR" runat="server" SelectMethod="GetYearList" TypeName="Budget_BLL.Budget.Budget_Entry_BLL"></asp:ObjectDataSource>
             </td>
+
+               <td style="text-align:right;"><asp:Label ID="lbProudctRate" runat="server" CssClass="lbl" Text="Product Rate:"></asp:Label></td>
+            <td style="text-align:left;">
+                <asp:TextBox ID="txtProductRate" runat="server"></asp:TextBox>
+            </td>
+
             </tr>
             </div>
         <div id="content">
             <table>
                 <tr>
 
-                <td> <label> January<br /> <asp:TextBox ID="txtjan" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox></label> </td>
+                <td> <label> January<br /> <asp:TextBox ID="txtjan" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
-                <td><label> February<br /> <asp:TextBox ID="txtFeb" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> February<br /> <asp:TextBox ID="txtFeb" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"   CssClass="txtBox"></asp:TextBox> </label></td>
                <td></td>
 
-                <td> <label> March<br /> <asp:TextBox ID="txtMarch" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox></label> </td>
+                <td> <label> March<br /> <asp:TextBox ID="txtMarch" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
-                <td><label> April<br /> <asp:TextBox ID="txtApril" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> April<br /> <asp:TextBox ID="txtApril" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"  onkeyup="sum();" CssClass="txtBox"></asp:TextBox> </label></td>
                     <td></td>
-                     <td> <label> May<br /> <asp:TextBox ID="txtMay" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox></label> </td>
+                     <td> <label> May<br /> <asp:TextBox ID="txtMay" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
-                <td><label> June<br /> <asp:TextBox ID="txtJune" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"  CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> June<br /> <asp:TextBox ID="txtJune" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();" CssClass="txtBox"></asp:TextBox> </label></td>
                     <td></td>
                 
 
-                <td> <label> July<br /> <asp:TextBox ID="txtJuly" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox></label> </td>
+                <td> <label> July<br /> <asp:TextBox ID="txtJuly" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
-                <td><label> Augest<br /> <asp:TextBox ID="txtAugest" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> Augest<br /> <asp:TextBox ID="txtAugest" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
                <td></td>
 
-                <td> <label> September<br /> <asp:TextBox ID="txtSpetmeber" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox></label> </td>
+                <td> <label> September<br /> <asp:TextBox ID="txtSpetmeber" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
-                <td><label> October<br /><asp:TextBox ID="txtOctober" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> October<br /><asp:TextBox ID="txtOctober" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
                     <td></td>
-                <td> <label> November<br /> <asp:TextBox ID="txtNovember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox></label> </td>
+                <td> <label> November<br /> <asp:TextBox ID="txtNovember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox></label> </td>
                 <td></td>
-                <td><label> December<br /> <asp:TextBox ID="txtDecember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> December<br /> <asp:TextBox ID="txtDecember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
                     <td></td>
-                <td><label> Total<br /> <asp:TextBox ID="txtTotal" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px"   CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> Total<br /> <asp:TextBox ID="txtTotal" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
                 </tr>
 
 

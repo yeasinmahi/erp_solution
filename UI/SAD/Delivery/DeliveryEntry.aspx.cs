@@ -850,7 +850,7 @@ namespace UI.SAD.Delivery
 
         protected void txtCustomer_TextChanged(object sender, EventArgs e)
         {
-            Reset();
+           InitilizeXmlAddControl();
             CustomerChange();
         }
 

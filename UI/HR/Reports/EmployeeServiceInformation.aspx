@@ -44,7 +44,8 @@
                                  </div>
                                 <div class="col-md-3">
                                       <asp:Label ID="Label3" runat="server" Text="Date" CssClass="row col-md-12 col-sm-12 col-xs-12"></asp:Label>
-                                      <asp:TextBox ID="txtDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoComplete="off"></asp:TextBox>
+                                      <asp:TextBox ID="txtDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" AutoComplete="off" AutoPostBack="true"></asp:TextBox>
+                                    <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtDate"></cc1:CalendarExtender>
                                  </div>
                                  <div class="col-md-3" style="padding-top:20px;">   
                                     <asp:Button ID="btnShow" runat="server" class="btn btn-primary form-control pull-left" OnClientClick="return validation();" Text="Show" OnClick="btnShow_Click"/>
@@ -65,9 +66,9 @@
     <script>
         $(function () {
             SetAutoComplete();
-             $("#txtDate").datepicker({
-                dateFormat: "yy-mm-dd"
-            });
+            // $("#txtDate").datepicker({
+            //    dateFormat: "yy-mm-dd"
+            //});
         });
         $(document).ready(function() {
             var prm = Sys.WebForms.PageRequestManager.getInstance();
@@ -75,9 +76,9 @@
             prm.add_endRequest(EndRequest);
             SetAutoComplete();
 
-            $("#txtDate").datepicker({
-                dateFormat: "yyyy-MM-dd"
-            });
+            //$("#txtDate").datepicker({
+            //    dateFormat: "yy-mm-dd"
+            //});
 
         });
         function InitializeRequest(sender, args) {}
