@@ -5,7 +5,7 @@
 
 <html>
 <head runat="server">
-    <title>.: Employee Attendance Details :.</title>
+    <title>.: Employee Allowance :.</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta http-equiv="X-Frame-Options" content="allow"/>
     <asp:PlaceHolder ID="PlaceHolder0" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder> 
     <webopt:BundleReference ID="BundleReference0" runat="server" Path="~/Content/Bundle/defaultCSS" />     
