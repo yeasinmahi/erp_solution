@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllowanceCheck.aspx.cs" Inherits="UI.Accounts.Report.AllowanceCheck" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AllowanceCheck.aspx.cs" Inherits="UI.HR.Reports.AllowanceCheck" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 <!DOCTYPE html>

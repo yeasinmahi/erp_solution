@@ -56,7 +56,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Effective Date:"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtEffectDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" placeholder="click here"></asp:TextBox>
+                                <asp:TextBox ID="txtEffectDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" placeholder="click here" AutoComplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectDate"></cc1:CalendarExtender>
                             </td>
                             <td style="text-align: right;">
