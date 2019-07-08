@@ -361,15 +361,16 @@
                     </table>
                 </div>
                 <div>
-                    <table style="border-color: black; width: 900px; border-radius: 10px;padding-left:5px; padding-right:5px">
+                    <table style="border-color: black; width: 100%; border-radius: 10px;padding-left:5px; padding-right:5px">
                          <caption style="text-align: left; color: blue">Finish Product Extra Production</caption>
                         <tr>
                             <td>
-                                <asp:GridView ID="dgvStore" runat="server" Width="800px" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
+                                <asp:GridView ID="dgvStore" runat="server" Width="100%" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"  ShowFooter="True"
                                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" OnRowDeleting="dgvGridView_RowDeleting"
-                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true" ShowFooter="False" GridLines="both"
-                                    ForeColor="Black">
-                                    <AlternatingRowStyle BackColor="#CCCCCC" />
+                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="10px" HeaderStyle-Font-Bold="true" GridLines="both"
+                                              ForeColor="#333333" CellPadding="4">
+                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+
                                     <Columns>
                                         <asp:TemplateField HeaderText="SL No.">
                                             <ItemStyle HorizontalAlign="center" Width="60px" />
@@ -411,9 +412,16 @@
                                         </asp:TemplateField>
                                         <asp:CommandField ShowDeleteButton="True" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
                                     </Columns>
-                                   <FooterStyle Font-Bold="True" Font-Size="11px" BackColor="#5D7B9D" ForeColor="White" />
-                                    <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                    <EditRowStyle BackColor="#999999" />
+                                    <FooterStyle Font-Bold="True" Font-Size="11px" BackColor="#5D7B9D" ForeColor="White" />
+                                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                                 </asp:GridView>
                             </td>
                         </tr>

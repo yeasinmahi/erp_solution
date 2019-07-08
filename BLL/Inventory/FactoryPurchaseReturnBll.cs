@@ -28,64 +28,71 @@ namespace BLL.Inventory
             {
                 return "This MRR already complete payment. It can not be returned.";
             }
-            int purchaseReturnId = _dal.Insert(intMrrId, itemId, poQty, numRcvQty, returnQty, returnValue, intEnroll, unitId, remarks);
-            if (purchaseReturnId > 0)
-            {
-                int inventoryId = _inventoryBll.InsertBySpInventoryTransection(unitId, intWhId, locationId, itemId,
-                    returnQty*-1, returnValue*-1, purchaseReturnId, 2);
-                if (inventoryId > 0)
-                {
-                    int coaId = _itemListBll.GetItemCoaId(itemId);
-                    int coaId2 = _supplierBll.GetCoaId(supplierId);
-                    if (coaId > 0 && coaId2>0)
-                    {
-                        string accName = _accountsChartOfAccBll.GetAccountName(coaId);
-                        string accName2 = _accountsChartOfAccBll.GetAccountName(coaId2);
-                        if (!string.IsNullOrWhiteSpace(accName) && !string.IsNullOrWhiteSpace(accName2))
-                        {
-                            int jvId = _accountsVoucherJournalBll.InsertJournalVoucher(intWhId, returnValue, "Purchase Return", intEnroll);
-                            if (jvId > 0)
-                            {
-                                int jvId1 = _accountsVoucherJournalDetailsBll.Insert(jvId, coaId, itemName, returnValue, accName);
-                                int jvId2 = _accountsVoucherJournalDetailsBll.Insert(jvId, coaId2, supplierName, returnValue * -1, accName2);
-                                if(jvId1>0 && jvId2 > 0)
-                                {
-                                    return "Purchase Return Successful. Returned ID: "+ purchaseReturnId;
-                                }
-                            }
-                            else
-                            {
-                                return "Jv Insert failed";
-                                //TODO: Jv insert Failed
-                            }
-                            
-                        }
-                        else
-                        {
-                            return "failed to get acc";
-                            //TODO: RollBack
-                        }
 
-                    }
-                    else
-                    {
-                        return "failed to get COA";
-                        //TODO: RollBack
-                    }
-                    
-                }
-                else
-                {
-                    return "Failed to inset data into inventory";
-                    //TODO: Inventory insert Failed
-                }
-            }
-            else
-            {
-                return "Failed to inset data into purchase return";
-                //TODO: Purchase Return insert Failed
-            }
-            return "Purchase Return Failed";
+
+            _billRegisterDetail.InsertPurchaseReturn(intMrrId, intWhId, itemId, returnQty, intEnroll, remarks);
+
+            
+
+            //int purchaseReturnId = _dal.Insert(intMrrId, itemId, poQty, numRcvQty, returnQty, returnValue, intEnroll, unitId, remarks);
+
+            //if (purchaseReturnId > 0)
+            //{
+            //    int inventoryId = _inventoryBll.InsertBySpInventoryTransection(unitId, intWhId, locationId, itemId,
+            //        returnQty*-1, returnValue*-1, purchaseReturnId, 2);
+            //    if (inventoryId > 0)
+            //    {
+            //        int coaId = _itemListBll.GetItemCoaId(itemId);
+            //        int coaId2 = _supplierBll.GetCoaId(supplierId);
+            //        if (coaId > 0 && coaId2>0)
+            //        {
+            //            string accName = _accountsChartOfAccBll.GetAccountName(coaId);
+            //            string accName2 = _accountsChartOfAccBll.GetAccountName(coaId2);
+            //            if (!string.IsNullOrWhiteSpace(accName) && !string.IsNullOrWhiteSpace(accName2))
+            //            {
+            //                int jvId = _accountsVoucherJournalBll.InsertJournalVoucher(intWhId, returnValue, "Purchase Return", intEnroll);
+            //                if (jvId > 0)
+            //                {
+            //                    int jvId1 = _accountsVoucherJournalDetailsBll.Insert(jvId, coaId, itemName, returnValue, accName);
+            //                    int jvId2 = _accountsVoucherJournalDetailsBll.Insert(jvId, coaId2, supplierName, returnValue * -1, accName2);
+            //                    if(jvId1>0 && jvId2 > 0)
+            //                    {
+            //                        return "Purchase Return Successful. Returned ID: "+ purchaseReturnId;
+            //                    }
+            //                }
+            //                else
+            //                {
+            //                    return "Jv Insert failed";
+            //                    //TODO: Jv insert Failed
+            //                }
+
+            //            }
+            //            else
+            //            {
+            //                return "failed to get acc";
+            //                //TODO: RollBack
+            //            }
+
+            //        }
+            //        else
+            //        {
+            //            return "failed to get COA";
+            //            //TODO: RollBack
+            //        }
+
+            //    }
+            //    else
+            //    {
+            //        return "Failed to inset data into inventory";
+            //        //TODO: Inventory insert Failed
+            //    }
+            //}
+            //else
+            //{
+            //    return "Failed to inset data into purchase return";
+            //    //TODO: Purchase Return insert Failed
+            //
+            return "Purchase Return Successfull";
         }
     }
 }
