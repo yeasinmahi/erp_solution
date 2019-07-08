@@ -499,6 +499,7 @@
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\Penalty\Familyday.aspx" />
     <Content Include="HR\Penalty\FamilyDayPub.aspx" />
+    <Content Include="HR\PiceRateCalculation\AMFL_Indivisual_Pice_Rate_Report.aspx" />
     <Content Include="HR\PiceRateCalculation\CasualWorkerBill.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
@@ -3461,6 +3462,13 @@
     </Compile>
     <Compile Include="HR\Penalty\FamilyDayPub.aspx.designer.cs">
       <DependentUpon>FamilyDayPub.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\AMFL_Indivisual_Pice_Rate_Report.aspx.cs">
+      <DependentUpon>AMFL_Indivisual_Pice_Rate_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\AMFL_Indivisual_Pice_Rate_Report.aspx.designer.cs">
+      <DependentUpon>AMFL_Indivisual_Pice_Rate_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.cs">
       <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
