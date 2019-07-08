@@ -12471,6 +12471,8 @@ namespace SCM_DAL {
             
             private global::System.Data.DataColumn columnmonCost;
             
+            private global::System.Data.DataColumn columnstrcode;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public TblItemCostingFGDetailDataTable() {
@@ -12554,6 +12556,14 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strcodeColumn {
+                get {
+                    return this.columnstrcode;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -12589,7 +12599,7 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblItemCostingFGDetailRow AddTblItemCostingFGDetailRow(int intItemID, int intCostElementGroup, int intCoAID, string strCostGroup, string strAccName, decimal monCost) {
+            public TblItemCostingFGDetailRow AddTblItemCostingFGDetailRow(int intItemID, int intCostElementGroup, int intCoAID, string strCostGroup, string strAccName, decimal monCost, string strcode) {
                 TblItemCostingFGDetailRow rowTblItemCostingFGDetailRow = ((TblItemCostingFGDetailRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         intItemID,
@@ -12597,7 +12607,8 @@ namespace SCM_DAL {
                         intCoAID,
                         strCostGroup,
                         strAccName,
-                        monCost};
+                        monCost,
+                        strcode};
                 rowTblItemCostingFGDetailRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblItemCostingFGDetailRow);
                 return rowTblItemCostingFGDetailRow;
@@ -12626,6 +12637,7 @@ namespace SCM_DAL {
                 this.columnstrCostGroup = base.Columns["strCostGroup"];
                 this.columnstrAccName = base.Columns["strAccName"];
                 this.columnmonCost = base.Columns["monCost"];
+                this.columnstrcode = base.Columns["strcode"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12643,9 +12655,12 @@ namespace SCM_DAL {
                 base.Columns.Add(this.columnstrAccName);
                 this.columnmonCost = new global::System.Data.DataColumn("monCost", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnmonCost);
+                this.columnstrcode = new global::System.Data.DataColumn("strcode", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrcode);
                 this.columnstrCostGroup.MaxLength = 100;
                 this.columnstrAccName.AllowDBNull = false;
                 this.columnstrAccName.MaxLength = 200;
+                this.columnstrcode.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18089,6 +18104,22 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strcode {
+                get {
+                    try {
+                        return ((string)(this[this.tableTblItemCostingFGDetail.strcodeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strcode\' in table \'TblItemCostingFGDetail\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTblItemCostingFGDetail.strcodeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsintItemIDNull() {
                 return this.IsNull(this.tableTblItemCostingFGDetail.intItemIDColumn);
             }
@@ -18145,6 +18176,18 @@ namespace SCM_DAL {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetmonCostNull() {
                 this[this.tableTblItemCostingFGDetail.monCostColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrcodeNull() {
+                return this.IsNull(this.tableTblItemCostingFGDetail.strcodeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrcodeNull() {
+                this[this.tableTblItemCostingFGDetail.strcodeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -27866,6 +27909,7 @@ WHERE  it.ysnFinishGoods=1 and si.ysnActive=1 and si.intUnitID=@intUnitID  and b
             tableMapping.ColumnMappings.Add("strCostGroup", "strCostGroup");
             tableMapping.ColumnMappings.Add("strAccName", "strAccName");
             tableMapping.ColumnMappings.Add("monCost", "monCost");
+            tableMapping.ColumnMappings.Add("strcode", "strcode");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -27882,7 +27926,8 @@ WHERE  it.ysnFinishGoods=1 and si.ysnActive=1 and si.intUnitID=@intUnitID  and b
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"select fg.intItemID,fg.intCostElementGroup,fg.intCoAID,g.strCostGroup,acc.strAccName,fg.monCost  from ERP_Inventory.dbo.tblItemCostingFGDetail  fg inner JOIN ERP_Inventory.dbo.tblBillOfMaterialItemNsadItemBridge i ON fg.intItemID=i.intItemID join ERP_SAD.dbo.tblItem t ON i.intSADItemID=t.intID join ERP_Inventory.dbo.tblItemCostingFGCostGroup g ON fg.intCostElementGroup=g.intCostGroupID join ERP_Accounts.dbo.tblAccountsChartOfAcc acc ON fg.intCoAID=acc.intAccID  where fg.intItemID=@itemid and fg.intUnitID=@unitid";
+            this._commandCollection[0].CommandText = @"select fg.intItemID,fg.intCostElementGroup,fg.intCoAID,g.strCostGroup,acc.strcode, acc.strAccName,fg.monCost  
+from ERP_Inventory.dbo.tblItemCostingFGDetail  fg inner JOIN ERP_Inventory.dbo.tblBillOfMaterialItemNsadItemBridge i ON fg.intItemID=i.intItemID join ERP_SAD.dbo.tblItem t ON i.intSADItemID=t.intID join ERP_Inventory.dbo.tblItemCostingFGCostGroup g ON fg.intCostElementGroup=g.intCostGroupID join ERP_Accounts.dbo.tblAccountsChartOfAcc acc ON fg.intCoAID=acc.intAccID   where fg.intItemID=@itemid and fg.intUnitID=@unitid";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intItemID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@unitid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
