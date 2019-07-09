@@ -199,7 +199,7 @@ namespace UI.SAD.ExcelChallan
                                 {
                                     
                                         narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
-                                        narratioin = narration;
+                                        Session["narratioin"]  = narration;
                                  
                                 }
                                 intsalestypeid = Convert.ToInt32(stype);
@@ -243,7 +243,7 @@ namespace UI.SAD.ExcelChallan
                         {
                                 #region ------------ Insert into dataBase -----------
 
-                                narratioin = Convert.ToString(Session[narratioin]);
+                                narratioin = Convert.ToString(Session["narratioin"]);
                                 XmlDocument doc = new XmlDocument();
                                 doc.Load(filePathForXML);
                                 XmlNode dSftTm = doc.SelectSingleNode("node");

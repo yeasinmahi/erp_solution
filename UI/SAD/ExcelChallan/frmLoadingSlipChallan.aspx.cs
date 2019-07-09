@@ -31,7 +31,6 @@ namespace UI.SAD.ExcelChallan
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanupload_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
-            filePathForXMLVat = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanuploadVat_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {              
                 try { File.Delete(filePathForXML); File.Delete(filePathForXMLVat); } catch { }
@@ -206,9 +205,9 @@ namespace UI.SAD.ExcelChallan
                                 if (qty != "0")
                                 {
                                    
-                                        narrationvat = narrationvat + " [" + qty + "] " + uomTxt + " " + paname;
-                                        narratioinvat = narrationvat;
-                                        Session[narratioinvat] = narratioinvat;
+                                        narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
+                                        narratioin = narration;
+                                        Session[narratioin] = narratioin;
                                     
                                 }
                                 intsalestypeid = Convert.ToInt32(stype);
@@ -218,7 +217,7 @@ namespace UI.SAD.ExcelChallan
                                    
                                        
                                             qty = Convert.ToString(qty.ToString());
-                                            CreateSalesXmlvat(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
+                                        CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
                                         
                                     
                                 }
