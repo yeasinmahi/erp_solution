@@ -26,6 +26,7 @@ namespace UI.SCM
         int intFromVATAc, intToVATAc, intYear;
         DateTime dteTransferDate; string strVehicle, strGaNo;
         
+
         protected void Page_Load(object sender, EventArgs e)
         {
             hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
@@ -42,7 +43,7 @@ namespace UI.SCM
                 ddlFromWH.DataSource = dt;
                 ddlFromWH.DataBind();
 
-                dt = objTransfer.GetToWH(int.Parse(hdnEnroll.Value));
+                dt = objTransfer.GetToWH(int.Parse(ddlFromWH.SelectedValue));
                 ddlToWH.DataTextField = "strWareHoseName";
                 ddlToWH.DataValueField = "intWHID";
                 ddlToWH.DataSource = dt;
@@ -61,6 +62,16 @@ namespace UI.SCM
                 ddlItemList.DataBind();
             }
             catch { }
+        }
+
+        protected void ddlFromWH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            dt = objTransfer.GetToWH(int.Parse(ddlFromWH.SelectedValue));
+            ddlToWH.DataTextField = "strWareHoseName";
+            ddlToWH.DataValueField = "intWHID";
+            ddlToWH.DataSource = dt;
+            ddlToWH.DataBind();
+
         }
 
         #region==== Transfer Product Add =============================================================
