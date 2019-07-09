@@ -56,7 +56,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label6" runat="server" CssClass="lbl" Text="Effective Date:"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtEffectDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" placeholder="click here"></asp:TextBox>
+                                <asp:TextBox ID="txtEffectDate" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" placeholder="click here" AutoComplete="off"></asp:TextBox>
                                 <cc1:CalendarExtender ID="CalendarExtender2" runat="server" Format="yyyy-MM-dd" TargetControlID="txtEffectDate"></cc1:CalendarExtender>
                             </td>
                             <td style="text-align: right;">
@@ -122,17 +122,26 @@
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="left" />
                                                     </asp:TemplateField>
+
+                                                     <%--<asp:TemplateField HeaderText="Acc Code" >
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblAccCode" runat="server" Text='<%# Bind("strcode") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="left" />
+                                                    </asp:TemplateField>--%>
+
+
                                                     <asp:TemplateField HeaderText="GL" SortExpression="GLName">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblGL" runat="server" Text='<%# Bind("GLName") %>' Width="150px"></asp:Label>
+                                                            <asp:Label ID="lblGL" runat="server" Text='<%# Bind("GLName") %>' Width="180px"></asp:Label>
                                                         </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="left" Width="250px" />
+                                                        <ItemStyle HorizontalAlign="left" Width="180px" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Value" SortExpression="value">
                                                         <ItemTemplate>
-                                                            <asp:Label ID="lblmonValue" runat="server" Text='<%# Bind("value", "{0:n2}") %>' Width="100px"></asp:Label>
+                                                            <asp:Label ID="lblmonValue" runat="server" Text='<%# Bind("value", "{0:n2}") %>' Width="80px"></asp:Label>
                                                         </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="right" Width="100px" />
+                                                        <ItemStyle HorizontalAlign="right" Width="80px" />
                                                     </asp:TemplateField>
                                                     <asp:CommandField ControlStyle-Font-Bold="true" ControlStyle-ForeColor="Red" HeaderText="Action" ShowDeleteButton="True">
                                                         <ControlStyle Font-Bold="True" ForeColor="Red" />
@@ -177,6 +186,12 @@
                                                             <asp:Label ID="lblGL" runat="server" Text='<%# Bind("strCostGroup") %>' Width="150px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="left" Width="100px" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Acc Code" >
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblAccCode" runat="server" Text='<%# Bind("strcode") %>' Width="80px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="left" />
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Account Name" SortExpression="strAccName">
                                                         <ItemTemplate>

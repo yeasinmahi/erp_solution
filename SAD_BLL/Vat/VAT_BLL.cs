@@ -415,6 +415,24 @@ namespace SAD_BLL.Vat
             }
             catch { return new DataTable(); }
         }
+        public DataTable GetATMLTransferChallanList(int unitId)
+        {
+            try
+            {
+                ATMLTransferChallanListTableAdapter adp = new ATMLTransferChallanListTableAdapter();
+                return adp.GetATMLChallanList(unitId);
+            }
+            catch { return new DataTable(); }
+        }
+        public DataTable GetATMLSalesChallanList(int unitId)
+        {
+            try
+            {
+                ATMLSalesChallanListTableAdapter adp = new ATMLSalesChallanListTableAdapter();
+                return adp.GetATMLSalesChallan(unitId);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable GetTransferbyVat(int accountId, int shippingPointId)
         {
             try

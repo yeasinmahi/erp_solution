@@ -185,6 +185,7 @@
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
+    <Content Include="Accounts\Import\ImportAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -476,6 +477,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
@@ -500,6 +502,7 @@
     <Content Include="HR\Overtime\OvertimeEntryReport.aspx" />
     <Content Include="HR\Penalty\Familyday.aspx" />
     <Content Include="HR\Penalty\FamilyDayPub.aspx" />
+    <Content Include="HR\PiceRateCalculation\AMFL_Indivisual_Pice_Rate_Report.aspx" />
     <Content Include="HR\PiceRateCalculation\CasualWorkerBill.aspx" />
     <Content Include="HR\policyDoc\frmPolicy.aspx" />
     <Content Include="HR\Reports\All_Employee_Information_Report.aspx" />
@@ -1536,8 +1539,10 @@
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
+    <Content Include="SAD\Setup\AfblLocationTransfer.aspx" />
     <Content Include="SAD\Setup\AfblPointSetup.aspx" />
     <Content Include="SAD\Setup\AfblRegionSetup.aspx" />
+    <Content Include="SAD\Setup\AfblSectionSetup.aspx" />
     <Content Include="SAD\Setup\AfblTerritorySetup.aspx" />
     <Content Include="SAD\Setup\EmployeeBridgeJobStation.aspx" />
     <Content Include="SAD\Setup\GeoAreaSetup.aspx" />
@@ -1997,6 +2002,13 @@
     </Compile>
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.designer.cs">
       <DependentUpon>Template.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Import\ImportAdjustment.aspx.cs">
+      <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
+      <DependentUpon>ImportAdjustment.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
@@ -3307,6 +3319,13 @@
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.cs">
+      <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.designer.cs">
+      <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3467,6 +3486,13 @@
     </Compile>
     <Compile Include="HR\Penalty\FamilyDayPub.aspx.designer.cs">
       <DependentUpon>FamilyDayPub.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\AMFL_Indivisual_Pice_Rate_Report.aspx.cs">
+      <DependentUpon>AMFL_Indivisual_Pice_Rate_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\PiceRateCalculation\AMFL_Indivisual_Pice_Rate_Report.aspx.designer.cs">
+      <DependentUpon>AMFL_Indivisual_Pice_Rate_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\PiceRateCalculation\CasualWorkerBill.aspx.cs">
       <DependentUpon>CasualWorkerBill.aspx</DependentUpon>
@@ -7995,6 +8021,13 @@
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.designer.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblLocationTransfer.aspx.cs">
+      <DependentUpon>AfblLocationTransfer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblLocationTransfer.aspx.designer.cs">
+      <DependentUpon>AfblLocationTransfer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\AfblPointSetup.aspx.cs">
       <DependentUpon>AfblPointSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -8008,6 +8041,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblRegionSetup.aspx.designer.cs">
       <DependentUpon>AfblRegionSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblSectionSetup.aspx.cs">
+      <DependentUpon>AfblSectionSetup.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblSectionSetup.aspx.designer.cs">
+      <DependentUpon>AfblSectionSetup.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\AfblTerritorySetup.aspx.cs">
       <DependentUpon>AfblTerritorySetup.aspx</DependentUpon>

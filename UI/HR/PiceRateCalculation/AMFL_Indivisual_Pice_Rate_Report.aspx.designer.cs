@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace UI.HR.Reports {
+namespace UI.HR.PiceRateCalculation {
     
     
-    public partial class AllowanceCheck {
+    public partial class AMFL_Indivisual_Pice_Rate_Report {
         
         /// <summary>
         /// PlaceHolder0 control.

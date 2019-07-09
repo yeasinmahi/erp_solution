@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 
-namespace UI.hr.Reports
+namespace UI.HR.Reports
 {
     public partial class AllowanceCheck : BasePage
     {
