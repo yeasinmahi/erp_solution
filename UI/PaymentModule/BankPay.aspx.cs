@@ -9,9 +9,8 @@ using System.Web.Script.Services;
 using UI.ClassFiles;
 using System.IO;
 using System.Xml;
-using GLOBAL_BLL;
-using Flogging.Core;
 using BLL.Accounts.ChartOfAccount;
+using Utility;
 
 namespace UI.PaymentModule
 {
@@ -19,14 +18,10 @@ namespace UI.PaymentModule
     {
         #region===== Variable & Object Declaration ====================================================
         string[] arrayKey; char[] delimiterChars = { '[', ']' };
-
-        SeriLog log = new SeriLog();
-        string location = "PaymentModule";
-        string start = "starting PaymentModule/BankPay.aspx";
-        string stop = "stopping PaymentModule/BankPay.aspx";
-
-        Billing_BLL objBillApp = new Billing_BLL(); Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
-        DataTable dt;
+        
+        Billing_BLL objBillApp = new Billing_BLL();
+        Payment_All_Voucher_BLL objVoucher = new Payment_All_Voucher_BLL();
+        DataTable dt = new DataTable();
 
         int intDept, intType, intPartyType, intAccID, intCountPVoucher, intPOID, intBankID;
         string unitid, billid, entrycode, party, bank, bankacc, instrument;
@@ -35,30 +30,67 @@ namespace UI.PaymentModule
         decimal monApproveAmount, monTotalAdvance, monLedgerBalance, monNetPay, monVoucherTotal;
         bool ysnAdvance, ysnPurchase, ysnCreditor, ysnAll, ysnBillReg;
 
-        int intUnitID, intCCID, intBank, intBankAcc, intUserID, intBillID;
+        int intUnitID, intCCID, intBank, intBankAcc, intBillID;
         string strCCName, strInstrument, strPayTo, strBillCode, strNarration, strInstrumentNo;
         DateTime dteInstrumentDate, dteVoucherDate;
 
         #endregion ====================================================================================
 
+        public void LoadBank()
+        {
+            dt = objBillApp.GetBankInfoByUnitID(int.Parse(hdnBillUnitID.Value));
+            ddlBank.DataTextField = "strBankName";
+            ddlBank.DataValueField = "intBankID";
+            ddlBank.DataSource = dt;
+            ddlBank.DataBind();
+        }
+        public void LoadAccountNumber()
+        {
+            intBankID = int.Parse(ddlBank.SelectedValue.ToString());
+            dt = objVoucher.GetAccountList(int.Parse(hdnBillUnitID.Value), intBankID);
+            if (dt.Rows.Count > 0)
+            {
+                ddlACNumber.DataTextField = "strBankAccount";
+                ddlACNumber.DataValueField = "intAccountID";
+                ddlACNumber.DataSource = dt;
+                ddlACNumber.DataBind();
+            }
+        }
+        public void LoadCostCenter()
+        {
+            dt = objBillApp.GetCostCenter(int.Parse(hdnBillUnitID.Value));
+            ddlCostCenter.DataTextField = "strCCName";
+            ddlCostCenter.DataValueField = "intCostCenterID";
+            ddlCostCenter.DataSource = dt;
+            ddlCostCenter.DataBind();
+        }
+        public void LoadPayTo()
+        {
+            dt = objBillApp.GetPayToList(int.Parse(hdnBillID.Value));
+            if (dt.Rows.Count > 0)
+            {
+                ddlPayTo.DataTextField = "strMasterAccName";
+                ddlPayTo.DataValueField = "intMasterAccID";
+                ddlPayTo.DataSource = dt;
+                ddlPayTo.DataBind();
+            }
+            else
+            {
+                ddlPayTo.SelectedValue = txtParty.Text;
+            }
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "Page_Load", null);
-            Flogger.WriteDiagnostic(fd);
-
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on PaymentModule/BankPay.aspx Page_Load", "", fd.UserName, fd.Location,
-            fd.Product, fd.Layer);
-
-            hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
-            hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-            filePathForXML = Server.MapPath("~/PaymentModule/Data/BPVoucher_" + hdnEnroll.Value + ".xml");
+            
+            filePathForXML = Server.MapPath("~/PaymentModule/Data/BPVoucher_" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
                 try
                 {
-                    File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
+                    filePathForXML.DeleteFile();
+                    dgvReportForPaymentV.UnLoad();
+
                     hdnBillUnitID.Value = Request.QueryString["unitid"];
                     hdnBillID.Value = Request.QueryString["billid"];
                     Session["billUnit"] = Request.QueryString["unitid"];
@@ -71,8 +103,7 @@ namespace UI.PaymentModule
                     hdnBankAcc.Value = Request.QueryString["bankacc"];
                     hdnInstrument.Value = Request.QueryString["instrument"];
                     txtDate.Text = DateTime.Parse(Request.QueryString["vdate"]).ToString("yyyy-MM-dd");
-
-                    dt = new DataTable();
+                    
                     dt = objBillApp.GetBillInfoForBPVoucher(int.Parse(hdnBillID.Value));
                     if (dt.Rows.Count > 0)
                     {
@@ -93,61 +124,14 @@ namespace UI.PaymentModule
                     txtPreAdvance.Text = monTotalAdvance.ToString();
                     txtVoucherIssued.Text = monVoucherTotal.ToString();
 
-                    try
-                    {
-                        dt = new DataTable();
-                        dt = objBillApp.GetBankInfoByUnitID(int.Parse(hdnBillUnitID.Value));
-                        ddlBank.DataTextField = "strBankName";
-                        ddlBank.DataValueField = "intBankID";
-                        ddlBank.DataSource = dt;
-                        ddlBank.DataBind();
-                    }
-                    catch { }
+                    LoadBank();
+                    ddlBank.SetSelectedValue(hdnBank.Value);
+                    LoadAccountNumber();
+                    ddlACNumber.SelectedValue = hdnBankAcc.Value;
+                    LoadCostCenter();
+                    LoadPayTo();
+                    ddlInstrument.SelectedValue = hdnInstrument.Value;
 
-                    try
-                    {
-                        intBankID = int.Parse(ddlBank.SelectedValue.ToString());
-                        dt = new DataTable();
-                        dt = objVoucher.GetAccountList(int.Parse(hdnBillUnitID.Value), intBankID);
-                        if (dt.Rows.Count > 0)
-                        {
-                            ddlACNumber.DataTextField = "strBankAccount";
-                            ddlACNumber.DataValueField = "intAccountID";
-                            ddlACNumber.DataSource = dt;
-                            ddlACNumber.DataBind();
-                        }
-                    }
-                    catch { }
-
-                    try
-                    {
-                        dt = new DataTable();
-                        dt = objBillApp.GetCostCenter(int.Parse(hdnBillUnitID.Value));
-                        ddlCostCenter.DataTextField = "strCCName";
-                        ddlCostCenter.DataValueField = "intCostCenterID";
-                        ddlCostCenter.DataSource = dt;
-                        ddlCostCenter.DataBind();
-                    }
-                    catch { }
-
-                    try
-                    {
-                        dt = new DataTable();
-                        dt = objBillApp.GetPayToList(int.Parse(hdnBillID.Value));
-                        if (dt.Rows.Count > 0)
-                        {
-                            ddlPayTo.DataTextField = "strMasterAccName";
-                            ddlPayTo.DataValueField = "intMasterAccID";
-                            ddlPayTo.DataSource = dt;
-                            ddlPayTo.DataBind();
-                        }
-                        else
-                        {
-                            ddlPayTo.SelectedValue = txtParty.Text;
-                        }
-                    }
-                    catch { }
-                    
                     try
                     {
                         if (hdnBillType.Value == "1") // 'FOR ADVANCE PAYMENT
@@ -197,9 +181,6 @@ namespace UI.PaymentModule
                                 txtNarration.Text = "Being the amount paid to " + party + " in advance against Code: " + entrycode + ", PO NO: " + intPOID.ToString();
                             }
                             txtAmount.Text = monApproveAmount.ToString();
-                            ddlBank.SelectedValue = hdnBank.Value;
-                            ddlACNumber.SelectedValue = hdnBankAcc.Value;
-                            ddlInstrument.SelectedValue = hdnInstrument.Value;
 
                             /*
                             ddlDebitAc.SelectedItem.Text = strAccName;
@@ -276,9 +257,6 @@ namespace UI.PaymentModule
                             }
 
                             txtAmount.Text = monApproveAmount.ToString();
-                            ddlBank.SelectedValue = hdnBank.Value;
-                            ddlACNumber.SelectedValue = hdnBankAcc.Value;
-                            ddlInstrument.SelectedValue = hdnInstrument.Value;
                             /*
                             ddlDebitAc.SelectedItem.Text = strAccName;
                             */
@@ -325,8 +303,7 @@ namespace UI.PaymentModule
 
                         intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
                         strInstrument = ddlInstrument.SelectedItem.ToString();
-
-                        dt = new DataTable();
+                        
                         dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnBillUnitID.Value), strInstrument);
                         if (dt.Rows.Count > 0)
                         {
@@ -339,21 +316,12 @@ namespace UI.PaymentModule
                     }
                     catch (Exception ex)
                     {
-                        var efd = log.GetFlogDetail(stop, location, "Show", ex);
-                        Flogger.WriteError(efd);
                     }
                 }
                 catch (Exception ex)
                 {
-                    var efd = log.GetFlogDetail(stop, location, "Page_Load", ex);
-                    Flogger.WriteError(efd);
                 }
             }                
-
-            fd = log.GetFlogDetail(stop, location, "Page_Load", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
             
         }
 
@@ -371,8 +339,7 @@ namespace UI.PaymentModule
         {
             intBankAcc = int.Parse(ddlACNumber.SelectedValue.ToString());
             strInstrument = ddlInstrument.SelectedItem.ToString();
-
-            dt = new DataTable();
+            
             dt = objVoucher.GetChequeOrAdvice(intBankAcc, int.Parse(hdnBillUnitID.Value), strInstrument);
             if (dt.Rows.Count > 0)
             {
@@ -388,7 +355,6 @@ namespace UI.PaymentModule
             try
             {
                 intBankID = int.Parse(ddlBank.SelectedValue.ToString());
-                dt = new DataTable();
                 dt = objVoucher.GetAccountList(int.Parse(hdnBillUnitID.Value), intBankID);
                 if (dt.Rows.Count > 0)
                 {
@@ -548,12 +514,6 @@ namespace UI.PaymentModule
         }
         protected void btnSaveBP_Click(object sender, EventArgs e)
         {
-            var fd = log.GetFlogDetail(start, location, "btnSaveBP_Click", null);
-            Flogger.WriteDiagnostic(fd);
-
-            // starting performance tracker
-            var tracker = new PerfTracker("Performance on PaymentModule/BankPay.aspx btnSaveBP_Click", "", fd.UserName, fd.Location,
-            fd.Product, fd.Layer);
 
             try
             {
@@ -567,7 +527,6 @@ namespace UI.PaymentModule
                     strInstrument = txtNo.Text;
                     dteInstrumentDate = DateTime.Parse(txtDate.Text);
                     dteVoucherDate = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd"));
-                    intUserID = int.Parse(hdnEnroll.Value);
                     strPayTo = ddlPayTo.SelectedItem.ToString();
                     intBillID = int.Parse(hdnBillID.Value);
                     strBillCode = txtEntryCode.Text;
@@ -603,39 +562,15 @@ namespace UI.PaymentModule
                     strInstrumentNo = ddlInstrument.SelectedItem.ToString();
 
                     //Final In Insert                                 
-                    string message = objVoucher.InsertPaymentVoucherBP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, intUserID, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo);
+                    string message = objVoucher.InsertPaymentVoucherBP(intUnitID, strCCName, intCCID, intBank, intBankAcc, strInstrument, dteInstrumentDate, dteVoucherDate, Enroll, strPayTo, intBillID, strBillCode, monApproveAmount, monVoucherTotal, strNarration, xml, strInstrumentNo);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "close", "CloseWindow();", true);
                 }
             }
             catch (Exception ex)
             {
-                var efd = log.GetFlogDetail(stop, location, "btnSaveBP_Click", ex);
-                Flogger.WriteError(efd);
             }
-
-            fd = log.GetFlogDetail(stop, location, "btnSaveBP_Click", null);
-            Flogger.WriteDiagnostic(fd);
-            // ends
-            tracker.Stop();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

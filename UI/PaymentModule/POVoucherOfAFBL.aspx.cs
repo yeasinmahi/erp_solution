@@ -53,8 +53,11 @@ namespace UI.PaymentModule
                 filePathForXML = Server.MapPath("~/PaymentModule/Data/Voucher_" + hdnEnroll.Value + ".xml");
                 if (!IsPostBack)
                 {
-                    File.Delete(filePathForXML); dgvReportForPaymentV.DataSource = ""; dgvReportForPaymentV.DataBind();
-                    
+                    File.Delete(filePathForXML);
+                    dgvReportForPaymentV.DataSource = "";
+
+                    dgvReportForPaymentV.DataBind();
+
                     if (hdnUnit.Value == "2" || hdnUnit.Value == "46" || hdnUnit.Value == "54" || hdnUnit.Value == "67" || hdnUnit.Value == "95")
                     {
                         try
@@ -170,7 +173,7 @@ namespace UI.PaymentModule
                 }
             }
             catch { }
-            
+
             try
             {
                 dt = new DataTable();
@@ -215,7 +218,7 @@ namespace UI.PaymentModule
             fd.Product, fd.Layer);
 
             intUnitID = int.Parse(ddlUnit.SelectedValue.ToString());
-            
+
             if (intUnitID == 2 || intUnitID == 46 || intUnitID == 54 || intUnitID == 67 || intUnitID == 95)
             {
                 try
@@ -386,7 +389,7 @@ namespace UI.PaymentModule
         protected void dgvReportForPaymentV_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int rowIndex = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = dgvReportForPaymentV.Rows[rowIndex];            
+            GridViewRow row = dgvReportForPaymentV.Rows[rowIndex];
         }
 
 
