@@ -44,6 +44,7 @@
 
       }
         </script>
+    
 </head>
 <body>
     <form id="frmAutoChallProcess" runat="server">
