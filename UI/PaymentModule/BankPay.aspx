@@ -34,7 +34,7 @@
     <ContentTemplate>
     
     <%--=========================================Start My Code From Here===============================================--%>
-    <asp:HiddenField ID="hdnconfirm" runat="server" /><asp:HiddenField ID="hdnEnroll" runat="server" /><asp:HiddenField ID="hdnUnit" runat="server" />
+    <asp:HiddenField ID="hdnconfirm" runat="server" />
     <asp:HiddenField ID="hdnAccHead" runat="server" /><asp:HiddenField ID="hdnBillID" runat="server" /><asp:HiddenField ID="hdnBillUnitID" runat="server" />
     <asp:HiddenField ID="hdnAccID" runat="server" /><asp:HiddenField ID="hdnBank" runat="server" /><asp:HiddenField ID="hdnBankAcc" runat="server" />
     <asp:HiddenField ID="hdnInstrument" runat="server" /><asp:HiddenField ID="hdnBillType" runat="server" />

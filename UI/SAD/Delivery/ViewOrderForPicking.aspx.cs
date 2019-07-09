@@ -177,7 +177,7 @@ namespace UI.SAD.Delivery
             }
             else
             {
-                strReportType = "DO_Base";
+                strReportType = "Order_Base";
             }
                         
             string ShipPointID = ddlShip.SelectedValue;

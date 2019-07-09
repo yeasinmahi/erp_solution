@@ -8,14 +8,15 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
-using static SCM_DAL.MrrReceiveTDS;
 
 namespace UI.SCM
 {
     public partial class PendingMRR : BasePage
     {
         #region INIT
+        private object lockObj = new object();
         private MrrReceive_BLL obj = new MrrReceive_BLL();
+
         private DataTable dt = new DataTable();
         private int enroll, intWh, Mrrid;
         PendingMRRTableAdapter adapter = new PendingMRRTableAdapter();
@@ -115,30 +116,40 @@ namespace UI.SCM
                 string sms = ImportMissingCost(PoId, ShipmentId);
                 if (string.IsNullOrEmpty(sms))
                 {
-                    
-                    dtid = fmrridtAdapter.GetMRRItemDetailsData(MrrId);
-                    if(dtid != null)
+                    lock (lockObj)
                     {
-                        if (dtid.Rows.Count > 0)
+                        dtid = fmrridtAdapter.GetMRRItemDetailsData(MrrId);
+                        if (dtid != null)
                         {
-                            for(int i = 0; i < dtid.Rows.Count; i++)
+                            if (dtid.Rows.Count > 0)
                             {
-                                int LocationId = !string.IsNullOrEmpty(dtid.Rows[i]["intLocationID"].ToString()) ? Convert.ToInt32(dtid.Rows[i]["intLocationID"]) : 0;
-                                int ItemId = !string.IsNullOrEmpty(dtid.Rows[i]["intItemID"].ToString()) ? Convert.ToInt32(dtid.Rows[i]["intItemID"]) : 0;
-                                decimal ReceiveQnt = !string.IsNullOrEmpty(dtid.Rows[i]["numReceiveQty"].ToString()) ? Convert.ToDecimal(dtid.Rows[i]["numReceiveQty"]) : 0;
-                                decimal ImportCostingItemRate = GetImportCostingItemRate(PoId, ShipmentId, ItemId);
-                                decimal monBDT = ReceiveQnt * ImportCostingItemRate;
-                                iitAdapter.InsertImportInventory(UnitId, wh, LocationId, ItemId, ReceiveQnt, monBDT, MrrId, 1);
-                                iitAdapter.UpdateFactoryReceiveMRRItemDetail(monBDT, MrrId, ItemId);
-                                iitAdapter.UpdateYSNInventory(MrrId, wh);
-                                count += 1;
+                                for (int i = 0; i < dtid.Rows.Count; i++)
+                                {
+                                    int LocationId = !string.IsNullOrEmpty(dtid.Rows[i]["intLocationID"].ToString())
+                                        ? Convert.ToInt32(dtid.Rows[i]["intLocationID"])
+                                        : 0;
+                                    int ItemId = !string.IsNullOrEmpty(dtid.Rows[i]["intItemID"].ToString())
+                                        ? Convert.ToInt32(dtid.Rows[i]["intItemID"])
+                                        : 0;
+                                    decimal ReceiveQnt = !string.IsNullOrEmpty(dtid.Rows[i]["numReceiveQty"].ToString())
+                                        ? Convert.ToDecimal(dtid.Rows[i]["numReceiveQty"])
+                                        : 0;
+                                    decimal ImportCostingItemRate = GetImportCostingItemRate(PoId, ShipmentId, ItemId);
+                                    decimal monBDT = ReceiveQnt * ImportCostingItemRate;
+                                    iitAdapter.InsertImportInventory(UnitId, wh, LocationId, ItemId, ReceiveQnt, monBDT,
+                                        MrrId, 1);
+                                    iitAdapter.UpdateFactoryReceiveMRRItemDetail(monBDT, MrrId, ItemId);
+                                    iitAdapter.UpdateYSNInventory(MrrId, wh);
+                                    count += 1;
+                                }
                             }
                         }
-                    }
-                    if(count > 0)
-                    {
-                        Toaster("MRR Complete Successfully!", Utility.Common.TosterType.Success);
-                        btnStatement_Click(null, null);
+
+                        if (count > 0)
+                        {
+                            Toaster("MRR Complete Successfully!", Utility.Common.TosterType.Success);
+                            btnStatement_Click(null, null);
+                        }
                     }
                 }
                 else

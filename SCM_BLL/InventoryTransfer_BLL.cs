@@ -394,12 +394,12 @@ namespace SCM_BLL
             sprChallanWiseRouteCostTableAdapter adp = new sprChallanWiseRouteCostTableAdapter();
             return adp.TripEntry(strChallanNo, intUnitID, intSalesOffId, intShipPointId);
         }
-        public DataTable GetFgCostUpdate(int type,DateTime dteDate,int enroll,string xml,int intItemId,int intUnitID,int CostElementGroup,int CoAID,decimal monRate)
+        public DataTable GetFgCostUpdate(int type,int enroll,string xml,int Unit)
         {
             try
             {
                 sprFGCostUpdateTableAdapter adp = new sprFGCostUpdateTableAdapter();
-                return adp.FgCostUpdate(type,dteDate,enroll,xml,intItemId,intUnitID,CostElementGroup,CoAID,monRate);
+                return adp.FgCostUpdate(type,enroll,xml, Unit);
             }
             catch (Exception ex)
             {

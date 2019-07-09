@@ -45,13 +45,24 @@ namespace UI.Vat
         public void LoadShipPoint()
         {
             int vatAccountId = ddlUnit.SelectedValue();
-            dt = _vatObj.GetVatUnitByUser(Enroll);
-            DataRow row = dt.GetRow("intVatAccountID", vatAccountId);
-            if (row != null)
+            if (vatAccountId == 1022)
             {
-                int unitId = Convert.ToInt32(row["intUnitID"].ToString());
-                dt = _vatObj.GetShippingPoint(Enroll, unitId);
-                ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
+                ddlShipPoint.UnLoad();
+                ddlShipPoint.Items.Add(new ListItem("ATML", "3"));
+                ddlShipPoint.Items.Add(new ListItem("ATMLWU", "21"));
+                ddlShipPoint.Items.Add(new ListItem("ATMLDU", "55"));
+                ddlShipPoint.Items.Add(new ListItem("ATMLFU", "56"));
+            }
+            else
+            {
+                dt = _vatObj.GetVatUnitByUser(Enroll);
+                DataRow row = dt.GetRow("intVatAccountID", vatAccountId);
+                if (row != null)
+                {
+                    int unitId = Convert.ToInt32(row["intUnitID"].ToString());
+                    dt = _vatObj.GetShippingPoint(Enroll, unitId);
+                    ddlShipPoint.LoadWithSelect(dt, "intShipPointId", "strName");
+                }
             }
             
         }
@@ -68,34 +79,63 @@ namespace UI.Vat
         public void LoadTransferCode()
         {
             int shippingPointId = ddlShipPoint.SelectedValue();
-            dt = _vatObj.GetVatUnitByUser(Enroll);
-            if (dt.Rows.Count > 0)
+
+            if (int.Parse(ddlUnit.SelectedValue) == 1022)
             {
-                DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
-                int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
-                dt = _vatObj.GetTransferbyVat(accountId, shippingPointId);
+                dt = _vatObj.GetATMLTransferChallanList(shippingPointId);
                 ddlChallan.LoadWithSelect(dt, "intId", "strCode");
+            }
+            else if(int.Parse(ddlUnit.SelectedValue) != 1022)
+            {
+                
+                dt = _vatObj.GetVatUnitByUser(Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
+                    int accountId = Convert.ToInt32(row["intVatPointID"].ToString());
+                    dt = _vatObj.GetTransferbyVat(accountId, shippingPointId);
+                    ddlChallan.LoadWithSelect(dt, "intId", "strCode");
+                }
+                else
+                {
+                    ddlChallan.UnLoad();
+                }
+            }
+            else
+            {
+                ddlChallan.UnLoad();
+            }
+
+        }
+        public void LoadSalesCode()
+        {
+            int shippingPointId = ddlShipPoint.SelectedValue();
+
+            if (int.Parse(ddlUnit.SelectedValue) == 1022)
+            {
+                dt = _vatObj.GetATMLSalesChallanList(shippingPointId);
+                ddlChallan.LoadWithSelect(dt, "intId", "strCode");
+            }
+            else if (int.Parse(ddlUnit.SelectedValue) != 1022)
+            {
+                dt = _vatObj.GetVatUnitByUser(Enroll);
+                if (dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
+                    int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
+                    dt = _vatObj.GetSalesByVAT(vatid);
+                    ddlChallan.LoadWithSelect(dt, "intId", "strCode");
+                }
+                else
+                {
+                    ddlChallan.UnLoad();
+                }
             }
             else
             {
                 ddlChallan.UnLoad();
             }
             
-        }
-        public void LoadSalesCode()
-        {
-            dt = _vatObj.GetVatUnitByUser(Enroll);
-            if (dt.Rows.Count > 0)
-            {
-                DataRow row = dt.GetRow<int>("intVatAccountID", ddlUnit.SelectedValue());
-                int vatid = Convert.ToInt32(row["intVatPointID"].ToString());
-                dt = _vatObj.GetSalesByVAT(vatid);
-                ddlChallan.LoadWithSelect(dt, "intId", "strCode");
-            }
-            else
-            {
-                ddlChallan.UnLoad();
-            }
         }
 
         protected void ddlType_OnSelectedIndexChanged(object sender, EventArgs e)

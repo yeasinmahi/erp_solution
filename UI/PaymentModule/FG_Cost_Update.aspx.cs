@@ -55,7 +55,7 @@ namespace UI.PaymentModule
            
             UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
             dteDate = CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
-            dt = inventoryTransfer_Obj.GetFgCostUpdate(2, dteDate, Enroll, xmlString, ItemId, UnitID, GroupID, CoAID, monRate);
+            dt = inventoryTransfer_Obj.GetFgCostUpdate(2, Enroll, xmlString, UnitID);
             ddlGL.Loads(dt, "intAccID", "strAccName");
         }
         private void LoadItem(int unitid)
@@ -84,23 +84,37 @@ namespace UI.PaymentModule
         {
             try
             {
-
-                LoadGridwithXml();
-
-                DataSet dsGrid = (DataSet)dgvReport.DataSource;
-                dsGrid.Tables[0].Rows[dgvReport.Rows[e.RowIndex].DataItemIndex].Delete();
-                dsGrid.WriteXml(GetXmlFilePath());
-                DataSet dsGridAfterDelete = (DataSet)dgvReport.DataSource;
-                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                if (Session["obj"] != null)
                 {
-                    File.Delete(GetXmlFilePath());
-                    dgvReport.UnLoad();
-                    lblUnitName.Visible = false;
-                    lblReportName.Visible = false;
-                }
-                else
-                {
-                    LoadGridwithXml();
+                    List<object> objects = (List<object>)Session["obj"];
+                    objects.RemoveAt(e.RowIndex);
+                    if (objects.Count > 0)
+                    {
+                        string xmlString = XmlParser.GetXml("CostGroup", "items", objects, out string _);
+                        LoadGridwithXml(xmlString);
+                    }
+                    else
+                    {
+                        dgvReport.UnLoad();
+                    }
+
+                    //LoadGridwithXml();
+
+                    //DataSet dsGrid = (DataSet)dgvReport.DataSource;
+                    //dsGrid.Tables[0].Rows[dgvReport.Rows[e.RowIndex].DataItemIndex].Delete();
+                    //dsGrid.WriteXml(GetXmlFilePath());
+                    //DataSet dsGridAfterDelete = (DataSet)dgvReport.DataSource;
+                    //if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                    //{
+                    //    File.Delete(GetXmlFilePath());
+                    //    dgvReport.UnLoad();
+                    //    lblUnitName.Visible = false;
+                    //    lblReportName.Visible = false;
+                    //}
+                    //else
+                    //{
+                    //    LoadGridwithXml();
+                    //}
                 }
             }
             catch (Exception ex)
@@ -151,24 +165,28 @@ namespace UI.PaymentModule
         #region =========== action button =================
         protected void btnAdd_Click(object sender, EventArgs e)
         {
-            //string GroupID = ddlCostGroup.SelectedItem.Value;
+            int UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
             string ItemId = ddlItem.SelectedItem.Value;
             string ItemName = ddlItem.SelectedItem.Text;
             string costGroup = ddlCostGroup.SelectedItem.Text;
             string GLName = ddlGL.SelectedItem.Text;
             string value = txtValue.Text;
+            GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
+            int CoAID = Convert.ToInt32(ddlGL.SelectedItem.Value);
+            monRate = Convert.ToDecimal(txtValue.Text);
+            dteDate = CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
 
-            if(dgvReport.Rows.Count>0)
+            if (dgvReport.Rows.Count>0)
             {
-                File.Delete(GetXmlFilePath());
-                dgvReport.UnLoad();
-                CreateFGXML(ItemId, ItemName, GLName, costGroup, value);
+                //File.Delete(GetXmlFilePath());
+                //dgvReport.UnLoad();
+                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString());
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
             else
             {
-                CreateFGXML(ItemId, ItemName, GLName, costGroup, value);
+                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString());
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
@@ -185,14 +203,54 @@ namespace UI.PaymentModule
             int CoAID = Convert.ToInt32(ddlGL.SelectedItem.Value);
             monRate = Convert.ToDecimal(txtValue.Text);
             dteDate=CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
-            inventoryTransfer_Obj.GetFgCostUpdate(1, dteDate, Enroll, xmlString, ItemId, UnitID, GroupID, CoAID, monRate);
-            try { File.Delete(GetXmlFilePath()); } catch { }
-            dgvReport.UnLoad();
-            lblUnitName.Visible = false;
-            lblReportName.Visible = false;
-            txtEffectDate.Text = "";
-            txtValue.Text = "";
-            Toaster("Submitted Successfully", "Product Cost", Common.TosterType.Success);
+            string a=  xmlString;
+            //inventoryTransfer_Obj.GetFgCostUpdate(1, dteDate, Enroll, xmlString, ItemId, UnitID, GroupID, CoAID, monRate);
+            //try { File.Delete(GetXmlFilePath()); } catch { }
+
+            List<object> objects = new List<object>();
+            List<object> objectsNew = new List<object>();
+            if (Session["obj"] != null)
+            {
+                objects = (List<object>)Session["obj"];
+            }
+            foreach (object o in objects)
+            {
+                dynamic obj = new
+                {
+                    ItemId = Common.GetPropertyValue(o, "ItemId"),
+                    ItemName = Common.GetPropertyValue(o, "ItemName"),
+                    GLName = Common.GetPropertyValue(o, "GLName"),
+                    costGroup = Common.GetPropertyValue(o, "costGroup"),
+                    UnitID= Common.GetPropertyValue(o, "UnitID"),
+                    value = Common.GetPropertyValue(o, "value"),
+                    GroupID = Common.GetPropertyValue(o, "GroupID"),
+                    CoAID = Common.GetPropertyValue(o, "CoAID"),
+                    monRate = Common.GetPropertyValue(o, "monRate"),
+                    dteDate = Common.GetPropertyValue(o, "dteDate")
+
+                };
+                objectsNew.Add(obj);
+            }
+            if (objectsNew.Count > 0)
+            {
+                xmlString = XmlParser.GetXml("CostGroup", "items", objectsNew, out string message);
+                inventoryTransfer_Obj.GetFgCostUpdate(1, Enroll, xmlString, UnitID);
+                dgvReport.UnLoad();
+                Session["obj"] = null;
+                lblUnitName.Visible = false;
+                lblReportName.Visible = false;
+                txtEffectDate.Text = "";
+                txtValue.Text = "";
+                Toaster("Submitted Successfully", "Product Cost", Common.TosterType.Success);
+            }
+            else
+            {
+                Toaster("No Data Found to Insert", "OverTime", Common.TosterType.Warning);
+            }
+            Session["obj"] = null;
+            dgvReport.DataSource="";
+            dgvReport.DataBind();
+
         }
         #endregion ========= end button action ===========
         #region ================ XML Bind ===================
@@ -201,21 +259,31 @@ namespace UI.PaymentModule
             _filePathForXml = Server.MapPath("~/PaymentModule/Data/FG__" + Enroll + ".xml");
             return _filePathForXml;
         }
-        private void LoadGridwithXml()
+        private void LoadGridwithXml(string itemXML)
         {
-            string itemXML = XmlParser.GetXml(GetXmlFilePath());
+            //string itemXML = XmlParser.GetXml(GetXmlFilePath());
             GridViewUtil.LoadGridwithXml(itemXML, dgvReport, out string message);
 
         }
-        private void CreateFGXML(string ItemId,string ItemName,string GLName,string costGroup,string value)
+        private void CreateFGXML(string ItemId,string ItemName,string GLName,string costGroup,string value,string UnitID, string GroupID, string CoAID, string monRate, string dteDate)
         {
             dynamic obj = new
             {
-                ItemId,ItemName,GLName,costGroup,value
+                ItemId,ItemName,GLName,costGroup,value,UnitID,GroupID,CoAID,monRate,dteDate
             };
+            List<object> objects = new List<object>();
+            if (Session["obj"] != null)
+            {
+                objects = (List<object>)Session["obj"];
+            }
+            objects.Add(obj);
+            Session["obj"] = objects;
 
-            XmlParser.CreateXml("CostGroup", "items", obj, GetXmlFilePath(), out message);
-            LoadGridwithXml();
+            //XmlParser.CreateXml("CostGroup", "items", obj, GetXmlFilePath(), out message);
+
+            xmlString =  XmlParser.GetXml("CostGroup", "items", objects, out string _);
+
+            LoadGridwithXml(xmlString);
         }
 
         #endregion ================= End XML Bind =================
