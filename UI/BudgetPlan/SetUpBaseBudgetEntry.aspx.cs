@@ -24,7 +24,7 @@ namespace UI.BudgetPlan
         Budget_Entry_BLL obj = new Budget_Entry_BLL();
         string xmlString = "";
         bool ysnChecked;
-        string xmlpath, email, strVcode, strPrefix, glblnarration, rptname, salesofficelike;
+        string xmlpath, email, strVcode, strPrefix, glblnarration, rptname, salesofficelike,regionname, areaname, linename;
         decimal totalcom, selectedtotalcom = 0;
 
         string budgettype,  itemid,  salesofficeid,  regionid,  areaid,  prdlineid,  costcneteid,  yrid, january,  february
@@ -200,7 +200,7 @@ namespace UI.BudgetPlan
                 regionid = ddlRegion.SelectedValue.ToString();
                 areaid = drdlArea.SelectedValue.ToString();
                 prdlineid = drdlPrdouctLine.SelectedValue.ToString();
-                prdlineid = "1";
+                //prdlineid = "1";
                 costcneteid = ddlCostCenter.SelectedValue.ToString();
                 yrid = ddlYear.SelectedValue.ToString();
 
@@ -250,12 +250,13 @@ namespace UI.BudgetPlan
                 string totAmount = txtTotal.Text;
                 if (totAmount.Length <= 0) { totAmount = "0"; }
 
-
-                //budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                //january, february, march, april, may, june, july, augest, september, october, november, december
+                //regionname ,string areaname,string linename
+                regionname = ddlRegion.SelectedItem.Text.ToString();
+                areaname = drdlArea.SelectedItem.Text.ToString();
+                linename = drdlPrdouctLine.SelectedItem.Text.ToString();
 
                 Createxml(budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, Productprice, totqnt, totAmount);
+                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, Productprice, totqnt, totAmount,regionname,areaname,linename);
 
             }
             //else
@@ -270,7 +271,7 @@ namespace UI.BudgetPlan
         #region ================ Generate XML and Others ==========        
         private void Createxml(string budgettype, string itemid, string salesofficeid, string regionid, string areaid, string prdlineid, string costcneteid, string yrid,
            string january, string february, string march, string april, string may, string june, string july, string augest, string september, string october, string november, string december
-            , string prdname, string budgyr,string productprice,string totqnt,string totamount)
+            , string prdname, string budgyr,string productprice,string totqnt,string totamount,string regionname ,string areaname,string linename )
         {
             System.Xml.XmlDocument doc = new XmlDocument();
             if (System.IO.File.Exists(xmlpath))
@@ -278,7 +279,7 @@ namespace UI.BudgetPlan
                 doc.Load(xmlpath);
                 XmlNode rootNode = doc.SelectSingleNode("SetupbaseBudget");
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, productprice,  totqnt,  totamount);
+                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, productprice,  totqnt,  totamount,  regionname,  areaname,  linename);
                 rootNode.AppendChild(addItem);
             }
             else
@@ -287,7 +288,7 @@ namespace UI.BudgetPlan
                 doc.AppendChild(xmldeclerationNode);
                 XmlNode rootNode = doc.CreateElement("SetupbaseBudget");
                 XmlNode addItem = CreateNode(doc, budgettype, itemid, salesofficeid, regionid, areaid, prdlineid, costcneteid, yrid,
-                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, productprice,  totqnt,  totamount);
+                january, february, march, april, may, june, july, augest, september, october, november, december, prdname, budgyr, productprice,  totqnt,  totamount,  regionname,  areaname,  linename);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
             }
@@ -296,7 +297,7 @@ namespace UI.BudgetPlan
         }
         private XmlNode CreateNode(XmlDocument doc, string budgettype, string itemid, string salesofficeid, string regionid, string areaid, string prdlineid, string costcneteid, string yrid,
         string january, string february, string march, string april, string may, string june, string july, string augest
-        , string september, string october, string november, string december, string prdname, string budgyr,string productprice, string totqnt, string totamount)
+        , string september, string october, string november, string december, string prdname, string budgyr,string productprice, string totqnt, string totamount, string regionname, string areaname, string linename)
         {
             XmlNode node = doc.CreateElement("req");
             XmlAttribute Budgettype = doc.CreateAttribute("budgettype"); Budgettype.Value = budgettype;
@@ -324,6 +325,11 @@ namespace UI.BudgetPlan
             XmlAttribute Productprice = doc.CreateAttribute("productprice"); Productprice.Value = productprice;
             XmlAttribute Totqnt = doc.CreateAttribute("totqnt"); Totqnt.Value = totqnt;
             XmlAttribute Totamount = doc.CreateAttribute("totamount"); Totamount.Value = totamount;
+
+            XmlAttribute Regionname = doc.CreateAttribute("regionname"); Regionname.Value = regionname;
+            XmlAttribute Areaname = doc.CreateAttribute("areaname"); Areaname.Value = areaname;
+            XmlAttribute Linename = doc.CreateAttribute("linename"); Linename.Value = linename;
+
 
             node.Attributes.Append(Budgettype);
             node.Attributes.Append(Itemid);
@@ -354,6 +360,11 @@ namespace UI.BudgetPlan
             node.Attributes.Append(Productprice);
             node.Attributes.Append(Totqnt);
             node.Attributes.Append(Totamount);
+
+            node.Attributes.Append(Regionname);
+            node.Attributes.Append(Areaname);
+            node.Attributes.Append(Linename);
+
 
             return node;
         }
