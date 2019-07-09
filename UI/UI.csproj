@@ -185,6 +185,7 @@
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
+    <Content Include="Accounts\Import\ImportAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -472,6 +473,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
@@ -1991,6 +1993,13 @@
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.designer.cs">
       <DependentUpon>Template.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Import\ImportAdjustment.aspx.cs">
+      <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
+      <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3271,6 +3280,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.cs">
+      <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.designer.cs">
+      <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
