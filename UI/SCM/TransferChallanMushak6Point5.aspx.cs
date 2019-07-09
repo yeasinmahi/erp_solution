@@ -84,7 +84,7 @@ namespace UI.SCM
             dt = objTransfer.GetProductInfoForTransfer(int.Parse(transferid));
             if (dt.Rows.Count > 0)
             {
-                qty = dt.Rows[0]["numQty"].ToString();
+                qty = Math.Abs(decimal.Parse(dt.Rows[0]["numQty"].ToString())).ToString();
                 uom = dt.Rows[0]["strUoM"].ToString();
             }
 
