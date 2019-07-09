@@ -10169,6 +10169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Accounts\Advice\Data\" />
+    <Folder Include="Accounts\Import\Data\" />
     <Folder Include="Accounts\PartyPayment\Data\" />
     <Folder Include="Accounts\Voucher\Data\" />
     <Folder Include="Accounts\Voucher\Uploads\" />

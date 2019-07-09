@@ -33,9 +33,11 @@ namespace UI.Accounts.Import
         #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/PaymentModule/Data/ImportVoucher_" + hdnEnroll.Value + ".xml");
+            filePathForXML = Server.MapPath("~/Accounts/Import/Data/ImportVoucher_" + hdnEnroll.Value + ".xml");
             if (!IsPostBack)
             {
+                File.Delete(filePathForXML);
+                hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                 hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
                 FillDropdown();
             }
@@ -74,20 +76,25 @@ namespace UI.Accounts.Import
                             {
                                 int LCType = int.Parse(((HiddenField)dgvReportForImportVoucher.Rows[index].FindControl("hfGVLCType")).Value.ToString());
                                 int ShipID = int.Parse(((HiddenField)dgvReportForImportVoucher.Rows[index].FindControl("hfGVShipID")).Value.ToString());
-                                int CostGroupId = int.Parse(((HiddenField)dgvReportForImportVoucher.Rows[index].FindControl("intCostGroup")).Value.ToString());
+                                int CostGroupId = int.Parse(((HiddenField)dgvReportForImportVoucher.Rows[index].FindControl("hfGVCostGroup")).Value.ToString());
 
                                 string LCNo = ((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblLcNo")).Text.ToString();
                                 int ShipNo = int.Parse(((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblShipNo")).Text.ToString());
 
                                 string CostGroup = ((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblCostGroup")).Text.ToString();
                                 decimal ProvTk = decimal.Parse(((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblProvTk")).Text.ToString());
+
                                 decimal ActualValue = decimal.Parse(((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblActualValue")).Text.ToString());
 
                                 DateTime ProvDate = DateTime.ParseExact(((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblProvDate")).Text.ToString(),
-                                    "dd/MM/yyyy",CultureInfo.InvariantCulture);
-                                DateTime ActualDate = DateTime.ParseExact(((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblActualDate")).Text.ToString(),
-                                    "dd/MM/yyyy",CultureInfo.InvariantCulture);
+                                    "dd/MM/yyyy", CultureInfo.InvariantCulture);
+                                Label lblActualDate = (Label)dgvReportForImportVoucher.Rows[index].FindControl("lblActualDate");
+                                DateTime ActualDate = !string.IsNullOrEmpty(lblActualDate.Text) ? DateTime.ParseExact(lblActualDate.Text,
+                                "dd/MM/yyyy", CultureInfo.InvariantCulture) : DateTime.MinValue;
+                                //DateTime ActualDate =  DateTime.ParseExact(((Label)dgvReportForImportVoucher.Rows[index].FindControl("lblActualDate")).Text.ToString(),
+                                //    "dd/MM/yyyy", CultureInfo.InvariantCulture);
 
+                                //CreateXml(LCNo, LCType, ShipNo, ShipID, CostGroup, CostGroupId, ProvTk, ProvDate, ActualValue, ActualDate);
                                 if (ActualValue > 0)
                                 {
                                     CreateXml(LCNo, LCType, ShipNo, ShipID, CostGroup, CostGroupId, ProvTk, ProvDate, ActualValue, ActualDate);
@@ -101,28 +108,34 @@ namespace UI.Accounts.Import
                         try
                         {
                             XmlDocument doc = new XmlDocument();
-                            doc.Load(filePathForXML);
-                            XmlNode dSftTm = doc.SelectSingleNode("VoucherA");
-                            string xmlString = dSftTm.InnerXml;
-                            xmlString = "<VoucherA>" + xmlString + "</VoucherA>";
-                            xml = xmlString;
-
-                            if (xml == "")
+                            if (File.Exists(filePathForXML))
                             {
+                                doc.Load(filePathForXML);
+                                XmlNode dSftTm = doc.SelectSingleNode("Adj");
+                                string xmlString = dSftTm.InnerXml;
+                                xmlString = "<Adj>" + xmlString + "</Adj>";
+                                xml = xmlString;
+                            }
+                            
+                            if (string.IsNullOrEmpty(xml))
+                            {
+                                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Data Not Found for Save. Maybe or Maybe not for Actual Value.');", true);
+                                LoadGrid();
                                 return;
                             }
                         }
-                        catch
+                        catch (Exception ex)
                         {
-
+                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + ex.Message.ToString() + "');", true);
                         }
-
-                       string result = objIAVbll.ImportVoucherAdjustment(intUnitID, intUserID,xml);
-                       ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + result + "');", true);
+                        File.Delete(filePathForXML);
+                       // string result = string.Empty;
+                        string result = objIAVbll.ImportVoucherAdjustment(intUnitID, intUserID,xml);
+                        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + result + "');", true);
                     }
-
-                    
                 }
+                
+
             }
             catch (Exception ex)
             {

@@ -10,16 +10,16 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/jqueryJS") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/defaultCSS" />
     <webopt:BundleReference ID="BundleReference3" runat="server" Path="~/Content/Bundle/hrCSS" />
-    <link href="../Content/CSS/SettlementStyle.css" rel="stylesheet" />
-    <script src="../Content/JS/datepickr.min.js"></script>
-    <script src="../Content/JS/JSSettlement.js"></script>
-    <link href="jquery-ui.css" rel="stylesheet" />
-    <link href="../Content/CSS/Application.css" rel="stylesheet" />
-    <script src="jquery.min.js"></script>
-    <script src="jquery-ui.min.js"></script>
-    <script src="../Content/JS/CustomizeScript.js"></script>
-    <link href="../Content/CSS/AutoComplete.css" rel="stylesheet" type="text/css" />
-    <link href="../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/SettlementStyle.css" rel="stylesheet" />
+    <link href="../../Content/CSS/jquery-ui.css" rel="stylesheet" />
+    <link href="../../Content/CSS/Application.css" rel="stylesheet" />
+    <link href="../../Content/CSS/AutoComplete.css" rel="stylesheet" />
+    <link href="../../Content/CSS/Gridstyle.css" rel="stylesheet" />
+    <script src="../../Content/JS/datepickr.js"></script>
+    <script src="../../Content/JS/JSSettlement.js"></script>
+    <script src="../../Content/JS/JQUERY/jquery.min.js"></script>
+    <script src="../../Content/JS/JQUERY/jquery-ui.min.js"></script>
+    <script src="../../Content/JS/CustomizeScript.js"></script>
 </head>
 <body>
     <form id="frmImportAdjustment" runat="server">
@@ -32,13 +32,14 @@
 
                 <div class="divbody" style="padding-right: 10px;">
                     <div id="divLevel1" class="tabs_container"
-                        style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
+                        style="background-color: #dcdbdb; padding-top: 10px; 
+                        padding-left: 5px; padding-right: -50px; border-radius: 5px;padding-bottom: 5px;">
                         <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Import Adjustment for CnF & Maturity Payment" Font-Bold="true" Font-Size="16px"></asp:Label>
                         <hr />
                         <table class="tbldecoration" style="width: auto; float: left;">
                             <tr>
                                 <td style="text-align: right;">
-                                    <asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit : "></asp:Label>
+                                    <asp:Label ID="lblUnit" runat="server" Text="Unit : "></asp:Label>
                                 </td>
                                 <td style="text-align: left;">
                                     <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" Width="220px" Height="23px"
@@ -47,21 +48,22 @@
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label13" runat="server" Text="From Date :"></asp:Label></td>
-                                <td style="text-align: right;">
-                                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="lbl"></asp:TextBox>
+                                <td>
+                                    <asp:TextBox ID="txtFromDate" runat="server" CssClass="lbl" style="text-align:left;font-size:12px"></asp:TextBox>
                                     <cc1:CalendarExtender runat="server" ID="CalendarExtender1" TargetControlID="txtFromDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="Label2" runat="server" Text="To date : "></asp:Label></td>
-                                <td style="text-align: right;">
-                                    <asp:TextBox ID="txtToDate" runat="server" CssClass="lbl"></asp:TextBox>
+                                <td>
+                                    <asp:TextBox ID="txtToDate" runat="server" CssClass="lbl" style="text-align:left;font-size:12px"></asp:TextBox>
                                     <cc1:CalendarExtender runat="server" ID="CalendarExtender2" TargetControlID="txtToDate" Format="dd/MM/yyyy"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Button runat="server" ID="btnReportShow" Text="Show" CssClass="btnstyle-sm" OnClick="btnReportShow_Click" />
-                                    <asp:Button runat="server" ID="btnSubmit" Text="Update" CssClass="btnstyle-sm" OnClick="btnSubmit_Click" />
+                                    <asp:Button runat="server" ID="btnSubmit" Text="Update" CssClass="btnstyle-sm" OnClientClick = "ConfirmAll()" OnClick="btnSubmit_Click"  />
                                 </td>
                             </tr>
+                            <tr></tr>
                         </table>
                         <table>
                             <tr>
