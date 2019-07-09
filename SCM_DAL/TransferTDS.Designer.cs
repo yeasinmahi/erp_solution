@@ -20291,7 +20291,7 @@ Where v.intVatAccountID not in (@intFromWH) and wh.ysnActive = 1";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"select t.intTransferID, i.strItemName + ', Qty: [' + cast(t.numQty as varchar(100)) + ']' as strProduct
+            this._commandCollection[0].CommandText = @"select t.intTransferID, i.strItemName + ', [' + cast(ABS(t.numQty) as varchar(100)) + '], [' + i.strUoM +']' as strProduct
 from ERP_Inventory.dbo.tblInventoryTransfer t Join ERP_Inventory.dbo.tblItemList i on t.intItemID=i.intItemID 
 where intOutWHID=@intFromWHID And intInWHID =@intToWHID And intSalesEntryID is null And intVatChallan is null And dteTransactionDate = @dteTransferDate
 Order by t.intItemID asc";
