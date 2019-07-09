@@ -186,7 +186,15 @@ namespace Budget_BLL.Budget
         }
 
 
-
+        public DataTable GetBudgetModificationInfo(string XMLString , int intEnrol , int intUnit ,DateTime fromdate ,DateTime todate ,int intbudgettyep ,int  prdid ,int actiontype )
+        {
+            try
+            {
+                SprOperationalSetUpBaseBudgetModificationTableAdapter adp = new SprOperationalSetUpBaseBudgetModificationTableAdapter();
+                return adp.GetDataOperationalSetUpBaseBudgetModification(XMLString,  intEnrol,  intUnit,  fromdate,  todate,  intbudgettyep,   prdid,  actiontype);
+            }
+            catch { return new DataTable(); }
+        }
 
 
 

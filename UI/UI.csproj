@@ -315,6 +315,7 @@
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
+    <Content Include="BudgetPlan\BudgetInfoModification.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
@@ -3016,6 +3017,13 @@
     </Compile>
     <Compile Include="BudgetPlan\BudgetEntry.aspx.designer.cs">
       <DependentUpon>BudgetEntry.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetInfoModification.aspx.cs">
+      <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetInfoModification.aspx.designer.cs">
+      <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
     </Compile>
     <Compile Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx.cs">
       <DependentUpon>BudgetNonOperatonStatusDetalis.aspx</DependentUpon>
