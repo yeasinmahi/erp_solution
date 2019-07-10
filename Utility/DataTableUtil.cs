@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.Common.CommandTrees.ExpressionBuilder;
 using System.Linq;
 using System.Reflection;
 #pragma warning disable 168
@@ -53,7 +54,10 @@ namespace Utility
             }
             return query;
         }
-
+        private static EnumerableRowCollection<DataRow> GetRowCollection(this DataTable dt, Func<DataRow, bool> predicat)
+        {
+            return dt.AsEnumerable().Where(predicat);
+        }
         public static DataTable GetRows<T>(this DataTable dt, string columnName, T value)
         {
             EnumerableRowCollection<DataRow> rows = GetRowCollection(dt, columnName, value);
@@ -117,6 +121,15 @@ namespace Utility
                 return false;
             }
             EnumerableRowCollection<DataRow> query = dt.GetRowCollection<T>(columnName, value);
+            return query != null && query.ToList().Count > 0;
+        }
+        public static bool IsExist(this DataTable dt, Func<DataRow,bool> predict)
+        {
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return false;
+            }
+            EnumerableRowCollection<DataRow> query = dt.GetRowCollection(predict);
             return query != null && query.ToList().Count > 0;
         }
         public static string ToHtmlTable(this DataTable dt)

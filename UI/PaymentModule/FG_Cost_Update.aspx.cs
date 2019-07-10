@@ -7,29 +7,34 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Windows.Forms;
 using UI.ClassFiles;
 using Utility;
+using Label = System.Web.UI.WebControls.Label;
 
 namespace UI.PaymentModule
 {
     public partial class FG_Cost_Update : BasePage
     {
         DataTable dt = new DataTable();
+        DataTable dts = new DataTable();
         HR_BLL.Global.Unit unitObj = new HR_BLL.Global.Unit();
         InventoryTransfer_BLL inventoryTransfer_Obj = new InventoryTransfer_BLL();
         DateTime dteDate;
-        int type, GroupID=0, ItemId=0, UnitID=0, CoAID=0;
-        string xmlString="", _filePathForXml;
+        int type, GroupID=0, ItemId=0, UnitID=0, CoAID=0, itemTypeId;
+        string xmlString="", _filePathForXml, msg="";
         private string message;
         decimal monRate=0; decimal total = 0;
+        bool isExistM, isExistL, isExistO, isExistItemT, isExistItemM;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
                 LoadUnit();
-                LoadCostGroup();
-
+                LoadItemType();
+                itemTypeId = Convert.ToInt32( ddlItemType.SelectedItem.Value);
+                LoadCostGroup(itemTypeId);
                 GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
                 LoadGL(GroupID);
 
@@ -44,11 +49,27 @@ namespace UI.PaymentModule
             dt = unitObj.GetUnits(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
             ddlUnit.Loads(dt, "intUnitID", "strUnit");
         }
-        private void LoadCostGroup()
+        private void LoadItemType()
+        {
+            ddlItemType.Items.Add(new ListItem("Trading", "1"));
+            ddlItemType.Items.Add(new ListItem("Manufacturing", "2"));
+        }
+        private void LoadCostGroup(int itemTypeId)
         {
             dteDate = DateTime.Now;//txtEffectDate.Text.ToDateTime("yyyy-MM-dd");
-            dt = inventoryTransfer_Obj.GetFgCostGroup();
-            ddlCostGroup.Loads(dt, "intCostGroupID", "strCostGroup");
+
+            if(itemTypeId == 1)
+            {                
+                ddlCostGroup.UnLoad();
+                ddlCostGroup.Items.Add(new ListItem("Material", "1"));
+            }
+            else if(itemTypeId == 2)
+            {
+                ddlCostGroup.UnLoad();
+                dt = inventoryTransfer_Obj.GetFgCostGroup();
+                ddlCostGroup.Loads(dt, "intCostGroupID", "strCostGroup");
+            }
+            
         }
         private void LoadGL(int CostGroupID)
         {
@@ -59,8 +80,7 @@ namespace UI.PaymentModule
             ddlGL.Loads(dt, "intAccID", "strAccName");
         }
         private void LoadItem(int unitid)
-        {
-           
+        {          
             dt = inventoryTransfer_Obj.GetItemByUnitID(unitid);
             ddlItem.Loads(dt, "intItemID", "strProductName");
         }
@@ -73,7 +93,12 @@ namespace UI.PaymentModule
             lblUnitName.Text=dt.Rows[0]["strDescription"].ToString();
 
         }
-        
+
+        protected void ddlItemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            itemTypeId = Convert.ToInt32(ddlItemType.SelectedItem.Value);
+            LoadCostGroup(itemTypeId);
+        }
         protected void ddlCostGroup_SelectedIndexChanged(object sender, EventArgs e)
         {
             GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
@@ -123,6 +148,8 @@ namespace UI.PaymentModule
             }
         }
        
+
+        #region ========== Show Report Operation ===========
         protected void btnShow_Click(object sender, EventArgs e)
         {
             UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
@@ -148,21 +175,23 @@ namespace UI.PaymentModule
 
         protected void dgvShowReport_RowDataBound(object sender, GridViewRowEventArgs e)
         {
-           
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 total += Convert.ToDecimal(DataBinder.Eval(e.Row.DataItem, "monCost"));
             }
             if (e.Row.RowType == DataControlRowType.Footer)
             {
-                Label LabelTotal = (Label)e.Row.FindControl("lblTotal");
+                System.Web.UI.WebControls.Label LabelTotal = (System.Web.UI.WebControls.Label)e.Row.FindControl("lblTotal");
                 if (LabelTotal != null)
                 {
                     LabelTotal.Text = total.ToString();
                 }
             }
         }
-        #region =========== action button =================
+        #endregion========= End Show Button ==============
+
+        #region =========== action button (Add and Submit) =================
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             int UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
@@ -175,18 +204,18 @@ namespace UI.PaymentModule
             int CoAID = Convert.ToInt32(ddlGL.SelectedItem.Value);
             monRate = Convert.ToDecimal(txtValue.Text);
             dteDate = CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
-
+            string ItemTypeID = ddlItemType.SelectedItem.Text;
             if (dgvReport.Rows.Count>0)
             {
                 //File.Delete(GetXmlFilePath());
                 //dgvReport.UnLoad();
-                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString());
+                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString(), ItemTypeID);
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
             else
             {
-                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString());
+                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString(), ItemTypeID);
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
@@ -194,21 +223,79 @@ namespace UI.PaymentModule
             
 
         }     
-
+        
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            int ItemId = Convert.ToInt32( ddlItem.SelectedItem.Value);
-            int UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
-            GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
-            int CoAID = Convert.ToInt32(ddlGL.SelectedItem.Value);
-            monRate = Convert.ToDecimal(txtValue.Text);
-            dteDate=CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
-            string a=  xmlString;
-            //inventoryTransfer_Obj.GetFgCostUpdate(1, dteDate, Enroll, xmlString, ItemId, UnitID, GroupID, CoAID, monRate);
-            //try { File.Delete(GetXmlFilePath()); } catch { }
 
+            DataTable dt = GetDataTable(dgvReport);
+            DataTable distictTable = dt.DefaultView.ToTable(true, "column0");
+            if (distictTable.Rows.Count > 0)
+            {
+                List<string> itemIds = new List<string>();
+                foreach(DataRow row in distictTable.Rows)
+                {
+                    itemIds.Add(row["column0"].ToString());
+                }
+                foreach(string itemId in itemIds)
+                {
+                    
+                    isExistItemT = dt.IsExist(r => r.Field<string>("column6") == "Trading" && r.Field<string>("column0")==itemId);
+                    isExistItemM = dt.IsExist(r => r.Field<string>("column6") == "Manufacturing" && r.Field<string>("column0") == itemId);
+                    isExistM = dt.IsExist(r => r.Field<string>("column2") == "Material" && r.Field<string>("column0") == itemId);
+                   
+                   
+                    if(isExistItemM==true)
+                    {
+                        isExistO = dt.IsExist(r => r.Field<string>("column2") == "Overhead" && r.Field<string>("column0") == itemId);
+                        isExistL = dt.IsExist(r => r.Field<string>("column2") == "Labour" && r.Field<string>("column0") == itemId);
+                        if (isExistM != true)
+                        {
+                            msg = "Please Enter Material Cost Group For Item: " + ddlItem.SelectedItem.Text;
+                            Toaster(msg, "Product Cost", Common.TosterType.Warning);
+                            return;
+                        }
+                        if (isExistL != true)
+                        {
+                            msg = "Please Enter Labour Cost Group For Item: " + ddlItem.SelectedItem.Text + " for Labour cost group";
+                            Toaster(msg, "Product Cost", Common.TosterType.Warning);
+                            return;
+                        }
+
+                        if (isExistO != true)
+                        {
+                            msg = "Please Enter Overhead Cost Group For Item: " + ddlItem.SelectedItem.Text;
+                            Toaster(msg, "Product Cost", Common.TosterType.Warning);
+                            return;
+                        }
+                        
+                        
+                    }
+                    else if(isExistItemT==true)
+                    {
+                        if (isExistM != true)
+                        {
+                            msg = "Please Enter Material Cost Group For Item: " + ddlItem.SelectedItem.Text;
+                            Toaster(msg, "Product Cost", Common.TosterType.Warning);
+                            return;
+                        }
+                    }
+                    
+                }
+
+                //End foreach
+
+                SubmitData();
+
+
+            }
+            
+
+        }
+        public void SubmitData()
+        {
             List<object> objects = new List<object>();
             List<object> objectsNew = new List<object>();
+            List<string[]> dataList = new List<string[]>();
             if (Session["obj"] != null)
             {
                 objects = (List<object>)Session["obj"];
@@ -221,7 +308,7 @@ namespace UI.PaymentModule
                     ItemName = Common.GetPropertyValue(o, "ItemName"),
                     GLName = Common.GetPropertyValue(o, "GLName"),
                     costGroup = Common.GetPropertyValue(o, "costGroup"),
-                    UnitID= Common.GetPropertyValue(o, "UnitID"),
+                    UnitID = Common.GetPropertyValue(o, "UnitID"),
                     value = Common.GetPropertyValue(o, "value"),
                     GroupID = Common.GetPropertyValue(o, "GroupID"),
                     CoAID = Common.GetPropertyValue(o, "CoAID"),
@@ -230,10 +317,13 @@ namespace UI.PaymentModule
 
                 };
                 objectsNew.Add(obj);
+
             }
             if (objectsNew.Count > 0)
             {
+
                 xmlString = XmlParser.GetXml("CostGroup", "items", objectsNew, out string message);
+
                 inventoryTransfer_Obj.GetFgCostUpdate(1, Enroll, xmlString, UnitID);
                 dgvReport.UnLoad();
                 Session["obj"] = null;
@@ -245,14 +335,35 @@ namespace UI.PaymentModule
             }
             else
             {
-                Toaster("No Data Found to Insert", "OverTime", Common.TosterType.Warning);
+                Toaster("No Data Found To Insert", "Product Cost", Common.TosterType.Warning);
             }
             Session["obj"] = null;
-            dgvReport.DataSource="";
+            dgvReport.DataSource = "";
             dgvReport.DataBind();
-
+        }
+        public DataTable GetDataTable(GridView gridView)
+        {
+            DataTable dt = new DataTable();
+            for (int i = 0; i < gridView.Columns.Count; i++)
+            {
+                dt.Columns.Add("column" + i.ToString());
+            }
+            foreach (GridViewRow row in gridView.Rows)
+            {
+                DataRow dr = dt.NewRow();
+                dr["column0"] = ((Label)row.FindControl("lblItemID")).Text;
+                dr["column1"] = ((Label)row.FindControl("lblstrItem")).Text;
+                dr["column2"] = ((Label)row.FindControl("lblstrCostGroup")).Text;
+                dr["column3"] = ((Label)row.FindControl("lblGL")).Text;
+                dr["column4"] = ((Label)row.FindControl("lblmonValue")).Text;
+                dr["column5"] = ((Label)row.FindControl("lblItemID")).Text;
+                dr["column6"] = ((Label)row.FindControl("lblItemTypeId")).Text;
+                dt.Rows.Add(dr);
+            }
+            return dt;
         }
         #endregion ========= end button action ===========
+
         #region ================ XML Bind ===================
         private string GetXmlFilePath()
         {            
@@ -265,11 +376,11 @@ namespace UI.PaymentModule
             GridViewUtil.LoadGridwithXml(itemXML, dgvReport, out string message);
 
         }
-        private void CreateFGXML(string ItemId,string ItemName,string GLName,string costGroup,string value,string UnitID, string GroupID, string CoAID, string monRate, string dteDate)
+        private void CreateFGXML(string ItemId,string ItemName, string GLName,string costGroup,string value,string UnitID, string GroupID, string CoAID, string monRate, string dteDate, string ItemTypeID)
         {
             dynamic obj = new
             {
-                ItemId,ItemName,GLName,costGroup,value,UnitID,GroupID,CoAID,monRate,dteDate
+                ItemId,ItemName,GLName,costGroup,value,UnitID,GroupID,CoAID,monRate,dteDate,ItemTypeID
             };
             List<object> objects = new List<object>();
             if (Session["obj"] != null)
