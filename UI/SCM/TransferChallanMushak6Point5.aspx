@@ -48,7 +48,7 @@
         <tr>                
             <td style="text-align:right;"><asp:Label ID="lblFromWH" runat="server" CssClass="lbl" Text="From WH:"></asp:Label></td>
             <td style="text-align:left;">
-                <asp:DropDownList ID="ddlFromWH" CssClass="ddList" Font-Bold="False" runat="server" AutoPostBack="true"></asp:DropDownList>                                                                                       
+                <asp:DropDownList ID="ddlFromWH" CssClass="ddList" Font-Bold="False" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlFromWH_SelectedIndexChanged"></asp:DropDownList>                                                                                       
             </td>
 
             <td style="text-align:right;"><asp:Label ID="lblToWH" runat="server" CssClass="lbl" Text="To WH:"></asp:Label></td>
@@ -96,7 +96,7 @@
             <ItemStyle HorizontalAlign="right" Width="90px"/></asp:TemplateField>
                          
             <asp:TemplateField HeaderText="UOM" ItemStyle-HorizontalAlign="right" SortExpression="strUoM" >
-            <ItemTemplate><asp:Label ID="lblUOM" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("uom"))) %>'></asp:Label></ItemTemplate>
+            <ItemTemplate><asp:Label ID="lblUOM" runat="server" DataFormatString="{0:0.00}" Text='<%# (Eval("uom")) %>'></asp:Label></ItemTemplate>
             <ItemStyle HorizontalAlign="right" Width="90px"/></asp:TemplateField>
                      
             <asp:CommandField ShowDeleteButton="true" Visible="false" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 

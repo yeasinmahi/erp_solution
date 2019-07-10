@@ -185,6 +185,7 @@
     <Content Include="Accounts\ChartOfAccount\ChartOfAccountUpdate.aspx" />
     <Content Include="Accounts\ChartOfAccount\GetInfo.aspx" />
     <Content Include="Accounts\ChartOfAccount\Template.aspx" />
+    <Content Include="Accounts\Import\ImportAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsPaymentOrder.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewAdjustment.aspx" />
     <Content Include="Accounts\PartyPayment\AccountsViewCashCredit.aspx" />
@@ -314,6 +315,7 @@
     <Content Include="Asset\WorkOrderPartsPopUp.aspx" />
     <Content Include="BudgetPlan\BudgetDetalis_UI.aspx" />
     <Content Include="BudgetPlan\BudgetEntry.aspx" />
+    <Content Include="BudgetPlan\BudgetInfoModification.aspx" />
     <Content Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx" />
     <Content Include="BudgetPlan\BudgetPlanning_Requesition.aspx" />
     <Content Include="BudgetPlan\BudgetStatusViewDetalis.aspx" />
@@ -475,6 +477,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
@@ -2000,6 +2003,13 @@
     <Compile Include="Accounts\ChartOfAccount\Template.aspx.designer.cs">
       <DependentUpon>Template.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Import\ImportAdjustment.aspx.cs">
+      <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Import\ImportAdjustment.aspx.designer.cs">
+      <DependentUpon>ImportAdjustment.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\MDSlip\MDSlipQuery.aspx.cs">
       <DependentUpon>MDSlipQuery.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3008,6 +3018,13 @@
     <Compile Include="BudgetPlan\BudgetEntry.aspx.designer.cs">
       <DependentUpon>BudgetEntry.aspx</DependentUpon>
     </Compile>
+    <Compile Include="BudgetPlan\BudgetInfoModification.aspx.cs">
+      <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="BudgetPlan\BudgetInfoModification.aspx.designer.cs">
+      <DependentUpon>BudgetInfoModification.aspx</DependentUpon>
+    </Compile>
     <Compile Include="BudgetPlan\BudgetNonOperatonStatusDetalis.aspx.cs">
       <DependentUpon>BudgetNonOperatonStatusDetalis.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3301,6 +3318,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.cs">
+      <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.designer.cs">
+      <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
@@ -10153,6 +10177,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Accounts\Advice\Data\" />
+    <Folder Include="Accounts\Import\Data\" />
     <Folder Include="Accounts\PartyPayment\Data\" />
     <Folder Include="Accounts\Voucher\Data\" />
     <Folder Include="Accounts\Voucher\Uploads\" />
