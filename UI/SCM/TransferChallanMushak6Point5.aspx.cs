@@ -92,6 +92,10 @@ namespace UI.SCM
             {
                 CreateTransferXmlProcess1(transferid, itemname, qty, uom);
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Item Already Added!');", true);
+            }
         }
         private void CreateTransferXmlProcess1(string transferid, string itemname, string qty, string uom)
         {
@@ -139,9 +143,9 @@ namespace UI.SCM
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXMLProcess1);
-            XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
+            XmlNode dSftTm = doc.SelectSingleNode("node");
             xmlStringProcess1 = dSftTm.InnerXml;
-            xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
+            xmlStringProcess1 = "<node>" + xmlStringProcess1 + "</node>";
             StringReader sr = new StringReader(xmlStringProcess1);
             DataSet ds = new DataSet();
             ds.ReadXml(sr);
@@ -200,18 +204,20 @@ namespace UI.SCM
                     strVehicle = txtVehicleNo.Text;
                     dteTransferDate = DateTime.Parse(txtTransferDate.Text);
 
-                    try
-                    {
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(filePathForXMLProcess1);
-                        XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
-                        xmlStringProcess1 = dSftTm.InnerXml;
-                        xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
-                    }
-                    catch { }
+
+                    XmlDocument doc = new XmlDocument();
+
+                    doc.Load(filePathForXMLProcess1);
+                    XmlNode dSftTm = doc.SelectSingleNode("node");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<node>" + xmlString + "</node>";
+
 
                     dt = new DataTable();
-                    dt = objTransfer.GetMushakGa6Point5PrintData(intFromVATAc, intToVATAc, strVehicle, dteTransferDate, int.Parse(hdnEnroll.Value), xmlStringProcess1);
+                    dt = objTransfer.GetMushakGa6Point5PrintData(intFromVATAc, intToVATAc, strVehicle, dteTransferDate, int.Parse(hdnEnroll.Value), xmlString);
+                    File.Delete(filePathForXMLProcess1);
+                    dgvItemList.DataBind();
+
                     if (dt.Rows.Count > 0)
                     {
                         intYear = int.Parse(dt.Rows[0]["intFromVatAc"].ToString());
