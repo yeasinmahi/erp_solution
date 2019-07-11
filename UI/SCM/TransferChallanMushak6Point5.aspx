@@ -100,7 +100,7 @@
             <ItemStyle HorizontalAlign="right" Width="90px"/></asp:TemplateField>
                      
             <asp:CommandField ShowDeleteButton="true" Visible="false" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" /> 
-
+              <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" />
             </Columns><HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" /><PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
             </asp:GridView></td>
         </tr> 
