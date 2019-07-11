@@ -201,6 +201,7 @@
     <Content Include="Accounts\PartyPayment\PrintVoucher.aspx" />
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
+    <Content Include="Accounts\Print\AFBL_Bill_Print.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
     <Content Include="Accounts\Report\AccountsSubledgerByAccountCode_Report.aspx" />
     <Content Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx" />
@@ -2119,6 +2120,13 @@
     </Compile>
     <Compile Include="Accounts\PartyPayment\SecondAuthorizationView.aspx.designer.cs">
       <DependentUpon>SecondAuthorizationView.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Print\AFBL_Bill_Print.aspx.cs">
+      <DependentUpon>AFBL_Bill_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Print\AFBL_Bill_Print.aspx.designer.cs">
+      <DependentUpon>AFBL_Bill_Print.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Print\ChequeRegister.aspx.cs">
       <DependentUpon>ChequeRegister.aspx</DependentUpon>
