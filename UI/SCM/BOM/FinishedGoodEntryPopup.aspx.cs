@@ -9,6 +9,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.HR;
 using UI.ClassFiles;
 using Utility;
 
@@ -91,8 +92,8 @@ namespace UI.SCM.BOM
                     }
                 }
                 ddlOrderId.LoadWithSelect(dt, "intSalesOrderID", "intSalesOrderID");
-
-                FillDropdown();
+                LoadWastageTpe();
+                LoadWastageItem();
                 LoadGrid();
 
 
@@ -220,7 +221,7 @@ namespace UI.SCM.BOM
         {
             try
             {
-                LoadGridwithXml();
+                LoadGridwithXml2();
                 DataSet dsGrid = (DataSet)dgvStore.DataSource;
                 dsGrid.Tables[0].Rows[dgvStore.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
@@ -233,7 +234,7 @@ namespace UI.SCM.BOM
                 }
                 else
                 {
-                    LoadGridwithXml();
+                    LoadGridwithXml2();
                 }
             }
             catch (Exception ex)
@@ -419,7 +420,7 @@ namespace UI.SCM.BOM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-            LoadGridwithXml();
+            //LoadGridwithXml();
         }
 
         private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,
@@ -475,33 +476,34 @@ namespace UI.SCM.BOM
             return node;
         }
 
-        private void LoadGridwithXml()
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("voucher");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<voucher>" + xmlString + "</voucher>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                if (ds.Tables[0].Rows.Count > 0)
-                {
-                    dgvStore.DataSource = ds;
-                }
-                else
-                {
-                    dgvStore.DataSource = "";
-                }
-                dgvStore.DataBind();
-            }
-            catch (Exception ex)
-            {
-                Toaster(ex.Message, Common.TosterType.Error);
-            }
-        }
+        //private void LoadGridwithXml()
+        //{
+        //    try
+        //    {
+        //        XmlDocument doc = new XmlDocument();
+
+        //        doc.Load(filePathForXML);
+        //        XmlNode dSftTm = doc.SelectSingleNode("voucher");
+        //        xmlString = dSftTm.InnerXml;
+        //        xmlString = "<voucher>" + xmlString + "</voucher>";
+        //        StringReader sr = new StringReader(xmlString);
+        //        DataSet ds = new DataSet();
+        //        ds.ReadXml(sr);
+        //        if (ds.Tables[0].Rows.Count > 0)
+        //        {
+        //            dgvStore.DataSource = ds;
+        //        }
+        //        else
+        //        {
+        //            dgvStore.DataSource = "";
+        //        }
+        //        dgvStore.DataBind();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Toaster(ex.Message, Common.TosterType.Error);
+        //    }
+        //}
         private void checkXmlItemData(string itemid)
         {
             try
@@ -545,28 +547,21 @@ namespace UI.SCM.BOM
          * Date : 28-May-2019
          * For : Product Transfer
          */
-        private void FillDropdown()
+        public void LoadWastageTpe()
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                ddlWastageType.Items.Insert(0, new ListItem("---Select Wastage Type---", "-1"));
-                //ddlWastageType.Items.Insert(1, new ListItem("Good Production", "1"));
-                ddlWastageType.Items.Insert(1, new ListItem("Scrap Output", "1"));
-                ddlWastageType.Items.Insert(2, new ListItem("Wastage Output", "2"));
-                dt = objBom.GetWastageItem(UnitId);
-                ddlWastageItem.DataSource = dt;
-                ddlWastageItem.DataTextField = "strItemFullName";
-                ddlWastageItem.DataValueField = "intItemID";
-                ddlWastageItem.DataBind();
-                ddlWastageItem.Items.Insert(0, new ListItem("---Select an Item---", "-1"));
-                //ddlWastageItem.Items.Insert(1, new ListItem(productName, productionID));
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            ddlWastageType.Items.Insert(0, new ListItem("Select", "0"));
+            //ddlWastageType.Items.Insert(1, new ListItem("Good Production", "1"));
+            ddlWastageType.Items.Insert(1, new ListItem("Scrap Output", "1"));
+            ddlWastageType.Items.Insert(2, new ListItem("Wastage Output", "2"));
         }
+
+        public void LoadWastageItem()
+        {
+            int unitId = new UnitBll().GetUnitIdByWhId(int.Parse(whid));
+            DataTable dt = objBom.GetWastageItem(unitId);
+            ddlWastageItem.LoadWithSelect(dt, "intItemID", "strItemFullName");
+        }
+        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -694,7 +689,7 @@ namespace UI.SCM.BOM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-            LoadGridwithXml();
+            LoadGridwithXml2();
         }
         private XmlNode CreateItemNode2(XmlDocument doc,string ProductionId, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date,
             string Time, string JobNo,string UserId, string totalExtraStore)

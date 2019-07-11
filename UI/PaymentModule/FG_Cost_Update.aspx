@@ -25,17 +25,26 @@
                 <asp:HiddenField ID="hdnysnDutyVoucher" runat="server" />
                 <asp:HiddenField ID="hdnEmail" runat="server" />
 
-                <div class="container divbody" style="padding-right: 10px; width:850px;">
+                <div class="container divbody" style="padding-right: 10px; width:950px;">
                     <div id="divLevel1" class="tabs_container" style="background-color: #dcdbdb; padding-top: 10px; padding-left: 5px; padding-right: -50px; border-radius: 5px;">
                         <asp:Label ID="lblHeading" runat="server" CssClass="lbl" Text="Product Cost Sheet" Font-Bold="true" Font-Size="16px"></asp:Label><hr />
                     </div>
-                    <table class="tbldecoration" style="width: 800px; float: left;">
+                    <table class="tbldecoration" style="width: 920px; float: left;">
 
                         <tr class="row">
                             <td style="text-align: right;">
                                 <asp:Label ID="lblUnit" runat="server" CssClass="lbl" Text="Unit"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" Width="110px" Height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlUnit" CssClass="ddList" Font-Bold="False" runat="server" Width="120px" Height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlUnit_SelectedIndexChanged"></asp:DropDownList></td>
+                            <td style="text-align: right;">
+                                <asp:Label ID="Label1" runat="server" CssClass="lbl" Text="Item Type"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlItemType" CssClass="ddList" Font-Bold="False" runat="server" Width="120px" Height="23px" AutoPostBack="true" OnSelectedIndexChanged="ddlItemType_SelectedIndexChanged">
+                                    <%--<asp:ListItem Value="0">--Select--</asp:ListItem>
+                                    <asp:ListItem Value="1">Trading</asp:ListItem>
+                                    <asp:ListItem Value="2">Manufacturing</asp:ListItem>--%>
+                                </asp:DropDownList></td>
+
                             <td style="text-align: right;">
                                 <asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Cost Group"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
@@ -95,7 +104,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <asp:GridView ID="dgvReport" runat="server" AllowPaging="false" AutoGenerateColumns="False" FooterStyle-Font-Size="11px" ForeColor="Black" GridLines="Vertical" HeaderStyle-Font-Bold="true" HeaderStyle-Font-Size="10px" OnRowDeleting="dgvReport_RowDeleting">
+                                            <asp:GridView ID="dgvReport" runat="server" AllowPaging="false" DataKeyNames="ItemId" AutoGenerateColumns="False" FooterStyle-Font-Size="11px" ForeColor="Black" GridLines="Vertical" HeaderStyle-Font-Bold="true" HeaderStyle-Font-Size="10px" OnRowDeleting="dgvReport_RowDeleting">
                                                 <AlternatingRowStyle BackColor="#CCCCCC" />
                                                 <Columns>
                                                     <asp:TemplateField HeaderText="SL No.">
@@ -116,21 +125,18 @@
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="left" Width="250px" />
                                                     </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Item Name" SortExpression="ItemType" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblItemTypeId" runat="server" Text='<%# Bind("ItemTypeID") %>' Width="250px"></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="left" Width="250px" />
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="Cost Group" SortExpression="costGroup">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblstrCostGroup" runat="server" Text='<%# Bind("costGroup") %>'></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="left" />
                                                     </asp:TemplateField>
-
-                                                     <%--<asp:TemplateField HeaderText="Acc Code" >
-                                                        <ItemTemplate>
-                                                            <asp:Label ID="lblAccCode" runat="server" Text='<%# Bind("strcode") %>'></asp:Label>
-                                                        </ItemTemplate>
-                                                        <ItemStyle HorizontalAlign="left" />
-                                                    </asp:TemplateField>--%>
-
-
                                                     <asp:TemplateField HeaderText="GL" SortExpression="GLName">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblGL" runat="server" Text='<%# Bind("GLName") %>' Width="180px"></asp:Label>
