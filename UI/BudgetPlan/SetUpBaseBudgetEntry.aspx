@@ -59,13 +59,21 @@
                          + parseFloat(txtMay*prate) + parseFloat(txtJune*prate) + parseFloat(txtJuly*prate) + parseFloat(txtAugest*prate)
                   + parseFloat(txtSpetmeber) + parseFloat(txtOctober)
                   + parseFloat(txtNovember*prate)
-                  + parseFloat(txtDecember*prate)
+                    + parseFloat(txtDecember * prate)
+
+                  var qnt = parseFloat(txtjan) + parseFloat(txtFeb) + parseFloat(txtMarch) + parseFloat(txtApril)
+                         + parseFloat(txtMay) + parseFloat(txtJune) + parseFloat(txtJuly) + parseFloat(txtAugest)
+                  + parseFloat(txtSpetmeber) + parseFloat(txtOctober)
+                  + parseFloat(txtNovember)
+                  + parseFloat(txtDecember)
+
 
 
             //alert(result);
 
             if (!isNaN(result)) {
                 document.getElementById('txtTotal').value = result;
+                 document.getElementById('txtBudgetQnt').value = qnt;
             }
 
 
@@ -212,7 +220,7 @@
                             
             </td>
                   <td><asp:Label ID="lblcustype" runat="server" CssClass="lbl" Text="Budget Type"></asp:Label> </td>
-                    <td> <asp:DropDownList ID="ddlBudgetType" runat="server" AutoPostBack="True" DataSourceID="odsBudgetType" DataTextField="strBudgetType" DataValueField="intBudgetTypeID" > </asp:DropDownList> 
+                    <td> <asp:DropDownList ID="ddlBudgetType" runat="server" AutoPostBack="True" DataSourceID="odsBudgetType" DataTextField="strBudgetType" DataValueField="intBudgetTypeID" OnSelectedIndexChanged="ddlBudgetType_SelectedIndexChanged" > </asp:DropDownList> 
                         <asp:ObjectDataSource ID="odsBudgetType" runat="server" SelectMethod="GetBudgetType" TypeName="Budget_BLL.Budget.Budget_Entry_BLL"></asp:ObjectDataSource>
                       </td>
 
@@ -230,11 +238,17 @@
                                 <asp:HiddenField ID="hdnProductText" runat="server" />
                                 <asp:TextBox ID="txtProduct" runat="server" AutoCompleteType="Search" Width="250px"
                                     AutoPostBack="true" OnTextChanged="txtProduct_TextChanged"></asp:TextBox>
+
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtProduct"
                                     ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
+               <%--       <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtProduct"
+            ServiceMethod="GetProductList" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender>--%>
                             </td>  
 
                  <td><asp:Label ID="lblSalesOffice" runat="server" CssClass="lbl" Text="Sales Office"></asp:Label> </td>
@@ -341,7 +355,11 @@
                 <td></td>
                 <td><label> December<br /> <asp:TextBox ID="txtDecember" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();"  CssClass="txtBox"></asp:TextBox> </label></td>
                     <td></td>
-                <td><label> Total<br /> <asp:TextBox ID="txtTotal" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
+                <td><label> Qnt<br /> <asp:TextBox ID="txtBudgetQnt" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
+                    
+                    <td></td>
+                <td><label> Amount<br /> <asp:TextBox ID="txtTotal" runat="server" Font-Bold="true" AutoPostBack="false" BackColor="#ffffcc" Width="65px" onkeyup="sum();" Enabled="false"  CssClass="txtBox"></asp:TextBox> </label></td>
+                      
                 </tr>
 
 
@@ -387,7 +405,7 @@
                                 <asp:HiddenField ID="hdnprdlineid" runat="server" Value='<%# Eval("prdlineid") %>' />
                                 <asp:HiddenField ID="hdncostcneteid" runat="server" Value='<%# Eval("costcneteid") %>' />
                                 <asp:HiddenField ID="hdnyrid" runat="server" Value='<%# Eval("yrid") %>' /></ItemTemplate></asp:TemplateField> 
-                             <asp:BoundField DataField="prdname" HeaderText="Product Name" SortExpression="prdname" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                             <asp:BoundField DataField="prdname" HeaderText="ProductName" SortExpression="prdname" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="january" HeaderText="January" SortExpression="january" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="february" HeaderText="February" SortExpression="february" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="march" HeaderText="March" SortExpression="march" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
@@ -395,15 +413,13 @@
                              <asp:BoundField DataField="may" HeaderText="May" SortExpression="may" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
                             <asp:BoundField DataField="june" HeaderText="June" SortExpression="june" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                             <asp:BoundField DataField="july" HeaderText="July" SortExpression="july" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
-                            
-                            
-                            <asp:BoundField DataField="augest" HeaderText="Augest" SortExpression="augest" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
+                              <asp:BoundField DataField="augest" HeaderText="Augest" SortExpression="augest" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="september" HeaderText="September" SortExpression="september" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="october" HeaderText="October" SortExpression="october" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="november" HeaderText="November" SortExpression="november" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="100" />
                              <asp:BoundField DataField="december" HeaderText="December" SortExpression="december" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
-                           
-
+                           <asp:BoundField DataField="totqnt" HeaderText="Qnt" SortExpression="totqnt" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
+                            <asp:BoundField DataField="totAmount" HeaderText="Amount" SortExpression="totAmount" ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100"/>
                             <asp:CommandField ControlStyle-BackColor="#ff9900" ShowDeleteButton="True"  />
                         
 

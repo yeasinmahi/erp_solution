@@ -46,6 +46,11 @@
           $("[id*=lblPending]").html(parseFloat(grandTotalqty.toString()).toFixed(2));
       } ) ;
    </script>   
+     <script> function CloseWindow() {
+     window.close();
+        }
+
+    </script>
 </head>
 <body>
     <form id="frmAutoChallanView" runat="server">

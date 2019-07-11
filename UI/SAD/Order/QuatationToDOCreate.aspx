@@ -327,8 +327,8 @@
                                 <asp:TemplateField HeaderText="Rate" HeaderStyle-HorizontalAlign="Center" SortExpression="strProductName">
                                     <ItemTemplate>
                                         <%--<asp:HiddenField ID="hdnnumprice" runat="server" Value='<%# Eval("numprice", "{0:0.0}") %>' />--%>
-                                          <asp:HiddenField ID="hdnnumprice" runat="server" Value='<%# Bind("numprice", "{0:0.0}") %>'></asp:HiddenField>  
-                                        <asp:Label ID="lblnumprice" runat="server" Text='<%# Bind("numprice", "{0:0.0}") %>'></asp:Label>
+                                          <asp:HiddenField ID="hdnnumprice" runat="server" Value='<%# Bind("numprice", "{0:0.0000}") %>'></asp:HiddenField>  
+                                        <asp:Label ID="lblnumprice" runat="server" Text='<%# Bind("numprice", "{0:0.0000}") %>'></asp:Label>
                                     </ItemTemplate>
                                   
                                 </asp:TemplateField>
@@ -347,9 +347,9 @@
                                 </asp:TemplateField>
 
                                <asp:TemplateField HeaderText="Order Amount" HeaderStyle-HorizontalAlign="Center" SortExpression="MRRValue">
-                                <ItemTemplate><asp:Label ID="lblAmounts" runat="server" DataFormatString="{0:0.00}" Text='<%# (decimal.Parse(""+Eval("montotal", "{0:0.00}"))) %>'></asp:Label></ItemTemplate>
+                                <ItemTemplate><asp:Label ID="lblAmounts" runat="server" DataFormatString="{0:0.0000}" Text='<%# (decimal.Parse(""+Eval("montotal", "{0:0.0000}"))) %>'></asp:Label></ItemTemplate>
                                 <ItemStyle HorizontalAlign="right" Width="40px" /><FooterTemplate>
-                                <asp:Label ID="lblATqty" runat="server" DataFormatString="{0:0.00}" Text='<%# TotalOrderAmounts %>' /></FooterTemplate>
+                                <asp:Label ID="lblATqty" runat="server" DataFormatString="{0:0.0000}" Text='<%# TotalOrderAmounts %>' /></FooterTemplate>
                                 </asp:TemplateField>
 
                                 

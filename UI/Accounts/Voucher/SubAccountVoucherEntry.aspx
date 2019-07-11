@@ -120,7 +120,7 @@
                     <asp:Button Text="Bank Payment" ID="tabBankPayment" CssClass="Initial tabstyle" runat="server" OnClick="tabBankPayment_Click" />
                     <asp:Button Text="Journal Voucher" ID="tabJournalVoucher" CssClass="Initial tabstyle" runat="server" OnClick="tabJournalVoucher_Click" />
                     <asp:Button Text="Contra" ID="tabContra" CssClass="Initial tabstyle" runat="server" OnClick="tabContra_Click" />
-                    <asp:Label ID="lblPoNo" runat="server" Font-Bold="true" Font-Size="Medium" ForeColor="#000099"></asp:Label>
+                    <asp:Label ID="lblBankBoucher" runat="server" Font-Bold="true" Font-Size="Medium" ForeColor="#000099"></asp:Label>
 
                     <asp:MultiView runat="server" ID="mainView">
                         <asp:View runat="server" ID="viewBankReceive">
