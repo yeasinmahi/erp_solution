@@ -126,7 +126,7 @@ namespace UI.Wastage
             if (dt.Rows.Count > 0)
             {
                 txtMRRN.Text = dt.Rows[0]["strMoneyRecNo"].ToString();
-                txtDate.Text = DateTime.Parse(dt.Rows[0]["dteSalesDate"].ToString()).ToString("yyyy/mm/dd");
+                txtDate.Text = DateTime.Parse(dt.Rows[0]["dteSalesDate"].ToString()).ToString("yyyy/MM/dd");
                 txtCustomer.Text = dt.Rows[0]["strCustomerName"].ToString();
                 hdncustomerid.Value = dt.Rows[0]["intCustomerID"].ToString();
                 

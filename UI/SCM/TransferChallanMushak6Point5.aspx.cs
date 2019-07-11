@@ -23,7 +23,7 @@ namespace UI.SCM
         TransferBLLNew objTransfer = new TransferBLLNew();
         string filePathForXMLProcess1, xmlStringProcess1 = "";
         string transferid, itemname, narration, qty, uom;
-        int intFromVATAc, intToVATAc, intYear;
+        int intFromVATAc, intToVATAc, intYear, CheckItem;
         DateTime dteTransferDate; string strVehicle, strGaNo;
         
 
@@ -87,8 +87,15 @@ namespace UI.SCM
                 qty = Math.Abs(decimal.Parse(dt.Rows[0]["numQty"].ToString())).ToString();
                 uom = dt.Rows[0]["strUoM"].ToString();
             }
-
-            CreateTransferXmlProcess1(transferid, itemname, qty, uom);
+            CheckXmlItemReqData(transferid);
+            if (CheckItem == 0)
+            {
+                CreateTransferXmlProcess1(transferid, itemname, qty, uom);
+            }
+            else
+            {
+                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Item Already Added!');", true);
+            }
         }
         private void CreateTransferXmlProcess1(string transferid, string itemname, string qty, string uom)
         {
@@ -96,7 +103,7 @@ namespace UI.SCM
             if (System.IO.File.Exists(filePathForXMLProcess1))
             {
                 doc.Load(filePathForXMLProcess1);
-                XmlNode rootNode = doc.SelectSingleNode("TransferProcess1");
+                XmlNode rootNode = doc.SelectSingleNode("node");
                 XmlNode addItem = CreateItemNode(doc, transferid, itemname, qty, uom);
                 rootNode.AppendChild(addItem);
             }
@@ -104,7 +111,7 @@ namespace UI.SCM
             {
                 XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
                 doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("TransferProcess1");
+                XmlNode rootNode = doc.CreateElement("node");
                 XmlNode addItem = CreateItemNode(doc, transferid, itemname, qty, uom);
                 rootNode.AppendChild(addItem);
                 doc.AppendChild(rootNode);
@@ -114,7 +121,7 @@ namespace UI.SCM
         }
         private XmlNode CreateItemNode(XmlDocument doc, string transferid, string itemname, string qty, string uom)
         {
-            XmlNode node = doc.CreateElement("TransferProcess1");
+            XmlNode node = doc.CreateElement("item");
 
             XmlAttribute Transferid = doc.CreateAttribute("transferid");
             Transferid.Value = transferid;
@@ -136,9 +143,9 @@ namespace UI.SCM
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(filePathForXMLProcess1);
-            XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
+            XmlNode dSftTm = doc.SelectSingleNode("node");
             xmlStringProcess1 = dSftTm.InnerXml;
-            xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
+            xmlStringProcess1 = "<node>" + xmlStringProcess1 + "</node>";
             StringReader sr = new StringReader(xmlStringProcess1);
             DataSet ds = new DataSet();
             ds.ReadXml(sr);
@@ -147,39 +154,44 @@ namespace UI.SCM
             dgvItemList.DataBind();
         }
 
+
+        private void CheckXmlItemReqData(string itemids)
+        {
+            try
+            {
+                DataSet ds = new DataSet();
+                if (File.Exists(filePathForXMLProcess1))
+                {
+                    ds.ReadXml(filePathForXMLProcess1);
+                    int i = 0;
+                    for (i = 0; i <= ds.Tables[0].Rows.Count - 1; i++)
+                    {
+                        if (itemids == (ds.Tables[0].Rows[i].ItemArray[1].ToString()))
+                        {
+                            CheckItem = 0;
+                            break;
+                        }
+                        CheckItem = 1;
+                    }
+                }
+            }
+            catch (Exception ex) { }
+        }
+        #endregion==== Transfer Product Add Ended ======================================================
         protected void dgvItemList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
             {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXMLProcess1);
-                XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
-                xmlStringProcess1 = dSftTm.InnerXml;
-                xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
-                StringReader sr = new StringReader(xmlStringProcess1);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                dgvItemList.DataSource = ds;
-
+                LoadGridwithXml();
                 DataSet dsGrid = (DataSet)dgvItemList.DataSource;
-                string chek = dsGrid.Tables[0].Rows[e.RowIndex][5].ToString();
-
                 dsGrid.Tables[0].Rows[dgvItemList.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXMLProcess1);
                 DataSet dsGridAfterDelete = (DataSet)dgvItemList.DataSource;
-                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                {
-                    File.Delete(filePathForXMLProcess1); dgvItemList.DataSource = ""; dgvItemList.DataBind();
-                }
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0) { File.Delete(filePathForXMLProcess1); dgvItemList.DataSource = ""; dgvItemList.DataBind(); }
                 else { LoadGridwithXml(); }
-
             }
             catch { }
-
         }
-
-        #endregion==== Transfer Product Add Ended ======================================================
-
         #region==== Transfer Action Start =============================================================
         protected void btnTransferAction_Click(object sender, EventArgs e)
         {
@@ -192,18 +204,20 @@ namespace UI.SCM
                     strVehicle = txtVehicleNo.Text;
                     dteTransferDate = DateTime.Parse(txtTransferDate.Text);
 
-                    try
-                    {
-                        XmlDocument doc = new XmlDocument();
-                        doc.Load(filePathForXMLProcess1);
-                        XmlNode dSftTm = doc.SelectSingleNode("TransferProcess1");
-                        xmlStringProcess1 = dSftTm.InnerXml;
-                        xmlStringProcess1 = "<TransferProcess1>" + xmlStringProcess1 + "</TransferProcess1>";
-                    }
-                    catch { }
+
+                    XmlDocument doc = new XmlDocument();
+
+                    doc.Load(filePathForXMLProcess1);
+                    XmlNode dSftTm = doc.SelectSingleNode("node");
+                    string xmlString = dSftTm.InnerXml;
+                    xmlString = "<node>" + xmlString + "</node>";
+
 
                     dt = new DataTable();
-                    dt = objTransfer.GetMushakGa6Point5PrintData(intFromVATAc, intToVATAc, strVehicle, dteTransferDate, int.Parse(hdnEnroll.Value), xmlStringProcess1);
+                    dt = objTransfer.GetMushakGa6Point5PrintData(intFromVATAc, intToVATAc, strVehicle, dteTransferDate, int.Parse(hdnEnroll.Value), xmlString);
+                    File.Delete(filePathForXMLProcess1);
+                    dgvItemList.DataBind();
+
                     if (dt.Rows.Count > 0)
                     {
                         intYear = int.Parse(dt.Rows[0]["intFromVatAc"].ToString());
