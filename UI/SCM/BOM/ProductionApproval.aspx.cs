@@ -44,13 +44,15 @@ namespace UI.SCM.BOM
             {
 
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-                Label lblProductID = row.FindControl("lblProductID") as Label;
+                Label lblProductiontID = row.FindControl("lblProductiontID") as Label;
                 Label lblItemID = row.FindControl("lblItemID") as Label;
                 Label lblUnitID = row.FindControl("lblUnitID") as Label;
-                int ProductID = int.Parse(lblProductID.Text);
+                int intProductiontID = int.Parse(lblProductiontID.Text);
                 int ItemID = int.Parse(lblItemID.Text);
                 int UnitID = int.Parse(lblUnitID.Text);
-                string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, ProductID, Enroll, 1);
+                
+
+                string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, intProductiontID, Enroll, 1);
                 if (msg.ToLower().Contains("successful"))
                 {
                     Toaster(msg, Common.TosterType.Success);
@@ -84,13 +86,14 @@ namespace UI.SCM.BOM
             {
 
                 GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
-                Label lblProductID = row.FindControl("lblProductID") as Label;
+                Label lblProductiontID = row.FindControl("lblProductiontID") as Label;
                 Label lblItemID = row.FindControl("lblItemID") as Label;
                 Label lblUnitID = row.FindControl("lblUnitID") as Label;
-                int ProductID = int.Parse(lblProductID.Text);
+                // int ProductID = int.Parse(lblProductID.Text);
+                int intProductiontID = int.Parse(lblProductiontID.Text);
                 int ItemID = int.Parse(lblItemID.Text);
                 int UnitID = int.Parse(lblUnitID.Text);
-                string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, ProductID, Enroll, 2);
+                string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, intProductiontID, Enroll, 2);
                 if (msg.ToLower().Contains("successful"))
                 {
                     Toaster(msg, Common.TosterType.Success);
@@ -113,6 +116,35 @@ namespace UI.SCM.BOM
             }
         }
 
+        protected void btnclose_Click(object sender, EventArgs e)
+        {
+
+            GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+            Label lblProductiontID = row.FindControl("lblProductiontID") as Label;
+            Label lblItemID = row.FindControl("lblItemID") as Label;
+            Label lblUnitID = row.FindControl("lblUnitID") as Label;
+            // int ProductID = int.Parse(lblProductID.Text);
+            int intProductiontID = int.Parse(lblProductiontID.Text);
+            int ItemID = int.Parse(lblItemID.Text);
+            int UnitID = int.Parse(lblUnitID.Text);
+            string msg = InventoryTransfer_Obj.UpdateProductionApprove(ItemID, UnitID, intProductiontID, Enroll, 2);
+            if (msg.ToLower().Contains("successful"))
+            {
+                Toaster(msg, Common.TosterType.Success);
+
+                LoadGrid();
+
+            }
+            else
+            {
+                Toaster(msg, Common.TosterType.Error);
+            }
+
+
+
+
+        }
+
         public void LoadGrid()
         {
             try
@@ -126,7 +158,7 @@ namespace UI.SCM.BOM
                 int appType = Convert.ToInt32(rdoApprove.SelectedItem.Value);
                 if (appType == 1)
                 {
-                    dgvBom.Columns[12].Visible = false;
+                    dgvBom.Columns[12].Visible = true;
                     dgvBom.Columns[13].Visible = false;
                 }
                 else if (appType == 2)

@@ -129,27 +129,35 @@
 
                                         <asp:TemplateField HeaderText="Prod. ID" Visible="True" SortExpression="intProductionID">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblProductID" runat="server" Text='<%# Bind("intProductionID") %>'></asp:Label>
+                                                <asp:Label ID="lblProductiontID" runat="server" Text='<%# Bind("intProductionID") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="45px" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Item ID" Visible="false" SortExpression="intItemID">
+                                        <%--<asp:TemplateField HeaderText="Item ID" Visible="false" SortExpression="intItemID">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblItemID" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="45px" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                         <asp:TemplateField HeaderText="Unit ID" Visible="false" SortExpression="intUnitID">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="45px" />
                                         </asp:TemplateField>
+
                                         <asp:TemplateField HeaderText="Product Name" SortExpression="strName">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblProductName" runat="server" Width="200px" Text='<%# Bind("strName") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="300px" />
+                                        </asp:TemplateField>
+
+                                           <asp:TemplateField HeaderText="Item ID" SortExpression="intItemID">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblItemID" runat="server" Width="45px" Text='<%# Bind("intItemID") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="center" Width="45px" />
                                         </asp:TemplateField>
 
                                         <asp:TemplateField HeaderText="BOM Name" Visible="true" ItemStyle-HorizontalAlign="right" SortExpression="strBoMName">
@@ -210,13 +218,13 @@
 
                                         <asp:TemplateField HeaderText="Approve" >
                                             <ItemTemplate>
-                                                <asp:Button ID="btnApprove" forecolor="Green" runat="server" OnClientClick="return confirmMsg();" OnClick="btnApprove_Click" Text="Approve"></asp:Button><br />
+                                                <asp:Button ID="btnApprove" forecolor="Black" BackColor="#33cc33" runat="server" OnClientClick="return confirmMsg();" OnClick="btnApprove_Click" Text="Approve"></asp:Button><br />
                                             </ItemTemplate>
                                             <%--<ItemStyle HorizontalAlign="Right"/>--%>                                           
                                         </asp:TemplateField>
                                         <asp:TemplateField HeaderText="Close" >
                                             <ItemTemplate>
-                                                <asp:Button ID="btnClosed" forecolor="Red" runat="server" OnClientClick="return confirmMsg();" OnClick="btnClosed_Click" Text="Close"></asp:Button>
+                                                <asp:Button ID="btnclose" forecolor="Red" runat="server" OnClientClick="return confirmMsg();"  OnClick="btnclose_Click" Text="Reject"></asp:Button>
                                             </ItemTemplate>
                                             <%--<ItemStyle HorizontalAlign="Right"/>--%>
                                         </asp:TemplateField>
