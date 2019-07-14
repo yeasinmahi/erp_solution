@@ -420,7 +420,7 @@ namespace UI.SCM.BOM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-            //LoadGridwithXml();
+            LoadGridwithXml();
         }
 
         private XmlNode CreateItemNode(XmlDocument doc, string item, string itemid, string struom, string qty, string storeQty, string jobno, string times,
@@ -476,34 +476,34 @@ namespace UI.SCM.BOM
             return node;
         }
 
-        //private void LoadGridwithXml()
-        //{
-        //    try
-        //    {
-        //        XmlDocument doc = new XmlDocument();
+        private void LoadGridwithXml()
+        {
+            try
+            {
+                XmlDocument doc = new XmlDocument();
 
-        //        doc.Load(filePathForXML);
-        //        XmlNode dSftTm = doc.SelectSingleNode("voucher");
-        //        xmlString = dSftTm.InnerXml;
-        //        xmlString = "<voucher>" + xmlString + "</voucher>";
-        //        StringReader sr = new StringReader(xmlString);
-        //        DataSet ds = new DataSet();
-        //        ds.ReadXml(sr);
-        //        if (ds.Tables[0].Rows.Count > 0)
-        //        {
-        //            dgvStore.DataSource = ds;
-        //        }
-        //        else
-        //        {
-        //            dgvStore.DataSource = "";
-        //        }
-        //        dgvStore.DataBind();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Toaster(ex.Message, Common.TosterType.Error);
-        //    }
-        //}
+                doc.Load(filePathForXML);
+                XmlNode dSftTm = doc.SelectSingleNode("voucher");
+                xmlString = dSftTm.InnerXml;
+                xmlString = "<voucher>" + xmlString + "</voucher>";
+                StringReader sr = new StringReader(xmlString);
+                DataSet ds = new DataSet();
+                ds.ReadXml(sr);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    dgvStore.DataSource = ds;
+                }
+                else
+                {
+                    dgvStore.DataSource = "";
+                }
+                dgvStore.DataBind();
+            }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, Common.TosterType.Error);
+            }
+        }
         private void checkXmlItemData(string itemid)
         {
             try
