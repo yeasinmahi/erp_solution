@@ -2,14 +2,15 @@
 <xs:schema id="RegionTDS" targetNamespace="http://tempuri.org/RegionTDS.xsd" xmlns:mstns="http://tempuri.org/RegionTDS.xsd" xmlns="http://tempuri.org/RegionTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_RemoteConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_RemoteConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_RemoteConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblRegionTableAdapter" GeneratorDataComponentClassName="TblRegionTableAdapter" Name="TblRegion" UserDataComponentName="TblRegionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblRegion" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetRegionData" GetMethodModifier="Public" GetMethodName="GetRegionData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetRegionData" UserSourceName="GetRegionData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblRegion" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetRegionData" GetMethodModifier="Public" GetMethodName="GetRegionData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetRegionData" UserSourceName="GetRegionData">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [tblRegion] WHERE (([intRegionID] = @Original_intRegionID) AND ((@IsNull_intUnitID = 1 AND [intUnitID] IS NULL) OR ([intUnitID] = @Original_intUnitID)) AND ((@IsNull_strRegionName = 1 AND [strRegionName] IS NULL) OR ([strRegionName] = @Original_strRegionName)) AND ((@IsNull_intInsertedBy = 1 AND [intInsertedBy] IS NULL) OR ([intInsertedBy] = @Original_intInsertedBy)) AND ((@IsNull_dteInsertionTime = 1 AND [dteInsertionTime] IS NULL) OR ([dteInsertionTime] = @Original_dteInsertionTime)) AND ((@IsNull_intLastActiondBy = 1 AND [intLastActiondBy] IS NULL) OR ([intLastActiondBy] = @Original_intLastActiondBy)) AND ((@IsNull_dteLastModificationTime = 1 AND [dteLastModificationTime] IS NULL) OR ([dteLastModificationTime] = @Original_dteLastModificationTime)) AND ([ysnActive] = @Original_ysnActive))</CommandText>
@@ -96,7 +97,7 @@ SELECT intRegionID, intUnitID, strRegionName, intInsertedBy, dteInsertionTime, i
               <Mapping SourceColumn="ysnActive" DataSetColumn="ysnActive" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblRegion" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetRegionDataByUnit" GetMethodModifier="Public" GetMethodName="GetRegionDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetRegionDataByUnit" UserSourceName="GetRegionDataByUnit">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblRegion" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetRegionDataByUnit" GetMethodModifier="Public" GetMethodName="GetRegionDataByUnit" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetRegionDataByUnit" UserSourceName="GetRegionDataByUnit">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        intRegionID, intUnitID, strRegionName, intInsertedBy, dteInsertionTime, intLastActiondBy, dteLastModificationTime, ysnActive
@@ -110,31 +111,62 @@ where intUnitID=@unitID</CommandText>
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblGEOSetupTableAdapter" GeneratorDataComponentClassName="TblGEOSetupTableAdapter" Name="TblGEOSetup" UserDataComponentName="TblGEOSetupTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_RemoteConnectionString (Settings)" DbObjectName="ERP_Remote.dbo.tblGEOSetup" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT distinct [strRegion], [intRegionId] FROM [ERP_Remote].[dbo].[tblGEOSetup]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strRegion" DataSetColumn="strRegion" />
+              <Mapping SourceColumn="intRegionId" DataSetColumn="intRegionId" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="RegionTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="RegionTDS" msprop:Generator_DataSetName="RegionTDS" msprop:EnableTableAdapterManager="true">
+  <xs:element name="RegionTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="RegionTDS" msprop:Generator_UserDSName="RegionTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="TblRegion" msprop:Generator_UserTableName="TblRegion" msprop:Generator_RowDeletedName="TblRegionRowDeleted" msprop:Generator_RowChangedName="TblRegionRowChanged" msprop:Generator_RowClassName="TblRegionRow" msprop:Generator_RowChangingName="TblRegionRowChanging" msprop:Generator_RowEvArgName="TblRegionRowChangeEvent" msprop:Generator_RowEvHandlerName="TblRegionRowChangeEventHandler" msprop:Generator_TableClassName="TblRegionDataTable" msprop:Generator_TableVarName="tableTblRegion" msprop:Generator_RowDeletingName="TblRegionRowDeleting" msprop:Generator_TablePropName="TblRegion">
+        <xs:element name="TblRegion" msprop:Generator_UserTableName="TblRegion" msprop:Generator_RowEvArgName="TblRegionRowChangeEvent" msprop:Generator_TableVarName="tableTblRegion" msprop:Generator_TablePropName="TblRegion" msprop:Generator_RowDeletingName="TblRegionRowDeleting" msprop:Generator_RowChangingName="TblRegionRowChanging" msprop:Generator_RowDeletedName="TblRegionRowDeleted" msprop:Generator_RowEvHandlerName="TblRegionRowChangeEventHandler" msprop:Generator_TableClassName="TblRegionDataTable" msprop:Generator_RowChangedName="TblRegionRowChanged" msprop:Generator_RowClassName="TblRegionRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intRegionID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="intRegionID" msprop:Generator_ColumnPropNameInRow="intRegionID" msprop:Generator_ColumnVarNameInTable="columnintRegionID" msprop:Generator_ColumnPropNameInTable="intRegionIDColumn" type="xs:int" />
-              <xs:element name="intUnitID" msprop:Generator_UserColumnName="intUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="strRegionName" msprop:Generator_UserColumnName="strRegionName" msprop:Generator_ColumnPropNameInRow="strRegionName" msprop:Generator_ColumnVarNameInTable="columnstrRegionName" msprop:Generator_ColumnPropNameInTable="strRegionNameColumn" minOccurs="0">
+              <xs:element name="intRegionID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintRegionID" msprop:Generator_ColumnPropNameInRow="intRegionID" msprop:Generator_ColumnPropNameInTable="intRegionIDColumn" msprop:Generator_UserColumnName="intRegionID" type="xs:int" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" minOccurs="0" />
+              <xs:element name="strRegionName" msprop:Generator_ColumnVarNameInTable="columnstrRegionName" msprop:Generator_ColumnPropNameInRow="strRegionName" msprop:Generator_ColumnPropNameInTable="strRegionNameColumn" msprop:Generator_UserColumnName="strRegionName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intInsertedBy" msprop:Generator_UserColumnName="intInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="dteInsertionTime" msprop:Generator_UserColumnName="dteInsertionTime" msprop:Generator_ColumnPropNameInRow="dteInsertionTime" msprop:Generator_ColumnVarNameInTable="columndteInsertionTime" msprop:Generator_ColumnPropNameInTable="dteInsertionTimeColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="intLastActiondBy" msprop:Generator_UserColumnName="intLastActiondBy" msprop:Generator_ColumnPropNameInRow="intLastActiondBy" msprop:Generator_ColumnVarNameInTable="columnintLastActiondBy" msprop:Generator_ColumnPropNameInTable="intLastActiondByColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="dteLastModificationTime" msprop:Generator_UserColumnName="dteLastModificationTime" msprop:Generator_ColumnPropNameInRow="dteLastModificationTime" msprop:Generator_ColumnVarNameInTable="columndteLastModificationTime" msprop:Generator_ColumnPropNameInTable="dteLastModificationTimeColumn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="ysnActive" msprop:Generator_UserColumnName="ysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" type="xs:boolean" />
+              <xs:element name="intInsertedBy" msprop:Generator_ColumnVarNameInTable="columnintInsertedBy" msprop:Generator_ColumnPropNameInRow="intInsertedBy" msprop:Generator_ColumnPropNameInTable="intInsertedByColumn" msprop:Generator_UserColumnName="intInsertedBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteInsertionTime" msprop:Generator_ColumnVarNameInTable="columndteInsertionTime" msprop:Generator_ColumnPropNameInRow="dteInsertionTime" msprop:Generator_ColumnPropNameInTable="dteInsertionTimeColumn" msprop:Generator_UserColumnName="dteInsertionTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="intLastActiondBy" msprop:Generator_ColumnVarNameInTable="columnintLastActiondBy" msprop:Generator_ColumnPropNameInRow="intLastActiondBy" msprop:Generator_ColumnPropNameInTable="intLastActiondByColumn" msprop:Generator_UserColumnName="intLastActiondBy" type="xs:int" minOccurs="0" />
+              <xs:element name="dteLastModificationTime" msprop:Generator_ColumnVarNameInTable="columndteLastModificationTime" msprop:Generator_ColumnPropNameInRow="dteLastModificationTime" msprop:Generator_ColumnPropNameInTable="dteLastModificationTimeColumn" msprop:Generator_UserColumnName="dteLastModificationTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" msprop:Generator_UserColumnName="ysnActive" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblGEOSetup" msprop:Generator_TableClassName="TblGEOSetupDataTable" msprop:Generator_TableVarName="tableTblGEOSetup" msprop:Generator_TablePropName="TblGEOSetup" msprop:Generator_RowDeletingName="TblGEOSetupRowDeleting" msprop:Generator_RowChangingName="TblGEOSetupRowChanging" msprop:Generator_RowEvHandlerName="TblGEOSetupRowChangeEventHandler" msprop:Generator_RowDeletedName="TblGEOSetupRowDeleted" msprop:Generator_UserTableName="TblGEOSetup" msprop:Generator_RowChangedName="TblGEOSetupRowChanged" msprop:Generator_RowEvArgName="TblGEOSetupRowChangeEvent" msprop:Generator_RowClassName="TblGEOSetupRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strRegion" msprop:Generator_ColumnVarNameInTable="columnstrRegion" msprop:Generator_ColumnPropNameInRow="strRegion" msprop:Generator_ColumnPropNameInTable="strRegionColumn" msprop:Generator_UserColumnName="strRegion" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intRegionId" msprop:Generator_ColumnVarNameInTable="columnintRegionId" msprop:Generator_ColumnPropNameInRow="intRegionId" msprop:Generator_ColumnPropNameInTable="intRegionIdColumn" msprop:Generator_UserColumnName="intRegionId" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

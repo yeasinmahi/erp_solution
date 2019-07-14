@@ -18,7 +18,10 @@ namespace SAD_BLL.Item
         private static ItemTDS.tblItemBridge1DataTable[] tableProductsAPL = null;
         private static ItemTDS.TblItemDataTable[] tableProducts = null;
         private static SearchSales_TDS.SprSalesOrderDetaillsForTripDataTable[] tblPendingItem = null;
-      
+
+        private static ItemTDS.SprBudgetItemSearchingDataTable[] tableBudgetProducts = null;
+
+        public static int e;
         private static Hashtable ht = new Hashtable();
        
         //SprSalesOrderDetaillsForTripAssign
@@ -212,7 +215,62 @@ namespace SAD_BLL.Item
             tableProducts[Convert.ToInt32(ht[unitID])] = adpCOA.GetDataByUnit_Type(int.Parse(unitID), id, true);
         }
 
-       
+        public static string[] GetBudgetProductItem(string budgettype, string unitid, string prefix)
+        {
+            tableBudgetProducts = new ItemTDS.SprBudgetItemSearchingDataTable[Convert.ToInt32(unitid)];
+            // tblDoPendintItem = new Delivery_TDS.QryDOProfileDataTable[Convert.ToInt32];
+            SprBudgetItemSearchingTableAdapter adp = new SprBudgetItemSearchingTableAdapter();
+            tableBudgetProducts[e] = adp.GetDataBudgetItemSearching(int.Parse(budgettype), int.Parse(unitid));
+
+            prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+
+            if (prefix == "" || prefix == "*")
+            {
+                var rows = from tmp in tableBudgetProducts[e]//Convert.ToInt32(ht[unitID])                           
+                           orderby tmp.straccname
+                           select tmp;
+                if (rows.Count() > 0)
+                {
+                    tbl = rows.CopyToDataTable();
+                }
+            }
+            else
+            {
+                try
+                {
+
+                    var rows = from tmp in tableBudgetProducts[e]
+                               where tmp.straccname.ToLower().Contains(prefix)//, true, System.Globalization.CultureInfo.CurrentUICulture)
+                               orderby tmp.straccname
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+
+                    retStr[i] = tbl.Rows[i]["straccname"] + " [" + tbl.Rows[i]["intaccid"] + "]" ;
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 
     }

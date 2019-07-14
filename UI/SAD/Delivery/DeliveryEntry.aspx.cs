@@ -1,4 +1,4 @@
-﻿using BLL.Accounts.ChartOfAccount;
+﻿ using BLL.Accounts.ChartOfAccount;
 using LOGIS_BLL;
 using SAD_BLL.Customer;
 using SAD_BLL.Global;
@@ -474,7 +474,7 @@ namespace UI.SAD.Delivery
         {
             if (ddlOrderType.SelectedValue == "1")
             {
-                lblCustomer.Text = "Spld To Party";
+                lblCustomer.Text = "Sold To Party";
                 lblCustomerToAdd.Text = "Ship To Party";
                 txtOrderNo.Visible = false;
                 lblOrderNo.Visible = false;
@@ -638,16 +638,16 @@ namespace UI.SAD.Delivery
         [ScriptMethod]
         public static string[] GetCustomerList(string prefixText, int count)
         {
-            //if (HttpContext.Current.Session["OrderTypeId"].ToString() == "2" || HttpContext.Current.Session["OrderTypeId"].ToString() == "5")
-            //{
-            //    return SalesSearch_BLL.GeWthlist(prefixText,
-            //        HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString());
-            //}
-            //else
-            //{
-                
-            //}
-            return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_CUS_TYPE].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
+            if (HttpContext.Current.Session["OrderTypeId"].ToString() == "2" || HttpContext.Current.Session["OrderTypeId"].ToString() == "5")
+            {
+                return SalesSearch_BLL.GeWthlist(prefixText,
+                    HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString());
+            }
+            else
+            {
+                return CustomerInfoSt.GetCustomerDataForAutoFill(HttpContext.Current.Session[SessionParams.CURRENT_UNIT].ToString(), prefixText, HttpContext.Current.Session[SessionParams.CURRENT_CUS_TYPE].ToString(), HttpContext.Current.Session[SessionParams.CURRENT_SO].ToString());
+
+            }
 
         }
 
@@ -850,7 +850,7 @@ namespace UI.SAD.Delivery
 
         protected void txtCustomer_TextChanged(object sender, EventArgs e)
         {
-            Reset();
+           InitilizeXmlAddControl();
             CustomerChange();
         }
 

@@ -232,7 +232,9 @@ namespace UI.SAD.ExcelChallan
         {
 
             objExcel.getOrderdelete();
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
+            getReport();
         }
 
        
@@ -254,16 +256,12 @@ namespace UI.SAD.ExcelChallan
                 string temp = temp1.Replace("'", " ");
                 string[] searchKey = temp.Split(delimiterChars);
                 Custid = int.Parse(searchKey[0].ToString());
+                GridViewRow row = (GridViewRow)((Button)sender).NamingContainer;
+                TextBox txtSalesQty = row.FindControl("txtAllQuantity") as TextBox;               
+               // Label lblItemName = row.FindControl("lblItemName") as Label;              
+                string msg = txtSalesQty.Text.ToString();
                
 
-                foreach (GridViewRow gridviewrow in dgvExcelOrder.Rows)
-                {
-                    if (Convert.ToString(((TextBox)gridviewrow.FindControl("txtAllQuantity"))) != "")
-                    {
-                        msg = ((TextBox)gridviewrow.FindControl("txtAllQuantity")).Text;
-                       
-                    }
-                }
                 if ((Custid > 0) && (msg != ""))
                 {
                     objExcel.getOrderUpload(Custid, msg, int.Parse(ddlshippoint.SelectedValue), int.Parse(ddlOfficeName.SelectedValue), int.Parse(Session[SessionParams.USER_ID].ToString()));

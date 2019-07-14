@@ -199,7 +199,7 @@ namespace UI.SAD.ExcelChallan
                                 {
                                     
                                         narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
-                                        narratioin = narration;
+                                        Session["narratioin"]  = narration;
                                  
                                 }
                                 intsalestypeid = Convert.ToInt32(stype);
@@ -208,42 +208,42 @@ namespace UI.SAD.ExcelChallan
                                 {
                                     
 
-                                        if (counts > 7)
-                                        {
-                                            counts = 1;
-                                            #region ------------ Insert into dataBase -----------                                                                            
+                                        //if (counts > 7)
+                                        //{
+                                        //    counts = 1;
+                                        //    #region ------------ Insert into dataBase -----------                                                                            
 
-                                            XmlDocument doc = new XmlDocument();
-                                            doc.Load(filePathForXML);
-                                            XmlNode dSftTm = doc.SelectSingleNode("node");
-                                            string xmlString = dSftTm.InnerXml;
-                                            xmlString = "<node>" + xmlString + "</node>";
-                                            string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
-                                            File.Delete(filePathForXML);
-                                            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
+                                        //    XmlDocument doc = new XmlDocument();
+                                        //    doc.Load(filePathForXML);
+                                        //    XmlNode dSftTm = doc.SelectSingleNode("node");
+                                        //    string xmlString = dSftTm.InnerXml;
+                                        //    xmlString = "<node>" + xmlString + "</node>";
+                                        //    string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
+                                        //    File.Delete(filePathForXML);
+                                        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
 
-                                            #endregion ------------ Insertion End ----------------
+                                        //    #endregion ------------ Insertion End ----------------
 
+                                        //    qty = Convert.ToString(qty.ToString());
+                                        //    CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
+                                        //    narration = "";
+                                        //    narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
+                                        //}
+                                        //else
+                                        //{
                                             qty = Convert.ToString(qty.ToString());
                                             CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
-                                            narration = "";
-                                            narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
-                                        }
-                                        else
-                                        {
-                                            qty = Convert.ToString(qty.ToString());
-                                            CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
-                                        }
+                                        //}
                                     }
                                    
                                 }
                         }
 
-                        if ((counts > 0) && (counts < 8))
+                        if ((counts > 0))
                         {
                                 #region ------------ Insert into dataBase -----------
 
-                                narratioin = Convert.ToString(Session[narratioin]);
+                                narratioin = Convert.ToString(Session["narratioin"]);
                                 XmlDocument doc = new XmlDocument();
                                 doc.Load(filePathForXML);
                                 XmlNode dSftTm = doc.SelectSingleNode("node");
