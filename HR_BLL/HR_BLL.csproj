@@ -120,6 +120,7 @@
     <Compile Include="DocumentTracking\DocumentTrackingBLL.cs" />
     <Compile Include="Employee\EmployeeBasicInfo.cs" />
     <Compile Include="Employee\EmployeeDetails.cs" />
+    <Compile Include="Employee\EmployeeFullInformationBll.cs" />
     <Compile Include="Employee\EmployeeRegistration.cs" />
     <Compile Include="Facilities\MobileFacilities.cs" />
     <Compile Include="Global\ApplicationType.cs" />

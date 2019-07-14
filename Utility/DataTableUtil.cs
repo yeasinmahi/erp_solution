@@ -165,5 +165,30 @@ namespace Utility
             return 0;
             
         }
+        public static T GetValue<T>(this DataTable dt, string columnName)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                if (typeof(int)== typeof(T))
+                {
+                    var value = Convert.ToInt32(dt.Rows[0][columnName].ToString());
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                else if (typeof(string) == typeof(T))
+                {
+                    var value = dt.Rows[0][columnName].ToString();
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                else if (typeof(bool) == typeof(T))
+                {
+                    var value = bool.Parse(dt.Rows[0][columnName].ToString());
+                    return (T)Convert.ChangeType(value, typeof(T));
+                }
+                
+                
+            }
+            return (T)Convert.ChangeType(0, typeof(T));
+
+        }
     }
 }
