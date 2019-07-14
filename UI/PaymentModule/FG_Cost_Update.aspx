@@ -55,7 +55,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="GL"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
-                                <asp:DropDownList ID="ddlGL" CssClass="ddList" Font-Bold="False" runat="server" Width="180px" Height="23px"></asp:DropDownList></td>
+                                <asp:DropDownList ID="ddlGL" CssClass="ddList" Font-Bold="False" runat="server" Width="180px" Height="23px" AutoPostBack="true"></asp:DropDownList></td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label5" runat="server" CssClass="lbl" Text="Item"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
@@ -134,6 +134,12 @@
                                                     <asp:TemplateField HeaderText="Cost Group" SortExpression="costGroup">
                                                         <ItemTemplate>
                                                             <asp:Label ID="lblstrCostGroup" runat="server" Text='<%# Bind("costGroup") %>'></asp:Label>
+                                                        </ItemTemplate>
+                                                        <ItemStyle HorizontalAlign="left" />
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Acc Code" >
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="lblAccCode" runat="server" Text='<%# Bind("code") %>' Width="80px"></asp:Label>
                                                         </ItemTemplate>
                                                         <ItemStyle HorizontalAlign="left" />
                                                     </asp:TemplateField>

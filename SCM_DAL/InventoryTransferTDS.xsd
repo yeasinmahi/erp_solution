@@ -7,8 +7,8 @@
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_InventoryConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_InventoryConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_InventoryConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AssetConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AssetConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_AssetConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_LogisticConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_LogisticConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_LogisticConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AssetConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AssetConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_AssetConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_LogisticConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_LogisticConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SCM_DAL.Properties.Settings.GlobalReference.Default.ERP_LogisticConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprInventoryTransferWebTableAdapter" GeneratorDataComponentClassName="SprInventoryTransferWebTableAdapter" Name="SprInventoryTransferWeb" UserDataComponentName="SprInventoryTransferWebTableAdapter">
@@ -136,7 +136,7 @@ SELECT strWareHoseName, intWHID, intUnitID FROM tblWearHouse WHERE (intWHID = @i
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblItemTableAdapter" GeneratorDataComponentClassName="TblItemTableAdapter" Name="TblItem" UserDataComponentName="TblItemTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblItem" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetFGData" GetMethodModifier="Public" GetMethodName="GetFGData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetFGData" UserSourceName="GetFGData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblItem" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetFGData" GetMethodModifier="Public" GetMethodName="GetFGData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetFGData" UserSourceName="GetFGData">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT i.strProductName + ' [' + CAST(i.intID AS VARCHAR(20)) + ']' AS strProduct, i.intID, i.strProductName FROM ERP_SAD.dbo.tblItem i 
@@ -1207,7 +1207,7 @@ from ERP_Inventory.dbo.tblItemCostingFGDetail  fg inner JOIN ERP_Inventory.dbo.t
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblProductionTableAdapter" GeneratorDataComponentClassName="TblProductionTableAdapter" Name="TblProduction" UserDataComponentName="TblProductionTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprProductionApproval" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="UpdateProduction" GetMethodModifier="Public" GetMethodName="UpdateProduction" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="UpdateProduction" UserSourceName="UpdateProduction">
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.sprProductionApproval" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="UpdateProduction" GetMethodModifier="Public" GetMethodName="UpdateProduction" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="UpdateProduction" UserSourceName="UpdateProduction">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprProductionApproval</CommandText>
@@ -1215,7 +1215,7 @@ from ERP_Inventory.dbo.tblItemCostingFGDetail  fg inner JOIN ERP_Inventory.dbo.t
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intItemID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUnitID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intProductionID" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intUser" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intType" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -1334,6 +1334,36 @@ where intItemID = @ItemId and intWHID = @WHId</CommandText>
               </DbSource>
             </MainSource>
             <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblAccountsChartOfAccTableAdapter" GeneratorDataComponentClassName="TblAccountsChartOfAccTableAdapter" Name="TblAccountsChartOfAcc" UserDataComponentName="TblAccountsChartOfAccTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetCode" GetMethodModifier="Public" GetMethodName="GetCode" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetCode" UserSourceName="GetCode">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        TOP (1) fg.intItemID, fg.intCostElementGroup, fg.intCoAID, acc.strCode, acc.strAccName, fg.monCost, g.strCostGroup
+FROM            tblItemCostingFGDetail AS fg INNER JOIN
+                         tblItemCostingFGCostGroup AS g ON fg.intCostElementGroup = g.intCostGroupID INNER JOIN
+                         ERP_Accounts.dbo.tblAccountsChartOfAcc AS acc ON fg.intCoAID = acc.intAccID
+WHERE        (fg.intUnitID = @UnitID) AND (fg.intCostElementGroup = @CostElementGroup) AND (fg.intCoAID = @intCoAID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="UnitID" ColumnName="intUnitID" DataSourceName="ERP_Inventory.dbo.tblItemCostingFGDetail" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@UnitID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intUnitID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="CostElementGroup" ColumnName="intCostElementGroup" DataSourceName="ERP_Inventory.dbo.tblItemCostingFGDetail" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@CostElementGroup" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCostElementGroup" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="intCoAID" ColumnName="intCoAID" DataSourceName="ERP_Inventory.dbo.tblItemCostingFGDetail" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intCoAID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="intCoAID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intItemID" DataSetColumn="intItemID" />
+              <Mapping SourceColumn="intCostElementGroup" DataSetColumn="intCostElementGroup" />
+              <Mapping SourceColumn="intCoAID" DataSetColumn="intCoAID" />
+              <Mapping SourceColumn="strCostGroup" DataSetColumn="strCostGroup" />
+              <Mapping SourceColumn="strAccName" DataSetColumn="strAccName" />
+              <Mapping SourceColumn="monCost" DataSetColumn="monCost" />
+              <Mapping SourceColumn="strCode" DataSetColumn="strCode" />
+            </Mappings>
             <Sources />
           </TableAdapter>
         </Tables>
@@ -2160,6 +2190,37 @@ where intItemID = @ItemId and intWHID = @WHId</CommandText>
         </xs:element>
         <xs:element name="InsertFGItemAdjustment" msprop:Generator_TableClassName="InsertFGItemAdjustmentDataTable" msprop:Generator_TableVarName="tableInsertFGItemAdjustment" msprop:Generator_TablePropName="InsertFGItemAdjustment" msprop:Generator_RowDeletingName="InsertFGItemAdjustmentRowDeleting" msprop:Generator_RowChangingName="InsertFGItemAdjustmentRowChanging" msprop:Generator_RowEvHandlerName="InsertFGItemAdjustmentRowChangeEventHandler" msprop:Generator_RowDeletedName="InsertFGItemAdjustmentRowDeleted" msprop:Generator_UserTableName="InsertFGItemAdjustment" msprop:Generator_RowChangedName="InsertFGItemAdjustmentRowChanged" msprop:Generator_RowEvArgName="InsertFGItemAdjustmentRowChangeEvent" msprop:Generator_RowClassName="InsertFGItemAdjustmentRow">
           <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblAccountsChartOfAcc" msprop:Generator_TableClassName="TblAccountsChartOfAccDataTable" msprop:Generator_TableVarName="tableTblAccountsChartOfAcc" msprop:Generator_RowChangedName="TblAccountsChartOfAccRowChanged" msprop:Generator_TablePropName="TblAccountsChartOfAcc" msprop:Generator_RowDeletingName="TblAccountsChartOfAccRowDeleting" msprop:Generator_RowChangingName="TblAccountsChartOfAccRowChanging" msprop:Generator_RowEvHandlerName="TblAccountsChartOfAccRowChangeEventHandler" msprop:Generator_RowDeletedName="TblAccountsChartOfAccRowDeleted" msprop:Generator_RowClassName="TblAccountsChartOfAccRow" msprop:Generator_UserTableName="TblAccountsChartOfAcc" msprop:Generator_RowEvArgName="TblAccountsChartOfAccRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intItemID" msprop:Generator_ColumnVarNameInTable="columnintItemID" msprop:Generator_ColumnPropNameInRow="intItemID" msprop:Generator_ColumnPropNameInTable="intItemIDColumn" msprop:Generator_UserColumnName="intItemID" type="xs:int" minOccurs="0" />
+              <xs:element name="intCostElementGroup" msprop:Generator_ColumnVarNameInTable="columnintCostElementGroup" msprop:Generator_ColumnPropNameInRow="intCostElementGroup" msprop:Generator_ColumnPropNameInTable="intCostElementGroupColumn" msprop:Generator_UserColumnName="intCostElementGroup" type="xs:int" minOccurs="0" />
+              <xs:element name="intCoAID" msprop:Generator_ColumnVarNameInTable="columnintCoAID" msprop:Generator_ColumnPropNameInRow="intCoAID" msprop:Generator_ColumnPropNameInTable="intCoAIDColumn" msprop:Generator_UserColumnName="intCoAID" type="xs:int" minOccurs="0" />
+              <xs:element name="strCostGroup" msprop:Generator_ColumnVarNameInTable="columnstrCostGroup" msprop:Generator_ColumnPropNameInRow="strCostGroup" msprop:Generator_ColumnPropNameInTable="strCostGroupColumn" msprop:Generator_UserColumnName="strCostGroup" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="strAccName" msprop:Generator_ColumnVarNameInTable="columnstrAccName" msprop:Generator_ColumnPropNameInRow="strAccName" msprop:Generator_ColumnPropNameInTable="strAccNameColumn" msprop:Generator_UserColumnName="strAccName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="monCost" msprop:Generator_ColumnVarNameInTable="columnmonCost" msprop:Generator_ColumnPropNameInRow="monCost" msprop:Generator_ColumnPropNameInTable="monCostColumn" msprop:Generator_UserColumnName="monCost" type="xs:decimal" minOccurs="0" />
+              <xs:element name="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>

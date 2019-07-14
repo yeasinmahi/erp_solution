@@ -93,11 +93,20 @@ namespace UI.Wastage
         }
         protected void btnDetails_Click(object sender, EventArgs e)
         {
+
             string senderdata = ((Button)sender).CommandArgument.ToString();
             string strSearchKey = senderdata;
             string[] searchKey = Regex.Split(strSearchKey, ",");
             SalesOrderNo = searchKey[0].ToString();
             DeliveryChallan = searchKey[1].ToString();
+            string custName = searchKey[2].ToString();
+            string issueDate = searchKey[3].ToString();
+            
+            lblCustomer.Text = custName;
+            lblDeliveryChallan.Text = DeliveryChallan;
+            lblissuedate.Text = issueDate;
+            lblDChalanNo.Visible = true;
+
             dt = obj.SalesDetials(SalesOrderNo, DeliveryChallan, int.Parse(ddlWHName.SelectedValue));
             dgvDetalis.DataSource = dt;
             dgvDetalis.DataBind();
@@ -111,7 +120,15 @@ namespace UI.Wastage
             string strSearchKey = senderdata;
             string[] searchKey = Regex.Split(strSearchKey, ",");
             SalesOrderNo = searchKey[0].ToString();
-        
+
+            string custName = searchKey[1].ToString();
+            string issueDate = searchKey[2].ToString();
+
+            lblCustomer.Text = custName;
+            lblissuedate.Text = issueDate;
+            lblDChalanNo.Visible = false;
+            lblDeliveryChallan.Text = string.Empty;
+
             dt = obj.pendingDetials(SalesOrderNo, int.Parse(ddlWHName.SelectedValue));
             dgvPendingDetails.DataSource = dt;
             dgvPendingDetails.DataBind();

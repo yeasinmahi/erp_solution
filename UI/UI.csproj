@@ -482,6 +482,7 @@
     <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
+    <Content Include="HR\Employee\PointTargetChange.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
@@ -1541,6 +1542,7 @@
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
+    <Content Include="SAD\Setup\AfblDistManager.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
     <Content Include="SAD\Setup\AfblLocationTransfer.aspx" />
     <Content Include="SAD\Setup\AfblPointSetup.aspx" />
@@ -1698,6 +1700,7 @@
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
     <Content Include="SCM\Transfer\frmTransferOut.aspx" />
     <Content Include="SCM\Transfer\frmTransferOrder.aspx" />
+    <Content Include="SCM\Transfer\Transfer_Report.aspx" />
     <Content Include="SCM\WHItemLocationUpdate.aspx" />
     <Content Include="SCM\WHLocationCreate.aspx" />
     <Content Include="SCM\WHLocationStockTransfer.aspx" />
@@ -3356,6 +3359,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\PointTargetChange.aspx.cs">
+      <DependentUpon>PointTargetChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\PointTargetChange.aspx.designer.cs">
+      <DependentUpon>PointTargetChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.cs">
       <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
@@ -8038,6 +8048,13 @@
     <Compile Include="SAD\Setup\AfblAreaSetup.aspx.designer.cs">
       <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblDistManager.aspx.cs">
+      <DependentUpon>AfblDistManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblDistManager.aspx.designer.cs">
+      <DependentUpon>AfblDistManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9122,6 +9139,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferOrder.aspx.designer.cs">
       <DependentUpon>frmTransferOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\Transfer_Report.aspx.cs">
+      <DependentUpon>Transfer_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\Transfer_Report.aspx.designer.cs">
+      <DependentUpon>Transfer_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\WHItemLocationUpdate.aspx.cs">
       <DependentUpon>WHItemLocationUpdate.aspx</DependentUpon>

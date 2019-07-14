@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCustomerGeoManagerAddItemTableAdapter" GeneratorDataComponentClassName="SprCustomerGeoManagerAddItemTableAdapter" Name="SprCustomerGeoManagerAddItem" UserDataComponentName="SprCustomerGeoManagerAddItemTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprCustomerGeoManagerAddItem" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprCustomerGeoManagerAddItem" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprCustomerGeoManagerAddItem</CommandText>
@@ -33,7 +33,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCustomerGeoManagerGetAllUpperLevelTableAdapter" GeneratorDataComponentClassName="SprCustomerGeoManagerGetAllUpperLevelTableAdapter" Name="SprCustomerGeoManagerGetAllUpperLevel" UserDataComponentName="SprCustomerGeoManagerGetAllUpperLevelTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprCustomerGeoManagerGetAllUpperLevel" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprCustomerGeoManagerGetAllUpperLevel" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprCustomerGeoManagerGetAllUpperLevel</CommandText>
@@ -54,7 +54,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="SprCustomerGeoManagerUpdateLabelTableAdapter" GeneratorDataComponentClassName="SprCustomerGeoManagerUpdateLabelTableAdapter" Name="SprCustomerGeoManagerUpdateLabel" UserDataComponentName="SprCustomerGeoManagerUpdateLabelTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprCustomerGeoManagerUpdateLabel" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprCustomerGeoManagerUpdateLabel" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
                 <SelectCommand>
                   <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
                     <CommandText>dbo.sprCustomerGeoManagerUpdateLabel</CommandText>
@@ -74,7 +74,7 @@
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblCustomerGeoManagerTableAdapter" GeneratorDataComponentClassName="TblCustomerGeoManagerTableAdapter" Name="TblCustomerGeoManager" UserDataComponentName="TblCustomerGeoManagerTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManager" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManager" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[tblCustomerGeoManager] WHERE (([intID] = @Original_intID) AND ([intParentID] = @Original_intParentID) AND ([intLevel] = @Original_intLevel) AND ([strText] = @Original_strText) AND ([intUnitID] = @Original_intUnitID) AND ([ysnActive] = @Original_ysnActive) AND ((@IsNull_strCode = 1 AND [strCode] IS NULL) OR ([strCode] = @Original_strCode)))</CommandText>
@@ -145,7 +145,7 @@ SELECT intID, intParentID, intLevel, strText, intUnitID, ysnActive, strCode FROM
               <Mapping SourceColumn="strCode" DataSetColumn="strCode" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetChildCount" Modifier="Public" Name="GetChildCount" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetChildCount">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetChildCount" Modifier="Public" Name="GetChildCount" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetChildCount">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM tblCustomerGeoManager
@@ -156,7 +156,7 @@ where [intParentID]=@intID</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManager" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByParent" GetMethodModifier="Public" GetMethodName="GetDataByParent" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByParent" UserSourceName="GetDataByParent">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManager" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByParent" GetMethodModifier="Public" GetMethodName="GetDataByParent" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByParent" UserSourceName="GetDataByParent">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intID, intLevel, intParentID, intUnitID, strCode, strText, ysnActive FROM tblCustomerGeoManager WHERE (intParentID = @intParentID) and intUnitID=@intUnitID</CommandText>
@@ -171,7 +171,7 @@ where [intParentID]=@intID</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblCustomerGeoManagerLabelTableAdapter" GeneratorDataComponentClassName="TblCustomerGeoManagerLabelTableAdapter" Name="TblCustomerGeoManagerLabel" UserDataComponentName="TblCustomerGeoManagerLabelTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManagerLabel" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManagerLabel" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[tblCustomerGeoManagerLabel] WHERE (([intID] = @Original_intID) AND ([intLevel] = @Original_intLevel) AND ([strLabel] = @Original_strLabel) AND ([intUnitID] = @Original_intUnitID) AND ((@IsNull_intParentId = 1 AND [intParentId] IS NULL) OR ([intParentId] = @Original_intParentId)))</CommandText>
@@ -232,7 +232,7 @@ SELECT intID, intLevel, strLabel, intUnitID, intParentId FROM tblCustomerGeoMana
               <Mapping SourceColumn="intParentId" DataSetColumn="intParentId" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManagerLabel" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByLP" GetMethodModifier="Public" GetMethodName="GetDataByLP" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByLP" UserSourceName="GetDataByLP">
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblCustomerGeoManagerLabel" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByLP" GetMethodModifier="Public" GetMethodName="GetDataByLP" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByLP" UserSourceName="GetDataByLP">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT intID, intLevel, intParentId, intUnitID, strLabel FROM tblCustomerGeoManagerLabel WHERE (intLevel = @intLevel) AND (intUnitID = @intUnitID) AND (intParentId = @intParentID)</CommandText>
@@ -246,47 +246,93 @@ SELECT intID, intLevel, strLabel, intUnitID, intParentId FROM tblCustomerGeoMana
               </DbSource>
             </Sources>
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TblItemFGGroupTableAdapter" GeneratorDataComponentClassName="TblItemFGGroupTableAdapter" Name="TblItemFGGroup" UserDataComponentName="TblItemFGGroupTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.tblItemFGGroup" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT [strFGGroupName],[intFGGroupID] FROM [ERP_SAD].[dbo].[tblItemFGGroup]</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strFGGroupName" DataSetColumn="strFGGroupName" />
+              <Mapping SourceColumn="intFGGroupID" DataSetColumn="intFGGroupID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="sprPointTargetChangeTableAdapter" GeneratorDataComponentClassName="sprPointTargetChangeTableAdapter" Name="sprPointTargetChange" UserDataComponentName="sprPointTargetChangeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_SADConnectionString (Settings)" DbObjectName="ERP_SAD.dbo.sprPointTargetChange" DbObjectType="StoredProcedure" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="StoredProcedure" ModifiedByUser="false">
+                    <CommandText>dbo.sprPointTargetChange</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="ReturnValue" ParameterName="@RETURN_VALUE" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@type" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intline" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intpoint" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="date" DbType="Date" Direction="Input" ParameterName="@dteDate" Precision="10" ProviderType="Date" Scale="0" Size="3" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intproductid" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="numeric" DbType="Decimal" Direction="Input" ParameterName="@intQtypcs" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="numeric" DbType="Decimal" Direction="Input" ParameterName="@intQty" Precision="18" ProviderType="Decimal" Scale="2" Size="9" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@intproductuom" Precision="10" ProviderType="Int" Scale="0" Size="4" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intproductid" DataSetColumn="intproductid" />
+              <Mapping SourceColumn="strcode" DataSetColumn="strcode" />
+              <Mapping SourceColumn="montargetconvqty" DataSetColumn="montargetconvqty" />
+              <Mapping SourceColumn="intpackqty" DataSetColumn="intpackqty" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="CustomerGeoTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="CustomerGeoTDS" msprop:Generator_DataSetName="CustomerGeoTDS" msprop:EnableTableAdapterManager="true">
+  <xs:element name="CustomerGeoTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CustomerGeoTDS" msprop:Generator_UserDSName="CustomerGeoTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="SprCustomerGeoManagerAddItem" msprop:Generator_UserTableName="SprCustomerGeoManagerAddItem" msprop:Generator_RowDeletedName="SprCustomerGeoManagerAddItemRowDeleted" msprop:Generator_RowChangedName="SprCustomerGeoManagerAddItemRowChanged" msprop:Generator_RowClassName="SprCustomerGeoManagerAddItemRow" msprop:Generator_RowChangingName="SprCustomerGeoManagerAddItemRowChanging" msprop:Generator_RowEvArgName="SprCustomerGeoManagerAddItemRowChangeEvent" msprop:Generator_RowEvHandlerName="SprCustomerGeoManagerAddItemRowChangeEventHandler" msprop:Generator_TableClassName="SprCustomerGeoManagerAddItemDataTable" msprop:Generator_TableVarName="tableSprCustomerGeoManagerAddItem" msprop:Generator_RowDeletingName="SprCustomerGeoManagerAddItemRowDeleting" msprop:Generator_TablePropName="SprCustomerGeoManagerAddItem">
+        <xs:element name="SprCustomerGeoManagerAddItem" msprop:Generator_UserTableName="SprCustomerGeoManagerAddItem" msprop:Generator_RowEvArgName="SprCustomerGeoManagerAddItemRowChangeEvent" msprop:Generator_TableVarName="tableSprCustomerGeoManagerAddItem" msprop:Generator_TablePropName="SprCustomerGeoManagerAddItem" msprop:Generator_RowDeletingName="SprCustomerGeoManagerAddItemRowDeleting" msprop:Generator_RowChangingName="SprCustomerGeoManagerAddItemRowChanging" msprop:Generator_RowDeletedName="SprCustomerGeoManagerAddItemRowDeleted" msprop:Generator_RowEvHandlerName="SprCustomerGeoManagerAddItemRowChangeEventHandler" msprop:Generator_TableClassName="SprCustomerGeoManagerAddItemDataTable" msprop:Generator_RowChangedName="SprCustomerGeoManagerAddItemRowChanged" msprop:Generator_RowClassName="SprCustomerGeoManagerAddItemRow">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_UserTableName="SprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_RowDeletedName="SprCustomerGeoManagerGetAllUpperLevelRowDeleted" msprop:Generator_RowChangedName="SprCustomerGeoManagerGetAllUpperLevelRowChanged" msprop:Generator_RowClassName="SprCustomerGeoManagerGetAllUpperLevelRow" msprop:Generator_RowChangingName="SprCustomerGeoManagerGetAllUpperLevelRowChanging" msprop:Generator_RowEvArgName="SprCustomerGeoManagerGetAllUpperLevelRowChangeEvent" msprop:Generator_RowEvHandlerName="SprCustomerGeoManagerGetAllUpperLevelRowChangeEventHandler" msprop:Generator_TableClassName="SprCustomerGeoManagerGetAllUpperLevelDataTable" msprop:Generator_TableVarName="tableSprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_RowDeletingName="SprCustomerGeoManagerGetAllUpperLevelRowDeleting" msprop:Generator_TablePropName="SprCustomerGeoManagerGetAllUpperLevel">
+        <xs:element name="SprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_UserTableName="SprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_RowEvArgName="SprCustomerGeoManagerGetAllUpperLevelRowChangeEvent" msprop:Generator_TableVarName="tableSprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_TablePropName="SprCustomerGeoManagerGetAllUpperLevel" msprop:Generator_RowDeletingName="SprCustomerGeoManagerGetAllUpperLevelRowDeleting" msprop:Generator_RowChangingName="SprCustomerGeoManagerGetAllUpperLevelRowChanging" msprop:Generator_RowDeletedName="SprCustomerGeoManagerGetAllUpperLevelRowDeleted" msprop:Generator_RowEvHandlerName="SprCustomerGeoManagerGetAllUpperLevelRowChangeEventHandler" msprop:Generator_TableClassName="SprCustomerGeoManagerGetAllUpperLevelDataTable" msprop:Generator_RowChangedName="SprCustomerGeoManagerGetAllUpperLevelRowChanged" msprop:Generator_RowClassName="SprCustomerGeoManagerGetAllUpperLevelRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intID" msprop:Generator_UserColumnName="intID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInTable="intIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="intParentID" msprop:Generator_UserColumnName="intParentID" msprop:Generator_ColumnPropNameInRow="intParentID" msprop:Generator_ColumnVarNameInTable="columnintParentID" msprop:Generator_ColumnPropNameInTable="intParentIDColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="intLevel" msprop:Generator_UserColumnName="intLevel" msprop:Generator_ColumnPropNameInRow="intLevel" msprop:Generator_ColumnVarNameInTable="columnintLevel" msprop:Generator_ColumnPropNameInTable="intLevelColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="intID" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" minOccurs="0" />
+              <xs:element name="intParentID" msprop:Generator_ColumnVarNameInTable="columnintParentID" msprop:Generator_ColumnPropNameInRow="intParentID" msprop:Generator_ColumnPropNameInTable="intParentIDColumn" msprop:Generator_UserColumnName="intParentID" type="xs:int" minOccurs="0" />
+              <xs:element name="intLevel" msprop:Generator_ColumnVarNameInTable="columnintLevel" msprop:Generator_ColumnPropNameInRow="intLevel" msprop:Generator_ColumnPropNameInTable="intLevelColumn" msprop:Generator_UserColumnName="intLevel" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprCustomerGeoManagerUpdateLabel" msprop:Generator_UserTableName="SprCustomerGeoManagerUpdateLabel" msprop:Generator_RowDeletedName="SprCustomerGeoManagerUpdateLabelRowDeleted" msprop:Generator_RowChangedName="SprCustomerGeoManagerUpdateLabelRowChanged" msprop:Generator_RowClassName="SprCustomerGeoManagerUpdateLabelRow" msprop:Generator_RowChangingName="SprCustomerGeoManagerUpdateLabelRowChanging" msprop:Generator_RowEvArgName="SprCustomerGeoManagerUpdateLabelRowChangeEvent" msprop:Generator_RowEvHandlerName="SprCustomerGeoManagerUpdateLabelRowChangeEventHandler" msprop:Generator_TableClassName="SprCustomerGeoManagerUpdateLabelDataTable" msprop:Generator_TableVarName="tableSprCustomerGeoManagerUpdateLabel" msprop:Generator_RowDeletingName="SprCustomerGeoManagerUpdateLabelRowDeleting" msprop:Generator_TablePropName="SprCustomerGeoManagerUpdateLabel">
+        <xs:element name="SprCustomerGeoManagerUpdateLabel" msprop:Generator_UserTableName="SprCustomerGeoManagerUpdateLabel" msprop:Generator_RowEvArgName="SprCustomerGeoManagerUpdateLabelRowChangeEvent" msprop:Generator_TableVarName="tableSprCustomerGeoManagerUpdateLabel" msprop:Generator_TablePropName="SprCustomerGeoManagerUpdateLabel" msprop:Generator_RowDeletingName="SprCustomerGeoManagerUpdateLabelRowDeleting" msprop:Generator_RowChangingName="SprCustomerGeoManagerUpdateLabelRowChanging" msprop:Generator_RowDeletedName="SprCustomerGeoManagerUpdateLabelRowDeleted" msprop:Generator_RowEvHandlerName="SprCustomerGeoManagerUpdateLabelRowChangeEventHandler" msprop:Generator_TableClassName="SprCustomerGeoManagerUpdateLabelDataTable" msprop:Generator_RowChangedName="SprCustomerGeoManagerUpdateLabelRowChanged" msprop:Generator_RowClassName="SprCustomerGeoManagerUpdateLabelRow">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblCustomerGeoManager" msprop:Generator_UserTableName="TblCustomerGeoManager" msprop:Generator_RowDeletedName="TblCustomerGeoManagerRowDeleted" msprop:Generator_RowChangedName="TblCustomerGeoManagerRowChanged" msprop:Generator_RowClassName="TblCustomerGeoManagerRow" msprop:Generator_RowChangingName="TblCustomerGeoManagerRowChanging" msprop:Generator_RowEvArgName="TblCustomerGeoManagerRowChangeEvent" msprop:Generator_RowEvHandlerName="TblCustomerGeoManagerRowChangeEventHandler" msprop:Generator_TableClassName="TblCustomerGeoManagerDataTable" msprop:Generator_TableVarName="tableTblCustomerGeoManager" msprop:Generator_RowDeletingName="TblCustomerGeoManagerRowDeleting" msprop:Generator_TablePropName="TblCustomerGeoManager">
+        <xs:element name="TblCustomerGeoManager" msprop:Generator_UserTableName="TblCustomerGeoManager" msprop:Generator_RowEvArgName="TblCustomerGeoManagerRowChangeEvent" msprop:Generator_TableVarName="tableTblCustomerGeoManager" msprop:Generator_TablePropName="TblCustomerGeoManager" msprop:Generator_RowDeletingName="TblCustomerGeoManagerRowDeleting" msprop:Generator_RowChangingName="TblCustomerGeoManagerRowChanging" msprop:Generator_RowDeletedName="TblCustomerGeoManagerRowDeleted" msprop:Generator_RowEvHandlerName="TblCustomerGeoManagerRowChangeEventHandler" msprop:Generator_TableClassName="TblCustomerGeoManagerDataTable" msprop:Generator_RowChangedName="TblCustomerGeoManagerRowChanged" msprop:Generator_RowClassName="TblCustomerGeoManagerRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="intID" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" type="xs:long" />
-              <xs:element name="intParentID" msprop:Generator_UserColumnName="intParentID" msprop:Generator_ColumnVarNameInTable="columnintParentID" msprop:Generator_ColumnPropNameInRow="intParentID" msprop:Generator_ColumnPropNameInTable="intParentIDColumn" type="xs:long" />
-              <xs:element name="intLevel" msprop:Generator_UserColumnName="intLevel" msprop:Generator_ColumnVarNameInTable="columnintLevel" msprop:Generator_ColumnPropNameInRow="intLevel" msprop:Generator_ColumnPropNameInTable="intLevelColumn" type="xs:int" />
-              <xs:element name="strText" msprop:Generator_UserColumnName="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn">
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:long" />
+              <xs:element name="intParentID" msprop:Generator_ColumnVarNameInTable="columnintParentID" msprop:Generator_ColumnPropNameInRow="intParentID" msprop:Generator_ColumnPropNameInTable="intParentIDColumn" msprop:Generator_UserColumnName="intParentID" type="xs:long" />
+              <xs:element name="intLevel" msprop:Generator_ColumnVarNameInTable="columnintLevel" msprop:Generator_ColumnPropNameInRow="intLevel" msprop:Generator_ColumnPropNameInTable="intLevelColumn" msprop:Generator_UserColumnName="intLevel" type="xs:int" />
+              <xs:element name="strText" msprop:Generator_ColumnVarNameInTable="columnstrText" msprop:Generator_ColumnPropNameInRow="strText" msprop:Generator_ColumnPropNameInTable="strTextColumn" msprop:Generator_UserColumnName="strText">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intUnitID" msprop:Generator_UserColumnName="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" type="xs:int" />
-              <xs:element name="ysnActive" msprop:Generator_UserColumnName="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" type="xs:boolean" />
-              <xs:element name="strCode" msprop:Generator_UserColumnName="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" minOccurs="0">
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="ysnActive" msprop:Generator_ColumnVarNameInTable="columnysnActive" msprop:Generator_ColumnPropNameInRow="ysnActive" msprop:Generator_ColumnPropNameInTable="ysnActiveColumn" msprop:Generator_UserColumnName="ysnActive" type="xs:boolean" />
+              <xs:element name="strCode" msprop:Generator_ColumnVarNameInTable="columnstrCode" msprop:Generator_ColumnPropNameInRow="strCode" msprop:Generator_ColumnPropNameInTable="strCodeColumn" msprop:Generator_UserColumnName="strCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
@@ -296,20 +342,50 @@ SELECT intID, intLevel, strLabel, intUnitID, intParentId FROM tblCustomerGeoMana
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblCustomerGeoManagerLabel" msprop:Generator_UserTableName="TblCustomerGeoManagerLabel" msprop:Generator_RowDeletedName="TblCustomerGeoManagerLabelRowDeleted" msprop:Generator_RowChangedName="TblCustomerGeoManagerLabelRowChanged" msprop:Generator_RowClassName="TblCustomerGeoManagerLabelRow" msprop:Generator_RowChangingName="TblCustomerGeoManagerLabelRowChanging" msprop:Generator_RowEvArgName="TblCustomerGeoManagerLabelRowChangeEvent" msprop:Generator_RowEvHandlerName="TblCustomerGeoManagerLabelRowChangeEventHandler" msprop:Generator_TableClassName="TblCustomerGeoManagerLabelDataTable" msprop:Generator_TableVarName="tableTblCustomerGeoManagerLabel" msprop:Generator_RowDeletingName="TblCustomerGeoManagerLabelRowDeleting" msprop:Generator_TablePropName="TblCustomerGeoManagerLabel">
+        <xs:element name="TblCustomerGeoManagerLabel" msprop:Generator_UserTableName="TblCustomerGeoManagerLabel" msprop:Generator_RowEvArgName="TblCustomerGeoManagerLabelRowChangeEvent" msprop:Generator_TableVarName="tableTblCustomerGeoManagerLabel" msprop:Generator_TablePropName="TblCustomerGeoManagerLabel" msprop:Generator_RowDeletingName="TblCustomerGeoManagerLabelRowDeleting" msprop:Generator_RowChangingName="TblCustomerGeoManagerLabelRowChanging" msprop:Generator_RowDeletedName="TblCustomerGeoManagerLabelRowDeleted" msprop:Generator_RowEvHandlerName="TblCustomerGeoManagerLabelRowChangeEventHandler" msprop:Generator_TableClassName="TblCustomerGeoManagerLabelDataTable" msprop:Generator_RowChangedName="TblCustomerGeoManagerLabelRowChanged" msprop:Generator_RowClassName="TblCustomerGeoManagerLabelRow">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="intID" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" type="xs:int" />
-              <xs:element name="intLevel" msprop:Generator_UserColumnName="intLevel" msprop:Generator_ColumnVarNameInTable="columnintLevel" msprop:Generator_ColumnPropNameInRow="intLevel" msprop:Generator_ColumnPropNameInTable="intLevelColumn" type="xs:long" />
-              <xs:element name="strLabel" msprop:Generator_UserColumnName="strLabel" msprop:Generator_ColumnVarNameInTable="columnstrLabel" msprop:Generator_ColumnPropNameInRow="strLabel" msprop:Generator_ColumnPropNameInTable="strLabelColumn">
+              <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
+              <xs:element name="intLevel" msprop:Generator_ColumnVarNameInTable="columnintLevel" msprop:Generator_ColumnPropNameInRow="intLevel" msprop:Generator_ColumnPropNameInTable="intLevelColumn" msprop:Generator_UserColumnName="intLevel" type="xs:long" />
+              <xs:element name="strLabel" msprop:Generator_ColumnVarNameInTable="columnstrLabel" msprop:Generator_ColumnPropNameInRow="strLabel" msprop:Generator_ColumnPropNameInTable="strLabelColumn" msprop:Generator_UserColumnName="strLabel">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="intUnitID" msprop:Generator_UserColumnName="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" type="xs:int" />
-              <xs:element name="intParentId" msprop:Generator_UserColumnName="intParentId" msprop:Generator_ColumnVarNameInTable="columnintParentId" msprop:Generator_ColumnPropNameInRow="intParentId" msprop:Generator_ColumnPropNameInTable="intParentIdColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="intUnitID" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
+              <xs:element name="intParentId" msprop:Generator_ColumnVarNameInTable="columnintParentId" msprop:Generator_ColumnPropNameInRow="intParentId" msprop:Generator_ColumnPropNameInTable="intParentIdColumn" msprop:Generator_UserColumnName="intParentId" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TblItemFGGroup" msprop:Generator_TableClassName="TblItemFGGroupDataTable" msprop:Generator_TableVarName="tableTblItemFGGroup" msprop:Generator_TablePropName="TblItemFGGroup" msprop:Generator_RowDeletingName="TblItemFGGroupRowDeleting" msprop:Generator_RowChangingName="TblItemFGGroupRowChanging" msprop:Generator_RowEvHandlerName="TblItemFGGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="TblItemFGGroupRowDeleted" msprop:Generator_UserTableName="TblItemFGGroup" msprop:Generator_RowChangedName="TblItemFGGroupRowChanged" msprop:Generator_RowEvArgName="TblItemFGGroupRowChangeEvent" msprop:Generator_RowClassName="TblItemFGGroupRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strFGGroupName" msprop:Generator_ColumnVarNameInTable="columnstrFGGroupName" msprop:Generator_ColumnPropNameInRow="strFGGroupName" msprop:Generator_ColumnPropNameInTable="strFGGroupNameColumn" msprop:Generator_UserColumnName="strFGGroupName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intFGGroupID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintFGGroupID" msprop:Generator_ColumnPropNameInRow="intFGGroupID" msprop:Generator_ColumnPropNameInTable="intFGGroupIDColumn" msprop:Generator_UserColumnName="intFGGroupID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sprPointTargetChange" msprop:Generator_TableClassName="sprPointTargetChangeDataTable" msprop:Generator_TableVarName="tablesprPointTargetChange" msprop:Generator_TablePropName="sprPointTargetChange" msprop:Generator_RowDeletingName="sprPointTargetChangeRowDeleting" msprop:Generator_RowChangingName="sprPointTargetChangeRowChanging" msprop:Generator_RowEvHandlerName="sprPointTargetChangeRowChangeEventHandler" msprop:Generator_RowDeletedName="sprPointTargetChangeRowDeleted" msprop:Generator_UserTableName="sprPointTargetChange" msprop:Generator_RowChangedName="sprPointTargetChangeRowChanged" msprop:Generator_RowEvArgName="sprPointTargetChangeRowChangeEvent" msprop:Generator_RowClassName="sprPointTargetChangeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intproductid" msprop:Generator_ColumnVarNameInTable="columnintproductid" msprop:Generator_ColumnPropNameInRow="intproductid" msprop:Generator_ColumnPropNameInTable="intproductidColumn" msprop:Generator_UserColumnName="intproductid" type="xs:int" minOccurs="0" />
+              <xs:element name="strcode" msprop:Generator_ColumnVarNameInTable="columnstrcode" msprop:Generator_ColumnPropNameInRow="strcode" msprop:Generator_ColumnPropNameInTable="strcodeColumn" msprop:Generator_UserColumnName="strcode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="montargetconvqty" msprop:Generator_ColumnVarNameInTable="columnmontargetconvqty" msprop:Generator_ColumnPropNameInRow="montargetconvqty" msprop:Generator_ColumnPropNameInTable="montargetconvqtyColumn" msprop:Generator_UserColumnName="montargetconvqty" type="xs:decimal" minOccurs="0" />
+              <xs:element name="intpackqty" msprop:Generator_ColumnVarNameInTable="columnintpackqty" msprop:Generator_ColumnPropNameInRow="intpackqty" msprop:Generator_ColumnPropNameInTable="intpackqtyColumn" msprop:Generator_UserColumnName="intpackqty" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
