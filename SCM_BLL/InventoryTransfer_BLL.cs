@@ -442,6 +442,18 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
+        public DataTable GetFGCode(int UnitID,int CostElementGroup,int intCoAID)
+        {
+            try
+            {
+                TblAccountsChartOfAccTableAdapter adp = new TblAccountsChartOfAccTableAdapter();
+                return adp.GetCode(UnitID,CostElementGroup,intCoAID);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
         public string UpdateProductionApprove(int intItemID,int intUnitID,int productId,int userId,int intType)
         {
             string msg = "";

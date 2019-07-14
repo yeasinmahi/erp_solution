@@ -59,17 +59,15 @@ input{border:solid 1px #CCCCCC; height:13px;
 	width:100px;
 	height:100px;
 }
-.up
-{
-	background-image:url(../images/img/tri-up.gif);
-	width:12px;
-	height:12px;
+.up {
+    background-image: url(../images/img/tri-dn.gif);
+    width: 12px;
+    height: 12px;
 }
-.down
-{
-	background-image:url(../images/img/tri-dn.gif);
-	width:12px;
-	height:12px;
+.down {
+    background-image: url(../images/img/tri-up.gif);
+    width: 12px;
+    height: 12px;
 }
 
 .button

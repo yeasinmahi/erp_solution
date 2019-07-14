@@ -232,7 +232,9 @@ namespace UI.SAD.ExcelChallan
         {
 
             objExcel.getOrderdelete();
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Delete!');", true);
+            getReport();
         }
 
        
