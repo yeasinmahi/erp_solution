@@ -131,16 +131,13 @@ namespace UI.HR.Employee
 
             if(!String.IsNullOrEmpty(QTY.Text) || QTY.Text!="0.00")
             {
-                dt = obj.GetTargetChange(2, LineId, PointId, Date, Convert.ToInt32(ProductId), pcs, Convert.ToDecimal(strqty), Convert.ToInt32(strUOM));
+                //dt = obj.GetTargetChange(2, LineId, PointId, Date, Convert.ToInt32(ProductId), pcs, Convert.ToDecimal(strqty), Convert.ToInt32(strUOM));
                 Toaster("Updated Successfully.", "Target Change", Common.TosterType.Warning);
             }
             else
             {
                 Toaster("Please Enter Quantity.", "Target Change", Common.TosterType.Warning);
             }
-            
-
-
 
         }
 

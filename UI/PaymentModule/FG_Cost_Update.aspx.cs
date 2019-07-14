@@ -22,7 +22,7 @@ namespace UI.PaymentModule
         InventoryTransfer_BLL inventoryTransfer_Obj = new InventoryTransfer_BLL();
         DateTime dteDate;
         int type, GroupID=0, ItemId=0, UnitID=0, CoAID=0, itemTypeId;
-        string xmlString="", _filePathForXml, msg="";
+        string xmlString="", _filePathForXml, msg="", code;
         private string message;
         decimal monRate=0; decimal total = 0;
         bool isExistM, isExistL, isExistO, isExistItemT, isExistItemM;
@@ -32,7 +32,7 @@ namespace UI.PaymentModule
             {
                 try { File.Delete(GetXmlFilePath()); } catch { }
                 LoadUnit();
-                LoadItemType();
+                 LoadItemType();
                 itemTypeId = Convert.ToInt32( ddlItemType.SelectedItem.Value);
                 LoadCostGroup(itemTypeId);
                 GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
@@ -74,10 +74,11 @@ namespace UI.PaymentModule
         private void LoadGL(int CostGroupID)
         {
            
+            //CostGroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
             UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
             dteDate = CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
-            dt = inventoryTransfer_Obj.GetFgCostUpdate(2, Enroll, xmlString, UnitID);
-            ddlGL.Loads(dt, "intAccID", "strAccName");
+            dt = inventoryTransfer_Obj.GetFgCostUpdate(2, CostGroupID, xmlString, UnitID);
+            ddlGL.LoadWithSelect(dt, "intAccID", "strAccName");
         }
         private void LoadItem(int unitid)
         {          
@@ -104,7 +105,17 @@ namespace UI.PaymentModule
             GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
             LoadGL(GroupID);
         }
-        
+        public void LoadAllDropdown()
+        {
+            LoadUnit();
+            LoadItemType();
+            itemTypeId = Convert.ToInt32(ddlItemType.SelectedItem.Value);
+            LoadCostGroup(itemTypeId);
+            GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
+            LoadGL(GroupID);
+            UnitID = Convert.ToInt32(ddlUnit.SelectedItem.Value);
+            LoadItem(UnitID);
+        }
         protected void dgvReport_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             try
@@ -201,21 +212,28 @@ namespace UI.PaymentModule
             string GLName = ddlGL.SelectedItem.Text;
             string value = txtValue.Text;
             GroupID = Convert.ToInt32(ddlCostGroup.SelectedItem.Value);
-            int CoAID = Convert.ToInt32(ddlGL.SelectedItem.Value);
+            int CoAID = Convert.ToInt32(ddlGL.SelectedValue);
             monRate = Convert.ToDecimal(txtValue.Text);
             dteDate = CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
             string ItemTypeID = ddlItemType.SelectedItem.Text;
+
+            dt = inventoryTransfer_Obj.GetFGCode(UnitID,Convert.ToInt32(ddlCostGroup.SelectedValue),CoAID);
+
+            try {  code = dt.Rows[0]["strcode"].ToString(); }
+            catch { code = ""; }
+            
+
             if (dgvReport.Rows.Count>0)
             {
                 //File.Delete(GetXmlFilePath());
                 //dgvReport.UnLoad();
-                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString(), ItemTypeID);
+                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString(), ItemTypeID, code);
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
             else
             {
-                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString(), ItemTypeID);
+                CreateFGXML(ItemId, ItemName, GLName, costGroup, value, UnitID.ToString(), GroupID.ToString(), CoAID.ToString(), monRate.ToString(), dteDate.ToString(), ItemTypeID, code);
                 lblUnitName.Visible = true;
                 lblReportName.Visible = true;
             }
@@ -376,11 +394,12 @@ namespace UI.PaymentModule
             GridViewUtil.LoadGridwithXml(itemXML, dgvReport, out string message);
 
         }
-        private void CreateFGXML(string ItemId,string ItemName, string GLName,string costGroup,string value,string UnitID, string GroupID, string CoAID, string monRate, string dteDate, string ItemTypeID)
+        private void CreateFGXML(string ItemId,string ItemName, string GLName,string costGroup,string value,string UnitID, string GroupID, string CoAID, string monRate, string dteDate, string ItemTypeID,string code)
         {
             dynamic obj = new
             {
-                ItemId,ItemName,GLName,costGroup,value,UnitID,GroupID,CoAID,monRate,dteDate,ItemTypeID
+                ItemId,ItemName,GLName,costGroup,value,UnitID,GroupID,CoAID,monRate,dteDate,ItemTypeID,
+                code
             };
             List<object> objects = new List<object>();
             if (Session["obj"] != null)
