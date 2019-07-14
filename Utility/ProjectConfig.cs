@@ -20,6 +20,7 @@ namespace Utility
                 Path.GetFullPath(rootPath + "Accounts\\PartyPayment\\Data"),
                 Path.GetFullPath(rootPath + "Accounts\\Voucher\\Data"),
                 Path.GetFullPath(rootPath + "Accounts\\Voucher\\Uploads"),
+                Path.GetFullPath(rootPath + "Accounts\\Import\\Data"),
 
                 Path.GetFullPath(rootPath + "AEFPS\\Data"),
                 Path.GetFullPath(rootPath + "Asset\\Data"),

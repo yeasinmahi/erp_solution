@@ -246,6 +246,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Employee\EmployeeTransferNpromotion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeTransferNpromotion.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Employee\EmpRegistrationTDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -950,6 +955,17 @@
     </None>
     <None Include="Employee\EmployeeInfoDetail.xss">
       <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeTransferNpromotion.xsc">
+      <DependentUpon>EmployeeTransferNpromotion.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeTransferNpromotion.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeTransferNpromotion.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Employee\EmployeeTransferNpromotion.xss">
+      <DependentUpon>EmployeeTransferNpromotion.xsd</DependentUpon>
     </None>
     <None Include="Employee\EmpRegistrationTDS.xsc">
       <DependentUpon>EmpRegistrationTDS.xsd</DependentUpon>

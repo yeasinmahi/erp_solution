@@ -394,12 +394,12 @@ namespace SCM_BLL
             sprChallanWiseRouteCostTableAdapter adp = new sprChallanWiseRouteCostTableAdapter();
             return adp.TripEntry(strChallanNo, intUnitID, intSalesOffId, intShipPointId);
         }
-        public DataTable GetFgCostUpdate(int type,DateTime dteDate,int enroll,string xml,int intItemId,int intUnitID,int CostElementGroup,int CoAID,decimal monRate)
+        public DataTable GetFgCostUpdate(int type,int enroll,string xml,int Unit)
         {
             try
             {
                 sprFGCostUpdateTableAdapter adp = new sprFGCostUpdateTableAdapter();
-                return adp.FgCostUpdate(type,dteDate,enroll,xml,intItemId,intUnitID,CostElementGroup,CoAID,monRate);
+                return adp.FgCostUpdate(type,enroll,xml, Unit);
             }
             catch (Exception ex)
             {
@@ -442,13 +442,25 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
-        public string UpdateProductionApprove(int intItemID,int intUnitID,int intProductiontID, int userId,int intType)
+        public DataTable GetFGCode(int UnitID,int CostElementGroup,int intCoAID)
+        {
+            try
+            {
+                TblAccountsChartOfAccTableAdapter adp = new TblAccountsChartOfAccTableAdapter();
+                return adp.GetCode(UnitID,CostElementGroup,intCoAID);
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+        public string UpdateProductionApprove(int intItemID,int intUnitID,int productId,int userId,int intType)
         {
             string msg = "";
             try
             {
                 TblProductionTableAdapter adp = new TblProductionTableAdapter();
-                adp.UpdateProduction(intItemID,intUnitID, intProductiontID, userId,intType);
+                adp.UpdateProduction(intItemID,intUnitID,productId,userId,intType);
                 if(intType==1)
                 {
                    msg = "Approved Successfully.";
