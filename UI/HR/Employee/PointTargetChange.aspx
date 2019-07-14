@@ -150,41 +150,8 @@
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
         </asp:UpdatePanel>
-<%--        <script type="text/javascript">
-            function ValidateDate() {
-                var txtDate = document.getElementById("txtDate").value;
-
-                if (txtDate === null || txtDate === "") {
-                    ShowNotification('Date can not be blank', 'Casual Worker Bill', 'warning');
-                    return false;
-                }
-                showLoader();
-                return true;
-            }
-            function ValidateMonth() {
-                var txtMonth = document.getElementById("txtMonth").value;
-
-                if (txtMonth === null || txtMonth === "") {
-                    ShowNotification('Month can not be blank', 'Casual Worker Bill', 'warning');
-                    return false;
-                }
-                showLoader();
-                return true;
-            }
-            function ValidateEnrollAndMonth() {
-                var txtEnroll = document.getElementById("txtEnroll").value;
-                var txtMonth = document.getElementById("txtMonth").value;
-                if (txtEnroll === null || txtEnroll === "") {
-                    ShowNotification('Enroll can not be blank', 'Casual Worker Bill', 'warning');
-                    return false;
-                }
-                if (txtMonth === null || txtMonth === "") {
-                    ShowNotification('Month can not be blank', 'Casual Worker Bill', 'warning');
-                    return false;
-                }
-                showLoader();
-                return true;
-            }
+       <script type="text/javascript">
+           
             $(function () {
 
                 Init();
@@ -193,32 +160,12 @@
 
             function Init() {
 
-                $('#txtDate').datepicker({
-                    dateFormat: 'dd/mm/yy'
-                });
-                $('#txtMonth').datepicker({
-                    changeMonth: true,
-                    changeYear: true,
-                    showButtonPanel: true,
-                    dateFormat: 'mm/yy',
-                    onClose: function () {
+                var qty = $('#<%=gridView.ClientID %>').find('span[id$="lblmontargetconvqty"]');
+               
 
-                        //Get the selected month value
-                        var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-
-                        //Get the selected year value
-                        var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-
-                        //set month value to the textbox
-                        $(this).datepicker('setDate', new Date(year, month, 1));
-                    }
-                });
-                $("#txtMonth").focus(function () {
-                    $(".ui-datepicker-calendar").hide();
-                });
 
             }
-        </script>--%>
+        </script>
     </form>
 
     <%--<style>
