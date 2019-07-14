@@ -1541,6 +1541,7 @@
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
+    <Content Include="SAD\Setup\AfblDistManager.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
     <Content Include="SAD\Setup\AfblLocationTransfer.aspx" />
     <Content Include="SAD\Setup\AfblPointSetup.aspx" />
@@ -8037,6 +8038,13 @@
     </Compile>
     <Compile Include="SAD\Setup\AfblAreaSetup.aspx.designer.cs">
       <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblDistManager.aspx.cs">
+      <DependentUpon>AfblDistManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblDistManager.aspx.designer.cs">
+      <DependentUpon>AfblDistManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>

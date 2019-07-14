@@ -143,7 +143,9 @@
            
             <asp:TemplateField HeaderText="Details">
             <ItemTemplate>
-            <asp:Button ID="btnDetails" Width="90px" Font-Bold="true" BackColor="#5effff" runat="server" Text="Details" CommandName="complete1" OnClick="btnDetails_Click"   CommandArgument='<%#  Eval("strSalesOrderNo")+ "," +Eval("intDeliveryChallanNo")  %>' /></ItemTemplate>
+            <asp:Button ID="btnDetails" Width="90px" Font-Bold="true" BackColor="#5effff" runat="server" Text="Details" 
+                CommandName="complete1" OnClick="btnDetails_Click"  
+                CommandArgument='<%#  Eval("strSalesOrderNo")+ "," +Eval("intDeliveryChallanNo")+ "," +Eval("strCustomerName")+ "," +Eval("dteIssueDate")  %>' /></ItemTemplate>
             </asp:TemplateField>
           
             </Columns>
@@ -179,7 +181,9 @@
 
             <asp:TemplateField HeaderText="Details">
             <ItemTemplate>
-            <asp:Button ID="btnDetails" Width="90px" Font-Bold="true" BackColor="#5effff" runat="server" Text="Details" CommandName="complete1" OnClick="btnDetailsPending_Click"   CommandArgument='<%# Eval("strSalesOrderNo") %>' /></ItemTemplate>
+            <asp:Button ID="btnDetails" Width="90px" Font-Bold="true" BackColor="#5effff" runat="server" Text="Details" CommandName="complete1" 
+                OnClick="btnDetailsPending_Click"   
+                CommandArgument='<%# Eval("strSalesOrderNo")+ "," +Eval("strCustName")+ "," +Eval("dteSalesDate") %>' /></ItemTemplate>
             </asp:TemplateField>
           
             </Columns>
@@ -197,11 +201,17 @@
     <div id="hdnDivision"   class="hdnDivision"  style="width:auto;  height:500px;">  
     <table>
          <tr>
-            <td style="text-align:right;"><asp:Label ID="lblissuedate" CssClass="lbl" runat="server" Text="Isssue Date:"></asp:Label></td>
-            <td style="text-align:Left;"><asp:Label ID="lblissueDatedata" CssClass="lbl" runat="server"  ></asp:Label></td>
-            <td style="text-align:right;"><asp:Label ID="lblDeliveryChallan" CssClass="lbl" runat="server" Text="Delivery Challan No :"></asp:Label></td>
-            <td style="text-align:Left;"><asp:Label ID="lblDeliveryChallanData" CssClass="lbl" runat="server"  ></asp:Label></td>
-            <td style="text-align:right;"><asp:Label ID="lblCustomer" CssClass="lbl" runat="server" Text="Customer:"></asp:Label></td>
+             <td style="text-align:right;">
+                 <strong><label>Customer Name : </label></strong>
+                 <asp:Label ID="lblCustomer" CssClass="lbl" runat="server" Text=""></asp:Label></td>
+              <td style="text-align:right;">
+                <strong><label id="lblDChalanNo" runat="server"> Delivery Challan No : </label></strong>
+                <asp:Label ID="lblDeliveryChallan" CssClass="lbl" runat="server" Text=""></asp:Label></td>
+            <td style="text-align:right;">
+                <strong><label> Issue Date : </label></strong>
+                <asp:Label ID="lblissuedate" CssClass="lbl" runat="server" Text=""></asp:Label></td>
+            <td style="text-align:Left;"><asp:Label ID="lblissueDatedata" CssClass="lbl" runat="server"  ></asp:Label></td>           
+            <td style="text-align:Left;"><asp:Label ID="lblDeliveryChallanData" CssClass="lbl" runat="server"  ></asp:Label></td>            
             <td style="text-align:Left;"><asp:Label ID="lblCustomerData" CssClass="lbl" runat="server"  ></asp:Label></td>           
            </tr>
          <tr><td colspan="4" style="text-align:right"><asp:Button runat="server" ID="btnClsoe"  OnClick="btnClsoe_Click" Text="Close" /> </td></tr>
