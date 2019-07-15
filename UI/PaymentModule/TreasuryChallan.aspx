@@ -66,6 +66,16 @@
 
 
     </script>
+    <script>
+        function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url);
+                return false;
+            }
+            return true;
+        }
+    </script>
     <style>
         @page {
             size: landscape;
@@ -170,13 +180,13 @@
                                     <asp:Label ID="Label1" CssClass="lbl" runat="server" Text="Challan Date : "></asp:Label></td>
                                 <td>
                                     <asp:TextBox ID="dtCha" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
-                                    <script type="text/javascript"> new datepickr('dtCha', { 'dateFormat': 'Y-m-d' });</script>
+                                    <cc1:CalendarExtender ID="CalendarExtender1" runat="server" Format="yyyy-MM-dd" TargetControlID="dtCha"></cc1:CalendarExtender>
                                 </td>
                                 <td style="text-align: right;">
                                     <asp:Label ID="lbleffective" CssClass="lbl" runat="server" Text="VDate : "></asp:Label></td>
                                 <td>
                                     <asp:TextBox ID="dtVdate" runat="server" CssClass="txtBox" Enabled="true"></asp:TextBox>
-                                    <script type="text/javascript"> new datepickr('dtVdate', { 'dateFormat': 'Y-m-d' });</script>
+                                    <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="dtVdate"></cc1:CalendarExtender>
                                 </td>
                             </tr>
 
@@ -224,143 +234,13 @@
                         </table>
                     </div>
                     <%--=========================== Form for print ========================--%>
-
-                    <table style="width: 100%; background-color: white;">
-                        <tr>
-                            <td colspan="6" style="font-size: 24px; font-weight: bold; text-align: center;">চালান ফরম</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="heading" style="font-size: 16px; font-weight: bold">টি, আর ফরম নং ৬ (এস,আর ৩৭ দ্রষ্টব্য)</td>
-                            <td class="copy">১ম(মূল)কপি</td>
-                            <td class="copy">২য় কপি</td>
-                            <td class="copy">৩য় কপি</td>
-                        </tr>
-                        <%--<tr>
-                            <td colspan="6" style="padding-bottom: 10px;"></td>
-                        </tr>--%>
-                        <tr>
-                            <td style="text-align: right; width: 100px" >চালান  নং : </td>
-                            <td>
-                                <asp:Label ID="lblChallanNo" runat="server" Text="" Visible="true"></asp:Label></td>
-                            <td style="text-align: right;">
-                                তারিখ : <asp:Label ID="lblChallanDate" runat="server"></asp:Label>
-                            </td>
-                            <td colspan="3">
-                                </td>
-                        </tr>
-                        <tr>
-                            <td colspan="6" style="padding-bottom: 10px;"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="6">বাংলাদেশ ব্যাংক/ সোনালী ব্যাংকের ....................ঢাকা..................জেলার.......................মহাখালী........................শাখায় টাকা জমা দেওয়ার চালান</td>
-                        </tr>
-                        <tr>
-                            <td colspan="6" style="height: 10px;"></td>
-                        </tr>
-                    </table>
-                    <table style="width: 100%; background-color: white;" id="codeTable">
-                        <tr>
-                            <td style="width: 80px;">কোড নং</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">1</td>
-                            <td style="width: 5px;"></td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">1</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">1</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">3</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">3</td>
-                            <td style="width: 5px;"></td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">0</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">0</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">0</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">6</td>
-                            <td style="width: 5px;"></td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">0</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">3</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">1</td>
-                            <td class="tblborder" style="text-align: center; width: 20px;">1</td>
-                            <td style="text-align: center;"></td>
-                        </tr>
-                        <tr>
-                            <td colspan="18" style="height: 15px;"></td>
-                        </tr>
-                    </table>
-
-                    <table class="tblborder" style="width: 100%; background-color: white; ">
-
-                        <tr style="text-align: center">
-                            <td class="tblborder" colspan="4" style="font-weight: bold">জমা প্রদানকারী কর্তৃক পূরণ করিতে হইবে</td>
-                            <td class="tblborder" colspan="2" style="font-weight: bold">টাকার অংক</td>
-                            <td class="tblborder" rowspan="2" style="font-weight: bold">বিভাগের নাম এবং চালানের পৃষ্ঠাংকনকারী কর্মকর্তার নাম, পদবী ও দপ্তর।*</td>
-                        </tr>
-                        <tr style="text-align: center">
-                            <td class="tblborder" style="width: 18%; font-weight: bold">যাহার মারফত প্রদত্ত হইল তাহার নাম ও ঠিকানা।</td>
-                            <td class="tblborder" style="width: 18%; font-weight: bold">যে ব্যক্তির/প্রতিষ্ঠানের পক্ষ হইতে টাকা প্রদত্ত হইল তাহার নাম, পদবী ও ঠিকানা।</td>
-                            <td class="tblborder" style="width: 15%; font-weight: bold">কি বাবদ জমা দেওয়া হইল তাহার বিবরণ।</td>
-                            <td class="tblborder" style="width: 15%; font-weight: bold">মুদ্রা ও নোটের বিবরণ/ ড্রাফট,পে-অর্ডার ও চেকের বিবরণ।</td>
-                            <td class="tblborder" style="width: 10%; font-weight: bold">টাকা</td>
-                            <td class="tblborder" style="width: 5%; font-weight: bold">পয়সা</td>
-                        </tr>
-                        <tr style="text-align: center; color: black;">
-                            <td class="tblborder">
-                                <asp:Label ID="lblDepositorName" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder">
-                                <asp:Label ID="lblDepositorAdd" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder">
-                                <asp:Label ID="lblvat" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder">
-                                <asp:Label ID="lblcheque" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder" style="text-align: right">
-                                <asp:Label ID="lblTaka" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder"  style="text-align: right">
-                                <asp:Label ID="lblPoisha" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder">
-                                <asp:Label ID="lbl" runat="server" Text="Label" Visible="false"></asp:Label></td>
-                        </tr>
-                        <tr>
-                            <td class="tblborder"></td>
-                            <td class="tblborder"></td>
-                            <td class="tblborder"></td>
-                            <td class="tblborder" style="text-align: right;">মোট টাকা</td>
-                            <td class="tblborder" style=" text-align: right; font-weight: bold">
-                                <asp:Label ID="lblTotalTaka" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder" style="text-align: right; font-weight: bold">
-                                <asp:Label ID="lblTotalPoisha" runat="server" Visible="true"></asp:Label></td>
-                            <td class="tblborder"></td>
-                        </tr>
-                        <tr>
-                            <td style="border-left: 1px solid black; border-bottom: 1px solid black;" class="auto-style1">টাকা (কথায়)</td>
-                            <td colspan="3" style="border-right: 1px solid black; border-bottom: 1px solid black;" class="auto-style1">
-                                <asp:Label ID="lblMoney" runat="server" Visible="true"></asp:Label>
-                            </td>
-                            <td colspan="3" style="text-align: center; border-top: 1px solid black;" class="auto-style1"></td>
-                        </tr>
-                        <tr>
-                            <td style="border-left: 1px solid black; border-bottom: 1px solid black;" >টাকা পাওয়া গেল</td>
-                            <td colspan="3" style="height: 40px; border-right: 1px solid black; border-bottom: 1px solid black;"></td>
-                            <td colspan="3" style="text-align: center;">ম্যানেজার</td>
-                        </tr>
-                        <tr>
-                            <td  style="border-left: 1px solid black; border-bottom: 1px solid black;">তারিখ : </td>
-                            <td colspan="3" style="border-bottom: 1px solid black">
-                                <asp:Label ID="lblDate" runat="server" Visible="true"></asp:Label></td>
-                            <td colspan="3" style="border-bottom: 1px solid black; border-right: 1px solid black; text-align: center;">বাংলাদেশ ব্যাংক/ সোনালী ব্যাংক</td>
-                        </tr>
-                    </table>
-                    <br/>
-                    <table style="background-color: white; width: 100%;">
-                        <tr>
-                            <td>নোট : ১। সংশ্লিষ্ট দপ্তরের সহিত যোগাযোগ করিয়া সঠিক কোড নম্বর জানিয়া লইবেন।</td>
-                        </tr>
-                        <tr>
-                            <td style="padding-left: 40px;">২। * যে সকল ক্ষেত্রে কর্মকর্তা কর্তৃক পৃষ্ঠাংকন প্রয়োজন, সে সকল ক্ষেত্রে প্রযোজ্য হইবে। </td>
-                        </tr>
-                    </table>
+                    
+                  
 
 
-
-
-
-
-
+                </div>
+                <div>
+                    <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width: 100%; height: 1000px; border: 0px solid red;"></iframe>
                 </div>
                 <%--=========================================End My Code From Here=================================================--%>
             </ContentTemplate>
