@@ -16,6 +16,7 @@ namespace UI.ClassFiles
     {
         //protected int Enroll = 0;
         public int Enroll { get; private set; }
+        public string Code { get; private set; }
         public int JobStationId { get; private set; }
         public string JobStationName { get; private set; }
         public int UnitId { get; private set; }
@@ -32,6 +33,7 @@ namespace UI.ClassFiles
             UnitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
             UnitName = HttpContext.Current.Session[SessionParams.UNIT_NAME].ToString();
             UserEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
+            Code = HttpContext.Current.Session[SessionParams.USER_CODE].ToString();
             Page.Title = @"Welcome to Akij Group";
         }
 
