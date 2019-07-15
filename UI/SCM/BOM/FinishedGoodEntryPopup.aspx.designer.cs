@@ -193,13 +193,13 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Label Label10;
         
         /// <summary>
-        /// lblPlanQty control.
+        /// lblOrderQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPlanQty;
+        protected global::System.Web.UI.WebControls.Label lblOrderQty;
         
         /// <summary>
         /// Label11 control.

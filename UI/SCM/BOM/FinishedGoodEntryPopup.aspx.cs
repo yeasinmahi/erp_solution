@@ -34,15 +34,14 @@ namespace UI.SCM.BOM
         #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
                 try
                 {
-                    File.Delete(filePathForXML);
-                    dgvStore.DataSource = "";
-                    dgvStore.DataBind();
+                    filePathForXML.DeleteFile();
+                    dgvStore.UnLoad();
                 }
                 catch { }
                 claenderDte.SelectedDate = DateTime.Now;
@@ -69,7 +68,7 @@ namespace UI.SCM.BOM
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
                 txtTime.Text = startTime.ToString("HH:ss");
                 txtProductQty.Text = quantity.ToString();
-                lblPlanQty.Text = quantity.ToString();
+                lblOrderQty.Text = quantity.ToString();
 
                 txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
@@ -570,7 +569,7 @@ namespace UI.SCM.BOM
                 string itemid = lblItemId.Text;
                 string ProductionId = lblProductionId.Text;
                 string ProductionQty = txtProductQty.Text;
-                string PlanQty = lblPlanQty.Text;
+                string orderQuantity = lblOrderQty.Text;
 
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
