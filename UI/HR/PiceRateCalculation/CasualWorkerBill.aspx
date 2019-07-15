@@ -66,16 +66,28 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-6 col-sm-6">
+                                       <%-- <div class="col-md-4 col-sm-4">
                                             <asp:Label ID="Label1" runat="server" Text="Select Month"></asp:Label>
                                             <span style="color: red; font-size: 14px; text-align: left">*</span>
                                             <asp:TextBox ID="txtMonth" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select Month"></asp:TextBox>
 
+                                        </div>--%>
+                                         <div class="col-md-4 col-sm-4">
+                                            <asp:Label ID="Label1" runat="server" Text="From Date"></asp:Label>
+                                            <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                            <asp:TextBox ID="txtFDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select From Date"></asp:TextBox>
+
                                         </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <asp:Label ID="Label3" runat="server" Text="Enroll"></asp:Label>
+                                        <div class="col-md-4 col-sm-4">
+                                            <asp:Label ID="Label2" runat="server" Text="To Date"></asp:Label>
+                                            <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                            <asp:TextBox ID="txtTDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" autocomplete="off" placeholder="Select To Date"></asp:TextBox>
+
+                                        </div>
+                                        <div class="col-md-4 col-sm-4">
+                                            <asp:Label ID="Label3" runat="server" Text="Employee Code"></asp:Label>
                                             <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                            <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enroll"></asp:TextBox>
+                                            <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Employee Code"></asp:TextBox>
 
                                         </div>
 
@@ -156,130 +168,12 @@
                         </div>
 
                     </div>
-
-                    <div class="panel panel-info" id="itemPanel">
-                        <div class="panel-heading">
-                            <asp:Label runat="server" Text="Worker Bill All Report" Font-Bold="true" Font-Size="16px"></asp:Label>
-                        </div>
-                        <div class="panel-body">
-                            <asp:GridView ID="gridViewReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
-                                DataKeyNames="intEmpID" GridLines="Both">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                <Columns>
-                                    <asp:TemplateField HeaderText="SL">
-                                        <ItemTemplate>
-                                            <%# Container.DataItemIndex + 1 %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Enroll">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblEmpEnroll" runat="server" Text='<%# Bind("intEmpID") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Emp. Code">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblEmpCode" runat="server" Text='<%# Bind("strEmployeeCode") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Emp. Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblEmpName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Work Count">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblWorkCount" runat="server" Text='<%# Bind("TotalCount") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Product Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("ProductName") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                </Columns>
-                                <EditRowStyle BackColor="#999999" />
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                            </asp:GridView>
-                        </div>
-
-                    </div>
                     <div class="panel panel-info" id="itemPanel2">
                         <div class="panel-heading">
-                            <asp:Label runat="server" Text="Worker Bill Individual Report" Font-Bold="true" Font-Size="16px"></asp:Label>
+                            <asp:Label runat="server" ID="lblHeader" Text="Worker Bill Individual Report" Font-Bold="true" Font-Size="16px"></asp:Label>
                         </div>
                         <div class="panel-body">
-                            <asp:GridView ID="gridViewIndividualReport" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
-                                DataKeyNames="intEmpID" GridLines="Both">
-                                <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                <Columns>
-                                    <asp:TemplateField HeaderText="SL">
-                                        <ItemTemplate>
-                                            <%# Container.DataItemIndex + 1 %>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Enroll">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblEmpEnroll" runat="server" Text='<%# Bind("intEmpID") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Emp. Code">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblEmpCode" runat="server" Text='<%# Bind("strEmployeeCode") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Emp. Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblEmpName" runat="server" Text='<%# Bind("strEmployeeName") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Date">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblDate" runat="server" Text='<%# Bind("dteDate") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Work Count">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblWorkCount" runat="server" Text='<%# Bind("TotalCount") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                    <asp:TemplateField HeaderText="Product Name">
-                                        <ItemTemplate>
-                                            <asp:Label ID="lblProductName" runat="server" Text='<%# Bind("ProductName") %>'></asp:Label>
-                                        </ItemTemplate>
-                                    </asp:TemplateField>
-
-                                </Columns>
-                                <EditRowStyle BackColor="#999999" />
-                                <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
-                                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
-                                <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                                <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
-                                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                            </asp:GridView>
+                            <iframe runat="server" oncontextmenu="return false;" id="frame" name="frame" style="width:100%; height:1000px; border:0px solid red;"></iframe>                          
                         </div>
 
                     </div>
@@ -311,13 +205,14 @@
             }
             function ValidateEnrollAndMonth() {
                 var txtEnroll = document.getElementById("txtEnroll").value;
-                var txtMonth = document.getElementById("txtMonth").value;
+                var txtFDate = document.getElementById("txtFDate").value;
+                 var txtTDate = document.getElementById("txtTDate").value;
                 if (txtEnroll === null || txtEnroll === "") {
                     ShowNotification('Enroll can not be blank', 'Casual Worker Bill', 'warning');
                     return false;
                 }
-                if (txtMonth === null || txtMonth === "") {
-                    ShowNotification('Month can not be blank', 'Casual Worker Bill', 'warning');
+                if (txtFDate === null || txtFDate === "") {
+                    ShowNotification('From date can not be blank', 'Casual Worker Bill', 'warning');
                     return false;
                 }
                 showLoader();
@@ -330,7 +225,12 @@
             });
 
             function Init() {
-
+                $('#txtFDate').datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+                $('#txtTDate').datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
                 $('#txtDate').datepicker({
                     dateFormat: 'dd/mm/yy'
                 });
@@ -356,6 +256,15 @@
                 });
 
             }
+            function loadIframe(iframeName, url) {
+            var $iframe = $('#' + iframeName);
+            if ($iframe.length) {
+                $iframe.attr('src', url); 
+                return false;
+            }
+            return true;
+        }
+
         </script>
     </form>
 
