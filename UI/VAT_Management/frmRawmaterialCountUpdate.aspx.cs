@@ -84,9 +84,25 @@ namespace UI.VAT_Management
 
         }
 
-      
-       
 
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] ItemnameSearchMatrial(string prefixText)
+        {
+            int accid = int.Parse(HttpContext.Current.Session["VatAccid"].ToString());
+            Mushok11 objAutoSearch_BLL = new Mushok11();
+            return objAutoSearch_BLL.getMatrialItemList(prefixText, accid);
+
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] ItemMatrial(string prefixText)
+        {
+            int unitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            Mushok11 objAutoSearch_BLL = new Mushok11();
+            return objAutoSearch_BLL.getItemList(prefixText, unitid);
+
+        }
         protected void btnShow_Click(object sender, EventArgs e)
         {
            
@@ -107,15 +123,15 @@ namespace UI.VAT_Management
             Mushok11 objAutoSearch_BLL = new Mushok11();
             return objAutoSearch_BLL.getVatItemList(prefixText, accid);
         }
-        [WebMethod]
-        [ScriptMethod]
-        public static string[] ItemnameSearchMatrial(string prefixText)
-        {
-            int accid = int.Parse(HttpContext.Current.Session["VatAccid"].ToString());
-            Mushok11 objAutoSearch_BLL = new Mushok11();
-            return objAutoSearch_BLL.getMatrialItemList(prefixText, accid);
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static string[] ItemnameSearchMatrial(string prefixText)
+        //{
+        //    int accid = int.Parse(HttpContext.Current.Session["VatAccid"].ToString());
+        //    Mushok11 objAutoSearch_BLL = new Mushok11();
+        //    return objAutoSearch_BLL.getMatrialItemList(prefixText, accid);
 
-        }
+        //}
         [WebMethod]
         [ScriptMethod]
         public static string[] SupplierSearch(string prefixText)
