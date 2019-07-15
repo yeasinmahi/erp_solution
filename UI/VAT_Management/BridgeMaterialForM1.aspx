@@ -50,45 +50,33 @@
             </tr>
             <tr><td colspan="2"><hr /></td></tr> 
             <tr><td colspan="2" style="text-align:center; padding: 0px 0px 5px 0px;"><asp:Label ID="lblVatAccount" runat="server" Text="" CssClass="lbl" Font-Size="20px" Font-Bold="true" Font-Underline="true"></asp:Label></td></tr>
-            <tr><td colspan="2" style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Add Item to Mushok 1" CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
+            <tr><td colspan="2" style="text-align:center; padding: 0px 0px 20px 0px;"><asp:Label ID="lblHeading" runat="server" Text="Inventory Material with Vat Material Bridge " CssClass="lbl" Font-Size="16px"></asp:Label></td></tr>
                         
             <tr><td colspan="2"><hr /></td></tr> 
             <tr>
                 <td style="text-align:right;"><asp:Label ID="Label1" runat="server" CssClass="lbl" Text="VAT Material :"></asp:Label></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlVATMaterial" CssClass="ddList" Font-Bold="False" runat="server" width="500px" height="23px" AutoPostBack="false"></asp:DropDownList>                                                                                       
+                <asp:TextBox ID="txtVatItemList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true"  ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtVatItemList"
+            ServiceMethod="ItemnameSearchMatrial" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender>                                                                                        
                 </td>
             </tr>
             <tr>
                 <td style="text-align:right; padding-top:15px;"><asp:Label ID="Label2" runat="server" CssClass="lbl" Text="Raw Material :"></asp:Label></td>
                 <td style="text-align:left;">
-                <asp:DropDownList ID="ddlRM" CssClass="ddList" Font-Bold="False" runat="server" height="23px" Width="500px" AutoPostBack="false"></asp:DropDownList>                                                                                      
+                <asp:TextBox ID="txtRawMatrialList" runat="server" CssClass="txtBox"   MaxLength="10" AutoPostBack="true"  ></asp:TextBox>
+            <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtRawMatrialList"
+            ServiceMethod="ItemMatrial" MinimumPrefixLength="1" CompletionSetCount="1"
+            CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+            CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+            </cc1:AutoCompleteExtender>                                                                                       
                 </td>
             </tr>
-            <tr>
-                <td colspan="3" style="text-align:right; padding: 10px 0px 8px 0px"><asp:Button ID="btnAdd" runat="server" class="myButton" Text="Add" Height="30px" OnClick="btnAdd_Click"/></td>
-            </tr>
-            <tr><td colspan="3">   
-                <asp:GridView ID="dgvRM" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
-                CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr"
-                ForeColor="Black" GridLines="Vertical" OnRowDeleting="dgvRM_RowDeleting">
-                <AlternatingRowStyle BackColor="#CCCCCC" />    
-                <Columns>
-                <asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="60px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>
-            
-                <asp:TemplateField HeaderText="RM ID" SortExpression="rmid">
-                <ItemTemplate><asp:Label ID="lblRMID" runat="server" Text='<%# Bind("rmid") %>'></asp:Label></ItemTemplate><ItemStyle HorizontalAlign="center" Width="45px" /></asp:TemplateField>
-
-                <asp:TemplateField HeaderText="Material Name" SortExpression="rmname">
-                <ItemTemplate><asp:Label ID="lblMaterialName" runat="server" Text='<%# Bind("rmname") %>' Width="400px"></asp:Label>
-                </ItemTemplate><ItemStyle HorizontalAlign="Left" Width="400px" /></asp:TemplateField>
-
-                <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="red" ControlStyle-Font-Bold="true" />                       
-                </Columns>
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
-                </asp:GridView>
-            </td></tr> 
+          
+           
             <tr>
                 <td colspan="2" style="text-align:right; padding: 10px 0px 8px 0px;"><asp:Button ID="btnUpdateBridge" runat="server" class="myButton" Text="Update Bridge" Height="30px" OnClientClick = "ConfirmAll()" OnClick="btnUpdateBridge_Click"/></td>
             </tr>
