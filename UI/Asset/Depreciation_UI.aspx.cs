@@ -152,7 +152,7 @@ namespace UI.Asset
                 xmlString = "<voucher><voucherentry AssetCOA=" + '"' + assetid + '"' + "/></voucher>".ToString(); 
                 if (int.Parse(ddltype.SelectedValue) == 1)
                 {
-                    dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, 0);
+                    dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), 0, int.Parse(Session[SessionParams.USER_ID].ToString()));
 
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
@@ -160,7 +160,7 @@ namespace UI.Asset
                 else
                 {
                     //Multipole Asset Depreciation Charge
-                    dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), 0);
+                    dt = objdep.DepreciationView(1, xmlString, DateTime.Parse(txtDteFrom.Text), DateTime.Parse(txtdteTo.Text), int.Parse(ddlunit.SelectedValue), int.Parse(Session[SessionParams.USER_ID].ToString()));
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + dt.Rows[0]["Mesasge"].ToString() + "');", true);
 
                 }

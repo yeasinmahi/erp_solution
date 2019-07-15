@@ -166,13 +166,22 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// ddlVATMaterial control.
+        /// txtVatItemList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlVATMaterial;
+        protected global::System.Web.UI.WebControls.TextBox txtVatItemList;
+        
+        /// <summary>
+        /// AutoCompleteExtender2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender2;
         
         /// <summary>
         /// Label2 control.
@@ -184,31 +193,22 @@ namespace UI.VAT_Management {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// ddlRM control.
+        /// txtRawMatrialList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRM;
+        protected global::System.Web.UI.WebControls.TextBox txtRawMatrialList;
         
         /// <summary>
-        /// btnAdd control.
+        /// AutoCompleteExtender1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdd;
-        
-        /// <summary>
-        /// dgvRM control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvRM;
+        protected global::AjaxControlToolkit.AutoCompleteExtender AutoCompleteExtender1;
         
         /// <summary>
         /// btnUpdateBridge control.
