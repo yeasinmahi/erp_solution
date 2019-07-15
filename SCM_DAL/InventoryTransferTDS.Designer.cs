@@ -12360,7 +12360,8 @@ namespace SCM_DAL {
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnintItemID}, false));
                 this.columnintItemID.Unique = true;
-                this.columnstrProductName.MaxLength = 200;
+                this.columnstrProductName.ReadOnly = true;
+                this.columnstrProductName.MaxLength = 305;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -28359,7 +28360,7 @@ SELECT strOrgAddress, intSuppMasterID FROM tblSupplierMaster WHERE (intSuppMaste
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT bi.intItemID as intItemID,strProductName +' ['+strUoM+']'  strProductName
+            this._commandCollection[0].CommandText = @"SELECT bi.intItemID as intItemID,strProductName +' ['+strUoM+']['+CAST(bi.intItemID as varchar(50))+']'  strProductName
 FROM ERP_SAD.dbo.tblItem si LEFT JOIN ERP_Inventory.dbo.tblBillOfMaterialItemNsadItemBridge bi 
 ON si.intID=bi.intSADItemID  join ERP_SAD.dbo.tblItemType it on si.intTypeID=it.intID 
 left join ERP_Inventory.dbo.tblItemList itm on itm.intItemID=bi.intItemID
