@@ -487,13 +487,13 @@ namespace UI.SCM.BOM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    dgvStore.DataSource = ds;
+                    gridViewWastage.DataSource = ds;
                 }
                 else
                 {
-                    dgvStore.DataSource = "";
+                    gridViewWastage.DataSource = "";
                 }
-                dgvStore.DataBind();
+                gridViewWastage.DataBind();
             }
             catch (Exception ex)
             {
@@ -745,13 +745,13 @@ namespace UI.SCM.BOM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    dgvStore.DataSource = ds;
+                    gridViewWastage.DataSource = ds;
                 }
                 else
                 {
-                    dgvStore.DataSource = "";
+                    gridViewWastage.DataSource = "";
                 }
-                dgvStore.DataBind();
+                gridViewWastage.DataBind();
             }
             catch (Exception ex)
             {
@@ -766,8 +766,8 @@ namespace UI.SCM.BOM
         }
         private void Clear2()
         {
-            dgvStore.DataSource = "";
-            dgvStore.DataBind();
+            gridViewWastage.DataSource = "";
+            gridViewWastage.DataBind();
             txtGoodsProductionQty.Text = "0";
             txtProductQty.Text = "0";
             txtJob.Text = string.Empty;
