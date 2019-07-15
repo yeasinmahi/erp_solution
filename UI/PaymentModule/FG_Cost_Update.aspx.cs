@@ -83,7 +83,7 @@ namespace UI.PaymentModule
         private void LoadItem(int unitid)
         {          
             dt = inventoryTransfer_Obj.GetItemByUnitID(unitid);
-            ddlItem.Loads(dt, "intItemID", "strProduct");
+            ddlItem.Loads(dt, "intItemID", "strProductName");
         }
         protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
         {
