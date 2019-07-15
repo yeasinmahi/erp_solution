@@ -442,12 +442,12 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
-        public DataTable GetFGCode(int UnitID,int CostElementGroup,int intCoAID)
+        public DataTable GetFGCode(int intCoAID)
         {
             try
             {
                 TblAccountsChartOfAccTableAdapter adp = new TblAccountsChartOfAccTableAdapter();
-                return adp.GetCode(UnitID,CostElementGroup,intCoAID);
+                return adp.GetCode(intCoAID);
             }
             catch (Exception ex)
             {

@@ -34,15 +34,13 @@ namespace UI.SCM.BOM
         #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
                 try
                 {
-                    File.Delete(filePathForXML);
-                    dgvStore.DataSource = "";
-                    dgvStore.DataBind();
+                    filePathForXML.DeleteFile();
                 }
                 catch { }
                 claenderDte.SelectedDate = DateTime.Now;
@@ -69,7 +67,7 @@ namespace UI.SCM.BOM
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
                 txtTime.Text = startTime.ToString("HH:ss");
                 txtProductQty.Text = quantity.ToString();
-                lblPlanQty.Text = quantity.ToString();
+                lblOrderQty.Text = quantity.ToString();
 
                 txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
@@ -222,15 +220,14 @@ namespace UI.SCM.BOM
             try
             {
                 LoadGridwithXml2();
-                DataSet dsGrid = (DataSet)dgvStore.DataSource;
-                dsGrid.Tables[0].Rows[dgvStore.Rows[e.RowIndex].DataItemIndex].Delete();
+                DataSet dsGrid = (DataSet)gridViewWastage.DataSource;
+                dsGrid.Tables[0].Rows[gridViewWastage.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
-                DataSet dsGridAfterDelete = (DataSet)dgvStore.DataSource;
+                DataSet dsGridAfterDelete = (DataSet)gridViewWastage.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
                 {
-                    File.Delete(filePathForXML);
-                    dgvStore.DataSource = "";
-                    dgvStore.DataBind();
+                    filePathForXML.DeleteFile();
+                    gridViewWastage.UnLoad();
                 }
                 else
                 {
@@ -268,8 +265,8 @@ namespace UI.SCM.BOM
                     {
                         string msg = objBom.BomPostData(9, xmlString, intWh, productionId, dteDate, Enroll);
 
-                        dgvStore.DataSource = "";
-                        dgvStore.DataBind();
+                        gridViewWastage.UnLoad();
+
                         txtProductQty.Text = "0";
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",
                             "alert('" + msg + "');", true);
@@ -391,8 +388,7 @@ namespace UI.SCM.BOM
 
                 Session["TotalStoreQuantity"] = dt.Rows[0]["totalSentToStore"].ToString();
 
-                dgvProductionEntry.DataSource = dt;
-                dgvProductionEntry.DataBind();
+                gridViewProductionEntry.Loads(dt);
             }
             else
             {
@@ -491,13 +487,13 @@ namespace UI.SCM.BOM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    dgvStore.DataSource = ds;
+                    gridViewWastage.DataSource = ds;
                 }
                 else
                 {
-                    dgvStore.DataSource = "";
+                    gridViewWastage.DataSource = "";
                 }
-                dgvStore.DataBind();
+                gridViewWastage.DataBind();
             }
             catch (Exception ex)
             {
@@ -570,7 +566,7 @@ namespace UI.SCM.BOM
                 string itemid = lblItemId.Text;
                 string ProductionId = lblProductionId.Text;
                 string ProductionQty = txtProductQty.Text;
-                string PlanQty = lblPlanQty.Text;
+                string orderQuantity = lblOrderQty.Text;
 
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
@@ -581,14 +577,13 @@ namespace UI.SCM.BOM
                         string Date = txtDate.Text;
                         string Time = txtTime.Text;
                         string JobNo = txtJob.Text;
-                        string FProductItem = ddlWastageItem.SelectedItem.ToString();
-                        string FProductItemId = ddlWastageItem.SelectedValue;
-                        string FProductQty = txtWastageQuantity.Text;
-                        string FProductType = ddlWastageType.SelectedItem.ToString();
-                        string FProductTypeId = ddlWastageType.SelectedValue;
-                        string UserId = Session[SessionParams.USER_ID].ToString();
-                        totalExtraStore += Convert.ToDecimal(FProductQty);
-                        CreateXml2(ProductionId,FProductItem, FProductItemId, FProductQty, FProductType, FProductTypeId, UnitId.ToString(), Date, Time, JobNo, UserId, totalExtraStore.ToString());
+                        string wastageItem = ddlWastageItem.SelectedItem.ToString();
+                        string wastageItemId = ddlWastageItem.SelectedValue;
+                        decimal.TryParse(txtWastageQuantity.Text, out decimal wastageQuantity);
+                        string wastageType = ddlWastageType.SelectedItem.ToString();
+                        string astageTypeId = ddlWastageType.SelectedValue;
+                        totalExtraStore += Convert.ToDecimal(wastageQuantity);
+                        CreateXml2(ProductionId,wastageItem, wastageItemId, wastageQuantity.ToString(), wastageType, astageTypeId, UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
                     }
                     else
                     {
@@ -750,13 +745,13 @@ namespace UI.SCM.BOM
                 ds.ReadXml(sr);
                 if (ds.Tables[0].Rows.Count > 0)
                 {
-                    dgvStore.DataSource = ds;
+                    gridViewWastage.DataSource = ds;
                 }
                 else
                 {
-                    dgvStore.DataSource = "";
+                    gridViewWastage.DataSource = "";
                 }
-                dgvStore.DataBind();
+                gridViewWastage.DataBind();
             }
             catch (Exception ex)
             {
@@ -771,8 +766,8 @@ namespace UI.SCM.BOM
         }
         private void Clear2()
         {
-            dgvStore.DataSource = "";
-            dgvStore.DataBind();
+            gridViewWastage.DataSource = "";
+            gridViewWastage.DataBind();
             txtGoodsProductionQty.Text = "0";
             txtProductQty.Text = "0";
             txtJob.Text = string.Empty;
