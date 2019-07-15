@@ -201,7 +201,9 @@
     <Content Include="Accounts\PartyPayment\PrintVoucher.aspx" />
     <Content Include="Accounts\PartyPayment\QRCodePrint.aspx" />
     <Content Include="Accounts\PartyPayment\SecondAuthorizationView.aspx" />
+    <Content Include="Accounts\Print\AFBL_Bill_Print.aspx" />
     <Content Include="Accounts\Print\Images\acPayee.png" />
+    <Content Include="Accounts\Report\AccountsSubledgerByAccountCode_Report.aspx" />
     <Content Include="Accounts\Report\Cash_and_Bank_Book_Report.aspx" />
     <Content Include="Accounts\Report\DailyCollectionReport.aspx" />
     <Content Include="Accounts\Report\NBR_Ledger_Report_New.aspx" />
@@ -477,8 +479,10 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
+    <Content Include="HR\Employee\PointTargetChange.aspx" />
     <Content Include="HR\HolidayCalendar\HolidayCalenderImage.aspx" />
     <Content Include="HR\HolidayCalendar\Holiday\HolidayCalendar.jpg" />
     <Content Include="HR\Insurance\InsuranceDateRangeReport.aspx" />
@@ -1538,6 +1542,7 @@
     <Content Include="SAD\Sales\SalesPosting.aspx" />
     <Content Include="SAD\Sales\UnitTest.aspx" />
     <Content Include="SAD\Setup\AfblAreaSetup.aspx" />
+    <Content Include="SAD\Setup\AfblDistManager.aspx" />
     <Content Include="SAD\Setup\AfblLineSetup.aspx" />
     <Content Include="SAD\Setup\AfblLocationTransfer.aspx" />
     <Content Include="SAD\Setup\AfblPointSetup.aspx" />
@@ -1695,6 +1700,7 @@
     <Content Include="SCM\Transfer\frmTransferOutSystem.aspx" />
     <Content Include="SCM\Transfer\frmTransferOut.aspx" />
     <Content Include="SCM\Transfer\frmTransferOrder.aspx" />
+    <Content Include="SCM\Transfer\Transfer_Report.aspx" />
     <Content Include="SCM\WHItemLocationUpdate.aspx" />
     <Content Include="SCM\WHLocationCreate.aspx" />
     <Content Include="SCM\WHLocationStockTransfer.aspx" />
@@ -2119,6 +2125,13 @@
     <Compile Include="Accounts\PartyPayment\SecondAuthorizationView.aspx.designer.cs">
       <DependentUpon>SecondAuthorizationView.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Accounts\Print\AFBL_Bill_Print.aspx.cs">
+      <DependentUpon>AFBL_Bill_Print.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Print\AFBL_Bill_Print.aspx.designer.cs">
+      <DependentUpon>AFBL_Bill_Print.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Accounts\Print\ChequeRegister.aspx.cs">
       <DependentUpon>ChequeRegister.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2160,6 +2173,13 @@
     </Compile>
     <Compile Include="Accounts\Print\PrintVoucher.aspx.designer.cs">
       <DependentUpon>PrintVoucher.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Accounts\Report\AccountsSubledgerByAccountCode_Report.aspx.cs">
+      <DependentUpon>AccountsSubledgerByAccountCode_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Accounts\Report\AccountsSubledgerByAccountCode_Report.aspx.designer.cs">
+      <DependentUpon>AccountsSubledgerByAccountCode_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="Accounts\Report\BankBook.aspx.cs">
       <DependentUpon>BankBook.aspx</DependentUpon>
@@ -3319,6 +3339,13 @@
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\EmployeeFullInformation.aspx.cs">
+      <DependentUpon>EmployeeFullInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\EmployeeFullInformation.aspx.designer.cs">
+      <DependentUpon>EmployeeFullInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Employee\EmployeeTransferNpromotion.aspx.cs">
       <DependentUpon>EmployeeTransferNpromotion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3332,6 +3359,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmpPersonalInformationUpdate.aspx.designer.cs">
       <DependentUpon>EmpPersonalInformationUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\PointTargetChange.aspx.cs">
+      <DependentUpon>PointTargetChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\PointTargetChange.aspx.designer.cs">
+      <DependentUpon>PointTargetChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\HolidayCalendar\HolidayCalenderImage.aspx.cs">
       <DependentUpon>HolidayCalenderImage.aspx</DependentUpon>
@@ -8014,6 +8048,13 @@
     <Compile Include="SAD\Setup\AfblAreaSetup.aspx.designer.cs">
       <DependentUpon>AfblAreaSetup.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Setup\AfblDistManager.aspx.cs">
+      <DependentUpon>AfblDistManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Setup\AfblDistManager.aspx.designer.cs">
+      <DependentUpon>AfblDistManager.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Setup\AfblLineSetup.aspx.cs">
       <DependentUpon>AfblLineSetup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -9098,6 +9139,13 @@
     </Compile>
     <Compile Include="SCM\Transfer\frmTransferOrder.aspx.designer.cs">
       <DependentUpon>frmTransferOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Transfer\Transfer_Report.aspx.cs">
+      <DependentUpon>Transfer_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Transfer\Transfer_Report.aspx.designer.cs">
+      <DependentUpon>Transfer_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\WHItemLocationUpdate.aspx.cs">
       <DependentUpon>WHItemLocationUpdate.aspx</DependentUpon>

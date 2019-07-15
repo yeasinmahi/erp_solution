@@ -251,8 +251,7 @@ namespace UI.Wastage
                     catch { }
                     if (xml == "") { return; }
                 }
-                if (txtMRNo.Text =="")
-                { MRRNO = "0"; }
+               if (txtMRNo.Text == "") { MRRNO = "0"; } else { MRRNO = txtMRNo.Text; };
                 if ((txtSODate.Text != "")||(int.Parse(ddlUnitName.SelectedValue)!=0) || (int.Parse(ddlWHName.SelectedValue) != 0))
                 {
                     string message = obj.insertSales(DateTime.Parse(txtSODate.Text),int.Parse(ddlCustomer.SelectedValue), int.Parse(ddlUnitName.SelectedValue),intEnroll,MRRNO,int.Parse(ddlWHName.SelectedValue),  xml);

@@ -241,10 +241,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Employee.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Employee\EmployeeFullInformation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeFullInformation.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Employee\EmployeeInfoDetail.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Employee\EmployeeTransferNpromotion.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeTransferNpromotion.xsd</DependentUpon>
     </Compile>
     <Compile Include="Employee\EmpRegistrationTDS.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -940,6 +950,17 @@
     <None Include="Employee\Employee.xss">
       <DependentUpon>Employee.xsd</DependentUpon>
     </None>
+    <None Include="Employee\EmployeeFullInformation.xsc">
+      <DependentUpon>EmployeeFullInformation.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeFullInformation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeFullInformation.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Employee\EmployeeFullInformation.xss">
+      <DependentUpon>EmployeeFullInformation.xsd</DependentUpon>
+    </None>
     <None Include="Employee\EmployeeInfoDetail.xsc">
       <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
     </None>
@@ -950,6 +971,17 @@
     </None>
     <None Include="Employee\EmployeeInfoDetail.xss">
       <DependentUpon>EmployeeInfoDetail.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeTransferNpromotion.xsc">
+      <DependentUpon>EmployeeTransferNpromotion.xsd</DependentUpon>
+    </None>
+    <None Include="Employee\EmployeeTransferNpromotion.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeTransferNpromotion.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Employee\EmployeeTransferNpromotion.xss">
+      <DependentUpon>EmployeeTransferNpromotion.xsd</DependentUpon>
     </None>
     <None Include="Employee\EmpRegistrationTDS.xsc">
       <DependentUpon>EmpRegistrationTDS.xsd</DependentUpon>

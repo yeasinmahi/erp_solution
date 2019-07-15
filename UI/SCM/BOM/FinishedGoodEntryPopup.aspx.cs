@@ -9,6 +9,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
+using BLL.HR;
 using UI.ClassFiles;
 using Utility;
 
@@ -33,15 +34,14 @@ namespace UI.SCM.BOM
         #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
-            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
+            filePathForXML = Server.MapPath("~/SCM/Data/BomMatf__" + Enroll + ".xml");
 
             if (!IsPostBack)
             {
                 try
                 {
-                    File.Delete(filePathForXML);
-                    dgvStore.DataSource = "";
-                    dgvStore.DataBind();
+                    filePathForXML.DeleteFile();
+                    dgvStore.UnLoad();
                 }
                 catch { }
                 claenderDte.SelectedDate = DateTime.Now;
@@ -68,7 +68,7 @@ namespace UI.SCM.BOM
                 lblDate.Text = startTime.ToString("yyyy-MM-dd") + " TO " + endTime.ToString("yyyy-MM-dd");
                 txtTime.Text = startTime.ToString("HH:ss");
                 txtProductQty.Text = quantity.ToString();
-                lblPlanQty.Text = quantity.ToString();
+                lblOrderQty.Text = quantity.ToString();
 
                 txtItem.Text = productName + "[" + lblItemId.Text + "]";
                 txtProductQty.Visible = true;
@@ -91,8 +91,8 @@ namespace UI.SCM.BOM
                     }
                 }
                 ddlOrderId.LoadWithSelect(dt, "intSalesOrderID", "intSalesOrderID");
-
-                FillDropdown();
+                LoadWastageTpe();
+                LoadWastageItem();
                 LoadGrid();
 
 
@@ -220,7 +220,7 @@ namespace UI.SCM.BOM
         {
             try
             {
-                LoadGridwithXml();
+                LoadGridwithXml2();
                 DataSet dsGrid = (DataSet)dgvStore.DataSource;
                 dsGrid.Tables[0].Rows[dgvStore.Rows[e.RowIndex].DataItemIndex].Delete();
                 dsGrid.WriteXml(filePathForXML);
@@ -233,7 +233,7 @@ namespace UI.SCM.BOM
                 }
                 else
                 {
-                    LoadGridwithXml();
+                    LoadGridwithXml2();
                 }
             }
             catch (Exception ex)
@@ -480,6 +480,7 @@ namespace UI.SCM.BOM
             try
             {
                 XmlDocument doc = new XmlDocument();
+
                 doc.Load(filePathForXML);
                 XmlNode dSftTm = doc.SelectSingleNode("voucher");
                 xmlString = dSftTm.InnerXml;
@@ -545,28 +546,21 @@ namespace UI.SCM.BOM
          * Date : 28-May-2019
          * For : Product Transfer
          */
-        private void FillDropdown()
+        public void LoadWastageTpe()
         {
-            DataTable dt = new DataTable();
-            try
-            {
-                ddlWastageType.Items.Insert(0, new ListItem("---Select Wastage Type---", "-1"));
-                //ddlWastageType.Items.Insert(1, new ListItem("Good Production", "1"));
-                ddlWastageType.Items.Insert(1, new ListItem("Scrap Output", "1"));
-                ddlWastageType.Items.Insert(2, new ListItem("Wastage Output", "2"));
-                dt = objBom.GetWastageItem(UnitId);
-                ddlWastageItem.DataSource = dt;
-                ddlWastageItem.DataTextField = "strItemFullName";
-                ddlWastageItem.DataValueField = "intItemID";
-                ddlWastageItem.DataBind();
-                ddlWastageItem.Items.Insert(0, new ListItem("---Select an Item---", "-1"));
-                //ddlWastageItem.Items.Insert(1, new ListItem(productName, productionID));
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
+            ddlWastageType.Items.Insert(0, new ListItem("Select", "0"));
+            //ddlWastageType.Items.Insert(1, new ListItem("Good Production", "1"));
+            ddlWastageType.Items.Insert(1, new ListItem("Scrap Output", "1"));
+            ddlWastageType.Items.Insert(2, new ListItem("Wastage Output", "2"));
         }
+
+        public void LoadWastageItem()
+        {
+            int unitId = new UnitBll().GetUnitIdByWhId(int.Parse(whid));
+            DataTable dt = objBom.GetWastageItem(unitId);
+            ddlWastageItem.LoadWithSelect(dt, "intItemID", "strItemFullName");
+        }
+        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -575,7 +569,7 @@ namespace UI.SCM.BOM
                 string itemid = lblItemId.Text;
                 string ProductionId = lblProductionId.Text;
                 string ProductionQty = txtProductQty.Text;
-                string PlanQty = lblPlanQty.Text;
+                string orderQuantity = lblOrderQty.Text;
 
                 checkXmlItemData(itemid);
                 if (CheckItem == 1)
@@ -694,7 +688,7 @@ namespace UI.SCM.BOM
                 doc.AppendChild(rootNode);
             }
             doc.Save(filePathForXML);
-            LoadGridwithXml();
+            LoadGridwithXml2();
         }
         private XmlNode CreateItemNode2(XmlDocument doc,string ProductionId, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date,
             string Time, string JobNo,string UserId, string totalExtraStore)

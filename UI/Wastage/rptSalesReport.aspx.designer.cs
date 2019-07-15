@@ -292,6 +292,33 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.GridView dgvPending;
         
         /// <summary>
+        /// lblCustomer control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCustomer;
+        
+        /// <summary>
+        /// lblDChalanNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblDChalanNo;
+        
+        /// <summary>
+        /// lblDeliveryChallan control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDeliveryChallan;
+        
+        /// <summary>
         /// lblissuedate control.
         /// </summary>
         /// <remarks>
@@ -310,15 +337,6 @@ namespace UI.Wastage {
         protected global::System.Web.UI.WebControls.Label lblissueDatedata;
         
         /// <summary>
-        /// lblDeliveryChallan control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDeliveryChallan;
-        
-        /// <summary>
         /// lblDeliveryChallanData control.
         /// </summary>
         /// <remarks>
@@ -326,15 +344,6 @@ namespace UI.Wastage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDeliveryChallanData;
-        
-        /// <summary>
-        /// lblCustomer control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCustomer;
         
         /// <summary>
         /// lblCustomerData control.

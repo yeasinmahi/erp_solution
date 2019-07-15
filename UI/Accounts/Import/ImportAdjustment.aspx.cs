@@ -33,12 +33,13 @@ namespace UI.Accounts.Import
         #region Constructor
         protected void Page_Load(object sender, EventArgs e)
         {
+            hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
             filePathForXML = Server.MapPath("~/Accounts/Import/Data/ImportVoucher_" + hdnEnroll.Value + ".xml");
             if (!IsPostBack)
             {
                 File.Delete(filePathForXML);
                 hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
-                hdnEnroll.Value = Session[SessionParams.USER_ID].ToString();
+                
                 FillDropdown();
             }
         }

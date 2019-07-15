@@ -31,7 +31,6 @@ namespace UI.SAD.ExcelChallan
         protected void Page_Load(object sender, EventArgs e)
         {
             filePathForXML = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanupload_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
-            filePathForXMLVat = Server.MapPath("~/SAD/ExcelChallan/Data/AutoChallanuploadVat_" + HttpContext.Current.Session[SessionParams.USER_ID].ToString() + ".xml");
             if (!IsPostBack)
             {              
                 try { File.Delete(filePathForXML); File.Delete(filePathForXMLVat); } catch { }
@@ -205,78 +204,25 @@ namespace UI.SAD.ExcelChallan
                                 string Extpr = Convert.ToString("0".ToString());
                                 if (qty != "0")
                                 {
-                                    if (vatCheck == 1)
-                                    {
+                                   
                                         narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
                                         narratioin = narration;
                                         Session[narratioin] = narratioin;
-                                    }
-                                    else {
-                                        narrationvat = narrationvat + " [" + qty + "] " + uomTxt + " " + paname;
-                                        narratioinvat = narrationvat;
-                                        Session[narratioinvat] = narratioinvat;
-                                    }
+                                    
                                 }
                                 intsalestypeid = Convert.ToInt32(stype);
 
                                 if (qty != "0")
                                 {
-                                    if (vatCheck == 1)
-                                    {
-
-                                        //if (counts > 7)
-                                        //{
-                                        //    counts = 1;
-                                        //        #region ------------ Insert into dataBase -----------                                                                            
-                                               
-                                        //    XmlDocument doc = new XmlDocument();
-                                        //    doc.Load(filePathForXML);
-                                        //    XmlNode dSftTm = doc.SelectSingleNode("node");
-                                        //    string xmlString = dSftTm.InnerXml;
-                                        //    xmlString = "<node>" + xmlString + "</node>";
-                                        //    string message = Report.AutoChallaninsertform(xmlString, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioin, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
-
-                                        //    File.Delete(filePathForXML);
-                                        //    ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-
-                                        //    #endregion ------------ Insertion End ----------------
-
-                                        //    qty = Convert.ToString(qty.ToString());
-                                        //    CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
-                                        //    narration = "";
-                                        //    narration = narration + " [" + qty + "] " + uomTxt + " " + paname;
-                                        //}
-                                        //else
-                                        //{
-                                            qty = Convert.ToString(qty.ToString());
-                                            CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
-                                        //}
-                                    }
-                                    else
-                                    {
+                                   
                                        
                                             qty = Convert.ToString(qty.ToString());
-                                            CreateSalesXmlvat(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
+                                        CreateSalesXml(pid, paname, qty, pr, accid, accName, extid, extName, extPr, itemUom, cur, narr, stype, logisid, logis, Prom, comm, incId, incPr, supTax, vat, vatpr, uomTxt, promoItemid, promItem, promUom, promUomtext, logisGain, prompr, promitemCOA);
                                         
-                                    }
+                                    
                                 }
                             }
-                            if(countsvat>0)
-                            {
-                                   
-                                    #region ------------ Insert into dataBase not vat -----------                                                                            
-                                    narratioinvat = Convert.ToString(Session[narratioinvat]);
-                                XmlDocument docvat = new XmlDocument();
-                                   
-                                    docvat.Load(filePathForXMLVat);
-                                    XmlNode dSftTmvat = docvat.SelectSingleNode("node");
-                                    string xmlStringvat = dSftTmvat.InnerXml;
-                                    xmlStringvat = "<node>" + xmlStringvat + "</node>";
-                                    string messagevat = Report.AutoChallaninsertform(xmlStringvat, ref intentryid, enroll, intunitid, dtdate, strChallanNo, CustType, Custid, intDisPointId, narratioinvat, CustAddress, ysnDO2, ysnChallanCompleted, intPriceVarId, intVehicleVarId, numLogisticCharge, ysnLogistic, ysnLogisticByCompany, strVehicleRegNo, intVehicleId, intVehicleTypeId, intChargeId, numCharge, intIncentiveId, numIncentive, strSupplierCOACod, strSupplier, ysnChargeToSupplier, intCurrencyId, numConvRate, intsalestypeid, monExtraAmount, strExtraCause, strOther, strDrivername, strDriverContact, Offid, Shipid, ref strCode,ref msg);
-                                    File.Delete(filePathForXMLVat);
-                                
-                                #endregion ------------ Insertion End ----------------
-                            }
+                            
                             if ((counts > 0))
                             {
                                 #region ------------ Insert into dataBase -----------

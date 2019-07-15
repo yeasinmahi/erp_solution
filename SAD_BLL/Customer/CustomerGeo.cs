@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using SAD_DAL.Customer;
 using SAD_DAL.Customer.CustomerGeoTDSTableAdapters;
+using SAD_DAL.Customer.TerriotoryTDSTableAdapters;
+using SAD_DAL.Customer.RegionTDSTableAdapters;
+using SAD_DAL.Customer.AreaTDSTableAdapters;
+using SAD_DAL.Customer.DistributionPointTDSTableAdapters;
+using System.Data;
 
 namespace SAD_BLL.Customer
 {
@@ -101,5 +106,40 @@ namespace SAD_BLL.Customer
             else return "No Label";
 
         }
+
+        #region========== Line Region Area Territory Point =====
+        public DataTable GetLine()
+        {
+            TblItemFGGroupTableAdapter adp = new TblItemFGGroupTableAdapter();
+            return adp.GetData();
+        }
+        public DataTable GetRegion()
+        {
+            SAD_DAL.Customer.RegionTDSTableAdapters.TblGEOSetupTableAdapter adp = new SAD_DAL.Customer.RegionTDSTableAdapters.TblGEOSetupTableAdapter();
+            return adp.GetData();
+        }
+        public DataTable GetArea(int regionId)
+        {
+            SAD_DAL.Customer.AreaTDSTableAdapters.TblGEOSetupTableAdapter adp = new SAD_DAL.Customer.AreaTDSTableAdapters.TblGEOSetupTableAdapter();
+            return adp.GetDataByAreaId(regionId);
+        }
+        public DataTable GetTerritory(int areaId)
+        {
+            SAD_DAL.Customer.TerriotoryTDSTableAdapters.TblGEOSetupTableAdapter adp = new SAD_DAL.Customer.TerriotoryTDSTableAdapters.TblGEOSetupTableAdapter();
+            return adp.GetDataByAreaId(areaId);
+        }
+        public DataTable GetPoint(int territoryId)
+        {
+            SAD_DAL.Customer.DistributionPointTDSTableAdapters.TblGEOSetupTableAdapter adp = new SAD_DAL.Customer.DistributionPointTDSTableAdapters.TblGEOSetupTableAdapter();
+            return adp.GetDataByTerritoryId(territoryId);
+        }
+
+        public DataTable GetTargetChange(int type, int intline, int intpoint,DateTime dteDate,int intproductid, decimal intQtypcs,decimal intQty, int intproductuom)
+        {
+            sprPointTargetChangeTableAdapter adp = new sprPointTargetChangeTableAdapter();
+            return adp.GetData(type,intline,intpoint,dteDate,intproductid,intQtypcs,intQty,intproductuom);
+        }
+        #endregion======= Line Region Area Territory Point =====
+
     }
 }
