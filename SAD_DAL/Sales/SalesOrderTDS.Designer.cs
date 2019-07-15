@@ -56,8 +56,6 @@ namespace SAD_DAL.Sales {
         
         private SprDamageDOCreateInfoDataTable tableSprDamageDOCreateInfo;
         
-        private SprSalesTrandAnalysisDataTable tableSprSalesTrandAnalysis;
-        
         private TblTripDetinfoDataTable tableTblTripDetinfo;
         
         private SprACCLGHATAndFactDelvDataTable tableSprACCLGHATAndFactDelv;
@@ -83,6 +81,8 @@ namespace SAD_DAL.Sales {
         private SprSalesQutationEditNSaveDataTable tableSprSalesQutationEditNSave;
         
         private QrySalesOrderDetailsCustomizeDataTable tableQrySalesOrderDetailsCustomize;
+        
+        private SprSalesTrandAnalysisDataTable tableSprSalesTrandAnalysis;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -160,9 +160,6 @@ namespace SAD_DAL.Sales {
                 if ((ds.Tables["SprDamageDOCreateInfo"] != null)) {
                     base.Tables.Add(new SprDamageDOCreateInfoDataTable(ds.Tables["SprDamageDOCreateInfo"]));
                 }
-                if ((ds.Tables["SprSalesTrandAnalysis"] != null)) {
-                    base.Tables.Add(new SprSalesTrandAnalysisDataTable(ds.Tables["SprSalesTrandAnalysis"]));
-                }
                 if ((ds.Tables["TblTripDetinfo"] != null)) {
                     base.Tables.Add(new TblTripDetinfoDataTable(ds.Tables["TblTripDetinfo"]));
                 }
@@ -201,6 +198,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["QrySalesOrderDetailsCustomize"] != null)) {
                     base.Tables.Add(new QrySalesOrderDetailsCustomizeDataTable(ds.Tables["QrySalesOrderDetailsCustomize"]));
+                }
+                if ((ds.Tables["SprSalesTrandAnalysis"] != null)) {
+                    base.Tables.Add(new SprSalesTrandAnalysisDataTable(ds.Tables["SprSalesTrandAnalysis"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -384,16 +384,6 @@ namespace SAD_DAL.Sales {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public SprSalesTrandAnalysisDataTable SprSalesTrandAnalysis {
-            get {
-                return this.tableSprSalesTrandAnalysis;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public TblTripDetinfoDataTable TblTripDetinfo {
             get {
                 return this.tableTblTripDetinfo;
@@ -522,6 +512,16 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprSalesTrandAnalysisDataTable SprSalesTrandAnalysis {
+            get {
+                return this.tableSprSalesTrandAnalysis;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -635,9 +635,6 @@ namespace SAD_DAL.Sales {
                 if ((ds.Tables["SprDamageDOCreateInfo"] != null)) {
                     base.Tables.Add(new SprDamageDOCreateInfoDataTable(ds.Tables["SprDamageDOCreateInfo"]));
                 }
-                if ((ds.Tables["SprSalesTrandAnalysis"] != null)) {
-                    base.Tables.Add(new SprSalesTrandAnalysisDataTable(ds.Tables["SprSalesTrandAnalysis"]));
-                }
                 if ((ds.Tables["TblTripDetinfo"] != null)) {
                     base.Tables.Add(new TblTripDetinfoDataTable(ds.Tables["TblTripDetinfo"]));
                 }
@@ -676,6 +673,9 @@ namespace SAD_DAL.Sales {
                 }
                 if ((ds.Tables["QrySalesOrderDetailsCustomize"] != null)) {
                     base.Tables.Add(new QrySalesOrderDetailsCustomizeDataTable(ds.Tables["QrySalesOrderDetailsCustomize"]));
+                }
+                if ((ds.Tables["SprSalesTrandAnalysis"] != null)) {
+                    base.Tables.Add(new SprSalesTrandAnalysisDataTable(ds.Tables["SprSalesTrandAnalysis"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -806,12 +806,6 @@ namespace SAD_DAL.Sales {
                     this.tableSprDamageDOCreateInfo.InitVars();
                 }
             }
-            this.tableSprSalesTrandAnalysis = ((SprSalesTrandAnalysisDataTable)(base.Tables["SprSalesTrandAnalysis"]));
-            if ((initTable == true)) {
-                if ((this.tableSprSalesTrandAnalysis != null)) {
-                    this.tableSprSalesTrandAnalysis.InitVars();
-                }
-            }
             this.tableTblTripDetinfo = ((TblTripDetinfoDataTable)(base.Tables["TblTripDetinfo"]));
             if ((initTable == true)) {
                 if ((this.tableTblTripDetinfo != null)) {
@@ -890,6 +884,12 @@ namespace SAD_DAL.Sales {
                     this.tableQrySalesOrderDetailsCustomize.InitVars();
                 }
             }
+            this.tableSprSalesTrandAnalysis = ((SprSalesTrandAnalysisDataTable)(base.Tables["SprSalesTrandAnalysis"]));
+            if ((initTable == true)) {
+                if ((this.tableSprSalesTrandAnalysis != null)) {
+                    this.tableSprSalesTrandAnalysis.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -932,8 +932,6 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprSalesOrderCustomerDOwithReturnDO);
             this.tableSprDamageDOCreateInfo = new SprDamageDOCreateInfoDataTable();
             base.Tables.Add(this.tableSprDamageDOCreateInfo);
-            this.tableSprSalesTrandAnalysis = new SprSalesTrandAnalysisDataTable();
-            base.Tables.Add(this.tableSprSalesTrandAnalysis);
             this.tableTblTripDetinfo = new TblTripDetinfoDataTable();
             base.Tables.Add(this.tableTblTripDetinfo);
             this.tableSprACCLGHATAndFactDelv = new SprACCLGHATAndFactDelvDataTable();
@@ -960,6 +958,8 @@ namespace SAD_DAL.Sales {
             base.Tables.Add(this.tableSprSalesQutationEditNSave);
             this.tableQrySalesOrderDetailsCustomize = new QrySalesOrderDetailsCustomizeDataTable();
             base.Tables.Add(this.tableQrySalesOrderDetailsCustomize);
+            this.tableSprSalesTrandAnalysis = new SprSalesTrandAnalysisDataTable();
+            base.Tables.Add(this.tableSprSalesTrandAnalysis);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1060,12 +1060,6 @@ namespace SAD_DAL.Sales {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeSprSalesTrandAnalysis() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeTblTripDetinfo() {
             return false;
         }
@@ -1139,6 +1133,12 @@ namespace SAD_DAL.Sales {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeQrySalesOrderDetailsCustomize() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprSalesTrandAnalysis() {
             return false;
         }
         
@@ -1246,9 +1246,6 @@ namespace SAD_DAL.Sales {
         public delegate void SprDamageDOCreateInfoRowChangeEventHandler(object sender, SprDamageDOCreateInfoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void SprSalesTrandAnalysisRowChangeEventHandler(object sender, SprSalesTrandAnalysisRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void TblTripDetinfoRowChangeEventHandler(object sender, TblTripDetinfoRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -1286,6 +1283,9 @@ namespace SAD_DAL.Sales {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void QrySalesOrderDetailsCustomizeRowChangeEventHandler(object sender, QrySalesOrderDetailsCustomizeRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprSalesTrandAnalysisRowChangeEventHandler(object sender, SprSalesTrandAnalysisRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -8470,547 +8470,6 @@ namespace SAD_DAL.Sales {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class SprSalesTrandAnalysisDataTable : global::System.Data.TypedTableBase<SprSalesTrandAnalysisRow> {
-            
-            private global::System.Data.DataColumn columnstrName;
-            
-            private global::System.Data.DataColumn columnstrTer;
-            
-            private global::System.Data.DataColumn columnstrArea;
-            
-            private global::System.Data.DataColumn columnstrRegion;
-            
-            private global::System.Data.DataColumn columnintTerriID;
-            
-            private global::System.Data.DataColumn columnOPCQ1Day;
-            
-            private global::System.Data.DataColumn columnPCCQ1Day;
-            
-            private global::System.Data.DataColumn columnPCCOPCQ1Day;
-            
-            private global::System.Data.DataColumn columnOPC1Month;
-            
-            private global::System.Data.DataColumn columnPCC1Month;
-            
-            private global::System.Data.DataColumn columntotal1Month;
-            
-            private global::System.Data.DataColumn columntarg;
-            
-            private global::System.Data.DataColumn columnach;
-            
-            private global::System.Data.DataColumn columnPerdaytarg;
-            
-            private global::System.Data.DataColumn columnPAds;
-            
-            private global::System.Data.DataColumn columnRAds;
-            
-            private global::System.Data.DataColumn columnSalesLastMonth;
-            
-            private global::System.Data.DataColumn columnTrendThisMonth;
-            
-            private global::System.Data.DataColumn columnLMVSThisM;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesTrandAnalysisDataTable() {
-                this.TableName = "SprSalesTrandAnalysis";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprSalesTrandAnalysisDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected SprSalesTrandAnalysisDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strNameColumn {
-                get {
-                    return this.columnstrName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strTerColumn {
-                get {
-                    return this.columnstrTer;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAreaColumn {
-                get {
-                    return this.columnstrArea;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strRegionColumn {
-                get {
-                    return this.columnstrRegion;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intTerriIDColumn {
-                get {
-                    return this.columnintTerriID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OPCQ1DayColumn {
-                get {
-                    return this.columnOPCQ1Day;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCCQ1DayColumn {
-                get {
-                    return this.columnPCCQ1Day;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCCOPCQ1DayColumn {
-                get {
-                    return this.columnPCCOPCQ1Day;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn OPC1MonthColumn {
-                get {
-                    return this.columnOPC1Month;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PCC1MonthColumn {
-                get {
-                    return this.columnPCC1Month;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn total1MonthColumn {
-                get {
-                    return this.columntotal1Month;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn targColumn {
-                get {
-                    return this.columntarg;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn achColumn {
-                get {
-                    return this.columnach;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PerdaytargColumn {
-                get {
-                    return this.columnPerdaytarg;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn PAdsColumn {
-                get {
-                    return this.columnPAds;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn RAdsColumn {
-                get {
-                    return this.columnRAds;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn SalesLastMonthColumn {
-                get {
-                    return this.columnSalesLastMonth;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TrendThisMonthColumn {
-                get {
-                    return this.columnTrendThisMonth;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn LMVSThisMColumn {
-                get {
-                    return this.columnLMVSThisM;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesTrandAnalysisRow this[int index] {
-                get {
-                    return ((SprSalesTrandAnalysisRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddSprSalesTrandAnalysisRow(SprSalesTrandAnalysisRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesTrandAnalysisRow AddSprSalesTrandAnalysisRow(
-                        string strName, 
-                        string strTer, 
-                        string strArea, 
-                        string strRegion, 
-                        int intTerriID, 
-                        decimal OPCQ1Day, 
-                        decimal PCCQ1Day, 
-                        decimal PCCOPCQ1Day, 
-                        int OPC1Month, 
-                        int PCC1Month, 
-                        int total1Month, 
-                        decimal targ, 
-                        decimal ach, 
-                        decimal Perdaytarg, 
-                        int PAds, 
-                        decimal RAds, 
-                        decimal SalesLastMonth, 
-                        int TrendThisMonth, 
-                        decimal LMVSThisM) {
-                SprSalesTrandAnalysisRow rowSprSalesTrandAnalysisRow = ((SprSalesTrandAnalysisRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        strName,
-                        strTer,
-                        strArea,
-                        strRegion,
-                        intTerriID,
-                        OPCQ1Day,
-                        PCCQ1Day,
-                        PCCOPCQ1Day,
-                        OPC1Month,
-                        PCC1Month,
-                        total1Month,
-                        targ,
-                        ach,
-                        Perdaytarg,
-                        PAds,
-                        RAds,
-                        SalesLastMonth,
-                        TrendThisMonth,
-                        LMVSThisM};
-                rowSprSalesTrandAnalysisRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowSprSalesTrandAnalysisRow);
-                return rowSprSalesTrandAnalysisRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                SprSalesTrandAnalysisDataTable cln = ((SprSalesTrandAnalysisDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new SprSalesTrandAnalysisDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal void InitVars() {
-                this.columnstrName = base.Columns["strName"];
-                this.columnstrTer = base.Columns["strTer"];
-                this.columnstrArea = base.Columns["strArea"];
-                this.columnstrRegion = base.Columns["strRegion"];
-                this.columnintTerriID = base.Columns["intTerriID"];
-                this.columnOPCQ1Day = base.Columns["OPCQ1Day"];
-                this.columnPCCQ1Day = base.Columns["PCCQ1Day"];
-                this.columnPCCOPCQ1Day = base.Columns["PCCOPCQ1Day"];
-                this.columnOPC1Month = base.Columns["OPC1Month"];
-                this.columnPCC1Month = base.Columns["PCC1Month"];
-                this.columntotal1Month = base.Columns["total1Month"];
-                this.columntarg = base.Columns["targ"];
-                this.columnach = base.Columns["ach"];
-                this.columnPerdaytarg = base.Columns["Perdaytarg"];
-                this.columnPAds = base.Columns["PAds"];
-                this.columnRAds = base.Columns["RAds"];
-                this.columnSalesLastMonth = base.Columns["SalesLastMonth"];
-                this.columnTrendThisMonth = base.Columns["TrendThisMonth"];
-                this.columnLMVSThisM = base.Columns["LMVSThisM"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            private void InitClass() {
-                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrName);
-                this.columnstrTer = new global::System.Data.DataColumn("strTer", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrTer);
-                this.columnstrArea = new global::System.Data.DataColumn("strArea", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrArea);
-                this.columnstrRegion = new global::System.Data.DataColumn("strRegion", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrRegion);
-                this.columnintTerriID = new global::System.Data.DataColumn("intTerriID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintTerriID);
-                this.columnOPCQ1Day = new global::System.Data.DataColumn("OPCQ1Day", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOPCQ1Day);
-                this.columnPCCQ1Day = new global::System.Data.DataColumn("PCCQ1Day", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCCQ1Day);
-                this.columnPCCOPCQ1Day = new global::System.Data.DataColumn("PCCOPCQ1Day", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCCOPCQ1Day);
-                this.columnOPC1Month = new global::System.Data.DataColumn("OPC1Month", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnOPC1Month);
-                this.columnPCC1Month = new global::System.Data.DataColumn("PCC1Month", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPCC1Month);
-                this.columntotal1Month = new global::System.Data.DataColumn("total1Month", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntotal1Month);
-                this.columntarg = new global::System.Data.DataColumn("targ", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columntarg);
-                this.columnach = new global::System.Data.DataColumn("ach", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnach);
-                this.columnPerdaytarg = new global::System.Data.DataColumn("Perdaytarg", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPerdaytarg);
-                this.columnPAds = new global::System.Data.DataColumn("PAds", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPAds);
-                this.columnRAds = new global::System.Data.DataColumn("RAds", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnRAds);
-                this.columnSalesLastMonth = new global::System.Data.DataColumn("SalesLastMonth", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSalesLastMonth);
-                this.columnTrendThisMonth = new global::System.Data.DataColumn("TrendThisMonth", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTrendThisMonth);
-                this.columnLMVSThisM = new global::System.Data.DataColumn("LMVSThisM", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLMVSThisM);
-                this.columnstrName.ReadOnly = true;
-                this.columnstrName.MaxLength = 500;
-                this.columnstrTer.ReadOnly = true;
-                this.columnstrTer.MaxLength = 500;
-                this.columnstrArea.ReadOnly = true;
-                this.columnstrArea.MaxLength = 500;
-                this.columnstrRegion.ReadOnly = true;
-                this.columnstrRegion.MaxLength = 500;
-                this.columnintTerriID.ReadOnly = true;
-                this.columnOPCQ1Day.ReadOnly = true;
-                this.columnPCCQ1Day.ReadOnly = true;
-                this.columnPCCOPCQ1Day.ReadOnly = true;
-                this.columnOPC1Month.ReadOnly = true;
-                this.columnPCC1Month.ReadOnly = true;
-                this.columntotal1Month.ReadOnly = true;
-                this.columntarg.ReadOnly = true;
-                this.columnach.ReadOnly = true;
-                this.columnPerdaytarg.ReadOnly = true;
-                this.columnPAds.ReadOnly = true;
-                this.columnRAds.ReadOnly = true;
-                this.columnSalesLastMonth.ReadOnly = true;
-                this.columnTrendThisMonth.ReadOnly = true;
-                this.columnLMVSThisM.ReadOnly = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesTrandAnalysisRow NewSprSalesTrandAnalysisRow() {
-                return ((SprSalesTrandAnalysisRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new SprSalesTrandAnalysisRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(SprSalesTrandAnalysisRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.SprSalesTrandAnalysisRowChanged != null)) {
-                    this.SprSalesTrandAnalysisRowChanged(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.SprSalesTrandAnalysisRowChanging != null)) {
-                    this.SprSalesTrandAnalysisRowChanging(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.SprSalesTrandAnalysisRowDeleted != null)) {
-                    this.SprSalesTrandAnalysisRowDeleted(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.SprSalesTrandAnalysisRowDeleting != null)) {
-                    this.SprSalesTrandAnalysisRowDeleting(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveSprSalesTrandAnalysisRow(SprSalesTrandAnalysisRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                SalesOrderTDS ds = new SalesOrderTDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "SprSalesTrandAnalysisDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TblTripDetinfoDataTable : global::System.Data.TypedTableBase<TblTripDetinfoRow> {
             
             private global::System.Data.DataColumn columnstrNarration;
@@ -14692,6 +14151,547 @@ namespace SAD_DAL.Sales {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "QrySalesOrderDetailsCustomizeDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprSalesTrandAnalysisDataTable : global::System.Data.TypedTableBase<SprSalesTrandAnalysisRow> {
+            
+            private global::System.Data.DataColumn columnstrName;
+            
+            private global::System.Data.DataColumn columnstrTer;
+            
+            private global::System.Data.DataColumn columnstrArea;
+            
+            private global::System.Data.DataColumn columnstrRegion;
+            
+            private global::System.Data.DataColumn columnintTerriID;
+            
+            private global::System.Data.DataColumn columnOPCQ1Day;
+            
+            private global::System.Data.DataColumn columnPCCQ1Day;
+            
+            private global::System.Data.DataColumn columnPCCOPCQ1Day;
+            
+            private global::System.Data.DataColumn columnOPC1Month;
+            
+            private global::System.Data.DataColumn columnPCC1Month;
+            
+            private global::System.Data.DataColumn columntotal1Month;
+            
+            private global::System.Data.DataColumn columntarg;
+            
+            private global::System.Data.DataColumn columnach;
+            
+            private global::System.Data.DataColumn columnPerdaytarg;
+            
+            private global::System.Data.DataColumn columnPAds;
+            
+            private global::System.Data.DataColumn columnRAds;
+            
+            private global::System.Data.DataColumn columnSalesLastMonth;
+            
+            private global::System.Data.DataColumn columnTrendThisMonth;
+            
+            private global::System.Data.DataColumn columnLMVSThisM;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesTrandAnalysisDataTable() {
+                this.TableName = "SprSalesTrandAnalysis";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprSalesTrandAnalysisDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprSalesTrandAnalysisDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strNameColumn {
+                get {
+                    return this.columnstrName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strTerColumn {
+                get {
+                    return this.columnstrTer;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strAreaColumn {
+                get {
+                    return this.columnstrArea;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strRegionColumn {
+                get {
+                    return this.columnstrRegion;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intTerriIDColumn {
+                get {
+                    return this.columnintTerriID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OPCQ1DayColumn {
+                get {
+                    return this.columnOPCQ1Day;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PCCQ1DayColumn {
+                get {
+                    return this.columnPCCQ1Day;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PCCOPCQ1DayColumn {
+                get {
+                    return this.columnPCCOPCQ1Day;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OPC1MonthColumn {
+                get {
+                    return this.columnOPC1Month;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PCC1MonthColumn {
+                get {
+                    return this.columnPCC1Month;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn total1MonthColumn {
+                get {
+                    return this.columntotal1Month;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn targColumn {
+                get {
+                    return this.columntarg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn achColumn {
+                get {
+                    return this.columnach;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PerdaytargColumn {
+                get {
+                    return this.columnPerdaytarg;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PAdsColumn {
+                get {
+                    return this.columnPAds;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn RAdsColumn {
+                get {
+                    return this.columnRAds;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn SalesLastMonthColumn {
+                get {
+                    return this.columnSalesLastMonth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn TrendThisMonthColumn {
+                get {
+                    return this.columnTrendThisMonth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LMVSThisMColumn {
+                get {
+                    return this.columnLMVSThisM;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesTrandAnalysisRow this[int index] {
+                get {
+                    return ((SprSalesTrandAnalysisRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprSalesTrandAnalysisRowChangeEventHandler SprSalesTrandAnalysisRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprSalesTrandAnalysisRow(SprSalesTrandAnalysisRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesTrandAnalysisRow AddSprSalesTrandAnalysisRow(
+                        string strName, 
+                        string strTer, 
+                        string strArea, 
+                        string strRegion, 
+                        int intTerriID, 
+                        decimal OPCQ1Day, 
+                        decimal PCCQ1Day, 
+                        decimal PCCOPCQ1Day, 
+                        int OPC1Month, 
+                        int PCC1Month, 
+                        int total1Month, 
+                        decimal targ, 
+                        decimal ach, 
+                        decimal Perdaytarg, 
+                        int PAds, 
+                        decimal RAds, 
+                        decimal SalesLastMonth, 
+                        int TrendThisMonth, 
+                        decimal LMVSThisM) {
+                SprSalesTrandAnalysisRow rowSprSalesTrandAnalysisRow = ((SprSalesTrandAnalysisRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        strName,
+                        strTer,
+                        strArea,
+                        strRegion,
+                        intTerriID,
+                        OPCQ1Day,
+                        PCCQ1Day,
+                        PCCOPCQ1Day,
+                        OPC1Month,
+                        PCC1Month,
+                        total1Month,
+                        targ,
+                        ach,
+                        Perdaytarg,
+                        PAds,
+                        RAds,
+                        SalesLastMonth,
+                        TrendThisMonth,
+                        LMVSThisM};
+                rowSprSalesTrandAnalysisRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprSalesTrandAnalysisRow);
+                return rowSprSalesTrandAnalysisRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprSalesTrandAnalysisDataTable cln = ((SprSalesTrandAnalysisDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprSalesTrandAnalysisDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnstrName = base.Columns["strName"];
+                this.columnstrTer = base.Columns["strTer"];
+                this.columnstrArea = base.Columns["strArea"];
+                this.columnstrRegion = base.Columns["strRegion"];
+                this.columnintTerriID = base.Columns["intTerriID"];
+                this.columnOPCQ1Day = base.Columns["OPCQ1Day"];
+                this.columnPCCQ1Day = base.Columns["PCCQ1Day"];
+                this.columnPCCOPCQ1Day = base.Columns["PCCOPCQ1Day"];
+                this.columnOPC1Month = base.Columns["OPC1Month"];
+                this.columnPCC1Month = base.Columns["PCC1Month"];
+                this.columntotal1Month = base.Columns["total1Month"];
+                this.columntarg = base.Columns["targ"];
+                this.columnach = base.Columns["ach"];
+                this.columnPerdaytarg = base.Columns["Perdaytarg"];
+                this.columnPAds = base.Columns["PAds"];
+                this.columnRAds = base.Columns["RAds"];
+                this.columnSalesLastMonth = base.Columns["SalesLastMonth"];
+                this.columnTrendThisMonth = base.Columns["TrendThisMonth"];
+                this.columnLMVSThisM = base.Columns["LMVSThisM"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnstrName = new global::System.Data.DataColumn("strName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrName);
+                this.columnstrTer = new global::System.Data.DataColumn("strTer", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrTer);
+                this.columnstrArea = new global::System.Data.DataColumn("strArea", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrArea);
+                this.columnstrRegion = new global::System.Data.DataColumn("strRegion", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrRegion);
+                this.columnintTerriID = new global::System.Data.DataColumn("intTerriID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintTerriID);
+                this.columnOPCQ1Day = new global::System.Data.DataColumn("OPCQ1Day", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPCQ1Day);
+                this.columnPCCQ1Day = new global::System.Data.DataColumn("PCCQ1Day", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCCQ1Day);
+                this.columnPCCOPCQ1Day = new global::System.Data.DataColumn("PCCOPCQ1Day", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCCOPCQ1Day);
+                this.columnOPC1Month = new global::System.Data.DataColumn("OPC1Month", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOPC1Month);
+                this.columnPCC1Month = new global::System.Data.DataColumn("PCC1Month", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPCC1Month);
+                this.columntotal1Month = new global::System.Data.DataColumn("total1Month", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntotal1Month);
+                this.columntarg = new global::System.Data.DataColumn("targ", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntarg);
+                this.columnach = new global::System.Data.DataColumn("ach", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnach);
+                this.columnPerdaytarg = new global::System.Data.DataColumn("Perdaytarg", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPerdaytarg);
+                this.columnPAds = new global::System.Data.DataColumn("PAds", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPAds);
+                this.columnRAds = new global::System.Data.DataColumn("RAds", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnRAds);
+                this.columnSalesLastMonth = new global::System.Data.DataColumn("SalesLastMonth", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSalesLastMonth);
+                this.columnTrendThisMonth = new global::System.Data.DataColumn("TrendThisMonth", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTrendThisMonth);
+                this.columnLMVSThisM = new global::System.Data.DataColumn("LMVSThisM", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLMVSThisM);
+                this.columnstrName.ReadOnly = true;
+                this.columnstrName.MaxLength = 500;
+                this.columnstrTer.ReadOnly = true;
+                this.columnstrTer.MaxLength = 500;
+                this.columnstrArea.ReadOnly = true;
+                this.columnstrArea.MaxLength = 500;
+                this.columnstrRegion.ReadOnly = true;
+                this.columnstrRegion.MaxLength = 500;
+                this.columnintTerriID.ReadOnly = true;
+                this.columnOPCQ1Day.ReadOnly = true;
+                this.columnPCCQ1Day.ReadOnly = true;
+                this.columnPCCOPCQ1Day.ReadOnly = true;
+                this.columnOPC1Month.ReadOnly = true;
+                this.columnPCC1Month.ReadOnly = true;
+                this.columntotal1Month.ReadOnly = true;
+                this.columntarg.ReadOnly = true;
+                this.columnach.ReadOnly = true;
+                this.columnPerdaytarg.ReadOnly = true;
+                this.columnPAds.ReadOnly = true;
+                this.columnRAds.ReadOnly = true;
+                this.columnSalesLastMonth.ReadOnly = true;
+                this.columnTrendThisMonth.ReadOnly = true;
+                this.columnLMVSThisM.ReadOnly = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesTrandAnalysisRow NewSprSalesTrandAnalysisRow() {
+                return ((SprSalesTrandAnalysisRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprSalesTrandAnalysisRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprSalesTrandAnalysisRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprSalesTrandAnalysisRowChanged != null)) {
+                    this.SprSalesTrandAnalysisRowChanged(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprSalesTrandAnalysisRowChanging != null)) {
+                    this.SprSalesTrandAnalysisRowChanging(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprSalesTrandAnalysisRowDeleted != null)) {
+                    this.SprSalesTrandAnalysisRowDeleted(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprSalesTrandAnalysisRowDeleting != null)) {
+                    this.SprSalesTrandAnalysisRowDeleting(this, new SprSalesTrandAnalysisRowChangeEvent(((SprSalesTrandAnalysisRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprSalesTrandAnalysisRow(SprSalesTrandAnalysisRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                SalesOrderTDS ds = new SalesOrderTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprSalesTrandAnalysisDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -20825,555 +20825,6 @@ namespace SAD_DAL.Sales {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class SprSalesTrandAnalysisRow : global::System.Data.DataRow {
-            
-            private SprSalesTrandAnalysisDataTable tableSprSalesTrandAnalysis;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal SprSalesTrandAnalysisRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableSprSalesTrandAnalysis = ((SprSalesTrandAnalysisDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strName {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesTrandAnalysis.strNameColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.strNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strTer {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesTrandAnalysis.strTerColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strTer\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.strTerColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strArea {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesTrandAnalysis.strAreaColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strArea\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.strAreaColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strRegion {
-                get {
-                    try {
-                        return ((string)(this[this.tableSprSalesTrandAnalysis.strRegionColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strRegion\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.strRegionColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intTerriID {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesTrandAnalysis.intTerriIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intTerriID\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.intTerriIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal OPCQ1Day {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.OPCQ1DayColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OPCQ1Day\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.OPCQ1DayColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal PCCQ1Day {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.PCCQ1DayColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCCQ1Day\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.PCCQ1DayColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal PCCOPCQ1Day {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCCOPCQ1Day\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int OPC1Month {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesTrandAnalysis.OPC1MonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'OPC1Month\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.OPC1MonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int PCC1Month {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesTrandAnalysis.PCC1MonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PCC1Month\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.PCC1MonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int total1Month {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesTrandAnalysis.total1MonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'total1Month\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.total1MonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal targ {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.targColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'targ\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.targColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal ach {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.achColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ach\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.achColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal Perdaytarg {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.PerdaytargColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Perdaytarg\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.PerdaytargColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int PAds {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesTrandAnalysis.PAdsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'PAds\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.PAdsColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal RAds {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.RAdsColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'RAds\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.RAdsColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal SalesLastMonth {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.SalesLastMonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SalesLastMonth\' in table \'SprSalesTrandAnalysis\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.SalesLastMonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int TrendThisMonth {
-                get {
-                    try {
-                        return ((int)(this[this.tableSprSalesTrandAnalysis.TrendThisMonthColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TrendThisMonth\' in table \'SprSalesTrandAnalysis\' is DBNull." +
-                                "", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.TrendThisMonthColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal LMVSThisM {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.LMVSThisMColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LMVSThisM\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableSprSalesTrandAnalysis.LMVSThisMColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrNameNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.strNameColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrNameNull() {
-                this[this.tableSprSalesTrandAnalysis.strNameColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrTerNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.strTerColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrTerNull() {
-                this[this.tableSprSalesTrandAnalysis.strTerColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrAreaNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.strAreaColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrAreaNull() {
-                this[this.tableSprSalesTrandAnalysis.strAreaColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrRegionNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.strRegionColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrRegionNull() {
-                this[this.tableSprSalesTrandAnalysis.strRegionColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintTerriIDNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.intTerriIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintTerriIDNull() {
-                this[this.tableSprSalesTrandAnalysis.intTerriIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsOPCQ1DayNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.OPCQ1DayColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetOPCQ1DayNull() {
-                this[this.tableSprSalesTrandAnalysis.OPCQ1DayColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCCQ1DayNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.PCCQ1DayColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCCQ1DayNull() {
-                this[this.tableSprSalesTrandAnalysis.PCCQ1DayColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCCOPCQ1DayNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCCOPCQ1DayNull() {
-                this[this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsOPC1MonthNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.OPC1MonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetOPC1MonthNull() {
-                this[this.tableSprSalesTrandAnalysis.OPC1MonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPCC1MonthNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.PCC1MonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPCC1MonthNull() {
-                this[this.tableSprSalesTrandAnalysis.PCC1MonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool Istotal1MonthNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.total1MonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void Settotal1MonthNull() {
-                this[this.tableSprSalesTrandAnalysis.total1MonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IstargNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.targColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SettargNull() {
-                this[this.tableSprSalesTrandAnalysis.targColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsachNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.achColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetachNull() {
-                this[this.tableSprSalesTrandAnalysis.achColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPerdaytargNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.PerdaytargColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPerdaytargNull() {
-                this[this.tableSprSalesTrandAnalysis.PerdaytargColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsPAdsNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.PAdsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetPAdsNull() {
-                this[this.tableSprSalesTrandAnalysis.PAdsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsRAdsNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.RAdsColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetRAdsNull() {
-                this[this.tableSprSalesTrandAnalysis.RAdsColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsSalesLastMonthNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.SalesLastMonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetSalesLastMonthNull() {
-                this[this.tableSprSalesTrandAnalysis.SalesLastMonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTrendThisMonthNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.TrendThisMonthColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTrendThisMonthNull() {
-                this[this.tableSprSalesTrandAnalysis.TrendThisMonthColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsLMVSThisMNull() {
-                return this.IsNull(this.tableSprSalesTrandAnalysis.LMVSThisMColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetLMVSThisMNull() {
-                this[this.tableSprSalesTrandAnalysis.LMVSThisMColumn] = global::System.Convert.DBNull;
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class TblTripDetinfoRow : global::System.Data.DataRow {
             
             private TblTripDetinfoDataTable tableTblTripDetinfo;
@@ -26511,6 +25962,555 @@ namespace SAD_DAL.Sales {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprSalesTrandAnalysisRow : global::System.Data.DataRow {
+            
+            private SprSalesTrandAnalysisDataTable tableSprSalesTrandAnalysis;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprSalesTrandAnalysisRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprSalesTrandAnalysis = ((SprSalesTrandAnalysisDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strName {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesTrandAnalysis.strNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strName\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.strNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strTer {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesTrandAnalysis.strTerColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strTer\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.strTerColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strArea {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesTrandAnalysis.strAreaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strArea\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.strAreaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strRegion {
+                get {
+                    try {
+                        return ((string)(this[this.tableSprSalesTrandAnalysis.strRegionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strRegion\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.strRegionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intTerriID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesTrandAnalysis.intTerriIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intTerriID\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.intTerriIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal OPCQ1Day {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.OPCQ1DayColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OPCQ1Day\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.OPCQ1DayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal PCCQ1Day {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.PCCQ1DayColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCCQ1Day\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.PCCQ1DayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal PCCOPCQ1Day {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCCOPCQ1Day\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int OPC1Month {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesTrandAnalysis.OPC1MonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OPC1Month\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.OPC1MonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PCC1Month {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesTrandAnalysis.PCC1MonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PCC1Month\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.PCC1MonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int total1Month {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesTrandAnalysis.total1MonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'total1Month\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.total1MonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal targ {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.targColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'targ\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.targColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal ach {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.achColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ach\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.achColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal Perdaytarg {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.PerdaytargColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Perdaytarg\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.PerdaytargColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int PAds {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesTrandAnalysis.PAdsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PAds\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.PAdsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal RAds {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.RAdsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'RAds\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.RAdsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal SalesLastMonth {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.SalesLastMonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'SalesLastMonth\' in table \'SprSalesTrandAnalysis\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.SalesLastMonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int TrendThisMonth {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprSalesTrandAnalysis.TrendThisMonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'TrendThisMonth\' in table \'SprSalesTrandAnalysis\' is DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.TrendThisMonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal LMVSThisM {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprSalesTrandAnalysis.LMVSThisMColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'LMVSThisM\' in table \'SprSalesTrandAnalysis\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprSalesTrandAnalysis.LMVSThisMColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrNameNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.strNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrNameNull() {
+                this[this.tableSprSalesTrandAnalysis.strNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrTerNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.strTerColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrTerNull() {
+                this[this.tableSprSalesTrandAnalysis.strTerColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrAreaNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.strAreaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrAreaNull() {
+                this[this.tableSprSalesTrandAnalysis.strAreaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrRegionNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.strRegionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrRegionNull() {
+                this[this.tableSprSalesTrandAnalysis.strRegionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintTerriIDNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.intTerriIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintTerriIDNull() {
+                this[this.tableSprSalesTrandAnalysis.intTerriIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOPCQ1DayNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.OPCQ1DayColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOPCQ1DayNull() {
+                this[this.tableSprSalesTrandAnalysis.OPCQ1DayColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPCCQ1DayNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.PCCQ1DayColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPCCQ1DayNull() {
+                this[this.tableSprSalesTrandAnalysis.PCCQ1DayColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPCCOPCQ1DayNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPCCOPCQ1DayNull() {
+                this[this.tableSprSalesTrandAnalysis.PCCOPCQ1DayColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOPC1MonthNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.OPC1MonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOPC1MonthNull() {
+                this[this.tableSprSalesTrandAnalysis.OPC1MonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPCC1MonthNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.PCC1MonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPCC1MonthNull() {
+                this[this.tableSprSalesTrandAnalysis.PCC1MonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Istotal1MonthNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.total1MonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Settotal1MonthNull() {
+                this[this.tableSprSalesTrandAnalysis.total1MonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IstargNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.targColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SettargNull() {
+                this[this.tableSprSalesTrandAnalysis.targColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsachNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.achColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetachNull() {
+                this[this.tableSprSalesTrandAnalysis.achColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPerdaytargNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.PerdaytargColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPerdaytargNull() {
+                this[this.tableSprSalesTrandAnalysis.PerdaytargColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsPAdsNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.PAdsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPAdsNull() {
+                this[this.tableSprSalesTrandAnalysis.PAdsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsRAdsNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.RAdsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetRAdsNull() {
+                this[this.tableSprSalesTrandAnalysis.RAdsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsSalesLastMonthNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.SalesLastMonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetSalesLastMonthNull() {
+                this[this.tableSprSalesTrandAnalysis.SalesLastMonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsTrendThisMonthNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.TrendThisMonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetTrendThisMonthNull() {
+                this[this.tableSprSalesTrandAnalysis.TrendThisMonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsLMVSThisMNull() {
+                return this.IsNull(this.tableSprSalesTrandAnalysis.LMVSThisMColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetLMVSThisMNull() {
+                this[this.tableSprSalesTrandAnalysis.LMVSThisMColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -27058,40 +27058,6 @@ namespace SAD_DAL.Sales {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class SprSalesTrandAnalysisRowChangeEvent : global::System.EventArgs {
-            
-            private SprSalesTrandAnalysisRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesTrandAnalysisRowChangeEvent(SprSalesTrandAnalysisRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public SprSalesTrandAnalysisRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public class TblTripDetinfoRowChangeEvent : global::System.EventArgs {
             
             private TblTripDetinfoRow eventRow;
@@ -27516,6 +27482,40 @@ namespace SAD_DAL.Sales {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public QrySalesOrderDetailsCustomizeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprSalesTrandAnalysisRowChangeEvent : global::System.EventArgs {
+            
+            private SprSalesTrandAnalysisRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesTrandAnalysisRowChangeEvent(SprSalesTrandAnalysisRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprSalesTrandAnalysisRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -32160,242 +32160,6 @@ FROM [dbo].[qrySalesOrderDetails]
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class SprSalesTrandAnalysisTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public SprSalesTrandAnalysisTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "SprSalesTrandAnalysis";
-            tableMapping.ColumnMappings.Add("strName", "strName");
-            tableMapping.ColumnMappings.Add("strTer", "strTer");
-            tableMapping.ColumnMappings.Add("strArea", "strArea");
-            tableMapping.ColumnMappings.Add("strRegion", "strRegion");
-            tableMapping.ColumnMappings.Add("intTerriID", "intTerriID");
-            tableMapping.ColumnMappings.Add("OPCQ1Day", "OPCQ1Day");
-            tableMapping.ColumnMappings.Add("PCCQ1Day", "PCCQ1Day");
-            tableMapping.ColumnMappings.Add("PCCOPCQ1Day", "PCCOPCQ1Day");
-            tableMapping.ColumnMappings.Add("OPC1Month", "OPC1Month");
-            tableMapping.ColumnMappings.Add("PCC1Month", "PCC1Month");
-            tableMapping.ColumnMappings.Add("total1Month", "total1Month");
-            tableMapping.ColumnMappings.Add("targ", "targ");
-            tableMapping.ColumnMappings.Add("ach", "ach");
-            tableMapping.ColumnMappings.Add("Perdaytarg", "Perdaytarg");
-            tableMapping.ColumnMappings.Add("PAds", "PAds");
-            tableMapping.ColumnMappings.Add("RAds", "RAds");
-            tableMapping.ColumnMappings.Add("SalesLastMonth", "SalesLastMonth");
-            tableMapping.ColumnMappings.Add("TrendThisMonth", "TrendThisMonth");
-            tableMapping.ColumnMappings.Add("LMVSThisM", "LMVSThisM");
-            this._adapter.TableMappings.Add(tableMapping);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "dbo.sprSalesTrandAnalysis";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intunit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDateMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDateMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDateDaySales", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDateDaySales", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDateLastMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDateLastMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intTotalDay", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intRunningThDay", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual SalesOrderTDS.SprSalesTrandAnalysisDataTable GetDataSalesTrandAnalysis(global::System.Nullable<int> intunit, global::System.Nullable<global::System.DateTime> dteFromDateMonthSale, global::System.Nullable<global::System.DateTime> dteToDateMonthSale, global::System.Nullable<global::System.DateTime> dteFromDateDaySales, global::System.Nullable<global::System.DateTime> dteToDateDaySales, global::System.Nullable<global::System.DateTime> dteFromDateLastMonthSale, global::System.Nullable<global::System.DateTime> dteToDateLastMonthSale, global::System.Nullable<int> intTotalDay, global::System.Nullable<int> intRunningThDay) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((intunit.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intunit.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((dteFromDateMonthSale.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(dteFromDateMonthSale.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((dteToDateMonthSale.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(dteToDateMonthSale.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((dteFromDateDaySales.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(dteFromDateDaySales.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((dteToDateDaySales.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(dteToDateDaySales.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((dteFromDateLastMonthSale.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(dteFromDateLastMonthSale.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((dteToDateLastMonthSale.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(dteToDateLastMonthSale.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            if ((intTotalDay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intTotalDay.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((intRunningThDay.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intRunningThDay.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            SalesOrderTDS.SprSalesTrandAnalysisDataTable dataTable = new SalesOrderTDS.SprSalesTrandAnalysisDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class TblTripDetinfoTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -35272,6 +35036,242 @@ FROM [dbo].[qrySalesOrderDetails]
             this.Adapter.SelectCommand = this.CommandCollection[0];
             this.Adapter.SelectCommand.Parameters[0].Value = ((long)(intSOId));
             SalesOrderTDS.QrySalesOrderDetailsCustomizeDataTable dataTable = new SalesOrderTDS.QrySalesOrderDetailsCustomizeDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprSalesTrandAnalysisTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprSalesTrandAnalysisTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprSalesTrandAnalysis";
+            tableMapping.ColumnMappings.Add("strName", "strName");
+            tableMapping.ColumnMappings.Add("strTer", "strTer");
+            tableMapping.ColumnMappings.Add("strArea", "strArea");
+            tableMapping.ColumnMappings.Add("strRegion", "strRegion");
+            tableMapping.ColumnMappings.Add("intTerriID", "intTerriID");
+            tableMapping.ColumnMappings.Add("OPCQ1Day", "OPCQ1Day");
+            tableMapping.ColumnMappings.Add("PCCQ1Day", "PCCQ1Day");
+            tableMapping.ColumnMappings.Add("PCCOPCQ1Day", "PCCOPCQ1Day");
+            tableMapping.ColumnMappings.Add("OPC1Month", "OPC1Month");
+            tableMapping.ColumnMappings.Add("PCC1Month", "PCC1Month");
+            tableMapping.ColumnMappings.Add("total1Month", "total1Month");
+            tableMapping.ColumnMappings.Add("targ", "targ");
+            tableMapping.ColumnMappings.Add("ach", "ach");
+            tableMapping.ColumnMappings.Add("Perdaytarg", "Perdaytarg");
+            tableMapping.ColumnMappings.Add("PAds", "PAds");
+            tableMapping.ColumnMappings.Add("RAds", "RAds");
+            tableMapping.ColumnMappings.Add("SalesLastMonth", "SalesLastMonth");
+            tableMapping.ColumnMappings.Add("TrendThisMonth", "TrendThisMonth");
+            tableMapping.ColumnMappings.Add("LMVSThisM", "LMVSThisM");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.ERP_SADConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprSalesTrandAnalysis";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intunit", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDateMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDateMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDateDaySales", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDateDaySales", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteFromDateLastMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteToDateLastMonthSale", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intTotalDay", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intRunningThDay", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual SalesOrderTDS.SprSalesTrandAnalysisDataTable GetDataSalesTrandAnalysis(global::System.Nullable<int> intunit, global::System.Nullable<global::System.DateTime> dteFromDateMonthSale, global::System.Nullable<global::System.DateTime> dteToDateMonthSale, global::System.Nullable<global::System.DateTime> dteFromDateDaySales, global::System.Nullable<global::System.DateTime> dteToDateDaySales, global::System.Nullable<global::System.DateTime> dteFromDateLastMonthSale, global::System.Nullable<global::System.DateTime> dteToDateLastMonthSale, global::System.Nullable<int> intTotalDay, global::System.Nullable<int> intRunningThDay) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((intunit.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(intunit.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((dteFromDateMonthSale.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(dteFromDateMonthSale.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((dteToDateMonthSale.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(dteToDateMonthSale.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((dteFromDateDaySales.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((System.DateTime)(dteFromDateDaySales.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((dteToDateDaySales.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((System.DateTime)(dteToDateDaySales.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((dteFromDateLastMonthSale.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((System.DateTime)(dteFromDateLastMonthSale.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((dteToDateLastMonthSale.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((System.DateTime)(dteToDateLastMonthSale.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((intTotalDay.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((int)(intTotalDay.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((intRunningThDay.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intRunningThDay.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            SalesOrderTDS.SprSalesTrandAnalysisDataTable dataTable = new SalesOrderTDS.SprSalesTrandAnalysisDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
