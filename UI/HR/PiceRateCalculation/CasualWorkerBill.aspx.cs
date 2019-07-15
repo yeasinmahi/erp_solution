@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using HR_BLL.PiceRateCalculation;
 using UI.ClassFiles;
@@ -28,6 +29,7 @@ namespace UI.HR.PiceRateCalculation
             _dt = _bll.GetAttendentEmployeeList(date);
             gridView.Loads(_dt);
             HidePanel();
+            SetVisibility("itemPanel2",false);
         }
         protected void gridView_OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
@@ -94,11 +96,10 @@ namespace UI.HR.PiceRateCalculation
         protected void btnShowIndividualReport_OnClick(object sender, EventArgs e)
         {
             UnloadAll();
-            int unitId = ddlUnit.SelectedValue();
-            DateTime dateTime = txtMonth.Text.ToDateTime("MM/yyyy");
-            int enroll = Convert.ToInt32(txtEnroll.Text);
-            _dt = _bll.GetIndividualReport(unitId, enroll, dateTime);
-            gridViewIndividualReport.Loads(_dt);
+            lblHeader.Text = "Worker Bill Individual Report";
+            string url;
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_Indivisual_Pice_Rate_Report" + "&EmpCode=" + txtEnroll.Text + "&dteStartDate=" + txtFDate.Text + "&dteEndDate=" + txtTDate.Text + "&rc:LinkTarget=_self";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }
 
@@ -106,23 +107,25 @@ namespace UI.HR.PiceRateCalculation
         {
             UnloadAll();
             int unitId = ddlUnit.SelectedValue();
-            DateTime dateTime = txtMonth.Text.ToDateTime("MM/yyyy");
-            _dt = _bll.GetAllReport(unitId, dateTime);
-            gridViewReport.Loads(_dt);
+            DateTime dateTime = txtFDate.Text.ToDateTime("yyyy-MM-dd");
+            lblHeader.Text = "Worker Bill All Report";
+            string url;
+            url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/AMFL_ALL_Pice_Rate_Report" + "&unitId=" + unitId + "&month=" + txtFDate.Text +  "&rc:LinkTarget=_self";
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
             HidePanel();
         }
 
         private void UnloadAll()
         {
             gridView.UnLoad();
-            gridViewIndividualReport.UnLoad();
-            gridViewReport.UnLoad();
+            ///gridViewIndividualReport.UnLoad();
+            //gridViewReport.UnLoad();
         }
         private void HidePanel()
         {
             SetVisibility("panel", gridView.Rows.Count > 0);
-            SetVisibility("itemPanel2", gridViewIndividualReport.Rows.Count > 0);
-            SetVisibility("itemPanel", gridViewReport.Rows.Count > 0);
+            //SetVisibility("itemPanel2", gridViewIndividualReport.Rows.Count > 0);
+            //SetVisibility("itemPanel", gridViewReport.Rows.Count > 0);
         }
     }
 }

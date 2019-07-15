@@ -68,8 +68,10 @@
             </td>
             </tr>
          
-            <tr class="tblrowOdd"><td style="text-align:right" > <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
-                
+            <tr class="tblrowOdd"><td > <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
+              
+                <td> <asp:Button ID="btnExportToExcel" runat="server" Text="Export" OnClick="btnExportToExcel_Click" /></td>
+            
             </tr>
             </table>
                       
@@ -101,17 +103,17 @@
                     <asp:BoundField DataField="OPC1Month" HeaderText="OPC1Month" SortExpression="OPC1Month" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="PCC1Month" HeaderText="PCC1Month" SortExpression="PCC1Month" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     <asp:BoundField DataField="total1Month" HeaderText="total1Month" SortExpression="total1Month" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="targ" HeaderText="targ" SortExpression="targ" DataFormatString="0:N2" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="targ" HeaderText="targ" SortExpression="targ"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                    
-                    <asp:BoundField DataField="ach" HeaderText="ach" SortExpression="ach" DataFormatString="0:N2" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="Perdaytarg" HeaderText="Perdaytarg" DataFormatString="0:N2" SortExpression="Perdaytarg" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="PAds" HeaderText="PAds" DataFormatString="0:N2" SortExpression="PAds" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="RAds" HeaderText="RAds" DataFormatString="0:N2" SortExpression="RAds" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="SalesLastMonth" HeaderText="SalesLastMonth" DataFormatString="0:N2" SortExpression="SalesLastMonth" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="ach" HeaderText="ach" SortExpression="ach"  DataFormatString="{0:F}" HtmlEncode="false"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="Perdaytarg" HeaderText="Perdaytarg"  SortExpression="Perdaytarg"  DataFormatString="{0:F}" HtmlEncode="false" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="PAds" HeaderText="PAds"  SortExpression="PAds" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="RAds" HeaderText="RAds"  SortExpression="RAds"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="SalesLastMonth" HeaderText="SalesLastMonth"  SortExpression="SalesLastMonth" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                    
                       
-                  <asp:BoundField DataField="TrendThisMonth" HeaderText="TrendThisMonth" SortExpression="TrendThisMonth" DataFormatString="0:N2" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
-                    <asp:BoundField DataField="LMVSThisM" HeaderText="LMVSThisM" SortExpression="LMVSThisM" DataFormatString="0:N2" ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                  <asp:BoundField DataField="TrendThisMonth" HeaderText="TrendThisMonth" SortExpression="TrendThisMonth"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
+                    <asp:BoundField DataField="LMVSThisM" HeaderText="LMVSThisM" SortExpression="LMVSThisM"  DataFormatString="{0:F}" HtmlEncode="false"  ItemStyle-HorizontalAlign="Center" ><ItemStyle HorizontalAlign="Center" /></asp:BoundField>
                     
                       
                   

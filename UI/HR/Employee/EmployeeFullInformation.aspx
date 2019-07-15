@@ -39,7 +39,7 @@
                     </ul>
 
                     <div class="tab-content">
-                        <div id="personal" class="tab-pane fade in active">
+                        <div id="personal" class="tab-pane fade">
                             <h3>Personal Inforation</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -146,11 +146,73 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="education" class="tab-pane fade">
+                        <div id="education" class="tab-pane fade in active">
                             <h3>Education Iformation</h3>
-                            <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label5" runat="server" Text="Level Of Education"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlLevelOfEducation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label6" runat="server" Text="Result"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlResult" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label7" runat="server" Text="Exam/Degree"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlExam" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label8" runat="server" Text="Board"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlBoard" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label37" runat="server" Text="Year Of Passing"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlYearOfPassing" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label9" runat="server" Text="CGPA"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtCgpa" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: 3.92" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label10" runat="server" Text="Scale"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtScale" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: 4.00" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label11" runat="server" Text="Concentration/ Major/ Group"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtMajorGroup" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Major / Group" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label14" runat="server" Text="Institude Name"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtInstitude" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Dhaka University" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label27" runat="server" Text="Duration"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtDuration" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="EX: 4 Yeasrs" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <asp:Label ID="Label30" runat="server" Text="Achivement"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtAchivement" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter all of your Achivements" ></asp:TextBox>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12" style="padding-top: 10px">
+                                        <asp:Button ID="btnAddEducationInfo" runat="server" class="btn btn-success form-control pull-right" Text="Add" OnClientClick="return EducationInfoValidate();" OnClick="btnAddEducationInfo_Click" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div id="Experience" class="tab-pane fade">
+                        <div id="experience" class="tab-pane fade">
                             <h3>Experience Information</h3>
                             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
                         </div>

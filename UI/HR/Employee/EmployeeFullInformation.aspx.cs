@@ -1,6 +1,7 @@
 ﻿using HR_BLL.Employee;
 using System;
 using System.Data;
+using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
 
@@ -18,8 +19,14 @@ namespace UI.HR.Employee
                 txtCode.Text = Code;
                 LoadDepartment();
                 LoadDesignation();
+                LoadLevelOfEducation();
+                LoadResult();
+                LoadExam();
+                LoadBoard();
+                LoadYearOfPassing();
             }
         }
+        #region Tab 1:Education Info
         private void LoadDepartment()
         {
             _dt = _bll.GetDepartment();
@@ -129,11 +136,6 @@ namespace UI.HR.Employee
                     return;
                 }
             }
-
-
-
-
-
         }
         public void LoadEmpInfo(DataTable dt)
         {
@@ -147,5 +149,75 @@ namespace UI.HR.Employee
                 return;
             }
         }
+        #endregion
+        #region Tab2: Education
+        private void LoadLevelOfEducation()
+        {
+            _dt = _bll.GetLevelOfEducation();
+            ddlLevelOfEducation.LoadWithSelect(_dt, "intEducationID", "strEducationName");
+        }
+        private void LoadResult()
+        {
+            _dt = _bll.GetGradeList();
+            ddlResult.LoadWithSelect(_dt, "intResultID", "strResult");
+        }
+        private void LoadExam()
+        {
+            _dt = _bll.GetExamList();
+            ddlExam.LoadWithSelect(_dt, "intExamID", "strExamName");
+        }
+        private void LoadBoard()
+        {
+            _dt = _bll.GetEducationBoard();
+            ddlBoard.LoadWithSelect(_dt, "intBoardID", "strBoard");
+        }
+        private void LoadYearOfPassing()
+        {
+            for(int i = 1900; i <= DateTime.Now.Year; i++)
+            {
+                ListItem li = new ListItem()
+                {
+                    Text = i.ToString(),
+                    Value = i.ToString()
+                };
+                ddlYearOfPassing.Items.Add(li);
+            }
+            ddlYearOfPassing.DataBind();
+        }
+        protected void btnAddEducationInfo_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            int intEducationID = ddlLevelOfEducation.SelectedValue();
+            string strEducationName = ddlLevelOfEducation.SelectedText();
+            int intResultID = ddlResult.SelectedValue();
+            string strResult = ddlResult.SelectedText();
+            int intExamID = ddlExam.SelectedValue();
+            string strExamName = ddlExam.SelectedText();
+            decimal.TryParse(txtCgpa.Text, out decimal numCGPAMarks);
+            decimal.TryParse(txtScale.Text, out decimal numScale);
+            string strConcentrationMajorGroup = txtMajorGroup.Text;
+            int intBoardID = ddlBoard.SelectedValue();
+            string strBoard = ddlBoard.SelectedText();
+            string strInstituteName = txtInstitude.Text;
+            int intYearOfPassing = ddlYearOfPassing.SelectedValue();
+            string strDurationYear = txtDuration.Text;
+            string strAchievement = txtAchivement.Text;
+            string message = _bll.InsertEdicationInfo(1, enroll, intEducationID, strEducationName, intResultID, strResult, intExamID, strExamName, numCGPAMarks, numScale, strConcentrationMajorGroup, intBoardID, strBoard, strInstituteName, intYearOfPassing, strDurationYear, strAchievement, Enroll, true, 0);
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster(message, Common.TosterType.Success);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
+            }
+        }
+        #endregion
+
+
     }
 }
