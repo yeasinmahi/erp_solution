@@ -71,6 +71,7 @@
     <Compile Include="Downloader.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="GridViewUtil.cs" />
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="MySystem.cs" />
     <Compile Include="ProjectConfig.cs" />

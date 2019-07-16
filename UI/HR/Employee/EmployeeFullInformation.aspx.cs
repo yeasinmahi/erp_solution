@@ -29,9 +29,14 @@ namespace UI.HR.Employee
                 LoadYearOfPassing();
                 LoadCountry();
                 LoadTrainigYear();
+
+                LoadEmperience();
+                LoadTrainingInfo();
+                LoadWorkInfo();
+                LoadImage();
             }
         }
-        #region Tab 1:Education Info
+        #region Tab 1: Education Info
         private void LoadDepartment()
         {
             _dt = _bll.GetDepartment();
@@ -155,7 +160,7 @@ namespace UI.HR.Employee
             }
         }
         #endregion
-        #region Tab2: Education
+        #region Tab 2: Education
         private void LoadLevelOfEducation()
         {
             _dt = _bll.GetLevelOfEducation();
@@ -223,7 +228,7 @@ namespace UI.HR.Employee
         }
 
         #endregion
-        #region Tab 3:Experience
+        #region Tab 3: Experience
         protected void btnAddExperience_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(txtEnroll.Text, out int enroll))
@@ -248,13 +253,23 @@ namespace UI.HR.Employee
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
+                LoadEmperience();
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
         }
-
+        private void LoadEmperience()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetExperience(enroll);
+            gridviewExperience.Loads(_dt);
+        }
         #endregion
         #region Tab 4: Training
         private void LoadCountry()
@@ -293,13 +308,20 @@ namespace UI.HR.Employee
 
             string message = _bll.InsertTrainigInfo(1, enroll, strTrainingTitle, strTopicsCovered, strInstitute, strLocation, intCountry, strCountry, intTrainingYear, strDuration, Enroll);
             ShowMessage(message);
+            LoadTrainingInfo();
+        }
+        private void LoadTrainingInfo()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetTrainigInfo(enroll);
+            gridviewTraining.Loads(_dt);
         }
         #endregion
-
         #region Tab 5: Others
-
-        #endregion
-
         protected void btnAddWorkTitle_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(txtEnroll.Text, out int enroll))
@@ -310,8 +332,20 @@ namespace UI.HR.Employee
             string workTitle = txtWorkTitle.Text;
             string message = _bll.InsertWorkInfo(enroll, workTitle, Enroll);
             ShowMessage(message);
+            LoadWorkInfo();
         }
-
+        public void LoadWorkInfo()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetWorkInfo(enroll);
+            gridviewWorkTitle.Loads(_dt);
+        }
+        #endregion
+        #region Tab 6: Photography
         protected void btnUpload_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(txtEnroll.Text, out int enroll))
@@ -367,12 +401,37 @@ namespace UI.HR.Employee
                 {
                     localPath.DeleteFile();
                 }
-                
+
             }
             else
             {
                 Toaster("Please Select a Image file.");
             }
         }
+
+        public void LoadImage()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetImageInfo(enroll);
+            if (_dt.Rows.Count > 0)
+            {
+                string url = _dt.GetValue<string>("strImageUrl");
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    string FtpUrl = ProjectConfig.Instance.GetFtpBaseUrl() + url;
+                    byte[]  image = FtpUrl.DownloadFromFtp();
+                    impPrev.SetImage(image);
+
+                }
+                
+            }
+        }
+        #endregion
+
+
     }
 }
