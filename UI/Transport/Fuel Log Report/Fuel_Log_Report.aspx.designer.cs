@@ -229,6 +229,42 @@ namespace UI.Transport.Fuel_Log_Report {
         protected global::System.Web.UI.WebControls.DropDownList ddlVehicleNo;
         
         /// <summary>
+        /// lblStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStation;
+        
+        /// <summary>
+        /// ddlStation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStation;
+        
+        /// <summary>
+        /// lblStationType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStationType;
+        
+        /// <summary>
+        /// ddlStationType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlStationType;
+        
+        /// <summary>
         /// btnShow control.
         /// </summary>
         /// <remarks>

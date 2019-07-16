@@ -26,6 +26,7 @@ namespace UI.Transport.Fuel_Log_Report
                 LoadJobStationList(Convert.ToInt32( ddlUnit.SelectedItem.Value));
                 LoadVehicleList();
                 LoadFuelCompanyList();
+                LoadStationList();
             }
         }
         public void LoadUnitList()
@@ -42,6 +43,11 @@ namespace UI.Transport.Fuel_Log_Report
         {
             dt = fuelObj.VehicleList();
             ddlVehicleNo.Loads(dt, "intVehicleID", "strVehicleNo");
+        }
+        public void LoadStationList()
+        {
+            dt = fuelObj.GetStaionInfo();
+            ddlStation.Loads(dt, "intFuelStationID", "strFuelStationName");
         }
         public void LoadFuelCompanyList()
         {
@@ -61,8 +67,11 @@ namespace UI.Transport.Fuel_Log_Report
 
         protected void btnShow_Click(object sender, EventArgs e)
         {
+            string UnitID = "", JobStationID = "", FuelCompanyID = "", VehicleID = "", stationID="";
+
             int report = Convert.ToInt32(ddlReport.SelectedItem.Value);
-            string UnitID="", JobStationID="", FuelCompanyID="", VehicleID = "";
+            int stationType = Convert.ToInt32(ddlStationType.SelectedItem.Value);
+           
             try
             {
                 UnitID = ddlUnit.SelectedItem.Value;
@@ -95,7 +104,14 @@ namespace UI.Transport.Fuel_Log_Report
             {
                 VehicleID = "0";
             }
-
+            try
+            {
+                stationID = ddlStation.SelectedItem.Value;
+            }
+            catch
+            {
+                stationID = "0";
+            }
 
             ScriptManager.RegisterClientScriptBlock(Page, typeof(Page), "Script", "showPanel();", true);
             string url="";
@@ -121,6 +137,15 @@ namespace UI.Transport.Fuel_Log_Report
             {
                 url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/CNG_Report" + "&pUnitName=" + UnitID + "&pJobStation=" + JobStationID + "&pDateFrom=" + txtFromDate.Text + "&pDateTo=" + txtToDate.Text + "&pFuelCompany=" + FuelCompanyID + "&rc:LinkTarget=_self";
             }
+            else if (report == 6)
+            {
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/DayBasisVehicleReport" + "&unitId=" + UnitID + "&jobStation=" + JobStationID + "&vehicleID=" + VehicleID + "&dteFrom=" + txtFromDate.Text + "&dteTo=" + txtToDate.Text + "&rc:LinkTarget=_self";
+            }
+            else if (report == 7)
+            {
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/FuelStationBill" + "&Type=" + stationType + "&unit=" + UnitID + "&jobStationId=" + JobStationID + "&station=" + stationID + "&dteFrom=" + txtFromDate.Text + "&dteTo=" + txtToDate.Text + "&rc:LinkTarget=_self";
+            }
+
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }
 
