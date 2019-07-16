@@ -91,5 +91,9 @@ namespace Utility
 
             return folders;
         }
+        public string GetFtpBaseUrl()
+        {
+            return "ftp://ftp.akij.net/";
+        }
     }
 }

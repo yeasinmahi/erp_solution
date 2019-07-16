@@ -1,6 +1,7 @@
 ﻿using HR_DAL.Employee.EmployeeFullInformationTableAdapters;
 using System;
 using System.Data;
+using Utility;
 
 namespace HR_BLL.Employee
 {
@@ -78,6 +79,18 @@ namespace HR_BLL.Employee
         {
             DataTable1TableAdapter adp = new DataTable1TableAdapter();
             return adp.GetData();
+        }
+        public string InsertWorkInfo(int intEnroll, string strOtherDetails, int intActionBy)
+        {
+            string message = string.Empty;
+            sprOthersInformationTableAdapter adp = new sprOthersInformationTableAdapter();
+            adp.Insert1(1, intEnroll, strOtherDetails, intActionBy, true, 0, ref message);
+            return message;
+        }
+        public DataTable UpdateImageInfo(string imageUrl, int enroll)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            return adp.UpdateImage(imageUrl, enroll);
         }
 
     }
