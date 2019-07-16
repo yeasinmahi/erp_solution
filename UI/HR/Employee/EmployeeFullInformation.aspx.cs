@@ -147,6 +147,12 @@ namespace UI.HR.Employee
                     return;
                 }
             }
+            txtName.Text =  _dt.GetValue<string>("strEmployeeName");
+            txtPermanetAddress.Text =  _dt.GetValue<string>("strPermanentAddress");
+            txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
+            ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
+            ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
+            txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
         }
         public void LoadEmpInfo(DataTable dt)
         {
