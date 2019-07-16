@@ -28,7 +28,7 @@ namespace SAD_BLL.Transport
 
         public DataTable getLocation(string unitid)
         {
-            
+
             try
             {
                 tblShipPointTableAdapter adp = new tblShipPointTableAdapter();
@@ -42,9 +42,9 @@ namespace SAD_BLL.Transport
             try
             {
                 tblVehicleTableAdapter adp = new tblVehicleTableAdapter();
-                 adp.GetData( vno, unitid, typeid, intCOAID, locationid, driverName,  driverContact,  driverNid,  helperName1,  loadingCapacity,  uOMid,  lisenceNo,  driverenroll,  driverDA, helperenroll,  helperDA,  diselperkm,  diselPerKMLitter,  downTripDiselPerKM,  cNGPerKM,  downTripDA,  cNGAllowance,  millageAllowance100KM,  millageAllowance100KMAbove,  millageLocal,  millageOutstation,  diselPerKmOutstation,  cNGPerKMOutstation);
+                adp.GetData(vno, unitid, typeid, intCOAID, locationid, driverName, driverContact, driverNid, helperName1, loadingCapacity, uOMid, lisenceNo, driverenroll, driverDA, helperenroll, helperDA, diselperkm, diselPerKMLitter, downTripDiselPerKM, cNGPerKM, downTripDA, cNGAllowance, millageAllowance100KM, millageAllowance100KMAbove, millageLocal, millageOutstation, diselPerKmOutstation, cNGPerKMOutstation);
             }
-            catch {  }
+            catch { }
         }
 
         public DataTable getAutoid()
@@ -63,13 +63,13 @@ namespace SAD_BLL.Transport
             {
                 int? intcoaid_ = 0;
                 sprAccountsCOAChildAddTableAdapter adp = new sprAccountsCOAChildAddTableAdapter();
-                 adp.GetData(vno, 33881, true, false, false, false, false, enroll, 0, vid1, unitid, vid2, null, 0, ref intCOAID);
+                adp.GetData(vno, 33881, true, false, false, false, false, enroll, 0, vid1, unitid, vid2, null, 0, ref intCOAID);
                 intCOAID = intcoaid_.Value;
             }
             catch { }
         }
 
-        public void getupdate(int coaid,int vid)
+        public void getupdate(int coaid, int vid)
         {
             try
             {
@@ -152,5 +152,21 @@ namespace SAD_BLL.Transport
 
 
         }
+
+        public DataTable GetStaionInfo()
+        {
+            DataTable dt = new DataTable();
+            tblRemoteTADAFuelStationListTableAdapter obj = new tblRemoteTADAFuelStationListTableAdapter();
+            try
+            {
+                dt = obj.GetFuelStationInfo();
+            }
+            catch (Exception)
+            {
+                return dt;
+            }
+            return dt;
+        }
+
     }
 }

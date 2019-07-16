@@ -9,7 +9,7 @@ using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
-
+using Utility;
 namespace UI.SCM
 {
     public partial class PoDocAttachment : BasePage
@@ -42,10 +42,9 @@ namespace UI.SCM
             try
             {
                 _dt = _objPo.GetUnit();
-                ddlUnit.DataSource = _dt;
-                ddlUnit.DataTextField = "strUnit";
-                ddlUnit.DataValueField = "intUnitId";
-                ddlUnit.DataBind();
+                ddlUnit.LoadWithAll(_dt, "intUnitId", "strUnit");
+
+
                 _dt.Clear();
                 _dt = _objPo.GetPoData(21, "", 0, 0, DateTime.Now, Enroll);
                 ddlDept.DataSource = _dt;

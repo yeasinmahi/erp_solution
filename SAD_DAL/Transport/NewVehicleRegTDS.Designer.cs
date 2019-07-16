@@ -46,6 +46,8 @@ namespace SAD_DAL.Transport {
         
         private SprVehicleInfoModifyDataTable tableSprVehicleInfoModify;
         
+        private tblRemoteTADAFuelStationListDataTable tabletblRemoteTADAFuelStationList;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -106,6 +108,9 @@ namespace SAD_DAL.Transport {
                 }
                 if ((ds.Tables["SprVehicleInfoModify"] != null)) {
                     base.Tables.Add(new SprVehicleInfoModifyDataTable(ds.Tables["SprVehicleInfoModify"]));
+                }
+                if ((ds.Tables["tblRemoteTADAFuelStationList"] != null)) {
+                    base.Tables.Add(new tblRemoteTADAFuelStationListDataTable(ds.Tables["tblRemoteTADAFuelStationList"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -237,6 +242,16 @@ namespace SAD_DAL.Transport {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblRemoteTADAFuelStationListDataTable tblRemoteTADAFuelStationList {
+            get {
+                return this.tabletblRemoteTADAFuelStationList;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -334,6 +349,9 @@ namespace SAD_DAL.Transport {
                 }
                 if ((ds.Tables["SprVehicleInfoModify"] != null)) {
                     base.Tables.Add(new SprVehicleInfoModifyDataTable(ds.Tables["SprVehicleInfoModify"]));
+                }
+                if ((ds.Tables["tblRemoteTADAFuelStationList"] != null)) {
+                    base.Tables.Add(new tblRemoteTADAFuelStationListDataTable(ds.Tables["tblRemoteTADAFuelStationList"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -434,6 +452,12 @@ namespace SAD_DAL.Transport {
                     this.tableSprVehicleInfoModify.InitVars();
                 }
             }
+            this.tabletblRemoteTADAFuelStationList = ((tblRemoteTADAFuelStationListDataTable)(base.Tables["tblRemoteTADAFuelStationList"]));
+            if ((initTable == true)) {
+                if ((this.tabletblRemoteTADAFuelStationList != null)) {
+                    this.tabletblRemoteTADAFuelStationList.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -466,6 +490,8 @@ namespace SAD_DAL.Transport {
             base.Tables.Add(this.tableSprVheicleInfoSearching);
             this.tableSprVehicleInfoModify = new SprVehicleInfoModifyDataTable();
             base.Tables.Add(this.tableSprVehicleInfoModify);
+            this.tabletblRemoteTADAFuelStationList = new tblRemoteTADAFuelStationListDataTable();
+            base.Tables.Add(this.tabletblRemoteTADAFuelStationList);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -531,6 +557,12 @@ namespace SAD_DAL.Transport {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private bool ShouldSerializeSprVehicleInfoModify() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializetblRemoteTADAFuelStationList() {
             return false;
         }
         
@@ -621,6 +653,9 @@ namespace SAD_DAL.Transport {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprVehicleInfoModifyRowChangeEventHandler(object sender, SprVehicleInfoModifyRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void tblRemoteTADAFuelStationListRowChangeEventHandler(object sender, tblRemoteTADAFuelStationListRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -3938,6 +3973,273 @@ namespace SAD_DAL.Transport {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblRemoteTADAFuelStationListDataTable : global::System.Data.TypedTableBase<tblRemoteTADAFuelStationListRow> {
+            
+            private global::System.Data.DataColumn columnintFuelStationID;
+            
+            private global::System.Data.DataColumn columnstrFuelStationName;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblRemoteTADAFuelStationListDataTable() {
+                this.TableName = "tblRemoteTADAFuelStationList";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal tblRemoteTADAFuelStationListDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected tblRemoteTADAFuelStationListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intFuelStationIDColumn {
+                get {
+                    return this.columnintFuelStationID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strFuelStationNameColumn {
+                get {
+                    return this.columnstrFuelStationName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblRemoteTADAFuelStationListRow this[int index] {
+                get {
+                    return ((tblRemoteTADAFuelStationListRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblRemoteTADAFuelStationListRowChangeEventHandler tblRemoteTADAFuelStationListRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblRemoteTADAFuelStationListRowChangeEventHandler tblRemoteTADAFuelStationListRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblRemoteTADAFuelStationListRowChangeEventHandler tblRemoteTADAFuelStationListRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event tblRemoteTADAFuelStationListRowChangeEventHandler tblRemoteTADAFuelStationListRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddtblRemoteTADAFuelStationListRow(tblRemoteTADAFuelStationListRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblRemoteTADAFuelStationListRow AddtblRemoteTADAFuelStationListRow(string strFuelStationName) {
+                tblRemoteTADAFuelStationListRow rowtblRemoteTADAFuelStationListRow = ((tblRemoteTADAFuelStationListRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        strFuelStationName};
+                rowtblRemoteTADAFuelStationListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblRemoteTADAFuelStationListRow);
+                return rowtblRemoteTADAFuelStationListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                tblRemoteTADAFuelStationListDataTable cln = ((tblRemoteTADAFuelStationListDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblRemoteTADAFuelStationListDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintFuelStationID = base.Columns["intFuelStationID"];
+                this.columnstrFuelStationName = base.Columns["strFuelStationName"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintFuelStationID = new global::System.Data.DataColumn("intFuelStationID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintFuelStationID);
+                this.columnstrFuelStationName = new global::System.Data.DataColumn("strFuelStationName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrFuelStationName);
+                this.columnintFuelStationID.AutoIncrement = true;
+                this.columnintFuelStationID.AutoIncrementSeed = -1;
+                this.columnintFuelStationID.AutoIncrementStep = -1;
+                this.columnintFuelStationID.AllowDBNull = false;
+                this.columnintFuelStationID.ReadOnly = true;
+                this.columnstrFuelStationName.MaxLength = 500;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblRemoteTADAFuelStationListRow NewtblRemoteTADAFuelStationListRow() {
+                return ((tblRemoteTADAFuelStationListRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblRemoteTADAFuelStationListRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblRemoteTADAFuelStationListRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblRemoteTADAFuelStationListRowChanged != null)) {
+                    this.tblRemoteTADAFuelStationListRowChanged(this, new tblRemoteTADAFuelStationListRowChangeEvent(((tblRemoteTADAFuelStationListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblRemoteTADAFuelStationListRowChanging != null)) {
+                    this.tblRemoteTADAFuelStationListRowChanging(this, new tblRemoteTADAFuelStationListRowChangeEvent(((tblRemoteTADAFuelStationListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblRemoteTADAFuelStationListRowDeleted != null)) {
+                    this.tblRemoteTADAFuelStationListRowDeleted(this, new tblRemoteTADAFuelStationListRowChangeEvent(((tblRemoteTADAFuelStationListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblRemoteTADAFuelStationListRowDeleting != null)) {
+                    this.tblRemoteTADAFuelStationListRowDeleting(this, new tblRemoteTADAFuelStationListRowChangeEvent(((tblRemoteTADAFuelStationListRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemovetblRemoteTADAFuelStationListRow(tblRemoteTADAFuelStationListRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                NewVehicleRegTDS ds = new NewVehicleRegTDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblRemoteTADAFuelStationListDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class tblUnitRow : global::System.Data.DataRow {
@@ -5264,6 +5566,61 @@ namespace SAD_DAL.Transport {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class tblRemoteTADAFuelStationListRow : global::System.Data.DataRow {
+            
+            private tblRemoteTADAFuelStationListDataTable tabletblRemoteTADAFuelStationList;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal tblRemoteTADAFuelStationListRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblRemoteTADAFuelStationList = ((tblRemoteTADAFuelStationListDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intFuelStationID {
+                get {
+                    return ((int)(this[this.tabletblRemoteTADAFuelStationList.intFuelStationIDColumn]));
+                }
+                set {
+                    this[this.tabletblRemoteTADAFuelStationList.intFuelStationIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strFuelStationName {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblRemoteTADAFuelStationList.strFuelStationNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strFuelStationName\' in table \'tblRemoteTADAFuelStationList\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblRemoteTADAFuelStationList.strFuelStationNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrFuelStationNameNull() {
+                return this.IsNull(this.tabletblRemoteTADAFuelStationList.strFuelStationNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrFuelStationNameNull() {
+                this[this.tabletblRemoteTADAFuelStationList.strFuelStationNameColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -5623,6 +5980,40 @@ namespace SAD_DAL.Transport {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprVehicleInfoModifyRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class tblRemoteTADAFuelStationListRowChangeEvent : global::System.EventArgs {
+            
+            private tblRemoteTADAFuelStationListRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblRemoteTADAFuelStationListRowChangeEvent(tblRemoteTADAFuelStationListRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblRemoteTADAFuelStationListRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -8337,6 +8728,197 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class tblRemoteTADAFuelStationListTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public tblRemoteTADAFuelStationListTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "tblRemoteTADAFuelStationList";
+            tableMapping.ColumnMappings.Add("intFuelStationID", "intFuelStationID");
+            tableMapping.ColumnMappings.Add("strFuelStationName", "strFuelStationName");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [BrandTradeMkt].[dbo].[tblRemoteTADAFuelStationList] ([strFuelStation" +
+                "Name]) VALUES (@strFuelStationName)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strFuelStationName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strFuelStationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::SAD_DAL.Properties.Settings.Default.BrandTradeMktConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "Select intFuelStationID, strFuelStationName from\r\n[BrandTradeMkt].[dbo].[tblRemot" +
+                "eTADAFuelStationList]\r\norder by strFuelStationName";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual NewVehicleRegTDS.tblRemoteTADAFuelStationListDataTable GetFuelStationInfo() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            NewVehicleRegTDS.tblRemoteTADAFuelStationListDataTable dataTable = new NewVehicleRegTDS.tblRemoteTADAFuelStationListDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(NewVehicleRegTDS.tblRemoteTADAFuelStationListDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(NewVehicleRegTDS dataSet) {
+            return this.Adapter.Update(dataSet, "tblRemoteTADAFuelStationList");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -8357,6 +8939,8 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
         private TblAGVehicleInfoFuelLogTableAdapter _tblAGVehicleInfoFuelLogTableAdapter;
         
         private TblOilAndCngPartyNameTableAdapter _tblOilAndCngPartyNameTableAdapter;
+        
+        private tblRemoteTADAFuelStationListTableAdapter _tblRemoteTADAFuelStationListTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -8445,6 +9029,20 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public tblRemoteTADAFuelStationListTableAdapter tblRemoteTADAFuelStationListTableAdapter {
+            get {
+                return this._tblRemoteTADAFuelStationListTableAdapter;
+            }
+            set {
+                this._tblRemoteTADAFuelStationListTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -8482,6 +9080,10 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                             && (this._tblOilAndCngPartyNameTableAdapter.Connection != null))) {
                     return this._tblOilAndCngPartyNameTableAdapter.Connection;
                 }
+                if (((this._tblRemoteTADAFuelStationListTableAdapter != null) 
+                            && (this._tblRemoteTADAFuelStationListTableAdapter.Connection != null))) {
+                    return this._tblRemoteTADAFuelStationListTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -8508,6 +9110,9 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                     count = (count + 1);
                 }
                 if ((this._tblOilAndCngPartyNameTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._tblRemoteTADAFuelStationListTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -8566,6 +9171,15 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._tblRemoteTADAFuelStationListTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.tblRemoteTADAFuelStationList.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._tblRemoteTADAFuelStationListTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             return result;
         }
         
@@ -8616,6 +9230,14 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._tblRemoteTADAFuelStationListTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.tblRemoteTADAFuelStationList.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._tblRemoteTADAFuelStationListTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             return result;
         }
         
@@ -8626,6 +9248,14 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateDeletedRows(NewVehicleRegTDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._tblRemoteTADAFuelStationListTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.tblRemoteTADAFuelStationList.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._tblRemoteTADAFuelStationListTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._tblOilAndCngPartyNameTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.TblOilAndCngPartyName.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -8730,6 +9360,11 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._tblRemoteTADAFuelStationListTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._tblRemoteTADAFuelStationListTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -8805,6 +9440,15 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                     if (this._tblOilAndCngPartyNameTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._tblOilAndCngPartyNameTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._tblOilAndCngPartyNameTableAdapter.Adapter);
+                    }
+                }
+                if ((this._tblRemoteTADAFuelStationListTableAdapter != null)) {
+                    revertConnections.Add(this._tblRemoteTADAFuelStationListTableAdapter, this._tblRemoteTADAFuelStationListTableAdapter.Connection);
+                    this._tblRemoteTADAFuelStationListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._tblRemoteTADAFuelStationListTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._tblRemoteTADAFuelStationListTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._tblRemoteTADAFuelStationListTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._tblRemoteTADAFuelStationListTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -8884,6 +9528,10 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
                 if ((this._tblOilAndCngPartyNameTableAdapter != null)) {
                     this._tblOilAndCngPartyNameTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblOilAndCngPartyNameTableAdapter]));
                     this._tblOilAndCngPartyNameTableAdapter.Transaction = null;
+                }
+                if ((this._tblRemoteTADAFuelStationListTableAdapter != null)) {
+                    this._tblRemoteTADAFuelStationListTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._tblRemoteTADAFuelStationListTableAdapter]));
+                    this._tblRemoteTADAFuelStationListTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
