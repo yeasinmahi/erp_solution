@@ -55,8 +55,11 @@ namespace UI.PaymentModule
         }
         public void LoadBank()
         {
-            int unitId = ddlUnit.SelectedValue();
+            int vatAccountId = ddlUnit.SelectedValue();
+            int unitId = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", vatAccountId).GetValue<int>("unit");
+
             DataTable dt = _bll.GetBankListData(unitId);
+
             if (dt.Rows.Count > 0)
             {
                 ddlBank.LoadWithSelect(_bll.GetBankListData(unitId), "intBankID", "strBankName");
@@ -70,7 +73,8 @@ namespace UI.PaymentModule
         }
         public void LoadAccount()
         {
-            int unitId = ddlUnit.SelectedValue();
+            int vatAccountId = ddlUnit.SelectedValue();
+            int unitId = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", vatAccountId).GetValue<int>("unit");
             int bankId = ddlBank.SelectedValue();
             DataTable dt = _bll.GetBankListData(unitId);
             if (dt.Rows.Count > 0)
