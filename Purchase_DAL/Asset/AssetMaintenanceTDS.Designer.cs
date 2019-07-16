@@ -28943,15 +28943,14 @@ where bydpt.intJobstationId=@jobid and bydpt.ysnActive=1 group by bydpt.intDepar
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strJobStationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strJobStationName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_HR].[dbo].[tblEmployeeJobStation] ([strJobStationName]) VALUES (" +
-                "@strJobStationName);\r\nSELECT intEmployeeJobStationId, strJobStationName FROM tbl" +
-                "EmployeeJobStation WHERE (intEmployeeJobStationId = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [ERP_HR].[dbo].[tblEmployeeJobStation] ([strJobStationName]) VALUES (@strJobStationName);
+SELECT job.intEmployeeJobStationId, job.strJobStationName FROM tblEmployeeJobStationOperator AS op INNER JOIN tblEmployeeJobStation AS job ON op.intJobStationId = job.intEmployeeJobStationId WHERE (job.intEmployeeJobStationId = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strJobStationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strJobStationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_HR].[dbo].[tblEmployeeJobStation] SET [strJobStationName] = @strJobStationName WHERE (([intEmployeeJobStationId] = @Original_intEmployeeJobStationId) AND ((@IsNull_strJobStationName = 1 AND [strJobStationName] IS NULL) OR ([strJobStationName] = @Original_strJobStationName)));
-SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHERE (intEmployeeJobStationId = @intEmployeeJobStationId)";
+SELECT job.intEmployeeJobStationId, job.strJobStationName FROM tblEmployeeJobStationOperator AS op INNER JOIN tblEmployeeJobStation AS job ON op.intJobStationId = job.intEmployeeJobStationId WHERE (job.intEmployeeJobStationId = @intEmployeeJobStationId)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strJobStationName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strJobStationName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intEmployeeJobStationId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeJobStationId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -28973,17 +28972,21 @@ SELECT intEmployeeJobStationId, strJobStationName FROM tblEmployeeJobStation WHE
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select intEmployeeJobStationId,strJobStationName from ERP_HR.dbo.tblEmployeeJobSt" +
-                "ation where intEmployeeJobStationId in(25,34)";
+            this._commandCollection[0].CommandText = "SELECT   job.intEmployeeJobStationId,job.strJobStationName   FROM [ERP_HR].[dbo]." +
+                "[tblEmployeeJobStationOperator] op\r\ninner join ERP_HR.dbo.tblEmployeeJobStation " +
+                "job on op.intJobStationId=job.intEmployeeJobStationId where [intEmployeeId]=@emp" +
+                "Id";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@empId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intEmployeeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual AssetMaintenanceTDS.TblEmployeeJobStationDataTable GetJobStationData() {
+        public virtual AssetMaintenanceTDS.TblEmployeeJobStationDataTable GetJobStationData(int empId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(empId));
             AssetMaintenanceTDS.TblEmployeeJobStationDataTable dataTable = new AssetMaintenanceTDS.TblEmployeeJobStationDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

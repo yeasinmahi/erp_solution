@@ -935,12 +935,12 @@ namespace Purchase_BLL.Asset
             return result;
         }
 
-        public DataTable JobStation()
+        public DataTable JobStation(int empId)
         {
             try
             {
                 TblEmployeeJobStationTableAdapter adp = new TblEmployeeJobStationTableAdapter();
-                return adp.GetJobStationData();
+                return adp.GetJobStationData(empId);
             }
             catch { return new DataTable(); }
         }

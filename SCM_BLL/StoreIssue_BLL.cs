@@ -168,5 +168,26 @@ namespace SCM_BLL
             ItemDal dal = new ItemDal();
             dal.GetItems();
         }
+       
+        public DataTable GetWHByUnit(int WHID)
+        {
+            int unitID = 0;
+            DataTable dt = new DataTable();
+            try
+            {
+                TblWearHouseTableAdapter adapter = new TblWearHouseTableAdapter();
+                object _obj = adapter.GetUnitByWH(WHID);
+                if (_obj != null)
+                    unitID = int.Parse(_obj.ToString());
+
+                dt = adapter.GetWHDataByUnit(unitID);
+            }
+            catch
+            {
+
+            }
+
+            return dt;
+        }
     }
 }
