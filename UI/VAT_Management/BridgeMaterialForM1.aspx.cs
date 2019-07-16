@@ -21,10 +21,11 @@ namespace UI.VAT_Management
         #region===== Variable & Object Declaration =====================================================
         VAT_BLL objvat = new VAT_BLL();
         DataTable dt;
-
-        int intFGID, intVatItemID, intPart, intCount;
+        string[] arrayKeyItem;
+        int intFGID, intVatItemID, intPart, intCountm,intrawmaterialid;
         string filePathForXML, xmlString = "", xml, rmid, rmname;
-
+        char[] delimiterChars = { '[', ']' }; bool ysnFactory;
+        Mushok11 objVats = new Mushok11();
         #endregion =====================================================================================
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,7 @@ namespace UI.VAT_Management
 
                 if (!IsPostBack)
                 {
-                    File.Delete(filePathForXML); dgvRM.DataSource = ""; dgvRM.DataBind();
+                   
                     hdnUnit.Value = Session[SessionParams.UNIT_ID].ToString();
                     pnlUpperControl.DataBind();
 
@@ -47,20 +48,11 @@ namespace UI.VAT_Management
                     ddlVatAccount.DataBind();
                     lblVatAccount.Text = ddlVatAccount.SelectedItem.ToString();
                     hdnVatAccID.Value = ddlVatAccount.SelectedValue.ToString();
+                    Session["VatAccid"]= ddlVatAccount.SelectedValue.ToString();
 
-                    dt = new DataTable();
-                    dt = objvat.GetVATItemList(int.Parse(hdnUnit.Value), int.Parse(hdnVatAccID.Value));
-                    ddlVATMaterial.DataTextField = "strVatProductName";
-                    ddlVATMaterial.DataValueField = "intID";
-                    ddlVATMaterial.DataSource = dt;
-                    ddlVATMaterial.DataBind();
-                 
-                    dt = new DataTable();
-                    dt = objvat.GetRMList(int.Parse(hdnUnit.Value));
-                    ddlRM.DataTextField = "strRawMaterial";
-                    ddlRM.DataValueField = "intItemID";
-                    ddlRM.DataSource = dt;
-                    ddlRM.DataBind();
+
+
+
                 }
             }
             catch { }
@@ -72,28 +64,19 @@ namespace UI.VAT_Management
             {
                 if (hdnconfirm.Value == "1")
                 {
-                    intPart = 2;
-                    intFGID = 0;
-                    intVatItemID = int.Parse(ddlVATMaterial.SelectedValue.ToString());
+                
+                    char[] delimiterCharss = { '[', ']' };
+                    arrayKeyItem = txtVatItemList.Text.Split(delimiterCharss);
+                    decimal total = Int32.Parse(0.ToString());                                 
+                    intVatItemID = int.Parse(arrayKeyItem[1].ToString());
+                    arrayKeyItem = txtRawMatrialList.Text.Split(delimiterCharss);
+                    intrawmaterialid= int.Parse(arrayKeyItem[1].ToString());
 
-                    if (dgvRM.Rows.Count > 0)
-                    {
-                        try
-                        {
-                            XmlDocument doc = new XmlDocument();
-                            doc.Load(filePathForXML);
-                            XmlNode dSftTm = doc.SelectSingleNode("VMBridge");
-                            string xmlString = dSftTm.InnerXml;
-                            xmlString = "<VMBridge>" + xmlString + "</VMBridge>";
-                            xml = xmlString;
-                        }
-                        catch { }
-                        if (xml == "") { return; }
-                    }
-
-                    string message = objvat.InsertVATItemAndMaterialBridge(intPart, intFGID, intVatItemID, int.Parse(hdnVatAccID.Value), int.Parse(hdnEnroll.Value), xml);
+                    string message = objVats.InsertVATItemAndMaterialBridge( intrawmaterialid, intVatItemID, int.Parse(hdnUnit.Value), int.Parse(hdnEnroll.Value));
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('" + message + "');", true);
-                    File.Delete(filePathForXML); dgvRM.DataSource = ""; dgvRM.DataBind();
+                    txtRawMatrialList.Text = "";
+                    txtVatItemList.Text = "";
+                    
                 }
             }
             catch { }
@@ -105,121 +88,33 @@ namespace UI.VAT_Management
         }
 
         #region ===== Add Product =================================================================
-        protected void btnAdd_Click(object sender, EventArgs e)
-        {
-            RMAddAdd();
-        }
-        private void RMAddAdd()
-        {
-            rmid = ddlRM.SelectedValue.ToString();
-            rmname = ddlRM.SelectedItem.ToString();
-
-            #region ===== Product Qty Update ==================================================
-            intCount = 0;
-
-            if (dgvRM.Rows.Count > 0)
-            {
-                for (int index = 0; index < dgvRM.Rows.Count; index++)
-                {
-                    string olditemid = ((Label)dgvRM.Rows[index].FindControl("lblRMID")).Text.ToString();
-
-                    if (olditemid == rmid)
-                    {                       
-                        intCount = intCount + 1;
-                    }
-                }
-            }
-
-            if (intCount == 0)
-            {
-                CreateVoucherXml(rmid, rmname);              
-            }
-            else if(intCount > 0)
-            {
-                ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('This Raw Material is already added in this list.');", true);
-                return;
-            }
-            #endregion ========================================================================
-        }
-        private void CreateVoucherXml(string rmid, string rmname)
-        {
-            XmlDocument doc = new XmlDocument();
-            if (System.IO.File.Exists(filePathForXML))
-            {
-                doc.Load(filePathForXML);
-                XmlNode rootNode = doc.SelectSingleNode("VMBridge");
-                XmlNode addItem = CreateItemNode(doc, rmid, rmname);
-                rootNode.AppendChild(addItem);
-            }
-            else
-            {
-                XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
-                doc.AppendChild(xmldeclerationNode);
-                XmlNode rootNode = doc.CreateElement("VMBridge");
-                XmlNode addItem = CreateItemNode(doc, rmid, rmname); ;
-                rootNode.AppendChild(addItem);
-                doc.AppendChild(rootNode);
-            }
-            doc.Save(filePathForXML);
-            LoadGridwithXml();
-        }
-        private void LoadGridwithXml()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(filePathForXML);
-            XmlNode dSftTm = doc.SelectSingleNode("VMBridge");
-            xmlString = dSftTm.InnerXml;
-            xmlString = "<VMBridge>" + xmlString + "</VMBridge>";
-            StringReader sr = new StringReader(xmlString);
-            DataSet ds = new DataSet();
-            ds.ReadXml(sr);
-            if (ds.Tables[0].Rows.Count > 0) { dgvRM.DataSource = ds; }
-            else { dgvRM.DataSource = ""; }
-            dgvRM.DataBind();
-        }
-        private XmlNode CreateItemNode(XmlDocument doc, string rmid, string rmname)
-        {
-            XmlNode node = doc.CreateElement("VMBridge");
-
-            XmlAttribute Rmid = doc.CreateAttribute("rmid");
-            Rmid.Value = rmid;
-            XmlAttribute Rmname = doc.CreateAttribute("rmname");
-            Rmname.Value = rmname;
-
-            node.Attributes.Append(Rmid);
-            node.Attributes.Append(Rmname);
-            return node;
-        }
-        protected void dgvRM_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            try
-            {
-                XmlDocument doc = new XmlDocument();
-                doc.Load(filePathForXML);
-                XmlNode dSftTm = doc.SelectSingleNode("VMBridge");
-                xmlString = dSftTm.InnerXml;
-                xmlString = "<VMBridge>" + xmlString + "</VMBridge>";
-                StringReader sr = new StringReader(xmlString);
-                DataSet ds = new DataSet();
-                ds.ReadXml(sr);
-                dgvRM.DataSource = ds;
-
-                DataSet dsGrid = (DataSet)dgvRM.DataSource;
-                dsGrid.Tables[0].Rows[dgvRM.Rows[e.RowIndex].DataItemIndex].Delete();
-                dsGrid.WriteXml(filePathForXML);
-                DataSet dsGridAfterDelete = (DataSet)dgvRM.DataSource;
-                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                {
-                    File.Delete(filePathForXML); dgvRM.DataSource = ""; dgvRM.DataBind();
-                }
-                else { LoadGridwithXml(); }
-            }
-            catch { }
-        }
+       
+       
+  
+    
+     
+      
         #endregion ================================================================================
 
 
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] ItemnameSearchMatrial(string prefixText)
+        {
+            int accid = int.Parse(HttpContext.Current.Session["VatAccid"].ToString());
+            Mushok11 objAutoSearch_BLL = new Mushok11();
+            return objAutoSearch_BLL.getMatrialItemList(prefixText, accid);
 
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] ItemMatrial(string prefixText)
+        {
+            int unitid = int.Parse(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
+            Mushok11 objAutoSearch_BLL = new Mushok11();
+            return objAutoSearch_BLL.getItemList(prefixText, unitid);
+
+        }
 
 
 

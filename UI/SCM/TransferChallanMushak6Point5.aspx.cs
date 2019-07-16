@@ -220,8 +220,9 @@ namespace UI.SCM
 
                     if (dt.Rows.Count > 0)
                     {
-                        intYear = int.Parse(dt.Rows[0]["intFromVatAc"].ToString());
-                        intFromVATAc = int.Parse(dt.Rows[0]["intVatYear"].ToString());
+                        
+                        intYear = int.Parse(dt.Rows[0]["intVatYear"].ToString());
+                        intFromVATAc = int.Parse(dt.Rows[0]["intFromVatAc"].ToString());
                         strGaNo = dt.Rows[0]["M11GaNo"].ToString();
                     }
 

@@ -11608,7 +11608,7 @@ namespace SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = @"SELECT o.[intCustid],strLine,c.strName,strRegion,strArea,strTerritory,strPoint,case when strVno is null then '' else strVno end vno ,sum([numQty]) qty,'' as allqty
@@ -11619,6 +11619,15 @@ namespace SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters {
 ";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@shipid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intShipId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = @"SELECT o.[intCustid],strLine,c.strName,strRegion,strArea,strTerritory,strPoint,case when strVno is null then '' else strVno end vno ,sum([numQty]) qty,'' as allqty
+ FROM [ERP_Production].[dbo].[tblExcelDataUploadByChallan] o inner join erp_sad.dbo.tblcustomer  c on o.intcustid=c.intCusID 
+ inner join ERP_Production.dbo.qryAFBLNewSetup setup on o.intCustid=setup.intCustID
+ left join [ERP_Production].[dbo].[tblVehileProgramToFatory] p on o.intCustid=p.intCustid and p.ysnActive=1 where o.ysnActive=1 and o.intCustid=@cutid 
+ group by  o.[intCustid],strLine,c.strName,strRegion,strArea,strTerritory,strPoint,intFGGroupID,strVno order by strRegion ,strArea, strTerritory";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cutid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCustid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11629,6 +11638,23 @@ namespace SAD_DAL.AutoChallan.ExcelDataTDSTableAdapters {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((shipid.HasValue == true)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((int)(shipid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            ExcelDataTDS.tblDistributionOrderDataTable dataTable = new ExcelDataTDS.tblDistributionOrderDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual ExcelDataTDS.tblDistributionOrderDataTable GetCustomerWiseOrder(global::System.Nullable<int> cutid) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((cutid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(cutid.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
