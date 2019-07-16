@@ -212,6 +212,100 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <asp:GridView ID="gridviewEducation" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                                            DataKeyNames="intEducationInfoID" GridLines="Both">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Education Info">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEducationInfoId" runat="server" Text='<%# Bind("intEducationInfoID") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Enroll">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEnroll" runat="server" Text='<%# Bind("intEnroll") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Education Title">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEducationName" runat="server" Text='<%# Bind("strEducationName") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Result">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblResult" runat="server" Text='<%# Bind("strResult") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Exam">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExamName" runat="server" Text='<%# Bind("strExamName") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="CGPA">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCgpan" runat="server" Text='<%# Bind("numCGPAMarks") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Scale">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblScale" runat="server" Text='<%# Bind("numScale") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Major/Group">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblMajorGroup" runat="server" Text='<%# Bind("strConcentrationMajorGroup") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Board">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblBoard" runat="server" Text='<%# Bind("strBoard") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Institude">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblInstitude" runat="server" Text='<%# Bind("strInstituteName") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Passing Year">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblPassingYear" runat="server" Text='<%# Bind("intYearOfPassing") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Duration Year">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDurationYear" runat="server" Text='<%# Bind("strDurationYear") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Achievement">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblAchievement" runat="server" Text='<%# Bind("strAchievement") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div id="experience" class="tab-pane fade">
                             <h3>Experience Information</h3>
@@ -269,6 +363,89 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <asp:GridView ID="gridviewExperience" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                                            DataKeyNames="intEmploymentHistoryID" GridLines="Both">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Others Info Id">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblExperienceId" runat="server" Text='<%# Bind("intEmploymentHistoryID") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Enroll">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEnroll" runat="server" Text='<%# Bind("intEnroll") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Company name">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCompanyName" runat="server" Text='<%# Bind("strCompanyName") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Company Location">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCompanyLocation" runat="server" Text='<%# Bind("strCompanyLocation") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Company Business">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCompanyBusiness" runat="server" Text='<%# Bind("strCompanyBusiness") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Designation">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDesignation" runat="server" Text='<%# Bind("strDesignation") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Department">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDepartment" runat="server" Text='<%# Bind("strDepartment") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Responsibilities">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblResponscibilities" runat="server" Text='<%# Bind("strResponsibilities") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="From Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblFromDate" runat="server" Text='<%# Bind("dteEmploymentPeriodFrom") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="To Date">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblToDate" runat="server" Text='<%# Bind("dteEmploymentPeriodTo") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Currently Working">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCurrentlyWorking" runat="server" Text='<%# Bind("strCurrentlyWorking") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div id="training" class="tab-pane fade">
                             <h3>Training Information</h3>
@@ -315,6 +492,79 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <asp:GridView ID="gridviewTraining" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                                            DataKeyNames="intTrainingID" GridLines="Both">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Others Info Id">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblTrainingId" runat="server" Text='<%# Bind("intTrainingID") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Enroll">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEnroll" runat="server" Text='<%# Bind("intEnroll") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Training title">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblTrainingTitle" runat="server" Text='<%# Bind("strTrainingTitle") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Topic Covered">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblTopicCovered" runat="server" Text='<%# Bind("strTopicsCovered") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Institude">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblInstitude" runat="server" Text='<%# Bind("strInstitute") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Location">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblLocation" runat="server" Text='<%# Bind("strLocation") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Country">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblCountry" runat="server" Text='<%# Bind("strCountry") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Trainig Year">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblTrainigYear" runat="server" Text='<%# Bind("intTrainingYear") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Duration">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblDuration" runat="server" Text='<%# Bind("strDuration") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+
+                                            </Columns>
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div id="others" class="tab-pane fade">
                             <h3>Work Information</h3>
@@ -327,6 +577,48 @@
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 20px">
                                         <asp:Button ID="btnAddWorkTitle" runat="server" class="btn btn-success form-control pull-right" Text="Add" OnClientClick="return WorkTitleValidate();" OnClick="btnAddWorkTitle_Click" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <asp:GridView ID="gridviewWorkTitle" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
+                                            DataKeyNames="intOthersInfoID" GridLines="Both">
+                                            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                            <Columns>
+                                                <asp:TemplateField HeaderText="SL">
+                                                    <ItemTemplate>
+                                                        <%# Container.DataItemIndex + 1 %>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Others Info Id">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblOthersInfo" runat="server" Text='<%# Bind("intOthersInfoID") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Enroll">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblEnroll" runat="server" Text='<%# Bind("intEnroll") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Work Info">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="lblOthersDetails" runat="server" Text='<%# Bind("strOtherDetails") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                            </Columns>
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
+                                            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                                            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" HorizontalAlign="Center" />
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                            <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                        </asp:GridView>
                                     </div>
                                 </div>
                             </div>
