@@ -75,7 +75,7 @@
             var stockQty = parseFloat(document.getElementById("hdnStockQty").value);
             var remarks = document.getElementById("txtRemarks").value;
             var vechile = document.getElementById("txtVehicle").value;
-            
+
             if ($.trim(inItem) == 0 || $.trim(inItem) == "" || $.trim(inItem) == null || $.trim(inItem) == undefined) {
                 notify('Please select In Item');
                 return false;
@@ -164,13 +164,15 @@
 
                     <table style="width: 800px; text-align: right">
                         <tr>
-                            <td style="text-align: right; width: 250px"><span></span></td>
+                            <td style="width: 150px"><span></span></td>
 
-                            <td style="text-align: right;">WH Name:</td>
+                            <td style="text-align: right;">WH Name :</td>
                             <td style="text-align: left;">
                                 <asp:DropDownList ID="ddlWh" CssClass="ddList" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlWh_SelectedIndexChanged"></asp:DropDownList>
                             </td>
-
+                            <td style="text-align: right;">Item Type :</td>
+                            <td style="text-align: left;">
+                                <asp:DropDownList ID="ddlItemType" CssClass="ddList" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlItemType_SelectedIndexChanged"></asp:DropDownList></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -178,7 +180,7 @@
                     </table>
                     <table style="border-radius: 10px; border-style: groove">
                         <tr>
-                            <td style='text-align: left;'>Item:</td>
+                            <td style='text-align: right;'>Item :</td>
                             <td>
                                 <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="400px" OnTextChanged="txtItem_TextChanged"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtItem"
@@ -187,20 +189,20 @@
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
                             </td>
-                            <td style='text-align: left;'>Location:</td>
+                            <td style='text-align: right;'>Location :</td>
                             <td style='text-align: left;'>
                                 <asp:DropDownList ID="ddlLcation" runat="server" CssClass="ddList" OnSelectedIndexChanged="ddlLcation_SelectedIndexChanged" AutoPostBack="True"></asp:DropDownList></td>
-                            <td style='text-align: left;' class="auto-style1"><span style="width: 500px">Transfer TO:</span></td>
+                            <td style='text-align: right;' class="auto-style1"><span style="width: 500px">Transfer TO :</span></td>
                             <td style='text-align: left;'>
                                 <asp:DropDownList ID="ddlToWh" runat="server" CssClass="ddList" AutoPostBack="True"></asp:DropDownList></td>
 
                         </tr>
                         <tr>
-                            <td class="auto-style1">
-                                <asp:Label ID="Label2" Text="Remarks:" runat="server"></asp:Label></td>
+                            <td style='text-align: right;' class="auto-style1">
+                                <asp:Label ID="Label2" Text="Remarks :" runat="server"></asp:Label></td>
                             <td class="auto-style1">
                                 <asp:TextBox ID="txtRemarks" CssClass="txtBox" Width="400px" runat="server"></asp:TextBox>
-                            <td style='text-align: left;' class="auto-style1">Vehicle:</td>
+                            <td style='text-align: right;' class="auto-style1">Vehicle :</td>
                             <td style='text-align: left;'>
                                 <asp:TextBox ID="txtVehicle" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtVehicle"
@@ -210,7 +212,7 @@
                                 </cc1:AutoCompleteExtender>
                             </td>
 
-                            <td style='text-align: left;' class="auto-style1"><span style="width: 100px">Type :</span></td>
+                            <td style='text-align: right;' class="auto-style1"><span style="width: 100px">Type :</span></td>
                             <td style='text-align: left;' class="auto-style1">
                                 <asp:DropDownList ID="ddlTransType" runat="server" CssClass="ddList" AutoPostBack="True"></asp:DropDownList></td>
 
@@ -218,11 +220,11 @@
 
                         <tr>
                             <td>
-                                <asp:Label ID="Label1" Text="Transfer Qty:" runat="server"></asp:Label></td>
+                                <asp:Label ID="Label1" Text="Transfer Qty :" runat="server"></asp:Label></td>
                             <td colspan="1" style="text-align: left">
                                 <asp:TextBox ID="txTransferQty" CssClass="txtBox" Width="100px" onkeyup="GetTransQty(this);" runat="server"></asp:TextBox>
                                 <asp:Label ID="lblDetalis" ForeColor="Blue" runat="server"></asp:Label></td>
-                            <td>Rate:</td>
+                            <td style='text-align: right;'>Rate :</td>
                             <td style="text-align: left">
                                 <asp:TextBox ID="txtRate" CssClass="txtBox" Width="80px" Text="0" runat="server" ReadOnly="True" TextMode="Number"></asp:TextBox>
                                 <asp:Label ID="lblValue" runat="server" ForeColor="Blue"></asp:Label></td>

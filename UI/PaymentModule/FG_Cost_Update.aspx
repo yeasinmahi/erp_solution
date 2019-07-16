@@ -71,7 +71,7 @@
                             <td style="text-align: right;">
                                 <asp:Label ID="Label7" runat="server" CssClass="lbl" Text="Value"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
                             <td style="text-align: left;">
-                                <asp:TextBox ID="txtValue" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" onkeypress="if ( isNaN( String.fromCharCode(event.keyCode) )) return false;"></asp:TextBox><%--<div style="padding-right:10px;"></div>--%>
+                                <asp:TextBox ID="txtValue" runat="server" AutoPostBack="false" CssClass="txtBox1" Enabled="true" Width="110px" TextMode="Number"></asp:TextBox><%--<div style="padding-right:10px;"></div>--%>
                                 
                             </td>
                         </tr>

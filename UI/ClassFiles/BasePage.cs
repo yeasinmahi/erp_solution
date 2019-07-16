@@ -82,7 +82,17 @@ namespace UI.ClassFiles
                 Response.Redirect(retStr);
             }
         }
-
+        public void ShowMessage(string message)
+        {
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster(message, Common.TosterType.Success);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
+            }
+        }
         public void Alert(string message)
         {
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript",

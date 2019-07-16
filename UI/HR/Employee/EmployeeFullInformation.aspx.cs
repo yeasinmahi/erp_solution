@@ -1,6 +1,7 @@
 ﻿using HR_BLL.Employee;
 using System;
 using System.Data;
+using System.IO;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
@@ -11,8 +12,10 @@ namespace UI.HR.Employee
     {
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
                 txtEnroll.Text = Enroll.ToString();
@@ -26,9 +29,15 @@ namespace UI.HR.Employee
                 LoadYearOfPassing();
                 LoadCountry();
                 LoadTrainigYear();
+
+                LoadEducation();
+                LoadEmperience();
+                LoadTrainingInfo();
+                LoadWorkInfo();
+                LoadImage();
             }
         }
-        #region Tab 1:Education Info
+        #region Tab 1: Education Info
         private void LoadDepartment()
         {
             _dt = _bll.GetDepartment();
@@ -125,7 +134,7 @@ namespace UI.HR.Employee
                     return;
                 }
             }
-            else if(!string.IsNullOrWhiteSpace(code))
+            else if (!string.IsNullOrWhiteSpace(code))
             {
                 _dt = _bll.GetEmployeeInfo(code);
                 if (_dt.Rows.Count > 0)
@@ -152,7 +161,7 @@ namespace UI.HR.Employee
             }
         }
         #endregion
-        #region Tab2: Education
+        #region Tab 2: Education
         private void LoadLevelOfEducation()
         {
             _dt = _bll.GetLevelOfEducation();
@@ -175,7 +184,7 @@ namespace UI.HR.Employee
         }
         private void LoadYearOfPassing()
         {
-            for(int i = 1900; i <= DateTime.Now.Year; i++)
+            for (int i = 1900; i <= DateTime.Now.Year; i++)
             {
                 ListItem li = new ListItem()
                 {
@@ -212,15 +221,26 @@ namespace UI.HR.Employee
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
+                LoadEducation();
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
         }
+        private void LoadEducation()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetEducationInfo(enroll);
+            gridviewEducation.Loads(_dt);
+        }
 
         #endregion
-        #region Tab 3:Experience
+        #region Tab 3: Experience
         protected void btnAddExperience_Click(object sender, EventArgs e)
         {
             if (!int.TryParse(txtEnroll.Text, out int enroll))
@@ -245,13 +265,23 @@ namespace UI.HR.Employee
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
+                LoadEmperience();
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
         }
-
+        private void LoadEmperience()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetExperience(enroll);
+            gridviewExperience.Loads(_dt);
+        }
         #endregion
         #region Tab 4: Training
         private void LoadCountry()
@@ -289,15 +319,131 @@ namespace UI.HR.Employee
             string strDuration = txtDuration.Text;
 
             string message = _bll.InsertTrainigInfo(1, enroll, strTrainingTitle, strTopicsCovered, strInstitute, strLocation, intCountry, strCountry, intTrainingYear, strDuration, Enroll);
-            if (message.ToLower().Contains("success"))
+            ShowMessage(message);
+            LoadTrainingInfo();
+        }
+        private void LoadTrainingInfo()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
             {
-                Toaster(message, Common.TosterType.Success);
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetTrainigInfo(enroll);
+            gridviewTraining.Loads(_dt);
+        }
+        #endregion
+        #region Tab 5: Others
+        protected void btnAddWorkTitle_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            string workTitle = txtWorkTitle.Text;
+            string message = _bll.InsertWorkInfo(enroll, workTitle, Enroll);
+            ShowMessage(message);
+            LoadWorkInfo();
+        }
+        public void LoadWorkInfo()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetWorkInfo(enroll);
+            gridviewWorkTitle.Loads(_dt);
+        }
+        #endregion
+        #region Tab 6: Photography
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            if (ImageUpload.HasFile)
+            {
+                string filename = Enroll + "_" + Path.GetFileName(ImageUpload.FileName);
+                string localPath = Server.MapPath("~/HR/Employee/Upload/") + filename;
+                try
+                {
+                    string extension = Path.GetExtension(ImageUpload.FileName);
+                    if (extension != null && (extension.ToLower().Contains("jpeg") ||
+                                              extension.ToLower().Contains("jpg") ||
+                                              extension.ToLower().Contains("png")))
+                    {
+                        MemoryStream ms = new MemoryStream(ImageUpload.FileBytes);
+                        ms.ImageCompress(200, localPath);
+                    }
+                    else
+                    {
+                        ImageUpload.SaveAs(localPath);
+                    }
+
+
+                    string strFilePath = "EmpPicture/" + filename;
+                    string ftpPath = ProjectConfig.Instance.GetFtpBaseUrl() + strFilePath;
+
+                    if (ftpPath.UploadToFtp(localPath))
+                    {
+                        if (_bll.UpdateImageInfo(strFilePath, enroll).Rows.Count > 0)
+                        {
+                            Toaster("Image Upload Successfully", Common.TosterType.Success);
+                        }
+                        else
+                        {
+                            Toaster("Image upload error while updatating image info into database", Common.TosterType.Error);
+                        }
+                    }
+                    else
+                    {
+                        Toaster("Image Upload Failed", Common.TosterType.Success);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    Toaster(ex.Message, Common.TosterType.Error);
+                }
+                finally
+                {
+                    localPath.DeleteFile();
+                }
+
             }
             else
             {
-                Toaster(message, Common.TosterType.Error);
+                Toaster("Please Select a Image file.");
+            }
+        }
+
+        public void LoadImage()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetImageInfo(enroll);
+            if (_dt.Rows.Count > 0)
+            {
+                string url = _dt.GetValue<string>("strImageUrl");
+                if (!string.IsNullOrWhiteSpace(url))
+                {
+                    string FtpUrl = ProjectConfig.Instance.GetFtpBaseUrl() + url;
+                    byte[]  image = FtpUrl.DownloadFromFtp();
+                    impPrev.SetImage(image);
+
+                }
+                
             }
         }
         #endregion
+
+
     }
 }

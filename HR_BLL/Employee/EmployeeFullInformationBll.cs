@@ -1,6 +1,7 @@
 ﻿using HR_DAL.Employee.EmployeeFullInformationTableAdapters;
 using System;
 using System.Data;
+using Utility;
 
 namespace HR_BLL.Employee
 {
@@ -53,11 +54,11 @@ namespace HR_BLL.Employee
             tblEducationBoardTableAdapter adp = new tblEducationBoardTableAdapter();
             return adp.GetData();
         }
-        public string InsertEdicationInfo(int intPart, int intEnroll, int intEducationID,string strEducationName, int intResultID, string strResult, int intExamID, string strExamName,decimal numCGPAMarks,decimal numScale, string strConcentrationMajorGroup, int intBoardID, string strBoard, string strInstituteName, int intYearOfPassing, string strDurationYear, string strAchievement, int intActionBy, bool ysnActive, int intEducationInfoID)
+        public string InsertEdicationInfo(int intPart, int intEnroll, int intEducationID, string strEducationName, int intResultID, string strResult, int intExamID, string strExamName, decimal numCGPAMarks, decimal numScale, string strConcentrationMajorGroup, int intBoardID, string strBoard, string strInstituteName, int intYearOfPassing, string strDurationYear, string strAchievement, int intActionBy, bool ysnActive, int intEducationInfoID)
         {
             string message = string.Empty;
             sprEducationInformationTableAdapter adp = new sprEducationInformationTableAdapter();
-            adp.Insert1(intPart,intEnroll,intEducationID,strEducationName,intResultID,strResult,intExamID,strExamName,numCGPAMarks,numScale,strConcentrationMajorGroup,intBoardID,strBoard,strInstituteName,intYearOfPassing,strDurationYear,strAchievement,intActionBy,ysnActive,intEducationInfoID,ref message);
+            adp.Insert1(intPart, intEnroll, intEducationID, strEducationName, intResultID, strResult, intExamID, strExamName, numCGPAMarks, numScale, strConcentrationMajorGroup, intBoardID, strBoard, strInstituteName, intYearOfPassing, strDurationYear, strAchievement, intActionBy, ysnActive, intEducationInfoID, ref message);
             return message;
         }
         public string InsertExperienceInfo(int intPart, int intEnroll, string strCompanyName, string strCompanyLocation, string strCompanyBusiness, string strDesignation, string strDepartment, string strResponsibilities, DateTime dteEmploymentPeriodFrom, DateTime dteEmploymentPeriodTo, string strCurrentlyWorking, string strExpertiseSkill, int intActionBy)
@@ -78,6 +79,43 @@ namespace HR_BLL.Employee
         {
             DataTable1TableAdapter adp = new DataTable1TableAdapter();
             return adp.GetData();
+        }
+        public string InsertWorkInfo(int intEnroll, string strOtherDetails, int intActionBy)
+        {
+            string message = string.Empty;
+            sprOthersInformationTableAdapter adp = new sprOthersInformationTableAdapter();
+            adp.Insert1(1, intEnroll, strOtherDetails, intActionBy, true, 0, ref message);
+            return message;
+        }
+        public DataTable UpdateImageInfo(string imageUrl, int enroll)
+        {
+            DataTable2TableAdapter adp = new DataTable2TableAdapter();
+            return adp.UpdateImage(imageUrl, enroll);
+        }
+        public DataTable GetImageInfo(int enroll)
+        {
+            tblPersonalInformationTableAdapter adp = new tblPersonalInformationTableAdapter();
+            return adp.GetImageInfo(enroll);
+        }
+        public DataTable GetWorkInfo(int enroll)
+        {
+            tblOthersInformationTableAdapter adp = new tblOthersInformationTableAdapter();
+            return adp.GetData(enroll);
+        }
+        public DataTable GetTrainigInfo(int enroll)
+        {
+            tblTrainingHistoryTableAdapter adp = new tblTrainingHistoryTableAdapter();
+            return adp.GetData(enroll);
+        }
+        public DataTable GetExperience(int enroll)
+        {
+            tblEmploymentHistoryTableAdapter adp = new tblEmploymentHistoryTableAdapter();
+            return adp.GetData(enroll);
+        }
+        public DataTable GetEducationInfo(int enroll)
+        {
+            tblEducationInformationTableAdapter adp = new tblEducationInformationTableAdapter();
+            return adp.GetData(enroll);
         }
 
     }

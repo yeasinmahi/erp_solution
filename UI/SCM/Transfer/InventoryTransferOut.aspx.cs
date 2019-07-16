@@ -17,6 +17,7 @@ namespace UI.SCM.Transfer
 {
     public partial class InventoryTransferOut : BasePage
     {
+        #region INIT
         private readonly InventoryTransfer_BLL _bll = new InventoryTransfer_BLL();
         private readonly StoreIssue_BLL _storeIssueBll = new StoreIssue_BLL();
         private DataTable _dt = new DataTable();
@@ -26,6 +27,8 @@ namespace UI.SCM.Transfer
         private string[] arrayKey, arrayKeyV;
         private int CheckItem = 1;
         private decimal values;
+        #endregion
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -57,6 +60,10 @@ namespace UI.SCM.Transfer
                     _dt.Clear();
 
                     ddlLcation.Items.Insert(0, new ListItem("Select", "0"));
+
+                    LoadItemType();
+                    Session["ItemType"] = "1";
+                    //Session["WareID"] = ddlWh.SelectedValue.ToString();
                 }
             }
             catch (Exception ex)
@@ -67,14 +74,24 @@ namespace UI.SCM.Transfer
 
         protected void ddlWh_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataTable dt = new DataTable();
             try
             {
                 Session["WareID"] = ddlWh.SelectedValue();
-                txtItem.Text = ""; txTransferQty.Text = ""; txtRemarks.Text = ""; txtVehicle.Text = ""; lblDetalis.Text = ""; lblValue.Text = "";
+                txtItem.Text = "";
+                txTransferQty.Text = "";
+                txtRemarks.Text = "";
+                txtVehicle.Text = "";
+                lblDetalis.Text = "";
+                lblValue.Text = "";
 
                 ddlLcation.UnLoadWithSelect();
                 
                 hdnStockQty.Value = "0";
+
+                ddlToWh.Items.Clear();
+                dt = _storeIssueBll.GetWHByUnit(int.Parse(ddlWh.SelectedValue));
+                ddlToWh.LoadWithSelect(dt, "Id", "strName");
             }
             catch (Exception ex)
             {
@@ -467,20 +484,70 @@ namespace UI.SCM.Transfer
         [ScriptMethod]
         public static string[] GetIndentItemSerach(string prefixText, int count)
         {
-            if (HttpContext.Current.Session["WareID"] != null && !HttpContext.Current.Session["WareID"].ToString().Equals("0"))
+            if (HttpContext.Current.Session["ItemType"] != null && !HttpContext.Current.Session["WareID"].ToString().Equals("0"))
             {
-                return _ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+                 //_ast.AutoSearchItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
+                return _ast.AutoSearchProduct(int.Parse(HttpContext.Current.Session["ItemType"].ToString()) , 
+                                              int.Parse(HttpContext.Current.Session["WareID"].ToString()), 
+                                              prefixText);
             }
             return new string[0];
 
             //return AutoSearch_BLL.AutoSearchLocationItem(HttpContext.Current.Session["WareID"].ToString(), prefixText);
         }
+
+        //[WebMethod]
+        //[ScriptMethod]
+        //public static string[] GetProductSerach(int ItemType,int WHId )
+        //{
+        //    try
+        //    {
+        //        if(ItemType > 0)
+        //        {
+        //            string[] strProduct = _ast.AutoSearchProduct(ItemType, WHId);
+        //            return strProduct;
+        //        }
+        //        else
+        //        {
+        //            return new string[0];
+        //        }
+                
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return new string[0];
+        //    }
+        //}
+
+        protected void ddlItemType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int ItemType = int.Parse(ddlItemType.SelectedValue);
+                int WHId = int.Parse(ddlWh.SelectedValue);
+               // GetProductSerach(ItemType, WHId);
+                Session["ItemType"] = ddlItemType.SelectedValue.ToString();
+               
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
         private static InventoryTransfer_BLL _objserch = new InventoryTransfer_BLL();
         [WebMethod]
         [ScriptMethod]
         public static string[] GetVehicleSerach(string prefixText, int count)
         {
             return _objserch.AutoSearchVehicle(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString(), prefixText);
+        }
+
+        public void LoadItemType()
+        {
+            ddlItemType.Items.Insert(0, new ListItem("Select", "0"));
+            ddlItemType.Items.Insert(1, new ListItem("Finish Goods", "1"));
+            ddlItemType.Items.Insert(2, new ListItem("Semi-Finished", "2"));
+            ddlItemType.Items.Insert(3, new ListItem("Materials", "3"));
         }
 
         #endregion====================Close======================================
