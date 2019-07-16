@@ -130,6 +130,15 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.HiddenField hdnIndentType;
         
         /// <summary>
+        /// hfTotalQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTotalQty;
+        
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>

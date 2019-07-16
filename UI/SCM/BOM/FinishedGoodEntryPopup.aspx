@@ -125,6 +125,7 @@
                     <asp:HiddenField ID="hdnIndentDate" runat="server" />
                     <asp:HiddenField ID="hdnDueDate" runat="server" />
                     <asp:HiddenField ID="hdnIndentType" runat="server" />
+                    <asp:HiddenField ID="hfTotalQty" runat="server" />
                     <div class="tabs_container" style="text-align: left">
                         <u>Production Details</u>
                     </div>
@@ -308,6 +309,12 @@
                                         <asp:TemplateField HeaderText="Actual Qty" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
                                                 <asp:Label ID="lblActualQty" Width="60px" runat="server" Text='<%# Bind("numActualQty","{0:n4}") %>'></asp:Label>
+                                            </ItemTemplate>
+                                            <ItemStyle HorizontalAlign="Right" />
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Production Type" ItemStyle-HorizontalAlign="right">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lblProductionType" Width="250px" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>

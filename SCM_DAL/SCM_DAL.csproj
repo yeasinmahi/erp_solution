@@ -215,6 +215,7 @@
     <None Include="BomTDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BomTDS1.Designer.cs</LastGenOutput>
     </None>
     <None Include="BomTDS.xss">
       <DependentUpon>BomTDS.xsd</DependentUpon>

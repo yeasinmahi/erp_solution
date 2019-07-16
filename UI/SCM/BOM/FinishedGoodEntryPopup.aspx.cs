@@ -373,11 +373,17 @@ namespace UI.SCM.BOM
         
         public void LoadGrid()
         {
+            decimal GoodNwastageQty = 0;
             dt = objBom.GetProductionOrderTransferItemDetails(int.Parse(lblProductionId.Text));
-            if (dt.Rows.Count > 0)
+            if (dt != null && dt.Rows.Count > 0)
             {
                 //txtItem.Text = dt.Rows[0]["strName"].ToString();
                 txtProductQty.Text = dt.Rows[0]["numProdQty"].ToString();
+                for(int i = 0; i< dt.Rows.Count; i++)
+                {
+                    GoodNwastageQty += decimal.Parse(dt.Rows[i]["numActualQty"].ToString());
+                }
+                hfTotalQty.Value = GoodNwastageQty.ToString();
                 //txtActualQty.Text = dt.Rows[0]["numActualQty"].ToString();
                 //if (string.IsNullOrWhiteSpace(txtActualQty.Text))
                 //{
@@ -620,8 +626,13 @@ namespace UI.SCM.BOM
                     string Date = txtDate.Text;
                     string Time = txtTime.Text;
                     string JobNo = !string.IsNullOrEmpty(txtJob.Text) ? txtJob.Text : string.Empty;
-                    
-                    //totalExtraStore += Convert.ToDecimal(wastageQuantity);
+                    hfTotalQty.Value = (decimal.Parse(hfTotalQty.Value) + Convert.ToDecimal(GoodORwastageQnt)).ToString();
+                    if(decimal.Parse(hfTotalQty.Value)> ProductQnt)
+                    {
+                        Toaster("Add Quantity is Never Getter then Production Quantity.", Common.TosterType.Warning);
+                        return;
+                    }
+                    totalExtraStore += Convert.ToDecimal(GoodORwastageQnt);
                     CreateXml2(ProductionId.ToString(), OrderQnt.ToString(), ProductQnt.ToString(), item, itemid.ToString(), GoodORwastageQnt.ToString(), wastageType,
                         wastageTypeId, UnitId.ToString(), Date, Time, JobNo, Enroll.ToString(), totalExtraStore.ToString());
                     
@@ -632,12 +643,13 @@ namespace UI.SCM.BOM
                 }
 
                 LoadGridwithXml2();
-                Clear();
+               
             }
             catch (Exception ex)
             {
                 Toaster(ex.Message, Common.TosterType.Error);
             }
+            Clear();
         }
         protected void btnSaves_Click(object sender, EventArgs e)
         {
@@ -819,9 +831,9 @@ namespace UI.SCM.BOM
         }
         private void Clear()
         {
-            ddlWastageItem.SelectedValue = "-1";
+            ddlWastageItem.SelectedValue = "0";
             txtWastageQuantity.Text = string.Empty;
-            ddlWastageType.SelectedValue = "-1";
+            ddlWastageType.SelectedValue = "0";
         }
         private void Clear2()
         {
