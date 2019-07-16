@@ -2,13 +2,14 @@
 <xs:schema id="NewVehicleRegTDS" targetNamespace="http://tempuri.org/NewVehicleRegTDS.xsd" xmlns:mstns="http://tempuri.org/NewVehicleRegTDS.xsd" xmlns="http://tempuri.org/NewVehicleRegTDS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="4" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="5" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_HRConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_HRConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_HRConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_LogisticConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_LogisticConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_LogisticConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_AccountsConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_AccountsConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_AccountsConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ERP_SADConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ERP_SADConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.ERP_SADConnectionString" Provider="System.Data.SqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="AG_FuelLogConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="AG_FuelLogConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.AG_FuelLogConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BrandTradeMktConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BrandTradeMktConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.SAD_DAL.Properties.Settings.GlobalReference.Default.BrandTradeMktConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblUnitTableAdapter" GeneratorDataComponentClassName="tblUnitTableAdapter" Name="tblUnit" UserDataComponentName="tblUnitTableAdapter">
@@ -526,6 +527,33 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblRemoteTADAFuelStationListTableAdapter" GeneratorDataComponentClassName="tblRemoteTADAFuelStationListTableAdapter" Name="tblRemoteTADAFuelStationList" UserDataComponentName="tblRemoteTADAFuelStationListTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="BrandTradeMktConnectionString (Settings)" DbObjectName="BrandTradeMkt.dbo.tblRemoteTADAFuelStationList" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetFuelStationInfo" GetMethodModifier="Public" GetMethodName="GetFuelStationInfo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetFuelStationInfo" UserSourceName="GetFuelStationInfo">
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [BrandTradeMkt].[dbo].[tblRemoteTADAFuelStationList] ([strFuelStationName]) VALUES (@strFuelStationName)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@strFuelStationName" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="strFuelStationName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>Select intFuelStationID, strFuelStationName from
+[BrandTradeMkt].[dbo].[tblRemoteTADAFuelStationList]
+order by strFuelStationName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="intFuelStationID" DataSetColumn="intFuelStationID" />
+              <Mapping SourceColumn="strFuelStationName" DataSetColumn="strFuelStationName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -534,7 +562,7 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
   <xs:element name="NewVehicleRegTDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NewVehicleRegTDS" msprop:Generator_UserDSName="NewVehicleRegTDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="tblUnit" msprop:Generator_TableClassName="tblUnitDataTable" msprop:Generator_TableVarName="tabletblUnit" msprop:Generator_RowChangedName="tblUnitRowChanged" msprop:Generator_TablePropName="tblUnit" msprop:Generator_RowDeletingName="tblUnitRowDeleting" msprop:Generator_RowChangingName="tblUnitRowChanging" msprop:Generator_RowEvHandlerName="tblUnitRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUnitRowDeleted" msprop:Generator_RowClassName="tblUnitRow" msprop:Generator_UserTableName="tblUnit" msprop:Generator_RowEvArgName="tblUnitRowChangeEvent">
+        <xs:element name="tblUnit" msprop:Generator_TableClassName="tblUnitDataTable" msprop:Generator_TableVarName="tabletblUnit" msprop:Generator_TablePropName="tblUnit" msprop:Generator_RowDeletingName="tblUnitRowDeleting" msprop:Generator_RowChangingName="tblUnitRowChanging" msprop:Generator_RowEvHandlerName="tblUnitRowChangeEventHandler" msprop:Generator_RowDeletedName="tblUnitRowDeleted" msprop:Generator_UserTableName="tblUnit" msprop:Generator_RowChangedName="tblUnitRowChanged" msprop:Generator_RowEvArgName="tblUnitRowChangeEvent" msprop:Generator_RowClassName="tblUnitRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intUnitID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintUnitID" msprop:Generator_ColumnPropNameInRow="intUnitID" msprop:Generator_ColumnPropNameInTable="intUnitIDColumn" msprop:Generator_UserColumnName="intUnitID" type="xs:int" />
@@ -548,11 +576,11 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="sprAccountsCOAChildAdd" msprop:Generator_TableClassName="sprAccountsCOAChildAddDataTable" msprop:Generator_TableVarName="tablesprAccountsCOAChildAdd" msprop:Generator_TablePropName="sprAccountsCOAChildAdd" msprop:Generator_RowDeletingName="sprAccountsCOAChildAddRowDeleting" msprop:Generator_RowChangingName="sprAccountsCOAChildAddRowChanging" msprop:Generator_RowEvHandlerName="sprAccountsCOAChildAddRowChangeEventHandler" msprop:Generator_RowDeletedName="sprAccountsCOAChildAddRowDeleted" msprop:Generator_UserTableName="sprAccountsCOAChildAdd" msprop:Generator_RowChangedName="sprAccountsCOAChildAddRowChanged" msprop:Generator_RowEvArgName="sprAccountsCOAChildAddRowChangeEvent" msprop:Generator_RowClassName="sprAccountsCOAChildAddRow">
+        <xs:element name="sprAccountsCOAChildAdd" msprop:Generator_TableClassName="sprAccountsCOAChildAddDataTable" msprop:Generator_TableVarName="tablesprAccountsCOAChildAdd" msprop:Generator_RowChangedName="sprAccountsCOAChildAddRowChanged" msprop:Generator_TablePropName="sprAccountsCOAChildAdd" msprop:Generator_RowDeletingName="sprAccountsCOAChildAddRowDeleting" msprop:Generator_RowChangingName="sprAccountsCOAChildAddRowChanging" msprop:Generator_RowEvHandlerName="sprAccountsCOAChildAddRowChangeEventHandler" msprop:Generator_RowDeletedName="sprAccountsCOAChildAddRowDeleted" msprop:Generator_RowClassName="sprAccountsCOAChildAddRow" msprop:Generator_UserTableName="sprAccountsCOAChildAdd" msprop:Generator_RowEvArgName="sprAccountsCOAChildAddRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblVehicleType" msprop:Generator_TableClassName="TblVehicleTypeDataTable" msprop:Generator_TableVarName="tableTblVehicleType" msprop:Generator_TablePropName="TblVehicleType" msprop:Generator_RowDeletingName="TblVehicleTypeRowDeleting" msprop:Generator_RowChangingName="TblVehicleTypeRowChanging" msprop:Generator_RowEvHandlerName="TblVehicleTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblVehicleTypeRowDeleted" msprop:Generator_UserTableName="TblVehicleType" msprop:Generator_RowChangedName="TblVehicleTypeRowChanged" msprop:Generator_RowEvArgName="TblVehicleTypeRowChangeEvent" msprop:Generator_RowClassName="TblVehicleTypeRow">
+        <xs:element name="TblVehicleType" msprop:Generator_TableClassName="TblVehicleTypeDataTable" msprop:Generator_TableVarName="tableTblVehicleType" msprop:Generator_RowChangedName="TblVehicleTypeRowChanged" msprop:Generator_TablePropName="TblVehicleType" msprop:Generator_RowDeletingName="TblVehicleTypeRowDeleting" msprop:Generator_RowChangingName="TblVehicleTypeRowChanging" msprop:Generator_RowEvHandlerName="TblVehicleTypeRowChangeEventHandler" msprop:Generator_RowDeletedName="TblVehicleTypeRowDeleted" msprop:Generator_RowClassName="TblVehicleTypeRow" msprop:Generator_UserTableName="TblVehicleType" msprop:Generator_RowEvArgName="TblVehicleTypeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intTypeId" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintTypeId" msprop:Generator_ColumnPropNameInRow="intTypeId" msprop:Generator_ColumnPropNameInTable="intTypeIdColumn" msprop:Generator_UserColumnName="intTypeId" type="xs:int" />
@@ -566,7 +594,7 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblShipPoint" msprop:Generator_TableClassName="tblShipPointDataTable" msprop:Generator_TableVarName="tabletblShipPoint" msprop:Generator_TablePropName="tblShipPoint" msprop:Generator_RowDeletingName="tblShipPointRowDeleting" msprop:Generator_RowChangingName="tblShipPointRowChanging" msprop:Generator_RowEvHandlerName="tblShipPointRowChangeEventHandler" msprop:Generator_RowDeletedName="tblShipPointRowDeleted" msprop:Generator_UserTableName="tblShipPoint" msprop:Generator_RowChangedName="tblShipPointRowChanged" msprop:Generator_RowEvArgName="tblShipPointRowChangeEvent" msprop:Generator_RowClassName="tblShipPointRow">
+        <xs:element name="tblShipPoint" msprop:Generator_TableClassName="tblShipPointDataTable" msprop:Generator_TableVarName="tabletblShipPoint" msprop:Generator_RowChangedName="tblShipPointRowChanged" msprop:Generator_TablePropName="tblShipPoint" msprop:Generator_RowDeletingName="tblShipPointRowDeleting" msprop:Generator_RowChangingName="tblShipPointRowChanging" msprop:Generator_RowEvHandlerName="tblShipPointRowChangeEventHandler" msprop:Generator_RowDeletedName="tblShipPointRowDeleted" msprop:Generator_RowClassName="tblShipPointRow" msprop:Generator_UserTableName="tblShipPoint" msprop:Generator_RowEvArgName="tblShipPointRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnintid" msprop:Generator_ColumnPropNameInRow="intid" msprop:Generator_ColumnPropNameInTable="intidColumn" msprop:Generator_UserColumnName="intid" type="xs:int" minOccurs="0" />
@@ -580,22 +608,22 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblVehicle" msprop:Generator_TableClassName="tblVehicleDataTable" msprop:Generator_TableVarName="tabletblVehicle" msprop:Generator_TablePropName="tblVehicle" msprop:Generator_RowDeletingName="tblVehicleRowDeleting" msprop:Generator_RowChangingName="tblVehicleRowChanging" msprop:Generator_RowEvHandlerName="tblVehicleRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVehicleRowDeleted" msprop:Generator_UserTableName="tblVehicle" msprop:Generator_RowChangedName="tblVehicleRowChanged" msprop:Generator_RowEvArgName="tblVehicleRowChangeEvent" msprop:Generator_RowClassName="tblVehicleRow">
+        <xs:element name="tblVehicle" msprop:Generator_TableClassName="tblVehicleDataTable" msprop:Generator_TableVarName="tabletblVehicle" msprop:Generator_RowChangedName="tblVehicleRowChanged" msprop:Generator_TablePropName="tblVehicle" msprop:Generator_RowDeletingName="tblVehicleRowDeleting" msprop:Generator_RowChangingName="tblVehicleRowChanging" msprop:Generator_RowEvHandlerName="tblVehicleRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVehicleRowDeleted" msprop:Generator_RowClassName="tblVehicleRow" msprop:Generator_UserTableName="tblVehicle" msprop:Generator_RowEvArgName="tblVehicleRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblVehicle1" msprop:Generator_TableClassName="tblVehicle1DataTable" msprop:Generator_TableVarName="tabletblVehicle1" msprop:Generator_TablePropName="tblVehicle1" msprop:Generator_RowDeletingName="tblVehicle1RowDeleting" msprop:Generator_RowChangingName="tblVehicle1RowChanging" msprop:Generator_RowEvHandlerName="tblVehicle1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblVehicle1RowDeleted" msprop:Generator_UserTableName="tblVehicle1" msprop:Generator_RowChangedName="tblVehicle1RowChanged" msprop:Generator_RowEvArgName="tblVehicle1RowChangeEvent" msprop:Generator_RowClassName="tblVehicle1Row">
+        <xs:element name="tblVehicle1" msprop:Generator_TableClassName="tblVehicle1DataTable" msprop:Generator_TableVarName="tabletblVehicle1" msprop:Generator_RowChangedName="tblVehicle1RowChanged" msprop:Generator_TablePropName="tblVehicle1" msprop:Generator_RowDeletingName="tblVehicle1RowDeleting" msprop:Generator_RowChangingName="tblVehicle1RowChanging" msprop:Generator_RowEvHandlerName="tblVehicle1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblVehicle1RowDeleted" msprop:Generator_RowClassName="tblVehicle1Row" msprop:Generator_UserTableName="tblVehicle1" msprop:Generator_RowEvArgName="tblVehicle1RowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintID" msprop:Generator_ColumnPropNameInRow="intID" msprop:Generator_ColumnPropNameInTable="intIDColumn" msprop:Generator_UserColumnName="intID" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblVehicleCOAupdate" msprop:Generator_TableClassName="tblVehicleCOAupdateDataTable" msprop:Generator_TableVarName="tabletblVehicleCOAupdate" msprop:Generator_TablePropName="tblVehicleCOAupdate" msprop:Generator_RowDeletingName="tblVehicleCOAupdateRowDeleting" msprop:Generator_RowChangingName="tblVehicleCOAupdateRowChanging" msprop:Generator_RowEvHandlerName="tblVehicleCOAupdateRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVehicleCOAupdateRowDeleted" msprop:Generator_UserTableName="tblVehicleCOAupdate" msprop:Generator_RowChangedName="tblVehicleCOAupdateRowChanged" msprop:Generator_RowEvArgName="tblVehicleCOAupdateRowChangeEvent" msprop:Generator_RowClassName="tblVehicleCOAupdateRow">
+        <xs:element name="tblVehicleCOAupdate" msprop:Generator_TableClassName="tblVehicleCOAupdateDataTable" msprop:Generator_TableVarName="tabletblVehicleCOAupdate" msprop:Generator_RowChangedName="tblVehicleCOAupdateRowChanged" msprop:Generator_TablePropName="tblVehicleCOAupdate" msprop:Generator_RowDeletingName="tblVehicleCOAupdateRowDeleting" msprop:Generator_RowChangingName="tblVehicleCOAupdateRowChanging" msprop:Generator_RowEvHandlerName="tblVehicleCOAupdateRowChangeEventHandler" msprop:Generator_RowDeletedName="tblVehicleCOAupdateRowDeleted" msprop:Generator_RowClassName="tblVehicleCOAupdateRow" msprop:Generator_UserTableName="tblVehicleCOAupdate" msprop:Generator_RowEvArgName="tblVehicleCOAupdateRowChangeEvent">
           <xs:complexType>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblAGVehicleInfoFuelLog" msprop:Generator_TableClassName="TblAGVehicleInfoFuelLogDataTable" msprop:Generator_TableVarName="tableTblAGVehicleInfoFuelLog" msprop:Generator_RowChangedName="TblAGVehicleInfoFuelLogRowChanged" msprop:Generator_TablePropName="TblAGVehicleInfoFuelLog" msprop:Generator_RowDeletingName="TblAGVehicleInfoFuelLogRowDeleting" msprop:Generator_RowChangingName="TblAGVehicleInfoFuelLogRowChanging" msprop:Generator_RowEvHandlerName="TblAGVehicleInfoFuelLogRowChangeEventHandler" msprop:Generator_RowDeletedName="TblAGVehicleInfoFuelLogRowDeleted" msprop:Generator_RowClassName="TblAGVehicleInfoFuelLogRow" msprop:Generator_UserTableName="TblAGVehicleInfoFuelLog" msprop:Generator_RowEvArgName="TblAGVehicleInfoFuelLogRowChangeEvent">
+        <xs:element name="TblAGVehicleInfoFuelLog" msprop:Generator_TableClassName="TblAGVehicleInfoFuelLogDataTable" msprop:Generator_TableVarName="tableTblAGVehicleInfoFuelLog" msprop:Generator_TablePropName="TblAGVehicleInfoFuelLog" msprop:Generator_RowDeletingName="TblAGVehicleInfoFuelLogRowDeleting" msprop:Generator_RowChangingName="TblAGVehicleInfoFuelLogRowChanging" msprop:Generator_RowEvHandlerName="TblAGVehicleInfoFuelLogRowChangeEventHandler" msprop:Generator_RowDeletedName="TblAGVehicleInfoFuelLogRowDeleted" msprop:Generator_UserTableName="TblAGVehicleInfoFuelLog" msprop:Generator_RowChangedName="TblAGVehicleInfoFuelLogRowChanged" msprop:Generator_RowEvArgName="TblAGVehicleInfoFuelLogRowChangeEvent" msprop:Generator_RowClassName="TblAGVehicleInfoFuelLogRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="strVehicleNo" msprop:Generator_ColumnVarNameInTable="columnstrVehicleNo" msprop:Generator_ColumnPropNameInRow="strVehicleNo" msprop:Generator_ColumnPropNameInTable="strVehicleNoColumn" msprop:Generator_UserColumnName="strVehicleNo" minOccurs="0">
@@ -610,7 +638,7 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TblOilAndCngPartyName" msprop:Generator_TableClassName="TblOilAndCngPartyNameDataTable" msprop:Generator_TableVarName="tableTblOilAndCngPartyName" msprop:Generator_RowChangedName="TblOilAndCngPartyNameRowChanged" msprop:Generator_TablePropName="TblOilAndCngPartyName" msprop:Generator_RowDeletingName="TblOilAndCngPartyNameRowDeleting" msprop:Generator_RowChangingName="TblOilAndCngPartyNameRowChanging" msprop:Generator_RowEvHandlerName="TblOilAndCngPartyNameRowChangeEventHandler" msprop:Generator_RowDeletedName="TblOilAndCngPartyNameRowDeleted" msprop:Generator_RowClassName="TblOilAndCngPartyNameRow" msprop:Generator_UserTableName="TblOilAndCngPartyName" msprop:Generator_RowEvArgName="TblOilAndCngPartyNameRowChangeEvent">
+        <xs:element name="TblOilAndCngPartyName" msprop:Generator_TableClassName="TblOilAndCngPartyNameDataTable" msprop:Generator_TableVarName="tableTblOilAndCngPartyName" msprop:Generator_TablePropName="TblOilAndCngPartyName" msprop:Generator_RowDeletingName="TblOilAndCngPartyNameRowDeleting" msprop:Generator_RowChangingName="TblOilAndCngPartyNameRowChanging" msprop:Generator_RowEvHandlerName="TblOilAndCngPartyNameRowChangeEventHandler" msprop:Generator_RowDeletedName="TblOilAndCngPartyNameRowDeleted" msprop:Generator_UserTableName="TblOilAndCngPartyName" msprop:Generator_RowChangedName="TblOilAndCngPartyNameRowChanged" msprop:Generator_RowEvArgName="TblOilAndCngPartyNameRowChangeEvent" msprop:Generator_RowClassName="TblOilAndCngPartyNameRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="party_name" msprop:Generator_ColumnVarNameInTable="columnparty_name" msprop:Generator_ColumnPropNameInRow="party_name" msprop:Generator_ColumnPropNameInTable="party_nameColumn" msprop:Generator_UserColumnName="party_name" minOccurs="0">
@@ -625,7 +653,7 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprVheicleInfoSearching" msprop:Generator_TableClassName="SprVheicleInfoSearchingDataTable" msprop:Generator_TableVarName="tableSprVheicleInfoSearching" msprop:Generator_TablePropName="SprVheicleInfoSearching" msprop:Generator_RowDeletingName="SprVheicleInfoSearchingRowDeleting" msprop:Generator_RowChangingName="SprVheicleInfoSearchingRowChanging" msprop:Generator_RowEvHandlerName="SprVheicleInfoSearchingRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVheicleInfoSearchingRowDeleted" msprop:Generator_UserTableName="SprVheicleInfoSearching" msprop:Generator_RowChangedName="SprVheicleInfoSearchingRowChanged" msprop:Generator_RowEvArgName="SprVheicleInfoSearchingRowChangeEvent" msprop:Generator_RowClassName="SprVheicleInfoSearchingRow">
+        <xs:element name="SprVheicleInfoSearching" msprop:Generator_TableClassName="SprVheicleInfoSearchingDataTable" msprop:Generator_TableVarName="tableSprVheicleInfoSearching" msprop:Generator_RowChangedName="SprVheicleInfoSearchingRowChanged" msprop:Generator_TablePropName="SprVheicleInfoSearching" msprop:Generator_RowDeletingName="SprVheicleInfoSearchingRowDeleting" msprop:Generator_RowChangingName="SprVheicleInfoSearchingRowChanging" msprop:Generator_RowEvHandlerName="SprVheicleInfoSearchingRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVheicleInfoSearchingRowDeleted" msprop:Generator_RowClassName="SprVheicleInfoSearchingRow" msprop:Generator_UserTableName="SprVheicleInfoSearching" msprop:Generator_RowEvArgName="SprVheicleInfoSearchingRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="intvhcleid" msprop:Generator_ColumnVarNameInTable="columnintvhcleid" msprop:Generator_ColumnPropNameInRow="intvhcleid" msprop:Generator_ColumnPropNameInTable="intvhcleidColumn" msprop:Generator_UserColumnName="intvhcleid" type="xs:int" minOccurs="0" />
@@ -698,13 +726,27 @@ SELECT party_name, party_id, auto_ID FROM tblOilAndCngPartyName WHERE (auto_ID =
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="SprVehicleInfoModify" msprop:Generator_TableClassName="SprVehicleInfoModifyDataTable" msprop:Generator_TableVarName="tableSprVehicleInfoModify" msprop:Generator_TablePropName="SprVehicleInfoModify" msprop:Generator_RowDeletingName="SprVehicleInfoModifyRowDeleting" msprop:Generator_RowChangingName="SprVehicleInfoModifyRowChanging" msprop:Generator_RowEvHandlerName="SprVehicleInfoModifyRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVehicleInfoModifyRowDeleted" msprop:Generator_UserTableName="SprVehicleInfoModify" msprop:Generator_RowChangedName="SprVehicleInfoModifyRowChanged" msprop:Generator_RowEvArgName="SprVehicleInfoModifyRowChangeEvent" msprop:Generator_RowClassName="SprVehicleInfoModifyRow">
+        <xs:element name="SprVehicleInfoModify" msprop:Generator_TableClassName="SprVehicleInfoModifyDataTable" msprop:Generator_TableVarName="tableSprVehicleInfoModify" msprop:Generator_RowChangedName="SprVehicleInfoModifyRowChanged" msprop:Generator_TablePropName="SprVehicleInfoModify" msprop:Generator_RowDeletingName="SprVehicleInfoModifyRowDeleting" msprop:Generator_RowChangingName="SprVehicleInfoModifyRowChanging" msprop:Generator_RowEvHandlerName="SprVehicleInfoModifyRowChangeEventHandler" msprop:Generator_RowDeletedName="SprVehicleInfoModifyRowDeleted" msprop:Generator_RowClassName="SprVehicleInfoModifyRow" msprop:Generator_UserTableName="SprVehicleInfoModify" msprop:Generator_RowEvArgName="SprVehicleInfoModifyRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Messages" msprop:Generator_ColumnVarNameInTable="columnMessages" msprop:Generator_ColumnPropNameInRow="Messages" msprop:Generator_ColumnPropNameInTable="MessagesColumn" msprop:Generator_UserColumnName="Messages" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="900" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="tblRemoteTADAFuelStationList" msprop:Generator_TableClassName="tblRemoteTADAFuelStationListDataTable" msprop:Generator_TableVarName="tabletblRemoteTADAFuelStationList" msprop:Generator_TablePropName="tblRemoteTADAFuelStationList" msprop:Generator_RowDeletingName="tblRemoteTADAFuelStationListRowDeleting" msprop:Generator_RowChangingName="tblRemoteTADAFuelStationListRowChanging" msprop:Generator_RowEvHandlerName="tblRemoteTADAFuelStationListRowChangeEventHandler" msprop:Generator_RowDeletedName="tblRemoteTADAFuelStationListRowDeleted" msprop:Generator_UserTableName="tblRemoteTADAFuelStationList" msprop:Generator_RowChangedName="tblRemoteTADAFuelStationListRowChanged" msprop:Generator_RowEvArgName="tblRemoteTADAFuelStationListRowChangeEvent" msprop:Generator_RowClassName="tblRemoteTADAFuelStationListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="intFuelStationID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnintFuelStationID" msprop:Generator_ColumnPropNameInRow="intFuelStationID" msprop:Generator_ColumnPropNameInTable="intFuelStationIDColumn" msprop:Generator_UserColumnName="intFuelStationID" type="xs:int" />
+              <xs:element name="strFuelStationName" msprop:Generator_ColumnVarNameInTable="columnstrFuelStationName" msprop:Generator_ColumnPropNameInRow="strFuelStationName" msprop:Generator_ColumnPropNameInTable="strFuelStationNameColumn" msprop:Generator_UserColumnName="strFuelStationName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
