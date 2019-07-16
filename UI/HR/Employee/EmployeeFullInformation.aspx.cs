@@ -30,6 +30,7 @@ namespace UI.HR.Employee
                 LoadCountry();
                 LoadTrainigYear();
 
+                LoadEducation();
                 LoadEmperience();
                 LoadTrainingInfo();
                 LoadWorkInfo();
@@ -220,11 +221,22 @@ namespace UI.HR.Employee
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
+                LoadEducation();
             }
             else
             {
                 Toaster(message, Common.TosterType.Error);
             }
+        }
+        private void LoadEducation()
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            _dt = _bll.GetEducationInfo(enroll);
+            gridviewEducation.Loads(_dt);
         }
 
         #endregion
