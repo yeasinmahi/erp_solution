@@ -154,10 +154,10 @@
                                 <asp:Label ID="lblProductionId" runat="server"></asp:Label>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="Label10" CssClass="lbl" Font-Bold="true" runat="server" Text="Order Qty:"></asp:Label>
+                                <asp:Label ID="Label10" CssClass="lbl" Font-Bold="true" runat="server" Text="Order Qty:" Visible="false"></asp:Label>
                             </td>
                             <td style="text-align: left;padding:5px">
-                                 <asp:Label ID="lblOrderQty" runat="server"></asp:Label>
+                                 <asp:Label ID="lblOrderQty" runat="server" Visible="false"></asp:Label>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label11" CssClass="lbl" Font-Bold="true" runat="server" Text="Date & Time:"></asp:Label>
@@ -179,10 +179,11 @@
                                 </cc1:AutoCompleteExtender>
                             </td>
                             <td style="text-align: right;">
-                                <asp:Label ID="lblProductQuantity" Font-Bold="true" runat="server" Text="Production Qty:"></asp:Label>
+                                <asp:Label ID="lblProductQuantity" Font-Bold="true" runat="server" Text="Order Qty:"></asp:Label>
                             </td>
                             <td style="text-align: left;padding-left:5px">
-                                <asp:TextBox ID="txtProductQty" style="width:80%; height:30px; text-align:left;padding:5px" Text="0" CssClass="txtBox" runat="server"></asp:TextBox>
+                                <asp:TextBox ID="txtProductQty" style="width:80%; height:30px; text-align:left;padding:5px" 
+                                    Text="0" CssClass="txtBox" runat="server" Enabled="false"></asp:TextBox>
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label16" Font-Bold="true" runat="server" Text="Good Production Qty:"></asp:Label>
