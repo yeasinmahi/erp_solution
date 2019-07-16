@@ -555,8 +555,8 @@ namespace UI.SCM.BOM
         {
             ddlWastageType.Items.Insert(0, new ListItem("Select", "0"));
             ddlWastageType.Items.Insert(1, new ListItem("Good Production", "1"));
-            ddlWastageType.Items.Insert(1, new ListItem("Scrap Output", "2"));
-            ddlWastageType.Items.Insert(2, new ListItem("Wastage Output", "3"));
+            ddlWastageType.Items.Insert(2, new ListItem("Scrap Output", "2"));
+            ddlWastageType.Items.Insert(3, new ListItem("Wastage Output", "3"));
         }
 
         public void LoadWastageItem()
