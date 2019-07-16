@@ -134,7 +134,15 @@ namespace SAD_BLL.AutoChallan
             }
             catch { return new DataTable(); }
         }
-
+        public DataTable getLoadingSlipViewByCustomer(int Custid)
+        {
+            try
+            {
+                tblDistributionOrderTableAdapter adpo = new tblDistributionOrderTableAdapter();
+                return adpo.GetCustomerWiseOrder(Custid);
+            }
+            catch { return new DataTable(); }
+        }
         public DataTable UploadData(int Shipid)
         {
             try

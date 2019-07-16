@@ -74,7 +74,7 @@ namespace UI.SAD.ExcelChallan
             try
             {
 
-                dt = objExcel.UploadDataOrder(int.Parse(ddlshippoint.SelectedValue));
+            dt = objExcel.UploadDataOrder(int.Parse(ddlshippoint.SelectedValue));
             dgvExcelOrder.DataSource = dt;
             dgvExcelOrder.DataBind();
             dgvExcelOrder.Visible = true;
@@ -266,8 +266,8 @@ namespace UI.SAD.ExcelChallan
                 {
                     objExcel.getOrderUpload(Custid, msg, int.Parse(ddlshippoint.SelectedValue), int.Parse(ddlOfficeName.SelectedValue), int.Parse(Session[SessionParams.USER_ID].ToString()));
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
-
-                    LoadingSlip();
+                    getReportbyCustomer(Custid);
+                   // LoadingSlip();
                 }
             }
             catch (Exception ex)
@@ -309,9 +309,10 @@ namespace UI.SAD.ExcelChallan
                     ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Save!');", true);
                     txtCustomer.Text = "";
                     txtPQty.Text = "";
-                    getReport();
+                   
                 }
-                  //  LoadingSlip();
+                getReportbyCustomer((Custid));
+                //  LoadingSlip();
             }
             catch (Exception ex)
             {
@@ -323,6 +324,16 @@ namespace UI.SAD.ExcelChallan
             Flogger.WriteDiagnostic(fd);
             // ends
             tracker.Stop();
+        }
+
+        private void getReportbyCustomer(int custid)
+        {
+         
+            dt = objExcel.getLoadingSlipViewByCustomer(custid);
+            dgvExcelOrder.DataSource = dt;
+            dgvExcelOrder.DataBind();
+            dgvSlip.Visible = false;
+            dgvExcelOrder.Visible = true;
         }
     }
 }
