@@ -1507,6 +1507,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\Sales2.aspx" />
+    <Content Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx" />
     <Content Include="SAD\Sales\Report\Sales_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
@@ -1518,6 +1519,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
     <Content Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx" />
+    <Content Include="SAD\Sales\Report\VatCompleteNotInSubledger.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Calling_List.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
@@ -7803,6 +7805,13 @@
     <Compile Include="SAD\Sales\Report\Sales2.aspx.designer.cs">
       <DependentUpon>Sales2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx.cs">
+      <DependentUpon>SalesItemPriceMismatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx.designer.cs">
+      <DependentUpon>SalesItemPriceMismatch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.cs">
       <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7879,6 +7888,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.designer.cs">
       <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\VatCompleteNotInSubledger.aspx.cs">
+      <DependentUpon>VatCompleteNotInSubledger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\VatCompleteNotInSubledger.aspx.designer.cs">
+      <DependentUpon>VatCompleteNotInSubledger.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.cs">
       <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
