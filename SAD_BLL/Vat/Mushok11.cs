@@ -13,6 +13,8 @@ namespace SAD_BLL.Vat
 {
     public class Mushok11
     {
+        
+        private static Mushok11TDS.tblItemListDataTable[] tablerawMatrialItem = null;
         private static Mushok11TDS.tblItemVatDataTable[] tableVatItem = null;
         private static Mushok11TDS.tblItemDataTable[] tableSADItem = null;
         private static Mushok11TDS.tblMaterialNameDataTable[] tableMatrialItem = null;
@@ -83,6 +85,21 @@ namespace SAD_BLL.Vat
 
             }
             catch { }
+        }
+
+        public string InsertVATItemAndMaterialBridge( int intrawmaterialid, int intVatItemID, int unitid, int userid)
+        {
+            string msg = "";
+            try
+            {
+                tblrawmaterialbridgedeleteTableAdapter adpdelete = new tblrawmaterialbridgedeleteTableAdapter();
+                adpdelete.GetData(intrawmaterialid);
+                tblConfigVATMaterialAndRawMaterialBridgeTableAdapter adp = new tblConfigVATMaterialAndRawMaterialBridgeTableAdapter();
+                adp.GetData( intrawmaterialid, intVatItemID, unitid, userid);
+                msg = "Successfully update";
+            }
+            catch(Exception ex){ msg = e.ToString(); }
+            return msg;
         }
 
         public DataTable getM19Summary(int accid, DateTime dtedate)
@@ -1068,7 +1085,63 @@ namespace SAD_BLL.Vat
                 return null;
             }
         }
-      
+        public string[] getItemList(string prefix, int Unitid)
+        {
+            tablerawMatrialItem = new Mushok11TDS.tblItemListDataTable[Convert.ToInt32(Unitid)];
+            tblItemListTableAdapter MatrialItem = new tblItemListTableAdapter();
+            tablerawMatrialItem[e] = MatrialItem.GetData(Unitid);
+
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in tablerawMatrialItem[e]//Convert.ToInt32(ht[unitID])                           
+                               orderby tmp.strItemName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in tablerawMatrialItem[e]  //[Convert.ToInt32(ht[WHID])]
+                                   where tmp.strItemName.ToLower().Contains(prefix)
+                                   orderby tmp.strItemName
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+
+                        }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strItemName"] + "," + "[" + tbl.Rows[i]["intItemID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public string[] getSadItem(string prefix, int Unitid)
         {
             tableSADItem = new Mushok11TDS.tblItemDataTable[Convert.ToInt32(Unitid)];

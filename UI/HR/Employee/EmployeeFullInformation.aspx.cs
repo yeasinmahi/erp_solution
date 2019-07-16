@@ -24,6 +24,8 @@ namespace UI.HR.Employee
                 LoadExam();
                 LoadBoard();
                 LoadYearOfPassing();
+                LoadCountry();
+                LoadTrainigYear();
             }
         }
         #region Tab 1:Education Info
@@ -216,8 +218,86 @@ namespace UI.HR.Employee
                 Toaster(message, Common.TosterType.Error);
             }
         }
+
         #endregion
+        #region Tab 3:Experience
+        protected void btnAddExperience_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+
+            string strCompanyName = txtCompanyName.Text;
+            string strCompanyLocation = txtCompanyAddress.Text;
+            string strCompanyBusiness = txtCompanyBusiness.Text;
+            string strDesignation = txtEmploymentDesignation.Text;
+            string strDepartment = txtEmployementDepartment.Text;
+            string strResponsibilities = txtResponsibilities.Text;
+            DateTime dteEmploymentPeriodFrom = txtFromDate.Text.ToDateTime("dd/MM/yyyy");
+            DateTime dteEmploymentPeriodTo = txtToDate.Text.ToDateTime("dd/MM/yyyy"); ;
+            string strCurrentlyWorking = chkCurentlyWorking.Text;
+            string strExpertiseSkill = txtAreaOfExperience.Text;
 
 
+            string message = _bll.InsertExperienceInfo(1, enroll, strCompanyName, strCompanyLocation, strCompanyBusiness, strDesignation, strDepartment, strResponsibilities, dteEmploymentPeriodFrom, dteEmploymentPeriodTo, strCurrentlyWorking, strExpertiseSkill, Enroll);
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster(message, Common.TosterType.Success);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
+            }
+        }
+
+        #endregion
+        #region Tab 4: Training
+        private void LoadCountry()
+        {
+            _dt = _bll.GetCountry();
+            ddlCountry.Loads(_dt, "intCountryID", "strCountry");
+        }
+        private void LoadTrainigYear()
+        {
+            for (int i = 1900; i <= DateTime.Now.Year; i++)
+            {
+                ListItem li = new ListItem()
+                {
+                    Text = i.ToString(),
+                    Value = i.ToString()
+                };
+                ddlTrainingYear.Items.Add(li);
+            }
+            ddlTrainingYear.DataBind();
+        }
+        protected void btnAddTrainig_Click(object sender, EventArgs e)
+        {
+            if (!int.TryParse(txtEnroll.Text, out int enroll))
+            {
+                Toaster("Please Enter Enroll Properly");
+                return;
+            }
+            string strTrainingTitle = txtTrainingTitle.Text;
+            string strTopicsCovered = txtTopicCovered.Text;
+            string strInstitute = txtTrainingInstitude.Text;
+            string strLocation = txtTrainingLocation.Text;
+            int intCountry = ddlCountry.SelectedValue();
+            string strCountry = ddlCountry.SelectedText();
+            int intTrainingYear = ddlTrainingYear.SelectedValue();
+            string strDuration = txtDuration.Text;
+
+            string message = _bll.InsertTrainigInfo(1, enroll, strTrainingTitle, strTopicsCovered, strInstitute, strLocation, intCountry, strCountry, intTrainingYear, strDuration, Enroll);
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster(message, Common.TosterType.Success);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
+            }
+        }
+        #endregion
     }
 }

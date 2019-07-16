@@ -34,6 +34,7 @@
                         <li class="active"><a data-toggle="tab" href="#personal">Personal</a></li>
                         <li><a data-toggle="tab" href="#education">Education/Training</a></li>
                         <li><a data-toggle="tab" href="#experience">Experience</a></li>
+                        <li><a data-toggle="tab" href="#training">Training</a></li>
                         <li><a data-toggle="tab" href="#others">Others</a></li>
                         <li><a data-toggle="tab" href="#photograph">Photograph</a></li>
                     </ul>
@@ -146,7 +147,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="education" class="tab-pane fade in active">
+                        <div id="education" class="tab-pane fade">
                             <h3>Education Iformation</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -212,9 +213,108 @@
                                 </div>
                             </div>
                         </div>
-                        <div id="experience" class="tab-pane fade">
+                        <div id="experience" class="tab-pane fade in active">
                             <h3>Experience Information</h3>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label28" runat="server" Text="Comapny Name"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtCompanyName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Akij Group"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label29" runat="server" Text="Company Business"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtCompanyBusiness" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Company Business"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label32" runat="server" Text="Designation"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtEmploymentDesignation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Software Engineer"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label34" runat="server" Text="Department"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtEmployementDepartment" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Planning and Implementation" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label31" runat="server" Text="Responsibilities"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtResponsibilities" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write your responsibility in this company"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label33" runat="server" Text="Company Address"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtCompanyAddress" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write full address of your company"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <asp:Label ID="Label35" runat="server" Text="Employment From"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtFromDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: dd/mm/yyyy" ></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3 col-xs-6">
+                                        <asp:Label ID="Label36" runat="server" Text="Employment To"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtToDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: dd/mm/yyyy" ></asp:TextBox>
+                                        <asp:CheckBox ID="chkCurentlyWorking" CssClass="col-md-12 col-sm-12 col-xs-12" runat="server" Text="Currently Working"/>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label38" runat="server" Text="Area Of Experience"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtAreaOfExperience" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Asp.net, Android, Marketting" ></asp:TextBox>
+                                    </div>
+
+                                    <div class="col-md-12 col-sm-12" style="padding-top: 10px">
+                                        <asp:Button ID="btnAddExperience" runat="server" class="btn btn-success form-control pull-right" Text="Add" OnClientClick="return ExperienceInfoValidate();" OnClick="btnAddExperience_Click" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="training" class="tab-pane fade">
+                            <h3>Training Information</h3>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label39" runat="server" Text="Training Title"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtTrainingTitle" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Natinal Apps Trainig"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label41" runat="server" Text="Topic Covered"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtTopicCovered" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Java , Xml, Android"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label40" runat="server" Text="Country"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlCountry" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label42" runat="server" Text="Training Year"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:DropDownList ID="ddlTrainingYear" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ></asp:DropDownList>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label43" runat="server" Text="Institude"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtTrainingInstitude" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: People N Tech"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label44" runat="server" Text="Duration"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtTrainingDuration" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: 3 Month"></asp:TextBox>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <asp:Label ID="Label45" runat="server" Text="Location"></asp:Label>
+                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <asp:TextBox ID="txtTrainingLocation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: Banani" ></asp:TextBox>
+                                    </div>
+                                    
+                                    <div class="col-md-12 col-sm-12" style="padding-top: 10px">
+                                        <asp:Button ID="btnAddTrainig" runat="server" class="btn btn-success form-control pull-right" Text="Add" OnClientClick="return TrainingInfoValidate();" OnClick="btnAddTrainig_Click" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div id="others" class="tab-pane fade">
                             <h3>Others Information</h3>
@@ -274,6 +374,12 @@
                     dateFormat: 'dd/mm/yy'
                 });
                 $('#txtJoiningDate').datepicker({
+                    dateFormat: 'dd/mm/yy'
+                });
+                $('#txtFromDate').datepicker({
+                    dateFormat: 'dd/mm/yy'
+                });
+                $('#txtToDate').datepicker({
                     dateFormat: 'dd/mm/yy'
                 });
                 
