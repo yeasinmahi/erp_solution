@@ -555,8 +555,8 @@ namespace UI.SCM.BOM
         {
             ddlWastageType.Items.Insert(0, new ListItem("Select", "0"));
             ddlWastageType.Items.Insert(1, new ListItem("Good Production", "1"));
-            ddlWastageType.Items.Insert(1, new ListItem("Scrap Output", "2"));
-            ddlWastageType.Items.Insert(2, new ListItem("Wastage Output", "3"));
+            ddlWastageType.Items.Insert(2, new ListItem("Scrap Output", "2"));
+            ddlWastageType.Items.Insert(3, new ListItem("Wastage Output", "3"));
         }
 
         public void LoadWastageItem()
@@ -626,7 +626,8 @@ namespace UI.SCM.BOM
                     string Date = txtDate.Text;
                     string Time = txtTime.Text;
                     string JobNo = !string.IsNullOrEmpty(txtJob.Text) ? txtJob.Text : string.Empty;
-                    hfTotalQty.Value = (decimal.Parse(hfTotalQty.Value) + Convert.ToDecimal(GoodORwastageQnt)).ToString();
+                    hfTotalQty.Value = !string.IsNullOrEmpty(hfTotalQty.Value) ? 
+                        (decimal.Parse(hfTotalQty.Value) + Convert.ToDecimal(GoodORwastageQnt)).ToString() : GoodORwastageQnt.ToString();
                     if(decimal.Parse(hfTotalQty.Value)> ProductQnt)
                     {
                         Toaster("Add Quantity is Never Getter then Production Quantity.", Common.TosterType.Warning);

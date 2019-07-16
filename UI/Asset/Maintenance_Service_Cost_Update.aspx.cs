@@ -27,7 +27,7 @@ namespace UI.Asset
 
                 try
                 {
-                    dt = objasset.JobStation();
+                    dt = objasset.JobStation(Enroll);
                     ddlJobStation.DataSource = dt;
                     ddlJobStation.DataTextField = "strJobStationName";
                     ddlJobStation.DataValueField = "intEmployeeJobStationId";
