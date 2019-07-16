@@ -15,6 +15,7 @@ namespace SCM_BLL
         private static PoGenerateTDS.DataTableSearchPOUserDataTable[] tablePoUser = null;
         private static PoGenerateTDS.TblSupplierMasterDataTable[] tblMasterSupplier = null;
         private static PoGenerateTDS.TblSupplierDataTable[] tblSupplier = null;
+        private static PoGenerateTDS.tblSupplier1DataTable [] AllSupplier = null;
         private int e;
 
         public DataTable GetPoData(int type, string xml, int intWh, int indentId, DateTime dteDate, int enroll)
@@ -306,7 +307,62 @@ namespace SCM_BLL
                 return null;
             }
         }
+        public string[] AutoSearchSupplier(string prefix, string strType)
+        {
+            AllSupplier = new PoGenerateTDS.tblSupplier1DataTable[Convert.ToInt32(1)];
+            tblSupplier1TableAdapter adpCOA = new tblSupplier1TableAdapter();
+            AllSupplier[e] = adpCOA.GetAllSupplierData();
 
+            // prefix = prefix.Trim().ToLower();
+            DataTable tbl = new DataTable();
+            if (prefix.Trim().Length >= 3)
+            {
+                if (prefix == "" || prefix == "*")
+                {
+                    var rows = from tmp in AllSupplier[e]//Convert.ToInt32(ht[unitID])
+                               orderby tmp.strSupplierName
+                               select tmp;
+                    if (rows.Count() > 0)
+                    {
+                        tbl = rows.CopyToDataTable();
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        var rows = from tmp in AllSupplier[e]
+                                   where tmp.strSupplierName.ToLower().Contains(prefix) || tmp.intSupplierID.ToString().ToLower().Contains(prefix)
+                                   orderby tmp.strSupplierName
+                                   select tmp;
+
+                        if (rows.Count() > 0)
+                        {
+                            tbl = rows.CopyToDataTable();
+                        }
+                        //if (rows2.Count() > 0) { tbl = rows2.CopyToDataTable(); }
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                }
+            }
+            if (tbl.Rows.Count > 0)
+            {
+                string[] retStr = new string[tbl.Rows.Count];
+                for (int i = 0; i < tbl.Rows.Count; i++)
+                {
+                    retStr[i] = tbl.Rows[i]["strSupplierName"] + " " + "[" + tbl.Rows[i]["intSupplierID"] + "]";
+                }
+
+                return retStr;
+            }
+            else
+            {
+                return null;
+            }
+        }
         //public DataTable PoRegisterViewData(DateTime fDate  , DateTime tDate  ,string dept,int intWH  , int type  , int? intID  , int? intNewType)
         //{
         //    try
