@@ -606,6 +606,7 @@
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\InternalbillForBanking.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
@@ -4069,6 +4070,13 @@
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\InternalbillForBanking.aspx.cs">
+      <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\InternalbillForBanking.aspx.designer.cs">
+      <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.cs">
       <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
