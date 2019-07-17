@@ -51,12 +51,12 @@
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label2" runat="server" Text="Enroll"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
                                         <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="Enter Epmoyee Enroll"></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
                                         <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="Enter Epmoyee Code"></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top: 20px">
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <asp:Label ID="Label20" runat="server" Text="Name"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
                                         <asp:TextBox ID="txtName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Name"></asp:TextBox>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
