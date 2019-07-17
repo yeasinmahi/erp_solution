@@ -313,18 +313,18 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Production Type" ItemStyle-HorizontalAlign="right">
+                                        <asp:TemplateField HeaderText="Production Type" ItemStyle-HorizontalAlign="left">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblProductionType" Width="250px" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
+                                                <asp:Label ID="lblProductionType" Width="200px" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
+                                        <%--<asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_OnClick"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
                                     <EditRowStyle BackColor="#999999" />
                                     <FooterStyle Font-Bold="True" Font-Size="11px" BackColor="#5D7B9D" ForeColor="White" />
