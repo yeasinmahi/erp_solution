@@ -289,6 +289,11 @@
                                                         <asp:Label ID="lblAchievement" runat="server" Text='<%# Bind("strAchievement") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteEducation" runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="btnDeleteEducation_Click"></asp:Button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                                             </Columns>
                                             <EditRowStyle BackColor="#999999" />
@@ -430,7 +435,11 @@
                                                         <asp:Label ID="lblCurrentlyWorking" runat="server" Text='<%# Bind("strCurrentlyWorking") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteExperience" runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="btnDeleteExperience_Click"></asp:Button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
@@ -549,7 +558,11 @@
                                                         <asp:Label ID="lblDuration" runat="server" Text='<%# Bind("strDuration") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteTraining" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDeleteTraining_Click"></asp:Button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
@@ -605,6 +618,11 @@
                                                 <asp:TemplateField HeaderText="Work Info">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblOthersDetails" runat="server" Text='<%# Bind("strOtherDetails") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteWork" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDeleteWork_Click"></asp:Button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

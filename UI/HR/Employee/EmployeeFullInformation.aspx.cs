@@ -454,8 +454,71 @@ namespace UI.HR.Employee
             }
         }
 
+
         #endregion
 
-        
+        protected void btnDeleteEducation_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id =  Convert.ToInt32(gridviewEducation.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteEducation(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEducation();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+            
+        }
+
+        protected void btnDeleteExperience_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewExperience.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteExperience(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEmperience();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+            
+        }
+
+        protected void btnDeleteTraining_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewTraining.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteTraining(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadTrainingInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+           
+        }
+
+        protected void btnDeleteWork_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewWorkTitle.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteWorkTitle(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadWorkInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+            
+        }
     }
 }
