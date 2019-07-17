@@ -49,6 +49,27 @@
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                                     <div class="box">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:HiddenField ID="hdnSearch" Value="0" runat="server"/>
+                                                    <asp:Label ID="Label2" runat="server" Text="Enroll"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtEmployeeName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Employee Enroll"></asp:TextBox>
+                                                </div>
+                                                <%--<div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
+                                                    <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Employee Code"></asp:TextBox>
+                                                </div>--%>
+                                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 20px">
+                                                    <asp:Button ID="btnShowEmployeeInformation" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return showValidation();" OnClick="btnShowEmployeeInformation_Click" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
                                         <div class="box-header with-border">
                                             <h3 class="box-title">Personal Inforation</h3>
 
@@ -61,50 +82,46 @@
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <asp:Label ID="Label2" runat="server" Text="Enroll"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                                    <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Enroll"></asp:TextBox>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                                    <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Code"></asp:TextBox>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 20px">
-                                                    <asp:Button ID="btnShowEmployeeInformation" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return showValidation();" OnClick="btnShowEmployeeInformation_Click" />
-                                                </div>
-                                            </div>
+
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label20" runat="server" Text="Name"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                                    <asp:TextBox ID="txtName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Name"></asp:TextBox>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Epmloyee Name"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <asp:Label ID="Label48" runat="server" Text="Code"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                                    <asp:TextBox ID="TextBox1" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Name"></asp:TextBox>
+                                                    <asp:Label ID="Label48" runat="server" Text="Enroll"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Employee Enroll"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <asp:Label ID="Label12" runat="server" Text="Fathers Name"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Employee Code"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label12" runat="server" Text="Email"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtEmail" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Email Address"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label50" runat="server" Text="Fathers Name"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                                     <asp:TextBox ID="txtFatherName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Father Name"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label13" runat="server" Text="Mothers Name"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                                     <asp:TextBox ID="txtMotherNmae" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Mother name"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label49" runat="server" Text="Present Address"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                                     <asp:TextBox ID="txtPresentAddress" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write your full Present Address"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label15" runat="server" Text="Permanent Address"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                                     <asp:TextBox ID="txtPermanetAddress" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write your full Permamet Address"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -126,7 +143,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                                     <div class="box">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Organizational Inforation</h3>
+                                            <h3 class="box-title">Organizational Information</h3>
 
                                             <div class="box-tools pull-right">
                                                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -179,7 +196,7 @@
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
                                     <div class="box">
                                         <div class="box-header with-border">
-                                            <h3 class="box-title">Employment Inforation</h3>
+                                            <h3 class="box-title">Employment Information</h3>
 
                                             <div class="box-tools pull-right">
                                                 <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -215,7 +232,7 @@
                                         <div class="box-footer">
                                             <div class="row">
                                                 <div class="col-md-12 col-lg-12 pull-right">
-                                                    <asp:Button ID="btnInsertPersonalInfo" runat="server" class="btn btn-success" Text="Save" OnClientClick="return PersonalInfoValidate();" OnClick="btnInsertPersonalInfo_Click" />
+                                                    <asp:Button ID="btnInsertPersonalInfo" runat="server" class="btn btn-success" Text="Update" OnClientClick="return PersonalInfoValidate();" OnClick="btnInsertPersonalInfo_Click" />
                                                 </div>
                                             </div>
                                             <!-- /.row -->
@@ -951,8 +968,35 @@
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
-
+        function SearchText() {
+                $("#txtEmployeeName").autocomplete({
+                    source: function (request, response) {
+                        $.ajax({
+                            type: "POST",
+                            contentType: "application/json;",
+                            url: "PubEmployeeFullInformation.aspx/GetAutoCompleteData",
+                            data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
+                            dataType: "json",
+                            success: function (data) {
+                                response(data.d);
+                            },
+                            error: function (result) {
+                                console.log(result.responseText);
+                            }
+                        });
+                    },
+                    minLength: 3,
+                    <%--select: function (event, ui) {
+                        console.log(ui.item.value);
+                        var hdnSearchId = document.getElementById("<%=hdnSearch.ClientID%>");
+                        hdnSearchId.value = 1;
+                        document.getElementById('<%=txtEmployeeName.ClientID %>').value = ui.item.value;
+                        __doPostBack('', ui.item.value);
+                    }--%>
+                });
+            }
         function Init() {
+            SearchText();
             $('#txtPromotionDate').datepicker({
                 dateFormat: 'dd/mm/yy'
             });
