@@ -180,7 +180,7 @@ namespace UI.HR.Employee
         }
         private void LoadExam()
         {
-            _dt = _bll.GetExamList();
+            _dt = _bll.GetExamList(ddlLevelOfEducation.SelectedValue());
             ddlExam.LoadWithSelect(_dt, "intExamID", "strExamName");
         }
         private void LoadBoard()
@@ -233,6 +233,10 @@ namespace UI.HR.Employee
             {
                 Toaster(message, Common.TosterType.Error);
             }
+        }
+        protected void ddlLevelOfEducation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadExam();
         }
         private void LoadEducation()
         {
@@ -294,6 +298,7 @@ namespace UI.HR.Employee
         {
             _dt = _bll.GetCountry();
             ddlCountry.Loads(_dt, "intCountryID", "strCountry");
+            ddlCountry.SetSelectedValue("22");
         }
         private void LoadTrainigYear()
         {
@@ -448,8 +453,9 @@ namespace UI.HR.Employee
                 
             }
         }
+
         #endregion
 
-
+        
     }
 }

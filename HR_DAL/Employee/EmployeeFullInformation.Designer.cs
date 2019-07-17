@@ -3263,6 +3263,8 @@ namespace HR_DAL.Employee {
             
             private global::System.Data.DataColumn columnstrExamName;
             
+            private global::System.Data.DataColumn columnintLavelOfEducation;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public tblExamListDataTable() {
@@ -3314,6 +3316,14 @@ namespace HR_DAL.Employee {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intLavelOfEducationColumn {
+                get {
+                    return this.columnintLavelOfEducation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3349,14 +3359,22 @@ namespace HR_DAL.Employee {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public tblExamListRow AddtblExamListRow(string strExamName) {
+            public tblExamListRow AddtblExamListRow(string strExamName, int intLavelOfEducation) {
                 tblExamListRow rowtblExamListRow = ((tblExamListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        strExamName};
+                        strExamName,
+                        intLavelOfEducation};
                 rowtblExamListRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblExamListRow);
                 return rowtblExamListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public tblExamListRow FindByintExamID(int intExamID) {
+                return ((tblExamListRow)(this.Rows.Find(new object[] {
+                            intExamID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3378,6 +3396,7 @@ namespace HR_DAL.Employee {
             internal void InitVars() {
                 this.columnintExamID = base.Columns["intExamID"];
                 this.columnstrExamName = base.Columns["strExamName"];
+                this.columnintLavelOfEducation = base.Columns["intLavelOfEducation"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3387,11 +3406,16 @@ namespace HR_DAL.Employee {
                 base.Columns.Add(this.columnintExamID);
                 this.columnstrExamName = new global::System.Data.DataColumn("strExamName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrExamName);
+                this.columnintLavelOfEducation = new global::System.Data.DataColumn("intLavelOfEducation", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintLavelOfEducation);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnintExamID}, true));
                 this.columnintExamID.AutoIncrement = true;
                 this.columnintExamID.AutoIncrementSeed = -1;
                 this.columnintExamID.AutoIncrementStep = -1;
                 this.columnintExamID.AllowDBNull = false;
                 this.columnintExamID.ReadOnly = true;
+                this.columnintExamID.Unique = true;
                 this.columnstrExamName.MaxLength = 150;
             }
             
@@ -9050,6 +9074,22 @@ namespace HR_DAL.Employee {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intLavelOfEducation {
+                get {
+                    try {
+                        return ((int)(this[this.tabletblExamList.intLavelOfEducationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intLavelOfEducation\' in table \'tblExamList\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblExamList.intLavelOfEducationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrExamNameNull() {
                 return this.IsNull(this.tabletblExamList.strExamNameColumn);
             }
@@ -9058,6 +9098,18 @@ namespace HR_DAL.Employee {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrExamNameNull() {
                 this[this.tabletblExamList.strExamNameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintLavelOfEducationNull() {
+                return this.IsNull(this.tabletblExamList.intLavelOfEducationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintLavelOfEducationNull() {
+                this[this.tabletblExamList.intLavelOfEducationColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13288,12 +13340,35 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
             tableMapping.DataSetTable = "tblExamList";
             tableMapping.ColumnMappings.Add("intExamID", "intExamID");
             tableMapping.ColumnMappings.Add("strExamName", "strExamName");
+            tableMapping.ColumnMappings.Add("intLavelOfEducation", "intLavelOfEducation");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [ERP_HR].[dbo].[tblExamList] WHERE (([intExamID] = @Original_intExamID) AND ((@IsNull_strExamName = 1 AND [strExamName] IS NULL) OR ([strExamName] = @Original_strExamName)) AND ((@IsNull_intLavelOfEducation = 1 AND [intLavelOfEducation] IS NULL) OR ([intLavelOfEducation] = @Original_intLavelOfEducation)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intExamID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intExamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strExamName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strExamName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strExamName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strExamName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLavelOfEducation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLavelOfEducation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_HR].[dbo].[tblExamList] ([strExamName]) VALUES (@strExamName)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [ERP_HR].[dbo].[tblExamList] ([strExamName], [intLavelOfEducation]) V" +
+                "ALUES (@strExamName, @intLavelOfEducation)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strExamName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strExamName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLavelOfEducation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [ERP_HR].[dbo].[tblExamList] SET [strExamName] = @strExamName, [intLavelOfEducation] = @intLavelOfEducation WHERE (([intExamID] = @Original_intExamID) AND ((@IsNull_strExamName = 1 AND [strExamName] IS NULL) OR ([strExamName] = @Original_strExamName)) AND ((@IsNull_intLavelOfEducation = 1 AND [intLavelOfEducation] IS NULL) OR ([intLavelOfEducation] = @Original_intLavelOfEducation)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strExamName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strExamName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intLavelOfEducation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intExamID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intExamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_strExamName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strExamName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_strExamName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "strExamName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_intLavelOfEducation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_intLavelOfEducation", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13309,16 +13384,24 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from ERP_HR.dbo.tblExamList";
+            this._commandCollection[0].CommandText = "select * from ERP_HR.dbo.tblExamList where intlaVelOFEducation = @levelOfEducatio" +
+                "nId";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@levelOfEducationId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intLavelOfEducation", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual EmployeeFullInformation.tblExamListDataTable GetData() {
+        public virtual EmployeeFullInformation.tblExamListDataTable GetData(global::System.Nullable<int> levelOfEducationId) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((levelOfEducationId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(levelOfEducationId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             EmployeeFullInformation.tblExamListDataTable dataTable = new EmployeeFullInformation.tblExamListDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;

@@ -154,7 +154,7 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <asp:Label ID="Label5" runat="server" Text="Level Of Education"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:DropDownList ID="ddlLevelOfEducation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlLevelOfEducation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLevelOfEducation_SelectedIndexChanged"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <asp:Label ID="Label6" runat="server" Text="Result"></asp:Label>

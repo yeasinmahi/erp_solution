@@ -44,10 +44,10 @@ namespace HR_BLL.Employee
             tblResultGradeListTableAdapter adp = new tblResultGradeListTableAdapter();
             return adp.GetData();
         }
-        public DataTable GetExamList()
+        public DataTable GetExamList(int levelOfEducation)
         {
             tblExamListTableAdapter adp = new tblExamListTableAdapter();
-            return adp.GetData();
+            return adp.GetData(levelOfEducation);
         }
         public DataTable GetEducationBoard()
         {
