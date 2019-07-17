@@ -239,8 +239,11 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="dgvStore" runat="server" Width="800px" AutoGenerateColumns="False" AllowPaging="false" PageSize="8"
-                                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" OnRowDeleting="dgvGridView_RowDeleting"
-                                    HeaderStyle-Font-Size="10px" FooterStyle-Font-Size="11px" HeaderStyle-Font-Bold="true"
+                                    CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" 
+                                    OnRowDeleting="dgvGridView_RowDeleting"
+                                    HeaderStyle-Font-Size="10px" 
+                                    FooterStyle-Font-Size="11px" 
+                                    HeaderStyle-Font-Bold="true"
                                     ForeColor="Black" GridLines="Vertical">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
