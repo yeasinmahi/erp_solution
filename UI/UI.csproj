@@ -479,6 +479,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\PubEmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
@@ -3340,6 +3341,13 @@
     </Compile>
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.cs">
+      <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.designer.cs">
+      <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
     </Compile>
     <Compile Include="HR\Employee\EmployeeFullInformation.aspx.cs">
       <DependentUpon>EmployeeFullInformation.aspx</DependentUpon>

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="EmployeeFullInformation.aspx.cs" Inherits="UI.HR.Employee.EmployeeFullInformation" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PubEmployeeFullInformation.aspx.cs" Inherits="UI.HR.Employee.PubEmployeeFullInformation" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
@@ -52,15 +52,15 @@
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label2" runat="server" Text="Enroll"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="Enter Epmoyee Enroll"></asp:TextBox>
+                                        <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Enroll"></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="Enter Epmoyee Code"></asp:TextBox>
+                                        <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Code"></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top: 20px">
-                                        <asp:Button ID="btnShowEmployeeInformation" runat="server" class="btn btn-primary form-control pull-right hidden"  Text="Show" OnClientClick="return showValidation();" OnClick="btnShowEmployeeInformation_Click" />
+                                        <asp:Button ID="btnShowEmployeeInformation" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return showValidation();" OnClick="btnShowEmployeeInformation_Click" />
                                     </div>
                                     <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px">
                                         <br />
