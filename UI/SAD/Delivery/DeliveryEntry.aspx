@@ -455,6 +455,10 @@
                                 </asp:Panel>
                             </td>
                         </tr>
+                        <tr>
+                            <td>Remarks</td>
+                            <td colspan="3"><asp:TextBox ID="txtHRemarks" runat="server" Width="350px"></asp:TextBox></td>
+                        </tr>
                     </table>
                     <hr />
                     <asp:Panel ID="pnlLogistic" runat="server" Visible="True">
