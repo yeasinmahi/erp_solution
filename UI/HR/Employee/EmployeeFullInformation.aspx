@@ -622,7 +622,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Action">
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btnDeleteWork" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDeleteWork_Click"></asp:Button>
+                                                        <asp:Button ID="btnDeleteWork" CssClass="btn btn-danger" runat="server" Text="Delete"  OnClick="btnDeleteWork_Click"></asp:Button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
@@ -669,31 +669,166 @@
     </form>
     <script type="text/javascript">
 
-        function Validate() {
+        function PersonalInfoValidate() {
             var txtEnroll = document.getElementById("txtEnroll").value;
-            var txtDate = document.getElementById("txtDate").value;
-            var txtMove = document.getElementById("txtMove").value;
-            var txtStarTime = document.getElementById("txtStrtTime").value;
-            var txtEndTime = document.getElementById("txtEndTime").value;
-
+            var txtName = document.getElementById("txtName").value;
+            var txtFatherName = document.getElementById("txtFatherName").value;
+            var txtMotherNmae = document.getElementById("txtMotherNmae").value;
+            var txtPermanetAddress = document.getElementById("txtPermanetAddress").value;
+            var txtJoiningDate = document.getElementById("txtJoiningDate").value;
+            var txtPresentSalary = document.getElementById("txtPresentSalary").value;
+            var txtJoiningSalary = document.getElementById("txtJoiningSalary").value;
+            
             if (txtEnroll === null || txtEnroll === "") {
-                ShowNotification('Enter Employee properly', 'OverTime', 'warning');
+                ShowNotification('Enter Employee Enroll properly', 'Employee Information Update', 'warning');
                 return false;
             }
-            if (txtDate === null || txtDate === "") {
-                ShowNotification('Date can not be blank', 'OverTime', 'warning');
+            if (txtName === null || txtName === "") {
+                ShowNotification('Name can not be blank', 'Employee Information Update', 'warning');
                 return false;
             }
-            if (txtMove === null || txtMove === "") {
-                ShowNotification('Movement hour can not be blank', 'OverTime', 'warning');
+            if (txtFatherName === null || txtFatherName === "") {
+                ShowNotification('Father Name can not be blank', 'Employee Information Update', 'warning');
                 return false;
             }
-            if (txtStarTime === null || txtStarTime === "") {
-                ShowNotification('Start time can not be blank', 'OverTime', 'warning');
+            if (txtMotherNmae === null || txtMotherNmae === "") {
+                ShowNotification('Mother Name can not be blank', 'Employee Information Update', 'warning');
                 return false;
             }
-            if (txtEndTime === null || txtEndTime === "") {
-                ShowNotification('End time can not be blank', 'OverTime', 'warning');
+            if (txtPermanetAddress === null || txtEndTime === "") {
+                ShowNotification('Permanent Address can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtJoiningDate === null || txtJoiningDate === "") {
+                ShowNotification('Joining Date can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtPresentSalary === null || txtPresentSalary === "") {
+                ShowNotification('Present salary can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtJoiningSalary === null || txtJoiningSalary === "") {
+                ShowNotification('Joining salary can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+
+            return true;
+        }
+        function EducationInfoValidate() {
+            var ddlLevelOfEducation = document.getElementById("ddlLevelOfEducation");
+            var levelOfEducation = ddlLevelOfEducation.options[ddlLevelOfEducation.selectedIndex].value;
+
+            var ddlResult = document.getElementById("ddlResult");
+            var result = ddlResult.options[ddlResult.selectedIndex].value;
+
+            var ddlExam = document.getElementById("ddlExam").value;
+            var exam = ddlExam.options[ddlExam.selectedIndex].value;
+
+            var ddlBoard = document.getElementById("ddlBoard").value;
+            var board = ddlBoard.options[ddlBoard.selectedIndex].value;
+            
+            var txtMajorGroup = document.getElementById("txtMajorGroup").value;
+            var txtInstitude = document.getElementById("txtInstitude").value;
+            var txtDuration = document.getElementById("txtDuration").value;
+            
+            if (levelOfEducation === null || levelOfEducation === "") {
+                ShowNotification('Level of education should select properly', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (result === null || result === "") {
+                ShowNotification('Result should select properly', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (exam === null || exam === "") {
+                ShowNotification('Exam should select properly', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (board === null || board === "") {
+                ShowNotification('Board should select properly', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtMajorGroup === null || txtMajorGroup === "") {
+                ShowNotification('Major can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtInstitude === null || txtInstitude === "") {
+                ShowNotification('Institude can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtDuration === null || txtDuration === "") {
+                ShowNotification('Duration can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+
+            return true;
+        }
+        function ExperienceInfoValidate() {
+            var txtCompanyName = document.getElementById("txtCompanyName").value;
+            var txtCompanyBusiness = document.getElementById("txtCompanyBusiness").value;
+            var txtEmploymentDesignation = document.getElementById("txtEmploymentDesignation").value;
+            var txtEmployementDepartment = document.getElementById("txtEmployementDepartment").value;
+            var txtFromDate = document.getElementById("txtFromDate").value;
+            
+            if (txtCompanyName === null || txtCompanyName === "") {
+                ShowNotification('Company name can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtCompanyBusiness === null || txtCompanyBusiness === "") {
+                ShowNotification('Comapny Address can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtCompanyBusiness === null || txtCompanyBusiness === "") {
+                ShowNotification('Comapny Business can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtEmploymentDesignation === null || txtEmploymentDesignation === "") {
+                ShowNotification('Designation can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtEmployementDepartment === null || txtEmployementDepartment === "") {
+                ShowNotification('Department can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtFromDate === null || txtFromDate === "") {
+                ShowNotification('From Date can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+
+            return true;
+        }
+        function TrainingInfoValidate() {
+            var txtTrainingTitle = document.getElementById("txtTrainingTitle").value;
+            var txtTopicCovered = document.getElementById("txtTopicCovered").value;
+            var txtTrainingInstitude = document.getElementById("txtTrainingInstitude").value;
+            var txtTrainingDuration = document.getElementById("txtTrainingDuration").value;
+            var txtTrainingLocation = document.getElementById("txtTrainingLocation").value;
+            
+            if (txtTrainingTitle === null || txtTrainingTitle === "") {
+                ShowNotification('Company name can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtTopicCovered === null || txtTopicCovered === "") {
+                ShowNotification('Comapny Address can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtTrainingInstitude === null || txtTrainingInstitude === "") {
+                ShowNotification('Comapny Business can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtTrainingDuration === null || txtTrainingDuration === "") {
+                ShowNotification('Designation can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtTrainingLocation === null || txtTrainingLocation === "") {
+                ShowNotification('Department can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            return true;
+        }
+        function WorkTitleValidate() {
+            var txtWorkTitle = document.getElementById("txtWorkTitle").value;
+            if (txtWorkTitle === null || txtWorkTitle === "") {
+                ShowNotification('Work Title can not be blank', 'Employee Information Update', 'warning');
                 return false;
             }
             return true;

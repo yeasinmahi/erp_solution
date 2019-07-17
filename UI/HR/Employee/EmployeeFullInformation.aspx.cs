@@ -84,18 +84,15 @@ namespace UI.HR.Employee
             }
             int joiningDesignationId = ddlJoiningDesignation.SelectedValue();
             string joiningDesignation = ddlJoiningDesignation.SelectedText();
-            if (!decimal.TryParse(txtPresentSalary.Text, out decimal joiningSalary))
+            if (!decimal.TryParse(txtJoiningSalary.Text, out decimal joiningSalary))
             {
                 Toaster("Please Enter Joining Salary Properly");
                 return;
             }
             string previousOrganization = txtPreviousOrganization.Text;
             string previousDesignation = txtPreviousDesignation.Text;
-            if (!decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary))
-            {
-                Toaster("Please Enter Previous Salary Properly");
-                return;
-            }
+            decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary);
+
             string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
             if (message.ToLower().Contains("success"))
             {
