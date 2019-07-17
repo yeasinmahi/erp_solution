@@ -263,8 +263,16 @@ namespace UI.HR.Employee
             string strDepartment = txtEmployementDepartment.Text;
             string strResponsibilities = txtResponsibilities.Text;
             DateTime dteEmploymentPeriodFrom = txtFromDate.Text.ToDateTime("dd/MM/yyyy");
-            DateTime dteEmploymentPeriodTo = txtToDate.Text.ToDateTime("dd/MM/yyyy"); ;
-            string strCurrentlyWorking = chkCurentlyWorking.Text;
+            DateTime? dteEmploymentPeriodTo = null;
+            if (!string.IsNullOrWhiteSpace(txtToDate.Text))
+            {
+                txtToDate.Text.ToDateTime("dd/MM/yyyy");
+            }
+            string strCurrentlyWorking = string.Empty;
+            if (chkCurentlyWorking.Checked)
+            {
+                strCurrentlyWorking = chkCurentlyWorking.Text;
+            }
             string strExpertiseSkill = txtAreaOfExperience.Text;
 
 

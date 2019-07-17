@@ -27,20 +27,25 @@
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
                 <div style="height: 10px; width: 100%"></div>
-                <%--=========================================Start My Code From Here===============================================--%>
-                <div class="container">
-                    <h2>Employee Information Update</h2>
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#personal">Personal</a></li>
-                        <li><a data-toggle="tab" href="#education">Education</a></li>
-                        <li><a data-toggle="tab" href="#experience">Experience</a></li>
-                        <li><a data-toggle="tab" href="#training">Training</a></li>
-                        <li><a data-toggle="tab" href="#others">Others</a></li>
-                        <li><a data-toggle="tab" href="#photograph">Photograph</a></li>
-                    </ul>
+            </ContentTemplate>
+        </asp:UpdatePanel>
+        <%--=========================================Start My Code From Here===============================================--%>
+        <div class="container">
+            <asp:HiddenField runat="server" ID="hdnTab" Value="1" />
+            <h2>Employee Information Update</h2>
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#personal">Personal</a></li>
+                <li><a data-toggle="tab" href="#education">Education</a></li>
+                <li><a data-toggle="tab" href="#experience">Experience</a></li>
+                <li><a data-toggle="tab" href="#training">Training</a></li>
+                <li><a data-toggle="tab" href="#others">Others</a></li>
+                <li><a data-toggle="tab" href="#photograph">Photograph</a></li>
+            </ul>
 
-                    <div class="tab-content">
-                        <div id="personal" class="tab-pane fade in active">
+            <div class="tab-content">
+                <div id="personal" class="tab-pane fade in active">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
                             <h3>Personal Inforation</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -93,7 +98,7 @@
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label17" runat="server" Text="Last Promotion Date"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPromotionDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off" ></asp:TextBox>
+                                        <asp:TextBox ID="txtPromotionDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off"></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label18" runat="server" Text="Present Designation"></asp:Label>
@@ -146,8 +151,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="education" class="tab-pane fade">
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div id="education" class="tab-pane fade">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
                             <h3>Education Iformation</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -310,9 +319,12 @@
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
-                        <div id="experience" class="tab-pane fade">
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div id="experience" class="tab-pane fade">
+                    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
                             <h3>Experience Information</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -455,8 +467,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="training" class="tab-pane fade">
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div id="training" class="tab-pane fade">
+                    <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
                             <h3>Training Information</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -578,8 +594,12 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="others" class="tab-pane fade">
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div id="others" class="tab-pane fade">
+                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
                             <h3>Work Information</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -622,7 +642,7 @@
                                                 </asp:TemplateField>
                                                 <asp:TemplateField HeaderText="Action">
                                                     <ItemTemplate>
-                                                        <asp:Button ID="btnDeleteWork" CssClass="btn btn-danger" runat="server" Text="Delete"  OnClick="btnDeleteWork_Click"></asp:Button>
+                                                        <asp:Button ID="btnDeleteWork" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDeleteWork_Click"></asp:Button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>
@@ -640,8 +660,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="photograph" class="tab-pane fade">
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+
+                <div id="photograph" class="tab-pane fade">
+                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
                             <h3>Photograph</h3>
                             <div class="panel-body">
                                 <div class="row">
@@ -658,17 +683,19 @@
 
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:PostBackTrigger ControlID="btnUpload" />
+                        </Triggers>
+                    </asp:UpdatePanel>
                 </div>
-            </ContentTemplate>
-            <Triggers>
-                <asp:PostBackTrigger ControlID="btnUpload" />
-            </Triggers>
-        </asp:UpdatePanel>
+            </div>
+        </div>
     </form>
     <script type="text/javascript">
-
+        function showValidation() {
+            return true;
+        }
         function PersonalInfoValidate() {
             var txtEnroll = document.getElementById("txtEnroll").value;
             var txtName = document.getElementById("txtName").value;
@@ -678,7 +705,7 @@
             var txtJoiningDate = document.getElementById("txtJoiningDate").value;
             var txtPresentSalary = document.getElementById("txtPresentSalary").value;
             var txtJoiningSalary = document.getElementById("txtJoiningSalary").value;
-            
+
             if (txtEnroll === null || txtEnroll === "") {
                 ShowNotification('Enter Employee Enroll properly', 'Employee Information Update', 'warning');
                 return false;
@@ -695,7 +722,7 @@
                 ShowNotification('Mother Name can not be blank', 'Employee Information Update', 'warning');
                 return false;
             }
-            if (txtPermanetAddress === null || txtEndTime === "") {
+            if (txtPermanetAddress === null || txtPermanetAddress === "") {
                 ShowNotification('Permanent Address can not be blank', 'Employee Information Update', 'warning');
                 return false;
             }
@@ -726,11 +753,11 @@
 
             var ddlBoard = document.getElementById("ddlBoard").value;
             var board = ddlBoard.options[ddlBoard.selectedIndex].value;
-            
+
             var txtMajorGroup = document.getElementById("txtMajorGroup").value;
             var txtInstitude = document.getElementById("txtInstitude").value;
             var txtDuration = document.getElementById("txtDuration").value;
-            
+
             if (levelOfEducation === null || levelOfEducation === "") {
                 ShowNotification('Level of education should select properly', 'Employee Information Update', 'warning');
                 return false;
@@ -768,7 +795,7 @@
             var txtEmploymentDesignation = document.getElementById("txtEmploymentDesignation").value;
             var txtEmployementDepartment = document.getElementById("txtEmployementDepartment").value;
             var txtFromDate = document.getElementById("txtFromDate").value;
-            
+
             if (txtCompanyName === null || txtCompanyName === "") {
                 ShowNotification('Company name can not be blank', 'Employee Information Update', 'warning');
                 return false;
@@ -802,7 +829,7 @@
             var txtTrainingInstitude = document.getElementById("txtTrainingInstitude").value;
             var txtTrainingDuration = document.getElementById("txtTrainingDuration").value;
             var txtTrainingLocation = document.getElementById("txtTrainingLocation").value;
-            
+
             if (txtTrainingTitle === null || txtTrainingTitle === "") {
                 ShowNotification('Company name can not be blank', 'Employee Information Update', 'warning');
                 return false;
@@ -843,7 +870,7 @@
                 ImageDir.readAsDataURL(input.files[0]);
             }
         }
-
+        
         $(function () {
 
             Init();
@@ -865,7 +892,6 @@
             $('#txtToDate').datepicker({
                 dateFormat: 'dd/mm/yy'
             });
-
         }
     </script>
 </body>

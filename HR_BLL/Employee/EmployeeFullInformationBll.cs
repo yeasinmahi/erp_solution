@@ -61,7 +61,7 @@ namespace HR_BLL.Employee
             adp.Insert1(intPart, intEnroll, intEducationID, strEducationName, intResultID, strResult, intExamID, strExamName, numCGPAMarks, numScale, strConcentrationMajorGroup, intBoardID, strBoard, strInstituteName, intYearOfPassing, strDurationYear, strAchievement, intActionBy, ysnActive, intEducationInfoID, ref message);
             return message;
         }
-        public string InsertExperienceInfo(int intPart, int intEnroll, string strCompanyName, string strCompanyLocation, string strCompanyBusiness, string strDesignation, string strDepartment, string strResponsibilities, DateTime dteEmploymentPeriodFrom, DateTime dteEmploymentPeriodTo, string strCurrentlyWorking, string strExpertiseSkill, int intActionBy)
+        public string InsertExperienceInfo(int intPart, int intEnroll, string strCompanyName, string strCompanyLocation, string strCompanyBusiness, string strDesignation, string strDepartment, string strResponsibilities, DateTime dteEmploymentPeriodFrom, DateTime? dteEmploymentPeriodTo, string strCurrentlyWorking, string strExpertiseSkill, int intActionBy)
         {
             string message = string.Empty;
             sprEmploymentHistoryTableAdapter adp = new sprEmploymentHistoryTableAdapter();
