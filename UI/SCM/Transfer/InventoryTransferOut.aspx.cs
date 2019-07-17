@@ -420,8 +420,17 @@ namespace UI.SCM.Transfer
 
                     if (xmlString.Length > 5)
                     {
-
-                        string msg = _bll.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        string msg = string.Empty;
+                        int WHType = _bll.GetWareHouseType(intWh);
+                        if(WHType == 4)
+                        {
+                            msg = _bll.PostTransfer(16, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        }
+                        else
+                        {
+                            msg = _bll.PostTransfer(8, xmlString, intWh, intToWh, DateTime.Now, Enroll);
+                        }
+                         
                         xmlString = String.Empty;
                         Toaster(msg,
                             msg.ToLower().Contains("success") ? Common.TosterType.Success : Common.TosterType.Error);
@@ -472,8 +481,15 @@ namespace UI.SCM.Transfer
                 dsGrid.WriteXml(filePathForXML);
                 DataSet dsGridAfterDelete = (DataSet)dgvStore.DataSource;
                 if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
-                { File.Delete(filePathForXML); dgvStore.DataSource = ""; dgvStore.DataBind(); }
-                else { LoadGridwithXml(); }
+                {
+                    File.Delete(filePathForXML);
+                    dgvStore.DataSource = "";
+                    dgvStore.DataBind();
+                }
+                else
+                {
+                    LoadGridwithXml();
+                }
             }
             catch { }
         }

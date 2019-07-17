@@ -93,7 +93,7 @@
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label17" runat="server" Text="Last Promotion Date"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPromotionDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY"></asp:TextBox>
+                                        <asp:TextBox ID="txtPromotionDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off" ></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label18" runat="server" Text="Present Designation"></asp:Label>
@@ -113,7 +113,7 @@
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label21" runat="server" Text="joining Date of Organization"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtJoiningDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY"></asp:TextBox>
+                                        <asp:TextBox ID="txtJoiningDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off"></asp:TextBox>
                                     </div>
                                     <div class="col-md-4 col-sm-4 col-xs-12">
                                         <asp:Label ID="Label22" runat="server" Text="joining Designation"></asp:Label>
@@ -154,7 +154,7 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <asp:Label ID="Label5" runat="server" Text="Level Of Education"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:DropDownList ID="ddlLevelOfEducation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlLevelOfEducation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddlLevelOfEducation_SelectedIndexChanged"></asp:DropDownList>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <asp:Label ID="Label6" runat="server" Text="Result"></asp:Label>
@@ -289,6 +289,11 @@
                                                         <asp:Label ID="lblAchievement" runat="server" Text='<%# Bind("strAchievement") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteEducation" runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="btnDeleteEducation_Click"></asp:Button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
 
                                             </Columns>
                                             <EditRowStyle BackColor="#999999" />
@@ -344,12 +349,12 @@
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <asp:Label ID="Label35" runat="server" Text="Employment From"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtFromDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: dd/mm/yyyy"></asp:TextBox>
+                                        <asp:TextBox ID="txtFromDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: dd/mm/yyyy" autocomplete="off"></asp:TextBox>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-6">
                                         <asp:Label ID="Label36" runat="server" Text="Employment To"></asp:Label>
                                         <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtToDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: dd/mm/yyyy"></asp:TextBox>
+                                        <asp:TextBox ID="txtToDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex: dd/mm/yyyy" autocomplete="off"></asp:TextBox>
                                         <asp:CheckBox ID="chkCurentlyWorking" CssClass="col-md-12 col-sm-12 col-xs-12" runat="server" Text="Currently Working" />
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -430,7 +435,11 @@
                                                         <asp:Label ID="lblCurrentlyWorking" runat="server" Text='<%# Bind("strCurrentlyWorking") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteExperience" runat="server" CssClass="btn btn-danger" Text="Delete" OnClick="btnDeleteExperience_Click"></asp:Button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
@@ -549,7 +558,11 @@
                                                         <asp:Label ID="lblDuration" runat="server" Text='<%# Bind("strDuration") %>'></asp:Label>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
-
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteTraining" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDeleteTraining_Click"></asp:Button>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                                             </Columns>
                                             <EditRowStyle BackColor="#999999" />
                                             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" />
@@ -605,6 +618,11 @@
                                                 <asp:TemplateField HeaderText="Work Info">
                                                     <ItemTemplate>
                                                         <asp:Label ID="lblOthersDetails" runat="server" Text='<%# Bind("strOtherDetails") %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:TemplateField HeaderText="Action">
+                                                    <ItemTemplate>
+                                                        <asp:Button ID="btnDeleteWork" CssClass="btn btn-danger" runat="server" Text="Delete" OnClick="btnDeleteWork_Click"></asp:Button>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
                                             </Columns>

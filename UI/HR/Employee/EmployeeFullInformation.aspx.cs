@@ -147,6 +147,12 @@ namespace UI.HR.Employee
                     return;
                 }
             }
+            txtName.Text =  _dt.GetValue<string>("strEmployeeName");
+            txtPermanetAddress.Text =  _dt.GetValue<string>("strPermanentAddress");
+            txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
+            ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
+            ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
+            txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
         }
         public void LoadEmpInfo(DataTable dt)
         {
@@ -174,7 +180,7 @@ namespace UI.HR.Employee
         }
         private void LoadExam()
         {
-            _dt = _bll.GetExamList();
+            _dt = _bll.GetExamList(ddlLevelOfEducation.SelectedValue());
             ddlExam.LoadWithSelect(_dt, "intExamID", "strExamName");
         }
         private void LoadBoard()
@@ -227,6 +233,10 @@ namespace UI.HR.Employee
             {
                 Toaster(message, Common.TosterType.Error);
             }
+        }
+        protected void ddlLevelOfEducation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadExam();
         }
         private void LoadEducation()
         {
@@ -288,6 +298,7 @@ namespace UI.HR.Employee
         {
             _dt = _bll.GetCountry();
             ddlCountry.Loads(_dt, "intCountryID", "strCountry");
+            ddlCountry.SetSelectedValue("22");
         }
         private void LoadTrainigYear()
         {
@@ -442,8 +453,72 @@ namespace UI.HR.Employee
                 
             }
         }
+
+
         #endregion
 
+        protected void btnDeleteEducation_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id =  Convert.ToInt32(gridviewEducation.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteEducation(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEducation();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+            
+        }
 
+        protected void btnDeleteExperience_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewExperience.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteExperience(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEmperience();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+            
+        }
+
+        protected void btnDeleteTraining_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewTraining.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteTraining(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadTrainingInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+           
+        }
+
+        protected void btnDeleteWork_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewWorkTitle.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteWorkTitle(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadWorkInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+            
+        }
     }
 }

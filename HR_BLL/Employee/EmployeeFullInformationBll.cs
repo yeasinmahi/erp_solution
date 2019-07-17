@@ -44,10 +44,10 @@ namespace HR_BLL.Employee
             tblResultGradeListTableAdapter adp = new tblResultGradeListTableAdapter();
             return adp.GetData();
         }
-        public DataTable GetExamList()
+        public DataTable GetExamList(int levelOfEducation)
         {
             tblExamListTableAdapter adp = new tblExamListTableAdapter();
-            return adp.GetData();
+            return adp.GetData(levelOfEducation);
         }
         public DataTable GetEducationBoard()
         {
@@ -117,6 +117,25 @@ namespace HR_BLL.Employee
             tblEducationInformationTableAdapter adp = new tblEducationInformationTableAdapter();
             return adp.GetData(enroll);
         }
-
+        public DataTable DeleteWorkTitle(int id)
+        {
+            tblOthersInformation1TableAdapter adp = new tblOthersInformation1TableAdapter();
+            return adp.Delete1(id);
+        }
+        public DataTable DeleteTraining(int id)
+        {
+            tblTrainingHistory1TableAdapter adp = new tblTrainingHistory1TableAdapter();
+            return adp.Delete1(id);
+        }
+        public DataTable DeleteExperience(int id)
+        {
+            tblEmploymentHistory1TableAdapter adp = new tblEmploymentHistory1TableAdapter();
+            return adp.Delete1(id);
+        }
+        public DataTable DeleteEducation(int id)
+        {
+            tblEducationInformation1TableAdapter adp = new tblEducationInformation1TableAdapter();
+            return adp.Delete1(id);
+        }
     }
 }
