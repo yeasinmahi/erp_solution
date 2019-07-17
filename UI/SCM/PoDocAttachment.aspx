@@ -182,18 +182,33 @@
                             </td>
                             <td style="text-align: right;">
                                 <asp:Label ID="Label3" runat="server" CssClass="lbl" Text="Supplier"></asp:Label></td>
-                            <td>
-                                <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier" CssClass="txtBox" AutoPostBack="true" Width="200px"></asp:TextBox>
+                            <td id="SupplierSearch" runat="server">
+                                <asp:TextBox ID="txtSupplier" runat="server" AutoCompleteType="Search" placeholder="Search Supplier By Unit" CssClass="txtBox" AutoPostBack="true" Width="200px"></asp:TextBox>
                                 <cc1:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="txtSupplier"
                                     ServiceMethod="GetMasterSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
                                     CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
                                     CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
                                 </cc1:AutoCompleteExtender>
-                                <asp:Button ID="btnPoSuppShow" forecolor="Blue" runat="server" Text="Show" OnClick="btnPoSuppShow_Click" />
+                                
 
                             </td>
+                            
                             <td>
+                                <asp:Button ID="btnPoSuppShow" forecolor="Blue" runat="server" Text="Show" OnClick="btnPoSuppShow_Click" />
                                 <asp:Button ID="btnPrint" runat="server" Text="Print" Width="70" OnClientClick="return PrintPanel();" /></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td id="allSupplierSearch" runat="server">
+                                <asp:TextBox ID="txtAllSupplier" runat="server" AutoCompleteType="Search" placeholder="Search All Supplier" CssClass="txtBox" AutoPostBack="true" Width="200px"></asp:TextBox>
+                                <cc1:AutoCompleteExtender ID="AutoCompleteExtender2" runat="server" TargetControlID="txtAllSupplier"
+                                    ServiceMethod="GetAllSupplierSearch" MinimumPrefixLength="1" CompletionSetCount="1"
+                                    CompletionInterval="1" FirstRowSelected="true" EnableCaching="false" CompletionListCssClass="autocomplete_completionListElementBig"
+                                    CompletionListItemCssClass="autocomplete_listItem" CompletionListHighlightedItemCssClass="autocomplete_highlightedListItem">
+                                </cc1:AutoCompleteExtender>
+                            </td>
                         </tr>
                     </table>
                     <asp:Panel ID="printPanel" runat="server">

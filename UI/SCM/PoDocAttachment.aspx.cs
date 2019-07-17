@@ -44,6 +44,20 @@ namespace UI.SCM
                 _dt = _objPo.GetUnit();
                 ddlUnit.LoadWithAll(_dt, "intUnitId", "strUnit");
 
+                if (ddlUnit.SelectedValue == "0")
+                {
+                    txtAllSupplier.Enabled = true;
+                    txtSupplier.Enabled = false;
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#D3D3D3");
+                    txtAllSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                }
+                else
+                {
+                    txtAllSupplier.Enabled = false;
+                    txtSupplier.Enabled = true;
+                    txtAllSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#D3D3D3");
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                }
 
                 _dt.Clear();
                 _dt = _objPo.GetPoData(21, "", 0, 0, DateTime.Now, Enroll);
@@ -96,6 +110,12 @@ namespace UI.SCM
         public static string[] GetMasterSupplierSearch(string prefixText)
         {
             return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString(), HttpContext.Current.Session["unitId"].ToString());
+        }
+        [WebMethod]
+        [ScriptMethod]
+        public static string[] GetAllSupplierSearch(string prefixText)
+        {
+            return DataTableLoad.objPos.AutoSearchSupplier(prefixText, HttpContext.Current.Session["strType"].ToString());
         }
 
         #endregion====================Close===============================
@@ -174,35 +194,56 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
+                string strSupp = ""; int supplierid = 0;
                 int unitId = int.Parse(ddlUnit.SelectedValue);
+                if(unitId==0)
+                {
+                    _arrayKey = txtAllSupplier.Text.Split(_delimiterChars);
+                    if (_arrayKey.Length > 0)
+                    {
+                        strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString());
+                    }
+                    strSupp = supplierid.ToString();
+                }
+                else
+                {
+                    _arrayKey = txtSupplier.Text.Split(_delimiterChars);
+                    if (_arrayKey.Length > 0)
+                    {
+                        strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString());
+                    }
+                    strSupp = supplierid.ToString();
+                }
                 string dept = ddlDept.SelectedItem.ToString();
 
-                _arrayKey = txtSupplier.Text.Split(_delimiterChars);
-                string strSupp = ""; int supplierid = 0;
-                if (_arrayKey.Length > 0)
-                {
-                    strSupp = _arrayKey[0].ToString(); supplierid = int.Parse(_arrayKey[1].ToString());
-                }
-                strSupp = supplierid.ToString();
+               
 
                 DateTime dteTo = DateTime.Parse(txtdteTo.Text);
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
                 _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, supplierid);
-                dgvPO.DataSource = _dt;
-                dgvPO.DataBind();
-
-                lblAddress.Text = "Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
-                lblDate.Text = "For The Month of " + txtdteFrom.Text + " To " + txtdteTo.Text;
-                lblunit.Text = "";
-                DataTable dts = new DataTable();
-                dts = _obj.GetUnitAddress(unitId);
-                if (dts.Rows.Count > 0)
+                if(_dt.Rows.Count>0)
                 {
-                    Label lbluni = FindControl("lblunit") as Label;
-                    lbluni.Text = dts.Rows[0]["strDescription"].ToString();
+                    dgvPO.DataSource = _dt;
+                    dgvPO.DataBind();
+
+                    lblAddress.Text = "Akij House, 198 Bir Uttam Mir Shawkat Sarak, Tejgaon, Dhaka-1208";
+                    lblDate.Text = "For The Month of " + txtdteFrom.Text + " To " + txtdteTo.Text;
+                    lblunit.Text = "";
+                    DataTable dts = new DataTable();
+                    dts = _obj.GetUnitAddress(unitId);
+                    if (dts.Rows.Count > 0)
+                    {
+                        Label lbluni = FindControl("lblunit") as Label;
+                        lbluni.Text = dts.Rows[0]["strDescription"].ToString();
+                    }
                 }
+                else
+                {
+                    Toaster("There is no data to show", "Bill By Supplier", Common.TosterType.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -224,6 +265,7 @@ namespace UI.SCM
                 fd.Product, fd.Layer);
             try
             {
+
                 string dept = ddlDept.SelectedItem.ToString();
                 if (dept == "Local") { dept = "Local Purchase"; }
                 else if (dept == "Import") { dept = "Foreign Purchase"; }
@@ -236,6 +278,20 @@ namespace UI.SCM
                 string unitId = ddlUnit.SelectedValue.ToString();
                 Session["unitId"] = unitId;
                 _dt.Clear();
+                if (ddlUnit.SelectedValue == "0")
+                {
+                    txtAllSupplier.Enabled = true;
+                    txtSupplier.Enabled = false;
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#D3D3D3");
+                    txtAllSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                }
+                else
+                {
+                    txtAllSupplier.Enabled = false;
+                    txtSupplier.Enabled = true;
+                    txtAllSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#D3D3D3");
+                    txtSupplier.BackColor = System.Drawing.ColorTranslator.FromHtml("#FFFFFF");
+                }
             }
             catch (Exception ex)
             {

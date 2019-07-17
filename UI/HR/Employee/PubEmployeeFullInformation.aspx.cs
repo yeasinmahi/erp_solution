@@ -8,7 +8,7 @@ using Utility;
 
 namespace UI.HR.Employee
 {
-    public partial class EmployeeFullInformation : BasePage
+    public partial class PubEmployeeFullInformation : BasePage
     {
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
@@ -22,8 +22,6 @@ namespace UI.HR.Employee
                 txtCode.Text = Code;
                 LoadDepartment();
                 LoadDesignation();
-                ShowEmployeeInfo();
-
                 LoadLevelOfEducation();
                 LoadResult();
                 LoadExam();
@@ -108,10 +106,6 @@ namespace UI.HR.Employee
 
         protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
         {
-            ShowEmployeeInfo();
-        }
-        private void ShowEmployeeInfo()
-        {
             string strEnroll = txtEnroll.Text;
             string code = txtCode.Text;
             if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
@@ -150,8 +144,8 @@ namespace UI.HR.Employee
                     return;
                 }
             }
-            txtName.Text = _dt.GetValue<string>("strEmployeeName");
-            txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
+            txtName.Text =  _dt.GetValue<string>("strEmployeeName");
+            txtPermanetAddress.Text =  _dt.GetValue<string>("strPermanentAddress");
             txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
             ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
             ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));

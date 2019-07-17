@@ -10,7 +10,7 @@
 namespace UI.HR.Employee {
     
     
-    public partial class EmployeeFullInformation {
+    public partial class PubEmployeeFullInformation {
         
         /// <summary>
         /// PlaceHolder1 control.

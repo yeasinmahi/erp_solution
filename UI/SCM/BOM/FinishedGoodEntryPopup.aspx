@@ -313,18 +313,18 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Right" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Production Type" ItemStyle-HorizontalAlign="right">
+                                        <asp:TemplateField HeaderText="Production Type" ItemStyle-HorizontalAlign="left">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblProductionType" Width="250px" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
+                                                <asp:Label ID="lblProductionType" Width="200px" runat="server" Text='<%# Bind("strType") %>'></asp:Label>
                                             </ItemTemplate>
-                                            <ItemStyle HorizontalAlign="Right" />
+                                            <ItemStyle HorizontalAlign="left" />
                                         </asp:TemplateField>
-                                        <asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
+                                        <%--<asp:TemplateField HeaderText="Action" ItemStyle-HorizontalAlign="right">
                                             <ItemTemplate>
                                                 <asp:Button ID="btnEdit" runat="server" Width="" Text="Edit" CssClass="btn btn-default" OnClick="btnEdit_OnClick"></asp:Button>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Center" />
-                                        </asp:TemplateField>
+                                        </asp:TemplateField>--%>
                                     </Columns>
                                     <EditRowStyle BackColor="#999999" />
                                     <FooterStyle Font-Bold="True" Font-Size="11px" BackColor="#5D7B9D" ForeColor="White" />
@@ -342,6 +342,7 @@
                         <tr>
                             <td>
                                 <asp:GridView ID="gridViewProductionEntryAdd" runat="server" Width="100%" AutoGenerateColumns="False" 
+                                    OnRowDeleting="gridViewProductionEntryAdd_RowDeleting"
                                     OnRowDataBound="dgvProductionEntry_OnRowDataBound">
                                     <AlternatingRowStyle BackColor="#CCCCCC" />
                                     <Columns>
@@ -371,7 +372,7 @@
 
                                         <asp:TemplateField HeaderText="Time" ItemStyle-HorizontalAlign="right" SortExpression="Date">
                                             <ItemTemplate>
-                                                <asp:Label ID="lblDate" runat="server" Text='<%# Bind("Date") %>'></asp:Label>
+                                                <asp:Label ID="lblTime" runat="server" Text='<%# Bind("Date") %>'></asp:Label>
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="Left" Width="100px" />
                                         </asp:TemplateField>
@@ -402,6 +403,7 @@
                                             </ItemTemplate>
                                             <ItemStyle HorizontalAlign="left" Width="200px" />
                                         </asp:TemplateField>
+                                        <asp:CommandField ShowDeleteButton="true" ControlStyle-ForeColor="Red" ControlStyle-Font-Bold="true" />
                                     </Columns>
                                     <HeaderStyle Height="25px" Font-Size="11pt" BackColor="#0099ff" VerticalAlign="Middle" />
                                     <RowStyle BorderStyle="Solid" BorderWidth="1px" Font-Size="10pt" />

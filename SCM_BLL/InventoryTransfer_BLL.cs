@@ -597,5 +597,23 @@ namespace SCM_BLL
             }
             return strMsg;
         }
+
+        public int GetWareHouseType(int WHID)
+        {
+            int WHType = 0;
+            try
+            {
+                WHTypeTableAdapter adapter = new WHTypeTableAdapter();
+                object _obj = adapter.GetWareHouseType(WHID);
+                if (_obj != null)
+                    WHType = int.Parse(_obj.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return WHType;
+        }
     }
 }

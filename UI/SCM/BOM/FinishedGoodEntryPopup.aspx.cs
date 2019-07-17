@@ -295,6 +295,8 @@ namespace UI.SCM.BOM
                 }
             }
         }
+        
+
         protected void btnUpdate_OnClick(object sender, EventArgs e)
         {
             int transectionId = Convert.ToInt32(txtTransectionId.Text);
@@ -558,14 +560,12 @@ namespace UI.SCM.BOM
             ddlWastageType.Items.Insert(2, new ListItem("Scrap Output", "2"));
             ddlWastageType.Items.Insert(3, new ListItem("Wastage Output", "3"));
         }
-
         public void LoadWastageItem()
         {
             int unitId = new UnitBll().GetUnitIdByWhId(int.Parse(whid));
             DataTable dt = objBom.GetWastageItem(unitId);
             ddlWastageItem.LoadWithSelect(dt, "intItemID", "strItemFullName");
         }
-        
         protected void btnAdd_Click(object sender, EventArgs e)
         {
             string item = string.Empty;
@@ -703,6 +703,30 @@ namespace UI.SCM.BOM
                 catch { }
             }
         }
+        protected void gridViewProductionEntryAdd_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            try
+            {
+                LoadGridwithXml2();
+                DataSet dsGrid = (DataSet)gridViewProductionEntryAdd.DataSource;
+                dsGrid.Tables[0].Rows[gridViewProductionEntryAdd.Rows[e.RowIndex].DataItemIndex].Delete();
+                dsGrid.WriteXml(filePathForXML);
+                DataSet dsGridAfterDelete = (DataSet)gridViewProductionEntryAdd.DataSource;
+                if (dsGridAfterDelete.Tables[0].Rows.Count <= 0)
+                {
+                    File.Delete(filePathForXML);
+                    gridViewProductionEntryAdd.DataSource = "";
+                    gridViewProductionEntryAdd.DataBind();
+                }
+                else
+                {
+                    LoadGridwithXml2();
+                }
+            }
+            catch
+            {
+            }
+        }
         private void CreateXml2(string ProductionId,string OrderQty, string ProductQty, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date, string Time,
            string JobNo, string UserId, string totalExtraStore)
         {
@@ -726,29 +750,6 @@ namespace UI.SCM.BOM
             doc.Save(filePathForXML);
             LoadGridwithXml2();
         }
-        //private void CreateXml2(string ProductionId, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date, string Time,
-        //   string JobNo,string UserId, string totalExtraStore)
-        //{
-        //    XmlDocument doc = new XmlDocument();
-        //    if (File.Exists(filePathForXML))
-        //    {
-        //        doc.Load(filePathForXML);
-        //        XmlNode rootNode = doc.SelectSingleNode("production");
-        //        XmlNode addItem = CreateItemNode2(doc, ProductionId, FProductItem, FProductItemId, FProductQty, FProductType, FProductTypeId, UnitId, Date, Time, JobNo, UserId, totalExtraStore);
-        //        rootNode.AppendChild(addItem);
-        //    }
-        //    else
-        //    {
-        //        XmlNode xmldeclerationNode = doc.CreateXmlDeclaration("1.0", "", "");
-        //        doc.AppendChild(xmldeclerationNode);
-        //        XmlNode rootNode = doc.CreateElement("production");
-        //        XmlNode addItem = CreateItemNode2(doc, ProductionId, FProductItem, FProductItemId, FProductQty, FProductType, FProductTypeId, UnitId, Date, Time, JobNo, UserId, totalExtraStore);
-        //        rootNode.AppendChild(addItem);
-        //        doc.AppendChild(rootNode);
-        //    }
-        //    doc.Save(filePathForXML);
-        //    LoadGridwithXml2();
-        //}
         private XmlNode CreateItemNode2(XmlDocument doc,string ProductionId, string OrderQty, string ProductQty, string FProductItem, string FProductItemId, string FProductQty, string FProductType, string FProductTypeId, string UnitId, string Date,
             string Time, string JobNo,string UserId, string totalExtraStore)
         {
