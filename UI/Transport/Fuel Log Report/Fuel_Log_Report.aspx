@@ -61,6 +61,7 @@
                                         <asp:ListItem Text="CNG Report" Value="5"></asp:ListItem>
                                         <asp:ListItem Text="Day Basis Vehicle Report" Value="6"></asp:ListItem>
                                         <asp:ListItem Text="Fuel Station Bill" Value="7"></asp:ListItem>
+                                        <asp:ListItem Text="Month Basis Fuel Report" Value="8"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-md-4">
@@ -138,7 +139,7 @@
                 var txtFromDate = document.getElementById("txtFromDate").value;
                 var txtToDate = document.getElementById("txtToDate").value;
                 var report = document.getElementById("ddlReport").value;
-               
+
 
                 if (report == 0) {
                     ShowNotification("Please Select Report Type", "", "warning");
@@ -151,7 +152,7 @@
                     ShowNotification("To date can not be blank", "", "warning");
                     return false;
                 } else if (report == 7) {
-                     var stationType = document.getElementById("ddlStationType").value;
+                    var stationType = document.getElementById("ddlStationType").value;
                     if (stationType == 0) {
                         ShowNotification("Select Fuel Station Type", "", "warning");
                         return false;
@@ -202,6 +203,10 @@
                     unit.classList.remove("hidden");
                     jobstation.classList.remove("hidden");
                     station.classList.remove("hidden");
+                }
+                else if (report == 8) {
+                    unit.classList.remove("hidden");
+                    vehicleNo.classList.remove("hidden");
                 }
                 else {
                     unit.classList.add("hidden");

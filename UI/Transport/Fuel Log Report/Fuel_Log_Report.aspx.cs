@@ -145,6 +145,10 @@ namespace UI.Transport.Fuel_Log_Report
             {
                 url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/FuelStationBill" + "&Type=" + stationType + "&unit=" + UnitID + "&jobStationId=" + JobStationID + "&station=" + stationID + "&dteFrom=" + txtFromDate.Text + "&dteTo=" + txtToDate.Text + "&rc:LinkTarget=_self";
             }
+            else if (report == 8)
+            {
+                url = "https://report.akij.net/ReportServer/Pages/ReportViewer.aspx?/Common_Reports/Fuel_Reports/MonthBasisFuelReport" + "&unitId=" + UnitID + "&vehicleId=" + VehicleID + "&dteFrom=" + txtFromDate.Text + "&dteTo=" + txtToDate.Text + "&rc:LinkTarget=_self";
+            }
 
             ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', '" + url + "');", true);
         }
