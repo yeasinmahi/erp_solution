@@ -539,6 +539,7 @@
                     </asp:Panel>
 
                     <hr />
+                
                     <table>
                         <tr>
                             <td></td>
@@ -571,6 +572,12 @@
                            
                         </tr>
                     </table>
+                <table>
+                    <tr>
+                        <td>Remarks</td>
+                        <td colspan="3"><asp:TextBox ID="txtRowRemarks" runat="server" Width="650px"></asp:TextBox></td>
+                    </tr>
+                </table>
                     <table>
                         <tr style="background-color: #B0B0B0; text-align: center;">
                             <td style="color: Green;">Product</td>
@@ -623,7 +630,9 @@
                                 <asp:Button ID="btnProductAdd" runat="server" Text="Add" ValidationGroup="valComAdd"   OnClientClick="setButtonFire();" OnClick="btnProductAdd_Click"  />
                             </td>
                         </tr>
+                        
                     </table>
+                    
                  
                   
                     <%--<asp:Panel ID="Panel1" runat="server" Height="100px" 
