@@ -336,6 +336,8 @@
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\Cafeteria\NEW ERP.png" />
     <Content Include="Content\images\img\105.png" />
     <Content Include="Content\images\img\13.png" />
@@ -1442,6 +1444,7 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
     <Content Include="SAD\Sales\Report\Distributor_Sales_Trade_Analysis_Report.aspx" />
@@ -7339,6 +7342,13 @@
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.cs">
+      <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.designer.cs">
+      <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx.cs">
       <DependentUpon>Customer_Pending_List_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -10288,6 +10298,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="backup.bat" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />

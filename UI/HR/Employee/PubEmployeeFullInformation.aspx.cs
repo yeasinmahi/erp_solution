@@ -1,4 +1,5 @@
-﻿using HR_BLL.Employee;
+﻿using BLL.AutoSearch;
+using HR_BLL.Employee;
 using HR_BLL.Global;
 using System;
 using System.Collections.Generic;
@@ -18,13 +19,18 @@ namespace UI.HR.Employee
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
 
+        public static EmployeeBll employeeBll;
+        string[] arrayKey;
+        char[] delimiterChars = { '[', ']' };
+        int EmpID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
-                txtEnroll.Text = Enroll.ToString();
-                txtCode.Text = Code;
+                employeeBll = new EmployeeBll();
+
                 LoadDepartment();
                 LoadDesignation();
                 LoadLevelOfEducation();
@@ -35,11 +41,7 @@ namespace UI.HR.Employee
                 LoadCountry();
                 LoadTrainigYear();
 
-                LoadEducation();
-                LoadEmperience();
-                LoadTrainingInfo();
-                LoadWorkInfo();
-                LoadImage();
+                
             }
         }
         #region Tab 1: Personal Info
@@ -66,12 +68,17 @@ namespace UI.HR.Employee
             string fathersName = txtFatherName.Text;
             string mothersName = txtMotherNmae.Text;
             string permanentAddress = txtPermanetAddress.Text;
+            string presentAddress = txtPresentAddress.Text;
             string nid = txtNidNo.Text;
             string mobileNo = txtMobileNo.Text;
-            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime promotionDate))
+            DateTime? promotionDate = null;
+            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime proDate))
             {
-                Toaster("Please Enter Promotion Date Format Properly");
-                return;
+                promotionDate = null;
+            }
+            else
+            {
+                promotionDate = proDate;
             }
             int presentDepartmentId = ddlPresentDepartment.SelectedValue();
             string presentDepartment = ddlPresentDepartment.SelectedText();
@@ -94,11 +101,12 @@ namespace UI.HR.Employee
                 Toaster("Please Enter Joining Salary Properly");
                 return;
             }
+            string akijResponsibilities = txtAkijResponsibilities.Text;
             string previousOrganization = txtPreviousOrganization.Text;
             string previousDesignation = txtPreviousDesignation.Text;
             decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary);
 
-            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
+            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, presentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, akijResponsibilities, previousOrganization, previousDesignation, previousSalary, Enroll);
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
@@ -108,15 +116,17 @@ namespace UI.HR.Employee
                 Toaster(message, Common.TosterType.Error);
             }
         }
+
         public void LoadEmployeeInfo()
         {
-            string strSearchKey = txtEmployeeName.Text;
-            if (!string.IsNullOrEmpty(strSearchKey))
+            if (!String.IsNullOrEmpty(txtEmployeeName.Text))
             {
-                string[] searchKey = Regex.Split(strSearchKey, ",");
-                if (searchKey.Length == 2)
+                arrayKey = txtEmployeeName.Text.Split(delimiterChars);
+
+                if (arrayKey.Length > 0)
                 {
-                    LoadFieldValue(searchKey[1]);
+                    EmpID = Convert.ToInt32(arrayKey[1].ToString());
+                    LoadFieldValue(Convert.ToInt32(arrayKey[1].ToString()));
                 }
                 else
                 {
@@ -125,17 +135,19 @@ namespace UI.HR.Employee
             }
         }
 
-        private void LoadFieldValue(string empCode)
+        private void LoadFieldValue(int enroll)
         {
             try
             {
-                if (!string.IsNullOrEmpty(empCode))
+                if (enroll>0)
                 {
-                    _dt = _bll.GetEmployeeInfo(empCode);
+                    _dt = _bll.GetEmployeeInfo(enroll);
                     if (_dt.Rows.Count > 0)
                     {
-                        txtCode.Text = empCode;
+                        txtEnroll.Text = enroll.ToString();
+                        txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
                         txtName.Text = _dt.GetValue<string>("strEmployeeName");
+                        txtEmail.Text = _dt.GetValue<string>("strOfficeEmail");
                         txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
                         txtPresentAddress.Text = _dt.GetValue<string>("strPresentAddress");
                         txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
@@ -143,7 +155,7 @@ namespace UI.HR.Employee
                         ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
                         ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
                         txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
-                        txtJoiningDate.Text = _dt.GetValue<string>("dteJoiningDate");
+                        txtJoiningDate.Text = _dt.GetValue<string>("dteJoiningDate").ToDateTime().ToString("dd/MM/yyyy");
                     }
                 }
             }
@@ -156,6 +168,14 @@ namespace UI.HR.Employee
         protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
         {
             LoadEmployeeInfo();
+
+            LoadEducation();
+            LoadEmperience();
+            LoadTrainingInfo();
+            LoadWorkInfo();
+            LoadImage();
+
+
             //string strEnroll = txtEmployeeName.Text;
             //string code = txtCode.Text;
             //if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
@@ -194,7 +214,7 @@ namespace UI.HR.Employee
             //        return;
             //    }
             //}
-            
+
         }
         public void LoadEmpInfo(DataTable dt)
         {
@@ -208,24 +228,12 @@ namespace UI.HR.Employee
                 return;
             }
         }
+
+        
         [WebMethod]
-        public static List<string> GetAutoCompleteData(string strSearchKey)
+        public static string[] GetAutoCompleteData(string strSearchKey)
         {
-            int jobStationId = 0;
-            int enroll = 0;
-            try
-            {
-                jobStationId = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            }
-            catch (Exception e)
-            {
-                // ignored
-            }
-            AutoSearch_BLL objAutoSearchBll = new AutoSearch_BLL();
-            var result = objAutoSearchBll.AutoSearchEmployeesData(//12, strSearchKey);
-                enroll, jobStationId, strSearchKey);
-            return result;
+            return employeeBll.GetAllEmployee(strSearchKey);
         }
 
         #endregion

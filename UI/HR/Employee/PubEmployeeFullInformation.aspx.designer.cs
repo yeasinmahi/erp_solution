@@ -436,6 +436,24 @@ namespace UI.HR.Employee {
         protected global::System.Web.UI.WebControls.TextBox txtJoiningSalary;
         
         /// <summary>
+        /// Label51 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label51;
+        
+        /// <summary>
+        /// txtAkijResponsibilities control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAkijResponsibilities;
+        
+        /// <summary>
         /// Label24 control.
         /// </summary>
         /// <remarks>
@@ -1136,6 +1154,15 @@ namespace UI.HR.Employee {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label Label47;
+        
+        /// <summary>
+        /// Label480 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label480;
         
         /// <summary>
         /// ImageUpload control.

@@ -7,11 +7,11 @@ namespace HR_BLL.Employee
 {
     public class EmployeeFullInformationBll
     {
-        public string Insert(int intEnroll, string strEmpCardNo, string strEmpName, string strFathersName, string strMothersName, string strParmanentAddress, string strNIDNo, DateTime dteLastPromotionalDate, int intPresentDesignationID, string strPresentDesignation, int intPresentDepartmentID, string strPresentDepartment, decimal monPresentSalary, DateTime dteJoiningDate, int intJoiningDesignationID, string strJoiningDesignation, decimal monJoiningSalary, string strNameOfPreviousOrg, string strPreviousOrgDesignation, decimal monPreviousOrgSalary, int intActionBy)
+        public string Insert(int intEnroll, string strEmpCardNo, string strEmpName, string strFathersName, string strMothersName, string strParmanentAddress,string strPresentAddress, string strNIDNo, DateTime? dteLastPromotionalDate, int intPresentDesignationID, string strPresentDesignation, int intPresentDepartmentID, string strPresentDepartment, decimal monPresentSalary, DateTime dteJoiningDate, int intJoiningDesignationID, string strJoiningDesignation, decimal monJoiningSalary, string strResponsibilities, string strNameOfPreviousOrg, string strPreviousOrgDesignation, decimal monPreviousOrgSalary, int intActionBy)
         {
             string strMessage = string.Empty;
             sprPersonalInformationTableAdapter adp = new sprPersonalInformationTableAdapter();
-            adp.Insert1(intEnroll, strEmpCardNo, strEmpName, strFathersName, strMothersName, strParmanentAddress, strNIDNo, dteLastPromotionalDate, intPresentDesignationID, strPresentDesignation, intPresentDepartmentID, strPresentDepartment, monPresentSalary, dteJoiningDate, intJoiningDesignationID, strJoiningDesignation, monJoiningSalary, strNameOfPreviousOrg, strPreviousOrgDesignation, monPreviousOrgSalary, intActionBy, ref strMessage);
+            adp.Insert1(intEnroll, strEmpCardNo, strEmpName, strFathersName, strMothersName, strParmanentAddress,strPresentAddress, strNIDNo, dteLastPromotionalDate, intPresentDesignationID, strPresentDesignation, intPresentDepartmentID, strPresentDepartment, monPresentSalary, dteJoiningDate, intJoiningDesignationID, strJoiningDesignation, monJoiningSalary,strResponsibilities, strNameOfPreviousOrg, strPreviousOrgDesignation, monPreviousOrgSalary, intActionBy, ref strMessage);
             return strMessage;
         }
         public DataTable GetDesignation()
