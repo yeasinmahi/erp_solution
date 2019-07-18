@@ -63,5 +63,8 @@ td, th {
     background-position: center;
     top:0;
 }
+input, select {
+    height: 34px;
+}
 
 
