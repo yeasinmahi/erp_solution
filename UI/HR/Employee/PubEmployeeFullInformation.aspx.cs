@@ -19,7 +19,7 @@ namespace UI.HR.Employee
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
 
-        public static EmployeeBll employeeBll = new EmployeeBll();
+        public static EmployeeBll employeeBll;
         string[] arrayKey;
         char[] delimiterChars = { '[', ']' };
         int EmpID;
@@ -29,6 +29,7 @@ namespace UI.HR.Employee
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
+                employeeBll = new EmployeeBll();
                 txtEnroll.Text = Enroll.ToString();
                 txtCode.Text = Code;
                 LoadDepartment();
