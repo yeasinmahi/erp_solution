@@ -167,9 +167,13 @@ namespace UI.PaymentModule
         #region ======== GridView RowCommand =============
         protected void GvDetails_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            string Address;
+            string Address,vataccname;
             int unitId = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", ddlUnit.SelectedValue()).GetValue<int>("unit");
             Address = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", ddlUnit.SelectedValue()).GetValue<string>("strAddress");
+            vataccname = ddlUnit.SelectedItem.ToString();
+            Address = _bll.getUnitByUser(Enroll).GetRows("intVatAccountID", ddlUnit.SelectedValue()).GetValue<string>("strAddress");
+            Address = vataccname + " " + Address;
+
             int intType=1;
             if (e.CommandName != "DepositV") return;
             int index = Convert.ToInt32(e.CommandArgument);
