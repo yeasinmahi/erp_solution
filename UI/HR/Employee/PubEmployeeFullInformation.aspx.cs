@@ -30,8 +30,7 @@ namespace UI.HR.Employee
             if (!IsPostBack)
             {
                 employeeBll = new EmployeeBll();
-                txtEnroll.Text = Enroll.ToString();
-                txtCode.Text = Code;
+
                 LoadDepartment();
                 LoadDesignation();
                 LoadLevelOfEducation();

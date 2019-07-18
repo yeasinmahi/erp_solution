@@ -190,7 +190,7 @@
                                                     <asp:TextBox ID="txtJoiningSalary" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Joing Salary"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <asp:Label ID="Label51" runat="server" Text="Responsibilities"></asp:Label>
+                                                    <asp:Label ID="Label51" runat="server" Text="Responsibilities(Most Five Priorities)"></asp:Label>
                                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
                                                     <asp:TextBox ID="txtAkijResponsibilities" CssClass="form-control col-md-12 col-sm-12 col-xs-12" TextMode="MultiLine"  runat="server" placeholder="Enter your all responsibilities"></asp:TextBox>
                                                 </div>
