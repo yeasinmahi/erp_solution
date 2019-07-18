@@ -30,8 +30,7 @@ namespace UI.HR.Employee
             if (!IsPostBack)
             {
                 employeeBll = new EmployeeBll();
-                txtEnroll.Text = Enroll.ToString();
-                txtCode.Text = Code;
+
                 LoadDepartment();
                 LoadDesignation();
                 LoadLevelOfEducation();
@@ -42,11 +41,7 @@ namespace UI.HR.Employee
                 LoadCountry();
                 LoadTrainigYear();
 
-                LoadEducation();
-                LoadEmperience();
-                LoadTrainingInfo();
-                LoadWorkInfo();
-                LoadImage();
+                
             }
         }
         #region Tab 1: Personal Info
@@ -173,6 +168,14 @@ namespace UI.HR.Employee
         protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
         {
             LoadEmployeeInfo();
+
+            LoadEducation();
+            LoadEmperience();
+            LoadTrainingInfo();
+            LoadWorkInfo();
+            LoadImage();
+
+
             //string strEnroll = txtEmployeeName.Text;
             //string code = txtCode.Text;
             //if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
@@ -211,7 +214,7 @@ namespace UI.HR.Employee
             //        return;
             //    }
             //}
-            
+
         }
         public void LoadEmpInfo(DataTable dt)
         {
