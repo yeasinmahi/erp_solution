@@ -44,7 +44,7 @@
 
             <div class="tab-content">
                 <div id="personal" class="tab-pane fade in active">
-                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Always">
                         <ContentTemplate>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
@@ -250,7 +250,7 @@
                     </asp:UpdatePanel>
                 </div>
                 <div id="education" class="tab-pane fade">
-                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server" UpdateMode="Always">
                         <ContentTemplate>
                             <h3>Education Iformation</h3>
                             <div class="panel-body">
@@ -418,7 +418,7 @@
                     </asp:UpdatePanel>
                 </div>
                 <div id="experience" class="tab-pane fade">
-                    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="UpdatePanel3" runat="server" UpdateMode="Always">
                         <ContentTemplate>
                             <h3>Experience Information</h3>
                             <div class="panel-body">
@@ -566,7 +566,7 @@
                     </asp:UpdatePanel>
                 </div>
                 <div id="training" class="tab-pane fade">
-                    <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="UpdatePanel4" runat="server" UpdateMode="Always">
                         <ContentTemplate>
                             <h3>Training Information</h3>
                             <div class="panel-body">
@@ -693,7 +693,7 @@
                     </asp:UpdatePanel>
                 </div>
                 <div id="others" class="tab-pane fade">
-                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="UpdatePanel5" runat="server" UpdateMode="Always">
                         <ContentTemplate>
                             <h3>Work Information</h3>
                             <div class="panel-body">
@@ -760,7 +760,7 @@
                 </div>
 
                 <div id="photograph" class="tab-pane fade">
-                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                    <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Always">
                         <ContentTemplate>
                             <h3>Photograph</h3>
                             <div class="panel-body">
