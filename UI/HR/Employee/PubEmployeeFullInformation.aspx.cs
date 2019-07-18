@@ -1,4 +1,5 @@
-﻿using HR_BLL.Employee;
+﻿using BLL.AutoSearch;
+using HR_BLL.Employee;
 using HR_BLL.Global;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,11 @@ namespace UI.HR.Employee
     {
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
+
+        public static EmployeeBll employeeBll = new EmployeeBll();
+        string[] arrayKey;
+        char[] delimiterChars = { '[', ']' };
+        int EmpID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -114,15 +120,17 @@ namespace UI.HR.Employee
                 Toaster(message, Common.TosterType.Error);
             }
         }
+
         public void LoadEmployeeInfo()
         {
-            string strSearchKey = txtEmployeeName.Text;
-            if (!string.IsNullOrEmpty(strSearchKey))
+            if (!String.IsNullOrEmpty(txtEmployeeName.Text))
             {
-                string[] searchKey = Regex.Split(strSearchKey, ",");
-                if (searchKey.Length == 2)
+                arrayKey = txtEmployeeName.Text.Split(delimiterChars);
+
+                if (arrayKey.Length > 0)
                 {
-                    LoadFieldValue(searchKey[1]);
+                    EmpID = Convert.ToInt32(arrayKey[1].ToString());
+                    LoadFieldValue(Convert.ToInt32(arrayKey[1].ToString()));
                 }
                 else
                 {
@@ -131,16 +139,17 @@ namespace UI.HR.Employee
             }
         }
 
-        private void LoadFieldValue(string empCode)
+        private void LoadFieldValue(int enroll)
         {
             try
             {
-                if (!string.IsNullOrEmpty(empCode))
+                if (enroll>0)
                 {
-                    _dt = _bll.GetEmployeeInfo(empCode);
+                    _dt = _bll.GetEmployeeInfo(enroll);
                     if (_dt.Rows.Count > 0)
                     {
-                        txtCode.Text = empCode;
+                        txtEnroll.Text = enroll.ToString();
+                        txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
                         txtName.Text = _dt.GetValue<string>("strEmployeeName");
                         txtEmail.Text = _dt.GetValue<string>("strOfficeEmail");
                         txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
@@ -215,24 +224,12 @@ namespace UI.HR.Employee
                 return;
             }
         }
+
+        
         [WebMethod]
-        public static List<string> GetAutoCompleteData(string strSearchKey)
+        public static string[] GetAutoCompleteData(string strSearchKey)
         {
-            int jobStationId = 0;
-            int enroll = 0;
-            try
-            {
-                jobStationId = int.Parse(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
-                enroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
-            }
-            catch (Exception e)
-            {
-                // ignored
-            }
-            AutoSearch_BLL objAutoSearchBll = new AutoSearch_BLL();
-            var result = objAutoSearchBll.AutoSearchEmployeesData(//12, strSearchKey);
-                enroll, jobStationId, strSearchKey);
-            return result;
+            return employeeBll.GetAllEmployee(strSearchKey);
         }
 
         #endregion
