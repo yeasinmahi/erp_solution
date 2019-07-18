@@ -814,6 +814,10 @@ namespace HR_DAL.Payment {
             
             private global::System.Data.DataColumn columnstrAddress;
             
+            private global::System.Data.DataColumn columnOldstrVATRegNo;
+            
+            private global::System.Data.DataColumn columnstrVATRegNo;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public sprGetVATAccountByAccountsUserDataTable() {
@@ -889,6 +893,22 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn OldstrVATRegNoColumn {
+                get {
+                    return this.columnOldstrVATRegNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn strVATRegNoColumn {
+                get {
+                    return this.columnstrVATRegNo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -924,14 +944,16 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public sprGetVATAccountByAccountsUserRow AddsprGetVATAccountByAccountsUserRow(string strDescription, int unit, string strVatAccountName, string strAddress) {
+            public sprGetVATAccountByAccountsUserRow AddsprGetVATAccountByAccountsUserRow(string strDescription, int unit, string strVatAccountName, string strAddress, string OldstrVATRegNo, string strVATRegNo) {
                 sprGetVATAccountByAccountsUserRow rowsprGetVATAccountByAccountsUserRow = ((sprGetVATAccountByAccountsUserRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         strDescription,
                         unit,
                         strVatAccountName,
-                        strAddress};
+                        strAddress,
+                        OldstrVATRegNo,
+                        strVATRegNo};
                 rowsprGetVATAccountByAccountsUserRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowsprGetVATAccountByAccountsUserRow);
                 return rowsprGetVATAccountByAccountsUserRow;
@@ -959,6 +981,8 @@ namespace HR_DAL.Payment {
                 this.columnunit = base.Columns["unit"];
                 this.columnstrVatAccountName = base.Columns["strVatAccountName"];
                 this.columnstrAddress = base.Columns["strAddress"];
+                this.columnOldstrVATRegNo = base.Columns["OldstrVATRegNo"];
+                this.columnstrVATRegNo = base.Columns["strVATRegNo"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -974,6 +998,10 @@ namespace HR_DAL.Payment {
                 base.Columns.Add(this.columnstrVatAccountName);
                 this.columnstrAddress = new global::System.Data.DataColumn("strAddress", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrAddress);
+                this.columnOldstrVATRegNo = new global::System.Data.DataColumn("OldstrVATRegNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOldstrVATRegNo);
+                this.columnstrVATRegNo = new global::System.Data.DataColumn("strVATRegNo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrVATRegNo);
                 this.columnintVatAccountID.AutoIncrement = true;
                 this.columnintVatAccountID.AutoIncrementSeed = -1;
                 this.columnintVatAccountID.AutoIncrementStep = -1;
@@ -983,6 +1011,8 @@ namespace HR_DAL.Payment {
                 this.columnstrVatAccountName.MaxLength = 250;
                 this.columnstrAddress.ReadOnly = true;
                 this.columnstrAddress.MaxLength = 515;
+                this.columnOldstrVATRegNo.MaxLength = 250;
+                this.columnstrVATRegNo.MaxLength = 250;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5175,6 +5205,40 @@ namespace HR_DAL.Payment {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string OldstrVATRegNo {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprGetVATAccountByAccountsUser.OldstrVATRegNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'OldstrVATRegNo\' in table \'sprGetVATAccountByAccountsUser\' i" +
+                                "s DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprGetVATAccountByAccountsUser.OldstrVATRegNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string strVATRegNo {
+                get {
+                    try {
+                        return ((string)(this[this.tablesprGetVATAccountByAccountsUser.strVATRegNoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strVATRegNo\' in table \'sprGetVATAccountByAccountsUser\' is D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablesprGetVATAccountByAccountsUser.strVATRegNoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsstrDescriptionNull() {
                 return this.IsNull(this.tablesprGetVATAccountByAccountsUser.strDescriptionColumn);
             }
@@ -5219,6 +5283,30 @@ namespace HR_DAL.Payment {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetstrAddressNull() {
                 this[this.tablesprGetVATAccountByAccountsUser.strAddressColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsOldstrVATRegNoNull() {
+                return this.IsNull(this.tablesprGetVATAccountByAccountsUser.OldstrVATRegNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetOldstrVATRegNoNull() {
+                this[this.tablesprGetVATAccountByAccountsUser.OldstrVATRegNoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsstrVATRegNoNull() {
+                return this.IsNull(this.tablesprGetVATAccountByAccountsUser.strVATRegNoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetstrVATRegNoNull() {
+                this[this.tablesprGetVATAccountByAccountsUser.strVATRegNoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -6864,6 +6952,8 @@ namespace HR_DAL.Payment.TreasuryChallanTDSTableAdapters {
             tableMapping.ColumnMappings.Add("unit", "unit");
             tableMapping.ColumnMappings.Add("strVatAccountName", "strVatAccountName");
             tableMapping.ColumnMappings.Add("strAddress", "strAddress");
+            tableMapping.ColumnMappings.Add("OldstrVATRegNo", "OldstrVATRegNo");
+            tableMapping.ColumnMappings.Add("strVATRegNo", "strVATRegNo");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
