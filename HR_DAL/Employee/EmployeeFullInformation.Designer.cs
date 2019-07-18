@@ -13807,6 +13807,7 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strFathersName", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strMothersName", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPermanentAddress", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPresentAddress", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strNIDNo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@dteLastPromotionalDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intPresentDesignationID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13818,6 +13819,7 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intJoiningDesignationID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strJoiningDesignation", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monJoiningSalary", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 19, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strResponsibilities", global::System.Data.SqlDbType.VarChar, 1000, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strNameOfPreviousOrg", global::System.Data.SqlDbType.VarChar, 250, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@strPreviousOrgDesignation", global::System.Data.SqlDbType.VarChar, 150, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@monPreviousOrgSalary", global::System.Data.SqlDbType.Money, 8, global::System.Data.ParameterDirection.Input, 19, 4, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13836,6 +13838,7 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
                     string strFathersName, 
                     string strMothersName, 
                     string strPermanentAddress, 
+                    string strPresentAddress, 
                     string strNIDNo, 
                     global::System.Nullable<global::System.DateTime> dteLastPromotionalDate, 
                     global::System.Nullable<int> intPresentDesignationID, 
@@ -13847,6 +13850,7 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
                     global::System.Nullable<int> intJoiningDesignationID, 
                     string strJoiningDesignation, 
                     global::System.Nullable<decimal> monJoiningSalary, 
+                    string strResponsibilities, 
                     string strNameOfPreviousOrg, 
                     string strPreviousOrgDesignation, 
                     global::System.Nullable<decimal> monPreviousOrgSalary, 
@@ -13889,110 +13893,122 @@ SELECT intDesignationID, strDesignation FROM tblUserDesignation WHERE (intDesign
             else {
                 this.Adapter.SelectCommand.Parameters[6].Value = ((string)(strPermanentAddress));
             }
-            if ((strNIDNo == null)) {
+            if ((strPresentAddress == null)) {
                 this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(strNIDNo));
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(strPresentAddress));
             }
-            if ((dteLastPromotionalDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[8].Value = ((System.DateTime)(dteLastPromotionalDate.Value));
-            }
-            else {
+            if ((strNIDNo == null)) {
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
-            if ((intPresentDesignationID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[9].Value = ((int)(intPresentDesignationID.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[8].Value = ((string)(strNIDNo));
+            }
+            if ((dteLastPromotionalDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[9].Value = ((System.DateTime)(dteLastPromotionalDate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            if ((strPresentDesignation == null)) {
+            if ((intPresentDesignationID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[10].Value = ((int)(intPresentDesignationID.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[10].Value = ((string)(strPresentDesignation));
-            }
-            if ((intPresentDepartmentID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[11].Value = ((int)(intPresentDepartmentID.Value));
-            }
-            else {
+            if ((strPresentDesignation == null)) {
                 this.Adapter.SelectCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((strPresentDepartment == null)) {
+            else {
+                this.Adapter.SelectCommand.Parameters[11].Value = ((string)(strPresentDesignation));
+            }
+            if ((intPresentDepartmentID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[12].Value = ((int)(intPresentDepartmentID.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[12].Value = ((string)(strPresentDepartment));
-            }
-            if ((monPresentSalary.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[13].Value = ((decimal)(monPresentSalary.Value));
-            }
-            else {
+            if ((strPresentDepartment == null)) {
                 this.Adapter.SelectCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((dteJoiningDate.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[14].Value = ((System.DateTime)(dteJoiningDate.Value));
+            else {
+                this.Adapter.SelectCommand.Parameters[13].Value = ((string)(strPresentDepartment));
+            }
+            if ((monPresentSalary.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[14].Value = ((decimal)(monPresentSalary.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
-            if ((intJoiningDesignationID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[15].Value = ((int)(intJoiningDesignationID.Value));
+            if ((dteJoiningDate.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[15].Value = ((System.DateTime)(dteJoiningDate.Value));
             }
             else {
                 this.Adapter.SelectCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
-            if ((strJoiningDesignation == null)) {
+            if ((intJoiningDesignationID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[16].Value = ((int)(intJoiningDesignationID.Value));
+            }
+            else {
                 this.Adapter.SelectCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.SelectCommand.Parameters[16].Value = ((string)(strJoiningDesignation));
-            }
-            if ((monJoiningSalary.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[17].Value = ((decimal)(monJoiningSalary.Value));
-            }
-            else {
+            if ((strJoiningDesignation == null)) {
                 this.Adapter.SelectCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
-            if ((strNameOfPreviousOrg == null)) {
-                this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.SelectCommand.Parameters[17].Value = ((string)(strJoiningDesignation));
+            }
+            if ((monJoiningSalary.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[18].Value = ((decimal)(monJoiningSalary.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[18].Value = ((string)(strNameOfPreviousOrg));
+                this.Adapter.SelectCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((strPreviousOrgDesignation == null)) {
+            if ((strResponsibilities == null)) {
                 this.Adapter.SelectCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.SelectCommand.Parameters[19].Value = ((string)(strPreviousOrgDesignation));
+                this.Adapter.SelectCommand.Parameters[19].Value = ((string)(strResponsibilities));
             }
-            if ((monPreviousOrgSalary.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[20].Value = ((decimal)(monPreviousOrgSalary.Value));
-            }
-            else {
+            if ((strNameOfPreviousOrg == null)) {
                 this.Adapter.SelectCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            if ((intActionBy.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[21].Value = ((int)(intActionBy.Value));
-            }
             else {
+                this.Adapter.SelectCommand.Parameters[20].Value = ((string)(strNameOfPreviousOrg));
+            }
+            if ((strPreviousOrgDesignation == null)) {
                 this.Adapter.SelectCommand.Parameters[21].Value = global::System.DBNull.Value;
             }
-            if ((strmsgvcd == null)) {
-                this.Adapter.SelectCommand.Parameters[22].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.SelectCommand.Parameters[21].Value = ((string)(strPreviousOrgDesignation));
+            }
+            if ((monPreviousOrgSalary.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[22].Value = ((decimal)(monPreviousOrgSalary.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[22].Value = ((string)(strmsgvcd));
+                this.Adapter.SelectCommand.Parameters[22].Value = global::System.DBNull.Value;
+            }
+            if ((intActionBy.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[23].Value = ((int)(intActionBy.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[23].Value = global::System.DBNull.Value;
+            }
+            if ((strmsgvcd == null)) {
+                this.Adapter.SelectCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[24].Value = ((string)(strmsgvcd));
             }
             EmployeeFullInformation.sprPersonalInformationDataTable dataTable = new EmployeeFullInformation.sprPersonalInformationDataTable();
             this.Adapter.Fill(dataTable);
-            if (((this.Adapter.SelectCommand.Parameters[22].Value == null) 
-                        || (this.Adapter.SelectCommand.Parameters[22].Value.GetType() == typeof(global::System.DBNull)))) {
+            if (((this.Adapter.SelectCommand.Parameters[24].Value == null) 
+                        || (this.Adapter.SelectCommand.Parameters[24].Value.GetType() == typeof(global::System.DBNull)))) {
                 strmsgvcd = null;
             }
             else {
-                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[22].Value));
+                strmsgvcd = ((string)(this.Adapter.SelectCommand.Parameters[24].Value));
             }
             return dataTable;
         }

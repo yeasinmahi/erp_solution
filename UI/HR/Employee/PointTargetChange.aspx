@@ -82,7 +82,7 @@
                         </div>
                         <div class="panel-body">
                             <asp:GridView ID="gridView" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" Width="100%"
-                                DataKeyNames="intproductid" OnRowDataBound="gridView_RowDataBound" GridLines="Both">
+                                DataKeyNames="intproductid" GridLines="Both">
                                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                                 <Columns>
                                     <asp:TemplateField HeaderText="SL">
@@ -105,7 +105,7 @@
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="QTY">
                                         <ItemTemplate>
-                                            <asp:TextBox ID="lblmontargetconvqty" Width="80" runat="server" Text='<%# Bind("montargetconvqty") %>' AutoPostBack="true" OnTextChanged="lblmontargetconvqty_TextChanged"></asp:TextBox>
+                                            <asp:TextBox ID="lblmontargetconvqty" Width="80" runat="server" Text='<%# Bind("montargetconvqty") %>'></asp:TextBox>
                                         </ItemTemplate>
                                         <ItemStyle HorizontalAlign="center" Width="80"></ItemStyle>
                                     </asp:TemplateField>
@@ -158,9 +158,16 @@
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
             });
 
-            function Init() {
-
-                var qty = $('#<%=gridView.ClientID %>').find('span[id$="lblmontargetconvqty"]');
+           function Init() {
+               $("input[type='text'][id*=lblmontargetconvqty]").keyup(function () {
+                   var quantity = parseFloat($.trim($(this).val()));
+                   if (isNaN(quantity)) {
+                       quantity = 0;
+                   }
+                   var row = $(this).closest("tr");
+                   $("[id*=lblQTYPcs]", row).html(parseFloat($("[id*=lblpackqty]", row).html()) * parseFloat($(this).val())).val();
+ 
+               });
                
 
 
@@ -168,30 +175,6 @@
         </script>
     </form>
 
-    <%--<style>
-        table {
-            max-width: 100%;
-            background-color: transparent;
-            text-align: center;
-        }
-
-        th {
-            text-align: center;
-        }
-
-        .table {
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        tr {
-            font-size: 14px;
-        }
-
-        .datepicker {
-            transform: translate(0, 3.1em);
-        }
-    </style>--%>
 </body>
 </html>
 

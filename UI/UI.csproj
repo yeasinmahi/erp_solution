@@ -1442,6 +1442,7 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
     <Content Include="SAD\Sales\Report\Distributor_Sales_Trade_Analysis_Report.aspx" />
@@ -7333,6 +7334,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.cs">
+      <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.designer.cs">
+      <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx.cs">
       <DependentUpon>Customer_Pending_List_Report.aspx</DependentUpon>
