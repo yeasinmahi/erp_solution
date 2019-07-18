@@ -92,6 +92,18 @@
                             <td style="text-align: right; padding: 5px 0px 5px 0px">
                                 <asp:Button ID="btnShow" runat="server" class="myButton" Text="Show" Height="30px" OnClick="btnShow_Click" OnClientClick="showLoader()" /></td>
                         </tr>
+                         <tr>
+                                        <td style="text-align: right;">
+                                            <asp:Label ID="Label8" runat="server" Text="Bill Reg. No." CssClass="lbl"></asp:Label><span style="color: red; font-size: 14px;">*</span><span> :</span></td>
+                                        <td>
+                                            <asp:TextBox ID="txtBillRegNo" runat="server" CssClass="txtBox1"></asp:TextBox></td>
+                                        <td style="text-align: right; width: 15px;">
+                                            <asp:Label ID="Label9" runat="server" Text=""></asp:Label></td>
+                                        <td style="text-align: right; padding: 0px 0px 10px 0px">
+                                            <asp:Button ID="btnGo" runat="server" class="myButton" Text="Go" OnClick="btnGo_Click" /></td>
+                                        <td style="text-align: right; padding: 0px 0px 10px 0px">
+                                            &nbsp;</td>
+                                    </tr>
                     </table>
                 </div>
 

@@ -17,7 +17,7 @@ namespace UI.PaymentModule
         string location = "PaymentModule";
         string start = "starting PaymentModule/BillRegisterReport.aspx";
         string stop = "stopping PaymentModule/BillRegisterReport.aspx";
-
+        string strReffNo;
         private readonly Payment_All_Voucher_BLL _bll = new Payment_All_Voucher_BLL();
         DataTable dt;
 
@@ -26,7 +26,7 @@ namespace UI.PaymentModule
         string unitid, billid, entrycode, party, bank, bankacc, instrument, billtypeid, vdate;
 
         #endregion ====================================================================================
-
+        private Billing_BLL objBillReg = new Billing_BLL();
         protected void lblReff_Click(object sender, EventArgs e)
         {
             try
@@ -51,6 +51,65 @@ namespace UI.PaymentModule
             {
                 Toaster(ex.Message, Common.TosterType.Error);
             }
+        }
+        protected void btnGo_Click(object sender, EventArgs e)
+        {
+            LoadGridSingle();
+        }
+
+        private void LoadGridSingle()
+        {
+            var fd = log.GetFlogDetail(start, location, "btnGo_Click", null);
+            Flogger.WriteDiagnostic(fd);
+
+            // starting performance tracker
+            var tracker = new PerfTracker("Performance on PaymentModule/BillApproval.aspx btnGo_Click", "", fd.UserName, fd.Location,
+            fd.Product, fd.Layer);
+
+            try
+            {
+                strReffNo = txtBillRegNo.Text;
+                intUnitID = ddlUnit.SelectedValue();
+                if (string.IsNullOrWhiteSpace(txtFrom.Text))
+                {
+                    Toaster("From Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (string.IsNullOrWhiteSpace(txtTo.Text))
+                {
+                    Toaster("To Date " + Message.NotBlank.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (!DateTime.TryParse(txtFrom.Text, out dteFDate))
+                {
+                    Toaster("From " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+                if (!DateTime.TryParse(txtTo.Text, out dteTDate))
+                {
+                    Toaster("To " + Message.DateFormatError.ToFriendlyString(), Common.TosterType.Warning);
+                    return;
+                }
+
+                lblUnitName.Text = ddlUnit.SelectedText();
+                lblReportName.Text = "Bill Register Report";
+                lblFromToDate.Text = "For The Month of " + Convert.ToDateTime(txtFrom.Text).ToString("yyyy-MM-dd") + " To " + Convert.ToDateTime(txtTo.Text).ToString("yyyy-MM-dd");
+
+
+                dt = objBillReg.GetBillReg(intUnitID, strReffNo, dteFDate,dteTDate);
+                dgvReport.DataSource = dt;
+                dgvReport.DataBind();
+            }
+            catch (Exception ex)
+            {
+                var efd = log.GetFlogDetail(stop, location, "btnGo_Click", ex);
+                Flogger.WriteError(efd);
+            }
+
+            fd = log.GetFlogDetail(stop, location, "btnGo_Click", null);
+            Flogger.WriteDiagnostic(fd);
+            // ends
+            tracker.Stop();
         }
 
         protected void lblBillID_Click(object sender, EventArgs e)
