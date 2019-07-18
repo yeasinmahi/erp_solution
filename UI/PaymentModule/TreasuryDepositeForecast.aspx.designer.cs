@@ -67,6 +67,15 @@ namespace UI.PaymentModule {
         protected global::System.Web.UI.ScriptManager ScriptManager0;
         
         /// <summary>
+        /// hdnunit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnunit;
+        
+        /// <summary>
         /// UpdatePanel0 control.
         /// </summary>
         /// <remarks>
