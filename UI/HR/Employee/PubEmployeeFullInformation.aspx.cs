@@ -66,12 +66,17 @@ namespace UI.HR.Employee
             string fathersName = txtFatherName.Text;
             string mothersName = txtMotherNmae.Text;
             string permanentAddress = txtPermanetAddress.Text;
+            string presentAddress = txtPresentAddress.Text;
             string nid = txtNidNo.Text;
             string mobileNo = txtMobileNo.Text;
-            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime promotionDate))
+            DateTime? promotionDate = null;
+            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime proDate))
             {
-                Toaster("Please Enter Promotion Date Format Properly");
-                return;
+                promotionDate = null;
+            }
+            else
+            {
+                promotionDate = proDate;
             }
             int presentDepartmentId = ddlPresentDepartment.SelectedValue();
             string presentDepartment = ddlPresentDepartment.SelectedText();
@@ -94,11 +99,12 @@ namespace UI.HR.Employee
                 Toaster("Please Enter Joining Salary Properly");
                 return;
             }
+            string akijResponsibilities = txtAkijResponsibilities.Text;
             string previousOrganization = txtPreviousOrganization.Text;
             string previousDesignation = txtPreviousDesignation.Text;
             decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary);
 
-            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
+            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, presentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, akijResponsibilities, previousOrganization, previousDesignation, previousSalary, Enroll);
             if (message.ToLower().Contains("success"))
             {
                 Toaster(message, Common.TosterType.Success);
@@ -136,6 +142,7 @@ namespace UI.HR.Employee
                     {
                         txtCode.Text = empCode;
                         txtName.Text = _dt.GetValue<string>("strEmployeeName");
+                        txtEmail.Text = _dt.GetValue<string>("strOfficeEmail");
                         txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
                         txtPresentAddress.Text = _dt.GetValue<string>("strPresentAddress");
                         txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
@@ -143,7 +150,7 @@ namespace UI.HR.Employee
                         ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
                         ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
                         txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
-                        txtJoiningDate.Text = _dt.GetValue<string>("dteJoiningDate");
+                        txtJoiningDate.Text = _dt.GetValue<string>("dteJoiningDate").ToDateTime().ToString("dd/MM/yyyy");
                     }
                 }
             }

@@ -95,15 +95,16 @@ namespace UI.HR.Employee
             string previousDesignation = txtPreviousDesignation.Text;
             decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary);
 
-            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
-            if (message.ToLower().Contains("success"))
-            {
-                Toaster(message, Common.TosterType.Success);
-            }
-            else
-            {
-                Toaster(message, Common.TosterType.Error);
-            }
+            Toaster("This feather is unavailable at this moment");
+            //string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
+            //if (message.ToLower().Contains("success"))
+            //{
+            //    Toaster(message, Common.TosterType.Success);
+            //}
+            //else
+            //{
+            //    Toaster(message, Common.TosterType.Error);
+            //}
         }
 
         protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
