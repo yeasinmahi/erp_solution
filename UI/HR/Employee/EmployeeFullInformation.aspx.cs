@@ -26,7 +26,7 @@ namespace UI.HR.Employee
             if (!IsPostBack)
             {
                 employeeBll = new EmployeeBll();
-                LoadFieldValue(Enroll);
+                txtEnroll.Text = Enroll.ToString();
 
                 LoadDepartment();
                 LoadDesignation();
@@ -37,6 +37,8 @@ namespace UI.HR.Employee
                 LoadYearOfPassing();
                 LoadCountry();
                 LoadTrainigYear();
+
+                LoadFieldValue(Enroll);
 
                 LoadEducation();
                 LoadEmperience();
@@ -145,7 +147,6 @@ namespace UI.HR.Employee
                     _dt = _bll.GetEmployeeInfo(enroll);
                     if (_dt.Rows.Count > 0)
                     {
-                        txtEnroll.Text = enroll.ToString();
                         txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
                         txtName.Text = _dt.GetValue<string>("strEmployeeName");
                         txtEmail.Text = _dt.GetValue<string>("strOfficeEmail");
