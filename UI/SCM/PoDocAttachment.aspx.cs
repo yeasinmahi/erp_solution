@@ -222,7 +222,14 @@ namespace UI.SCM
                 DateTime dteFrom = DateTime.Parse(txtdteFrom.Text);
 
                 string xmlData = "<voucher><voucherentry dept=" + '"' + dept + '"' + " strSupp=" + '"' + strSupp + '"' + " dteTo=" + '"' + dteTo + '"' + "/></voucher>".ToString();
-                _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, supplierid);
+                if (ddlUnit.SelectedValue() == 0)
+                {
+                    _dt = _objPo.GetPoData(46, xmlData, unitId, 0, dteFrom, supplierid);
+                }
+                else
+                {
+                    _dt = _objPo.GetPoData(26, xmlData, unitId, 0, dteFrom, supplierid);
+                }
                 if(_dt.Rows.Count>0)
                 {
                     dgvPO.DataSource = _dt;
