@@ -1,17 +1,28 @@
-﻿using HR_BLL.Employee;
+﻿using BLL.AutoSearch;
+using HR_BLL.Employee;
+using HR_BLL.Global;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Web;
+using System.Web.Services;
 using System.Web.UI.WebControls;
 using UI.ClassFiles;
 using Utility;
 
 namespace UI.HR.Employee
 {
-    public partial class EmployeeFullInformation : BasePage
+    public partial class PubEmployeeFullInformation : BasePage
     {
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
+
+        public static EmployeeBll employeeBll = new EmployeeBll();
+        string[] arrayKey;
+        char[] delimiterChars = { '[', ']' };
+        int EmpID;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -22,8 +33,6 @@ namespace UI.HR.Employee
                 txtCode.Text = Code;
                 LoadDepartment();
                 LoadDesignation();
-                ShowEmployeeInfo();
-
                 LoadLevelOfEducation();
                 LoadResult();
                 LoadExam();
@@ -39,7 +48,7 @@ namespace UI.HR.Employee
                 LoadImage();
             }
         }
-        #region Tab 1: Education Info
+        #region Tab 1: Personal Info
         private void LoadDepartment()
         {
             _dt = _bll.GetDepartment();
@@ -63,12 +72,17 @@ namespace UI.HR.Employee
             string fathersName = txtFatherName.Text;
             string mothersName = txtMotherNmae.Text;
             string permanentAddress = txtPermanetAddress.Text;
+            string presentAddress = txtPresentAddress.Text;
             string nid = txtNidNo.Text;
             string mobileNo = txtMobileNo.Text;
-            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime promotionDate))
+            DateTime? promotionDate = null;
+            if (!DateTime.TryParseExact(txtPromotionDate.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out DateTime proDate))
             {
-                Toaster("Please Enter Promotion Date Format Properly");
-                return;
+                promotionDate = null;
+            }
+            else
+            {
+                promotionDate = proDate;
             }
             int presentDepartmentId = ddlPresentDepartment.SelectedValue();
             string presentDepartment = ddlPresentDepartment.SelectedText();
@@ -91,72 +105,112 @@ namespace UI.HR.Employee
                 Toaster("Please Enter Joining Salary Properly");
                 return;
             }
+            string akijResponsibilities = txtAkijResponsibilities.Text;
             string previousOrganization = txtPreviousOrganization.Text;
             string previousDesignation = txtPreviousDesignation.Text;
             decimal.TryParse(txtPreviousSalary.Text, out decimal previousSalary);
 
-            Toaster("This feather is unavailable at this moment");
-            //string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, previousOrganization, previousDesignation, previousSalary, Enroll);
-            //if (message.ToLower().Contains("success"))
-            //{
-            //    Toaster(message, Common.TosterType.Success);
-            //}
-            //else
-            //{
-            //    Toaster(message, Common.TosterType.Error);
-            //}
+            string message = _bll.Insert(enroll, code, name, fathersName, mothersName, permanentAddress, presentAddress, nid, promotionDate, presentDesignationId, presentDesignation, presentDepartmentId, presentDepartment, presentSalry, joiningDate, joiningDesignationId, joiningDesignation, joiningSalary, akijResponsibilities, previousOrganization, previousDesignation, previousSalary, Enroll);
+            if (message.ToLower().Contains("success"))
+            {
+                Toaster(message, Common.TosterType.Success);
+            }
+            else
+            {
+                Toaster(message, Common.TosterType.Error);
+            }
+        }
+
+        public void LoadEmployeeInfo()
+        {
+            if (!String.IsNullOrEmpty(txtEmployeeName.Text))
+            {
+                arrayKey = txtEmployeeName.Text.Split(delimiterChars);
+
+                if (arrayKey.Length > 0)
+                {
+                    EmpID = Convert.ToInt32(arrayKey[1].ToString());
+                    LoadFieldValue(Convert.ToInt32(arrayKey[1].ToString()));
+                }
+                else
+                {
+                    Toaster("Your Employee Name Format Error", Common.TosterType.Warning);
+                }
+            }
+        }
+
+        private void LoadFieldValue(int enroll)
+        {
+            try
+            {
+                if (enroll>0)
+                {
+                    _dt = _bll.GetEmployeeInfo(enroll);
+                    if (_dt.Rows.Count > 0)
+                    {
+                        txtEnroll.Text = enroll.ToString();
+                        txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
+                        txtName.Text = _dt.GetValue<string>("strEmployeeName");
+                        txtEmail.Text = _dt.GetValue<string>("strOfficeEmail");
+                        txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
+                        txtPresentAddress.Text = _dt.GetValue<string>("strPresentAddress");
+                        txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
+                        txtNidNo.Text = _dt.GetValue<string>("strNationalId");
+                        ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
+                        ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
+                        txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
+                        txtJoiningDate.Text = _dt.GetValue<string>("dteJoiningDate").ToDateTime().ToString("dd/MM/yyyy");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Toaster(ex.Message, "Employee Information Update", Common.TosterType.Error);
+            }
         }
 
         protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
         {
-            ShowEmployeeInfo();
-        }
-        private void ShowEmployeeInfo()
-        {
-            string strEnroll = txtEnroll.Text;
-            string code = txtCode.Text;
-            if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
-            {
-                Toaster("Please input enroll or employee code");
-                return;
-            }
-            if (!string.IsNullOrWhiteSpace(strEnroll))
-            {
-                if (!int.TryParse(txtEnroll.Text, out int enroll))
-                {
-                    Toaster("Please Enter Enroll Properly");
-                    return;
-                }
-                _dt = _bll.GetEmployeeInfo(enroll);
-                if (_dt.Rows.Count > 0)
-                {
-                    txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
-                }
-                else
-                {
-                    Toaster("No Employee Information Found Aginest This Enroll");
-                    return;
-                }
-            }
-            else if (!string.IsNullOrWhiteSpace(code))
-            {
-                _dt = _bll.GetEmployeeInfo(code);
-                if (_dt.Rows.Count > 0)
-                {
-                    txtEnroll.Text = _dt.GetValue<string>("intEmployeeID");
-                }
-                else
-                {
-                    Toaster("No Employee Information Found Aginest This Code");
-                    return;
-                }
-            }
-            txtName.Text = _dt.GetValue<string>("strEmployeeName");
-            txtPermanetAddress.Text = _dt.GetValue<string>("strPermanentAddress");
-            txtMobileNo.Text = _dt.GetValue<string>("strContactNo1");
-            ddlPresentDesignation.SetSelectedValue(_dt.GetValue<string>("intDesignationID"));
-            ddlPresentDepartment.SetSelectedValue(_dt.GetValue<string>("intDepartmentID"));
-            txtPresentSalary.Text = _dt.GetValue<string>("monSalary");
+            LoadEmployeeInfo();
+            //string strEnroll = txtEmployeeName.Text;
+            //string code = txtCode.Text;
+            //if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
+            //{
+            //    Toaster("Please input enroll or employee code");
+            //    return;
+            //}
+            //if (!string.IsNullOrWhiteSpace(strEnroll))
+            //{
+            //    if (!int.TryParse(txtEnroll.Text, out int enroll))
+            //    {
+            //        Toaster("Please Enter Enroll Properly");
+            //        return;
+            //    }
+            //    _dt = _bll.GetEmployeeInfo(enroll);
+            //    if (_dt.Rows.Count > 0)
+            //    {
+            //        txtCode.Text = _dt.GetValue<string>("strEmployeeCode");
+            //    }
+            //    else
+            //    {
+            //        Toaster("No Employee Information Found Aginest This Enroll");
+            //        return;
+            //    }
+            //}
+            //else if (!string.IsNullOrWhiteSpace(code))
+            //{
+            //    _dt = _bll.GetEmployeeInfo(code);
+            //    if (_dt.Rows.Count > 0)
+            //    {
+            //        txtEnroll.Text = _dt.GetValue<string>("intEmployeeID");
+            //    }
+            //    else
+            //    {
+            //        Toaster("No Employee Information Found Aginest This Code");
+            //        return;
+            //    }
+            //}
+            
         }
         public void LoadEmpInfo(DataTable dt)
         {
@@ -170,6 +224,14 @@ namespace UI.HR.Employee
                 return;
             }
         }
+
+        
+        [WebMethod]
+        public static string[] GetAutoCompleteData(string strSearchKey)
+        {
+            return employeeBll.GetAllEmployee(strSearchKey);
+        }
+
         #endregion
         #region Tab 2: Education
         private void LoadLevelOfEducation()
@@ -252,7 +314,21 @@ namespace UI.HR.Employee
             _dt = _bll.GetEducationInfo(enroll);
             gridviewEducation.Loads(_dt);
         }
+        protected void btnDeleteEducation_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewEducation.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteEducation(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEducation();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
 
+        }
         #endregion
         #region Tab 3: Experience
         protected void btnAddExperience_Click(object sender, EventArgs e)
@@ -303,6 +379,21 @@ namespace UI.HR.Employee
             }
             _dt = _bll.GetExperience(enroll);
             gridviewExperience.Loads(_dt);
+        }
+        protected void btnDeleteExperience_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewExperience.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteExperience(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadEmperience();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+
         }
         #endregion
         #region Tab 4: Training
@@ -355,6 +446,21 @@ namespace UI.HR.Employee
             _dt = _bll.GetTrainigInfo(enroll);
             gridviewTraining.Loads(_dt);
         }
+        protected void btnDeleteTraining_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewTraining.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteTraining(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadTrainingInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+
+        }
         #endregion
         #region Tab 5: Others
         protected void btnAddWorkTitle_Click(object sender, EventArgs e)
@@ -378,6 +484,21 @@ namespace UI.HR.Employee
             }
             _dt = _bll.GetWorkInfo(enroll);
             gridviewWorkTitle.Loads(_dt);
+        }
+        protected void btnDeleteWork_Click(object sender, EventArgs e)
+        {
+            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
+            int id = Convert.ToInt32(gridviewWorkTitle.DataKeys[row.RowIndex].Values[0].ToString());
+            if (_bll.DeleteWorkTitle(id).Rows.Count > 0)
+            {
+                Toaster("Delete Successfully", Common.TosterType.Success);
+                LoadWorkInfo();
+            }
+            else
+            {
+                Toaster("Delete failed", Common.TosterType.Error);
+            }
+
         }
         #endregion
         #region Tab 6: Photography
@@ -468,69 +589,6 @@ namespace UI.HR.Employee
 
 
         #endregion
-
-        protected void btnDeleteEducation_Click(object sender, EventArgs e)
-        {
-            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            int id =  Convert.ToInt32(gridviewEducation.DataKeys[row.RowIndex].Values[0].ToString());
-            if (_bll.DeleteEducation(id).Rows.Count > 0)
-            {
-                Toaster("Delete Successfully", Common.TosterType.Success);
-                LoadEducation();
-            }
-            else
-            {
-                Toaster("Delete failed", Common.TosterType.Error);
-            }
-            
-        }
-
-        protected void btnDeleteExperience_Click(object sender, EventArgs e)
-        {
-            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            int id = Convert.ToInt32(gridviewExperience.DataKeys[row.RowIndex].Values[0].ToString());
-            if (_bll.DeleteExperience(id).Rows.Count > 0)
-            {
-                Toaster("Delete Successfully", Common.TosterType.Success);
-                LoadEmperience();
-            }
-            else
-            {
-                Toaster("Delete failed", Common.TosterType.Error);
-            }
-            
-        }
-
-        protected void btnDeleteTraining_Click(object sender, EventArgs e)
-        {
-            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            int id = Convert.ToInt32(gridviewTraining.DataKeys[row.RowIndex].Values[0].ToString());
-            if (_bll.DeleteTraining(id).Rows.Count > 0)
-            {
-                Toaster("Delete Successfully", Common.TosterType.Success);
-                LoadTrainingInfo();
-            }
-            else
-            {
-                Toaster("Delete failed", Common.TosterType.Error);
-            }
-           
-        }
-
-        protected void btnDeleteWork_Click(object sender, EventArgs e)
-        {
-            GridViewRow row = GridViewUtil.GetCurrentGridViewRowOnButtonClick(sender);
-            int id = Convert.ToInt32(gridviewWorkTitle.DataKeys[row.RowIndex].Values[0].ToString());
-            if (_bll.DeleteWorkTitle(id).Rows.Count > 0)
-            {
-                Toaster("Delete Successfully", Common.TosterType.Success);
-                LoadWorkInfo();
-            }
-            else
-            {
-                Toaster("Delete failed", Common.TosterType.Error);
-            }
-            
-        }
+        
     }
 }

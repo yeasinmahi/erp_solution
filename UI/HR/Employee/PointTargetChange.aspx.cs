@@ -131,7 +131,7 @@ namespace UI.HR.Employee
 
             if(!String.IsNullOrEmpty(QTY.Text) || QTY.Text!="0.00")
             {
-                //dt = obj.GetTargetChange(2, LineId, PointId, Date, Convert.ToInt32(ProductId), pcs, Convert.ToDecimal(strqty), Convert.ToInt32(strUOM));
+                dt = obj.GetTargetChange(2, LineId, PointId, Date, Convert.ToInt32(ProductId), pcs, Convert.ToDecimal(strqty), Convert.ToInt32(strUOM));
                 Toaster("Updated Successfully.", "Target Change", Common.TosterType.Warning);
             }
             else
@@ -145,23 +145,7 @@ namespace UI.HR.Employee
 
         #region========Load Grid Operations=====
 
-        protected void gridView_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-        protected void lblmontargetconvqty_TextChanged(object sender, EventArgs e)
-        {
-            //GridViewRow row = ((Label)sender).NamingContainer;
-            //TextBox QTY = row.FindControl("lblmontargetconvqty") as TextBox;
-            //Label UOM = row.FindControl("lblpackqty") as Label;
-
-            //decimal pcs = Convert.ToDecimal(QTY) * Convert.ToDecimal(UOM);
-
-            //Label QTYPCS = row.FindControl("lblQTYPcs") as Label;
-
-            //QTYPCS.Text = pcs.ToString();
-
-        }
+        
 
         #endregion =======End Grid========
 

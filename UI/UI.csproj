@@ -324,6 +324,7 @@
     <Content Include="BudgetPlan\BudgetVarianceReport.aspx" />
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
     <Content Include="BudgetPlan\SetUpBaseBudgetEntry.aspx" />
+    <Content Include="Content\CSS\AdminLTE.css" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\CommonStyle.css" />
@@ -355,10 +356,12 @@
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
     <Content Include="Content\images\img\save.PNG" />
+    <Content Include="Content\JS\adminlte.min.js" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
+    <Content Include="Content\JS\demo.js" />
     <Content Include="Content\JS\dist\css\select2.css" />
     <Content Include="Content\JS\dist\css\select2.min.css" />
     <Content Include="Content\JS\dist\js\i18n\af.js" />
@@ -479,6 +482,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\PubEmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
@@ -602,6 +606,7 @@
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\InternalbillForBanking.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
@@ -3342,6 +3347,13 @@
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.cs">
+      <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.designer.cs">
+      <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Employee\EmployeeFullInformation.aspx.cs">
       <DependentUpon>EmployeeFullInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4059,6 +4071,13 @@
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\InternalbillForBanking.aspx.cs">
+      <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\InternalbillForBanking.aspx.designer.cs">
+      <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.cs">
       <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
