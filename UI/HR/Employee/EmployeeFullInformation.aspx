@@ -9,7 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
-
+    <style>
+        body{
+            font-size:12px
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,15 +30,15 @@
                 </asp:Panel>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
-                <div style="height: 10px; width: 100%"></div>
+                <div style="height: 30px; width: 100%"></div>
             </ContentTemplate>
         </asp:UpdatePanel>
         <%--=========================================Start My Code From Here===============================================--%>
         <div class="container">
             <asp:HiddenField runat="server" ID="hdnTab" Value="1" />
-            <h2>Employee Information Update</h2>
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#personal">Personal</a></li>
+                <li class="active"><a data-toggle="tab" href="#dashboard">Dashboard</a></li>
+                <li><a data-toggle="tab" href="#personal">Personal</a></li>
                 <li><a data-toggle="tab" href="#education">Education</a></li>
                 <%--<li><a data-toggle="tab" href="#experience">Experience</a></li>--%>
                 <li><a data-toggle="tab" href="#training">Training</a></li>
@@ -43,7 +47,180 @@
             </ul>
 
             <div class="tab-content">
-                <div id="personal" class="tab-pane fade in active">
+                <div id="dashboard" class="tab-pane fade in active">
+                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Dashboard</h3>
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label2" runat="server" Font-Bold="true" Text="Name"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblName" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label52" runat="server" Font-Bold="true" Text="Unit"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblUnit" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label53" runat="server" Font-Bold="true" Text="Designation"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblDesignation" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label54" runat="server" Font-Bold="true" Text="Department"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblDepartment" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label55" runat="server" Font-Bold="true" Text="Joining Date"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblJoiningDate" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label56" runat="server" Font-Bold="true" Text="Email"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblEmail" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label57" runat="server" Font-Bold="true" Text="Contact No"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblContact" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label58" runat="server" Font-Bold="true" Text="Job Type"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblJobType" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label59" runat="server" Font-Bold="true" Text="Suppervisor"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblSupervisor" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label60" runat="server" Font-Bold="true" Text="Enroll"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblEnroll" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                        <asp:Label ID="Label61" runat="server" Font-Bold="true" Text="Code"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                        <asp:Label ID="lblCode" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- ./box-body -->
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Todays Attendance</span>
+                                            <span class="info-box-number">8:55 AM</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Todays Meal</span>
+                                            <span class="info-box-number">Rice, Checken Vuna, Dal, Salat</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- fix for small devices only -->
+                                <div class="clearfix visible-sm-block"></div>
+
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total Late (Current Month)</span>
+                                            <span class="info-box-number">2</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total Leave (Current Month)</span>
+                                            <span class="info-box-number">1</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                            </div>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div id="personal" class="tab-pane fade">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
                             <div class="row">
@@ -188,7 +365,7 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label51" runat="server" Text="Responsibilities(Most Five Priorities)"></asp:Label>
                                                     <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                                    <asp:TextBox ID="txtAkijResponsibilities" CssClass="form-control col-md-12 col-sm-12 col-xs-12" TextMode="MultiLine"  runat="server" placeholder="Enter your all responsibilities"></asp:TextBox>
+                                                    <asp:TextBox ID="txtAkijResponsibilities" CssClass="form-control col-md-12 col-sm-12 col-xs-12" TextMode="MultiLine" runat="server" placeholder="Enter your all responsibilities"></asp:TextBox>
                                                 </div>
                                             </div>
                                         </div>
@@ -754,7 +931,6 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-
                 <div id="photograph" class="tab-pane fade">
                     <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
@@ -763,7 +939,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <asp:Label ID="Label47" runat="server" Text="Select Image to upload"></asp:Label>
-                                        <asp:Label ID="Label480" runat="server" Text="(Passport Size Colored Photo)" style="color:red"></asp:Label>
+                                        <asp:Label ID="Label480" runat="server" Text="(Passport Size Colored Photo)" Style="color: red"></asp:Label>
                                         <asp:FileUpload ID="ImageUpload" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ClientIDMode="Static" onchange="ShowPreview(this)" EnableViewState="true"></asp:FileUpload>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 20px">
@@ -995,23 +1171,23 @@
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
         function SearchText() {
-                $("#txtEmployeeName").autocomplete({
-                    source: function (request, response) {
-                        $.ajax({
-                            type: "POST",
-                            contentType: "application/json;",
-                            url: "PubEmployeeFullInformation.aspx/GetAutoCompleteData",
-                            data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
-                            dataType: "json",
-                            success: function (data) {
-                                response(data.d);
-                            },
-                            error: function (result) {
-                                console.log(result.responseText);
-                            }
-                        });
-                    },
-                    minLength: 3,
+            $("#txtEmployeeName").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;",
+                        url: "PubEmployeeFullInformation.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            console.log(result.responseText);
+                        }
+                    });
+                },
+                minLength: 3,
                     <%--select: function (event, ui) {
                         console.log(ui.item.value);
                         var hdnSearchId = document.getElementById("<%=hdnSearch.ClientID%>");
@@ -1019,8 +1195,8 @@
                         document.getElementById('<%=txtEmployeeName.ClientID %>').value = ui.item.value;
                         __doPostBack('', ui.item.value);
                     }--%>
-                });
-            }
+            });
+        }
         function Init() {
             SearchText();
             $('#txtPromotionDate').datepicker({
