@@ -40,12 +40,29 @@ namespace UI.SAD.Customer
               
             }
         }
+
+        protected void btnuploadSingle_Click(object sender, EventArgs e)
+        {
+            char[] delimiterCharss = { '[', ']' };
+                if (txtCustomer.Text != "")
+                {
+
+                    arrayKeyItem = txtCustomer.Text.Split(delimiterCharss);
+                    Custid = int.Parse(arrayKeyItem[1].ToString());
+                }
+                else { Custid = int.Parse("0"); }
+            string email = txtEmail.Text;
+            objExcel.getCustomerEmailupdate(email,Custid);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Successfully Change!');", true);
+
+        }
+
         [WebMethod]
         [ScriptMethod]
         public static string[] CustomerSearch(string prefixText, int count = 0)
         {
             ItemPromotion objPromotion = new ItemPromotion();
-            return objPromotion.GetCstomer("2",prefixText);
+            return objPromotion.GetCstomer((HttpContext.Current.Session[SessionParams.UNIT_ID].ToString()), prefixText);
 
         }
         
