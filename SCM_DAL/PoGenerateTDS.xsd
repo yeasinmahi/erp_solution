@@ -1145,6 +1145,25 @@ SELECT strVATRegNo AS Vat_Reg_No, strBINNo AS BIN_No, intUnitID FROM tblUnit WHE
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="tblSupplier1TableAdapter" GeneratorDataComponentClassName="tblSupplier1TableAdapter" Name="tblSupplier1" UserDataComponentName="tblSupplier1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="ERP_Inventory.dbo.tblSupplierMaster" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetAllSupplierData" GetMethodModifier="Public" GetMethodName="GetAllSupplierData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetAllSupplierData" UserSourceName="GetAllSupplierData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select strSuppMasterName,sm.intSuppMasterID from  ERP_Inventory.dbo.tblSupplierMaster sm
+
+ where sm.ysnActive=1   order by strSuppMasterName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="strSuppMasterName" DataSetColumn="strSuppMasterName" />
+              <Mapping SourceColumn="intSuppMasterID" DataSetColumn="intSuppMasterID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources>
           <DbSource ConnectionRef="ERP_InventoryConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateItemHSCode" MethodsParameterType="CLR" Modifier="Public" Name="UpdateItemHSCode" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateItemHSCode">
@@ -1876,6 +1895,20 @@ SELECT strVATRegNo AS Vat_Reg_No, strBINNo AS BIN_No, intUnitID FROM tblUnit WHE
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="tblSupplier1" msprop:Generator_TableClassName="tblSupplier1DataTable" msprop:Generator_TableVarName="tabletblSupplier1" msprop:Generator_RowChangedName="tblSupplier1RowChanged" msprop:Generator_TablePropName="tblSupplier1" msprop:Generator_RowDeletingName="tblSupplier1RowDeleting" msprop:Generator_RowChangingName="tblSupplier1RowChanging" msprop:Generator_RowEvHandlerName="tblSupplier1RowChangeEventHandler" msprop:Generator_RowDeletedName="tblSupplier1RowDeleted" msprop:Generator_RowClassName="tblSupplier1Row" msprop:Generator_UserTableName="tblSupplier1" msprop:Generator_RowEvArgName="tblSupplier1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="strSuppMasterName" msprop:Generator_ColumnVarNameInTable="columnstrSuppMasterName" msprop:Generator_ColumnPropNameInRow="strSuppMasterName" msprop:Generator_ColumnPropNameInTable="strSuppMasterNameColumn" msprop:Generator_UserColumnName="strSuppMasterName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="intSuppMasterID" msprop:Generator_ColumnVarNameInTable="columnintSuppMasterID" msprop:Generator_ColumnPropNameInRow="intSuppMasterID" msprop:Generator_ColumnPropNameInTable="intSuppMasterIDColumn" msprop:Generator_UserColumnName="intSuppMasterID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1909,6 +1942,10 @@ SELECT strVATRegNo AS Vat_Reg_No, strBINNo AS BIN_No, intUnitID FROM tblUnit WHE
     <xs:unique name="VATnBIN_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:VATnBIN" />
       <xs:field xpath="mstns:intUnitID" />
+    </xs:unique>
+    <xs:unique name="tblSupplier1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:tblSupplier1" />
+      <xs:field xpath="mstns:intSuppMasterID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

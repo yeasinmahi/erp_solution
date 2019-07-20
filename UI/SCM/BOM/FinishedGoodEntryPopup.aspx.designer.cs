@@ -130,6 +130,15 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.HiddenField hdnIndentType;
         
         /// <summary>
+        /// hfTotalQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTotalQty;
+        
+        /// <summary>
         /// Label7 control.
         /// </summary>
         /// <remarks>
@@ -481,22 +490,40 @@ namespace UI.SCM.BOM {
         protected global::System.Web.UI.WebControls.Button btnSaves;
         
         /// <summary>
-        /// dgvProductionEntry control.
+        /// gridViewProductionEntry control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvProductionEntry;
+        protected global::System.Web.UI.WebControls.GridView gridViewProductionEntry;
         
         /// <summary>
-        /// dgvStore control.
+        /// gridViewProductionEntryAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView dgvStore;
+        protected global::System.Web.UI.WebControls.GridView gridViewProductionEntryAdd;
+        
+        /// <summary>
+        /// gridViewWastage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridViewWastage;
+        
+        /// <summary>
+        /// gridViewWastageAdd control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gridViewWastageAdd;
         
         /// <summary>
         /// Label22 control.

@@ -442,12 +442,12 @@ namespace SCM_BLL
                 return new DataTable();
             }
         }
-        public DataTable GetFGCode(int UnitID,int CostElementGroup,int intCoAID)
+        public DataTable GetFGCode(int intCoAID)
         {
             try
             {
                 TblAccountsChartOfAccTableAdapter adp = new TblAccountsChartOfAccTableAdapter();
-                return adp.GetCode(UnitID,CostElementGroup,intCoAID);
+                return adp.GetCode(intCoAID);
             }
             catch (Exception ex)
             {
@@ -596,6 +596,24 @@ namespace SCM_BLL
                 return strMsg;
             }
             return strMsg;
+        }
+
+        public int GetWareHouseType(int WHID)
+        {
+            int WHType = 0;
+            try
+            {
+                WHTypeTableAdapter adapter = new WHTypeTableAdapter();
+                object _obj = adapter.GetWareHouseType(WHID);
+                if (_obj != null)
+                    WHType = int.Parse(_obj.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+
+            return WHType;
         }
     }
 }

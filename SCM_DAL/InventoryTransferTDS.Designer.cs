@@ -14145,18 +14145,6 @@ namespace SCM_DAL {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class TblAccountsChartOfAccDataTable : global::System.Data.TypedTableBase<TblAccountsChartOfAccRow> {
             
-            private global::System.Data.DataColumn columnintItemID;
-            
-            private global::System.Data.DataColumn columnintCostElementGroup;
-            
-            private global::System.Data.DataColumn columnintCoAID;
-            
-            private global::System.Data.DataColumn columnstrCostGroup;
-            
-            private global::System.Data.DataColumn columnstrAccName;
-            
-            private global::System.Data.DataColumn columnmonCost;
-            
             private global::System.Data.DataColumn columnstrCode;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14190,54 +14178,6 @@ namespace SCM_DAL {
             protected TblAccountsChartOfAccDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intItemIDColumn {
-                get {
-                    return this.columnintItemID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCostElementGroupColumn {
-                get {
-                    return this.columnintCostElementGroup;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn intCoAIDColumn {
-                get {
-                    return this.columnintCoAID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strCostGroupColumn {
-                get {
-                    return this.columnstrCostGroup;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn strAccNameColumn {
-                get {
-                    return this.columnstrAccName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn monCostColumn {
-                get {
-                    return this.columnmonCost;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14285,15 +14225,9 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public TblAccountsChartOfAccRow AddTblAccountsChartOfAccRow(int intItemID, int intCostElementGroup, int intCoAID, string strCostGroup, string strAccName, decimal monCost, string strCode) {
+            public TblAccountsChartOfAccRow AddTblAccountsChartOfAccRow(string strCode) {
                 TblAccountsChartOfAccRow rowTblAccountsChartOfAccRow = ((TblAccountsChartOfAccRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        intItemID,
-                        intCostElementGroup,
-                        intCoAID,
-                        strCostGroup,
-                        strAccName,
-                        monCost,
                         strCode};
                 rowTblAccountsChartOfAccRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTblAccountsChartOfAccRow);
@@ -14317,35 +14251,14 @@ namespace SCM_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnintItemID = base.Columns["intItemID"];
-                this.columnintCostElementGroup = base.Columns["intCostElementGroup"];
-                this.columnintCoAID = base.Columns["intCoAID"];
-                this.columnstrCostGroup = base.Columns["strCostGroup"];
-                this.columnstrAccName = base.Columns["strAccName"];
-                this.columnmonCost = base.Columns["monCost"];
                 this.columnstrCode = base.Columns["strCode"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnintItemID = new global::System.Data.DataColumn("intItemID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintItemID);
-                this.columnintCostElementGroup = new global::System.Data.DataColumn("intCostElementGroup", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCostElementGroup);
-                this.columnintCoAID = new global::System.Data.DataColumn("intCoAID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnintCoAID);
-                this.columnstrCostGroup = new global::System.Data.DataColumn("strCostGroup", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrCostGroup);
-                this.columnstrAccName = new global::System.Data.DataColumn("strAccName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstrAccName);
-                this.columnmonCost = new global::System.Data.DataColumn("monCost", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnmonCost);
                 this.columnstrCode = new global::System.Data.DataColumn("strCode", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstrCode);
-                this.columnstrCostGroup.MaxLength = 100;
-                this.columnstrAccName.AllowDBNull = false;
-                this.columnstrAccName.MaxLength = 200;
                 this.columnstrCode.MaxLength = 100;
             }
             
@@ -18856,98 +18769,6 @@ namespace SCM_DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intItemID {
-                get {
-                    try {
-                        return ((int)(this[this.tableTblAccountsChartOfAcc.intItemIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intItemID\' in table \'TblAccountsChartOfAcc\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTblAccountsChartOfAcc.intItemIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCostElementGroup {
-                get {
-                    try {
-                        return ((int)(this[this.tableTblAccountsChartOfAcc.intCostElementGroupColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCostElementGroup\' in table \'TblAccountsChartOfAcc\' is DB" +
-                                "Null.", e);
-                    }
-                }
-                set {
-                    this[this.tableTblAccountsChartOfAcc.intCostElementGroupColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public int intCoAID {
-                get {
-                    try {
-                        return ((int)(this[this.tableTblAccountsChartOfAcc.intCoAIDColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'intCoAID\' in table \'TblAccountsChartOfAcc\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTblAccountsChartOfAcc.intCoAIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strCostGroup {
-                get {
-                    try {
-                        return ((string)(this[this.tableTblAccountsChartOfAcc.strCostGroupColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'strCostGroup\' in table \'TblAccountsChartOfAcc\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTblAccountsChartOfAcc.strCostGroupColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string strAccName {
-                get {
-                    return ((string)(this[this.tableTblAccountsChartOfAcc.strAccNameColumn]));
-                }
-                set {
-                    this[this.tableTblAccountsChartOfAcc.strAccNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public decimal monCost {
-                get {
-                    try {
-                        return ((decimal)(this[this.tableTblAccountsChartOfAcc.monCostColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'monCost\' in table \'TblAccountsChartOfAcc\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTblAccountsChartOfAcc.monCostColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string strCode {
                 get {
                     try {
@@ -18960,66 +18781,6 @@ namespace SCM_DAL {
                 set {
                     this[this.tableTblAccountsChartOfAcc.strCodeColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintItemIDNull() {
-                return this.IsNull(this.tableTblAccountsChartOfAcc.intItemIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintItemIDNull() {
-                this[this.tableTblAccountsChartOfAcc.intItemIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCostElementGroupNull() {
-                return this.IsNull(this.tableTblAccountsChartOfAcc.intCostElementGroupColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCostElementGroupNull() {
-                this[this.tableTblAccountsChartOfAcc.intCostElementGroupColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsintCoAIDNull() {
-                return this.IsNull(this.tableTblAccountsChartOfAcc.intCoAIDColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetintCoAIDNull() {
-                this[this.tableTblAccountsChartOfAcc.intCoAIDColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsstrCostGroupNull() {
-                return this.IsNull(this.tableTblAccountsChartOfAcc.strCostGroupColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetstrCostGroupNull() {
-                this[this.tableTblAccountsChartOfAcc.strCostGroupColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsmonCostNull() {
-                return this.IsNull(this.tableTblAccountsChartOfAcc.monCostColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetmonCostNull() {
-                this[this.tableTblAccountsChartOfAcc.monCostColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -29650,12 +29411,6 @@ from ERP_Inventory.dbo.tblItemCostingFGDetail  fg inner JOIN ERP_Inventory.dbo.t
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "TblAccountsChartOfAcc";
-            tableMapping.ColumnMappings.Add("intItemID", "intItemID");
-            tableMapping.ColumnMappings.Add("intCostElementGroup", "intCostElementGroup");
-            tableMapping.ColumnMappings.Add("intCoAID", "intCoAID");
-            tableMapping.ColumnMappings.Add("strCostGroup", "strCostGroup");
-            tableMapping.ColumnMappings.Add("strAccName", "strAccName");
-            tableMapping.ColumnMappings.Add("monCost", "monCost");
             tableMapping.ColumnMappings.Add("strCode", "strCode");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -29673,44 +29428,88 @@ from ERP_Inventory.dbo.tblItemCostingFGDetail  fg inner JOIN ERP_Inventory.dbo.t
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT        TOP (1) fg.intItemID, fg.intCostElementGroup, fg.intCoAID, acc.strCode, acc.strAccName, fg.monCost, g.strCostGroup
-FROM            tblItemCostingFGDetail AS fg INNER JOIN
-                         tblItemCostingFGCostGroup AS g ON fg.intCostElementGroup = g.intCostGroupID INNER JOIN
-                         ERP_Accounts.dbo.tblAccountsChartOfAcc AS acc ON fg.intCoAID = acc.intAccID
-WHERE        (fg.intUnitID = @UnitID) AND (fg.intCostElementGroup = @CostElementGroup) AND (fg.intCoAID = @intCoAID)";
+            this._commandCollection[0].CommandText = "select strCode FROM  ERP_Accounts.dbo.tblAccountsChartOfAcc where intAccID = @int" +
+                "CoAID";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UnitID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intUnitID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CostElementGroup", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCostElementGroup", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCoAID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intCoAID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@intCoAID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intAccID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual InventoryTransferTDS.TblAccountsChartOfAccDataTable GetCode(global::System.Nullable<int> UnitID, global::System.Nullable<int> CostElementGroup, global::System.Nullable<int> intCoAID) {
+        public virtual InventoryTransferTDS.TblAccountsChartOfAccDataTable GetCode(int intCoAID) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((UnitID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(UnitID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((CostElementGroup.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(CostElementGroup.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((intCoAID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(intCoAID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(intCoAID));
             InventoryTransferTDS.TblAccountsChartOfAccDataTable dataTable = new InventoryTransferTDS.TblAccountsChartOfAccDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class WHTypeTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.IDbCommand[] _commandCollection;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.IDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.IDbCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Connection = new global::System.Data.SqlClient.SqlConnection(global::SCM_DAL.Properties.Settings.Default.ERP_InventoryConnectionString);
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandText = "select intWHType from erp_inventory.dbo.tblWearHouse\r\nwhere intWHID = @WHID and y" +
+                "snActive = 1";
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).CommandType = global::System.Data.CommandType.Text;
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[0])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@WHID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "intWHID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<int> GetWareHouseType(int WHID) {
+            global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[0]));
+            command.Parameters[0].Value = ((int)(WHID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<int>();
+            }
+            else {
+                return new global::System.Nullable<int>(((int)(returnValue)));
+            }
         }
     }
     

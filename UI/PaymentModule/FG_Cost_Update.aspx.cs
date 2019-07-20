@@ -30,7 +30,10 @@ namespace UI.PaymentModule
         {
             if (!IsPostBack)
             {
-                try { File.Delete(GetXmlFilePath()); } catch { }
+                Session["obj"] = null;
+                dgvReport.DataSource = "";
+                dgvReport.DataBind();
+                //try { File.Delete(GetXmlFilePath()); } catch { }
                 LoadUnit();
                  LoadItemType();
                 itemTypeId = Convert.ToInt32( ddlItemType.SelectedItem.Value);
@@ -42,6 +45,7 @@ namespace UI.PaymentModule
                 LoadItem(UnitID);
                 dt = unitObj.GetUnitDescriptionByUnitID(UnitID);
                 lblUnitName.Text = dt.Rows[0]["strDescription"].ToString();
+
             }
         }
         private void LoadUnit()
@@ -217,9 +221,9 @@ namespace UI.PaymentModule
             dteDate = CommonClass.GetDateAtSQLDateFormat(txtEffectDate.Text).Date;
             string ItemTypeID = ddlItemType.SelectedItem.Text;
 
-            dt = inventoryTransfer_Obj.GetFGCode(UnitID,Convert.ToInt32(ddlCostGroup.SelectedValue),CoAID);
+            dt = inventoryTransfer_Obj.GetFGCode(CoAID);
 
-            try {  code = dt.Rows[0]["strcode"].ToString(); }
+            try {  code = dt.Rows[0]["strCode"].ToString(); }
             catch { code = ""; }
             
 

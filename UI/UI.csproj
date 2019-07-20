@@ -324,6 +324,7 @@
     <Content Include="BudgetPlan\BudgetVarianceReport.aspx" />
     <Content Include="BudgetPlan\CostCenterCorrection.aspx" />
     <Content Include="BudgetPlan\SetUpBaseBudgetEntry.aspx" />
+    <Content Include="Content\CSS\AdminLTE.css" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
     <Content Include="Content\CSS\CommonStyle.css" />
@@ -335,6 +336,8 @@
     <Content Include="Content\CSS\toastr.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\images\Cafeteria\NEW ERP.png" />
     <Content Include="Content\images\img\105.png" />
     <Content Include="Content\images\img\13.png" />
@@ -355,10 +358,12 @@
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
     <Content Include="Content\images\img\save.PNG" />
+    <Content Include="Content\JS\adminlte.min.js" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
     <Content Include="Content\JS\bootstrap-datepicker.min.js" />
     <Content Include="Content\JS\bootstrap.min.js" />
+    <Content Include="Content\JS\demo.js" />
     <Content Include="Content\JS\dist\css\select2.css" />
     <Content Include="Content\JS\dist\css\select2.min.css" />
     <Content Include="Content\JS\dist\js\i18n\af.js" />
@@ -479,6 +484,7 @@
     <Content Include="HR\DocumentTracking\DocumentSearch.aspx" />
     <Content Include="HR\DocumentTracking\DocumentTransfer.aspx" />
     <Content Include="HR\Employee\EmployeeCardUpdate.aspx" />
+    <Content Include="HR\Employee\PubEmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeFullInformation.aspx" />
     <Content Include="HR\Employee\EmployeeTransferNpromotion.aspx" />
     <Content Include="HR\Employee\EmpPersonalInformationUpdate.aspx" />
@@ -602,6 +608,7 @@
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\InternalbillForBanking.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
     <Content Include="PaymentModule\MaterialCOABridge.aspx" />
@@ -1253,7 +1260,6 @@
     <Content Include="SAD\AutoChallan\jquery-ui.min.js" />
     <Content Include="SAD\AutoChallan\jquery.min.js" />
     <Content Include="SAD\AutoChallan\LoadingSlip.aspx" />
-    <Content Include="SAD\AutoChallan\LoadingSlipview.aspx" />
     <Content Include="SAD\AutoChallan\Stock.aspx" />
     <Content Include="SAD\AutoChallan\TradeofferBill.aspx" />
     <Content Include="SAD\AutoChallan\TransportSet.aspx" />
@@ -1292,6 +1298,7 @@
     <Content Include="SAD\Customer\CustomerInfoEdit.aspx" />
     <Content Include="SAD\Customer\CustomerInfoFactory.aspx" />
     <Content Include="SAD\Customer\DistributionPoint.aspx" />
+    <Content Include="SAD\Customer\frmCustomerEmailChange.aspx" />
     <Content Include="SAD\Customer\PriceSetAllTerritory.aspx" />
     <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
@@ -1437,6 +1444,7 @@
     <Content Include="SAD\Sales\Report\Area_vs_Item.aspx" />
     <Content Include="SAD\Sales\Report\Audit_Report_For_DO_and_Challan.aspx" />
     <Content Include="SAD\Sales\Report\BrandStockReport.aspx" />
+    <Content Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx" />
     <Content Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx" />
     <Content Include="SAD\Sales\Report\Delivery_Challan_APL_Form.aspx" />
     <Content Include="SAD\Sales\Report\Distributor_Sales_Trade_Analysis_Report.aspx" />
@@ -1507,6 +1515,7 @@
     <Content Include="SAD\Sales\Report\RptRemoteSales\ZStandVehicleTADA.aspx" />
     <Content Include="SAD\Sales\Report\Sales.aspx" />
     <Content Include="SAD\Sales\Report\Sales2.aspx" />
+    <Content Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx" />
     <Content Include="SAD\Sales\Report\Sales_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\Setup_vs_Challan_Info_Report.aspx" />
     <Content Include="SAD\Sales\Report\ShippingPointBaseCollectionAndDelv.aspx" />
@@ -1518,6 +1527,7 @@
     <Content Include="SAD\Sales\Report\UDTCLSalesInventory.aspx" />
     <Content Include="SAD\Sales\Report\UDTCLSalesViewReport.aspx" />
     <Content Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx" />
+    <Content Include="SAD\Sales\Report\VatCompleteNotInSubledger.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Calling_List.aspx" />
     <Content Include="SAD\Sales\Report\Vehicle_Per_Kilo_Cost_Report.aspx" />
     <Content Include="SAD\Sales\Report\YearlyOperationalSummeryRpt.aspx" />
@@ -1645,6 +1655,11 @@
     <Content Include="SCM\Item_View.aspx" />
     <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
+    <Content Include="SCM\Media\Media_Brand_Wise_Report.aspx" />
+    <Content Include="SCM\Media\Media_Monitoring_Report.aspx" />
+    <Content Include="SCM\Media\Media_Press_Report.aspx" />
+    <Content Include="SCM\Media\Media_Reconcile_Report.aspx" />
+    <Content Include="SCM\Media\Media_Schedule_Report.aspx" />
     <Content Include="SCM\MrrCorrection.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
@@ -3339,6 +3354,13 @@
     <Compile Include="HR\Employee\EmployeeCardUpdate.aspx.designer.cs">
       <DependentUpon>EmployeeCardUpdate.aspx</DependentUpon>
     </Compile>
+    <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.cs">
+      <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HR\Employee\PubEmployeeFullInformation.aspx.designer.cs">
+      <DependentUpon>PubEmployeeFullInformation.aspx</DependentUpon>
+    </Compile>
     <Compile Include="HR\Employee\EmployeeFullInformation.aspx.cs">
       <DependentUpon>EmployeeFullInformation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4056,6 +4078,13 @@
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\InternalbillForBanking.aspx.cs">
+      <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\InternalbillForBanking.aspx.designer.cs">
+      <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\Inventory_Summary_Report.aspx.cs">
       <DependentUpon>Inventory_Summary_Report.aspx</DependentUpon>
@@ -6038,13 +6067,6 @@
     <Compile Include="SAD\AutoChallan\LoadingSlip.aspx.designer.cs">
       <DependentUpon>LoadingSlip.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\AutoChallan\LoadingSlipview.aspx.cs">
-      <DependentUpon>LoadingSlipview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\AutoChallan\LoadingSlipview.aspx.designer.cs">
-      <DependentUpon>LoadingSlipview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SAD\AutoChallan\Stock.aspx.cs">
       <DependentUpon>Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6310,6 +6332,13 @@
     </Compile>
     <Compile Include="SAD\Customer\DistributionPoint.aspx.designer.cs">
       <DependentUpon>DistributionPoint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\frmCustomerEmailChange.aspx.cs">
+      <DependentUpon>frmCustomerEmailChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\frmCustomerEmailChange.aspx.designer.cs">
+      <DependentUpon>frmCustomerEmailChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\PriceSetAllTerritory.aspx.cs">
       <DependentUpon>PriceSetAllTerritory.aspx</DependentUpon>
@@ -7313,6 +7342,13 @@
     <Compile Include="SAD\Sales\Report\BrandStockReport.aspx.designer.cs">
       <DependentUpon>BrandStockReport.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.cs">
+      <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\CustomerWiseSalesReport.aspx.designer.cs">
+      <DependentUpon>CustomerWiseSalesReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Customer_Pending_List_Report.aspx.cs">
       <DependentUpon>Customer_Pending_List_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7803,6 +7839,13 @@
     <Compile Include="SAD\Sales\Report\Sales2.aspx.designer.cs">
       <DependentUpon>Sales2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx.cs">
+      <DependentUpon>SalesItemPriceMismatch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\SalesItemPriceMismatch.aspx.designer.cs">
+      <DependentUpon>SalesItemPriceMismatch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SAD\Sales\Report\Sales_Info_Report.aspx.cs">
       <DependentUpon>Sales_Info_Report.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -7879,6 +7922,13 @@
     </Compile>
     <Compile Include="SAD\Sales\Report\Unit_Base_Missing_Challan.aspx.designer.cs">
       <DependentUpon>Unit_Base_Missing_Challan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\VatCompleteNotInSubledger.aspx.cs">
+      <DependentUpon>VatCompleteNotInSubledger.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Sales\Report\VatCompleteNotInSubledger.aspx.designer.cs">
+      <DependentUpon>VatCompleteNotInSubledger.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Sales\Report\Vehicle_Calling_List.aspx.cs">
       <DependentUpon>Vehicle_Calling_List.aspx</DependentUpon>
@@ -8754,6 +8804,41 @@
     </Compile>
     <Compile Include="SCM\MaterialApprovalStatus.aspx.designer.cs">
       <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Brand_Wise_Report.aspx.cs">
+      <DependentUpon>Media_Brand_Wise_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Brand_Wise_Report.aspx.designer.cs">
+      <DependentUpon>Media_Brand_Wise_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Monitoring_Report.aspx.cs">
+      <DependentUpon>Media_Monitoring_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Monitoring_Report.aspx.designer.cs">
+      <DependentUpon>Media_Monitoring_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Press_Report.aspx.cs">
+      <DependentUpon>Media_Press_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Press_Report.aspx.designer.cs">
+      <DependentUpon>Media_Press_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Reconcile_Report.aspx.cs">
+      <DependentUpon>Media_Reconcile_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Reconcile_Report.aspx.designer.cs">
+      <DependentUpon>Media_Reconcile_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Schedule_Report.aspx.cs">
+      <DependentUpon>Media_Schedule_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Schedule_Report.aspx.designer.cs">
+      <DependentUpon>Media_Schedule_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrCorrection.aspx.cs">
       <DependentUpon>MrrCorrection.aspx</DependentUpon>
@@ -10213,6 +10298,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="backup.bat" />
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />

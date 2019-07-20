@@ -130,13 +130,31 @@ namespace UI.HR.PiceRateCalculation {
         protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// txtMonth control.
+        /// txtFDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMonth;
+        protected global::System.Web.UI.WebControls.TextBox txtFDate;
+        
+        /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
+        /// txtTDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTDate;
         
         /// <summary>
         /// Label3 control.
@@ -193,21 +211,21 @@ namespace UI.HR.PiceRateCalculation {
         protected global::System.Web.UI.WebControls.Button btnSubmit;
         
         /// <summary>
-        /// gridViewReport control.
+        /// lblHeader control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridViewReport;
+        protected global::System.Web.UI.WebControls.Label lblHeader;
         
         /// <summary>
-        /// gridViewIndividualReport control.
+        /// frame control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gridViewIndividualReport;
+        protected global::System.Web.UI.HtmlControls.HtmlIframe frame;
     }
 }

@@ -490,11 +490,15 @@ namespace UI.SAD.Delivery
             {
                 txtOrderNo.Visible = false;
                 lblOrderNo.Visible = false;
+                lblCustomer.Text = "Sold To Party";
+                lblCustomerToAdd.Text = "Ship To Party";
             }
             else if (ddlOrderType.SelectedValue == "4")
             {
                 txtOrderNo.Visible = true;
                 lblOrderNo.Visible = true;
+                lblCustomer.Text = "Sold To Party";
+                lblCustomerToAdd.Text = "Ship To Party";
             }
         }
 

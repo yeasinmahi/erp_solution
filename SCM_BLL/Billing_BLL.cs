@@ -115,6 +115,14 @@ namespace SCM_BLL
             catch (Exception ex) { ex.ToString(); return new DataTable(); }
         }
 
+        public DataTable GetBillReg(int intUnitID, string strReffNo, DateTime dteFDate, DateTime dteTDate)
+        {
+            sprBillRegisterTableAdapter adp = new sprBillRegisterTableAdapter();
+            try
+            { return adp.GetBillRegister(intUnitID, strReffNo, dteFDate, dteTDate); }
+            catch (Exception ex) { ex.ToString(); return new DataTable(); }
+        }
+
         public DataTable GetEmpName(int intEnroll)
         {
             TblEmployeeTableAdapter adp = new TblEmployeeTableAdapter();

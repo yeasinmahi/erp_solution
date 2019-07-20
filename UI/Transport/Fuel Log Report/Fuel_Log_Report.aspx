@@ -59,10 +59,13 @@
                                         <asp:ListItem Text="Oil Summary Report" Value="3"></asp:ListItem>
                                         <asp:ListItem Text="Summary Report" Value="4"></asp:ListItem>
                                         <asp:ListItem Text="CNG Report" Value="5"></asp:ListItem>
+                                        <asp:ListItem Text="Day Basis Vehicle Report" Value="6"></asp:ListItem>
+                                        <asp:ListItem Text="Fuel Station Bill" Value="7"></asp:ListItem>
+                                        <asp:ListItem Text="Month Basis Fuel Report" Value="8"></asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-md-4">
-                                    <asp:Label ID="Label1" runat="server" Text="From Date" ></asp:Label>
+                                    <asp:Label ID="Label1" runat="server" Text="From Date"></asp:Label>
                                     <asp:TextBox ID="txtFromDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="fd" runat="server" Format="yyyy-MM-dd" TargetControlID="txtFromDate"></cc1:CalendarExtender>
                                 </div>
@@ -72,7 +75,7 @@
                                     <asp:TextBox ID="txtToDate" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12" autocomplete="off" placeholder="yyyy-MM-dd"></asp:TextBox>
                                     <cc1:CalendarExtender ID="td" runat="server" Format="yyyy-MM-dd" TargetControlID="txtToDate"></cc1:CalendarExtender>
                                 </div>
-                                
+
                                 <div class="col-md-4 hidden" id="unit">
 
                                     <asp:Label ID="Label5" runat="server" Text="Unit"></asp:Label>
@@ -81,7 +84,7 @@
                                 </div>
                                 <div class="col-md-4 hidden" id="jobstation">
                                     <asp:Label ID="Label6" runat="server" Text="Job Station"></asp:Label>
-                                     <asp:DropDownList ID="ddlJobStation" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 "></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlJobStation" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 "></asp:DropDownList>
 
                                 </div>
                                 <div class="col-md-4 hidden" id="fuelCompany">
@@ -92,7 +95,20 @@
                                     <asp:Label ID="Label4" runat="server" Text="Vehicle No"></asp:Label>
                                     <asp:DropDownList ID="ddlVehicleNo" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 "></asp:DropDownList>
                                 </div>
-                                
+                                <div class="col-md-4 hidden" id="station">
+                                    <asp:Label ID="lblStation" runat="server" Text="Station"></asp:Label>
+                                    <asp:DropDownList ID="ddlStation" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 "></asp:DropDownList>
+
+                                </div>
+                                <div class="col-md-4 hidden" id="stationType">
+                                    <asp:Label ID="lblStationType" runat="server" Text="Fuel Station Type"></asp:Label>
+                                    <asp:DropDownList ID="ddlStationType" runat="server" CssClass="form-control col-md-12 col-sm-12 col-xs-12 ">
+                                        <asp:ListItem Text="--Select Station Type--" Value="0"></asp:ListItem>
+                                        <asp:ListItem Text="OIL" Value="1"></asp:ListItem>
+                                        <asp:ListItem Text="CNG GAS" Value="2"></asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+
                             </div>
                             <div class="row">
                                 <div class="col-md-12 btn-toolbar" id="showbuttonDiv">
@@ -114,15 +130,17 @@
             $(document).ready(function () {
                 Init();
                 Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
-                
+
             });
             function Init() {
-                
+
             }
             function Validation() {
                 var txtFromDate = document.getElementById("txtFromDate").value;
                 var txtToDate = document.getElementById("txtToDate").value;
                 var report = document.getElementById("ddlReport").value;
+
+
                 if (report == 0) {
                     ShowNotification("Please Select Report Type", "", "warning");
                     return false;
@@ -133,10 +151,16 @@
                 } else if (txtToDate == "") {
                     ShowNotification("To date can not be blank", "", "warning");
                     return false;
+                } else if (report == 7) {
+                    var stationType = document.getElementById("ddlStationType").value;
+                    if (stationType == 0) {
+                        ShowNotification("Select Fuel Station Type", "", "warning");
+                        return false;
+                    }
                 }
                 return true;
-
             }
+
             function showPanel() {
                 console.log("show panel");
 
@@ -168,8 +192,21 @@
                     jobstation.classList.remove("hidden");
                     //showbuttonDiv.classList.add('col-md-9');
                     //showbuttonDiv.classList.remove('col-md-12');
-
-
+                }
+                else if (report == 6) {
+                    unit.classList.remove("hidden");
+                    jobstation.classList.remove("hidden");
+                    vehicleNo.classList.remove("hidden");
+                }
+                else if (report == 7) {
+                    stationType.classList.remove("hidden");
+                    unit.classList.remove("hidden");
+                    jobstation.classList.remove("hidden");
+                    station.classList.remove("hidden");
+                }
+                else if (report == 8) {
+                    unit.classList.remove("hidden");
+                    vehicleNo.classList.remove("hidden");
                 }
                 else {
                     unit.classList.add("hidden");
