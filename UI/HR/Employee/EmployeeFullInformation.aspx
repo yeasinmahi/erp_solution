@@ -122,12 +122,12 @@
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label16" runat="server" Text="NID no"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                                     <asp:TextBox ID="txtNidNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter NID NO"></asp:TextBox>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <asp:Label ID="Label1" runat="server" Text="Mobile No"></asp:Label>
-                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
                                                     <asp:TextBox ID="txtMobileNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex:01XXXXXXXXX"></asp:TextBox>
                                                 </div>
                                             </div>
@@ -795,6 +795,9 @@
             var txtMotherNmae = document.getElementById("txtMotherNmae").value;
             var txtPermanetAddress = document.getElementById("txtPermanetAddress").value;
             var txtPresentAddress = document.getElementById("txtPresentAddress").value;
+            var txtNidNo = document.getElementById("txtNidNo").value;
+            var txtMobileNo = document.getElementById("txtMobileNo").value;
+
             var txtJoiningDate = document.getElementById("txtJoiningDate").value;
             var txtPresentSalary = document.getElementById("txtPresentSalary").value;
             var txtJoiningSalary = document.getElementById("txtJoiningSalary").value;
@@ -821,6 +824,22 @@
             }
             if (txtPresentAddress === null || txtPresentAddress === "") {
                 ShowNotification('Present Address can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtNidNo === null || txtNidNo === "") {
+                ShowNotification('National id can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtNidNo.length < 10 || txtNidNo.length > 17) {
+                ShowNotification('National Id should be between 10 to 17 digit', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtMobileNo === null || txtMobileNo === "") {
+                ShowNotification('Mobile number can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtMobileNo.length != 11) {
+                ShowNotification('Mobile number should be 11 digit', 'Employee Information Update', 'warning');
                 return false;
             }
             if (txtJoiningDate === null || txtJoiningDate === "") {

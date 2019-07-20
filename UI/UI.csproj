@@ -1655,6 +1655,11 @@
     <Content Include="SCM\Item_View.aspx" />
     <Content Include="SCM\Item_Wise_PO_Issued.aspx" />
     <Content Include="SCM\MaterialApprovalStatus.aspx" />
+    <Content Include="SCM\Media\Media_Brand_Wise_Report.aspx" />
+    <Content Include="SCM\Media\Media_Monitoring_Report.aspx" />
+    <Content Include="SCM\Media\Media_Press_Report.aspx" />
+    <Content Include="SCM\Media\Media_Reconcile_Report.aspx" />
+    <Content Include="SCM\Media\Media_Schedule_Report.aspx" />
     <Content Include="SCM\MrrCorrection.aspx" />
     <Content Include="SCM\MrrDocAttachmentPopUp.aspx" />
     <Content Include="SCM\MrrStatement.aspx" />
@@ -8799,6 +8804,41 @@
     </Compile>
     <Compile Include="SCM\MaterialApprovalStatus.aspx.designer.cs">
       <DependentUpon>MaterialApprovalStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Brand_Wise_Report.aspx.cs">
+      <DependentUpon>Media_Brand_Wise_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Brand_Wise_Report.aspx.designer.cs">
+      <DependentUpon>Media_Brand_Wise_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Monitoring_Report.aspx.cs">
+      <DependentUpon>Media_Monitoring_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Monitoring_Report.aspx.designer.cs">
+      <DependentUpon>Media_Monitoring_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Press_Report.aspx.cs">
+      <DependentUpon>Media_Press_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Press_Report.aspx.designer.cs">
+      <DependentUpon>Media_Press_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Reconcile_Report.aspx.cs">
+      <DependentUpon>Media_Reconcile_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Reconcile_Report.aspx.designer.cs">
+      <DependentUpon>Media_Reconcile_Report.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Schedule_Report.aspx.cs">
+      <DependentUpon>Media_Schedule_Report.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SCM\Media\Media_Schedule_Report.aspx.designer.cs">
+      <DependentUpon>Media_Schedule_Report.aspx</DependentUpon>
     </Compile>
     <Compile Include="SCM\MrrCorrection.aspx.cs">
       <DependentUpon>MrrCorrection.aspx</DependentUpon>
