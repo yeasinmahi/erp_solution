@@ -60,6 +60,8 @@ namespace Budget_DAL {
         
         private SprOperationalSetUpBaseBudgetModificationDataTable tableSprOperationalSetUpBaseBudgetModification;
         
+        private SprOperationalBudgetFGQntvsMaterialQntDataTable tableSprOperationalBudgetFGQntvsMaterialQnt;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -141,6 +143,9 @@ namespace Budget_DAL {
                 }
                 if ((ds.Tables["SprOperationalSetUpBaseBudgetModification"] != null)) {
                     base.Tables.Add(new SprOperationalSetUpBaseBudgetModificationDataTable(ds.Tables["SprOperationalSetUpBaseBudgetModification"]));
+                }
+                if ((ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"] != null)) {
+                    base.Tables.Add(new SprOperationalBudgetFGQntvsMaterialQntDataTable(ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -342,6 +347,16 @@ namespace Budget_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public SprOperationalBudgetFGQntvsMaterialQntDataTable SprOperationalBudgetFGQntvsMaterialQnt {
+            get {
+                return this.tableSprOperationalBudgetFGQntvsMaterialQnt;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -460,6 +475,9 @@ namespace Budget_DAL {
                 }
                 if ((ds.Tables["SprOperationalSetUpBaseBudgetModification"] != null)) {
                     base.Tables.Add(new SprOperationalSetUpBaseBudgetModificationDataTable(ds.Tables["SprOperationalSetUpBaseBudgetModification"]));
+                }
+                if ((ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"] != null)) {
+                    base.Tables.Add(new SprOperationalBudgetFGQntvsMaterialQntDataTable(ds.Tables["SprOperationalBudgetFGQntvsMaterialQnt"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -602,6 +620,12 @@ namespace Budget_DAL {
                     this.tableSprOperationalSetUpBaseBudgetModification.InitVars();
                 }
             }
+            this.tableSprOperationalBudgetFGQntvsMaterialQnt = ((SprOperationalBudgetFGQntvsMaterialQntDataTable)(base.Tables["SprOperationalBudgetFGQntvsMaterialQnt"]));
+            if ((initTable == true)) {
+                if ((this.tableSprOperationalBudgetFGQntvsMaterialQnt != null)) {
+                    this.tableSprOperationalBudgetFGQntvsMaterialQnt.InitVars();
+                }
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -648,6 +672,8 @@ namespace Budget_DAL {
             base.Tables.Add(this.tableSprBudgetProductPrice);
             this.tableSprOperationalSetUpBaseBudgetModification = new SprOperationalSetUpBaseBudgetModificationDataTable();
             base.Tables.Add(this.tableSprOperationalSetUpBaseBudgetModification);
+            this.tableSprOperationalBudgetFGQntvsMaterialQnt = new SprOperationalBudgetFGQntvsMaterialQntDataTable();
+            base.Tables.Add(this.tableSprOperationalBudgetFGQntvsMaterialQnt);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -760,6 +786,12 @@ namespace Budget_DAL {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private bool ShouldSerializeSprOperationalBudgetFGQntvsMaterialQnt() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -866,6 +898,9 @@ namespace Budget_DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public delegate void SprOperationalSetUpBaseBudgetModificationRowChangeEventHandler(object sender, SprOperationalSetUpBaseBudgetModificationRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public delegate void SprOperationalBudgetFGQntvsMaterialQntRowChangeEventHandler(object sender, SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -6707,6 +6742,337 @@ namespace Budget_DAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class SprOperationalBudgetFGQntvsMaterialQntDataTable : global::System.Data.TypedTableBase<SprOperationalBudgetFGQntvsMaterialQntRow> {
+            
+            private global::System.Data.DataColumn columnintBudgetYear;
+            
+            private global::System.Data.DataColumn columnintMonth;
+            
+            private global::System.Data.DataColumn columnnumFGQty;
+            
+            private global::System.Data.DataColumn columnintMatID;
+            
+            private global::System.Data.DataColumn columnnumMatQty;
+            
+            private global::System.Data.DataColumn columnintyrid;
+            
+            private global::System.Data.DataColumn columnintsl;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalBudgetFGQntvsMaterialQntDataTable() {
+                this.TableName = "SprOperationalBudgetFGQntvsMaterialQnt";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprOperationalBudgetFGQntvsMaterialQntDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected SprOperationalBudgetFGQntvsMaterialQntDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intBudgetYearColumn {
+                get {
+                    return this.columnintBudgetYear;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMonthColumn {
+                get {
+                    return this.columnintMonth;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numFGQtyColumn {
+                get {
+                    return this.columnnumFGQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intMatIDColumn {
+                get {
+                    return this.columnintMatID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn numMatQtyColumn {
+                get {
+                    return this.columnnumMatQty;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intyridColumn {
+                get {
+                    return this.columnintyrid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn intslColumn {
+                get {
+                    return this.columnintsl;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalBudgetFGQntvsMaterialQntRow this[int index] {
+                get {
+                    return ((SprOperationalBudgetFGQntvsMaterialQntRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalBudgetFGQntvsMaterialQntRowChangeEventHandler SprOperationalBudgetFGQntvsMaterialQntRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalBudgetFGQntvsMaterialQntRowChangeEventHandler SprOperationalBudgetFGQntvsMaterialQntRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalBudgetFGQntvsMaterialQntRowChangeEventHandler SprOperationalBudgetFGQntvsMaterialQntRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public event SprOperationalBudgetFGQntvsMaterialQntRowChangeEventHandler SprOperationalBudgetFGQntvsMaterialQntRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void AddSprOperationalBudgetFGQntvsMaterialQntRow(SprOperationalBudgetFGQntvsMaterialQntRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalBudgetFGQntvsMaterialQntRow AddSprOperationalBudgetFGQntvsMaterialQntRow(int intBudgetYear, int intMonth, decimal numFGQty, int intMatID, decimal numMatQty, int intyrid, int intsl) {
+                SprOperationalBudgetFGQntvsMaterialQntRow rowSprOperationalBudgetFGQntvsMaterialQntRow = ((SprOperationalBudgetFGQntvsMaterialQntRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        intBudgetYear,
+                        intMonth,
+                        numFGQty,
+                        intMatID,
+                        numMatQty,
+                        intyrid,
+                        intsl};
+                rowSprOperationalBudgetFGQntvsMaterialQntRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowSprOperationalBudgetFGQntvsMaterialQntRow);
+                return rowSprOperationalBudgetFGQntvsMaterialQntRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                SprOperationalBudgetFGQntvsMaterialQntDataTable cln = ((SprOperationalBudgetFGQntvsMaterialQntDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new SprOperationalBudgetFGQntvsMaterialQntDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal void InitVars() {
+                this.columnintBudgetYear = base.Columns["intBudgetYear"];
+                this.columnintMonth = base.Columns["intMonth"];
+                this.columnnumFGQty = base.Columns["numFGQty"];
+                this.columnintMatID = base.Columns["intMatID"];
+                this.columnnumMatQty = base.Columns["numMatQty"];
+                this.columnintyrid = base.Columns["intyrid"];
+                this.columnintsl = base.Columns["intsl"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            private void InitClass() {
+                this.columnintBudgetYear = new global::System.Data.DataColumn("intBudgetYear", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintBudgetYear);
+                this.columnintMonth = new global::System.Data.DataColumn("intMonth", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMonth);
+                this.columnnumFGQty = new global::System.Data.DataColumn("numFGQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumFGQty);
+                this.columnintMatID = new global::System.Data.DataColumn("intMatID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintMatID);
+                this.columnnumMatQty = new global::System.Data.DataColumn("numMatQty", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumMatQty);
+                this.columnintyrid = new global::System.Data.DataColumn("intyrid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintyrid);
+                this.columnintsl = new global::System.Data.DataColumn("intsl", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnintsl);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalBudgetFGQntvsMaterialQntRow NewSprOperationalBudgetFGQntvsMaterialQntRow() {
+                return ((SprOperationalBudgetFGQntvsMaterialQntRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new SprOperationalBudgetFGQntvsMaterialQntRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(SprOperationalBudgetFGQntvsMaterialQntRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.SprOperationalBudgetFGQntvsMaterialQntRowChanged != null)) {
+                    this.SprOperationalBudgetFGQntvsMaterialQntRowChanged(this, new SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent(((SprOperationalBudgetFGQntvsMaterialQntRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.SprOperationalBudgetFGQntvsMaterialQntRowChanging != null)) {
+                    this.SprOperationalBudgetFGQntvsMaterialQntRowChanging(this, new SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent(((SprOperationalBudgetFGQntvsMaterialQntRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.SprOperationalBudgetFGQntvsMaterialQntRowDeleted != null)) {
+                    this.SprOperationalBudgetFGQntvsMaterialQntRowDeleted(this, new SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent(((SprOperationalBudgetFGQntvsMaterialQntRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.SprOperationalBudgetFGQntvsMaterialQntRowDeleting != null)) {
+                    this.SprOperationalBudgetFGQntvsMaterialQntRowDeleting(this, new SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent(((SprOperationalBudgetFGQntvsMaterialQntRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void RemoveSprOperationalBudgetFGQntvsMaterialQntRow(SprOperationalBudgetFGQntvsMaterialQntRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                Budget_TDS ds = new Budget_TDS();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "SprOperationalBudgetFGQntvsMaterialQntDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class ForBudgetRow : global::System.Data.DataRow {
@@ -9587,6 +9953,224 @@ namespace Budget_DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class SprOperationalBudgetFGQntvsMaterialQntRow : global::System.Data.DataRow {
+            
+            private SprOperationalBudgetFGQntvsMaterialQntDataTable tableSprOperationalBudgetFGQntvsMaterialQnt;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            internal SprOperationalBudgetFGQntvsMaterialQntRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableSprOperationalBudgetFGQntvsMaterialQnt = ((SprOperationalBudgetFGQntvsMaterialQntDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intBudgetYear {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intBudgetYearColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intBudgetYear\' in table \'SprOperationalBudgetFGQntvsMateria" +
+                                "lQnt\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intBudgetYearColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intMonth {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMonthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intMonth\' in table \'SprOperationalBudgetFGQntvsMaterialQnt\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMonthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numFGQty {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.numFGQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numFGQty\' in table \'SprOperationalBudgetFGQntvsMaterialQnt\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.numFGQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intMatID {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMatIDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intMatID\' in table \'SprOperationalBudgetFGQntvsMaterialQnt\'" +
+                                " is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMatIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public decimal numMatQty {
+                get {
+                    try {
+                        return ((decimal)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.numMatQtyColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'numMatQty\' in table \'SprOperationalBudgetFGQntvsMaterialQnt" +
+                                "\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.numMatQtyColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intyrid {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intyridColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intyrid\' in table \'SprOperationalBudgetFGQntvsMaterialQnt\' " +
+                                "is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intyridColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int intsl {
+                get {
+                    try {
+                        return ((int)(this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intslColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'intsl\' in table \'SprOperationalBudgetFGQntvsMaterialQnt\' is" +
+                                " DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intslColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintBudgetYearNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.intBudgetYearColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintBudgetYearNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intBudgetYearColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintMonthNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMonthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintMonthNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMonthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumFGQtyNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.numFGQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumFGQtyNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.numFGQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintMatIDNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMatIDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintMatIDNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intMatIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsnumMatQtyNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.numMatQtyColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetnumMatQtyNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.numMatQtyColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintyridNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.intyridColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintyridNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intyridColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsintslNull() {
+                return this.IsNull(this.tableSprOperationalBudgetFGQntvsMaterialQnt.intslColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetintslNull() {
+                this[this.tableSprOperationalBudgetFGQntvsMaterialQnt.intslColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
@@ -10184,6 +10768,40 @@ namespace Budget_DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public SprOperationalSetUpBaseBudgetModificationRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public class SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent : global::System.EventArgs {
+            
+            private SprOperationalBudgetFGQntvsMaterialQntRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalBudgetFGQntvsMaterialQntRowChangeEvent(SprOperationalBudgetFGQntvsMaterialQntRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public SprOperationalBudgetFGQntvsMaterialQntRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -14202,6 +14820,181 @@ SELECT strCCName, intCostCenterID FROM tblCostCenter WHERE (intCostCenterID = @i
                 this.Adapter.SelectCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable dataTable = new Budget_TDS.SprOperationalSetUpBaseBudgetModificationDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class SprOperationalBudgetFGQntvsMaterialQntTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public SprOperationalBudgetFGQntvsMaterialQntTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "SprOperationalBudgetFGQntvsMaterialQnt";
+            tableMapping.ColumnMappings.Add("intBudgetYear", "intBudgetYear");
+            tableMapping.ColumnMappings.Add("intMonth", "intMonth");
+            tableMapping.ColumnMappings.Add("numFGQty", "numFGQty");
+            tableMapping.ColumnMappings.Add("intMatID", "intMatID");
+            tableMapping.ColumnMappings.Add("numMatQty", "numMatQty");
+            tableMapping.ColumnMappings.Add("intyrid", "intyrid");
+            tableMapping.ColumnMappings.Add("intsl", "intsl");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::Budget_DAL.Properties.Settings.Default.ERP_AccountsConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "dbo.sprOperationalBudgetFGQntvsMaterialQnt";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@budgetyear", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@itemid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual Budget_TDS.SprOperationalBudgetFGQntvsMaterialQntDataTable GetDataOperationalBudgetFGQntvsMaterialQnt(global::System.Nullable<int> budgetyear, global::System.Nullable<int> itemid) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((budgetyear.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(budgetyear.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            if ((itemid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(itemid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            Budget_TDS.SprOperationalBudgetFGQntvsMaterialQntDataTable dataTable = new Budget_TDS.SprOperationalBudgetFGQntvsMaterialQntDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
