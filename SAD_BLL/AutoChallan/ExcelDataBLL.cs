@@ -49,6 +49,16 @@ namespace SAD_BLL.AutoChallan
             catch { return new DataTable(); }
         }
 
+        public void getCustomerEmailupdate(string email,int custid)
+        {
+            try
+            {
+                tblCustomerEmailChangeTableAdapter adp = new tblCustomerEmailChangeTableAdapter();
+                adp.GetCustomerEmailChange(email,custid);
+            }
+            catch { }
+        }
+
         public DataTable getProductview(int custid, int shipid, int part)
         {
             string msg = "";

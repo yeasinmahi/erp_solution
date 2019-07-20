@@ -608,6 +608,8 @@
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
+    <Content Include="PaymentModule\AITReport.aspx" />
+    <Content Include="PaymentModule\MDSlipDetails.aspx" />
     <Content Include="PaymentModule\InternalbillForBanking.aspx" />
     <Content Include="PaymentModule\Inventory_Summary_Report.aspx" />
     <Content Include="PaymentModule\JV.aspx" />
@@ -4078,6 +4080,20 @@
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.designer.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\AITReport.aspx.cs">
+      <DependentUpon>AITReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\AITReport.aspx.designer.cs">
+      <DependentUpon>AITReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\MDSlipDetails.aspx.cs">
+      <DependentUpon>MDSlipDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\MDSlipDetails.aspx.designer.cs">
+      <DependentUpon>MDSlipDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\InternalbillForBanking.aspx.cs">
       <DependentUpon>InternalbillForBanking.aspx</DependentUpon>
