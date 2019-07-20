@@ -21,7 +21,7 @@
     <Shape ID="DesignTable:sprGetGeneratedAdviceCode" ZOrder="1" X="-25" Y="73" Height="90" Width="316" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
     <Shape ID="DesignTable:tblAccountsVoucherBank" ZOrder="5" X="621" Y="0" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
     <Shape ID="DesignTable:sprInsertVoucharBank" ZOrder="4" X="193" Y="-4" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
-    <Shape ID="DesignTable:sprTreasuryForecast" ZOrder="3" X="368" Y="8" Height="90" Width="255" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
+    <Shape ID="DesignTable:sprTreasuryForecast" ZOrder="3" X="368" Y="8" Height="96" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
   </Shapes>
   <Connectors />
 </DiagramLayout>
