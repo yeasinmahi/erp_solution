@@ -66,90 +66,90 @@
                                         <div class="box-body">
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label2" runat="server" Font-Bold="true" Text="Name"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblName" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label52" runat="server" Font-Bold="true" Text="Unit"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblUnit" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label53" runat="server" Font-Bold="true" Text="Designation"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblDesignation" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label54" runat="server" Font-Bold="true" Text="Department"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblDepartment" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label55" runat="server" Font-Bold="true" Text="Joining Date"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblJoiningDate" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label56" runat="server" Font-Bold="true" Text="Email"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblEmail" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label57" runat="server" Font-Bold="true" Text="Contact No"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblContact" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label58" runat="server" Font-Bold="true" Text="Job Type"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblJobType" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label59" runat="server" Font-Bold="true" Text="Suppervisor"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblSupervisor" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label60" runat="server" Font-Bold="true" Text="Enroll"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblEnroll" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
                                                         <asp:Label ID="Label61" runat="server" Font-Bold="true" Text="Code"></asp:Label>
                                                     </div>
-                                                    <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
                                                         <asp:Label ID="lblCode" runat="server"></asp:Label>
                                                     </div>
                                                 </div>
