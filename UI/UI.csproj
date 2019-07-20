@@ -1263,7 +1263,6 @@
     <Content Include="SAD\AutoChallan\jquery-ui.min.js" />
     <Content Include="SAD\AutoChallan\jquery.min.js" />
     <Content Include="SAD\AutoChallan\LoadingSlip.aspx" />
-    <Content Include="SAD\AutoChallan\LoadingSlipview.aspx" />
     <Content Include="SAD\AutoChallan\Stock.aspx" />
     <Content Include="SAD\AutoChallan\TradeofferBill.aspx" />
     <Content Include="SAD\AutoChallan\TransportSet.aspx" />
@@ -1302,6 +1301,7 @@
     <Content Include="SAD\Customer\CustomerInfoEdit.aspx" />
     <Content Include="SAD\Customer\CustomerInfoFactory.aspx" />
     <Content Include="SAD\Customer\DistributionPoint.aspx" />
+    <Content Include="SAD\Customer\frmCustomerEmailChange.aspx" />
     <Content Include="SAD\Customer\PriceSetAllTerritory.aspx" />
     <Content Include="SAD\Customer\Report\CashMemoBillForDO.aspx" />
     <Content Include="SAD\Customer\Report\CreditBalance.aspx" />
@@ -6070,13 +6070,6 @@
     <Compile Include="SAD\AutoChallan\LoadingSlip.aspx.designer.cs">
       <DependentUpon>LoadingSlip.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SAD\AutoChallan\LoadingSlipview.aspx.cs">
-      <DependentUpon>LoadingSlipview.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="SAD\AutoChallan\LoadingSlipview.aspx.designer.cs">
-      <DependentUpon>LoadingSlipview.aspx</DependentUpon>
-    </Compile>
     <Compile Include="SAD\AutoChallan\Stock.aspx.cs">
       <DependentUpon>Stock.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6342,6 +6335,13 @@
     </Compile>
     <Compile Include="SAD\Customer\DistributionPoint.aspx.designer.cs">
       <DependentUpon>DistributionPoint.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SAD\Customer\frmCustomerEmailChange.aspx.cs">
+      <DependentUpon>frmCustomerEmailChange.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SAD\Customer\frmCustomerEmailChange.aspx.designer.cs">
+      <DependentUpon>frmCustomerEmailChange.aspx</DependentUpon>
     </Compile>
     <Compile Include="SAD\Customer\PriceSetAllTerritory.aspx.cs">
       <DependentUpon>PriceSetAllTerritory.aspx</DependentUpon>

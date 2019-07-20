@@ -428,7 +428,21 @@ namespace SAD_BLL.Sales
                 return new DataTable();
             }
         }
-      
+
+        public DataTable GetFGItemvsInvItem(int fgitmid)
+        {
+            try
+            {
+                SprInvItemNSADitemTableAdapter adp = new SprInvItemNSADitemTableAdapter();
+                return adp.GetDataInvItemNSADitem(fgitmid);
+
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
 
     }  
 }
