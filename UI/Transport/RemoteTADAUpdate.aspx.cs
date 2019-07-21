@@ -103,34 +103,11 @@ namespace UI.Transport
                 DateTime dtToDate = GLOBAL_BLL.DateFormat.GetDateAtSQLDateFormat(txtFromDate.Text).Value;
                 int deptid = int.Parse(HttpContext.Current.Session[SessionParams.DEPT_ID].ToString());
 
-                //if (rdbUserOption.SelectedItem.Text == "Own")
-                //{
-                //    int intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 //    dt = bll.getTADAApplicantDataForUpdate(dtFromDate, dtToDate, intTSOEnroll);
 
-                //    if (dt.Rows.Count > 0)
-                //    {
-
-                //        grdvForUpdateTADABikeCarUser.DataSource = dt;
-                //        grdvForUpdateTADABikeCarUser.DataBind();
-
-                //    }
-                //    else
-                //    {
-
-
-                //        ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
-
-                //    }
-                //}
-                //else if (rdbUserOption.SelectedItem.Text == "Other")
-                //{
-
                 //if (deptid == 14 || deptid == 3 || deptid == 55 || deptid == 21 || deptid == 234)
-                if (CheckUserByDepartmentId(deptid)|| true) 
+                if (CheckUserByDepartmentId(deptid) || true)
                 {
-
-                    //string strSearchKey = txtEmployeeSearch.Text;
                     string strSearchKey = txtVheicleName.Text;
                     arrayKey = strSearchKey.Split(delimiterChars);
                     string code = arrayKey[1].ToString();
@@ -143,25 +120,20 @@ namespace UI.Transport
 
                     if (dt.Rows.Count > 0)
                     {
-
                         grdvForUpdateTADABikeCarUser.DataSource = dt;
                         grdvForUpdateTADABikeCarUser.DataBind();
-
                     }
                     else
                     {
                         ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! There is no data againist your query');", true);
-
                     }
                 }
                 else { ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "alert('Sorry! You are not permitted');", true); }
-                //}
             }
             catch (Exception ex)
             {
                 var efd = log.GetFlogDetail(stop, location, "Show", ex);
                 Flogger.WriteError(efd);
-
             }
 
             fd = log.GetFlogDetail(stop, location, "Show", null);
@@ -757,12 +729,14 @@ namespace UI.Transport
                 string intPKIDtbl = searchKey[1].ToString();
                 int intID = int.Parse(intPKIDtbl);
 
-                if (rdbUserOption.SelectedItem.Text == "Own")
-                { intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString()); }
-                else
-                {
+                //if (rdbUserOption.SelectedItem.Text == "Own")
+                //{
+                    intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+                //}
+                //else
+                //{
                     intTSOEnroll = int.Parse(Session["intTSOEnroll"].ToString());
-                }
+                //}
 
                 //intTSOEnroll = int.Parse(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
                 int totalCount = grdvForUpdateTADABikeCarUser.Rows.Cast<GridViewRow>()
