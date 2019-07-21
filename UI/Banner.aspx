@@ -40,7 +40,7 @@
                     <asp:Label CssClass="hellouser" ID="lblName" runat="server" Text=""></asp:Label>
                 </td>
                 <td align="center" style="vertical-align: top;">
-                    <span class="groupName">A K I J &nbsp;&nbsp;G r o u p</span>
+                    <span class="groupName">A K I J &nbsp;&nbsp;G R O U P</span>
                 </td>
 
                 <td align="right" style="vertical-align: top;">
