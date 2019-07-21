@@ -327,6 +327,7 @@
     <Content Include="Content\CSS\AdminLTE.css" />
     <Content Include="Content\CSS\bootstrap-datepicker.min.css" />
     <Content Include="Content\CSS\bootstrap.min.css" />
+    <Content Include="Content\CSS\bootstrapCustomise.css" />
     <Content Include="Content\CSS\CommonStyle.css" />
     <Content Include="Content\CSS\Gridstyle.css" />
     <Content Include="Content\CSS\GridView.css" />
@@ -358,6 +359,8 @@
     <Content Include="Content\images\img\NotApproved1.png" />
     <Content Include="Content\images\img\R008.png" />
     <Content Include="Content\images\img\save.PNG" />
+    <Content Include="Content\ionicons.css" />
+    <Content Include="Content\ionicons.min.css" />
     <Content Include="Content\JS\adminlte.min.js" />
     <Content Include="Content\JS\analytics.js" />
     <Content Include="Content\JS\BlueBird.min.js" />
