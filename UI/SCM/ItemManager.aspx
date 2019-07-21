@@ -61,11 +61,11 @@
                             <td style="text-align: left;">
                                 <asp:TextBox ID="txtItem" runat="server" AutoCompleteType="Search" CssClass="txtBox" AutoPostBack="true" Width="250px"></asp:TextBox></td>
                             <td colspan="1" style="text-align: left;">
-                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" /></td>
+                                <asp:Button ID="btnShow" runat="server" Text="Show" OnClick="btnShow_Click" ForeColor="Blue" /></td>
                         </tr>
                         <tr>
                             <td colspan="5">
-                                <asp:ListBox ID="ListDatas" Width="800px" Height="200px" DataMember="s" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"></asp:ListBox>
+                                <asp:ListBox ID="ListDatas" Width="800px" Height="250px" DataMember="s" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ListDatas_SelectedIndexChanged"></asp:ListBox>
                             </td>
                         </tr>
                         <%--<tr>
@@ -96,7 +96,7 @@
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Item Name">
                                     <ItemTemplate>
-                                        <asp:Label runat="server" ID="lblItemName" Text='<%# Bind("strItemName") %>'></asp:Label>
+                                        <asp:Label runat="server" ID="lblItemName" width="250px" Text='<%# Bind("strItemName") %>'></asp:Label>
                                     </ItemTemplate>
                                     <ItemStyle HorizontalAlign="Left"></ItemStyle>
                                 </asp:TemplateField>
@@ -116,14 +116,14 @@
                                         <asp:DropDownList runat="server" ID="ddlSubCategory"></asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Minor Category">
+                                <asp:TemplateField HeaderText="Minor Category" Visible="false">
                                     <ItemTemplate>
-                                        <asp:DropDownList runat="server" ID="ddlMinorCategory"></asp:DropDownList>
+                                        <asp:DropDownList runat="server" Visible="false"  ID="ddlMinorCategory"></asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Category">
+                                <asp:TemplateField HeaderText="Category" Visible="false">
                                     <ItemTemplate>
-                                        <asp:DropDownList runat="server" ID="ddlCategory"></asp:DropDownList>
+                                        <asp:DropDownList runat="server" Visible="false" ID="ddlCategory"></asp:DropDownList>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:TemplateField HeaderText="Action">
