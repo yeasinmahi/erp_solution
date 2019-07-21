@@ -16,7 +16,7 @@ namespace UI.PaymentModule
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Accounts/Payment/InternalBill?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/Payment/InternalBill?rs:Embed=true');", true);
         }
     }
 }

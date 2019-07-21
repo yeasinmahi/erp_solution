@@ -19,7 +19,7 @@ namespace UI.HR.Employee
         private EmployeeFullInformationBll _bll = new EmployeeFullInformationBll();
         private DataTable _dt = new DataTable();
 
-        public static EmployeeBll employeeBll = new EmployeeBll();
+        public static EmployeeBll employeeBll;
         string[] arrayKey;
         char[] delimiterChars = { '[', ']' };
         int EmpID;
@@ -29,8 +29,8 @@ namespace UI.HR.Employee
             Page.Form.Attributes.Add("enctype", "multipart/form-data");
             if (!IsPostBack)
             {
-                txtEnroll.Text = Enroll.ToString();
-                txtCode.Text = Code;
+                employeeBll = new EmployeeBll();
+
                 LoadDepartment();
                 LoadDesignation();
                 LoadLevelOfEducation();
@@ -41,11 +41,7 @@ namespace UI.HR.Employee
                 LoadCountry();
                 LoadTrainigYear();
 
-                LoadEducation();
-                LoadEmperience();
-                LoadTrainingInfo();
-                LoadWorkInfo();
-                LoadImage();
+                
             }
         }
         #region Tab 1: Personal Info
@@ -172,6 +168,14 @@ namespace UI.HR.Employee
         protected void btnShowEmployeeInformation_Click(object sender, EventArgs e)
         {
             LoadEmployeeInfo();
+
+            LoadEducation();
+            LoadEmperience();
+            LoadTrainingInfo();
+            LoadWorkInfo();
+            LoadImage();
+
+
             //string strEnroll = txtEmployeeName.Text;
             //string code = txtCode.Text;
             //if (string.IsNullOrWhiteSpace(strEnroll) && string.IsNullOrWhiteSpace(code))
@@ -210,7 +214,7 @@ namespace UI.HR.Employee
             //        return;
             //    }
             //}
-            
+
         }
         public void LoadEmpInfo(DataTable dt)
         {

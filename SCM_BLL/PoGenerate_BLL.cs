@@ -320,7 +320,7 @@ namespace SCM_BLL
                 if (prefix == "" || prefix == "*")
                 {
                     var rows = from tmp in AllSupplier[e]//Convert.ToInt32(ht[unitID])
-                               orderby tmp.strSupplierName
+                               orderby tmp.strSuppMasterName
                                select tmp;
                     if (rows.Count() > 0)
                     {
@@ -332,8 +332,8 @@ namespace SCM_BLL
                     try
                     {
                         var rows = from tmp in AllSupplier[e]
-                                   where tmp.strSupplierName.ToLower().Contains(prefix) || tmp.intSupplierID.ToString().ToLower().Contains(prefix)
-                                   orderby tmp.strSupplierName
+                                   where tmp.strSuppMasterName.ToLower().Contains(prefix) || tmp.intSuppMasterID.ToString().ToLower().Contains(prefix)
+                                   orderby tmp.strSuppMasterName
                                    select tmp;
 
                         if (rows.Count() > 0)
@@ -353,7 +353,7 @@ namespace SCM_BLL
                 string[] retStr = new string[tbl.Rows.Count];
                 for (int i = 0; i < tbl.Rows.Count; i++)
                 {
-                    retStr[i] = tbl.Rows[i]["strSupplierName"] + " " + "[" + tbl.Rows[i]["intSupplierID"] + "]";
+                    retStr[i] = tbl.Rows[i]["strSuppMasterName"] + " " + "[" + tbl.Rows[i]["intSuppMasterID"] + "]";
                 }
 
                 return retStr;

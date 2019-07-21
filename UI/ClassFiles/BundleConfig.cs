@@ -90,9 +90,11 @@ namespace UI.ClassFiles
                 "~/Content/CSS/bootstrap.min.css",
                 "~/Content/CSS/jquery-ui.min.css",
                 "~/Content/font-awesome.min.css",
+                "~/Content/ionicons.min.css",
                 "~/Content/CSS/AdminLTE.css",
                 "~/Content/CSS/toastr.min.css",
-                "~/Content/CSS/CommonStyle.css"
+                "~/Content/CSS/CommonStyle.css",
+                "~/Content/CSS/bootstrapCustomise.css"
 
             ));
 

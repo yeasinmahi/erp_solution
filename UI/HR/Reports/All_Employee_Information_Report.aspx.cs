@@ -13,7 +13,7 @@ namespace UI.HR.Reports
     public partial class All_Employee_Information_Report : BasePage
     {
 
-        public static EmployeeBll employeeBll = new EmployeeBll();
+        public static EmployeeBll employeeBll;
         string[] arrayKey;
         char[] delimiterChars = { '[', ']' };
         int EmpID;
@@ -22,6 +22,7 @@ namespace UI.HR.Reports
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
+                employeeBll = new EmployeeBll();
             }
             else
             {

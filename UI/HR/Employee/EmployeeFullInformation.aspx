@@ -9,7 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server"><%: Scripts.Render("~/Content/Bundle/updatedJs") %></asp:PlaceHolder>
     <webopt:BundleReference ID="BundleReference2" runat="server" Path="~/Content/Bundle/updatedCss" />
-
+    <style>
+        body{
+            font-size:12px
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,131 +30,395 @@
                 </asp:Panel>
                 <cc1:AlwaysVisibleControlExtender TargetControlID="pnlUpperControl" ID="AlwaysVisibleControlExtender1" runat="server">
                 </cc1:AlwaysVisibleControlExtender>
-                <div style="height: 10px; width: 100%"></div>
+                <div style="height: 30px; width: 100%"></div>
             </ContentTemplate>
         </asp:UpdatePanel>
         <%--=========================================Start My Code From Here===============================================--%>
         <div class="container">
             <asp:HiddenField runat="server" ID="hdnTab" Value="1" />
-            <h2>Employee Information Update</h2>
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#personal">Personal</a></li>
+                <li class="active"><a data-toggle="tab" href="#dashboard">Dashboard</a></li>
+                <li><a data-toggle="tab" href="#personal">Personal</a></li>
                 <li><a data-toggle="tab" href="#education">Education</a></li>
-                <li><a data-toggle="tab" href="#experience">Experience</a></li>
+                <%--<li><a data-toggle="tab" href="#experience">Experience</a></li>--%>
                 <li><a data-toggle="tab" href="#training">Training</a></li>
                 <li><a data-toggle="tab" href="#others">Others</a></li>
                 <li><a data-toggle="tab" href="#photograph">Photograph</a></li>
             </ul>
 
             <div class="tab-content">
-                <div id="personal" class="tab-pane fade in active">
+                <div id="dashboard" class="tab-pane fade in active">
+                    <asp:UpdatePanel ID="UpdatePanel7" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
+                        <ContentTemplate>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Dashboard</h3>
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label2" runat="server" Font-Bold="true" Text="Name"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblName" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label52" runat="server" Font-Bold="true" Text="Unit"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblUnit" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label53" runat="server" Font-Bold="true" Text="Designation"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblDesignation" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label54" runat="server" Font-Bold="true" Text="Department"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblDepartment" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label55" runat="server" Font-Bold="true" Text="Joining Date"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblJoiningDate" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label56" runat="server" Font-Bold="true" Text="Email"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblEmail" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label57" runat="server" Font-Bold="true" Text="Contact No"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblContact" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label58" runat="server" Font-Bold="true" Text="Job Type"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblJobType" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label59" runat="server" Font-Bold="true" Text="Suppervisor"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblSupervisor" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label60" runat="server" Font-Bold="true" Text="Enroll"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblEnroll" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-md-4 col-sm-4 col-xs-4">
+                                                        <asp:Label ID="Label61" runat="server" Font-Bold="true" Text="Code"></asp:Label>
+                                                    </div>
+                                                    <div class="col-md-8 col-sm-8 col-xs-8">
+                                                        <asp:Label ID="lblCode" runat="server"></asp:Label>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- ./box-body -->
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Todays Attendance</span>
+                                            <span class="info-box-number">8:55 AM</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Todays Meal</span>
+                                            <span class="info-box-number">Rice, Checken Vuna, Dal, Salat</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+
+                                <!-- fix for small devices only -->
+                                <div class="clearfix visible-sm-block"></div>
+
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total Late (Current Month)</span>
+                                            <span class="info-box-number">2</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-3 col-sm-6 col-xs-12">
+                                    <div class="info-box">
+                                        <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+
+                                        <div class="info-box-content">
+                                            <span class="info-box-text">Total Leave (Current Month)</span>
+                                            <span class="info-box-number">1</span>
+                                        </div>
+                                        <!-- /.info-box-content -->
+                                    </div>
+                                    <!-- /.info-box -->
+                                </div>
+                            </div>
+
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+                <div id="personal" class="tab-pane fade">
                     <asp:UpdatePanel ID="UpdatePanel1" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
-                            <h3>Personal Inforation</h3>
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label2" runat="server" Text="Enroll"></asp:Label>
-                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="Enter Epmoyee Enroll"></asp:TextBox>
+                            <div class="row">
+                                <%--<div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:HiddenField ID="hdnSearch" Value="0" runat="server"/>
+                                                    <asp:Label ID="Label2" runat="server" Text="Search"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtEmployeeName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Employee Name Or Code"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 20px">
+                                                    <asp:Button ID="btnShowEmployeeInformation" runat="server" class="btn btn-primary form-control pull-right" Text="Show" OnClientClick="return showValidation();" OnClick="btnShowEmployeeInformation_Click" />
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
-                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" Enabled="false" placeholder="Enter Epmoyee Code"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12" style="padding-top: 20px">
-                                        <asp:Button ID="btnShowEmployeeInformation" runat="server" class="btn btn-primary form-control pull-right hidden"  Text="Show" OnClientClick="return showValidation();" OnClick="btnShowEmployeeInformation_Click" />
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12" style="padding-top: 10px">
-                                        <br />
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <asp:Label ID="Label20" runat="server" Text="Name"></asp:Label>
-                                        <span style="color: red; font-size: 14px; text-align: left">*</span>
-                                        <asp:TextBox ID="txtName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Epmoyee Name"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <asp:Label ID="Label12" runat="server" Text="Fathers Name"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtFatherName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Father Name"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <asp:Label ID="Label13" runat="server" Text="Mothers Name"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtMotherNmae" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Mother name"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <asp:Label ID="Label15" runat="server" Text="Permanent Address"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPermanetAddress" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write your full Permamet Address"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label16" runat="server" Text="NID no"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtNidNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter NID NO"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label1" runat="server" Text="Mobile No"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtMobileNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex:01XXXXXXXXX"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label17" runat="server" Text="Last Promotion Date"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPromotionDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label18" runat="server" Text="Present Designation"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:DropDownList ID="ddlPresentDesignation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label4" runat="server" Text="Present Department"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:DropDownList ID="ddlPresentDepartment" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label19" runat="server" Text="Present Salary"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPresentSalary" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Present Salary"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label21" runat="server" Text="joining Date of Organization"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtJoiningDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label22" runat="server" Text="joining Designation"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:DropDownList ID="ddlJoiningDesignation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label23" runat="server" Text="joining salary"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtJoiningSalary" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Joing Salary"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label24" runat="server" Text="previous Organization"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPreviousOrganization" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Previous Organization"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label25" runat="server" Text="previous Designation"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPreviousDesignation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Previous Designation"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-4 col-sm-4 col-xs-12">
-                                        <asp:Label ID="Label26" runat="server" Text="previous Salary"></asp:Label>
-                                        <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
-                                        <asp:TextBox ID="txtPreviousSalary" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Previous Salry"></asp:TextBox>
-                                    </div>
+                                </div>--%>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Personal Inforation</h3>
 
-                                    <div class="col-md-12 col-sm-12" style="padding-top: 10px">
-                                        <asp:Button ID="btnInsertPersonalInfo" runat="server" class="btn btn-success form-control pull-right" Text="Insert" OnClientClick="return PersonalInfoValidate();" OnClick="btnInsertPersonalInfo_Click" />
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body">
+
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label20" runat="server" Text="Name"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Epmloyee Name"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label48" runat="server" Text="Enroll"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtEnroll" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Employee Enroll"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label3" runat="server" Text="Code"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtCode" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Employee Code"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label12" runat="server" Text="Email"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtEmail" CssClass="form-control col-md-12 col-sm-12 col-xs-12" Enabled="false" runat="server" placeholder="Enter Email Address"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label50" runat="server" Text="Fathers Name"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtFatherName" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Father Name"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label13" runat="server" Text="Mothers Name"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtMotherNmae" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Mother name"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label49" runat="server" Text="Present Address"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtPresentAddress" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write your full Present Address"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label15" runat="server" Text="Permanent Address"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtPermanetAddress" TextMode="MultiLine" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Write your full Permamet Address"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label16" runat="server" Text="NID no"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtNidNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter NID NO"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label1" runat="server" Text="Mobile No"></asp:Label>
+                                                    <span style="color: red; font-size: 14px; text-align: left">*</span>
+                                                    <asp:TextBox ID="txtMobileNo" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Ex:01XXXXXXXXX"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- ./box-body -->
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Akij Group Information</h3>
+
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label18" runat="server" Text="Present Designation"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:DropDownList ID="ddlPresentDesignation" Enabled="false" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label4" runat="server" Text="Present Department"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:DropDownList ID="ddlPresentDepartment" Enabled="false" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label19" runat="server" Text="Present Salary"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtPresentSalary" Enabled="false" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Present Salary"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label17" runat="server" Text="Last Promotion Date"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtPromotionDate" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label21" runat="server" Text="Joining Date of Organization"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtJoiningDate" Enabled="false" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="DD/MM/YYYY" autocomplete="off"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label22" runat="server" Text="Joining Designation"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:DropDownList ID="ddlJoiningDesignation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server"></asp:DropDownList>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label23" runat="server" Text="Joining salary"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtJoiningSalary" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Joing Salary"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label51" runat="server" Text="Responsibilities(Most Five Priorities)"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtAkijResponsibilities" CssClass="form-control col-md-12 col-sm-12 col-xs-12" TextMode="MultiLine" runat="server" placeholder="Enter your all responsibilities"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-header with-border">
+                                            <h3 class="box-title">Previous Employment Information</h3>
+
+                                            <div class="box-tools pull-right">
+                                                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                                    <i class="fa fa-minus"></i>
+                                                </button>
+                                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label24" runat="server" Text="Previous Organization"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtPreviousOrganization" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Previous Organization"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label25" runat="server" Text="Previous Designation"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtPreviousDesignation" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Previous Designation"></asp:TextBox>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <asp:Label ID="Label26" runat="server" Text="Previous Salary"></asp:Label>
+                                                    <%--<span style="color: red; font-size: 14px; text-align: left">*</span>--%>
+                                                    <asp:TextBox ID="txtPreviousSalary" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" placeholder="Enter Previous Salry"></asp:TextBox>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                    <div class="box">
+                                        <div class="box-footer">
+                                            <div class="row">
+                                                <div class="col-md-12 col-lg-12 pull-right">
+                                                    <asp:Button ID="btnInsertPersonalInfo" runat="server" class="btn btn-success" Text="Update" OnClientClick="return PersonalInfoValidate();" OnClick="btnInsertPersonalInfo_Click" />
+                                                </div>
+                                            </div>
+                                            <!-- /.row -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
@@ -663,7 +931,6 @@
                         </ContentTemplate>
                     </asp:UpdatePanel>
                 </div>
-
                 <div id="photograph" class="tab-pane fade">
                     <asp:UpdatePanel ID="UpdatePanel6" runat="server" UpdateMode="Conditional" ChildrenAsTriggers="true">
                         <ContentTemplate>
@@ -672,6 +939,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <asp:Label ID="Label47" runat="server" Text="Select Image to upload"></asp:Label>
+                                        <asp:Label ID="Label480" runat="server" Text="(Passport Size Colored Photo)" Style="color: red"></asp:Label>
                                         <asp:FileUpload ID="ImageUpload" CssClass="form-control col-md-12 col-sm-12 col-xs-12" runat="server" ClientIDMode="Static" onchange="ShowPreview(this)" EnableViewState="true"></asp:FileUpload>
                                     </div>
                                     <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 20px">
@@ -702,6 +970,10 @@
             var txtFatherName = document.getElementById("txtFatherName").value;
             var txtMotherNmae = document.getElementById("txtMotherNmae").value;
             var txtPermanetAddress = document.getElementById("txtPermanetAddress").value;
+            var txtPresentAddress = document.getElementById("txtPresentAddress").value;
+            var txtNidNo = document.getElementById("txtNidNo").value;
+            var txtMobileNo = document.getElementById("txtMobileNo").value;
+
             var txtJoiningDate = document.getElementById("txtJoiningDate").value;
             var txtPresentSalary = document.getElementById("txtPresentSalary").value;
             var txtJoiningSalary = document.getElementById("txtJoiningSalary").value;
@@ -724,6 +996,26 @@
             }
             if (txtPermanetAddress === null || txtPermanetAddress === "") {
                 ShowNotification('Permanent Address can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtPresentAddress === null || txtPresentAddress === "") {
+                ShowNotification('Present Address can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtNidNo === null || txtNidNo === "") {
+                ShowNotification('National id can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtNidNo.length < 10 || txtNidNo.length > 17) {
+                ShowNotification('National Id should be between 10 to 17 digit', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtMobileNo === null || txtMobileNo === "") {
+                ShowNotification('Mobile number can not be blank', 'Employee Information Update', 'warning');
+                return false;
+            }
+            if (txtMobileNo.length != 11) {
+                ShowNotification('Mobile number should be 11 digit', 'Employee Information Update', 'warning');
                 return false;
             }
             if (txtJoiningDate === null || txtJoiningDate === "") {
@@ -870,7 +1162,7 @@
                 ImageDir.readAsDataURL(input.files[0]);
             }
         }
-        
+
         $(function () {
 
             Init();
@@ -878,8 +1170,35 @@
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(Init);
             //Sys.WebForms.PageRequestManager.getInstance().add_endRequest(ShowHideGridviewPanels);
         });
-
+        function SearchText() {
+            $("#txtEmployeeName").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        type: "POST",
+                        contentType: "application/json;",
+                        url: "PubEmployeeFullInformation.aspx/GetAutoCompleteData",
+                        data: "{'strSearchKey':'" + document.getElementById('txtEmployeeName').value + "'}",
+                        dataType: "json",
+                        success: function (data) {
+                            response(data.d);
+                        },
+                        error: function (result) {
+                            console.log(result.responseText);
+                        }
+                    });
+                },
+                minLength: 3,
+                    <%--select: function (event, ui) {
+                        console.log(ui.item.value);
+                        var hdnSearchId = document.getElementById("<%=hdnSearch.ClientID%>");
+                        hdnSearchId.value = 1;
+                        document.getElementById('<%=txtEmployeeName.ClientID %>').value = ui.item.value;
+                        __doPostBack('', ui.item.value);
+                    }--%>
+            });
+        }
         function Init() {
+            SearchText();
             $('#txtPromotionDate').datepicker({
                 dateFormat: 'dd/mm/yy'
             });

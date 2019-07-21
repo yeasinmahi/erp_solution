@@ -35,7 +35,7 @@
         }
  </script>
  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-</head>
+    </head>
 <body>
     <form id="frmBillApproval" runat="server">        
     <asp:ScriptManager ID="ScriptManager0" EnablePageMethods="true" runat="server"></asp:ScriptManager>
@@ -74,17 +74,18 @@
         <tr><td>    
             <div id="divExport">
                 <table>
-                    <tr><td style='text-align: center;'><asp:Label ID="lblUnitName" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label></td></tr>
-                    <tr><td style='text-align: center;'><asp:Label ID="lblAddress" runat="server" Font-Size="15px"></asp:Label></td></tr>
-                    <tr><td style='text-align: center;'><asp:Label ID="lblReportName" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label></td></tr>
-                    <tr><td style='text-align: center;'><asp:Label ID="lblFromToDate" runat="server" Font-Bold="true" Font-Size="15px"></asp:Label></td></tr>
+                    <tr>
+                        <td colspan="3" style='text-align: center;'><asp:Label ID="lblUnitName" runat="server" Font-Bold="true" Font-Size="20px"></asp:Label></td></tr>
+                    <tr><td colspan="3" style='text-align: center;'><asp:Label ID="lblAddress" runat="server" Font-Size="15px"></asp:Label></td></tr>
+                    <tr><td colspan="3" style='text-align: center;'><asp:Label ID="lblReportName" runat="server" Font-Bold="true" Font-Size="18px"></asp:Label></td></tr>
+                    <tr><td colspan="3" style='text-align: center;'><asp:Label ID="lblFromToDate" runat="server" Font-Bold="true" Font-Size="15px"></asp:Label></td></tr>
 
-                    <tr><td style="padding-bottom:35px">   
-                    <asp:GridView ID="dgvMDApprovalSheet" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="8" Font-Size="11px"
+                    <tr><td colspan="3" style="padding-bottom:35px">   
+                    <asp:GridView ID="dgvMDApprovalSheet" runat="server" AutoGenerateColumns="False" AllowPaging="false" PageSize="12" Font-Size="11px"
                     CssClass="Grid" AlternatingRowStyle-CssClass="alt" PagerStyle-CssClass="pgr" RowStyle-Height="22px"
                     HeaderStyle-Font-Size="11px" FooterStyle-Font-Size="10px" HeaderStyle-Font-Bold="true"
-                    ForeColor="Black" GridLines="Vertical" >
-                    <AlternatingRowStyle BackColor="#CCCCCC" />    
+                    ForeColor="Black" GridLines="Both" >
+                    <AlternatingRowStyle BackColor="White"/>    
                     <Columns>
                     <%--<asp:TemplateField HeaderText="SL No."><ItemStyle HorizontalAlign="center" Width="30px" /><ItemTemplate> <%# Container.DataItemIndex + 1 %></ItemTemplate></asp:TemplateField>--%>
             
@@ -105,8 +106,8 @@
                     </ItemTemplate><ItemStyle HorizontalAlign="left" Width="180px"/></asp:TemplateField>
 
                     <asp:TemplateField HeaderText="Approved for Pay" SortExpression="monApprove">
-                    <ItemTemplate><asp:Label ID="lblApprovedForPay" runat="server" Text='<%# Bind("monApprove", "{0:n2}") %>' Width="130px"></asp:Label>
-                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="130px"/></asp:TemplateField>
+                    <ItemTemplate><asp:Label ID="lblApprovedForPay" runat="server" Text='<%# Bind("monApprove", "{0:n0}") %>' Width="130px"></asp:Label>
+                    </ItemTemplate><ItemStyle HorizontalAlign="right" Width="130px" Font-Size="14px"/></asp:TemplateField>
 
                     </Columns>
                     <FooterStyle Font-Size="11px" />
@@ -114,6 +115,13 @@
                     <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
                     </asp:GridView>
                     </td></tr> 
+                    
+                    <tr>
+                         <td style="text-align:center">Prepared By</td>
+                        <td style="text-align:center"> Reviewed By</td>
+                         <td style="text-align:center"> Recommended By </td>
+                        
+                    </tr>
                 </table>
                 <asp:HiddenField ID="HdnValue" runat="server" />
             </div>
