@@ -109,22 +109,22 @@ namespace SAD_BLL.Customer.Report
 
                    ref strLogistic,
                    ref strStatus);
-        
-        
-        
+
+
+
         }
 
         public DeliverySupportTDS.SprCustomerServiceDODetailsDataTable InfoByDODetails(
             string id,
             string userID,
-            
+
             ref string strChallanNo,
             ref string strTripNo,
             ref bool? ysnCompleted,
 
             ref string strVehicle,
             ref string strLogistic,
-            ref DateTime? dteInTime,                    
+            ref DateTime? dteInTime,
             ref DateTime? dteOutTime,
 
             ref string strDriver,
@@ -143,14 +143,14 @@ namespace SAD_BLL.Customer.Report
             SprCustomerServiceDODetailsTableAdapter ta = new SprCustomerServiceDODetailsTableAdapter();
             return ta.GetData(long.Parse(id), int.Parse(userID), ref strChallanNo
                 , ref strTripNo, ref ysnCompleted, ref strVehicle, ref strLogistic
-                , ref dteInTime, ref dteOutTime, ref strDriver,ref strContact,ref strDrNid
+                , ref dteInTime, ref dteOutTime, ref strDriver, ref strContact, ref strDrNid
                 , ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity
                 , ref dteWgtIn, ref dteWgtOut);
-            
+
         }
 
 
-        public DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable infoByDODetailsWithoutTrip (string soid,
+        public DeliverySupportTDS.SprCustomerServiceDODetailsWithoutTripDataTable infoByDODetailsWithoutTrip(string soid,
             string userID,
 
             ref string strChallanNo,
@@ -177,8 +177,8 @@ namespace SAD_BLL.Customer.Report
             SprCustomerServiceDODetailsWithoutTripTableAdapter ta = new SprCustomerServiceDODetailsWithoutTripTableAdapter();
 
             return ta.GetDataCustomerServiceDODetailsWithoutTrip(long.Parse(soid), int.Parse(userID), ref strChallanNo,
-            ref strTripNo, ref ysnCompleted,ref strVehicle, ref strLogistic,ref dteInTime, ref dteOutTime,ref strDriver,
-            ref strContact,ref strDrNid, ref strHealper, ref strUom, ref numEmpty,ref numLoaded, ref numCapacity,
+            ref strTripNo, ref ysnCompleted, ref strVehicle, ref strLogistic, ref dteInTime, ref dteOutTime, ref strDriver,
+            ref strContact, ref strDrNid, ref strHealper, ref strUom, ref numEmpty, ref numLoaded, ref numCapacity,
             ref dteWgtIn, ref dteWgtOut);
 
         }
@@ -214,14 +214,14 @@ namespace SAD_BLL.Customer.Report
             return result;
         }
 
-        public DataTable getAttachmentInfo(int enrolentryby,DateTime fromdate,DateTime todate,int rpttyepid , int autoid )
+        public DataTable getAttachmentInfo(int enrolentryby, DateTime fromdate, DateTime todate, int rpttyepid, int autoid)
         {
             DataTable dt = new DataTable();
             try
             {
 
                 SprAttachmentInfoTableAdapter bll = new SprAttachmentInfoTableAdapter();
-                dt = bll.GetDataAttachmentInfo(enrolentryby, fromdate, todate,rpttyepid,  autoid);
+                dt = bll.GetDataAttachmentInfo(enrolentryby, fromdate, todate, rpttyepid, autoid);
                 return bll.GetDataAttachmentInfo(enrolentryby, fromdate, todate, rpttyepid, autoid);
 
             }
@@ -243,5 +243,30 @@ namespace SAD_BLL.Customer.Report
 
             catch { return new DataTable(); }
         }
+
+        public DataTable checkAllowDepatmentForUpdate(int departmentId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                tblTADAInfoUpdateAllowTableAdapter bll = new tblTADAInfoUpdateAllowTableAdapter();
+                dt = bll.GetAllowDepartmentID(departmentId);
+            }
+            catch { return dt; }
+            return dt;
+        }
+
+        public DataTable getTADADataByVehicle(DateTime fDate, DateTime tDate,int vehicleId)
+        {
+            DataTable dt = new DataTable();
+            try
+            {
+                sprTADAGetDataForUpdateByVehicleTableAdapter obj = new sprTADAGetDataForUpdateByVehicleTableAdapter();
+                dt = obj.GetTADADataForUpdateByVehicle(fDate, tDate, vehicleId);
+            }
+            catch { return dt; }
+            return dt;
+        }
+
     }
 }

@@ -87,7 +87,7 @@ namespace SAD_BLL.Sales
         }
 
         public SalesOrderViewTDS.SprSalesOrderViewDataTable GetSalesOrderView(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
-            , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
+            , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice, string ordertype)
         {
             SprSalesOrderViewTableAdapter adp = new SprSalesOrderViewTableAdapter();
 
@@ -115,12 +115,12 @@ namespace SAD_BLL.Sales
             }
 
             if ("" + customerType == "") return null;
-            return adp.GetSalesOrderViewData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+            return adp.GetSalesOrderViewData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice), int.Parse(ordertype));
 
         }
 
         public SalesOrderViewTDS.SprSalesOrderViewForPickingDataTable GetSalesOrderViewForPicking(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
-            , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice)
+            , string customerId, int customerType, int intReportType, string shippingPoint, string salesOffice, string ordertype)
         {
             SprSalesOrderViewForPickingTableAdapter adp = new SprSalesOrderViewForPickingTableAdapter();
 
@@ -148,7 +148,7 @@ namespace SAD_BLL.Sales
             }
 
             if ("" + customerType == "") return null;
-            return adp.GetSalesOrderViewForPickingData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+            return adp.GetSalesOrderViewForPickingData(int.Parse(unitID), cId, fromDate, toDate, customerType, intReportType, code, int.Parse(shippingPoint), int.Parse(salesOffice), int.Parse(ordertype));
 
         }
 
@@ -190,7 +190,7 @@ namespace SAD_BLL.Sales
     
 
         public SalesOrderViewTDS.SprPickingViewDataTable GetViewPickingData(DateTime? fromDate, DateTime? toDate, string code, string unitID, string userID
-           , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice)
+           , string customerId, string customerType, bool isCompleted, string shippingPoint, string salesOffice, string ordertype)
         {
             SprPickingViewTableAdapter adp = new SprPickingViewTableAdapter();
 
@@ -216,7 +216,7 @@ namespace SAD_BLL.Sales
             }
 
             if ("" + customerType == "") return null;
-            return adp.GetViewPickingData(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), isCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice));
+            return adp.GetViewPickingData(int.Parse(unitID), cId, fromDate, toDate, int.Parse(customerType), isCompleted, code, int.Parse(shippingPoint), int.Parse(salesOffice), int.Parse(ordertype));
 
         }
 
