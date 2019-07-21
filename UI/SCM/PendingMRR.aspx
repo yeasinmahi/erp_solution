@@ -298,34 +298,34 @@
                         <Columns>
                         <asp:TemplateField HeaderText="Item No." SortExpression="intItemID">
                         <ItemTemplate><asp:Label ID="lblitmno" runat="server" Text='<%# Bind("intItemID") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
                                              
                         <asp:TemplateField HeaderText="Item Name" SortExpression="strItem">
                         <ItemTemplate><asp:Label ID="lblitem" runat="server" Text='<%# Bind("strItem") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="250px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Left" Width="250px" /></asp:TemplateField>
 
-                        <asp:BoundField DataField="strSpecificationDetail" HeaderText="Specification" ItemStyle-HorizontalAlign="Center" SortExpression="strSpecificationDetail">
+                        <asp:BoundField DataField="strSpecificationDetail" HeaderText="Specification" ItemStyle-HorizontalAlign="Left" SortExpression="strSpecificationDetail">
                         <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:BoundField>
 
-                        <asp:TemplateField HeaderText="PO Quantity" SortExpression="numQty">
+                        <asp:TemplateField HeaderText="PO Quantity"  SortExpression="numQty">
                         <ItemTemplate><asp:Label ID="lblpoqnty" runat="server" Text='<%# Bind("numPOQty", "{0:0}") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="95px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Right" Width="95px" /></asp:TemplateField>
                          
-                        <asp:TemplateField HeaderText="MRR Quantity" SortExpression="MrrQty">
+                        <asp:TemplateField HeaderText="MRR Quantity"  SortExpression="MrrQty">
                         <ItemTemplate><asp:Label ID="lblmrrqnty" runat="server" Text='<%# Bind("MrrQty", "{0:0}") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="95px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Right" Width="95px" /></asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Value" SortExpression="monBDTTotal">
-                        <ItemTemplate><asp:Label ID="lblmonBDTTotal" runat="server" Text='<%# Bind("monBDTTotal", "{0:00}") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="95px" /></asp:TemplateField>
+                        <asp:TemplateField HeaderText="Amount(BDT)" SortExpression="monBDTTotal">
+                        <ItemTemplate><asp:Label ID="lblmonBDTTotal" runat="server" Text='<%# Bind("monBDTTotal", "{0:n2}") %>'></asp:Label></ItemTemplate>
+                        <ItemStyle HorizontalAlign="Right" Width="95px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Location ID." SortExpression="intLocationID" Visible="false">
                         <ItemTemplate><asp:Label ID="lblLocationId" runat="server" Text='<%# Bind("intLocationID") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
                            
                         <asp:TemplateField HeaderText="Unit ID." SortExpression="intUnitID" Visible="false">
                         <ItemTemplate><asp:Label ID="lblintUnitID" runat="server" Text='<%# Bind("intUnitID") %>'></asp:Label></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Checking">
                         <ItemTemplate><asp:TextBox ID="txtChkQuantity" CssClass="txtBox" runat="server" TextMode="Number" Width="100px"></asp:TextBox></ItemTemplate>
@@ -333,7 +333,7 @@
 
                         <asp:TemplateField HeaderText="Remarks">
                         <ItemTemplate><asp:TextBox ID="txtRemarks" CssClass="txtBox" runat="server" Width="100px"></asp:TextBox></ItemTemplate>
-                        <ItemStyle HorizontalAlign="Center" Width="100px" /></asp:TemplateField>
+                        <ItemStyle HorizontalAlign="Left" Width="100px" /></asp:TemplateField>
 
                         <asp:TemplateField HeaderText="Proceed"><EditItemTemplate><asp:CheckBox ID="chkbx" runat="server" Checked="false"/></EditItemTemplate>
                         <ItemTemplate><asp:CheckBox ID="chkbx" runat="server" Checked="false"/></ItemTemplate><ItemStyle HorizontalAlign="Center"/></asp:TemplateField>

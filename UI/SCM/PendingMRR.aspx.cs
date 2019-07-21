@@ -219,23 +219,32 @@ namespace UI.SCM
                 //}
                 //dt = obj.DataView(12, xmlData, intWh, Mrrid, dteFrom, enroll);
                 dt = adapter.GetPendingMRRData(dteFrom.ToString(), dteTo.ToString(), intWh);
-                dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
 
-                if (dt != null)
+                if(dt.Rows.Count>0)
                 {
-                    if (dt.Rows.Count > 0)
+                    dt.Columns.Add(new DataColumn("missingCost", typeof(string)));
+
+                    if (dt != null)
                     {
-                        for (int i = 0; i < dt.Rows.Count; i++)
+                        if (dt.Rows.Count > 0)
                         {
-                            int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
-                            int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
-                            dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
+                            for (int i = 0; i < dt.Rows.Count; i++)
+                            {
+                                int poid = !string.IsNullOrEmpty(dt.Rows[i]["intpoid"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intpoid"]) : 0;
+                                int shipid = !string.IsNullOrEmpty(dt.Rows[i]["intShipmentID"].ToString()) ? Convert.ToInt32(dt.Rows[i]["intShipmentID"]) : 0;
+                                dt.Rows[i]["missingCost"] = GetMRRMissingCost(poid, shipid);
+                            }
                         }
                     }
-                }
 
-                dgvIndent.DataSource = dt;
-                dgvIndent.DataBind();
+                    dgvIndent.DataSource = dt;
+                    dgvIndent.DataBind();
+                }
+                else
+                {
+                    Toaster("Sorry! There is no data exist.","Pending MRR", Common.TosterType.Warning);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -282,7 +291,7 @@ namespace UI.SCM
                     string is_QC = "";
                     try
                     {
-                        is_QC= dt.Rows[0]["ysnQC"].ToString(); ;
+                        is_QC= dt.Rows[0]["ysnQC"].ToString(); 
                     }
                     catch
                     {
