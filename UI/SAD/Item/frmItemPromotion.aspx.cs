@@ -217,8 +217,7 @@ namespace UI.SAD.Item
             try
             {
 
-                if (txtPromotionName.Text != "")
-            {
+            
                 char[] delimiterCharss = { '[', ']' };
                 if (txtCustomer.Text != "")
                 {
@@ -228,8 +227,8 @@ namespace UI.SAD.Item
                 else { Custid = int.Parse("0"); }
                 arrayKeyItem = txtSalesItem.Text.Split(delimiterCharss);
                 ItemidSales = int.Parse(arrayKeyItem[1].ToString());
-            }
-            dteTdate =DateTime.Parse(txtTo.Text);
+
+                dteTdate = CommonClass.GetDateAtSQLDateFormat(txtTo.Text).Date;
             batchno = txtPromotionName.Text;
             part =int.Parse(ddlCancelType.SelectedValue);
  
