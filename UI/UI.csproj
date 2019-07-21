@@ -610,6 +610,7 @@
     <Content Include="PaymentModule\DocListByBillID.aspx" />
     <Content Include="PaymentModule\Duty_Summary_Report.aspx" />
     <Content Include="PaymentModule\FG_Cost_Update.aspx" />
+    <Content Include="PaymentModule\ImportAdvice.aspx" />
     <Content Include="PaymentModule\IndentViewDetails.aspx" />
     <Content Include="PaymentModule\AITReport.aspx" />
     <Content Include="PaymentModule\MDSlipDetails.aspx" />
@@ -4078,6 +4079,13 @@
     </Compile>
     <Compile Include="PaymentModule\FG_Cost_Update.aspx.designer.cs">
       <DependentUpon>FG_Cost_Update.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModule\ImportAdvice.aspx.cs">
+      <DependentUpon>ImportAdvice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PaymentModule\ImportAdvice.aspx.designer.cs">
+      <DependentUpon>ImportAdvice.aspx</DependentUpon>
     </Compile>
     <Compile Include="PaymentModule\IndentViewDetails.aspx.cs">
       <DependentUpon>IndentViewDetails.aspx</DependentUpon>
