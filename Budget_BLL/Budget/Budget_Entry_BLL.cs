@@ -198,7 +198,15 @@ namespace Budget_BLL.Budget
 
 
 
-
+        public DataTable GetBudgetFGQntvsMaterialQnt( int budgtyr, int invitmid)
+        {
+            try
+            {
+                SprOperationalBudgetFGQntvsMaterialQntTableAdapter adp = new SprOperationalBudgetFGQntvsMaterialQntTableAdapter();
+                return adp.GetDataOperationalBudgetFGQntvsMaterialQnt(budgtyr, invitmid);
+            }
+            catch { return new DataTable(); }
+        }
 
 
 

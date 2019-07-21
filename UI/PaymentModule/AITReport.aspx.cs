@@ -8,7 +8,7 @@ using UI.ClassFiles;
 
 namespace UI.PaymentModule
 {
-    public partial class InternalbillForBanking : BasePage
+    public partial class AITReport : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -16,7 +16,7 @@ namespace UI.PaymentModule
             {
                 pnlUpperControl.DataBind();
             }
-            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/Payment/InternalBill?rs:Embed=true');", true);
+            ScriptManager.RegisterStartupScript(Page, typeof(Page), "StartupScript", "loadIframe('frame', 'https://report.akij.net/reports/report/Common_Reports/Payment/AIT%20SUMMARY?rs:Embed=true');", true);
         }
     }
 }

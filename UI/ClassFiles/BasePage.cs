@@ -16,24 +16,38 @@ namespace UI.ClassFiles
     {
         //protected int Enroll = 0;
         public int Enroll { get; private set; }
+        public string UserFullName { get; private set; }
         public string Code { get; private set; }
         public int JobStationId { get; private set; }
         public string JobStationName { get; private set; }
         public int UnitId { get; private set; }
         public String UnitName { get; private set; }
         public string UserEmail { get; private set; }
+        public string Designation { get; private set; }
+        public string Department { get; private set; }
+        public string JoiningDate { get; private set; }
+        public string ContactNumber { get; private set; }
+        public string JobType { get; private set; }
+        public string Supervisor { get; private set; }
 
         protected override void OnPreInit(EventArgs e)
         {
             base.OnPreInit(e);
             UserActivityCheck();
             Enroll = Convert.ToInt32(HttpContext.Current.Session[SessionParams.USER_ID].ToString());
+            UserFullName = HttpContext.Current.Session[SessionParams.USER_NAME].ToString();
             JobStationId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.JOBSTATION_ID].ToString());
             JobStationName = HttpContext.Current.Session[SessionParams.JOBSTATION_NAME].ToString();
             UnitId = Convert.ToInt32(HttpContext.Current.Session[SessionParams.UNIT_ID].ToString());
             UnitName = HttpContext.Current.Session[SessionParams.UNIT_NAME].ToString();
             UserEmail = HttpContext.Current.Session[SessionParams.EMAIL].ToString();
             Code = HttpContext.Current.Session[SessionParams.USER_CODE].ToString();
+            Designation = HttpContext.Current.Session[SessionParams.DESIG_NAME].ToString();
+            Department = HttpContext.Current.Session[SessionParams.DEPT_NAME].ToString();
+            JoiningDate = DateTime.Parse(Session[SessionParams.APPOINTMENT_DATE].ToString()).ToString("dd/MM/yyyy");
+            ContactNumber = HttpContext.Current.Session[SessionParams.PHONE].ToString();
+            JobType = HttpContext.Current.Session[SessionParams.JOBTYPE_NAME].ToString();
+            Supervisor = HttpContext.Current.Session[SessionParams.Supervisor].ToString();
             Page.Title = @"Welcome to Akij Group";
         }
 
