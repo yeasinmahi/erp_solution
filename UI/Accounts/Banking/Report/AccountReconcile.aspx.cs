@@ -33,7 +33,7 @@ namespace UI.Accounts.Banking.Report
             if (!IsPostBack)
             {
                 pnlUpperControl.DataBind();
-                txtFrom.Text = CommonClass.GetShortDateAtLocalDateFormat(DateTime.Now);
+                txtFrom.Text = DateTime.Now.ToString("yyyy-MM-dd");
             }
             else
             {
